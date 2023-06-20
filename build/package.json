@@ -1,0 +1,28 @@
+{
+  "name": "@kriszu/build",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@esbuild-kit/cjs-loader": "^2.4.2",
+    "@pnpm/find-workspace-packages": "^6.0.9",
+    "@pnpm/logger": "^5.0.0",
+    "@pnpm/types": "^9.1.0",
+    "@rollup/plugin-alias": "^5.0.0",
+    "@rollup/plugin-commonjs": "^25.0.1",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "consola": "^3.1.0",
+    "esbuild": "^0.18.4",
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.1",
+    "gulp": "^4.0.2",
+    "rollup": "^3.25.1",
+    "rollup-plugin-esbuild": "^5.0.0",
+    "ts-morph": "^19.0.0"
+  }
+}
