@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["ESNext"],
+    "types": ["node"],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "build/**/*",
+    "build/**/*.json",
+    "scripts/**/*",
+    "antdv/version/index.ts",
+    "antdv/theme/**/*",
+    "antdv/package.json"
+  ],
+  "exclude": ["dist"]
+}

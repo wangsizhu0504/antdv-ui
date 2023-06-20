@@ -1,0 +1,35 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["DOM", "ESNext"],
+    "module": "CommonJS",
+    "allowJs": true,
+    "jsx": "preserve",
+    "types": ["node"],
+    "resolveJsonModule": true,
+    "useDefineForClassFields": true,
+    "isolatedModules": true,
+    "skipDefaultLibCheck": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "stripInternal": true,
+    "paths": {
+      "antdv/es/*": ["antdv/*"]
+    }
+  },
+  "include": [
+    "antdv",
+    "typings/components.d.ts",
+    "typings/env.d.ts",
+    "typings/typings.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "site",
+    "**/dist",
+    "**/__tests__/**/*",
+    "**/gulpfile.ts",
+    "**/*.md"
+  ]
+}
