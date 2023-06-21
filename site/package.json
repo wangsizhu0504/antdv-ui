@@ -1,7 +1,7 @@
 {
-  "name": "@antd-vue/site",
+  "name": "@antdv/site",
   "type": "module",
-  "version": "4.0.0-rc.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "vite",
