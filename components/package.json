@@ -7,6 +7,18 @@
   },
   "description": "An enterprise-class UI design language and Vue-based implementation",
   "license": "MIT",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/ant-design-vue"
+  },
+  "homepage": "https://www.antdv.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vueComponent/ant-design-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vueComponent/ant-design-vue/issues"
+  },
   "keywords": [
     "vue",
     "vue3",
