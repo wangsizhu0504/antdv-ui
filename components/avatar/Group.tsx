@@ -1,0 +1,94 @@
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+import { computed, defineComponent } from 'vue'
+import Popover from '../popover'
+import { cloneElement } from '../_util/vnode'
+import { flattenChildren, getPropsSlot } from '../_util/props-util'
+import { useConfigInject } from '../hooks'
+import Avatar from './Avatar'
+import type { AvatarSize } from './Avatar'
+import useStyle from './style'
+import { useProviderSize } from './SizeContext'
+
+export const groupProps = () => ({
+  prefixCls: String,
+  maxCount: Number,
+  maxStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  maxPopoverPlacement: { type: String as PropType<'top' | 'bottom'>, default: 'top' },
+  maxPopoverTrigger: String as PropType<'hover' | 'focus' | 'click'>,
+  /*
+   * Size of avatar, options: `large`, `small`, `default`
+   * or a custom number size
+   * */
+  size: {
+    type: [Number, String, Object] as PropType<AvatarSize>,
+    default: 'default' as AvatarSize,
+  },
+})
+
+export type AvatarGroupProps = Partial<ExtractPropTypes<ReturnType<typeof groupProps>>>
+
+const Group = defineComponent({
+  compatConfig: { MODE: 3 },
+  name: 'AAvatarGroup',
+  inheritAttrs: false,
+  props: groupProps(),
+  setup(props, { slots, attrs }) {
+    const { prefixCls, direction } = useConfigInject('avatar', props)
+    const groupPrefixCls = computed(() => `${prefixCls.value}-group`)
+    const [wrapSSR, hashId] = useStyle(prefixCls)
+    useProviderSize(computed(() => props.size))
+    return () => {
+      const {
+        maxPopoverPlacement = 'top',
+        maxCount,
+        maxStyle,
+        maxPopoverTrigger = 'hover',
+      } = props
+
+      const cls = {
+        [groupPrefixCls.value]: true,
+        [`${groupPrefixCls.value}-rtl`]: direction.value === 'rtl',
+        [`${attrs.class}`]: !!attrs.class,
+        [hashId.value]: true,
+      }
+
+      const children = getPropsSlot(slots, props)
+      const childrenWithProps = flattenChildren(children).map((child, index) =>
+        cloneElement(child, {
+          key: `avatar-key-${index}`,
+        }),
+      )
+
+      const numOfChildren = childrenWithProps.length
+      if (maxCount && maxCount < numOfChildren) {
+        const childrenShow = childrenWithProps.slice(0, maxCount)
+        const childrenHidden = childrenWithProps.slice(maxCount, numOfChildren)
+
+        childrenShow.push(
+          <Popover
+            key="avatar-popover-key"
+            content={childrenHidden}
+            trigger={maxPopoverTrigger}
+            placement={maxPopoverPlacement}
+            overlayClassName={`${groupPrefixCls.value}-popover`}
+          >
+            <Avatar style={maxStyle}>{`+${numOfChildren - maxCount}`}</Avatar>
+          </Popover>,
+        )
+        return wrapSSR(
+          <div {...attrs} class={cls} style={attrs.style as CSSProperties}>
+            {childrenShow}
+          </div>,
+        )
+      }
+
+      return wrapSSR(
+        <div {...attrs} class={cls} style={attrs.style as CSSProperties}>
+          {childrenWithProps}
+        </div>,
+      )
+    }
+  },
+})
+
+export default Group

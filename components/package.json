@@ -1,0 +1,87 @@
+{
+  "name": "@antdv/ui",
+  "version": "4.0.0-rc.1",
+  "packageManager": "pnpm@8.6.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "An enterprise-class UI design language and Vue-based implementation",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue3",
+    "vue3-components",
+    "ant-design-vue",
+    "ant-design",
+    "antd",
+    "vueComponent",
+    "component",
+    "components",
+    "ui",
+    "framework",
+    "frontend"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "require": "./lib/index.js",
+      "import": "./es/index.mjs"
+    },
+    "./es": "./es/index.mjs",
+    "./lib": "./lib/index.js",
+    "./es/*.mjs": "./es/*.mjs",
+    "./es/*": "./es/*.mjs",
+    "./lib/*.js": "./lib/*.js",
+    "./lib/*": "./lib/*.js",
+    "./*": "./*"
+  },
+  "main": "lib/index.js",
+  "module": "es/index.mjs",
+  "unpkg": "dist/index.full.js",
+  "jsdelivr": "dist/index.full.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es",
+    "dist",
+    "README.md"
+  ],
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead"
+  ],
+  "peerDependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
+    "vue": "^3.3.4"
+  },
+  "dependencies": {
+    "@ant-design/colors": "^7.0.0",
+    "@ctrl/tinycolor": "^3.6.0",
+    "@emotion/hash": "^0.9.1",
+    "@emotion/unitless": "^0.8.1",
+    "@vueuse/core": "^10.2.0",
+    "async-validator": "^4.2.5",
+    "csstype": "^3.1.2",
+    "dayjs": "^1.11.8",
+    "dom-align": "^1.12.4",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "resize-observer-polyfill": "^1.5.1",
+    "scroll-into-view-if-needed": "^3.0.10",
+    "stylis": "^4.2.0",
+    "throttle-debounce": "^5.0.0",
+    "vue-types": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.7",
+    "@types/node": "^20.3.1",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "typescript": "^5.1.3",
+    "vite": "^4.3.9",
+    "vite-plugin-dts": "^2.3.0",
+    "vitest": "^0.32.0"
+  }
+}
