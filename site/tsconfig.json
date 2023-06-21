@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "lib": ["DOM", "WebWorker"],
+    "paths": {
+      "@antdv/ui": ["../components"],
+      "@antdv/ui/es/*": ["../components/*"],
+      "@/*": ["./src/*"]
+    },
+    "types": ["../typings/components"],
+    "jsx": "preserve"
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules"]
+}
