@@ -1,12 +1,12 @@
 <script lang="ts">
 import { defineAsyncComponent, defineComponent, nextTick, onMounted, ref, watch } from 'vue'
 import { message } from '@antdv/ui'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider/context'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider'
 
 import Header from '../../layouts/header/index.vue'
 
 // antd换肤编辑器
-import { ThemeEditor, enUS, zhCN } from '../../components/@antdv/ui-token-previewer'
+import { ThemeEditor, enUS, zhCN } from '../../components/antdv-token-previewer'
 
 import locales from './locales'
 import { useLocale } from '@/locale'

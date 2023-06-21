@@ -40,7 +40,7 @@ const useStyle = makeStyle('ComponentCard', token => ({
   },
 }))
 
-export const getComponentDemoId = (component: string) => `@antdv/ui-token-previewer-${component}`
+export const getComponentDemoId = (component: string) => `antdv-token-previewer-${component}`
 
 export interface ComponentCardProps {
   title: CardProps['title']

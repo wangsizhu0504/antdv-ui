@@ -28,7 +28,7 @@ export const buildModules = async () => {
       esbuild({
         sourceMap: true,
         target,
-        logOverride: { 'this-is-undefined-in-esm': 'silent' },
+        // logOverride: { 'this-is-undefined-in-esm': 'silent' },
         loaders: {
           '.vue': 'ts',
         },
