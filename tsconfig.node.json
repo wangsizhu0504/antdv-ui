@@ -11,9 +11,9 @@
     "build/**/*",
     "build/**/*.json",
     "scripts/**/*",
-    "antdv/version/index.ts",
-    "antdv/theme/**/*",
-    "antdv/package.json"
+    "antdv-ui/version/index.ts",
+    "antdv-ui/theme/**/*",
+    "antdv-ui/package.json"
   ],
   "exclude": ["dist"]
 }

@@ -42,11 +42,11 @@ English | [简体中文](./README-zh_CN.md)
 **We recommend using npm or yarn to install**，it not only makes development easier，but also allow you to take advantage of the rich ecosystem of Javascript packages and tooling.
 
 ```bash
-$ npm install antdv --save
+$ npm install @antdv/ui --save
 ```
 
 ```bash
-$ yarn add antdv
+$ yarn add @antdv/ui
 ```
 
 If you are in a bad network environment，you can try other registries and tools like [cnpm](https://github.com/cnpm/cnpm).

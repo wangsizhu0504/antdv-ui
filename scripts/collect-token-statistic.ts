@@ -6,9 +6,9 @@ import fs from 'fs-extra'
 import { glob } from 'glob'
 import ProgressBar from 'progress'
 import { createSSRApp, createVNode, defineComponent, ref } from 'vue'
-import { statistic } from '../antdv/theme/util/statistic'
-import { DesignTokenProvider } from '../antdv/theme/internal'
-import seedToken from '../antdv/theme/themes/seed'
+import { statistic } from '../components/theme/util/statistic'
+import { DesignTokenProvider } from '../components/theme/internal'
+import seedToken from '../components/theme/themes/seed'
 
 console.log(chalk.green('🔥 Collecting token statistics...'))
 
@@ -17,7 +17,7 @@ const EmptyElement = createVNode('div')
 const styleFiles = glob.sync(
   path.join(
     process.cwd(),
-    'antdv/!(version|config-provider|locale-provider|auto-complete|col|row|time-picker|)/style/index.?(ts|tsx)',
+    'components/!(version|config-provider|locale-provider|auto-complete|col|row|time-picker|)/style/index.?(ts|tsx)',
   ),
 )
 
@@ -74,7 +74,7 @@ styleFiles.forEach((file) => {
 });
 
 (() => {
-  const tokenPath = `${process.cwd()}/antdv/version/token.json`
+  const tokenPath = `${process.cwd()}/components/version/token.json`
   fs.writeJsonSync(tokenPath, statistic, 'utf8')
 
   console.log(chalk.green('✅  Collected token statistics successfully, check it in'), tokenPath)

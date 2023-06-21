@@ -8,7 +8,7 @@ export const buildRoot = resolve(projRoot, 'build')
 /** `/dist` */
 export const buildOutput = resolve(projRoot, 'dist')
 /** `/dist/antdv` */
-export const antdOutput = resolve(buildOutput, 'antdv')
+export const antdOutput = resolve(buildOutput, 'antdv-ui')
 
 export const projPackage = resolve(projRoot, 'package.json')
 export const antdPackage = resolve(antdRoot, 'package.json')

@@ -15,7 +15,7 @@ npm run token
 echo "build packages"
 pnpm build
 
-cd dist/antdv
+cd dist/components
 npm publish
 cd -
 

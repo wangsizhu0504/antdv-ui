@@ -38,14 +38,14 @@ function main() {
 
   app.bootstrap({
     // typedoc options here
-    entryPoints: ['antdv/theme/interface/index.ts'],
+    entryPoints: ['components/theme/interface/index.ts'],
   })
 
   const project = app.convert()
 
   if (project) {
     // Project may not have converted correctly
-    const output = 'antdv/version/token-meta.json'
+    const output = 'components/version/token-meta.json'
     const tokenMeta = {}
     let presetColors = []
     project.children.forEach((type) => {

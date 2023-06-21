@@ -1,269 +1,269 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 declare module 'vue' {
   export interface GlobalComponents {
-    AAffix: typeof import('antdv')['Affix'];
+    AAffix: typeof import('@antdv/ui')['Affix'];
 
-    AAlert: typeof import('antdv')['Alert'];
+    AAlert: typeof import('@antdv/ui')['Alert'];
 
-    AAnchor: typeof import('antdv')['Anchor'];
+    AAnchor: typeof import('@antdv/ui')['Anchor'];
 
-    AAnchorLink: typeof import('antdv')['AnchorLink'];
+    AAnchorLink: typeof import('@antdv/ui')['AnchorLink'];
 
-    AAutoComplete: typeof import('antdv')['AutoComplete'];
+    AAutoComplete: typeof import('@antdv/ui')['AutoComplete'];
 
-    AAutoCompleteOptGroup: typeof import('antdv')['AutoCompleteOptGroup'];
+    AAutoCompleteOptGroup: typeof import('@antdv/ui')['AutoCompleteOptGroup'];
 
-    AAutoCompleteOption: typeof import('antdv')['AutoCompleteOption'];
+    AAutoCompleteOption: typeof import('@antdv/ui')['AutoCompleteOption'];
 
-    AAvatar: typeof import('antdv')['Avatar'];
+    AAvatar: typeof import('@antdv/ui')['Avatar'];
 
-    AAvatarGroup: typeof import('antdv')['AvatarGroup'];
+    AAvatarGroup: typeof import('@antdv/ui')['AvatarGroup'];
 
-    ABadge: typeof import('antdv')['Badge'];
+    ABadge: typeof import('@antdv/ui')['Badge'];
 
-    ABadgeRibbon: typeof import('antdv')['BadgeRibbon'];
+    ABadgeRibbon: typeof import('@antdv/ui')['BadgeRibbon'];
 
-    ABreadcrumb: typeof import('antdv')['Breadcrumb'];
+    ABreadcrumb: typeof import('@antdv/ui')['Breadcrumb'];
 
-    ABreadcrumbItem: typeof import('antdv')['BreadcrumbItem'];
+    ABreadcrumbItem: typeof import('@antdv/ui')['BreadcrumbItem'];
 
-    ABreadcrumbSeparator: typeof import('antdv')['BreadcrumbSeparator'];
+    ABreadcrumbSeparator: typeof import('@antdv/ui')['BreadcrumbSeparator'];
 
-    AButton: typeof import('antdv')['Button'];
+    AButton: typeof import('@antdv/ui')['Button'];
 
-    AButtonGroup: typeof import('antdv')['ButtonGroup'];
+    AButtonGroup: typeof import('@antdv/ui')['ButtonGroup'];
 
-    ACalendar: typeof import('antdv')['Calendar'];
+    ACalendar: typeof import('@antdv/ui')['Calendar'];
 
-    ACard: typeof import('antdv')['Card'];
+    ACard: typeof import('@antdv/ui')['Card'];
 
-    ACardGrid: typeof import('antdv')['CardGrid'];
+    ACardGrid: typeof import('@antdv/ui')['CardGrid'];
 
-    ACardMeta: typeof import('antdv')['CardMeta'];
+    ACardMeta: typeof import('@antdv/ui')['CardMeta'];
 
-    ACarousel: typeof import('antdv')['Carousel'];
+    ACarousel: typeof import('@antdv/ui')['Carousel'];
 
-    ACascader: typeof import('antdv')['Cascader'];
+    ACascader: typeof import('@antdv/ui')['Cascader'];
 
-    ACheckableTag: typeof import('antdv')['CheckableTag'];
+    ACheckableTag: typeof import('@antdv/ui')['CheckableTag'];
 
-    ACheckbox: typeof import('antdv')['Checkbox'];
+    ACheckbox: typeof import('@antdv/ui')['Checkbox'];
 
-    ACheckboxGroup: typeof import('antdv')['CheckboxGroup'];
+    ACheckboxGroup: typeof import('@antdv/ui')['CheckboxGroup'];
 
-    ACol: typeof import('antdv')['Col'];
+    ACol: typeof import('@antdv/ui')['Col'];
 
-    ACollapse: typeof import('antdv')['Collapse'];
+    ACollapse: typeof import('@antdv/ui')['Collapse'];
 
-    ACollapsePanel: typeof import('antdv')['CollapsePanel'];
+    ACollapsePanel: typeof import('@antdv/ui')['CollapsePanel'];
 
-    AComment: typeof import('antdv')['Comment'];
+    AComment: typeof import('@antdv/ui')['Comment'];
 
-    AConfigProvider: typeof import('antdv')['ConfigProvider'];
+    AConfigProvider: typeof import('@antdv/ui')['ConfigProvider'];
 
-    AStyleProvider: typeof import('antdv')['StyleProvider'];
+    AStyleProvider: typeof import('@antdv/ui')['StyleProvider'];
 
-    ADatePicker: typeof import('antdv')['DatePicker'];
+    ADatePicker: typeof import('@antdv/ui')['DatePicker'];
 
-    ADescriptions: typeof import('antdv')['Descriptions'];
+    ADescriptions: typeof import('@antdv/ui')['Descriptions'];
 
-    ADescriptionsItem: typeof import('antdv')['DescriptionsItem'];
+    ADescriptionsItem: typeof import('@antdv/ui')['DescriptionsItem'];
 
-    ADirectoryTree: typeof import('antdv')['DirectoryTree'];
+    ADirectoryTree: typeof import('@antdv/ui')['DirectoryTree'];
 
-    ADivider: typeof import('antdv')['Divider'];
+    ADivider: typeof import('@antdv/ui')['Divider'];
 
-    ADrawer: typeof import('antdv')['Drawer'];
+    ADrawer: typeof import('@antdv/ui')['Drawer'];
 
-    ADropdown: typeof import('antdv')['Dropdown'];
+    ADropdown: typeof import('@antdv/ui')['Dropdown'];
 
-    ADropdownButton: typeof import('antdv')['DropdownButton'];
+    ADropdownButton: typeof import('@antdv/ui')['DropdownButton'];
 
-    AEmpty: typeof import('antdv')['Empty'];
+    AEmpty: typeof import('@antdv/ui')['Empty'];
 
-    AForm: typeof import('antdv')['Form'];
+    AForm: typeof import('@antdv/ui')['Form'];
 
-    AFormItem: typeof import('antdv')['FormItem'];
+    AFormItem: typeof import('@antdv/ui')['FormItem'];
 
-    AFormItemRest: typeof import('antdv')['FormItemRest'];
+    AFormItemRest: typeof import('@antdv/ui')['FormItemRest'];
 
-    AImage: typeof import('antdv')['Image'];
+    AImage: typeof import('@antdv/ui')['Image'];
 
-    AImagePreviewGroup: typeof import('antdv')['ImagePreviewGroup'];
+    AImagePreviewGroup: typeof import('@antdv/ui')['ImagePreviewGroup'];
 
-    AInput: typeof import('antdv')['Input'];
+    AInput: typeof import('@antdv/ui')['Input'];
 
-    AInputGroup: typeof import('antdv')['InputGroup'];
+    AInputGroup: typeof import('@antdv/ui')['InputGroup'];
 
-    AInputNumber: typeof import('antdv')['InputNumber'];
+    AInputNumber: typeof import('@antdv/ui')['InputNumber'];
 
-    AInputPassword: typeof import('antdv')['InputPassword'];
+    AInputPassword: typeof import('@antdv/ui')['InputPassword'];
 
-    AInputSearch: typeof import('antdv')['InputSearch'];
+    AInputSearch: typeof import('@antdv/ui')['InputSearch'];
 
-    ALayout: typeof import('antdv')['Layout'];
+    ALayout: typeof import('@antdv/ui')['Layout'];
 
-    ALayoutContent: typeof import('antdv')['LayoutContent'];
+    ALayoutContent: typeof import('@antdv/ui')['LayoutContent'];
 
-    ALayoutFooter: typeof import('antdv')['LayoutFooter'];
+    ALayoutFooter: typeof import('@antdv/ui')['LayoutFooter'];
 
-    ALayoutHeader: typeof import('antdv')['LayoutHeader'];
+    ALayoutHeader: typeof import('@antdv/ui')['LayoutHeader'];
 
-    ALayoutSider: typeof import('antdv')['LayoutSider'];
+    ALayoutSider: typeof import('@antdv/ui')['LayoutSider'];
 
-    AList: typeof import('antdv')['List'];
+    AList: typeof import('@antdv/ui')['List'];
 
-    AListItem: typeof import('antdv')['ListItem'];
+    AListItem: typeof import('@antdv/ui')['ListItem'];
 
-    AListItemMeta: typeof import('antdv')['ListItemMeta'];
+    AListItemMeta: typeof import('@antdv/ui')['ListItemMeta'];
 
-    ALocaleProvider: typeof import('antdv')['LocaleProvider'];
+    ALocaleProvider: typeof import('@antdv/ui')['LocaleProvider'];
 
-    AMentions: typeof import('antdv')['Mentions'];
+    AMentions: typeof import('@antdv/ui')['Mentions'];
 
-    AMentionsOption: typeof import('antdv')['MentionsOption'];
+    AMentionsOption: typeof import('@antdv/ui')['MentionsOption'];
 
-    AMenu: typeof import('antdv')['Menu'];
+    AMenu: typeof import('@antdv/ui')['Menu'];
 
-    AMenuDivider: typeof import('antdv')['MenuDivider'];
+    AMenuDivider: typeof import('@antdv/ui')['MenuDivider'];
 
-    AMenuItem: typeof import('antdv')['MenuItem'];
+    AMenuItem: typeof import('@antdv/ui')['MenuItem'];
 
-    AMenuItemGroup: typeof import('antdv')['MenuItemGroup'];
+    AMenuItemGroup: typeof import('@antdv/ui')['MenuItemGroup'];
 
-    AModal: typeof import('antdv')['Modal'];
+    AModal: typeof import('@antdv/ui')['Modal'];
 
-    AMonthPicker: typeof import('antdv')['MonthPicker'];
+    AMonthPicker: typeof import('@antdv/ui')['MonthPicker'];
 
-    APageHeader: typeof import('antdv')['PageHeader'];
+    APageHeader: typeof import('@antdv/ui')['PageHeader'];
 
-    APagination: typeof import('antdv')['Pagination'];
+    APagination: typeof import('@antdv/ui')['Pagination'];
 
-    APopconfirm: typeof import('antdv')['Popconfirm'];
+    APopconfirm: typeof import('@antdv/ui')['Popconfirm'];
 
-    APopover: typeof import('antdv')['Popover'];
+    APopover: typeof import('@antdv/ui')['Popover'];
 
-    AProgress: typeof import('antdv')['Progress'];
+    AProgress: typeof import('@antdv/ui')['Progress'];
 
-    AQuarterPicker: typeof import('antdv')['QuarterPicker'];
+    AQuarterPicker: typeof import('@antdv/ui')['QuarterPicker'];
 
-    ARadio: typeof import('antdv')['Radio'];
+    ARadio: typeof import('@antdv/ui')['Radio'];
 
-    ARadioButton: typeof import('antdv')['RadioButton'];
+    ARadioButton: typeof import('@antdv/ui')['RadioButton'];
 
-    ARadioGroup: typeof import('antdv')['RadioGroup'];
+    ARadioGroup: typeof import('@antdv/ui')['RadioGroup'];
 
-    ARangePicker: typeof import('antdv')['RangePicker'];
+    ARangePicker: typeof import('@antdv/ui')['RangePicker'];
 
-    ARate: typeof import('antdv')['Rate'];
+    ARate: typeof import('@antdv/ui')['Rate'];
 
-    AResult: typeof import('antdv')['Result'];
+    AResult: typeof import('@antdv/ui')['Result'];
 
-    ARow: typeof import('antdv')['Row'];
+    ARow: typeof import('@antdv/ui')['Row'];
 
-    ASelect: typeof import('antdv')['Select'];
+    ASelect: typeof import('@antdv/ui')['Select'];
 
-    ASegmented: typeof import('antdv')['Segmented'];
+    ASegmented: typeof import('@antdv/ui')['Segmented'];
 
-    ASelectOptGroup: typeof import('antdv')['SelectOptGroup'];
+    ASelectOptGroup: typeof import('@antdv/ui')['SelectOptGroup'];
 
-    ASelectOption: typeof import('antdv')['SelectOption'];
+    ASelectOption: typeof import('@antdv/ui')['SelectOption'];
 
-    ASkeleton: typeof import('antdv')['Skeleton'];
+    ASkeleton: typeof import('@antdv/ui')['Skeleton'];
 
-    ASkeletonAvatar: typeof import('antdv')['SkeletonAvatar'];
+    ASkeletonAvatar: typeof import('@antdv/ui')['SkeletonAvatar'];
 
-    ASkeletonButton: typeof import('antdv')['SkeletonButton'];
+    ASkeletonButton: typeof import('@antdv/ui')['SkeletonButton'];
 
-    ASkeletonImage: typeof import('antdv')['SkeletonImage'];
+    ASkeletonImage: typeof import('@antdv/ui')['SkeletonImage'];
 
-    ASkeletonInput: typeof import('antdv')['SkeletonInput'];
+    ASkeletonInput: typeof import('@antdv/ui')['SkeletonInput'];
 
-    ASlider: typeof import('antdv')['Slider'];
+    ASlider: typeof import('@antdv/ui')['Slider'];
 
-    ASpace: typeof import('antdv')['Space'];
+    ASpace: typeof import('@antdv/ui')['Space'];
 
-    ASpin: typeof import('antdv')['Spin'];
+    ASpin: typeof import('@antdv/ui')['Spin'];
 
-    AStatistic: typeof import('antdv')['Statistic'];
+    AStatistic: typeof import('@antdv/ui')['Statistic'];
 
-    AStatisticCountdown: typeof import('antdv')['StatisticCountdown'];
+    AStatisticCountdown: typeof import('@antdv/ui')['StatisticCountdown'];
 
-    AStep: typeof import('antdv')['Step'];
+    AStep: typeof import('@antdv/ui')['Step'];
 
-    ASteps: typeof import('antdv')['Steps'];
+    ASteps: typeof import('@antdv/ui')['Steps'];
 
-    ASubMenu: typeof import('antdv')['SubMenu'];
+    ASubMenu: typeof import('@antdv/ui')['SubMenu'];
 
-    ASwitch: typeof import('antdv')['Switch'];
+    ASwitch: typeof import('@antdv/ui')['Switch'];
 
-    ATabPane: typeof import('antdv')['TabPane'];
+    ATabPane: typeof import('@antdv/ui')['TabPane'];
 
-    ATable: typeof import('antdv')['Table'];
+    ATable: typeof import('@antdv/ui')['Table'];
 
-    ATableColumn: typeof import('antdv')['TableColumn'];
+    ATableColumn: typeof import('@antdv/ui')['TableColumn'];
 
-    ATableColumnGroup: typeof import('antdv')['TableColumnGroup'];
+    ATableColumnGroup: typeof import('@antdv/ui')['TableColumnGroup'];
 
-    ATableSummary: typeof import('antdv')['TableSummary'];
+    ATableSummary: typeof import('@antdv/ui')['TableSummary'];
 
-    ATableSummaryCell: typeof import('antdv')['TableSummaryCell'];
+    ATableSummaryCell: typeof import('@antdv/ui')['TableSummaryCell'];
 
-    ATableSummaryRow: typeof import('antdv')['TableSummaryRow'];
+    ATableSummaryRow: typeof import('@antdv/ui')['TableSummaryRow'];
 
-    ATabs: typeof import('antdv')['Tabs'];
+    ATabs: typeof import('@antdv/ui')['Tabs'];
 
-    ATag: typeof import('antdv')['Tag'];
+    ATag: typeof import('@antdv/ui')['Tag'];
 
-    ATextarea: typeof import('antdv')['Textarea'];
+    ATextarea: typeof import('@antdv/ui')['Textarea'];
 
-    ATimePicker: typeof import('antdv')['TimePicker'];
+    ATimePicker: typeof import('@antdv/ui')['TimePicker'];
 
-    ATimeRangePicker: typeof import('antdv')['TimeRangePicker'];
+    ATimeRangePicker: typeof import('@antdv/ui')['TimeRangePicker'];
 
-    ATimeline: typeof import('antdv')['Timeline'];
+    ATimeline: typeof import('@antdv/ui')['Timeline'];
 
-    ATimelineItem: typeof import('antdv')['TimelineItem'];
+    ATimelineItem: typeof import('@antdv/ui')['TimelineItem'];
 
-    ATooltip: typeof import('antdv')['Tooltip'];
+    ATooltip: typeof import('@antdv/ui')['Tooltip'];
 
-    ATransfer: typeof import('antdv')['Transfer'];
+    ATransfer: typeof import('@antdv/ui')['Transfer'];
 
-    ATree: typeof import('antdv')['Tree'];
+    ATree: typeof import('@antdv/ui')['Tree'];
 
-    ATreeNode: typeof import('antdv')['TreeNode'];
+    ATreeNode: typeof import('@antdv/ui')['TreeNode'];
 
-    ATreeSelect: typeof import('antdv')['TreeSelect'];
+    ATreeSelect: typeof import('@antdv/ui')['TreeSelect'];
 
-    ATreeSelectNode: typeof import('antdv')['TreeSelectNode'];
+    ATreeSelectNode: typeof import('@antdv/ui')['TreeSelectNode'];
 
-    ATypography: typeof import('antdv')['Typography'];
+    ATypography: typeof import('@antdv/ui')['Typography'];
 
-    ATypographyLink: typeof import('antdv')['TypographyLink'];
+    ATypographyLink: typeof import('@antdv/ui')['TypographyLink'];
 
-    ATypographyParagraph: typeof import('antdv')['TypographyParagraph'];
+    ATypographyParagraph: typeof import('@antdv/ui')['TypographyParagraph'];
 
-    ATypographyText: typeof import('antdv')['TypographyText'];
+    ATypographyText: typeof import('@antdv/ui')['TypographyText'];
 
-    ATypographyTitle: typeof import('antdv')['TypographyTitle'];
+    ATypographyTitle: typeof import('@antdv/ui')['TypographyTitle'];
 
-    AUpload: typeof import('antdv')['Upload'];
+    AUpload: typeof import('@antdv/ui')['Upload'];
 
-    AUploadDragger: typeof import('antdv')['UploadDragger'];
+    AUploadDragger: typeof import('@antdv/ui')['UploadDragger'];
 
-    AWeekPicker: typeof import('antdv')['WeekPicker'];
+    AWeekPicker: typeof import('@antdv/ui')['WeekPicker'];
 
-    AQRCode: typeof import('antdv')['QRCode'];
+    AQRCode: typeof import('@antdv/ui')['QRCode'];
 
-    ATour: typeof import('antdv')['Tour'];
+    ATour: typeof import('@antdv/ui')['Tour'];
 
-    AFloatButton: typeof import('antdv')['FloatButton'];
+    AFloatButton: typeof import('@antdv/ui')['FloatButton'];
 
-    AFloatButtonGroup: typeof import('antdv')['FloatButtonGroup'];
+    AFloatButtonGroup: typeof import('@antdv/ui')['FloatButtonGroup'];
 
-    ABackTop: typeof import('antdv')['BackTop'];
+    ABackTop: typeof import('@antdv/ui')['BackTop'];
 
-    AWatermark: typeof import('antdv')['Watermark'];
+    AWatermark: typeof import('@antdv/ui')['Watermark'];
   }
 }
 export {};

@@ -15,11 +15,11 @@
     "skipLibCheck": true,
     "stripInternal": true,
     "paths": {
-      "antdv/es/*": ["antdv/*"]
+      "@antdv/ui/es/*": ["components/*"]
     }
   },
   "include": [
-    "antdv",
+    "components",
     "typings/components.d.ts",
     "typings/env.d.ts",
     "typings/typings.d.ts"
