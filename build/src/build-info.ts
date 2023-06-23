@@ -24,7 +24,7 @@ export const buildConfig: Record<Module, BuildInfo> = {
   esm: {
     module: 'ESNext',
     format: 'esm',
-    ext: 'mjs',
+    ext: 'js',
     output: {
       name: 'es',
       path: path.resolve(antdOutput, 'es'),
