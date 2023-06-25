@@ -25,7 +25,10 @@ const banner = `/*! ${PKG_BRAND_NAME} v${version} */\n`
 
 async function buildFullEntry(minify: boolean) {
   const plugins: Plugin[] = [
-    vueJsx() as unknown as Plugin,
+    vueJsx({
+      mergeProps: false,
+      enableObjectSlots: false,
+    }),
     nodeResolve({
       extensions: ['.mjs', '.js', '.json', '.ts', '.tsx'],
     }),

@@ -1,9 +1,6 @@
-import findWorkspacePackages from '@pnpm/find-workspace-packages'
 import type { ProjectManifest } from '@pnpm/types'
 import type { Module } from '../build-info'
 import { buildConfig } from '../build-info'
-
-import { projRoot } from '../path'
 
 export const excludeFiles = (files: string[]) => {
   const excludes = ['node_modules', 'test', 'mock', 'gulpfile', 'dist']
@@ -20,16 +17,6 @@ export const pathRewriter = (module: Module) => {
     id = id.replaceAll('@/', `${config.bundle.path}/`)
     return id
   }
-}
-// @ts-expect-error
-export const getWorkspacePackages = () => findWorkspacePackages(projRoot)
-export const getWorkspaceNames = async (dir = projRoot) => {
-  // @ts-expect-error
-  const pkgs = await findWorkspacePackages(projRoot)
-  return pkgs
-    .filter(pkg => pkg.dir.startsWith(dir))
-    .map(pkg => pkg.manifest.name)
-    .filter((name): name is string => !!name)
 }
 
 export const getPackageManifest = (pkgPath: string) => {

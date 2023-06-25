@@ -10,7 +10,6 @@
   },
   "devDependencies": {
     "@esbuild-kit/cjs-loader": "^2.4.2",
-    "@pnpm/find-workspace-packages": "^6.0.9",
     "@pnpm/logger": "^5.0.0",
     "@pnpm/types": "^9.1.0",
     "@rollup/plugin-alias": "^5.0.0",

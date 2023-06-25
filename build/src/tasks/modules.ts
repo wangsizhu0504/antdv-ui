@@ -1,10 +1,11 @@
 import { rollup } from 'rollup'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import esbuild from 'rollup-plugin-esbuild'
 import glob from 'fast-glob'
-import type { OutputOptions, Plugin } from 'rollup'
+import type { OutputOptions } from 'rollup'
 import { antdRoot } from '../path'
 import { excludeFiles, generateExternal, writeBundles } from '../utils'
 import { buildConfigEntries, target } from '../build-info'
@@ -20,7 +21,10 @@ export const buildModules = async () => {
   const bundle = await rollup({
     input,
     plugins: [
-      vueJsx() as unknown as Plugin,
+      vueJsx({
+        mergeProps: false,
+        enableObjectSlots: false,
+      }),
       nodeResolve({
         extensions: ['.mjs', '.js', '.json', '.ts', '.tsx'],
       }),
