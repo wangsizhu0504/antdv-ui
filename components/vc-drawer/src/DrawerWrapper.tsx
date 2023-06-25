@@ -14,7 +14,7 @@ const DrawerWrapper = defineComponent({
     level: 'all',
     duration: '.3s',
     ease: 'cubic-bezier(0.78, 0.14, 0.15, 0.86)',
-    afterVisibleChange: () => {},
+    afterVisibleChange: () => { },
     showMask: true,
     maskClosable: true,
     maskStyle: {},
@@ -66,6 +66,7 @@ const DrawerWrapper = defineComponent({
       if ($forceRender || props.open || dom.value) {
         portal = (
           <PortalWrapper
+            autoLock
             visible={props.open}
             forceRender={$forceRender}
             getContainer={getContainer}

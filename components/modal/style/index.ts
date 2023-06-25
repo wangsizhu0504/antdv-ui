@@ -60,7 +60,9 @@ export const genModalMaskStyle: GenerateStyle<TokenWithCommonCls<AliasToken>> = 
           // https://github.com/ant-design/ant-design/issues/11777
           userSelect: 'none',
         },
-
+        [`${componentCls}${token.antCls}-zoom-leave ${componentCls}-content`]: {
+          pointerEvents: 'none',
+        },
         [`${componentCls}-mask`]: {
           ...box('fixed'),
           zIndex: token.zIndexPopupBase,
