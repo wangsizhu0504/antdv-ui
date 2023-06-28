@@ -15,7 +15,7 @@ With Popover.
 </docs>
 
 <template>
-  <a-popover>
+  <a-popover :overlay-inner-style="{ padding: 0 }">
     <template #content>
       <a-qrcode value="http://www.antv.com" />
     </template>

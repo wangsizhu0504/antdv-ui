@@ -1,16 +1,16 @@
 import { computed, defineComponent, ref } from 'vue'
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 import { ReloadOutlined } from '@ant-design/icons-vue'
-import { useConfigInject } from '../hooks'
+import useConfigInject from '../config-provider/hooks/useConfigInject'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
 import { withInstall } from '../_util/type'
 import Spin from '../spin'
 import Button from '../button'
 import { useToken } from '../theme/internal'
 import warning from '../_util/warning'
-import { qrcodeProps } from './interface'
+import { QRCodeCanvas, QRCodeSVG } from './QRCode'
 import useStyle from './style'
-import { QRCodeCanvas } from './QRCodeCanvas'
+import { qrcodeProps } from './interface'
 
 export type QRCodeProps = Partial<ExtractPropTypes<ReturnType<typeof qrcodeProps>>>
 const QRCode = defineComponent({
@@ -42,7 +42,8 @@ const QRCode = defineComponent({
         icon = '',
         size = 160,
         iconSize = 40,
-        color = '#000',
+        color = token.value.colorText,
+        bgColor = 'transparent',
         errorLevel = 'M',
       } = props
       const imageSettings: QRCodeProps['imageSettings'] = {
@@ -57,7 +58,7 @@ const QRCode = defineComponent({
         value,
         size: size - (token.value.paddingSM + token.value.lineWidth) * 2,
         level: errorLevel,
-        bgColor: 'transparent',
+        bgColor,
         fgColor: color,
         imageSettings: icon ? imageSettings : undefined,
       }
@@ -69,13 +70,17 @@ const QRCode = defineComponent({
           {...attrs}
           style={[
             attrs.style as CSSProperties,
-            { width: `${props.size}px`, height: `${props.size}px` },
+            {
+              width: `${props.size}px`,
+              height: `${props.size}px`,
+              backgroundColor: qrCodeProps.value.bgColor,
+            },
           ]}
           class={[
             hashId.value,
             pre,
             {
-              [`${prefixCls}-borderless`]: !props.bordered,
+              [`${pre}-borderless`]: !props.bordered,
             },
           ]}
         >
@@ -96,7 +101,13 @@ const QRCode = defineComponent({
               )}
             </div>
           )}
-          <QRCodeCanvas ref={qrCodeCanvas} {...qrCodeProps.value} />
+          {props.type === 'canvas'
+            ? (
+            <QRCodeCanvas ref={qrCodeCanvas} {...qrCodeProps.value} />
+              )
+            : (
+            <QRCodeSVG {...qrCodeProps.value} />
+              )}
         </div>,
       )
     }

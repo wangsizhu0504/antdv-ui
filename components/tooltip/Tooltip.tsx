@@ -12,15 +12,15 @@ import {
   isValidElement,
 } from '../_util/props-util'
 import { cloneElement } from '../_util/vnode'
-import { useConfigInject } from '../hooks'
+import useConfigInject from '../config-provider/hooks/useConfigInject'
 import getPlacements from '../_util/placements'
 import firstNotUndefined from '../_util/firstNotUndefined'
 import raf from '../_util/raf'
 
 import { getTransitionName } from '../_util/components/transition'
-import abstractTooltipProps from './abstractTooltipProps'
-import useStyle from './style'
 import { parseColor } from './util'
+import useStyle from './style'
+import abstractTooltipProps from './abstractTooltipProps'
 
 export type { TriggerType, TooltipPlacement } from './abstractTooltipProps'
 export type { AdjustOverflow, PlacementsConfig } from '../_util/placements'
@@ -184,7 +184,7 @@ export default defineComponent({
             ...picked,
             cursor: 'not-allowed',
             lineHeight: 1, // use the true height of child nodes
-            width: (ele.props && ele.props.block) ? '100%' : undefined,
+            width: ele.props && ele.props.block ? '100%' : undefined,
           }
           const buttonStyle: CSSProperties = {
             ...omitted,
@@ -259,7 +259,7 @@ export default defineComponent({
         return null
 
       const child = getDisabledCompatibleChildren(
-        (isValidElement(children) && !isFragment(children)) ? children : <span>{children}</span>,
+        isValidElement(children) && !isFragment(children) ? children : <span>{children}</span>,
       )
       const childCls = classNames({
         [openClassName || `${prefixCls.value}-open`]: true,

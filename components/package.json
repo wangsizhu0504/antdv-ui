@@ -1,11 +1,11 @@
 {
   "name": "@antdv/ui",
-  "version": "4.0.0-rc.5",
+  "version": "4.0.0-rc.6",
   "packageManager": "pnpm@8.6.2",
   "publishConfig": {
     "access": "public"
   },
-  "description": "An enterprise-class UI design language and Vue-based implementation",
+  "description": "Fork from Ant Design Vue. An enterprise-class UI design language and Vue-based implementation",
   "license": "MIT",
   "funding": {
     "type": "opencollective",
