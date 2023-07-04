@@ -5,7 +5,7 @@ import { Button, Group } from '../radio'
 import Select from '../select'
 import type { GenerateConfig } from '../vc-picker/generate'
 import { FormItemInputContext } from '../form/FormItemContext'
-import type { CalendarMode } from './generateCalendar'
+import type { CalendarMode, SelectInfo } from './generateCalendar'
 
 const YearSelectOffset = 10
 const YearSelectTotal = 20
@@ -148,7 +148,7 @@ export interface CalendarHeaderProps<DateType> {
   locale: PickerLocale
   mode: CalendarMode
   fullscreen: boolean
-  onChange: (date: DateType) => void
+  onChange: (date: DateType, source: SelectInfo['source']) => void
   onModeChange: (mode: CalendarMode) => void
 }
 
@@ -175,15 +175,26 @@ export default defineComponent<CalendarHeaderProps<any>>({
       const { prefixCls, fullscreen, mode, onChange, onModeChange } = props
       const sharedProps = {
         ...props,
-        onChange,
         fullscreen,
         divRef,
       } as any
 
       return (
         <div class={`${prefixCls}-header`} ref={divRef}>
-          <YearSelect {...sharedProps} />
-          {mode === 'month' && <MonthSelect {...sharedProps} />}
+          <YearSelect
+            {...sharedProps}
+            onChange={(v) => {
+              onChange(v, 'year')
+            }}
+          />
+          {mode === 'month' && (
+            <MonthSelect
+              {...sharedProps}
+              onChange={(v) => {
+                onChange(v, 'month')
+              }}
+            />
+          )}
           <ModeSwitch {...sharedProps} onModeChange={onModeChange} />
         </div>
       )
