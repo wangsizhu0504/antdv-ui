@@ -23,7 +23,10 @@ export const anchorProps = {
 
 export const anchorLinkProps = {
   prefixCls: String,
-  href: String,
+  href: {
+    type: String,
+    default: '#',
+  },
   title: anyType<VueNode | ((item: any) => VueNode)>(),
   target: String,
   /* private use  */

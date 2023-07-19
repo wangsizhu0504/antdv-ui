@@ -75,8 +75,8 @@ const Affix = defineComponent({
         return
 
       const targetRect = getTargetRect(targetNode)
-      const fixedTop = getFixedTop(placeholderRect, targetRect, offsetTop.value!)
-      const fixedBottom = getFixedBottom(placeholderRect, targetRect, offsetBottom.value!)
+      const fixedTop = getFixedTop(placeholderRect, targetRect, offsetTop.value)
+      const fixedBottom = getFixedBottom(placeholderRect, targetRect, offsetBottom.value)
       if (
         placeholderRect.top === 0
         && placeholderRect.left === 0
@@ -128,7 +128,7 @@ const Affix = defineComponent({
         affixStyle: undefined,
         placeholderStyle: undefined,
       })
-      currentInstance?.update()
+      currentInstance.update()
       // Test if `updatePosition` called
       if (process.env.NODE_ENV === 'test')
         emit('testUpdatePosition')

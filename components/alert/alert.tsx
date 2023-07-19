@@ -86,7 +86,7 @@ const Alert = defineComponent({
       const action = slots.action?.()
 
       // banner模式默认有 Icon
-      showIcon = (banner && showIcon === undefined) ? true : showIcon
+      showIcon = banner && showIcon === undefined ? true : showIcon
 
       const IconType = (description ? iconMapOutlined : iconMapFilled)[mergedType.value] || null
 
@@ -108,17 +108,24 @@ const Alert = defineComponent({
 
       const closeIcon = closable
         ? (
-          <button
-            type="button"
-            onClick={handleClose}
-            class={`${prefixClsValue}-close-icon`}
-            tabindex={0}
-          >
-            {closeText
-              ? <span class={`${prefixClsValue}-close-text`}>{closeText}</span>
-              : customCloseIcon === undefined ? <CloseOutlined /> : customCloseIcon
-            }
-          </button>
+        <button
+          type="button"
+          onClick={handleClose}
+          class={`${prefixClsValue}-close-icon`}
+          tabindex={0}
+        >
+          {closeText
+            ? (
+            <span class={`${prefixClsValue}-close-text`}>{closeText}</span>
+              )
+            : customCloseIcon === undefined
+              ? (
+            <CloseOutlined />
+                )
+              : (
+                  customCloseIcon
+                )}
+        </button>
           )
         : null
 
@@ -130,7 +137,7 @@ const Alert = defineComponent({
               })
             )
           : (
-            <span class={`${prefixClsValue}-icon`}>{icon}</span>
+          <span class={`${prefixClsValue}-icon`}>{icon}</span>
             ))) || <IconType class={`${prefixClsValue}-icon`} />
 
       const transitionProps = getTransitionProps(`${prefixClsValue}-motion`, {
@@ -148,29 +155,29 @@ const Alert = defineComponent({
         closed.value
           ? null
           : (
-            <Transition {...transitionProps}>
-              <div
-                role="alert"
-                {...attrs}
-                style={[attrs.style as CSSProperties, motionStyle.value]}
-                v-show={!closing.value}
-                class={[attrs.class, alertCls]}
-                data-show={!closing.value}
-                ref={alertNode}
-              >
-                {showIcon ? iconNode : null}
-                <div class={`${prefixClsValue}-content`}>
-                  {message ? <div class={`${prefixClsValue}-message`}>{message}</div> : null}
-                  {description
-                    ? (
-                      <div class={`${prefixClsValue}-description`}>{description}</div>
-                      )
-                    : null}
-                </div>
-                {action ? <div class={`${prefixClsValue}-action`}>{action}</div> : null}
-                {closeIcon}
+          <Transition {...transitionProps}>
+            <div
+              role="alert"
+              {...attrs}
+              style={[attrs.style as CSSProperties, motionStyle.value]}
+              v-show={!closing.value}
+              class={[attrs.class, alertCls]}
+              data-show={!closing.value}
+              ref={alertNode}
+            >
+              {showIcon ? iconNode : null}
+              <div class={`${prefixClsValue}-content`}>
+                {message ? <div class={`${prefixClsValue}-message`}>{message}</div> : null}
+                {description
+                  ? (
+                  <div class={`${prefixClsValue}-description`}>{description}</div>
+                    )
+                  : null}
               </div>
-            </Transition>
+              {action ? <div class={`${prefixClsValue}-action`}>{action}</div> : null}
+              {closeIcon}
+            </div>
+          </Transition>
             ),
       )
     }

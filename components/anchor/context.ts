@@ -1,6 +1,6 @@
 import { computed, inject, provide } from 'vue'
-import type { ComputedRef, InjectionKey, Ref } from 'vue'
 import type { AnchorDirection } from './type'
+import type { ComputedRef, InjectionKey, Ref } from 'vue'
 
 export interface AnchorContext {
   registerLink: (link: string) => void

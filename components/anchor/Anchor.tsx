@@ -70,7 +70,7 @@ export default defineComponent({
       )
     }
 
-    const spanLinkNode = ref<HTMLSpanElement>()
+    const spanLinkNode = ref<HTMLSpanElement>(null)
     const anchorRef = ref()
     const state = reactive<AnchorState>({
       links: [],
@@ -78,7 +78,7 @@ export default defineComponent({
       scrollEvent: null,
       animating: false,
     })
-    const activeLink = ref()
+    const activeLink = ref(null)
     const getContainer = computed(() => {
       const { getContainer } = props
       return getContainer || getTargetContainer?.value || getDefaultContainer
@@ -134,7 +134,7 @@ export default defineComponent({
       const scrollTop = getScroll(container, true)
       const eleOffsetTop = getOffsetTop(targetElement, container)
       let y = scrollTop + eleOffsetTop
-      y -= targetOffset !== undefined ? targetOffset : (offsetTop || 0)
+      y -= targetOffset !== undefined ? targetOffset : offsetTop || 0
       state.animating = true
 
       scrollTo(y, {
@@ -153,7 +153,7 @@ export default defineComponent({
 
       const { offsetTop, bounds, targetOffset } = props
       const currentActiveLink = getCurrentAnchor(
-        targetOffset !== undefined ? targetOffset : (offsetTop || 0),
+        targetOffset !== undefined ? targetOffset : offsetTop || 0,
         bounds,
       )
       setCurrentActiveLink(currentActiveLink)

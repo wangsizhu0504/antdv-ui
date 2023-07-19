@@ -75,7 +75,7 @@ export function addObserveTarget<T>(target: HTMLElement | Window | null, affix: 
             const { lazyUpdatePosition } = (targetAffix as any).exposed
             lazyUpdatePosition()
           },
-          ((eventName === 'touchstart' || eventName === 'touchmove') && supportsPassive)
+          (eventName === 'touchstart' || eventName === 'touchmove') && supportsPassive
             ? ({ passive: true } as EventListenerOptions)
             : false,
         )
