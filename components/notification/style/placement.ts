@@ -1,5 +1,5 @@
-import type { CSSObject } from '../../cssinjs'
 import { Keyframes } from '../../cssinjs'
+import type { CSSObject } from '../../cssinjs'
 import type { GenerateStyle } from '../../theme'
 import type { NotificationToken } from '.'
 

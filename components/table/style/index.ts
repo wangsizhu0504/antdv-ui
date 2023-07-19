@@ -1,7 +1,5 @@
 import { TinyColor } from '@ctrl/tinycolor'
-import type { CSSObject } from '../../cssinjs'
 import { clearFix, resetComponent } from '../../style'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import genBorderedStyle from './bordered'
 import genEllipsisStyle from './ellipsis'
@@ -18,6 +16,8 @@ import genResizeStyle from './resize'
 import genSorterStyle from './sorter'
 import genStickyStyle from './sticky'
 import genSummaryStyle from './summary'
+import type { FullToken, GenerateStyle } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
 
 export interface ComponentToken {}
 

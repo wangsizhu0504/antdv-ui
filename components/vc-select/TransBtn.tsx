@@ -1,7 +1,7 @@
+import PropTypes from '../_util/vue-types'
 import type { FunctionalComponent, PropType } from 'vue'
 import type { MouseEventHandler } from '../_util/EventInterface'
 import type { VueNode } from '../_util/type'
-import PropTypes from '../_util/vue-types'
 import type { RenderNode } from './BaseSelect'
 
 export interface TransBtnProps {

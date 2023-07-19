@@ -1,5 +1,5 @@
-import type { ComputedRef, InjectionKey, Ref } from 'vue'
 import { computed, inject, provide } from 'vue'
+import type { ComputedRef, InjectionKey, Ref } from 'vue'
 import type { AnchorDirection } from './type'
 
 export interface AnchorContext {
@@ -7,7 +7,7 @@ export interface AnchorContext {
   unregisterLink: (link: string) => void
   activeLink: Ref<string>
   scrollTo: (link: string) => void
-  handleClick: (e: Event, info: { title: any; href: string }) => void
+  handleClick: (e: Event, info: { title: any, href: string }) => void
   direction: ComputedRef<AnchorDirection>
 }
 

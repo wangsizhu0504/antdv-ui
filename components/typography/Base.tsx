@@ -1,5 +1,4 @@
 import { CheckOutlined, CopyOutlined, EditOutlined } from '@ant-design/icons-vue'
-import type { CSSProperties, HTMLAttributes, PropType, VNodeTypes } from 'vue'
 import {
   computed,
   defineComponent,
@@ -15,21 +14,21 @@ import {
 import Tooltip from '../tooltip'
 import ResizeObserver from '../vc-resize-observer'
 import LocaleReceiver from '../locale-provider/LocaleReceiver'
-import type { AutoSizeType } from '../input/inputProps'
 import { isStyleSupport } from '../_util/styleChecker'
 import TransButton from '../_util/components/transButton'
 import warning from '../_util/warning'
-import { useConfigInject } from '../hooks'
-import type { EventHandler } from '../_util/EventInterface'
+import { useConfigInject, useMergedState } from '../hooks'
 import omit from '../_util/omit'
-import { useMergedState } from '../hooks'
 import { findDOMNode } from '../_util/props-util'
 import copy from '../_util/copy-to-clipboard'
 import raf from '../_util/raf'
 import Editable from './Editable'
 import measure from './util'
-import type { TypographyProps } from './Typography'
 import Typography from './Typography'
+import type { EventHandler } from '../_util/EventInterface'
+import type { TypographyProps } from './Typography'
+import type { AutoSizeType } from '../input/inputProps'
+import type { CSSProperties, HTMLAttributes, PropType, VNodeTypes } from 'vue'
 
 export type BaseType = 'secondary' | 'success' | 'warning' | 'danger'
 

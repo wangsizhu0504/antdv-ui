@@ -1,9 +1,9 @@
-import type { ExtractPropTypes, PropType, VNode } from 'vue'
 import { defineComponent, inject, withDirectives } from 'vue'
 import { cloneElement } from '../../_util/vnode'
 import PropTypes from '../../_util/vue-types'
 import antInput from '../../_util/antInputDirective'
 import classNames from '../../_util/classNames'
+import type { ExtractPropTypes, PropType, VNode } from 'vue'
 import type {
   ChangeEventHandler,
   ClipboardEventHandler,

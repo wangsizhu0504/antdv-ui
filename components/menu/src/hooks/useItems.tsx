@@ -1,15 +1,15 @@
-import type { VNode } from 'vue'
 import { ref, shallowRef, watch } from 'vue'
+import SubMenu from '../SubMenu'
+import ItemGroup from '../ItemGroup'
+import MenuDivider from '../Divider'
+import MenuItem from '../MenuItem'
 import type {
   MenuDividerType as VcMenuDividerType,
   MenuItemGroupType as VcMenuItemGroupType,
   MenuItemType as VcMenuItemType,
   SubMenuType as VcSubMenuType,
 } from '../interface'
-import SubMenu from '../SubMenu'
-import ItemGroup from '../ItemGroup'
-import MenuDivider from '../Divider'
-import MenuItem from '../MenuItem'
+import type { VNode } from 'vue'
 import type { MenuProps } from '../Menu'
 import type { Key } from '../../../_util/type'
 import type { StoreMenuInfo } from './useMenuContext'

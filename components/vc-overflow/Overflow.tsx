@@ -1,13 +1,13 @@
-import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
 import { computed, defineComponent, shallowRef, watch } from 'vue'
 import ResizeObserver from '../vc-resize-observer'
 import classNames from '../_util/classNames'
-import type { MouseEventHandler } from '../_util/EventInterface'
-import type { Key, VueNode } from '../_util/type'
 import PropTypes from '../_util/vue-types'
 import RawItem from './RawItem'
 import Item from './Item'
 import { OverflowContextProvider } from './context'
+import type { Key, VueNode } from '../_util/type'
+import type { MouseEventHandler } from '../_util/EventInterface'
+import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
 
 const RESPONSIVE = 'responsive' as const
 const INVALIDATE = 'invalidate' as const

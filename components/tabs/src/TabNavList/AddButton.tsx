@@ -1,5 +1,5 @@
-import type { CSSProperties, PropType } from 'vue'
 import { defineComponent, ref } from 'vue'
+import type { CSSProperties, PropType } from 'vue'
 import type { EditableConfig, TabsLocale } from '../interface'
 
 export interface AddButtonProps {

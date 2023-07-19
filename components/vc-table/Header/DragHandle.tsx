@@ -6,14 +6,14 @@ import {
   shallowRef,
   watchEffect,
 } from 'vue'
-import type { PropType } from 'vue'
-import type { ColumnType } from '../interface'
 import addEventListenerWrap from '../../vc-util/Dom/addEventListener'
-import type { EventHandler } from '../../_util/EventInterface'
 import raf from '../../_util/raf'
 import devWarning from '../../vc-util/devWarning'
 import { useInjectTableContext } from '../../table/context'
 import supportsPassive from '../../_util/supportsPassive'
+import type { EventHandler } from '../../_util/EventInterface'
+import type { ColumnType } from '../interface'
+import type { PropType } from 'vue'
 
 const events = {
   mouse: {
@@ -45,7 +45,7 @@ export default defineComponent({
     },
     maxWidth: {
       type: Number,
-      default: Infinity,
+      default: Number.POSITIVE_INFINITY,
     },
     column: {
       type: Object as PropType<ColumnType<any>>,
@@ -64,19 +64,19 @@ export default defineComponent({
       removeEvents()
     })
     watchEffect(() => {
-      devWarning(!isNaN(props.width), 'Table', 'width must be a number when use resizable')
+      devWarning(!Number.isNaN(props.width), 'Table', 'width must be a number when use resizable')
     })
 
     const { onResizeColumn } = useInjectTableContext()
     const minWidth = computed(() => {
-      return (typeof props.minWidth === 'number' && !isNaN(props.minWidth))
+      return (typeof props.minWidth === 'number' && !Number.isNaN(props.minWidth))
         ? props.minWidth
         : defaultMinWidth
     })
     const maxWidth = computed(() => {
-      return (typeof props.maxWidth === 'number' && !isNaN(props.maxWidth))
+      return (typeof props.maxWidth === 'number' && !Number.isNaN(props.maxWidth))
         ? props.maxWidth
-        : Infinity
+        : Number.POSITIVE_INFINITY
     })
     const instance = getCurrentInstance()
     let baseWidth = 0

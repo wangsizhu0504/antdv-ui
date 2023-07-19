@@ -1,5 +1,5 @@
-import type { Ref, UnwrapRef } from 'vue'
 import { ref, toRaw, unref, watch, watchEffect } from 'vue'
+import type { Ref, UnwrapRef } from 'vue'
 
 export function useMergedState<T, R = Ref<T>>(
   defaultStateValue: T | (() => T),

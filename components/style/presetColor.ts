@@ -1,6 +1,6 @@
+import { PresetColors } from '../theme'
 import type { CSSObject } from '../cssinjs'
 import type { AliasToken, PresetColorKey } from '../theme'
-import { PresetColors } from '../theme'
 import type { TokenWithCommonCls } from '../theme/util/genComponentStyleHook'
 
 interface CalcColor {

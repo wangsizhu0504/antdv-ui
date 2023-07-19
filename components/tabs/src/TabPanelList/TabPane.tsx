@@ -1,6 +1,6 @@
 import { computed, defineComponent, ref, watch } from 'vue'
-import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 import PropTypes from '../../../_util/vue-types'
+import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 
 const tabPaneProps = () => ({
   tab: PropTypes.any,

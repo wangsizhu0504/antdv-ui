@@ -1,5 +1,4 @@
 import { computed, defineComponent, nextTick, ref, watch } from 'vue'
-import type { ExtractPropTypes } from 'vue'
 import classNames from '../_util/classNames'
 import PropTypes from '../_util/vue-types'
 import { useConfigInject } from '../hooks'
@@ -8,6 +7,7 @@ import { useInjectFormItemContext } from '../form/FormItemContext'
 import useStyle from './style'
 import { useProvideRadioGroupContext } from './context'
 import Radio from './Radio'
+import type { ExtractPropTypes } from 'vue'
 import type { RadioChangeEvent, RadioGroupButtonStyle, RadioGroupOptionType } from './interface'
 
 // CSSINJS

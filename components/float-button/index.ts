@@ -1,8 +1,8 @@
-import type { App, Plugin } from 'vue'
-import type { SizeType as FloatButtonSize } from '../config-provider'
 import FloatButton from './FloatButton'
 import FloatButtonGroup from './FloatButtonGroup'
 import BackTop from './BackTop'
+import type { SizeType as FloatButtonSize } from '../config-provider'
+import type { App, Plugin } from 'vue'
 
 import type {
   BackTopProps,

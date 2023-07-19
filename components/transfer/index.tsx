@@ -1,6 +1,4 @@
-import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 import { computed, defineComponent, ref, toRaw, watch, watchEffect } from 'vue'
-import type { TransferLocale } from '../locale'
 import defaultLocale from '../locale/lang/en_US'
 import { FormItemInputContext, useInjectFormItemContext } from '../form/FormItemContext'
 import LocaleReceiver from '../locale-provider/LocaleReceiver'
@@ -8,7 +6,6 @@ import PropTypes from '../_util/vue-types'
 import { getPropsSlot } from '../_util/props-util'
 import classNames from '../_util/classNames'
 
-import type { VueNode } from '../_util/type'
 import {
   arrayType,
   booleanType,
@@ -20,13 +17,16 @@ import {
 } from '../_util/type'
 import { useConfigInject } from '../hooks'
 
-import type { RenderEmptyHandler } from '../config-provider/renderEmpty'
-import type { InputStatus } from '../_util/statusUtils'
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
 import { groupDisabledKeysMap, groupKeysMap } from '../_util/transKeys'
 import useStyle from './style'
 import List from './list'
 import Operation from './operation'
+import type { InputStatus } from '../_util/statusUtils'
+import type { RenderEmptyHandler } from '../config-provider/renderEmpty'
+import type { VueNode } from '../_util/type'
+import type { TransferLocale } from '../locale'
+import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 import type { TransferListBodyProps } from './ListBody'
 import type { PaginationType } from './interface'
 
@@ -65,7 +65,7 @@ export interface ListStyle {
 
 export type SelectAllLabel =
   | VueNode
-  | ((info: { selectedCount: number; totalCount: number }) => VueNode)
+  | ((info: { selectedCount: number, totalCount: number }) => VueNode)
 
 export const transferProps = () => ({
   'id': String,
@@ -150,7 +150,7 @@ const Transfer = defineComponent({
 
     const getLocale = (transferLocale: TransferLocale, renderEmpty: RenderEmptyHandler) => {
       // Keep old locale props still working.
-      const oldLocale: { notFoundContent?: any; searchPlaceholder?: string } = {
+      const oldLocale: { notFoundContent?: any, searchPlaceholder?: string } = {
         notFoundContent: renderEmpty('Transfer'),
       }
       const notFoundContent = getPropsSlot(slots, props, 'notFoundContent')

@@ -1,13 +1,13 @@
-import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 import { defineComponent } from 'vue'
 import { DownOutlined } from '@ant-design/icons-vue'
 import PropTypes from '../_util/vue-types'
 import { getPropsSlot } from '../_util/props-util'
-import type { DropdownProps } from '../dropdown/dropdown'
 import Dropdown from '../dropdown/dropdown'
 import { useConfigInject } from '../hooks'
-import type { MouseEventHandler } from '../_util/EventInterface'
 import { eventType, objectType } from '../_util/type'
+import type { MouseEventHandler } from '../_util/EventInterface'
+import type { DropdownProps } from '../dropdown/dropdown'
+import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 
 export const breadcrumbItemProps = () => ({
   prefixCls: String,

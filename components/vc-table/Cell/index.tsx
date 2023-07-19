@@ -1,6 +1,15 @@
-import type { CSSProperties, VNodeArrayChildren } from 'vue'
 import { Text, computed, defineComponent, isVNode, renderSlot } from 'vue'
 
+import { getPathValue, validateValue } from '../utils/valueUtil'
+import { INTERNAL_COL_DEFINE } from '../utils/legacyUtil'
+import { useInjectHover } from '../context/HoverContext'
+import { useInjectSticky } from '../context/StickyContext'
+import { useInjectSlots } from '../../table/context'
+import { filterEmpty, flattenChildren, isValidElement } from '../../_util/props-util'
+import classNames from '../../_util/classNames'
+import { warning } from '../../vc-util/warning'
+import eagerComputed from '../../_util/eagerComputed'
+import type { MouseEventHandler } from '../../_util/EventInterface'
 import type {
   AdditionalProps,
   AlignType,
@@ -13,16 +22,7 @@ import type {
   RenderedCell,
   TransformCellText,
 } from '../interface'
-import { getPathValue, validateValue } from '../utils/valueUtil'
-import { INTERNAL_COL_DEFINE } from '../utils/legacyUtil'
-import { useInjectHover } from '../context/HoverContext'
-import { useInjectSticky } from '../context/StickyContext'
-import { useInjectSlots } from '../../table/context'
-import { filterEmpty, flattenChildren, isValidElement } from '../../_util/props-util'
-import classNames from '../../_util/classNames'
-import { warning } from '../../vc-util/warning'
-import type { MouseEventHandler } from '../../_util/EventInterface'
-import eagerComputed from '../../_util/eagerComputed'
+import type { CSSProperties, VNodeArrayChildren } from 'vue'
 
 /** Check if cell is in hover range */
 function inHoverRange(cellStartRow: number, cellRowSpan: number, startRow: number, endRow: number) {

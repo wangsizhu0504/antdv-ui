@@ -1,4 +1,3 @@
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import {
   computed,
   defineComponent,
@@ -16,9 +15,7 @@ import KeyCode from '../../_util/KeyCode'
 import { initDefaultProps } from '../../_util/props-util'
 import antInputDirective from '../../_util/antInputDirective'
 import omit from '../../_util/omit'
-import type { EventHandler } from '../../_util/EventInterface'
 import MentionsContextKey from './MentionsContext'
-import type { OptionProps } from './Option'
 import { defaultProps, vcMentionsProps } from './mentionsProps'
 import KeywordTrigger from './KeywordTrigger'
 import {
@@ -27,6 +24,9 @@ import {
   replaceWithMeasure,
   setInputSelection,
 } from './util'
+import type { OptionProps } from './Option'
+import type { EventHandler } from '../../_util/EventInterface'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 
 export type MentionsProps = Partial<ExtractPropTypes<typeof vcMentionsProps>>
 

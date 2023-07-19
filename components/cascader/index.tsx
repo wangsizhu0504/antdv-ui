@@ -1,34 +1,34 @@
 import { LeftOutlined, LoadingOutlined, RightOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent, ref, watchEffect } from 'vue'
-import type { ExtractPropTypes, PropType } from 'vue'
 import { useCompactItemContext } from '../space/Compact'
 import { useInjectFormItemContext } from '../form'
 import { FormItemInputContext } from '../form/FormItemContext'
 import useSelectStyle from '../select/style'
-import type { ValueType } from '../vc-cascader/Cascader'
 import devWarning from '../vc-util/devWarning'
-import type { BaseOptionType, DefaultOptionType, FieldNames, ShowSearchType } from '../vc-cascader'
 import getIcons from '../select/utils/iconUtil'
 import VcCascader, {
   SHOW_CHILD,
   SHOW_PARENT,
   cascaderProps as vcCascaderProps,
 } from '../vc-cascader'
-import type { VueNode } from '../_util/type'
 import { withInstall } from '../_util/type'
 import omit from '../_util/omit'
 import PropTypes from '../_util/vue-types'
 import { initDefaultProps } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
-import type { SizeType } from '../config-provider'
-import type { SelectCommonPlacement } from '../_util/components/transition'
 import { getTransitionDirection, getTransitionName } from '../_util/components/transition'
-import type { InputStatus } from '../_util/statusUtils'
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
 
 import { useInjectDisabled } from '../config-provider/DisabledContext'
 import useStyle from './style'
+import type { InputStatus } from '../_util/statusUtils'
+import type { SelectCommonPlacement } from '../_util/components/transition'
+import type { SizeType } from '../config-provider'
+import type { VueNode } from '../_util/type'
+import type { BaseOptionType, DefaultOptionType, FieldNames, ShowSearchType } from '../vc-cascader'
+import type { ValueType } from '../vc-cascader/Cascader'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 // Align the design since we use `rc-select` in root. This help:
 // - List search content will show all content

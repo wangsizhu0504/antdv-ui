@@ -1,10 +1,10 @@
 import { computed, defineComponent } from 'vue'
 
 import RotateLeftOutlined, { CloseOutlined, LeftOutlined, RightOutlined, RotateRightOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons-vue'
-import type { ExtractPropTypes } from 'vue'
 import { useConfigInject } from '../hooks'
 import PreviewGroup, { imageGroupProps } from '../vc-image/src/PreviewGroup'
 import useStyle from './style'
+import type { ExtractPropTypes } from 'vue'
 
 export const icons = {
   rotateLeft: <RotateLeftOutlined />,

@@ -1,6 +1,6 @@
+import { flattenChildren, isValidElement } from '../../_util/props-util'
 import type { VNode } from 'vue'
 import type { BaseOptionType, DefaultOptionType } from '../Select'
-import { flattenChildren, isValidElement } from '../../_util/props-util'
 import type { VueNode } from '../../_util/type'
 
 function convertNodeToOption<OptionType extends BaseOptionType = DefaultOptionType>(
@@ -40,7 +40,7 @@ export function convertChildrenToData<OptionType extends BaseOptionType = Defaul
         props,
       } = node as VNode & {
         type: { isSelectOptGroup?: boolean }
-        children: { default?: () => any; label?: () => any }
+        children: { default?: () => any, label?: () => any }
       }
 
       if (optionOnly || !isSelectOptGroup)

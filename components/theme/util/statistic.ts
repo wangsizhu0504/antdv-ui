@@ -36,7 +36,7 @@ export function merge<T extends object>(...objs: Partial<T>[]): T {
 /** @private Internal Usage. Not use in your production. */
 export const statistic: Record<
   string,
-  { global: string[]; component: Record<string, string | number> }
+  { global: string[], component: Record<string, string | number> }
 > = {}
 
 /** @private Internal Usage. Not use in your production. */

@@ -1,6 +1,6 @@
-import type { Key } from '../_util/type'
 import { booleanType, functionType, someType, stringType } from '../_util/type'
 import PropTypes from '../_util/vue-types'
+import type { Key } from '../_util/type'
 
 export type CollapsibleType = 'header' | 'icon' | 'disabled'
 

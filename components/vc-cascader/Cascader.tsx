@@ -1,7 +1,4 @@
 import { computed, defineComponent, ref, toRef, toRefs, watchEffect } from 'vue'
-import type { CSSProperties, ExtractPropTypes, PropType, Ref } from 'vue'
-import type { BaseSelectProps, BaseSelectRef } from '../vc-select'
-import type { DisplayValueType, Placement } from '../vc-select/BaseSelect'
 import { baseSelectPropsWithoutPrivate } from '../vc-select/BaseSelect'
 import { useId, useMergedState } from '../hooks'
 import { conductCheck } from '../vc-tree/utils/conductUtil'
@@ -11,7 +8,6 @@ import useMaxLevel from '../vc-tree/useMaxLevel'
 import { initDefaultProps } from '../_util/props-util'
 import PropTypes from '../_util/vue-types'
 import { objectType } from '../_util/type'
-import type { Key, VueNode } from '../_util/type'
 import omit from '../_util/omit'
 import { SHOW_CHILD, SHOW_PARENT, fillFieldNames, toPathKey, toPathKeys } from './utils/commonUtil'
 import useEntities from './hooks/useEntities'
@@ -22,6 +18,10 @@ import { formatStrategyValues, toPathOptions } from './utils/treeUtil'
 import useDisplayValues from './hooks/useDisplayValues'
 import { useProvideCascader } from './context'
 import OptionList from './OptionList'
+import type { Key, VueNode } from '../_util/type'
+import type { DisplayValueType, Placement } from '../vc-select/BaseSelect'
+import type { BaseSelectProps, BaseSelectRef } from '../vc-select'
+import type { CSSProperties, ExtractPropTypes, PropType, Ref } from 'vue'
 
 export { SHOW_PARENT, SHOW_CHILD }
 export interface ShowSearchType<OptionType extends BaseOptionType = DefaultOptionType> {
@@ -76,7 +76,7 @@ function baseCascaderProps<OptionType extends BaseOptionType = DefaultOptionType
     defaultValue: { type: [String, Number, Array] as PropType<ValueType> },
     changeOnSelect: { type: Boolean, default: undefined },
     displayRender: Function as PropType<
-      (opt: { labels: string[]; selectedOptions?: OptionType[] }) => any
+      (opt: { labels: string[], selectedOptions?: OptionType[] }) => any
     >,
     checkable: { type: Boolean, default: undefined },
     showCheckedStrategy: { type: String as PropType<ShowCheckedStrategy>, default: SHOW_PARENT },

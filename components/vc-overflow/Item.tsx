@@ -1,9 +1,9 @@
-import type { CSSProperties, HTMLAttributes, PropType } from 'vue'
 import { computed, defineComponent, onUnmounted, ref } from 'vue'
 import ResizeObserver from '../vc-resize-observer'
 import classNames from '../_util/classNames'
-import type { Key, VueNode } from '../_util/type'
 import PropTypes from '../_util/vue-types'
+import type { Key, VueNode } from '../_util/type'
+import type { CSSProperties, HTMLAttributes, PropType } from 'vue'
 
 const UNDEFINED = undefined
 

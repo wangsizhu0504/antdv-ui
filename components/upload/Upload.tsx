@@ -1,22 +1,22 @@
-import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onMounted, ref, toRef } from 'vue'
 import defaultLocale from '../locale/lang/en_US'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
 import VcUpload from '../vc-upload'
-import type { UploadProps as RcUploadProps } from '../vc-upload'
 import devWarning from '../vc-util/devWarning'
 import { useInjectFormItemContext } from '../form'
 
 import { useInjectDisabled } from '../config-provider/DisabledContext'
 import { useConfigInject, useMergedState } from '../hooks'
 import classNames from '../_util/classNames'
-import type { VueNode } from '../_util/type'
 import { flattenChildren, initDefaultProps } from '../_util/props-util'
 import useStyle from './style'
 import UploadList from './UploadList'
-import type { FileType, ShowUploadListInterface, UploadChangeParam, UploadFile } from './interface'
 import { uploadProps } from './interface'
 import { file2Obj, getFileItem, removeFileItem, updateFileList } from './utils'
+import type { FileType, ShowUploadListInterface, UploadChangeParam, UploadFile } from './interface'
+import type { VueNode } from '../_util/type'
+import type { UploadProps as RcUploadProps } from '../vc-upload'
+import type { CSSProperties } from 'vue'
 
 export const LIST_IGNORE = `__LIST_IGNORE_${Date.now()}__`
 

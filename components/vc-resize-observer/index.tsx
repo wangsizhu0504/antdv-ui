@@ -1,5 +1,4 @@
 // based on rc-resize-observer 1.0.0
-import type { PropType } from 'vue'
 import ResizeObserver from 'resize-observer-polyfill'
 import {
   defineComponent,
@@ -11,6 +10,7 @@ import {
   watch,
 } from 'vue'
 import { findDOMNode } from '../_util/props-util'
+import type { PropType } from 'vue'
 
 interface ResizeObserverState {
   height: number

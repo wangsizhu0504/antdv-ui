@@ -1,12 +1,12 @@
 import { defineComponent } from 'vue'
 import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
-import type { VueNode } from '../_util/type'
 import { functionType, stringType } from '../_util/type'
 import { filterEmpty } from '../_util/props-util'
 import { cloneElement } from '../_util/vnode'
-import type { Status, StepIconRender } from './interface'
 import Step from './Step'
+import type { Status, StepIconRender } from './interface'
+import type { VueNode } from '../_util/type'
 import type { VCStepProps } from './Step'
 
 export default defineComponent({

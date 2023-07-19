@@ -1,4 +1,3 @@
-import type { ExtractPropTypes, PropType, SlotsType, VNode } from 'vue'
 import {
   Teleport,
   computed,
@@ -14,23 +13,20 @@ import {
 import uniq from 'lodash-es/uniq'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 import useStyle from '../style'
-import type { Key } from '../../_util/type'
 import shallowEqual from '../../_util/shallowequal'
 import { useConfigInject } from '../../hooks'
 import devWarning from '../../vc-util/devWarning'
-import type { CSSMotionProps } from '../../_util/components/transition'
 import { SiderCollapsedKey } from '../../layout/injectionKey'
 import { flattenChildren } from '../../_util/props-util'
 import Overflow from '../../vc-overflow'
 import { cloneElement } from '../../_util/vnode'
-import type { FocusEventHandler, MouseEventHandler } from '../../_util/EventInterface'
 import collapseMotion from '../../_util/components/collapseMotion'
 import { useInjectOverride } from './OverrideContext'
 import useItems from './hooks/useItems'
-import type { ItemType } from './hooks/useItems'
 import { OVERFLOW_KEY, PathContext } from './hooks/useKeyPath'
 import SubMenu from './SubMenu'
 import MenuItem from './MenuItem'
+import useProvideMenu, { MenuContextProvider, useProvideFirstLevel } from './hooks/useMenuContext'
 import type {
   BuiltinPlacements,
   MenuClickEventHandler,
@@ -41,7 +37,11 @@ import type {
   SelectInfo,
   TriggerSubMenuAction,
 } from './interface'
-import useProvideMenu, { MenuContextProvider, useProvideFirstLevel } from './hooks/useMenuContext'
+import type { ItemType } from './hooks/useItems'
+import type { FocusEventHandler, MouseEventHandler } from '../../_util/EventInterface'
+import type { CSSMotionProps } from '../../_util/components/transition'
+import type { Key } from '../../_util/type'
+import type { ExtractPropTypes, PropType, SlotsType, VNode } from 'vue'
 import type { StoreMenuInfo } from './hooks/useMenuContext'
 
 export const menuProps = () => ({
@@ -74,7 +74,7 @@ export const menuProps = () => ({
 
   'getPopupContainer': Function as PropType<(node: HTMLElement) => HTMLElement>,
 
-  'expandIcon': Function as PropType<(p?: { isOpen: boolean; [key: string]: any }) => any>,
+  'expandIcon': Function as PropType<(p?: { isOpen: boolean, [key: string]: any }) => any>,
   'onOpenChange': Function as PropType<(keys: Key[]) => void>,
   'onSelect': Function as PropType<SelectEventHandler>,
   'onDeselect': Function as PropType<SelectEventHandler>,
@@ -96,7 +96,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: menuProps(),
   slots: Object as SlotsType<{
-    expandIcon?: { isOpen: boolean; [key: string]: any }
+    expandIcon?: { isOpen: boolean, [key: string]: any }
     overflowedIndicator?: any
     default: any
   }>,

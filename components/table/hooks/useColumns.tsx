@@ -1,10 +1,10 @@
 import { renderSlot } from 'vue'
-import type { Ref } from 'vue'
-import type { ContextSlots } from '../context'
-import type { ColumnsType, TransformColumns } from '../interface'
 import { EXPAND_COLUMN } from '../../vc-table'
 import devWarning from '../../vc-util/devWarning'
 import { SELECTION_COLUMN } from './useSelection'
+import type { Ref } from 'vue'
+import type { ContextSlots } from '../context'
+import type { ColumnsType, TransformColumns } from '../interface'
 
 function fillSlots<RecordType>(columns: ColumnsType<RecordType>, contextSlots: Ref<ContextSlots>) {
   const $slots = contextSlots.value

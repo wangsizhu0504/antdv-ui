@@ -1,7 +1,7 @@
-import type { ExtractPropTypes, SlotsType } from 'vue'
 import { defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import PropTypes from '../_util/vue-types'
+import type { ExtractPropTypes, SlotsType } from 'vue'
 
 export const listItemMetaProps = () => ({
   avatar: PropTypes.any,

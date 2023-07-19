@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import { onBeforeUnmount, onMounted } from 'vue'
+import type { Ref } from 'vue'
 
 export default function useSelectTriggerControl(
   refs: Ref[],

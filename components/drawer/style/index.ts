@@ -1,6 +1,6 @@
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import genMotionStyle from './motion'
+import type { FullToken, GenerateStyle } from '../../theme'
 
 export interface ComponentToken {
   zIndexPopup: number

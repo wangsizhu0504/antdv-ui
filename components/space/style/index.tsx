@@ -1,6 +1,6 @@
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook } from '../../theme'
 import genSpaceCompactStyle from './compact'
+import type { FullToken, GenerateStyle } from '../../theme'
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {

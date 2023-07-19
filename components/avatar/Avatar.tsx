@@ -1,15 +1,15 @@
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 import { computed, defineComponent, nextTick, onMounted, shallowRef, watch } from 'vue'
-import type { VueNode } from '../_util/type'
 import { getPropsSlot } from '../_util/props-util'
 import PropTypes from '../_util/vue-types'
 import { useBreakpoint, useConfigInject } from '../hooks'
 import { responsiveArray } from '../_util/responsiveObserve'
 import ResizeObserver from '../vc-resize-observer'
 import eagerComputed from '../_util/eagerComputed'
-import type { Breakpoint, ScreenSizeMap } from '../_util/responsiveObserve'
 import { useInjectSize } from './SizeContext'
 import useStyle from './style'
+import type { Breakpoint, ScreenSizeMap } from '../_util/responsiveObserve'
+import type { VueNode } from '../_util/type'
+import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 
 export type AvatarSize = 'large' | 'small' | 'default' | number | ScreenSizeMap
 

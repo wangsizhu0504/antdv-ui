@@ -1,4 +1,3 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
 import classNames from '../_util/classNames'
@@ -6,20 +5,21 @@ import Dialog from '../vc-dialog'
 import PropTypes from '../_util/vue-types'
 import addEventListener from '../vc-util/Dom/addEventListener'
 import Button from '../button'
-import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../button/buttonTypes'
 import { convertLegacyProps } from '../button/buttonTypes'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
-import type { Direction } from '../config-provider'
-import type { VueNode } from '../_util/type'
 import { objectType } from '../_util/type'
 import { canUseDocElement } from '../_util/styleChecker'
 import { useConfigInject } from '../hooks'
 import { getTransitionName } from '../_util/components/transition'
 import warning from '../_util/warning'
 import useStyle from './style'
+import type { VueNode } from '../_util/type'
+import type { Direction } from '../config-provider'
+import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../button/buttonTypes'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
-type MousePosition = { x: number; y: number } | null
+type MousePosition = { x: number, y: number } | null
 
 let mousePosition: MousePosition
 // ref: https://github.com/ant-design/ant-design/issues/15795
@@ -106,7 +106,7 @@ export interface ModalFuncProps {
   okType?: LegacyButtonType
   cancelText?: string | (() => VueNode) | VueNode
   icon?: (() => VueNode) | VueNode
-  wrapClassName?: String
+  wrapClassName?: string
   /* Deprecated */
   iconType?: string
   mask?: boolean

@@ -1,6 +1,4 @@
 import { TinyColor } from '@ctrl/tinycolor'
-import type { CSSObject } from '../../cssinjs'
-import type { InputToken } from '../../input/style'
 import {
   genActiveStyle,
   genBasicInputStyle,
@@ -15,12 +13,14 @@ import {
   slideUpIn,
   slideUpOut,
 } from '../../style/motion'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
-import type { GlobalToken } from '../../theme/interface'
-import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook'
 import { resetComponent, roundedArrow, textEllipsis } from '../../style'
 import { genCompactItemStyle } from '../../style/compact-item'
+import type { CSSObject } from '../../cssinjs'
+import type { InputToken } from '../../input/style'
+import type { FullToken, GenerateStyle } from '../../theme'
+import type { GlobalToken } from '../../theme/interface'
+import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook'
 
 export interface ComponentToken {
   presetsWidth: number

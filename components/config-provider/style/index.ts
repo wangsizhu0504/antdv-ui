@@ -1,8 +1,8 @@
-import type { Ref } from 'vue'
 import { computed } from 'vue'
 import { useStyleRegister } from '../../cssinjs'
 import { resetIcon } from '../../style'
 import { useToken } from '../../theme/internal'
+import type { Ref } from 'vue'
 
 const useStyle = (iconPrefixCls: Ref<string>) => {
   const [theme, token] = useToken()

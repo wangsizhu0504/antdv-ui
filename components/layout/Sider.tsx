@@ -1,4 +1,3 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import {
   defineComponent,
   inject,
@@ -16,6 +15,7 @@ import initDefaultProps from '../_util/props-util/initDefaultProps'
 import { isNumeric } from '../_util/is'
 import { useConfigInject } from '../hooks'
 import { SiderCollapsedKey, SiderHookProviderKey } from './injectionKey'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 const dimensionMaxMap = {
   xs: '479.98px',
@@ -173,7 +173,7 @@ export default defineComponent({
       const siderWidth = isNumeric(rawWidth) ? `${rawWidth}px` : String(rawWidth)
       // special trigger when collapsedWidth == 0
       const zeroWidthTrigger
-        = parseFloat(String(collapsedWidth || 0)) === 0
+        = Number.parseFloat(String(collapsedWidth || 0)) === 0
           ? (
           <span
             onClick={toggle}
@@ -217,7 +217,7 @@ export default defineComponent({
           [`${pre}-collapsed`]: !!collapsed.value,
           [`${pre}-has-trigger`]: collapsible && trigger !== null && !zeroWidthTrigger,
           [`${pre}-below`]: !!below.value,
-          [`${pre}-zero-width`]: parseFloat(siderWidth) === 0,
+          [`${pre}-zero-width`]: Number.parseFloat(siderWidth) === 0,
         },
         attrs.class,
       )

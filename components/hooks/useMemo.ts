@@ -1,5 +1,5 @@
-import type { Ref, WatchSource } from 'vue'
 import { ref, watch } from 'vue'
+import type { Ref, WatchSource } from 'vue'
 
 export function useMemo<T>(
   getValue: () => T,

@@ -1,5 +1,7 @@
 import { computed, defineComponent } from 'vue'
 import { useInjectTable } from '../context/TableContext'
+import classNames from '../../_util/classNames'
+import HeaderRow from './HeaderRow'
 import type {
   CellType,
   ColumnGroupType,
@@ -9,8 +11,6 @@ import type {
   GetComponentProps,
   StickyOffsets,
 } from '../interface'
-import classNames from '../../_util/classNames'
-import HeaderRow from './HeaderRow'
 
 function parseHeaderRows<RecordType>(
   rootColumns: ColumnsType<RecordType>,

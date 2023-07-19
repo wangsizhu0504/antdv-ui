@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import { onBeforeUnmount, onMounted, watch } from 'vue'
+import type { Ref } from 'vue'
 
 const SMOOTH_PTG = 14 / 15
 export default function useMobileTouchMove(

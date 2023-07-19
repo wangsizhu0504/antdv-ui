@@ -1,5 +1,5 @@
-import type { CSSProperties, ExtractPropTypes, FunctionalComponent, PropType } from 'vue'
 import classNames from '../_util/classNames'
+import type { CSSProperties, ExtractPropTypes, FunctionalComponent, PropType } from 'vue'
 
 export const skeletonElementProps = () => ({
   prefixCls: String,

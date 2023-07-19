@@ -1,10 +1,7 @@
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 import { computed, defineComponent, onMounted, watch } from 'vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
-import type { EditableConfig, Tab, TabsLocale } from '../interface'
 import Menu, { MenuItem } from '../../../menu'
 import Dropdown from '../../../vc-dropdown'
-import type { Key } from '../../../_util/type'
 import { functionType } from '../../../_util/type'
 import KeyCode from '../../../_util/KeyCode'
 import classNames from '../../../_util/classNames'
@@ -12,6 +9,9 @@ import PropTypes from '../../../_util/vue-types'
 import { useState } from '../../../hooks'
 import { useProvideOverride } from '../../../menu/src/OverrideContext'
 import AddButton from './AddButton'
+import type { Key } from '../../../_util/type'
+import type { EditableConfig, Tab, TabsLocale } from '../interface'
+import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 
 export const operationNodeProps = {
   prefixCls: { type: String },

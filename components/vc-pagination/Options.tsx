@@ -1,8 +1,8 @@
 import { computed, defineComponent, ref, withDirectives } from 'vue'
 import PropTypes from '../_util/vue-types'
 import antInput from '../_util/antInputDirective'
-import type { EventHandler } from '../_util/EventInterface'
 import KEYCODE from './KeyCode'
+import type { EventHandler } from '../_util/EventInterface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -23,7 +23,7 @@ export default defineComponent({
   setup(props) {
     const goInputText = ref('')
     const validValue = computed(() => {
-      return (!goInputText.value || isNaN(goInputText.value as any))
+      return (!goInputText.value || Number.isNaN(goInputText.value as any))
         ? undefined
         : Number(goInputText.value)
     })
@@ -71,9 +71,9 @@ export default defineComponent({
         return pageSizeOptions
 
       return pageSizeOptions.concat([pageSize.toString()]).sort((a, b) => {
-        const numberA = isNaN(Number(a)) ? 0 : Number(a)
+        const numberA = Number.isNaN(Number(a)) ? 0 : Number(a)
 
-        const numberB = isNaN(Number(b)) ? 0 : Number(b)
+        const numberB = Number.isNaN(Number(b)) ? 0 : Number(b)
         return numberA - numberB
       })
     })

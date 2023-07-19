@@ -1,10 +1,10 @@
-import type { ExtractPropTypes, SlotsType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { getPropsSlot } from '../../_util/props-util'
 import PropTypes from '../../_util/vue-types'
 import { objectType } from '../../_util/type'
 import { useInjectMenu } from './hooks/useMenuContext'
 import { useMeasure } from './hooks/useKeyPath'
+import type { ExtractPropTypes, SlotsType } from 'vue'
 import type { ItemType } from './interface'
 
 export const menuItemGroupProps = () => ({

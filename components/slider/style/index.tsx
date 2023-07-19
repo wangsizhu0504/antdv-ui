@@ -1,9 +1,9 @@
-import type { CSSProperties } from 'vue'
 import { TinyColor } from '@ctrl/tinycolor'
-import type { CSSObject } from '../../cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { resetComponent } from '../../style'
+import type { CSSProperties } from 'vue'
+import type { CSSObject } from '../../cssinjs'
+import type { FullToken, GenerateStyle } from '../../theme'
 
 // Direction naming standard:
 // Horizontal base:

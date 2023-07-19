@@ -1,7 +1,7 @@
 // base rc-tree 5.6.3
-import type { TreeNodeProps, TreeProps } from './props'
 import Tree from './Tree'
 import TreeNode from './TreeNode'
+import type { TreeNodeProps, TreeProps } from './props'
 import type { BasicDataNode } from './interface'
 
 export { TreeNode }

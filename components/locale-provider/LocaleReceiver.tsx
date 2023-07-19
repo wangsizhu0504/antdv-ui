@@ -1,7 +1,7 @@
-import type { ComputedRef, PropType, Ref, VNodeTypes } from 'vue'
 import { computed, defineComponent, inject, unref } from 'vue'
-import type { Locale } from '../locale'
 import { enUS as defaultLocaleData } from '../locale'
+import type { ComputedRef, PropType, Ref, VNodeTypes } from 'vue'
+import type { Locale } from '../locale'
 
 export type LocaleComponentName = Exclude<keyof Locale, 'locale'>
 

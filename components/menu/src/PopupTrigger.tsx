@@ -1,12 +1,12 @@
-import type { PropType, SlotsType } from 'vue'
 import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue'
 import Trigger from '../../vc-trigger'
 import raf from '../../_util/raf'
 import classNames from '../../_util/classNames'
 import { getTransitionProps } from '../../_util/components/transition'
 import { useInjectForceRender, useInjectMenu } from './hooks/useMenuContext'
-import type { MenuMode } from './interface'
 import { placements, placementsRtl } from './placements'
+import type { MenuMode } from './interface'
+import type { PropType, SlotsType } from 'vue'
 
 const popupPlacementMap = {
   'horizontal': 'bottomLeft',

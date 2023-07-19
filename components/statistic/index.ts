@@ -1,6 +1,6 @@
-import type { App, Plugin } from 'vue'
 import Statistic from './Statistic'
 import Countdown from './Countdown'
+import type { App, Plugin } from 'vue'
 
 export type { StatisticProps } from './Statistic'
 

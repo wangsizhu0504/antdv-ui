@@ -2,14 +2,14 @@ import { computed, defineComponent, toRefs } from 'vue'
 import VCTour from '../vc-tour'
 import classNames from '../_util/classNames'
 import { useConfigInject } from '../hooks'
-import type { VueNode } from '../_util/type'
 import { withInstall } from '../_util/type'
 import getPlacements from '../_util/placements'
 import TourPanel from './panelRender'
-import type { TourProps, TourStepProps } from './interface'
 import { tourProps } from './interface'
 import useMergedType from './useMergedType'
 import useStyle from './style'
+import type { TourProps, TourStepProps } from './interface'
+import type { VueNode } from '../_util/type'
 
 // CSSINJS
 

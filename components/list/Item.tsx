@@ -1,4 +1,3 @@
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 import { defineComponent, inject, ref } from 'vue'
 import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
@@ -8,6 +7,7 @@ import { cloneElement } from '../_util/vnode'
 import { useConfigInject } from '../hooks'
 import { ListContextKey } from './contextKey'
 import ItemMeta from './ItemMeta'
+import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 import type { ListGridType } from '.'
 
 export const listItemProps = () => ({

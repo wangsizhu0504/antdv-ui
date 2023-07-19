@@ -1,4 +1,3 @@
-import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { RightOutlined } from '@ant-design/icons-vue'
 import { getDataAndAriaProps } from '../_util/util'
@@ -16,9 +15,10 @@ import collapseMotion from '../_util/components/collapseMotion'
 // CSSINJS
 import firstNotUndefined from '../_util/firstNotUndefined'
 import useStyle from './style'
+import { collapseProps } from './commonProps'
 import type { CollapsePanelProps } from './CollapsePanel'
 import type { CollapsibleType } from './commonProps'
-import { collapseProps } from './commonProps'
+import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 
 type Key = number | string
 

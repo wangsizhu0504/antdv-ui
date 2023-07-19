@@ -1,21 +1,17 @@
-import type { App, Plugin, WatchStopHandle } from 'vue'
 import { computed, defineComponent, reactive, watch, watchEffect } from 'vue'
 
-import type { Locale, ValidateMessages } from '../locale'
 import defaultLocale from '../locale/lang/en_US'
 import { createTheme } from '../cssinjs'
 import LocaleProvider, { ANT_MARK } from '../locale-provider'
 
 import LocaleReceiver from '../locale-provider/LocaleReceiver'
 
-import type { MaybeRef } from '../_util/type'
 import message from '../message'
 import notification from '../notification'
 import defaultSeedToken from '../theme/themes/seed'
 import { DesignTokenProvider } from '../theme/internal'
 import { defaultPrefixCls, getGlobalIconPrefixCls, getGlobalPrefixCls, globalConfigForApi } from './config'
 import defaultRenderEmpty from './renderEmpty'
-import type { RenderEmptyHandler } from './renderEmpty'
 import { useProviderDisabled } from './DisabledContext'
 import { useProviderSize } from './SizeContext'
 import {
@@ -25,10 +21,14 @@ import {
   useConfigContextProvider,
   useProvideGlobalForm,
 } from './context'
-import type { ConfigProviderInnerProps, ConfigProviderProps } from './context'
 import useTheme from './hooks/useTheme'
 import useStyle from './style'
 import { registerTheme } from './cssVariables'
+import type { ConfigProviderInnerProps, ConfigProviderProps } from './context'
+import type { RenderEmptyHandler } from './renderEmpty'
+import type { MaybeRef } from '../_util/type'
+import type { Locale, ValidateMessages } from '../locale'
+import type { App, Plugin, WatchStopHandle } from 'vue'
 import type { Theme } from './type'
 
 export type { ConfigProviderProps } from './context'

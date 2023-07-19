@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
 import isFF from '../utils/isFirefox'
 import raf from '../../_util/raf'
 import useOriginScroll from './useOriginScroll'
+import type { Ref } from 'vue'
 
 interface FireFoxDOMMouseScrollEvent {
   detail: number
@@ -24,7 +24,7 @@ export default function useFrameWheel(
   // Scroll status sync
   const originScroll = useOriginScroll(isScrollAtTop, isScrollAtBottom)
 
-  function onWheel(event: { preventDefault?: any; deltaY?: any }) {
+  function onWheel(event: { preventDefault?: any, deltaY?: any }) {
     if (!inVirtual.value) return
 
     raf.cancel(nextFrame!)

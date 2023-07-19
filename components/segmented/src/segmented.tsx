@@ -1,13 +1,13 @@
 import { computed, defineComponent, shallowRef } from 'vue'
-import type { ExtractPropTypes, FunctionalComponent, SlotsType } from 'vue'
 import useStyle from '../style'
 import classNames from '../../_util/classNames'
 import useConfigInject from '../../config-provider/hooks/useConfigInject'
 import { initDefaultProps } from '../../_util/props-util'
-import type { VueNode } from '../../_util/type'
 import { arrayType, booleanType, functionType, someType, stringType } from '../../_util/type'
-import type { ChangeEvent } from '../../_util/EventInterface'
 import MotionThumb from './MotionThumb'
+import type { VueNode } from '../../_util/type'
+import type { ChangeEvent } from '../../_util/EventInterface'
+import type { ExtractPropTypes, FunctionalComponent, SlotsType } from 'vue'
 
 export type SegmentedValue = string | number
 export type segmentedSize = 'large' | 'small'

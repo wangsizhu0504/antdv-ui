@@ -1,6 +1,6 @@
-import type { CSSProperties } from 'vue'
 import classNames from '../_util/classNames'
 import { isPresetColor } from '../_util/colors'
+import type { CSSProperties } from 'vue'
 
 export function parseColor(prefixCls: string, color?: string) {
   const isInternalColor = isPresetColor(color)

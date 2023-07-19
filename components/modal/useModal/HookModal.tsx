@@ -1,11 +1,11 @@
-import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import defaultLocale from '../../locale/lang/en_US'
 import ConfirmDialog from '../ConfirmDialog'
-import type { ModalFuncProps } from '../Modal'
 import { useConfigContextInject } from '../../config-provider/context'
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver'
 import initDefaultProps from '../../_util/props-util/initDefaultProps'
+import type { ModalFuncProps } from '../Modal'
+import type { PropType } from 'vue'
 
 export interface HookModalProps {
   afterClose: () => void

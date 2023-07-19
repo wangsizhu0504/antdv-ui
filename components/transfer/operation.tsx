@@ -1,6 +1,6 @@
-import type { CSSProperties, FunctionalComponent } from 'vue'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
 import Button from '../button'
+import type { CSSProperties, FunctionalComponent } from 'vue'
 import type { Direction } from '../config-provider'
 
 function noop() {}

@@ -1,4 +1,3 @@
-import type { InputToken } from '../../input/style'
 import {
   genActiveStyle,
   genBasicInputStyle,
@@ -7,9 +6,10 @@ import {
   genStatusStyle,
   initInputToken,
 } from '../../input/style'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook } from '../../theme'
 import { resetComponent, textEllipsis } from '../../style'
+import type { FullToken, GenerateStyle } from '../../theme'
+import type { InputToken } from '../../input/style'
 
 export interface ComponentToken {
   zIndexPopup: number

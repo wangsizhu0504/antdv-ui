@@ -1,9 +1,7 @@
 import { computed, defineComponent, ref, shallowRef, toRefs, watch, watchEffect } from 'vue'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import Trigger, { triggerProps } from '../vc-trigger'
 import { useMergedState } from '../hooks'
 import classNames from '../_util/classNames'
-import type { VueNode } from '../_util/type'
 import { initDefaultProps } from '../_util/props-util'
 import {
   arrayType,
@@ -15,11 +13,13 @@ import {
 } from '../_util/type'
 import Portal from '../_util/components/PortalWrapper'
 import useTarget from './hooks/useTarget'
-import type { Gap } from './hooks/useTarget'
 import TourStep from './TourStep'
-import type { TourStepInfo, TourStepProps } from './interface'
 import Mask from './Mask'
 import { getPlacements } from './placements'
+import type { TourStepInfo, TourStepProps } from './interface'
+import type { Gap } from './hooks/useTarget'
+import type { VueNode } from '../_util/type'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { PlacementType } from './placements'
 
 const CENTER_PLACEHOLDER: CSSProperties = {
@@ -41,7 +41,7 @@ export const tourProps = () => {
     onChange: functionType<(current: number) => void>(),
     onClose: functionType<(current: number) => void>(),
     onFinish: functionType<() => void>(),
-    mask: someType<boolean | { style?: CSSProperties; color?: string }>([Boolean, Object], true),
+    mask: someType<boolean | { style?: CSSProperties, color?: string }>([Boolean, Object], true),
     arrow: someType<boolean | { pointAtCenter: boolean }>([Boolean, Object], true),
     rootClassName: { type: String },
     placement: stringType<PlacementType>('bottom'),

@@ -1,5 +1,5 @@
-import type { App, Plugin } from 'vue'
 import Tabs, { TabPane } from './src'
+import type { App, Plugin } from 'vue'
 
 export type { TabsProps, TabPaneProps } from './src'
 

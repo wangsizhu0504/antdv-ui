@@ -1,5 +1,8 @@
-import type { ComputedRef, Ref } from 'vue'
 import { computed, renderSlot, watchEffect } from 'vue'
+import { INTERNAL_COL_DEFINE } from '../utils/legacyUtil'
+import { EXPAND_COLUMN } from '../constant'
+import { warning } from '../../vc-util/warning'
+import { useInjectSlots } from '../../table/context'
 import type {
   ColumnGroupType,
   ColumnType,
@@ -10,10 +13,7 @@ import type {
   RenderExpandIcon,
   TriggerEventHandler,
 } from '../interface'
-import { INTERNAL_COL_DEFINE } from '../utils/legacyUtil'
-import { EXPAND_COLUMN } from '../constant'
-import { warning } from '../../vc-util/warning'
-import { useInjectSlots } from '../../table/context'
+import type { ComputedRef, Ref } from 'vue'
 
 function flatColumns<RecordType>(columns: ColumnsType<RecordType>): ColumnType<RecordType>[] {
   return columns.reduce((list, column) => {

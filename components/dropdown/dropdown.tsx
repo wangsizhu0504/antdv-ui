@@ -1,4 +1,3 @@
-import type { ExtractPropTypes, SlotsType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { RightOutlined } from '@ant-design/icons-vue'
 import { initDefaultProps, isValidElement } from '../_util/props-util'
@@ -13,6 +12,7 @@ import warning from '../_util/warning'
 import { useProvideOverride } from '../menu/src/OverrideContext'
 import useStyle from './style'
 import { dropdownProps } from './props'
+import type { ExtractPropTypes, SlotsType } from 'vue'
 
 export type DropdownProps = Partial<ExtractPropTypes<ReturnType<typeof dropdownProps>>>
 

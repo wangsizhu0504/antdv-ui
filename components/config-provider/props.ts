@@ -1,9 +1,9 @@
+import { functionType, objectType, stringType } from '../_util/type'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { Locale, ValidateMessages } from '../locale'
 
 import type { TransformCellTextProps } from '../table/interface'
 import type { RequiredMark } from '../form/Form'
-import { functionType, objectType, stringType } from '../_util/type'
 import type { CSPConfig, SizeType, ThemeConfig } from './type'
 import type { RenderEmptyHandler } from './renderEmpty'
 

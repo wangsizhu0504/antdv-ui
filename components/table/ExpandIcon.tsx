@@ -1,5 +1,5 @@
-import type { TableLocale } from '../locale'
 import classNames from '../_util/classNames'
+import type { TableLocale } from '../locale'
 
 interface DefaultExpandIconProps<RecordType> {
   prefixCls: string

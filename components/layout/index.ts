@@ -1,6 +1,6 @@
-import type { App } from 'vue'
 import Layout, { Content, Footer, Header } from './layout'
 import Sider from './Sider'
+import type { App } from 'vue'
 
 export type { BasicProps as LayoutProps } from './layout'
 export type { SiderProps } from './Sider'

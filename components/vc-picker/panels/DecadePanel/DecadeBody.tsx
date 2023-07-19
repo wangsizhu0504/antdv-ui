@@ -1,7 +1,7 @@
 import PanelBody from '../PanelBody'
-import type { GenerateConfig } from '../../generate'
 import useMergeProps from '../../hooks/useMergeProps'
 import { DECADE_COL_COUNT, DECADE_DISTANCE_COUNT, DECADE_UNIT_DIFF } from '../constants'
+import type { GenerateConfig } from '../../generate'
 
 const DECADE_ROW_COUNT = 4
 

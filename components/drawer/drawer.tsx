@@ -1,4 +1,3 @@
-import type { CSSProperties, SlotsType } from 'vue'
 import {
   computed,
   defineComponent,
@@ -23,8 +22,9 @@ import { useConfigInject, useScrollLocker } from '../hooks'
 import { isNumeric } from '../_util/is'
 import { getTransitionName, getTransitionProps } from '../_util/components/transition'
 import useStyle from './style'
-import type { PushState } from './type'
 import { drawerProps } from './props'
+import type { PushState } from './type'
+import type { CSSProperties, SlotsType } from 'vue'
 
 const defaultPushState: PushState = { distance: 180 }
 

@@ -1,9 +1,9 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
 import { useInjectRow } from './context'
 import { useColStyle } from './style'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 type ColSpanType = number | string
 

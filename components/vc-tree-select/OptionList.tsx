@@ -1,16 +1,16 @@
 import { computed, defineComponent, nextTick, ref, shallowRef, toRaw, watch } from 'vue'
-import type { RefOptionListProps } from '../vc-select/OptionList'
-import type { ScrollTo } from '../vc-virtual-list/List'
 import { useMemo } from '../hooks'
-import type { EventDataNode } from '../tree'
 import KeyCode from '../_util/KeyCode'
 import Tree from '../vc-tree/Tree'
-import type { TreeProps } from '../vc-tree/props'
 import { useBaseProps } from '../vc-select'
 import { getAllKeys, isCheckDisabled } from './utils/valueUtil'
-import type { Key, TreeDataNode } from './interface'
 import useInjectLegacySelectContext from './LegacyContext'
 import useInjectSelectContext from './TreeSelectContext'
+import type { Key, TreeDataNode } from './interface'
+import type { TreeProps } from '../vc-tree/props'
+import type { EventDataNode } from '../tree'
+import type { ScrollTo } from '../vc-virtual-list/List'
+import type { RefOptionListProps } from '../vc-select/OptionList'
 
 const HIDDEN_STYLE = {
   width: 0,

@@ -1,4 +1,3 @@
-import type { ExtractPropTypes } from 'vue'
 import { computed, defineComponent, ref } from 'vue'
 import PropTypes from '../_util/vue-types'
 import VcCheckbox from '../vc-checkbox/Checkbox'
@@ -6,12 +5,13 @@ import classNames from '../_util/classNames'
 import { useConfigInject } from '../hooks'
 import { FormItemInputContext, useInjectFormItemContext } from '../form/FormItemContext'
 import omit from '../_util/omit'
-import type { FocusEventHandler, MouseEventHandler } from '../_util/EventInterface'
 import { booleanType, functionType } from '../_util/type'
 import { useInjectDisabled } from '../config-provider/DisabledContext'
-import type { RadioChangeEvent } from './interface'
 import useStyle from './style'
 import { useInjectRadioGroupContext, useInjectRadioOptionTypeContext } from './context'
+import type { RadioChangeEvent } from './interface'
+import type { FocusEventHandler, MouseEventHandler } from '../_util/EventInterface'
+import type { ExtractPropTypes } from 'vue'
 
 // CSSINJS
 

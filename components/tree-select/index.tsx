@@ -1,4 +1,3 @@
-import type { App, ExtractPropTypes, SlotsType } from 'vue'
 import { computed, defineComponent, ref } from 'vue'
 import VcTreeSelect, {
   SHOW_ALL,
@@ -7,35 +6,36 @@ import VcTreeSelect, {
   TreeNode,
   treeSelectProps as vcTreeSelectProps,
 } from '../vc-tree-select'
-import type { FieldNames, Key } from '../vc-tree-select/interface'
 import devWarning from '../vc-util/devWarning'
 import getIcons from '../select/utils/iconUtil'
-import type { SwitcherIconProps } from '../tree/utils/iconUtil'
 import renderSwitcherIcon from '../tree/utils/iconUtil'
 import { warning } from '../vc-util/warning'
 import { FormItemInputContext, useInjectFormItemContext } from '../form/FormItemContext'
-import type { BaseSelectRef } from '../vc-select'
-import type { BaseOptionType, DefaultOptionType } from '../vc-tree-select/TreeSelect'
-import type { TreeProps } from '../tree'
 import useSelectStyle from '../select/style'
 import { useCompactItemContext } from '../space/Compact'
 import classNames from '../_util/classNames'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
-import type { SizeType } from '../config-provider'
 import omit from '../_util/omit'
 import PropTypes from '../_util/vue-types'
 import { useConfigInject } from '../hooks'
 import { flattenChildren } from '../_util/props-util'
 
-import type { SelectCommonPlacement } from '../_util/components/transition'
 import { getTransitionDirection } from '../_util/components/transition'
-import type { InputStatus } from '../_util/statusUtils'
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
 import { booleanType, functionType, objectType, someType, stringType } from '../_util/type'
 
 // CSSINJS
 import { useInjectDisabled } from '../config-provider/DisabledContext'
 import useStyle from './style'
+import type { InputStatus } from '../_util/statusUtils'
+import type { SelectCommonPlacement } from '../_util/components/transition'
+import type { SizeType } from '../config-provider'
+import type { TreeProps } from '../tree'
+import type { BaseOptionType, DefaultOptionType } from '../vc-tree-select/TreeSelect'
+import type { BaseSelectRef } from '../vc-select'
+import type { SwitcherIconProps } from '../tree/utils/iconUtil'
+import type { FieldNames, Key } from '../vc-tree-select/interface'
+import type { App, ExtractPropTypes, SlotsType } from 'vue'
 
 const getTransitionName = (rootPrefixCls: string, motion: string, transitionName?: string) => {
   if (transitionName !== undefined)
@@ -255,7 +255,7 @@ const TreeSelect = defineComponent({
         mergedNotFound = renderEmpty('Select')
 
       // ==================== Render =====================
-      const selectProps = omit(props as typeof props & { itemIcon: any; switcherIcon: any }, [
+      const selectProps = omit(props as typeof props & { itemIcon: any, switcherIcon: any }, [
         'suffixIcon',
         'itemIcon',
         'removeIcon',

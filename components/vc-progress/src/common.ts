@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import { onUpdated, ref } from 'vue'
+import type { Ref } from 'vue'
 import type { RefsValue } from '../../hooks'
 import type { ProgressProps } from './types'
 

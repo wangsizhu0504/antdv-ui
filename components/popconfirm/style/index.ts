@@ -1,5 +1,5 @@
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook } from '../../theme'
+import type { FullToken, GenerateStyle } from '../../theme'
 
 export interface ComponentToken {
   zIndexPopup: number

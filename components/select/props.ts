@@ -1,12 +1,12 @@
 import { omit } from 'lodash-es'
-import type { ExtractPropTypes } from 'vue'
 import PropTypes from '../_util/vue-types'
 import { booleanType, functionType, someType, stringType } from '../_util/type'
+import { selectProps as vcSelectProps } from '../vc-select'
+import type { ExtractPropTypes } from 'vue'
 import type { SelectValue } from '../tree-select'
 import type { SizeType } from '../config-provider'
 import type { SelectCommonPlacement } from '../_util/components/transition'
 import type { InputStatus } from '../_util/statusUtils'
-import { selectProps as vcSelectProps } from '../vc-select'
 
 export const selectProps = () => ({
   ...omit(vcSelectProps<SelectValue>(), [

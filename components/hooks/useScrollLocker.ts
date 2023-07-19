@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
 import { computed, watchEffect } from 'vue'
 import getScrollBarSize from '../_util/getScrollBarSize'
 import { removeCSS, updateCSS } from '../vc-util/Dom/dynamicCSS'
+import type { Ref } from 'vue'
 
 const UNIQUE_ID = `vc-util-locker-${Date.now()}`
 

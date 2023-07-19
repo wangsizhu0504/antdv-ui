@@ -1,8 +1,8 @@
 import { Teleport, computed, defineComponent, onMounted, onUnmounted, watch } from 'vue'
+import classNames from '../_util/classNames'
 import type { CSSProperties, HTMLAttributes } from 'vue'
 import type { Key } from '../_util/type'
 import type { MouseEventHandler } from '../_util/EventInterface'
-import classNames from '../_util/classNames'
 
 interface DivProps extends HTMLAttributes {
   // Ideally we would allow all data-* props but this would depend on https://github.com/microsoft/TypeScript/issues/28960

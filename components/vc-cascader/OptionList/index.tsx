@@ -7,14 +7,14 @@ import {
   toPathKeys,
   toPathValueStr,
 } from '../utils/commonUtil'
-import type { DefaultOptionType, SingleValueType } from '../Cascader'
 import { useInjectCascader } from '../context'
-import type { EventHandler } from '../../_util/EventInterface'
-import type { Key } from '../../_util/type'
 import { useBaseProps } from '../../vc-select'
 import useKeyboard from './useKeyboard'
 import useActive from './useActive'
 import Column, { FIX_LABEL } from './Column'
+import type { Key } from '../../_util/type'
+import type { EventHandler } from '../../_util/EventInterface'
+import type { DefaultOptionType, SingleValueType } from '../Cascader'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

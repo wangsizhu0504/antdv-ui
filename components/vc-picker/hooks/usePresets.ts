@@ -1,8 +1,8 @@
-import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
+import warning from '../../vc-util/warning'
+import type { ComputedRef } from 'vue'
 
 import type { PresetDate } from '../interface'
-import warning from '../../vc-util/warning'
 
 export default function usePresets<T>(
   presets?: ComputedRef<PresetDate<T>[]>,

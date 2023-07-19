@@ -1,5 +1,5 @@
-import type { VNodeTypes } from 'vue'
 import { isFragment } from '../../_util/props-util'
+import type { VNodeTypes } from 'vue'
 
 export interface Option {
   keepEmpty?: boolean

@@ -24,8 +24,8 @@ import {
 } from './utils'
 import useStyle from './style'
 import { affixProps } from './props'
-import type { AffixState } from './type'
 import { AffixStatus } from './type'
+import type { AffixState } from './type'
 
 const Affix = defineComponent({
   compatConfig: { MODE: 3 },

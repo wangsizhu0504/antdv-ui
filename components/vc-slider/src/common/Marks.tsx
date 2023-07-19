@@ -19,7 +19,7 @@ const Marks = (_: any, { attrs, slots }: any) => {
   const customMark = slots.mark
   const range = max - min
   const elements = marksKeys
-    .map(parseFloat)
+    .map(Number.parseFloat)
     .sort((a, b) => a - b)
     .map((point) => {
       const markPoint = typeof marks[point] === 'function' ? marks[point]() : marks[point]

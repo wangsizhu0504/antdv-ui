@@ -1,9 +1,9 @@
-import type { Ref } from 'vue'
 import { watch } from 'vue'
 import { useInjectCascader } from '../context'
 import { useBaseProps } from '../../vc-select'
-import type { Key } from '../../_util/type'
 import { useState } from '../../hooks'
+import type { Key } from '../../_util/type'
+import type { Ref } from 'vue'
 
 /**
  * Control the active open options path.

@@ -1,11 +1,11 @@
 import { omit } from 'lodash-es'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import { selectProps } from '../vc-select'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { InputStatus } from '../_util/statusUtils'
 
 export const autoCompleteProps = () => ({
   ...omit(selectProps(), ['loading', 'mode', 'optionLabelProp', 'labelInValue']),
-  dataSource: Array as PropType<{ value: any; text: any }[] | string[]>,
+  dataSource: Array as PropType<{ value: any, text: any }[] | string[]>,
   dropdownMenuStyle: {
     type: Object as PropType<CSSProperties>,
     default: undefined as CSSProperties,

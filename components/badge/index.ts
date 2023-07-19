@@ -1,6 +1,6 @@
-import type { App, Plugin } from 'vue'
 import Badge from './Badge'
 import Ribbon from './Ribbon'
+import type { App, Plugin } from 'vue'
 
 export type { BadgeProps } from './Badge'
 

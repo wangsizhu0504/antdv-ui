@@ -1,5 +1,5 @@
-import type { InjectionKey, Ref } from 'vue'
 import { inject, provide } from 'vue'
+import type { InjectionKey, Ref } from 'vue'
 
 export interface ExpandedRowProps {
   componentWidth: Ref<number>

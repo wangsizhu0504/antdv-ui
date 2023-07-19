@@ -1,19 +1,19 @@
 import { computed, defineComponent, onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import { DeleteOutlined, DownloadOutlined, EyeOutlined } from '@ant-design/icons-vue'
-import type { UploadLocale } from '../../locale'
+import Tooltip from '../../tooltip'
+import Progress from '../../progress'
+import { useConfigInject } from '../../hooks'
+import Transition, { getTransitionProps } from '../../_util/components/transition'
+import { arrayType, booleanType, functionType, objectType, stringType } from '../../_util/type'
+import type { VueNode } from '../../_util/type'
 import type {
   ItemRender,
   UploadFile,
   UploadListProgressProps,
   UploadListType,
 } from '../interface'
-import Tooltip from '../../tooltip'
-import Progress from '../../progress'
-import type { VueNode } from '../../_util/type'
-import { useConfigInject } from '../../hooks'
-import Transition, { getTransitionProps } from '../../_util/components/transition'
-import { arrayType, booleanType, functionType, objectType, stringType } from '../../_util/type'
+import type { UploadLocale } from '../../locale'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 
 export const listItemProps = () => {
   return {

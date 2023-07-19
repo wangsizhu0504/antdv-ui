@@ -1,5 +1,5 @@
-import type { InjectionKey, Ref } from 'vue'
 import { computed, inject, provide } from 'vue'
+import type { InjectionKey, Ref } from 'vue'
 
 export interface PortalContextProps {
   shouldRender: Ref<boolean>

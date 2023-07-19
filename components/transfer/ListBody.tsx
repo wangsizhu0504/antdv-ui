@@ -1,10 +1,10 @@
-import type { ExtractPropTypes } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import Pagination from '../pagination'
 import classNames from '../_util/classNames'
 import PropTypes from '../_util/vue-types'
 import { booleanType } from '../_util/type'
 import ListItem from './ListItem'
+import type { ExtractPropTypes } from 'vue'
 import type { TransferItem } from '.'
 
 export const transferListBodyProps = {

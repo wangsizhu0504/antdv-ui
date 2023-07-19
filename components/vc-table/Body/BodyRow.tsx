@@ -1,12 +1,12 @@
 import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
 import Cell from '../Cell'
 import { getColumnsKey } from '../utils/valueUtil'
-import type { CustomizeComponent, GetComponentProps, GetRowKey, Key } from '../interface'
 import { useInjectTable } from '../context/TableContext'
 import { useInjectBody } from '../context/BodyContext'
 import classNames from '../../_util/classNames'
-import type { MouseEventHandler } from '../../_util/EventInterface'
 import ExpandedRow from './ExpandedRow'
+import type { MouseEventHandler } from '../../_util/EventInterface'
+import type { CustomizeComponent, GetComponentProps, GetRowKey, Key } from '../interface'
 
 export interface BodyRowProps<RecordType> {
   record: RecordType

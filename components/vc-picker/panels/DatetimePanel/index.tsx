@@ -1,14 +1,14 @@
 import { ref } from 'vue'
-import type { DatePanelProps } from '../DatePanel'
 import DatePanel from '../DatePanel'
-import type { SharedTimeProps } from '../TimePanel'
 import TimePanel from '../TimePanel'
 import { tuple } from '../../utils/miscUtil'
 import { setDateTime as setTime } from '../../utils/timeUtil'
-import type { DisabledTime, PanelRefProps } from '../../interface'
 import useMergeProps from '../../hooks/useMergeProps'
 import classNames from '../../../_util/classNames'
 import KeyCode from '../../../_util/KeyCode'
+import type { DisabledTime, PanelRefProps } from '../../interface'
+import type { SharedTimeProps } from '../TimePanel'
+import type { DatePanelProps } from '../DatePanel'
 
 export type DatetimePanelProps<DateType> = {
   disabledTime?: DisabledTime<DateType>

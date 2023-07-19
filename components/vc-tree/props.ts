@@ -1,5 +1,5 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import PropTypes from '../_util/vue-types'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { EventHandler } from '../_util/EventInterface'
 import type {
   NodeDragEventParams,
@@ -15,7 +15,7 @@ export interface CheckInfo {
   checked: boolean
   nativeEvent: MouseEvent
   checkedNodes: DataNode[]
-  checkedNodesPositions?: { node: DataNode; pos: string }[]
+  checkedNodesPositions?: { node: DataNode, pos: string }[]
   halfCheckedKeys?: Key[]
 }
 
@@ -139,7 +139,7 @@ export const treeProps = () => ({
   expandedKeys: { type: Array as PropType<Key[]> },
   defaultCheckedKeys: { type: Array as PropType<Key[]> },
   checkedKeys: {
-    type: [Object, Array] as PropType<Key[] | { checked: Key[]; halfChecked: Key[] }>,
+    type: [Object, Array] as PropType<Key[] | { checked: Key[], halfChecked: Key[] }>,
   },
   defaultSelectedKeys: { type: Array as PropType<Key[]> },
   selectedKeys: { type: Array as PropType<Key[]> },
@@ -177,7 +177,7 @@ export const treeProps = () => ({
   },
   onCheck: {
     type: Function as PropType<
-      (checked: { checked: Key[]; halfChecked: Key[] } | Key[], info: CheckInfo) => void
+      (checked: { checked: Key[], halfChecked: Key[] } | Key[], info: CheckInfo) => void
     >,
   },
   onSelect: {
@@ -210,7 +210,7 @@ export const treeProps = () => ({
   onMouseenter: { type: Function as PropType<(info: NodeMouseEventParams) => void> },
   onMouseleave: { type: Function as PropType<(info: NodeMouseEventParams) => void> },
   onRightClick: {
-    type: Function as PropType<(info: { event: MouseEvent; node: EventDataNode }) => void>,
+    type: Function as PropType<(info: { event: MouseEvent, node: EventDataNode }) => void>,
   },
   onDragstart: { type: Function as PropType<(info: NodeDragEventParams) => void> },
   onDragenter: {

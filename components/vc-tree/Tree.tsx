@@ -14,7 +14,6 @@ import pickAttrs from '../_util/pickAttrs'
 import classNames from '../_util/classNames'
 import KeyCode from '../_util/KeyCode'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
-import type { NodeDragEventHandler, NodeMouseEventHandler } from './contextTypes'
 import { TreeContext, useProvideKeysState } from './contextTypes'
 import {
   arrAdd,
@@ -26,8 +25,6 @@ import {
   parseCheckedKeys,
   posToArr,
 } from './util'
-import type { DragNodeEvent, EventDataNode, FlattenNode, Key, ScrollTo } from './interface'
-import type { TreeNodeRequiredProps } from './utils/treeUtil'
 import {
   convertDataToEntities,
   convertNodePropsToEventData,
@@ -39,9 +36,12 @@ import {
 import NodeList, { MOTION_KEY, MotionEntity } from './NodeList'
 import { conductCheck } from './utils/conductUtil'
 import DropIndicator from './DropIndicator'
-import type { CheckInfo, DraggableFn } from './props'
 import { treeProps } from './props'
 import useMaxLevel from './useMaxLevel'
+import type { CheckInfo, DraggableFn } from './props'
+import type { TreeNodeRequiredProps } from './utils/treeUtil'
+import type { DragNodeEvent, EventDataNode, FlattenNode, Key, ScrollTo } from './interface'
+import type { NodeDragEventHandler, NodeMouseEventHandler } from './contextTypes'
 
 const MAX_RETRY_TIMES = 10
 

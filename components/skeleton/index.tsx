@@ -1,10 +1,10 @@
-import type { App, Plugin } from 'vue'
 import Skeleton from './Skeleton'
 import SkeletonButton from './Button'
 import SkeletonInput from './Input'
 import SkeletonImage from './Image'
 import SkeletonAvatar from './Avatar'
 import SkeletonTitle from './Title'
+import type { App, Plugin } from 'vue'
 
 export type { SkeletonButtonProps } from './Button'
 export type { SkeletonInputProps } from './Input'

@@ -51,7 +51,7 @@ export const getSize = (
     steps?: number
     strokeWidth?: number
   },
-): { width: number; height: number } => {
+): { width: number, height: number } => {
   let width = -1
   let height = -1
   if (type === 'step') {

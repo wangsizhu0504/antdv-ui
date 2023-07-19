@@ -1,11 +1,3 @@
-import type { CSSProperties, ExtractPropTypes, ImgHTMLAttributes } from 'vue'
-import type { UploadLocale } from '../locale'
-import type { ProgressProps } from '../progress'
-import type {
-  RcFile as OriRcFile,
-  UploadRequestOption as RcCustomRequestOptions,
-} from '../vc-upload/interface'
-import type { VueNode } from '../_util/type'
 import {
   arrayType,
   booleanType,
@@ -14,6 +6,14 @@ import {
   someType,
   stringType,
 } from '../_util/type'
+import type { CSSProperties, ExtractPropTypes, ImgHTMLAttributes } from 'vue'
+import type { UploadLocale } from '../locale'
+import type { ProgressProps } from '../progress'
+import type {
+  RcFile as OriRcFile,
+  UploadRequestOption as RcCustomRequestOptions,
+} from '../vc-upload/interface'
+import type { VueNode } from '../_util/type'
 
 export interface FileType extends OriRcFile {
   readonly lastModifiedDate: Date
@@ -137,7 +137,7 @@ function uploadProps<T = any>() {
     /** @deprecated Please use `beforeUpload` directly */
     'transformFile': functionType<TransformFileHandler>(),
     'iconRender':
-      functionType<(opt: { file: UploadFile<T>; listType?: UploadListType }) => VueNode>(),
+      functionType<(opt: { file: UploadFile<T>, listType?: UploadListType }) => VueNode>(),
     'isImageUrl': functionType<(file: UploadFile) => boolean>(),
     'progress': objectType<UploadListProgressProps>(),
     'itemRender': functionType<ItemRender<T>>(),
@@ -175,7 +175,7 @@ function uploadListProps<T = any>() {
     locale: objectType<UploadLocale>(undefined as UploadLocale),
     previewFile: functionType<PreviewFileHandler>(),
     iconRender:
-      functionType<(opt: { file: UploadFile<T>; listType?: UploadListType }) => VueNode>(),
+      functionType<(opt: { file: UploadFile<T>, listType?: UploadListType }) => VueNode>(),
     isImageUrl: functionType<(file: UploadFile) => boolean>(),
     appendAction: functionType<() => VueNode>(),
     appendActionVisible: booleanType(),

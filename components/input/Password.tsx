@@ -6,8 +6,8 @@ import { cloneElement } from '../_util/vnode'
 import { useConfigInject } from '../hooks'
 import omit from '../_util/omit'
 import inputProps from './inputProps'
-import type { InputProps } from './inputProps'
 import Input from './Input'
+import type { InputProps } from './inputProps'
 
 const ActionMap = {
   click: 'onClick',

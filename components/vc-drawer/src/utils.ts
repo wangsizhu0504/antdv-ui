@@ -59,7 +59,7 @@ export function transformArguments(arg: any, cb: any) {
 }
 
 export const isNumeric = (value: string | number | undefined) =>
-  !isNaN(parseFloat(value as string)) && isFinite(value as number)
+  !Number.isNaN(Number.parseFloat(value as string)) && Number.isFinite(value as number)
 
 export const windowIsUndefined = !(
   typeof window !== 'undefined'

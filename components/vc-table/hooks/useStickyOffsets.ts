@@ -1,6 +1,6 @@
+import { computed } from 'vue'
 import type { ComputedRef, Ref } from 'vue'
 
-import { computed } from 'vue'
 import type { StickyOffsets } from '../interface'
 
 /**

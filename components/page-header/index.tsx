@@ -1,22 +1,21 @@
-import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 import { computed, defineComponent, shallowRef } from 'vue'
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons-vue'
 import { filterEmpty, flattenChildren, isEmptyContent } from '../_util/props-util'
 import Breadcrumb from '../breadcrumb'
-import type { AvatarProps } from '../avatar'
 import Avatar from '../avatar'
 import TransButton from '../_util/components/transButton'
 import LocaleReceiver from '../locale-provider/LocaleReceiver'
 
 import { objectType, vNodeType, withInstall } from '../_util/type'
-import { useConfigInject } from '../hooks'
+import { useConfigInject, useDestroyed } from '../hooks'
 
 import classNames from '../_util/classNames'
 import ResizeObserver from '../vc-resize-observer'
-import { useDestroyed } from '../hooks'
-import type { MouseEventHandler } from '../_util/EventInterface'
 import Space from '../space'
 import useStyle from './style'
+import type { MouseEventHandler } from '../_util/EventInterface'
+import type { AvatarProps } from '../avatar'
+import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 
 // CSSINJS
 

@@ -1,8 +1,8 @@
 import { defineComponent } from 'vue'
-import type { CustomizeComponent } from '../interface'
 import Cell from '../Cell'
 import { useInjectTable } from '../context/TableContext'
 import { useInjectExpandedRow } from '../context/ExpandedRowContext'
+import type { CustomizeComponent } from '../interface'
 
 export interface ExpandedRowProps {
   prefixCls: string

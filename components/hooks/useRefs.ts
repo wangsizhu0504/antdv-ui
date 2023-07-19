@@ -1,5 +1,5 @@
-import type { ComponentPublicInstance, Ref } from 'vue'
 import { onBeforeUpdate, ref } from 'vue'
+import type { ComponentPublicInstance, Ref } from 'vue'
 import type { Key } from '../_util/type'
 
 type RefType = HTMLElement | ComponentPublicInstance

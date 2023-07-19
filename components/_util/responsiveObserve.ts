@@ -1,6 +1,6 @@
 import { computed } from 'vue'
-import type { GlobalToken } from '../theme/interface'
 import { useToken } from '../theme/internal'
+import type { GlobalToken } from '../theme/interface'
 
 export type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
 export type BreakpointMap = Record<Breakpoint, string>
@@ -25,7 +25,7 @@ export default function useResponsiveObserver() {
 
   return computed(() => {
     const responsiveMap: BreakpointMap = getResponsiveMap(token.value)
-    const subscribers = new Map<Number, SubscribeFunc>()
+    const subscribers = new Map<number, SubscribeFunc>()
     let subUid = -1
     let screens = {}
 

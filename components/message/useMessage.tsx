@@ -1,9 +1,10 @@
 import { shallowRef } from 'vue'
-import type { VNode } from 'vue'
-import type { Key } from '../_util/type'
 import { wrapPromiseFn } from '../_util/util'
 import classNames from '../_util/classNames'
 import { PureContent } from './PurePanel'
+import { Holder } from './holder'
+import type { VNode } from 'vue'
+import type { Key } from '../_util/type'
 import type {
   ArgsProps,
   ConfigOptions,
@@ -15,7 +16,6 @@ import type {
 } from './interface'
 
 import type { HolderProps } from './holder'
-import { Holder } from './holder'
 
 // ==============================================================================
 // ==                                   Hook                                   ==

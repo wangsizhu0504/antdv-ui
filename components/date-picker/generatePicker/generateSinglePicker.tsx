@@ -1,12 +1,9 @@
 import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled } from '@ant-design/icons-vue'
-import type { SlotsType } from 'vue'
 import { computed, defineComponent, ref } from 'vue'
 import { enUS } from '../../locale'
 import { getPlaceholder, transPlacement2DropdownAlign } from '../util'
 import useStyle from '../style'
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver'
-import type { GenerateConfig } from '../../vc-picker/generate/index'
-import type { PanelMode, PickerMode } from '../../vc-picker/interface'
 import RCPicker from '../../vc-picker'
 import { useConfigInject } from '../../hooks'
 import classNames from '../../_util/classNames'
@@ -16,8 +13,11 @@ import { FormItemInputContext, useInjectFormItemContext } from '../../form/FormI
 import { getMergedStatus, getStatusClassNames } from '../../_util/statusUtils'
 import { useCompactItemContext } from '../../space/Compact'
 import { Components, getTimeProps } from './util'
-import type { CommonProps, DatePickerProps } from './props'
 import { commonProps, datePickerProps } from './props'
+import type { CommonProps, DatePickerProps } from './props'
+import type { PanelMode, PickerMode } from '../../vc-picker/interface'
+import type { GenerateConfig } from '../../vc-picker/generate/index'
+import type { SlotsType } from 'vue'
 
 // CSSINJS
 

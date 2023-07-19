@@ -1,6 +1,6 @@
-import type { Ref } from 'vue'
 import { onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
 import raf from '../../_util/raf'
+import type { Ref } from 'vue'
 
 /**
  * Popup should follow the steps for each component work correctly:

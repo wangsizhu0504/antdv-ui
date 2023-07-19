@@ -1,12 +1,12 @@
-import type { Ref } from 'vue'
 import { computed, defineComponent, isRef, shallowRef, unref, watch } from 'vue'
+import { withConfirm, withError, withInfo, withSuccess, withWarn } from '../confirm'
+import destroyFns from '../destroyFns'
+import HookModal from './HookModal'
+import type { Ref } from 'vue'
 import type { ModalFuncProps } from '../Modal'
 import type { ModalStaticFunctions } from '../confirm'
-import { withConfirm, withError, withInfo, withSuccess, withWarn } from '../confirm'
 
-import destroyFns from '../destroyFns'
 import type { MaybeRef, VueNode } from '../../_util/type'
-import HookModal from './HookModal'
 import type { HookModalRef } from './HookModal'
 
 let uuid = 0

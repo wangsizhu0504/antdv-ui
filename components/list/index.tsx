@@ -1,10 +1,7 @@
-import type { App, ExtractPropTypes, HTMLAttributes, Plugin, PropType, SlotsType } from 'vue'
 import { computed, defineComponent, provide, ref, toRef, watch } from 'vue'
 import classNames from '../_util/classNames'
 
-import type { SpinProps } from '../spin'
 import Spin from '../spin'
-import type { PaginationConfig } from '../pagination'
 import Pagination from '../pagination'
 import { Row } from '../grid'
 
@@ -18,16 +15,18 @@ import {
   someType,
   vNodeType,
 } from '../_util/type'
-import type { Key } from '../_util/type'
-import { useConfigInject } from '../hooks'
-import { useBreakpoint } from '../hooks'
-import type { Breakpoint } from '../_util/responsiveObserve'
+import { useBreakpoint, useConfigInject } from '../hooks'
 import { responsiveArray } from '../_util/responsiveObserve'
 import eagerComputed from '../_util/eagerComputed'
 import { ListContextKey } from './contextKey'
 import useStyle from './style'
 import Item from './Item'
 import ItemMeta from './ItemMeta'
+import type { Breakpoint } from '../_util/responsiveObserve'
+import type { Key } from '../_util/type'
+import type { PaginationConfig } from '../pagination'
+import type { SpinProps } from '../spin'
+import type { App, ExtractPropTypes, HTMLAttributes, Plugin, PropType, SlotsType } from 'vue'
 
 export type { ListItemProps } from './Item'
 export type { ListItemMetaProps } from './ItemMeta'
@@ -61,7 +60,7 @@ export const listProps = () => ({
   pagination: someType<false | PaginationConfig>([Boolean, Object]),
   prefixCls: String,
   rowKey: someType<Key | ((item: any) => Key)>([String, Number, Function]),
-  renderItem: functionType<(opt: { item: any; index: number }) => any>(),
+  renderItem: functionType<(opt: { item: any, index: number }) => any>(),
   size: String as PropType<ListSize>,
   split: booleanType(),
   header: vNodeType(),
@@ -90,7 +89,7 @@ const List = defineComponent({
   slots: Object as SlotsType<{
     extra: any
     loadMore: any
-    renderItem: { item: any; index: number }
+    renderItem: { item: any, index: number }
     header: any
     footer: any
     default: any

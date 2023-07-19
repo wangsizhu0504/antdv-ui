@@ -1,4 +1,3 @@
-import type { PropType } from 'vue'
 import {
   computed,
   defineComponent,
@@ -16,8 +15,9 @@ import isVisible from '../vc-util/Dom/isVisible'
 import addEventListener from '../vc-util/Dom/addEventListener'
 import { cloneElement } from '../_util/vnode'
 import { isSamePoint, monitorResize, restoreFocus } from './util'
-import type { AlignResult, AlignType, TargetPoint, TargetType } from './interface'
 import useBuffer from './hooks/useBuffer'
+import type { AlignResult, AlignType, TargetPoint, TargetType } from './interface'
+import type { PropType } from 'vue'
 
 type OnAlign = (source: HTMLElement, result: AlignResult) => void
 
@@ -64,7 +64,7 @@ export default defineComponent({
   props: alignProps,
   emits: ['align'],
   setup(props, { expose, slots }) {
-    const cacheRef = ref<{ element?: HTMLElement; point?: TargetPoint; align?: AlignType }>({})
+    const cacheRef = ref<{ element?: HTMLElement, point?: TargetPoint, align?: AlignType }>({})
     const nodeRef = ref()
     const [forceAlign, cancelForceAlign] = useBuffer(
       () => {

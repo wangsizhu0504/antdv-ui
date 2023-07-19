@@ -1,7 +1,7 @@
-import type { CSSObject } from '../../cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { resetComponent } from '../../style'
+import type { CSSObject } from '../../cssinjs'
+import type { FullToken, GenerateStyle } from '../../theme'
 
 export interface ComponentToken {}
 

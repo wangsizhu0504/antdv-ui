@@ -1,13 +1,13 @@
-import type { VNode } from 'vue'
 import { computed, defineComponent, shallowRef } from 'vue'
 import { useNotification as useVcNotification } from '../vc-notification'
-import type { NotificationAPI } from '../vc-notification'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
-import type { Key } from '../_util/type'
 import { getMotion, getPlacementStyle } from './util'
 import { PureContent, getCloseIcon } from './PurePanel'
 import useStyle from './style'
+import type { Key } from '../_util/type'
+import type { NotificationAPI } from '../vc-notification'
+import type { VNode } from 'vue'
 import type {
   ArgsProps,
   NotificationConfig,

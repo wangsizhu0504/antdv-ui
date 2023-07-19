@@ -152,7 +152,7 @@ export type CustomizeScrollBody<RecordType> = (
   info: {
     scrollbarSize: number
     ref: Ref<{ scrollLeft: number }>
-    onScroll: (info: { currentTarget?: HTMLElement; scrollLeft?: number }) => void
+    onScroll: (info: { currentTarget?: HTMLElement, scrollLeft?: number }) => void
   },
 ) => any
 

@@ -1,5 +1,12 @@
 import { useStyleRegister } from '../cssinjs'
 import { defaultConfig, useToken as useInternalToken } from './internal'
+import defaultAlgorithm from './themes/default'
+import darkAlgorithm from './themes/dark'
+import compactAlgorithm from './themes/compact'
+import { PresetColors } from './interface'
+import genComponentStyleHook from './util/genComponentStyleHook'
+import statisticToken, { merge as mergeToken, statistic } from './util/statistic'
+import type { FullToken } from './util/genComponentStyleHook'
 import type {
   AliasToken,
   GenerateStyle,
@@ -9,13 +16,6 @@ import type {
   SeedToken,
   UseComponentStyleResult,
 } from './interface'
-import defaultAlgorithm from './themes/default'
-import darkAlgorithm from './themes/dark'
-import compactAlgorithm from './themes/compact'
-import { PresetColors } from './interface'
-import type { FullToken } from './util/genComponentStyleHook'
-import genComponentStyleHook from './util/genComponentStyleHook'
-import statisticToken, { merge as mergeToken, statistic } from './util/statistic'
 
 // ZombieJ: We export as object to user but array in internal.
 // This is used to minimize the bundle size for antd package but safe to refactor as object also.

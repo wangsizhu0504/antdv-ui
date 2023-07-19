@@ -1,5 +1,5 @@
-import type { ComputedRef, InjectionKey } from 'vue'
 import { computed, inject, provide } from 'vue'
+import type { ComputedRef, InjectionKey } from 'vue'
 import type { MenuProps } from './Menu'
 
 // Used for Dropdown only

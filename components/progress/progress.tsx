@@ -1,7 +1,5 @@
 import { computed, defineComponent } from 'vue'
 import { CheckCircleFilled, CheckOutlined, CloseCircleFilled, CloseOutlined } from '@ant-design/icons-vue'
-import type { SlotsType } from 'vue'
-import type { VueNode } from '../_util/type'
 import devWarning from '../vc-util/devWarning'
 import { useConfigInject } from '../hooks'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
@@ -11,6 +9,8 @@ import { getSize, getSuccessPercent, validProgress } from './utils'
 import { progressProps, progressStatuses } from './props'
 import Circle from './Circle'
 import useStyle from './style'
+import type { VueNode } from '../_util/type'
+import type { SlotsType } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -47,7 +47,7 @@ export default defineComponent({
     const percentNumber = computed(() => {
       const { percent = 0 } = props
       const successPercent = getSuccessPercent(props)
-      return parseInt(
+      return Number.parseInt(
         successPercent !== undefined ? successPercent.toString() : percent.toString(),
         10,
       )

@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
 import { computed } from 'vue'
-import type { DefaultOptionType, InternalFieldNames, SingleValueType } from '../Cascader'
 import { toPathOptions } from '../utils/treeUtil'
+import type { Ref } from 'vue'
+import type { DefaultOptionType, InternalFieldNames, SingleValueType } from '../Cascader'
 
 export default (
   options: Ref<DefaultOptionType[]>,

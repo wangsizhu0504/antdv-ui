@@ -1,4 +1,3 @@
-import type { ExtractPropTypes } from 'vue'
 import { computed, defineComponent, toRef } from 'vue'
 import { DoubleLeftOutlined, DoubleRightOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
 import enUS from '../locale/lang/en_US'
@@ -9,6 +8,7 @@ import { useBreakpoint, useConfigInject } from '../hooks'
 import { arrayType, booleanType, functionType, someType, stringType } from '../_util/type'
 import useStyle from './style'
 import MiniSelect, { MiddleSelect } from './Select'
+import type { ExtractPropTypes } from 'vue'
 
 // CSSINJS
 

@@ -1,5 +1,5 @@
-import type { ComputedRef, InjectionKey, PropType, Ref } from 'vue'
 import { defineComponent, inject, provide, toRef } from 'vue'
+import type { ComputedRef, InjectionKey, PropType, Ref } from 'vue'
 import type {
   BuiltinPlacements,
   MenuClickEventHandler,
@@ -69,7 +69,7 @@ export interface MenuContextProps {
 
   // // Icon
   // itemIcon?: RenderIconType;
-  expandIcon?: ComputedRef<(p?: { isOpen: boolean; [key: string]: any }) => any>
+  expandIcon?: ComputedRef<(p?: { isOpen: boolean, [key: string]: any }) => any>
 
   // // Function
   onItemClick: MenuClickEventHandler
@@ -97,8 +97,8 @@ export const useInjectForceRender = () => {
   return inject(ForceRenderKey, false)
 }
 
-const MenuFirstLevelContextKey: InjectionKey<Boolean> = Symbol('menuFirstLevelContextKey')
-const useProvideFirstLevel = (firstLevel: Boolean) => {
+const MenuFirstLevelContextKey: InjectionKey<boolean> = Symbol('menuFirstLevelContextKey')
+const useProvideFirstLevel = (firstLevel: boolean) => {
   provide(MenuFirstLevelContextKey, firstLevel)
 }
 

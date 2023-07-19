@@ -1,4 +1,3 @@
-import type { ExtractPropTypes, PropType, VNode } from 'vue'
 import { cloneVNode, defineComponent, isVNode, onBeforeUnmount, shallowRef, watch } from 'vue'
 import { debounce } from 'throttle-debounce'
 import PropTypes from '../_util/vue-types'
@@ -6,6 +5,7 @@ import { filterEmpty, getPropsSlot } from '../_util/props-util'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import { useConfigInject } from '../hooks'
 import useStyle from './style'
+import type { ExtractPropTypes, PropType, VNode } from 'vue'
 
 export type SpinSize = 'small' | 'default' | 'large'
 export const spinProps = () => ({
@@ -24,7 +24,7 @@ export type SpinProps = Partial<ExtractPropTypes<ReturnType<typeof spinProps>>>
 let defaultIndicator: () => VNode = null
 
 function shouldDelay(spinning?: boolean, delay?: number): boolean {
-  return !!spinning && !!delay && !isNaN(Number(delay))
+  return !!spinning && !!delay && !Number.isNaN(Number(delay))
 }
 
 export function setDefaultIndicator(Content: any) {

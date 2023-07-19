@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'vue'
 import {
   computed,
   defineComponent,
@@ -12,11 +11,12 @@ import { warning } from '../vc-util/warning'
 import eagerComputed from '../_util/eagerComputed'
 import pickAttrs from '../_util/pickAttrs'
 import classNames from '../_util/classNames'
-import type { DragNodeEvent, Key } from './interface'
 import { treeNodeProps } from './props'
 import { convertNodePropsToEventData, getTreeNodeProps } from './utils/treeUtil'
 import Indent from './Indent'
 import { useInjectKeysState, useInjectTreeContext } from './contextTypes'
+import type { DragNodeEvent, Key } from './interface'
+import type { CSSProperties } from 'vue'
 
 const ICON_OPEN = 'open'
 const ICON_CLOSE = 'close'

@@ -1,10 +1,8 @@
-import type { SlotsType } from 'vue'
 import { computed, defineComponent, ref, toRef } from 'vue'
 import { ExclamationCircleFilled } from '@ant-design/icons-vue'
 import defaultLocale from '../locale/lang/en_US'
 import Popover from '../popover'
 import { initDefaultProps } from '../_util/props-util'
-import type { ButtonProps } from '../button/buttonTypes'
 import { convertLegacyProps } from '../button/buttonTypes'
 import Button from '../button'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
@@ -20,8 +18,10 @@ import { tooltipDefaultProps } from '../tooltip/Tooltip'
 import ActionButton from '../_util/components/ActionButton'
 import warning from '../_util/warning'
 import usePopconfirmStyle from './style'
-import type { PopconfirmProps } from './props'
 import { popconfirmProps } from './props'
+import type { PopconfirmProps } from './props'
+import type { ButtonProps } from '../button/buttonTypes'
+import type { SlotsType } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

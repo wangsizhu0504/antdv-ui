@@ -1,7 +1,7 @@
 import { computed, inject } from 'vue'
 import Empty from '../empty'
-import type { VueNode } from '../_util/type'
 import { configProviderKey, defaultConfigProvider } from './context'
+import type { VueNode } from '../_util/type'
 
 export interface RenderEmptyProps {
   componentName?: string

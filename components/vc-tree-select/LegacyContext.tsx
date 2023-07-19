@@ -3,8 +3,8 @@
  * You can use this hooks to get them.
  */
 
-import type { InjectionKey } from 'vue'
 import { inject, provide } from 'vue'
+import type { InjectionKey } from 'vue'
 import type { TreeProps } from '../tree'
 import type { DataEntity, IconType } from '../vc-tree/interface'
 import type { InternalDataEntity, Key, LegacyDataNode, RawValueType } from './interface'

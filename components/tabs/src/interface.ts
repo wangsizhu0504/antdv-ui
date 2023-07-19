@@ -1,7 +1,7 @@
 import type { Key, VueNode } from '../../_util/type'
 import type { TabPaneProps } from './TabPanelList/TabPane'
 
-export type TabSizeMap = Map<Key, { width: number; height: number; left: number; top: number }>
+export type TabSizeMap = Map<Key, { width: number, height: number, left: number, top: number }>
 
 export interface TabOffset {
   width: number
@@ -19,7 +19,7 @@ export interface Tab extends TabPaneProps {
   node: VueNode
 }
 
-export type RenderTabBar = (props: { DefaultTabBar: any; [key: string]: any }) => VueNode
+export type RenderTabBar = (props: { DefaultTabBar: any, [key: string]: any }) => VueNode
 
 export interface TabsLocale {
   dropdownAriaLabel?: string
@@ -28,7 +28,7 @@ export interface TabsLocale {
 }
 
 export interface EditableConfig {
-  onEdit: (type: 'add' | 'remove', info: { key?: Key; event: MouseEvent | KeyboardEvent }) => void
+  onEdit: (type: 'add' | 'remove', info: { key?: Key, event: MouseEvent | KeyboardEvent }) => void
   showAdd?: boolean
   removeIcon?: () => VueNode
   addIcon?: () => VueNode

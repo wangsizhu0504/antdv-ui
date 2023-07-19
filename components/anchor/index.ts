@@ -1,6 +1,6 @@
-import type { App, Plugin } from 'vue'
 import Anchor from './Anchor'
 import AnchorLink from './AnchorLink'
+import type { App, Plugin } from 'vue'
 
 Anchor.Link = AnchorLink
 

@@ -1,11 +1,11 @@
 import { computed, defineComponent, reactive, toRef } from 'vue'
-import type { DefaultRecordType, StickyOffsets } from '../interface'
-import type { FlattenColumns } from '../context/SummaryContext'
 import { useProvideSummary } from '../context/SummaryContext'
 import { useInjectTable } from '../context/TableContext'
 import SummaryCell from './Cell'
 import SummaryRow from './Row'
 import Summary from './Summary'
+import type { FlattenColumns } from '../context/SummaryContext'
+import type { DefaultRecordType, StickyOffsets } from '../interface'
 
 export interface FooterProps<RecordType = DefaultRecordType> {
   stickyOffsets: StickyOffsets

@@ -1,5 +1,5 @@
-import type { InjectionKey } from 'vue'
 import { inject, provide } from 'vue'
+import type { InjectionKey } from 'vue'
 import type { RadioGroupContext, RadioOptionTypeContextProps } from './interface'
 
 const radioGroupContextKey: InjectionKey<RadioGroupContext> = Symbol('radioGroupContextKey')

@@ -13,7 +13,7 @@ function toArray<T>(list: T | T[]): T[] {
 }
 
 export function getTimeProps<DateType, DisabledTime>(
-  props: { format?: string; picker?: PickerMode } & Omit<
+  props: { format?: string, picker?: PickerMode } & Omit<
     SharedTimeProps<DateType>,
     'disabledTime'
   > & {

@@ -3,8 +3,8 @@
  * You can use this hooks to get them.
  */
 
-import type { InjectionKey } from 'vue'
 import { inject, provide } from 'vue'
+import type { InjectionKey } from 'vue'
 import type { BaseSelectProps } from '../BaseSelect'
 
 export interface BaseSelectContextProps extends BaseSelectProps {

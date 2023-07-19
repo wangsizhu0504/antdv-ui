@@ -1,8 +1,8 @@
-import type { CSSProperties } from 'vue'
 import { computed, shallowRef, watch } from 'vue'
+import HookNotification, { getUuid } from './HookNotification'
+import type { CSSProperties } from 'vue'
 import type { Key, VueNode } from '../_util/type'
 import type { CSSMotionProps } from '../_util/components/transition'
-import HookNotification, { getUuid } from './HookNotification'
 import type { HolderReadyCallback, NoticeContent, NotificationInstance, OpenConfig, Placement } from './type'
 
 const defaultGetContainer = () => document.body
@@ -84,7 +84,7 @@ export default function useNotification(rootConfig: NotificationConfig = {}) {
   const notificationsRef = shallowRef<NotificationInstance>()
   const add = (originNotice: NoticeContent, holderCallback?: HolderReadyCallback) => {
     const key = originNotice.key || getUuid()
-    const notice: NoticeContent & { key: Key; userPassKey?: Key } = {
+    const notice: NoticeContent & { key: Key, userPassKey?: Key } = {
       ...originNotice,
       key,
     }

@@ -1,12 +1,12 @@
-import type { CSSProperties } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { Circle as VCCircle } from '../vc-progress'
 import { initDefaultProps } from '../_util/props-util'
 import Tooltip from '../tooltip'
 import { anyType } from '../_util/type'
 import { progressProps } from './props'
-import type { ProgressGradient, ProgressProps } from './props'
 import { getPercentage, getSize, getStrokeColor } from './utils'
+import type { ProgressGradient, ProgressProps } from './props'
+import type { CSSProperties } from 'vue'
 
 export interface CircleProps extends ProgressProps {
   strokeColor?: string | ProgressGradient

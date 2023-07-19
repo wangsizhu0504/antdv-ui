@@ -1,4 +1,3 @@
-import type { PropType } from 'vue'
 import { computed, defineComponent, shallowRef } from 'vue'
 import { SearchOutlined } from '@ant-design/icons-vue'
 import isPlainObject from 'lodash-es/isPlainObject'
@@ -6,15 +5,16 @@ import Button from '../button'
 import { cloneElement } from '../_util/vnode'
 import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
+import { useConfigInject } from '../hooks'
+import omit from '../_util/omit'
+import inputProps from './inputProps'
+import Input from './Input'
 import type {
   ChangeEvent,
   CompositionEventHandler,
   MouseEventHandler,
 } from '../_util/EventInterface'
-import { useConfigInject } from '../hooks'
-import omit from '../_util/omit'
-import inputProps from './inputProps'
-import Input from './Input'
+import type { PropType } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

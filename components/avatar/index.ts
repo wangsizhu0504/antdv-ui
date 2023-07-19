@@ -1,6 +1,6 @@
-import type { App, Plugin } from 'vue'
 import Avatar from './Avatar'
 import Group from './Group'
+import type { App, Plugin } from 'vue'
 
 export { avatarProps } from './Avatar'
 export type { AvatarProps, AvatarSize } from './Avatar'

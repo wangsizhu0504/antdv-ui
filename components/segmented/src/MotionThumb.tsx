@@ -1,7 +1,7 @@
-import type { CSSProperties, Ref, TransitionProps } from 'vue'
 import { Transition, computed, defineComponent, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { addClass, removeClass } from '../../vc-util/Dom/class'
 import { anyType } from '../../_util/type'
+import type { CSSProperties, Ref, TransitionProps } from 'vue'
 import type { SegmentedValue } from './segmented'
 
 type ThumbReact = {

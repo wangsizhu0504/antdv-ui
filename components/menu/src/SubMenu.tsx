@@ -1,4 +1,3 @@
-import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 import {
   computed,
   defineComponent,
@@ -13,11 +12,8 @@ import classNames from '../../_util/classNames'
 import { cloneElement } from '../../_util/vnode'
 import Overflow from '../../vc-overflow'
 import devWarning from '../../vc-util/devWarning'
-import type { MouseEventHandler } from '../../_util/EventInterface'
-import type { Key } from '../../_util/type'
 import { objectType } from '../../_util/type'
 import { isValid } from '../../_util/is'
-import type { ItemType, MenuTheme } from './interface'
 import {
   MenuContextProvider,
   useInjectForceRender,
@@ -30,6 +26,10 @@ import useDirectionStyle from './hooks/useDirectionStyle'
 import PopupTrigger from './PopupTrigger'
 import SubMenuList from './SubMenuList'
 import InlineSubMenuList from './InlineSubMenuList'
+import type { ItemType, MenuTheme } from './interface'
+import type { Key } from '../../_util/type'
+import type { MouseEventHandler } from '../../_util/EventInterface'
+import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 
 let indexGuid = 0
 
@@ -42,7 +42,7 @@ export const subMenuProps = () => ({
   popupOffset: Array as unknown as PropType<[number, number]>,
   internalPopupClose: Boolean,
   eventKey: String,
-  expandIcon: Function as PropType<(p?: { isOpen: boolean; [key: string]: any }) => any>,
+  expandIcon: Function as PropType<(p?: { isOpen: boolean, [key: string]: any }) => any>,
   theme: String as PropType<MenuTheme>,
   onMouseenter: Function as PropType<MouseEventHandler>,
   onMouseleave: Function as PropType<MouseEventHandler>,
@@ -62,7 +62,7 @@ export default defineComponent({
   slots: Object as SlotsType<{
     icon?: any
     title?: any
-    expandIcon?: { isOpen: boolean; [key: string]: any }
+    expandIcon?: { isOpen: boolean, [key: string]: any }
     default?: any
   }>,
   setup(props, { slots, attrs, emit }) {

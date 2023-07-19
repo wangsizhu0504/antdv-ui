@@ -1,7 +1,7 @@
 import { TinyColor } from '@ctrl/tinycolor'
-import type { CSSProperties } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { useToken } from '../theme/internal'
+import type { CSSProperties } from 'vue'
 
 const Empty = defineComponent({
   compatConfig: { MODE: 3 },

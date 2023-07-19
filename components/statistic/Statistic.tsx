@@ -1,4 +1,3 @@
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType, VNode } from 'vue'
 import { defineComponent } from 'vue'
 import Skeleton from '../skeleton/Skeleton'
 
@@ -7,8 +6,9 @@ import { useConfigInject } from '../hooks'
 import { anyType, booleanType, functionType, someType, vNodeType } from '../_util/type'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import useStyle from './style'
-import type { Formatter, valueType } from './utils'
 import StatisticNumber from './Number'
+import type { Formatter, valueType } from './utils'
+import type { CSSProperties, ExtractPropTypes, PropType, SlotsType, VNode } from 'vue'
 
 export const statisticProps = () => ({
   prefixCls: String,

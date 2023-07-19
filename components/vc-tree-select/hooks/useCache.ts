@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import { computed, shallowRef, toRaw, watch } from 'vue'
+import type { Ref } from 'vue'
 import type { LabeledValueType, RawValueType } from '../TreeSelect'
 
 /**

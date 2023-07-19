@@ -269,7 +269,7 @@ export function calcSelectedKeys(selectedKeys: Key[], props: TreeProps) {
 /**
  * Parse `checkedKeys` to { checkedKeys, halfCheckedKeys } style
  */
-export function parseCheckedKeys(keys: Key[] | { checked: Key[]; halfChecked: Key[] }) {
+export function parseCheckedKeys(keys: Key[] | { checked: Key[], halfChecked: Key[] }) {
   if (!keys)
     return null
 

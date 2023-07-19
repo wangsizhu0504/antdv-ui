@@ -8,19 +8,19 @@
  * - https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/listbox-combo.html
  */
 
-import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
-import type { CustomTagProps, DisplayValueType, Mode, RenderNode } from '../BaseSelect'
 import { isValidateOpenKey } from '../utils/keyUtil'
 import useLock from '../hooks/useLock'
 import KeyCode from '../../_util/KeyCode'
 import createRef from '../../_util/createRef'
 import PropTypes from '../../_util/vue-types'
+import MultipleSelector from './MultipleSelector'
+import SingleSelector from './SingleSelector'
 import type { VueNode } from '../../_util/type'
 import type { EventHandler } from '../../_util/EventInterface'
 import type { ScrollTo } from '../../vc-virtual-list/List'
-import MultipleSelector from './MultipleSelector'
-import SingleSelector from './SingleSelector'
+import type { CustomTagProps, DisplayValueType, Mode, RenderNode } from '../BaseSelect'
+import type { PropType } from 'vue'
 
 export interface SelectorProps {
   id: string

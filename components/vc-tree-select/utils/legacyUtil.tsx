@@ -1,7 +1,7 @@
 import { camelize, filterEmpty } from '../../_util/props-util'
 import { warning } from '../../vc-util/warning'
-import type { ChangeEventExtra, DataNode, LegacyCheckedNode, RawValueType } from '../interface'
 import TreeNode from '../TreeNode'
+import type { ChangeEventExtra, DataNode, LegacyCheckedNode, RawValueType } from '../interface'
 import type { VueNode } from '../../_util/type'
 import type { DefaultOptionType, FieldNames } from '../TreeSelect'
 

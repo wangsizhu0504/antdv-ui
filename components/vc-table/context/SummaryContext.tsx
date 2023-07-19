@@ -1,5 +1,5 @@
-import type { InjectionKey } from 'vue'
 import { inject, provide } from 'vue'
+import type { InjectionKey } from 'vue'
 import type { ColumnType, StickyOffsets } from '../interface'
 
 export type FlattenColumns<RecordType> = readonly (ColumnType<RecordType> & {

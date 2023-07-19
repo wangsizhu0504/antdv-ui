@@ -1,7 +1,5 @@
 import { DownOutlined } from '@ant-design/icons-vue'
-import type { CSSProperties, ExtractPropTypes, SlotsType, VNode, VNodeTypes } from 'vue'
 import { computed, defineComponent, ref, watchEffect } from 'vue'
-import type { RadioChangeEvent } from '../radio/interface'
 import Dropdown from '../dropdown'
 import Menu from '../menu'
 import Checkbox from '../checkbox'
@@ -12,6 +10,8 @@ import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
 import ListBody from './ListBody'
 import Search from './search'
+import type { RadioChangeEvent } from '../radio/interface'
+import type { CSSProperties, ExtractPropTypes, SlotsType, VNode, VNodeTypes } from 'vue'
 import type { TransferDirection, TransferItem } from './index'
 
 const defaultRender = () => null
@@ -154,7 +154,7 @@ export default defineComponent({
       )
     }
 
-    const getCheckBox = ({ disabled, prefixCls }: { disabled?: boolean; prefixCls?: string }) => {
+    const getCheckBox = ({ disabled, prefixCls }: { disabled?: boolean, prefixCls?: string }) => {
       const checkedAll = checkStatus.value === 'all'
       const checkAllCheckbox = (
         <Checkbox

@@ -1,15 +1,15 @@
 // base rc-input-number@7.3.4
-import type { HTMLAttributes, SlotsType } from 'vue'
 import { computed, defineComponent, shallowRef, watch } from 'vue'
 import { booleanType, functionType, someType, stringType } from '../../_util/type'
 import classNames from '../../_util/classNames'
 import KeyCode from '../../_util/KeyCode'
-import type { ChangeEvent, KeyboardEventHandler } from '../../_util/EventInterface'
 import useFrame from './hooks/useFrame'
 import useCursor from './hooks/useCursor'
 import { getNumberPrecision, num2str, validateNumber } from './utils/numberUtil'
 import StepHandler from './StepHandler'
 import getMiniDecimal, { toFixed } from './utils/MiniDecimal'
+import type { ChangeEvent, KeyboardEventHandler } from '../../_util/EventInterface'
+import type { HTMLAttributes, SlotsType } from 'vue'
 import type { DecimalClass, ValueType } from './utils/MiniDecimal'
 
 /**
@@ -57,7 +57,7 @@ export const inputNumberProps = () => ({
   /** Transform `value` to display value show in input */
   formatter:
     functionType<
-      (value: ValueType | undefined, info: { userTyping: boolean; input: string }) => string
+      (value: ValueType | undefined, info: { userTyping: boolean, input: string }) => string
     >(),
   /** Syntactic sugar of `formatter`. Config precision of display. */
   precision: Number,
@@ -69,7 +69,7 @@ export const inputNumberProps = () => ({
   onPressEnter: functionType<KeyboardEventHandler>(),
 
   onStep:
-    functionType<(value: ValueType, info: { offset: ValueType; type: 'up' | 'down' }) => void>(),
+    functionType<(value: ValueType, info: { offset: ValueType, type: 'up' | 'down' }) => void>(),
   onBlur: functionType<(e: FocusEvent) => void>(),
   onFocus: functionType<(e: FocusEvent) => void>(),
 })

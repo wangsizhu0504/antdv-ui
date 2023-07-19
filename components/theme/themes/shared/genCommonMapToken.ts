@@ -1,5 +1,5 @@
-import type { CommonMapToken, SeedToken } from '../../interface'
 import genRadius from './genRadius'
+import type { CommonMapToken, SeedToken } from '../../interface'
 
 export default function genCommonMapToken(token: SeedToken): CommonMapToken {
   const { motionUnit, motionBase, borderRadius, lineWidth } = token

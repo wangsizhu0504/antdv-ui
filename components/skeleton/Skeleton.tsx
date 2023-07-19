@@ -1,15 +1,15 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import { initDefaultProps } from '../_util/props-util'
 import classNames from '../_util/classNames'
-import type { SkeletonAvatarProps as AvatarProps } from './Avatar'
-import type { SkeletonTitleProps } from './Title'
 import Title from './Title'
-import type { SkeletonParagraphProps } from './Paragraph'
 import Paragraph from './Paragraph'
 import Element from './Element'
 import useStyle from './style'
+import type { SkeletonParagraphProps } from './Paragraph'
+import type { SkeletonTitleProps } from './Title'
+import type { SkeletonAvatarProps as AvatarProps } from './Avatar'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 /* This only for skeleton internal. */
 type SkeletonAvatarProps = Omit<AvatarProps, 'active'>

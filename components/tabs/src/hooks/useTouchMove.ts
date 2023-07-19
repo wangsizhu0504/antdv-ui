@@ -1,6 +1,6 @@
-import type { Ref } from 'vue'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useState } from '../../../hooks'
+import type { Ref } from 'vue'
 
 type TouchEventHandler = (e: TouchEvent) => void
 type WheelEventHandler = (e: WheelEvent) => void
@@ -14,10 +14,10 @@ export default function useTouchMove(
   domRef: Ref<HTMLDivElement>,
   onOffset: (offsetX: number, offsetY: number) => boolean,
 ) {
-  const [touchPosition, setTouchPosition] = useState<{ x: number; y: number }>()
+  const [touchPosition, setTouchPosition] = useState<{ x: number, y: number }>()
   const [lastTimestamp, setLastTimestamp] = useState<number>(0)
   const [lastTimeDiff, setLastTimeDiff] = useState<number>(0)
-  const [lastOffset, setLastOffset] = useState<{ x: number; y: number }>()
+  const [lastOffset, setLastOffset] = useState<{ x: number, y: number }>()
   const motionInterval = ref<any>()
 
   // ========================= Events =========================

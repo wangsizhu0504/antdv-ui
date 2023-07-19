@@ -1,8 +1,8 @@
-import type { CSSInterpolation } from '../../cssinjs'
 import { Keyframes } from '../../cssinjs'
+import { initMotion } from './motion'
+import type { CSSInterpolation } from '../../cssinjs'
 import type { AliasToken } from '../../theme'
 import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook'
-import { initMotion } from './motion'
 
 export const fadeIn = new Keyframes('antFadeIn', {
   '0%': {

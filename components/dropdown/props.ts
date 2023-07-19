@@ -1,10 +1,10 @@
-import type { CSSProperties, PropType } from 'vue'
 import PropTypes from '../_util/vue-types'
-
 import buttonTypes from '../button/buttonTypes'
+import { booleanType, eventType, objectType, someType } from '../_util/type'
+import type { CSSProperties, PropType } from 'vue'
+
 import type { MouseEventHandler } from '../_util/EventInterface'
 import type { MenuProps } from '../menu'
-import { booleanType, eventType, objectType, someType } from '../_util/type'
 
 export interface Align {
   points?: [string, string]

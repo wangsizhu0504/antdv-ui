@@ -1,6 +1,5 @@
 // Accessibility https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
 import { computed, defineComponent, onMounted, watchEffect } from 'vue'
-import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue'
 import pick from 'lodash-es/pick'
 import useStyle from '../style'
@@ -15,7 +14,6 @@ import { useMergedState, useState } from '../../hooks'
 import isMobile from '../../vc-util/isMobile'
 import classNames from '../../_util/classNames'
 import devWarning from '../../vc-util/devWarning'
-import type { SizeType } from '../../config-provider'
 import {
   arrayType,
   booleanType,
@@ -24,12 +22,11 @@ import {
   someType,
   stringType,
 } from '../../_util/type'
-import type { Key } from '../../_util/type'
 import PropTypes from '../../_util/vue-types'
-import type { MouseEventHandler } from '../../_util/EventInterface'
 import omit from '../../_util/omit'
 import TabNavList from './TabNavList'
 import TabPanelList from './TabPanelList'
+import { useProvideTabs } from './TabContext'
 import type {
   AnimatedConfig,
   EditableConfig,
@@ -39,7 +36,10 @@ import type {
   TabPosition,
   TabsLocale,
 } from './interface'
-import { useProvideTabs } from './TabContext'
+import type { MouseEventHandler } from '../../_util/EventInterface'
+import type { Key } from '../../_util/type'
+import type { SizeType } from '../../config-provider'
+import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 
 export type TabsType = 'line' | 'card' | 'editable-card'
 export type TabsPosition = 'top' | 'right' | 'bottom' | 'left'

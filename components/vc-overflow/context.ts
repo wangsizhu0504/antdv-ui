@@ -1,5 +1,5 @@
-import type { ComputedRef, InjectionKey, PropType } from 'vue'
 import { computed, defineComponent, inject, provide } from 'vue'
+import type { ComputedRef, InjectionKey, PropType } from 'vue'
 import type { Key } from '../_util/type'
 
 export interface OverflowContextProviderValueType {

@@ -1,4 +1,3 @@
-import type { VNode } from 'vue'
 import {
   defineComponent,
   getCurrentInstance,
@@ -17,6 +16,7 @@ import antInput from '../_util/antInputDirective'
 import omit from '../_util/omit'
 import { textAreaProps } from './inputProps'
 import calculateNodeHeight from './calculateNodeHeight'
+import type { VNode } from 'vue'
 
 const RESIZE_STATUS_NONE = 0
 const RESIZE_STATUS_RESIZING = 1
@@ -76,7 +76,7 @@ const ResizableTextArea = defineComponent({
       nextFrameActionId = raf(resizeTextarea)
     }
 
-    const handleResize = (size: { width: number; height: number }) => {
+    const handleResize = (size: { width: number, height: number }) => {
       if (resizeStatus.value !== RESIZE_STATUS_NONE)
         return
 

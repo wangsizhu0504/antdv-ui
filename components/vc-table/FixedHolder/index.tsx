@@ -1,4 +1,3 @@
-import type { Ref } from 'vue'
 import {
   computed,
   defineComponent,
@@ -9,12 +8,13 @@ import {
   toRef,
   watchEffect,
 } from 'vue'
-import type { HeaderProps } from '../Header/Header'
 import ColGroup from '../ColGroup'
-import type { ColumnType, ColumnsType, DefaultRecordType } from '../interface'
 import { useInjectTable } from '../context/TableContext'
 import classNames from '../../_util/classNames'
 import addEventListenerWrap from '../../vc-util/Dom/addEventListener'
+import type { ColumnType, ColumnsType, DefaultRecordType } from '../interface'
+import type { HeaderProps } from '../Header/Header'
+import type { Ref } from 'vue'
 
 function useColumnWidth(colWidthsRef: Ref<readonly number[]>, columCountRef: Ref<number>) {
   return computed(() => {
@@ -42,7 +42,7 @@ export interface FixedHeaderProps<RecordType> extends HeaderProps<RecordType> {
   stickyTopOffset?: number
   stickyBottomOffset?: number
   stickyClassName?: string
-  onScroll: (info: { currentTarget: HTMLDivElement; scrollLeft?: number }) => void
+  onScroll: (info: { currentTarget: HTMLDivElement, scrollLeft?: number }) => void
 }
 
 export default defineComponent<FixedHeaderProps<DefaultRecordType>>({

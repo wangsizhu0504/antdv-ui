@@ -1,6 +1,6 @@
 import { defineComponent, onMounted, ref } from 'vue'
-import type { Key } from '../interface'
 import VCResizeObserver from '../../vc-resize-observer'
+import type { Key } from '../interface'
 
 export interface MeasureCellProps {
   columnKey: Key

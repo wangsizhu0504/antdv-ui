@@ -1,6 +1,6 @@
 import { Transition } from 'vue'
-import type { AnimationType, TransitionNameType } from '../interface'
 import { getMotion } from '../utils/motionUtil'
+import type { AnimationType, TransitionNameType } from '../interface'
 
 export interface MaskProps {
   prefixCls: string

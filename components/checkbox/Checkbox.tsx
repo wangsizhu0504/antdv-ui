@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'vue'
 import {
   computed,
   defineComponent,
@@ -12,11 +11,12 @@ import classNames from '../_util/classNames'
 import VcCheckbox from '../vc-checkbox/Checkbox'
 import { flattenChildren } from '../_util/props-util'
 import warning from '../_util/warning'
-import type { EventHandler } from '../_util/EventInterface'
 import { FormItemInputContext, useInjectFormItemContext } from '../form/FormItemContext'
 import { useConfigInject } from '../hooks'
 import useStyle from './style'
 import { CheckboxGroupContextKey, checkboxProps } from './interface'
+import type { EventHandler } from '../_util/EventInterface'
+import type { CSSProperties } from 'vue'
 import type { CheckboxChangeEvent, CheckboxProps } from './interface'
 
 // CSSINJS

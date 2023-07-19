@@ -1,4 +1,3 @@
-import type { Ref } from 'vue'
 import {
   defineComponent,
   nextTick,
@@ -13,10 +12,11 @@ import {
 import addEventListenerWrap from '../vc-util/Dom/addEventListener'
 import { getOffset } from '../vc-util/Dom/css'
 import classNames from '../_util/classNames'
-import type { MouseEventHandler } from '../_util/EventInterface'
 import getScrollBarSize from '../_util/getScrollBarSize'
 import { useLayoutState } from './hooks/useFrame'
 import { useInjectTable } from './context/TableContext'
+import type { MouseEventHandler } from '../_util/EventInterface'
+import type { Ref } from 'vue'
 
 interface StickyScrollBarProps {
   scrollBodyRef: Ref<HTMLElement>

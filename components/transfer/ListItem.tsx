@@ -1,7 +1,5 @@
 import { DeleteOutlined } from '@ant-design/icons-vue'
-import type { ExtractPropTypes } from 'vue'
 import { defineComponent } from 'vue'
-import type { TransferLocale } from '../locale'
 import defaultLocale from '../locale/lang/en_US'
 import Checkbox from '../checkbox'
 import LocaleReceiver from '../locale-provider/LocaleReceiver'
@@ -9,6 +7,8 @@ import TransButton from '../_util/components/transButton'
 import classNames from '../_util/classNames'
 import PropTypes from '../_util/vue-types'
 import { booleanType } from '../_util/type'
+import type { TransferLocale } from '../locale'
+import type { ExtractPropTypes } from 'vue'
 
 function noop() {}
 

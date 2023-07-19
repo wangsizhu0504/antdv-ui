@@ -1,10 +1,10 @@
-import type { PickerLocale } from '../../../locale'
 import Header from '../Header'
-import type { GenerateConfig } from '../../generate'
 import { useInjectPanel } from '../../PanelContext'
 import { formatValue } from '../../utils/dateUtil'
-import type { VueNode } from '../../../_util/type'
 import useMergeProps from '../../hooks/useMergeProps'
+import type { VueNode } from '../../../_util/type'
+import type { GenerateConfig } from '../../generate'
+import type { PickerLocale } from '../../../locale'
 
 export interface DateHeaderProps<DateType> {
   prefixCls: string

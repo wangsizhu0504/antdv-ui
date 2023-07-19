@@ -1,5 +1,5 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import { defineComponent } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 export const skeletonTitleProps = () => ({
   prefixCls: String,

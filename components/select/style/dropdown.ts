@@ -1,4 +1,3 @@
-import type { CSSObject } from '../../cssinjs'
 import {
   initMoveMotion,
   initSlideMotion,
@@ -7,8 +6,9 @@ import {
   slideUpIn,
   slideUpOut,
 } from '../../style/motion'
-import type { GenerateStyle } from '../../theme'
 import { resetComponent, textEllipsis } from '../../style'
+import type { CSSObject } from '../../cssinjs'
+import type { GenerateStyle } from '../../theme'
 import type { SelectToken } from '.'
 
 const genItemStyle: GenerateStyle<SelectToken, CSSObject> = (token) => {

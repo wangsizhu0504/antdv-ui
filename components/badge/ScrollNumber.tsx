@@ -1,4 +1,3 @@
-import type { CSSProperties, DefineComponent, ExtractPropTypes, HTMLAttributes } from 'vue'
 import { defineComponent } from 'vue'
 import classNames from '../_util/classNames'
 import PropTypes from '../_util/vue-types'
@@ -6,6 +5,7 @@ import { cloneElement } from '../_util/vnode'
 import { useConfigInject } from '../hooks'
 import { filterEmpty } from '../_util/props-util'
 import SingleNumber from './SingleNumber'
+import type { CSSProperties, DefineComponent, ExtractPropTypes, HTMLAttributes } from 'vue'
 
 const scrollNumberProps = {
   prefixCls: String,

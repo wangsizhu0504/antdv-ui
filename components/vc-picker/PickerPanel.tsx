@@ -4,15 +4,11 @@
  *  click will trigger `onSelect` (if value changed trigger `onChange` also).
  *  Panel change will not trigger `onSelect` but trigger `onPanelChange`
  */
-import type { CSSProperties } from 'vue'
 import { computed, createVNode, defineComponent, ref, toRef, watch, watchEffect } from 'vue'
-import type { PickerLocale } from '../locale'
 import { warning } from '../vc-util/warning'
 import classNames from '../_util/classNames'
 import { useMergedState } from '../hooks'
-import type { VueNode } from '../_util/type'
 import KeyCode from '../_util/KeyCode'
-import type { SharedTimeProps } from './panels/TimePanel'
 import TimePanel from './panels/TimePanel'
 import DatetimePanel from './panels/DatetimePanel'
 import DatePanel from './panels/DatePanel'
@@ -21,7 +17,15 @@ import MonthPanel from './panels/MonthPanel'
 import QuarterPanel from './panels/QuarterPanel'
 import YearPanel from './panels/YearPanel'
 import DecadePanel from './panels/DecadePanel'
-import type { GenerateConfig } from './generate'
+import { isEqual } from './utils/dateUtil'
+import { useInjectPanel, useProvidePanel } from './PanelContext'
+import { PickerModeMap } from './utils/uiUtil'
+import { useInjectRange } from './RangeContext'
+import getExtraFooter from './utils/getExtraFooter'
+import getRanges from './utils/getRanges'
+import { getLowerBoundTime, setDateTime, setTime } from './utils/timeUtil'
+import type { MonthCellRender } from './panels/MonthPanel/MonthBody'
+import type { DateRender } from './panels/DatePanel/DateBody'
 import type {
   Components,
   DisabledTime,
@@ -31,15 +35,11 @@ import type {
   PanelRefProps,
   PickerMode,
 } from './interface'
-import { isEqual } from './utils/dateUtil'
-import { useInjectPanel, useProvidePanel } from './PanelContext'
-import type { DateRender } from './panels/DatePanel/DateBody'
-import { PickerModeMap } from './utils/uiUtil'
-import type { MonthCellRender } from './panels/MonthPanel/MonthBody'
-import { useInjectRange } from './RangeContext'
-import getExtraFooter from './utils/getExtraFooter'
-import getRanges from './utils/getRanges'
-import { getLowerBoundTime, setDateTime, setTime } from './utils/timeUtil'
+import type { GenerateConfig } from './generate'
+import type { SharedTimeProps } from './panels/TimePanel'
+import type { VueNode } from '../_util/type'
+import type { PickerLocale } from '../locale'
+import type { CSSProperties } from 'vue'
 
 export interface PickerPanelSharedProps<DateType> {
   prefixCls?: string

@@ -1,5 +1,5 @@
-import type { Linter, LinterInfo } from './interface'
 import { lintWarning } from './utils'
+import type { Linter, LinterInfo } from './interface'
 
 function isConcatSelector(selector: string) {
   const notContent = selector.match(/:not\(([^)]*)\)/)?.[1] || ''

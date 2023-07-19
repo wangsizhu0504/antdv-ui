@@ -1,8 +1,8 @@
-import type { CSSObject } from '../../cssinjs'
 import { Keyframes } from '../../cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { resetComponent } from '../../style'
+import type { FullToken, GenerateStyle } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
 
 export interface ComponentToken {}
 

@@ -1,11 +1,11 @@
-import type { CSSProperties } from 'vue'
 import classNames from '../../../_util/classNames'
-import type { VueNode } from '../../../_util/type'
 import warning from '../../../_util/warning'
+import type { CSSProperties } from 'vue'
+import type { VueNode } from '../../../_util/type'
 
 const calcPoints = (
   _vertical: boolean,
-  marks: Record<number, VueNode | { style?: CSSProperties; label?: string }>,
+  marks: Record<number, VueNode | { style?: CSSProperties, label?: string }>,
   dots: boolean,
   step: number,
   min: number,
@@ -17,7 +17,7 @@ const calcPoints = (
     '`Slider[step]` should be a positive number in order to make Slider[dots] work.',
   )
   const points = Object.keys(marks)
-    .map(parseFloat)
+    .map(Number.parseFloat)
     .sort((a, b) => a - b)
   if (dots && step) {
     for (let i = min; i <= max; i += step) {

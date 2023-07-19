@@ -1,9 +1,9 @@
 import { computed, h, inject } from 'vue'
-import type { SizeType } from '../type'
 import { configProviderKey, defaultConfigProvider } from '../context'
 import { useInjectDisabled } from '../DisabledContext'
 import { DefaultRenderEmpty } from '../renderEmpty'
 import { useInjectSize } from '../SizeContext'
+import type { SizeType } from '../type'
 
 export default (name: string, props: Record<any, any>) => {
   const sizeContext = useInjectSize()

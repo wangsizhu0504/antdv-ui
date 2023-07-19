@@ -1,9 +1,9 @@
-import type { CSSProperties, PropType } from 'vue'
 import { computed, defineComponent, nextTick, ref } from 'vue'
-import type { MouseEventHandler } from '../_util/EventInterface'
 import Transition, { getTransitionProps } from '../_util/components/transition'
 import dialogPropTypes from './IDialogPropTypes'
 import { offset } from './util'
+import type { MouseEventHandler } from '../_util/EventInterface'
+import type { CSSProperties, PropType } from 'vue'
 
 const sentinelStyle = { width: 0, height: 0, overflow: 'hidden', outline: 'none' }
 

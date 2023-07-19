@@ -1,14 +1,14 @@
 import { TinyColor } from '@ctrl/tinycolor'
-import type { Ref } from 'vue'
-import type { CSSObject } from '../../cssinjs'
 import { genCollapseMotion, initSlideMotion, initZoomMotion } from '../../style/motion'
-import type { FullToken, GenerateStyle, UseComponentStyleResult } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { clearFix, resetComponent, resetIcon } from '../../style'
 import getHorizontalStyle from './horizontal'
 import getRTLStyle from './rtl'
 import getThemeStyle from './theme'
 import getVerticalStyle from './vertical'
+import type { FullToken, GenerateStyle, UseComponentStyleResult } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
+import type { Ref } from 'vue'
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {

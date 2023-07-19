@@ -1,22 +1,22 @@
-import type { App, PropType, SlotsType } from 'vue'
 import { computed, defineComponent, toRef } from 'vue'
 
 // CSSINJS
 import { enUS } from '../locale'
-import type { PickerLocale } from '../locale'
-import type { GenerateConfig } from '../vc-picker/generate'
-import type {
-  PickerPanelBaseProps as RCPickerPanelBaseProps,
-  PickerPanelDateProps as RCPickerPanelDateProps,
-  PickerPanelTimeProps as RCPickerPanelTimeProps,
-} from '../vc-picker/PickerPanel'
 import classNames from '../_util/classNames'
-import type { VueNode } from '../_util/type'
 import { useConfigInject, useMergedState } from '../hooks'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
 import { PickerPanel } from '../vc-picker'
 import useStyle from './style'
 import CalendarHeader from './Header'
+import type { VueNode } from '../_util/type'
+import type {
+  PickerPanelBaseProps as RCPickerPanelBaseProps,
+  PickerPanelDateProps as RCPickerPanelDateProps,
+  PickerPanelTimeProps as RCPickerPanelTimeProps,
+} from '../vc-picker/PickerPanel'
+import type { GenerateConfig } from '../vc-picker/generate'
+import type { PickerLocale } from '../locale'
+import type { App, PropType, SlotsType } from 'vue'
 
 type InjectDefaultProps<Props> = Omit<
   Props,

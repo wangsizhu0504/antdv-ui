@@ -5,7 +5,6 @@ import commonjs from '@rollup/plugin-commonjs'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import esbuild, { minify as minifyPlugin } from 'rollup-plugin-esbuild'
 import { parallel } from 'gulp'
-import type { Plugin } from 'rollup'
 import { antdOutput, antdPackage, antdRoot } from '../path'
 import {
   PKG_BRAND_NAME,
@@ -19,6 +18,7 @@ import {
   writeBundles,
 } from '../utils'
 import { target } from '../build-info'
+import type { Plugin } from 'rollup'
 
 const { version } = getPackageManifest(antdPackage)
 const banner = `/*! ${PKG_BRAND_NAME} v${version} */\n`

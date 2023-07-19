@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'vue'
 import { computed, defineComponent, shallowRef } from 'vue'
 import {
   CheckCircleFilled,
@@ -18,6 +17,7 @@ import { Transition, getTransitionProps } from '../_util/components/transition'
 import classNames from '../_util/classNames'
 import useStyle from './style'
 import { alertProps } from './props'
+import type { CSSProperties } from 'vue'
 
 const iconMapFilled = {
   success: CheckCircleFilled,

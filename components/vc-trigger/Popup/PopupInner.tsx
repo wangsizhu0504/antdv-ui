@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'vue'
 import {
   Transition,
   computed,
@@ -8,18 +7,19 @@ import {
   watch,
   withModifiers,
 } from 'vue'
-import type { AlignType } from '../interface'
 import { getMotion } from '../utils/motionUtil'
-import type { RefAlign } from '../../vc-align/Align'
 import Align from '../../vc-align/Align'
 import { flattenChildren } from '../../_util/props-util'
 import classNames from '../../_util/classNames'
 import { getTransitionProps } from '../../_util/components/transition'
 import supportsPassive from '../../_util/supportsPassive'
 import { innerProps } from './interface'
-import type { PopupInnerProps } from './interface'
 import useStretchStyle from './useStretchStyle'
 import useVisibleStatus from './useVisibleStatus'
+import type { PopupInnerProps } from './interface'
+import type { RefAlign } from '../../vc-align/Align'
+import type { AlignType } from '../interface'
+import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

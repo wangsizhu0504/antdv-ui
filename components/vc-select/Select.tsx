@@ -30,24 +30,24 @@
  */
 
 import { computed, defineComponent, ref, shallowRef, toRef, watchEffect } from 'vue'
-import type { ExtractPropTypes, PropType } from 'vue'
 import { toReactive } from '@vueuse/core'
 import omit from '../_util/omit'
 import { useId, useMergedState, useState } from '../hooks'
 import { initDefaultProps } from '../_util/props-util'
 import PropTypes from '../_util/vue-types'
-import type { Key, VueNode } from '../_util/type'
 import BaseSelect, { baseSelectPropsWithoutPrivate, isMultiple } from './BaseSelect'
-import type { BaseSelectProps, BaseSelectRef, DisplayValueType } from './BaseSelect'
 import OptionList from './OptionList'
 import useOptions from './hooks/useOptions'
-import type { SelectContextProps } from './SelectContext'
 import { useProvideSelectProps } from './SelectContext'
 import { fillFieldNames, flattenOptions, injectPropsWithOption } from './utils/valueUtil'
 import warningProps from './utils/warningPropsUtil'
 import { toArray } from './utils/commonUtil'
 import useFilterOptions from './hooks/useFilterOptions'
 import useCache from './hooks/useCache'
+import type { SelectContextProps } from './SelectContext'
+import type { BaseSelectProps, BaseSelectRef, DisplayValueType } from './BaseSelect'
+import type { Key, VueNode } from '../_util/type'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 const OMIT_DOM_PROPS = ['inputValue']
 

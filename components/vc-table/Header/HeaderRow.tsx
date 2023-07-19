@@ -1,6 +1,9 @@
 import { defineComponent } from 'vue'
 import Cell from '../Cell'
 import { useInjectTable } from '../context/TableContext'
+import { getCellFixedInfo } from '../utils/fixUtil'
+import { getColumnsKey } from '../utils/valueUtil'
+import DragHandleVue from './DragHandle'
 import type {
   CellType,
   ColumnType,
@@ -9,9 +12,6 @@ import type {
   GetComponentProps,
   StickyOffsets,
 } from '../interface'
-import { getCellFixedInfo } from '../utils/fixUtil'
-import { getColumnsKey } from '../utils/valueUtil'
-import DragHandleVue from './DragHandle'
 
 export interface RowProps<RecordType = DefaultRecordType> {
   cells: readonly CellType<RecordType>[]

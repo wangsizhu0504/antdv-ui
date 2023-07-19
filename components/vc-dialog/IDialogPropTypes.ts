@@ -1,5 +1,5 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import PropTypes from '../_util/vue-types'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 export function dialogPropTypes() {
   return {

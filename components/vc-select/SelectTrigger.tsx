@@ -1,9 +1,9 @@
-import type { CSSProperties, PropType } from 'vue'
 import { computed, defineComponent, ref } from 'vue'
 import Trigger from '../vc-trigger'
-import type { AlignType } from '../vc-trigger/interface'
 import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
+import type { AlignType } from '../vc-trigger/interface'
+import type { CSSProperties, PropType } from 'vue'
 import type { VueNode } from '../_util/type'
 import type { DropdownRender, Placement, RenderDOMFunc } from './BaseSelect'
 

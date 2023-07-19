@@ -1,11 +1,11 @@
-import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import classNames from '../_util/classNames'
 import { useConfigInject } from '../hooks'
 import omit from '../_util/omit'
-import type { SkeletonElementProps } from './Element'
 import Element, { skeletonElementProps } from './Element'
 import useStyle from './style'
+import type { SkeletonElementProps } from './Element'
+import type { PropType } from 'vue'
 
 export interface SkeletonInputProps extends Omit<SkeletonElementProps, 'size' | 'shape'> {
   size?: 'large' | 'small' | 'default'

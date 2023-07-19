@@ -1,7 +1,7 @@
-import type { ExtractPropTypes } from 'vue'
 import PropTypes from '../_util/vue-types'
-import type { MouseEventHandler } from '../_util/EventInterface'
 import { booleanType, functionType, stringType } from '../_util/type'
+import type { ExtractPropTypes } from 'vue'
+import type { MouseEventHandler } from '../_util/EventInterface'
 
 export type FloatButtonType = 'default' | 'primary'
 

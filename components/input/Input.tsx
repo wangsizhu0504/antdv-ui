@@ -8,7 +8,6 @@ import {
 } from '../form/FormItemContext'
 import { useConfigInject } from '../hooks'
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
-import type { InputFocusOptions } from '../vc-input/utils/commonUtils'
 import { hasPrefixSuffix } from '../vc-input/utils/commonUtils'
 import VcInput from '../vc-input/Input'
 import omit from '../_util/omit'
@@ -18,6 +17,7 @@ import { NoCompactStyle, useCompactItemContext } from '../space/Compact'
 import { useInjectDisabled } from '../config-provider/DisabledContext'
 import inputProps from './inputProps'
 import useStyle from './style'
+import type { InputFocusOptions } from '../vc-input/utils/commonUtils'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

@@ -1,9 +1,9 @@
-import type { SlotsType } from 'vue'
 import { defineComponent, nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
 import classNames from '../_util/classNames'
 import { useConfigInject } from '../hooks'
 import { useInjectAnchor } from './context'
 import { anchorLinkProps } from './props'
+import type { SlotsType } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

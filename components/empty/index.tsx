@@ -1,14 +1,14 @@
 import { computed, defineComponent, inject } from 'vue'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import classNames from '../_util/classNames'
 import LocaleReceiver from '../locale-provider/LocaleReceiver'
 import { filterEmpty } from '../_util/props-util'
-import type { VueNode } from '../_util/type'
 import { anyType, objectType, withInstall } from '../_util/type'
 import { configProviderKey, defaultConfigProvider } from '../config-provider/context'
 import useStyle from './style'
 import DefaultEmptyImg from './empty'
 import SimpleEmptyImg from './simple'
+import type { VueNode } from '../_util/type'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 
 const defaultEmptyImg = <DefaultEmptyImg />
 const simpleEmptyImg = <SimpleEmptyImg />

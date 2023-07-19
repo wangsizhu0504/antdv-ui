@@ -7,7 +7,7 @@ export type Formatter =
   | false
   | 'number'
   | 'countdown'
-  | (({ value, config }: { value: valueType; config?: FormatConfig }) => VNodeTypes)
+  | (({ value, config }: { value: valueType, config?: FormatConfig }) => VNodeTypes)
 
 export interface FormatConfig {
   formatter?: Formatter

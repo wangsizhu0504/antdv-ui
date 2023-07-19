@@ -1,10 +1,10 @@
-import type { VNode } from 'vue'
-import type { LabelInValueType, RawValueType, SelectProps } from '../Select'
 import { isMultiple } from '../BaseSelect'
 import { isValidElement } from '../../_util/props-util'
 import warning, { noteOnce } from '../../vc-util/warning'
 import { toArray } from './commonUtil'
 import { convertChildrenToData } from './legacyUtil'
+import type { LabelInValueType, RawValueType, SelectProps } from '../Select'
+import type { VNode } from 'vue'
 
 function warningProps(props: SelectProps) {
   const {
@@ -86,7 +86,7 @@ function warningProps(props: SelectProps) {
       if (!isValidElement(node) || !node.type)
         return false
 
-      const { type } = node as { type: { isSelectOption?: boolean; isSelectOptGroup?: boolean } }
+      const { type } = node as { type: { isSelectOption?: boolean, isSelectOptGroup?: boolean } }
 
       if (type.isSelectOption)
         return false

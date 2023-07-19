@@ -1,6 +1,6 @@
+import { operationUnit } from '../../style'
 import type { CSSObject } from '../../cssinjs'
 import type { GenerateStyle } from '../../theme'
-import { operationUnit } from '../../style'
 import type { TableToken } from './index'
 
 const genExpandStyle: GenerateStyle<TableToken, CSSObject> = (token) => {

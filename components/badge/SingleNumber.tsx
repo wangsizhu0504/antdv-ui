@@ -1,6 +1,6 @@
-import type { CSSProperties } from 'vue'
 import { computed, defineComponent, onUnmounted, reactive, ref, watch } from 'vue'
 import classNames from '../_util/classNames'
+import type { CSSProperties } from 'vue'
 
 export interface UnitNumberProps {
   prefixCls: string

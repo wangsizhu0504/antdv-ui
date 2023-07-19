@@ -1,5 +1,4 @@
 // base 0.0.1-alpha.7
-import type { VNode } from 'vue'
 import {
   defineComponent,
   getCurrentInstance,
@@ -11,11 +10,8 @@ import {
 } from 'vue'
 import antInputDirective from '../_util/antInputDirective'
 import omit from '../_util/omit'
-import type { ChangeEvent, FocusEventHandler } from '../_util/EventInterface'
 import classNames from '../_util/classNames'
-import type { InputProps } from './inputProps'
 import { inputProps } from './inputProps'
-import type { InputFocusOptions } from './utils/commonUtils'
 import {
   fixControlledValue,
   hasAddon,
@@ -24,6 +20,10 @@ import {
   triggerFocus,
 } from './utils/commonUtils'
 import BaseInput from './BaseInput'
+import type { InputFocusOptions } from './utils/commonUtils'
+import type { InputProps } from './inputProps'
+import type { ChangeEvent, FocusEventHandler } from '../_util/EventInterface'
+import type { VNode } from 'vue'
 
 export default defineComponent({
   name: 'VCInput',

@@ -1,8 +1,8 @@
-import type { SlotsType } from 'vue'
 import { defineComponent, onBeforeUnmount, ref } from 'vue'
 import isMobile from '../../vc-util/isMobile'
 import classNames from '../../_util/classNames'
 import { functionType } from '../../_util/type'
+import type { SlotsType } from 'vue'
 
 /**
  * When click and hold on a button - the speed of auto changing the value.

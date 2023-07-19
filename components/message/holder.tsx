@@ -4,10 +4,10 @@ import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
 import { getMotion } from '../vc-trigger/utils/motionUtil'
 import { useNotification as useVcNotification } from '../vc-notification'
+import useStyle from './style'
 import type {
   ConfigOptions,
 } from './interface'
-import useStyle from './style'
 
 const DEFAULT_OFFSET = 8
 const DEFAULT_DURATION = 3

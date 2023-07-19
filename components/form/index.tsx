@@ -1,8 +1,8 @@
-import type { App, Plugin } from 'vue'
 import Form, { formProps } from './Form'
 import FormItem, { formItemProps } from './FormItem'
 import useForm from './useForm'
 import FormItemRest, { useInjectFormItemContext } from './FormItemContext'
+import type { App, Plugin } from 'vue'
 
 export type { Rule, RuleObject } from './interface'
 

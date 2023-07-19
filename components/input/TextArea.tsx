@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'vue'
 import {
   computed,
   defineComponent,
@@ -8,14 +7,11 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import type { InputFocusOptions } from '../vc-input/utils/commonUtils'
 import { fixControlledValue, resolveOnChange, triggerFocus } from '../vc-input/utils/commonUtils'
 import classNames from '../_util/classNames'
 import { FormItemInputContext, useInjectFormItemContext } from '../form/FormItemContext'
-import type { FocusEventHandler } from '../_util/EventInterface'
 import { useConfigInject } from '../hooks'
 import omit from '../_util/omit'
-import type { VueNode } from '../_util/type'
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
 
 // CSSINJS
@@ -24,6 +20,10 @@ import ClearableLabeledInput from './ClearableLabeledInput'
 import ResizableTextArea from './ResizableTextArea'
 import { textAreaProps } from './inputProps'
 import useStyle from './style'
+import type { VueNode } from '../_util/type'
+import type { FocusEventHandler } from '../_util/EventInterface'
+import type { InputFocusOptions } from '../vc-input/utils/commonUtils'
+import type { CSSProperties } from 'vue'
 
 function fixEmojiLength(value: string, maxLength: number) {
   return [...(value || '')].slice(0, maxLength).join('')

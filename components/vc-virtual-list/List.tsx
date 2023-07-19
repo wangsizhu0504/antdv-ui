@@ -1,4 +1,3 @@
-import type { CSSProperties, Component, PropType } from 'vue'
 import {
   computed,
   defineComponent,
@@ -12,7 +11,6 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import type { Key } from '../_util/type'
 import classNames from '../_util/classNames'
 import supportsPassive from '../_util/supportsPassive'
 import Filler from './Filler'
@@ -23,6 +21,8 @@ import useScrollTo from './hooks/useScrollTo'
 import useFrameWheel from './hooks/useFrameWheel'
 import useMobileTouchMove from './hooks/useMobileTouchMove'
 import useOriginScroll from './hooks/useOriginScroll'
+import type { Key } from '../_util/type'
+import type { CSSProperties, Component, PropType } from 'vue'
 import type { RenderFunc, SharedConfig } from './interface'
 
 const EMPTY_DATA = []

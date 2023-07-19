@@ -1,4 +1,3 @@
-import type { InputToken } from '../../input/style'
 import {
   genActiveStyle,
   genBasicInputStyle,
@@ -9,10 +8,11 @@ import {
   genStatusStyle,
   initInputToken,
 } from '../../input/style'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook } from '../../theme'
 import { resetComponent, resetIcon } from '../../style'
 import { genCompactItemStyle } from '../../style/compact-item'
+import type { FullToken, GenerateStyle } from '../../theme'
+import type { InputToken } from '../../input/style'
 
 export interface ComponentToken {
   controlWidth: number

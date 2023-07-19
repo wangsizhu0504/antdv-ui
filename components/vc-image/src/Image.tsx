@@ -1,16 +1,16 @@
-import type { CSSProperties, ImgHTMLAttributes, PropType } from 'vue'
 import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 import isNumber from 'lodash-es/isNumber'
 import cn from '../../_util/classNames'
 import PropTypes from '../../_util/vue-types'
 import { getOffset } from '../../vc-util/Dom/css'
 import { useMergedState } from '../../hooks'
-import type { MouseEventHandler } from '../../_util/EventInterface'
 import Preview from './Preview'
 import PreviewGroup from './PreviewGroup'
 import { useGroupProviderContext } from './hooks/useContext'
-import type { ImagePreviewType, ImageStatus } from './types'
 import { mergeDefaultValue } from './utils'
+import type { ImagePreviewType, ImageStatus } from './types'
+import type { MouseEventHandler } from '../../_util/EventInterface'
+import type { CSSProperties, ImgHTMLAttributes, PropType } from 'vue'
 
 export const imageProps = () => ({
   src: String,
@@ -86,7 +86,7 @@ const ImageInternal = defineComponent({
         status.value = isCustomPlaceholder.value ? 'loading' : 'normal'
       },
     )
-    const mousePosition = ref<null | { x: number; y: number }>(null)
+    const mousePosition = ref<null | { x: number, y: number }>(null)
     const isError = computed(() => status.value === 'error')
     const groupContext = useGroupProviderContext()
     const {

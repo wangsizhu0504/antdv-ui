@@ -1,11 +1,11 @@
 import RawAsyncValidator from 'async-validator'
 import { cloneVNode } from 'vue'
 
-import type { InternalNamePath, RuleError, RuleObject, ValidateOptions } from '../interface'
 import { isValidElement } from '../../_util/props-util'
 import { warning } from '../../vc-util/warning'
 import { setValues } from './valueUtil'
 import { defaultValidateMessages } from './messages'
+import type { InternalNamePath, RuleError, RuleObject, ValidateOptions } from '../interface'
 
 // Remove incorrect original ts define
 const AsyncValidator: any = RawAsyncValidator

@@ -1,9 +1,9 @@
-import type { CSSObject } from '../../cssinjs'
 import { genCollapseMotion, zoomIn } from '../../style/motion'
-import type { AliasToken, FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { resetComponent } from '../../style'
 import genFormValidateMotionStyle from './explain'
+import type { AliasToken, FullToken, GenerateStyle } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
 
 export interface FormToken extends FullToken<'Form'> {
   formItemCls: string

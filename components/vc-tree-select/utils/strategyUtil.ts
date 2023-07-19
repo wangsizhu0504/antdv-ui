@@ -1,7 +1,7 @@
+import { isCheckDisabled } from './valueUtil'
 import type { DataEntity } from '../../vc-tree/interface'
 import type { InternalFieldName } from '../TreeSelect'
 import type { Key, RawValueType } from '../interface'
-import { isCheckDisabled } from './valueUtil'
 
 export const SHOW_ALL = 'SHOW_ALL'
 export const SHOW_PARENT = 'SHOW_PARENT'

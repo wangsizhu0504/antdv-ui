@@ -1,13 +1,13 @@
-import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 import { cloneVNode, defineComponent } from 'vue'
 import PropTypes from '../_util/vue-types'
 import { flattenChildren, getPropsSlot } from '../_util/props-util'
 import warning from '../_util/warning'
 import Menu from '../menu'
 import { useConfigInject } from '../hooks'
-import type { VueNode } from '../_util/type'
 import useStyle from './style'
 import BreadcrumbItem from './BreadcrumbItem'
+import type { VueNode } from '../_util/type'
+import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 import type { BreadcrumbItemProps } from './BreadcrumbItem'
 
 export interface Route {
@@ -23,7 +23,7 @@ export const breadcrumbProps = () => ({
   separator: PropTypes.any,
   itemRender: {
     type: Function as PropType<
-      (opt: { route: Route; params: unknown; routes: Route[]; paths: string[] }) => VueNode
+      (opt: { route: Route, params: unknown, routes: Route[], paths: string[] }) => VueNode
     >,
   },
 })
@@ -60,7 +60,7 @@ export default defineComponent({
   props: breadcrumbProps(),
   slots: Object as SlotsType<{
     separator: any
-    itemRender: { route: Route; params: any; routes: Route[]; paths: string[] }
+    itemRender: { route: Route, params: any, routes: Route[], paths: string[] }
     default: any
   }>,
   setup(props, { slots, attrs }) {

@@ -2,11 +2,11 @@ import { computed, defineComponent, provide, ref, watch } from 'vue'
 import { useInjectFormItemContext } from '../form/FormItemContext'
 import { useConfigInject } from '../hooks'
 import Checkbox from './Checkbox'
-import type { CheckboxOptionType } from './interface'
 import { CheckboxGroupContextKey, checkboxGroupProps } from './interface'
 
 // CSSINJS
 import useStyle from './style'
+import type { CheckboxOptionType } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -41,12 +41,12 @@ export default defineComponent({
       })
     })
     const triggerUpdate = ref(Symbol('TriggerUpdateKey'))
-    const registeredValuesMap = ref<Map<Symbol, string>>(new Map())
-    const cancelValue = (id: Symbol) => {
+    const registeredValuesMap = ref<Map<symbol, string>>(new Map())
+    const cancelValue = (id: symbol) => {
       registeredValuesMap.value.delete(id)
       triggerUpdate.value = Symbol('TriggerUpdateCancelKey')
     }
-    const registerValue = (id: Symbol, value: string) => {
+    const registerValue = (id: symbol, value: string) => {
       registeredValuesMap.value.set(id, value)
       triggerUpdate.value = Symbol('TriggerUpdateRegisterKey')
     }

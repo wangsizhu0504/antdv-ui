@@ -1,6 +1,6 @@
-import type { Ref } from 'vue'
 import { onBeforeUnmount, shallowRef } from 'vue'
 import raf from '../../../_util/raf'
+import type { Ref } from 'vue'
 
 export default function useRaf<Callback extends Function>(callback: Callback) {
   const rafRef = shallowRef<number>()

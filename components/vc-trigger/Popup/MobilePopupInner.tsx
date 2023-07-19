@@ -1,9 +1,9 @@
-import type { CSSProperties } from 'vue'
 import { Transition, defineComponent, ref } from 'vue'
 import { flattenChildren } from '../../_util/props-util'
 import classNames from '../../_util/classNames'
-import type { MobilePopupProps } from './interface'
 import { mobileProps } from './interface'
+import type { MobilePopupProps } from './interface'
+import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

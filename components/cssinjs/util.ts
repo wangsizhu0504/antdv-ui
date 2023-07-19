@@ -1,7 +1,7 @@
 import hash from '@emotion/hash'
-import type { App, Plugin } from 'vue'
 import canUseDom from '../_util/canUseDom'
 import { removeCSS, updateCSS } from '../vc-util/Dom/dynamicCSS'
+import type { App, Plugin } from 'vue'
 
 export function flattenToken(token: any) {
   let str = ''

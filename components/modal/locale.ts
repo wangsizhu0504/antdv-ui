@@ -1,5 +1,5 @@
-import type { ModalLocale } from '../locale'
 import { enUS as defaultLocale } from '../locale'
+import type { ModalLocale } from '../locale'
 
 let runtimeLocale: ModalLocale = {
   ...(defaultLocale.Modal as ModalLocale),

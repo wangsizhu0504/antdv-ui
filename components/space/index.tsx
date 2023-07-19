@@ -1,14 +1,13 @@
-import type { App, CSSProperties, ExtractPropTypes, Plugin, PropType, SlotsType } from 'vue'
 import { Fragment, computed, defineComponent, ref, watch } from 'vue'
-import type { SizeType } from '../config-provider'
-import { useConfigInject } from '../hooks'
+import { useConfigInject, useFlexGapSupport } from '../hooks'
 import PropTypes from '../_util/vue-types'
 import { filterEmpty } from '../_util/props-util'
 import { booleanType, tuple } from '../_util/type'
-import { useFlexGapSupport } from '../hooks'
 import classNames from '../_util/classNames'
 import useStyle from './style'
 import Compact from './Compact'
+import type { SizeType } from '../config-provider'
+import type { App, CSSProperties, ExtractPropTypes, Plugin, PropType, SlotsType } from 'vue'
 
 export type SpaceSize = SizeType | number
 const spaceSize = {

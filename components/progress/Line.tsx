@@ -1,12 +1,12 @@
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import { presetPrimaryColors } from '@ant-design/colors'
 import { computed, defineComponent } from 'vue'
-import type { Direction } from '../config-provider'
 import devWarning from '../vc-util/devWarning'
 import { anyType, stringType } from '../_util/type'
-import type { ProgressGradient, ProgressSize, StringGradients } from './props'
 import { progressProps } from './props'
 import { getSize, getSuccessPercent, validProgress } from './utils'
+import type { ProgressGradient, ProgressSize, StringGradients } from './props'
+import type { Direction } from '../config-provider'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 
 export const lineProps = () => ({
   ...progressProps(),
@@ -28,8 +28,8 @@ export type LineProps = Partial<ExtractPropTypes<ReturnType<typeof lineProps>>>
 export const sortGradient = (gradients: StringGradients) => {
   let tempArr = []
   Object.keys(gradients).forEach((key) => {
-    const formattedKey = parseFloat(key.replace(/%/g, ''))
-    if (!isNaN(formattedKey)) {
+    const formattedKey = Number.parseFloat(key.replace(/%/g, ''))
+    if (!Number.isNaN(formattedKey)) {
       tempArr.push({
         key: formattedKey,
         value: gradients[key],

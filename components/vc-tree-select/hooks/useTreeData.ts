@@ -1,7 +1,7 @@
-import type { Ref, ShallowRef } from 'vue'
 import { shallowRef, toRaw, watch } from 'vue'
-import type { DataNode, SimpleModeConfig } from '../interface'
 import { convertChildrenToData } from '../utils/legacyUtil'
+import type { Ref, ShallowRef } from 'vue'
+import type { DataNode, SimpleModeConfig } from '../interface'
 import type { DefaultOptionType } from '../TreeSelect'
 import type { VueNode } from '../../_util/type'
 

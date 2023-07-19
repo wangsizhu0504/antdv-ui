@@ -65,7 +65,7 @@ export default function createSlider(Component) {
     emits: ['change', 'blur', 'focus'],
     data() {
       const { step, max, min } = this
-      const isPointDiffEven = isFinite(max - min) ? (max - min) % step === 0 : true
+      const isPointDiffEven = Number.isFinite(max - min) ? (max - min) % step === 0 : true
       warning(
         (step && Math.floor(step) === step) ? isPointDiffEven : true,
         `Slider[max] - Slider[min] (${max - min}) should be a multiple of Slider[step] (${step})`,

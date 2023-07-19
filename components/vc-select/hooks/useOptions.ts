@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
 import { shallowRef, toRaw, watch, watchEffect } from 'vue'
-import type { FieldNames, RawValueType } from '../Select'
 import { convertChildrenToData } from '../utils/legacyUtil'
+import type { Ref } from 'vue'
+import type { FieldNames, RawValueType } from '../Select'
 
 /**
  * Parse `children` to `options` if `options` is not provided.

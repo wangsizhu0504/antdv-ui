@@ -1,6 +1,6 @@
-import type { ExtractPropTypes, FunctionalComponent } from 'vue'
 import omit from '../_util/omit'
 import Base, { baseProps } from './Base'
+import type { ExtractPropTypes, FunctionalComponent } from 'vue'
 
 export const paragraphProps = () => omit(baseProps(), ['component'])
 

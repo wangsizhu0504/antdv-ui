@@ -1,8 +1,8 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
 import useStyle from './style'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 const checkableTagProps = () => ({
   'prefixCls': String,

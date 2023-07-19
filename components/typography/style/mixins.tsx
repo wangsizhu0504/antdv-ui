@@ -8,10 +8,10 @@
 }
 */
 import { gold } from '@ant-design/colors'
-import type { CSSObject } from '../../cssinjs'
 import { initInputToken } from '../../input/style'
-import type { GenerateStyle } from '../../theme'
 import { operationUnit } from '../../style'
+import type { CSSObject } from '../../cssinjs'
+import type { GenerateStyle } from '../../theme'
 import type { TypographyToken } from '.'
 
 const getTitleStyle = (

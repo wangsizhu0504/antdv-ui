@@ -1,4 +1,3 @@
-import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 import {
   computed,
   defineComponent,
@@ -14,12 +13,13 @@ import Tooltip from '../../tooltip'
 import KeyCode from '../../_util/KeyCode'
 import Overflow from '../../vc-overflow'
 import devWarning from '../../vc-util/devWarning'
-import type { MouseEventHandler } from '../../_util/EventInterface'
 import { objectType } from '../../_util/type'
 import { useInjectFirstLevel, useInjectMenu } from './hooks/useMenuContext'
 import { useInjectKeyPath, useMeasure } from './hooks/useKeyPath'
-import type { ItemType, MenuInfo } from './interface'
 import useDirectionStyle from './hooks/useDirectionStyle'
+import type { ItemType, MenuInfo } from './interface'
+import type { MouseEventHandler } from '../../_util/EventInterface'
+import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 
 let indexGuid = 0
 export const menuItemProps = () => ({

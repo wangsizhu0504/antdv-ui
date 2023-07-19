@@ -1,11 +1,11 @@
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import { defineComponent } from 'vue'
 import PropTypes, { withUndefined } from '../_util/vue-types'
-import type { EventHandler } from '../_util/EventInterface'
 import classNames from '../_util/classNames'
-import type { VueNode } from '../_util/type'
 import { booleanType, functionType, stringType } from '../_util/type'
 import omit from '../_util/omit'
+import type { VueNode } from '../_util/type'
+import type { EventHandler } from '../_util/EventInterface'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { Status, StepIconRender } from './interface'
 
 function isString(str: any): str is string {

@@ -1,5 +1,5 @@
-import type { DisabledTimes, PickerMode } from '../interface'
 import { warning } from '../../vc-util/warning'
+import type { DisabledTimes, PickerMode } from '../interface'
 
 export interface WarningProps extends DisabledTimes {
   picker?: PickerMode

@@ -1,8 +1,8 @@
-import type { Ref, ShallowRef } from 'vue'
 import { shallowRef, watchEffect } from 'vue'
+import { conductCheck } from '../../vc-tree/utils/conductUtil'
+import type { Ref, ShallowRef } from 'vue'
 import type { Key } from '../../_util/type'
 import type { DataEntity } from '../../vc-tree/interface'
-import { conductCheck } from '../../vc-tree/utils/conductUtil'
 import type { LabeledValueType, RawValueType } from '../TreeSelect'
 
 export default (

@@ -1,7 +1,7 @@
-import type { ComputedRef, Ref } from 'vue'
 import { computed } from 'vue'
-import type { TableSticky } from '../interface'
 import canUseDom from '../../_util/canUseDom'
+import type { ComputedRef, Ref } from 'vue'
+import type { TableSticky } from '../interface'
 
 // fix ssr render
 const defaultContainer = canUseDom() ? window : null

@@ -1,10 +1,10 @@
-import type { PickerLocale } from '../../../locale'
-import type { GenerateConfig } from '../../generate'
 import { formatValue, isSameQuarter } from '../../utils/dateUtil'
 import { useInjectRange } from '../../RangeContext'
 import useCellClassName from '../../hooks/useCellClassName'
 import PanelBody from '../PanelBody'
 import useMergeProps from '../../hooks/useMergeProps'
+import type { GenerateConfig } from '../../generate'
+import type { PickerLocale } from '../../../locale'
 
 export const QUARTER_COL_COUNT = 4
 const QUARTER_ROW_COUNT = 1

@@ -1,7 +1,7 @@
-import type { CSSProperties } from 'vue'
 import { defineComponent } from 'vue'
 import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
+import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

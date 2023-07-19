@@ -1,8 +1,8 @@
-import type { ExtractPropTypes, FunctionalComponent, PropType } from 'vue'
 import omit from '../_util/omit'
 import warning from '../_util/warning'
-import type { EllipsisConfig } from './Base'
 import Base, { baseProps } from './Base'
+import type { EllipsisConfig } from './Base'
+import type { ExtractPropTypes, FunctionalComponent, PropType } from 'vue'
 
 export const textProps = () => ({
   ...omit(baseProps(), ['component']),

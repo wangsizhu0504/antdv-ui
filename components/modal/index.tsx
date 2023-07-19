@@ -1,9 +1,9 @@
-import type { App, Plugin } from 'vue'
-import type { ModalFunc, ModalFuncProps } from './Modal'
 import Modal from './Modal'
 import confirm, { withConfirm, withError, withInfo, withSuccess, withWarn } from './confirm'
 import useModal from './useModal'
 import destroyFns from './destroyFns'
+import type { ModalFunc, ModalFuncProps } from './Modal'
+import type { App, Plugin } from 'vue'
 
 export type { ActionButtonProps } from '../_util/components/ActionButton'
 export type { ModalProps, ModalFuncProps } from './Modal'

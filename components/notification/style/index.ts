@@ -1,8 +1,8 @@
 import { Keyframes } from '../../cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { resetComponent } from '../../style'
 import genNotificationPlacementStyle from './placement'
+import type { FullToken, GenerateStyle } from '../../theme'
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {

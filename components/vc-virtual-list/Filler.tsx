@@ -1,6 +1,6 @@
-import type { CSSProperties, FunctionalComponent, PropType } from 'vue'
 import classNames from '../_util/classNames'
 import ResizeObserver from '../vc-resize-observer'
+import type { CSSProperties, FunctionalComponent, PropType } from 'vue'
 
 interface FillerProps {
   prefixCls?: string

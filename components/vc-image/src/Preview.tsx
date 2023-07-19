@@ -8,7 +8,6 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import type { PropType, VNode } from 'vue'
 
 import classnames from '../../_util/classNames'
 import Dialog from '../../vc-dialog'
@@ -17,10 +16,11 @@ import { getOffset } from '../../vc-util/Dom/css'
 import addEventListener from '../../vc-util/Dom/addEventListener'
 import KeyCode from '../../_util/KeyCode'
 import { warning } from '../../vc-util/warning'
-import type { MouseEventHandler, WheelEventHandler } from '../../_util/EventInterface'
 import { useGroupProviderContext } from './hooks/useContext'
 import getFixScaleEleTransPosition from './getFixScaleEleTransPosition'
 import useFrameSetState from './hooks/useFrameSetState'
+import type { MouseEventHandler, WheelEventHandler } from '../../_util/EventInterface'
+import type { PropType, VNode } from 'vue'
 
 export interface PreviewProps extends Omit<IDialogChildProps, 'onClose' | 'mask'> {
   onClose?: (e: Element) => void

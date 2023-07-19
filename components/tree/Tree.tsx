@@ -1,8 +1,5 @@
-import type { ExtractPropTypes, SlotsType } from 'vue'
 import { computed, defineComponent, ref, watchEffect } from 'vue'
 import VcTree from '../vc-tree'
-import type { DataNode, EventDataNode, FieldNames, Key, ScrollTo } from '../vc-tree/interface'
-import type { TreeNodeProps } from '../vc-tree/props'
 import { treeProps as vcTreeProps } from '../vc-tree/props'
 import devWarning from '../vc-util/devWarning'
 import { warning } from '../vc-util/warning'
@@ -15,10 +12,13 @@ import initDefaultProps from '../_util/props-util/initDefaultProps'
 import { filterEmpty } from '../_util/props-util'
 import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
-import type { SwitcherIconProps } from './utils/iconUtil'
 import renderSwitcherIcon from './utils/iconUtil'
 import dropIndicatorRender from './utils/dropIndicator'
 import useStyle from './style'
+import type { SwitcherIconProps } from './utils/iconUtil'
+import type { TreeNodeProps } from '../vc-tree/props'
+import type { DataNode, EventDataNode, FieldNames, Key, ScrollTo } from '../vc-tree/interface'
+import type { ExtractPropTypes, SlotsType } from 'vue'
 
 export interface AntdTreeNodeAttribute {
   eventKey: string
@@ -108,7 +108,7 @@ export const treeProps = () => {
     /** （受控）展开指定的树节点 */
     'expandedKeys': arrayType<Key[]>(),
     /** （受控）选中复选框的树节点 */
-    'checkedKeys': someType<Key[] | { checked: Key[]; halfChecked: Key[] }>([Array, Object]),
+    'checkedKeys': someType<Key[] | { checked: Key[], halfChecked: Key[] }>([Array, Object]),
     /** 默认选中复选框的树节点 */
     'defaultCheckedKeys': arrayType<Key[]>(),
     /** （受控）设置选中的树节点 */

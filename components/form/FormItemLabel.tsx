@@ -1,12 +1,12 @@
-import type { FunctionalComponent, HTMLAttributes } from 'vue'
 import defaultLocale from '../locale/lang/en_US'
-import type { VueNode } from '../_util/type'
 import classNames from '../_util/classNames'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
-import type { ColProps } from '../grid/Col'
 import Col from '../grid/Col'
-import type { FormLabelAlign } from './interface'
 import { useInjectForm } from './context'
+import type { ColProps } from '../grid/Col'
+import type { FormLabelAlign } from './interface'
+import type { VueNode } from '../_util/type'
+import type { FunctionalComponent, HTMLAttributes } from 'vue'
 import type { RequiredMark } from './Form'
 
 export interface FormItemLabelProps {

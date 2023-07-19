@@ -230,7 +230,7 @@ export class BigIntDecimal implements DecimalClass {
 
   toNumber() {
     if (this.isNaN())
-      return NaN
+      return Number.NaN
 
     return Number(this.toString())
   }

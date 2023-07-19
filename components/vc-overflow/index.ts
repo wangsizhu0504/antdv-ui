@@ -1,5 +1,5 @@
-import type { OverflowProps } from './Overflow'
 import Overflow from './Overflow'
+import type { OverflowProps } from './Overflow'
 
 export type { OverflowProps }
 

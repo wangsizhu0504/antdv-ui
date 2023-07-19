@@ -1,3 +1,11 @@
+import {
+  arrayType,
+  booleanType,
+  functionType,
+  objectType,
+  someType,
+  stringType,
+} from '../../_util/type'
 import type { CSSProperties } from 'vue'
 import type { DatePickerLocale } from '../../locale'
 import type { FocusEventHandler, MouseEventHandler } from '../../_util/EventInterface'
@@ -17,14 +25,6 @@ import type { MonthCellRender } from '../../vc-picker/panels/MonthPanel/MonthBod
 import type { SharedTimeProps } from '../../vc-picker/panels/TimePanel'
 import type { RangeDateRender, RangeInfo, RangeType } from '../../vc-picker/RangePicker'
 import type { VueNode } from '../../_util/type'
-import {
-  arrayType,
-  booleanType,
-  functionType,
-  objectType,
-  someType,
-  stringType,
-} from '../../_util/type'
 import type { InputStatus } from '../../_util/statusUtils'
 
 const DataPickerPlacements = ['bottomLeft', 'bottomRight', 'topLeft', 'topRight'] as const

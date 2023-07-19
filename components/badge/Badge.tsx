@@ -1,11 +1,7 @@
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import { Transition, getTransitionProps } from '../_util/components/transition'
 import { flattenChildren, getPropsSlot } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
-import type { PresetColorKey } from '../theme/interface'
-import type { LiteralUnion } from '../_util/type'
-import type { PresetStatusColorType } from '../_util/colors'
 import { isPresetColor } from '../_util/colors'
 import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
@@ -14,6 +10,10 @@ import { isNumeric } from '../_util/is'
 import Ribbon from './Ribbon'
 import ScrollNumber from './ScrollNumber'
 import useStyle from './style'
+import type { PresetStatusColorType } from '../_util/colors'
+import type { LiteralUnion } from '../_util/type'
+import type { PresetColorKey } from '../theme/interface'
+import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 
 export const badgeProps = () => ({
   /** Number to show in badge */
@@ -147,9 +147,9 @@ export default defineComponent({
           marginTop: isNumeric(offset[1]) ? `${offset[1]}px` : offset[1],
         }
         if (direction.value === 'rtl')
-          offsetStyle.left = `${parseInt(offset[0] as string, 10)}px`
+          offsetStyle.left = `${Number.parseInt(offset[0] as string, 10)}px`
         else
-          offsetStyle.right = `${-parseInt(offset[0] as string, 10)}px`
+          offsetStyle.right = `${-Number.parseInt(offset[0] as string, 10)}px`
 
         return {
           ...offsetStyle,

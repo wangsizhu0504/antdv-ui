@@ -11,35 +11,35 @@
  * Tips: Should add faq about `datetime` mode with `defaultValue`
  */
 
-import type { CSSProperties, HTMLAttributes, Ref } from 'vue'
 import { computed, defineComponent, ref, toRef, watch } from 'vue'
-import type { AlignType } from '../vc-align/interface'
 import { warning } from '../vc-util/warning'
 import classNames from '../_util/classNames'
 import { useMergedState } from '../hooks'
-import type { VueNode } from '../_util/type'
-import type { ChangeEvent, FocusEventHandler, MouseEventHandler } from '../_util/EventInterface'
-import type {
-  PickerPanelBaseProps,
-  PickerPanelDateProps,
-  PickerPanelTimeProps,
-} from './PickerPanel'
 import PickerPanel from './PickerPanel'
 import PickerTrigger from './PickerTrigger'
 import PresetPanel from './PresetPanel'
 import { formatValue, isEqual, parseValue } from './utils/dateUtil'
 import getDataOrAriaProps, { toArray } from './utils/miscUtil'
-import type { ContextOperationRefProps } from './PanelContext'
 import { useProvidePanel } from './PanelContext'
-import type { CustomFormat, PickerMode, PresetDate } from './interface'
 import { elementsContains, getDefaultFormat, getInputSize } from './utils/uiUtil'
 import usePickerInput from './hooks/usePickerInput'
 import useTextValueMapping from './hooks/useTextValueMapping'
 import useValueTexts from './hooks/useValueTexts'
 import useHoverValue from './hooks/useHoverValue'
 import usePresets from './hooks/usePresets'
-import type { SharedTimeProps } from './panels/TimePanel'
 import { legacyPropsWarning } from './utils/warnUtil'
+import type { SharedTimeProps } from './panels/TimePanel'
+import type { CustomFormat, PickerMode, PresetDate } from './interface'
+import type { ContextOperationRefProps } from './PanelContext'
+import type {
+  PickerPanelBaseProps,
+  PickerPanelDateProps,
+  PickerPanelTimeProps,
+} from './PickerPanel'
+import type { ChangeEvent, FocusEventHandler, MouseEventHandler } from '../_util/EventInterface'
+import type { VueNode } from '../_util/type'
+import type { AlignType } from '../vc-align/interface'
+import type { CSSProperties, HTMLAttributes, Ref } from 'vue'
 
 export interface PickerRefConfig {
   focus: () => void
@@ -294,7 +294,7 @@ function Picker<DateType>() {
         }
 
         /* istanbul ignore next */
-        /* eslint-disable no-lone-blocks */
+        // eslint-disable-next-line no-lone-blocks
         {
           warning(
             false,

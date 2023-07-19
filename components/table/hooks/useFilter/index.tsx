@@ -1,6 +1,9 @@
-import type { Ref } from 'vue'
 import { computed } from 'vue'
-import type { TableLocale } from '../../../locale'
+import { getColumnKey, getColumnPos, renderColumnTitle } from '../../util'
+import devWarning from '../../../vc-util/devWarning'
+import { useState } from '../../../hooks'
+import FilterDropdown from './FilterDropdown'
+import { flattenKeys } from './utils'
 import type {
   ColumnTitleProps,
   ColumnType,
@@ -10,11 +13,8 @@ import type {
   GetPopupContainer,
   TransformColumns,
 } from '../../interface'
-import { getColumnKey, getColumnPos, renderColumnTitle } from '../../util'
-import devWarning from '../../../vc-util/devWarning'
-import { useState } from '../../../hooks'
-import FilterDropdown from './FilterDropdown'
-import { flattenKeys } from './utils'
+import type { TableLocale } from '../../../locale'
+import type { Ref } from 'vue'
 import type { FilterState } from './type'
 
 function collectFilterStates<RecordType>(

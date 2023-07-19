@@ -1,11 +1,11 @@
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import { isPresetColor } from '../_util/colors'
-import type { PresetColorType } from '../_util/colors'
-import type { LiteralUnion } from '../_util/type'
 import PropTypes from '../_util/vue-types'
 import useStyle from './style'
+import type { PresetColorType } from '../_util/colors'
+import type { LiteralUnion } from '../_util/type'
+import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 
 export const ribbonProps = () => ({
   prefix: String,

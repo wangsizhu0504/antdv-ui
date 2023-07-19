@@ -1,11 +1,11 @@
-import type { CSSObject } from '../../cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { resetComponent, resetIcon, textEllipsis } from '../../style'
 import { genCompactItemStyle } from '../../style/compact-item'
 import genSingleStyle from './single'
 import genMultipleStyle from './multiple'
 import genDropdownStyle from './dropdown'
+import type { FullToken, GenerateStyle } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
 
 export interface ComponentToken {
   zIndexPopup: number

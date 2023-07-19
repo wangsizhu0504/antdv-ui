@@ -1,13 +1,13 @@
-import type { HTMLAttributes, SlotsType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { filterEmpty } from '../_util/props-util'
-import type { VueNode } from '../_util/type'
 import classNames from '../_util/classNames'
-import type { ColProps } from '../grid/Col'
 import Col from '../grid/Col'
-import type { ValidateStatus } from './FormItem'
 import ErrorList from './ErrorList'
 import { useInjectForm, useProvideForm, useProvideFormItemPrefix } from './context'
+import type { ValidateStatus } from './FormItem'
+import type { ColProps } from '../grid/Col'
+import type { VueNode } from '../_util/type'
+import type { HTMLAttributes, SlotsType } from 'vue'
 
 export interface FormItemInputMiscProps {
   prefixCls: string

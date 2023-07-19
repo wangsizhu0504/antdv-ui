@@ -1,6 +1,6 @@
+import { functionType, objectType, someType, stringType } from '../_util/type'
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { VueNode } from '../_util/type'
-import { functionType, objectType, someType, stringType } from '../_util/type'
 import type { PlacementType } from './placements'
 
 export const tourStepInfo = () => ({
@@ -13,7 +13,7 @@ export const tourStepInfo = () => ({
   title: someType<string | VueNode>([String, Object]),
   description: someType<string | VueNode>([String, Object]),
   placement: stringType<PlacementType>(),
-  mask: someType<boolean | { style?: CSSProperties; color?: string }>([Object, Boolean], true),
+  mask: someType<boolean | { style?: CSSProperties, color?: string }>([Object, Boolean], true),
   className: { type: String },
   style: objectType<CSSProperties>(),
   scrollIntoViewOptions: someType<boolean | ScrollIntoViewOptions>([Boolean, Object]),

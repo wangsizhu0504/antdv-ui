@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'vue'
 import {
   TransitionGroup,
   computed,
@@ -10,11 +9,12 @@ import {
   render as vueRender,
 } from 'vue'
 import { getTransitionGroupProps } from '../_util/components/transition'
-import type { Key } from '../_util/type'
 import ConfigProvider from '../config-provider'
 import { globalConfigForApi } from '../config-provider/config'
 import classNames from '../_util/classNames'
 import Notice from './Notice'
+import type { Key } from '../_util/type'
+import type { CSSProperties } from 'vue'
 import type { HolderReadyCallback, NoticeContent, NotificationProps, NotificationState } from './type'
 
 let seed = 0
@@ -44,7 +44,7 @@ const Notification = defineComponent<NotificationProps>({
 
     const add = (originNotice: NoticeContent, holderCallback?: HolderReadyCallback) => {
       const key = originNotice.key || getUuid()
-      const notice: NoticeContent & { key: Key; userPassKey?: Key } = {
+      const notice: NoticeContent & { key: Key, userPassKey?: Key } = {
         ...originNotice,
         key,
       }

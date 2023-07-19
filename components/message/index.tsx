@@ -1,11 +1,11 @@
-import type { CSSProperties } from 'vue'
 import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, InfoCircleFilled, LoadingOutlined } from '@ant-design/icons-vue'
 import Notification from '../vc-notification'
-import type { Key, VueNode } from '../_util/type'
-import type { NotificationInstance } from '../vc-notification/type'
 import classNames from '../_util/classNames'
 import useMessage from './useMessage'
 import useStyle from './style'
+import type { NotificationInstance } from '../vc-notification/type'
+import type { Key, VueNode } from '../_util/type'
+import type { CSSProperties } from 'vue'
 
 let defaultDuration = 3
 let defaultTop: string

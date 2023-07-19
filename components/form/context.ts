@@ -1,11 +1,11 @@
-import type { ComputedRef, InjectionKey } from 'vue'
 import { computed, inject, provide } from 'vue'
+import { defaultValidateMessages } from './utils/messages'
+import type { ComputedRef, InjectionKey } from 'vue'
 import type { ValidateMessages } from '../locale'
 import type { ColProps } from '../grid'
 import type { RequiredMark } from './Form'
 import type { FieldExpose, ValidateStatus } from './FormItem'
 import type { FormLabelAlign, Rule } from './interface'
-import { defaultValidateMessages } from './utils/messages'
 
 export interface FormContextProps {
   model?: ComputedRef<any>

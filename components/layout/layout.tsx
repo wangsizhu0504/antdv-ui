@@ -1,8 +1,8 @@
-import type { ExtractPropTypes, HTMLAttributes } from 'vue'
 import { computed, createVNode, defineComponent, provide, ref } from 'vue'
 import { useConfigInject } from '../hooks'
 import { SiderHookProviderKey } from './injectionKey'
 import useStyle from './style'
+import type { ExtractPropTypes, HTMLAttributes } from 'vue'
 
 export const basicProps = () => ({
   prefixCls: String,

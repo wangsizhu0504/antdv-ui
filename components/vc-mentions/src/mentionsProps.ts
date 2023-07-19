@@ -1,12 +1,12 @@
-import type { PropType } from 'vue'
 import PropTypes from '../../_util/vue-types'
 import { initDefaultProps } from '../../_util/props-util'
 import { arrayType, tuple } from '../../_util/type'
-import type { OptionProps } from './Option'
 import {
   filterOption as defaultFilterOption,
   validateSearch as defaultValidateSearch,
 } from './util'
+import type { OptionProps } from './Option'
+import type { PropType } from 'vue'
 
 export const PlaceMent = tuple('top', 'bottom')
 export type Direction = 'ltr' | 'rtl'

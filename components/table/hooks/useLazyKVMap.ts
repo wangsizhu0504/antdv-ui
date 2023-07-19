@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import { shallowRef, watch } from 'vue'
+import type { Ref } from 'vue'
 import type { GetRowKey, Key } from '../interface'
 
 interface MapCache<RecordType> {

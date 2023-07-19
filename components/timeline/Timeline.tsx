@@ -1,4 +1,3 @@
-import type { ExtractPropTypes, SlotsType } from 'vue'
 import { cloneVNode, defineComponent } from 'vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
 import { useConfigInject } from '../hooks'
@@ -10,6 +9,7 @@ import initDefaultProps from '../_util/props-util/initDefaultProps'
 import { booleanType, tuple } from '../_util/type'
 import TimelineItem from './TimelineItem'
 import useStyle from './style'
+import type { ExtractPropTypes, SlotsType } from 'vue'
 
 // CSSINJS
 

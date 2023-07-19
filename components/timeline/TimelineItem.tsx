@@ -1,10 +1,10 @@
-import type { ExtractPropTypes, SlotsType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import PropTypes from '../_util/vue-types'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 
 import { booleanType, tuple } from '../_util/type'
+import type { ExtractPropTypes, SlotsType } from 'vue'
 
 export const timelineItemProps = () => ({
   prefixCls: String,

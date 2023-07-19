@@ -1,18 +1,18 @@
 import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import partition from 'lodash-es/partition'
-import type { ChangeEvent } from '../_util/EventInterface'
 import pickAttrs from '../_util/pickAttrs'
 import defaultRequest from './request'
 import getUid from './uid'
 import attrAccept from './attr-accept'
 import traverseFileTree from './traverseFileTree'
+import { uploadProps } from './interface'
 import type {
   BeforeUploadFileType,
   RcFile,
   UploadProgressEvent,
   UploadRequestError,
 } from './interface'
-import { uploadProps } from './interface'
+import type { ChangeEvent } from '../_util/EventInterface'
 
 interface ParsedFileInfo {
   origin: RcFile

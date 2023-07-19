@@ -1,12 +1,3 @@
-import type {
-  ComponentPublicInstance,
-  ComputedRef,
-  ExtractPropTypes,
-  HTMLAttributes,
-  PropType,
-  Ref,
-  SlotsType,
-} from 'vue'
 import {
   computed,
   defineComponent,
@@ -24,7 +15,6 @@ import cloneDeep from 'lodash-es/cloneDeep'
 import find from 'lodash-es/find'
 import { toArray } from '../_util/util'
 import { warning } from '../vc-util/warning'
-import type { ColProps } from '../grid/Col'
 import Row from '../grid/Row'
 import classNames from '../_util/classNames'
 import { useConfigInject } from '../hooks'
@@ -33,6 +23,13 @@ import { filterEmpty } from '../_util/props-util'
 import PropTypes from '../_util/vue-types'
 import { validateRules as validateRulesUtil } from './utils/validateUtil'
 import { getNamePath } from './utils/valueUtil'
+import { useInjectForm } from './context'
+import FormItemLabel from './FormItemLabel'
+import FormItemInput from './FormItemInput'
+import { FormItemInputContext, useProvideFormItemContext } from './FormItemContext'
+import useDebounce from './utils/useDebounce'
+import useStyle from './style'
+import type { FormItemStatusContextProps } from './FormItemContext'
 import type {
   FormLabelAlign,
   InternalNamePath,
@@ -41,13 +38,16 @@ import type {
   RuleObject,
   ValidateOptions,
 } from './interface'
-import { useInjectForm } from './context'
-import FormItemLabel from './FormItemLabel'
-import FormItemInput from './FormItemInput'
-import type { FormItemStatusContextProps } from './FormItemContext'
-import { FormItemInputContext, useProvideFormItemContext } from './FormItemContext'
-import useDebounce from './utils/useDebounce'
-import useStyle from './style'
+import type { ColProps } from '../grid/Col'
+import type {
+  ComponentPublicInstance,
+  ComputedRef,
+  ExtractPropTypes,
+  HTMLAttributes,
+  PropType,
+  Ref,
+  SlotsType,
+} from 'vue'
 
 const ValidateStatuses = tuple('success', 'warning', 'error', 'validating', '')
 export type ValidateStatus = (typeof ValidateStatuses)[number]
@@ -444,7 +444,7 @@ export default defineComponent({
     const updateMarginBottom = () => {
       if (itemRef.value) {
         const itemStyle = getComputedStyle(itemRef.value)
-        marginBottom.value = parseInt(itemStyle.marginBottom, 10)
+        marginBottom.value = Number.parseInt(itemStyle.marginBottom, 10)
       }
     }
     onMounted(() => {

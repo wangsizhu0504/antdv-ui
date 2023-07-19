@@ -4,11 +4,11 @@ import { CloseOutlined } from '@ant-design/icons-vue'
 import defaultLocale from '../locale/lang/en_US'
 import LocaleReceiver from '../locale-provider/LocaleReceiver'
 import Button from '../button'
+import classNames from '../_util/classNames'
+import { tourStepProps } from './interface'
 import type { ButtonProps } from '../button'
 
 import type { VueNode } from '../_util/type'
-import classNames from '../_util/classNames'
-import { tourStepProps } from './interface'
 import type { TourBtnProps } from './interface'
 
 const panelRender = defineComponent({

@@ -1,18 +1,18 @@
-import type { App, CSSProperties, ExtractPropTypes, HTMLAttributes, Plugin, PropType, SlotsType } from 'vue'
 import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
 import PropTypes from '../_util/vue-types'
 import Wave from '../vc-wave'
-import type { PresetColorType, PresetStatusColorType } from '../_util/colors'
 import { isPresetColor, isPresetStatusColor } from '../_util/colors'
 import { eventType } from '../_util/type'
-import type { LiteralUnion } from '../_util/type'
 
 import warning from '../_util/warning'
 import useStyle from './style'
 import CheckableTag from './CheckableTag'
+import type { LiteralUnion } from '../_util/type'
+import type { PresetColorType, PresetStatusColorType } from '../_util/colors'
+import type { App, CSSProperties, ExtractPropTypes, HTMLAttributes, Plugin, PropType, SlotsType } from 'vue'
 
 export const tagProps = () => ({
   'prefixCls': String,

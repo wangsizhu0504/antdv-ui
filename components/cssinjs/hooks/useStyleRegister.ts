@@ -1,17 +1,10 @@
 import hash from '@emotion/hash'
-import type * as CSS from 'csstype'
 
 import unitless from '@emotion/unitless'
 import { compile, serialize, stringify } from 'stylis'
-import type { Ref, VNode } from 'vue'
 import { computed } from 'vue'
 import canUseDom from '../../_util/canUseDom'
-import type { Theme, Transformer } from '..'
-import type Cache from '../Cache'
-import type Keyframes from '../Keyframes'
-import type { Linter } from '../linters/interface'
 import { contentQuotesLinter, hashedAnimationLinter } from '../linters'
-import type { HashPriority } from '../StyleContext'
 import {
   ATTR_DEV_CACHE_PATH,
   ATTR_MARK,
@@ -23,6 +16,13 @@ import {
 import { supportLayer } from '../util'
 import { removeCSS, updateCSS } from '../../vc-util/Dom/dynamicCSS'
 import useGlobalCache from './useGlobalCache'
+import type { Theme, Transformer } from '..'
+import type Cache from '../Cache'
+import type Keyframes from '../Keyframes'
+import type { Linter } from '../linters/interface'
+import type { HashPriority } from '../StyleContext'
+import type { Ref, VNode } from 'vue'
+import type * as CSS from 'csstype'
 
 const isClientSide = canUseDom()
 

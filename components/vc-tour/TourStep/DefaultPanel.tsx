@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { tourStepProps } from '../interface'
-import type { TourStepProps } from '../interface'
 import classNames from '../../_util/classNames'
+import type { TourStepProps } from '../interface'
 
 const DefaultPanel = defineComponent({
   name: 'DefaultPanel',

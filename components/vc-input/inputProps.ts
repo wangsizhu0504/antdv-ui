@@ -1,8 +1,8 @@
+import PropTypes from '../_util/vue-types'
+import { stringType } from '../_util/type'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { SizeType } from '../config-provider'
-import PropTypes from '../_util/vue-types'
 import type { VueNode } from '../_util/type'
-import { stringType } from '../_util/type'
 import type {
   ChangeEventHandler,
   CompositionEventHandler,
@@ -106,7 +106,7 @@ export const inputProps = () => ({
 export type InputProps = Partial<ExtractPropTypes<ReturnType<typeof inputProps>>>
 
 export interface ShowCountProps {
-  formatter: (args: { count: number; maxlength?: number; value?: string }) => VueNode
+  formatter: (args: { count: number, maxlength?: number, value?: string }) => VueNode
 }
 
 export interface InputRef {

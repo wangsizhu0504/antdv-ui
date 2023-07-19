@@ -1,6 +1,6 @@
-import type { Ref, ShallowRef } from 'vue'
 import { computed } from 'vue'
 import { toArray } from '../utils/commonUtil'
+import { injectPropsWithOption } from '../utils/valueUtil'
 import type {
   BaseOptionType,
   DefaultOptionType,
@@ -8,7 +8,7 @@ import type {
   FilterFunc,
   SelectProps,
 } from '../Select'
-import { injectPropsWithOption } from '../utils/valueUtil'
+import type { Ref, ShallowRef } from 'vue'
 
 function includes(test: any, search: string) {
   return toArray(test).join('').toUpperCase().includes(search)

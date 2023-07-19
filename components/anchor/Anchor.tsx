@@ -19,8 +19,8 @@ import classNames from '../_util/classNames'
 import AnchorLink from './AnchorLink'
 import useStyle from './style'
 import useProvideAnchor from './context'
-import type { AnchorContainer, AnchorLinkItemProps, AnchorState, Section } from './type'
 import { anchorProps } from './props'
+import type { AnchorContainer, AnchorLinkItemProps, AnchorState, Section } from './type'
 
 function getDefaultContainer() {
   return window

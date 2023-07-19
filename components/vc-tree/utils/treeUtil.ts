@@ -1,3 +1,9 @@
+import { getPosition, isTreeNode } from '../util'
+import { warning } from '../../vc-util/warning'
+
+import { camelize, filterEmpty } from '../../_util/props-util'
+import omit from '../../_util/omit'
+import type { TreeNodeProps } from '../props'
 import type {
   BasicDataNode,
   DataEntity,
@@ -9,12 +15,6 @@ import type {
   Key,
   NodeElement,
 } from '../interface'
-import { getPosition, isTreeNode } from '../util'
-import type { TreeNodeProps } from '../props'
-import { warning } from '../../vc-util/warning'
-
-import { camelize, filterEmpty } from '../../_util/props-util'
-import omit from '../../_util/omit'
 import type { VueNode } from '../../_util/type'
 
 export function getKey(key: Key, pos: string) {
@@ -240,7 +240,7 @@ export function traverseDataNodes(
   function processNode(
     node: DataNode,
     index?: number,
-    parent?: { node: DataNode; pos: string; level: number },
+    parent?: { node: DataNode, pos: string, level: number },
     pathNodes?: DataNode[],
   ) {
     const children = node ? node[mergeChildrenPropName] : dataNodes

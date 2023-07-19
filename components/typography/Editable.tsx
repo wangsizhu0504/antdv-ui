@@ -1,13 +1,13 @@
 import { EnterOutlined } from '@ant-design/icons-vue'
-import type { ExtractPropTypes, PropType } from 'vue'
 import { defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue'
 import TextArea from '../input/TextArea'
-import type { AutoSizeType } from '../input/inputProps'
 import KeyCode from '../_util/KeyCode'
-import type { Direction } from '../config-provider'
-import type { ChangeEventHandler } from '../_util/EventInterface'
 import classNames from '../_util/classNames'
 import useStyle from './style'
+import type { AutoSizeType } from '../input/inputProps'
+import type { Direction } from '../config-provider'
+import type { ChangeEventHandler } from '../_util/EventInterface'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 // CSSINJS
 

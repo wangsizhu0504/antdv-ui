@@ -1,7 +1,7 @@
-import type { CSSObject } from '../../cssinjs'
 import { genFocusStyle, resetComponent } from '../../style'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
+import type { FullToken, GenerateStyle } from '../../theme'
 
 interface BreadcrumbToken extends FullToken<'Breadcrumb'> {
   breadcrumbBaseColor: string

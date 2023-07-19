@@ -1,5 +1,4 @@
 import { computed, defineComponent, ref } from 'vue'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import { ReloadOutlined } from '@ant-design/icons-vue'
 import useConfigInject from '../config-provider/hooks/useConfigInject'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
@@ -11,6 +10,7 @@ import warning from '../_util/warning'
 import { QRCodeCanvas, QRCodeSVG } from './QRCode'
 import useStyle from './style'
 import { qrcodeProps } from './interface'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 
 export type QRCodeProps = Partial<ExtractPropTypes<ReturnType<typeof qrcodeProps>>>
 const QRCode = defineComponent({

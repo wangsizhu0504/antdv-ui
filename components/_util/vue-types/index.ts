@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+import { createTypes } from 'vue-types'
 import type { CSSProperties } from 'vue'
 import type { VueTypeValidableDef, VueTypesInterface } from 'vue-types'
-import { createTypes } from 'vue-types'
 import type { VueNode } from '../type'
 
 const PropTypes = createTypes({

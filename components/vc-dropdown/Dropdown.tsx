@@ -1,4 +1,3 @@
-import type { CSSProperties, PropType } from 'vue'
 import { Fragment, computed, defineComponent, ref, watch } from 'vue'
 import Trigger from '../vc-trigger'
 import PropTypes from '../_util/vue-types'
@@ -6,6 +5,7 @@ import { cloneElement } from '../_util/vnode'
 import classNames from '../_util/classNames'
 import { skipFlattenKey } from '../_util/props-util'
 import placements from './placements'
+import type { CSSProperties, PropType } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

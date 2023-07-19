@@ -1,7 +1,7 @@
-import type { App, Plugin } from 'vue'
 import Radio from './Radio'
 import Group from './Group'
 import Button from './RadioButton'
+import type { App, Plugin } from 'vue'
 
 export type { RadioProps } from './Radio'
 export type { RadioGroupProps } from './Group'

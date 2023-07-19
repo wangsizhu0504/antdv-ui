@@ -14,7 +14,7 @@ import Pager from './Pager'
 
 // 是否是正整数
 function isInteger(value) {
-  return typeof value === 'number' && isFinite(value) && Math.floor(value) === value
+  return typeof value === 'number' && Number.isFinite(value) && Math.floor(value) === value
 }
 
 function defaultItemRender({ originalElement }) {
@@ -150,7 +150,7 @@ export default defineComponent({
       let value
       if (inputValue === '')
         value = inputValue
-      else if (isNaN(Number(inputValue)))
+      else if (Number.isNaN(Number(inputValue)))
         value = stateCurrentInputValue
       else if (inputValue >= allPages)
         value = allPages

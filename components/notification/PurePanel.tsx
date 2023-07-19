@@ -1,12 +1,12 @@
 import { computed, defineComponent } from 'vue'
 import { CheckCircleFilled, CloseCircleFilled, CloseOutlined, ExclamationCircleFilled, InfoCircleFilled, LoadingOutlined } from '@ant-design/icons-vue'
-import type { VueNode } from '../_util/type'
-import type { NoticeProps } from '../vc-notification/Notice'
 import classNames from '../_util/classNames'
 import Notice from '../vc-notification/Notice'
 import { useConfigInject } from '../hooks'
 import { renderHelper } from '../_util/util'
 import useStyle from './style'
+import type { NoticeProps } from '../vc-notification/Notice'
+import type { VueNode } from '../_util/type'
 import type { IconType } from './interface'
 
 export function getCloseIcon(prefixCls: string, closeIcon?: VueNode) {

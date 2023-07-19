@@ -1,5 +1,3 @@
-import type { ExtractPropTypes } from 'vue'
-import type { VueNode } from '../_util/type'
 import {
   anyType,
   booleanType,
@@ -8,6 +6,8 @@ import {
   someType,
   stringType,
 } from '../_util/type'
+import type { ExtractPropTypes } from 'vue'
+import type { VueNode } from '../_util/type'
 
 export const progressStatuses = ['normal', 'exception', 'active', 'success'] as const
 export type ProgressStatusesType = (typeof progressStatuses)[number]

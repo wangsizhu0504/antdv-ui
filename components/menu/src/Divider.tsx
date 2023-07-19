@@ -1,6 +1,6 @@
-import type { ExtractPropTypes } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { useInjectMenu } from './hooks/useMenuContext'
+import type { ExtractPropTypes } from 'vue'
 
 export const menuDividerProps = () => ({
   prefixCls: String,

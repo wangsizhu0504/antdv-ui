@@ -1,5 +1,5 @@
-import type { InjectionKey, Ref } from 'vue'
 import { computed, inject, provide, ref } from 'vue'
+import type { InjectionKey, Ref } from 'vue'
 import type { ScreenSizeMap } from '../_util/responsiveObserve'
 
 export type AvatarSize = 'large' | 'small' | 'default' | number | ScreenSizeMap

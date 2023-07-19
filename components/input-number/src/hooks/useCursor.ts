@@ -1,6 +1,6 @@
-import type { Ref } from 'vue'
 import { ref } from 'vue'
 import { warning } from '../../../vc-util/warning'
+import type { Ref } from 'vue'
 
 /**
  * Keep input cursor in the correct position if possible.

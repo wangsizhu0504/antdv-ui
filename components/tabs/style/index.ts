@@ -1,8 +1,8 @@
-import type { CSSObject } from '../../cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { genFocusStyle, resetComponent, textEllipsis } from '../../style'
 import genMotionStyle from './motion'
+import type { FullToken, GenerateStyle } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
 
 export interface ComponentToken {
   zIndexPopup: number

@@ -1,8 +1,8 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import PropTypes from '../_util/vue-types'
+import { eventType } from '../_util/type'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 import type { SizeType } from '../config-provider'
-import { eventType } from '../_util/type'
 import type { MouseEventHandler } from '../_util/EventInterface'
 
 export type ButtonType = 'link' | 'default' | 'primary' | 'ghost' | 'dashed' | 'text'

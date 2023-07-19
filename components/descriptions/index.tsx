@@ -1,3 +1,21 @@
+import {
+  computed,
+  defineComponent,
+  onBeforeMount,
+  onBeforeUnmount,
+  ref,
+  toRef,
+} from 'vue'
+import warning from '../_util/warning'
+import useResponsiveObserve, { responsiveArray } from '../_util/responsiveObserve'
+import PropTypes from '../_util/vue-types'
+import { cloneElement } from '../_util/vnode'
+import { flattenChildren } from '../_util/props-util'
+import { useConfigInject } from '../hooks'
+import { createProviderContext } from './useContext'
+import useStyle from './style'
+import Row from './Row'
+import type { Breakpoint, ScreenMap } from '../_util/responsiveObserve'
 import type {
   App,
   CSSProperties,
@@ -8,24 +26,6 @@ import type {
   SlotsType,
   VNode,
 } from 'vue'
-import {
-  computed,
-  defineComponent,
-  onBeforeMount,
-  onBeforeUnmount,
-  ref,
-  toRef,
-} from 'vue'
-import warning from '../_util/warning'
-import type { Breakpoint, ScreenMap } from '../_util/responsiveObserve'
-import useResponsiveObserve, { responsiveArray } from '../_util/responsiveObserve'
-import PropTypes from '../_util/vue-types'
-import { cloneElement } from '../_util/vnode'
-import { flattenChildren } from '../_util/props-util'
-import { useConfigInject } from '../hooks'
-import { createProviderContext } from './useContext'
-import useStyle from './style'
-import Row from './Row'
 
 export const DescriptionsItemProps = {
   prefixCls: String,

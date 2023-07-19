@@ -1,3 +1,4 @@
+import { tuple } from '../_util/type'
 import type { CSSProperties } from 'vue'
 import type {
   DefaultRecordType,
@@ -12,7 +13,6 @@ import type { CheckboxProps } from '../checkbox'
 import type { PaginationProps } from '../pagination'
 import type { Breakpoint } from '../_util/responsiveObserve'
 import type { VueNode } from '../_util/type'
-import { tuple } from '../_util/type'
 import type { INTERNAL_SELECTION_ITEM } from './hooks/useSelection'
 
 // import { TableAction } from './Table';
@@ -44,7 +44,7 @@ export interface ColumnTitleProps<RecordType> {
   sortOrder?: SortOrder
   /** @deprecated Please use `sorterColumns` instead. */
   sortColumn?: ColumnType<RecordType>
-  sortColumns?: { column: ColumnType<RecordType>; order: SortOrder }[]
+  sortColumns?: { column: ColumnType<RecordType>, order: SortOrder }[]
 
   filters?: Record<string, FilterValue>
 }
@@ -97,7 +97,7 @@ export interface ColumnType<RecordType = DefaultRecordType>
   filterMultiple?: boolean
   filteredValue?: FilterValue | null
   defaultFilteredValue?: FilterValue | null
-  filterIcon?: VueNode | ((opt: { filtered: boolean; column: ColumnType }) => VueNode)
+  filterIcon?: VueNode | ((opt: { filtered: boolean, column: ColumnType }) => VueNode)
   filterMode?: 'menu' | 'tree'
   filterSearch?: FilterSearchType<ColumnFilterItem>
   onFilter?: (value: string | number | boolean, record: RecordType) => boolean

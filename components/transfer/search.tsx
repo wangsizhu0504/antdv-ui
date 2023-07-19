@@ -1,8 +1,8 @@
 import { SearchOutlined } from '@ant-design/icons-vue'
-import type { ExtractPropTypes } from 'vue'
 import { defineComponent } from 'vue'
 import Input from '../input'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
+import type { ExtractPropTypes } from 'vue'
 import type { ChangeEvent } from '../_util/EventInterface'
 
 export const transferSearchProps = {

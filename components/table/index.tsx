@@ -1,15 +1,15 @@
-import type { App } from 'vue'
 import { EXPAND_COLUMN, Summary, SummaryCell, SummaryRow } from '../vc-table'
 import Table, { tableProps } from './Table'
 import Column from './Column'
 import ColumnGroup from './ColumnGroup'
-import type { TablePaginationConfig, TableProps } from './Table'
 import {
   SELECTION_ALL,
   SELECTION_COLUMN,
   SELECTION_INVERT,
   SELECTION_NONE,
 } from './hooks/useSelection'
+import type { TablePaginationConfig, TableProps } from './Table'
+import type { App } from 'vue'
 
 export type { ColumnProps } from './Column'
 export type { ColumnsType, ColumnType, ColumnGroupType } from './interface'

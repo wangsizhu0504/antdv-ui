@@ -1,7 +1,7 @@
+import { roundedArrow } from './roundedArrow'
 import type { CSSInterpolation } from '../cssinjs'
 import type { AliasToken } from '../theme'
 import type { TokenWithCommonCls } from '../theme/util/genComponentStyleHook'
-import { roundedArrow } from './roundedArrow'
 
 function connectArrowCls(classList: string[], showArrowCls = '') {
   return classList.map(cls => `${showArrowCls}${cls}`).join(',')

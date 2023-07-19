@@ -1,16 +1,16 @@
-import type { PickerLocale } from '../../../locale'
-import type { GenerateConfig } from '../../generate'
 import { formatValue, isSameMonth } from '../../utils/dateUtil'
 import { useInjectRange } from '../../RangeContext'
 import useCellClassName from '../../hooks/useCellClassName'
 import PanelBody from '../PanelBody'
-import type { VueNode } from '../../../_util/type'
 import useMergeProps from '../../hooks/useMergeProps'
+import type { VueNode } from '../../../_util/type'
+import type { GenerateConfig } from '../../generate'
+import type { PickerLocale } from '../../../locale'
 
 export const MONTH_COL_COUNT = 3
 const MONTH_ROW_COUNT = 4
 
-export type MonthCellRender<DateType> = (obj: { current: DateType; locale: PickerLocale }) => VueNode
+export type MonthCellRender<DateType> = (obj: { current: DateType, locale: PickerLocale }) => VueNode
 
 export interface MonthBodyProps<DateType> {
   prefixCls: string

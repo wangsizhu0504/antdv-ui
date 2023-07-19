@@ -1,6 +1,6 @@
-import type { App, Plugin } from 'vue'
 import Timeline, { timelineProps } from './Timeline'
 import TimelineItem, { timelineItemProps } from './TimelineItem'
+import type { App, Plugin } from 'vue'
 
 export type { TimelineProps } from './Timeline'
 export type { TimelineItemProps } from './TimelineItem'

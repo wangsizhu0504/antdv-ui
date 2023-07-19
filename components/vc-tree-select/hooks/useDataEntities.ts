@@ -1,11 +1,11 @@
-import type { Ref, ShallowRef } from 'vue'
 import { shallowRef, watchEffect } from 'vue'
 import { convertDataToEntities } from '../../vc-tree/utils/treeUtil'
+import { isNil } from '../utils/valueUtil'
+import { warning } from '../../vc-util/warning'
 import type { DataEntity } from '../../vc-tree/interface'
 import type { FieldNames, RawValueType } from '../TreeSelect'
 
-import { isNil } from '../utils/valueUtil'
-import { warning } from '../../vc-util/warning'
+import type { Ref, ShallowRef } from 'vue'
 
 export default (treeData: ShallowRef<any>, fieldNames: Ref<FieldNames>) => {
   const valueEntities = shallowRef<Map<RawValueType, DataEntity>>(new Map())

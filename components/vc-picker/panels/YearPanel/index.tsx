@@ -1,9 +1,9 @@
-import type { PanelMode, PanelSharedProps } from '../../interface'
 import { createKeydownHandler } from '../../utils/uiUtil'
 import useMergeProps from '../../hooks/useMergeProps'
 import YearHeader from './YearHeader'
 import YearBody from './YearBody'
 import { YEAR_COL_COUNT, YEAR_DECADE_COUNT } from './constants'
+import type { PanelMode, PanelSharedProps } from '../../interface'
 
 export type YearPanelProps<DateType> = {
   sourceMode: PanelMode

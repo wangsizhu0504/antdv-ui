@@ -1,9 +1,9 @@
-import type { App, Plugin } from 'vue'
 import Input from './Input'
 import Group from './Group'
 import Search from './Search'
 import TextArea from './TextArea'
 import Password from './Password'
+import type { App, Plugin } from 'vue'
 
 export type { InputProps, TextAreaProps } from './inputProps'
 Input.Group = Group

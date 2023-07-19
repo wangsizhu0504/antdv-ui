@@ -1,5 +1,5 @@
-import type { CSSInterpolation } from '../../cssinjs'
 import { genFocusOutline } from '../../style'
+import type { CSSInterpolation } from '../../cssinjs'
 import type { MenuToken } from '.'
 
 const accessibilityFocus = (token: MenuToken) => ({

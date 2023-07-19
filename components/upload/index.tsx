@@ -1,6 +1,6 @@
-import type { App } from 'vue'
 import Upload, { LIST_IGNORE } from './Upload'
 import Dragger from './Dragger'
+import type { App } from 'vue'
 
 export type { UploadProps, UploadListProps, UploadChangeParam, UploadFile } from './interface'
 

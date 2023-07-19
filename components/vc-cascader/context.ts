@@ -1,5 +1,5 @@
-import type { CSSProperties, InjectionKey, Ref } from 'vue'
 import { inject, provide } from 'vue'
+import type { CSSProperties, InjectionKey, Ref } from 'vue'
 import type { VueNode } from '../_util/type'
 import type {
   BaseCascaderProps,

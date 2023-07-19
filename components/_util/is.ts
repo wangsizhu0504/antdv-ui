@@ -13,7 +13,7 @@ export function isValidValue(val: any) {
 }
 
 export const isNumeric = (value: any): boolean => {
-  return !isNaN(parseFloat(value)) && isFinite(value)
+  return !Number.isNaN(Number.parseFloat(value)) && Number.isFinite(value)
 }
 export const isObject = (val: any) => toString.call(val) === '[object Object]'
 export function isArray(val: any): val is Array<any> {

@@ -1,9 +1,9 @@
+import { objectType } from '../_util/type'
 import type { CSSProperties, PropType } from 'vue'
 import type { AlignType, BuildInPlacements } from '../vc-trigger/interface'
 import type { AdjustOverflow } from '../_util/placements'
 import type { PresetColorType } from '../_util/colors'
 import type { LiteralUnion } from '../_util/type'
-import { objectType } from '../_util/type'
 
 export type TriggerType = 'hover' | 'focus' | 'click' | 'contextmenu'
 export type TooltipPlacement =

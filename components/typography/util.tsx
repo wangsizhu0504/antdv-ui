@@ -1,5 +1,5 @@
-import type { CSSProperties, VNodeTypes } from 'vue'
 import { createApp } from 'vue'
+import type { CSSProperties, VNodeTypes } from 'vue'
 
 interface MeasureResult {
   finished: boolean

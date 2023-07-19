@@ -1,6 +1,6 @@
-import type { CSSInterpolation, CSSObject } from '../../cssinjs'
 import { resetComponent } from '../../style'
 import { mergeToken } from '../../theme'
+import type { CSSInterpolation, CSSObject } from '../../cssinjs'
 import type { SelectToken } from '.'
 
 function genSizeStyle(token: SelectToken, suffix?: string): CSSObject {

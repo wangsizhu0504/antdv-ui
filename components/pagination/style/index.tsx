@@ -1,13 +1,13 @@
-import type { CSSObject } from '../../cssinjs'
 import {
   type InputToken,
   genBasicInputStyle,
   genInputSmallStyle,
   initInputToken,
 } from '../../input/style'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { genFocusOutline, genFocusStyle, resetComponent } from '../../style'
+import type { FullToken, GenerateStyle } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
 
 interface PaginationToken extends InputToken<FullToken<'Pagination'>> {
   paginationItemSize: number

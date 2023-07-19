@@ -1,8 +1,7 @@
-import type { App } from 'vue'
-
 import * as components from './components'
 import { version } from './version'
 import cssinjs from './cssinjs'
+import type { App } from 'vue'
 
 export * from './components'
 export * from './cssinjs'

@@ -1,11 +1,11 @@
-import type { CSSObject } from '../../cssinjs'
 import { resetComponent } from '../../style'
-import type { PickerPanelToken } from '../../date-picker/style'
 import { genPanelStyle, initPickerPanelToken } from '../../date-picker/style'
-import type { InputToken } from '../../input/style'
 import { initInputToken } from '../../input/style'
-import type { FullToken } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
+import type { PickerPanelToken } from '../../date-picker/style'
+import type { InputToken } from '../../input/style'
+import type { FullToken } from '../../theme'
 
 export interface ComponentToken {
   yearControlWidth: number

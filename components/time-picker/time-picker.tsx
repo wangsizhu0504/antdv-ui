@@ -1,22 +1,22 @@
-import type { ExtractPropTypes, SlotsType } from 'vue'
 import { defineComponent, ref } from 'vue'
-import type { RangePickerTimeProps } from '../date-picker/generatePicker'
 import generatePicker from '../date-picker/generatePicker'
 import {
   commonProps,
   datePickerProps,
   rangePickerProps,
 } from '../date-picker/generatePicker/props'
+import devWarning from '../vc-util/devWarning'
+import { useInjectFormItemContext } from '../form/FormItemContext'
+import omit from '../_util/omit'
+import { booleanType, stringType } from '../_util/type'
+import type { ExtractPropTypes, SlotsType } from 'vue'
+import type { RangePickerTimeProps } from '../date-picker/generatePicker'
 import type { CommonProps, DatePickerProps } from '../date-picker/generatePicker/props'
 import type { GenerateConfig } from '../vc-picker/generate'
 import type { PanelMode, RangeValue } from '../vc-picker/interface'
 import type { RangePickerSharedProps } from '../vc-picker/RangePicker'
-import devWarning from '../vc-util/devWarning'
-import { useInjectFormItemContext } from '../form/FormItemContext'
-import omit from '../_util/omit'
 
 import type { InputStatus } from '../_util/statusUtils'
-import { booleanType, stringType } from '../_util/type'
 
 export const timePickerProps = () => ({
   format: String,

@@ -1,9 +1,9 @@
-import type { CSSProperties } from 'vue'
 import { Transition, defineComponent, onBeforeUnmount, onMounted, render, shallowRef } from 'vue'
 import { useState } from '../hooks'
 import { objectType } from '../_util/type'
 import wrapperRaf from '../_util/raf'
 import { getTargetWaveColor } from './util'
+import type { CSSProperties } from 'vue'
 
 function validateNum(value: number) {
   return Number.isNaN(value) ? 0 : value
@@ -41,8 +41,8 @@ const WaveEffect = defineComponent({
 
       // Rect
       const { borderLeftWidth, borderTopWidth } = nodeStyle
-      setLeft(isStatic ? target.offsetLeft : validateNum(-parseFloat(borderLeftWidth)))
-      setTop(isStatic ? target.offsetTop : validateNum(-parseFloat(borderTopWidth)))
+      setLeft(isStatic ? target.offsetLeft : validateNum(-Number.parseFloat(borderLeftWidth)))
+      setTop(isStatic ? target.offsetTop : validateNum(-Number.parseFloat(borderTopWidth)))
       setWidth(target.offsetWidth)
       setHeight(target.offsetHeight)
 
@@ -60,7 +60,7 @@ const WaveEffect = defineComponent({
           borderTopRightRadius,
           borderBottomRightRadius,
           borderBottomLeftRadius,
-        ].map(radius => validateNum(parseFloat(radius))),
+        ].map(radius => validateNum(Number.parseFloat(radius))),
       )
     }
     // Add resize observer to follow size

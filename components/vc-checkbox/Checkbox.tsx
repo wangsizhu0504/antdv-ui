@@ -1,9 +1,9 @@
 // based on rc-checkbox 2.3.2
-import type { HTMLAttributes } from 'vue'
 import { defineComponent, ref, watch } from 'vue'
 import classNames from '../_util/classNames'
 import PropTypes from '../_util/vue-types'
 import { initDefaultProps } from '../_util/props-util'
+import type { HTMLAttributes } from 'vue'
 
 export const checkboxProps = {
   prefixCls: String,

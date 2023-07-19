@@ -1,5 +1,5 @@
-import type { PresetColorKey } from '../theme/interface'
 import { PresetColors } from '../theme/interface'
+import type { PresetColorKey } from '../theme/interface'
 
 type InverseColor = `${PresetColorKey}-inverse`
 const inverseColors = PresetColors.map<InverseColor>(color => `${color}-inverse`)

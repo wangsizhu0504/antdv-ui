@@ -8,7 +8,7 @@ export function isEventFromHandle(e: { target: HTMLElement }, handles) {
   }
 }
 
-export function isValueOutOfRange(value: number, { min, max }: { min?: number; max?: number }) {
+export function isValueOutOfRange(value: number, { min, max }: { min?: number, max?: number }) {
   return value < min || value > max
 }
 
@@ -17,7 +17,7 @@ export function isNotTouchEvent(e: TouchEvent) {
 }
 
 export function getClosestPoint(val: number, { marks, step, min, max }) {
-  const points = Object.keys(marks).map(parseFloat)
+  const points = Object.keys(marks).map(Number.parseFloat)
   if (step !== null) {
     const baseNum = 10 ** getPrecision(step)
     const maxSteps = Math.floor((max * baseNum - min * baseNum) / (step * baseNum))
@@ -61,7 +61,7 @@ export function getHandleCenterPosition(vertical: boolean, handle: HTMLElement) 
     : window.pageXOffset + coords.left + coords.width * 0.5
 }
 
-export function ensureValueInRange(val: number, { max, min }: { max?: number; min?: number }) {
+export function ensureValueInRange(val: number, { max, min }: { max?: number, min?: number }) {
   if (val <= min)
     return min
 
@@ -73,8 +73,8 @@ export function ensureValueInRange(val: number, { max, min }: { max?: number; mi
 
 export function ensureValuePrecision(val: number, props: any) {
   const { step } = props
-  const closestPoint = isFinite(getClosestPoint(val, props)) ? getClosestPoint(val, props) : 0
-  return step === null ? closestPoint : parseFloat(closestPoint.toFixed(getPrecision(step)))
+  const closestPoint = Number.isFinite(getClosestPoint(val, props)) ? getClosestPoint(val, props) : 0
+  return step === null ? closestPoint : Number.parseFloat(closestPoint.toFixed(getPrecision(step)))
 }
 
 export function pauseEvent(e: Event) {

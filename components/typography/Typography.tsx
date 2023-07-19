@@ -1,9 +1,9 @@
-import type { HTMLAttributes, PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
-import type { Direction } from '../config-provider'
 import useStyle from './style'
+import type { Direction } from '../config-provider'
+import type { HTMLAttributes, PropType } from 'vue'
 
 // CSSINJS
 

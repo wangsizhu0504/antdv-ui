@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'vue'
 import {
   computed,
   defineComponent,
@@ -21,9 +20,26 @@ import { useState } from '../hooks'
 import { toPx } from '../_util/util'
 import { getTargetScrollBarSize } from '../_util/getScrollBarSize'
 import classNames from '../_util/classNames'
-import type { EventHandler } from '../_util/EventInterface'
 import pickAttrs from '../_util/pickAttrs'
 import Header from './Header/Header'
+import Body from './Body'
+import useColumns from './hooks/useColumns'
+import { useLayoutState, useTimeoutLock } from './hooks/useFrame'
+import { getColumnsKey, getPathValue, mergeObject, validateValue } from './utils/valueUtil'
+import useStickyOffsets from './hooks/useStickyOffsets'
+import ColGroup from './ColGroup'
+import Panel from './Panel'
+import Footer from './Footer'
+import { findAllChildrenKeys, renderExpandIcon } from './utils/expandUtil'
+import { getCellFixedInfo } from './utils/fixUtil'
+import StickyScrollBar from './stickyScrollBar'
+import useSticky from './hooks/useSticky'
+import FixedHolder from './FixedHolder'
+import { useProvideTable } from './context/TableContext'
+import { useProvideBody } from './context/BodyContext'
+import { useProvideResize } from './context/ResizeContext'
+import { useProvideSticky } from './context/StickyContext'
+import { useProvideExpandedRow } from './context/ExpandedRowContext'
 import type {
   ColumnType,
   ColumnsType,
@@ -43,24 +59,8 @@ import type {
   TransformCellText,
   TriggerEventHandler,
 } from './interface'
-import Body from './Body'
-import useColumns from './hooks/useColumns'
-import { useLayoutState, useTimeoutLock } from './hooks/useFrame'
-import { getColumnsKey, getPathValue, mergeObject, validateValue } from './utils/valueUtil'
-import useStickyOffsets from './hooks/useStickyOffsets'
-import ColGroup from './ColGroup'
-import Panel from './Panel'
-import Footer from './Footer'
-import { findAllChildrenKeys, renderExpandIcon } from './utils/expandUtil'
-import { getCellFixedInfo } from './utils/fixUtil'
-import StickyScrollBar from './stickyScrollBar'
-import useSticky from './hooks/useSticky'
-import FixedHolder from './FixedHolder'
-import { useProvideTable } from './context/TableContext'
-import { useProvideBody } from './context/BodyContext'
-import { useProvideResize } from './context/ResizeContext'
-import { useProvideSticky } from './context/StickyContext'
-import { useProvideExpandedRow } from './context/ExpandedRowContext'
+import type { EventHandler } from '../_util/EventInterface'
+import type { CSSProperties } from 'vue'
 
 // Used for conditions cache
 const EMPTY_DATA = []
@@ -78,7 +78,7 @@ export interface TableProps<RecordType = DefaultRecordType> {
   tableLayout?: TableLayout
 
   // Fixed Columns
-  scroll?: { x?: number | true | string; y?: number | string }
+  scroll?: { x?: number | true | string, y?: number | string }
 
   rowClassName?: string | RowClassName<RecordType>
 
@@ -326,7 +326,7 @@ export default defineComponent<TableProps<DefaultRecordType>>({
     const fullTableRef = ref<HTMLDivElement>()
     const scrollHeaderRef = ref<HTMLDivElement>()
     const scrollBodyRef = ref<HTMLDivElement>()
-    const scrollBodySizeInfo = ref<{ scrollWidth: number; clientWidth: number }>({
+    const scrollBodySizeInfo = ref<{ scrollWidth: number, clientWidth: number }>({
       scrollWidth: 0,
       clientWidth: 0,
     })

@@ -2,10 +2,10 @@ import { createVNode, render as vueRender } from 'vue'
 import { omit } from 'lodash-es'
 import ConfigProvider, { globalConfigForApi } from '../config-provider'
 import ConfirmDialog from './ConfirmDialog'
-import type { ModalFuncProps } from './Modal'
 
 import { getConfirmLocale } from './locale'
 import destroyFns from './destroyFns'
+import type { ModalFuncProps } from './Modal'
 
 type ConfigUpdate = ModalFuncProps | ((prevConfig: ModalFuncProps) => ModalFuncProps)
 export type ModalStaticFunctions<T = ModalFunc> = Record<NonNullable<ModalFuncProps['type']>, T>

@@ -1,7 +1,5 @@
-import type { CSSObject } from '../../cssinjs'
 import { resetComponent } from '../../style'
 import { genComponentStyleHook, mergeToken } from '../../theme'
-import type { FullToken, GenerateStyle } from '../../theme'
 import genStepsCustomIconStyle from './custom-icon'
 import genStepsLabelPlacementStyle from './label-placement'
 import genStepsNavStyle from './nav'
@@ -11,6 +9,8 @@ import genStepsRTLStyle from './rtl'
 import genStepsSmallStyle from './small'
 import genStepsVerticalStyle from './vertical'
 import genStepsInlineStyle from './inline'
+import type { FullToken, GenerateStyle } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
 
 export interface ComponentToken {
   descriptionWidth: number

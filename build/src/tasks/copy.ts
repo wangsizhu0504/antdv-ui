@@ -2,9 +2,7 @@ import path from 'node:path'
 import { copyFile, readdir } from 'node:fs/promises'
 import { copy } from 'fs-extra'
 import { parallel } from 'gulp'
-import type { TaskFunction } from 'gulp'
 import { buildConfig, withTaskName } from '..'
-import type { Module } from '..'
 import {
   antdOutput,
   antdPackage,
@@ -12,6 +10,8 @@ import {
   buildOutput,
   projRoot,
 } from '../path'
+import type { TaskFunction } from 'gulp'
+import type { Module } from '..'
 
 async function copyJSONFiles(sourceDir: string, destDir: string[]) {
   const files = await readdir(sourceDir)

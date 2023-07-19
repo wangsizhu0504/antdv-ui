@@ -1,9 +1,9 @@
-import type { ComputedRef, HTMLAttributes, Ref } from 'vue'
 import { computed, onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
 import { addGlobalMousedownEvent, getTargetFromEvent } from '../utils/uiUtil'
-import type { FocusEventHandler } from '../../_util/EventInterface'
 import KeyCode from '../../_util/KeyCode'
 import raf from '../../_util/raf'
+import type { FocusEventHandler } from '../../_util/EventInterface'
+import type { ComputedRef, HTMLAttributes, Ref } from 'vue'
 
 export default function usePickerInput({
   open,
@@ -29,7 +29,7 @@ export default function usePickerInput({
   onCancel: () => void
   onFocus?: FocusEventHandler
   onBlur?: FocusEventHandler
-}): [ComputedRef<HTMLAttributes>, { focused: Ref<boolean>; typing: Ref<boolean> }] {
+}): [ComputedRef<HTMLAttributes>, { focused: Ref<boolean>, typing: Ref<boolean> }] {
   const typing = shallowRef(false)
   const focused = shallowRef(false)
 

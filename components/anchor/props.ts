@@ -1,7 +1,7 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { VueNode } from '../_util/type'
 import { anyType, arrayType, objectType } from '../_util/type'
 import PropTypes from '../_util/vue-types'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+import type { VueNode } from '../_util/type'
 import type { AnchorContainer, AnchorDirection, AnchorLinkItemProps } from './type'
 
 export const anchorProps = {
@@ -18,7 +18,7 @@ export const anchorProps = {
   items: arrayType<AnchorLinkItemProps[]>(),
   direction: PropTypes.oneOf(['vertical', 'horizontal'] as AnchorDirection[]).def('vertical'),
   onChange: Function as PropType<(currentActiveLink: string) => void>,
-  onClick: Function as PropType<(e: MouseEvent, link: { title: any; href: string }) => void>,
+  onClick: Function as PropType<(e: MouseEvent, link: { title: any, href: string }) => void>,
 }
 
 export const anchorLinkProps = {

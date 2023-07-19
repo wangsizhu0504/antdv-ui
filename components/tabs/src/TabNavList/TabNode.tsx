@@ -1,9 +1,9 @@
-import type { CSSProperties, PropType } from 'vue'
 import { computed, defineComponent, ref } from 'vue'
-import type { EditableConfig, Tab } from '../interface'
-import type { FocusEventHandler } from '../../../_util/EventInterface'
 import KeyCode from '../../../_util/KeyCode'
 import classNames from '../../../_util/classNames'
+import type { CSSProperties, PropType } from 'vue'
+import type { EditableConfig, Tab } from '../interface'
+import type { FocusEventHandler } from '../../../_util/EventInterface'
 
 export interface TabNodeProps {
   id: string

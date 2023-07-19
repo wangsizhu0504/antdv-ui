@@ -1,8 +1,8 @@
-import type { GenerateConfig } from '../generate'
-import type { CustomFormat, PanelMode, PickerMode } from '../interface'
 import isVisible from '../../vc-util/Dom/isVisible'
 import KeyCode from '../../_util/KeyCode'
 import raf from '../../_util/raf'
+import type { CustomFormat, PanelMode, PickerMode } from '../interface'
+import type { GenerateConfig } from '../generate'
 
 const scrollIds = new Map<HTMLElement, number>()
 

@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'vue'
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
@@ -7,14 +6,15 @@ import {
   InfoCircleOutlined,
 } from '@ant-design/icons-vue'
 import Notification from '../vc-notification'
-import type { VueNode } from '../_util/type'
 import { renderHelper } from '../_util/util'
 import { globalConfig } from '../config-provider/config'
-import type { NotificationInstance as VCNotificationInstance } from '../vc-notification/type'
 import classNames from '../_util/classNames'
 import useStyle from './style'
 import useNotification from './useNotification'
 import { getPlacementStyle } from './util'
+import type { NotificationInstance as VCNotificationInstance } from '../vc-notification/type'
+import type { VueNode } from '../_util/type'
+import type { CSSProperties } from 'vue'
 
 export type NotificationPlacement =
   | 'top'

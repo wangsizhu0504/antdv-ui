@@ -1,5 +1,5 @@
-import type { BasicDataNode, DataEntity, DataNode, GetCheckDisabled, Key } from '../interface'
 import { note } from '../../vc-util/warning'
+import type { BasicDataNode, DataEntity, DataNode, GetCheckDisabled, Key } from '../interface'
 
 interface ConductReturnType {
   checkedKeys: Key[]
@@ -177,7 +177,7 @@ function cleanConductCheck<TreeDataType extends BasicDataNode = DataNode>(
  */
 export function conductCheck<TreeDataType extends BasicDataNode = DataNode>(
   keyList: Key[],
-  checked: true | { checked: false; halfCheckedKeys: Key[] },
+  checked: true | { checked: false, halfCheckedKeys: Key[] },
   keyEntities: Record<Key, DataEntity<TreeDataType>>,
   maxLevel: number,
   levelEntities: Map<number, Set<DataEntity<TreeDataType>>>,

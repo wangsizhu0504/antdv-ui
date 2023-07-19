@@ -1,4 +1,3 @@
-import type { ExtractPropTypes, HTMLAttributes, SlotsType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 import Button from '../button'
@@ -8,6 +7,7 @@ import { useConfigInject } from '../hooks'
 import Dropdown from './dropdown'
 import useStyle from './style'
 import { dropdownButtonProps } from './props'
+import type { ExtractPropTypes, HTMLAttributes, SlotsType } from 'vue'
 
 const ButtonGroup = Button.Group
 

@@ -1,10 +1,10 @@
-import type { CSSProperties, PropType } from 'vue'
 import { defineComponent, shallowRef, watchEffect } from 'vue'
 import PropTypes from '../../_util/vue-types'
 import Trigger from '../../vc-trigger'
 import { getPropsSlot } from '../../_util/props-util'
 import Content from './Content'
 import { placements } from './placements'
+import type { CSSProperties, PropType } from 'vue'
 
 function noop() {}
 export default defineComponent({

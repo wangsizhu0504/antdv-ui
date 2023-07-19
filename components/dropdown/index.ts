@@ -1,7 +1,7 @@
-import type { App, Plugin } from 'vue'
 import Dropdown from './dropdown'
 import DropdownButton from './dropdown-button'
 import { dropdownButtonProps, dropdownProps } from './props'
+import type { App, Plugin } from 'vue'
 
 export type { DropdownProps } from './dropdown'
 export type { DropdownButtonProps } from './dropdown-button'

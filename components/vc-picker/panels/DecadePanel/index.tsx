@@ -1,9 +1,9 @@
-import type { PanelSharedProps } from '../../interface'
 import { createKeydownHandler } from '../../utils/uiUtil'
 import useMergeProps from '../../hooks/useMergeProps'
 import { DECADE_COL_COUNT, DECADE_DISTANCE_COUNT, DECADE_UNIT_DIFF } from '../constants'
 import DecadeHeader from './DecadeHeader'
 import DecadeBody from './DecadeBody'
+import type { PanelSharedProps } from '../../interface'
 
 export type DecadePanelProps<DateType> = PanelSharedProps<DateType>
 

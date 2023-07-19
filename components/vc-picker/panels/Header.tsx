@@ -1,7 +1,7 @@
-import type { CSSProperties } from 'vue'
-import type { VueNode } from '../../_util/type'
 import useMergeProps from '../hooks/useMergeProps'
 import { useInjectPanel } from '../PanelContext'
+import type { CSSProperties } from 'vue'
+import type { VueNode } from '../../_util/type'
 
 const HIDDEN_STYLE: CSSProperties = {
   visibility: 'hidden',

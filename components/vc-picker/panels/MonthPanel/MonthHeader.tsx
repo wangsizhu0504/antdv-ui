@@ -1,9 +1,9 @@
-import type { PickerLocale } from '../../../locale'
 import Header from '../Header'
-import type { GenerateConfig } from '../../generate'
 import { useInjectPanel } from '../../PanelContext'
 import { formatValue } from '../../utils/dateUtil'
 import useMergeProps from '../../hooks/useMergeProps'
+import type { GenerateConfig } from '../../generate'
+import type { PickerLocale } from '../../../locale'
 
 export interface MonthHeaderProps<DateType> {
   prefixCls: string

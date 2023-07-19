@@ -1,4 +1,3 @@
-import type { ExtractPropTypes, SlotsType } from 'vue'
 import { defineComponent } from 'vue'
 import { initDefaultProps } from '../_util/props-util'
 import Transition from '../_util/components/transition'
@@ -8,6 +7,7 @@ import { useConfigInject } from '../hooks'
 
 import { collapsePanelProps } from './commonProps'
 import PanelContent from './PanelContent'
+import type { ExtractPropTypes, SlotsType } from 'vue'
 
 export { collapsePanelProps }
 export type CollapsePanelProps = Partial<ExtractPropTypes<ReturnType<typeof collapsePanelProps>>>

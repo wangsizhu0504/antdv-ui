@@ -1,4 +1,3 @@
-import type { App, ExtractPropTypes, Plugin, PropType, SlotsType, VNodeTypes } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, WarningFilled } from '@ant-design/icons-vue'
 import { useConfigInject } from '../hooks'
@@ -9,6 +8,7 @@ import noFound from './noFound'
 import serverError from './serverError'
 
 import useStyle from './style'
+import type { App, ExtractPropTypes, Plugin, PropType, SlotsType, VNodeTypes } from 'vue'
 
 export const IconMap: {
   success: typeof CheckCircleFilled

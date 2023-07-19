@@ -1,4 +1,3 @@
-import type { ComputedRef, ConcreteComponent, InjectionKey } from 'vue'
 import {
   computed,
   defineComponent,
@@ -11,6 +10,7 @@ import {
 } from 'vue'
 import devWarning from '../vc-util/devWarning'
 import { createContext } from '../hooks'
+import type { ComputedRef, ConcreteComponent, InjectionKey } from 'vue'
 import type { ValidateStatus } from './FormItem'
 
 export interface FormItemContext {
@@ -21,8 +21,8 @@ export interface FormItemContext {
 }
 
 interface InternalFormItemContext {
-  addFormItemField: (key: Symbol, type: ConcreteComponent) => void
-  removeFormItemField: (key: Symbol) => void
+  addFormItemField: (key: symbol, type: ConcreteComponent) => void
+  removeFormItemField: (key: symbol) => void
 }
 
 const ContextKey: InjectionKey<FormItemContext> = Symbol('ContextProps')
@@ -33,12 +33,12 @@ export const useProvideFormItemContext = (
   props: FormItemContext,
   useValidation: ComputedRef<boolean> = computed(() => true),
 ) => {
-  const formItemFields = ref(new Map<Symbol, ConcreteComponent>())
-  const addFormItemField = (key: Symbol, type: ConcreteComponent) => {
+  const formItemFields = ref(new Map<symbol, ConcreteComponent>())
+  const addFormItemField = (key: symbol, type: ConcreteComponent) => {
     formItemFields.value.set(key, type)
     formItemFields.value = new Map(formItemFields.value)
   }
-  const removeFormItemField = (key: Symbol) => {
+  const removeFormItemField = (key: symbol) => {
     formItemFields.value.delete(key)
     formItemFields.value = new Map(formItemFields.value)
   }

@@ -1,10 +1,10 @@
 import { Keyframes } from '../../cssinjs'
-import type { CSSObject } from '../../cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { initFadeMotion } from '../../style/motion/fade'
 import { resetComponent } from '../../style'
 import { initMotion } from '../../style/motion/motion'
+import type { FullToken, GenerateStyle } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {

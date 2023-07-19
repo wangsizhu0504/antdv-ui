@@ -1,9 +1,9 @@
-import type { CSSProperties, ExtractPropTypes, StyleValue } from 'vue'
 import { computed, defineComponent, onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
 import { useMutationObserver } from '@vueuse/core'
 import { arrayType, objectType, someType, withInstall } from '../_util/type'
 import { initDefaultProps } from '../_util/props-util'
 import { getPixelRatio, getStyleStr, reRendering, rotateWatermark } from './utils'
+import type { CSSProperties, ExtractPropTypes, StyleValue } from 'vue'
 
 /**
  * Base size of the canvas, 1 for parallel layout and 2 for alternate layout

@@ -1,4 +1,3 @@
-import type { App, CSSProperties, ExtractPropTypes, PropType, SlotsType, VNode } from 'vue'
 import { defineComponent, ref } from 'vue'
 import Select, { selectProps } from '../select'
 
@@ -7,9 +6,10 @@ import { useConfigInject } from '../hooks'
 import omit from '../_util/omit'
 import warning from '../_util/warning'
 import { flattenChildren, isValidElement } from '../_util/props-util'
-import type { InputStatus } from '../_util/statusUtils'
 import Option from './Option'
 import OptGroup from './OptGroup'
+import type { InputStatus } from '../_util/statusUtils'
+import type { App, CSSProperties, ExtractPropTypes, PropType, SlotsType, VNode } from 'vue'
 
 function isSelectOptionOrSelectOptGroup(child: any): boolean {
   return child?.type?.isSelectOption || child?.type?.isSelectOptGroup
@@ -17,7 +17,7 @@ function isSelectOptionOrSelectOptGroup(child: any): boolean {
 
 export const autoCompleteProps = () => ({
   ...omit(selectProps(), ['loading', 'mode', 'optionLabelProp', 'labelInValue']),
-  dataSource: Array as PropType<{ value: any; text: any }[] | string[]>,
+  dataSource: Array as PropType<{ value: any, text: any }[] | string[]>,
   dropdownMenuStyle: {
     type: Object as PropType<CSSProperties>,
     default: undefined as CSSProperties,

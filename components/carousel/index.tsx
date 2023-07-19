@@ -1,4 +1,3 @@
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import { computed, defineComponent, ref, watchEffect } from 'vue'
 import PropTypes from '../_util/vue-types'
 import warning from '../_util/warning'
@@ -7,6 +6,7 @@ import SlickCarousel from '../vc-slick'
 import { booleanType, functionType, stringType, withInstall } from '../_util/type'
 import { useConfigInject } from '../hooks'
 import useStyle from './style'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 
 // CSSINJS
 

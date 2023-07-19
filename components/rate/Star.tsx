@@ -1,6 +1,6 @@
-import type { ExtractPropTypes } from 'vue'
 import { computed, defineComponent } from 'vue'
 import PropTypes from '../_util/vue-types'
+import type { ExtractPropTypes } from 'vue'
 
 export const starProps = {
   value: Number,

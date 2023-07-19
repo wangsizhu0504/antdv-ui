@@ -1,6 +1,6 @@
-import type { Ref, UnwrapRef } from 'vue'
 import { onBeforeUnmount, ref, shallowRef } from 'vue'
 import raf from '../../_util/raf'
+import type { Ref, UnwrapRef } from 'vue'
 
 export type Updater<State> = (prev: State) => State
 

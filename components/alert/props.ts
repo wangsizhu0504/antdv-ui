@@ -1,7 +1,7 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import { tuple } from '../_util/type'
-import type { NodeMouseEventHandler } from '../vc-tree/contextTypes'
 import PropTypes from '../_util/vue-types'
+import type { ExtractPropTypes, PropType } from 'vue'
+import type { NodeMouseEventHandler } from '../vc-tree/contextTypes'
 
 const AlertTypes = tuple('success', 'info', 'warning', 'error')
 

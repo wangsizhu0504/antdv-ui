@@ -3,25 +3,12 @@ import { useElementSize } from '@vueuse/core'
 import { warning } from '../vc-util/warning'
 import classNames from '../_util/classNames'
 import { useMergedState, useState } from '../hooks'
-import type { ChangeEvent, FocusEventHandler, MouseEventHandler } from '../_util/EventInterface'
-import type { VueNode } from '../_util/type'
-import type {
-  DisabledTimes,
-  EventValue,
-  PanelMode,
-  PickerMode,
-  PresetDate,
-  RangeValue,
-} from './interface'
-import type { PickerBaseProps, PickerDateProps, PickerTimeProps } from './Picker'
-import type { SharedTimeProps } from './panels/TimePanel'
 import PickerTrigger from './PickerTrigger'
 import PickerPanel from './PickerPanel'
 import usePickerInput from './hooks/usePickerInput'
 import PresetPanel from './PresetPanel'
 import getDataOrAriaProps, { getValue, toArray, updateValues } from './utils/miscUtil'
 import { elementsContains, getDefaultFormat, getInputSize } from './utils/uiUtil'
-import type { ContextOperationRefProps } from './PanelContext'
 import { useProvidePanel } from './PanelContext'
 import {
   formatValue,
@@ -35,15 +22,28 @@ import {
 import useValueTexts from './hooks/useValueTexts'
 import useTextValueMapping from './hooks/useTextValueMapping'
 import usePresets from './hooks/usePresets'
-import type { GenerateConfig } from './generate'
 import { RangeContextProvider } from './RangeContext'
 import useRangeDisabled from './hooks/useRangeDisabled'
 import getExtraFooter from './utils/getExtraFooter'
 import getRanges from './utils/getRanges'
 import useRangeViewDates from './hooks/useRangeViewDates'
-import type { DateRender } from './panels/DatePanel/DateBody'
 import useHoverValue from './hooks/useHoverValue'
 import { legacyPropsWarning } from './utils/warnUtil'
+import type { DateRender } from './panels/DatePanel/DateBody'
+import type { GenerateConfig } from './generate'
+import type { ContextOperationRefProps } from './PanelContext'
+import type { SharedTimeProps } from './panels/TimePanel'
+import type { PickerBaseProps, PickerDateProps, PickerTimeProps } from './Picker'
+import type {
+  DisabledTimes,
+  EventValue,
+  PanelMode,
+  PickerMode,
+  PresetDate,
+  RangeValue,
+} from './interface'
+import type { VueNode } from '../_util/type'
+import type { ChangeEvent, FocusEventHandler, MouseEventHandler } from '../_util/EventInterface'
 import type { PickerPanelProps } from '.'
 
 function reorderValues<DateType>(
@@ -584,7 +584,7 @@ function RangerPicker<DateType>() {
         }
 
         /* istanbul ignore next */
-        /* eslint-disable no-lone-blocks */
+        // eslint-disable-next-line no-lone-blocks
         {
           warning(
             false,

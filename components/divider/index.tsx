@@ -1,9 +1,9 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { flattenChildren } from '../_util/props-util'
 import { withInstall } from '../_util/type'
 import { useConfigInject } from '../hooks'
 import useStyle from './style'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 export const dividerProps = () => ({
   prefixCls: String,

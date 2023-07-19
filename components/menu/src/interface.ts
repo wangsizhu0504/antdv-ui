@@ -102,7 +102,7 @@ export interface MenuTitleInfo {
 }
 
 // ========================== Hover ==========================
-export type MenuHoverEventHandler = (info: { key: Key; domEvent: MouseEvent }) => void
+export type MenuHoverEventHandler = (info: { key: Key, domEvent: MouseEvent }) => void
 
 // ======================== Selection ========================
 export interface SelectInfo extends MenuInfo {

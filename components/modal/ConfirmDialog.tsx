@@ -5,8 +5,8 @@ import classNames from '../_util/classNames'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
 import { getTransitionName } from '../_util/components/transition'
 import warning from '../_util/warning'
-import type { ModalLocale } from '../locale'
 import Dialog from './Modal'
+import type { ModalLocale } from '../locale'
 import type { ModalFuncProps } from './Modal'
 
 interface ConfirmDialogProps extends ModalFuncProps {

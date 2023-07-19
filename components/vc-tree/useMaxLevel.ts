@@ -1,5 +1,5 @@
-import type { ShallowRef } from 'vue'
 import { ref, shallowRef, watchEffect } from 'vue'
+import type { ShallowRef } from 'vue'
 import type { BasicDataNode, DataEntity, DataNode, Key } from './interface'
 
 export default function useMaxLevel<TreeDataType extends BasicDataNode = DataNode>(

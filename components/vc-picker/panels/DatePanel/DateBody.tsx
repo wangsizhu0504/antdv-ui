@@ -1,7 +1,5 @@
-import type { PickerLocale } from '../../../locale'
 import PanelBody from '../PanelBody'
 import useMergeProps from '../../hooks/useMergeProps'
-import type { GenerateConfig } from '../../generate'
 import {
   WEEK_DAY_COUNT,
   formatValue,
@@ -11,9 +9,11 @@ import {
 } from '../../utils/dateUtil'
 import useCellClassName from '../../hooks/useCellClassName'
 import { useInjectRange } from '../../RangeContext'
+import type { GenerateConfig } from '../../generate'
+import type { PickerLocale } from '../../../locale'
 import type { VueNode } from '../../../_util/type'
 
-export type DateRender<DateType> = (props: { current: DateType; today: DateType }) => VueNode
+export type DateRender<DateType> = (props: { current: DateType, today: DateType }) => VueNode
 
 export interface DateBodyPassProps<DateType> {
   dateRender?: DateRender<DateType>

@@ -1,8 +1,8 @@
-import type { CSSProperties, PropType } from 'vue'
 import { computed, defineComponent, onBeforeUnmount, onMounted, shallowRef } from 'vue'
 import classNames from '../../_util/classNames'
 import PropTypes from '../../_util/vue-types'
 import addEventListener from '../../vc-util/Dom/addEventListener'
+import type { CSSProperties, PropType } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

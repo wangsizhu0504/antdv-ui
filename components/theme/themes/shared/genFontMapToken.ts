@@ -1,5 +1,5 @@
-import type { FontMapToken } from '../../interface'
 import genFontSizes from './genFontSizes'
+import type { FontMapToken } from '../../interface'
 
 const genFontMapToken = (fontSize: number): FontMapToken => {
   const fontSizePairs = genFontSizes(fontSize)

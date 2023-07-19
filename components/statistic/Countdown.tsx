@@ -1,11 +1,11 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import { defineComponent, onBeforeUnmount, onMounted, onUpdated, ref } from 'vue'
 import omit from '../_util/omit'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import { someType } from '../_util/type'
 import Statistic, { statisticProps } from './Statistic'
-import type { FormatConfig, countdownValueType, valueType } from './utils'
 import { formatCountdown as formatCD } from './utils'
+import type { FormatConfig, countdownValueType, valueType } from './utils'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 const REFRESH_INTERVAL = 1000 / 30
 
@@ -68,7 +68,7 @@ export default defineComponent({
         stopTimer()
     }
 
-    const formatCountdown = ({ value, config }: { value: valueType; config: FormatConfig }) => {
+    const formatCountdown = ({ value, config }: { value: valueType, config: FormatConfig }) => {
       const { format } = props
       return formatCD(value, { ...config, format })
     }

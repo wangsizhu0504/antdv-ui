@@ -1,10 +1,10 @@
 import { Transition, TransitionGroup, computed, defineComponent, ref, watch } from 'vue'
-import type { VueNode } from '../_util/type'
 import { getTransitionGroupProps, getTransitionProps } from '../_util/components/transition'
 
 import collapseMotion from '../_util/components/collapseMotion'
 import useStyle from './style'
 import { useInjectFormItemPrefix } from './context'
+import type { VueNode } from '../_util/type'
 
 export interface ErrorListProps {
   errors?: VueNode[]

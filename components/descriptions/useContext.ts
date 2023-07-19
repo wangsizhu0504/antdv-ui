@@ -1,6 +1,6 @@
-import type { CSSProperties, InjectionKey, Ref } from 'vue'
 import { ref } from 'vue'
 import { createContextFn, useContext } from '../hooks'
+import type { CSSProperties, InjectionKey, Ref } from 'vue'
 
 export interface AppProviderContextProps {
   labelStyle: Ref<CSSProperties>

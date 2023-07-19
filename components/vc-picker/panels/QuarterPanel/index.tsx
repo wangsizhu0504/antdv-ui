@@ -1,8 +1,8 @@
-import type { PanelSharedProps } from '../../interface'
 import { createKeydownHandler } from '../../utils/uiUtil'
 import useMergeProps from '../../hooks/useMergeProps'
 import QuarterBody from './QuarterBody'
 import QuarterHeader from './QuarterHeader'
+import type { PanelSharedProps } from '../../interface'
 
 export type QuarterPanelProps<DateType> = {} & PanelSharedProps<DateType>
 

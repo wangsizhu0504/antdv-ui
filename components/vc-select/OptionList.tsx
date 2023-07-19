@@ -1,19 +1,19 @@
 import { computed, defineComponent, nextTick, reactive, toRaw, watch } from 'vue'
 import List from '../vc-virtual-list'
-import type { ScrollConfig } from '../vc-virtual-list/List'
 import KeyCode from '../_util/KeyCode'
 import classNames from '../_util/classNames'
 import pickAttrs from '../_util/pickAttrs'
 import { isValidElement } from '../_util/props-util'
 import createRef from '../_util/createRef'
 import { useMemo } from '../hooks'
-import type { EventHandler } from '../_util/EventInterface'
 import omit from '../_util/omit'
 import TransBtn from './TransBtn'
 import useSelectProps from './SelectContext'
-import type { RawValueType } from './Select'
 import useBaseProps from './hooks/useBaseProps'
 import { isPlatformMac } from './utils/platformUtil'
+import type { RawValueType } from './Select'
+import type { EventHandler } from '../_util/EventInterface'
+import type { ScrollConfig } from '../vc-virtual-list/List'
 
 export interface RefOptionListProps {
   onKeydown: (e?: KeyboardEvent) => void

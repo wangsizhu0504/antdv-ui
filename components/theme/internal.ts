@@ -1,11 +1,13 @@
-import type { ComputedRef, InjectionKey } from 'vue'
 import { computed, defineComponent, inject, provide, ref, watchEffect } from 'vue'
 
 import { toReactive } from '@vueuse/core'
 import { createTheme, useCacheToken } from '../cssinjs'
-import type { Theme } from '../cssinjs'
 import { version } from '../version'
 import { objectType } from '../_util/type'
+
+import defaultDerivative from './themes/default'
+import defaultSeedToken from './themes/seed'
+import formatToken from './util/alias'
 import type {
   AliasToken,
   GlobalToken,
@@ -13,10 +15,8 @@ import type {
   OverrideToken,
   SeedToken,
 } from './interface'
-
-import defaultDerivative from './themes/default'
-import defaultSeedToken from './themes/seed'
-import formatToken from './util/alias'
+import type { Theme } from '../cssinjs'
+import type { ComputedRef, InjectionKey } from 'vue'
 
 const defaultTheme = createTheme(defaultDerivative)
 

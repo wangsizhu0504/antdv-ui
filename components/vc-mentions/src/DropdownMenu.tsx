@@ -1,9 +1,9 @@
-import type { PropType } from 'vue'
 import { defineComponent, inject, onBeforeUnmount, shallowRef } from 'vue'
 import Menu, { Item as MenuItem } from '../../menu'
 import Spin from '../../spin'
-import type { OptionProps } from './Option'
 import MentionsContextKey from './MentionsContext'
+import type { OptionProps } from './Option'
+import type { PropType } from 'vue'
 
 function noop() {}
 export default defineComponent({

@@ -1,10 +1,10 @@
-import type { CSSInterpolation, CSSObject } from '../../cssinjs'
 import { genFocusStyle } from '../../style'
 import { genCompactItemStyle } from '../../style/compact-item'
 import { genCompactItemVerticalStyle } from '../../style/compact-item-vertical'
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import genGroupStyle from './group'
+import type { FullToken, GenerateStyle } from '../../theme'
+import type { CSSInterpolation, CSSObject } from '../../cssinjs'
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {}

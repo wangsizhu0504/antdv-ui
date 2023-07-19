@@ -2,14 +2,13 @@ import { computed, defineComponent, onBeforeUnmount, ref, watch } from 'vue'
 import { CloseOutlined, FileTextOutlined } from '@ant-design/icons-vue'
 import classNames from '../_util/classNames'
 import { Transition, getTransitionProps } from '../_util/components/transition'
-import { useConfigInject } from '../hooks'
+import { useConfigInject, useMergedState } from '../hooks'
 import { findDOMNode, initDefaultProps } from '../_util/props-util'
-import { useMergedState } from '../hooks'
 import FloatButton, { floatButtonPrefixCls } from './FloatButton'
 import { useProvideFloatButtonGroupContext } from './context'
 import { floatButtonGroupProps } from './interface'
-import type { FloatButtonGroupProps } from './interface'
 import useStyle from './style'
+import type { FloatButtonGroupProps } from './interface'
 
 // CSSINJS
 

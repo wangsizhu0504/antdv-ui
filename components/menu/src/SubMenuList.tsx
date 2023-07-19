@@ -1,6 +1,6 @@
-import type { FunctionalComponent } from 'vue'
 import classNames from '../../_util/classNames'
 import { useInjectMenu } from './hooks/useMenuContext'
+import type { FunctionalComponent } from 'vue'
 
 const InternalSubMenuList: FunctionalComponent<any> = (_props, { slots, attrs }) => {
   const { prefixCls, mode } = useInjectMenu()

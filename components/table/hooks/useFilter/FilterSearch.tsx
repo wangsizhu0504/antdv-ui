@@ -1,9 +1,9 @@
 import { defineComponent } from 'vue'
 import { SearchOutlined } from '@ant-design/icons-vue'
-import type { TableLocale } from '../../../locale'
-import type { FilterSearchType } from '../../interface'
 import Input from '../../../input'
 import { functionType, objectType, someType, stringType } from '../../../_util/type'
+import type { TableLocale } from '../../../locale'
+import type { FilterSearchType } from '../../interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

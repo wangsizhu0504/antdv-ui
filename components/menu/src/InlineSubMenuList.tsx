@@ -1,8 +1,8 @@
 import { computed, defineComponent, ref, watch } from 'vue'
 import Transition from '../../_util/components/transition'
 import { MenuContextProvider, useInjectMenu } from './hooks/useMenuContext'
-import type { MenuMode } from './interface'
 import SubMenuList from './SubMenuList'
+import type { MenuMode } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

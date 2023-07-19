@@ -73,13 +73,13 @@ export const getTrackLeft = (spec) => {
     }
     // shift current slide to center of the frame
     if (centerMode)
-      slidesToOffset += parseInt(slidesToShow / 2)
+      slidesToOffset += Number.parseInt(slidesToShow / 2)
   } else {
     if (slideCount % slidesToScroll !== 0 && slideIndex + slidesToScroll > slideCount)
       slidesToOffset = slidesToShow - (slideCount % slidesToScroll)
 
     if (centerMode)
-      slidesToOffset = parseInt(slidesToShow / 2)
+      slidesToOffset = Number.parseInt(slidesToShow / 2)
   }
   slideOffset = slidesToOffset * slideWidth
   verticalOffset = slidesToOffset * slideHeight
@@ -103,7 +103,7 @@ export const getTrackLeft = (spec) => {
         targetLeft
           -= trackElem && trackElem.children[slide] && trackElem.children[slide].offsetWidth
       }
-      targetLeft -= parseInt(spec.centerPadding)
+      targetLeft -= Number.parseInt(spec.centerPadding)
       targetLeft += targetSlide && (listWidth - targetSlide.offsetWidth) / 2
     }
   }
@@ -119,11 +119,11 @@ export const safePreventDefault = (event) => {
 
 export const lazySlidesOnLeft = spec =>
   spec.centerMode
-    ? Math.floor(spec.slidesToShow / 2) + (parseInt(spec.centerPadding) > 0 ? 1 : 0)
+    ? Math.floor(spec.slidesToShow / 2) + (Number.parseInt(spec.centerPadding) > 0 ? 1 : 0)
     : 0
 export const lazySlidesOnRight = spec =>
   spec.centerMode
-    ? Math.floor((spec.slidesToShow - 1) / 2) + 1 + (parseInt(spec.centerPadding) > 0 ? 1 : 0)
+    ? Math.floor((spec.slidesToShow - 1) / 2) + 1 + (Number.parseInt(spec.centerPadding) > 0 ? 1 : 0)
     : spec.slidesToShow
 
 // startIndex that needs to be present
@@ -272,7 +272,7 @@ export const initializedState = (spec) => {
   const trackWidth = Math.ceil(getWidth(trackNode))
   let slideWidth
   if (!spec.vertical) {
-    let centerPaddingAdj = spec.centerMode && parseInt(spec.centerPadding) * 2
+    let centerPaddingAdj = spec.centerMode && Number.parseInt(spec.centerPadding) * 2
     if (typeof spec.centerPadding === 'string' && spec.centerPadding.slice(-1) === '%')
       centerPaddingAdj *= listWidth / 100
 
@@ -469,7 +469,7 @@ export const slidesOnRight = ({ slidesToShow, centerMode, rtl, centerPadding }) 
   // returns no of slides on the right of active slide
   if (centerMode) {
     let right = (slidesToShow - 1) / 2 + 1
-    if (parseInt(centerPadding) > 0) right += 1
+    if (Number.parseInt(centerPadding) > 0) right += 1
     if (rtl && slidesToShow % 2 === 0) right += 1
     return right
   }
@@ -483,7 +483,7 @@ export const slidesOnLeft = ({ slidesToShow, centerMode, rtl, centerPadding }) =
   // returns no of slides on the left of active slide
   if (centerMode) {
     let left = (slidesToShow - 1) / 2 + 1
-    if (parseInt(centerPadding) > 0) left += 1
+    if (Number.parseInt(centerPadding) > 0) left += 1
     if (!rtl && slidesToShow % 2 === 0) left += 1
     return left
   }

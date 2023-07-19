@@ -1,13 +1,10 @@
-import type { CSSProperties, ExtractPropTypes, SlotsType, VNodeTypes } from 'vue'
 import { computed, defineComponent, ref } from 'vue'
 import VcSlider from '../vc-slider/src/Slider'
 import VcRange from '../vc-slider/src/Range'
 import VcHandle from '../vc-slider/src/Handle'
 
-import type { TooltipPlacement } from '../tooltip/Tooltip'
 import { useInjectFormItemContext } from '../form/FormItemContext'
 import devWarning from '../vc-util/devWarning'
-import type { VueNode } from '../_util/type'
 import {
   booleanType,
   functionType,
@@ -18,9 +15,12 @@ import {
 } from '../_util/type'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
-import type { FocusEventHandler } from '../_util/EventInterface'
 import SliderTooltip from './SliderTooltip'
 import useStyle from './style'
+import type { FocusEventHandler } from '../_util/EventInterface'
+import type { VueNode } from '../_util/type'
+import type { TooltipPlacement } from '../tooltip/Tooltip'
+import type { CSSProperties, ExtractPropTypes, SlotsType, VNodeTypes } from 'vue'
 
 // CSSINJS
 

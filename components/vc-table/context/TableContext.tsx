@@ -1,5 +1,5 @@
-import type { InjectionKey } from 'vue'
 import { inject, provide } from 'vue'
+import type { InjectionKey } from 'vue'
 import type { GetComponent, TransformCellText } from '../interface'
 import type { FixedInfo } from '../utils/fixUtil'
 

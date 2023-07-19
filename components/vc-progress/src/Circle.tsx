@@ -2,8 +2,8 @@ import { computed, defineComponent, ref } from 'vue'
 import { useRefs } from '../../hooks'
 import initDefaultProps from '../../_util/props-util/initDefaultProps'
 import { defaultProps, useTransitionDuration } from './common'
-import type { GapPositionType } from './types'
 import { propTypes } from './types'
+import type { GapPositionType } from './types'
 
 let gradientSeed = 0
 

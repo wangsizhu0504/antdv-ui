@@ -1,16 +1,10 @@
-import type { CSSProperties, SlotsType } from 'vue'
 import { computed, defineComponent, nextTick, reactive, ref, toRef, watch, watchEffect } from 'vue'
-import type { TableLocale } from '../locale'
 import defaultLocale from '../locale/lang/en_US'
 import RcTable from '../vc-table'
-import type { TableProps as RcTableProps } from '../vc-table/Table'
 import { INTERNAL_HOOKS } from '../vc-table/Table'
-import type { SpinProps } from '../spin'
 import Spin from '../spin'
 import Pagination from '../pagination'
-import type { TooltipProps } from '../tooltip'
 import devWarning from '../vc-util/devWarning'
-import type { DefaultRecordType, RenderExpandIconProps } from '../vc-table/interface'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
 import { useBreakpoint, useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
@@ -24,11 +18,21 @@ import {
   someType,
   stringType,
 } from '../_util/type'
-import type { SizeType } from '../config-provider'
 import scrollTo from '../_util/scrollTo'
-import type { Breakpoint } from '../_util/responsiveObserve'
 import usePagination, { DEFAULT_PAGE_SIZE, getPaginationParam } from './hooks/usePagination'
 import useLazyKVMap from './hooks/useLazyKVMap'
+import useSelection from './hooks/useSelection'
+import useSorter, { getSortData } from './hooks/useSorter'
+import useFilter, { getFilterData } from './hooks/useFilter'
+import useTitleColumns from './hooks/useTitleColumns'
+import renderExpandIcon from './ExpandIcon'
+import { useProvideSlots, useProvideTableContext } from './context'
+import useColumns from './hooks/useColumns'
+import { convertChildrenToColumns } from './util'
+import useStyle from './style'
+import type { ContextSlots } from './context'
+import type { FilterState } from './hooks/useFilter/type'
+import type { SortState } from './hooks/useSorter'
 import type {
   ColumnType,
   ColumnsType,
@@ -43,18 +47,14 @@ import type {
   TablePaginationConfig,
   TableRowSelection,
 } from './interface'
-import useSelection from './hooks/useSelection'
-import type { SortState } from './hooks/useSorter'
-import useSorter, { getSortData } from './hooks/useSorter'
-import type { FilterState } from './hooks/useFilter/type'
-import useFilter, { getFilterData } from './hooks/useFilter'
-import useTitleColumns from './hooks/useTitleColumns'
-import renderExpandIcon from './ExpandIcon'
-import { useProvideSlots, useProvideTableContext } from './context'
-import type { ContextSlots } from './context'
-import useColumns from './hooks/useColumns'
-import { convertChildrenToColumns } from './util'
-import useStyle from './style'
+import type { Breakpoint } from '../_util/responsiveObserve'
+import type { SizeType } from '../config-provider'
+import type { DefaultRecordType, RenderExpandIconProps } from '../vc-table/interface'
+import type { TooltipProps } from '../tooltip'
+import type { SpinProps } from '../spin'
+import type { TableProps as RcTableProps } from '../vc-table/Table'
+import type { TableLocale } from '../locale'
+import type { CSSProperties, SlotsType } from 'vue'
 
 // CSSINJS
 

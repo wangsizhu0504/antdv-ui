@@ -1,8 +1,8 @@
 import { defineComponent, ref } from 'vue'
 import { initDefaultProps } from '../_util/props-util'
 import AjaxUpload from './AjaxUploader'
-import type { RcFile } from './interface'
 import { uploadProps } from './interface'
+import type { RcFile } from './interface'
 
 function empty() {}
 

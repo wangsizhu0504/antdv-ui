@@ -1,13 +1,5 @@
 import { FilterFilled } from '@ant-design/icons-vue'
 import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue'
-import type { TableLocale } from '../../../locale'
-import type {
-  ColumnFilterItem,
-  ColumnType,
-  FilterSearchType,
-  GetPopupContainer,
-  Key,
-} from '../../interface'
 import { useInjectSlots } from '../../context'
 import Button from '../../../button'
 import Menu from '../../../menu'
@@ -17,20 +9,28 @@ import Dropdown from '../../../dropdown'
 import Empty from '../../../empty'
 import classNames from '../../../_util/classNames'
 import { useConfigInject } from '../../../hooks'
-import type { DataNode, EventDataNode } from '../../../tree'
-import type { EventHandler } from '../../../_util/EventInterface'
 import Tree from '../../../tree'
-import type { CheckboxChangeEvent } from '../../../checkbox/interface'
 import devWarning from '../../../vc-util/devWarning'
 import isEqual from '../../../vc-util/isEqual'
-import type { FilterState } from './type'
 import { flattenKeys } from './utils'
 import FilterDropdownMenuWrapper from './FilterWrapper'
 import FilterSearch from './FilterSearch'
+import type { FilterState } from './type'
+import type { CheckboxChangeEvent } from '../../../checkbox/interface'
+import type { EventHandler } from '../../../_util/EventInterface'
+import type { DataNode, EventDataNode } from '../../../tree'
+import type {
+  ColumnFilterItem,
+  ColumnType,
+  FilterSearchType,
+  GetPopupContainer,
+  Key,
+} from '../../interface'
+import type { TableLocale } from '../../../locale'
 
 interface FilterRestProps {
-  confirm?: Boolean
-  closeDropdown?: Boolean
+  confirm?: boolean
+  closeDropdown?: boolean
 }
 
 const { SubMenu, Item: MenuItem } = Menu
@@ -204,7 +204,7 @@ export default defineComponent<FilterDropdownProps<any>>({
       filteredKeys.value = selectedKeys
     }
 
-    const onCheck = (keys: Key[], { node, checked }: { node: EventDataNode; checked: boolean }) => {
+    const onCheck = (keys: Key[], { node, checked }: { node: EventDataNode, checked: boolean }) => {
       if (!props.filterMultiple)
         onSelectKeys({ selectedKeys: (checked && node.key) ? [node.key] : [] })
       else

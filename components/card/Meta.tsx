@@ -1,8 +1,8 @@
-import type { ExtractPropTypes, SlotsType } from 'vue'
 import { defineComponent } from 'vue'
 import { getPropsSlot } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
 import { vNodeType } from '../_util/type'
+import type { ExtractPropTypes, SlotsType } from 'vue'
 
 export const cardMetaProps = () => ({
   prefixCls: String,

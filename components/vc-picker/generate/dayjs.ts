@@ -1,4 +1,3 @@
-import type { Dayjs } from 'dayjs'
 import dayjs from 'dayjs'
 import weekday from 'dayjs/plugin/weekday'
 import localeData from 'dayjs/plugin/localeData'
@@ -8,6 +7,7 @@ import quarterOfYear from 'dayjs/plugin/quarterOfYear'
 import advancedFormat from 'dayjs/plugin/advancedFormat'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import { noteOnce } from '../../vc-util/warning'
+import type { Dayjs } from 'dayjs'
 import type { GenerateConfig } from '.'
 
 dayjs.extend(customParseFormat)
@@ -139,20 +139,20 @@ const toDateWithValueFormat = (val: string | Dayjs, valueFormat: string) => {
     if (origin === 'Q') {
       const segmentation = val.slice(index - 1, index)
       const quarterStr = findTargetStr(val, index, segmentation).match(/\d+/)[0]
-      baseDate = baseDate.quarter(parseInt(quarterStr))
+      baseDate = baseDate.quarter(Number.parseInt(quarterStr))
     }
 
     if (origin.toLowerCase() === 'wo') {
       const segmentation = val.slice(index - 1, index)
       const weekStr = findTargetStr(val, index, segmentation).match(/\d+/)[0]
-      baseDate = baseDate.week(parseInt(weekStr))
+      baseDate = baseDate.week(Number.parseInt(weekStr))
     }
 
     if (origin.toLowerCase() === 'ww')
-      baseDate = baseDate.week(parseInt(val.slice(index, index + origin.length)))
+      baseDate = baseDate.week(Number.parseInt(val.slice(index, index + origin.length)))
 
     if (origin.toLowerCase() === 'w')
-      baseDate = baseDate.week(parseInt(val.slice(index, index + origin.length + 1)))
+      baseDate = baseDate.week(Number.parseInt(val.slice(index, index + origin.length + 1)))
   }
 
   return baseDate

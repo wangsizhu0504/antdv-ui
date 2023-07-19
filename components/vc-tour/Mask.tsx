@@ -1,9 +1,9 @@
-import type { CSSProperties } from 'vue'
 import { defineComponent } from 'vue'
 import classNames from '../_util/classNames'
 import { useId } from '../hooks'
 import Portal from '../_util/components/PortalWrapper'
 import { booleanType, objectType, someType } from '../_util/type'
+import type { CSSProperties } from 'vue'
 import type { PosInfo } from './hooks/useTarget'
 
 const COVER_PROPS = {

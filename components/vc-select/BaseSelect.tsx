@@ -10,36 +10,36 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
 import { toReactive } from '@vueuse/core'
 import { omit } from 'lodash-es'
-import type { ScrollConfig, ScrollTo } from '../vc-virtual-list/List'
 import isMobile from '../vc-util/isMobile'
 import useInjectLegacySelectContext from '../vc-tree-select/LegacyContext'
-import type { AlignType } from '../vc-trigger/interface'
 import classNames from '../_util/classNames'
 import createRef from '../_util/createRef'
 import KeyCode from '../_util/KeyCode'
 import { initDefaultProps, isValidElement } from '../_util/props-util'
 import PropTypes from '../_util/vue-types'
-import type {
-  FocusEventHandler,
-  KeyboardEventHandler,
-  MouseEventHandler,
-} from '../_util/EventInterface'
-import type { Key, VueNode } from '../_util/type'
 import { cloneElement } from '../_util/vnode'
 import { getSeparatedContent } from './utils/valueUtil'
-import type { RefTriggerProps } from './SelectTrigger'
 import SelectTrigger from './SelectTrigger'
-import type { RefSelectorProps } from './Selector'
 import Selector from './Selector'
 import useSelectTriggerControl from './hooks/useSelectTriggerControl'
 import useDelayReset from './hooks/useDelayReset'
 import TransBtn from './TransBtn'
 import useLock from './hooks/useLock'
-import type { BaseSelectContextProps } from './hooks/useBaseProps'
 import { useProvideBaseSelectProps } from './hooks/useBaseProps'
+import type { BaseSelectContextProps } from './hooks/useBaseProps'
+import type { RefSelectorProps } from './Selector'
+import type { RefTriggerProps } from './SelectTrigger'
+import type { Key, VueNode } from '../_util/type'
+import type {
+  FocusEventHandler,
+  KeyboardEventHandler,
+  MouseEventHandler,
+} from '../_util/EventInterface'
+import type { AlignType } from '../vc-trigger/interface'
+import type { ScrollConfig, ScrollTo } from '../vc-virtual-list/List'
+import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
 import type { BaseOptionType } from './Select'
 
 const DEFAULT_OMIT_PROPS = [

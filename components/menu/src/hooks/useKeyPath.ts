@@ -1,5 +1,5 @@
-import type { ComputedRef, InjectionKey } from 'vue'
 import { computed, defineComponent, inject, provide } from 'vue'
+import type { ComputedRef, InjectionKey } from 'vue'
 import type { Key } from '../../../_util/type'
 import type { StoreMenuInfo } from './useMenuContext'
 

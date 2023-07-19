@@ -1,6 +1,6 @@
-import type { ComponentInternalInstance, Ref } from 'vue'
 import { findDOMNode } from '../_util/props-util'
 import showWaveEffect from './WaveEffect'
+import type { ComponentInternalInstance, Ref } from 'vue'
 
 export default function useWave(
   instance: ComponentInternalInstance | null,

@@ -1,4 +1,3 @@
-import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 import { computed, defineComponent, nextTick, onBeforeMount, onMounted, ref, watch } from 'vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
 import { useInjectFormItemContext } from '../form/FormItemContext'
@@ -10,9 +9,10 @@ import { tuple, withInstall } from '../_util/type'
 import { getPropsSlot } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
 import omit from '../_util/omit'
-import type { FocusEventHandler } from '../_util/EventInterface'
 import { useInjectDisabled } from '../config-provider/DisabledContext'
 import useStyle from './style'
+import type { FocusEventHandler } from '../_util/EventInterface'
+import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
 
 export const SwitchSizes = tuple('small', 'default')
 type CheckedType = boolean | string | number

@@ -1,7 +1,7 @@
-import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import Trigger from '../../vc-trigger'
 import DropdownMenu from './DropdownMenu'
+import type { PropType } from 'vue'
 import type { OptionProps } from './Option'
 
 const BUILT_IN_PLACEMENTS = {

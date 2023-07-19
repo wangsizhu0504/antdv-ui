@@ -1,6 +1,6 @@
+import Select from './select'
 import type { App } from 'vue'
 import type { OptGroup, Option } from '../vc-select'
-import Select from './select'
 
 /* istanbul ignore next */
 Select.install = function (app: App) {

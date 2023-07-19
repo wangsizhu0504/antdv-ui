@@ -1,11 +1,7 @@
-import type { ComponentPublicInstance, ExtractPropTypes, HTMLAttributes } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import isEqual from 'lodash-es/isEqual'
-import type { Options } from 'scroll-into-view-if-needed'
 import scrollIntoView from 'scroll-into-view-if-needed'
-import type { ValidateMessages } from '../locale'
 import { toArray } from '../_util/util'
-import type { ColProps } from '../grid/Col'
 import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
 import warning from '../_util/warning'
@@ -20,13 +16,16 @@ import {
   tuple,
 } from '../_util/type'
 import { useConfigInject } from '../hooks'
-import type { SizeType } from '../config-provider'
 import { useInjectGlobalForm } from '../config-provider/context'
 import { useProviderSize } from '../config-provider/SizeContext'
 import { useProviderDisabled } from '../config-provider/DisabledContext'
 import useStyle from './style'
 import useForm from './useForm'
 import { useProvideForm } from './context'
+import { allPromiseFinish } from './utils/asyncUtil'
+import { defaultValidateMessages } from './utils/messages'
+import { cloneByNamePathList, containsNamePath, getNamePath } from './utils/valueUtil'
+import FormItem from './FormItem'
 import type {
   Callbacks,
   FormLabelAlign,
@@ -38,10 +37,11 @@ import type {
 
   ValidateOptions,
 } from './interface'
-import { allPromiseFinish } from './utils/asyncUtil'
-import { defaultValidateMessages } from './utils/messages'
-import { cloneByNamePathList, containsNamePath, getNamePath } from './utils/valueUtil'
-import FormItem from './FormItem'
+import type { SizeType } from '../config-provider'
+import type { ColProps } from '../grid/Col'
+import type { ValidateMessages } from '../locale'
+import type { Options } from 'scroll-into-view-if-needed'
+import type { ComponentPublicInstance, ExtractPropTypes, HTMLAttributes } from 'vue'
 import type { FieldExpose } from './FormItem'
 
 export type RequiredMark = boolean | 'optional'

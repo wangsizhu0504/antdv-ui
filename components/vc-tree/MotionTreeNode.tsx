@@ -1,4 +1,3 @@
-import type { PropType } from 'vue'
 import {
   Transition,
   computed,
@@ -11,9 +10,10 @@ import {
 } from 'vue'
 import collapseMotion from '../_util/components/collapseMotion'
 import TreeNode from './TreeNode'
-import type { FlattenNode } from './interface'
 import { useInjectTreeContext } from './contextTypes'
 import { treeNodeProps } from './props'
+import type { FlattenNode } from './interface'
+import type { PropType } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

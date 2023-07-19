@@ -1,6 +1,6 @@
-import type { FullToken, GenerateStyle } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { resetComponent } from '../../style'
+import type { FullToken, GenerateStyle } from '../../theme'
 
 export interface ComponentToken {}
 

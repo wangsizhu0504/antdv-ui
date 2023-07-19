@@ -1,9 +1,9 @@
 import { isLeaf, toPathKey } from '../utils/commonUtil'
-import type { DefaultOptionType, SingleValueType } from '../Cascader'
 import { SEARCH_MARK } from '../hooks/useSearchOptions'
 import { useInjectCascader } from '../context'
-import type { Key } from '../../_util/type'
 import Checkbox from './Checkbox'
+import type { Key } from '../../_util/type'
+import type { DefaultOptionType, SingleValueType } from '../Cascader'
 
 export const FIX_LABEL = '__cascader_fix_label__'
 export interface ColumnProps {

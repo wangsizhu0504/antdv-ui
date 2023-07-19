@@ -1,8 +1,8 @@
 // 2.6.7
-import type { PickerProps } from './Picker'
 import Picker from './Picker'
 import PickerPanel from './PickerPanel'
 import RangePicker from './RangePicker'
+import type { PickerProps } from './Picker'
 import type { PickerPanelProps } from './PickerPanel'
 import type { RangePickerProps } from './RangePicker'
 

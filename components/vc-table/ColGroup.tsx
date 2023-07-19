@@ -1,5 +1,5 @@
-import type { ColumnType } from './interface'
 import { INTERNAL_COL_DEFINE } from './utils/legacyUtil'
+import type { ColumnType } from './interface'
 
 export interface ColGroupProps<RecordType> {
   colWidths: readonly (number | string)[]

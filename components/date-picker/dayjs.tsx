@@ -1,12 +1,12 @@
+import dayjsGenerateConfig from '../vc-picker/generate/dayjs'
+import generatePicker from './generatePicker'
 import type { Dayjs } from 'dayjs'
 import type { App } from 'vue'
-import dayjsGenerateConfig from '../vc-picker/generate/dayjs'
 import type {
   RangePickerProps as BaseRangePickerProps,
   PickerDateProps,
   PickerProps,
 } from './generatePicker'
-import generatePicker from './generatePicker'
 import type { ExtraDatePickerProps, ExtraRangePickerProps } from './generatePicker/props'
 
 export type DatePickerProps = PickerProps<Dayjs> & ExtraDatePickerProps<Dayjs>

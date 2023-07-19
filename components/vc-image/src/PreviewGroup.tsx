@@ -1,4 +1,3 @@
-import type { ComputedRef, PropType, Ref } from 'vue'
 import {
   computed,
   defineComponent,
@@ -11,8 +10,9 @@ import {
 import { useMergedState } from '../../hooks'
 import { mergeDefaultValue } from './utils'
 import Preview from './Preview'
-import type { PreviewProps } from './Preview'
 import { createGroupProviderContext } from './hooks/useContext'
+import type { PreviewProps } from './Preview'
+import type { ComputedRef, PropType, Ref } from 'vue'
 import type { ImagePreviewType } from './types'
 
 export interface PreviewGroupPreview
@@ -42,7 +42,7 @@ export interface GroupConsumerValue extends GroupConsumerProps {
   current: Ref<number>
   setCurrent: (current: number) => void
   setShowPreview: (isShowPreview: boolean) => void
-  setMousePosition: (mousePosition: null | { x: number; y: number }) => void
+  setMousePosition: (mousePosition: null | { x: number, y: number }) => void
   registerImage: (id: number, url: string, canPreview?: boolean) => () => void
   rootClassName?: string
 }
@@ -88,7 +88,7 @@ const Group = defineComponent({
       onChange: onPreviewVisibleChange,
     })
 
-    const mousePosition = ref<{ x: number; y: number }>(null)
+    const mousePosition = ref<{ x: number, y: number }>(null)
     const isControlled = computed(() => previewVisible.value !== undefined)
     const previewUrlsKeys = computed(() => Array.from(previewUrls.keys()))
     const currentControlledKey = computed(() => previewUrlsKeys.value[preview.value.current])
@@ -110,7 +110,7 @@ const Group = defineComponent({
     const setCurrent = (val: number) => {
       current.value = val
     }
-    const setMousePosition = (val: null | { x: number; y: number }) => {
+    const setMousePosition = (val: null | { x: number, y: number }) => {
       mousePosition.value = val
     }
 

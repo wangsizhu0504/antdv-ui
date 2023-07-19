@@ -1,5 +1,5 @@
-import type { PickerLocale } from '../../locale'
 import { DECADE_UNIT_DIFF } from '../panels/constants'
+import type { PickerLocale } from '../../locale'
 import type { CustomFormat, NullableDateType, PanelMode, PickerMode } from '../interface'
 import type { GenerateConfig } from '../generate'
 

@@ -1,9 +1,9 @@
-import type { Ref } from 'vue'
 import { computed, ref, watchEffect } from 'vue'
-import type { PickerMode, RangeValue } from '../interface'
-import type { GenerateConfig } from '../generate'
 import { getValue, updateValues } from '../utils/miscUtil'
 import { getClosingViewDate, isSameDecade, isSameMonth, isSameYear } from '../utils/dateUtil'
+import type { Ref } from 'vue'
+import type { PickerMode, RangeValue } from '../interface'
+import type { GenerateConfig } from '../generate'
 
 function getStartEndDistance<DateType>(
   startDate: DateType,

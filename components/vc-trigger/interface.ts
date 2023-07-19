@@ -1,6 +1,6 @@
+import PropTypes from '../_util/vue-types'
 import type { CSSProperties, ExtractPropTypes, PropType, TransitionProps } from 'vue'
 import type { VueNode } from '../_util/type'
-import PropTypes from '../_util/vue-types'
 
 /** Two char of 't' 'b' 'c' 'l' 'r'. Example: 'lt' */
 export type AlignPoint = string

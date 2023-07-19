@@ -1,6 +1,6 @@
-import type { GenerateConfig } from '../../vc-picker/generate'
 import generateSinglePicker from './generateSinglePicker'
 import generateRangePicker from './generateRangePicker'
+import type { GenerateConfig } from '../../vc-picker/generate'
 
 export * from './interface'
 

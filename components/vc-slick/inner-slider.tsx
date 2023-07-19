@@ -493,7 +493,7 @@ export default {
     },
     slickGoTo(slide, dontAnimate = false) {
       slide = Number(slide)
-      if (isNaN(slide)) return ''
+      if (Number.isNaN(slide)) return ''
       this.callbackTimers.push(
         setTimeout(
           () =>

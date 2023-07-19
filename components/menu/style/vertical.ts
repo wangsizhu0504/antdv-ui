@@ -1,5 +1,5 @@
-import type { CSSObject } from '../../cssinjs'
 import { textEllipsis } from '../../style'
+import type { CSSObject } from '../../cssinjs'
 import type { GenerateStyle } from '../../theme'
 import type { MenuToken } from '.'
 

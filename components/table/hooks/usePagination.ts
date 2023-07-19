@@ -1,8 +1,8 @@
-import type { Ref } from 'vue'
 import { computed } from 'vue'
-import type { TablePaginationConfig } from '../interface'
 import extendsObject from '../../_util/extendsObject'
 import { useState } from '../../hooks'
+import type { TablePaginationConfig } from '../interface'
+import type { Ref } from 'vue'
 import type { PaginationProps } from '../../pagination'
 
 export const DEFAULT_PAGE_SIZE = 10

@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import { computed } from 'vue'
+import type { Ref } from 'vue'
 import type { GetRowKey, Key } from '../interface'
 
 // recursion (flat tree structure)
@@ -59,12 +59,12 @@ export default function useFlattenRecords<T = unknown>(
   expandedKeysRef: Ref<Set<Key>>,
   getRowKey: Ref<GetRowKey<T>>,
 ) {
-  const arr: Ref<{ record: T; indent: number; index: number }[]> = computed(() => {
+  const arr: Ref<{ record: T, indent: number, index: number }[]> = computed(() => {
     const childrenColumnName = childrenColumnNameRef.value
     const expandedKeys = expandedKeysRef.value
     const data = dataRef.value
     if (expandedKeys?.size) {
-      const temp: { record: T; indent: number; index: number }[] = []
+      const temp: { record: T, indent: number, index: number }[] = []
 
       // collect flattened record
       for (let i = 0; i < data?.length; i += 1) {

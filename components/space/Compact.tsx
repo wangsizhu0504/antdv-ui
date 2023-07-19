@@ -1,13 +1,13 @@
 import { computed, defineComponent } from 'vue'
-import type { ExtractPropTypes, PropType, Ref } from 'vue'
 import { isEmpty } from 'lodash-es'
-import type { DirectionType, SizeType } from '../config-provider'
 import { createContext, useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
 
 import { booleanType } from '../_util/type'
 import { flattenChildren } from '../_util/props-util'
 import useStyle from './style'
+import type { DirectionType, SizeType } from '../config-provider'
+import type { ExtractPropTypes, PropType, Ref } from 'vue'
 
 export const spaceCompactItemProps = () => ({
   compactSize: String as PropType<SizeType>,

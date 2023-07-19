@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'vue'
 import { defineComponent, onMounted, shallowRef } from 'vue'
 
 /**
@@ -6,6 +5,7 @@ import { defineComponent, onMounted, shallowRef } from 'vue'
  * This helps accessibility reader to tread as a interactive button to operation.
  */
 import KeyCode from '../KeyCode'
+import type { CSSProperties } from 'vue'
 
 const inlineStyle = {
   border: 0,

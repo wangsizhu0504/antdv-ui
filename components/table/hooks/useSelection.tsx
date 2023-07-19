@@ -1,7 +1,20 @@
 import { DownOutlined } from '@ant-design/icons-vue'
-import type { Ref } from 'vue'
 import { computed, shallowRef, watchEffect } from 'vue'
-import type { TableLocale } from '../../locale'
+import { INTERNAL_COL_DEFINE } from '../../vc-table'
+import { arrAdd, arrDel } from '../../vc-tree/util'
+import { conductCheck } from '../../vc-tree/utils/conductUtil'
+import { convertDataToEntities } from '../../vc-tree/utils/treeUtil'
+import devWarning from '../../vc-util/devWarning'
+import { useMergedState, useState } from '../../hooks'
+import Checkbox from '../../checkbox'
+import Dropdown from '../../dropdown'
+import Menu from '../../menu'
+import Radio from '../../radio'
+import useMaxLevel from '../../vc-tree/useMaxLevel'
+import type { CheckboxProps } from '../../checkbox'
+import type { GetCheckDisabled } from '../../vc-tree/interface'
+import type { FixedType } from '../../vc-table/interface'
+import type { DataNode } from '../../tree'
 import type {
   ColumnType,
   ColumnsType,
@@ -14,21 +27,8 @@ import type {
   TableRowSelection,
   TransformColumns,
 } from '../interface'
-import type { DataNode } from '../../tree'
-import { INTERNAL_COL_DEFINE } from '../../vc-table'
-import type { FixedType } from '../../vc-table/interface'
-import type { GetCheckDisabled } from '../../vc-tree/interface'
-import { arrAdd, arrDel } from '../../vc-tree/util'
-import { conductCheck } from '../../vc-tree/utils/conductUtil'
-import { convertDataToEntities } from '../../vc-tree/utils/treeUtil'
-import devWarning from '../../vc-util/devWarning'
-import { useMergedState, useState } from '../../hooks'
-import type { CheckboxProps } from '../../checkbox'
-import Checkbox from '../../checkbox'
-import Dropdown from '../../dropdown'
-import Menu from '../../menu'
-import Radio from '../../radio'
-import useMaxLevel from '../../vc-tree/useMaxLevel'
+import type { TableLocale } from '../../locale'
+import type { Ref } from 'vue'
 
 // TODO: warning if use ajax!!!
 
@@ -451,7 +451,7 @@ export default function useSelection<RecordType>(
     }
 
     // Body Cell
-    let renderCell: ({ record, index }: { record: RecordType; index: number }) => {
+    let renderCell: ({ record, index }: { record: RecordType, index: number }) => {
       node: any
       checked: boolean
     }

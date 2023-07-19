@@ -1,8 +1,8 @@
+import PropTypes from '../_util/vue-types'
+import { arrayType, booleanType, functionType, stringType } from '../_util/type'
 import type { ExtractPropTypes, InjectionKey, Ref } from 'vue'
 import type { MouseEventHandler } from '../_util/EventInterface'
 import type { VueNode } from '../_util/type'
-import PropTypes from '../_util/vue-types'
-import { arrayType, booleanType, functionType, stringType } from '../_util/type'
 
 export type CheckboxValueType = string | number | boolean
 export interface CheckboxOptionType {
@@ -78,8 +78,8 @@ export const checkboxProps = () => {
 export type CheckboxProps = Partial<ExtractPropTypes<ReturnType<typeof checkboxProps>>>
 
 export interface CheckboxGroupContext {
-  cancelValue: (id: Symbol) => void
-  registerValue: (id: Symbol, value: string) => void
+  cancelValue: (id: symbol) => void
+  registerValue: (id: symbol, value: string) => void
   toggleOption: (option: CheckboxOptionType) => void
   name: Ref<string>
   disabled: Ref<boolean>

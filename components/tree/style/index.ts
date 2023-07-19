@@ -1,10 +1,10 @@
-import type { CSSInterpolation, CSSObject } from '../../cssinjs'
 import { Keyframes } from '../../cssinjs'
 import { genCollapseMotion } from '../../style/motion'
 import { getStyle as getCheckboxStyle } from '../../checkbox/style'
-import type { DerivativeToken } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { genFocusOutline, resetComponent } from '../../style'
+import type { DerivativeToken } from '../../theme'
+import type { CSSInterpolation, CSSObject } from '../../cssinjs'
 
 // ============================ Keyframes =============================
 const treeNodeFX = new Keyframes('ant-tree-node-fx-do-not-use', {

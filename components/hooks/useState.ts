@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import { ref } from 'vue'
+import type { Ref } from 'vue'
 
 export function useState<T, R = Ref<T>>(
   defaultStateValue?: T | (() => T),

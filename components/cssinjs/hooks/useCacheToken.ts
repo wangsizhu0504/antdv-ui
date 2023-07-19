@@ -1,10 +1,10 @@
 import hash from '@emotion/hash'
-import type { Ref } from 'vue'
 import { computed, ref } from 'vue'
 import { ATTR_TOKEN, CSS_IN_JS_INSTANCE, CSS_IN_JS_INSTANCE_ID } from '../StyleContext'
-import type Theme from '../theme/Theme'
 import { flattenToken, token2key } from '../util'
 import useGlobalCache from './useGlobalCache'
+import type Theme from '../theme/Theme'
+import type { Ref } from 'vue'
 
 const EMPTY_OVERRIDE = {}
 

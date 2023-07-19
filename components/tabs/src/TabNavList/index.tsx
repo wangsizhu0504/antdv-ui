@@ -1,7 +1,21 @@
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 import { computed, defineComponent, onBeforeUnmount, shallowRef, watch, watchEffect } from 'vue'
 import pick from 'lodash-es/pick'
 import { useRafState } from '../hooks/useRaf'
+import useOffsets from '../hooks/useOffsets'
+import { useInjectTabs } from '../TabContext'
+import useTouchMove from '../hooks/useTouchMove'
+import useSyncState from '../hooks/useSyncState'
+import { functionType, objectType } from '../../../_util/type'
+import PropTypes from '../../../_util/vue-types'
+import { useRefs, useState } from '../../../hooks'
+import raf from '../../../_util/raf'
+import classNames from '../../../_util/classNames'
+import ResizeObserver from '../../../vc-resize-observer'
+import { toPx } from '../../../_util/util'
+import TabNode from './TabNode'
+import OperationNode from './OperationNode'
+import AddButton from './AddButton'
+import type { Key } from '../../../_util/type'
 import type {
   AnimatedConfig,
   EditableConfig,
@@ -13,21 +27,7 @@ import type {
   TabSizeMap,
   TabsLocale,
 } from '../interface'
-import useOffsets from '../hooks/useOffsets'
-import { useInjectTabs } from '../TabContext'
-import useTouchMove from '../hooks/useTouchMove'
-import useSyncState from '../hooks/useSyncState'
-import { functionType, objectType } from '../../../_util/type'
-import type { Key } from '../../../_util/type'
-import PropTypes from '../../../_util/vue-types'
-import { useRefs, useState } from '../../../hooks'
-import raf from '../../../_util/raf'
-import classNames from '../../../_util/classNames'
-import ResizeObserver from '../../../vc-resize-observer'
-import { toPx } from '../../../_util/util'
-import TabNode from './TabNode'
-import OperationNode from './OperationNode'
-import AddButton from './AddButton'
+import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
 
 const DEFAULT_SIZE = { width: 0, height: 0, left: 0, top: 0, right: 0 }
 export const tabNavListProps = () => {

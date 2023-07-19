@@ -1,6 +1,6 @@
+import { buildConfig } from '../build-info'
 import type { ProjectManifest } from '@pnpm/types'
 import type { Module } from '../build-info'
-import { buildConfig } from '../build-info'
 
 export const excludeFiles = (files: string[]) => {
   const excludes = ['node_modules', 'test', 'mock', 'gulpfile', 'dist']

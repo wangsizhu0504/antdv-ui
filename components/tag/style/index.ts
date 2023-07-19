@@ -1,10 +1,10 @@
-import type { CSSProperties } from 'vue'
-import type { CSSObject } from '../../cssinjs'
 import { genPresetColor } from '../../style/presetColor'
 import { resetComponent } from '../../style'
-import type { FullToken } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { capitalize } from '../../_util/util'
+import type { FullToken } from '../../theme'
+import type { CSSObject } from '../../cssinjs'
+import type { CSSProperties } from 'vue'
 
 export interface ComponentToken {}
 

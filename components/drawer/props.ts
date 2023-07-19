@@ -1,9 +1,9 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import PropTypes from '../_util/vue-types'
 import { objectType } from '../_util/type'
+import { PlacementTypes } from './constant'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { KeyboardEventHandler, MouseEventHandler } from '../_util/EventInterface'
 import type { ILevelMove, PushState, getContainerFunc, sizeType } from './type'
-import { PlacementTypes } from './constant'
 
 export const drawerProps = () => ({
   'autofocus': { type: Boolean, default: undefined },
@@ -50,7 +50,7 @@ export const drawerProps = () => ({
   'lockScroll': { type: Boolean, default: true },
   'levelMove': {
     type: [Number, Array, Function] as PropType<
-      ILevelMove | ((e: { target: HTMLElement; open: boolean }) => ILevelMove)
+      ILevelMove | ((e: { target: HTMLElement, open: boolean }) => ILevelMove)
     >,
   },
   'handle': PropTypes.any,

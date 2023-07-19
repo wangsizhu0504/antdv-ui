@@ -1,17 +1,17 @@
 import { CloseCircleFilled } from '@ant-design/icons-vue'
-import type { CSSProperties, PropType, VNode } from 'vue'
 import { defineComponent } from 'vue'
 import PropTypes from '../_util/vue-types'
 import { cloneElement } from '../_util/vnode'
 import classNames from '../_util/classNames'
-import type { VueNode } from '../_util/type'
 import { anyType, tuple } from '../_util/type'
-import type { Direction, SizeType } from '../config-provider'
-import type { MouseEventHandler } from '../_util/EventInterface'
 import { FormItemInputContext } from '../form/FormItemContext'
-import type { InputStatus } from '../_util/statusUtils'
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
 import { hasAddon } from './util'
+import type { VueNode } from '../_util/type'
+import type { Direction, SizeType } from '../config-provider'
+import type { MouseEventHandler } from '../_util/EventInterface'
+import type { InputStatus } from '../_util/statusUtils'
+import type { CSSProperties, PropType, VNode } from 'vue'
 
 const ClearableInputType = ['text', 'input'] as const
 

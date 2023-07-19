@@ -1,4 +1,3 @@
-import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 import { computed, defineComponent, ref, watch } from 'vue'
 import VcTooltip from '../vc-tooltip'
 import classNames from '../_util/classNames'
@@ -21,6 +20,7 @@ import { getTransitionName } from '../_util/components/transition'
 import { parseColor } from './util'
 import useStyle from './style'
 import abstractTooltipProps from './abstractTooltipProps'
+import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
 
 export type { TriggerType, TooltipPlacement } from './abstractTooltipProps'
 export type { AdjustOverflow, PlacementsConfig } from '../_util/placements'
@@ -31,7 +31,7 @@ export interface TooltipAlignConfig {
   points?: [string, string]
   offset?: [number | string, number | string]
   targetOffset?: [number | string, number | string]
-  overflow?: { adjustX: boolean; adjustY: boolean }
+  overflow?: { adjustX: boolean, adjustY: boolean }
   useCssRight?: boolean
   useCssBottom?: boolean
   useCssTransform?: boolean

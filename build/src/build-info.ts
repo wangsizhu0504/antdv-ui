@@ -1,8 +1,8 @@
 import path from 'node:path'
-import type { ModuleFormat } from 'rollup'
 import { antdOutput } from './path'
 
 import { PKG_NAME } from './constants'
+import type { ModuleFormat } from 'rollup'
 
 export const modules = ['esm', 'cjs'] as const
 export type Module = typeof modules[number]

@@ -1,8 +1,8 @@
-import type { ExtractPropTypes, FunctionalComponent, PropType } from 'vue'
 import omit from '../_util/omit'
 import { tupleNum } from '../_util/type'
 import warning from '../_util/warning'
 import Base, { baseProps } from './Base'
+import type { ExtractPropTypes, FunctionalComponent, PropType } from 'vue'
 
 const TITLE_ELE_LIST = tupleNum(1, 2, 3, 4, 5)
 

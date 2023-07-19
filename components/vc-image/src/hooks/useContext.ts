@@ -1,5 +1,5 @@
-import type { ComputedRef, InjectionKey, Ref } from 'vue'
 import { createContextFn, useContext } from '../../../hooks'
+import type { ComputedRef, InjectionKey, Ref } from 'vue'
 
 export interface GroupConsumerContext {
   isPreviewGroup?: Ref<boolean | undefined>
@@ -8,7 +8,7 @@ export interface GroupConsumerContext {
   current: Ref<number>
   setCurrent: (current: number) => void
   setShowPreview: (isShowPreview: boolean) => void
-  setMousePosition: (mousePosition: null | { x: number; y: number }) => void
+  setMousePosition: (mousePosition: null | { x: number, y: number }) => void
   registerImage: (id: number, url: string, canPreview?: boolean) => () => void
   rootClassName?: string
 }

@@ -1,14 +1,14 @@
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType, VNode, VNodeTypes } from 'vue'
 import { defineComponent, isVNode, renderSlot } from 'vue'
 import isPlainObject from 'lodash-es/isPlainObject'
 import Tabs from '../tabs'
 import PropTypes from '../_util/vue-types'
 import { filterEmptyWithUndefined, flattenChildren, isEmptyElement } from '../_util/props-util'
-import type { SizeType } from '../config-provider'
 import { useConfigInject } from '../hooks'
 import devWarning from '../vc-util/devWarning'
 import Skeleton from '../skeleton'
 import useStyle from './style'
+import type { SizeType } from '../config-provider'
+import type { CSSProperties, ExtractPropTypes, PropType, SlotsType, VNode, VNodeTypes } from 'vue'
 
 export interface CardTabListType {
   key: string

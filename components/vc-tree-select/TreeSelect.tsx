@@ -1,25 +1,17 @@
 import { computed, defineComponent, ref, shallowRef, toRaw, toRef, toRefs, watchEffect } from 'vue'
-import type { ExtractPropTypes, PropType } from 'vue'
 import { toReactive } from '@vueuse/core'
 import { BaseSelect } from '../vc-select'
-import type { BaseSelectProps, BaseSelectRef, SelectProps } from '../vc-select'
 import PropTypes from '../_util/vue-types'
 import omit from '../_util/omit'
-import type { ExpandAction } from '../vc-tree/props'
 import useMaxLevel from '../vc-tree/useMaxLevel'
 import { warning } from '../vc-util/warning'
 import { conductCheck } from '../vc-tree/utils/conductUtil'
-import type { VueNode } from '../_util/type'
 import { useId, useMergedState } from '../hooks'
 import { initDefaultProps } from '../_util/props-util'
 import { baseSelectPropsWithoutPrivate } from '../vc-select/BaseSelect'
-import type { DisplayValueType } from '../vc-select/BaseSelect'
 import OptionList from './OptionList'
 import { SHOW_CHILD, formatStrategyValues } from './utils/strategyUtil'
-import type { CheckedStrategy } from './utils/strategyUtil'
 import { useProvideSelectContext } from './TreeSelectContext'
-import type { TreeSelectContextProps } from './TreeSelectContext'
-import type { LegacyContextProps } from './LegacyContext'
 import { useProvideLegacySelectContext } from './LegacyContext'
 import useTreeData from './hooks/useTreeData'
 import { fillFieldNames, isNil, toArray } from './utils/valueUtil'
@@ -29,6 +21,14 @@ import { fillAdditionalInfo, fillLegacyProps } from './utils/legacyUtil'
 import useCheckedKeys from './hooks/useCheckedKeys'
 import useFilterTreeData from './hooks/useFilterTreeData'
 import warningProps from './utils/warningPropsUtil'
+import type { LegacyContextProps } from './LegacyContext'
+import type { TreeSelectContextProps } from './TreeSelectContext'
+import type { CheckedStrategy } from './utils/strategyUtil'
+import type { DisplayValueType } from '../vc-select/BaseSelect'
+import type { VueNode } from '../_util/type'
+import type { ExpandAction } from '../vc-tree/props'
+import type { BaseSelectProps, BaseSelectRef, SelectProps } from '../vc-select'
+import type { ExtractPropTypes, PropType } from 'vue'
 import type { Key } from './interface'
 
 export type OnInternalSelect = (value: RawValueType, info: { selected: boolean }) => void
@@ -414,7 +414,7 @@ export default defineComponent({
     // =========================== Change ===========================
     const triggerChange = (
       newRawValues: RawValueType[],
-      extra: { triggerValue?: RawValueType; selected?: boolean },
+      extra: { triggerValue?: RawValueType, selected?: boolean },
       source: SelectSource,
     ) => {
       const labeledValues = convert2LabelValues(newRawValues)
@@ -500,7 +500,7 @@ export default defineComponent({
     /** Trigger by option list */
     const onOptionSelect = (
       selectedKey: Key,
-      { selected, source }: { selected: boolean; source: SelectSource },
+      { selected, source }: { selected: boolean, source: SelectSource },
     ) => {
       const keyEntitiesValue = toRaw(keyEntities.value)
       const valueEntitiesValue = toRaw(valueEntities.value)

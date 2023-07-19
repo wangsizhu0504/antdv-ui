@@ -1,7 +1,7 @@
-import type { App } from 'vue'
 import { TreeNode as VcTreeNode } from '../vc-tree'
 import Tree from './Tree'
 import DirectoryTree from './DirectoryTree'
+import type { App } from 'vue'
 
 export type { EventDataNode, DataNode } from '../vc-tree/interface'
 

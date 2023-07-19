@@ -26,7 +26,7 @@ function getStyleValue(node: HTMLElement, type: string, value: string) {
   if (!(type in removePixel))
     removePixel[type] = PIXEL_PATTERN.test(type)
 
-  return removePixel[type] ? (parseFloat(value) || 0) : value
+  return removePixel[type] ? (Number.parseFloat(value) || 0) : value
 }
 
 export function get(node: HTMLElement, name: any) {

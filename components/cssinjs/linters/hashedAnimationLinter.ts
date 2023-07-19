@@ -1,5 +1,5 @@
-import type { Linter } from './interface'
 import { lintWarning } from './utils'
+import type { Linter } from './interface'
 
 const linter: Linter = (key, value, info) => {
   if (key === 'animation') {

@@ -1,14 +1,14 @@
-import type { Ref } from 'vue'
 import { computed } from 'vue'
 import { useStyleRegister } from '../../cssinjs'
-import type { CSSInterpolation } from '../../cssinjs'
-import type { UseComponentStyleResult } from '..'
 import { useToken } from '../internal'
-import type { ComponentTokenMap, GlobalToken } from '../interface'
 
 import { genCommonStyle, genLinkStyle } from '../../style'
 import { useConfigContextInject } from '../../config-provider/context'
 import statisticToken, { merge as mergeToken } from './statistic'
+import type { ComponentTokenMap, GlobalToken } from '../interface'
+import type { UseComponentStyleResult } from '..'
+import type { CSSInterpolation } from '../../cssinjs'
+import type { Ref } from 'vue'
 
 export type OverrideTokenWithoutDerivative = ComponentTokenMap
 export type OverrideComponent = keyof OverrideTokenWithoutDerivative

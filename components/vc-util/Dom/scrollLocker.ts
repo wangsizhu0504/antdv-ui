@@ -1,6 +1,6 @@
-import type { CSSProperties } from 'vue'
 import getScrollBarSize from '../../_util/getScrollBarSize'
 import setStyle from '../../_util/setStyle'
+import type { CSSProperties } from 'vue'
 
 export interface scrollLockOptions {
   container: HTMLElement

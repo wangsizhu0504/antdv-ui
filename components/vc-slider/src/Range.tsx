@@ -301,7 +301,7 @@ const Range = defineComponent({
           for (let point = min; point <= max; point += step)
             pointsObject[point] = point
         }
-        const points = Object.keys(pointsObject).map(parseFloat)
+        const points = Object.keys(pointsObject).map(Number.parseFloat)
         points.sort((a, b) => a - b)
         this.internalPointsCache = { marks, step, points }
       }

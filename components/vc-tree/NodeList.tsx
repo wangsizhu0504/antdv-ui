@@ -6,12 +6,12 @@ import { computed, defineComponent, ref, shallowRef, watch } from 'vue'
 import VirtualList from '../vc-virtual-list'
 import omit from '../_util/omit'
 import { useInjectKeysState, useInjectTreeContext } from './contextTypes'
-import type { DataEntity, DataNode, FlattenNode, ScrollTo } from './interface'
 import MotionTreeNode from './MotionTreeNode'
-import type { NodeListProps } from './props'
 import { nodeListProps } from './props'
 import { findExpandedKeys, getExpandRange } from './utils/diffUtil'
 import { getKey } from './utils/treeUtil'
+import type { NodeListProps } from './props'
+import type { DataEntity, DataNode, FlattenNode, ScrollTo } from './interface'
 
 const HIDDEN_STYLE = {
   width: 0,

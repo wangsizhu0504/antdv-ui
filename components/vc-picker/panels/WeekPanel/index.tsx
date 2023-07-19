@@ -1,8 +1,8 @@
 import DatePanel from '../DatePanel'
-import type { PanelSharedProps } from '../../interface'
 import { isSameWeek } from '../../utils/dateUtil'
 import useMergeProps from '../../hooks/useMergeProps'
 import classNames from '../../../_util/classNames'
+import type { PanelSharedProps } from '../../interface'
 
 export type WeekPanelProps<DateType> = PanelSharedProps<DateType>
 

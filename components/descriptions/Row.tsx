@@ -1,7 +1,7 @@
-import type { CSSProperties, FunctionalComponent, VNode } from 'vue'
 import { getClass, getSlot, getStyle } from '../_util/props-util'
 import Cell from './Cell'
 import { useProviderContext } from './useContext'
+import type { CSSProperties, FunctionalComponent, VNode } from 'vue'
 
 interface CellConfig {
   component: string | [string, string]
@@ -30,7 +30,7 @@ const Row: FunctionalComponent<RowProps> = (props) => {
       showContent,
       labelStyle: rootLabelStyle,
       contentStyle: rootContentStyle,
-    }: CellConfig & { labelStyle?: CSSProperties; contentStyle?: CSSProperties },
+    }: CellConfig & { labelStyle?: CSSProperties, contentStyle?: CSSProperties },
   ) => {
     return items.map((item, index) => {
       const itemProps = item.props || {}

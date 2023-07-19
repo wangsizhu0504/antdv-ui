@@ -1,9 +1,9 @@
-import type { PropType } from 'vue'
 import { defineComponent } from 'vue'
 import { useInjectTabs } from '../TabContext'
+import { cloneElement } from '../../../_util/vnode'
+import type { PropType } from 'vue'
 import type { AnimatedConfig, TabPosition } from '../interface'
 import type { Key } from '../../../_util/type'
-import { cloneElement } from '../../../_util/vnode'
 
 export interface TabPanelListProps {
   activeKey: Key

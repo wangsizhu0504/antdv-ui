@@ -1,9 +1,8 @@
 import { computed, onBeforeUnmount, onMounted, watch, watchEffect } from 'vue'
-import type { Ref } from 'vue'
 import { isInViewPort } from '../util'
-import type { TourStepInfo } from '..'
-
 import { useState } from '../../hooks'
+import type { Ref } from 'vue'
+import type { TourStepInfo } from '..'
 
 export interface Gap {
   offset?: number

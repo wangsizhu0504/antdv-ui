@@ -1,9 +1,9 @@
 import { defineComponent, reactive } from 'vue'
-import type { PropType } from 'vue'
 import classNames from '../_util/classNames'
 import createRef from '../_util/createRef'
 import raf from '../_util/raf'
 import supportsPassive from '../_util/supportsPassive'
+import type { PropType } from 'vue'
 
 const MIN_SIZE = 20
 

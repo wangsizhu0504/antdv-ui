@@ -1,8 +1,6 @@
-import type { ExtractPropTypes, SlotsType } from 'vue'
 import { computed, defineComponent, nextTick, onUpdated, ref, watch } from 'vue'
 import debounce from 'lodash-es/debounce'
 import { FileOutlined, FolderOpenOutlined, FolderOutlined } from '@ant-design/icons-vue'
-import type { DataNode, EventDataNode, Key, ScrollTo } from '../vc-tree/interface'
 import { conductExpandParent } from '../vc-tree/util'
 import {
   convertDataToEntities,
@@ -14,9 +12,11 @@ import { filterEmpty } from '../_util/props-util'
 import { someType } from '../_util/type'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import classNames from '../_util/classNames'
-import type { AntdTreeNodeAttribute, TreeProps } from './Tree'
 import Tree, { treeProps } from './Tree'
 import { calcRangeKeys, convertDirectoryKeysToNodes } from './utils/dictUtil'
+import type { AntdTreeNodeAttribute, TreeProps } from './Tree'
+import type { DataNode, EventDataNode, Key, ScrollTo } from '../vc-tree/interface'
+import type { ExtractPropTypes, SlotsType } from 'vue'
 
 export type ExpandAction = false | 'click' | 'doubleclick' | 'dblclick'
 

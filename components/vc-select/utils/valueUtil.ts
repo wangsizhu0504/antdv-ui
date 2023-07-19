@@ -1,6 +1,6 @@
+import { warning } from '../../vc-util/warning'
 import type { BaseOptionType, DefaultOptionType, FieldNames, RawValueType } from '../Select'
 import type { FlattenOptionData } from '../interface'
-import { warning } from '../../vc-util/warning'
 
 function getKey(data: BaseOptionType, index: number) {
   const { key } = data
@@ -35,7 +35,7 @@ export function fillFieldNames(fieldNames: FieldNames | undefined, childrenAsDat
  */
 export function flattenOptions<OptionType extends BaseOptionType = DefaultOptionType>(
   options: OptionType[],
-  { fieldNames, childrenAsData }: { fieldNames?: FieldNames; childrenAsData?: boolean } = {},
+  { fieldNames, childrenAsData }: { fieldNames?: FieldNames, childrenAsData?: boolean } = {},
 ): FlattenOptionData<OptionType>[] {
   const flattenList: FlattenOptionData<OptionType>[] = []
 

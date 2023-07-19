@@ -1,7 +1,7 @@
-import type { AnchorHTMLAttributes, ExtractPropTypes, FunctionalComponent } from 'vue'
 import warning from '../_util/warning'
 import omit from '../_util/omit'
 import Base, { baseProps } from './Base'
+import type { AnchorHTMLAttributes, ExtractPropTypes, FunctionalComponent } from 'vue'
 
 export const linkProps = () =>
   omit({ ...baseProps(), ellipsis: { type: Boolean, default: undefined } }, ['component'])

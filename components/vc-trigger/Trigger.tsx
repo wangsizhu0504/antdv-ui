@@ -1,4 +1,3 @@
-import type { HTMLAttributes } from 'vue'
 import { computed, defineComponent, inject, provide, shallowRef } from 'vue'
 import contains from '../vc-util/Dom/contains'
 import addEventListener from '../vc-util/Dom/addEventListener'
@@ -20,6 +19,7 @@ import { useProvidePortal } from './context'
 import { getAlignFromPlacement, getAlignPopupClassName } from './utils/alignUtil'
 import Popup from './Popup'
 import { noop, triggerProps } from './interface'
+import type { HTMLAttributes } from 'vue'
 
 const ALL_HANDLERS = [
   'onClick',

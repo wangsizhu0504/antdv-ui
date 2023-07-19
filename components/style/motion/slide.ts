@@ -1,8 +1,8 @@
 import { Keyframes } from '../../cssinjs'
+import { initMotion } from './motion'
 import type { CSSInterpolation } from '../../cssinjs'
 import type { AliasToken } from '../../theme'
 import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook'
-import { initMotion } from './motion'
 
 export const slideUpIn = new Keyframes('antSlideUpIn', {
   '0%': {
@@ -117,7 +117,7 @@ export const slideRightOut = new Keyframes('antSlideRightOut', {
 })
 
 type SlideMotionTypes = 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right'
-const slideMotion: Record<SlideMotionTypes, { inKeyframes: Keyframes; outKeyframes: Keyframes }> = {
+const slideMotion: Record<SlideMotionTypes, { inKeyframes: Keyframes, outKeyframes: Keyframes }> = {
   'slide-up': {
     inKeyframes: slideUpIn,
     outKeyframes: slideUpOut,

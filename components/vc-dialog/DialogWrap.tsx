@@ -3,8 +3,8 @@ import { useProvidePortal } from '../vc-trigger/context'
 import { initDefaultProps } from '../_util/props-util'
 import Portal from '../_util/components/PortalWrapper'
 import Dialog from './Dialog'
-import type { IDialogChildProps } from './IDialogPropTypes'
 import getDialogPropTypes from './IDialogPropTypes'
+import type { IDialogChildProps } from './IDialogPropTypes'
 
 const IDialogPropTypes = getDialogPropTypes()
 const DialogWrap = defineComponent({

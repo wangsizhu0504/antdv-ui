@@ -1,11 +1,11 @@
 import { ref } from 'vue'
-import type { DisabledTimes, PanelSharedProps } from '../../interface'
 import { createKeydownHandler } from '../../utils/uiUtil'
 import useMergeProps from '../../hooks/useMergeProps'
 import classNames from '../../../_util/classNames'
 import TimeHeader from './TimeHeader'
-import type { BodyOperationRef } from './TimeBody'
 import TimeBody from './TimeBody'
+import type { BodyOperationRef } from './TimeBody'
+import type { DisabledTimes, PanelSharedProps } from '../../interface'
 
 // import type { RangeType } from '../../RangePicker';
 

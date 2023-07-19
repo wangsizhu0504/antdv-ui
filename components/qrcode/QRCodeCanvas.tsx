@@ -1,9 +1,9 @@
-import type { CSSProperties } from 'vue'
 import { computed, defineComponent, shallowRef, watch, watchEffect } from 'vue'
-import type { ImageSettings } from './interface'
 import { qrProps } from './interface'
 
 import qrcodegen from './qrcodegen'
+import type { ImageSettings } from './interface'
+import type { CSSProperties } from 'vue'
 
 type Modules = ReturnType<qrcodegen.QrCode['getModules']>
 interface Excavation {

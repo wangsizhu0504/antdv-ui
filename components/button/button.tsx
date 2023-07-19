@@ -9,7 +9,6 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import type { SlotsType, VNode } from 'vue'
 import devWarning from '../vc-util/devWarning'
 import { useCompactItemContext } from '../space/Compact'
 import { useConfigInject } from '../hooks'
@@ -19,8 +18,9 @@ import Wave from '../vc-wave'
 import buttonProps from './buttonTypes'
 import LoadingIcon from './LoadingIcon'
 import useStyle from './style'
-import type { ButtonType } from './buttonTypes'
 import { GroupSizeContext } from './button-group'
+import type { ButtonType } from './buttonTypes'
+import type { SlotsType, VNode } from 'vue'
 
 type Loading = boolean | number
 

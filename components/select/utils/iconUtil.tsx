@@ -24,7 +24,7 @@ export default function getIcons(props: any, slots: any = {}) {
     mergedSuffixIcon = getSuffixIconNode(<LoadingOutlined spin />)
   } else {
     const iconCls = `${prefixCls}-suffix`
-    mergedSuffixIcon = ({ open, showSearch }: { open: boolean; showSearch: boolean }) => {
+    mergedSuffixIcon = ({ open, showSearch }: { open: boolean, showSearch: boolean }) => {
       if (open && showSearch)
         return getSuffixIconNode(<SearchOutlined class={iconCls} />)
 

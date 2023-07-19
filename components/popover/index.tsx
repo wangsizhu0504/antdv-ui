@@ -1,4 +1,3 @@
-import type { ExtractPropTypes } from 'vue'
 import { computed, defineComponent, ref } from 'vue'
 import Tooltip from '../tooltip'
 import abstractTooltipProps from '../tooltip/abstractTooltipProps'
@@ -11,6 +10,7 @@ import { tooltipDefaultProps } from '../tooltip/Tooltip'
 import classNames from '../_util/classNames'
 import warning from '../_util/warning'
 import useStyle from './style'
+import type { ExtractPropTypes } from 'vue'
 
 export const popoverProps = () => ({
   ...abstractTooltipProps(),

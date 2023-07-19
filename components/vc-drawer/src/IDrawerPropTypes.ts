@@ -1,6 +1,6 @@
-import type { CSSProperties, PropType, TransitionProps } from 'vue'
 import PropTypes from '../../_util/vue-types'
 import { arrayType, functionType, objectType } from '../../_util/type'
+import type { CSSProperties, PropType, TransitionProps } from 'vue'
 
 export type IPlacement = 'left' | 'top' | 'right' | 'bottom'
 type ILevelMove = number | [number, number]
@@ -19,7 +19,7 @@ const props = () => ({
   level: { type: [String, Array] as PropType<string | string[]> },
   levelMove: {
     type: [Number, Function, Array] as PropType<
-      ILevelMove | ((e: { target: HTMLElement; open: boolean }) => ILevelMove)
+      ILevelMove | ((e: { target: HTMLElement, open: boolean }) => ILevelMove)
     >,
   },
   duration: String,

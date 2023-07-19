@@ -1,10 +1,10 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import { initDefaultProps } from '../_util/props-util'
 import classNames from '../_util/classNames'
 import useStyle from './style'
 import Element, { skeletonElementProps } from './Element'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 export const skeletonButtonProps = () => {
   return {

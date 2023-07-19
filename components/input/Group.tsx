@@ -1,10 +1,10 @@
-import type { PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
-import type { SizeType } from '../config-provider'
 import { FormItemInputContext } from '../form/FormItemContext'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
 import useStyle from './style'
+import type { SizeType } from '../config-provider'
+import type { PropType } from 'vue'
 
 // CSSINJS
 

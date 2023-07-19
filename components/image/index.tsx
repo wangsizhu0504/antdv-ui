@@ -1,4 +1,3 @@
-import type { App, ExtractPropTypes, ImgHTMLAttributes, Plugin } from 'vue'
 import { computed, defineComponent } from 'vue'
 import { EyeOutlined } from '@ant-design/icons-vue'
 import defaultLocale from '../locale/lang/en_US'
@@ -9,6 +8,7 @@ import { getTransitionName } from '../_util/components/transition'
 import classNames from '../_util/classNames'
 import useStyle from './style'
 import PreviewGroup, { icons } from './PreviewGroup'
+import type { App, ExtractPropTypes, ImgHTMLAttributes, Plugin } from 'vue'
 
 export type ImageProps = Partial<
   ExtractPropTypes<ReturnType<typeof imageProps>> &

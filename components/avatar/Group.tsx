@@ -1,13 +1,13 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import { computed, defineComponent } from 'vue'
 import Popover from '../popover'
 import { cloneElement } from '../_util/vnode'
 import { flattenChildren, getPropsSlot } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
 import Avatar from './Avatar'
-import type { AvatarSize } from './Avatar'
 import useStyle from './style'
 import { useProviderSize } from './SizeContext'
+import type { AvatarSize } from './Avatar'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 export const groupProps = () => ({
   prefixCls: String,

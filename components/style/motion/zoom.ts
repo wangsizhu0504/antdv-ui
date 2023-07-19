@@ -1,8 +1,8 @@
-import type { CSSInterpolation } from '../../cssinjs'
 import { Keyframes } from '../../cssinjs'
+import { initMotion } from './motion'
+import type { CSSInterpolation } from '../../cssinjs'
 import type { AliasToken } from '../../theme'
 import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook'
-import { initMotion } from './motion'
 
 export const zoomIn = new Keyframes('antZoomIn', {
   '0%': {
@@ -162,7 +162,7 @@ type ZoomMotionTypes =
   | 'zoom-right'
   | 'zoom-up'
   | 'zoom-down'
-const zoomMotion: Record<ZoomMotionTypes, { inKeyframes: Keyframes; outKeyframes: Keyframes }> = {
+const zoomMotion: Record<ZoomMotionTypes, { inKeyframes: Keyframes, outKeyframes: Keyframes }> = {
   'zoom': {
     inKeyframes: zoomIn,
     outKeyframes: zoomOut,

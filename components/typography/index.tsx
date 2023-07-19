@@ -1,10 +1,10 @@
-import type { App, Plugin } from 'vue'
 import Base from './Base'
 import Link from './Link'
 import Paragraph from './Paragraph'
 import Text from './Text'
 import Title from './Title'
 import Typography from './Typography'
+import type { App, Plugin } from 'vue'
 
 export type { TypographyProps } from './Typography'
 

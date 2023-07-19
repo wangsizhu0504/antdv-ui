@@ -1,5 +1,4 @@
 import { FileTwoTone, LoadingOutlined, PaperClipOutlined, PictureTwoTone } from '@ant-design/icons-vue'
-import type { HTMLAttributes } from 'vue'
 import {
   computed,
   defineComponent,
@@ -10,15 +9,16 @@ import {
 } from 'vue'
 import { isImageUrl, previewImage } from '../utils'
 import { uploadListProps } from '../interface'
-import type { InternalUploadFile, UploadFile } from '../interface'
 import Button from '../../button'
-import type { ButtonProps } from '../../button'
 import { filterEmpty, initDefaultProps, isValidElement } from '../../_util/props-util'
-import type { VueNode } from '../../_util/type'
 import { useConfigInject } from '../../hooks'
 import { TransitionGroup, getTransitionGroupProps } from '../../_util/components/transition'
 import collapseMotion from '../../_util/components/collapseMotion'
 import ListItem from './ListItem'
+import type { VueNode } from '../../_util/type'
+import type { ButtonProps } from '../../button'
+import type { InternalUploadFile, UploadFile } from '../interface'
+import type { HTMLAttributes } from 'vue'
 
 const HackSlot = (_, { slots }) => {
   return filterEmpty(slots.default?.())[0]

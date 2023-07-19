@@ -1,7 +1,7 @@
-import type { VNode, VNodeProps } from 'vue'
 import { cloneVNode } from 'vue'
 import { filterEmpty } from './props-util'
 import warning from './warning'
+import type { VNode, VNodeProps } from 'vue'
 import type { RefObject } from './createRef'
 
 type NodeProps = Record<string, any> &

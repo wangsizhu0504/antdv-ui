@@ -2,8 +2,8 @@ import { defineComponent } from 'vue'
 import Cell from '../Cell'
 import { useInjectSummary } from '../context/SummaryContext'
 import { useInjectTable } from '../context/TableContext'
-import type { AlignType } from '../interface'
 import { getCellFixedInfo } from '../utils/fixUtil'
+import type { AlignType } from '../interface'
 
 export interface SummaryCellProps {
   index?: number

@@ -1,11 +1,11 @@
-import type { ComputedRef, Ref } from 'vue'
 import { computed } from 'vue'
-import type { PickerLocale } from '../../locale'
-import type { GenerateConfig } from '../generate'
-import type { CustomFormat } from '../interface'
 import { formatValue } from '../utils/dateUtil'
 import shallowequal from '../../_util/shallowequal'
 import { useMemo } from '../../hooks'
+import type { ComputedRef, Ref } from 'vue'
+import type { PickerLocale } from '../../locale'
+import type { GenerateConfig } from '../generate'
+import type { CustomFormat } from '../interface'
 
 export interface ValueTextConfig<DateType> {
   formatList: ComputedRef<(string | CustomFormat<DateType>)[]>

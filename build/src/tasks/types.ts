@@ -4,7 +4,6 @@ import consola from 'consola'
 import glob from 'fast-glob'
 import pc from 'picocolors'
 import { Project } from 'ts-morph'
-import type { CompilerOptions, SourceFile } from 'ts-morph'
 import {
   antdRoot,
   buildOutput,
@@ -15,6 +14,7 @@ import {
   excludeFiles,
   pathRewriter,
 } from '../utils'
+import type { CompilerOptions, SourceFile } from 'ts-morph'
 
 const TSCONFIG_PATH = path.resolve(projRoot, 'tsconfig.web.json')
 const outDir = path.resolve(buildOutput, 'types')

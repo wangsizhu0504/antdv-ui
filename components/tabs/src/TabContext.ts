@@ -1,5 +1,5 @@
-import type { InjectionKey, PropType, Ref } from 'vue'
 import { defineComponent, inject, provide, ref, toRefs } from 'vue'
+import type { InjectionKey, PropType, Ref } from 'vue'
 import type { Tab } from './interface'
 
 export interface TabContextProps {

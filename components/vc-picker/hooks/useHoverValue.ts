@@ -1,8 +1,8 @@
-import type { ComputedRef, Ref, UnwrapRef } from 'vue'
 import { onBeforeUnmount, ref, watch } from 'vue'
 import raf from '../../_util/raf'
-import type { ValueTextConfig } from './useValueTexts'
 import useValueTexts from './useValueTexts'
+import type { ValueTextConfig } from './useValueTexts'
+import type { ComputedRef, Ref, UnwrapRef } from 'vue'
 
 export default function useHoverValue<DateType>(
   valueText: Ref<string>,

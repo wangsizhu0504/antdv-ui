@@ -1,11 +1,11 @@
-import type { CSSProperties } from 'vue'
 import { TransitionGroup, computed, defineComponent, ref, watch } from 'vue'
-import type { CSSMotionProps } from '../_util/components/transition'
 import { getTransitionGroupProps } from '../_util/components/transition'
-import type { Key } from '../_util/type'
 import classNames from '../_util/classNames'
 import Portal from '../_util/components/Portal'
 import Notice from './Notice'
+import type { Key } from '../_util/type'
+import type { CSSMotionProps } from '../_util/components/transition'
+import type { CSSProperties } from 'vue'
 import type { HolderReadyCallback, NoticeContent, Placement } from './type'
 
 let seed = 0

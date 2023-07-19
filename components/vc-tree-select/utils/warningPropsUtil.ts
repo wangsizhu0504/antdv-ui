@@ -1,6 +1,6 @@
 import { warning } from '../../vc-util/warning'
-import type { TreeSelectProps } from '../TreeSelect'
 import { toArray } from './valueUtil'
+import type { TreeSelectProps } from '../TreeSelect'
 
 function warningProps(props: TreeSelectProps & { searchPlaceholder?: string }) {
   const { searchPlaceholder, treeCheckStrictly, treeCheckable, labelInValue, value, multiple }

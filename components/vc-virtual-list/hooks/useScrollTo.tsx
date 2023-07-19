@@ -1,6 +1,6 @@
+import raf from '../../_util/raf'
 import type { Ref, ShallowRef } from 'vue'
 import type { GetKey } from '../interface'
-import raf from '../../_util/raf'
 import type { CacheMap } from './useHeights'
 
 export default function useScrollTo(

@@ -1,7 +1,7 @@
-import type { ExtractPropTypes, HTMLAttributes } from 'vue'
 import { defineComponent } from 'vue'
-import type { VueNode } from '../../_util/type'
 import { anyType, objectType } from '../../_util/type'
+import type { ExtractPropTypes, HTMLAttributes } from 'vue'
+import type { VueNode } from '../../_util/type'
 
 export const baseOptionsProps = {
   value: String,

@@ -1,4 +1,3 @@
-import type { App, ExtractPropTypes, PropType, SlotsType } from 'vue'
 import { computed, defineComponent, shallowRef, watch } from 'vue'
 import classNames from '../_util/classNames'
 import PropTypes from '../_util/vue-types'
@@ -9,14 +8,15 @@ import { flattenChildren, getOptionProps } from '../_util/props-util'
 import { FormItemInputContext, useInjectFormItemContext } from '../form/FormItemContext'
 import omit from '../_util/omit'
 import { optionOptions, optionProps } from '../vc-mentions/src/Option'
-import type { KeyboardEventHandler } from '../_util/EventInterface'
-import type { InputStatus } from '../_util/statusUtils'
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
 import { useProvideOverride } from '../menu/src/OverrideContext'
 import warning from '../_util/warning'
 import Spin from '../spin'
 import devWarning from '../vc-util/devWarning'
 import useStyle from './style'
+import type { InputStatus } from '../_util/statusUtils'
+import type { KeyboardEventHandler } from '../_util/EventInterface'
+import type { App, ExtractPropTypes, PropType, SlotsType } from 'vue'
 
 interface MentionsConfig {
   prefix?: string | string[]

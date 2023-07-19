@@ -1,9 +1,9 @@
-import type { App, PropType, VNode } from 'vue'
 import { defineComponent, provide, reactive, watch } from 'vue'
-import type { Locale } from '../locale'
 import { changeConfirmLocale } from '../modal/locale'
 import warning from '../_util/warning'
 import { withInstall } from '../_util/type'
+import type { Locale } from '../locale'
+import type { App, PropType, VNode } from 'vue'
 
 export interface LocaleProviderProps {
   locale: Locale

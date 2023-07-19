@@ -1,12 +1,12 @@
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import classNames from '../_util/classNames'
-import type { Breakpoint, ScreenMap } from '../_util/responsiveObserve'
 import useResponsiveObserve, { responsiveArray } from '../_util/responsiveObserve'
 import { useConfigInject, useFlexGapSupport } from '../hooks'
 import { someType } from '../_util/type'
 import { useRowStyle } from './style'
 import useProvideRow from './context'
+import type { Breakpoint, ScreenMap } from '../_util/responsiveObserve'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 
 const RowAligns = ['top', 'middle', 'bottom', 'stretch'] as const
 const RowJustify = [

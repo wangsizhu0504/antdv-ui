@@ -1,4 +1,3 @@
-import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
 import { defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import { StarFilled } from '@ant-design/icons-vue'
 import classNames from '../_util/classNames'
@@ -7,15 +6,15 @@ import KeyCode from '../_util/KeyCode'
 import { withInstall } from '../_util/type'
 import { findDOMNode } from '../_util/props-util'
 import Tooltip from '../tooltip'
-import { useConfigInject } from '../hooks'
+import { useConfigInject, useRefs } from '../hooks'
 
-import { useRefs } from '../hooks'
 import { useInjectFormItemContext } from '../form/FormItemContext'
-import type { Direction } from '../config-provider'
-import type { FocusEventHandler, KeyboardEventHandler } from '../_util/EventInterface'
 import useStyle from './style'
 import Star from './Star'
 import { getOffsetLeft } from './util'
+import type { FocusEventHandler, KeyboardEventHandler } from '../_util/EventInterface'
+import type { Direction } from '../config-provider'
+import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
 
 export const rateProps = () => ({
   'prefixCls': String,

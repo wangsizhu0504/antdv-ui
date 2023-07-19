@@ -2,9 +2,9 @@ import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import omit from '../_util/omit'
 import classNames from '../_util/classNames'
-import type { SkeletonElementProps } from './Element'
 import { skeletonElementProps } from './Element'
 import useStyle from './style'
+import type { SkeletonElementProps } from './Element'
 
 export type SkeletonImageProps = Omit<SkeletonElementProps, 'size' | 'shape' | 'active'>
 

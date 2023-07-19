@@ -1,15 +1,15 @@
-import type { Ref, VNode } from 'vue'
 import { computed } from 'vue'
 import { toPathOptions } from '../utils/treeUtil'
+import { toPathKey } from '../utils/commonUtil'
+import { isValidElement } from '../../_util/props-util'
+import { cloneElement } from '../../_util/vnode'
 import type {
   BaseCascaderProps,
   DefaultOptionType,
   InternalFieldNames,
   SingleValueType,
 } from '../Cascader'
-import { toPathKey } from '../utils/commonUtil'
-import { isValidElement } from '../../_util/props-util'
-import { cloneElement } from '../../_util/vnode'
+import type { Ref, VNode } from 'vue'
 
 export default (
   rawValues: Ref<SingleValueType[]>,

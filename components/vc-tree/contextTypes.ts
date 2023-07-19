@@ -3,8 +3,8 @@
  * When util.js imports the TreeNode for tree generate will cause treeContextTypes be empty.
  */
 
-import type { ComputedRef, InjectionKey, PropType, ShallowRef } from 'vue'
 import { computed, defineComponent, inject, provide, shallowRef } from 'vue'
+import type { ComputedRef, InjectionKey, PropType, ShallowRef } from 'vue'
 import type { VueNode } from '../_util/type'
 import type {
   DataEntity,

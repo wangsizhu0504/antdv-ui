@@ -1,16 +1,16 @@
-import type { PropType, Ref } from 'vue'
 import { computed, defineComponent, onMounted, shallowRef, watch } from 'vue'
 import TransBtn from '../TransBtn'
-import type { CustomTagProps, DisplayValueType, RawValueType, RenderNode } from '../BaseSelect'
-import type { BaseOptionType } from '../Select'
 import classNames from '../../_util/classNames'
 import pickAttrs from '../../_util/pickAttrs'
 import PropTypes from '../../_util/vue-types'
-import type { VueNode } from '../../_util/type'
 import Overflow from '../../vc-overflow'
 import useInjectLegacySelectContext from '../../vc-tree-select/LegacyContext'
-import type { InnerSelectorProps } from './interface'
 import Input from './Input'
+import type { InnerSelectorProps } from './interface'
+import type { VueNode } from '../../_util/type'
+import type { BaseOptionType } from '../Select'
+import type { CustomTagProps, DisplayValueType, RawValueType, RenderNode } from '../BaseSelect'
+import type { PropType, Ref } from 'vue'
 
 type SelectorProps = InnerSelectorProps & {
   // Icon

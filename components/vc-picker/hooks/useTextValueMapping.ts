@@ -1,5 +1,5 @@
-import type { ComputedRef, Ref } from 'vue'
 import { ref, watch } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 
 export default function useTextValueMapping({
   valueTexts,

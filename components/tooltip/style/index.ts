@@ -1,10 +1,10 @@
-import type { Ref } from 'vue'
 import { initZoomMotion } from '../../style/motion'
-import type { FullToken, GenerateStyle, UseComponentStyleResult } from '../../theme'
 import { genComponentStyleHook, mergeToken } from '../../theme'
 import { resetComponent } from '../../style'
 import { genPresetColor } from '../../style/presetColor'
 import getArrowStyle, { MAX_VERTICAL_CONTENT_RADIUS } from '../../style/placementArrow'
+import type { FullToken, GenerateStyle, UseComponentStyleResult } from '../../theme'
+import type { Ref } from 'vue'
 
 export interface ComponentToken {
   zIndexPopup: number

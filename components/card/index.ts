@@ -1,7 +1,7 @@
-import type { App, Plugin } from 'vue'
 import Card from './Card'
 import Meta from './Meta'
 import Grid from './Grid'
+import type { App, Plugin } from 'vue'
 
 export type { CardProps } from './Card'
 

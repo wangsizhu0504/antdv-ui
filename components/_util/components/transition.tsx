@@ -1,3 +1,5 @@
+import { Transition, TransitionGroup, nextTick } from 'vue'
+import { tuple } from '../type'
 import type {
   BaseTransitionProps,
   CSSProperties,
@@ -5,8 +7,6 @@ import type {
   TransitionGroupProps,
   TransitionProps,
 } from 'vue'
-import { Transition, TransitionGroup, nextTick } from 'vue'
-import { tuple } from '../type'
 
 const SelectPlacements = tuple('bottomLeft', 'bottomRight', 'topLeft', 'topRight')
 export type SelectCommonPlacement = (typeof SelectPlacements)[number]
