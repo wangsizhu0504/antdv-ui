@@ -7,16 +7,8 @@ module.exports = {
     jest: true,
     es6: true,
   },
-  extends: ['@kriszu/eslint-config'],
-  plugins: ['markdown'],
+  extends: ['@kriszu'],
   overrides: [
-    {
-      files: ['*.md'],
-      processor: 'markdown/markdown',
-      rules: {
-        'no-console': 'off',
-      },
-    },
     {
       files: ['*.vue'],
       rules: {
