@@ -1,6 +1,7 @@
 import { computed, defineComponent, ref } from 'vue'
 import classNames from '../_util/classNames'
 import Tooltip from '../tooltip'
+import Badge from '../badge'
 import { useConfigInject } from '../hooks'
 import warning from '../_util/warning'
 import { initDefaultProps } from '../_util/props-util'
@@ -38,6 +39,7 @@ const FloatButton = defineComponent({
         shape = 'circle',
         description = slots.description?.(),
         tooltip,
+        badge = {},
         ...restProps
       } = props
 
@@ -61,15 +63,17 @@ const FloatButton = defineComponent({
                 ? () => (slots.tooltip && slots.tooltip()) || tooltip
                 : undefined,
             default: () => (
-              <div class={`${prefixCls.value}-body`}>
-                <Content
-                  prefixCls={prefixCls.value}
-                  v-slots={{
-                    icon: slots.icon,
-                    description: () => description,
-                  }}
-                ></Content>
-              </div>
+              <Badge {...badge}>
+                <div class={`${prefixCls.value}-body`}>
+                  <Content
+                    prefixCls={prefixCls.value}
+                    v-slots={{
+                      icon: slots.icon,
+                      description: () => description,
+                    }}
+                  ></Content>
+                </div>
+              </Badge>
             ),
           }}
         ></Tooltip>

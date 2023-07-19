@@ -1,5 +1,6 @@
 import PropTypes from '../_util/vue-types'
-import { booleanType, functionType, stringType } from '../_util/type'
+import { booleanType, functionType, objectType, stringType } from '../_util/type'
+import type { BadgeProps } from '../badge'
 import type { ExtractPropTypes } from 'vue'
 import type { MouseEventHandler } from '../_util/EventInterface'
 
@@ -8,6 +9,8 @@ export type FloatButtonType = 'default' | 'primary'
 export type FloatButtonShape = 'circle' | 'square'
 
 export type FloatButtonGroupTrigger = 'click' | 'hover'
+
+export type FloatButtonBadgeProps = Omit<BadgeProps, 'status' | 'text' | 'title' | 'children'>
 
 export const floatButtonProps = () => {
   return {
@@ -18,6 +21,7 @@ export const floatButtonProps = () => {
     tooltip: PropTypes.any,
     href: String,
     target: functionType<() => Window | HTMLElement | null>(),
+    badge: objectType<FloatButtonBadgeProps>(),
     onClick: functionType<MouseEventHandler>(),
   }
 }
