@@ -9,8 +9,7 @@ import { getSize, getSuccessPercent, validProgress } from './utils'
 import { progressProps, progressStatuses } from './props'
 import Circle from './Circle'
 import useStyle from './style'
-import type { VueNode } from '../_util/type'
-import type { SlotsType } from 'vue'
+import type { CustomSlotsType, VueNode } from '../_util/type'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -25,7 +24,7 @@ export default defineComponent({
     size: 'default',
     strokeLinecap: 'round',
   }),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     default?: any
     format?: any
   }>,
@@ -77,7 +76,7 @@ export default defineComponent({
     })
 
     const strokeColorNotGradient = computed(() =>
-      (typeof props.strokeColor === 'string' || Array.isArray(props.strokeColor))
+      typeof props.strokeColor === 'string' || Array.isArray(props.strokeColor)
         ? props.strokeColor
         : undefined,
     )
@@ -104,7 +103,7 @@ export default defineComponent({
       return (
         <span
           class={`${prefixCls.value}-text`}
-          title={(title === undefined && typeof text === 'string') ? text : undefined}
+          title={title === undefined && typeof text === 'string' ? text : undefined}
         >
           {text}
         </span>

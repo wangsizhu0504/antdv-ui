@@ -18,11 +18,11 @@ import { useInjectDisabled } from '../config-provider/DisabledContext'
 import devWarning from '../vc-util/devWarning'
 import getIcons from './utils/iconUtil'
 import useStyle from './style'
+import type { CustomSlotsType } from '../_util/type'
 import type { InputStatus } from '../_util/statusUtils'
 import type { SizeType } from '../config-provider'
 import type { SelectCommonPlacement } from '../_util/components/transition'
 import type { BaseSelectRef } from '../vc-select'
-import type { SlotsType } from 'vue'
 import type { SelectValue } from './type'
 import type { SelectProps } from './props'
 
@@ -65,7 +65,7 @@ export default defineComponent({
     listItemHeight: 24,
   }),
   SECRET_COMBOBOX_MODE_DO_NOT_USE,
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     notFoundContent: any
     suffixIcon: any
     itemIcon: any
@@ -118,7 +118,6 @@ export default defineComponent({
     }
     const {
       prefixCls,
-      customizePrefixCls,
       direction,
       renderEmpty,
       size: contextSize,
@@ -183,7 +182,7 @@ export default defineComponent({
     const mergedShowArrow = computed(() =>
       props.showArrow !== undefined
         ? props.showArrow
-        : (props.loading || !(isMultiple.value || mode.value === 'combobox')),
+        : props.loading || !(isMultiple.value || mode.value === 'combobox'),
     )
 
     return () => {
@@ -210,7 +209,7 @@ export default defineComponent({
       else if (mode.value === 'combobox')
         mergedNotFound = null
       else
-        mergedNotFound = renderEmpty?.('Select') || <DefaultRenderEmpty componentName="Select" prefixCls={customizePrefixCls.value} />
+        mergedNotFound = renderEmpty?.('Select') || <DefaultRenderEmpty componentName="Select" />
 
       // ===================== Icons =====================
       const { suffixIcon, itemIcon, removeIcon, clearIcon } = getIcons(
@@ -231,7 +230,6 @@ export default defineComponent({
         'itemIcon',
         'removeIcon',
         'clearIcon',
-        'onChange',
         'size',
         'bordered',
         'status',

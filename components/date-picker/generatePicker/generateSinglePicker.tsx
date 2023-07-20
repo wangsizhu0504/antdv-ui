@@ -14,10 +14,10 @@ import { getMergedStatus, getStatusClassNames } from '../../_util/statusUtils'
 import { useCompactItemContext } from '../../space/Compact'
 import { Components, getTimeProps } from './util'
 import { commonProps, datePickerProps } from './props'
+import type { CustomSlotsType } from '../../_util/type'
 import type { CommonProps, DatePickerProps } from './props'
 import type { PanelMode, PickerMode } from '../../vc-picker/interface'
 import type { GenerateConfig } from '../../vc-picker/generate/index'
-import type { SlotsType } from 'vue'
 
 // CSSINJS
 
@@ -36,7 +36,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
       name: displayName,
       inheritAttrs: false,
       props: comProps,
-      slots: Object as SlotsType<{
+      slots: Object as CustomSlotsType<{
         suffixIcon?: any
         prevIcon?: any
         nextIcon?: any

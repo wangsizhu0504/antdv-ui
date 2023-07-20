@@ -62,7 +62,7 @@ const genSharedDividerStyle: GenerateStyle<DividerToken> = (token): CSSObject =>
           borderBlockStartColor: 'inherit',
           borderBlockEnd: 0,
           transform: 'translateY(50%)',
-          content: '\'\'',
+          content: "''",
         },
       },
 

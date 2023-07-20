@@ -66,7 +66,7 @@ export function getNumberPrecision(number: string | number) {
     return precision
   }
 
-  return (numStr.includes('.') && validateNumber(numStr))
+  return numStr.includes('.') && validateNumber(numStr)
     ? numStr.length - numStr.indexOf('.') - 1
     : 0
 }

@@ -10,9 +10,9 @@ import { eventType } from '../_util/type'
 import warning from '../_util/warning'
 import useStyle from './style'
 import CheckableTag from './CheckableTag'
-import type { LiteralUnion } from '../_util/type'
+import type { CustomSlotsType, LiteralUnion } from '../_util/type'
 import type { PresetColorType, PresetStatusColorType } from '../_util/colors'
-import type { App, CSSProperties, ExtractPropTypes, HTMLAttributes, Plugin, PropType, SlotsType } from 'vue'
+import type { App, CSSProperties, ExtractPropTypes, HTMLAttributes, Plugin, PropType } from 'vue'
 
 export const tagProps = () => ({
   'prefixCls': String,
@@ -39,7 +39,7 @@ const Tag = defineComponent({
   inheritAttrs: false,
   props: tagProps(),
   // emits: ['update:visible', 'close'],
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     closeIcon: any
     icon: any
     default: any
@@ -124,7 +124,7 @@ const Tag = defineComponent({
       }
 
       const tagStyle = {
-        backgroundColor: (color && !isInternalColor.value) ? color : undefined,
+        backgroundColor: color && !isInternalColor.value ? color : undefined,
       }
 
       const iconNode = icon || null

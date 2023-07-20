@@ -17,9 +17,10 @@ import { objectType } from '../../_util/type'
 import { useInjectFirstLevel, useInjectMenu } from './hooks/useMenuContext'
 import { useInjectKeyPath, useMeasure } from './hooks/useKeyPath'
 import useDirectionStyle from './hooks/useDirectionStyle'
+import type { CustomSlotsType } from '../../_util/type'
 import type { ItemType, MenuInfo } from './interface'
 import type { MouseEventHandler } from '../../_util/EventInterface'
-import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 let indexGuid = 0
 export const menuItemProps = () => ({
@@ -45,7 +46,7 @@ export default defineComponent({
   name: 'AMenuItem',
   inheritAttrs: false,
   props: menuItemProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     icon?: any
     title?: any
     default?: any
@@ -199,7 +200,7 @@ export default defineComponent({
       const childrenLength = children.length
       let tooltipTitle: any = title
       if (typeof title === 'undefined')
-        tooltipTitle = (firstLevel && childrenLength) ? children : ''
+        tooltipTitle = firstLevel && childrenLength ? children : ''
       else if (title === false)
         tooltipTitle = ''
 

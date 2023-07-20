@@ -3,8 +3,8 @@ import { flattenChildren } from '../_util/props-util'
 import { useToken } from '../theme/internal'
 import devWarning from '../vc-util/devWarning'
 import { createContext, useConfigInject } from '../hooks'
-import type { SizeType } from '../config-provider'
 import type { ExtractPropTypes, PropType } from 'vue'
+import type { SizeType } from '../config-provider'
 
 export const buttonGroupProps = () => ({
   prefixCls: String,

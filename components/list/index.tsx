@@ -23,10 +23,10 @@ import useStyle from './style'
 import Item from './Item'
 import ItemMeta from './ItemMeta'
 import type { Breakpoint } from '../_util/responsiveObserve'
-import type { Key } from '../_util/type'
+import type { CustomSlotsType, Key } from '../_util/type'
 import type { PaginationConfig } from '../pagination'
 import type { SpinProps } from '../spin'
-import type { App, ExtractPropTypes, HTMLAttributes, Plugin, PropType, SlotsType } from 'vue'
+import type { App, ExtractPropTypes, HTMLAttributes, Plugin, PropType } from 'vue'
 
 export type { ListItemProps } from './Item'
 export type { ListItemMetaProps } from './ItemMeta'
@@ -86,7 +86,7 @@ const List = defineComponent({
     loading: false,
     pagination: false,
   }),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     extra: any
     loadMore: any
     renderItem: { item: any, index: number }
@@ -109,7 +109,7 @@ const List = defineComponent({
     const [wrapSSR, hashId] = useStyle(prefixCls)
 
     const paginationObj = computed(() =>
-      (props.pagination && typeof props.pagination === 'object') ? props.pagination : {},
+      props.pagination && typeof props.pagination === 'object' ? props.pagination : {},
     )
     const paginationCurrent = ref(paginationObj.value.defaultCurrent ?? 1)
     const paginationSize = ref(paginationObj.value.defaultPageSize ?? 10)
@@ -220,7 +220,7 @@ const List = defineComponent({
         return undefined
 
       const columnCount
-        = (currentBreakpoint.value && props.grid[currentBreakpoint.value])
+        = currentBreakpoint.value && props.grid[currentBreakpoint.value]
           ? props.grid[currentBreakpoint.value]
           : props.grid.column
       if (columnCount) {

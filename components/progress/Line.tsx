@@ -72,21 +72,20 @@ export const handleGradient = (
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-
   name: 'Line',
   inheritAttrs: false,
   props: lineProps(),
   setup(props, { slots, attrs }) {
     const backgroundProps = computed<CSSProperties>(() => {
       const { strokeColor, direction } = props
-      return (strokeColor && typeof strokeColor !== 'string')
+      return strokeColor && typeof strokeColor !== 'string'
         ? handleGradient(strokeColor, direction)
         : {
             backgroundColor: strokeColor as string,
           }
     })
     const borderRadius = computed(() =>
-      (props.strokeLinecap === 'square' || props.strokeLinecap === 'butt') ? 0 : undefined,
+      props.strokeLinecap === 'square' || props.strokeLinecap === 'butt' ? 0 : undefined,
     )
 
     const trailStyle = computed<CSSProperties>(() =>

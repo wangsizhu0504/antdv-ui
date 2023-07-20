@@ -1,8 +1,8 @@
 import PropTypes from '../_util/vue-types'
 import { booleanType, functionType, objectType, stringType } from '../_util/type'
-import type { BadgeProps } from '../badge'
 import type { ExtractPropTypes } from 'vue'
 import type { MouseEventHandler } from '../_util/EventInterface'
+import type { BadgeProps } from '../badge'
 
 export type FloatButtonType = 'default' | 'primary'
 

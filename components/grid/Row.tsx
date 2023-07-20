@@ -160,8 +160,8 @@ const ARow = defineComponent({
       const gt = gutter.value
       // Add gutter related style
       const style: CSSProperties = {}
-      const horizontalGutter = (gt[0] != null && gt[0] > 0) ? `${gt[0] / -2}px` : undefined
-      const verticalGutter = (gt[1] != null && gt[1] > 0) ? `${gt[1] / -2}px` : undefined
+      const horizontalGutter = gt[0] != null && gt[0] > 0 ? `${gt[0] / -2}px` : undefined
+      const verticalGutter = gt[1] != null && gt[1] > 0 ? `${gt[1] / -2}px` : undefined
 
       if (horizontalGutter) {
         style.marginLeft = horizontalGutter

@@ -1,34 +1,34 @@
 import { LeftOutlined, LoadingOutlined, RightOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent, ref, watchEffect } from 'vue'
-import { useCompactItemContext } from '../space/Compact'
-import { useInjectFormItemContext } from '../form'
-import { FormItemInputContext } from '../form/FormItemContext'
-import useSelectStyle from '../select/style'
-import devWarning from '../vc-util/devWarning'
+import omit from '../_util/omit'
+import { withInstall } from '../_util/type'
 import getIcons from '../select/utils/iconUtil'
 import VcCascader, {
   SHOW_CHILD,
   SHOW_PARENT,
   cascaderProps as vcCascaderProps,
 } from '../vc-cascader'
-import { withInstall } from '../_util/type'
-import omit from '../_util/omit'
 import PropTypes from '../_util/vue-types'
 import { initDefaultProps } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
+import devWarning from '../vc-util/devWarning'
 import { getTransitionDirection, getTransitionName } from '../_util/components/transition'
+import { useInjectFormItemContext } from '../form'
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
+import { FormItemInputContext } from '../form/FormItemContext'
+import { useCompactItemContext } from '../space/Compact'
 
+import useSelectStyle from '../select/style'
 import { useInjectDisabled } from '../config-provider/DisabledContext'
 import useStyle from './style'
 import type { InputStatus } from '../_util/statusUtils'
-import type { SelectCommonPlacement } from '../_util/components/transition'
-import type { SizeType } from '../config-provider'
-import type { VueNode } from '../_util/type'
-import type { BaseOptionType, DefaultOptionType, FieldNames, ShowSearchType } from '../vc-cascader'
 import type { ValueType } from '../vc-cascader/Cascader'
+import type { SelectCommonPlacement } from '../_util/components/transition'
+import type { VueNode } from '../_util/type'
 import type { ExtractPropTypes, PropType } from 'vue'
+import type { SizeType } from '../config-provider'
+import type { BaseOptionType, DefaultOptionType, FieldNames, ShowSearchType } from '../vc-cascader'
 
 // Align the design since we use `rc-select` in root. This help:
 // - List search content will show all content
@@ -225,7 +225,7 @@ const Cascader = defineComponent({
       formItemContext.onFieldBlur()
     }
     const mergedShowArrow = computed(() =>
-      props.showArrow !== undefined ? props.showArrow : (props.loading || !props.multiple),
+      props.showArrow !== undefined ? props.showArrow : props.loading || !props.multiple,
     )
     const placement = computed(() => {
       if (props.placement !== undefined)

@@ -15,7 +15,7 @@ const FloatButtonContent = defineComponent({
 
       return (
         <div {...attrs} class={[attrs.class, `${prefixCls}-content`]}>
-          {(slots.icon || description.length)
+          {slots.icon || description.length
             ? (
             <>
               {slots.icon && <div class={`${prefixCls}-icon`}>{slots.icon()}</div>}

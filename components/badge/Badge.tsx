@@ -11,9 +11,9 @@ import Ribbon from './Ribbon'
 import ScrollNumber from './ScrollNumber'
 import useStyle from './style'
 import type { PresetStatusColorType } from '../_util/colors'
-import type { LiteralUnion } from '../_util/type'
+import type { CustomSlotsType, LiteralUnion } from '../_util/type'
 import type { PresetColorKey } from '../theme/interface'
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 export const badgeProps = () => ({
   /** Number to show in badge */
@@ -42,7 +42,7 @@ export default defineComponent({
   Ribbon,
   inheritAttrs: false,
   props: badgeProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     text: any
     count: any
     default: any
@@ -160,15 +160,15 @@ export default defineComponent({
       // =============================== Render ===============================
       // >>> Title
       const titleNode
-        = title ?? ((typeof count === 'string' || typeof count === 'number') ? count : undefined)
+        = title ?? (typeof count === 'string' || typeof count === 'number' ? count : undefined)
 
       // >>> Status Text
       const statusTextNode
-        = (visible || !text) ? null : <span class={`${pre}-status-text`}>{text}</span>
+        = visible || !text ? null : <span class={`${pre}-status-text`}>{text}</span>
 
       // >>> Display Component
       const displayNode
-        = (typeof count === 'object' || (count === undefined && slots.count))
+        = typeof count === 'object' || (count === undefined && slots.count)
           ? cloneElement(
             count ?? slots.count?.(),
             {

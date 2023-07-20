@@ -8,7 +8,8 @@ import devWarning from '../vc-util/devWarning'
 import Skeleton from '../skeleton'
 import useStyle from './style'
 import type { SizeType } from '../config-provider'
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType, VNode, VNodeTypes } from 'vue'
+import type { CSSProperties, ExtractPropTypes, PropType, VNode, VNodeTypes } from 'vue'
+import type { CustomSlotsType } from '../_util/type'
 
 export interface CardTabListType {
   key: string
@@ -54,7 +55,7 @@ const Card = defineComponent({
   name: 'ACard',
   inheritAttrs: false,
   props: cardProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     title: any
     extra: any
     tabBarExtraContent: any
@@ -68,7 +69,7 @@ const Card = defineComponent({
     const [wrapSSR, hashId] = useStyle(prefixCls)
     const getAction = (actions: VNodeTypes[]) => {
       const actionList = actions.map((action, index) =>
-        ((isVNode(action) && !isEmptyElement(action)) || !isVNode(action))
+        (isVNode(action) && !isEmptyElement(action)) || !isVNode(action)
           ? (
           <li style={{ width: `${100 / actions.length}%` }} key={`action-${index}`}>
             <span>{action}</span>
@@ -139,7 +140,7 @@ const Card = defineComponent({
 
       let head
       const tabs
-        = (tabList && tabList.length)
+        = tabList && tabList.length
           ? (
           <Tabs
             {...tabsProps}
@@ -179,13 +180,13 @@ const Card = defineComponent({
         </div>
       )
       const actionDom
-        = (actions && actions.length) ? <ul class={`${pre}-actions`}>{getAction(actions)}</ul> : null
+        = actions && actions.length ? <ul class={`${pre}-actions`}>{getAction(actions)}</ul> : null
 
       return wrapSSR(
         <div ref="cardContainerRef" {...attrs} class={[classString, attrs.class]}>
           {head}
           {coverDom}
-          {(children && children.length) ? body : null}
+          {children && children.length ? body : null}
           {actionDom}
         </div>,
       )

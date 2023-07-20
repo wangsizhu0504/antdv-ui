@@ -1,22 +1,22 @@
 import { computed, defineComponent, toRef } from 'vue'
-
-// CSSINJS
-import { enUS } from '../locale'
-import classNames from '../_util/classNames'
 import { useConfigInject, useMergedState } from '../hooks'
-import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
 import { PickerPanel } from '../vc-picker'
-import useStyle from './style'
+import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
+import classNames from '../_util/classNames'
+import { enUS } from '../locale'
 import CalendarHeader from './Header'
-import type { VueNode } from '../_util/type'
+import useStyle from './style'
+import type { GenerateConfig } from '../vc-picker/generate'
 import type {
   PickerPanelBaseProps as RCPickerPanelBaseProps,
   PickerPanelDateProps as RCPickerPanelDateProps,
   PickerPanelTimeProps as RCPickerPanelTimeProps,
 } from '../vc-picker/PickerPanel'
-import type { GenerateConfig } from '../vc-picker/generate'
+import type { CustomSlotsType, VueNode } from '../_util/type'
+import type { App, PropType } from 'vue'
 import type { PickerLocale } from '../locale'
-import type { App, PropType, SlotsType } from 'vue'
+
+// CSSINJS
 
 type InjectDefaultProps<Props> = Omit<
   Props,
@@ -25,9 +25,11 @@ type InjectDefaultProps<Props> = Omit<
   locale?: typeof enUS.DatePicker
   size?: 'large' | 'default' | 'small'
 }
+
 export interface SelectInfo {
   source: 'year' | 'month' | 'date' | 'customize'
 }
+
 // Picker Props
 export type PickerPanelBaseProps<DateType> = InjectDefaultProps<RCPickerPanelBaseProps<DateType>>
 export type PickerPanelDateProps<DateType> = InjectDefaultProps<RCPickerPanelDateProps<DateType>>
@@ -124,7 +126,7 @@ function generateCalendar<
       'onSelect': { type: Function as PropType<Props['onSelect']>, default: undefined },
       'valueFormat': { type: String, default: undefined },
     } as any,
-    slots: Object as SlotsType<{
+    slots: Object as CustomSlotsType<{
       dateFullCellRender?: { current: DateType }
       dateCellRender?: { current: DateType }
       monthFullCellRender?: { current: DateType }
@@ -184,8 +186,8 @@ function generateCalendar<
       const mergedDisabledDate = computed(() => {
         return (date: DateType) => {
           const notInRange = props.validRange
-            ? (generateConfig.isAfter(props.validRange[0], date)
-              || generateConfig.isAfter(date, props.validRange[1]))
+            ? generateConfig.isAfter(props.validRange[0], date)
+              || generateConfig.isAfter(date, props.validRange[1])
             : false
           return notInRange || !!props.disabledDate?.(date)
         }

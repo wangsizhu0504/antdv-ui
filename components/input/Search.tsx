@@ -129,7 +129,7 @@ export default defineComponent({
             loading={loading}
             icon={iconOnly ? searchIcon : null}
           >
-            {iconOnly ? null : (searchIcon || enterButton)}
+            {iconOnly ? null : searchIcon || enterButton}
           </Button>
         )
       }

@@ -11,8 +11,9 @@ import { useConfigInject } from '../hooks'
 import omit from '../_util/omit'
 import { useInjectDisabled } from '../config-provider/DisabledContext'
 import useStyle from './style'
+import type { CustomSlotsType } from '../_util/type'
 import type { FocusEventHandler } from '../_util/EventInterface'
-import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 export const SwitchSizes = tuple('small', 'default')
 type CheckedType = boolean | string | number
@@ -62,7 +63,7 @@ const Switch = defineComponent({
   __ANT_SWITCH: true,
   inheritAttrs: false,
   props: switchProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     checkedChildren: any
     unCheckedChildren: any
     default: any

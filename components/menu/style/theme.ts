@@ -213,11 +213,11 @@ const getThemeStyle = (token: MenuToken, themeSuffix: string): CSSInterpolation 
 
         // Item
         [`${componentCls}-item, ${componentCls}-submenu-title`]:
-         (colorActiveBarBorderSize && colorActiveBarWidth)
-           ? {
-               width: `calc(100% + ${colorActiveBarBorderSize}px)`,
-             }
-           : {},
+          colorActiveBarBorderSize && colorActiveBarWidth
+            ? {
+                width: `calc(100% + ${colorActiveBarBorderSize}px)`,
+              }
+            : {},
 
         [`${componentCls}-item`]: {
           'position': 'relative',

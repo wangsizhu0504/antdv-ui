@@ -3,9 +3,9 @@ import { useConfigInject } from '../hooks'
 import { isPresetColor } from '../_util/colors'
 import PropTypes from '../_util/vue-types'
 import useStyle from './style'
+import type { CustomSlotsType, LiteralUnion } from '../_util/type'
 import type { PresetColorType } from '../_util/colors'
-import type { LiteralUnion } from '../_util/type'
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 export const ribbonProps = () => ({
   prefix: String,
@@ -21,7 +21,7 @@ export default defineComponent({
   name: 'ABadgeRibbon',
   inheritAttrs: false,
   props: ribbonProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     text: any
     default: any
   }>,

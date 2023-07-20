@@ -32,7 +32,7 @@ const confirm = (config: ModalFuncProps) => {
     }
     const triggerCancel = args.some(param => param && param.triggerCancel)
     if (config.onCancel && triggerCancel)
-      config.onCancel(() => { }, ...args.slice(1))
+      config.onCancel(() => {}, ...args.slice(1))
 
     for (let i = 0; i < destroyFns.length; i++) {
       const fn = destroyFns[i]

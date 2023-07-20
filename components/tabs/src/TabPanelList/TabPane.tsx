@@ -1,6 +1,7 @@
 import { computed, defineComponent, ref, watch } from 'vue'
 import PropTypes from '../../../_util/vue-types'
-import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
+import type { CustomSlotsType } from '../../../_util/type'
 
 const tabPaneProps = () => ({
   tab: PropTypes.any,
@@ -26,7 +27,7 @@ export default defineComponent({
   inheritAttrs: false,
   __ANT_TAB_PANE: true,
   props: tabPaneProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     closeIcon: any
     tab: any
     default: any

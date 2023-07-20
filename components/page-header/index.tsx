@@ -12,10 +12,12 @@ import { useConfigInject, useDestroyed } from '../hooks'
 import classNames from '../_util/classNames'
 import ResizeObserver from '../vc-resize-observer'
 import Space from '../space'
+import PropTypes from '../_util/vue-types'
 import useStyle from './style'
+import type { CustomSlotsType } from '../_util/type'
 import type { MouseEventHandler } from '../_util/EventInterface'
 import type { AvatarProps } from '../avatar'
-import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 // CSSINJS
 
@@ -24,7 +26,7 @@ export const pageHeaderProps = () => ({
   prefixCls: String,
   title: vNodeType(),
   subTitle: vNodeType(),
-  breadcrumb: Object,
+  breadcrumb: PropTypes.object,
   tags: vNodeType(),
   footer: vNodeType(),
   extra: vNodeType(),
@@ -41,7 +43,7 @@ const PageHeader = defineComponent({
   inheritAttrs: false,
   props: pageHeaderProps(),
   // emits: ['back'],
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     backIcon: any
     avatar: any
     breadcrumb: any

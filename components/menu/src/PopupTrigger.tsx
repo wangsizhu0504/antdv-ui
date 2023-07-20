@@ -5,8 +5,9 @@ import classNames from '../../_util/classNames'
 import { getTransitionProps } from '../../_util/components/transition'
 import { useInjectForceRender, useInjectMenu } from './hooks/useMenuContext'
 import { placements, placementsRtl } from './placements'
+import type { CustomSlotsType } from '../../_util/type'
 import type { MenuMode } from './interface'
-import type { PropType, SlotsType } from 'vue'
+import type { PropType } from 'vue'
 
 const popupPlacementMap = {
   'horizontal': 'bottomLeft',
@@ -28,7 +29,7 @@ export default defineComponent({
     disabled: Boolean,
     onVisibleChange: Function as PropType<(visible: boolean) => void>,
   },
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     default?: any
     popup?: any
   }>,

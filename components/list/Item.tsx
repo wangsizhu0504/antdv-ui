@@ -7,13 +7,14 @@ import { cloneElement } from '../_util/vnode'
 import { useConfigInject } from '../hooks'
 import { ListContextKey } from './contextKey'
 import ItemMeta from './ItemMeta'
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
+import type { CustomSlotsType } from '../_util/type'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { ListGridType } from '.'
 
 export const listItemProps = () => ({
   prefixCls: String,
   extra: PropTypes.any,
-  actions: Array as PropType<any[]>,
+  actions: PropTypes.array,
   grid: Object as PropType<ListGridType>,
   colStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
 })
@@ -25,7 +26,7 @@ export default defineComponent({
   inheritAttrs: false,
   Meta: ItemMeta,
   props: listItemProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     actions: any
     extra: any
     default: any
@@ -61,7 +62,7 @@ export default defineComponent({
       const extra = props.extra ?? slots.extra?.()
       const children = slots.default?.()
       let actions = props.actions ?? flattenChildren(slots.actions?.())
-      actions = (actions && !Array.isArray(actions)) ? [actions] : actions
+      actions = actions && !Array.isArray(actions) ? [actions] : actions
       const actionsContent = actions && actions.length > 0 && (
         <ul class={`${pre}-item-action`} key="actions">
           {actions.map((action, i) => (
@@ -84,7 +85,7 @@ export default defineComponent({
             className,
           )}
         >
-          {(itemLayout.value === 'vertical' && extra)
+          {itemLayout.value === 'vertical' && extra
             ? [
                 <div class={`${pre}-item-main`} key="content">
                   {children}

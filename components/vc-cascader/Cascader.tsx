@@ -190,7 +190,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: initDefaultProps(internalCascaderProps(), {}),
   setup(props, { attrs, expose, slots }) {
-    const mergedId = useId(toRef(props, 'id'), 'rc_select')
+    const mergedId = useId(toRef(props, 'id'))
     const multiple = computed(() => !!props.checkable)
 
     // =========================== Values ===========================
@@ -547,7 +547,9 @@ export default defineComponent({
       const { dropdownMatchSelectWidth = false } = props
       const dropdownStyle: CSSProperties
         // Search to match width
-        = ((mergedSearchValue.value && mergedSearchConfig.value.matchInputWidth) || emptyOptions)
+        = (mergedSearchValue.value && mergedSearchConfig.value.matchInputWidth)
+        // Empty keep the width
+        || emptyOptions
           ? {}
           : {
               minWidth: 'auto',

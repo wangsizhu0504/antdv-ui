@@ -3,11 +3,11 @@ import PropTypes from '../_util/vue-types'
 import { flattenChildren } from '../_util/props-util'
 import { withInstall } from '../_util/type'
 import { useConfigInject } from '../hooks'
-import useStyle from './style'
-import type { VueNode } from '../_util/type'
-import type { ExtractPropTypes, SlotsType } from 'vue'
 
 // CSSINJS
+import useStyle from './style'
+import type { CustomSlotsType, VueNode } from '../_util/type'
+import type { ExtractPropTypes } from 'vue'
 
 export const commentProps = () => ({
   actions: Array,
@@ -30,7 +30,7 @@ const Comment = defineComponent({
   name: 'AComment',
   inheritAttrs: false,
   props: commentProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     actions: any
     author: any
     avatar: any
@@ -110,7 +110,7 @@ const Comment = defineComponent({
           ]}
         >
           {comment}
-          {(children && children.length) ? renderNested(pre, children) : null}
+          {children && children.length ? renderNested(pre, children) : null}
         </div>,
       )
     }

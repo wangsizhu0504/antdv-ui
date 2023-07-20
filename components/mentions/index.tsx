@@ -14,9 +14,10 @@ import warning from '../_util/warning'
 import Spin from '../spin'
 import devWarning from '../vc-util/devWarning'
 import useStyle from './style'
+import type { CustomSlotsType } from '../_util/type'
 import type { InputStatus } from '../_util/statusUtils'
 import type { KeyboardEventHandler } from '../_util/EventInterface'
-import type { App, ExtractPropTypes, PropType, SlotsType } from 'vue'
+import type { App, ExtractPropTypes, PropType } from 'vue'
 
 interface MentionsConfig {
   prefix?: string | string[]
@@ -103,7 +104,7 @@ const Mentions = defineComponent({
   name: 'AMentions',
   inheritAttrs: false,
   props: mentionsProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     notFoundContent?: any
     option?: any
     default?: any
@@ -237,7 +238,7 @@ const Mentions = defineComponent({
                 label: <Spin size="small" />,
               },
             ]
-          : (props.options || getOptions()),
+          : props.options || getOptions(),
         class: mergedClassName,
         ...otherAttrs,
         rows,

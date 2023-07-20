@@ -2,7 +2,7 @@ import { defineComponent, onBeforeUnmount, ref } from 'vue'
 import isMobile from '../../vc-util/isMobile'
 import classNames from '../../_util/classNames'
 import { functionType } from '../../_util/type'
-import type { SlotsType } from 'vue'
+import type { CustomSlotsType } from '../../_util/type'
 
 /**
  * When click and hold on a button - the speed of auto changing the value.
@@ -24,7 +24,7 @@ export default defineComponent({
     downDisabled: Boolean,
     onStep: functionType<(up: boolean) => void>(),
   },
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     upNode?: any
     downNode?: any
     default?: any

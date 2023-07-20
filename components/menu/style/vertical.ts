@@ -107,7 +107,7 @@ const getVerticalStyle: GenerateStyle<MenuToken> = (token) => {
 
         // https://github.com/ant-design/ant-design/issues/22244
         // https://github.com/ant-design/ant-design/issues/26812
-        '&:not([class*=\'-active\'])': {
+        "&:not([class*='-active'])": {
           overflowX: 'hidden',
           overflowY: 'auto',
         },

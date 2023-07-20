@@ -59,7 +59,7 @@ const FloatButton = defineComponent({
           placement="left"
           v-slots={{
             title:
-              (slots.tooltip || tooltip)
+              slots.tooltip || tooltip
                 ? () => (slots.tooltip && slots.tooltip()) || tooltip
                 : undefined,
             default: () => (

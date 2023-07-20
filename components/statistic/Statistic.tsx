@@ -7,8 +7,9 @@ import { anyType, booleanType, functionType, someType, vNodeType } from '../_uti
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import useStyle from './style'
 import StatisticNumber from './Number'
+import type { CustomSlotsType } from '../_util/type'
 import type { Formatter, valueType } from './utils'
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType, VNode } from 'vue'
+import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
 
 export const statisticProps = () => ({
   prefixCls: String,
@@ -37,7 +38,7 @@ export default defineComponent({
     groupSeparator: ',',
     loading: false,
   }),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     title?: any
     prefix?: any
     suffix?: any

@@ -7,7 +7,8 @@ import { useConfigInject } from '../hooks'
 import Dropdown from './dropdown'
 import useStyle from './style'
 import { dropdownButtonProps } from './props'
-import type { ExtractPropTypes, HTMLAttributes, SlotsType } from 'vue'
+import type { ExtractPropTypes, HTMLAttributes } from 'vue'
+import type { CustomSlotsType } from '../_util/type'
 
 const ButtonGroup = Button.Group
 
@@ -24,7 +25,7 @@ export default defineComponent({
     type: 'default',
   }),
   // emits: ['click', 'visibleChange', 'update:visible'],s
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     icon: any
     leftButton: { button: any }
     rightButton: { button: any }

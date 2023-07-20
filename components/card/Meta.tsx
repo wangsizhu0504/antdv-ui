@@ -2,7 +2,8 @@ import { defineComponent } from 'vue'
 import { getPropsSlot } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
 import { vNodeType } from '../_util/type'
-import type { ExtractPropTypes, SlotsType } from 'vue'
+import type { ExtractPropTypes } from 'vue'
+import type { CustomSlotsType } from '../_util/type'
 
 export const cardMetaProps = () => ({
   prefixCls: String,
@@ -15,7 +16,7 @@ export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ACardMeta',
   props: cardMetaProps(),
-  slots: Object as SlotsType <{
+  slots: Object as CustomSlotsType<{
     title: any
     description: any
     avatar: any
@@ -43,7 +44,7 @@ export default defineComponent({
           )
         : null
       const MetaDetail
-        = (titleDom || descriptionDom)
+        = titleDom || descriptionDom
           ? (
           <div class={`${prefixCls.value}-meta-detail`}>
             {titleDom}

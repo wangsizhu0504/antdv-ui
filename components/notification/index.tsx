@@ -180,7 +180,7 @@ function notice(args: NotificationArgsProps) {
           <div class={iconNode ? `${prefixCls}-with-icon` : ''}>
             {iconNode && iconNode()}
             <div class={`${prefixCls}-message`}>
-              {(!description && iconNode)
+              {!description && iconNode
                 ? (
                 <span class={`${prefixCls}-message-single-line-auto-margin`} />
                   )

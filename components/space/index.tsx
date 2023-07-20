@@ -4,10 +4,12 @@ import PropTypes from '../_util/vue-types'
 import { filterEmpty } from '../_util/props-util'
 import { booleanType, tuple } from '../_util/type'
 import classNames from '../_util/classNames'
-import useStyle from './style'
 import Compact from './Compact'
+
+import useStyle from './style'
+import type { CustomSlotsType } from '../_util/type'
 import type { SizeType } from '../config-provider'
-import type { App, CSSProperties, ExtractPropTypes, Plugin, PropType, SlotsType } from 'vue'
+import type { App, CSSProperties, ExtractPropTypes, Plugin, PropType } from 'vue'
 
 export type SpaceSize = SizeType | number
 const spaceSize = {
@@ -28,7 +30,7 @@ export const spaceProps = () => ({
 export type SpaceProps = Partial<ExtractPropTypes<ReturnType<typeof spaceProps>>>
 
 function getNumberSize(size: SpaceSize) {
-  return typeof size === 'string' ? spaceSize[size] : (size || 0)
+  return typeof size === 'string' ? spaceSize[size] : size || 0
 }
 
 const Space = defineComponent({
@@ -36,7 +38,7 @@ const Space = defineComponent({
   name: 'ASpace',
   inheritAttrs: false,
   props: spaceProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     split?: any
     default?: any
   }>,
@@ -61,7 +63,7 @@ const Space = defineComponent({
     )
 
     const mergedAlign = computed(() =>
-      (props.align === undefined && props.direction === 'horizontal') ? 'center' : props.align,
+      props.align === undefined && props.direction === 'horizontal' ? 'center' : props.align,
     )
     const cn = computed(() => {
       return classNames(prefixCls.value, hashId.value, `${prefixCls.value}-${props.direction}`, {

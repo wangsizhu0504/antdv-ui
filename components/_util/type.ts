@@ -1,4 +1,4 @@
-import type { App, Plugin, PropType, Ref, VNode } from 'vue'
+import type { App, Plugin, PropType, Ref, SlotsType, VNode } from 'vue'
 
 // https://stackoverflow.com/questions/46176165/ways-to-get-string-literal-type-of-array-values-without-enum-overhead
 export const tuple = <T extends string[]>(...args: T) => args
@@ -87,3 +87,5 @@ export function stringType<T extends string = string>(defaultVal?: T) {
 export function someType<T>(types?: any[], defaultVal?: T) {
   return types ? { type: types as PropType<T>, default: defaultVal as T } : anyType<T>(defaultVal)
 }
+
+export type CustomSlotsType<T> = SlotsType<T>

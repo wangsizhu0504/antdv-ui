@@ -1,11 +1,11 @@
 import { defineComponent, ref } from 'vue'
-import { Button, Group } from '../radio'
 import Select from '../select'
+import { Button, Group } from '../radio'
 import { FormItemInputContext } from '../form/FormItemContext'
-import type { GenerateConfig } from '../vc-picker/generate'
-import type { PickerLocale } from '../locale'
-import type { Ref } from 'vue'
 import type { CalendarMode, SelectInfo } from './generateCalendar'
+import type { Ref } from 'vue'
+import type { PickerLocale } from '../locale'
+import type { GenerateConfig } from '../vc-picker/generate'
 
 const YearSelectOffset = 10
 const YearSelectTotal = 20
@@ -35,7 +35,7 @@ function YearSelect<DateType>(props: SharedProps<DateType>) {
     end = generateConfig.getYear(validRange[1]) + 1
   }
 
-  const suffix = (locale && locale.year === '年') ? '年' : ''
+  const suffix = locale && locale.year === '年' ? '年' : ''
   const options: { label: string, value: number }[] = []
   for (let index = start; index < end; index++)
     options.push({ label: `${index}${suffix}`, value: index })

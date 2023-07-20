@@ -13,13 +13,14 @@ import { flattenChildren } from '../_util/props-util'
 import warning from '../_util/warning'
 import { FormItemInputContext, useInjectFormItemContext } from '../form/FormItemContext'
 import { useConfigInject } from '../hooks'
-import useStyle from './style'
+
 import { CheckboxGroupContextKey, checkboxProps } from './interface'
-import type { EventHandler } from '../_util/EventInterface'
-import type { CSSProperties } from 'vue'
-import type { CheckboxChangeEvent, CheckboxProps } from './interface'
 
 // CSSINJS
+import useStyle from './style'
+import type { CheckboxChangeEvent, CheckboxProps } from './interface'
+import type { EventHandler } from '../_util/EventInterface'
+import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -32,7 +33,6 @@ export default defineComponent({
     const formItemContext = useInjectFormItemContext()
     const formItemInputContext = FormItemInputContext.useInject()
     const { prefixCls, direction, disabled } = useConfigInject('checkbox', props)
-
     // style
     const [wrapSSR, hashId] = useStyle(prefixCls)
 

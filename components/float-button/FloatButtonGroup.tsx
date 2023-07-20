@@ -99,7 +99,7 @@ const FloatButtonGroup = defineComponent({
 
       return wrapSSR(
         <div ref={floatButtonGroupRef} {...attrs} class={groupCls} {...hoverAction.value}>
-          {(trigger && ['click', 'hover'].includes(trigger))
+          {trigger && ['click', 'hover'].includes(trigger)
             ? (
             <>
               <Transition {...transitionProps}>
@@ -116,8 +116,8 @@ const FloatButtonGroup = defineComponent({
                 v-slots={{
                   icon: () =>
                     open.value
-                      ? (slots.closeIcon?.() || <CloseOutlined />)
-                      : (slots.icon?.() || <FileTextOutlined />),
+                      ? slots.closeIcon?.() || <CloseOutlined />
+                      : slots.icon?.() || <FileTextOutlined />,
                   tooltip: slots.tooltip,
                   description: slots.description,
                 }}

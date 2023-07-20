@@ -66,7 +66,7 @@ const genStatusStyle = (
     controlOutlineWidth: number
     controlLineWidth: number
   },
-  overwriteDefaultBorder = false,
+  overwriteDefaultBorder: boolean = false,
 ): CSSObject => {
   const { componentCls, borderHoverColor, outlineColor, antCls } = token
 

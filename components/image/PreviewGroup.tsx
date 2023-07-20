@@ -1,10 +1,19 @@
 import { computed, defineComponent } from 'vue'
-
-import RotateLeftOutlined, { CloseOutlined, LeftOutlined, RightOutlined, RotateRightOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons-vue'
+import {
+  CloseOutlined,
+  LeftOutlined,
+  RightOutlined,
+  RotateLeftOutlined,
+  RotateRightOutlined,
+  ZoomInOutlined,
+  ZoomOutOutlined,
+} from '@ant-design/icons-vue'
 import { useConfigInject } from '../hooks'
-import PreviewGroup, { imageGroupProps } from '../vc-image/src/PreviewGroup'
+import PreviewGroup from '../vc-image/src/PreviewGroup'
+import { anyType } from '../_util/type'
 import useStyle from './style'
 import type { ExtractPropTypes } from 'vue'
+import type { PreviewGroupPreview } from '../vc-image/src/PreviewGroup'
 
 export const icons = {
   rotateLeft: <RotateLeftOutlined />,
@@ -15,13 +24,17 @@ export const icons = {
   left: <LeftOutlined />,
   right: <RightOutlined />,
 }
-export type ImageGroupProps = Partial<ExtractPropTypes<ReturnType<typeof imageGroupProps>>>
+const previewGroupProps = () => ({
+  previewPrefixCls: String,
+  preview: anyType<boolean | PreviewGroupPreview>(),
+})
+export type ImageGroupProps = Partial<ExtractPropTypes<ReturnType<typeof previewGroupProps>>>
 
 const InternalPreviewGroup = defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AImagePreviewGroup',
   inheritAttrs: false,
-  props: imageGroupProps(),
+  props: previewGroupProps(),
   setup(props, { attrs, slots }) {
     const { prefixCls } = useConfigInject('image', props)
     const previewPrefixCls = computed(() => `${prefixCls.value}-preview`)

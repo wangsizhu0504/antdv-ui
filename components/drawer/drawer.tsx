@@ -7,7 +7,6 @@ import {
   onUnmounted,
   provide,
   shallowRef,
-  unref,
   watch,
 } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
@@ -23,8 +22,9 @@ import { isNumeric } from '../_util/is'
 import { getTransitionName, getTransitionProps } from '../_util/components/transition'
 import useStyle from './style'
 import { drawerProps } from './props'
+import type { CustomSlotsType } from '../_util/type'
 import type { PushState } from './type'
-import type { CSSProperties, SlotsType } from 'vue'
+import type { CSSProperties } from 'vue'
 
 const defaultPushState: PushState = { distance: 180 }
 
@@ -41,7 +41,7 @@ export default defineComponent({
     keyboard: true,
     push: defaultPushState,
   }),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     closeIcon: any
     title: any
     extra: any
@@ -80,8 +80,8 @@ export default defineComponent({
     const [wrapSSR, hashId] = useStyle(prefixCls)
     const getContainer = computed(() =>
       // 有可能为 false，所以不能直接判断
-      (props.getContainer === undefined && getPopupContainer?.value)
-        ? () => unref(getPopupContainer)(document.body)
+      props.getContainer === undefined && getPopupContainer?.value
+        ? () => getPopupContainer.value(document.body)
         : props.getContainer,
     )
 

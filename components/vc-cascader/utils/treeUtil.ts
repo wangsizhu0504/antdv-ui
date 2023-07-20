@@ -1,4 +1,5 @@
 import { SHOW_CHILD } from './commonUtil'
+import type { Key } from '../../_util/type'
 import type {
   DefaultOptionType,
   InternalFieldNames,
@@ -6,7 +7,6 @@ import type {
   SingleValueType,
 } from '../Cascader'
 import type { OptionsInfo } from '../hooks/useEntities'
-import type { Key } from '../../_util/type'
 
 export function formatStrategyValues(
   pathKeys: Key[],

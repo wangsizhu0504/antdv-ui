@@ -150,7 +150,7 @@ function notice(args: MessageArgsProps): MessageType {
           })
           return (
             <div class={messageClass}>
-              {typeof args.icon === 'function' ? args.icon() : (args.icon || iconNode)}
+              {typeof args.icon === 'function' ? args.icon() : args.icon || iconNode}
               <span>{typeof args.content === 'function' ? args.content() : args.content}</span>
             </div>
           )
@@ -220,7 +220,6 @@ typeList.forEach(type => attachTypeApi(api, type))
 
 api.warn = api.warning
 api.useMessage = useMessage
-
 export interface MessageInstance {
   info(content: JointContent, duration?: ConfigDuration, onClose?: ConfigOnClose): MessageType
   success(content: JointContent, duration?: ConfigDuration, onClose?: ConfigOnClose): MessageType
@@ -228,6 +227,7 @@ export interface MessageInstance {
   warning(content: JointContent, duration?: ConfigDuration, onClose?: ConfigOnClose): MessageType
   loading(content: JointContent, duration?: ConfigDuration, onClose?: ConfigOnClose): MessageType
   open(args: MessageArgsProps): MessageType
+  useMessage: typeof useMessage
 }
 
 export interface MessageApi extends MessageInstance {

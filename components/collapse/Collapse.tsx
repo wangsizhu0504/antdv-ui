@@ -8,17 +8,18 @@ import {
   isEmptyElement,
   isValidElement,
 } from '../_util/props-util'
+import firstNotUndefined from '../_util/firstNotUndefined'
 import classNames from '../_util/classNames'
 import { useConfigInject } from '../hooks'
 import collapseMotion from '../_util/components/collapseMotion'
+import { collapseProps } from './commonProps'
+import useStyle from './style'
+import type { CustomSlotsType } from '../_util/type'
 
 // CSSINJS
-import firstNotUndefined from '../_util/firstNotUndefined'
-import useStyle from './style'
-import { collapseProps } from './commonProps'
-import type { CollapsePanelProps } from './CollapsePanel'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { CollapsibleType } from './commonProps'
-import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
+import type { CollapsePanelProps } from './CollapsePanel'
 
 type Key = number | string
 
@@ -27,7 +28,7 @@ function getActiveKeysArray(activeKey: Key | Key[]) {
   if (!Array.isArray(currentActiveKey)) {
     const activeKeyType = typeof currentActiveKey
     currentActiveKey
-      = (activeKeyType === 'number' || activeKeyType === 'string') ? [currentActiveKey] : []
+      = activeKeyType === 'number' || activeKeyType === 'string' ? [currentActiveKey] : []
   }
   return currentActiveKey.map(key => String(key))
 }
@@ -44,7 +45,7 @@ export default defineComponent({
     openAnimation: collapseMotion('ant-motion-collapse', false),
     expandIconPosition: 'start',
   }),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     default?: any
     expandIcon?: CollapsePanelProps
   }>,

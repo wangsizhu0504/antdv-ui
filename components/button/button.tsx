@@ -9,18 +9,19 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import devWarning from '../vc-util/devWarning'
-import { useCompactItemContext } from '../space/Compact'
+import Wave from '../vc-wave'
+import { flattenChildren, initDefaultProps } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
 import { useInjectDisabled } from '../config-provider/DisabledContext'
-import { flattenChildren, initDefaultProps } from '../_util/props-util'
-import Wave from '../vc-wave'
+import devWarning from '../vc-util/devWarning'
+import { useCompactItemContext } from '../space/Compact'
 import buttonProps from './buttonTypes'
 import LoadingIcon from './LoadingIcon'
 import useStyle from './style'
 import { GroupSizeContext } from './button-group'
 import type { ButtonType } from './buttonTypes'
-import type { SlotsType, VNode } from 'vue'
+import type { VNode } from 'vue'
+import type { CustomSlotsType } from '../_util/type'
 
 type Loading = boolean | number
 
@@ -37,7 +38,7 @@ export default defineComponent({
   inheritAttrs: false,
   __ANT_BUTTON: true,
   props: initDefaultProps(buttonProps(), { type: 'default' }),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     icon: any
     default: any
   }>,
@@ -60,8 +61,8 @@ export default defineComponent({
 
     // =============== Update Loading ===============
     const loadingOrDelay = computed(() =>
-      (typeof props.loading === 'object' && props.loading.delay)
-        ? (props.loading.delay || true)
+      typeof props.loading === 'object' && props.loading.delay
+        ? props.loading.delay || true
         : !!props.loading,
     )
 
@@ -88,7 +89,7 @@ export default defineComponent({
 
       const sizeClassNameMap = { large: 'lg', small: 'sm', middle: undefined }
       const sizeFullname = compactSize.value || groupSizeContext?.size || size.value
-      const sizeCls = sizeFullname ? (sizeClassNameMap[sizeFullname] || '') : ''
+      const sizeCls = sizeFullname ? sizeClassNameMap[sizeFullname] || '' : ''
 
       return [
         compactItemClassnames.value,
@@ -151,7 +152,7 @@ export default defineComponent({
       devWarning(
         !(props.ghost && isUnBorderedButtonType(props.type)),
         'Button',
-        '`link` or `text` button can\'t be a `ghost` button.',
+        "`link` or `text` button can't be a `ghost` button.",
       )
     })
 
@@ -199,7 +200,7 @@ export default defineComponent({
         delete buttonProps.disabled
 
       const iconNode
-        = (icon && !innerLoading.value)
+        = icon && !innerLoading.value
           ? (
               icon
             )

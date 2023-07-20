@@ -8,8 +8,6 @@ import { useConfigInject } from '../hooks'
 import useStyle from './style'
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 
-// CSSINJS
-
 export type SwipeDirection = 'left' | 'down' | 'right' | 'up' | string
 
 export type LazyLoadTypes = 'ondemand' | 'progressive'

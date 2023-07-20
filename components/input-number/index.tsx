@@ -21,7 +21,9 @@ import useStyle from './style'
 import VcInputNumber, { inputNumberProps as baseInputNumberProps } from './src/InputNumber'
 import type { InputStatus } from '../_util/statusUtils'
 import type { SizeType } from '../config-provider'
-import type { App, ExtractPropTypes, HTMLAttributes, SlotsType } from 'vue'
+import type { App, ExtractPropTypes, HTMLAttributes } from 'vue'
+
+import type { CustomSlotsType } from '../_util/type'
 
 const baseProps = baseInputNumberProps()
 export const inputNumberProps = () => ({
@@ -48,7 +50,7 @@ const InputNumber = defineComponent({
   inheritAttrs: false,
   props: inputNumberProps(),
   // emits: ['focus', 'blur', 'change', 'input', 'update:value'],
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     addonBefore?: any
     addonAfter?: any
     prefix?: any

@@ -7,7 +7,8 @@ import { useConfigInject } from '../hooks'
 
 import { collapsePanelProps } from './commonProps'
 import PanelContent from './PanelContent'
-import type { ExtractPropTypes, SlotsType } from 'vue'
+import type { ExtractPropTypes } from 'vue'
+import type { CustomSlotsType } from '../_util/type'
 
 export { collapsePanelProps }
 export type CollapsePanelProps = Partial<ExtractPropTypes<ReturnType<typeof collapsePanelProps>>>
@@ -22,7 +23,7 @@ export default defineComponent({
     headerClass: '',
     forceRender: false,
   }),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     expandIcon?: any
     extra?: any
     header?: any
@@ -113,7 +114,7 @@ export default defineComponent({
             {extra && <div class={`${prefixClsValue}-extra`}>{extra}</div>}
           </div>
           <Transition {...transitionProps}>
-            {(!destroyInactivePanel || isActive) ? panelContent : null}
+            {!destroyInactivePanel || isActive ? panelContent : null}
           </Transition>
         </div>
       )

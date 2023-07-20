@@ -4,8 +4,9 @@ import PropTypes from '../../_util/vue-types'
 import { objectType } from '../../_util/type'
 import { useInjectMenu } from './hooks/useMenuContext'
 import { useMeasure } from './hooks/useKeyPath'
-import type { ExtractPropTypes, SlotsType } from 'vue'
+import type { ExtractPropTypes } from 'vue'
 import type { ItemType } from './interface'
+import type { CustomSlotsType } from '../../_util/type'
 
 export const menuItemGroupProps = () => ({
   title: PropTypes.any,
@@ -20,7 +21,7 @@ export default defineComponent({
   name: 'AMenuItemGroup',
   inheritAttrs: false,
   props: menuItemGroupProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     title?: any
     default?: any
   }>,

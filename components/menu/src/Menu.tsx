@@ -40,8 +40,8 @@ import type {
 import type { ItemType } from './hooks/useItems'
 import type { FocusEventHandler, MouseEventHandler } from '../../_util/EventInterface'
 import type { CSSMotionProps } from '../../_util/components/transition'
-import type { Key } from '../../_util/type'
-import type { ExtractPropTypes, PropType, SlotsType, VNode } from 'vue'
+import type { CustomSlotsType, Key } from '../../_util/type'
+import type { ExtractPropTypes, PropType, VNode } from 'vue'
 import type { StoreMenuInfo } from './hooks/useMenuContext'
 
 export const menuProps = () => ({
@@ -95,7 +95,7 @@ export default defineComponent({
   name: 'AMenu',
   inheritAttrs: false,
   props: menuProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     expandIcon?: { isOpen: boolean, [key: string]: any }
     overflowedIndicator?: any
     default: any
@@ -383,7 +383,7 @@ export default defineComponent({
 
     const lastVisibleIndex = ref(0)
     const expandIcon = computed<MenuProps['expandIcon']>(() =>
-      (props.expandIcon || slots.expandIcon || override?.expandIcon?.value)
+      props.expandIcon || slots.expandIcon || override?.expandIcon?.value
         ? (opt) => {
             let icon = props.expandIcon || slots.expandIcon
             icon = typeof icon === 'function' ? icon(opt) : icon
@@ -489,7 +489,7 @@ export default defineComponent({
             )
           }}
           maxCount={
-            (mergedMode.value !== 'horizontal' || props.disabledOverflow)
+            mergedMode.value !== 'horizontal' || props.disabledOverflow
               ? Overflow.INVALIDATE
               : Overflow.RESPONSIVE
           }

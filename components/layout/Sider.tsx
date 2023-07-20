@@ -195,11 +195,11 @@ export default defineComponent({
       const defaultTrigger = iconObj[status]
       const triggerDom
         = trigger !== null
-          ? (zeroWidthTrigger || (
+          ? zeroWidthTrigger || (
               <div class={`${pre}-trigger`} onClick={toggle} style={{ width: siderWidth }}>
                 {trigger || defaultTrigger}
               </div>
-            ))
+          )
           : null
       const divStyle = [
         attrs.style as CSSProperties,
@@ -224,7 +224,7 @@ export default defineComponent({
       return (
         <aside {...attrs} class={siderCls} style={divStyle}>
           <div class={`${pre}-children`}>{slots.default?.()}</div>
-          {(collapsible || (below.value && zeroWidthTrigger)) ? triggerDom : null}
+          {collapsible || (below.value && zeroWidthTrigger) ? triggerDom : null}
         </aside>
       )
     }

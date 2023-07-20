@@ -4,11 +4,11 @@ import { flattenChildren, getPropsSlot } from '../_util/props-util'
 import warning from '../_util/warning'
 import Menu from '../menu'
 import { useConfigInject } from '../hooks'
-import useStyle from './style'
 import BreadcrumbItem from './BreadcrumbItem'
-import type { VueNode } from '../_util/type'
-import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
+import useStyle from './style'
 import type { BreadcrumbItemProps } from './BreadcrumbItem'
+import type { ExtractPropTypes, PropType } from 'vue'
+import type { CustomSlotsType, VueNode } from '../_util/type'
 
 export interface Route {
   path: string
@@ -58,7 +58,7 @@ export default defineComponent({
   name: 'ABreadcrumb',
   inheritAttrs: false,
   props: breadcrumbProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     separator: any
     itemRender: { route: Route, params: any, routes: Route[], paths: string[] }
     default: any
@@ -148,7 +148,7 @@ export default defineComponent({
             typeof element.type === 'object'
               && (element.type.__ANT_BREADCRUMB_ITEM || element.type.__ANT_BREADCRUMB_SEPARATOR),
             'Breadcrumb',
-            'Only accepts Breadcrumb.Item and Breadcrumb.Separator as it\'s children',
+            "Only accepts Breadcrumb.Item and Breadcrumb.Separator as it's children",
           )
           return cloneVNode(element, { separator, key: index })
         })

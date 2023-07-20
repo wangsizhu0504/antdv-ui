@@ -27,9 +27,9 @@ import PopupTrigger from './PopupTrigger'
 import SubMenuList from './SubMenuList'
 import InlineSubMenuList from './InlineSubMenuList'
 import type { ItemType, MenuTheme } from './interface'
-import type { Key } from '../../_util/type'
+import type { CustomSlotsType, Key } from '../../_util/type'
 import type { MouseEventHandler } from '../../_util/EventInterface'
-import type { ExtractPropTypes, PropType, SlotsType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 
 let indexGuid = 0
 
@@ -59,7 +59,7 @@ export default defineComponent({
   name: 'ASubMenu',
   inheritAttrs: false,
   props: subMenuProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     icon?: any
     title?: any
     expandIcon?: { isOpen: boolean, [key: string]: any }
@@ -215,10 +215,10 @@ export default defineComponent({
     )
     const renderTitle = (title: any, icon: any) => {
       if (!icon) {
-        return (inlineCollapsed.value
+        return inlineCollapsed.value
           && !parentKeys.value.length
           && title
-          && typeof title === 'string')
+          && typeof title === 'string'
           ? (
           <div class={`${prefixCls.value}-inline-collapsed-noicon`}>{title.charAt(0)}</div>
             )
@@ -245,7 +245,7 @@ export default defineComponent({
 
     // Cache mode if it change to `inline` which do not have popup motion
     const triggerModeRef = computed(() => {
-      return (mode.value !== 'inline' && keysPath.value.length > 1) ? 'vertical' : mode.value
+      return mode.value !== 'inline' && keysPath.value.length > 1 ? 'vertical' : mode.value
     })
 
     const renderMode = computed(() => (mode.value === 'horizontal' ? 'vertical' : mode.value))
@@ -276,7 +276,7 @@ export default defineComponent({
           {title}
 
           {/* Only non-horizontal mode shows the icon */}
-          {(mode.value !== 'horizontal' && expandIcon)
+          {mode.value !== 'horizontal' && expandIcon
             ? (
                 expandIcon({ ...props, isOpen: open.value })
               )

@@ -196,7 +196,7 @@ const ConfigProvider = defineComponent({
     const memoTheme = computed(() => {
       const { algorithm, token, ...rest } = mergedTheme.value || {}
       const themeObj
-        = (algorithm && (!Array.isArray(algorithm) || algorithm.length > 0))
+        = algorithm && (!Array.isArray(algorithm) || algorithm.length > 0)
           ? createTheme(algorithm)
           : undefined
 

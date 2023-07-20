@@ -27,6 +27,7 @@ import { booleanType, functionType, objectType, someType, stringType } from '../
 // CSSINJS
 import { useInjectDisabled } from '../config-provider/DisabledContext'
 import useStyle from './style'
+import type { CustomSlotsType } from '../_util/type'
 import type { InputStatus } from '../_util/statusUtils'
 import type { SelectCommonPlacement } from '../_util/components/transition'
 import type { SizeType } from '../config-provider'
@@ -35,7 +36,7 @@ import type { BaseOptionType, DefaultOptionType } from '../vc-tree-select/TreeSe
 import type { BaseSelectRef } from '../vc-select'
 import type { SwitcherIconProps } from '../tree/utils/iconUtil'
 import type { FieldNames, Key } from '../vc-tree-select/interface'
-import type { App, ExtractPropTypes, SlotsType } from 'vue'
+import type { App, ExtractPropTypes } from 'vue'
 
 const getTransitionName = (rootPrefixCls: string, motion: string, transitionName?: string) => {
   if (transitionName !== undefined)
@@ -97,7 +98,7 @@ const TreeSelect = defineComponent({
     listItemHeight: 26,
     bordered: true,
   }),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     title?: any
     titleRender?: any
     placeholder?: any
@@ -107,6 +108,8 @@ const TreeSelect = defineComponent({
     notFoundContent?: any
     default?: any
     leafIcon?: any
+    tagRender?: any
+    suffixIcon?: any
   }>,
   setup(props, { attrs, slots, expose, emit }) {
     warning(
@@ -187,7 +190,7 @@ const TreeSelect = defineComponent({
 
     const isMultiple = computed(() => !!(props.treeCheckable || props.multiple))
     const mergedShowArrow = computed(() =>
-      props.showArrow !== undefined ? props.showArrow : (props.loading || !isMultiple.value),
+      props.showArrow !== undefined ? props.showArrow : props.loading || !isMultiple.value,
     )
 
     const treeSelectRef = ref()

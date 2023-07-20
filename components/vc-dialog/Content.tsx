@@ -131,7 +131,7 @@ export default defineComponent({
           onAfterEnter={() => onVisibleChanged(true)}
           onAfterLeave={() => onVisibleChanged(false)}
         >
-          {(visible || !destroyOnClose)
+          {visible || !destroyOnClose
             ? (
             <div
               {...attrs}

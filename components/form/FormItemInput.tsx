@@ -6,8 +6,8 @@ import ErrorList from './ErrorList'
 import { useInjectForm, useProvideForm, useProvideFormItemPrefix } from './context'
 import type { ValidateStatus } from './FormItem'
 import type { ColProps } from '../grid/Col'
-import type { VueNode } from '../_util/type'
-import type { HTMLAttributes, SlotsType } from 'vue'
+import type { CustomSlotsType, VueNode } from '../_util/type'
+import type { HTMLAttributes } from 'vue'
 
 export interface FormItemInputMiscProps {
   prefixCls: string
@@ -25,7 +25,7 @@ export interface FormItemInputProps {
 
 const FormItemInput = defineComponent({
   compatConfig: { MODE: 3 },
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     help: any
     errors: any
     extra: any
@@ -89,7 +89,7 @@ const FormItemInput = defineComponent({
                 <div class={`${baseClassName}-control-input`}>
                   <div class={`${baseClassName}-control-input-content`}>{slots.default?.()}</div>
                 </div>
-                {(marginBottom !== null || errors.length)
+                {marginBottom !== null || errors.length
                   ? (
                   <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
                     <ErrorList

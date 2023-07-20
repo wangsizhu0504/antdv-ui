@@ -3,19 +3,16 @@ import { isEmpty } from 'lodash-es'
 import { createContext, useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
 
-import { booleanType } from '../_util/type'
+import PropTypes from '../_util/vue-types'
+import { booleanType, tuple } from '../_util/type'
 import { flattenChildren } from '../_util/props-util'
 import useStyle from './style'
-import type { DirectionType, SizeType } from '../config-provider'
 import type { ExtractPropTypes, PropType, Ref } from 'vue'
+import type { DirectionType, SizeType } from '../config-provider'
 
 export const spaceCompactItemProps = () => ({
   compactSize: String as PropType<SizeType>,
-  compactDirection: {
-    type: String,
-    validator: (s: string) => ['horizontal', 'vertical'].includes(s),
-    default: 'horizontal',
-  },
+  compactDirection: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
   isFirstItem: booleanType(),
   isLastItem: booleanType(),
 })
@@ -65,15 +62,8 @@ export const spaceCompactProps = () => ({
   size: {
     type: String as PropType<SizeType>,
   },
-  direction: {
-    type: String,
-    validator: (s: string) => ['horizontal', 'vertical'].includes(s),
-    default: 'horizontal',
-  },
-  align: {
-    type: String,
-    validator: (s: string) => ['start', 'end', 'center', 'baseline'].includes(s),
-  },
+  direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
+  align: PropTypes.oneOf(tuple('start', 'end', 'center', 'baseline')),
   block: { type: Boolean, default: undefined },
 })
 

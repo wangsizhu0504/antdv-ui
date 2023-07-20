@@ -9,9 +9,9 @@ import PropTypes from '../../../_util/vue-types'
 import { useState } from '../../../hooks'
 import { useProvideOverride } from '../../../menu/src/OverrideContext'
 import AddButton from './AddButton'
-import type { Key } from '../../../_util/type'
+import type { CustomSlotsType, Key } from '../../../_util/type'
 import type { EditableConfig, Tab, TabsLocale } from '../interface'
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 export const operationNodeProps = {
   prefixCls: { type: String },
@@ -41,7 +41,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: operationNodeProps,
   emits: ['tabClick'],
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     moreIcon?: any
     default?: any
   }>,

@@ -9,8 +9,9 @@ import { getNumberPrecision, num2str, validateNumber } from './utils/numberUtil'
 import StepHandler from './StepHandler'
 import getMiniDecimal, { toFixed } from './utils/MiniDecimal'
 import type { ChangeEvent, KeyboardEventHandler } from '../../_util/EventInterface'
-import type { HTMLAttributes, SlotsType } from 'vue'
+import type { HTMLAttributes } from 'vue'
 import type { DecimalClass, ValueType } from './utils/MiniDecimal'
+import type { CustomSlotsType } from '../../_util/type'
 
 /**
  * We support `stringMode` which need handle correct type when user call in onChange
@@ -82,7 +83,7 @@ export default defineComponent({
     ...inputNumberProps(),
     lazy: Boolean,
   },
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     upHandler: any
     downHandler: any
     default: any

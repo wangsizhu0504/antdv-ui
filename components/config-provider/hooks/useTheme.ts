@@ -1,12 +1,12 @@
-import { computed, unref } from 'vue'
+import { computed } from 'vue'
 import { defaultConfig } from '../../theme/internal'
-import type { Ref } from 'vue'
 import type { ThemeConfig } from '../type'
+import type { Ref } from 'vue'
 
 export default function useTheme(theme?: Ref<ThemeConfig>, parentTheme?: Ref<ThemeConfig>) {
   const themeConfig = computed(() => theme?.value || {})
   const parentThemeConfig = computed<ThemeConfig>(() =>
-    (unref(themeConfig).inherit === false || !parentTheme?.value) ? defaultConfig : parentTheme.value,
+    themeConfig.value.inherit === false || !parentTheme?.value ? defaultConfig : parentTheme.value,
   )
 
   const mergedTheme = computed(() => {

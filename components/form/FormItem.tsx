@@ -38,6 +38,7 @@ import type {
   RuleObject,
   ValidateOptions,
 } from './interface'
+import type { CustomSlotsType } from '../_util/type'
 import type { ColProps } from '../grid/Col'
 import type {
   ComponentPublicInstance,
@@ -46,7 +47,6 @@ import type {
   HTMLAttributes,
   PropType,
   Ref,
-  SlotsType,
 } from 'vue'
 
 const ValidateStatuses = tuple('success', 'warning', 'error', 'validating', '')
@@ -146,7 +146,7 @@ export default defineComponent({
   inheritAttrs: false,
   __ANT_NEW_FORM_ITEM: true,
   props: formItemProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     help: any
     label: any
     extra: any

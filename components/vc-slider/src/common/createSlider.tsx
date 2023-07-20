@@ -22,7 +22,7 @@ export default function createSlider(Component) {
     min: Number,
     max: Number,
     step: Number,
-    marks: Object,
+    marks: PropTypes.object,
     included: { type: Boolean, default: undefined },
     prefixCls: String,
     disabled: { type: Boolean, default: undefined },
@@ -30,13 +30,13 @@ export default function createSlider(Component) {
     dots: { type: Boolean, default: undefined },
     vertical: { type: Boolean, default: undefined },
     reverse: { type: Boolean, default: undefined },
-    minimumTrackStyle: Object, // just for compatibility, will be deperecate
-    maximumTrackStyle: Object, // just for compatibility, will be deperecate
+    minimumTrackStyle: PropTypes.object, // just for compatibility, will be deperecate
+    maximumTrackStyle: PropTypes.object, // just for compatibility, will be deperecate
     handleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]),
     trackStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.arrayOf(PropTypes.object)]),
-    railStyle: Object,
-    dotStyle: Object,
-    activeDotStyle: Object,
+    railStyle: PropTypes.object,
+    dotStyle: PropTypes.object,
+    activeDotStyle: PropTypes.object,
     autofocus: { type: Boolean, default: undefined },
     draggableTrack: { type: Boolean, default: undefined },
   }
@@ -108,7 +108,7 @@ export default function createSlider(Component) {
         const { draggableTrack, vertical: isVertical } = this.$props
         const { bounds } = this.$data
 
-        const value = (draggableTrack && this.positionGetValue) ? (this.positionGetValue(p) || []) : []
+        const value = draggableTrack && this.positionGetValue ? this.positionGetValue(p) || [] : []
 
         const inPoint = utils.isEventFromHandle(e, this.handlesRefs)
         this.dragTrack

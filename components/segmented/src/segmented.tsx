@@ -5,9 +5,9 @@ import useConfigInject from '../../config-provider/hooks/useConfigInject'
 import { initDefaultProps } from '../../_util/props-util'
 import { arrayType, booleanType, functionType, someType, stringType } from '../../_util/type'
 import MotionThumb from './MotionThumb'
-import type { VueNode } from '../../_util/type'
+import type { CustomSlotsType, VueNode } from '../../_util/type'
 import type { ChangeEvent } from '../../_util/EventInterface'
-import type { ExtractPropTypes, FunctionalComponent, SlotsType } from 'vue'
+import type { ExtractPropTypes, FunctionalComponent } from 'vue'
 
 export type SegmentedValue = string | number
 export type segmentedSize = 'large' | 'small'
@@ -114,7 +114,7 @@ export default defineComponent({
     options: [],
     motionName: 'thumb-motion',
   }),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     label: SegmentedBaseOption
   }>,
   setup(props, { emit, slots, attrs }) {

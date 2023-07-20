@@ -7,7 +7,8 @@ import { useConfigInject } from '../hooks'
 import { eventType, objectType } from '../_util/type'
 import type { MouseEventHandler } from '../_util/EventInterface'
 import type { DropdownProps } from '../dropdown/dropdown'
-import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
+import type { CustomSlotsType } from '../_util/type'
 
 export const breadcrumbItemProps = () => ({
   prefixCls: String,
@@ -26,7 +27,7 @@ export default defineComponent({
   __ANT_BREADCRUMB_ITEM: true,
   props: breadcrumbItemProps(),
   // emits: ['click'],
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     separator: any
     overlay: any
     default: any

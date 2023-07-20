@@ -2,6 +2,7 @@ import { computed, defineComponent } from 'vue'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue'
 import VcSteps, { Step as VcStep } from '../vc-steps'
 import Progress from '../progress'
+import omit from '../_util/omit'
 import Tooltip from '../tooltip'
 import { VcStepProps } from '../vc-steps/Step'
 import { useToken } from '../theme/internal'
@@ -9,12 +10,11 @@ import { anyType, arrayType, booleanType, functionType, someType, stringType } f
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import { useBreakpoint, useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
-import omit from '../_util/omit'
 import useStyle from './style'
 import type { MouseEventHandler } from '../_util/EventInterface'
-import type { VueNode } from '../_util/type'
+import type { CustomSlotsType, VueNode } from '../_util/type'
 import type { ProgressDotRender, Status } from '../vc-steps/interface'
-import type { App, ExtractPropTypes, SlotsType } from 'vue'
+import type { App, ExtractPropTypes } from 'vue'
 
 // CSSINJS
 
@@ -59,7 +59,7 @@ const Steps = defineComponent({
     responsive: true,
     labelPlacement: 'horizontal',
   }),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     progressDot: any
     default: any
   }>,
@@ -73,7 +73,7 @@ const Steps = defineComponent({
 
     const screens = useBreakpoint()
     const direction = computed(() =>
-      (props.responsive && screens.value.xs) ? 'vertical' : props.direction,
+      props.responsive && screens.value.xs ? 'vertical' : props.direction,
     )
     const iconPrefix = computed(() => configProvider.getPrefixCls('', props.iconPrefix))
     const handleChange = (current: number) => {
