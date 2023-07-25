@@ -46,6 +46,7 @@ export interface AliasToken extends MapToken {
   controlOutline: string
   colorWarningOutline: string
   colorErrorOutline: string
+  colorSuccessOutline: string
 
   // Font
   /** Operation icon in Select, Cascader, etc. icon fontSize. Normal is same as fontSizeSM */

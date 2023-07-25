@@ -52,8 +52,8 @@ const seedToken: SeedToken = {
   motionEaseInQuint: 'cubic-bezier(0.755, 0.05, 0.855, 0.06)',
   motionEaseOutQuint: 'cubic-bezier(0.23, 1, 0.32, 1)',
 
-  // Radius
-  borderRadius: 6,
+  // Radius => 基础圆角修改为4px
+  borderRadius: 4,
 
   // Size
   sizeUnit: 4,

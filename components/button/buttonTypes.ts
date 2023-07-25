@@ -10,12 +10,19 @@ export type ButtonShape = 'default' | 'circle' | 'round'
 
 export type ButtonHTMLType = 'submit' | 'button' | 'reset'
 
-export type LegacyButtonType = ButtonType | 'danger'
-export function convertLegacyProps(type?: LegacyButtonType): ButtonProps {
-  if (type === 'danger')
-    return { danger: true }
+export type LegacyButtonType = ButtonType | 'danger' | 'warning' | 'success'
 
-  return { type }
+export function convertLegacyProps(type?: LegacyButtonType): ButtonProps {
+  switch (type) {
+    case 'danger':
+      return { danger: true }
+    case 'warning':
+      return { warning: true }
+    case 'success':
+      return { success: true }
+    default :
+      return { type }
+  }
 }
 
 export const buttonProps = () => ({
@@ -34,6 +41,8 @@ export const buttonProps = () => ({
   ghost: { type: Boolean, default: undefined },
   block: { type: Boolean, default: undefined },
   danger: { type: Boolean, default: undefined },
+  success: { type: Boolean, default: undefined },
+  warning: { type: Boolean, default: undefined },
   icon: PropTypes.any,
   href: String,
   target: String,

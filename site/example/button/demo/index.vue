@@ -8,7 +8,7 @@
     <multiple />
     <size />
     <block />
-    <danger />
+    <status />
   </demo-sort>
 </template>
 
@@ -24,7 +24,7 @@ import Loading from './loading.vue'
 import Multiple from './multiple.vue'
 import Size from './size.vue'
 import Block from './block.vue'
-import Danger from './danger.vue'
+import Status from './status.vue'
 
 export default defineComponent({
   CN,
@@ -38,7 +38,7 @@ export default defineComponent({
     Multiple,
     Size,
     Block,
-    Danger,
+    Status,
   },
   setup() {
     return {}
