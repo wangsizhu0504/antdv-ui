@@ -30,7 +30,7 @@ export const badgeProps = () => ({
   color: String as PropType<LiteralUnion<PresetColorKey>>,
   text: PropTypes.any,
   offset: Array as unknown as PropType<[number | string, number | string]>,
-  numberStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  numberStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
   title: String,
 })
 

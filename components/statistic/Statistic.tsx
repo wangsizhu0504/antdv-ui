@@ -17,7 +17,7 @@ export const statisticProps = () => ({
   groupSeparator: String,
   format: String,
   value: someType<valueType>([Number, String, Object]),
-  valueStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  valueStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
   valueRender: functionType<(node: VNode | JSX.Element) => VNode | JSX.Element>(),
   formatter: anyType<Formatter>(),
   precision: Number,

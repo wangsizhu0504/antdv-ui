@@ -37,7 +37,7 @@ export const siderProps = () => ({
   reverseArrow: { type: Boolean, default: undefined },
   zeroWidthTriggerStyle: {
     type: Object as PropType<CSSProperties>,
-    default: undefined as CSSProperties,
+    default: () => ({}),
   },
   trigger: PropTypes.any,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

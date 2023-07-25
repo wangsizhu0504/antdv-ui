@@ -30,7 +30,7 @@ export const drawerProps = () => ({
   'bodyStyle': objectType<CSSProperties>(),
   'contentWrapperStyle': {
     type: Object as PropType<CSSProperties>,
-    default: undefined as CSSProperties,
+    default: () => ({}),
   },
   'title': PropTypes.any,
   /** @deprecated Please use `open` instead */

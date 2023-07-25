@@ -12,7 +12,7 @@ export const anchorProps = {
   showInkInFixed: { type: Boolean, default: false },
   getContainer: Function as PropType<() => AnchorContainer>,
   wrapperClass: String,
-  wrapperStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  wrapperStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) as CSSProperties },
   getCurrentAnchor: Function as PropType<(activeLink: string) => string>,
   targetOffset: Number,
   items: arrayType<AnchorLinkItemProps[]>(),

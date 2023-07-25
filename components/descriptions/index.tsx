@@ -36,8 +36,8 @@ export const DescriptionsItemProps = {
 const descriptionsItemProp = () => ({
   prefixCls: String,
   label: PropTypes.any,
-  labelStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) as CSSProperties },
-  contentStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) as CSSProperties },
+  labelStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
+  contentStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
   span: { type: Number, default: 1 },
 })
 
@@ -139,8 +139,8 @@ export const descriptionsProps = () => ({
   },
   layout: String as PropType<'horizontal' | 'vertical'>,
   colon: { type: Boolean, default: undefined },
-  labelStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) as CSSProperties },
-  contentStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) as CSSProperties },
+  labelStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
+  contentStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
 })
 
 export type DescriptionsProps = HTMLAttributes &

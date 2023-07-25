@@ -15,7 +15,7 @@ import type { CSSProperties, ImgHTMLAttributes, PropType } from 'vue'
 export const imageProps = () => ({
   src: String,
   wrapperClassName: String,
-  wrapperStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  wrapperStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
   rootClassName: String,
   prefixCls: String,
   previewPrefixCls: String,

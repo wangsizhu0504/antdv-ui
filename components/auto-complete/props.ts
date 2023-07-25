@@ -8,7 +8,7 @@ export const autoCompleteProps = () => ({
   dataSource: Array as PropType<{ value: any, text: any }[] | string[]>,
   dropdownMenuStyle: {
     type: Object as PropType<CSSProperties>,
-    default: undefined as CSSProperties,
+    default: () => ({}) as CSSProperties,
   },
   // optionLabelProp: String,
   dropdownMatchSelectWidth: { type: [Number, Boolean], default: true },

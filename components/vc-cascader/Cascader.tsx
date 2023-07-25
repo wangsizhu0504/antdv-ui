@@ -110,8 +110,8 @@ function baseCascaderProps<OptionType extends BaseOptionType = DefaultOptionType
     },
 
     /** @deprecated Use `dropdownStyle` instead */
-    popupStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
-    dropdownStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+    popupStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
+    dropdownStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
 
     /** @deprecated Use `placement` instead */
     popupPlacement: String as PropType<Placement>,

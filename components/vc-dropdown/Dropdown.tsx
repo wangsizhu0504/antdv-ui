@@ -18,7 +18,7 @@ export default defineComponent({
     openClassName: String,
     animation: PropTypes.any,
     align: PropTypes.object,
-    overlayStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+    overlayStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
     placement: PropTypes.string.def('bottomLeft'),
     overlay: PropTypes.any,
     trigger: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).def(

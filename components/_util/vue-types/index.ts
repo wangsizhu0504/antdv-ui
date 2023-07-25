@@ -26,7 +26,7 @@ PropTypes.extend([
     name: 'style',
     getter: true,
     type: [String, Object],
-    default: undefined,
+    default: () => ({}),
   },
 ])
 

@@ -16,7 +16,7 @@ export const listItemProps = () => ({
   extra: PropTypes.any,
   actions: PropTypes.array,
   grid: Object as PropType<ListGridType>,
-  colStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
+  colStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
 })
 
 export type ListItemProps = Partial<ExtractPropTypes<ReturnType<typeof listItemProps>>>
