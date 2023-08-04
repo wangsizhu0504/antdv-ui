@@ -61,6 +61,7 @@ export default defineComponent({
       const targetChecked = event.target.checked
       emit('update:checked', targetChecked)
       emit('change', event)
+      formItemContext.onFieldChange()
     }
     const checkboxRef = ref()
     const focus = () => {
