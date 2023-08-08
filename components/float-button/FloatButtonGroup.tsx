@@ -4,6 +4,7 @@ import classNames from '../_util/classNames'
 import { Transition, getTransitionProps } from '../_util/components/transition'
 import { useConfigInject, useMergedState } from '../hooks'
 import { findDOMNode, initDefaultProps } from '../_util/props-util'
+import canUseDom from '../_util/canUseDom'
 import FloatButton, { floatButtonPrefixCls } from './FloatButton'
 import { useProvideFloatButtonGroupContext } from './context'
 import { floatButtonGroupProps } from './interface'
@@ -72,6 +73,9 @@ const FloatButtonGroup = defineComponent({
     watch(
       computed(() => props.trigger),
       (value) => {
+        if (!canUseDom())
+          return
+
         document.removeEventListener('click', onClick)
         if (value === 'click')
           document.addEventListener('click', onClick)

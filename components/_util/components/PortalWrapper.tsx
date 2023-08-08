@@ -81,7 +81,7 @@ export default defineComponent({
       return true
     }
     // attachToParent();
-    const defaultContainer = document.createElement('div')
+    const defaultContainer = canUseDom() && document.createElement('div')
     const setWrapperClassName = () => {
       const { wrapperClassName } = props
       if (container.value && wrapperClassName && wrapperClassName !== container.value.className)
