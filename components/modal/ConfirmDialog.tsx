@@ -86,6 +86,7 @@ export default defineComponent<ConfirmDialogProps>({
         onCancel,
         onOk,
         close,
+        okText,
         closable = false,
         zIndex,
         afterClose,
@@ -139,9 +140,7 @@ export default defineComponent<ConfirmDialogProps>({
       const prefixCls = props.prefixCls || 'ant-modal'
       const contentPrefixCls = `${prefixCls}-confirm`
       const style = attrs.style || {}
-      const okText
-        = renderSomeContent(props.okText)
-        || (okCancel ? locale.value.okText : locale.value.justOkText)
+
       const mergedOkCancel = okCancel ?? type === 'confirm'
       const autoFocusButton
         = props.autoFocusButton === null ? false : props.autoFocusButton || 'ok'
@@ -155,6 +154,8 @@ export default defineComponent<ConfirmDialogProps>({
         attrs.class,
       )
 
+      const mergedLocal = locale.value
+
       const cancelButton = mergedOkCancel && (
         <ActionButton
           actionFn={onCancel}
@@ -163,7 +164,7 @@ export default defineComponent<ConfirmDialogProps>({
           buttonProps={cancelButtonProps}
           prefixCls={`${rootPrefixCls}-btn`}
         >
-          {renderSomeContent(props.cancelText) || locale.value.cancelText}
+          {renderSomeContent(props.cancelText) || mergedLocal.cancelText}
         </ActionButton>
       )
       return (
@@ -221,7 +222,7 @@ export default defineComponent<ConfirmDialogProps>({
                   buttonProps={okButtonProps}
                   prefixCls={`${rootPrefixCls}-btn`}
                 >
-                  {okText}
+                  {okText || (mergedOkCancel ? mergedLocal.okText : mergedLocal.justOkText)}
                 </ActionButton>
               </div>
                 )}
