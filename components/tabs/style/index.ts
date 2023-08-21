@@ -833,8 +833,13 @@ const genTabsStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
 
       // =========================== TabPanes ===========================
       [`${componentCls}-content`]: {
-        position: 'relative',
-        width: '100%',
+        'position': 'relative',
+        'display': 'flex',
+        'width': '100%',
+
+        '&-animated': {
+          transition: 'margin 0.3s',
+        },
       },
 
       [`${componentCls}-content-holder`]: {
@@ -844,10 +849,9 @@ const genTabsStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
       },
 
       [`${componentCls}-tabpane`]: {
-        'outline': 'none',
-        '&-hidden': {
-          display: 'none',
-        },
+        outline: 'none',
+        flex: 'none',
+        width: '100%',
       },
     },
 
