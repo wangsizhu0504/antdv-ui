@@ -1,5 +1,5 @@
+import { type ComputedRef, type InjectionKey, type Ref, computed, ref, shallowRef } from 'vue'
 import { createContextFn, useContext } from '../../../hooks'
-import type { ComputedRef, InjectionKey, Ref } from 'vue'
 
 export interface GroupConsumerContext {
   isPreviewGroup?: Ref<boolean | undefined>
@@ -20,5 +20,15 @@ export function createGroupProviderContext(context: GroupConsumerContext) {
 }
 
 export function useGroupProviderContext() {
-  return useContext<GroupConsumerContext>(key)
+  return useContext<GroupConsumerContext>(key, {
+    isPreviewGroup: shallowRef(false),
+    previewUrls: computed(() => new Map()),
+    setPreviewUrls: () => {},
+    current: ref(null),
+    setCurrent: () => {},
+    setShowPreview: () => {},
+    setMousePosition: () => {},
+    registerImage: null,
+    rootClassName: '',
+  })
 }
