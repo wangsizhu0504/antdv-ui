@@ -1,5 +1,5 @@
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons-vue'
-import { computed, defineComponent, shallowRef } from 'vue'
+import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
 import classNames from '../_util/classNames'
 import { isValidElement } from '../_util/props-util'
 import { cloneElement } from '../_util/vnode'
@@ -7,6 +7,7 @@ import { useConfigInject } from '../hooks'
 import omit from '../_util/omit'
 import inputProps from './inputProps'
 import Input from './Input'
+import type { PropType } from 'vue'
 import type { InputProps } from './inputProps'
 
 const ActionMap = {
@@ -21,13 +22,15 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     ...inputProps(),
-    prefixCls: String,
-    inputPrefixCls: String,
-    action: { type: String, default: 'click' },
-    visibilityToggle: { type: Boolean, default: true },
-    iconRender: Function,
+    'prefixCls': String,
+    'inputPrefixCls': String,
+    'action': { type: String, default: 'click' },
+    'visibilityToggle': { type: Boolean, default: true },
+    'visible': { type: Boolean, default: undefined },
+    'onUpdate:visible': Function as PropType<(visible: boolean) => void>,
+    'iconRender': Function,
   },
-  setup(props, { slots, attrs, expose }) {
+  setup(props, { slots, attrs, expose, emit }) {
     const visible = shallowRef(false)
     const onVisibleChange = () => {
       const { disabled } = props
@@ -35,7 +38,12 @@ export default defineComponent({
         return
 
       visible.value = !visible.value
+      emit('update:visible', visible.value)
     }
+    watchEffect(() => {
+      if (props.visible !== undefined)
+        visible.value = !!props.visible
+    })
     const inputRef = shallowRef()
     const focus = () => {
       inputRef.value?.focus()
