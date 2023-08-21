@@ -194,7 +194,7 @@ const ImageInternal = defineComponent({
       } = attrs as ImgHTMLAttributes
       const { icons, maskClassName, ...dialogProps } = preview.value
 
-      const wrappperClass = cn(prefixCls, wrapperClassName, rootClassName, {
+      const wrapperClass = cn(prefixCls, wrapperClassName, rootClassName, {
         [`${prefixCls}-error`]: isError.value,
       })
       const mergedSrc = (isError.value && fallback) ? fallback : src.value
@@ -205,6 +205,8 @@ const ImageInternal = defineComponent({
         sizes,
         srcset,
         usemap,
+        width,
+        height,
         class: cn(
           `${prefixCls}-img`,
           {
@@ -213,7 +215,7 @@ const ImageInternal = defineComponent({
           cls,
         ),
         style: {
-          height,
+          height: toSizePx(height),
           ...(style as CSSProperties),
         },
       }
@@ -221,7 +223,7 @@ const ImageInternal = defineComponent({
       return (
         <>
           <div
-            class={wrappperClass}
+            class={wrapperClass}
             onClick={
               canPreview.value
                 ? onPreview
