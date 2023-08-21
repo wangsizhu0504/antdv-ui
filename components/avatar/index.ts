@@ -6,16 +6,17 @@ export { avatarProps } from './Avatar'
 export type { AvatarProps, AvatarSize } from './Avatar'
 export type { AvatarGroupProps } from './Group'
 
-Avatar.Group = Group
+const AntdAvatar = Avatar
+AntdAvatar.Group = Group
 
 /* istanbul ignore next */
-Avatar.install = function (app: App) {
-  app.component(Avatar.name, Avatar)
-  app.component(Group.name, Group)
+AntdAvatar.install = function (app: App) {
+  app.component(AntdAvatar.name, AntdAvatar)
+  app.component(AntdAvatar.Group.name, AntdAvatar.Group)
   return app
 }
 export { Group as AvatarGroup }
-export default Avatar as typeof Avatar &
+export default AntdAvatar as typeof AntdAvatar &
 Plugin & {
   readonly Group: typeof Group
 }

@@ -1,5 +1,5 @@
 import { computed, defineComponent, onBeforeUnmount, shallowRef, watch, watchEffect } from 'vue'
-import pick from 'lodash-es/pick'
+import { pick } from 'lodash-es'
 import { useRafState } from '../hooks/useRaf'
 import useOffsets from '../hooks/useOffsets'
 import { useInjectTabs } from '../TabContext'

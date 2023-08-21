@@ -11,8 +11,7 @@ import {
   watchEffect,
 } from 'vue'
 import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, LoadingOutlined } from '@ant-design/icons-vue'
-import cloneDeep from 'lodash-es/cloneDeep'
-import find from 'lodash-es/find'
+import { cloneDeep, find } from 'lodash-es'
 import { toArray } from '../_util/util'
 import { warning } from '../vc-util/warning'
 import Row from '../grid/Row'

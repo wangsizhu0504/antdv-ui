@@ -5,17 +5,18 @@ import type { App, Plugin } from 'vue'
 export type { CollapseProps } from './Collapse'
 export type { CollapsePanelProps } from './CollapsePanel'
 
-Collapse.Panel = CollapsePanel
+const AntdCollapse = Collapse
+AntdCollapse.Panel = CollapsePanel
 
 /* istanbul ignore next */
-Collapse.install = function (app: App) {
-  app.component(Collapse.name, Collapse)
-  app.component(CollapsePanel.name, CollapsePanel)
+AntdCollapse.install = function (app: App) {
+  app.component(AntdCollapse.name, AntdCollapse)
+  app.component(AntdCollapse.Panel.name, AntdCollapse.Panel)
   return app
 }
 
 export { CollapsePanel, collapseProps, collapsePanelProps }
-export default Collapse as typeof Collapse &
+export default AntdCollapse as typeof AntdCollapse &
 Plugin & {
   readonly Panel: typeof CollapsePanel
 }

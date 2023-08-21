@@ -1,5 +1,5 @@
 import { defineComponent, isVNode, renderSlot } from 'vue'
-import isPlainObject from 'lodash-es/isPlainObject'
+import { isPlainObject } from 'lodash-es'
 import Tabs from '../tabs'
 import PropTypes from '../_util/vue-types'
 import { filterEmptyWithUndefined, flattenChildren, isEmptyElement } from '../_util/props-util'

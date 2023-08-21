@@ -3,16 +3,17 @@ import type { App, Plugin } from 'vue'
 
 export type { TabsProps, TabPaneProps } from './src'
 
-Tabs.TabPane = TabPane
+const AntdTabs = Tabs
+AntdTabs.TabPane = TabPane
 
 /* istanbul ignore next */
-Tabs.install = function (app: App) {
-  app.component(Tabs.name, Tabs)
-  app.component(TabPane.name, TabPane)
+AntdTabs.install = function (app: App) {
+  app.component(AntdTabs.name, AntdTabs)
+  app.component(AntdTabs.TabPane.name, AntdTabs.TabPane)
   return app
 }
 
-export default Tabs as typeof Tabs &
+export default AntdTabs as typeof AntdTabs &
 Plugin & {
   readonly TabPane: typeof TabPane
 }

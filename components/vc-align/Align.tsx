@@ -9,7 +9,7 @@ import {
   watch,
 } from 'vue'
 import { alignElement, alignPoint } from 'dom-align'
-import isEqual from 'lodash-es/isEqual'
+import { isEqual } from 'lodash-es'
 
 import isVisible from '../vc-util/Dom/isVisible'
 import addEventListener from '../vc-util/Dom/addEventListener'

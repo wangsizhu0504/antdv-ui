@@ -8,18 +8,19 @@ import type { SizeType as ButtonSize } from '../config-provider'
 
 export type { ButtonProps, ButtonShape, ButtonType, ButtonGroupProps, ButtonSize }
 
-Button.Group = ButtonGroup
+const AntdButton = Button
+AntdButton.Group = ButtonGroup
 
 /* istanbul ignore next */
 Button.install = function (app: App) {
-  app.component(Button.name, Button)
-  app.component(ButtonGroup.name, ButtonGroup)
+  app.component(AntdButton.name, AntdButton)
+  app.component(AntdButton.Group.name, AntdButton.Group)
   return app
 }
 
 export { ButtonGroup }
 
-export default Button as typeof Button &
+export default AntdButton as typeof AntdButton &
 Plugin & {
   readonly Group: typeof ButtonGroup
 }

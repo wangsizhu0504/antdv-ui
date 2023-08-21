@@ -1,5 +1,5 @@
 import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
-import partition from 'lodash-es/partition'
+import { partition } from 'lodash-es'
 import pickAttrs from '../_util/pickAttrs'
 import defaultRequest from './request'
 import getUid from './uid'

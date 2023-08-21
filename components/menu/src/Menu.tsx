@@ -10,7 +10,7 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import uniq from 'lodash-es/uniq'
+import { uniq } from 'lodash-es'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 import useStyle from '../style'
 import shallowEqual from '../../_util/shallowequal'

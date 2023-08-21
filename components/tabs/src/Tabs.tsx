@@ -1,7 +1,7 @@
 // Accessibility https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
 import { computed, defineComponent, onMounted, watchEffect } from 'vue'
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue'
-import pick from 'lodash-es/pick'
+import { pick } from 'lodash-es'
 import useStyle from '../style'
 import {
   camelize,

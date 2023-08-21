@@ -6,18 +6,19 @@ import Password from './Password'
 import type { App, Plugin } from 'vue'
 
 export type { InputProps, TextAreaProps } from './inputProps'
-Input.Group = Group
-Input.Search = Search
-Input.TextArea = TextArea
-Input.Password = Password
+const AntdInput = Input
+AntdInput.Group = Group
+AntdInput.Search = Search
+AntdInput.TextArea = TextArea
+AntdInput.Password = Password
 
 /* istanbul ignore next */
-Input.install = function (app: App) {
-  app.component(Input.name, Input)
-  app.component(Input.Group.name, Input.Group)
-  app.component(Input.Search.name, Input.Search)
-  app.component(Input.TextArea.name, Input.TextArea)
-  app.component(Input.Password.name, Input.Password)
+AntdInput.install = function (app: App) {
+  app.component(AntdInput.name, AntdInput)
+  app.component(AntdInput.Group.name, AntdInput.Group)
+  app.component(AntdInput.Search.name, AntdInput.Search)
+  app.component(AntdInput.TextArea.name, AntdInput.TextArea)
+  app.component(AntdInput.Password.name, AntdInput.Password)
   return app
 }
 
@@ -28,7 +29,7 @@ export {
   Password as InputPassword,
 }
 
-export default Input as typeof Input &
+export default AntdInput as typeof AntdInput &
 Plugin & {
   readonly Group: typeof Group
   readonly Search: typeof Search

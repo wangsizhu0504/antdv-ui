@@ -1,7 +1,6 @@
 import { computed, defineComponent } from 'vue'
 import { initDefaultProps } from '../_util/props-util'
 import classNames from '../_util/classNames'
-import { objectType } from '../_util/type'
 import useConfigInject from '../config-provider/hooks/useConfigInject'
 import useMessage from '../message/useMessage'
 import useModal from '../modal/useModal'
@@ -13,16 +12,9 @@ import {
   useProvideAppContext,
 } from './context'
 import useStyle from './style'
-import type { AppConfig } from './context'
-import type { Plugin, App as TypeApp } from 'vue'
 
-export const AppProps = () => {
-  return {
-    rootClassName: String,
-    message: objectType<AppConfig['message']>(),
-    notification: objectType<AppConfig['notification']>(),
-  }
-}
+import { appProps } from './props'
+import type { Plugin, App as TypeApp } from 'vue'
 
 const useApp = () => {
   return useInjectAppContext()
@@ -30,7 +22,7 @@ const useApp = () => {
 
 const App = defineComponent({
   name: 'AApp',
-  props: initDefaultProps(AppProps(), {}),
+  props: initDefaultProps(appProps(), {}),
   setup(props, { slots }) {
     const { prefixCls } = useConfigInject('app', props)
     const [wrapSSR, hashId] = useStyle(prefixCls)

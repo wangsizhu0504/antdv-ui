@@ -3,7 +3,7 @@ import { withConfirm, withError, withInfo, withSuccess, withWarn } from '../conf
 import destroyFns from '../destroyFns'
 import HookModal from './HookModal'
 import type { Ref } from 'vue'
-import type { ModalFuncProps } from '../Modal'
+import type { ModalFuncProps } from '../type'
 import type { ModalStaticFunctions } from '../confirm'
 
 import type { MaybeRef, VueNode } from '../../_util/type'

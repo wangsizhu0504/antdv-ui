@@ -6,20 +6,20 @@ import type { App, Plugin } from 'vue'
 export type { RadioProps } from './Radio'
 export type { RadioGroupProps } from './Group'
 export type { RadioChangeEventTarget, RadioChangeEvent } from './interface'
-
-Radio.Group = Group
-Radio.Button = Button
+const AntdRadio = Radio
+AntdRadio.Group = Group
+AntdRadio.Button = Button
 
 /* istanbul ignore next */
-Radio.install = function (app: App) {
-  app.component(Radio.name, Radio)
-  app.component(Radio.Group.name, Radio.Group)
-  app.component(Radio.Button.name, Radio.Button)
+AntdRadio.install = function (app: App) {
+  app.component(AntdRadio.name, AntdRadio)
+  app.component(AntdRadio.Group.name, AntdRadio.Group)
+  app.component(AntdRadio.Button.name, AntdRadio.Button)
   return app
 }
 
 export { Button, Group, Button as RadioButton, Group as RadioGroup }
-export default Radio as typeof Radio &
+export default AntdRadio as typeof AntdRadio &
 Plugin & {
   readonly Group: typeof Group
   readonly Button: typeof Button

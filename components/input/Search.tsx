@@ -1,6 +1,6 @@
 import { computed, defineComponent, shallowRef } from 'vue'
 import { SearchOutlined } from '@ant-design/icons-vue'
-import isPlainObject from 'lodash-es/isPlainObject'
+import { isPlainObject } from 'lodash-es'
 import Button from '../button'
 import { cloneElement } from '../_util/vnode'
 import PropTypes from '../_util/vue-types'

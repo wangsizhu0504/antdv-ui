@@ -1,5 +1,5 @@
 import { computed, defineComponent, nextTick, onUpdated, ref, watch } from 'vue'
-import debounce from 'lodash-es/debounce'
+import { debounce } from 'lodash-es'
 import { FileOutlined, FolderOpenOutlined, FolderOutlined } from '@ant-design/icons-vue'
 import { conductExpandParent } from '../vc-tree/util'
 import {

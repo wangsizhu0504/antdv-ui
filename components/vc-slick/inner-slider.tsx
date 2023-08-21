@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import debounce from 'lodash-es/debounce'
+import { debounce } from 'lodash-es'
 import ResizeObserver from 'resize-observer-polyfill'
 import BaseMixin from '../_util/BaseMixin'
 import classnames from '../_util/classNames'

@@ -14,12 +14,11 @@ import { useConfigInject } from '../hooks'
 import { getTransitionName } from '../_util/components/transition'
 import warning from '../_util/warning'
 import useStyle from './style'
+
+import type { MousePosition, getContainerFunc } from './type'
 import type { VueNode } from '../_util/type'
-import type { Direction } from '../config-provider'
 import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../button/buttonTypes'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-
-type MousePosition = { x: number, y: number } | null
 
 let mousePosition: MousePosition
 // ref: https://github.com/ant-design/ant-design/issues/15795
@@ -86,65 +85,10 @@ export const modalProps = () => ({
 
 export type ModalProps = Partial<ExtractPropTypes<ReturnType<typeof modalProps>>>
 
-export interface ModalFuncProps {
-  prefixCls?: string
-  class?: string
-  open?: boolean
-  title?: string | (() => VueNode) | VueNode
-  footer?: string | (() => VueNode) | VueNode
-  closable?: boolean
-  content?: string | (() => VueNode) | VueNode
-  // TODO: find out exact types
-  onOk?: (...args: any[]) => any
-  onCancel?: (...args: any[]) => any
-  afterClose?: () => void
-  okButtonProps?: ButtonPropsType
-  cancelButtonProps?: ButtonPropsType
-  centered?: boolean
-  width?: string | number
-  okText?: string | (() => VueNode) | VueNode
-  okType?: LegacyButtonType
-  cancelText?: string | (() => VueNode) | VueNode
-  icon?: (() => VueNode) | VueNode
-  wrapClassName?: string
-  /* Deprecated */
-  iconType?: string
-  mask?: boolean
-  maskClosable?: boolean
-  zIndex?: number
-  okCancel?: boolean
-  style?: CSSProperties | string
-  maskStyle?: CSSProperties
-  type?: 'info' | 'success' | 'error' | 'warn' | 'warning' | 'confirm'
-  keyboard?: boolean
-  getContainer?: string | HTMLElement | getContainerFunc | false | null
-  autoFocusButton?: null | 'ok' | 'cancel'
-  transitionName?: string
-  maskTransitionName?: string
-  direction?: Direction
-  bodyStyle?: CSSProperties
-  closeIcon?: string | (() => VueNode) | VueNode
-  modalRender?: (arg: { originVNode: VueNode }) => VueNode
-  focusTriggerAfterClose?: boolean
-
-  /** @deprecated please use `appContext` instead */
-  parentContext?: any
-  appContext?: any
-
-  /** @deprecated please use `open` instead */
-  visible?: boolean
-}
-
-type getContainerFunc = () => HTMLElement
-
-export type ModalFunc = (props: ModalFuncProps) => {
-  destroy: () => void
-  update: (newConfig: ModalFuncProps) => void
-}
-
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AModal',
+  test: 1,
   inheritAttrs: false,
   props: initDefaultProps(modalProps(), {
     width: 520,

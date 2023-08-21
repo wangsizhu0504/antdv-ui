@@ -1,5 +1,5 @@
 import { cloneVNode, defineComponent, isVNode, onBeforeUnmount, shallowRef, watch } from 'vue'
-import { debounce } from 'throttle-debounce'
+import { debounce } from 'lodash-es'
 import PropTypes from '../_util/vue-types'
 import { filterEmpty, getPropsSlot } from '../_util/props-util'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
@@ -50,9 +50,9 @@ export default defineComponent({
       [() => props.spinning, () => props.delay],
       () => {
         updateSpinning?.cancel()
-        updateSpinning = debounce(props.delay, () => {
+        updateSpinning = debounce(() => {
           sSpinning.value = props.spinning
-        })
+        }, props.delay)
         updateSpinning?.()
       },
       {

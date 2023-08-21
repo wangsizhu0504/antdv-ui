@@ -1,5 +1,5 @@
 import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
-import isNumber from 'lodash-es/isNumber'
+import { isNumber } from 'lodash-es'
 import cn from '../../_util/classNames'
 import PropTypes from '../../_util/vue-types'
 import { getOffset } from '../../vc-util/Dom/css'

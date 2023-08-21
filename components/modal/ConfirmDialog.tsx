@@ -7,7 +7,7 @@ import { getTransitionName } from '../_util/components/transition'
 import warning from '../_util/warning'
 import Dialog from './Modal'
 import type { ModalLocale } from '../locale'
-import type { ModalFuncProps } from './Modal'
+import type { ModalFuncProps } from './type'
 
 interface ConfirmDialogProps extends ModalFuncProps {
   afterClose?: () => void

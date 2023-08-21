@@ -7,19 +7,20 @@ export type { BreadcrumbProps } from './Breadcrumb'
 export type { BreadcrumbItemProps } from './BreadcrumbItem'
 export type { BreadcrumbSeparatorProps } from './BreadcrumbSeparator'
 
-Breadcrumb.Item = BreadcrumbItem
-Breadcrumb.Separator = BreadcrumbSeparator
+const AntdBreadcrumb = Breadcrumb
+AntdBreadcrumb.Item = BreadcrumbItem
+AntdBreadcrumb.Separator = BreadcrumbSeparator
 
 /* istanbul ignore next */
-Breadcrumb.install = function (app: App) {
-  app.component(Breadcrumb.name, Breadcrumb)
-  app.component(BreadcrumbItem.name, BreadcrumbItem)
-  app.component(BreadcrumbSeparator.name, BreadcrumbSeparator)
+AntdBreadcrumb.install = function (app: App) {
+  app.component(AntdBreadcrumb.name, AntdBreadcrumb)
+  app.component(AntdBreadcrumb.Item.name, AntdBreadcrumb.Item)
+  app.component(AntdBreadcrumb.Separator.name, AntdBreadcrumb.Separator)
   return app
 }
 
 export { BreadcrumbItem, BreadcrumbSeparator }
-export default Breadcrumb as typeof Breadcrumb &
+export default AntdBreadcrumb as typeof AntdBreadcrumb &
 Plugin & {
   readonly Item: typeof BreadcrumbItem
   readonly Separator: typeof BreadcrumbSeparator

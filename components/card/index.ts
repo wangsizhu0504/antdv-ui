@@ -5,20 +5,21 @@ import type { App, Plugin } from 'vue'
 
 export type { CardProps } from './Card'
 
-Card.Meta = Meta
-Card.Grid = Grid
+const AntdCard = Card
+AntdCard.Meta = Meta
+AntdCard.Grid = Grid
 
 /* istanbul ignore next */
 Card.install = function (app: App) {
-  app.component(Card.name, Card)
-  app.component(Meta.name, Meta)
-  app.component(Grid.name, Grid)
+  app.component(AntdCard.name, AntdCard)
+  app.component(AntdCard.Meta.name, AntdCard.Meta)
+  app.component(AntdCard.Grid.name, AntdCard.Grid)
   return app
 }
 
 export { Meta as CardMeta, Grid as CardGrid }
 
-export default Card as typeof Card &
+export default AntdCard as typeof AntdCard &
 Plugin & {
   readonly Meta: typeof Meta
   readonly Grid: typeof Grid

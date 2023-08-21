@@ -1,5 +1,5 @@
 import { computed, defineComponent, ref, watch } from 'vue'
-import isEqual from 'lodash-es/isEqual'
+import { isEqual } from 'lodash-es'
 import scrollIntoView from 'scroll-into-view-if-needed'
 import { toArray } from '../_util/util'
 import PropTypes from '../_util/vue-types'

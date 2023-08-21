@@ -4,15 +4,16 @@ import type { App, Plugin } from 'vue'
 export type { SpinProps } from './Spin'
 export { spinProps } from './Spin'
 
-Spin.setDefaultIndicator = setDefaultIndicator
+const AntdSpin = Spin
+AntdSpin.setDefaultIndicator = setDefaultIndicator
 
 /* istanbul ignore next */
-Spin.install = function (app: App) {
-  app.component(Spin.name, Spin)
+AntdSpin.install = function (app: App) {
+  app.component(AntdSpin.name, AntdSpin)
   return app
 }
 
-export default Spin as typeof Spin &
+export default AntdSpin as typeof AntdSpin &
 Plugin & {
   readonly setDefaultIndicator: typeof setDefaultIndicator
 }

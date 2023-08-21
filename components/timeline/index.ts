@@ -5,16 +5,17 @@ import type { App, Plugin } from 'vue'
 export type { TimelineProps } from './Timeline'
 export type { TimelineItemProps } from './TimelineItem'
 
-Timeline.Item = TimelineItem
+const AntdTimeline = Timeline
+AntdTimeline.Item = TimelineItem
 
 /* istanbul ignore next */
-Timeline.install = function (app: App) {
-  app.component(Timeline.name, Timeline)
-  app.component(TimelineItem.name, TimelineItem)
+AntdTimeline.install = function (app: App) {
+  app.component(AntdTimeline.name, AntdTimeline)
+  app.component(AntdTimeline.Item.name, TimelineItem)
   return app
 }
 export { TimelineItem, timelineProps, timelineItemProps }
-export default Timeline as typeof Timeline &
+export default AntdTimeline as typeof AntdTimeline &
 Plugin & {
   readonly Item: typeof TimelineItem
 }

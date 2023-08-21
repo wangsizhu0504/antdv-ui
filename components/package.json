@@ -84,7 +84,6 @@
     "resize-observer-polyfill": "^1.5.1",
     "scroll-into-view-if-needed": "^3.0.10",
     "stylis": "^4.3.0",
-    "throttle-debounce": "^5.0.0",
     "vue-types": "^5.1.0"
   },
   "devDependencies": {

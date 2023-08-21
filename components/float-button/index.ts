@@ -21,20 +21,21 @@ export type {
   FloatButtonSize,
 }
 
-FloatButton.Group = FloatButtonGroup
-FloatButton.BackTop = BackTop
+const AntdFloatButton = FloatButton
+AntdFloatButton.Group = FloatButtonGroup
+AntdFloatButton.BackTop = BackTop
 
 /* istanbul ignore next */
 FloatButton.install = function (app: App) {
-  app.component(FloatButton.name, FloatButton)
-  app.component(FloatButtonGroup.name, FloatButtonGroup)
-  app.component(BackTop.name, BackTop)
+  app.component(AntdFloatButton.name, AntdFloatButton)
+  app.component(AntdFloatButton.Group.name, AntdFloatButton.Group)
+  app.component(AntdFloatButton.BackTop.name, AntdFloatButton.BackTop)
   return app
 }
 
 export { FloatButtonGroup, BackTop }
 
-export default FloatButton as typeof FloatButton &
+export default AntdFloatButton as typeof AntdFloatButton &
 Plugin & {
   readonly Group: typeof FloatButtonGroup
   readonly BackTop: typeof BackTop

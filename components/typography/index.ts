@@ -8,18 +8,19 @@ import type { App, Plugin } from 'vue'
 
 export type { TypographyProps } from './Typography'
 
-Typography.Text = Text
-Typography.Title = Title
-Typography.Paragraph = Paragraph
-Typography.Link = Link
-Typography.Base = Base
+const AntdTypography = Typography
+AntdTypography.Text = Text
+AntdTypography.Title = Title
+AntdTypography.Paragraph = Paragraph
+AntdTypography.Link = Link
+AntdTypography.Base = Base
 
-Typography.install = function (app: App) {
-  app.component(Typography.name, Typography)
-  app.component(Typography.Text.displayName, Text)
-  app.component(Typography.Title.displayName, Title)
-  app.component(Typography.Paragraph.displayName, Paragraph)
-  app.component(Typography.Link.displayName, Link)
+AntdTypography.install = function (app: App) {
+  app.component(AntdTypography.name, AntdTypography)
+  app.component(AntdTypography.Text.displayName, Text)
+  app.component(AntdTypography.Title.displayName, Title)
+  app.component(AntdTypography.Paragraph.displayName, Paragraph)
+  app.component(AntdTypography.Link.displayName, Link)
   return app
 }
 
@@ -30,7 +31,7 @@ export {
   Link as TypographyLink,
 }
 
-export default Typography as typeof Typography &
+export default AntdTypography as typeof AntdTypography &
 Plugin & {
   readonly Text: typeof Text
   readonly Title: typeof Title

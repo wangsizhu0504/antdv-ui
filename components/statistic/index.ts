@@ -4,17 +4,18 @@ import type { App, Plugin } from 'vue'
 
 export type { StatisticProps } from './Statistic'
 
-Statistic.Countdown = Countdown
+const AntdStatistic = Statistic
+AntdStatistic.Countdown = Countdown
 /* istanbul ignore next */
-Statistic.install = function (app: App) {
-  app.component(Statistic.name, Statistic)
-  app.component(Statistic.Countdown.name, Statistic.Countdown)
+AntdStatistic.install = function (app: App) {
+  app.component(AntdStatistic.name, AntdStatistic)
+  app.component(AntdStatistic.Countdown.name, AntdStatistic.Countdown)
   return app
 }
 
-export const StatisticCountdown = Statistic.Countdown
+export const StatisticCountdown = AntdStatistic.Countdown
 
-export default Statistic as typeof Statistic &
+export default AntdStatistic as typeof AntdStatistic &
 Plugin & {
   readonly Countdown: typeof Countdown
 }

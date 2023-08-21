@@ -5,7 +5,7 @@ import ConfirmDialog from './ConfirmDialog'
 
 import { getConfirmLocale } from './locale'
 import destroyFns from './destroyFns'
-import type { ModalFuncProps } from './Modal'
+import type { ModalFuncProps } from './type'
 
 type ConfigUpdate = ModalFuncProps | ((prevConfig: ModalFuncProps) => ModalFuncProps)
 export type ModalStaticFunctions<T = ModalFunc> = Record<NonNullable<ModalFuncProps['type']>, T>

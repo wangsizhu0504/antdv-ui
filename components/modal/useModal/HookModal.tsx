@@ -4,7 +4,7 @@ import ConfirmDialog from '../ConfirmDialog'
 import { useConfigContextInject } from '../../config-provider/context'
 import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver'
 import initDefaultProps from '../../_util/props-util/initDefaultProps'
-import type { ModalFuncProps } from '../Modal'
+import type { ModalFuncProps } from '../type'
 import type { PropType } from 'vue'
 
 export interface HookModalProps {
