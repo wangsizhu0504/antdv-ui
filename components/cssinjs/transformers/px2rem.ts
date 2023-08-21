@@ -5,7 +5,7 @@ import unitless from '@emotion/unitless'
 import type { CSSObject } from '..'
 import type { Transformer } from './interface'
 
-interface Options {
+export interface Px2RemOptions {
   /**
    * The root font size.
    * @default 16
@@ -31,7 +31,7 @@ function toFixed(number: number, precision: number) {
   return (Math.round(wholeNumber / 10) * 10) / multiplier
 }
 
-const transform = (options: Options = {}): Transformer => {
+export const px2remTransformer = (options: Px2RemOptions = {}): Transformer => {
   const { rootValue = 16, precision = 5, mediaQuery = false } = options
 
   const pxReplace = (m: string, $1: any) => {
@@ -71,5 +71,3 @@ const transform = (options: Options = {}): Transformer => {
 
   return { visit }
 }
-
-export default transform

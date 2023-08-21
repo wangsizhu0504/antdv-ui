@@ -5,7 +5,7 @@ import { legacyNotSelectorLinter, logicalPropertiesLinter, parentSelectorLinter 
 import { StyleProvider, createCache, useStyleInject, useStyleProvider } from './StyleContext'
 import { Theme, createTheme } from './theme/index'
 import legacyLogicalPropertiesTransformer from './transformers/legacyLogicalProperties'
-import px2remTransformer from './transformers/px2rem'
+import { px2remTransformer } from './transformers/px2rem'
 import type { Linter } from './linters/interface'
 import type { StyleContextProps, StyleProviderProps } from './StyleContext'
 import type { DerivativeFunc, TokenType } from './theme/index'
