@@ -16,7 +16,9 @@ export interface GroupConsumerContext {
 const key: InjectionKey<GroupConsumerContext> = Symbol('PreviewGroupInjectionKey')
 
 export function createGroupProviderContext(context: GroupConsumerContext) {
-  return createContextFn<GroupConsumerContext>(key, context)
+  return createContextFn<GroupConsumerContext>(key, context, {
+    reactiveable: false,
+  })
 }
 
 export function useGroupProviderContext() {

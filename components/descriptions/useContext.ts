@@ -10,7 +10,9 @@ export interface AppProviderContextProps {
 const key: InjectionKey<AppProviderContextProps> = Symbol('InjectionKey')
 
 export function createProviderContext(context: AppProviderContextProps) {
-  return createContextFn<AppProviderContextProps>(key, context)
+  return createContextFn<AppProviderContextProps>(key, context, {
+    reactiveable: false,
+  })
 }
 
 export function useProviderContext() {
