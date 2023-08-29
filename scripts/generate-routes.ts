@@ -5,7 +5,7 @@ import matter from 'gray-matter'
 import { ESLint } from 'eslint';
 
 (async () => {
-  const paths = await globby('packages/site/example/*/index.*.md')
+  const paths = await globby('site/example/*/index.*.md')
   const components = {}
   paths.forEach((path) => {
     const content = fs.readFileSync(path).toString()
@@ -35,5 +35,5 @@ export default [
 
   const report = await engine.lintText(TEMPLATE)
 
-  fs.writeFileSync('packages/site/src/router/demoRoutes.ts', report[0].output)
+  fs.writeFileSync('site/src/router/demoRoutes.ts', report[0].output)
 })()

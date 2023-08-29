@@ -24,7 +24,7 @@ export default defineComponent({
     const copied = ref(false)
     const codeRef = ref<HTMLDivElement>()
     const sectionId = computed(() => {
-      const relativePath = props.jsfiddle?.relativePath.replace('packages/ant-design-vue/', '') || ''
+      const relativePath = props.jsfiddle?.relativePath.replace('components/', '') || ''
       return `${relativePath.split('/').join('-').replace('.vue', '')}`.toLocaleLowerCase()
     })
     const inIframe = inject('inIframe', false)
