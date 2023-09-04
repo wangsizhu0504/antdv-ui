@@ -12,6 +12,7 @@ import {
 import { useConfigInject } from '../hooks'
 import PreviewGroup from '../vc-image/src/PreviewGroup'
 import { anyType } from '../_util/type'
+import { getTransitionName } from '../_util/components/transition'
 import useStyle from './style'
 import type { ExtractPropTypes } from 'vue'
 import type { PreviewGroupPreview } from '../vc-image/src/PreviewGroup'
@@ -39,7 +40,7 @@ const InternalPreviewGroup = defineComponent({
   inheritAttrs: false,
   props: previewGroupProps(),
   setup(props, { attrs, slots }) {
-    const { prefixCls } = useConfigInject('image', props)
+    const { prefixCls, rootPrefixCls } = useConfigInject('image', props)
     const previewPrefixCls = computed(() => `${prefixCls.value}-preview`)
     const [wrapSSR, hashId] = useStyle(prefixCls)
     const mergedPreview = computed(() => {
@@ -52,6 +53,12 @@ const InternalPreviewGroup = defineComponent({
       return {
         ..._preview,
         rootClassName: hashId.value,
+        transitionName: getTransitionName(rootPrefixCls.value, 'zoom', _preview.transitionName),
+        maskTransitionName: getTransitionName(
+          rootPrefixCls.value,
+          'fade',
+          _preview.maskTransitionName,
+        ),
       }
     })
     return () => {
