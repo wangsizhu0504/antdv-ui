@@ -53,6 +53,7 @@ export const configProviderProps = () => ({
   componentDisabled: { type: Boolean, default: undefined },
   direction: {
     type: String as PropType<'ltr' | 'rtl'>,
+    default: 'ltr',
   },
   space: objectType<{ size?: SizeType | number }>(),
   virtual: { type: Boolean, default: undefined },
@@ -120,6 +121,7 @@ export const defaultConfigProvider: ConfigProviderInnerProps = {
   },
   iconPrefixCls: computed(() => defaultIconPrefixCls),
   getPopupContainer: computed(() => () => document.body),
+  direction: computed(() => 'ltr'),
 }
 
 export const useConfigContextInject = () => {
