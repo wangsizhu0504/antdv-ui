@@ -1,12 +1,4 @@
-import {
-  Teleport,
-  defineComponent,
-  nextTick,
-  onBeforeMount,
-  onBeforeUnmount,
-  onUpdated,
-  watch,
-} from 'vue'
+import { Teleport, defineComponent, nextTick, onBeforeMount, onUpdated, watch } from 'vue'
 import { useInjectPortal } from '../../vc-trigger/context'
 
 export default defineComponent({
@@ -43,10 +35,10 @@ export default defineComponent({
           props.didUpdate?.(props)
       })
     })
-    onBeforeUnmount(() => {
-      if (container && container.parentNode)
-        container.parentNode.removeChild(container)
-    })
+    // onBeforeUnmount(() => {
+    //   if (container && container.parentNode)
+    //     container.parentNode.removeChild(container)
+    // })
     return () => {
       if (!shouldRender.value) return null
       if (isSSR)

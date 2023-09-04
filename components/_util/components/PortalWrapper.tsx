@@ -59,11 +59,14 @@ export default defineComponent({
     const container = shallowRef<HTMLElement>()
     const componentRef = shallowRef()
     const rafId = shallowRef<number>()
+    const defaultContainer = canUseDom() && document.createElement('div')
 
     const removeCurrentContainer = () => {
       // Portal will remove from `parentNode`.
       // Let's handle this again to avoid refactor issue.
-      container.value?.parentNode?.removeChild(container.value)
+      if (container.value === defaultContainer)
+        container.value?.parentNode?.removeChild(container.value)
+
       container.value = null
     }
     let parent: HTMLElement = null
@@ -80,8 +83,6 @@ export default defineComponent({
 
       return true
     }
-    // attachToParent();
-    const defaultContainer = canUseDom() && document.createElement('div')
     const setWrapperClassName = () => {
       const { wrapperClassName } = props
       if (container.value && wrapperClassName && wrapperClassName !== container.value.className)
