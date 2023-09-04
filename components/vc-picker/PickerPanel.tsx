@@ -610,4 +610,4 @@ function PickerPanel<DateType>() {
 const InterPickerPanel = PickerPanel<any>()
 
 // eslint-disable-next-line @typescript-eslint/comma-dangle
-export default <DateType,>(props: MergedPickerPanelProps<DateType>): JSX.Element => createVNode(InterPickerPanel, props)
+export default <DateType,>(props: MergedPickerPanelProps<DateType>) => createVNode(InterPickerPanel, props)

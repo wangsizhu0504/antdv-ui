@@ -272,6 +272,9 @@ const genTransferListStyle: GenerateStyle<TransferToken> = (token: TransferToken
     '&-footer': {
       borderTop: `${lineWidth}px ${lineType} ${colorSplit}`,
     },
+    '&-checkbox': {
+      lineHeight: 1,
+    },
   }
 }
 

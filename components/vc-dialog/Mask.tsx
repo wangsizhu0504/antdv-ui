@@ -4,7 +4,7 @@ import Transition, { getTransitionProps } from '../_util/components/transition'
 export default defineComponent({
   compatConfig: { MODE: 3 },
 
-  name: 'Mask',
+  name: 'DialogMask',
   props: {
     prefixCls: String,
     visible: Boolean,

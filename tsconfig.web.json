@@ -6,6 +6,7 @@
     "module": "CommonJS",
     "allowJs": true,
     "jsx": "preserve",
+    "jsxImportSource": "vue",
     "types": ["node"],
     "resolveJsonModule": true,
     "useDefineForClassFields": true,

@@ -18,7 +18,7 @@ export const statisticProps = () => ({
   format: String,
   value: someType<valueType>([Number, String, Object]),
   valueStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-  valueRender: functionType<(node: VNode | JSX.Element) => VNode | JSX.Element>(),
+  valueRender: functionType<(node: VNode) => VNode>(),
   formatter: anyType<Formatter>(),
   precision: Number,
   prefix: vNodeType(),

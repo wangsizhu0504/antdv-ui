@@ -17,7 +17,7 @@ import type { ContentRef } from './Content'
 export default defineComponent({
   compatConfig: { MODE: 3 },
 
-  name: 'Dialog',
+  name: 'VcDialog',
   inheritAttrs: false,
   props: initDefaultProps(
     {

@@ -162,7 +162,7 @@ function isRawValue(value: DraftValueType): value is RawValueType {
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'Select',
+  name: 'VcSelect',
   inheritAttrs: false,
   props: initDefaultProps(selectProps(), {
     prefixCls: 'vc-select',

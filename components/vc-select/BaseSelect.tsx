@@ -706,7 +706,7 @@ export default defineComponent({
       // ============================= Arrow ==============================
       const mergedShowArrow
         = showArrow !== undefined ? showArrow : (loading || (!multiple.value && mode !== 'combobox'))
-      let arrowNode: VNode | JSX.Element
+      let arrowNode: VNode
 
       if (mergedShowArrow) {
         arrowNode = (
@@ -727,7 +727,7 @@ export default defineComponent({
       }
 
       // ============================= Clear ==============================
-      let clearNode: VNode | JSX.Element
+      let clearNode: VNode
       const onClearMouseDown: MouseEventHandler = () => {
         onClear?.()
 
@@ -838,7 +838,7 @@ export default defineComponent({
         ></SelectTrigger>
       )
       // >>> Render
-      let renderNode: VNode | JSX.Element
+      let renderNode: VNode
 
       // Render raw
       if (customizeRawInputElement) {
