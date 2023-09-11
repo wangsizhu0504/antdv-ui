@@ -8,11 +8,11 @@ title:
 
 ## zh-CN
 
-  设置表单组件禁用，仅对 antd 组件有效。
+设置表单组件禁用，仅对 antd 组件有效。
 
 ## en-US
 
-  Set component disabled, only works for antd components.
+Set component disabled, only works for antd components.
 </docs>
 
 <template>
@@ -31,12 +31,8 @@ title:
     </a-form-item>
     <a-form-item label="Radio">
       <a-radio-group v-model:value="radioValue">
-        <a-radio value="apple">
-          Apple
-        </a-radio>
-        <a-radio value="pear">
-          Pear
-        </a-radio>
+        <a-radio value="apple">Apple</a-radio>
+        <a-radio value="pear">Pear</a-radio>
       </a-radio-group>
     </a-form-item>
     <a-form-item label="Input">
@@ -44,9 +40,7 @@ title:
     </a-form-item>
     <a-form-item label="Select">
       <a-select>
-        <a-select-option value="demo">
-          Demo
-        </a-select-option>
+        <a-select-option value="demo">Demo</a-select-option>
       </a-select>
     </a-form-item>
     <a-form-item label="TreeSelect">
@@ -74,9 +68,7 @@ title:
       <a-upload action="/upload.do" list-type="picture-card">
         <div>
           <PlusOutlined />
-          <div style="margin-top: 8px">
-            Upload
-          </div>
+          <div style="margin-top: 8px">Upload</div>
         </div>
       </a-upload>
     </a-form-item>
@@ -85,19 +77,18 @@ title:
     </a-form-item>
   </a-form>
 </template>
-
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
-import { PlusOutlined } from '@ant-design/icons-vue'
-import type { CascaderProps, TreeSelectProps } from '@antdv/ui'
+import { ref, reactive } from 'vue';
+import { PlusOutlined } from '@ant-design/icons-vue';
+import type { TreeSelectProps, CascaderProps } from '@antdv/ui';
 
-const componentDisabled = ref(true)
-const labelCol = { style: { width: '150px' } }
-const wrapperCol = { span: 14 }
-const radioValue = ref('apple')
+const componentDisabled = ref(true);
+const labelCol = { style: { width: '150px' } };
+const wrapperCol = { span: 14 };
+const radioValue = ref('apple');
 const treeData = reactive<TreeSelectProps['treeData']>([
   { title: 'Light', value: 'light', children: [{ title: 'Bamboo', value: 'bamboo' }] },
-])
+]);
 const options = reactive<CascaderProps['options']>([
   {
     value: 'zhejiang',
@@ -109,6 +100,6 @@ const options = reactive<CascaderProps['options']>([
       },
     ],
   },
-])
-const checked = ref(false)
+]);
+const checked = ref(false);
 </script>

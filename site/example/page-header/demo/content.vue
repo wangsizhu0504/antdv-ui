@@ -26,20 +26,12 @@ Show all props provided by PageHeader.
       :breadcrumb="{ routes }"
     >
       <template #tags>
-        <a-tag color="blue">
-          Running
-        </a-tag>
+        <a-tag color="blue">Running</a-tag>
       </template>
       <template #extra>
-        <a-button key="3">
-          Operation
-        </a-button>
-        <a-button key="2">
-          Operation
-        </a-button>
-        <a-button key="1" type="primary">
-          Primary
-        </a-button>
+        <a-button key="3">Operation</a-button>
+        <a-button key="2">Operation</a-button>
+        <a-button key="1" type="primary">Primary</a-button>
         <a-dropdown key="more">
           <a-button :style="{ border: 'none', padding: 0 }">
             <EllipsisOutlined :style="{ fontSize: '20px', verticalAlign: 'top' }" />
@@ -98,7 +90,7 @@ Show all props provided by PageHeader.
 </template>
 
 <script lang="ts" setup>
-import { EllipsisOutlined } from '@ant-design/icons-vue'
+import { EllipsisOutlined } from '@ant-design/icons-vue';
 
 const routes = [
   {
@@ -113,11 +105,11 @@ const routes = [
     path: 'second',
     breadcrumbName: 'Third-level Menu',
   },
-]
+];
 
 interface IconLink {
-  src: string
-  text: string
+  src: string;
+  text: string;
 }
 const iconLinks: IconLink[] = [
   {
@@ -132,9 +124,8 @@ const iconLinks: IconLink[] = [
     src: 'https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg',
     text: 'Product Doc',
   },
-]
+];
 </script>
-
 <style scoped>
 #components-page-header-demo-content .image {
   margin: 0 0 0 60px;

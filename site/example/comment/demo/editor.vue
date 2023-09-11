@@ -50,27 +50,26 @@ Comment can be used as editor, user can customize the editor component.
     </template>
   </a-comment>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
+import { ref } from 'vue';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 
-dayjs.extend(relativeTime)
+type Comment = Record<string, string>;
 
-type Comment = Record<string, string>
-
-const comments = ref<Comment[]>([])
-const submitting = ref<boolean>(false)
-const value = ref<string>('')
+const comments = ref<Comment[]>([]);
+const submitting = ref<boolean>(false);
+const value = ref<string>('');
 const handleSubmit = () => {
-  if (!value.value)
-    return
+  if (!value.value) {
+    return;
+  }
 
-  submitting.value = true
+  submitting.value = true;
 
   setTimeout(() => {
-    submitting.value = false
+    submitting.value = false;
     comments.value = [
       {
         author: 'Han Solo',
@@ -79,8 +78,8 @@ const handleSubmit = () => {
         datetime: dayjs().fromNow(),
       },
       ...comments.value,
-    ]
-    value.value = ''
-  }, 1000)
-}
+    ];
+    value.value = '';
+  }, 1000);
+};
 </script>

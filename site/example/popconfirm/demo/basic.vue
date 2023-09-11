@@ -27,17 +27,15 @@ The basic example.
     <a href="#">Delete</a>
   </a-popconfirm>
 </template>
-
 <script lang="ts" setup>
-import { message } from '@antdv/ui'
-
+import { message } from '@antdv/ui';
 const confirm = (e: MouseEvent) => {
-  console.log(e)
-  message.success('Click on Yes')
-}
+  console.log(e);
+  message.success('Click on Yes');
+};
 
 const cancel = (e: MouseEvent) => {
-  console.log(e)
-  message.error('Click on No')
-}
+  console.log(e);
+  message.error('Click on No');
+};
 </script>

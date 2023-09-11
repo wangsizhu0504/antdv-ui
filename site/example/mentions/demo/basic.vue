@@ -15,21 +15,18 @@ title:
 Basic usage.
 
 </docs>
-
 <template>
-  <a-mentions v-model:value="value" autofocus :options="options" @select="onSelect" />
+  <a-mentions v-model:value="value" autofocus :options="options" @select="onSelect"></a-mentions>
 </template>
-
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
-
-const value = ref<string>('@afc163')
+import { ref, watch } from 'vue';
+const value = ref<string>('@afc163');
 watch(value, () => {
-  console.log('value', value)
-})
+  console.log('value', value);
+});
 const onSelect = (option: { value: string }) => {
-  console.log('select', option)
-}
+  console.log('select', option);
+};
 
 const options = [
   {
@@ -44,5 +41,5 @@ const options = [
     value: 'yesmeck',
     label: 'yesmeck',
   },
-]
+];
 </script>

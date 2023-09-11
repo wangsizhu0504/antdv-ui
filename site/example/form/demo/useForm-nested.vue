@@ -24,35 +24,30 @@ title:
       <a-input v-model:value="modelRef.sub.name" />
     </a-form-item>
     <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-      <a-button type="primary" @click.prevent="onSubmit">
-        Create
-      </a-button>
-      <a-button style="margin-left: 10px" @click="reset">
-        Reset
-      </a-button>
+      <a-button type="primary" @click.prevent="onSubmit">Create</a-button>
+      <a-button style="margin-left: 10px" @click="reset">Reset</a-button>
     </a-form-item>
   </a-form>
 </template>
-
 <script lang="ts" setup>
-import { reactive, toRaw } from 'vue'
-import { Form } from '@antdv/ui'
+import { reactive, toRaw } from 'vue';
+import { Form } from '@antdv/ui';
 
-const useForm = Form.useForm
+const useForm = Form.useForm;
 
-const labelCol = { span: 4 }
-const wrapperCol = { span: 14 }
+const labelCol = { span: 4 };
+const wrapperCol = { span: 14 };
 
 const modelRef = reactive({
   name: '',
   sub: {
     name: '',
   },
-})
+});
 const { resetFields, validate, validateInfos } = useForm(
   modelRef,
   reactive({
-    'name': [
+    name: [
       {
         required: true,
         message: 'Please input name',
@@ -65,17 +60,17 @@ const { resetFields, validate, validateInfos } = useForm(
       },
     ],
   }),
-)
+);
 const onSubmit = () => {
   validate()
-    .then((res) => {
-      console.log(res, toRaw(modelRef))
+    .then(res => {
+      console.log(res, toRaw(modelRef));
     })
-    .catch((err) => {
-      console.log('error', err)
-    })
-}
+    .catch(err => {
+      console.log('error', err);
+    });
+};
 const reset = () => {
-  resetFields()
-}
+  resetFields();
+};
 </script>

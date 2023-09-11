@@ -17,16 +17,12 @@ title:
 </docs>
 
 <template>
-  <a-button @click="showConfirm">
-    Confirm
-  </a-button>
+  <a-button @click="showConfirm">Confirm</a-button>
 </template>
-
 <script lang="ts" setup>
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-import { createVNode } from 'vue'
-import { Modal } from '@antdv/ui'
-
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { createVNode } from 'vue';
+import { Modal } from '@antdv/ui';
 const showConfirm = () => {
   for (let i = 0; i < 3; i += 1) {
     setTimeout(() => {
@@ -35,15 +31,15 @@ const showConfirm = () => {
         icon: createVNode(ExclamationCircleOutlined),
         onOk() {
           return new Promise((resolve, reject) => {
-            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-          }).catch(() => console.log('Oops errors!'))
+            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+          }).catch(() => console.log('Oops errors!'));
         },
         cancelText: 'Click to destroy all',
         onCancel() {
-          Modal.destroyAll()
+          Modal.destroyAll();
         },
-      })
-    }, i * 500)
+      });
+    }, i * 500);
   }
-}
+};
 </script>

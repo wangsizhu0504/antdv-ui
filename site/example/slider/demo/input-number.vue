@@ -41,14 +41,11 @@ Synchronize with [InputNumber](/components/input-number/) component.
     </a-row>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const inputValue = ref<number>(0)
-const inputValue1 = ref<number>(1)
+import { ref } from 'vue';
+const inputValue = ref<number>(0);
+const inputValue1 = ref<number>(1);
 </script>
-
 <style scoped>
 .code-box-demo .ant-slider {
   margin-bottom: 16px;

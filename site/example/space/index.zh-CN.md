@@ -16,7 +16,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*37T2R6O9oi0AAA
 
 - 适合行内元素的水平间距。
 - 可以设置各种水平对齐方式。
-- 需要表单组件之间紧凑连接且合并边框时，使用 Space.Compact（自 `ant-design-vue@4.0.0` 版本开始提供该组件）。
+- 需要表单组件之间紧凑连接且合并边框时，使用 Space.Compact（自 `@antdv/ui@4.0.0` 版本开始提供该组件）。
 
 ## API
 
@@ -32,7 +32,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*37T2R6O9oi0AAA
 
 ### Space.Compact
 
-> 自 ant-design-vue@4.0.0 版本开始提供该组件。
+> 自 @antdv/ui@4.0.0 版本开始提供该组件。
 
 需要表单组件之间紧凑连接且合并边框时，使用 Space.Compact。支持的组件有：
 

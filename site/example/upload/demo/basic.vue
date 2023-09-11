@@ -24,30 +24,30 @@ Classic mode. File selection dialog pops up when upload button is clicked.
     @change="handleChange"
   >
     <a-button>
-      <upload-outlined />
+      <upload-outlined></upload-outlined>
       Click to Upload
     </a-button>
   </a-upload>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { message } from '@antdv/ui'
-import { UploadOutlined } from '@ant-design/icons-vue'
-import type { UploadChangeParam } from '@antdv/ui'
+import { ref } from 'vue';
+import { message } from '@antdv/ui';
+import { UploadOutlined } from '@ant-design/icons-vue';
+import type { UploadChangeParam } from '@antdv/ui';
 
 const handleChange = (info: UploadChangeParam) => {
-  if (info.file.status !== 'uploading')
-    console.log(info.file, info.fileList)
+  if (info.file.status !== 'uploading') {
+    console.log(info.file, info.fileList);
+  }
+  if (info.file.status === 'done') {
+    message.success(`${info.file.name} file uploaded successfully`);
+  } else if (info.file.status === 'error') {
+    message.error(`${info.file.name} file upload failed.`);
+  }
+};
 
-  if (info.file.status === 'done')
-    message.success(`${info.file.name} file uploaded successfully`)
-  else if (info.file.status === 'error')
-    message.error(`${info.file.name} file upload failed.`)
-}
-
-const fileList = ref([])
+const fileList = ref([]);
 const headers = {
   authorization: 'authorization-text',
-}
+};
 </script>

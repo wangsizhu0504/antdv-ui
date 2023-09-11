@@ -30,14 +30,10 @@ Progressive when large image loading.
         />
       </template>
     </a-image>
-    <a-button type="primary" @click="random = Date.now()">
-      reload
-    </a-button>
+    <a-button type="primary" @click="random = Date.now()">reload</a-button>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const random = ref()
+import { ref } from 'vue';
+const random = ref();
 </script>

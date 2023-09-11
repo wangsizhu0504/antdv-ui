@@ -37,16 +37,16 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*tz7qSaWpi1kAAA
 
 ```ts
 interface SegmentedBaseOption {
-  value: string | number
-  disabled?: boolean
-  payload?: any // payload more data
+  value: string | number;
+  disabled?: boolean;
+  payload?: any; // payload more data
   /**
    * html `title` property for label
    */
-  title?: string
-  className?: string
+  title?: string;
+  className?: string;
 }
 interface SegmentedOption extends SegmentedBaseOption {
-  label?: VueNode | ((option: SegmentedBaseOption) => VueNode)
+  label?: VueNode | ((option: SegmentedBaseOption) => VueNode);
 }
 ```

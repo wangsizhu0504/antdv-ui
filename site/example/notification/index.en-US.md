@@ -62,7 +62,7 @@ notification.config({
   bottom: '50px',
   duration: 3,
   rtl: true,
-})
+});
 ```
 
 | Property | Description | Type | Default | Version |
@@ -80,7 +80,7 @@ notification.config({
 
 ### Why I can not access context, Pinia, ConfigProvider `locale/prefixCls/theme` in notification?
 
-@antdv/ui will dynamic create Vue instance by `Vue.render` when call notification methods. Whose context is different with origin code located context.
+antdv will dynamic create Vue instance by `Vue.render` when call notification methods. Whose context is different with origin code located context.
 
 When you need context info (like ConfigProvider context), you can use `notification.useNotification` to get `api` instance and `contextHolder` node. And put it in your children:
 

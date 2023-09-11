@@ -6,13 +6,13 @@ title:
   en-US: Multiple Selection
 ---
 
-  ## zh-CN
+## zh-CN
 
-  多选的树选择。
+多选的树选择。
 
-  ## en-US
+## en-US
 
-  Multiple selection usage.
+Multiple selection usage.
 
 </docs>
 
@@ -31,21 +31,20 @@ title:
   >
     <template #title="{ value: val, label }">
       <b v-if="val === 'parent 1-1'" style="color: #08c">{{ val }}</b>
-      <template v-else>
-        {{ label }}
-      </template>
+      <template v-else>{{ label }}</template>
     </template>
   </a-tree-select>
 </template>
+<script lang="ts" setup>
+import { ref, watch } from 'vue';
+import type { TreeSelectProps } from '@antdv/ui';
 
-<script lang="ts">
-import type { TreeSelectProps } from '@antdv/ui'
-import { defineComponent, ref, watch } from 'vue'
-
-export default defineComponent({
-  setup() {
-    const value = ref<string[]>([])
-    const treeData = ref<TreeSelectProps['treeData']>([
+const value = ref<string[]>([]);
+const treeData = ref<TreeSelectProps['treeData']>([
+  {
+    label: 'parent 1',
+    value: 'parent 1',
+    children: [
       {
         label: 'parent 1',
         value: 'parent 1',
@@ -70,15 +69,14 @@ export default defineComponent({
           },
         ],
       },
-    ])
-    watch(value, () => {
-      console.log('select', value.value)
-    })
-
-    return {
-      value,
-      treeData,
-    }
+      {
+        label: 'parent 1-1',
+        value: 'parent 1-1',
+      },
+    ],
   },
-})
+]);
+watch(value, () => {
+  console.log('select', value.value);
+});
 </script>

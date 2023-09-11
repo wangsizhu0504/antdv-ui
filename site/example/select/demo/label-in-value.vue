@@ -25,13 +25,11 @@ The label of the selected item will be packed as an object for passing to the on
     style="width: 120px"
     :options="options"
     @change="handleChange"
-  />
+  ></a-select>
 </template>
-
 <script lang="ts" setup>
-import type { SelectProps } from '@antdv/ui'
-import { ref } from 'vue'
-
+import type { SelectProps } from '@antdv/ui';
+import { ref } from 'vue';
 const options = ref<SelectProps['options']>([
   {
     value: 'jack',
@@ -41,10 +39,10 @@ const options = ref<SelectProps['options']>([
     value: 'lucy',
     label: 'Lucy (101)',
   },
-])
-const handleChange: SelectProps['onChange'] = (value) => {
-  console.log(value) // { key: "lucy", label: "Lucy (101)" }
-}
+]);
+const handleChange: SelectProps['onChange'] = value => {
+  console.log(value); // { key: "lucy", label: "Lucy (101)" }
+};
 
-const value = ref('lucy')
+const value = ref('lucy');
 </script>

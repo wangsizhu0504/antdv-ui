@@ -30,12 +30,10 @@ Use Drawer to quickly preview details of an object, such as those in a list.
   >
     <template #renderItem="{ item }">
       <a-list-item :key="`a-${item.id}`">
-        <template #actions>
-          <a @click="showDrawer">View Profile</a>
-        </template>
+        <template #actions><a @click="showDrawer">View Profile</a></template>
         <a-list-item-meta description="Progresser XTech">
           <template #title>
-            <a href="https://www.antd-vue.com/">{{ item.name }}</a>
+            <a href="https://www.antdv.com/">{{ item.name }}</a>
           </template>
           <template #avatar>
             <a-avatar src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
@@ -45,12 +43,8 @@ Use Drawer to quickly preview details of an object, such as those in a list.
     </template>
   </a-list>
   <a-drawer width="640" placement="right" :closable="false" :open="open" @close="onClose">
-    <p :style="[pStyle, pStyle2]">
-      User Profile
-    </p>
-    <p :style="pStyle">
-      Personal
-    </p>
+    <p :style="[pStyle, pStyle2]">User Profile</p>
+    <p :style="pStyle">Personal</p>
     <a-row>
       <a-col :span="12">
         <description-item title="Full Name" content="Lily" />
@@ -84,9 +78,7 @@ Use Drawer to quickly preview details of an object, such as those in a list.
       </a-col>
     </a-row>
     <a-divider />
-    <p :style="pStyle">
-      Company
-    </p>
+    <p :style="pStyle">Company</p>
     <a-row>
       <a-col :span="12">
         <description-item title="Position" content="Programmer" />
@@ -101,9 +93,7 @@ Use Drawer to quickly preview details of an object, such as those in a list.
       </a-col>
       <a-col :span="12">
         <description-item title="Supervisor">
-          <template #content>
-            <a>Lin</a>
-          </template>
+          <template #content><a>Lin</a></template>
         </description-item>
       </a-col>
     </a-row>
@@ -116,12 +106,10 @@ Use Drawer to quickly preview details of an object, such as those in a list.
       </a-col>
     </a-row>
     <a-divider />
-    <p :style="pStyle">
-      Contacts
-    </p>
+    <p :style="pStyle">Contacts</p>
     <a-row>
       <a-col :span="12">
-        <description-item title="Email" content="ant-design-vue@example.com" />
+        <description-item title="Email" content="@antdv/ui@example.com" />
       </a-col>
       <a-col :span="12">
         <description-item title="Phone Number" content="+86 181 0000 0000" />
@@ -131,8 +119,8 @@ Use Drawer to quickly preview details of an object, such as those in a list.
       <a-col :span="24">
         <description-item title="Github">
           <template #content>
-            <a href="https://github.com/vueComponent/ant-design-vue">
-              github.com/vueComponent/ant-design-vue
+            <a href="https://github.com/vueComponent/@antdv/ui">
+              github.com/vueComponent/@antdv/ui
             </a>
           </template>
         </description-item>
@@ -140,27 +128,25 @@ Use Drawer to quickly preview details of an object, such as those in a list.
     </a-row>
   </a-drawer>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import descriptionItem from './descriptionItem/index.vue'
-
-const open = ref<boolean>(false)
+import { ref } from 'vue';
+import descriptionItem from './descriptionItem/index.vue';
+const open = ref<boolean>(false);
 const pStyle = {
   fontSize: '16px',
   color: 'rgba(0,0,0,0.85)',
   lineHeight: '24px',
   display: 'block',
   marginBottom: '16px',
-}
+};
 const pStyle2 = {
   marginBottom: '24px',
-}
+};
 
 const showDrawer = () => {
-  open.value = true
-}
+  open.value = true;
+};
 const onClose = () => {
-  open.value = false
-}
+  open.value = false;
+};
 </script>

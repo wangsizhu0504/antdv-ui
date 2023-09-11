@@ -11,20 +11,19 @@
     <update />
   </demo-sort>
 </template>
-
 <script lang="ts">
-import { defineComponent } from 'vue'
-import CN from '../index.zh-CN.md'
-import US from '../index.en-US.md'
-import Basic from './basic.vue'
-import Hook from './hook.vue'
-import Duratioin from './duration.vue'
-import WithIcon from './with-icon.vue'
-import CustomIcon from './custom-icon.vue'
-import WithBtn from './with-btn.vue'
-import CustomStyle from './custom-style.vue'
-import Placement from './placement.vue'
-import Update from './update.vue'
+import Basic from './basic.vue';
+import Hook from './hook.vue';
+import Duratioin from './duration.vue';
+import WithIcon from './with-icon.vue';
+import CustomIcon from './custom-icon.vue';
+import WithBtn from './with-btn.vue';
+import CustomStyle from './custom-style.vue';
+import Placement from './placement.vue';
+import Update from './update.vue';
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   CN,
@@ -41,11 +40,10 @@ export default defineComponent({
     Hook,
   },
   setup() {
-    return {}
+    return {};
   },
-})
+});
 </script>
-
 <style>
 [id^='components-notification-demo-'] .ant-btn {
   margin-right: 8px;

@@ -71,18 +71,10 @@ Button component compact example.
     </a-space-compact>
     <br />
     <a-space-compact block>
-      <a-button type="primary">
-        Button 1
-      </a-button>
-      <a-button type="primary">
-        Button 2
-      </a-button>
-      <a-button type="primary">
-        Button 3
-      </a-button>
-      <a-button type="primary">
-        Button 4
-      </a-button>
+      <a-button type="primary">Button 1</a-button>
+      <a-button type="primary">Button 2</a-button>
+      <a-button type="primary">Button 3</a-button>
+      <a-button type="primary">Button 4</a-button>
       <a-tooltip title="Tooltip">
         <a-button type="primary" disabled>
           <DownloadOutlined />
@@ -109,9 +101,7 @@ Button component compact example.
           <DownloadOutlined />
         </a-button>
       </a-tooltip>
-      <a-button type="primary">
-        Button 4
-      </a-button>
+      <a-button type="primary">Button 4</a-button>
       <a-dropdown placement="bottomRight" :trigger="['click']">
         <a-button type="primary">
           <EllipsisOutlined />
@@ -137,12 +127,12 @@ Button component compact example.
 
 <script lang="ts" setup>
 import {
-  CommentOutlined,
   DownloadOutlined,
   EllipsisOutlined,
   HeartOutlined,
   LikeOutlined,
-  ShareAltOutlined,
+  CommentOutlined,
   StarOutlined,
-} from '@ant-design/icons-vue'
+  ShareAltOutlined,
+} from '@ant-design/icons-vue';
 </script>

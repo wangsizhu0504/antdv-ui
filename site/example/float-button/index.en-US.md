@@ -15,7 +15,7 @@ FloatButton. Available since `4.0.0`.
 
 ## API
 
-> This component is available since `ant-design-vue@4.0.0`.
+> This component is available since `@antdv/ui@4.0.0`.
 
 ### common API
 
@@ -28,6 +28,7 @@ FloatButton. Available since `4.0.0`.
 | shape | Setting button shape | `circle` \| `square` | `circle` |  |
 | href | The target of hyperlink | string | - |  |
 | target | Specifies where to display the linked URL | string | - |  |
+| badge | Attach Badge to FloatButton. `status` and other props related are not supported. | [BadgeProps](/components/badge#api) | - |  |
 
 ### common events
 

@@ -27,13 +27,9 @@ Using template style API.
 <template>
   <a-table :data-source="data">
     <a-table-column-group>
-      <template #title>
-        <span style="color: #1890ff">Name</span>
-      </template>
+      <template #title><span style="color: #1890ff">Name</span></template>
       <a-table-column key="firstName" data-index="firstName">
-        <template #title>
-          <span style="color: #1890ff">First Name</span>
-        </template>
+        <template #title><span style="color: #1890ff">First Name</span></template>
       </a-table-column>
       <a-table-column key="lastName" title="Last Name" data-index="lastName" />
     </a-table-column-group>
@@ -57,7 +53,6 @@ Using template style API.
     </a-table-column>
   </a-table>
 </template>
-
 <script lang="ts" setup>
 const data = [
   {
@@ -84,5 +79,5 @@ const data = [
     address: 'Sidney No. 1 Lake Park',
     tags: ['cool', 'teacher'],
   },
-]
+];
 </script>

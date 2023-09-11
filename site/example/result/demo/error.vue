@@ -23,12 +23,8 @@ Complex error feedback.
     sub-title="Please check and modify the following information before resubmitting."
   >
     <template #extra>
-      <a-button key="console" type="primary">
-        Go Console
-      </a-button>
-      <a-button key="buy">
-        Buy Again
-      </a-button>
+      <a-button key="console" type="primary">Go Console</a-button>
+      <a-button key="buy">Buy Again</a-button>
     </template>
 
     <div class="desc">
@@ -48,11 +44,9 @@ Complex error feedback.
     </div>
   </a-result>
 </template>
-
 <script lang="ts" setup>
-import { CloseCircleOutlined } from '@ant-design/icons-vue'
+import { CloseCircleOutlined } from '@ant-design/icons-vue';
 </script>
-
 <style scoped>
 .desc p {
   margin-bottom: 1em;

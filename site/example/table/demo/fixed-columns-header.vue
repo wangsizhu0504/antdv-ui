@@ -32,10 +32,8 @@ A Solution for displaying large amounts of data with long columns.
     </template>
   </a-table>
 </template>
-
 <script lang="ts" setup>
-import type { TableColumnsType } from '@antdv/ui'
-
+import type { TableColumnsType } from '@antdv/ui';
 const columns: TableColumnsType = [
   { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
   { title: 'Age', width: 100, dataIndex: 'age', key: 'age', fixed: 'left' },
@@ -53,22 +51,22 @@ const columns: TableColumnsType = [
     fixed: 'right',
     width: 100,
   },
-]
+];
 
 interface DataItem {
-  key: number
-  name: string
-  age: number
-  address: string
+  key: number;
+  name: string;
+  age: number;
+  address: string;
 }
 
-const data: DataItem[] = []
+const data: DataItem[] = [];
 for (let i = 0; i < 100; i++) {
   data.push({
     key: i,
     name: `Edrward ${i}`,
     age: 32,
     address: `London Park no. ${i}`,
-  })
+  });
 }
 </script>

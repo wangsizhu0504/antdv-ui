@@ -15,12 +15,11 @@ title:
 Add prefix or suffix icons inside input.
 
 </docs>
-
 <template>
   <div class="components-input-demo-presuffix">
     <a-input v-model:value="userName" placeholder="Basic usage">
       <template #prefix>
-        <user-outlined type="user" />
+        <user-outlined />
       </template>
       <template #suffix>
         <a-tooltip title="Extra information">
@@ -35,8 +34,7 @@ Add prefix or suffix icons inside input.
 </template>
 
 <script lang="ts" setup>
-import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons-vue'
-import { ref } from 'vue'
-
-const userName = ref<string>('')
+import { UserOutlined, InfoCircleOutlined } from '@ant-design/icons-vue';
+import { ref } from 'vue';
+const userName = ref<string>('');
 </script>

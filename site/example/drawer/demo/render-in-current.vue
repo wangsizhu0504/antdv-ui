@@ -27,14 +27,11 @@ Render in current dom. custom container, check `getContainer`.
       padding: '48px',
       textAlign: 'center',
       background: '#fafafa',
-      width: '100%',
     }"
   >
     Render in this
     <div style="margin-top: 16px">
-      <a-button type="primary" @click="showDrawer">
-        Open
-      </a-button>
+      <a-button type="primary" @click="showDrawer">Open</a-button>
     </div>
     <a-drawer
       title="Basic Drawer"
@@ -49,17 +46,15 @@ Render in current dom. custom container, check `getContainer`.
     </a-drawer>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const open = ref(false)
+import { ref } from 'vue';
+const open = ref(false);
 
 const showDrawer = () => {
-  open.value = true
-}
+  open.value = true;
+};
 
 const onClose = () => {
-  open.value = false
-}
+  open.value = false;
+};
 </script>

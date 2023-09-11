@@ -18,25 +18,15 @@ In the various types of information modal dialog, only one button to close dialo
 
 <template>
   <a-space wrap>
-    <a-button @click="info">
-      Info
-    </a-button>
-    <a-button @click="success">
-      Success
-    </a-button>
-    <a-button @click="error">
-      Error
-    </a-button>
-    <a-button @click="warning">
-      Warning
-    </a-button>
+    <a-button @click="info">Info</a-button>
+    <a-button @click="success">Success</a-button>
+    <a-button @click="error">Error</a-button>
+    <a-button @click="warning">Warning</a-button>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import { Modal } from '@antdv/ui'
-import { h } from 'vue'
-
+import { Modal } from '@antdv/ui';
+import { h } from 'vue';
 const info = () => {
   Modal.info({
     title: 'This is a notification message',
@@ -45,10 +35,10 @@ const info = () => {
       h('p', 'some messages...some messages...'),
     ]),
     onOk() {
-      console.log('ok')
+      console.log('ok');
     },
-  })
-}
+  });
+};
 const success = () => {
   Modal.success({
     title: 'This is a success message',
@@ -56,20 +46,20 @@ const success = () => {
       h('p', 'some messages...some messages...'),
       h('p', 'some messages...some messages...'),
     ]),
-  })
-}
+  });
+};
 
 const error = () => {
   Modal.error({
     title: 'This is an error message',
     content: 'some messages...some messages...',
-  })
-}
+  });
+};
 
 const warning = () => {
   Modal.warning({
     title: 'This is a warning message',
     content: 'some messages...some messages...',
-  })
-}
+  });
+};
 </script>

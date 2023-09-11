@@ -19,8 +19,7 @@ The most basic usage.
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
-
-const data = reactive(['Daily', 'Weekly', 'Monthly', 'Quarterly', 'Yearly'])
-const value = ref(data[0])
+import { reactive, ref } from 'vue';
+const data = reactive(['Daily', 'Weekly', 'Monthly', 'Quarterly', 'Yearly']);
+const value = ref(data[0]);
 </script>

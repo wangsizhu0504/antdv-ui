@@ -18,18 +18,10 @@ You can manually specify the position of the popup via `placement`.
 
 <template>
   <a-radio-group v-model:value="placement">
-    <a-radio-button value="topLeft">
-      topLeft
-    </a-radio-button>
-    <a-radio-button value="topRight">
-      topRight
-    </a-radio-button>
-    <a-radio-button value="bottomLeft">
-      bottomLeft
-    </a-radio-button>
-    <a-radio-button value="bottomRight">
-      bottomRight
-    </a-radio-button>
+    <a-radio-button value="topLeft">topLeft</a-radio-button>
+    <a-radio-button value="topRight">topRight</a-radio-button>
+    <a-radio-button value="bottomLeft">bottomLeft</a-radio-button>
+    <a-radio-button value="bottomRight">bottomRight</a-radio-button>
   </a-radio-group>
   <br />
   <br />
@@ -39,21 +31,13 @@ You can manually specify the position of the popup via `placement`.
     :dropdown-match-select-width="false"
     :placement="placement"
   >
-    <a-select-option value="HangZhou">
-      HangZhou #310000
-    </a-select-option>
-    <a-select-option value="NingBo">
-      NingBo #315000
-    </a-select-option>
-    <a-select-option value="WenZhou">
-      WenZhou #325000
-    </a-select-option>
+    <a-select-option value="HangZhou">HangZhou #310000</a-select-option>
+    <a-select-option value="NingBo">NingBo #315000</a-select-option>
+    <a-select-option value="WenZhou">WenZhou #325000</a-select-option>
   </a-select>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const placement = ref('topLeft' as const)
-const value = ref('HangZhou')
+import { ref } from 'vue';
+const placement = ref('topLeft' as const);
+const value = ref('HangZhou');
 </script>

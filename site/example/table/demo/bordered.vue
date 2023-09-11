@@ -22,15 +22,10 @@ Add border, title and footer for table.
         <a>{{ text }}</a>
       </template>
     </template>
-    <template #title>
-      Header
-    </template>
-    <template #footer>
-      Footer
-    </template>
+    <template #title>Header</template>
+    <template #footer>Footer</template>
   </a-table>
 </template>
-
 <script lang="ts" setup>
 const columns = [
   {
@@ -46,7 +41,7 @@ const columns = [
     title: 'Address',
     dataIndex: 'address',
   },
-]
+];
 
 const data = [
   {
@@ -67,9 +62,8 @@ const data = [
     money: '￥120,000.00',
     address: 'Sidney No. 1 Lake Park',
   },
-]
+];
 </script>
-
 <style scoped>
 th.column-money,
 td.column-money {

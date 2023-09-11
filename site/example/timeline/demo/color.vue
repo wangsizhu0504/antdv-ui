@@ -18,12 +18,8 @@ Set the color of circles. `green` means completed or success status, `red` means
 
 <template>
   <a-timeline>
-    <a-timeline-item color="green">
-      Create a services site 2015-09-01
-    </a-timeline-item>
-    <a-timeline-item color="green">
-      Create a services site 2015-09-01
-    </a-timeline-item>
+    <a-timeline-item color="green">Create a services site 2015-09-01</a-timeline-item>
+    <a-timeline-item color="green">Create a services site 2015-09-01</a-timeline-item>
     <a-timeline-item color="red">
       <p>Solve initial network problems 1</p>
       <p>Solve initial network problems 2</p>
@@ -52,7 +48,6 @@ Set the color of circles. `green` means completed or success status, `red` means
     </a-timeline-item>
   </a-timeline>
 </template>
-
 <script lang="ts" setup>
-import { SmileOutlined } from '@ant-design/icons-vue'
+import { SmileOutlined } from '@ant-design/icons-vue';
 </script>

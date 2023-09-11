@@ -27,7 +27,7 @@ There are five kinds of picker:
 
 The default locale is en-US, if you need to use other languages, recommend to use internationalized components provided by us at the entrance. Look at: [ConfigProvider](/components/config-provider/).
 
-If there are special needs (only modifying single component language), Please use the property: local. Example: [default](https://github.com/vueComponent/ant-design-vue/blob/main/components/date-picker/locale/example.json).
+If there are special needs (only modifying single component language), Please use the property: local. Example: [default](https://github.com/vueComponent/@antdv/ui/blob/main/components/date-picker/locale/example.json).
 
 ```html
 <template>
@@ -88,7 +88,7 @@ The following APIs are shared by DatePicker, RangePicker.
 | dropdownClassName | To customize the className of the popup calendar | string | - |  |
 | getPopupContainer | To set the container of the floating layer, while the default is to create a `div` element in `body` | function(trigger) | - |  |
 | inputReadOnly | Set the `readonly` attribute of the input tag (avoids virtual keyboard on touch devices) | boolean | false |  |
-| locale | Localization configuration | object | [default](https://github.com/vueComponent/ant-design-vue/blob/main/components/date-picker/locale/example.json) |  |
+| locale | Localization configuration | object | [default](https://github.com/vueComponent/@antdv/ui/blob/main/components/date-picker/locale/example.json) |  |
 | mode | The picker panel mode | `time` \| `date` \| `month` \| `year` \| `decade` | - |  |
 | nextIcon | The custom next icon | slot | - | 3.0 |
 | open | The open state of picker | boolean | - |  |
@@ -103,7 +103,7 @@ The following APIs are shared by DatePicker, RangePicker.
 | suffixIcon | The custom suffix icon | v-slot:suffixIcon | - |  |
 | superNextIcon | The custom super next icon | slot | - | 3.0 |
 | superPrevIcon | The custom super prev icon | slot | - | 3.0 |
-| valueFormat | optional, format of binding value. If not specified, the binding value will be a Date object | string，[date formats](https://day.js.org/docs/en/display/format) | - |  |
+| valueFormat | optional, format of binding value. If not specified, the binding value will be a Date object | string, [date formats](https://day.js.org/docs/en/display/format) | - |  |
 
 ### Common Events
 
@@ -219,12 +219,12 @@ Please use correct [language](/docs/vue/i18n) ([#5605](https://github.com/ant-de
 - Example: <https://codesandbox.io/s/dayjs-day-of-week-x9tuj2?file=/demo.tsx>
 
 ```js
-import dayjs from 'dayjs'
-import updateLocale from 'dayjs/plugin/updateLocale'
-import 'dayjs/locale/zh-cn'
+import dayjs from 'dayjs';
+import updateLocale from 'dayjs/plugin/updateLocale';
+import 'dayjs/locale/zh-cn';
 
-dayjs.extend(updateLocale)
+dayjs.extend(updateLocale);
 dayjs.updateLocale('zh-cn', {
   weekStart: 0,
-})
+});
 ```

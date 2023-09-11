@@ -15,15 +15,12 @@ title:
 The most basic example. The size of the floating layer depends on the contents region.
 
 </docs>
-
 <template>
   <a-popover title="Title">
     <template #content>
       <p>Content</p>
       <p>Content</p>
     </template>
-    <a-button type="primary">
-      Hover me
-    </a-button>
+    <a-button type="primary">Hover me</a-button>
   </a-popover>
 </template>

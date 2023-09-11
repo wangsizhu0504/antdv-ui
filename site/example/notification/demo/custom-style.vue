@@ -17,15 +17,11 @@ The `style` and `class` are available to customize Notification.
 </docs>
 
 <template>
-  <a-button type="primary" @click="openNotification">
-    Open the notification box
-  </a-button>
+  <a-button type="primary" @click="openNotification">Open the notification box</a-button>
 </template>
-
 <script>
-import { notification } from '@antdv/ui'
-import { defineComponent } from 'vue'
-
+import { notification } from '@antdv/ui';
+import { defineComponent } from 'vue';
 export default defineComponent({
   setup() {
     const openNotification = () => {
@@ -38,15 +34,14 @@ export default defineComponent({
           marginLeft: `${335 - 600}px`,
         },
         class: 'notification-custom-class',
-      })
-    }
+      });
+    };
     return {
       openNotification,
-    }
+    };
   },
-})
+});
 </script>
-
 <style scoped>
 .notification-custom-class {
   color: red;

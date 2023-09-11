@@ -34,30 +34,29 @@ Determing which panel to show with `mode` and `onPanelChange`.
     />
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { Dayjs } from 'dayjs'
-
-const mode1 = ref<any>('time')
-const mode2 = ref<any>(['month', 'month'])
-const value = ref<[Dayjs, Dayjs]>()
+import { ref } from 'vue';
+import { Dayjs } from 'dayjs';
+const mode1 = ref<any>('time');
+const mode2 = ref<any>(['month', 'month']);
+const value = ref<[Dayjs, Dayjs]>();
 
 const handleOpenChange1 = (open: boolean) => {
-  if (open)
-    mode1.value = 'time'
-}
+  if (open) {
+    mode1.value = 'time';
+  }
+};
 
 const handleChange = (val: [Dayjs, Dayjs]) => {
-  value.value = val
-}
+  value.value = val;
+};
 
 const handlePanelChange1 = (_val: [Dayjs, Dayjs], mode: any) => {
-  mode1.value = mode
-}
+  mode1.value = mode;
+};
 
 const handlePanelChange2 = (val: [Dayjs, Dayjs], mode: any[]) => {
-  value.value = val
-  mode2.value = [mode[0] === 'date' ? 'month' : mode[0], mode[1] === 'date' ? 'month' : mode[1]]
-}
+  value.value = val;
+  mode2.value = [mode[0] === 'date' ? 'month' : mode[0], mode[1] === 'date' ? 'month' : mode[1]];
+};
 </script>

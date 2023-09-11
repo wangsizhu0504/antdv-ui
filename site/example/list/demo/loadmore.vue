@@ -12,7 +12,7 @@ title:
 
 ## en-US
 
-Load more list with `loadMore` property.
+Load more list with `loadMore` slot.
 
 </docs>
 
@@ -28,9 +28,7 @@ Load more list with `loadMore` property.
         v-if="!initLoading && !loading"
         :style="{ textAlign: 'center', marginTop: '12px', height: '32px', lineHeight: '32px' }"
       >
-        <a-button @click="onLoadMore">
-          loading more
-        </a-button>
+        <a-button @click="onLoadMore">loading more</a-button>
       </div>
     </template>
     <template #renderItem="{ item }">
@@ -44,7 +42,7 @@ Load more list with `loadMore` property.
             description="Ant Design, a design language for background applications, is refined by Ant UED Team"
           >
             <template #title>
-              <a href="https://www.antd-vue.com/">{{ item.name.last }}</a>
+              <a href="https://www.antdv.com/">{{ item.name.last }}</a>
             </template>
             <template #avatar>
               <a-avatar :src="item.picture.large" />
@@ -56,49 +54,46 @@ Load more list with `loadMore` property.
     </template>
   </a-list>
 </template>
-
 <script lang="ts" setup>
-import { nextTick, onMounted, ref } from 'vue'
+import { onMounted, ref, nextTick } from 'vue';
+const count = 3;
+const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 
-const count = 3
-const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`
-
-const initLoading = ref(true)
-const loading = ref(false)
-const data = ref([])
-const list = ref([])
+const initLoading = ref(true);
+const loading = ref(false);
+const data = ref([]);
+const list = ref([]);
 onMounted(() => {
   fetch(fakeDataUrl)
     .then(res => res.json())
-    .then((res) => {
-      initLoading.value = false
-      data.value = res.results
-      list.value = res.results
-    })
-})
+    .then(res => {
+      initLoading.value = false;
+      data.value = res.results;
+      list.value = res.results;
+    });
+});
 
 const onLoadMore = () => {
-  loading.value = true
+  loading.value = true;
   list.value = data.value.concat(
     [...new Array(count)].map(() => ({ loading: true, name: {}, picture: {} })),
-  )
+  );
   fetch(fakeDataUrl)
     .then(res => res.json())
-    .then((res) => {
-      const newData = data.value.concat(res.results)
-      loading.value = false
-      data.value = newData
-      list.value = newData
+    .then(res => {
+      const newData = data.value.concat(res.results);
+      loading.value = false;
+      data.value = newData;
+      list.value = newData;
       nextTick(() => {
         // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
         // In real scene, you can using public method of react-virtualized:
         // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
-        window.dispatchEvent(new Event('resize'))
-      })
-    })
-}
+        window.dispatchEvent(new Event('resize'));
+      });
+    });
+};
 </script>
-
 <style scoped>
 .demo-loadmore-list {
   min-height: 350px;

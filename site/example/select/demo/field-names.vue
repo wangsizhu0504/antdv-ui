@@ -29,14 +29,12 @@ Only options passing is supported, a-select-option construction node is not supp
     :field-names="{ label: 'name', value: 'id', options: 'children' }"
     @focus="focus"
     @change="handleChange"
-  />
+  ></a-select>
 </template>
-
 <script lang="ts" setup>
-import type { SelectProps } from '@antdv/ui'
-import { ref } from 'vue'
-
-const value = ref('lucy')
+import type { SelectProps } from '@antdv/ui';
+import { ref } from 'vue';
+const value = ref('lucy');
 const options = ref<SelectProps['options']>([
   {
     id: 'jack',
@@ -61,13 +59,13 @@ const options = ref<SelectProps['options']>([
     id: 'yiminghe',
     name: 'Yiminghe',
   },
-])
+]);
 
 const focus = () => {
-  console.log('focus')
-}
+  console.log('focus');
+};
 
 const handleChange = (value: string) => {
-  console.log(`selected ${value}`)
-}
+  console.log(`selected ${value}`);
+};
 </script>

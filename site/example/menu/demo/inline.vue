@@ -15,7 +15,6 @@ title:
 Vertical menu with inline submenus.
 
 </docs>
-
 <template>
   <a-menu
     id="dddddd"
@@ -25,17 +24,15 @@ Vertical menu with inline submenus.
     mode="inline"
     :items="items"
     @click="handleClick"
-  />
+  ></a-menu>
 </template>
-
 <script lang="ts" setup>
-import type { VueElement } from 'vue'
-import { h, reactive, ref, watch } from 'vue'
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
-import type { ItemType, MenuProps } from '@antdv/ui'
+import { reactive, ref, watch, VueElement, h } from 'vue';
+import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
+import type { MenuProps, ItemType } from '@antdv/ui';
 
-const selectedKeys = ref<string[]>(['1'])
-const openKeys = ref<string[]>(['sub1'])
+const selectedKeys = ref<string[]>(['1']);
+const openKeys = ref<string[]>(['sub1']);
 
 function getItem(
   label: VueElement | string,
@@ -50,7 +47,7 @@ function getItem(
     children,
     label,
     type,
-  } as ItemType
+  } as ItemType;
 }
 
 const items: ItemType[] = reactive([
@@ -75,13 +72,13 @@ const items: ItemType[] = reactive([
   ]),
 
   getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
-])
+]);
 
-const handleClick: MenuProps['onClick'] = (e) => {
-  console.log('click', e)
-}
+const handleClick: MenuProps['onClick'] = e => {
+  console.log('click', e);
+};
 
-watch(openKeys, (val) => {
-  console.log('openKeys', val)
-})
+watch(openKeys, val => {
+  console.log('openKeys', val);
+});
 </script>

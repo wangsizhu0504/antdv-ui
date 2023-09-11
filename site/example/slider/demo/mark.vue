@@ -23,9 +23,7 @@ Using `marks` property to mark a graduated slider, use `value` to specify the po
         <template v-if="point === 100">
           <strong>{{ label }}</strong>
         </template>
-        <template v-else>
-          {{ label }}
-        </template>
+        <template v-else>{{ label }}</template>
       </template>
     </a-slider>
     <a-slider v-model:value="value2" range :marks="marks">
@@ -33,9 +31,7 @@ Using `marks` property to mark a graduated slider, use `value` to specify the po
         <template v-if="point === 100">
           <strong>{{ label }}</strong>
         </template>
-        <template v-else>
-          {{ label }}
-        </template>
+        <template v-else>{{ label }}</template>
       </template>
     </a-slider>
 
@@ -45,9 +41,7 @@ Using `marks` property to mark a graduated slider, use `value` to specify the po
         <template v-if="point === 100">
           <strong>{{ label }}</strong>
         </template>
-        <template v-else>
-          {{ label }}
-        </template>
+        <template v-else>{{ label }}</template>
       </template>
     </a-slider>
 
@@ -57,9 +51,7 @@ Using `marks` property to mark a graduated slider, use `value` to specify the po
         <template v-if="point === 100">
           <strong>{{ label }}</strong>
         </template>
-        <template v-else>
-          {{ label }}
-        </template>
+        <template v-else>{{ label }}</template>
       </template>
     </a-slider>
 
@@ -69,22 +61,18 @@ Using `marks` property to mark a graduated slider, use `value` to specify the po
         <template v-if="point === 100">
           <strong>{{ label }}</strong>
         </template>
-        <template v-else>
-          {{ label }}
-        </template>
+        <template v-else>{{ label }}</template>
       </template>
     </a-slider>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const value1 = ref<number>(37)
-const value2 = ref<[number, number]>([26, 37])
-const value3 = ref<number>(37)
-const value4 = ref<number>(37)
-const value5 = ref<number>(37)
+import { ref } from 'vue';
+const value1 = ref<number>(37);
+const value2 = ref<[number, number]>([26, 37]);
+const value3 = ref<number>(37);
+const value4 = ref<number>(37);
+const value5 = ref<number>(37);
 const marks = ref<Record<number, any>>({
   0: '0°C',
   26: '26°C',
@@ -95,9 +83,8 @@ const marks = ref<Record<number, any>>({
     },
     label: '100°C',
   },
-})
+});
 </script>
-
 <style scoped>
 #components-slider-demo-mark h4 {
   margin: 0 0 16px;

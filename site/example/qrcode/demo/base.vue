@@ -1,18 +1,18 @@
 <docs>
-  ---
-  order: 0
-  title:
-    zh-CN: 基本使用
-    en-US: Base
-  ---
+---
+order: 0
+title:
+  zh-CN: 基本使用
+  en-US: Base
+---
 
-  ## zh-CN
+## zh-CN
 
-  基本用法。
+基本用法。
 
-  ## en-US
-  Basic Usage.
-  </docs>
+## en-US
+Basic Usage.
+</docs>
 
 <template>
   <a-space direction="vertical" align="center">
@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const text = ref('https://www.antdv.com/')
+const text = ref('https://www.antdv.com/');
 </script>

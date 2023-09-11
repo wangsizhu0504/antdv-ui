@@ -27,8 +27,8 @@ Basic usage.
 
 <script lang="ts" setup>
 const onChange = (current: number) => {
-  console.log(current)
-}
+  console.log(current);
+};
 </script>
 
 <style scoped>

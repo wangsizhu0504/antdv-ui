@@ -15,7 +15,6 @@ title:
 Replace the default star to other character like alphabet, digit, iconfont or even Chinese word.
 
 </docs>
-
 <template>
   <div>
     <a-rate v-model:value="value1" allow-half>
@@ -30,12 +29,10 @@ Replace the default star to other character like alphabet, digit, iconfont or ev
     <br />
   </div>
 </template>
-
 <script lang="ts" setup>
-import { HeartOutlined } from '@ant-design/icons-vue'
-import { ref } from 'vue'
-
-const value1 = ref<number>(2)
-const value2 = ref<number>(2.5)
-const value3 = ref<number>(0.5)
+import { HeartOutlined } from '@ant-design/icons-vue';
+import { ref } from 'vue';
+const value1 = ref<number>(2);
+const value2 = ref<number>(2.5);
+const value3 = ref<number>(0.5);
 </script>

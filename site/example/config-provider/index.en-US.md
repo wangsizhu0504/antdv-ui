@@ -57,7 +57,7 @@ Some components use dynamic style to support wave effect. You can config `csp` p
 | getPopupContainer | to set the container of the popup element. The default is to create a `div` element in `body`. | Function(triggerNode, dialogContext) | `() => document.body` |  |
 | getTargetContainer | Config Affix, Anchor scroll target container | () => HTMLElement | () => window | 3.0 |
 | input | Set Input common props | { autocomplete?: string } | - | 3.0 |
-| locale | language package setting, you can find the packages in [ant-design-vue/es/locale](http://unpkg.com/ant-design-vue/es/locale/) | object | - | 1.5.0 |
+| locale | language package setting, you can find the packages in [@antdv/ui/es/locale](http://unpkg.com/@antdv/ui/es/locale/) | object | - | 1.5.0 |
 | pageHeader | Unify the ghost of pageHeader ,Ref [pageHeader]\(&lt;(/components/page-header)> | { ghost:boolean } | 'true' | 1.5.0 |
 | prefixCls | set prefix class | string | ant |  |
 | renderEmpty | set empty content of components. Ref [Empty](/components/empty/) | slot-scope \| Function(componentName: string): VNode | - |  |
@@ -72,17 +72,17 @@ Setting `Modal`、`Message`、`Notification` rootPrefixCls.
 ```jsx
 ConfigProvider.config({
   prefixCls: 'ant',
-})
+});
 ```
 
 or
 
 ```jsx
 // some cinfig support reactively, you can change prefixCls.value = 'other'
-const prefixCls = ref('ant')
+const prefixCls = ref('ant');
 ConfigProvider.config({
   prefixCls,
-})
+});
 ```
 
 ## FAQ

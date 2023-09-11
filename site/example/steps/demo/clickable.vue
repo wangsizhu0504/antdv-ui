@@ -33,7 +33,7 @@ Setting `v-model` makes Steps clickable.
           description,
         },
       ]"
-    />
+    ></a-steps>
     <a-divider />
     <a-steps
       v-model:current="current"
@@ -52,13 +52,11 @@ Setting `v-model` makes Steps clickable.
           description,
         },
       ]"
-    />
+    ></a-steps>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const current = ref<number>(0)
-const description = 'This is a description.'
+import { ref } from 'vue';
+const current = ref<number>(0);
+const description = 'This is a description.';
 </script>

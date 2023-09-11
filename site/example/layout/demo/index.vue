@@ -22,18 +22,19 @@
 </template>
 
 <script>
-import { defineComponent, provide } from 'vue'
-import CN from '../index.zh-CN.md'
-import US from '../index.en-US.md'
-import Basic from './basic.vue'
-import CustomTrigger from './custom-trigger.vue'
-import Responsive from './responsive.vue'
-import TopSide2 from './top-side-2.vue'
-import TopSide from './top-side.vue'
-import Top from './top.vue'
-import FixedSider from './fixed-sider.vue'
-import Fixed from './fixed.vue'
-import Side from './side.vue'
+import Basic from './basic.vue';
+import CustomTrigger from './custom-trigger.vue';
+import Responsive from './responsive.vue';
+import TopSide2 from './top-side-2.vue';
+import TopSide from './top-side.vue';
+import Top from './top.vue';
+import FixedSider from './fixed-sider.vue';
+import Fixed from './fixed.vue';
+import Side from './side.vue';
+
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
+import { defineComponent, provide } from 'vue';
 
 export default defineComponent({
   CN,
@@ -59,10 +60,10 @@ export default defineComponent({
         ? {
             'fixed-sider': '/iframe/layout/#fixed-sider',
             'fixed-header': '/iframe/layout/#fixed-header',
-            'sider': '/iframe/layout/#sider',
+            sider: '/iframe/layout/#sider',
           }
         : {},
-    )
+    );
   },
   // props: {
   //   iframeName: String,
@@ -79,5 +80,5 @@ export default defineComponent({
   //       : {},
   //   );
   // },
-})
+});
 </script>

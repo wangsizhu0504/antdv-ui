@@ -35,14 +35,11 @@ Specify the trigger area of collapsible by `collapsible`.
     </a-collapse>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const activeKey = ref(['1'])
-const text = 'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.'
+import { ref } from 'vue';
+const activeKey = ref(['1']);
+const text = `A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.`;
 </script>
-
 <style scoped>
 .ant-space {
   width: 100%;

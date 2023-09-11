@@ -25,8 +25,6 @@ When requiring users to interact with the application, but without jumping to a 
 | closeIcon | custom close icon | VNode \| slot | - |  |
 | confirmLoading | Whether to apply loading visual effect for OK button or not | boolean | false |  |
 | destroyOnClose | Whether to unmount child components on onClose | boolean | false |  |
-| dialogClass | className of floating layer. | string | - |  |
-| dialogStyle | Style of floating layer, typically used at least for adjusting the position. | object | - |  |
 | footer | Footer content, set as `:footer="null"` when you don't need default buttons | string\|slot | OK and Cancel buttons |  |
 | forceRender | Force render Modal | boolean | false |  |
 | getContainer | Return the mount node for Modal | (instance): HTMLElement | () => document.body |  |
@@ -93,14 +91,14 @@ The items listed above are all functions, expecting a settings object as paramet
 All the `Modal.method`s will return a reference, and then we can update and close the modal dialog by the reference.
 
 ```jsx
-const modal = Modal.info()
+const modal = Modal.info();
 
 modal.update({
   title: 'Updated title',
   content: 'Updated content',
-})
+});
 
-modal.destroy()
+modal.destroy();
 ```
 
 - `Modal.destroyAll`

@@ -17,18 +17,10 @@ There are 4 position options available.
 
 <template>
   <a-radio-group v-model:value="dotPosition" style="margin-bottom: 8px">
-    <a-radio-button value="top">
-      Top
-    </a-radio-button>
-    <a-radio-button value="bottom">
-      Bottom
-    </a-radio-button>
-    <a-radio-button value="left">
-      Left
-    </a-radio-button>
-    <a-radio-button value="right">
-      Right
-    </a-radio-button>
+    <a-radio-button value="top">Top</a-radio-button>
+    <a-radio-button value="bottom">Bottom</a-radio-button>
+    <a-radio-button value="left">Left</a-radio-button>
+    <a-radio-button value="right">Right</a-radio-button>
   </a-radio-group>
   <a-carousel :dot-position="dotPosition">
     <div><h3>1</h3></div>
@@ -39,10 +31,9 @@ There are 4 position options available.
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { CarouselProps } from '@antdv/ui'
-
-const dotPosition = ref<CarouselProps['dotPosition']>('top')
+import { ref } from 'vue';
+import type { CarouselProps } from '@antdv/ui';
+const dotPosition = ref<CarouselProps['dotPosition']>('top');
 </script>
 
 <style scoped>

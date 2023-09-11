@@ -18,42 +18,33 @@ Use `Modal.useModal` to get `contextHolder` with context accessible issue.
 
 <template>
   <a-space wrap>
-    <a-button @click="showConfirm">
-      Confirm
-    </a-button>
-    <a-button @click="showPromiseConfirm">
-      With promise
-    </a-button>
-    <a-button type="dashed" @click="showDeleteConfirm">
-      Delete
-    </a-button>
-    <a-button type="dashed" @click="showPropsConfirm">
-      With extra props
-    </a-button>
+    <a-button @click="showConfirm">Confirm</a-button>
+    <a-button @click="showPromiseConfirm">With promise</a-button>
+    <a-button type="dashed" @click="showDeleteConfirm">Delete</a-button>
+    <a-button type="dashed" @click="showPropsConfirm">With extra props</a-button>
     <contextHolder />
   </a-space>
 </template>
 
 <script lang="ts" setup>
-import { Modal } from '@antdv/ui'
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-import { h } from 'vue'
-
-const [modal, contextHolder] = Modal.useModal()
+import { Modal } from '@antdv/ui';
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { h } from 'vue';
+const [modal, contextHolder] = Modal.useModal();
 const showConfirm = () => {
   modal.confirm({
     title: 'Do you Want to delete these items?',
     icon: h(ExclamationCircleOutlined),
     content: h('div', { style: 'color:red;' }, 'Some descriptions'),
     onOk() {
-      console.log('OK')
+      console.log('OK');
     },
     onCancel() {
-      console.log('Cancel')
+      console.log('Cancel');
     },
     class: 'test',
-  })
-}
+  });
+};
 const showDeleteConfirm = () => {
   modal.confirm({
     title: 'Are you sure delete this task?',
@@ -63,13 +54,13 @@ const showDeleteConfirm = () => {
     okType: 'danger',
     cancelText: 'No',
     onOk() {
-      console.log('OK')
+      console.log('OK');
     },
     onCancel() {
-      console.log('Cancel')
+      console.log('Cancel');
     },
-  })
-}
+  });
+};
 const showPropsConfirm = () => {
   modal.confirm({
     title: 'Are you sure delete this task?',
@@ -82,13 +73,13 @@ const showPropsConfirm = () => {
     },
     cancelText: 'No',
     onOk() {
-      console.log('OK')
+      console.log('OK');
     },
     onCancel() {
-      console.log('Cancel')
+      console.log('Cancel');
     },
-  })
-}
+  });
+};
 
 function showPromiseConfirm() {
   modal.confirm({
@@ -98,13 +89,13 @@ function showPromiseConfirm() {
     async onOk() {
       try {
         return await new Promise((resolve, reject) => {
-          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-        })
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+        });
       } catch {
-        return console.log('Oops errors!')
+        return console.log('Oops errors!');
       }
     },
     onCancel() {},
-  })
+  });
 }
 </script>

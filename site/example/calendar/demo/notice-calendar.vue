@@ -33,29 +33,27 @@ This component can be rendered by using `dateCellRender` and `monthCellRender` w
     </template>
   </a-calendar>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { Dayjs } from 'dayjs'
-
-const value = ref<Dayjs>()
+import { ref } from 'vue';
+import { Dayjs } from 'dayjs';
+const value = ref<Dayjs>();
 
 const getListData = (value: Dayjs) => {
-  let listData
+  let listData;
   switch (value.date()) {
     case 8:
       listData = [
         { type: 'warning', content: 'This is warning event.' },
         { type: 'success', content: 'This is usual event.' },
-      ]
-      break
+      ];
+      break;
     case 10:
       listData = [
         { type: 'warning', content: 'This is warning event.' },
         { type: 'success', content: 'This is usual event.' },
         { type: 'error', content: 'This is error event.' },
-      ]
-      break
+      ];
+      break;
     case 15:
       listData = [
         { type: 'warning', content: 'This is warning event' },
@@ -64,19 +62,19 @@ const getListData = (value: Dayjs) => {
         { type: 'error', content: 'This is error event 2.' },
         { type: 'error', content: 'This is error event 3.' },
         { type: 'error', content: 'This is error event 4.' },
-      ]
-      break
+      ];
+      break;
     default:
   }
-  return listData || []
-}
+  return listData || [];
+};
 
 const getMonthData = (value: Dayjs) => {
-  if (value.month() === 8)
-    return 1394
-}
+  if (value.month() === 8) {
+    return 1394;
+  }
+};
 </script>
-
 <style scoped>
 .events {
   list-style: none;

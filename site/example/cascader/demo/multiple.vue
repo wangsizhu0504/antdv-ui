@@ -15,7 +15,6 @@ title:
 
 Select multiple options
 </docs>
-
 <template>
   <a-space direction="vertical" style="width: 100%">
     <h4>Cascader.SHOW_PARENT</h4>
@@ -26,7 +25,7 @@ Select multiple options
       max-tag-count="responsive"
       :options="options"
       placeholder="Please select"
-    />
+    ></a-cascader>
     <h4>Cascader.SHOW_CHILD</h4>
     <a-cascader
       v-model:value="value"
@@ -36,15 +35,13 @@ Select multiple options
       :options="options"
       placeholder="Please select"
       :show-checked-strategy="Cascader.SHOW_CHILD"
-    />
+    ></a-cascader>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { CascaderProps } from '@antdv/ui'
-import { Cascader } from '@antdv/ui'
-
+import { ref } from 'vue';
+import type { CascaderProps } from '@antdv/ui';
+import { Cascader } from '@antdv/ui';
 const options: CascaderProps['options'] = [
   {
     label: 'Light',
@@ -77,7 +74,7 @@ const options: CascaderProps['options'] = [
       },
     ],
   },
-]
+];
 
-const value = ref<string[]>([])
+const value = ref<string[]>([]);
 </script>

@@ -37,7 +37,7 @@ const columns = [
   { title: 'Name', dataIndex: 'name' },
   { title: 'Age', dataIndex: 'age' },
   { title: 'Address', dataIndex: 'address' },
-]
+];
 const data = [
   {
     key: '1',
@@ -63,7 +63,7 @@ const data = [
     age: 15,
     address: 'Sidney No. 1 Lake Park',
   },
-]
+];
 </script>
 
 <style scoped>

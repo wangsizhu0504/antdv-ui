@@ -48,12 +48,12 @@ A breadcrumb displays the current location within a hierarchy. It allows going b
 
 ```ts
 interface Route {
-  path: string
-  breadcrumbName: string
+  path: string;
+  breadcrumbName: string;
   children?: Array<{
-    path: string
-    breadcrumbName: string
-  }>
+    path: string;
+    breadcrumbName: string;
+  }>;
 }
 ```
 

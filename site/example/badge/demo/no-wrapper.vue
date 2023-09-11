@@ -1,7 +1,7 @@
 <docs>
 ---
 order: 1
-title:
+title: 
   zh-CN: 独立使用
   en-US: Standalone
 ---

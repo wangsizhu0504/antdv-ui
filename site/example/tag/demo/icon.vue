@@ -43,12 +43,11 @@ If you want specific control over the positioning and placement of the `Icon`, t
     LinkedIn
   </a-tag>
 </template>
-
 <script lang="ts" setup>
 import {
-  FacebookOutlined,
-  LinkedinOutlined,
   TwitterOutlined,
   YoutubeOutlined,
-} from '@ant-design/icons-vue'
+  FacebookOutlined,
+  LinkedinOutlined,
+} from '@ant-design/icons-vue';
 </script>

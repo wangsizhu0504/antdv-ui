@@ -39,7 +39,7 @@ Our grid systems support Flex layout to allow the elements within the parent to 
 ### Row
 
 | Property | Description | Type | Default | Version |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | align | Vertical alignment | `top` \| `middle` \| `bottom` \| `stretch` \| `{[key in 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl']: 'top' | 'middle' | 'bottom' | 'stretch'}` | `top` | object: 4.0 |
 | gutter | Spacing between grids, could be a number or a object like `{ xs: 8, sm: 16, md: 24}`. or you can use array to make horizontal and vertical spacing work at the same time `[horizontal, vertical]` (supported after `1.5.0`) | number/object/array | 0 | - |
 | justify | Horizontal arrangement | `start` \| `end` \| `center` \| `space-around` \| `space-between` \| `space-evenly` \| `{[key in 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl']: 'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly'}` | `start` | object: 4.0 |
@@ -62,6 +62,6 @@ Our grid systems support Flex layout to allow the elements within the parent to 
 | xl | `≥1200px`, could be a `span` value or an object containing above props | number\|object | - |
 | xxl | `≥1600px`, could be a `span` value or an object containing above props | number\|object | - |
 
-You can modify the breakpoints values using by modifying `screen[XS|SM|MD|LG|XL|XXL]` with [theme customization](/docs/vue/customize-theme) (since 4.0.0, [sandbox demo](https://codesandbox.io/s/usebreakpoint-hook-ant-design-vue-4-0-0-beta-4-forked-n2k1sy?file=/src/demo.vue)).
+You can modify the breakpoints values using by modifying `screen[XS|SM|MD|LG|XL|XXL]` with [theme customization](/docs/vue/customize-theme) (since 4.0.0, [sandbox demo](https://codesandbox.io/s/usebreakpoint-hook-@antdv/ui-4-0-0-beta-4-forked-n2k1sy?file=/src/demo.vue)).
 
 The breakpoints of responsive grid follow [BootStrap 4 media queries rules](https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints)(not including `occasionally part`).

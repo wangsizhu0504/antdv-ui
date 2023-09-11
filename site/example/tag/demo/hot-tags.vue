@@ -27,19 +27,17 @@ Select your favourite topics.
     </a-checkable-tag>
   </template>
 </template>
-
 <script lang="ts" setup>
-import { reactive } from 'vue'
-
+import { reactive } from 'vue';
 const state = reactive({
   tags: ['Movies', 'Books', 'Music', 'Sports'],
   selectedTags: [] as string[],
-})
+});
 
 const handleChange = (tag: string, checked: boolean) => {
-  const { selectedTags } = state
-  const nextSelectedTags = checked ? [...selectedTags, tag] : selectedTags.filter(t => t !== tag)
-  console.log('You are interested in: ', nextSelectedTags)
-  state.selectedTags = nextSelectedTags
-}
+  const { selectedTags } = state;
+  const nextSelectedTags = checked ? [...selectedTags, tag] : selectedTags.filter(t => t !== tag);
+  console.log('You are interested in: ', nextSelectedTags);
+  state.selectedTags = nextSelectedTags;
+};
 </script>

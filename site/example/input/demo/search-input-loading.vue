@@ -15,7 +15,6 @@ title:
 Search loading when onSearch.
 
 </docs>
-
 <template>
   <div>
     <a-input-search v-model:value="value" placeholder="input search loading deault" loading />
@@ -29,9 +28,7 @@ Search loading when onSearch.
     />
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const value = ref<string>('')
+import { ref } from 'vue';
+const value = ref<string>('');
 </script>

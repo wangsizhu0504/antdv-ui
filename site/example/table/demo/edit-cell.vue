@@ -17,9 +17,7 @@ Table with editable cells.
 </docs>
 
 <template>
-  <a-button class="editable-add-btn" style="margin-bottom: 8px" @click="handleAdd">
-    Add
-  </a-button>
+  <a-button class="editable-add-btn" style="margin-bottom: 8px" @click="handleAdd">Add</a-button>
   <a-table bordered :data-source="dataSource" :columns="columns">
     <template #bodyCell="{ column, text, record }">
       <template v-if="column.dataIndex === 'name'">
@@ -46,18 +44,17 @@ Table with editable cells.
     </template>
   </a-table>
 </template>
-
 <script lang="ts" setup>
-import { computed, reactive, ref } from 'vue'
-import type { Ref, UnwrapRef } from 'vue'
-import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue'
-import { cloneDeep } from 'lodash-es'
+import { computed, reactive, ref } from 'vue';
+import type { Ref, UnwrapRef } from 'vue';
+import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
+import { cloneDeep } from 'lodash-es';
 
 interface DataItem {
-  key: string
-  name: string
-  age: number
-  address: string
+  key: string;
+  name: string;
+  age: number;
+  address: string;
 }
 
 const columns = [
@@ -78,7 +75,7 @@ const columns = [
     title: 'operation',
     dataIndex: 'operation',
   },
-]
+];
 const dataSource: Ref<DataItem[]> = ref([
   {
     key: '0',
@@ -92,32 +89,31 @@ const dataSource: Ref<DataItem[]> = ref([
     age: 32,
     address: 'London, Park Lane no. 1',
   },
-])
-const count = computed(() => dataSource.value.length + 1)
-const editableData: UnwrapRef<Record<string, DataItem>> = reactive({})
+]);
+const count = computed(() => dataSource.value.length + 1);
+const editableData: UnwrapRef<Record<string, DataItem>> = reactive({});
 
 const edit = (key: string) => {
-  editableData[key] = cloneDeep(dataSource.value.filter(item => key === item.key)[0])
-}
+  editableData[key] = cloneDeep(dataSource.value.filter(item => key === item.key)[0]);
+};
 const save = (key: string) => {
-  Object.assign(dataSource.value.filter(item => key === item.key)[0], editableData[key])
-  delete editableData[key]
-}
+  Object.assign(dataSource.value.filter(item => key === item.key)[0], editableData[key]);
+  delete editableData[key];
+};
 
 const onDelete = (key: string) => {
-  dataSource.value = dataSource.value.filter(item => item.key !== key)
-}
+  dataSource.value = dataSource.value.filter(item => item.key !== key);
+};
 const handleAdd = () => {
   const newData = {
     key: `${count.value}`,
     name: `Edward King ${count.value}`,
     age: 32,
     address: `London, Park Lane no. ${count.value}`,
-  }
-  dataSource.value.push(newData)
-}
+  };
+  dataSource.value.push(newData);
+};
 </script>
-
 <style lang="less" scoped>
 .editable-cell {
   position: relative;

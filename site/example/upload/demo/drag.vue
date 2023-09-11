@@ -29,36 +29,33 @@ We can upload serveral files at once by giving the input the `multiple` attribut
     @drop="handleDrop"
   >
     <p class="ant-upload-drag-icon">
-      <inbox-outlined />
+      <inbox-outlined></inbox-outlined>
     </p>
-    <p class="ant-upload-text">
-      Click or drag file to this area to upload
-    </p>
+    <p class="ant-upload-text">Click or drag file to this area to upload</p>
     <p class="ant-upload-hint">
       Support for a single or bulk upload. Strictly prohibit from uploading company data or other
       band files
     </p>
   </a-upload-dragger>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { InboxOutlined } from '@ant-design/icons-vue'
-import { message } from '@antdv/ui'
-import type { UploadChangeParam } from '@antdv/ui'
-
-const fileList = ref([])
+import { ref } from 'vue';
+import { InboxOutlined } from '@ant-design/icons-vue';
+import { message } from '@antdv/ui';
+import type { UploadChangeParam } from '@antdv/ui';
+const fileList = ref([]);
 const handleChange = (info: UploadChangeParam) => {
-  const status = info.file.status
-  if (status !== 'uploading')
-    console.log(info.file, info.fileList)
-
-  if (status === 'done')
-    message.success(`${info.file.name} file uploaded successfully.`)
-  else if (status === 'error')
-    message.error(`${info.file.name} file upload failed.`)
-}
+  const status = info.file.status;
+  if (status !== 'uploading') {
+    console.log(info.file, info.fileList);
+  }
+  if (status === 'done') {
+    message.success(`${info.file.name} file uploaded successfully.`);
+  } else if (status === 'error') {
+    message.error(`${info.file.name} file upload failed.`);
+  }
+};
 function handleDrop(e: DragEvent) {
-  console.log(e)
+  console.log(e);
 }
 </script>

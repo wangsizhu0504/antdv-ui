@@ -19,7 +19,7 @@ You can set different preview image.
 <template>
   <a-image
     :width="200"
-    src="https://aliyuncdn.antd-vue.com/logo.png"
+    src="https://aliyuncdn.antdv.com/logo.png"
     :preview="{
       src: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     }"

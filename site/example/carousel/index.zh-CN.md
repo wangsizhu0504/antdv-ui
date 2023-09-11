@@ -36,4 +36,4 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*a-58QpYnqOsAAA
 | next()                         | 切换到下一面板                                    |      |
 | prev()                         | 切换到上一面板                                    |      |
 
-更多属性可参考源码：[carousel props](https://github.com/vueComponent/ant-design-vue/blob/main/components/carousel/index.tsx)
+更多属性可参考源码：[carousel props](https://github.com/vueComponent/@antdv/ui/blob/main/components/carousel/index.tsx)

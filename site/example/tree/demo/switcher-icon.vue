@@ -23,19 +23,15 @@ customize collapse/expand icon of tree node
     show-line
     :tree-data="treeData"
   >
-    <template #switcherIcon="{ switcherCls }">
-      <down-outlined :class="switcherCls" />
-    </template>
+    <template #switcherIcon="{ switcherCls }"><down-outlined :class="switcherCls" /></template>
   </a-tree>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { DownOutlined } from '@ant-design/icons-vue'
-import type { TreeProps } from '@antdv/ui'
-
-const expandedKeys = ref<string[]>(['0-0-0'])
-const selectedKeys = ref<string[]>([])
+import { ref } from 'vue';
+import { DownOutlined } from '@ant-design/icons-vue';
+import type { TreeProps } from '@antdv/ui';
+const expandedKeys = ref<string[]>(['0-0-0']);
+const selectedKeys = ref<string[]>([]);
 const treeData: TreeProps['treeData'] = [
   {
     title: 'parent 1',
@@ -85,5 +81,5 @@ const treeData: TreeProps['treeData'] = [
       },
     ],
   },
-]
+];
 </script>

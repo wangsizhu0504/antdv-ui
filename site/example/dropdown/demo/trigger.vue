@@ -30,14 +30,11 @@ The default trigger mode is `hover`, you can change it to `click`.
           <a href="http://www.taobao.com/">2nd menu item</a>
         </a-menu-item>
         <a-menu-divider />
-        <a-menu-item key="3">
-          3rd menu item
-        </a-menu-item>
+        <a-menu-item key="3">3rd menu item</a-menu-item>
       </a-menu>
     </template>
   </a-dropdown>
 </template>
-
 <script lang="ts" setup>
-import { DownOutlined } from '@ant-design/icons-vue'
+import { DownOutlined } from '@ant-design/icons-vue';
 </script>

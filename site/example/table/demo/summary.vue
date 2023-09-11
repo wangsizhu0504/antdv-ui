@@ -22,9 +22,7 @@ Set summary content by `summary` prop. Sync column fixed status with `a-table-su
       <a-table-summary-row>
         <a-table-summary-cell>Total</a-table-summary-cell>
         <a-table-summary-cell>
-          <a-typography-text type="danger">
-            {{ totals.totalBorrow }}
-          </a-typography-text>
+          <a-typography-text type="danger">{{ totals.totalBorrow }}</a-typography-text>
         </a-table-summary-cell>
         <a-table-summary-cell>
           <a-typography-text>{{ totals.totalRepayment }}</a-typography-text>
@@ -51,12 +49,8 @@ Set summary content by `summary` prop. Sync column fixed status with `a-table-su
     <template #summary>
       <a-table-summary fixed>
         <a-table-summary-row>
-          <a-table-summary-cell :index="0">
-            Summary
-          </a-table-summary-cell>
-          <a-table-summary-cell :index="1">
-            This is a summary content
-          </a-table-summary-cell>
+          <a-table-summary-cell :index="0">Summary</a-table-summary-cell>
+          <a-table-summary-cell :index="1">This is a summary content</a-table-summary-cell>
         </a-table-summary-row>
       </a-table-summary>
     </template>
@@ -64,8 +58,8 @@ Set summary content by `summary` prop. Sync column fixed status with `a-table-su
 </template>
 
 <script lang="ts" setup>
-import type { TableColumnsType } from '@antdv/ui'
-import { computed, ref } from 'vue'
+import type { TableColumnsType } from '@antdv/ui';
+import { computed, ref } from 'vue';
 
 const columns = ref<TableColumnsType>([
   {
@@ -80,7 +74,7 @@ const columns = ref<TableColumnsType>([
     title: 'Repayment',
     dataIndex: 'repayment',
   },
-])
+]);
 
 const data = ref([
   {
@@ -107,7 +101,7 @@ const data = ref([
     borrow: 75,
     repayment: 45,
   },
-])
+]);
 
 const fixedColumns = ref<TableColumnsType>([
   {
@@ -120,27 +114,27 @@ const fixedColumns = ref<TableColumnsType>([
     title: 'Description',
     dataIndex: 'description',
   },
-])
+]);
 
-const fixedData = ref<{ key: number; name: string; description: string }[]>([])
+const fixedData = ref<{ key: number; name: string; description: string }[]>([]);
 for (let i = 0; i < 20; i += 1) {
   fixedData.value.push({
     key: i,
     name: ['Light', 'Bamboo', 'Little'][i % 3],
     description: 'Everything that has a beginning, has an end.',
-  })
+  });
 }
 
 const totals = computed(() => {
-  let totalBorrow = 0
-  let totalRepayment = 0
+  let totalBorrow = 0;
+  let totalRepayment = 0;
 
   data.value.forEach(({ borrow, repayment }) => {
-    totalBorrow += borrow
-    totalRepayment += repayment
-  })
-  return { totalBorrow, totalRepayment }
-})
+    totalBorrow += borrow;
+    totalRepayment += repayment;
+  });
+  return { totalBorrow, totalRepayment };
+});
 </script>
 
 <style>

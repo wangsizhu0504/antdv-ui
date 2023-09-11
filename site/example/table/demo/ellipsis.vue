@@ -27,7 +27,6 @@ Ellipsis cell content via setting `column.ellipsis`.
     </template>
   </a-table>
 </template>
-
 <script lang="ts" setup>
 const columns = [
   {
@@ -65,7 +64,7 @@ const columns = [
     key: 'address 4',
     ellipsis: true,
   },
-]
+];
 
 const data = [
   {
@@ -89,5 +88,5 @@ const data = [
     address: 'Sidney No. 1 Lake Park, Sidney No. 1 Lake Park',
     tags: ['cool', 'teacher'],
   },
-]
+];
 </script>

@@ -20,7 +20,6 @@ More pages.
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const current = ref(6)
+import { ref } from 'vue';
+const current = ref(6);
 </script>

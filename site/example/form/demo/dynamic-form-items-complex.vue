@@ -15,7 +15,6 @@ title:
 This example demonstrates the case that a form contains multiple form controls.
 
 </docs>
-
 <template>
   <a-form
     ref="formRef"
@@ -45,7 +44,7 @@ This example demonstrates the case that a form contains multiple form controls.
           :disabled="!dynamicValidateForm.area"
           :options="(sights[dynamicValidateForm.area] || []).map(a => ({ value: a }))"
           style="width: 130px"
-        />
+        ></a-select>
       </a-form-item>
       <a-form-item
         label="Price"
@@ -66,58 +65,57 @@ This example demonstrates the case that a form contains multiple form controls.
       </a-button>
     </a-form-item>
     <a-form-item>
-      <a-button type="primary" html-type="submit">
-        Submit
-      </a-button>
+      <a-button type="primary" html-type="submit">Submit</a-button>
     </a-form-item>
   </a-form>
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, watch } from 'vue'
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue'
-import type { FormInstance } from '@antdv/ui'
+import { reactive, ref, watch } from 'vue';
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue';
+import type { FormInstance } from '@antdv/ui';
 
 interface Sights {
-  value: string
-  price: string
-  id: number
+  value: string;
+  price: string;
+  id: number;
 }
 const areas = [
   { label: 'Beijing', value: 'Beijing' },
   { label: 'Shanghai', value: 'Shanghai' },
-]
+];
 
 const sights = {
   Beijing: ['Tiananmen', 'Great Wall'],
   Shanghai: ['Oriental Pearl', 'The Bund'],
-}
+};
 
-const formRef = ref<FormInstance>()
+const formRef = ref<FormInstance>();
 const dynamicValidateForm = reactive<{ sights: Sights[]; area: string }>({
   sights: [],
   area: undefined,
-})
+});
 watch(
   () => dynamicValidateForm.area,
   () => {
-    dynamicValidateForm.sights = []
+    dynamicValidateForm.sights = [];
   },
-)
+);
 const removeSight = (item: Sights) => {
-  const index = dynamicValidateForm.sights.indexOf(item)
-  if (index !== -1)
-    dynamicValidateForm.sights.splice(index, 1)
-}
+  const index = dynamicValidateForm.sights.indexOf(item);
+  if (index !== -1) {
+    dynamicValidateForm.sights.splice(index, 1);
+  }
+};
 const addSight = () => {
   dynamicValidateForm.sights.push({
     value: undefined,
     price: undefined,
     id: Date.now(),
-  })
-}
-const onFinish = (values) => {
-  console.log('Received values of form:', values)
-  console.log('dynamicValidateForm:', dynamicValidateForm)
-}
+  });
+};
+const onFinish = values => {
+  console.log('Received values of form:', values);
+  console.log('dynamicValidateForm:', dynamicValidateForm);
+};
 </script>

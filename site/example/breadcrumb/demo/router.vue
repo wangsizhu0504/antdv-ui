@@ -32,19 +32,17 @@ Used together with `vue-router`
     {{ $route.path }}
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
+import { ref } from 'vue';
 interface Route {
-  path: string
-  breadcrumbName: string
+  path: string;
+  breadcrumbName: string;
   children?: Array<{
-    path: string
-    breadcrumbName: string
-  }>
+    path: string;
+    breadcrumbName: string;
+  }>;
 }
-const basePath = '/components/breadcrumb'
+const basePath = '/components/breadcrumb';
 const routes = ref<Route[]>([
   {
     path: 'index',
@@ -72,5 +70,5 @@ const routes = ref<Route[]>([
     path: 'second',
     breadcrumbName: 'second',
   },
-])
+]);
 </script>

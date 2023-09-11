@@ -15,7 +15,6 @@ title:
 Custom Field Names
 
 </docs>
-
 <template>
   <a-cascader
     v-model:value="value"
@@ -24,11 +23,9 @@ Custom Field Names
     placeholder="Please select"
   />
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { CascaderProps } from '@antdv/ui'
-
+import { ref } from 'vue';
+import type { CascaderProps } from '@antdv/ui';
 const options: CascaderProps['options'] = [
   {
     code: 'zhejiang',
@@ -62,6 +59,6 @@ const options: CascaderProps['options'] = [
       },
     ],
   },
-]
-const value = ref<string[]>([])
+];
+const value = ref<string[]>([]);
 </script>

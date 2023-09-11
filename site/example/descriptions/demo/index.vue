@@ -10,15 +10,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import CN from '../index.zh-CN.md'
-import US from '../index.en-US.md'
-import Basic from './basic.vue'
-import Border from './border.vue'
-import Responsive from './responsive.vue'
-import Size from './size.vue'
-import VerticalBorder from './vertical-border.vue'
-import Vertical from './vertical.vue'
+import Basic from './basic.vue';
+import Border from './border.vue';
+import Responsive from './responsive.vue';
+import Size from './size.vue';
+import VerticalBorder from './vertical-border.vue';
+import Vertical from './vertical.vue';
+
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   category: 'Components',
@@ -37,5 +38,5 @@ export default defineComponent({
     Vertical,
     VerticalBorder,
   },
-})
+});
 </script>

@@ -27,30 +27,28 @@ Search the options while expanded.
     @focus="handleFocus"
     @blur="handleBlur"
     @change="handleChange"
-  />
+  ></a-select>
 </template>
-
 <script lang="ts" setup>
-import type { SelectProps } from '@antdv/ui'
-import { ref } from 'vue'
-
+import type { SelectProps } from '@antdv/ui';
+import { ref } from 'vue';
 const options = ref<SelectProps['options']>([
   { value: 'jack', label: 'Jack' },
   { value: 'lucy', label: 'Lucy' },
   { value: 'tom', label: 'Tom' },
-])
+]);
 const handleChange = (value: string) => {
-  console.log(`selected ${value}`)
-}
+  console.log(`selected ${value}`);
+};
 const handleBlur = () => {
-  console.log('blur')
-}
+  console.log('blur');
+};
 const handleFocus = () => {
-  console.log('focus')
-}
+  console.log('focus');
+};
 const filterOption = (input: string, option: any) => {
-  return option.value.toLowerCase().includes(input.toLowerCase())
-}
+  return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+};
 
-const value = ref<string | undefined>(undefined)
+const value = ref<string | undefined>(undefined);
 </script>

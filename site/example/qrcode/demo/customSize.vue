@@ -17,15 +17,11 @@ Custom Size.
 <template>
   <a-button-group>
     <a-button @click="decline">
-      <template #icon>
-        <MinusOutlined />
-      </template>
+      <template #icon><MinusOutlined /></template>
       samll
     </a-button>
     <a-button @click="increase">
-      <template #icon>
-        <PlusOutlined />
-      </template>
+      <template #icon><PlusOutlined /></template>
       large
     </a-button>
   </a-button-group>
@@ -41,18 +37,20 @@ Custom Size.
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue'
+import { ref } from 'vue';
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue';
 
-const size = ref(160)
+const size = ref(160);
 const decline = () => {
-  size.value = size.value - 10
-  if (size.value < 48)
-    size.value = 48
-}
+  size.value = size.value - 10;
+  if (size.value < 48) {
+    size.value = 48;
+  }
+};
 const increase = () => {
-  size.value = size.value + 10
-  if (size.value > 300)
-    size.value = 300
-}
+  size.value = size.value + 10;
+  if (size.value > 300) {
+    size.value = 300;
+  }
+};
 </script>

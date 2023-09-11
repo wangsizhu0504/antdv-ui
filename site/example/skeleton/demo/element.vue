@@ -38,50 +38,32 @@ Skeleton Button, Avatar, Input and Image.
     </a-form-item>
     <a-form-item label="Size">
       <a-radio-group v-model:value="size">
-        <a-radio-button value="default">
-          Default
-        </a-radio-button>
-        <a-radio-button value="large">
-          Large
-        </a-radio-button>
-        <a-radio-button value="small">
-          Small
-        </a-radio-button>
+        <a-radio-button value="default">Default</a-radio-button>
+        <a-radio-button value="large">Large</a-radio-button>
+        <a-radio-button value="small">Small</a-radio-button>
       </a-radio-group>
     </a-form-item>
     <a-form-item label="Button Shape">
       <a-radio-group v-model:value="buttonShape">
-        <a-radio-button value="default">
-          Default
-        </a-radio-button>
-        <a-radio-button value="round">
-          Round
-        </a-radio-button>
-        <a-radio-button value="circle">
-          Circle
-        </a-radio-button>
+        <a-radio-button value="default">Default</a-radio-button>
+        <a-radio-button value="round">Round</a-radio-button>
+        <a-radio-button value="circle">Circle</a-radio-button>
       </a-radio-group>
     </a-form-item>
     <a-form-item label="Avatar Shape">
       <a-radio-group v-model:value="avatarShape">
-        <a-radio-button value="square">
-          Square
-        </a-radio-button>
-        <a-radio-button value="circle">
-          Circle
-        </a-radio-button>
+        <a-radio-button value="square">Square</a-radio-button>
+        <a-radio-button value="circle">Circle</a-radio-button>
       </a-radio-group>
     </a-form-item>
   </a-form>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { SkeletonAvatarProps, SkeletonButtonProps } from '@antdv/ui'
-
-const active = ref(false)
-const block = ref(false)
-const size = ref<SkeletonButtonProps['size']>('default')
-const buttonShape = ref<SkeletonButtonProps['shape']>('default')
-const avatarShape = ref<SkeletonAvatarProps['shape']>('circle')
+import { ref } from 'vue';
+import type { SkeletonButtonProps, SkeletonAvatarProps } from '@antdv/ui';
+const active = ref(false);
+const block = ref(false);
+const size = ref<SkeletonButtonProps['size']>('default');
+const buttonShape = ref<SkeletonButtonProps['shape']>('default');
+const avatarShape = ref<SkeletonAvatarProps['shape']>('circle');
 </script>

@@ -6,16 +6,15 @@ title:
   en-US: Checkable
 ---
 
-  ## zh-CN
+## zh-CN
 
-  使用勾选框实现多选功能。
+使用勾选框实现多选功能。
 
-  ## en-US
+## en-US
 
-  Multiple and checkable.
+Multiple and checkable.
 
 </docs>
-
 <template>
   <a-tree-select
     v-model:value="value"
@@ -28,13 +27,11 @@ title:
     tree-node-filter-prop="label"
   />
 </template>
-
-<script lang="ts">
-import type { TreeSelectProps } from '@antdv/ui'
-import { defineComponent, ref, watch } from 'vue'
-import { TreeSelect } from '@antdv/ui'
-
-const SHOW_PARENT = TreeSelect.SHOW_PARENT
+<script lang="ts" setup>
+import { ref, watch } from 'vue';
+import type { TreeSelectProps } from '@antdv/ui';
+import { TreeSelect } from '@antdv/ui';
+const SHOW_PARENT = TreeSelect.SHOW_PARENT;
 
 const treeData: TreeSelectProps['treeData'] = [
   {
@@ -67,20 +64,11 @@ const treeData: TreeSelectProps['treeData'] = [
       },
     ],
   },
-]
-export default defineComponent({
-  setup() {
-    const value = ref<string[]>(['0-0-0'])
+];
 
-    watch(value, () => {
-      console.log(value.value)
-    })
+const value = ref<string[]>(['0-0-0']);
 
-    return {
-      value,
-      treeData,
-      SHOW_PARENT,
-    }
-  },
-})
+watch(value, () => {
+  console.log(value.value);
+});
 </script>

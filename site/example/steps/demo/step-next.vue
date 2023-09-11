@@ -14,17 +14,14 @@ title:
 
 Cooperate with the content and buttons, to represent the progress of a process.
 </docs>
-
 <template>
   <div>
-    <a-steps :current="current" :items="items" />
+    <a-steps :current="current" :items="items"></a-steps>
     <div class="steps-content">
       {{ steps[current].content }}
     </div>
     <div class="steps-action">
-      <a-button v-if="current < steps.length - 1" type="primary" @click="next">
-        Next
-      </a-button>
+      <a-button v-if="current < steps.length - 1" type="primary" @click="next">Next</a-button>
       <a-button
         v-if="current == steps.length - 1"
         type="primary"
@@ -32,24 +29,20 @@ Cooperate with the content and buttons, to represent the progress of a process.
       >
         Done
       </a-button>
-      <a-button v-if="current > 0" style="margin-left: 8px" @click="prev">
-        Previous
-      </a-button>
+      <a-button v-if="current > 0" style="margin-left: 8px" @click="prev">Previous</a-button>
     </div>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { message } from '@antdv/ui'
-
-const current = ref<number>(0)
+import { ref } from 'vue';
+import { message } from '@antdv/ui';
+const current = ref<number>(0);
 const next = () => {
-  current.value++
-}
+  current.value++;
+};
 const prev = () => {
-  current.value--
-}
+  current.value--;
+};
 const steps = [
   {
     title: 'First',
@@ -63,10 +56,9 @@ const steps = [
     title: 'Last',
     content: 'Last-content',
   },
-]
-const items = steps.map(item => ({ key: item.title, title: item.title }))
+];
+const items = steps.map(item => ({ key: item.title, title: item.title }));
 </script>
-
 <style scoped>
 .steps-content {
   margin-top: 16px;

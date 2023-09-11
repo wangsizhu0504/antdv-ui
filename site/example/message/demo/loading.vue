@@ -17,16 +17,12 @@ Display a global loading indicator, which is dismissed by itself asynchronously.
 </docs>
 
 <template>
-  <a-button @click="success">
-    Display a loading indicator
-  </a-button>
+  <a-button @click="success">Display a loading indicator</a-button>
 </template>
-
 <script lang="ts" setup>
-import { message } from '@antdv/ui'
-
+import { message } from '@antdv/ui';
 const success = () => {
-  const hide = message.loading('Action in progress..', 0)
-  setTimeout(hide, 2500)
-}
+  const hide = message.loading('Action in progress..', 0);
+  setTimeout(hide, 2500);
+};
 </script>

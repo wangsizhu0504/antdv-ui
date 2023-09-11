@@ -17,22 +17,20 @@ To customize the style or font of the close button.
 </docs>
 
 <template>
-  <a-button type="primary" @click="openNotification">
-    Open the notification box
-  </a-button>
+  <a-button type="primary" @click="openNotification">Open the notification box</a-button>
 </template>
 
 <script lang="ts" setup>
-import { Button, notification } from '@antdv/ui'
-import { h } from 'vue'
+import { notification, Button } from '@antdv/ui';
+import { h } from 'vue';
 
 const close = () => {
   console.log(
     'Notification was closed. Either the close button was clicked or duration time elapsed.',
-  )
-}
+  );
+};
 const openNotification = () => {
-  const key = `open${Date.now()}`
+  const key = `open${Date.now()}`;
   notification.open({
     message: 'Notification Title',
     description:
@@ -49,6 +47,6 @@ const openNotification = () => {
       ),
     key,
     onClose: close,
-  })
-}
+  });
+};
 </script>

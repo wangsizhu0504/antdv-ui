@@ -23,7 +23,7 @@ If uploaded file is a picture, the thumbnail can be shown.
       list-type="picture"
     >
       <a-button>
-        <upload-outlined />
+        <upload-outlined></upload-outlined>
         upload
       </a-button>
     </a-upload>
@@ -36,7 +36,7 @@ If uploaded file is a picture, the thumbnail can be shown.
       class="upload-list-inline"
     >
       <a-button>
-        <upload-outlined />
+        <upload-outlined></upload-outlined>
         upload
       </a-button>
     </a-upload>
@@ -44,10 +44,9 @@ If uploaded file is a picture, the thumbnail can be shown.
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { UploadOutlined } from '@ant-design/icons-vue'
-import type { UploadProps } from '@antdv/ui'
-
+import { ref } from 'vue';
+import { UploadOutlined } from '@ant-design/icons-vue';
+import type { UploadProps } from '@antdv/ui';
 const fileList = ref<UploadProps['fileList']>([
   {
     uid: '-1',
@@ -63,7 +62,7 @@ const fileList = ref<UploadProps['fileList']>([
     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
   },
-])
+]);
 const fileList1 = ref<UploadProps['fileList']>([
   {
     uid: '-1',
@@ -79,9 +78,8 @@ const fileList1 = ref<UploadProps['fileList']>([
     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
   },
-])
+]);
 </script>
-
 <style scoped>
 /* tile uploaded pictures */
 .upload-list-inline :deep(.ant-upload-list-item) {

@@ -19,7 +19,6 @@ Generally, the mainnav is placed on the left side of the page, and the secondary
 The level of the aside navigation is scalable. The first, second, and third level navigations could be present more fluently and relevantly, and aside navigation can be fixed, allowing the user to quickly switch and spot the current position, improving the user experience. However, this navigation occupies some horizontal space of the contents
 
 </docs>
-
 <template>
   <a-layout style="min-height: 100vh">
     <a-layout-sider v-model:collapsed="collapsed" collapsible>
@@ -40,15 +39,9 @@ The level of the aside navigation is scalable. The first, second, and third leve
               <span>User</span>
             </span>
           </template>
-          <a-menu-item key="3">
-            Tom
-          </a-menu-item>
-          <a-menu-item key="4">
-            Bill
-          </a-menu-item>
-          <a-menu-item key="5">
-            Alex
-          </a-menu-item>
+          <a-menu-item key="3">Tom</a-menu-item>
+          <a-menu-item key="4">Bill</a-menu-item>
+          <a-menu-item key="5">Alex</a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub2">
           <template #title>
@@ -57,12 +50,8 @@ The level of the aside navigation is scalable. The first, second, and third leve
               <span>Team</span>
             </span>
           </template>
-          <a-menu-item key="6">
-            Team 1
-          </a-menu-item>
-          <a-menu-item key="8">
-            Team 2
-          </a-menu-item>
+          <a-menu-item key="6">Team 1</a-menu-item>
+          <a-menu-item key="8">Team 2</a-menu-item>
         </a-sub-menu>
         <a-menu-item key="9">
           <file-outlined />
@@ -87,19 +76,17 @@ The level of the aside navigation is scalable. The first, second, and third leve
     </a-layout>
   </a-layout>
 </template>
-
 <script lang="ts" setup>
 import {
-  DesktopOutlined,
-  FileOutlined,
   PieChartOutlined,
-  TeamOutlined,
+  DesktopOutlined,
   UserOutlined,
-} from '@ant-design/icons-vue'
-import { ref } from 'vue'
-
-const collapsed = ref<boolean>(false)
-const selectedKeys = ref<string[]>(['1'])
+  TeamOutlined,
+  FileOutlined,
+} from '@ant-design/icons-vue';
+import { ref } from 'vue';
+const collapsed = ref<boolean>(false);
+const selectedKeys = ref<string[]>(['1']);
 </script>
 
 <style scoped>

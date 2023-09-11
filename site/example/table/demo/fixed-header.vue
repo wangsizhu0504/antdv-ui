@@ -26,7 +26,6 @@ Display large amounts of data in scrollable view.
     :scroll="{ y: 240 }"
   />
 </template>
-
 <script lang="ts" setup>
 const columns = [
   {
@@ -43,12 +42,12 @@ const columns = [
     title: 'Address',
     dataIndex: 'address',
   },
-]
+];
 
 const data = [...Array(100)].map((_, i) => ({
   key: i,
   name: `Edward King ${i}`,
   age: 32,
   address: `London, Park Lane no. ${i}`,
-}))
+}));
 </script>

@@ -17,22 +17,14 @@ If you need several buttons, we recommend that you use 1 primary button + n seco
 
 <template>
   <a-space>
-    <a-button type="primary">
-      Primary
-    </a-button>
+    <a-button type="primary">Primary</a-button>
     <a-button>secondary</a-button>
     <a-dropdown>
       <template #overlay>
         <a-menu @click="handleMenuClick">
-          <a-menu-item key="1">
-            1st item
-          </a-menu-item>
-          <a-menu-item key="2">
-            2nd item
-          </a-menu-item>
-          <a-menu-item key="3">
-            3rd item
-          </a-menu-item>
+          <a-menu-item key="1">1st item</a-menu-item>
+          <a-menu-item key="2">2nd item</a-menu-item>
+          <a-menu-item key="3">3rd item</a-menu-item>
         </a-menu>
       </template>
       <a-button>
@@ -44,10 +36,9 @@ If you need several buttons, we recommend that you use 1 primary button + n seco
 </template>
 
 <script lang="ts" setup>
-import { DownOutlined } from '@ant-design/icons-vue'
-import type { MenuProps } from '@antdv/ui'
-
-const handleMenuClick: MenuProps['onClick'] = (e) => {
-  console.log('click', e)
-}
+import { DownOutlined } from '@ant-design/icons-vue';
+import type { MenuProps } from '@antdv/ui';
+const handleMenuClick: MenuProps['onClick'] = e => {
+  console.log('click', e);
+};
 </script>

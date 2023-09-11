@@ -60,11 +60,10 @@ set resizable for drag column
     </template>
   </a-table>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { DownOutlined, SmileOutlined } from '@ant-design/icons-vue'
-import type { TableColumnsType } from '@antdv/ui'
+import { ref } from 'vue';
+import { SmileOutlined, DownOutlined } from '@ant-design/icons-vue';
+import type { TableColumnsType } from '@antdv/ui';
 
 const data = [
   {
@@ -88,7 +87,7 @@ const data = [
     address: 'Sidney No. 1 Lake Park',
     tags: ['cool', 'teacher'],
   },
-]
+];
 
 const columns = ref<TableColumnsType>([
   {
@@ -120,8 +119,8 @@ const columns = ref<TableColumnsType>([
     title: 'Action',
     key: 'action',
   },
-])
+]);
 function handleResizeColumn(w, col) {
-  col.width = w
+  col.width = w;
 }
 </script>

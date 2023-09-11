@@ -14,21 +14,18 @@ title:
 
 You can use your own custom icons by setting the property `icon` for `Steps.Step`.
 </docs>
-
 <template>
-  <a-steps :items="items" />
+  <a-steps :items="items"></a-steps>
 </template>
-
 <script lang="ts" setup>
-import { h } from 'vue'
+import { h } from 'vue';
 import {
+  UserOutlined,
+  SolutionOutlined,
   LoadingOutlined,
   SmileOutlined,
-  SolutionOutlined,
-  UserOutlined,
-} from '@ant-design/icons-vue'
-import type { StepProps } from '@antdv/ui'
-
+} from '@ant-design/icons-vue';
+import { StepProps } from '@antdv/ui';
 const items = [
   {
     title: 'Login',
@@ -50,5 +47,5 @@ const items = [
     status: 'wait',
     icon: h(SmileOutlined),
   },
-] as StepProps[]
+] as StepProps[];
 </script>

@@ -38,7 +38,6 @@ You could display an arrow.
     </template>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-const placements = ['topLeft', 'top', 'topRight', 'bottomLeft', 'bottom', 'bottomRight'] as const
+const placements = ['topLeft', 'top', 'topRight', 'bottomLeft', 'bottom', 'bottomRight'] as const;
 </script>

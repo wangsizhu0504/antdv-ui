@@ -18,18 +18,10 @@ You can manually specify the position of the popup via `placement`.
 
 <template>
   <a-radio-group v-model:value="placement">
-    <a-radio-button value="topLeft">
-      topLeft
-    </a-radio-button>
-    <a-radio-button value="topRight">
-      topRight
-    </a-radio-button>
-    <a-radio-button value="bottomLeft">
-      bottomLeft
-    </a-radio-button>
-    <a-radio-button value="bottomRight">
-      bottomRight
-    </a-radio-button>
+    <a-radio-button value="topLeft">topLeft</a-radio-button>
+    <a-radio-button value="topRight">topRight</a-radio-button>
+    <a-radio-button value="bottomLeft">bottomLeft</a-radio-button>
+    <a-radio-button value="bottomRight">bottomRight</a-radio-button>
   </a-radio-group>
   <br />
   <br />
@@ -43,46 +35,43 @@ You can manually specify the position of the popup via `placement`.
     :tree-data="treeData"
     :placement="placement"
     :dropdown-match-select-width="false"
+    tree-node-filter-prop="label"
   >
     <template #title="{ value: val, title }">
       <b v-if="val === 'parent 1-1'" style="color: #08c">sss</b>
-      <template v-else>
-        {{ title }}
-      </template>
+      <template v-else>{{ title }}</template>
     </template>
   </a-tree-select>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { TreeSelectProps } from '@antdv/ui'
-
-const placement = ref('topLeft' as const)
-const value = ref<string>()
+import { ref } from 'vue';
+import type { TreeSelectProps } from '@antdv/ui';
+const placement = ref('topLeft' as const);
+const value = ref<string>();
 const treeData = ref<TreeSelectProps['treeData']>([
   {
-    title: 'parent 1',
+    label: 'parent 1',
     value: 'parent 1',
     children: [
       {
-        title: 'parent 1-0',
+        label: 'parent 1-0',
         value: 'parent 1-0',
         children: [
           {
-            title: 'my leaf',
+            label: 'my leaf',
             value: 'leaf1',
           },
           {
-            title: 'your leaf',
+            label: 'your leaf',
             value: 'leaf2',
           },
         ],
       },
       {
-        title: 'parent 1-1',
+        label: 'parent 1-1',
         value: 'parent 1-1',
       },
     ],
   },
-])
+]);
 </script>

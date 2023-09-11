@@ -23,13 +23,12 @@ There are two compacted table sizes: `middle` and `small`. The `small` size is u
     <a-table :columns="columns" :data-source="data" size="small" />
   </div>
 </template>
-
 <script lang="ts" setup>
 const columns = [
   { title: 'Name', dataIndex: 'name' },
   { title: 'Age', dataIndex: 'age' },
   { title: 'Address', dataIndex: 'address' },
-]
+];
 const data = [
   {
     key: '1',
@@ -49,9 +48,8 @@ const data = [
     age: 32,
     address: 'Sidney No. 1 Lake Park',
   },
-]
+];
 </script>
-
 <style>
 #components-table-demo-size h4 {
   margin-bottom: 16px;

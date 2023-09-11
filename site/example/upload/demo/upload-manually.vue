@@ -19,7 +19,7 @@ Upload files manually after `beforeUpload` returns `false`.
   <div class="clearfix">
     <a-upload :file-list="fileList" :before-upload="beforeUpload" @remove="handleRemove">
       <a-button>
-        <upload-outlined />
+        <upload-outlined></upload-outlined>
         Select File
       </a-button>
     </a-upload>
@@ -34,38 +34,48 @@ Upload files manually after `beforeUpload` returns `false`.
     </a-button>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { UploadOutlined } from '@ant-design/icons-vue'
-import { message } from '@antdv/ui'
-import type { UploadProps } from '@antdv/ui'
+import { ref } from 'vue';
+import request from 'umi-request';
+import { UploadOutlined } from '@ant-design/icons-vue';
+import { message } from '@antdv/ui';
+import type { UploadProps } from '@antdv/ui';
 
-const fileList = ref<UploadProps['fileList']>([])
-const uploading = ref<boolean>(false)
+const fileList = ref<UploadProps['fileList']>([]);
+const uploading = ref<boolean>(false);
 
-const handleRemove: UploadProps['onRemove'] = (file) => {
-  const index = fileList.value.indexOf(file)
-  const newFileList = fileList.value.slice()
-  newFileList.splice(index, 1)
-  fileList.value = newFileList
-}
+const handleRemove: UploadProps['onRemove'] = file => {
+  const index = fileList.value.indexOf(file);
+  const newFileList = fileList.value.slice();
+  newFileList.splice(index, 1);
+  fileList.value = newFileList;
+};
 
-const beforeUpload: UploadProps['beforeUpload'] = (file) => {
-  fileList.value = [...(fileList.value || []), file]
-  return false
-}
+const beforeUpload: UploadProps['beforeUpload'] = file => {
+  fileList.value = [...(fileList.value || []), file];
+  return false;
+};
 
 const handleUpload = () => {
-  const formData = new FormData()
+  const formData = new FormData();
   fileList.value.forEach((file: UploadProps['fileList'][number]) => {
-    formData.append('files[]', file as any)
+    formData.append('files[]', file as any);
+  });
+  uploading.value = true;
+
+  // You can use any AJAX library you like
+  request('https://www.mocky.io/v2/5cc8019d300000980a055e76', {
+    method: 'post',
+    data: formData,
   })
-  uploading.value = true
-  setTimeout(() => {
-    fileList.value = []
-    uploading.value = false
-    message.success('upload successfully.')
-  }, 1000)
-}
+    .then(() => {
+      fileList.value = [];
+      uploading.value = false;
+      message.success('upload successfully.');
+    })
+    .catch(() => {
+      uploading.value = false;
+      message.error('upload failed.');
+    });
+};
 </script>

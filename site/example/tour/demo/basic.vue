@@ -14,41 +14,34 @@ title:
 
 The most basic usage.
 
+
 </docs>
 
 <template>
-  <a-button type="primary" @click="handleOpen(true)">
-    Begin Tour
-  </a-button>
+  <a-button type="primary" @click="handleOpen(true)">Begin Tour</a-button>
 
   <a-divider />
 
   <a-space>
-    <a-button ref="ref1">
-      Upload
-    </a-button>
-    <a-button ref="ref2" type="primary">
-      Save
-    </a-button>
-    <a-button ref="ref3">
-      <EllipsisOutlined />
-    </a-button>
+    <a-button ref="ref1">Upload</a-button>
+    <a-button ref="ref2" type="primary">Save</a-button>
+    <a-button ref="ref3"><EllipsisOutlined /></a-button>
   </a-space>
 
   <a-tour v-model:current="current" :open="open" :steps="steps" @close="handleOpen(false)" />
 </template>
 
 <script lang="ts" setup>
-import { createVNode, ref } from 'vue'
-import { EllipsisOutlined } from '@ant-design/icons-vue'
-import type { TourProps } from '@antdv/ui'
+import { ref, createVNode } from 'vue';
+import { EllipsisOutlined } from '@ant-design/icons-vue';
+import type { TourProps } from '@antdv/ui';
 
-const open = ref<boolean>(false)
+const open = ref<boolean>(false);
 
-const ref1 = ref(null)
-const ref2 = ref(null)
-const ref3 = ref(null)
-const current = ref(0)
+const ref1 = ref(null);
+const ref2 = ref(null);
+const ref3 = ref(null);
+const current = ref(0);
 const steps: TourProps['steps'] = [
   {
     title: 'Upload File',
@@ -69,9 +62,9 @@ const steps: TourProps['steps'] = [
     description: 'Click to see other actions.',
     target: () => ref3.value && ref3.value.$el,
   },
-]
+];
 
 const handleOpen = (val: boolean): void => {
-  open.value = val
-}
+  open.value = val;
+};
 </script>

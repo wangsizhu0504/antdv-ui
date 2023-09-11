@@ -19,9 +19,7 @@ For long table，need to scroll to view the header and scroll bar，then you can
 <template>
   <a-table sticky :columns="columns" :data-source="data" :scroll="{ x: 1500 }">
     <template #bodyCell="{ column }">
-      <template v-if="column.key === 'operation'">
-        <a>action</a>
-      </template>
+      <template v-if="column.key === 'operation'"><a>action</a></template>
     </template>
     <template #summary>
       <a-table-summary :fixed="fixedTop ? 'top' : 'bottom'">
@@ -31,14 +29,10 @@ For long table，need to scroll to view the header and scroll bar，then you can
               v-model:checked="fixedTop"
               checked-children="Fixed Top"
               un-checked-children="Fixed Top"
-            />
+            ></a-switch>
           </a-table-summary-cell>
-          <a-table-summary-cell :index="2" :col-span="8">
-            Scroll Context
-          </a-table-summary-cell>
-          <a-table-summary-cell :index="10">
-            Fix Right
-          </a-table-summary-cell>
+          <a-table-summary-cell :index="2" :col-span="8">Scroll Context</a-table-summary-cell>
+          <a-table-summary-cell :index="10">Fix Right</a-table-summary-cell>
         </a-table-summary-row>
       </a-table-summary>
     </template>
@@ -46,9 +40,8 @@ For long table，need to scroll to view the header and scroll bar，then you can
 </template>
 
 <script lang="ts" setup>
-import type { TableColumnsType } from '@antdv/ui'
-import { ref } from 'vue'
-
+import type { TableColumnsType } from '@antdv/ui';
+import { ref } from 'vue';
 const columns = ref<TableColumnsType>([
   {
     title: 'Full Name',
@@ -113,18 +106,18 @@ const columns = ref<TableColumnsType>([
     fixed: 'right',
     width: 100,
   },
-])
+]);
 
-const data = []
+const data = [];
 for (let i = 0; i < 100; i++) {
   data.push({
     key: i,
     name: `Edrward ${i}`,
     age: 32,
     address: `London Park no. ${i}`,
-  })
+  });
 }
-const fixedTop = ref(false)
+const fixedTop = ref(false);
 </script>
 
 <style scoped>

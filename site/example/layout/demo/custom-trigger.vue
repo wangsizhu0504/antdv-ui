@@ -15,7 +15,6 @@ title:
 If you want to use a customized trigger, you can hide the default one by setting `:trigger="null"`.
 
 </docs>
-
 <template>
   <a-layout>
     <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
@@ -52,21 +51,18 @@ If you want to use a customized trigger, you can hide the default one by setting
     </a-layout>
   </a-layout>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
-} from '@ant-design/icons-vue'
-
-const selectedKeys = ref<string[]>(['1'])
-const collapsed = ref<boolean>(false)
+  UploadOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+} from '@ant-design/icons-vue';
+const selectedKeys = ref<string[]>(['1']);
+const collapsed = ref<boolean>(false);
 </script>
-
 <style>
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;

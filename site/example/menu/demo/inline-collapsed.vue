@@ -33,28 +33,27 @@ Here is [a complete demo](/components/layout/#components-layout-demo-side) with 
       theme="dark"
       :inline-collapsed="state.collapsed"
       :items="items"
-    />
+    ></a-menu>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { h, reactive, watch } from 'vue'
+import { reactive, watch, h } from 'vue';
 import {
-  AppstoreOutlined,
-  DesktopOutlined,
-  InboxOutlined,
-  MailOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
-} from '@ant-design/icons-vue'
-
+  MailOutlined,
+  DesktopOutlined,
+  InboxOutlined,
+  AppstoreOutlined,
+} from '@ant-design/icons-vue';
 const state = reactive({
   collapsed: false,
   selectedKeys: ['1'],
   openKeys: ['sub1'],
   preOpenKeys: ['sub1'],
-})
+});
 const items = reactive([
   {
     key: '1',
@@ -137,15 +136,15 @@ const items = reactive([
       },
     ],
   },
-])
+]);
 watch(
   () => state.openKeys,
   (_val, oldVal) => {
-    state.preOpenKeys = oldVal
+    state.preOpenKeys = oldVal;
   },
-)
+);
 const toggleCollapsed = () => {
-  state.collapsed = !state.collapsed
-  state.openKeys = state.collapsed ? [] : state.preOpenKeys
-}
+  state.collapsed = !state.collapsed;
+  state.openKeys = state.collapsed ? [] : state.preOpenKeys;
+};
 </script>

@@ -17,7 +17,6 @@ Layout.Sider supports responsive layout.
 > Note: You can get a responsive layout by setting `breakpoint`, the Sider will collapse to the width of `collapsedWidth` when window width is below the `breakpoint`. And a special trigger will appear if the `collapsedWidth` is set to `0`.
 
 </docs>
-
 <template>
   <a-layout>
     <a-layout-sider
@@ -49,9 +48,7 @@ Layout.Sider supports responsive layout.
     <a-layout>
       <a-layout-header :style="{ background: '#fff', padding: 0 }" />
       <a-layout-content :style="{ margin: '24px 16px 0' }">
-        <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
-          content
-        </div>
+        <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">content</div>
       </a-layout-content>
       <a-layout-footer style="text-align: center">
         Ant Design ©2018 Created by Ant UED
@@ -59,20 +56,18 @@ Layout.Sider supports responsive layout.
     </a-layout>
   </a-layout>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons-vue'
-
+import { ref } from 'vue';
+import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue';
 const onCollapse = (collapsed: boolean, type: string) => {
-  console.log(collapsed, type)
-}
+  console.log(collapsed, type);
+};
 
 const onBreakpoint = (broken: boolean) => {
-  console.log(broken)
-}
+  console.log(broken);
+};
 
-const selectedKeys = ref<string[]>(['4'])
+const selectedKeys = ref<string[]>(['4']);
 </script>
 
 <style scoped>

@@ -15,7 +15,6 @@ title:
 Separate trigger button and result.
 
 </docs>
-
 <template>
   <span>
     {{ text }} &nbsp;
@@ -29,11 +28,9 @@ Separate trigger button and result.
     </a-cascader>
   </span>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { CascaderProps } from '@antdv/ui'
-
+import { ref } from 'vue';
+import type { CascaderProps } from '@antdv/ui';
 const options: CascaderProps['options'] = [
   {
     value: 'zhejiang',
@@ -67,11 +64,11 @@ const options: CascaderProps['options'] = [
       },
     ],
   },
-]
-const value = ref<string[]>([])
-const text = ref<string>('Unselect')
+];
+const value = ref<string[]>([]);
+const text = ref<string>('Unselect');
 
 const onChange: CascaderProps['onChange'] = (_value, selectedOptions) => {
-  text.value = selectedOptions.map(o => o.label).join(', ')
-}
+  text.value = selectedOptions.map(o => o.label).join(', ');
+};
 </script>

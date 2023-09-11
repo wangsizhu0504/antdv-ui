@@ -18,9 +18,7 @@ Basic modal.
 
 <template>
   <div>
-    <a-button type="primary" @click="showModal">
-      Open Modal
-    </a-button>
+    <a-button type="primary" @click="showModal">Open Modal</a-button>
     <a-modal v-model:open="open" title="Basic Modal" @ok="handleOk">
       <p>Some contents...</p>
       <p>Some contents...</p>
@@ -28,18 +26,16 @@ Basic modal.
     </a-modal>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const open = ref<boolean>(false)
+import { ref } from 'vue';
+const open = ref<boolean>(false);
 
 const showModal = () => {
-  open.value = true
-}
+  open.value = true;
+};
 
 const handleOk = (e: MouseEvent) => {
-  console.log(e)
-  open.value = false
-}
+  console.log(e);
+  open.value = false;
+};
 </script>

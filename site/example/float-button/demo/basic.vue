@@ -22,5 +22,5 @@ The most basic usage.
 </template>
 
 <script lang="ts" setup>
-const handleClick = () => console.log('click')
+const handleClick = () => console.log('click');
 </script>

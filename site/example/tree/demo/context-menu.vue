@@ -23,15 +23,9 @@ Custom display the context menu
         <span>{{ title }}</span>
         <template #overlay>
           <a-menu @click="({ key: menuKey }) => onContextMenuClick(treeKey, menuKey)">
-            <a-menu-item key="1">
-              1st menu item
-            </a-menu-item>
-            <a-menu-item key="2">
-              2nd menu item
-            </a-menu-item>
-            <a-menu-item key="3">
-              3rd menu item
-            </a-menu-item>
+            <a-menu-item key="1">1st menu item</a-menu-item>
+            <a-menu-item key="2">2nd menu item</a-menu-item>
+            <a-menu-item key="3">3rd menu item</a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>
@@ -40,7 +34,7 @@ Custom display the context menu
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { watch, ref } from 'vue';
 
 const treeData = [
   {
@@ -67,13 +61,13 @@ const treeData = [
       },
     ],
   },
-]
+];
 const onContextMenuClick = (treeKey: string, menuKey: string | number) => {
-  console.log(`treeKey: ${treeKey}, menuKey: ${menuKey}`)
-}
-const expandedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+  console.log(`treeKey: ${treeKey}, menuKey: ${menuKey}`);
+};
+const expandedKeys = ref<string[]>(['0-0-0', '0-0-1']);
 
 watch(expandedKeys, () => {
-  console.log('expandedKeys', expandedKeys)
-})
+  console.log('expandedKeys', expandedKeys);
+});
 </script>

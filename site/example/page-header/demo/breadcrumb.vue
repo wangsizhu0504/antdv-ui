@@ -24,7 +24,6 @@ With breadcrumbs, it is suitable for deeper pages, allowing users to navigate qu
     sub-title="This is a subtitle"
   />
 </template>
-
 <script lang="ts" setup>
 const routes = [
   {
@@ -39,5 +38,5 @@ const routes = [
     path: 'second',
     breadcrumbName: 'Third-level Menu',
   },
-]
+];
 </script>

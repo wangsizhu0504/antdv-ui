@@ -58,10 +58,8 @@ Simple table with actions.
     </template>
   </a-table>
 </template>
-
 <script lang="ts" setup>
-import { DownOutlined, SmileOutlined } from '@ant-design/icons-vue'
-
+import { SmileOutlined, DownOutlined } from '@ant-design/icons-vue';
 const columns = [
   {
     name: 'Name',
@@ -87,7 +85,7 @@ const columns = [
     title: 'Action',
     key: 'action',
   },
-]
+];
 
 const data = [
   {
@@ -111,5 +109,5 @@ const data = [
     address: 'Sidney No. 1 Lake Park',
     tags: ['cool', 'teacher'],
   },
-]
+];
 </script>

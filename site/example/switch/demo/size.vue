@@ -24,10 +24,9 @@ title:
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
-
+import { reactive } from 'vue';
 const state = reactive({
   checked1: true,
   checked2: false,
-})
+});
 </script>

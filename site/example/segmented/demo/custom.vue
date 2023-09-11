@@ -13,16 +13,13 @@ title:
 ## en-US
 Custom each Segmented Item.
 </docs>
-
 <template>
   <a-segmented v-model:value="value" :options="data">
     <template #label="{ value: val, payload = {} }">
       <div style="padding: 4px 4px">
         <template v-if="payload.icon">
           <a-avatar :src="payload.src" :style="payload.style">
-            <template #icon>
-              <component :is="payload.icon" />
-            </template>
+            <template #icon><component :is="payload.icon" /></template>
             {{ payload.content }}
           </a-avatar>
         </template>
@@ -48,10 +45,9 @@ Custom each Segmented Item.
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { UserOutlined } from '@ant-design/icons-vue'
-import ASegmented from '@antdv/ui/es/segmented/src/segmented'
-
+import { ref } from 'vue';
+import { UserOutlined } from '@ant-design/icons-vue';
+import ASegmented from '@antdv/ui/es/segmented/src/segmented';
 const data = ref([
   {
     value: 'user1',
@@ -74,7 +70,7 @@ const data = ref([
       style: { backgroundColor: '#f56a00' },
     },
   },
-])
+]);
 const options2 = ref([
   {
     value: 'spring',
@@ -104,7 +100,7 @@ const options2 = ref([
       subTitle: 'Oct-Dec',
     },
   },
-])
-const value = ref('user1')
-const value2 = ref('spring')
+]);
+const value = ref('user1');
+const value2 = ref('spring');
 </script>

@@ -21,14 +21,12 @@ You can control the indent width by setting `indentSize`.
 <template>
   <a-space align="center" style="margin-bottom: 16px">
     CheckStrictly:
-    <a-switch v-model:checked="rowSelection.checkStrictly" />
+    <a-switch v-model:checked="rowSelection.checkStrictly"></a-switch>
   </a-space>
   <a-table :columns="columns" :data-source="data" :row-selection="rowSelection" />
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
+import { ref } from 'vue';
 const columns = [
   {
     title: 'Name',
@@ -47,14 +45,14 @@ const columns = [
     width: '30%',
     key: 'address',
   },
-]
+];
 
 interface DataItem {
-  key: number
-  name: string
-  age: number
-  address: string
-  children?: DataItem[]
+  key: number;
+  name: string;
+  age: number;
+  address: string;
+  children?: DataItem[];
 }
 
 const data: DataItem[] = [
@@ -120,18 +118,18 @@ const data: DataItem[] = [
     age: 32,
     address: 'Sidney No. 1 Lake Park',
   },
-]
+];
 
 const rowSelection = ref({
   checkStrictly: false,
   onChange: (selectedRowKeys: (string | number)[], selectedRows: DataItem[]) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
+    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
   },
   onSelect: (record: DataItem, selected: boolean, selectedRows: DataItem[]) => {
-    console.log(record, selected, selectedRows)
+    console.log(record, selected, selectedRows);
   },
   onSelectAll: (selected: boolean, selectedRows: DataItem[], changeRows: DataItem[]) => {
-    console.log(selected, selectedRows, changeRows)
+    console.log(selected, selectedRows, changeRows);
   },
-})
+});
 </script>

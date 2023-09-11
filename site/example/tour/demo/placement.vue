@@ -14,23 +14,22 @@ title:
 
 Change the placement of the guide relative to the target, there are 12 placements available. When `target={null}` the guide will show in the center.
 
+
 </docs>
 
 <template>
-  <a-button ref="btnRef" type="primary" @click="handleOpen(true)">
-    Begin Tour
-  </a-button>
+  <a-button ref="btnRef" type="primary" @click="handleOpen(true)">Begin Tour</a-button>
 
   <a-tour :open="open" :steps="steps" @close="handleOpen(false)" />
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { TourProps } from '@antdv/ui'
+import { ref } from 'vue';
+import type { TourProps } from '@antdv/ui';
 
-const open = ref<boolean>(false)
+const open = ref<boolean>(false);
 
-const btnRef = ref(null)
+const btnRef = ref(null);
 
 const steps: TourProps['steps'] = [
   {
@@ -50,9 +49,9 @@ const steps: TourProps['steps'] = [
     placement: 'top',
     target: () => btnRef.value && btnRef.value.$el,
   },
-]
+];
 
 const handleOpen = (val: boolean): void => {
-  open.value = val
-}
+  open.value = val;
+};
 </script>

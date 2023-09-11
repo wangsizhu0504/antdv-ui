@@ -23,22 +23,17 @@ Use slot for custom action icons of files.
     @change="handleChange"
   >
     <a-button>
-      <upload-outlined />
+      <upload-outlined></upload-outlined>
       Upload
     </a-button>
-    <template #downloadIcon>
-      download
-    </template>
-    <template #removeIcon>
-      <StarOutlined @click="handleClick" />
-    </template>
+    <template #downloadIcon>download</template>
+    <template #removeIcon><StarOutlined @click="handleClick"></StarOutlined></template>
   </a-upload>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { StarOutlined, UploadOutlined } from '@ant-design/icons-vue'
-import type { UploadChangeParam, UploadProps } from '@antdv/ui'
+import { ref } from 'vue';
+import { UploadOutlined, StarOutlined } from '@ant-design/icons-vue';
+import type { UploadChangeParam, UploadProps } from '@antdv/ui';
 
 const fileList = ref<UploadProps['fileList']>([
   {
@@ -61,13 +56,14 @@ const fileList = ref<UploadProps['fileList']>([
     response: 'Server Error 500', // custom error message to show
     url: 'http://www.baidu.com/zzz.png',
   },
-])
+]);
 
 const handleChange = ({ file, fileList }: UploadChangeParam) => {
-  if (file.status !== 'uploading')
-    console.log(file, fileList)
-}
+  if (file.status !== 'uploading') {
+    console.log(file, fileList);
+  }
+};
 function handleClick(e: MouseEvent) {
-  console.log(e, 'custom removeIcon event')
+  console.log(e, 'custom removeIcon event');
 }
 </script>

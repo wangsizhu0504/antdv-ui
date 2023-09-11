@@ -33,19 +33,15 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
     @change="handleTableChange"
   >
     <template #bodyCell="{ column, text }">
-      <template v-if="column.dataIndex === 'name'">
-        {{ text.first }} {{ text.last }}
-      </template>
+      <template v-if="column.dataIndex === 'name'">{{ text.first }} {{ text.last }}</template>
     </template>
   </a-table>
 </template>
-
 <script lang="ts" setup>
-import { computed } from 'vue'
-import type { TableProps } from '@antdv/ui'
-import { usePagination } from 'vue-request'
-import axios from 'axios'
-
+import { computed } from 'vue';
+import type { TableProps } from '@antdv/ui';
+import { usePagination } from 'vue-request';
+import axios from 'axios';
 const columns = [
   {
     title: 'Name',
@@ -66,26 +62,26 @@ const columns = [
     title: 'Email',
     dataIndex: 'email',
   },
-]
+];
 
-interface APIParams {
-  results: number
-  page?: number
-  sortField?: string
-  sortOrder?: number
-  [key: string]: any
-}
-interface APIResult {
+type APIParams = {
+  results: number;
+  page?: number;
+  sortField?: string;
+  sortOrder?: number;
+  [key: string]: any;
+};
+type APIResult = {
   results: {
-    gender: 'female' | 'male'
-    name: string
-    email: string
-  }[]
-}
+    gender: 'female' | 'male';
+    name: string;
+    email: string;
+  }[];
+};
 
 const queryData = (params: APIParams) => {
-  return axios.get<APIResult>('https://randomuser.me/api?noinfo', { params })
-}
+  return axios.get<APIResult>('https://randomuser.me/api?noinfo', { params });
+};
 
 const {
   data: dataSource,
@@ -99,13 +95,13 @@ const {
     currentKey: 'page',
     pageSizeKey: 'results',
   },
-})
+});
 
 const pagination = computed(() => ({
   total: 200,
   current: current.value,
   pageSize: pageSize.value,
-}))
+}));
 
 const handleTableChange: TableProps['onChange'] = (
   pag: { pageSize: number; current: number },
@@ -113,11 +109,11 @@ const handleTableChange: TableProps['onChange'] = (
   sorter: any,
 ) => {
   run({
-    results: pag.pageSize!,
+    results: pag.pageSize,
     page: pag?.current,
     sortField: sorter.field,
     sortOrder: sorter.order,
     ...filters,
-  })
-}
+  });
+};
 </script>

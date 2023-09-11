@@ -22,15 +22,14 @@ Built-in directory tree. `multiple` support `ctrl(Windows)` / `command(Mac)` sel
     v-model:selectedKeys="selectedKeys"
     multiple
     :tree-data="treeData"
-  />
+  ></a-directory-tree>
 </template>
-
 <script lang="ts" setup>
-import type { TreeProps } from '@antdv/ui'
-import { ref } from 'vue'
+import type { TreeProps } from '@antdv/ui';
+import { ref } from 'vue';
 
-const expandedKeys = ref<string[]>(['0-0', '0-1'])
-const selectedKeys = ref<string[]>([])
+const expandedKeys = ref<string[]>(['0-0', '0-1']);
+const selectedKeys = ref<string[]>([]);
 const treeData: TreeProps['treeData'] = [
   {
     title: 'parent 0',
@@ -64,5 +63,5 @@ const treeData: TreeProps['treeData'] = [
       },
     ],
   },
-]
+];
 </script>

@@ -38,7 +38,6 @@ The menu has multiple levels.
     </template>
   </a-dropdown>
 </template>
-
 <script lang="ts" setup>
-import { DownOutlined } from '@ant-design/icons-vue'
+import { DownOutlined } from '@ant-design/icons-vue';
 </script>

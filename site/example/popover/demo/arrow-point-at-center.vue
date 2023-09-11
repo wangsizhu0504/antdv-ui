@@ -15,7 +15,6 @@ title:
 The arrow points to the center of the target element, which set `arrowPointAtCenter`.
 
 </docs>
-
 <template>
   <a-space>
     <a-popover placement="topLeft">

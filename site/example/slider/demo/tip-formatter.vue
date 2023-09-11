@@ -21,9 +21,8 @@ Use `tipFormatter` to format content of `Tooltip`. If `tipFormatter` is null, hi
     <a-slider :tip-formatter="null" />
   </div>
 </template>
-
 <script lang="ts" setup>
 const formatter = (value: number) => {
-  return `${value}%`
-}
+  return `${value}%`;
+};
 </script>

@@ -26,19 +26,18 @@ Submenus open as pop-ups.
     @click="handleClick"
   />
 </template>
-
 <script lang="ts" setup>
-import { h, ref } from 'vue'
+import { h, ref } from 'vue';
 import {
-  AppstoreOutlined,
-  CalendarOutlined,
   MailOutlined,
+  CalendarOutlined,
+  AppstoreOutlined,
   SettingOutlined,
-} from '@ant-design/icons-vue'
-import type { MenuProps } from '@antdv/ui'
+} from '@ant-design/icons-vue';
+import type { MenuProps } from '@antdv/ui';
 
-const selectedKeys = ref([])
-const openKeys = ref([])
+const selectedKeys = ref([]);
+const openKeys = ref([]);
 const items = ref([
   {
     key: '1',
@@ -115,8 +114,8 @@ const items = ref([
       },
     ],
   },
-])
-const handleClick: MenuProps['onClick'] = (menuInfo) => {
-  console.log('click ', menuInfo)
-}
+]);
+const handleClick: MenuProps['onClick'] = menuInfo => {
+  console.log('click ', menuInfo);
+};
 </script>

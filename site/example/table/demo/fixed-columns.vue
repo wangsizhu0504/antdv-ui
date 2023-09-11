@@ -33,9 +33,8 @@ To fix some columns and scroll inside other columns, and you must set `scroll.x`
     </template>
   </a-table>
 </template>
-
 <script lang="ts" setup>
-import type { TableColumnsType } from '@antdv/ui'
+import type { TableColumnsType } from '@antdv/ui';
 
 const columns: TableColumnsType = [
   { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
@@ -54,13 +53,13 @@ const columns: TableColumnsType = [
     fixed: 'right',
     width: 100,
   },
-]
+];
 
 interface DataItem {
-  key: string
-  name: string
-  age: number
-  address: string
+  key: string;
+  name: string;
+  age: number;
+  address: string;
 }
 
 const data: DataItem[] = [
@@ -76,5 +75,5 @@ const data: DataItem[] = [
     age: 40,
     address: 'London Park',
   },
-]
+];
 </script>

@@ -32,7 +32,6 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*4wzwRIBLuqEAAA
 | extra | 抽屉右上角的操作区域 | VNode \| slot | - | 3.0.0 |
 | footer | 抽屉的页脚 | VNode \| slot | - | 3.0.0 |
 | footerStyle | 抽屉页脚部件的样式 | CSSProperties | - | 3.0.0 |
-| lockScroll | 是否在出现时将 body 滚动锁定 | boolean | true | 3.0.0 |
 | forceRender | 预渲染 Drawer 内元素 | boolean | false | 3.0.0 |
 | getContainer | 指定 Drawer 挂载的节点，**并在容器内展现** \| `() => HTMLElement` \| Selectors | 'body' |  |
 | headerStyle | 用于设置 Drawer 头部的样式 | CSSProperties | - | 3.0.0 |
@@ -54,7 +53,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*4wzwRIBLuqEAAA
 
 ## 事件
 
-| 名称            | 描述                                 | 类型           | 默认值 | 版本 |
+| 事件名称            | 描述                                 | 类型           | 默认值 | 版本 |
 | --------------- | ------------------------------------ | -------------- | ------ | ---- |
 | afterOpenChange | 切换抽屉时动画结束后的回调           | function(open) | 无     | 4.0  |
 | close           | 点击遮罩层或左上角叉或取消按钮的回调 | function(e)    | 无     |      |

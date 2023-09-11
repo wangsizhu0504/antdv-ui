@@ -15,13 +15,10 @@ title:
 You can choose another style of `image` by setting image to `Empty.PRESENTED_IMAGE_SIMPLE`.
 
 </docs>
-
 <template>
   <a-empty :image="simpleImage" />
 </template>
-
 <script lang="ts" setup>
-import { Empty } from '@antdv/ui'
-
-const simpleImage = Empty.PRESENTED_IMAGE_SIMPLE
+import { Empty } from '@antdv/ui';
+const simpleImage = Empty.PRESENTED_IMAGE_SIMPLE;
 </script>

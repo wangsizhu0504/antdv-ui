@@ -15,7 +15,6 @@ title:
 Mark a pending state of switch.
 
 </docs>
-
 <template>
   <a-space direction="vertical">
     <a-switch v-model:checked="state.checked1" loading />
@@ -24,10 +23,9 @@ Mark a pending state of switch.
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
-
+import { reactive } from 'vue';
 const state = reactive({
   checked1: true,
   checked2: false,
-})
+});
 </script>

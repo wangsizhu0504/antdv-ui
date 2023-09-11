@@ -15,6 +15,7 @@ title:
 
 Open menu mode with `trigger`, which could be `hover` or `click`.
 
+
 </docs>
 
 <template>
@@ -43,5 +44,5 @@ Open menu mode with `trigger`, which could be `hover` or `click`.
 </template>
 
 <script lang="ts" setup>
-import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons-vue'
+import { CustomerServiceOutlined, CommentOutlined } from '@ant-design/icons-vue';
 </script>

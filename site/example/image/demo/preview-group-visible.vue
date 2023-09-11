@@ -37,9 +37,7 @@ Preview a collection from one image.
     </a-image-preview-group>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const visible = ref(false)
+import { ref } from 'vue';
+const visible = ref(false);
 </script>

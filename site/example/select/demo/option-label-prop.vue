@@ -85,11 +85,10 @@ or use `tagRender` slot for custom rendering of tags.
     <span>Note: v-slot:tagRender support from v3.0</span>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref, watch } from 'vue';
 
-const value = ref(['china'])
+const value = ref(['china']);
 
 const options = ref([
   {
@@ -112,8 +111,8 @@ const options = ref([
     label: 'Korea (韩国)',
     icon: '🇨🇰',
   },
-])
-watch(value, (val) => {
-  console.log('selected:', val)
-})
+]);
+watch(value, val => {
+  console.log(`selected:`, val);
+});
 </script>

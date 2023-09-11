@@ -38,7 +38,6 @@ By specifying `arrow` prop with `{ pointAtCenter: true }`, the arrow will point 
     </template>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-const placements = ['topLeft', 'top', 'topRight', 'bottomLeft', 'bottom', 'bottomRight'] as const
+const placements = ['topLeft', 'top', 'topRight', 'bottomLeft', 'bottom', 'bottomRight'] as const;
 </script>

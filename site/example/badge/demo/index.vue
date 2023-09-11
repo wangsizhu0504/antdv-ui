@@ -12,21 +12,20 @@
     <Link />
   </demo-sort>
 </template>
-
 <script lang="ts">
-import { defineComponent } from 'vue'
-import Basic from './basic.vue'
-import NoWapper from './no-wrapper.vue'
-import Dot from './dot.vue'
-import Change from './change.vue'
-import Overflow from './overflow.vue'
-import Status from './status.vue'
-import Title from './title.vue'
-import Colors from './colors.vue'
-import Link from './link.vue'
-import Ribbon from './ribbon.vue'
-import CN from './../index.zh-CN.md'
-import US from './../index.en_US.md'
+import Basic from './basic.vue';
+import NoWapper from './no-wrapper.vue';
+import Dot from './dot.vue';
+import Change from './change.vue';
+import Overflow from './overflow.vue';
+import Status from './status.vue';
+import Title from './title.vue';
+import Colors from './colors.vue';
+import Link from './link.vue';
+import Ribbon from './ribbon.vue';
+import CN from './../index.zh-CN.md';
+import US from './../index.en_US.md';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   CN,
@@ -43,7 +42,7 @@ export default defineComponent({
     Link,
     Ribbon,
   },
-})
+});
 </script>
 
 <style>

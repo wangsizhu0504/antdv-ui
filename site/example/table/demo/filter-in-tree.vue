@@ -22,12 +22,10 @@ You can use `filterMode` to change default filter interface, options: `menu`(def
 </docs>
 
 <template>
-  <a-table :columns="columns" :data-source="data" @change="onChange" />
+  <a-table :columns="columns" :data-source="data" @change="onChange"></a-table>
 </template>
-
 <script lang="ts" setup>
-import type { TableProps } from '@antdv/ui'
-
+import type { TableProps } from '@antdv/ui';
 const columns: TableProps['columns'] = [
   {
     title: 'Name',
@@ -93,7 +91,7 @@ const columns: TableProps['columns'] = [
     filterSearch: true,
     width: '40%',
   },
-]
+];
 
 const data = [
   {
@@ -120,9 +118,9 @@ const data = [
     age: 32,
     address: 'London No. 2 Lake Park',
   },
-]
+];
 
 function onChange(pagination, filters, sorter, extra) {
-  console.log('params', pagination, filters, sorter, extra)
+  console.log('params', pagination, filters, sorter, extra);
 }
 </script>

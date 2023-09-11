@@ -18,15 +18,9 @@ Config component default size.
 
 <template>
   <a-radio-group v-model:value="componentSize">
-    <a-radio-button value="small">
-      Small
-    </a-radio-button>
-    <a-radio-button value="middle">
-      Middle
-    </a-radio-button>
-    <a-radio-button value="large">
-      Large
-    </a-radio-button>
+    <a-radio-button value="small">Small</a-radio-button>
+    <a-radio-button value="middle">Middle</a-radio-button>
+    <a-radio-button value="large">Large</a-radio-button>
   </a-radio-group>
   <a-divider />
   <a-config-provider :component-size="componentSize">
@@ -35,15 +29,9 @@ Config component default size.
     </div>
     <div class="example">
       <a-tabs>
-        <a-tab-pane key="1" tab="Tab 1">
-          Content of Tab Pane 1
-        </a-tab-pane>
-        <a-tab-pane key="2" tab="Tab 2">
-          Content of Tab Pane 2
-        </a-tab-pane>
-        <a-tab-pane key="3" tab="Tab 3">
-          Content of Tab Pane 3
-        </a-tab-pane>
+        <a-tab-pane key="1" tab="Tab 1">Content of Tab Pane 1</a-tab-pane>
+        <a-tab-pane key="2" tab="Tab 2">Content of Tab Pane 2</a-tab-pane>
+        <a-tab-pane key="3" tab="Tab 3">Content of Tab Pane 3</a-tab-pane>
       </a-tabs>
     </div>
     <div class="example">
@@ -71,17 +59,15 @@ Config component default size.
     </div>
   </a-config-provider>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+type SizeType = 'small' | 'middle' | 'large';
 
-type SizeType = 'small' | 'middle' | 'large'
-
-const componentSize = ref<SizeType>('small')
+const componentSize = ref<SizeType>('small');
 const columns = [
   { title: 'Name', dataIndex: 'name' },
   { title: 'Age', dataIndex: 'age' },
-]
+];
 const dataSource = [
   {
     key: '1',
@@ -98,9 +84,8 @@ const dataSource = [
     name: 'Joe Black',
     age: 32,
   },
-]
+];
 </script>
-
 <style scoped>
 .example {
   margin: 16px 0;

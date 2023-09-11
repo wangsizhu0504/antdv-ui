@@ -14,7 +14,6 @@ title:
 
 Multiple line ellipsis support. You can use `tooltip` to config ellipsis tooltip. Recommend `expandable` when have lots of content.
 </docs>
-
 <template>
   <a-switch v-model:checked="ellipsis" />
   <a-typography-paragraph
@@ -43,9 +42,7 @@ Multiple line ellipsis support. You can use `tooltip` to config ellipsis tooltip
     content="Ant Design, a design language for background applications, is refined by Ant UED Team."
   />
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const ellipsis = ref(true)
+import { ref } from 'vue';
+const ellipsis = ref(true);
 </script>

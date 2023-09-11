@@ -17,22 +17,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import CN from '../index.zh-CN.md'
-import US from '../index.en-US.md'
-import Basic from './basic.vue'
-import CardTop from './card-top.vue'
-import Card from './card.vue'
-import CustomAddTrigger from './custom-add-trigger.vue'
-import Disabled from './disabled.vue'
-import EditableCard from './editable-card.vue'
-import Extra from './extra.vue'
-import Icon from './icon.vue'
-import Position from './position.vue'
-import Size from './size.vue'
-import Slide from './slide.vue'
-import CustomTabBar from './custom-tab-bar.vue'
-import Centered from './centered.vue'
+import Basic from './basic.vue';
+import CardTop from './card-top.vue';
+import Card from './card.vue';
+import CustomAddTrigger from './custom-add-trigger.vue';
+import Disabled from './disabled.vue';
+import EditableCard from './editable-card.vue';
+import Extra from './extra.vue';
+import Icon from './icon.vue';
+import Position from './position.vue';
+import Size from './size.vue';
+import Slide from './slide.vue';
+import CustomTabBar from './custom-tab-bar.vue';
+import Centered from './centered.vue';
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   category: 'Components',
@@ -56,5 +56,5 @@ export default defineComponent({
     Slide,
     CustomTabBar,
   },
-})
+});
 </script>

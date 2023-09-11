@@ -37,16 +37,14 @@ You can config SubMenu theme with `theme` prop to enable different theme color e
     />
   </div>
 </template>
-
 <script lang="ts" setup>
-import type { ComputedRef, VueElement } from 'vue'
-import { computed, h, ref } from 'vue'
-import { MailOutlined } from '@ant-design/icons-vue'
-import type { MenuProps } from '@antdv/ui'
+import { computed, ref, VueElement, ComputedRef, h } from 'vue';
+import { MailOutlined } from '@ant-design/icons-vue';
+import type { MenuProps } from '@antdv/ui';
 
-const selectedKeys = ref<string[]>(['1'])
-const openKeys = ref<string[]>(['sub1'])
-const theme = ref<MenuProps['theme']>('light')
+const selectedKeys = ref<string[]>(['1']);
+const openKeys = ref<string[]>(['sub1']);
+const theme = ref<MenuProps['theme']>('light');
 
 function getItem(
   label: VueElement | string,
@@ -61,7 +59,7 @@ function getItem(
     children,
     label,
     theme,
-  }
+  };
 }
 
 const items: ComputedRef<MenuProps['items']> = computed(() => [
@@ -74,13 +72,13 @@ const items: ComputedRef<MenuProps['items']> = computed(() => [
   ),
   getItem('Option 5', '5'),
   getItem('Option 6', '6'),
-])
+]);
 
 function handleClick(info: any) {
-  console.log('click', info)
+  console.log('click', info);
 }
 
 function changeTheme(checked: boolean) {
-  theme.value = checked ? 'dark' : 'light'
+  theme.value = checked ? 'dark' : 'light';
 }
 </script>

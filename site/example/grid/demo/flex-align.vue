@@ -18,81 +18,51 @@ Child elements vertically aligned.
 
 <template>
   <div id="components-grid-demo-flex-align">
-    <a-divider orientation="left">
-      Align Top
-    </a-divider>
+    <a-divider orientation="left">Align Top</a-divider>
     <a-row justify="center" align="top">
       <a-col :span="4">
-        <p class="height-100">
-          col-4
-        </p>
+        <p class="height-100">col-4</p>
       </a-col>
       <a-col :span="4">
-        <p class="height-50">
-          col-4
-        </p>
+        <p class="height-50">col-4</p>
       </a-col>
       <a-col :span="4">
-        <p class="height-120">
-          col-4
-        </p>
+        <p class="height-120">col-4</p>
       </a-col>
       <a-col :span="4">
-        <p class="height-80">
-          col-4
-        </p>
+        <p class="height-80">col-4</p>
       </a-col>
     </a-row>
 
-    <a-divider orientation="left">
-      Align Middle
-    </a-divider>
+    <a-divider orientation="left">Align Middle</a-divider>
     <a-row justify="space-around" align="middle">
       <a-col :span="4">
-        <p class="height-100">
-          col-4
-        </p>
+        <p class="height-100">col-4</p>
       </a-col>
       <a-col :span="4">
-        <p class="height-50">
-          col-4
-        </p>
+        <p class="height-50">col-4</p>
       </a-col>
       <a-col :span="4">
-        <p class="height-120">
-          col-4
-        </p>
+        <p class="height-120">col-4</p>
       </a-col>
       <a-col :span="4">
-        <p class="height-80">
-          col-4
-        </p>
+        <p class="height-80">col-4</p>
       </a-col>
     </a-row>
 
-    <a-divider orientation="left">
-      Align Bottom
-    </a-divider>
+    <a-divider orientation="left">Align Bottom</a-divider>
     <a-row justify="space-between" align="bottom">
       <a-col :span="4">
-        <p class="height-100">
-          col-4
-        </p>
+        <p class="height-100">col-4</p>
       </a-col>
       <a-col :span="4">
-        <p class="height-50">
-          col-4
-        </p>
+        <p class="height-50">col-4</p>
       </a-col>
       <a-col :span="4">
-        <p class="height-120">
-          col-4
-        </p>
+        <p class="height-120">col-4</p>
       </a-col>
       <a-col :span="4">
-        <p class="height-80">
-          col-4
-        </p>
+        <p class="height-80">col-4</p>
       </a-col>
     </a-row>
   </div>

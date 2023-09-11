@@ -15,7 +15,6 @@ title:
 Custom suffix icon
 
 </docs>
-
 <template>
   <a-space>
     <a-cascader
@@ -24,9 +23,7 @@ Custom suffix icon
       :options="options"
       placeholder="Please select"
     >
-      <template #suffixIcon>
-        <smile-outlined class="test" />
-      </template>
+      <template #suffixIcon><smile-outlined class="test" /></template>
     </a-cascader>
     <a-cascader
       v-model:value="value2"
@@ -37,12 +34,10 @@ Custom suffix icon
     />
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import { SmileOutlined } from '@ant-design/icons-vue'
-import { ref } from 'vue'
-import type { CascaderProps } from '@antdv/ui'
-
+import { SmileOutlined } from '@ant-design/icons-vue';
+import { ref } from 'vue';
+import type { CascaderProps } from '@antdv/ui';
 const options: CascaderProps['options'] = [
   {
     value: 'zhejiang',
@@ -76,7 +71,7 @@ const options: CascaderProps['options'] = [
       },
     ],
   },
-]
-const value1 = ref<string[]>([])
-const value2 = ref<string[]>([])
+];
+const value1 = ref<string[]>([]);
+const value2 = ref<string[]>([]);
 </script>

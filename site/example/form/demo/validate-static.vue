@@ -22,7 +22,6 @@ We provide properties like `validateStatus` `help` `hasFeedback` to customize yo
 2. `hasFeedback`: display feed icon of input control
 3. `help`: display validate message.
 </docs>
-
 <template>
   <a-form v-bind="formItemLayout">
     <a-form-item
@@ -35,9 +34,7 @@ We provide properties like `validateStatus` `help` `hasFeedback` to customize yo
 
     <a-form-item label="Warning" validate-status="warning">
       <a-input id="warning" placeholder="Warning">
-        <template #prefix>
-          <smile-outlined />
-        </template>
+        <template #prefix><smile-outlined /></template>
       </a-input>
     </a-form-item>
 
@@ -81,15 +78,9 @@ We provide properties like `validateStatus` `help` `hasFeedback` to customize yo
 
     <a-form-item label="Error" has-feedback validate-status="error">
       <a-select placeholder="I'm Select" allow-clear>
-        <a-select-option value="1">
-          Option 1
-        </a-select-option>
-        <a-select-option value="2">
-          Option 2
-        </a-select-option>
-        <a-select-option value="3">
-          Option 3
-        </a-select-option>
+        <a-select-option value="1">Option 1</a-select-option>
+        <a-select-option value="2">Option 2</a-select-option>
+        <a-select-option value="3">Option 3</a-select-option>
       </a-select>
     </a-form-item>
 
@@ -155,9 +146,8 @@ We provide properties like `validateStatus` `help` `hasFeedback` to customize yo
     </a-form-item>
   </a-form>
 </template>
-
 <script lang="ts" setup>
-import { SmileOutlined } from '@ant-design/icons-vue'
+import { SmileOutlined } from '@ant-design/icons-vue';
 
 const formItemLayout = {
   labelCol: {
@@ -168,5 +158,5 @@ const formItemLayout = {
     xs: { span: 24 },
     sm: { span: 14 },
   },
-}
+};
 </script>

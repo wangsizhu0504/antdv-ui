@@ -8,23 +8,22 @@
     <multiple />
     <size />
     <block />
-    <status />
+    <danger />
   </demo-sort>
 </template>
-
 <script lang="ts">
-import { defineComponent } from 'vue'
-import CN from '../index.zh-CN.md'
-import US from '../index.en-US.md'
-import Basic from './basic.vue'
-import Disabled from './disabled.vue'
-import Ghost from './ghost.vue'
-import Icon from './icon.vue'
-import Loading from './loading.vue'
-import Multiple from './multiple.vue'
-import Size from './size.vue'
-import Block from './block.vue'
-import Status from './status.vue'
+import Basic from './basic.vue';
+import Disabled from './disabled.vue';
+import Ghost from './ghost.vue';
+import Icon from './icon.vue';
+import Loading from './loading.vue';
+import Multiple from './multiple.vue';
+import Size from './size.vue';
+import Block from './block.vue';
+import Danger from './danger.vue';
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   CN,
@@ -38,14 +37,13 @@ export default defineComponent({
     Multiple,
     Size,
     Block,
-    Status,
+    Danger,
   },
   setup() {
-    return {}
+    return {};
   },
-})
+});
 </script>
-
 <style scoped>
 [id^='components-button-demo-'] .ant-btn {
   margin-right: 8px;

@@ -20,17 +20,14 @@ Responsive grid list. The size property is as same as [Layout Grid](https://www.
   <a-list :grid="{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 3 }" :data-source="data">
     <template #renderItem="{ item }">
       <a-list-item>
-        <a-card :title="item.title">
-          Card content
-        </a-card>
+        <a-card :title="item.title">Card content</a-card>
       </a-list-item>
     </template>
   </a-list>
 </template>
-
 <script lang="ts" setup>
 interface DataItem {
-  title: string
+  title: string;
 }
 const data: DataItem[] = [
   {
@@ -51,5 +48,5 @@ const data: DataItem[] = [
   {
     title: 'Title 6',
   },
-]
+];
 </script>

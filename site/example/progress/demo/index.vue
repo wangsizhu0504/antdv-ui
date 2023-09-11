@@ -16,25 +16,24 @@
     <Size />
   </demo-sort>
 </template>
-
 <script lang="ts">
-import { defineComponent } from 'vue'
-import CN from '../index.zh-CN.md'
-import US from '../index.en-US.md'
-import Line from './line.vue'
-import Circle from './circle.vue'
-import LineMini from './line-mini.vue'
-import CircleMini from './circle-mini.vue'
-import Dynamic from './dynamic.vue'
-import CircleDynamic from './circle-dynamic.vue'
-import Format from './format.vue'
-import Dashboard from './dashboard.vue'
-import Segment from './segment.vue'
-import LineCap from './linecap.vue'
-import GradientLine from './gradient-line.vue'
-import Steps from './steps.vue'
-import CircleMicro from './circle-micro.vue'
-import Size from './size.vue'
+import Line from './line.vue';
+import Circle from './circle.vue';
+import LineMini from './line-mini.vue';
+import CircleMini from './circle-mini.vue';
+import Dynamic from './dynamic.vue';
+import CircleDynamic from './circle-dynamic.vue';
+import Format from './format.vue';
+import Dashboard from './dashboard.vue';
+import Segment from './segment.vue';
+import LineCap from './linecap.vue';
+import GradientLine from './gradient-line.vue';
+import Steps from './steps.vue';
+import CircleMicro from './circle-micro.vue';
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
+import { defineComponent } from 'vue';
+import Size from './size.vue';
 
 export default defineComponent({
   CN,
@@ -56,11 +55,10 @@ export default defineComponent({
     Size,
   },
   setup() {
-    return {}
+    return {};
   },
-})
+});
 </script>
-
 <style>
 [id^='components-progress-demo-'] .ant-progress {
   margin-right: 8px;

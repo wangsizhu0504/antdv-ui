@@ -16,7 +16,6 @@ title:
 When dealing with long content, a fixed sider can provide a better user experience.
 
 </docs>
-
 <template>
   <a-layout has-sider>
     <a-layout-sider
@@ -165,21 +164,19 @@ When dealing with long content, a fixed sider can provide a better user experien
     </a-layout>
   </a-layout>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
-} from '@ant-design/icons-vue'
-
-const selectedKeys = ref<string[]>(['4'])
+  UploadOutlined,
+  BarChartOutlined,
+  CloudOutlined,
+  AppstoreOutlined,
+  TeamOutlined,
+  ShopOutlined,
+} from '@ant-design/icons-vue';
+const selectedKeys = ref<string[]>(['4']);
 </script>
 
 <style scoped>

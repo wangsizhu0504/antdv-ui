@@ -17,9 +17,7 @@ Basic drawer.
 </docs>
 
 <template>
-  <a-button type="primary" @click="showDrawer">
-    Open
-  </a-button>
+  <a-button type="primary" @click="showDrawer">Open</a-button>
   <a-drawer
     v-model:open="open"
     class="custom-class"
@@ -35,17 +33,15 @@ Basic drawer.
     <p>Some contents...</p>
   </a-drawer>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const open = ref<boolean>(false)
+import { ref } from 'vue';
+const open = ref<boolean>(false);
 
 const afterOpenChange = (bool: boolean) => {
-  console.log('open', bool)
-}
+  console.log('open', bool);
+};
 
 const showDrawer = () => {
-  open.value = true
-}
+  open.value = true;
+};
 </script>

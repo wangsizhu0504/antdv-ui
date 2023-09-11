@@ -50,17 +50,14 @@ Use ConfigProvider set global Empty style.
     </div>
   </a-config-provider>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { SmileOutlined } from '@ant-design/icons-vue'
+import { ref } from 'vue';
+import { SmileOutlined } from '@ant-design/icons-vue';
+const customize = ref<boolean>(false);
 
-const customize = ref<boolean>(false)
-
-const style = { width: '200px' }
-const columns = [{ title: 'Name' }, { title: 'Age' }]
+const style = { width: '200px' };
+const columns = [{ title: 'Name' }, { title: 'Age' }];
 </script>
-
 <style scoped>
 .code-box-demo .config-provider h3 {
   font-size: inherit;

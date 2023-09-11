@@ -41,9 +41,7 @@ Implement a customized column search example via `customFilterDropdown`.
           style="width: 90px; margin-right: 8px"
           @click="handleSearch(selectedKeys, confirm, column.dataIndex)"
         >
-          <template #icon>
-            <SearchOutlined />
-          </template>
+          <template #icon><SearchOutlined /></template>
           Search
         </a-button>
         <a-button size="small" style="width: 90px" @click="handleReset(clearFilters)">
@@ -76,9 +74,8 @@ Implement a customized column search example via `customFilterDropdown`.
 </template>
 
 <script lang="ts" setup>
-import { SearchOutlined } from '@ant-design/icons-vue'
-import { reactive, ref } from 'vue'
-
+import { SearchOutlined } from '@ant-design/icons-vue';
+import { reactive, ref } from 'vue';
 const data = [
   {
     key: '1',
@@ -104,14 +101,14 @@ const data = [
     age: 32,
     address: 'London No. 2 Lake Park',
   },
-]
+];
 
 const state = reactive({
   searchText: '',
   searchedColumn: '',
-})
+});
 
-const searchInput = ref()
+const searchInput = ref();
 
 const columns = [
   {
@@ -120,11 +117,11 @@ const columns = [
     key: 'name',
     customFilterDropdown: true,
     onFilter: (value, record) => record.name.toString().toLowerCase().includes(value.toLowerCase()),
-    onFilterDropdownOpenChange: (visible) => {
+    onFilterDropdownOpenChange: visible => {
       if (visible) {
         setTimeout(() => {
-          searchInput.value.focus()
-        }, 100)
+          searchInput.value.focus();
+        }, 100);
       }
     },
   },
@@ -140,28 +137,27 @@ const columns = [
     customFilterDropdown: true,
     onFilter: (value, record) =>
       record.address.toString().toLowerCase().includes(value.toLowerCase()),
-    onFilterDropdownOpenChange: (visible) => {
+    onFilterDropdownOpenChange: visible => {
       if (visible) {
         setTimeout(() => {
-          searchInput.value.focus()
-        }, 100)
+          searchInput.value.focus();
+        }, 100);
       }
     },
   },
-]
+];
 
 const handleSearch = (selectedKeys, confirm, dataIndex) => {
-  confirm()
-  state.searchText = selectedKeys[0]
-  state.searchedColumn = dataIndex
-}
+  confirm();
+  state.searchText = selectedKeys[0];
+  state.searchedColumn = dataIndex;
+};
 
-const handleReset = (clearFilters) => {
-  clearFilters({ confirm: true })
-  state.searchText = ''
-}
+const handleReset = clearFilters => {
+  clearFilters({ confirm: true });
+  state.searchText = '';
+};
 </script>
-
 <style scoped>
 .highlight {
   background-color: rgb(255, 192, 105);

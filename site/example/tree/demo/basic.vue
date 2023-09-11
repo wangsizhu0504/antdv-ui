@@ -15,7 +15,6 @@ title:
 The most basic usage, tell you how to use checkable, selectable, disabled, defaultExpandKeys, and etc.
 
 </docs>
-
 <template>
   <a-tree
     v-model:expandedKeys="expandedKeys"
@@ -26,16 +25,13 @@ The most basic usage, tell you how to use checkable, selectable, disabled, defau
   >
     <template #title="{ title, key }">
       <span v-if="key === '0-0-1-0'" style="color: #1890ff">{{ title }}</span>
-      <template v-else>
-        {{ title }}
-      </template>
+      <template v-else>{{ title }}</template>
     </template>
   </a-tree>
 </template>
-
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
-import type { TreeProps } from '@antdv/ui'
+import { ref, watch } from 'vue';
+import type { TreeProps } from '@antdv/ui';
 
 const treeData: TreeProps['treeData'] = [
   {
@@ -58,18 +54,18 @@ const treeData: TreeProps['treeData'] = [
       },
     ],
   },
-]
+];
 
-const expandedKeys = ref<string[]>(['0-0-0', '0-0-1'])
-const selectedKeys = ref<string[]>(['0-0-0', '0-0-1'])
-const checkedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+const expandedKeys = ref<string[]>(['0-0-0', '0-0-1']);
+const selectedKeys = ref<string[]>(['0-0-0', '0-0-1']);
+const checkedKeys = ref<string[]>(['0-0-0', '0-0-1']);
 watch(expandedKeys, () => {
-  console.log('expandedKeys', expandedKeys)
-})
+  console.log('expandedKeys', expandedKeys);
+});
 watch(selectedKeys, () => {
-  console.log('selectedKeys', selectedKeys)
-})
+  console.log('selectedKeys', selectedKeys);
+});
 watch(checkedKeys, () => {
-  console.log('checkedKeys', checkedKeys)
-})
+  console.log('checkedKeys', checkedKeys);
+});
 </script>

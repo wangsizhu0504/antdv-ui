@@ -17,15 +17,11 @@ Normal message for information.
 </docs>
 
 <template>
-  <a-button type="primary" @click="info">
-    Display normal message
-  </a-button>
+  <a-button type="primary" @click="info">Display normal message</a-button>
 </template>
-
 <script lang="ts" setup>
-import { message } from '@antdv/ui'
-
+import { message } from '@antdv/ui';
 const info = () => {
-  message.info('This is a normal message')
-}
+  message.info('This is a normal message');
+};
 </script>

@@ -15,7 +15,6 @@ title:
 In this case, submit button is in the Modal which is out of Form. You can use `form.submit` to submit form. Besides, we recommend native `<Button htmlType="submit" />` to submit a form.
 
 </docs>
-
 <template>
   <a-form ref="formRef" :model="formState" name="form_context" v-bind="layout" @finish="onFinish">
     <a-form-item
@@ -32,9 +31,7 @@ In this case, submit button is in the Modal which is out of Form. You can use `f
           <template v-for="user in formState.users" :key="user.key">
             <li class="user">
               <a-avatar>
-                <template #icon>
-                  <UserOutlined />
-                </template>
+                <template #icon><UserOutlined /></template>
               </a-avatar>
               {{ user.name }} - {{ user.age }}
             </li>
@@ -51,12 +48,8 @@ In this case, submit button is in the Modal which is out of Form. You can use `f
     </a-form-item>
 
     <a-form-item v-bind="tailLayout">
-      <a-button html-type="submit" type="primary">
-        Submit
-      </a-button>
-      <a-button html-type="button" style="margin: 0 8px" @click="visible = true">
-        Add User
-      </a-button>
+      <a-button html-type="submit" type="primary">Submit</a-button>
+      <a-button html-type="button" style="margin: 0 8px" @click="visible = true">Add User</a-button>
     </a-form-item>
   </a-form>
   <a-modal v-model:open="visible" title="Basic Drawer" @ok="onOk">
@@ -70,58 +63,56 @@ In this case, submit button is in the Modal which is out of Form. You can use `f
     </a-form>
   </a-modal>
 </template>
-
 <script lang="ts" setup>
-import { reactive, ref, toRaw, watch } from 'vue'
-import type { FormInstance } from '@antdv/ui'
-import { SmileOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { reactive, ref, watch, toRaw } from 'vue';
+import type { FormInstance } from '@antdv/ui';
+import { SmileOutlined, UserOutlined } from '@ant-design/icons-vue';
 
 interface UserType {
-  name?: string
-  age?: number
-  key?: number
+  name?: string;
+  age?: number;
+  key?: number;
 }
 
 interface FormState {
-  group: string
-  users: UserType[]
+  group: string;
+  users: UserType[];
 }
 
-const formRef = ref<FormInstance>()
-const modalFormRef = ref<FormInstance>()
-const visible = ref(false)
+const formRef = ref<FormInstance>();
+const modalFormRef = ref<FormInstance>();
+const visible = ref(false);
 const formState = reactive<FormState>({
   group: '',
   users: [],
-})
-const modalFormState = ref<UserType>({})
+});
+const modalFormState = ref<UserType>({});
 
 watch(
   visible,
   () => {
-    modalFormState.value = {}
+    modalFormState.value = {};
   },
   { flush: 'post' },
-)
+);
 
 const onOk = () => {
   modalFormRef.value.validateFields().then(() => {
-    formState.users.push({ ...modalFormState.value, key: Date.now() })
-    visible.value = false
-  })
-}
+    formState.users.push({ ...modalFormState.value, key: Date.now() });
+    visible.value = false;
+  });
+};
 const onFinish = () => {
-  console.log('Finish:', toRaw(formState))
-}
+  console.log('Finish:', toRaw(formState));
+};
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
-}
+};
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
-}
+};
 </script>
-
 <style scoped>
 #components-form-demo-form-context .user {
   margin-bottom: 8px;

@@ -7,20 +7,22 @@
     <HotTags />
     <Icon />
     <Status />
+    <BorderLess />
   </demo-sort>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import CN from '../index.zh-CN.md'
-import US from '../index.en-US.md'
-import Basic from './basic.vue'
-import Checkable from './checkable.vue'
-import Colorful from './colorful.vue'
-import Control from './control.vue'
-import HotTags from './hot-tags.vue'
-import Icon from './icon.vue'
-import Status from './status.vue'
+import Basic from './basic.vue';
+import Checkable from './checkable.vue';
+import Colorful from './colorful.vue';
+import Control from './control.vue';
+import HotTags from './hot-tags.vue';
+import Icon from './icon.vue';
+import Status from './status.vue';
+import BorderLess from './border-less.vue';
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   CN,
@@ -33,6 +35,7 @@ export default defineComponent({
     HotTags,
     Icon,
     Status,
+    BorderLess,
   },
-})
+});
 </script>

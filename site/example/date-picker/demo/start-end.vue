@@ -41,43 +41,44 @@ When `RangePicker` does not satisfied your requirements, try to implement simila
     />
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import type { Dayjs } from 'dayjs'
-import { ref, watch } from 'vue'
-
-const startValue = ref<Dayjs>()
-const endValue = ref<Dayjs>()
-const endOpen = ref<boolean>(false)
+import { Dayjs } from 'dayjs';
+import { ref, watch } from 'vue';
+const startValue = ref<Dayjs>();
+const endValue = ref<Dayjs>();
+const endOpen = ref<boolean>(false);
 
 const disabledStartDate = (startValue: Dayjs) => {
-  if (!startValue || !endValue.value)
-    return false
+  if (!startValue || !endValue.value) {
+    return false;
+  }
 
-  return startValue.valueOf() > endValue.value.valueOf()
-}
+  return startValue.valueOf() > endValue.value.valueOf();
+};
 
 const disabledEndDate = (endValue: Dayjs) => {
-  if (!endValue || !startValue.value)
-    return false
+  if (!endValue || !startValue.value) {
+    return false;
+  }
 
-  return startValue.value.valueOf() >= endValue.valueOf()
-}
+  return startValue.value.valueOf() >= endValue.valueOf();
+};
 
 const handleStartOpenChange = (open: boolean) => {
-  if (!open)
-    endOpen.value = true
-}
+  if (!open) {
+    endOpen.value = true;
+  }
+};
 
 const handleEndOpenChange = (open: boolean) => {
-  endOpen.value = open
-}
+  endOpen.value = open;
+};
 
 watch(startValue, () => {
-  console.log('startValue', startValue.value)
-})
+  console.log('startValue', startValue.value);
+});
 
 watch(endValue, () => {
-  console.log('endValue', endValue.value)
-})
+  console.log('endValue', endValue.value);
+});
 </script>

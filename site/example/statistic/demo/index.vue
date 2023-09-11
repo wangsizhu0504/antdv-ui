@@ -7,17 +7,15 @@
     <countdown-slot />
   </demo-sort>
 </template>
-
 <script lang="ts">
-import { defineComponent } from 'vue'
-import CN from '../index.zh-CN.md'
-import US from '../index.en-US.md'
-import Basic from './basic.vue'
-import Unit from './unit.vue'
-import Card from './card.vue'
-import Countdown from './countdown.vue'
-import CountdownSlot from './countdown-slot.vue'
-
+import Basic from './basic.vue';
+import Unit from './unit.vue';
+import Card from './card.vue';
+import Countdown from './countdown.vue';
+import CountdownSlot from './countdown-slot.vue';
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
+import { defineComponent } from 'vue';
 export default defineComponent({
   CN,
   US,
@@ -29,7 +27,7 @@ export default defineComponent({
     CountdownSlot,
   },
   setup() {
-    return {}
+    return {};
   },
-})
+});
 </script>

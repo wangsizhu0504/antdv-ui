@@ -22,9 +22,7 @@ You can use `Card.Meta` to support more flexible content.
       <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
     </template>
     <a-card-meta title="Europe Street beat">
-      <template #description>
-        www.instagram.com
-      </template>
+      <template #description>www.instagram.com</template>
     </a-card-meta>
   </a-card>
 </template>

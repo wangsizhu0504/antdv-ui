@@ -21,42 +21,33 @@ Config item align.
     <div class="space-align-block">
       <a-space align="center">
         center
-        <a-button type="primary">
-          Primary
-        </a-button>
+        <a-button type="primary">Primary</a-button>
         <span class="mock-block">Block</span>
       </a-space>
     </div>
     <div class="space-align-block">
       <a-space align="start">
         start
-        <a-button type="primary">
-          Primary
-        </a-button>
+        <a-button type="primary">Primary</a-button>
         <span class="mock-block">Block</span>
       </a-space>
     </div>
     <div class="space-align-block">
       <a-space align="end">
         end
-        <a-button type="primary">
-          Primary
-        </a-button>
+        <a-button type="primary">Primary</a-button>
         <span class="mock-block">Block</span>
       </a-space>
     </div>
     <div class="space-align-block">
       <a-space align="baseline">
         baseline
-        <a-button type="primary">
-          Primary
-        </a-button>
+        <a-button type="primary">Primary</a-button>
         <span class="mock-block">Block</span>
       </a-space>
     </div>
   </div>
 </template>
-
 <style scoped>
 .space-align-container {
   display: flex;

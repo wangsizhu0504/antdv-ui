@@ -26,20 +26,12 @@ Using `OptGroup` or `options.options` to group the options.
             Manager
           </span>
         </template>
-        <a-select-option value="jack">
-          Jack
-        </a-select-option>
-        <a-select-option value="lucy">
-          Lucy
-        </a-select-option>
+        <a-select-option value="jack">Jack</a-select-option>
+        <a-select-option value="lucy">Lucy</a-select-option>
       </a-select-opt-group>
       <a-select-opt-group label="Engineer">
-        <a-select-option value="Yiminghe">
-          yiminghe
-        </a-select-option>
-        <a-select-option value="Yiminghe1">
-          yiminghe1
-        </a-select-option>
+        <a-select-option value="Yiminghe">yiminghe</a-select-option>
+        <a-select-option value="Yiminghe1">yiminghe1</a-select-option>
       </a-select-opt-group>
     </a-select>
     <a-select
@@ -47,18 +39,17 @@ Using `OptGroup` or `options.options` to group the options.
       :options="options"
       style="width: 200px"
       @change="handleChange"
-    />
+    ></a-select>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { UserOutlined } from '@ant-design/icons-vue'
-import type { SelectProps } from '@antdv/ui'
+import { ref } from 'vue';
+import { UserOutlined } from '@ant-design/icons-vue';
+import type { SelectProps } from '@antdv/ui';
 
 const handleChange = (value: string) => {
-  console.log(`selected ${value}`)
-}
+  console.log(`selected ${value}`);
+};
 
 const options = ref<SelectProps['options']>([
   {
@@ -83,7 +74,7 @@ const options = ref<SelectProps['options']>([
       },
     ],
   },
-])
+]);
 
-const value = ref(['lucy'])
+const value = ref(['lucy']);
 </script>

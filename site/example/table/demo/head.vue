@@ -27,16 +27,15 @@ If a `sortOrder` or `defaultSortOrder` is specified with the value `ascend` or `
 <template>
   <a-table :columns="columns" :data-source="data" @change="onChange" />
 </template>
-
 <script lang="ts" setup>
-import type { TableColumnType, TableProps } from '@antdv/ui'
+import type { TableColumnType, TableProps } from '@antdv/ui';
 
-interface TableDataType {
-  key: string
-  name: string
-  age: number
-  address: string
-}
+type TableDataType = {
+  key: string;
+  name: string;
+  age: number;
+  address: string;
+};
 
 const columns: TableColumnType<TableDataType>[] = [
   {
@@ -96,7 +95,7 @@ const columns: TableColumnType<TableDataType>[] = [
     sorter: (a: TableDataType, b: TableDataType) => a.address.length - b.address.length,
     sortDirections: ['descend', 'ascend'],
   },
-]
+];
 
 const data: TableDataType[] = [
   {
@@ -123,8 +122,8 @@ const data: TableDataType[] = [
     age: 32,
     address: 'London No. 2 Lake Park',
   },
-]
+];
 const onChange: TableProps<TableDataType>['onChange'] = (pagination, filters, sorter) => {
-  console.log('params', pagination, filters, sorter)
-}
+  console.log('params', pagination, filters, sorter);
+};
 </script>

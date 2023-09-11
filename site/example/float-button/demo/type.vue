@@ -42,5 +42,5 @@ Change the type of the FloatButton with `type`.
 </template>
 
 <script lang="ts" setup>
-import { QuestionCircleOutlined } from '@ant-design/icons-vue'
+import { QuestionCircleOutlined } from '@ant-design/icons-vue';
 </script>

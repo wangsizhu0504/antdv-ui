@@ -25,21 +25,19 @@ Group table head with `columns[n].children`.
     :scroll="{ x: 'calc(700px + 50%)', y: 240 }"
   />
 </template>
-
 <script lang="ts" setup>
-import type { TableColumnsType } from '@antdv/ui'
-
-interface TableDataType {
-  key: number
-  name: string
-  age: number
-  street: string
-  building: string
-  number: number
-  companyAddress: string
-  companyName: string
-  gender: string
-}
+import type { TableColumnsType } from '@antdv/ui';
+type TableDataType = {
+  key: number;
+  name: string;
+  age: number;
+  street: string;
+  building: string;
+  number: number;
+  companyAddress: string;
+  companyName: string;
+  gender: string;
+};
 const columns: TableColumnsType = [
   {
     title: 'Name',
@@ -122,7 +120,7 @@ const columns: TableColumnsType = [
     width: 80,
     fixed: 'right',
   },
-]
+];
 const data = [...Array(100)].map((_, i) => ({
   key: i,
   name: 'John Brown',
@@ -133,5 +131,5 @@ const data = [...Array(100)].map((_, i) => ({
   companyAddress: 'Lake Street 42',
   companyName: 'SoftLake Co',
   gender: 'M',
-}))
+}));
 </script>

@@ -15,7 +15,6 @@ title:
 Support set allow to clear star when click again.
 
 </docs>
-
 <template>
   <div>
     <a-rate v-model:value="value1" />
@@ -25,10 +24,8 @@ Support set allow to clear star when click again.
     <span class="ant-rate-text">allowClear: false</span>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const value1 = ref<number>(3)
-const value2 = ref<number>(3)
+import { ref } from 'vue';
+const value1 = ref<number>(3);
+const value2 = ref<number>(3);
 </script>

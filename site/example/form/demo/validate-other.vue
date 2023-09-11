@@ -14,7 +14,6 @@ title:
 
 Demonstration of validation configuration for form controls which are not shown in the demos above.
 </docs>
-
 <template>
   <a-form
     :model="formState"
@@ -33,12 +32,8 @@ Demonstration of validation configuration for form controls which are not shown 
       :rules="[{ required: true, message: 'Please select your country!' }]"
     >
       <a-select v-model:value="formState.select" placeholder="Please select a country">
-        <a-select-option value="china">
-          China
-        </a-select-option>
-        <a-select-option value="usa">
-          U.S.A
-        </a-select-option>
+        <a-select-option value="china">China</a-select-option>
+        <a-select-option value="usa">U.S.A</a-select-option>
       </a-select>
     </a-form-item>
 
@@ -52,15 +47,9 @@ Demonstration of validation configuration for form controls which are not shown 
         mode="multiple"
         placeholder="Please select favourite colors"
       >
-        <a-select-option value="red">
-          Red
-        </a-select-option>
-        <a-select-option value="green">
-          Green
-        </a-select-option>
-        <a-select-option value="blue">
-          Blue
-        </a-select-option>
+        <a-select-option value="red">Red</a-select-option>
+        <a-select-option value="green">Green</a-select-option>
+        <a-select-option value="blue">Blue</a-select-option>
       </a-select>
     </a-form-item>
 
@@ -91,15 +80,9 @@ Demonstration of validation configuration for form controls which are not shown 
 
     <a-form-item name="radio-group" label="Radio.Group">
       <a-radio-group v-model:value="formState['radio-group']">
-        <a-radio value="a">
-          item 1
-        </a-radio>
-        <a-radio value="b">
-          item 2
-        </a-radio>
-        <a-radio value="c">
-          item 3
-        </a-radio>
+        <a-radio value="a">item 1</a-radio>
+        <a-radio value="b">item 2</a-radio>
+        <a-radio value="c">item 3</a-radio>
       </a-radio-group>
     </a-form-item>
 
@@ -109,15 +92,9 @@ Demonstration of validation configuration for form controls which are not shown 
       :rules="[{ required: true, message: 'Please pick an item!' }]"
     >
       <a-radio-group v-model:value="formState['radio-button']">
-        <a-radio-button value="a">
-          item 1
-        </a-radio-button>
-        <a-radio-button value="b">
-          item 2
-        </a-radio-button>
-        <a-radio-button value="c">
-          item 3
-        </a-radio-button>
+        <a-radio-button value="a">item 1</a-radio-button>
+        <a-radio-button value="b">item 2</a-radio-button>
+        <a-radio-button value="c">item 3</a-radio-button>
       </a-radio-group>
     </a-form-item>
 
@@ -125,34 +102,22 @@ Demonstration of validation configuration for form controls which are not shown 
       <a-checkbox-group v-model:value="formState['checkbox-group']">
         <a-row>
           <a-col :span="8">
-            <a-checkbox value="A" style="line-height: 32px">
-              A
-            </a-checkbox>
+            <a-checkbox value="A" style="line-height: 32px">A</a-checkbox>
           </a-col>
           <a-col :span="8">
-            <a-checkbox value="B" style="line-height: 32px" disabled>
-              B
-            </a-checkbox>
+            <a-checkbox value="B" style="line-height: 32px" disabled>B</a-checkbox>
           </a-col>
           <a-col :span="8">
-            <a-checkbox value="C" style="line-height: 32px">
-              C
-            </a-checkbox>
+            <a-checkbox value="C" style="line-height: 32px">C</a-checkbox>
           </a-col>
           <a-col :span="8">
-            <a-checkbox value="D" style="line-height: 32px">
-              D
-            </a-checkbox>
+            <a-checkbox value="D" style="line-height: 32px">D</a-checkbox>
           </a-col>
           <a-col :span="8">
-            <a-checkbox value="E" style="line-height: 32px">
-              E
-            </a-checkbox>
+            <a-checkbox value="E" style="line-height: 32px">E</a-checkbox>
           </a-col>
           <a-col :span="8">
-            <a-checkbox value="F" style="line-height: 32px">
-              F
-            </a-checkbox>
+            <a-checkbox value="F" style="line-height: 32px">F</a-checkbox>
           </a-col>
         </a-row>
       </a-checkbox-group>
@@ -170,9 +135,7 @@ Demonstration of validation configuration for form controls which are not shown 
         list-type="picture"
       >
         <a-button>
-          <template #icon>
-            <UploadOutlined />
-          </template>
+          <template #icon><UploadOutlined /></template>
           Click to upload
         </a-button>
       </a-upload>
@@ -184,43 +147,36 @@ Demonstration of validation configuration for form controls which are not shown 
           <p class="ant-upload-drag-icon">
             <InboxOutlined />
           </p>
-          <p class="ant-upload-text">
-            Click or drag file to this area to upload
-          </p>
-          <p class="ant-upload-hint">
-            Support for a single or bulk upload.
-          </p>
+          <p class="ant-upload-text">Click or drag file to this area to upload</p>
+          <p class="ant-upload-hint">Support for a single or bulk upload.</p>
         </a-upload-dragger>
       </a-form-item>
     </a-form-item>
 
     <a-form-item :wrapper-col="{ span: 12, offset: 6 }">
-      <a-button type="primary" html-type="submit">
-        Submit
-      </a-button>
+      <a-button type="primary" html-type="submit">Submit</a-button>
     </a-form-item>
   </a-form>
 </template>
-
 <script lang="ts" setup>
-import { reactive } from 'vue'
-import { InboxOutlined, UploadOutlined } from '@ant-design/icons-vue'
+import { reactive } from 'vue';
+import { UploadOutlined, InboxOutlined } from '@ant-design/icons-vue';
 
 const formItemLayout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 14 },
-}
+};
 
 const formState = reactive<Record<string, any>>({
   'input-number': 3,
   'checkbox-group': ['A', 'B'],
-  'rate': 3.5,
-})
+  rate: 3.5,
+});
 const onFinish = (values: any) => {
-  console.log('Success:', values)
-}
+  console.log('Success:', values);
+};
 
 const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo)
-}
+  console.log('Failed:', errorInfo);
+};
 </script>

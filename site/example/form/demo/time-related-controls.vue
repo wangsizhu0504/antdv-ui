@@ -18,7 +18,6 @@ The `value` of time-related components is a `dayjs` object, which we need to pre
 
 or use `valueFormat` to format.
 </docs>
-
 <template>
   <a-form
     :model="formState"
@@ -69,23 +68,20 @@ or use `valueFormat` to format.
         sm: { span: 16, offset: 8 },
       }"
     >
-      <a-button type="primary" html-type="submit">
-        Submit
-      </a-button>
+      <a-button type="primary" html-type="submit">Submit</a-button>
     </a-form-item>
   </a-form>
 </template>
-
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive } from 'vue';
 
 interface FormState {
-  'date-picker': string
-  'date-time-picker': string
-  'month-picker': string
-  'range-picker': [string, string]
-  'range-time-picker': [string, string]
-  'time-picker': string
+  'date-picker': string;
+  'date-time-picker': string;
+  'month-picker': string;
+  'range-picker': [string, string];
+  'range-time-picker': [string, string];
+  'time-picker': string;
 }
 const formItemLayout = {
   labelCol: {
@@ -96,19 +92,19 @@ const formItemLayout = {
     xs: { span: 24 },
     sm: { span: 16 },
   },
-}
+};
 const config = {
   rules: [{ type: 'string' as const, required: true, message: 'Please select time!' }],
-}
+};
 const rangeConfig = {
   rules: [{ type: 'array' as const, required: true, message: 'Please select time!' }],
-}
-const formState = reactive({} as FormState)
+};
+const formState = reactive({} as FormState);
 const onFinish = (values: any) => {
-  console.log('Success:', values, formState)
-}
+  console.log('Success:', values, formState);
+};
 
 const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo)
-}
+  console.log('Failed:', errorInfo);
+};
 </script>

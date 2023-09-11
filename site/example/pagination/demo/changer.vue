@@ -34,20 +34,18 @@ Change `pageSize`.
     />
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
-
-const pageSize = ref(20)
-const current1 = ref(3)
-const current2 = ref(4)
+import { ref, watch } from 'vue';
+const pageSize = ref(20);
+const current1 = ref(3);
+const current2 = ref(4);
 const onShowSizeChange = (current: number, pageSize: number) => {
-  console.log(current, pageSize)
-}
+  console.log(current, pageSize);
+};
 watch(pageSize, () => {
-  console.log('pageSize', pageSize.value)
-})
+  console.log('pageSize', pageSize.value);
+});
 watch(current1, () => {
-  console.log('current', current1.value)
-})
+  console.log('current', current1.value);
+});
 </script>

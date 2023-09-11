@@ -6,13 +6,13 @@ title:
   en-US: ReplaceFields
 ---
 
-  ## zh-CN
+## zh-CN
 
-  fieldNames 替换 treeNode中 title,key,children 字段为treeData中对应的字段
+fieldNames 替换 treeNode中 title,key,children 字段为treeData中对应的字段
 
-  ## en-US
+## en-US
 
-  Replace the title,key and children fields in treeNode with the corresponding fields in treeData.
+Replace the title,key and children fields in treeNode with the corresponding fields in treeData.
 
 </docs>
 
@@ -32,49 +32,40 @@ title:
       value: 'value',
     }"
     tree-node-filter-prop="name"
-  />
+  ></a-tree-select>
 </template>
+<script lang="ts" setup>
+import type { TreeSelectProps } from '@antdv/ui';
+import { ref, watch } from 'vue';
 
-<script lang="ts">
-import type { TreeSelectProps } from '@antdv/ui'
-import { defineComponent, ref, watch } from 'vue'
-
-export default defineComponent({
-  setup() {
-    const value = ref<string>()
-    const treeData = ref<TreeSelectProps['treeData']>([
+const value = ref<string>();
+const treeData = ref<TreeSelectProps['treeData']>([
+  {
+    name: 'parent 1',
+    value: 'parent 1',
+    children: [
       {
-        name: 'parent 1',
-        value: 'parent 1',
+        name: 'parent 1-0',
+        value: 'parent 1-0',
         children: [
           {
-            name: 'parent 1-0',
-            value: 'parent 1-0',
-            children: [
-              {
-                name: 'my leaf',
-                value: 'leaf1',
-              },
-              {
-                name: 'your leaf',
-                value: 'leaf2',
-              },
-            ],
+            name: 'my leaf',
+            value: 'leaf1',
           },
           {
-            name: 'parent 1-1',
-            value: 'parent 1-1',
+            name: 'your leaf',
+            value: 'leaf2',
           },
         ],
       },
-    ])
-    watch(value, () => {
-      console.log(value.value)
-    })
-    return {
-      value,
-      treeData,
-    }
+      {
+        name: 'parent 1-1',
+        value: 'parent 1-1',
+      },
+    ],
   },
-})
+]);
+watch(value, () => {
+  console.log(value.value);
+});
 </script>

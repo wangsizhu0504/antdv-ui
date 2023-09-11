@@ -35,7 +35,7 @@ components: {
 const mainJs = `import { createApp } from 'vue';
 import Antd from '@antdv/ui';
 import App from './App';
-import 'ant-design-vue/dist/reset.css';
+import '@antdv/ui/dist/reset.css';
 
 const app = createApp(App);
 
@@ -65,7 +65,7 @@ export function getCodeSandboxParams(code: string, meta: Meta): string {
           dependencies: {
             ...getDeps(code),
             'vue': 'next',
-            'ant-design-vue': packageInfo.version,
+            '@antdv/ui': packageInfo.version,
           },
           devDependencies: {
             '@vue/cli-plugin-babel': '~4.5.0',

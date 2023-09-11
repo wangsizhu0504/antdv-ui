@@ -23,7 +23,7 @@ Setting `tooltip` prop to show FloatButton with tooltip.
     :style="{
       right: '24px',
     }"
-  />
+  ></a-float-button>
 
   <a-float-button
     :style="{

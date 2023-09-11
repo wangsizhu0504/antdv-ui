@@ -28,9 +28,7 @@ Use `stringMode` to support high precision decimals support.
     string-mode
   />
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const value = ref<string>('1')
+import { ref } from 'vue';
+const value = ref<string>('1');
 </script>

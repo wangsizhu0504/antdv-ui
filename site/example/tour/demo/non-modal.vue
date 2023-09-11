@@ -14,40 +14,32 @@ title:
 
 Use `mask={false}` to make Tour non-modal. At the meantime it is recommended to use with `type="primary"` to emphasize the guide itself.
 
+
 </docs>
 
 <template>
-  <a-button type="primary" @click="handleOpen(true)">
-    Begin Tour
-  </a-button>
+  <a-button type="primary" @click="handleOpen(true)">Begin Tour</a-button>
 
   <a-divider />
 
   <a-space>
-    <a-button ref="ref1">
-      Upload
-    </a-button>
-    <a-button ref="ref2" type="primary">
-      Save
-    </a-button>
-    <a-button ref="ref3">
-      <EllipsisOutlined />
-    </a-button>
+    <a-button ref="ref1">Upload</a-button>
+    <a-button ref="ref2" type="primary">Save</a-button>
+    <a-button ref="ref3"><EllipsisOutlined /></a-button>
   </a-space>
 
   <a-tour :open="open" :mask="false" type="primary" :steps="steps" @close="handleOpen(false)" />
 </template>
 
 <script lang="ts" setup>
-import { createVNode, ref } from 'vue'
-import { EllipsisOutlined } from '@ant-design/icons-vue'
-import type { TourProps } from '@antdv/ui'
+import { ref, createVNode } from 'vue';
+import { EllipsisOutlined } from '@ant-design/icons-vue';
+import type { TourProps } from '@antdv/ui';
+const open = ref<boolean>(false);
 
-const open = ref<boolean>(false)
-
-const ref1 = ref(null)
-const ref2 = ref(null)
-const ref3 = ref(null)
+const ref1 = ref(null);
+const ref2 = ref(null);
+const ref3 = ref(null);
 
 const steps: TourProps['steps'] = [
   {
@@ -69,9 +61,9 @@ const steps: TourProps['steps'] = [
     description: 'Click to see other actions.',
     target: () => ref3.value && ref3.value.$el,
   },
-]
+];
 
 const handleOpen = (val: boolean): void => {
-  open.value = val
-}
+  open.value = val;
+};
 </script>

@@ -15,7 +15,6 @@ title:
 Normal login form which can contain more elements.
 
 </docs>
-
 <template>
   <a-form
     :model="formState"
@@ -50,9 +49,7 @@ Normal login form which can contain more elements.
 
     <a-form-item>
       <a-form-item name="remember" no-style>
-        <a-checkbox v-model:checked="formState.remember">
-          Remember me
-        </a-checkbox>
+        <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
       </a-form-item>
       <a class="login-form-forgot" href="">Forgot password</a>
     </a-form-item>
@@ -66,33 +63,30 @@ Normal login form which can contain more elements.
     </a-form-item>
   </a-form>
 </template>
-
 <script lang="ts" setup>
-import { computed, reactive } from 'vue'
-import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
-
+import { reactive, computed } from 'vue';
+import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 interface FormState {
-  username: string
-  password: string
-  remember: boolean
+  username: string;
+  password: string;
+  remember: boolean;
 }
 const formState = reactive<FormState>({
   username: '',
   password: '',
   remember: true,
-})
+});
 const onFinish = (values: any) => {
-  console.log('Success:', values)
-}
+  console.log('Success:', values);
+};
 
 const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo)
-}
+  console.log('Failed:', errorInfo);
+};
 const disabled = computed(() => {
-  return !(formState.username && formState.password)
-})
+  return !(formState.username && formState.password);
+});
 </script>
-
 <style scoped>
 #components-form-demo-normal-login .login-form {
   max-width: 300px;

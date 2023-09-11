@@ -17,29 +17,15 @@ We preset five different colors, you can set color property such as `success`,`p
 </docs>
 
 <template>
-  <a-divider orientation="left">
-    Without icon
-  </a-divider>
+  <a-divider orientation="left">Without icon</a-divider>
   <div>
-    <a-tag color="success">
-      success
-    </a-tag>
-    <a-tag color="processing">
-      processing
-    </a-tag>
-    <a-tag color="error">
-      error
-    </a-tag>
-    <a-tag color="warning">
-      warning
-    </a-tag>
-    <a-tag color="default">
-      default
-    </a-tag>
+    <a-tag color="success">success</a-tag>
+    <a-tag color="processing">processing</a-tag>
+    <a-tag color="error">error</a-tag>
+    <a-tag color="warning">warning</a-tag>
+    <a-tag color="default">default</a-tag>
   </div>
-  <a-divider orientation="left">
-    With icon
-  </a-divider>
+  <a-divider orientation="left">With icon</a-divider>
   <div>
     <a-tag color="success">
       <template #icon>
@@ -79,14 +65,13 @@ We preset five different colors, you can set color property such as `success`,`p
     </a-tag>
   </div>
 </template>
-
 <script lang="ts" setup>
 import {
   CheckCircleOutlined,
-  ClockCircleOutlined,
+  SyncOutlined,
   CloseCircleOutlined,
   ExclamationCircleOutlined,
+  ClockCircleOutlined,
   MinusCircleOutlined,
-  SyncOutlined,
-} from '@ant-design/icons-vue'
+} from '@ant-design/icons-vue';
 </script>

@@ -52,7 +52,7 @@ export default defineComponent({
     <h1>{{ isZhCN ? '组件总览' : 'Overview' }}</h1>
     <section class="markdown">
       <p>
-        <code>ant-design-vue</code>
+        <code>@antdv/ui</code>
         {{
           isZhCN
             ? '为 Web 应用提供了丰富的基础 UI 组件，我们还将持续探索企业级应用的最佳 UI 实践。'

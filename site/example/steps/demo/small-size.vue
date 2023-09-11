@@ -14,7 +14,6 @@ title:
 
 By setting like this: `<Steps size="small">`, you can get a mini version.
 </docs>
-
 <template>
   <a-steps
     :current="1"
@@ -30,5 +29,5 @@ By setting like this: `<Steps size="small">`, you can get a mini version.
         title: 'Waiting',
       },
     ]"
-  />
+  ></a-steps>
 </template>

@@ -18,12 +18,10 @@ title:
 </docs>
 
 <template>
-  <a-table :columns="columns" :data-source="data" @change="onChange" />
+  <a-table :columns="columns" :data-source="data" @change="onChange"></a-table>
 </template>
-
 <script lang="ts" setup>
-import type { TableProps } from '@antdv/ui'
-
+import type { TableProps } from '@antdv/ui';
 const columns: TableProps['columns'] = [
   {
     title: 'Name',
@@ -66,10 +64,10 @@ const columns: TableProps['columns'] = [
       },
     ],
     onFilter: (value, record) => record.address.startsWith(value),
-    filterSearch: (input, filter) => (filter.value as string).includes(input),
+    filterSearch: (input, filter) => (filter.value as string).indexOf(input) > -1,
     width: '40%',
   },
-]
+];
 const data = [
   {
     key: '1',
@@ -95,9 +93,9 @@ const data = [
     age: 32,
     address: 'London No. 2 Lake Park',
   },
-]
+];
 
 function onChange(pagination, filters, sorter, extra) {
-  console.log('params', pagination, filters, sorter, extra)
+  console.log('params', pagination, filters, sorter, extra);
 }
 </script>

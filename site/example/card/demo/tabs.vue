@@ -43,15 +43,9 @@ More content can be hosted
     :active-tab-key="noTitleKey"
     @tabChange="key => onTabChange(key, 'noTitleKey')"
   >
-    <p v-if="noTitleKey === 'article'">
-      article content
-    </p>
-    <p v-else-if="noTitleKey === 'app'">
-      app content
-    </p>
-    <p v-else>
-      project content
-    </p>
+    <p v-if="noTitleKey === 'article'">article content</p>
+    <p v-else-if="noTitleKey === 'app'">app content</p>
+    <p v-else>project content</p>
     <template #tabBarExtraContent>
       <a href="#">More</a>
     </template>
@@ -59,9 +53,8 @@ More content can be hosted
 </template>
 
 <script lang="ts" setup>
-import { HomeOutlined } from '@ant-design/icons-vue'
-import { ref } from 'vue'
-
+import { HomeOutlined } from '@ant-design/icons-vue';
+import { ref } from 'vue';
 const tabList = [
   {
     key: 'tab1',
@@ -71,11 +64,11 @@ const tabList = [
     key: 'tab2',
     tab: 'tab2',
   },
-]
+];
 const contentList = {
   tab1: 'content1',
   tab2: 'content2',
-}
+};
 const tabListNoTitle = [
   {
     key: 'article',
@@ -89,15 +82,16 @@ const tabListNoTitle = [
     key: 'project',
     tab: 'project',
   },
-]
-const key = ref('tab1')
-const noTitleKey = ref('app')
+];
+const key = ref('tab1');
+const noTitleKey = ref('app');
 
 const onTabChange = (value: string, type: string) => {
-  console.log(value, type)
-  if (type === 'key')
-    key.value = value
-  else if (type === 'noTitleKey')
-    noTitleKey.value = value
-}
+  console.log(value, type);
+  if (type === 'key') {
+    key.value = value;
+  } else if (type === 'noTitleKey') {
+    noTitleKey.value = value;
+  }
+};
 </script>

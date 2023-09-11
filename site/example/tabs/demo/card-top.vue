@@ -36,11 +36,9 @@ Should be used at the top of container, needs to override styles.
     </a-tabs>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const activeKey = ref('2')
+import { ref } from 'vue';
+const activeKey = ref('2');
 </script>
 
 <style scoped>

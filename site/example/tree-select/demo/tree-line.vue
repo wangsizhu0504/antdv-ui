@@ -22,37 +22,35 @@ Use `treeLine` to show the line style.
       v-model:checked="treeLine"
       checked-children="treeLine"
       un-checked-children="treeLine"
-    />
+    ></a-switch>
     <a-switch
       v-model:checked="showLeafIcon"
       :disabled="!treeLine"
       checked-children="showLeafIcon"
       un-checked-children="showLeafIcon"
-    />
+    ></a-switch>
     <a-tree-select
       v-model:value="value"
       style="width: 300px"
       placeholder="Please select"
       :tree-line="treeLine && { showLeafIcon }"
       :tree-data="treeData"
+      tree-node-filter-prop="title"
     >
       <template #title="{ value: val, title }">
         <b v-if="val === 'parent 1-1'" style="color: #08c">sss</b>
-        <template v-else>
-          {{ title }}
-        </template>
+        <template v-else>{{ title }}</template>
       </template>
     </a-tree-select>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
-import type { TreeSelectProps } from '@antdv/ui'
+import { ref, watch } from 'vue';
+import type { TreeSelectProps } from '@antdv/ui';
 
-const treeLine = ref(true)
-const showLeafIcon = ref(false)
-const value = ref<string>()
+const treeLine = ref(true);
+const showLeafIcon = ref(false);
+const value = ref<string>();
 const treeData = ref<TreeSelectProps['treeData']>([
   {
     title: 'parent 1',
@@ -78,8 +76,8 @@ const treeData = ref<TreeSelectProps['treeData']>([
       },
     ],
   },
-])
+]);
 watch(value, () => {
-  console.log(value.value)
-})
+  console.log(value.value);
+});
 </script>

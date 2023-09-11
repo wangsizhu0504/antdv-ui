@@ -19,7 +19,6 @@ Three columns layout is often used for advanced searching of data table.
 Because the width of label is not fixed, you may need to adjust it by customizing its style.
 
 </docs>
-
 <template>
   <div>
     <a-form
@@ -37,19 +36,15 @@ Because the width of label is not fixed, you may need to adjust it by customizin
               :label="`field-${i}`"
               :rules="[{ required: true, message: 'input something' }]"
             >
-              <a-input v-model:value="formState[`field-${i}`]" placeholder="placeholder" />
+              <a-input v-model:value="formState[`field-${i}`]" placeholder="placeholder"></a-input>
             </a-form-item>
           </a-col>
         </template>
       </a-row>
       <a-row>
         <a-col :span="24" style="text-align: right">
-          <a-button type="primary" html-type="submit">
-            Search
-          </a-button>
-          <a-button style="margin: 0 8px" @click="() => formRef.resetFields()">
-            Clear
-          </a-button>
+          <a-button type="primary" html-type="submit">Search</a-button>
+          <a-button style="margin: 0 8px" @click="() => formRef.resetFields()">Clear</a-button>
           <a style="font-size: 12px" @click="expand = !expand">
             <template v-if="expand">
               <UpOutlined />
@@ -62,24 +57,20 @@ Because the width of label is not fixed, you may need to adjust it by customizin
         </a-col>
       </a-row>
     </a-form>
-    <div class="search-result-list">
-      Search Result List
-    </div>
+    <div class="search-result-list">Search Result List</div>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
-import { DownOutlined, UpOutlined } from '@ant-design/icons-vue'
-import type { FormInstance } from '@antdv/ui'
-
-const expand = ref(false)
-const formRef = ref<FormInstance>()
-const formState = reactive({})
+import { reactive, ref } from 'vue';
+import { DownOutlined, UpOutlined } from '@ant-design/icons-vue';
+import type { FormInstance } from '@antdv/ui';
+const expand = ref(false);
+const formRef = ref<FormInstance>();
+const formState = reactive({});
 const onFinish = (values: any) => {
-  console.log('Received values of form: ', values)
-  console.log('formState: ', formState)
-}
+  console.log('Received values of form: ', values);
+  console.log('formState: ', formState);
+};
 </script>
 
 <style scoped>

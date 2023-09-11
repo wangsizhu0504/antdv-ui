@@ -30,16 +30,15 @@ Customize dropdown options such as adding all options
     </template>
   </a-pagination>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const pageSizeOptions = ref<string[]>(['10', '20', '30', '40', '50'])
-const current = ref(1)
-const pageSizeRef = ref(10)
-const total = ref(50)
+const pageSizeOptions = ref<string[]>(['10', '20', '30', '40', '50']);
+const current = ref(1);
+const pageSizeRef = ref(10);
+const total = ref(50);
 const onShowSizeChange = (current: number, pageSize: number) => {
-  console.log(current, pageSize)
-  pageSizeRef.value = pageSize
-}
+  console.log(current, pageSize);
+  pageSizeRef.value = pageSize;
+};
 </script>

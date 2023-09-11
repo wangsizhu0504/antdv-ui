@@ -25,15 +25,13 @@ Click the menu and you will see that all the other menus gets collapsed to keep 
       :open-keys="state.openKeys"
       :items="items"
       @openChange="onOpenChange"
-    />
+    ></a-menu>
   </div>
 </template>
-
 <script lang="ts" setup>
-import type { VueElement } from 'vue'
-import { h, reactive } from 'vue'
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
-import type { ItemType } from '@antdv/ui'
+import { VueElement, h, reactive } from 'vue';
+import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons-vue';
+import { ItemType } from '@antdv/ui';
 
 function getItem(
   label: VueElement | string,
@@ -48,7 +46,7 @@ function getItem(
     children,
     label,
     type,
-  } as ItemType
+  } as ItemType;
 }
 
 const items: ItemType[] = reactive([
@@ -69,18 +67,19 @@ const items: ItemType[] = reactive([
     getItem('Option 11', '11'),
     getItem('Option 12', '12'),
   ]),
-])
+]);
 
 const state = reactive({
   rootSubmenuKeys: ['sub1', 'sub2', 'sub4'],
   openKeys: ['sub1'],
   selectedKeys: [],
-})
+});
 const onOpenChange = (openKeys: string[]) => {
-  const latestOpenKey = openKeys.find(key => !state.openKeys.includes(key))
-  if (!state.rootSubmenuKeys.includes(latestOpenKey!))
-    state.openKeys = openKeys
-  else
-    state.openKeys = latestOpenKey ? [latestOpenKey] : []
-}
+  const latestOpenKey = openKeys.find(key => state.openKeys.indexOf(key) === -1);
+  if (state.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+    state.openKeys = openKeys;
+  } else {
+    state.openKeys = latestOpenKey ? [latestOpenKey] : [];
+  }
+};
 </script>

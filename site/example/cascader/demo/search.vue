@@ -17,7 +17,6 @@ Search and select options directly.
 > Now, `Cascader[showSearch]` doesn't support search on server, more info [#5547](https://github.com/ant-design/ant-design/issues/5547)
 
 </docs>
-
 <template>
   <a-cascader
     v-model:value="value"
@@ -26,12 +25,10 @@ Search and select options directly.
     placeholder="Please select"
   />
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { CascaderProps } from '@antdv/ui'
-import type { ShowSearchType } from '@antdv/ui/es/cascader'
-
+import { ref } from 'vue';
+import type { CascaderProps } from '@antdv/ui';
+import type { ShowSearchType } from '@antdv/ui/es/cascader';
 const options: CascaderProps['options'] = [
   {
     value: 'zhejiang',
@@ -70,10 +67,10 @@ const options: CascaderProps['options'] = [
       },
     ],
   },
-]
+];
 const filter: ShowSearchType['filter'] = (inputValue, path) => {
-  return path.some(option => option.label.toLowerCase().includes(inputValue.toLowerCase()))
-}
+  return path.some(option => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
+};
 
-const value = ref<string[]>([])
+const value = ref<string[]>([]);
 </script>

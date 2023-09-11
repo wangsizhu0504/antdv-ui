@@ -15,7 +15,6 @@ title:
 The following example shows how to create a popover which can be hovered and clicked.
 
 </docs>
-
 <template>
   <a-popover
     style="width: 500px"
@@ -38,25 +37,23 @@ The following example shows how to create a popover which can be hovered and cli
     </a-popover>
   </a-popover>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const clicked = ref<boolean>(false)
-const hovered = ref<boolean>(false)
+import { ref } from 'vue';
+const clicked = ref<boolean>(false);
+const hovered = ref<boolean>(false);
 
 const hide = () => {
-  clicked.value = false
-  hovered.value = false
-}
+  clicked.value = false;
+  hovered.value = false;
+};
 
 const handleHoverChange = (visible: boolean) => {
-  clicked.value = false
-  hovered.value = visible
-}
+  clicked.value = false;
+  hovered.value = visible;
+};
 
 const handleClickChange = (visible: boolean) => {
-  clicked.value = visible
-  hovered.value = false
-}
+  clicked.value = visible;
+  hovered.value = false;
+};
 </script>

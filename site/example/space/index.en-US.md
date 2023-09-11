@@ -12,7 +12,7 @@ Set components spacing.
 ## When To Use
 
 - Avoid components clinging together and set a unified space.
-- Use Space.Compact when child form components are compactly connected and the border is collapsed (After version `ant-design-vue@4.0.0` Supported).
+- Use Space.Compact when child form components are compactly connected and the border is collapsed (After version `@antdv/ui@4.0.0` Supported).
 
 ## API
 

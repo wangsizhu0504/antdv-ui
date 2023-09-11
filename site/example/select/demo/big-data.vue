@@ -26,18 +26,17 @@ Select use virtual scroll which get better performance than 1.x
     :options="options"
   />
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const options: { value: string; disabled: boolean }[] = []
+const options: { value: string; disabled: boolean }[] = [];
 for (let i = 0; i < 100000; i++) {
-  const value = `${i.toString(36)}${i}`
+  const value = `${i.toString(36)}${i}`;
   options.push({
     value,
     disabled: i === 10,
-  })
+  });
 }
 
-const value = ref(['a10', 'c12'])
+const value = ref(['a10', 'c12']);
 </script>

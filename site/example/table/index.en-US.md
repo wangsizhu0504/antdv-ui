@@ -75,7 +75,7 @@ Specify `dataSource` of Table as an array of data.
 | childrenColumnName | The column contains children to display | string | `children` |  |
 | columns | Columns of table [config](#column) | array | - |  |
 | components | Override default table elements | object | - |  |
-| customFilterDropdown | Customized filter overlay，need set `column.customFilterDropdown` | v-slot:customFilterDropdown="[FilterDropdownProps](#filterdropdownprops)" | - | 3.0 |
+| customFilterDropdown | Customized filter overlay, need set `column.customFilterDropdown` | v-slot:customFilterDropdown="[FilterDropdownProps](#filterdropdownprops)" | - | 3.0 |
 | customFilterIcon | Customized filter icon | v-slot:customFilterIcon="{filtered, column}" | - | 3.0 |
 | customHeaderRow | Set props on per header row | Function(columns, index) | - |  |
 | customRow | Set props on per row | Function(record, index) | - |  |
@@ -154,7 +154,7 @@ One of the Table `columns` prop for describing the table's columns, Column has t
 | align | specify how content is aligned | 'left' \| 'right' \| 'center' | 'left' |  |
 | colSpan | Span of this column's title | number |  |  |
 | customCell | Set props on per cell | Function(record, rowIndex, column) | - | column add from 3.0 |
-| customFilterDropdown | use v-slot:customFilterDropdown，Priority is lower than filterDropdown | boolean | false | 3.0 |
+| customFilterDropdown | use v-slot:customFilterDropdown, Priority is lower than filterDropdown | boolean | false | 3.0 |
 | customHeaderCell | Set props on per header cell | Function(column) | - |  |
 | customRender | Renderer of the table cell. The return value should be a VNode | Function({text, record, index}) {} | - |  |
 | dataIndex | Display field of the data record, support nest path by string array | string \| string\[] | - |  |
@@ -190,7 +190,7 @@ One of the Table `columns` prop for describing the table's columns, Column has t
 #### Breakpoint
 
 ```ts
-type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
+type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 ```
 
 ### ColumnGroup
@@ -254,14 +254,14 @@ Custom selection config
 
 ```ts
 interface FilterDropdownProps {
-  prefixCls: string
-  setSelectedKeys: (selectedKeys: Key[]) => void
-  selectedKeys: Key[]
-  confirm: (param?: FilterConfirmProps) => void
-  clearFilters?: () => void
-  filters?: ColumnFilterItem[]
-  visible: boolean
-  column: ColumnType
+  prefixCls: string;
+  setSelectedKeys: (selectedKeys: Key[]) => void;
+  selectedKeys: Key[];
+  confirm: (param?: FilterConfirmProps) => void;
+  clearFilters?: () => void;
+  filters?: ColumnFilterItem[];
+  visible: boolean;
+  column: ColumnType;
 }
 ```
 
@@ -273,9 +273,9 @@ If `dataSource[i].key` is not provided, then you should specify the primary key 
 
 ```jsx
 // primary key is uid
-return <Table rowKey="uid" />
+return <Table rowKey="uid" />;
 // or
-return <Table rowKey={record => record.uid} />
+return <Table rowKey={record => record.uid} />;
 ```
 
 ## FAQ

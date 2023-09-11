@@ -15,7 +15,6 @@ title:
 Cascade selection box of different sizes.
 
 </docs>
-
 <template>
   <a-cascader v-model:value="value" placeholder="Please select" size="large" :options="options" />
   <br />
@@ -27,11 +26,9 @@ Cascade selection box of different sizes.
   <br />
   <br />
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { CascaderProps } from '@antdv/ui'
-
+import { ref } from 'vue';
+import type { CascaderProps } from '@antdv/ui';
 const options: CascaderProps['options'] = [
   {
     value: 'zhejiang',
@@ -65,6 +62,6 @@ const options: CascaderProps['options'] = [
       },
     ],
   },
-]
-const value = ref<string[]>([])
+];
+const value = ref<string[]>([]);
 </script>

@@ -33,17 +33,13 @@ Tree with connected line between nodes, turn on by `showLine`, customize the pre
       :tree-data="treeData"
       @select="onSelect"
     >
-      <template #icon>
-        <carry-out-outlined />
-      </template>
+      <template #icon><carry-out-outlined /></template>
       <template #title="{ dataRef }">
         <template v-if="dataRef.key === '0-0-0-1'">
           <div>multiple line title</div>
           <div>multiple line title</div>
         </template>
-        <template v-else>
-          {{ dataRef.title }}
-        </template>
+        <template v-else>{{ dataRef.title }}</template>
       </template>
       <template #switcherIcon="{ dataRef, defaultIcon }">
         <SmileTwoTone v-if="dataRef.key === '0-0-2'" />
@@ -52,14 +48,12 @@ Tree with connected line between nodes, turn on by `showLine`, customize the pre
     </a-tree>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { CarryOutOutlined, SmileTwoTone } from '@ant-design/icons-vue'
-import type { TreeProps } from '@antdv/ui'
-
-const showLine = ref<boolean>(true)
-const showIcon = ref<boolean>(false)
+import { ref } from 'vue';
+import { CarryOutOutlined, SmileTwoTone } from '@ant-design/icons-vue';
+import type { TreeProps } from '@antdv/ui';
+const showLine = ref<boolean>(true);
+const showIcon = ref<boolean>(false);
 const treeData = ref<TreeProps['treeData']>([
   {
     title: 'parent 1',
@@ -108,8 +102,8 @@ const treeData = ref<TreeProps['treeData']>([
       },
     ],
   },
-])
+]);
 const onSelect: TreeProps['onSelect'] = (selectedKeys, info) => {
-  console.log('selected', selectedKeys, info)
-}
+  console.log('selected', selectedKeys, info);
+};
 </script>

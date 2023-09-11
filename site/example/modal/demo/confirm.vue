@@ -18,37 +18,30 @@ To use `confirm()` to show a confirmation modal dialog.
 
 <template>
   <a-space wrap>
-    <a-button @click="showConfirm">
-      Confirm
-    </a-button>
-    <a-button @click="showPromiseConfirm">
-      With promise
-    </a-button>
-    <a-button type="dashed" @click="showDeleteConfirm">
-      Delete
-    </a-button>
-    <a-button type="dashed" @click="showPropsConfirm">
-      With extra props
-    </a-button>
+    <a-button @click="showConfirm">Confirm</a-button>
+    <a-button @click="showPromiseConfirm">With promise</a-button>
+    <a-button type="dashed" @click="showDeleteConfirm">Delete</a-button>
+    <a-button type="dashed" @click="showPropsConfirm">With extra props</a-button>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-import { createVNode } from 'vue'
-import { Modal } from '@antdv/ui'
-
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { createVNode } from 'vue';
+import { Modal } from '@antdv/ui';
 const showConfirm = () => {
   Modal.confirm({
     title: 'Do you Want to delete these items?',
     icon: createVNode(ExclamationCircleOutlined),
     content: createVNode('div', { style: 'color:red;' }, 'Some descriptions'),
     onOk() {
-      console.log('OK')
+      console.log('OK');
+    },
+    onCancel() {
+      console.log('Cancel');
     },
     class: 'test',
-  })
-}
+  });
+};
 const showDeleteConfirm = () => {
   Modal.confirm({
     title: 'Are you sure delete this task?',
@@ -58,10 +51,13 @@ const showDeleteConfirm = () => {
     okType: 'danger',
     cancelText: 'No',
     onOk() {
-      console.log('OK')
+      console.log('OK');
     },
-  })
-}
+    onCancel() {
+      console.log('Cancel');
+    },
+  });
+};
 const showPropsConfirm = () => {
   Modal.confirm({
     title: 'Are you sure delete this task?',
@@ -74,13 +70,13 @@ const showPropsConfirm = () => {
     },
     cancelText: 'No',
     onOk() {
-      console.log('OK')
+      console.log('OK');
     },
     onCancel() {
-      console.log('Cancel')
+      console.log('Cancel');
     },
-  })
-}
+  });
+};
 
 function showPromiseConfirm() {
   Modal.confirm({
@@ -90,13 +86,13 @@ function showPromiseConfirm() {
     async onOk() {
       try {
         return await new Promise((resolve, reject) => {
-          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-        })
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+        });
       } catch {
-        return console.log('Oops errors!')
+        return console.log('Oops errors!');
       }
     },
     onCancel() {},
-  })
+  });
 }
 </script>

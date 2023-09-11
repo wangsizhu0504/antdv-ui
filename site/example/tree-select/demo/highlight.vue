@@ -6,13 +6,13 @@ title:
   en-US: Highlight
 ---
 
-  ## zh-CN
+## zh-CN
 
-  搜索值高亮
+搜索值高亮
 
-  ## en-US
+## en-US
 
-  Search Value Hightlight
+Search Value Hightlight
 
 </docs>
 
@@ -44,23 +44,21 @@ title:
           >
             {{ fragment }}
           </span>
-          <template v-else>
-            {{ fragment }}
-          </template>
+          <template v-else>{{ fragment }}</template>
         </template>
       </template>
     </template>
   </a-tree-select>
 </template>
-
-<script lang="ts">
-import type { TreeSelectProps } from '@antdv/ui'
-import { defineComponent, ref, watch } from 'vue'
-
-export default defineComponent({
-  setup() {
-    const value = ref<string>()
-    const treeData = ref<TreeSelectProps['treeData']>([
+<script lang="ts" setup>
+import type { TreeSelectProps } from '@antdv/ui';
+import { ref, watch } from 'vue';
+const value = ref<string>();
+const treeData = ref<TreeSelectProps['treeData']>([
+  {
+    label: 'parent 1',
+    value: 'parent 1',
+    children: [
       {
         label: 'parent 1',
         value: 'parent 1',
@@ -85,15 +83,15 @@ export default defineComponent({
           },
         ],
       },
-    ])
-    watch(value, () => {
-      console.log(value.value)
-    })
-    return {
-      searchValue: ref(''),
-      value,
-      treeData,
-    }
+      {
+        label: 'parent 1-1',
+        value: 'parent 1-1',
+      },
+    ],
   },
-})
+]);
+watch(value, () => {
+  console.log(value.value);
+});
+const searchValue = ref('');
 </script>

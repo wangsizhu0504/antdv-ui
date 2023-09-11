@@ -28,15 +28,13 @@ Added custom rendering function, in the default `slot`, you can set any componen
     </a-range-picker>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import type { Dayjs } from 'dayjs'
-import { ref } from 'vue'
-
-const time1 = ref<Dayjs>()
-const time2 = ref<[Dayjs, Dayjs]>()
+import { Dayjs } from 'dayjs';
+import { ref } from 'vue';
+const time1 = ref<Dayjs>();
+const time2 = ref<[Dayjs, Dayjs]>();
 
 const onOk = (value: Dayjs) => {
-  console.log('onOk: ', value)
-}
+  console.log('onOk: ', value);
+};
 </script>

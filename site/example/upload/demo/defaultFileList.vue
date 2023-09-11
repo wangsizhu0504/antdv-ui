@@ -18,17 +18,15 @@ Use `fileList` for uploaded files when page init.
 <template>
   <a-upload v-model:file-list="fileList" action="https://www.mocky.io/v2/5cc8019d300000980a055e76">
     <a-button>
-      <upload-outlined />
+      <upload-outlined></upload-outlined>
       Upload
     </a-button>
   </a-upload>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { UploadOutlined } from '@ant-design/icons-vue'
-import type { UploadProps } from '@antdv/ui'
-
+import { ref } from 'vue';
+import { UploadOutlined } from '@ant-design/icons-vue';
+import type { UploadProps } from '@antdv/ui';
 const fileList = ref<UploadProps['fileList']>([
   {
     uid: '1',
@@ -50,5 +48,5 @@ const fileList = ref<UploadProps['fileList']>([
     response: 'Server Error 500', // custom error message to show
     url: 'http://www.baidu.com/zzz.png',
   },
-])
+]);
 </script>

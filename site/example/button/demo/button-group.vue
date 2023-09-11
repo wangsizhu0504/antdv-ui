@@ -21,30 +21,18 @@ Debug usage
     <h4>Basic</h4>
     <a-button-group>
       <a-button>Cancel</a-button>
-      <a-button type="primary">
-        OK
-      </a-button>
+      <a-button type="primary">OK</a-button>
     </a-button-group>
     <a-button-group>
-      <a-button disabled>
-        L
-      </a-button>
-      <a-button disabled>
-        M
-      </a-button>
-      <a-button disabled>
-        R
-      </a-button>
+      <a-button disabled>L</a-button>
+      <a-button disabled>M</a-button>
+      <a-button disabled>R</a-button>
     </a-button-group>
     <a-button-group>
-      <a-button type="primary">
-        L
-      </a-button>
+      <a-button type="primary">L</a-button>
       <a-button>M</a-button>
       <a-button>M</a-button>
-      <a-button type="dashed">
-        R
-      </a-button>
+      <a-button type="dashed">R</a-button>
     </a-button-group>
     <h4>With Icon</h4>
     <a-button-group>
@@ -59,14 +47,10 @@ Debug usage
     </a-button-group>
     <a-button-group>
       <a-button type="primary">
-        <template #icon>
-          <CloudOutlined />
-        </template>
+        <template #icon><CloudOutlined /></template>
       </a-button>
       <a-button type="primary">
-        <template #icon>
-          <CloudDownloadOutlined />
-        </template>
+        <template #icon><CloudDownloadOutlined /></template>
       </a-button>
     </a-button-group>
   </div>
@@ -74,11 +58,11 @@ Debug usage
 
 <script lang="ts" setup>
 import {
-  CloudDownloadOutlined,
-  CloudOutlined,
   LeftOutlined,
   RightOutlined,
-} from '@ant-design/icons-vue'
+  CloudDownloadOutlined,
+  CloudOutlined,
+} from '@ant-design/icons-vue';
 </script>
 
 <style scoped>

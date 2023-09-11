@@ -15,7 +15,6 @@ title:
 Perform different check rules according to different situations.
 
 </docs>
-
 <template>
   <a-form ref="formRef" :model="formState" name="dynamic_rule" v-bind="formItemLayout">
     <a-form-item
@@ -35,55 +34,50 @@ Perform different check rules according to different situations.
     </a-form-item>
 
     <a-form-item name="checkNick" v-bind="formTailLayout">
-      <a-checkbox v-model:checked="formState.checkNick">
-        Nickname is required
-      </a-checkbox>
+      <a-checkbox v-model:checked="formState.checkNick">Nickname is required</a-checkbox>
     </a-form-item>
 
     <a-form-item v-bind="formTailLayout">
-      <a-button type="primary" @click="onCheck">
-        Check
-      </a-button>
+      <a-button type="primary" @click="onCheck">Check</a-button>
     </a-form-item>
   </a-form>
 </template>
-
 <script lang="ts" setup>
-import { reactive, ref, watch } from 'vue'
-import type { FormInstance } from '@antdv/ui'
+import { reactive, ref, watch } from 'vue';
+import type { FormInstance } from '@antdv/ui';
 
 interface FormState {
-  username: string
-  nickname: string
-  checkNick: boolean
+  username: string;
+  nickname: string;
+  checkNick: boolean;
 }
-const formRef = ref<FormInstance>()
+const formRef = ref<FormInstance>();
 const formState = reactive<FormState>({
   username: '',
   nickname: '',
   checkNick: false,
-})
+});
 watch(
   () => formState.checkNick,
   () => {
-    formRef.value.validateFields(['nickname'])
+    formRef.value.validateFields(['nickname']);
   },
   { flush: 'post' },
-)
+);
 const onCheck = async () => {
   try {
-    const values = await formRef.value.validateFields()
-    console.log('Success:', values)
+    const values = await formRef.value.validateFields();
+    console.log('Success:', values);
   } catch (errorInfo) {
-    console.log('Failed:', errorInfo)
+    console.log('Failed:', errorInfo);
   }
-}
+};
 const formItemLayout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 8 },
-}
+};
 const formTailLayout = {
   labelCol: { span: 4 },
   wrapperCol: { span: 8, offset: 4 },
-}
+};
 </script>

@@ -25,8 +25,7 @@ set Error Level.
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const segmentedData = ['L', 'M', 'Q', 'H']
-const level = ref(segmentedData[0])
+import { ref } from 'vue';
+const segmentedData = ['L', 'M', 'Q', 'H'];
+const level = ref(segmentedData[0]);
 </script>

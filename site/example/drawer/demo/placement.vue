@@ -18,22 +18,12 @@ The Drawer can appear from any edge of the screen.
 
 <template>
   <a-radio-group v-model:value="placement" style="margin-right: 8px">
-    <a-radio value="top">
-      top
-    </a-radio>
-    <a-radio value="right">
-      right
-    </a-radio>
-    <a-radio value="bottom">
-      bottom
-    </a-radio>
-    <a-radio value="left">
-      left
-    </a-radio>
+    <a-radio value="top">top</a-radio>
+    <a-radio value="right">right</a-radio>
+    <a-radio value="bottom">bottom</a-radio>
+    <a-radio value="left">left</a-radio>
   </a-radio-group>
-  <a-button type="primary" @click="showDrawer">
-    Open
-  </a-button>
+  <a-button type="primary" @click="showDrawer">Open</a-button>
   <a-drawer
     title="Basic Drawer"
     :placement="placement"
@@ -46,19 +36,17 @@ The Drawer can appear from any edge of the screen.
     <p>Some contents...</p>
   </a-drawer>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { DrawerProps } from '@antdv/ui'
-
-const placement = ref<DrawerProps['placement']>('left')
-const open = ref<boolean>(false)
+import { ref } from 'vue';
+import type { DrawerProps } from '@antdv/ui';
+const placement = ref<DrawerProps['placement']>('left');
+const open = ref<boolean>(false);
 
 const showDrawer = () => {
-  open.value = true
-}
+  open.value = true;
+};
 
 const onClose = () => {
-  open.value = false
-}
+  open.value = false;
+};
 </script>

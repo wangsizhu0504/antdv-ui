@@ -39,10 +39,9 @@ Countdown component.
     </a-col>
   </a-row>
 </template>
-
 <script lang="ts" setup>
 const onFinish = () => {
-  console.log('finished!')
-}
-const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30
+  console.log('finished!');
+};
+const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
 </script>

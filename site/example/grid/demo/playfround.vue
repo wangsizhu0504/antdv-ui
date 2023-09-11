@@ -81,17 +81,15 @@ A simple playground for column count and gutter.
     <pre>{{ rowColHtml }}</pre>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { computed, reactive } from 'vue'
-
+import { computed, reactive } from 'vue';
 const state = reactive<{
-  gutterKey: number
-  vgutterKey: number
-  colCountKey: number
-  gutters: { [key: number]: number }
-  colCounts: { [key: number]: number }
-  vgutters: { [key: number]: number }
+  gutterKey: number;
+  vgutterKey: number;
+  colCountKey: number;
+  gutters: { [key: number]: number };
+  colCounts: { [key: number]: number };
+  vgutters: { [key: number]: number };
 }>({
   gutterKey: 1,
   vgutterKey: 1,
@@ -101,27 +99,26 @@ const state = reactive<{
   vgutters: {},
 });
 [8, 16, 24, 32, 40, 48].forEach((value: number, i: number) => {
-  state.gutters[i] = value
+  state.gutters[i] = value;
 });
 [8, 16, 24, 32, 40, 48].forEach((value, i) => {
-  state.vgutters[i] = value
+  state.vgutters[i] = value;
 });
 [2, 3, 4, 6, 8, 12].forEach((value, i) => {
-  state.colCounts[i] = value
-})
+  state.colCounts[i] = value;
+});
 const rowColHtml = computed(() => {
-  const colCount = state.colCounts[state.colCountKey]
-  const getter = [state.gutters[state.gutterKey], state.vgutters[state.vgutterKey]]
-  let colCode = `<a-row :gutter="[${getter}]">\n`
+  const colCount = state.colCounts[state.colCountKey];
+  const getter = [state.gutters[state.gutterKey], state.vgutters[state.vgutterKey]];
+  let colCode = '<a-row :gutter="[' + getter + ']">\n';
   for (let i = 0; i < colCount; i++) {
-    const spanNum = 24 / colCount
-    colCode += `  <a-col :span="${spanNum}"/>\n`
+    const spanNum = 24 / colCount;
+    colCode += '  <a-col :span="' + spanNum + '"/>\n';
   }
-  colCode += '</a-row>'
-  return colCode
-})
+  colCode += '</a-row>';
+  return colCode;
+});
 </script>
-
 <style scoped>
 :deep(#components-grid-demo-playground) [class~='ant-col'] {
   background: transparent;

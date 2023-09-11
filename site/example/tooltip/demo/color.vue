@@ -18,17 +18,13 @@ We preset a series of colorful Tooltip styles for use in different situations.
 
 <template>
   <div id="components-a-tooltip-demo-color">
-    <a-divider orientation="left">
-      Presets
-    </a-divider>
+    <a-divider orientation="left">Presets</a-divider>
     <div>
       <a-tooltip v-for="color in colors" :key="color" title="prompt text" :color="color">
         <a-button>{{ color }}</a-button>
       </a-tooltip>
     </div>
-    <a-divider orientation="left">
-      Custom
-    </a-divider>
+    <a-divider orientation="left">Custom</a-divider>
     <div>
       <a-tooltip v-for="color in customColors" :key="color" title="prompt text" :color="color">
         <a-button>{{ color }}</a-button>
@@ -52,8 +48,8 @@ const colors = [
   'volcano',
   'gold',
   'lime',
-]
-const customColors = ['#f50', '#2db7f5', '#87d068', '#108ee9']
+];
+const customColors = ['#f50', '#2db7f5', '#87d068', '#108ee9'];
 </script>
 
 <style scoped>

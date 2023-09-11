@@ -17,14 +17,10 @@ The `style` and `class` are available to customize Message.
 </docs>
 
 <template>
-  <a-button @click="success">
-    Customized style
-  </a-button>
+  <a-button @click="success">Customized style</a-button>
 </template>
-
 <script lang="ts" setup>
-import { message } from '@antdv/ui'
-
+import { message } from '@antdv/ui';
 const success = () => {
   message.success({
     content: () => 'This is a prompt message with custom className and style',
@@ -32,10 +28,9 @@ const success = () => {
     style: {
       marginTop: '20vh',
     },
-  })
-}
+  });
+};
 </script>
-
 <style>
 .custom-class {
   color: red;

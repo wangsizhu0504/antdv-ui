@@ -34,7 +34,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
 | 参数 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | colon | 配置 Form.Item 的 colon 的默认值 (只有在属性 layout 为 horizontal 时有效) | boolean | true |  |
-| disabled | 设置表单组件禁用，仅对 @antdv/ui 组件有效 | boolean | false | 4.0 |
+| disabled | 设置表单组件禁用，仅对 antdv 组件有效 | boolean | false | 4.0 |
 | hideRequiredMark | 隐藏所有表单项的必选标记 | Boolean | false |  |
 | labelAlign | label 标签的文本对齐方式 | 'left' \| 'right' | 'right' |  |
 | labelCol | label 标签布局，同 `<Col>` 组件，设置 `span` `offset` 值，如 `{span: 3, offset: 12}` 或 `sm: {span: 3, offset: 12}` | [object](/components/grid-cn/#col) |  |  |
@@ -85,7 +85,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
 | label | label 标签的文本 | string\|slot |  |  |
 | labelAlign | 标签文本对齐方式 | 'left' \| 'right' | 'right' |  |
 | labelCol | label 标签布局，同 `<Col>` 组件，设置 `span` `offset` 值，如 `{span: 3, offset: 12}` 或 `sm: {span: 3, offset: 12}` | [object](/components/grid-cn/#col) |  |  |
-| name | 表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的 | string |  |  |
+| name | 表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的 | [NamePath](#namepath) |  |  |
 | required | 是否必填，如不设置，则会根据校验规则自动生成 | boolean | false |  |
 | rules | 表单验证规则 | object \| array |  |  |
 | validateFirst | 当某一规则校验不通过时，是否停止剩下的规则的校验。 | boolean | false | 2.0.0 |
@@ -198,54 +198,53 @@ Form.Item 会对唯一子元素进行劫持，并监听 `blur` 和 `change` 事�
 
 `useForm` 是一个可以独立 Form 组件运行的方法，它使用 Vue 响应式机制进行数据的监听和校验，并将校验结果返回，你可以将校验结果绑定到任何组件上，`Form.Item` 也仅仅是将结果展示。
 
-2.2 以下版本需要需要 @ant-design-vue/use 库单独提供，不建议继续使用，你应该尽快升级到 2.2+ 版本
+2.2 以下版本需要需要 @@antdv/ui/use 库单独提供，不建议继续使用，你应该尽快升级到 2.2+ 版本
 
 ```ts
-import { Form } from '@antdv/ui'
+import { Form } from '@antdv/ui';
+const useForm = Form.useForm;
 
-const useForm = Form.useForm
-
-useForm(modelRef, ruleRef, [options])
+useForm(modelRef, ruleRef, [options]);
 ```
 
 参数说明：
 
 ```ts
 /*
- modelRef`, `ruleRef` 必须是响应式数据
+ `modelRef`, `ruleRef` 必须是响应式数据
 */
 
 interface Props {
-  [key: string]: any
+  [key: string]: any;
 }
 function useForm(
   modelRef: Props | Ref<Props>,
   rulesRef?: Props | Ref<Props>,
   options?: {
-    immediate?: boolean
-    deep?: boolean
-    validateOnRuleChange?: boolean
-    debounce?: DebounceSettings
+    immediate?: boolean;
+    deep?: boolean;
+    validateOnRuleChange?: boolean;
+    debounce?: DebounceSettings;
   },
 ): {
-  modelRef: Props | Ref<Props>
-  rulesRef: Props | Ref<Props>
-  initialModel: Props
-  validateInfos: validateInfos
-  resetFields: (newValues?: Props) => void
-  validate: <T = any>(names?: namesType, option?: validateOptions) => Promise<T>
+  modelRef: Props | Ref<Props>;
+  rulesRef: Props | Ref<Props>;
+  initialModel: Props;
+  validateInfos: validateInfos;
+  resetFields: (newValues?: Props) => void;
+  validate: <T = any>(names?: namesType, option?: validateOptions) => Promise<T>;
   validateField: (
     name?: string,
     value?: any,
     rules?: [Record<string, unknown>],
     option?: validateOptions,
-  ) => Promise<RuleError[]>
-  mergeValidateInfo: (items: ValidateInfo | ValidateInfo[]) => ValidateInfo
-  clearValidate: (names?: namesType) => void
+  ) => Promise<RuleError[]>;
+  mergeValidateInfo: (items: ValidateInfo | ValidateInfo[]) => ValidateInfo;
+  clearValidate: (names?: namesType) => void;
   onValidate?: (
     name: string | number | string[] | number[],
     status: boolean,
     errorMsgs: string[] | null,
-  ) => void
-}
+  ) => void;
+};
 ```

@@ -26,29 +26,22 @@ Control filters and sorters by `filteredValue` and `sortOrder`.
 <template>
   <div>
     <div class="table-operations">
-      <a-button @click="setAgeSort">
-        Sort age
-      </a-button>
-      <a-button @click="clearFilters">
-        Clear filters
-      </a-button>
-      <a-button @click="clearAll">
-        Clear filters and sorters
-      </a-button>
+      <a-button @click="setAgeSort">Sort age</a-button>
+      <a-button @click="clearFilters">Clear filters</a-button>
+      <a-button @click="clearAll">Clear filters and sorters</a-button>
     </div>
     <a-table :columns="columns" :data-source="data" @change="handleChange" />
   </div>
 </template>
-
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-import type { TableColumnType, TableProps } from '@antdv/ui'
+import { computed, ref } from 'vue';
+import type { TableColumnType, TableProps } from '@antdv/ui';
 
 interface DataItem {
-  key: string
-  name: string
-  age: number
-  address: string
+  key: string;
+  name: string;
+  age: number;
+  address: string;
 }
 
 const data: DataItem[] = [
@@ -76,14 +69,14 @@ const data: DataItem[] = [
     age: 32,
     address: 'London No. 2 Lake Park',
   },
-]
+];
 
-const filteredInfo = ref()
-const sortedInfo = ref()
+const filteredInfo = ref();
+const sortedInfo = ref();
 
 const columns = computed<TableColumnType[]>(() => {
-  const filtered = filteredInfo.value || {}
-  const sorted = sortedInfo.value || {}
+  const filtered = filteredInfo.value || {};
+  const sorted = sortedInfo.value || {};
   return [
     {
       title: 'Name',
@@ -120,29 +113,28 @@ const columns = computed<TableColumnType[]>(() => {
       sortOrder: sorted.columnKey === 'address' && sorted.order,
       ellipsis: true,
     },
-  ]
-})
+  ];
+});
 
 const handleChange: TableProps['onChange'] = (pagination, filters, sorter) => {
-  console.log('Various parameters', pagination, filters, sorter)
-  filteredInfo.value = filters
-  sortedInfo.value = sorter
-}
+  console.log('Various parameters', pagination, filters, sorter);
+  filteredInfo.value = filters;
+  sortedInfo.value = sorter;
+};
 const clearFilters = () => {
-  filteredInfo.value = null
-}
+  filteredInfo.value = null;
+};
 const clearAll = () => {
-  filteredInfo.value = null
-  sortedInfo.value = null
-}
+  filteredInfo.value = null;
+  sortedInfo.value = null;
+};
 const setAgeSort = () => {
   sortedInfo.value = {
     order: 'descend',
     columnKey: 'age',
-  }
-}
+  };
+};
 </script>
-
 <style scoped>
 .table-operations {
   margin-bottom: 16px;

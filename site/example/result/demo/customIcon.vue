@@ -22,13 +22,10 @@ Custom icon.
       <smile-twoTone />
     </template>
     <template #extra>
-      <a-button type="primary">
-        Next
-      </a-button>
+      <a-button type="primary">Next</a-button>
     </template>
   </a-result>
 </template>
-
 <script lang="ts" setup>
-import { SmileTwoTone } from '@ant-design/icons-vue'
+import { SmileTwoTone } from '@ant-design/icons-vue';
 </script>

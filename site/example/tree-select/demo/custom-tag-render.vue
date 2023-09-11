@@ -6,13 +6,13 @@ title:
   en-US: Custom Tag Render
 ---
 
-  ## zh-CN
+## zh-CN
 
-  允许自定义选择标签的样式。仅支持多选模式，单选可直接使用 `title` 插槽
+允许自定义选择标签的样式。仅支持多选模式，单选可直接使用 `title` 插槽
 
-  ## en-US
+## en-US
 
-  Allows for custom rendering of tags.
+Allows for custom rendering of tags.
 
 </docs>
 
@@ -37,23 +37,22 @@ title:
     </template>
     <template #title="{ value: val, label }">
       <b v-if="val === 'parent 1-1'" style="color: #08c">{{ val }}</b>
-      <template v-else>
-        {{ label }}
-      </template>
+      <template v-else>{{ label }}</template>
     </template>
   </a-tree-select>
 </template>
-
-<script lang="ts">
-import type { TreeSelectProps } from '@antdv/ui'
-import { defineComponent, ref, watch } from 'vue'
-import { TreeSelect } from '@antdv/ui'
-
-const SHOW_ALL = TreeSelect.SHOW_ALL
-export default defineComponent({
-  setup() {
-    const value = ref<string[]>(['parent 1', 'parent 1-0', 'leaf1'])
-    const treeData = ref<TreeSelectProps['treeData']>([
+<script lang="ts" setup>
+import { ref, watch } from 'vue';
+import type { TreeSelectProps } from '@antdv/ui';
+import { TreeSelect } from '@antdv/ui';
+const SHOW_ALL = TreeSelect.SHOW_ALL;
+const value = ref<string[]>(['parent 1', 'parent 1-0', 'leaf1']);
+const treeData = ref<TreeSelectProps['treeData']>([
+  {
+    label: 'parent 1',
+    value: 'parent 1',
+    color: 'pink',
+    children: [
       {
         label: 'parent 1',
         value: 'parent 1',
@@ -83,16 +82,15 @@ export default defineComponent({
           },
         ],
       },
-    ])
-    watch(value, () => {
-      console.log('select', value.value)
-    })
-
-    return {
-      value,
-      treeData,
-      SHOW_ALL,
-    }
+      {
+        label: 'parent 1-1',
+        value: 'parent 1-1',
+        color: 'blue',
+      },
+    ],
   },
-})
+]);
+watch(value, () => {
+  console.log('select', value.value);
+});
 </script>

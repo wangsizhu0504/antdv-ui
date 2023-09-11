@@ -17,9 +17,8 @@ a-input-group example
 Note: You don't need `Col` to control the width in the `compact` mode.
 
 </docs>
-
 <template>
-  <div class="site-input-group-wrapper">
+  <a-space class="site-input-group-wrapper" direction="vertical" size="middle">
     <a-input-group size="large">
       <a-row :gutter="8">
         <a-col :span="5">
@@ -30,68 +29,42 @@ Note: You don't need `Col` to control the width in the `compact` mode.
         </a-col>
       </a-row>
     </a-input-group>
-    <br />
     <a-input-group compact>
       <a-input v-model:value="value1" style="width: 20%" />
       <a-input v-model:value="value2" style="width: 30%" />
     </a-input-group>
-    <br />
     <a-input-group compact>
       <a-select v-model:value="value3">
-        <a-select-option value="Zhejiang">
-          Zhejiang
-        </a-select-option>
-        <a-select-option value="Jiangsu">
-          Jiangsu
-        </a-select-option>
+        <a-select-option value="Zhejiang">Zhejiang</a-select-option>
+        <a-select-option value="Jiangsu">Jiangsu</a-select-option>
       </a-select>
       <a-input v-model:value="value4" style="width: 50%" />
     </a-input-group>
-    <br />
     <a-input-group compact>
       <a-select v-model:value="value5">
-        <a-select-option value="Option1">
-          Option1
-        </a-select-option>
-        <a-select-option value="Option2">
-          Option2
-        </a-select-option>
+        <a-select-option value="Option1">Option1</a-select-option>
+        <a-select-option value="Option2">Option2</a-select-option>
       </a-select>
       <a-input v-model:value="value6" style="width: 50%" />
     </a-input-group>
-    <br />
     <a-input-group compact>
       <a-input v-model:value="value7" style="width: 50%" />
       <a-date-picker v-model:value="value8" style="width: 50%" />
     </a-input-group>
-    <br />
     <a-input-group compact>
       <a-select v-model:value="value9">
-        <a-select-option value="Option1-1">
-          Option1-1
-        </a-select-option>
-        <a-select-option value="Option1-2">
-          Option1-2
-        </a-select-option>
+        <a-select-option value="Option1-1">Option1-1</a-select-option>
+        <a-select-option value="Option1-2">Option1-2</a-select-option>
       </a-select>
       <a-select v-model:value="value10">
-        <a-select-option value="Option2-1">
-          Option2-1
-        </a-select-option>
-        <a-select-option value="Option2-2">
-          Option2-2
-        </a-select-option>
+        <a-select-option value="Option2-1">Option2-1</a-select-option>
+        <a-select-option value="Option2-2">Option2-2</a-select-option>
       </a-select>
     </a-input-group>
-    <br />
     <a-input-group compact>
       <a-select v-model:value="value11">
-        <a-select-option value="1">
-          Between
-        </a-select-option>
-        <a-select-option value="2">
-          Except
-        </a-select-option>
+        <a-select-option value="1">Between</a-select-option>
+        <a-select-option value="2">Except</a-select-option>
       </a-select>
       <a-input
         v-model:value="value12"
@@ -112,15 +85,10 @@ Note: You don't need `Col` to control the width in the `compact` mode.
         placeholder="Maximum"
       />
     </a-input-group>
-    <br />
     <a-input-group compact>
       <a-select v-model:value="value15">
-        <a-select-option value="Sign Up">
-          Sign Up
-        </a-select-option>
-        <a-select-option value="Sign In">
-          Sign In
-        </a-select-option>
+        <a-select-option value="Sign Up">Sign Up</a-select-option>
+        <a-select-option value="Sign In">Sign In</a-select-option>
       </a-select>
       <a-auto-complete
         v-model:value="value16"
@@ -129,15 +97,10 @@ Note: You don't need `Col` to control the width in the `compact` mode.
         placeholder="Email"
       />
     </a-input-group>
-    <br />
     <a-input-group compact>
       <a-select v-model:value="value17" style="width: 30%">
-        <a-select-option value="Home">
-          Home
-        </a-select-option>
-        <a-select-option value="Company">
-          Company
-        </a-select-option>
+        <a-select-option value="Home">Home</a-select-option>
+        <a-select-option value="Company">Company</a-select-option>
       </a-select>
       <a-cascader
         v-model:value="value18"
@@ -146,30 +109,23 @@ Note: You don't need `Col` to control the width in the `compact` mode.
         placeholder="Select Address"
       />
     </a-input-group>
-    <br />
     <a-input-group compact>
       <a-input v-model:value="value19" style="width: calc(100% - 200px)" />
-      <a-button type="primary">
-        Submit
-      </a-button>
+      <a-button type="primary">Submit</a-button>
     </a-input-group>
-    <br />
     <a-input-group compact>
       <a-input v-model:value="value20" style="width: calc(100% - 200px)" />
       <a-tooltip title="copy git url">
         <a-button>
-          <template #icon>
-            <CopyOutlined />
-          </template>
+          <template #icon><CopyOutlined /></template>
         </a-button>
       </a-tooltip>
     </a-input-group>
-  </div>
+  </a-space>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { CopyOutlined } from '@ant-design/icons-vue'
+import { ref } from 'vue';
+import { CopyOutlined } from '@ant-design/icons-vue';
 
 const options = [
   {
@@ -204,29 +160,28 @@ const options = [
       },
     ],
   },
-]
-const value1 = ref<string>('0571')
-const value2 = ref<string>('26888888')
-const value3 = ref<string>('Zhejiang')
-const value4 = ref<string>('Xihu District, Hangzhou')
-const value5 = ref<string>('Option1')
-const value6 = ref<string>('input content')
-const value7 = ref<string>('input content')
-const value8 = ref<string | null>(null)
-const value9 = ref<string>('Option1-1')
-const value10 = ref<string>('Option2-2')
-const value11 = ref<string>('1')
-const value12 = ref<string>('')
-const value13 = ref<string>('')
-const value14 = ref<string>('')
-const value15 = ref<string>('Sign Up')
-const value16 = ref<string>('')
-const value17 = ref<string>('Home')
-const value18 = ref<string[]>([])
-const value19 = ref<string>('https://surely.cool')
-const value20 = ref<string>('https://antd-vue.com')
+];
+const value1 = ref<string>('0571');
+const value2 = ref<string>('26888888');
+const value3 = ref<string>('Zhejiang');
+const value4 = ref<string>('Xihu District, Hangzhou');
+const value5 = ref<string>('Option1');
+const value6 = ref<string>('input content');
+const value7 = ref<string>('input content');
+const value8 = ref<string | null>(null);
+const value9 = ref<string>('Option1-1');
+const value10 = ref<string>('Option2-2');
+const value11 = ref<string>('1');
+const value12 = ref<string>('');
+const value13 = ref<string>('');
+const value14 = ref<string>('');
+const value15 = ref<string>('Sign Up');
+const value16 = ref<string>('');
+const value17 = ref<string>('Home');
+const value18 = ref<string[]>([]);
+const value19 = ref<string>('https://surely.cool');
+const value20 = ref<string>('https://antdv.com');
 </script>
-
 <style scoped>
 .site-input-group-wrapper .site-input-split {
   background-color: #fff;

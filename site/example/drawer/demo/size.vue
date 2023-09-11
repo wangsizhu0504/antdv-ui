@@ -20,37 +20,29 @@ The default width (or height) of Drawer is `378px`, and there is a presetted lar
   <a-button type="primary" style="margin-right: 8px" @click="showDrawer('default')">
     Open Default Size (378px)
   </a-button>
-  <a-button type="primary" @click="showDrawer('large')">
-    Open Large Size (736px)
-  </a-button>
+  <a-button type="primary" @click="showDrawer('large')">Open Large Size (736px)</a-button>
   <a-drawer title="Basic Drawer" :size="size" :open="open" @close="onClose">
     <template #extra>
-      <a-button style="margin-right: 8px" @click="onClose">
-        Cancel
-      </a-button>
-      <a-button type="primary" @click="onClose">
-        Submit
-      </a-button>
+      <a-button style="margin-right: 8px" @click="onClose">Cancel</a-button>
+      <a-button type="primary" @click="onClose">Submit</a-button>
     </template>
     <p>Some contents...</p>
     <p>Some contents...</p>
     <p>Some contents...</p>
   </a-drawer>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { DrawerProps } from '@antdv/ui'
-
-const open = ref<boolean>(false)
-const size = ref<DrawerProps['size']>('default')
+import { ref } from 'vue';
+import type { DrawerProps } from '@antdv/ui';
+const open = ref<boolean>(false);
+const size = ref<DrawerProps['size']>('default');
 
 const showDrawer = (val: DrawerProps['size']) => {
-  size.value = val
-  open.value = true
-}
+  size.value = val;
+  open.value = true;
+};
 
 const onClose = () => {
-  open.value = false
-}
+  open.value = false;
+};
 </script>

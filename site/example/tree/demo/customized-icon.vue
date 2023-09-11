@@ -18,9 +18,7 @@ You can customize icons for different nodes.
 
 <template>
   <a-tree v-model:selectedKeys="selectedKeys" :tree-data="treeData" show-icon default-expand-all>
-    <template #switcherIcon="{ switcherCls }">
-      <down-outlined :class="switcherCls" />
-    </template>
+    <template #switcherIcon="{ switcherCls }"><down-outlined :class="switcherCls" /></template>
     <template #icon="{ key, selected }">
       <template v-if="key === '0-0'">
         <smile-outlined />
@@ -35,11 +33,10 @@ You can customize icons for different nodes.
     </template>
   </a-tree>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { DownOutlined, FrownFilled, FrownOutlined, SmileOutlined } from '@ant-design/icons-vue'
-import type { TreeProps } from '@antdv/ui'
+import { ref } from 'vue';
+import { DownOutlined, SmileOutlined, FrownOutlined, FrownFilled } from '@ant-design/icons-vue';
+import type { TreeProps } from '@antdv/ui';
 
 const treeData: TreeProps['treeData'] = [
   {
@@ -50,6 +47,6 @@ const treeData: TreeProps['treeData'] = [
       { title: 'leaf', key: '0-0-1' },
     ],
   },
-]
-const selectedKeys = ref(['0-0-0'])
+];
+const selectedKeys = ref(['0-0-0']);
 </script>

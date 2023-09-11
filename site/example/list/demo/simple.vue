@@ -21,9 +21,7 @@ Customizing the header and footer of list by setting `header` and `footer` prope
 </docs>
 
 <template>
-  <h3 :style="{ margin: '16px 0' }">
-    Small Size
-  </h3>
+  <h3 :style="{ margin: '16px 0' }">Small Size</h3>
   <a-list size="small" bordered :data-source="data">
     <template #renderItem="{ item }">
       <a-list-item>{{ item }}</a-list-item>
@@ -35,9 +33,7 @@ Customizing the header and footer of list by setting `header` and `footer` prope
       <div>Footer</div>
     </template>
   </a-list>
-  <h3 :style="{ marginBottom: '16px' }">
-    Default Size
-  </h3>
+  <h3 :style="{ marginBottom: '16px' }">Default Size</h3>
   <a-list bordered :data-source="data">
     <template #renderItem="{ item }">
       <a-list-item>{{ item }}</a-list-item>
@@ -49,9 +45,7 @@ Customizing the header and footer of list by setting `header` and `footer` prope
       <div>Footer</div>
     </template>
   </a-list>
-  <h3 :style="{ margin: '16px 0' }">
-    Large Size
-  </h3>
+  <h3 :style="{ margin: '16px 0' }">Large Size</h3>
   <a-list size="large" bordered :data-source="data">
     <template #renderItem="{ item }">
       <a-list-item>{{ item }}</a-list-item>
@@ -64,7 +58,6 @@ Customizing the header and footer of list by setting `header` and `footer` prope
     </template>
   </a-list>
 </template>
-
 <script lang="ts" setup>
 const data: string[] = [
   'Racing car sprays burning fuel into crowd.',
@@ -72,5 +65,5 @@ const data: string[] = [
   'Australian walks 100km after outback crash.',
   'Man charged over missing wedding girl.',
   'Los Angeles battles huge wildfires.',
-]
+];
 </script>

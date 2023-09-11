@@ -56,10 +56,8 @@ Showing more detailed info of every row.
     </template>
   </a-table>
 </template>
-
 <script lang="ts" setup>
-import { DownOutlined } from '@ant-design/icons-vue'
-
+import { DownOutlined } from '@ant-design/icons-vue';
 const columns = [
   { title: 'Name', dataIndex: 'name', key: 'name' },
   { title: 'Platform', dataIndex: 'platform', key: 'platform' },
@@ -68,19 +66,19 @@ const columns = [
   { title: 'Creator', dataIndex: 'creator', key: 'creator' },
   { title: 'Date', dataIndex: 'createdAt', key: 'createdAt' },
   { title: 'Action', key: 'operation' },
-]
+];
 
 interface DataItem {
-  key: number
-  name: string
-  platform: string
-  version: string
-  upgradeNum: number
-  creator: string
-  createdAt: string
+  key: number;
+  name: string;
+  platform: string;
+  version: string;
+  upgradeNum: number;
+  creator: string;
+  createdAt: string;
 }
 
-const data: DataItem[] = []
+const data: DataItem[] = [];
 for (let i = 0; i < 3; ++i) {
   data.push({
     key: i,
@@ -90,7 +88,7 @@ for (let i = 0; i < 3; ++i) {
     upgradeNum: 500,
     creator: 'Jack',
     createdAt: '2014-12-24 23:12:00',
-  })
+  });
 }
 
 const innerColumns = [
@@ -103,22 +101,22 @@ const innerColumns = [
     dataIndex: 'operation',
     key: 'operation',
   },
-]
+];
 
 interface innerDataItem {
-  key: number
-  date: string
-  name: string
-  upgradeNum: string
+  key: number;
+  date: string;
+  name: string;
+  upgradeNum: string;
 }
 
-const innerData: innerDataItem[] = []
+const innerData: innerDataItem[] = [];
 for (let i = 0; i < 3; ++i) {
   innerData.push({
     key: i,
     date: '2014-12-24 23:12:00',
     name: `This is production name ${i + 1}`,
     upgradeNum: 'Upgraded: 56',
-  })
+  });
 }
 </script>

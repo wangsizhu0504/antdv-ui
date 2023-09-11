@@ -10,19 +10,19 @@
     <size />
   </demo-sort>
 </template>
-
 <script lang="ts">
-import { defineComponent } from 'vue'
-import CN from '../index.zh-CN.md'
-import US from '../index.en-US.md'
-import Basic from './basic.vue'
-import Extra from './extra.vue'
-import Placement from './placement.vue'
-import UserProfile from './user-profile.vue'
-import MultiLevelDrawer from './multi-level-drawer.vue'
-import FormInDrawer from './form-in-drawer.vue'
-import RenderInCurrent from './render-in-current.vue'
-import Size from './size.vue'
+import Basic from './basic.vue';
+import Extra from './extra.vue';
+import Placement from './placement.vue';
+import UserProfile from './user-profile.vue';
+import MultiLevelDrawer from './multi-level-drawer.vue';
+import FormInDrawer from './form-in-drawer.vue';
+import RenderInCurrent from './render-in-current.vue';
+import Size from './size.vue';
+
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   CN,
@@ -38,7 +38,7 @@ export default defineComponent({
     Size,
   },
   setup() {
-    return {}
+    return {};
   },
-})
+});
 </script>

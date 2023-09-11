@@ -14,6 +14,7 @@ title:
 
 A loading indicator can be added to a button by setting the `loading` property on the `a-dropdown-button`.
 
+
 </docs>
 
 <template>
@@ -21,9 +22,7 @@ A loading indicator can be added to a button by setting the `loading` property o
     <a-dropdown-button type="primary" loading>
       <template #overlay>
         <a-menu>
-          <a-menu-item key="1">
-            Submit and continue
-          </a-menu-item>
+          <a-menu-item key="1">Submit and continue</a-menu-item>
         </a-menu>
       </template>
       Submit
@@ -31,9 +30,7 @@ A loading indicator can be added to a button by setting the `loading` property o
     <a-dropdown-button type="primary" size="small" loading>
       <template #overlay>
         <a-menu>
-          <a-menu-item key="1">
-            Submit and continue
-          </a-menu-item>
+          <a-menu-item key="1">Submit and continue</a-menu-item>
         </a-menu>
       </template>
       Submit
@@ -41,9 +38,7 @@ A loading indicator can be added to a button by setting the `loading` property o
     <a-dropdown-button type="primary" :loading="loading1" @click="enterLoading1">
       <template #overlay>
         <a-menu>
-          <a-menu-item key="1">
-            Submit and continue
-          </a-menu-item>
+          <a-menu-item key="1">Submit and continue</a-menu-item>
         </a-menu>
       </template>
       Submit
@@ -52,35 +47,28 @@ A loading indicator can be added to a button by setting the `loading` property o
       Submit
       <template #overlay>
         <a-menu>
-          <a-menu-item key="1">
-            Submit and continue
-          </a-menu-item>
+          <a-menu-item key="1">Submit and continue</a-menu-item>
         </a-menu>
       </template>
-      <template #icon>
-        <DownOutlined />
-      </template>
+      <template #icon><DownOutlined /></template>
     </a-dropdown-button>
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import type { Ref } from 'vue'
-import { ref } from 'vue'
-import { DownOutlined } from '@ant-design/icons-vue'
-
-const loading1 = ref(false)
-const loading2 = ref(false)
+import { Ref, ref } from 'vue';
+import { DownOutlined } from '@ant-design/icons-vue';
+const loading1 = ref(false);
+const loading2 = ref(false);
 const enterLoading = (loading: Ref<boolean>) => {
-  loading.value = true
+  loading.value = true;
   setTimeout(() => {
-    loading.value = false
-  }, 6000)
-}
+    loading.value = false;
+  }, 6000);
+};
 function enterLoading1() {
-  enterLoading(loading1)
+  enterLoading(loading1);
 }
 function enterLoading2() {
-  enterLoading(loading2)
+  enterLoading(loading2);
 }
 </script>

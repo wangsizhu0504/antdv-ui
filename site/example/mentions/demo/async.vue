@@ -15,7 +15,6 @@ title:
 async.
 
 </docs>
-
 <template>
   <a-mentions v-model:value="value" :options="options" :loading="loading" @search="onSearch">
     <template #option="{ payload }">
@@ -26,37 +25,36 @@ async.
 </template>
 
 <script lang="ts" setup>
-import { debounce } from 'lodash-es'
-import { computed, ref } from 'vue'
-import type { MentionsProps } from '..'
-
-const value = ref<string>('')
-const loading = ref<boolean>(false)
-const users = ref<{ login: string; avatar_url: string }[]>([])
-const search = ref<string>('')
+import { debounce } from 'lodash-es';
+import { computed, ref } from 'vue';
+import { MentionsProps } from '..';
+const value = ref<string>('');
+const loading = ref<boolean>(false);
+const users = ref<{ login: string; avatar_url: string }[]>([]);
+const search = ref<string>('');
 const loadGithubUsers = debounce((key: string) => {
   if (!key) {
-    users.value = []
-    return
+    users.value = [];
+    return;
   }
 
   fetch(`https://api.github.com/search/users?q=${key}`)
     .then(res => res.json())
     .then(({ items = [] }) => {
-      if (search.value !== key) return
-      users.value = items.slice(0, 10)
-      loading.value = false
-    })
-}, 800)
+      if (search.value !== key) return;
+      users.value = items.slice(0, 10);
+      loading.value = false;
+    });
+}, 800);
 
 const onSearch = (searchValue: string) => {
-  search.value = searchValue
-  loading.value = !!searchValue
-  console.log(!!searchValue)
-  users.value = []
-  console.log('Search:', searchValue)
-  loadGithubUsers(searchValue)
-}
+  search.value = searchValue;
+  loading.value = !!searchValue;
+  console.log(!!searchValue);
+  users.value = [];
+  console.log('Search:', searchValue);
+  loadGithubUsers(searchValue);
+};
 const options = computed<MentionsProps['options']>(() =>
   users.value.map(user => ({
     key: user.login,
@@ -64,9 +62,8 @@ const options = computed<MentionsProps['options']>(() =>
     class: 'antd-demo-dynamic-option',
     payload: user,
   })),
-)
+);
 </script>
-
 <style scoped>
 .antd-demo-dynamic-option img {
   width: 20px;

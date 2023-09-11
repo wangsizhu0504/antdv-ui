@@ -24,18 +24,14 @@ When the timeline is incomplete and ongoing, put a ghost node at last. Set `pend
       <a-timeline-item>Solve initial network problems 2015-09-01</a-timeline-item>
       <a-timeline-item>Technical testing 2015-09-01</a-timeline-item>
     </a-timeline>
-    <a-button type="primary" style="margin-top: 16px" @click="handleClick">
-      Toggle Reverse
-    </a-button>
+    <a-button type="primary" style="margin-top: 16px" @click="handleClick">Toggle Reverse</a-button>
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const reverse = ref<boolean>(false)
+import { ref } from 'vue';
+const reverse = ref<boolean>(false);
 
 const handleClick = () => {
-  reverse.value = !reverse.value
-}
+  reverse.value = !reverse.value;
+};
 </script>

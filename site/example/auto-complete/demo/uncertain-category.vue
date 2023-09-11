@@ -14,7 +14,6 @@ title:
 
 Lookup-Patterns - Uncertain Category.
 </docs>
-
 <template>
   <div class="global-search-wrapper" style="width: 300px">
     <a-auto-complete
@@ -40,29 +39,28 @@ Lookup-Patterns - Uncertain Category.
           <span>{{ item.count }} results</span>
         </div>
       </template>
-      <a-input-search size="large" placeholder="input here" enter-button />
+      <a-input-search size="large" placeholder="input here" enter-button></a-input-search>
     </a-auto-complete>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-
+import { ref } from 'vue';
 interface Option {
-  query: string
-  category: string
-  value: string
-  count: number
+  query: string;
+  category: string;
+  value: string;
+  count: number;
 }
-const value = ref('')
-const dataSource = ref<Option[]>([])
+const value = ref('');
+const dataSource = ref<Option[]>([]);
 const onSelect = (value: string) => {
-  console.log('onSelect', value)
-}
+  console.log('onSelect', value);
+};
 
 const getRandomInt = (max: number, min = 0) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
 const searchResult = (query: string): Option[] => {
   return new Array(getRandomInt(5))
@@ -73,9 +71,9 @@ const searchResult = (query: string): Option[] => {
       category: `${query}${idx}`,
       value: `${query}${idx}`,
       count: getRandomInt(200, 100),
-    }))
-}
+    }));
+};
 const handleSearch = (val: string) => {
-  dataSource.value = val ? searchResult(val) : []
-}
+  dataSource.value = val ? searchResult(val) : [];
+};
 </script>

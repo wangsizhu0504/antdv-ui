@@ -30,6 +30,8 @@ The differences with Select are:
 | allowClear | Show clear button, effective in multiple mode only. | boolean | false |  |
 | autofocus | get focus when component mounted | boolean | false |  |
 | backfill | backfill selected item the input when using keyboard | boolean | false |  |
+| bordered | Whether has border style | boolean | true | 4.0 |
+| clearIcon | Use slot custom clear icon | slot | `<CloseCircleFilled />` | 4.0 |
 | default (for customize input element) | customize input element | slot | `<Input />` |  |
 | defaultActiveFirstOption | Whether active first option by default | boolean | true |  |
 | defaultOpen | Initial open state of dropdown | boolean | - |  |
@@ -40,7 +42,7 @@ The differences with Select are:
 | filterOption | If true, filter options by input, if function, filter options against it. The function will receive two arguments, `inputValue` and `option`, if the function returns `true`, the option will be included in the filtered set; Otherwise, it will be excluded. | boolean or function(inputValue, option) | true |  |
 | open | Controlled open state of dropdown | boolean | - |  |
 | option | custom render option by slot | v-slot:option="{value, label, [disabled, key, title]}" | - | 3.0 |
-| options | Data source for autocomplete | [DataSourceItemType](https://github.com/vueComponent/ant-design-vue/blob/724d53b907e577cf5880c1e6742d4c3f924f8f49/components/auto-complete/index.vue#L9)\[] |  |  |
+| options | Data source for autocomplete | [DataSourceItemType](https://github.com/vueComponent/@antdv/ui/blob/724d53b907e577cf5880c1e6742d4c3f924f8f49/components/auto-complete/index.vue#L9)\[] |  |  |
 | placeholder | placeholder of input | string | - |  |
 | status | Set validation status | 'error' \| 'warning' | - | 3.3.0 |
 | v-model:value | selected option | string\|string\[]\|{ key: string, label: string\|vNodes }\|Array&lt;{ key: string, label: string\|vNodes }> | - |  |
@@ -75,12 +77,12 @@ Besides, to unify the API, `dataSource` is replaced with `options`. You can migr
 #### v2
 
 ```ts
-dataSource = ['light', 'bamboo']
+dataSource = ['light', 'bamboo'];
 // or
 dataSource = [
   { value: 'light', text: 'Light' },
   { value: 'bamboo', text: 'Bamboo' },
-]
+];
 ```
 
 #### v3
@@ -89,5 +91,5 @@ dataSource = [
 options = [
   { value: 'light', label: 'Light' },
   { value: 'bamboo', label: 'Bamboo' },
-]
+];
 ```

@@ -24,7 +24,7 @@ Basic list.
           description="Ant Design, a design language for background applications, is refined by Ant UED Team"
         >
           <template #title>
-            <a href="https://www.antd-vue.com/">{{ item.title }}</a>
+            <a href="https://www.antdv.com/">{{ item.title }}</a>
           </template>
           <template #avatar>
             <a-avatar src="https://joeschmoe.io/api/v1/random" />
@@ -34,10 +34,9 @@ Basic list.
     </template>
   </a-list>
 </template>
-
 <script lang="ts" setup>
 interface DataItem {
-  title: string
+  title: string;
 }
 const data: DataItem[] = [
   {
@@ -52,5 +51,5 @@ const data: DataItem[] = [
   {
     title: 'Ant Design Title 4',
   },
-]
+];
 </script>

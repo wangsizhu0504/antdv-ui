@@ -195,7 +195,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
 #### Breakpoint
 
 ```ts
-type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
+type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 ```
 
 ### ColumnGroup
@@ -259,14 +259,14 @@ type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
 
 ```ts
 interface FilterDropdownProps {
-  prefixCls: string
-  setSelectedKeys: (selectedKeys: Key[]) => void
-  selectedKeys: Key[]
-  confirm: (param?: FilterConfirmProps) => void
-  clearFilters?: () => void
-  filters?: ColumnFilterItem[]
-  visible: boolean
-  column: ColumnType
+  prefixCls: string;
+  setSelectedKeys: (selectedKeys: Key[]) => void;
+  selectedKeys: Key[];
+  confirm: (param?: FilterConfirmProps) => void;
+  clearFilters?: () => void;
+  filters?: ColumnFilterItem[];
+  visible: boolean;
+  column: ColumnType;
 }
 ```
 
@@ -278,9 +278,9 @@ interface FilterDropdownProps {
 
 ```jsx
 // 比如你的数据主键是 uid
-return <Table rowKey="uid" />
+return <Table rowKey="uid" />;
 // 或
-return <Table rowKey={record => record.uid} />
+return <Table rowKey={record => record.uid} />;
 ```
 
 ## FAQ

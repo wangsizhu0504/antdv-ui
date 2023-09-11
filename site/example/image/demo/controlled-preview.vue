@@ -18,9 +18,7 @@ You can make preview controlled.
 
 <template>
   <div>
-    <a-button type="primary" @click="() => setVisible(true)">
-      show image preview
-    </a-button>
+    <a-button type="primary" @click="() => setVisible(true)">show image preview</a-button>
     <a-image
       :width="200"
       :style="{ display: 'none' }"
@@ -32,12 +30,10 @@ You can make preview controlled.
     />
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-
-const visible = ref<boolean>(false)
+import { ref } from 'vue';
+const visible = ref<boolean>(false);
 const setVisible = (value): void => {
-  visible.value = value
-}
+  visible.value = value;
+};
 </script>

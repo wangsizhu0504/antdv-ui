@@ -49,12 +49,12 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Tr90QKrE_LcAAA
 
 ```ts
 interface Route {
-  path: string
-  breadcrumbName: string
+  path: string;
+  breadcrumbName: string;
   children?: Array<{
-    path: string
-    breadcrumbName: string
-  }>
+    path: string;
+    breadcrumbName: string;
+  }>;
 }
 ```
 

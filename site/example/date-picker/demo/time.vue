@@ -28,25 +28,24 @@ This property provide an additional time selection. When `showTime` is an Object
     />
   </a-space>
 </template>
-
 <script lang="ts" setup>
-import type { Dayjs } from 'dayjs'
+import { Dayjs } from 'dayjs';
 
 const onChange = (value: Dayjs, dateString: string) => {
-  console.log('Selected Time: ', value)
-  console.log('Formatted Selected Time: ', dateString)
-}
+  console.log('Selected Time: ', value);
+  console.log('Formatted Selected Time: ', dateString);
+};
 
 const onOk = (value: Dayjs) => {
-  console.log('onOk: ', value)
-}
+  console.log('onOk: ', value);
+};
 
 const onRangeChange = (value: [Dayjs, Dayjs], dateString: [string, string]) => {
-  console.log('Selected Time: ', value)
-  console.log('Formatted Selected Time: ', dateString)
-}
+  console.log('Selected Time: ', value);
+  console.log('Formatted Selected Time: ', dateString);
+};
 
 const onRangeOk = (value: [Dayjs, Dayjs]) => {
-  console.log('onOk: ', value)
-}
+  console.log('onOk: ', value);
+};
 </script>

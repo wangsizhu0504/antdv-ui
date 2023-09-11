@@ -26,17 +26,15 @@ You can control the order of the expand and select columns by using `Table.EXPAN
     </template>
   </a-table>
 </template>
-
 <script lang="ts" setup>
-import { Table } from '@antdv/ui'
-
+import { Table } from '@antdv/ui';
 const columns = [
   { title: 'Name', dataIndex: 'name', key: 'name' },
   Table.EXPAND_COLUMN,
   { title: 'Age', dataIndex: 'age', key: 'age' },
   Table.SELECTION_COLUMN,
   { title: 'Address', dataIndex: 'address', key: 'address' },
-]
+];
 
 const data = [
   {
@@ -67,5 +65,5 @@ const data = [
     address: 'Sidney No. 1 Lake Park',
     description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
   },
-]
+];
 </script>

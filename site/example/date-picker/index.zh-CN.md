@@ -28,7 +28,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 
 默认配置为 en-US，如果你需要设置其他语言，推荐在入口处使用我们提供的国际化组件，详见：[ConfigProvider 国际化](/components/config-provider-cn/)。
 
-如有特殊需求（仅修改单一组件的语言），请使用 locale 参数，参考：[默认配置](https://github.com/vueComponent/ant-design-vue/blob/main/components/date-picker/locale/example.json)。
+如有特殊需求（仅修改单一组件的语言），请使用 locale 参数，参考：[默认配置](https://github.com/vueComponent/@antdv/ui/blob/main/components/date-picker/locale/example.json)。
 
 ```html
 <template>
@@ -89,7 +89,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 | dropdownClassName | 额外的弹出日历 className | string | - |  |
 | getPopupContainer | 定义浮层的容器，默认为 body 上新建 div | function(trigger) | - |  |
 | inputReadOnly | 设置输入框为只读（避免在移动设备上打开虚拟键盘） | boolean | false |  |
-| locale | 国际化配置 | object | [默认配置](https://github.com/vueComponent/ant-design-vue/blob/main/components/date-picker/locale/example.json) | - |
+| locale | 国际化配置 | object | [默认配置](https://github.com/vueComponent/@antdv/ui/blob/main/components/date-picker/locale/example.json) | - |
 | mode | 日期面板的状态 | `time` \| `date` \| `month` \| `year` \| `decade` | - |  |
 | nextIcon | 自定义下一个图标 | slot | - | 3.0 |
 | open | 控制弹层是否展开 | boolean | - |  |
@@ -218,12 +218,12 @@ DatePicker 默认 `locale` 为 `en`。你可以通过 DatePicker 的 `locale` �
 请使用正确的[语言包](/docs/vue/i18n-cn)（[#5605](https://github.com/ant-design/ant-design/issues/5605)），或者修改 dayjs 的 `locale` 配置：<https://codesandbox.io/s/dayjs-day-of-week-x9tuj2?file=/demo.tsx>
 
 ```js
-import dayjs from 'dayjs'
-import updateLocale from 'dayjs/plugin/updateLocale'
-import 'dayjs/locale/zh-cn'
+import dayjs from 'dayjs';
+import updateLocale from 'dayjs/plugin/updateLocale';
+import 'dayjs/locale/zh-cn';
 
-dayjs.extend(updateLocale)
+dayjs.extend(updateLocale);
 dayjs.updateLocale('zh-cn', {
   weekStart: 0,
-})
+});
 ```

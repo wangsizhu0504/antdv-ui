@@ -35,34 +35,33 @@ Make it pop up under some conditions.
     <a-checkbox v-model:checked="condition" />
   </div>
 </template>
-
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { message } from '@antdv/ui'
-
-const visible = ref<boolean>(false)
-const condition = ref<boolean>(true)
+import { ref } from 'vue';
+import { message } from '@antdv/ui';
+const visible = ref<boolean>(false);
+const condition = ref<boolean>(true);
 
 const confirm = () => {
-  visible.value = false
-  message.success('Next step.')
-}
+  visible.value = false;
+  message.success('Next step.');
+};
 
 const cancel = () => {
-  visible.value = false
-  message.error('Click on cancel.')
-}
+  visible.value = false;
+  message.error('Click on cancel.');
+};
 
 const handleVisibleChange = (bool: boolean) => {
   if (!bool) {
-    visible.value = false
-    return
+    visible.value = false;
+    return;
   }
   // Determining condition before show the popconfirm.
-  console.log(condition.value)
-  if (condition.value)
-    confirm() // next step
-  else
-    visible.value = true
-}
+  console.log(condition.value);
+  if (condition.value) {
+    confirm(); // next step
+  } else {
+    visible.value = true;
+  }
+};
 </script>
