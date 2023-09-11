@@ -25,7 +25,8 @@ export function createCache() {
       (style as any)[CSS_IN_JS_INSTANCE] = (style as any)[CSS_IN_JS_INSTANCE] || cssinjsInstanceId
 
       // Not force move if no head
-      document.head.insertBefore(style, firstChild)
+      if ((style as any)[CSS_IN_JS_INSTANCE] === cssinjsInstanceId)
+        document.head.insertBefore(style, firstChild)
     })
 
     // Deduplicate of moved styles
@@ -82,12 +83,16 @@ const defaultStyleContext: StyleContextProps = {
   defaultCache: true,
   hashPriority: 'low',
 }
+// fix: https://github.com/vueComponent/ant-design-vue/issues/6912
 export const useStyleInject = () => {
-  return inject(StyleContextKey, shallowRef({ ...defaultStyleContext }))
+  return inject(StyleContextKey, shallowRef({ ...defaultStyleContext, cache: createCache() }))
 }
 export const useStyleProvider = (props: UseStyleProviderProps) => {
   const parentContext = useStyleInject()
-  const context = shallowRef<Partial<StyleContextProps>>({ ...defaultStyleContext })
+  const context = shallowRef<Partial<StyleContextProps>>({
+    ...defaultStyleContext,
+    cache: createCache(),
+  })
   watch(
     [() => unref(props), parentContext],
     () => {
@@ -145,11 +150,9 @@ export const StyleProvider = withInstall(defineComponent({
     mock: String as PropType<StyleProviderProps['mock']>,
     cache: {
       type: Object as PropType<StyleProviderProps['cache']>,
-      default: () => createCache(),
     },
     hashPriority: {
       type: String as PropType<StyleProviderProps['hashPriority']>,
-      default: 'low',
     },
     container: Object as PropType<StyleProviderProps['container']>,
     ssrInline: Boolean,
@@ -157,7 +160,6 @@ export const StyleProvider = withInstall(defineComponent({
     linters: Array as PropType<StyleProviderProps['linters']>,
     defaultCache: {
       type: Boolean,
-      default: true,
     },
   },
   setup(props, { slots }) {
