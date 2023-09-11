@@ -60,7 +60,7 @@ function flattenData<RecordType>(childrenColumnName: string, data: RecordType[])
   (data || []).forEach((record) => {
     list.push(record)
 
-    if (record && typeof record === 'object' && childrenColumnName in record) {
+    if (record && typeof record === 'object' && childrenColumnName in record && record[childrenColumnName]) {
       list = [
         ...list,
         ...flattenData<RecordType>(childrenColumnName, (record as any)[childrenColumnName]),

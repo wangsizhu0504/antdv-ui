@@ -76,7 +76,7 @@ export interface CellProps<RecordType = DefaultRecordType> {
   transformCellText?: TransformCellText<RecordType>
 }
 export default defineComponent<CellProps>({
-  name: 'Cell',
+  name: 'VcTableCell',
   props: [
     'prefixCls',
     'record',

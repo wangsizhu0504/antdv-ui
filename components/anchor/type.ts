@@ -1,5 +1,5 @@
 import type { Key, VueNode } from '../_util/type'
-import type { CSSProperties } from '../cssinjs/hooks/useStyleRegister'
+import type { CSSProperties } from '../cssinjs/hooks/useStyleRegister/index'
 
 export type AnchorDirection = 'vertical' | 'horizontal'
 export type AnchorContainer = HTMLElement | Window

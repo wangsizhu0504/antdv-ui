@@ -17,6 +17,7 @@ if (
   && typeof module !== 'undefined'
   && module
   && (module as any).hot
+  && typeof window !== 'undefined'
 ) {
   const win = window as any
   if (typeof win.webpackHotUpdate === 'function') {
