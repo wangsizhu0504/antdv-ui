@@ -1,19 +1,8 @@
-import type { CSSProperties, FunctionalComponent, HTMLAttributes, VNodeTypes } from 'vue'
+import type { CellProps } from './type'
+import type { FunctionalComponent } from 'vue'
 
 function notEmpty(val: any) {
   return val !== undefined && val !== null
-}
-
-interface CellProps extends HTMLAttributes {
-  itemPrefixCls: string
-  span: number
-  component: string
-  labelStyle?: CSSProperties
-  contentStyle?: CSSProperties
-  bordered?: boolean
-  label?: number | VNodeTypes
-  content?: number | VNodeTypes
-  colon?: boolean
 }
 
 const Cell: FunctionalComponent<CellProps> = (props) => {

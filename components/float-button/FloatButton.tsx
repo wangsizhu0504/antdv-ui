@@ -5,18 +5,13 @@ import Badge from '../badge'
 import { useConfigInject } from '../hooks'
 import warning from '../_util/warning'
 import { initDefaultProps } from '../_util/props-util'
+import { floatButtonPrefixCls } from '../constant'
 import useStyle from './style'
-import { floatButtonProps } from './interface'
+import { floatButtonProps } from './props'
 import Content from './FloatButtonContent'
 import { useInjectFloatButtonGroupContext } from './context'
 
-// import { useCompactItemContext } from '../space/Compact';
-
-// CSSINJS
-
-export const floatButtonPrefixCls = 'float-btn'
-
-const FloatButton = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AFloatButton',
   inheritAttrs: false,
@@ -103,5 +98,3 @@ const FloatButton = defineComponent({
     }
   },
 })
-
-export default FloatButton

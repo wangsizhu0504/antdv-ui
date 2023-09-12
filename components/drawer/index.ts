@@ -1,8 +1,9 @@
 import { withInstall } from '../_util/type'
-import Drawer from './drawer'
+import Drawer from './Drawer'
 
 export * from './props'
 export * from './type'
-export * from './constant'
 
-export default withInstall(Drawer)
+const ADrawer = withInstall(Drawer)
+
+export default ADrawer

@@ -248,41 +248,6 @@ function rangePickerProps<DateType>() {
   }
 }
 
-export interface RangePickerProps<DateType> {
-  allowEmpty?: [boolean, boolean]
-  dateRender?: RangeDateRender<DateType>
-  defaultPickerValue?: RangeValue<DateType> | RangeValue<string>
-  defaultValue?: RangeValue<DateType> | RangeValue<string>
-  value?: RangeValue<DateType> | RangeValue<string>
-  presets?: PresetDate<RangeValue<DateType>>[]
-  disabledTime?: (date: EventValue<DateType>, type: RangeType) => DisabledTimes
-  disabled?: [boolean, boolean]
-  renderExtraFooter?: () => VueNode
-  separator?: string
-  showTime?: boolean | RangeShowTimeObject<DateType>
-  ranges?: Record<
-    string,
-    Exclude<RangeValue<DateType>, null> | (() => Exclude<RangeValue<DateType>, null>)
-  >
-  placeholder?: [string, string]
-  mode?: [PanelMode, PanelMode]
-  onChange?: (
-    value: RangeValue<DateType> | RangeValue<string> | null,
-    dateString: [string, string],
-  ) => void
-  'onUpdate:value'?: (value: RangeValue<DateType> | RangeValue<string> | null) => void
-  onCalendarChange?: (
-    values: RangeValue<DateType> | RangeValue<string>,
-    formatString: [string, string],
-    info: RangeInfo,
-  ) => void
-  onPanelChange?: (
-    values: RangeValue<DateType> | RangeValue<string>,
-    modes: [PanelMode, PanelMode],
-  ) => void
-  onOk?: (dates: RangeValue<DateType> | RangeValue<string>) => void
-}
-
 export interface ExtraDatePickerProps<DateType> {
   valueFormat?: string
   defaultPickerValue?: DateType | string

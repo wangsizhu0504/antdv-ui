@@ -3,7 +3,8 @@ import Meta from './Meta'
 import Grid from './Grid'
 import type { App, Plugin } from 'vue'
 
-export type { CardProps } from './Card'
+export * from './type'
+export * from './props'
 
 const AntdCard = Card
 AntdCard.Meta = Meta
@@ -19,8 +20,7 @@ Card.install = function (app: App) {
 
 export { Meta as CardMeta, Grid as CardGrid }
 
-export default AntdCard as typeof AntdCard &
-Plugin & {
+export default AntdCard as typeof AntdCard & Plugin & {
   readonly Meta: typeof Meta
   readonly Grid: typeof Grid
 }

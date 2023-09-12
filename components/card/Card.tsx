@@ -1,56 +1,20 @@
 import { defineComponent, isVNode, renderSlot } from 'vue'
 import { isPlainObject } from 'lodash-es'
 import Tabs from '../tabs'
-import PropTypes from '../_util/vue-types'
 import { filterEmptyWithUndefined, flattenChildren, isEmptyElement } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
 import devWarning from '../vc-util/devWarning'
 import Skeleton from '../skeleton'
 import useStyle from './style'
+import { cardProps } from './props'
+import type { CardTabListType } from './type'
 import type { SizeType } from '../config-provider'
-import type { CSSProperties, ExtractPropTypes, PropType, VNode, VNodeTypes } from 'vue'
+import type { VNode, VNodeTypes } from 'vue'
 import type { CustomSlotsType } from '../_util/type'
-
-export interface CardTabListType {
-  key: string
-  tab: any
-  /** @deprecated Please use `customTab` instead. */
-  slots?: { tab: string }
-  disabled?: boolean
-}
-
-export type CardType = 'inner'
-export type CardSize = 'default' | 'small'
 
 const { TabPane } = Tabs
 
-export const cardProps = () => ({
-  prefixCls: String,
-  title: PropTypes.any,
-  extra: PropTypes.any,
-  bordered: { type: Boolean, default: true },
-  bodyStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-  headStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-  loading: { type: Boolean, default: false },
-  hoverable: { type: Boolean, default: false },
-  type: { type: String as PropType<CardType> },
-  size: { type: String as PropType<CardSize> },
-  actions: PropTypes.any,
-  tabList: {
-    type: Array as PropType<CardTabListType[]>,
-  },
-  tabBarExtraContent: PropTypes.any,
-  activeTabKey: String,
-  defaultActiveTabKey: String,
-  cover: PropTypes.any,
-  onTabChange: {
-    type: Function as PropType<(key: string) => void>,
-  },
-})
-
-export type CardProps = Partial<ExtractPropTypes<ReturnType<typeof cardProps>>>
-
-const Card = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ACard',
   inheritAttrs: false,
@@ -193,5 +157,3 @@ const Card = defineComponent({
     }
   },
 })
-
-export default Card

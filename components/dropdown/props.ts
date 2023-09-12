@@ -2,30 +2,13 @@ import PropTypes from '../_util/vue-types'
 
 import { booleanType, eventType, objectType, someType } from '../_util/type'
 import { buttonProps } from '../button'
-import type { CSSProperties, PropType } from 'vue'
+import type { Align, DropdownArrowOptions, Trigger } from './type'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 import type { MouseEventHandler } from '../_util/EventInterface'
 import type { MenuProps } from '../menu'
 
-export interface Align {
-  points?: [string, string]
-  offset?: [number, number]
-  targetOffset?: [number, number]
-  overflow?: {
-    adjustX?: boolean
-    adjustY?: boolean
-  }
-  useCssRight?: boolean
-  useCssBottom?: boolean
-  useCssTransform?: boolean
-}
-
-export type Trigger = 'click' | 'hover' | 'contextmenu'
-
-export interface DropdownArrowOptions {
-  pointAtCenter?: boolean
-}
-const dropdownProps = () => ({
+export const dropdownProps = () => ({
   'arrow': someType<boolean | DropdownArrowOptions>([Boolean, Object]),
   'trigger': {
     type: [Array, String] as PropType<Trigger[] | Trigger>,
@@ -77,7 +60,7 @@ const dropdownProps = () => ({
 })
 
 const buttonTypesProps = buttonProps()
-const dropdownButtonProps = () => ({
+export const dropdownButtonProps = () => ({
   ...dropdownProps(),
   type: buttonTypesProps.type,
   size: String as PropType<'small' | 'large'>,
@@ -91,6 +74,6 @@ const dropdownButtonProps = () => ({
   onClick: eventType<MouseEventHandler>(),
 })
 
-export { dropdownProps, dropdownButtonProps }
+export type DropdownProps = Partial<ExtractPropTypes<ReturnType<typeof dropdownProps>>>
 
-export default dropdownProps
+export type DropdownButtonProps = Partial<ExtractPropTypes<ReturnType<typeof dropdownButtonProps>>>

@@ -5,13 +5,10 @@ import classNames from '../_util/classNames'
 import devWarning from '../vc-util/devWarning'
 import { useConfigInject } from '../hooks'
 
-import { collapsePanelProps } from './commonProps'
+import { collapsePanelProps } from './props'
 import PanelContent from './PanelContent'
-import type { ExtractPropTypes } from 'vue'
 import type { CustomSlotsType } from '../_util/type'
 
-export { collapsePanelProps }
-export type CollapsePanelProps = Partial<ExtractPropTypes<ReturnType<typeof collapsePanelProps>>>
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ACollapsePanel',
@@ -29,7 +26,6 @@ export default defineComponent({
     header?: any
     default?: any
   }>,
-
   // emits: ['itemClick'],
   setup(props, { slots, emit, attrs }) {
     devWarning(

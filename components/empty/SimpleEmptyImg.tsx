@@ -2,8 +2,10 @@ import { TinyColor } from '@ctrl/tinycolor'
 import { computed, defineComponent } from 'vue'
 import { useToken } from '../theme/internal'
 
-const Simple = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
+  name: 'SimpleEmptyImg',
+  PRESENTED_IMAGE_SIMPLE: true,
   setup() {
     const [, token] = useToken()
 
@@ -35,6 +37,3 @@ const Simple = defineComponent({
     )
   },
 })
-
-Simple.PRESENTED_IMAGE_SIMPLE = true
-export default Simple

@@ -1,12 +1,9 @@
 import { computed, inject } from 'vue'
 import Empty from '../empty'
-import { configProviderKey, defaultConfigProvider } from './context'
+import { configProviderKey } from '../constant'
+import { defaultConfigProvider } from './context'
+import type { RenderEmptyProps } from './type'
 import type { VueNode } from '../_util/type'
-
-export interface RenderEmptyProps {
-  componentName?: string
-  prefixCls?: string
-}
 
 export const DefaultRenderEmpty = (props: RenderEmptyProps) => {
   const configProvider = inject(configProviderKey, {
@@ -34,7 +31,5 @@ export const DefaultRenderEmpty = (props: RenderEmptyProps) => {
 function renderEmpty(componentName?: string): VueNode {
   return <DefaultRenderEmpty componentName={componentName} />
 }
-
-export type RenderEmptyHandler = typeof renderEmpty
 
 export default renderEmpty

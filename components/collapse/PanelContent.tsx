@@ -1,6 +1,6 @@
 import { defineComponent, shallowRef, watchEffect } from 'vue'
 import classNames from '../_util/classNames'
-import { collapsePanelProps } from './commonProps'
+import { collapsePanelProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

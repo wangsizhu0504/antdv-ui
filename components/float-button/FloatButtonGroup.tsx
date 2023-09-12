@@ -5,15 +5,16 @@ import { Transition, getTransitionProps } from '../_util/components/transition'
 import { useConfigInject, useMergedState } from '../hooks'
 import { findDOMNode, initDefaultProps } from '../_util/props-util'
 import canUseDom from '../_util/canUseDom'
-import FloatButton, { floatButtonPrefixCls } from './FloatButton'
+import { floatButtonPrefixCls } from '../constant'
+import FloatButton from './FloatButton'
 import { useProvideFloatButtonGroupContext } from './context'
-import { floatButtonGroupProps } from './interface'
+import { floatButtonGroupProps } from './props'
 import useStyle from './style'
-import type { FloatButtonGroupProps } from './interface'
+import type { FloatButtonGroupProps } from './props'
 
 // CSSINJS
 
-const FloatButtonGroup = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AFloatButtonGroup',
   inheritAttrs: false,
@@ -136,5 +137,3 @@ const FloatButtonGroup = defineComponent({
     }
   },
 })
-
-export default FloatButtonGroup

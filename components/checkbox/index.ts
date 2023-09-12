@@ -2,9 +2,6 @@ import Checkbox from './Checkbox'
 import CheckboxGroup from './Group'
 import type { App, Plugin } from 'vue'
 
-export type { CheckboxProps, CheckboxGroupProps, CheckboxOptionType } from './interface'
-export { checkboxProps, checkboxGroupProps } from './interface'
-
 const AntdCheckbox = Checkbox
 AntdCheckbox.Group = CheckboxGroup
 
@@ -16,7 +13,9 @@ AntdCheckbox.install = function (app: App) {
 }
 export { CheckboxGroup }
 
-export default AntdCheckbox as typeof AntdCheckbox &
-Plugin & {
+export default AntdCheckbox as typeof AntdCheckbox & Plugin & {
   readonly Group: typeof CheckboxGroup
 }
+
+export * from './type'
+export * from './props'

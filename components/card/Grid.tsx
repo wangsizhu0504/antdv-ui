@@ -1,12 +1,7 @@
 import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
-import type { ExtractPropTypes } from 'vue'
+import { cardGridProps } from './props'
 
-export const cardGridProps = () => ({
-  prefixCls: String,
-  hoverable: { type: Boolean, default: true },
-})
-export type CardGridProps = Partial<ExtractPropTypes<ReturnType<typeof cardGridProps>>>
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ACardGrid',

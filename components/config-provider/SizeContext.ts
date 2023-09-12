@@ -1,8 +1,7 @@
 import { computed, inject, provide, ref } from 'vue'
-import type { InjectionKey, Ref } from 'vue'
-
-export type SizeType = 'small' | 'middle' | 'large' | undefined
-const SizeContextKey: InjectionKey<Ref<SizeType>> = Symbol('SizeContextKey')
+import { SizeContextKey } from '../constant'
+import type { SizeType } from './type'
+import type { Ref } from 'vue'
 
 export const useInjectSize = () => {
   return inject(SizeContextKey, ref(undefined as SizeType))

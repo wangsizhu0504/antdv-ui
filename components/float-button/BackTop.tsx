@@ -16,12 +16,13 @@ import getScroll from '../_util/getScroll'
 import scrollTo from '../_util/scrollTo'
 import throttleByAnimationFrame from '../_util/throttleByAnimationFrame'
 import { initDefaultProps } from '../_util/props-util'
+import { floatButtonPrefixCls } from '../constant'
 import { useInjectFloatButtonGroupContext } from './context'
 import useStyle from './style'
-import { backTopProps } from './interface'
-import FloatButton, { floatButtonPrefixCls } from './FloatButton'
+import { backTopProps } from './props'
+import FloatButton from './FloatButton'
 
-const BackTop = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ABackTop',
   inheritAttrs: false,
@@ -141,5 +142,3 @@ const BackTop = defineComponent({
     }
   },
 })
-
-export default BackTop

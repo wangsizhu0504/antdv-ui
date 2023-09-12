@@ -12,28 +12,15 @@ import firstNotUndefined from '../_util/firstNotUndefined'
 import classNames from '../_util/classNames'
 import { useConfigInject } from '../hooks'
 import collapseMotion from '../_util/components/collapseMotion'
-import { collapseProps } from './commonProps'
+import { collapseProps } from './props'
 import useStyle from './style'
-import type { CustomSlotsType } from '../_util/type'
+import type { CustomSlotsType, Key } from '../_util/type'
 
 // CSSINJS
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-import type { CollapsibleType } from './commonProps'
-import type { CollapsePanelProps } from './CollapsePanel'
+import type { CSSProperties } from 'vue'
+import type { CollapsibleType } from './type'
+import type { CollapsePanelProps } from './props'
 
-type Key = number | string
-
-function getActiveKeysArray(activeKey: Key | Key[]) {
-  let currentActiveKey = activeKey
-  if (!Array.isArray(currentActiveKey)) {
-    const activeKeyType = typeof currentActiveKey
-    currentActiveKey
-      = activeKeyType === 'number' || activeKeyType === 'string' ? [currentActiveKey] : []
-  }
-  return currentActiveKey.map(key => String(key))
-}
-export { collapseProps }
-export type CollapseProps = Partial<ExtractPropTypes<ReturnType<typeof collapseProps>>>
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ACollapse',
@@ -50,6 +37,16 @@ export default defineComponent({
     expandIcon?: CollapsePanelProps
   }>,
   setup(props, { attrs, slots, emit }) {
+    function getActiveKeysArray(activeKey: Key | Key[]) {
+      let currentActiveKey = activeKey
+      if (!Array.isArray(currentActiveKey)) {
+        const activeKeyType = typeof currentActiveKey
+        currentActiveKey
+          = activeKeyType === 'number' || activeKeyType === 'string' ? [currentActiveKey] : []
+      }
+      return currentActiveKey.map(key => String(key))
+    }
+
     const stateActiveKey = ref<Key[]>(
       getActiveKeysArray(firstNotUndefined([props.activeKey, props.defaultActiveKey])),
     )

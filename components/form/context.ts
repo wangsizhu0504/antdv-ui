@@ -1,4 +1,5 @@
 import { computed, inject, provide } from 'vue'
+import { FormContextKey } from '../constant'
 import { defaultValidateMessages } from './utils/messages'
 import type { ComputedRef, InjectionKey } from 'vue'
 import type { ValidateMessages } from '../locale'
@@ -29,8 +30,6 @@ export interface FormContextProps {
   ) => void
   validateMessages: ComputedRef<ValidateMessages>
 }
-
-export const FormContextKey: InjectionKey<FormContextProps> = Symbol('formContextKey')
 
 export const useProvideForm = (state: FormContextProps) => {
   provide(FormContextKey, state)

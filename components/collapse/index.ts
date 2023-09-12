@@ -1,9 +1,6 @@
-import Collapse, { collapseProps } from './Collapse'
-import CollapsePanel, { collapsePanelProps } from './CollapsePanel'
+import Collapse from './Collapse'
+import CollapsePanel from './CollapsePanel'
 import type { App, Plugin } from 'vue'
-
-export type { CollapseProps } from './Collapse'
-export type { CollapsePanelProps } from './CollapsePanel'
 
 const AntdCollapse = Collapse
 AntdCollapse.Panel = CollapsePanel
@@ -15,8 +12,9 @@ AntdCollapse.install = function (app: App) {
   return app
 }
 
-export { CollapsePanel, collapseProps, collapsePanelProps }
-export default AntdCollapse as typeof AntdCollapse &
-Plugin & {
+export default AntdCollapse as typeof AntdCollapse & Plugin & {
   readonly Panel: typeof CollapsePanel
 }
+
+export * from './props'
+export * from './type'

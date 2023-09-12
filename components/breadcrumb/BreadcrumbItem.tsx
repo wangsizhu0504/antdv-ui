@@ -1,8 +1,9 @@
 import { defineComponent } from 'vue'
 import { DownOutlined } from '@ant-design/icons-vue'
 import { getPropsSlot } from '../_util/props-util'
-import Dropdown from '../dropdown/dropdown'
+
 import { useConfigInject } from '../hooks'
+import Dropdown from '../dropdown'
 import { breadcrumbItemProps } from './props'
 import type { CSSProperties } from 'vue'
 import type { CustomSlotsType, VueNode } from '../_util/type'

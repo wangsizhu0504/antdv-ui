@@ -1,23 +1,8 @@
 import { getClass, getSlot, getStyle } from '../_util/props-util'
 import Cell from './Cell'
 import { useProviderContext } from './useContext'
+import type { CellConfig, RowProps } from './type'
 import type { CSSProperties, FunctionalComponent, VNode } from 'vue'
-
-interface CellConfig {
-  component: string | [string, string]
-  type: string
-  showLabel?: boolean
-  showContent?: boolean
-}
-
-export interface RowProps {
-  prefixCls: string
-  vertical: boolean
-  row: any[]
-  bordered: boolean
-  colon: boolean
-  index: number
-}
 
 const Row: FunctionalComponent<RowProps> = (props) => {
   const renderCells = (

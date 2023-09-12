@@ -1,31 +1,11 @@
 import { defineComponent } from 'vue'
-import PropTypes from '../_util/vue-types'
 import { flattenChildren } from '../_util/props-util'
-import { withInstall } from '../_util/type'
 import { useConfigInject } from '../hooks'
-
-// CSSINJS
 import useStyle from './style'
+import { commentProps } from './props'
 import type { CustomSlotsType, VueNode } from '../_util/type'
-import type { ExtractPropTypes } from 'vue'
 
-export const commentProps = () => ({
-  actions: Array,
-  /** The element to display as the comment author. */
-  author: PropTypes.any,
-  /** The element to display as the comment avatar - generally an antd Avatar */
-  avatar: PropTypes.any,
-  /** The main content of the comment */
-  content: PropTypes.any,
-  /** Comment prefix defaults to '.ant-comment' */
-  prefixCls: String,
-  /** A datetime element containing the time to be displayed */
-  datetime: PropTypes.any,
-})
-
-export type CommentProps = Partial<ExtractPropTypes<ReturnType<typeof commentProps>>>
-
-const Comment = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AComment',
   inheritAttrs: false,
@@ -116,5 +96,3 @@ const Comment = defineComponent({
     }
   },
 })
-
-export default withInstall(Comment)

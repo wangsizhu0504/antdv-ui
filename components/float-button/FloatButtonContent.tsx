@@ -1,9 +1,9 @@
 import { defineComponent } from 'vue'
 import { FileTextOutlined } from '@ant-design/icons-vue'
 import { filterEmpty } from '../_util/props-util'
-import { floatButtonContentProps } from './interface'
+import { floatButtonContentProps } from './props'
 
-const FloatButtonContent = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AFloatButtonContent',
   inheritAttrs: false,
@@ -36,5 +36,3 @@ const FloatButtonContent = defineComponent({
     }
   },
 })
-
-export default FloatButtonContent

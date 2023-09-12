@@ -1,4 +1,4 @@
-import type { PlacementTypes } from './constant'
+import type { PlacementTypes } from '../constant'
 
 export type ILevelMove = number | [number, number]
 

@@ -2,8 +2,6 @@ import generateSinglePicker from './generateSinglePicker'
 import generateRangePicker from './generateRangePicker'
 import type { GenerateConfig } from '../../vc-picker/generate'
 
-export * from './interface'
-
 function generatePicker<DateType, ExtraProps extends {} = {}>(
   generateConfig: GenerateConfig<DateType>,
   extraProps?: ExtraProps,

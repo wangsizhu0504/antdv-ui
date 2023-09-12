@@ -1,33 +1,10 @@
 import { computed, defineComponent } from 'vue'
 import { flattenChildren } from '../_util/props-util'
-import { withInstall } from '../_util/type'
 import { useConfigInject } from '../hooks'
 import useStyle from './style'
-import type { ExtractPropTypes, PropType } from 'vue'
+import { dividerProps } from './props'
 
-export const dividerProps = () => ({
-  prefixCls: String,
-  type: {
-    type: String as PropType<'horizontal' | 'vertical' | ''>,
-    default: 'horizontal',
-  },
-  dashed: {
-    type: Boolean,
-    default: false,
-  },
-  orientation: {
-    type: String as PropType<'left' | 'right' | 'center'>,
-    default: 'center',
-  },
-  plain: {
-    type: Boolean,
-    default: false,
-  },
-  orientationMargin: [String, Number],
-})
-export type DividerProps = Partial<ExtractPropTypes<ReturnType<typeof dividerProps>>>
-
-const Divider = defineComponent({
+export default defineComponent({
   name: 'ADivider',
   inheritAttrs: false,
   compatConfig: { MODE: 3 },
@@ -95,5 +72,3 @@ const Divider = defineComponent({
     }
   },
 })
-
-export default withInstall(Divider)

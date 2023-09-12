@@ -1,24 +1,21 @@
-import Dropdown from './dropdown'
-import DropdownButton from './dropdown-button'
-import { dropdownButtonProps, dropdownProps } from './props'
+import Dropdown from './Dropdown'
+import DropdownButton from './DropdownButton'
 import type { App, Plugin } from 'vue'
 
-export type { DropdownProps } from './dropdown'
-export type { DropdownButtonProps } from './dropdown-button'
-
-const AntdDropdown = Dropdown
-AntdDropdown.Button = DropdownButton
+const ADropdown = Dropdown
+ADropdown.Button = DropdownButton
 
 /* istanbul ignore next */
-AntdDropdown.install = function (app: App) {
-  app.component(AntdDropdown.name, AntdDropdown)
-  app.component(AntdDropdown.Button.name, AntdDropdown.Button)
+ADropdown.install = function (app: App) {
+  app.component(ADropdown.name, ADropdown)
+  app.component(ADropdown.Button.name, ADropdown.Button)
   return app
 }
 
-export { DropdownButton, dropdownProps, dropdownButtonProps }
-
-export default AntdDropdown as typeof AntdDropdown &
-Plugin & {
+export default ADropdown as typeof ADropdown & Plugin & {
   readonly Button: typeof DropdownButton
 }
+export { Dropdown, DropdownButton }
+
+export * from './props'
+export * from './type'

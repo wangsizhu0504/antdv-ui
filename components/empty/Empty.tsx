@@ -2,35 +2,26 @@ import { computed, defineComponent, inject } from 'vue'
 import classNames from '../_util/classNames'
 import LocaleReceiver from '../locale-provider/LocaleReceiver'
 import { filterEmpty } from '../_util/props-util'
-import { anyType, objectType, withInstall } from '../_util/type'
-import { configProviderKey, defaultConfigProvider } from '../config-provider/context'
+
+import { defaultConfigProvider } from '../config-provider/context'
+import { configProviderKey } from '../constant'
 import useStyle from './style'
-import DefaultEmptyImg from './empty'
-import SimpleEmptyImg from './simple'
-import type { VueNode } from '../_util/type'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
+import DefaultEmptyImg from './DefaultEmptyImg'
+import SimpleEmptyImg from './SimpleEmptyImg'
+import { emptyProps } from './props'
+import type { EmptyProps } from './props'
+import type { Locale } from './type'
 
 const defaultEmptyImg = <DefaultEmptyImg />
 const simpleEmptyImg = <SimpleEmptyImg />
 
-interface Locale {
-  description?: string
-}
-
-export const emptyProps = () => ({
-  prefixCls: String,
-  imageStyle: objectType<CSSProperties>(),
-  image: anyType<VueNode>(),
-  description: anyType<VueNode>(),
-})
-
-export type EmptyProps = Partial<ExtractPropTypes<ReturnType<typeof emptyProps>>>
-
-const Empty = defineComponent({
+export default defineComponent({
   name: 'AEmpty',
   compatConfig: { MODE: 3 },
   inheritAttrs: false,
   props: emptyProps(),
+  PRESENTED_IMAGE_DEFAULT: defaultEmptyImg,
+  PRESENTED_IMAGE_SIMPLE: simpleEmptyImg,
   setup(props, { slots = {}, attrs }) {
     const configProvider = inject(configProviderKey, defaultConfigProvider)
     const prefixClsRef = computed(() => configProvider.getPrefixCls('empty', props.prefixCls))
@@ -83,8 +74,3 @@ const Empty = defineComponent({
     }
   },
 })
-
-Empty.PRESENTED_IMAGE_DEFAULT = defaultEmptyImg
-Empty.PRESENTED_IMAGE_SIMPLE = simpleEmptyImg
-
-export default withInstall(Empty)

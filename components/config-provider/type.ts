@@ -1,3 +1,5 @@
+import type renderEmpty from './renderEmpty'
+import type { ConfigProviderProps } from './props'
 import type { ComputedRef, Ref } from 'vue'
 import type { Locale, ValidateMessages } from '../locale'
 import type { DerivativeFunc } from '../cssinjs'
@@ -6,8 +8,9 @@ import type { MapToken, OverrideToken } from '../theme/interface'
 
 import type { RequiredMark } from '../form/Form'
 import type { TransformCellTextProps } from '../table/interface'
-import type { VueNode } from '../_util/type'
+import type { MaybeRef, VueNode } from '../_util/type'
 
+export type DisabledType = boolean | undefined
 export interface GlobalFormCOntextProps {
   validateMessages?: Ref<ValidateMessages>
 }
@@ -28,10 +31,20 @@ export interface Theme {
 }
 
 export type SizeType = 'small' | 'middle' | 'large' | undefined
-
 export type Direction = 'ltr' | 'rtl'
-
 export type MappingAlgorithm = DerivativeFunc<SeedToken, MapToken>
+export type RenderEmptyHandler = typeof renderEmpty
+
+export interface RenderEmptyProps {
+  componentName?: string
+  prefixCls?: string
+}
+
+export interface GlobalConfigProviderProps {
+  prefixCls?: MaybeRef<ConfigProviderProps['prefixCls']>
+  iconPrefixCls?: MaybeRef<ConfigProviderProps['iconPrefixCls']>
+  getPopupContainer?: ConfigProviderProps['getPopupContainer']
+}
 
 export interface ThemeConfig {
   token?: Partial<AliasToken>

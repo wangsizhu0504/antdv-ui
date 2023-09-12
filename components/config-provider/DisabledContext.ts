@@ -1,8 +1,7 @@
 import { computed, inject, provide, ref } from 'vue'
-import type { InjectionKey, Ref } from 'vue'
-
-export type DisabledType = boolean | undefined
-const DisabledContextKey: InjectionKey<Ref<DisabledType>> = Symbol('DisabledContextKey')
+import { DisabledContextKey } from '../constant'
+import type { DisabledType } from './type'
+import type { Ref } from 'vue'
 
 export const useInjectDisabled = () => {
   return inject(DisabledContextKey, ref<DisabledType>(undefined))

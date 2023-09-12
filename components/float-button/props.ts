@@ -1,16 +1,8 @@
-import PropTypes from '../_util/vue-types'
 import { booleanType, functionType, objectType, stringType } from '../_util/type'
+import PropTypes from '../_util/vue-types'
 import type { ExtractPropTypes } from 'vue'
 import type { MouseEventHandler } from '../_util/EventInterface'
-import type { BadgeProps } from '../badge'
-
-export type FloatButtonType = 'default' | 'primary'
-
-export type FloatButtonShape = 'circle' | 'square'
-
-export type FloatButtonGroupTrigger = 'click' | 'hover'
-
-export type FloatButtonBadgeProps = Omit<BadgeProps, 'status' | 'text' | 'title' | 'children'>
+import type { FloatButtonBadgeProps, FloatButtonGroupTrigger, FloatButtonShape, FloatButtonType } from './type'
 
 export const floatButtonProps = () => {
   return {
@@ -25,18 +17,11 @@ export const floatButtonProps = () => {
     onClick: functionType<MouseEventHandler>(),
   }
 }
-
-export type FloatButtonProps = Partial<ExtractPropTypes<ReturnType<typeof floatButtonProps>>>
-
 export const floatButtonContentProps = () => {
   return {
     prefixCls: stringType<FloatButtonProps['prefixCls']>(),
   }
 }
-
-export type FloatButtonContentProps = Partial<
-  ExtractPropTypes<ReturnType<typeof floatButtonContentProps>>
->
 
 export const floatButtonGroupProps = () => {
   return {
@@ -52,10 +37,6 @@ export const floatButtonGroupProps = () => {
   }
 }
 
-export type FloatButtonGroupProps = Partial<
-  ExtractPropTypes<ReturnType<typeof floatButtonGroupProps>>
->
-
 export const backTopProps = () => {
   return {
     ...floatButtonProps(),
@@ -68,3 +49,9 @@ export const backTopProps = () => {
 }
 
 export type BackTopProps = Partial<ExtractPropTypes<ReturnType<typeof backTopProps>>>
+
+export type FloatButtonGroupProps = Partial<ExtractPropTypes<ReturnType<typeof floatButtonGroupProps>>>
+
+export type FloatButtonContentProps = Partial<ExtractPropTypes<ReturnType<typeof floatButtonContentProps>>>
+
+export type FloatButtonProps = Partial<ExtractPropTypes<ReturnType<typeof floatButtonProps>>>

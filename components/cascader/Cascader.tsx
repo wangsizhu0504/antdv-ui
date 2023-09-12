@@ -1,14 +1,7 @@
 import { LeftOutlined, LoadingOutlined, RightOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent, ref, watchEffect } from 'vue'
-import omit from '../_util/omit'
-import { withInstall } from '../_util/type'
 import getIcons from '../select/utils/iconUtil'
-import VcCascader, {
-  SHOW_CHILD,
-  SHOW_PARENT,
-  cascaderProps as vcCascaderProps,
-} from '../vc-cascader'
-import PropTypes from '../_util/vue-types'
+import VcCascader from '../vc-cascader'
 import { initDefaultProps } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
@@ -22,24 +15,17 @@ import { useCompactItemContext } from '../space/Compact'
 import useSelectStyle from '../select/style'
 import { useInjectDisabled } from '../config-provider/DisabledContext'
 import useStyle from './style'
-import type { InputStatus } from '../_util/statusUtils'
-import type { ValueType } from '../vc-cascader/Cascader'
+import { cascaderProps } from './props'
+import type { CascaderProps } from './props'
+import type { CascaderRef } from './type'
 import type { SelectCommonPlacement } from '../_util/components/transition'
 import type { VueNode } from '../_util/type'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { SizeType } from '../config-provider'
-import type { BaseOptionType, DefaultOptionType, FieldNames, ShowSearchType } from '../vc-cascader'
+import type { ShowSearchType } from '../vc-cascader'
 
 // Align the design since we use `rc-select` in root. This help:
 // - List search content will show all content
 // - Hover opacity style
 // - Search filter match case
-
-export type { BaseOptionType, DefaultOptionType, ShowSearchType }
-
-export type FieldNamesType = FieldNames
-
-export type FilledFieldNamesType = Required<FieldNamesType>
 
 function highlightKeyword(str: string, lowerKeyword: string, prefixCls?: string) {
   const cells = str
@@ -93,37 +79,7 @@ const defaultSearchRender: ShowSearchType['render'] = ({
   return optionList
 }
 
-export interface CascaderOptionType extends DefaultOptionType {
-  isLeaf?: boolean
-  loading?: boolean
-  children?: CascaderOptionType[]
-  [key: string]: any
-}
-export function cascaderProps<DataNodeType extends CascaderOptionType = CascaderOptionType>() {
-  return {
-    ...omit(vcCascaderProps(), ['customSlots', 'checkable', 'options']),
-    'multiple': { type: Boolean, default: undefined },
-    'size': String as PropType<SizeType>,
-    'bordered': { type: Boolean, default: undefined },
-    'placement': { type: String as PropType<SelectCommonPlacement> },
-    'suffixIcon': PropTypes.any,
-    'status': String as PropType<InputStatus>,
-    'options': Array as PropType<DataNodeType[]>,
-    'popupClassName': String,
-    /** @deprecated Please use `popupClassName` instead */
-    'dropdownClassName': String,
-    'onUpdate:value': Function as PropType<(value: ValueType) => void>,
-  }
-}
-
-export type CascaderProps = Partial<ExtractPropTypes<ReturnType<typeof cascaderProps>>>
-
-export interface CascaderRef {
-  focus: () => void
-  blur: () => void
-}
-
-const Cascader = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ACascader',
   inheritAttrs: false,
@@ -337,14 +293,3 @@ const Cascader = defineComponent({
     }
   },
 })
-export default withInstall<
-  typeof Cascader & {
-    SHOW_PARENT: typeof SHOW_PARENT
-    SHOW_CHILD: typeof SHOW_CHILD
-  }
->(
-  Object.assign(Cascader, {
-    SHOW_CHILD,
-    SHOW_PARENT,
-  } as any),
-)

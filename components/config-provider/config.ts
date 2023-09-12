@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
-import { defaultIconPrefixCls } from './context'
-import type { ConfigProviderProps } from './context'
+import { defaultIconPrefixCls } from '../constant'
+import type { ConfigProviderProps } from './props'
 
 export const defaultPrefixCls = 'ant'
 
@@ -15,6 +15,7 @@ export function getGlobalIconPrefixCls() {
 export function getGlobalPrefixCls() {
   return globalConfigForApi.prefixCls || defaultPrefixCls
 }
+
 export const globalConfig = () => ({
   getPrefixCls: (suffixCls?: string, customizePrefixCls?: string) => {
     if (customizePrefixCls) return customizePrefixCls

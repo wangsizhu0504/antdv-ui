@@ -29,7 +29,7 @@ export type { CardProps } from './card'
 export { default as Card, CardGrid, CardMeta } from './card'
 
 export type { CollapseProps, CollapsePanelProps } from './collapse'
-export { default as Collapse, CollapsePanel } from './collapse'
+export { default as Collapse } from './collapse'
 
 export type { CarouselProps } from './carousel'
 export { default as Carousel } from './carousel'
@@ -73,11 +73,7 @@ export { default as Drawer } from './drawer'
 export type { EmptyProps } from './empty'
 export { default as Empty } from './empty'
 
-export type {
-  FloatButtonProps,
-  FloatButtonGroupProps,
-  BackTopProps,
-} from './float-button/interface'
+export type * from './float-button'
 export { default as FloatButton, FloatButtonGroup, BackTop } from './float-button'
 
 export type { FormProps, FormItemProps, FormInstance, FormItemInstance } from './form'

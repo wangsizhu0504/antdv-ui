@@ -1,13 +1,12 @@
-import { functionType, objectType, stringType } from '../_util/type'
+import { objectType } from '../_util/type'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { Locale, ValidateMessages } from '../locale'
 
 import type { TransformCellTextProps } from '../table/interface'
 import type { RequiredMark } from '../form/Form'
-import type { CSPConfig, SizeType, ThemeConfig } from './type'
-import type { RenderEmptyHandler } from './renderEmpty'
+import type { CSPConfig, RenderEmptyHandler, SizeType, ThemeConfig } from './type'
 
-export const configProviderProps = {
+export const configProviderProps = () => ({
   iconPrefixCls: String,
   getTargetContainer: {
     type: Function as PropType<() => HTMLElement | Window>,
@@ -15,8 +14,10 @@ export const configProviderProps = {
   getPopupContainer: {
     type: Function as PropType<(triggerNode?: HTMLElement) => HTMLElement>,
   },
-  prefixCls: stringType(),
-  getPrefixCls: functionType<(suffixCls?: string, customizePrefixCls?: string) => string>(),
+  prefixCls: String,
+  getPrefixCls: {
+    type: Function as PropType<(suffixCls?: string, customizePrefixCls?: string) => string>,
+  },
   renderEmpty: {
     type: Function as PropType<RenderEmptyHandler>,
   },
@@ -28,10 +29,13 @@ export const configProviderProps = {
   autoInsertSpaceInButton: { type: Boolean, default: undefined },
   locale: objectType<Locale>(),
   pageHeader: objectType<{ ghost?: boolean }>(),
-  componentSize: stringType<SizeType>(),
+  componentSize: {
+    type: String as PropType<SizeType>,
+  },
   componentDisabled: { type: Boolean, default: undefined },
   direction: {
     type: String as PropType<'ltr' | 'rtl'>,
+    default: 'ltr',
   },
   space: objectType<{ size?: SizeType | number }>(),
   virtual: { type: Boolean, default: undefined },
@@ -48,6 +52,6 @@ export const configProviderProps = {
   select: objectType<{
     showSearch?: boolean
   }>(),
-}
+})
 
-export type ConfigProviderProps = Partial<ExtractPropTypes<typeof configProviderProps>>
+export type ConfigProviderProps = Partial<ExtractPropTypes<ReturnType<typeof configProviderProps>>>

@@ -1,23 +1,10 @@
 import { booleanType, functionType, someType, stringType } from '../_util/type'
 import PropTypes from '../_util/vue-types'
+import type { ExtractPropTypes } from 'vue'
+import type { ActiveKeyType, CollapsibleType, PanelProps } from './type'
 import type { Key } from '../_util/type'
 
-export type CollapsibleType = 'header' | 'icon' | 'disabled'
-
-export type ActiveKeyType = Array<string | number> | string | number
-
-export interface PanelProps {
-  isActive?: boolean
-  header?: any
-  showArrow?: boolean
-  forceRender?: boolean
-  /** @deprecated Use `collapsible="disabled"` instead */
-  disabled?: boolean
-  extra?: any
-  collapsible?: CollapsibleType
-}
-
-const collapseProps = () => ({
+export const collapseProps = () => ({
   'prefixCls': String,
   'activeKey': someType<ActiveKeyType>([Array, Number, String]),
   'defaultActiveKey': someType<ActiveKeyType>([Array, Number, String]),
@@ -33,7 +20,7 @@ const collapseProps = () => ({
   'onUpdate:activeKey': functionType<(key: Key | Key[]) => void>(),
 })
 
-const collapsePanelProps = () => ({
+export const collapsePanelProps = () => ({
   openAnimation: PropTypes.object,
   prefixCls: String,
   header: PropTypes.any,
@@ -53,4 +40,6 @@ const collapsePanelProps = () => ({
   onItemClick: functionType<(panelKey: Key) => void>(),
 })
 
-export { collapseProps, collapsePanelProps }
+export type CollapseProps = Partial<ExtractPropTypes<ReturnType<typeof collapseProps>>>
+
+export type CollapsePanelProps = Partial<ExtractPropTypes<ReturnType<typeof collapsePanelProps>>>

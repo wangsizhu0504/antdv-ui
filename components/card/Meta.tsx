@@ -1,17 +1,9 @@
 import { defineComponent } from 'vue'
 import { getPropsSlot } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
-import { vNodeType } from '../_util/type'
-import type { ExtractPropTypes } from 'vue'
+import { cardMetaProps } from './props'
 import type { CustomSlotsType } from '../_util/type'
 
-export const cardMetaProps = () => ({
-  prefixCls: String,
-  title: vNodeType(),
-  description: vNodeType(),
-  avatar: vNodeType(),
-})
-export type CardGridProps = Partial<ExtractPropTypes<ReturnType<typeof cardMetaProps>>>
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ACardMeta',

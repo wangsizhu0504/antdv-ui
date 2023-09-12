@@ -16,7 +16,7 @@ import { flattenKeys } from './utils'
 import FilterDropdownMenuWrapper from './FilterWrapper'
 import FilterSearch from './FilterSearch'
 import type { FilterState } from './type'
-import type { CheckboxChangeEvent } from '../../../checkbox/interface'
+import type { CheckboxChangeEvent } from '../../../checkbox'
 import type { EventHandler } from '../../../_util/EventInterface'
 import type { DataNode, EventDataNode } from '../../../tree'
 import type {

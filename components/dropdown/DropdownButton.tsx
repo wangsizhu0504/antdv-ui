@@ -4,15 +4,14 @@ import Button from '../button'
 import classNames from '../_util/classNames'
 import { initDefaultProps } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
-import Dropdown from './dropdown'
+import Dropdown from './Dropdown'
 import useStyle from './style'
 import { dropdownButtonProps } from './props'
-import type { ExtractPropTypes, HTMLAttributes } from 'vue'
+import type { DropdownButtonProps } from './props'
+import type { HTMLAttributes } from 'vue'
 import type { CustomSlotsType } from '../_util/type'
 
 const ButtonGroup = Button.Group
-
-export type DropdownButtonProps = Partial<ExtractPropTypes<ReturnType<typeof dropdownButtonProps>>>
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

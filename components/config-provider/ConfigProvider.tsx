@@ -10,13 +10,12 @@ import message from '../message'
 import notification from '../notification'
 import defaultSeedToken from '../theme/themes/seed'
 import { DesignTokenProvider } from '../theme/internal'
-import { defaultPrefixCls, getGlobalIconPrefixCls, getGlobalPrefixCls, globalConfigForApi } from './config'
+import { defaultIconPrefixCls } from '../constant'
+import { getGlobalIconPrefixCls, getGlobalPrefixCls, globalConfigForApi } from './config'
 import defaultRenderEmpty from './renderEmpty'
 import { useProviderDisabled } from './DisabledContext'
 import { useProviderSize } from './SizeContext'
 import {
-  configProviderProps,
-  defaultIconPrefixCls,
   useConfigContextInject,
   useConfigContextProvider,
   useProvideGlobalForm,
@@ -24,18 +23,12 @@ import {
 import useTheme from './hooks/useTheme'
 import useStyle from './style'
 import { registerTheme } from './cssVariables'
-import type { ConfigProviderInnerProps, ConfigProviderProps } from './context'
-import type { RenderEmptyHandler } from './renderEmpty'
-import type { MaybeRef } from '../_util/type'
+
+import { type ConfigProviderProps, configProviderProps } from './props'
+
 import type { Locale, ValidateMessages } from '../locale'
-import type { App, Plugin, WatchStopHandle } from 'vue'
-import type { Theme } from './type'
-
-export type { ConfigProviderProps } from './context'
-
-export { defaultIconPrefixCls, defaultPrefixCls, globalConfigForApi }
-
-export * from './type'
+import type { WatchStopHandle } from 'vue'
+import type { ConfigProviderInnerProps, GlobalConfigProviderProps, RenderEmptyHandler, Theme } from './type'
 
 const globalConfigBySet = reactive<ConfigProviderProps>({}) // 权重最大
 
@@ -71,14 +64,9 @@ watchEffect(() => {
   }
 })
 
-interface GlobalConfigProviderProps {
-  prefixCls?: MaybeRef<ConfigProviderProps['prefixCls']>
-  iconPrefixCls?: MaybeRef<ConfigProviderProps['iconPrefixCls']>
-  getPopupContainer?: ConfigProviderProps['getPopupContainer']
-}
-
 let stopWatchEffect: WatchStopHandle
-const setGlobalConfig = (params: GlobalConfigProviderProps & { theme?: Theme }) => {
+
+export const setGlobalConfig = (params: GlobalConfigProviderProps & { theme?: Theme }) => {
   if (stopWatchEffect)
     stopWatchEffect()
 
@@ -90,11 +78,12 @@ const setGlobalConfig = (params: GlobalConfigProviderProps & { theme?: Theme }) 
     registerTheme(getGlobalPrefixCls(), params.theme)
 }
 
-const ConfigProvider = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AConfigProvider',
   inheritAttrs: false,
   props: configProviderProps(),
+  config: setGlobalConfig,
   setup(props, { slots }) {
     const parentContext = useConfigContextInject()
     const getPrefixCls = (suffixCls?: string, customizePrefixCls?: string) => {
@@ -257,14 +246,3 @@ const ConfigProvider = defineComponent({
     )
   },
 })
-
-ConfigProvider.config = setGlobalConfig
-
-ConfigProvider.install = function (app: App) {
-  app.component(ConfigProvider.name, ConfigProvider)
-}
-
-export default ConfigProvider as typeof ConfigProvider &
-Plugin & {
-  readonly config: typeof setGlobalConfig
-}

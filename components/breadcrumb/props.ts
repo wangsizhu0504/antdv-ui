@@ -4,7 +4,7 @@ import { type VueNode, eventType, objectType } from '../_util/type'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { Route } from './type'
 import type { MouseEventHandler } from '../_util/EventInterface'
-import type { DropdownProps } from '../dropdown/dropdown'
+import type { DropdownProps } from '../dropdown'
 
 export const breadcrumbProps = () => ({
   prefixCls: String,
