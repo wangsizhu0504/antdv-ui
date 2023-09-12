@@ -6,29 +6,11 @@ import { useConfigInject } from '../hooks'
 import Avatar from './Avatar'
 import useStyle from './style'
 import { useAvatarProviderContext } from './AvatarContext'
-import type { AvatarSize } from './Avatar'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
-export const groupProps = () => ({
-  prefixCls: String,
-  maxCount: Number,
-  maxStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) as CSSProperties },
-  maxPopoverPlacement: { type: String as PropType<'top' | 'bottom'>, default: 'top' },
-  maxPopoverTrigger: String as PropType<'hover' | 'focus' | 'click'>,
-  /*
-   * Size of avatar, options: `large`, `small`, `default`
-   * or a custom number size
-   * */
-  size: {
-    type: [Number, String, Object] as PropType<AvatarSize>,
-    default: 'default' as AvatarSize,
-  },
-  shape: { type: String as PropType<'circle' | 'square'>, default: 'circle' },
-})
+import { groupProps } from './props'
+import type { CSSProperties } from 'vue'
 
-export type AvatarGroupProps = Partial<ExtractPropTypes<ReturnType<typeof groupProps>>>
-
-const Group = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AAvatarGroup',
   inheritAttrs: false,
@@ -95,5 +77,3 @@ const Group = defineComponent({
     }
   },
 })
-
-export default Group

@@ -1,25 +1,12 @@
 import { defineComponent } from 'vue'
 import { DownOutlined } from '@ant-design/icons-vue'
-import PropTypes from '../_util/vue-types'
 import { getPropsSlot } from '../_util/props-util'
 import Dropdown from '../dropdown/dropdown'
 import { useConfigInject } from '../hooks'
-import { eventType, objectType } from '../_util/type'
-import type { MouseEventHandler } from '../_util/EventInterface'
-import type { DropdownProps } from '../dropdown/dropdown'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
+import { breadcrumbItemProps } from './props'
+import type { CSSProperties } from 'vue'
 import type { CustomSlotsType, VueNode } from '../_util/type'
 
-export const breadcrumbItemProps = () => ({
-  prefixCls: String,
-  href: String,
-  separator: PropTypes.any,
-  dropdownProps: objectType<DropdownProps>(),
-  overlay: PropTypes.any,
-  onClick: eventType<MouseEventHandler>(),
-})
-
-export type BreadcrumbItemProps = Partial<ExtractPropTypes<ReturnType<typeof breadcrumbItemProps>>>
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ABreadcrumbItem',

@@ -1,13 +1,6 @@
 import { inject, provide } from 'vue'
-import type { InjectionKey } from 'vue'
-import type { ScreenSizeMap } from '../_util/responsiveObserve'
-
-export type AvatarSize = 'large' | 'small' | 'default' | number | ScreenSizeMap
-export interface AvatarContextType {
-  size?: AvatarSize
-  shape?: 'circle' | 'square'
-}
-const AvatarContextKey: InjectionKey<AvatarContextType> = Symbol('AvatarContextKey')
+import { AvatarContextKey } from '../constant'
+import type { AvatarContextType } from './type'
 
 export const useAvatarInjectContext = () => {
   return inject(AvatarContextKey, {})

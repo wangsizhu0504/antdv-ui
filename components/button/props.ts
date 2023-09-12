@@ -1,29 +1,9 @@
-import PropTypes from '../_util/vue-types'
-
 import { eventType } from '../_util/type'
+import PropTypes from '../_util/vue-types'
+import type { MouseEventHandler } from '../_util/EventInterface'
+import type { ButtonHTMLType, ButtonShape, ButtonType } from './type'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { SizeType } from '../config-provider'
-import type { MouseEventHandler } from '../_util/EventInterface'
-
-export type ButtonType = 'link' | 'default' | 'primary' | 'ghost' | 'dashed' | 'text'
-export type ButtonShape = 'default' | 'circle' | 'round'
-
-export type ButtonHTMLType = 'submit' | 'button' | 'reset'
-
-export type LegacyButtonType = ButtonType | 'danger' | 'warning' | 'success'
-
-export function convertLegacyProps(type?: LegacyButtonType): ButtonProps {
-  switch (type) {
-    case 'danger':
-      return { danger: true }
-    case 'warning':
-      return { warning: true }
-    case 'success':
-      return { success: true }
-    default :
-      return { type }
-  }
-}
 
 export const buttonProps = () => ({
   prefixCls: String,
@@ -51,6 +31,13 @@ export const buttonProps = () => ({
   onMousedown: eventType<MouseEventHandler>(),
 })
 
+export const buttonGroupProps = () => ({
+  prefixCls: String,
+  size: {
+    type: String as PropType<SizeType>,
+  },
+})
+
 export type ButtonProps = Partial<ExtractPropTypes<ReturnType<typeof buttonProps>>>
 
-export default buttonProps
+export type ButtonGroupProps = Partial<ExtractPropTypes<ReturnType<typeof buttonGroupProps>>>

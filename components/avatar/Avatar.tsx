@@ -1,46 +1,22 @@
 import { computed, defineComponent, nextTick, onMounted, shallowRef, watch } from 'vue'
 import { getPropsSlot } from '../_util/props-util'
-import PropTypes from '../_util/vue-types'
 import { useBreakpoint, useConfigInject } from '../hooks'
 import { responsiveArray } from '../_util/responsiveObserve'
 import ResizeObserver from '../vc-resize-observer'
 import eagerComputed from '../_util/eagerComputed'
 import { useAvatarInjectContext } from './AvatarContext'
 import useStyle from './style'
-import type { Breakpoint, ScreenSizeMap } from '../_util/responsiveObserve'
-import type { VueNode } from '../_util/type'
-import type { CSSProperties, ExtractPropTypes, PropType, SlotsType } from 'vue'
+import { avatarProps } from './props'
+import type { Breakpoint } from '../_util/responsiveObserve'
+import type { CustomSlotsType, VueNode } from '../_util/type'
+import type { CSSProperties } from 'vue'
 
-export type AvatarSize = 'large' | 'small' | 'default' | number | ScreenSizeMap
-
-export const avatarProps = () => ({
-  prefixCls: String,
-  shape: { type: String as PropType<'circle' | 'square'>, default: 'circle' },
-  size: {
-    type: [Number, String, Object] as PropType<AvatarSize>,
-    default: (): AvatarSize => 'default',
-  },
-  src: String,
-  /** Srcset of image avatar */
-  srcset: String,
-  icon: PropTypes.any,
-  alt: String,
-  gap: Number,
-  draggable: { type: Boolean, default: undefined },
-  crossOrigin: String as PropType<'' | 'anonymous' | 'use-credentials'>,
-  loadError: {
-    type: Function as PropType<() => boolean>,
-  },
-})
-
-export type AvatarProps = Partial<ExtractPropTypes<ReturnType<typeof avatarProps>>>
-
-const Avatar = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AAvatar',
   inheritAttrs: false,
   props: avatarProps(),
-  slots: Object as SlotsType<{
+  slots: Object as CustomSlotsType<{
     icon: any
     default: any
   }>,
@@ -215,5 +191,3 @@ const Avatar = defineComponent({
     }
   },
 })
-
-export default Avatar

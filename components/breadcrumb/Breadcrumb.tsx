@@ -1,34 +1,15 @@
 import { cloneVNode, defineComponent } from 'vue'
-import PropTypes from '../_util/vue-types'
 import { flattenChildren, getPropsSlot } from '../_util/props-util'
 import warning from '../_util/warning'
 import Menu from '../menu'
 import { useConfigInject } from '../hooks'
 import BreadcrumbItem from './BreadcrumbItem'
 import useStyle from './style'
-import type { BreadcrumbItemProps } from './BreadcrumbItem'
-import type { ExtractPropTypes, PropType } from 'vue'
+import { breadcrumbProps } from './props'
+import type { BreadcrumbItemProps } from './props'
+import type { Route } from './type'
+
 import type { CustomSlotsType, VueNode } from '../_util/type'
-
-export interface Route {
-  path: string
-  breadcrumbName: string
-  children?: Omit<Route, 'children'>[]
-}
-
-export const breadcrumbProps = () => ({
-  prefixCls: String,
-  routes: { type: Array as PropType<Route[]> },
-  params: PropTypes.any,
-  separator: PropTypes.any,
-  itemRender: {
-    type: Function as PropType<
-      (opt: { route: Route, params: unknown, routes: Route[], paths: string[] }) => VueNode
-    >,
-  },
-})
-
-export type BreadcrumbProps = Partial<ExtractPropTypes<ReturnType<typeof breadcrumbProps>>>
 
 function getBreadcrumbName(route: Route, params: unknown) {
   if (!route.breadcrumbName)

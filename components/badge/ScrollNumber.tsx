@@ -1,27 +1,18 @@
 import { defineComponent } from 'vue'
 import classNames from '../_util/classNames'
-import PropTypes from '../_util/vue-types'
 import { cloneElement } from '../_util/vnode'
 import { useConfigInject } from '../hooks'
 import { filterEmpty } from '../_util/props-util'
 import SingleNumber from './SingleNumber'
-import type { CSSProperties, DefineComponent, ExtractPropTypes, HTMLAttributes } from 'vue'
-
-const scrollNumberProps = {
-  prefixCls: String,
-  count: PropTypes.any,
-  component: String,
-  title: PropTypes.any,
-  show: Boolean,
-}
-
-export type ScrollNumberProps = Partial<ExtractPropTypes<typeof scrollNumberProps>>
+import { scrollNumberProps } from './props'
+import type { ScrollNumberProps } from './props'
+import type { CSSProperties, DefineComponent, HTMLAttributes } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ScrollNumber',
   inheritAttrs: false,
-  props: scrollNumberProps,
+  props: scrollNumberProps(),
   setup(props, { attrs, slots }) {
     const { prefixCls } = useConfigInject('scroll-number', props)
 

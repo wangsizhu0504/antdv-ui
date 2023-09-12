@@ -1,13 +1,8 @@
 import { computed, defineComponent, onUnmounted, reactive, ref, watch } from 'vue'
 import classNames from '../_util/classNames'
+import { singleNumberProps } from './props'
+import type { UnitNumberProps } from './type'
 import type { CSSProperties } from 'vue'
-
-export interface UnitNumberProps {
-  prefixCls: string
-  value: string | number
-  offset?: number
-  current?: boolean
-}
 
 function UnitNumber({ prefixCls, value, current, offset = 0 }: UnitNumberProps) {
   let style: CSSProperties | undefined
@@ -47,11 +42,7 @@ function getOffset(start: number, end: number, unit: -1 | 1) {
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'SingleNumber',
-  props: {
-    prefixCls: String,
-    value: String,
-    count: Number,
-  },
+  props: singleNumberProps(),
   setup(props) {
     const originValue = computed(() => Number(props.value))
     const originCount = computed(() => Math.abs(props.count))

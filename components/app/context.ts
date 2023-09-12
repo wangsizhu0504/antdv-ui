@@ -1,15 +1,7 @@
 import { inject, provide, reactive } from 'vue'
+import { AppConfigContextKey } from '../constant'
+import type { AppConfig, useAppProps } from './type'
 import type { InjectionKey } from 'vue'
-import type { ConfigOptions as MessageConfig, MessageInstance } from '../message/interface'
-import type { NotificationConfig, NotificationInstance } from '../notification/interface'
-import type { ModalStaticFunctions } from '../modal/confirm'
-
-export interface AppConfig {
-  message?: MessageConfig
-  notification?: NotificationConfig
-}
-
-export const AppConfigContextKey: InjectionKey<AppConfig> = Symbol('appConfigContext')
 
 export const useProvideAppConfigContext = (appConfigContext: AppConfig) => {
   return provide(AppConfigContextKey, appConfigContext)
@@ -17,14 +9,6 @@ export const useProvideAppConfigContext = (appConfigContext: AppConfig) => {
 
 export const useInjectAppConfigContext = () => {
   return inject(AppConfigContextKey, {})
-}
-
-type ModalType = Omit<ModalStaticFunctions, 'warn'>
-
-export interface useAppProps {
-  message: MessageInstance
-  notification: NotificationInstance
-  modal: ModalType
 }
 
 export const AppContextKey: InjectionKey<useAppProps> = Symbol('appContext')

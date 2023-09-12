@@ -1,7 +1,7 @@
 import abstractTooltipProps from '../tooltip/abstractTooltipProps'
 import { anyType, objectType, stringType } from '../_util/type'
 import type { ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import type { ButtonProps, LegacyButtonType } from '../button/buttonTypes'
+import type { ButtonProps, LegacyButtonType } from '../button'
 
 export const popconfirmProps = () => ({
   ...abstractTooltipProps(),

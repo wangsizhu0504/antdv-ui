@@ -1,14 +1,7 @@
 import { defineComponent } from 'vue'
 import { flattenChildren } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
-import type { ExtractPropTypes } from 'vue'
-
-export const breadcrumbSeparatorProps = () => ({
-  prefixCls: String,
-})
-export type BreadcrumbSeparatorProps = Partial<
-  ExtractPropTypes<ReturnType<typeof breadcrumbSeparatorProps>>
->
+import { breadcrumbSeparatorProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

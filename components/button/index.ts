@@ -1,12 +1,10 @@
-import Button from './button'
-import ButtonGroup from './button-group'
+import Button from './Button'
+import ButtonGroup from './ButtonGroup'
 import type { App, Plugin } from 'vue'
 
-import type { ButtonProps, ButtonShape, ButtonType } from './buttonTypes'
-import type { ButtonGroupProps } from './button-group'
-import type { SizeType as ButtonSize } from '../config-provider'
-
-export type { ButtonProps, ButtonShape, ButtonType, ButtonGroupProps, ButtonSize }
+export * from './props'
+export * from './type'
+export * from './utils'
 
 const AntdButton = Button
 AntdButton.Group = ButtonGroup
@@ -20,7 +18,6 @@ Button.install = function (app: App) {
 
 export { ButtonGroup }
 
-export default AntdButton as typeof AntdButton &
-Plugin & {
+export default AntdButton as typeof AntdButton & Plugin & {
   readonly Group: typeof ButtonGroup
 }

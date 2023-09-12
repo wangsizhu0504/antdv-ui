@@ -1,20 +1,10 @@
 import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import { isPresetColor } from '../_util/colors'
-import PropTypes from '../_util/vue-types'
 import useStyle from './style'
-import type { CustomSlotsType, LiteralUnion } from '../_util/type'
-import type { PresetColorType } from '../_util/colors'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-
-export const ribbonProps = () => ({
-  prefix: String,
-  color: { type: String as PropType<LiteralUnion<PresetColorType>> },
-  text: PropTypes.any,
-  placement: { type: String as PropType<'start' | 'end'>, default: 'end' },
-})
-
-export type RibbonProps = Partial<ExtractPropTypes<ReturnType<typeof ribbonProps>>>
+import { ribbonProps } from './props'
+import type { CustomSlotsType } from '../_util/type'
+import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

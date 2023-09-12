@@ -3,9 +3,8 @@ import BreadcrumbItem from './BreadcrumbItem'
 import BreadcrumbSeparator from './BreadcrumbSeparator'
 import type { App, Plugin } from 'vue'
 
-export type { BreadcrumbProps } from './Breadcrumb'
-export type { BreadcrumbItemProps } from './BreadcrumbItem'
-export type { BreadcrumbSeparatorProps } from './BreadcrumbSeparator'
+export * from './props'
+export * from './type'
 
 const AntdBreadcrumb = Breadcrumb
 AntdBreadcrumb.Item = BreadcrumbItem

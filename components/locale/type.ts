@@ -1,9 +1,4 @@
-import type { VNode } from 'vue'
-
-type VNodeChildAtom = VNode | string | number | boolean | null | undefined | void
-export type VueNode = VNodeChildAtom | VNodeChildAtom[] | JSX.Element
-
-// pagination locale
+import type { VueNode } from '../_util/type'
 
 export interface PaginationLocale {
   items_per_page?: string

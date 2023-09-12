@@ -2,21 +2,10 @@ import { computed, defineComponent, reactive } from 'vue'
 import { flattenChildren } from '../_util/props-util'
 import { useToken } from '../theme/internal'
 import devWarning from '../vc-util/devWarning'
-import { createContext, useConfigInject } from '../hooks'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { SizeType } from '../config-provider'
+import { useConfigInject } from '../hooks'
+import { buttonGroupProps } from './props'
+import { GroupSizeContext } from './context'
 
-export const buttonGroupProps = () => ({
-  prefixCls: String,
-  size: {
-    type: String as PropType<SizeType>,
-  },
-})
-
-export type ButtonGroupProps = Partial<ExtractPropTypes<ReturnType<typeof buttonGroupProps>>>
-export const GroupSizeContext = createContext<{
-  size: SizeType
-}>()
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AButtonGroup',

@@ -2,24 +2,10 @@ import { defineComponent, ref } from 'vue'
 import Select from '../select'
 import { Button, Group } from '../radio'
 import { FormItemInputContext } from '../form/FormItemContext'
-import type { CalendarMode, SelectInfo } from './generateCalendar'
-import type { Ref } from 'vue'
-import type { PickerLocale } from '../locale'
-import type { GenerateConfig } from '../vc-picker/generate'
+import type { CalendarHeaderProps, ModeSwitchProps, SharedProps } from './type'
 
 const YearSelectOffset = 10
 const YearSelectTotal = 20
-
-interface SharedProps<DateType> {
-  prefixCls: string
-  value: DateType
-  validRange?: [DateType, DateType]
-  generateConfig: GenerateConfig<DateType>
-  locale: PickerLocale
-  fullscreen: boolean
-  divRef: Ref<HTMLDivElement>
-  onChange: (year: DateType) => void
-}
 
 function YearSelect<DateType>(props: SharedProps<DateType>) {
   const { fullscreen, validRange, generateConfig, locale, prefixCls, value, onChange, divRef }
@@ -117,11 +103,6 @@ function MonthSelect<DateType>(props: SharedProps<DateType>) {
 
 MonthSelect.inheritAttrs = false
 
-interface ModeSwitchProps<DateType> extends Omit<SharedProps<DateType>, 'onChange'> {
-  mode: CalendarMode
-  onModeChange: (type: CalendarMode) => void
-}
-
 function ModeSwitch<DateType>(props: ModeSwitchProps<DateType>) {
   const { prefixCls, locale, mode, fullscreen, onModeChange } = props
   return (
@@ -138,19 +119,8 @@ function ModeSwitch<DateType>(props: ModeSwitchProps<DateType>) {
     </Group>
   )
 }
-ModeSwitch.inheritAttrs = false
 
-export interface CalendarHeaderProps<DateType> {
-  prefixCls: string
-  value: DateType
-  validRange?: [DateType, DateType]
-  generateConfig: GenerateConfig<DateType>
-  locale: PickerLocale
-  mode: CalendarMode
-  fullscreen: boolean
-  onChange: (date: DateType, source: SelectInfo['source']) => void
-  onModeChange: (mode: CalendarMode) => void
-}
+ModeSwitch.inheritAttrs = false
 
 export default defineComponent<CalendarHeaderProps<any>>({
   name: 'CalendarHeader',

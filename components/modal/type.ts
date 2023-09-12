@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'vue'
 import type { VueNode } from '../_util/type'
 import type { Direction } from '../config-provider'
-import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../button/buttonTypes'
+import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../button'
 
 export type MousePosition = { x: number, y: number } | null
 

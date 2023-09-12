@@ -6,70 +6,14 @@ import classNames from '../_util/classNames'
 import { enUS } from '../locale'
 import CalendarHeader from './Header'
 import useStyle from './style'
+import type { CalendarMode, CalendarProps, SelectInfo } from './type'
 import type { GenerateConfig } from '../vc-picker/generate'
-import type {
-  PickerPanelBaseProps as RCPickerPanelBaseProps,
-  PickerPanelDateProps as RCPickerPanelDateProps,
-  PickerPanelTimeProps as RCPickerPanelTimeProps,
-} from '../vc-picker/PickerPanel'
-import type { CustomSlotsType, VueNode } from '../_util/type'
+
+import type { CustomSlotsType } from '../_util/type'
 import type { App, PropType } from 'vue'
 import type { PickerLocale } from '../locale'
 
 // CSSINJS
-
-type InjectDefaultProps<Props> = Omit<
-  Props,
-  'locale' | 'generateConfig' | 'prevIcon' | 'nextIcon' | 'superPrevIcon' | 'superNextIcon'
-> & {
-  locale?: typeof enUS.DatePicker
-  size?: 'large' | 'default' | 'small'
-}
-
-export interface SelectInfo {
-  source: 'year' | 'month' | 'date' | 'customize'
-}
-
-// Picker Props
-export type PickerPanelBaseProps<DateType> = InjectDefaultProps<RCPickerPanelBaseProps<DateType>>
-export type PickerPanelDateProps<DateType> = InjectDefaultProps<RCPickerPanelDateProps<DateType>>
-export type PickerPanelTimeProps<DateType> = InjectDefaultProps<RCPickerPanelTimeProps<DateType>>
-
-export type PickerProps<DateType> =
-  | PickerPanelBaseProps<DateType>
-  | PickerPanelDateProps<DateType>
-  | PickerPanelTimeProps<DateType>
-
-export type CalendarMode = 'year' | 'month'
-export type HeaderRender<DateType> = (config: {
-  value: DateType
-  type: CalendarMode
-  onChange: (date: DateType) => void
-  onTypeChange: (type: CalendarMode) => void
-}) => VueNode
-
-type CustomRenderType<DateType> = (config: { current: DateType }) => VueNode
-
-export interface CalendarProps<DateType> {
-  prefixCls?: string
-  locale?: typeof enUS.DatePicker
-  validRange?: [DateType, DateType]
-  disabledDate?: (date: DateType) => boolean
-  dateFullCellRender?: CustomRenderType<DateType>
-  dateCellRender?: CustomRenderType<DateType>
-  monthFullCellRender?: CustomRenderType<DateType>
-  monthCellRender?: CustomRenderType<DateType>
-  headerRender?: HeaderRender<DateType>
-  value?: DateType | string
-  defaultValue?: DateType | string
-  mode?: CalendarMode
-  fullscreen?: boolean
-  onChange?: (date: DateType | string) => void
-  'onUpdate:value'?: (date: DateType | string) => void
-  onPanelChange?: (date: DateType | string, mode: CalendarMode) => void
-  onSelect?: (date: DateType, selectInfo: SelectInfo) => void
-  valueFormat?: string
-}
 
 function generateCalendar<
   DateType,

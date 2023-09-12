@@ -2,10 +2,6 @@ import Avatar from './Avatar'
 import Group from './Group'
 import type { App, Plugin } from 'vue'
 
-export { avatarProps } from './Avatar'
-export type { AvatarProps, AvatarSize } from './Avatar'
-export type { AvatarGroupProps } from './Group'
-
 const AntdAvatar = Avatar
 AntdAvatar.Group = Group
 
@@ -16,7 +12,10 @@ AntdAvatar.install = function (app: App) {
   return app
 }
 export { Group as AvatarGroup }
-export default AntdAvatar as typeof AntdAvatar &
-Plugin & {
+
+export * from './type'
+export * from './props'
+
+export default AntdAvatar as typeof AntdAvatar & Plugin & {
   readonly Group: typeof Group
 }

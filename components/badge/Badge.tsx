@@ -3,38 +3,15 @@ import { Transition, getTransitionProps } from '../_util/components/transition'
 import { flattenChildren, getPropsSlot } from '../_util/props-util'
 import { useConfigInject } from '../hooks'
 import { isPresetColor } from '../_util/colors'
-import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
 import { cloneElement } from '../_util/vnode'
 import { isNumeric } from '../_util/is'
 import Ribbon from './Ribbon'
 import ScrollNumber from './ScrollNumber'
 import useStyle from './style'
-import type { PresetStatusColorType } from '../_util/colors'
-import type { CustomSlotsType, LiteralUnion } from '../_util/type'
-import type { PresetColorKey } from '../theme/interface'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-
-export const badgeProps = () => ({
-  /** Number to show in badge */
-  count: PropTypes.any.def(null),
-  showZero: { type: Boolean, default: undefined },
-  /** Max count to show */
-  overflowCount: { type: Number, default: 99 },
-  /** whether to show red dot without number */
-  dot: { type: Boolean, default: undefined },
-  prefixCls: String,
-  scrollNumberPrefixCls: String,
-  status: { type: String as PropType<PresetStatusColorType> },
-  size: { type: String as PropType<'default' | 'small'>, default: 'default' },
-  color: String as PropType<LiteralUnion<PresetColorKey>>,
-  text: PropTypes.any,
-  offset: Array as unknown as PropType<[number | string, number | string]>,
-  numberStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-  title: String,
-})
-
-export type BadgeProps = Partial<ExtractPropTypes<ReturnType<typeof badgeProps>>>
+import { badgeProps } from './props'
+import type { CustomSlotsType } from '../_util/type'
+import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

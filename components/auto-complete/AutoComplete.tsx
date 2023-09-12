@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import Select, { selectProps } from '../select'
+import Select from '../select'
 
 import { useConfigInject } from '../hooks'
 
@@ -7,42 +7,13 @@ import omit from '../_util/omit'
 import warning from '../_util/warning'
 import { flattenChildren, isValidElement } from '../_util/props-util'
 import Option from './Option'
-import OptGroup from './OptGroup'
-import type { InputStatus } from '../_util/statusUtils'
-import type { App, CSSProperties, ExtractPropTypes, PropType, SlotsType, VNode } from 'vue'
+import { autoCompleteProps } from './props'
+import type { SlotsType, VNode } from 'vue'
 
 function isSelectOptionOrSelectOptGroup(child: any): boolean {
   return child?.type?.isSelectOption || child?.type?.isSelectOptGroup
 }
-
-export const autoCompleteProps = () => ({
-  ...omit(selectProps(), ['loading', 'mode', 'optionLabelProp', 'labelInValue']),
-  dataSource: Array as PropType<{ value: any, text: any }[] | string[]>,
-  dropdownMenuStyle: {
-    type: Object as PropType<CSSProperties>,
-    default: () => ({}) as CSSProperties,
-  },
-  // optionLabelProp: String,
-  dropdownMatchSelectWidth: { type: [Number, Boolean], default: true },
-  prefixCls: String,
-  showSearch: { type: Boolean, default: undefined },
-  transitionName: String,
-  choiceTransitionName: { type: String, default: 'zoom' },
-  autofocus: { type: Boolean, default: undefined },
-  backfill: { type: Boolean, default: undefined },
-  // optionLabelProp: PropTypes.string.def('children'),
-  filterOption: { type: [Boolean, Function], default: false },
-  defaultActiveFirstOption: { type: Boolean, default: true },
-  status: String as PropType<InputStatus>,
-})
-
-export type AutoCompleteProps = Partial<ExtractPropTypes<ReturnType<typeof autoCompleteProps>>>
-
-export const AutoCompleteOption = Option
-
-export const AutoCompleteOptGroup = OptGroup
-
-const AutoComplete = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AAutoComplete',
   inheritAttrs: false,
@@ -156,17 +127,5 @@ const AutoComplete = defineComponent({
         </Select>
       )
     }
-  },
-})
-
-/* istanbul ignore next */
-export default Object.assign(AutoComplete, {
-  Option,
-  OptGroup,
-  install(app: App) {
-    app.component(AutoComplete.name, AutoComplete)
-    app.component(Option.displayName, Option)
-    app.component(OptGroup.displayName, OptGroup)
-    return app
   },
 })

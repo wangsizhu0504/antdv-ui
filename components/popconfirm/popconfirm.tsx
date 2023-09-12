@@ -3,8 +3,7 @@ import { ExclamationCircleFilled } from '@ant-design/icons-vue'
 import defaultLocale from '../locale/lang/en_US'
 import Popover from '../popover'
 import { initDefaultProps } from '../_util/props-util'
-import { convertLegacyProps } from '../button/buttonTypes'
-import Button from '../button'
+import Button, { convertLegacyProps } from '../button'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
 
 import { useConfigInject, useMergedState } from '../hooks'
@@ -20,7 +19,7 @@ import warning from '../_util/warning'
 import usePopconfirmStyle from './style'
 import { popconfirmProps } from './props'
 import type { PopconfirmProps } from './props'
-import type { ButtonProps } from '../button/buttonTypes'
+import type { ButtonProps } from '../button'
 import type { SlotsType } from 'vue'
 
 export default defineComponent({

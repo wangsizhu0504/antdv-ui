@@ -1,6 +1,7 @@
 import PropTypes from '../_util/vue-types'
-import buttonTypes from '../button/buttonTypes'
+
 import { booleanType, eventType, objectType, someType } from '../_util/type'
+import { buttonProps } from '../button'
 import type { CSSProperties, PropType } from 'vue'
 
 import type { MouseEventHandler } from '../_util/EventInterface'
@@ -75,7 +76,7 @@ const dropdownProps = () => ({
   },
 })
 
-const buttonTypesProps = buttonTypes()
+const buttonTypesProps = buttonProps()
 const dropdownButtonProps = () => ({
   ...dropdownProps(),
   type: buttonTypesProps.type,

@@ -1,5 +1,5 @@
 import { omit } from 'lodash-es'
-import { selectProps } from '../vc-select'
+import { selectProps } from '../select'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { InputStatus } from '../_util/statusUtils'
 
@@ -23,4 +23,5 @@ export const autoCompleteProps = () => ({
   defaultActiveFirstOption: { type: Boolean, default: true },
   status: String as PropType<InputStatus>,
 })
+
 export type AutoCompleteProps = Partial<ExtractPropTypes<ReturnType<typeof autoCompleteProps>>>

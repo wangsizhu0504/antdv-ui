@@ -1,11 +1,9 @@
 import { defineComponent, onBeforeUnmount, onMounted, shallowRef } from 'vue'
-import Button from '../../button'
-import { convertLegacyProps } from '../../button/buttonTypes'
+import Button, { convertLegacyProps } from '../../button'
 import { useDestroyed } from '../../hooks'
 import { objectType } from '../type'
 import { findDOMNode } from '../props-util'
-import type { LegacyButtonType } from '../../button/buttonTypes'
-import type { ButtonProps } from '../../button'
+import type { ButtonProps, LegacyButtonType } from '../../button'
 import type { ExtractPropTypes, PropType } from 'vue'
 
 const actionButtonProps = {

@@ -4,8 +4,7 @@ import classNames from '../_util/classNames'
 import Dialog from '../vc-dialog'
 import PropTypes from '../_util/vue-types'
 import addEventListener from '../vc-util/Dom/addEventListener'
-import Button from '../button'
-import { convertLegacyProps } from '../button/buttonTypes'
+import Button, { convertLegacyProps } from '../button'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import { objectType } from '../_util/type'
@@ -17,7 +16,7 @@ import useStyle from './style'
 
 import type { MousePosition, getContainerFunc } from './type'
 import type { VueNode } from '../_util/type'
-import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../button/buttonTypes'
+import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../button'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 let mousePosition: MousePosition
