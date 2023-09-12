@@ -25,8 +25,7 @@ Use `useBreakpoint` Hook provide personalized layout.
   </template>
 </template>
 <script lang="ts" setup>
-import { Grid } from '@antdv/ui';
+import { useBreakpoint } from '@antdv/ui/es/hooks';
 
-const useBreakpoint = Grid.useBreakpoint;
 const screens = useBreakpoint();
 </script>

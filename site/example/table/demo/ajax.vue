@@ -27,7 +27,7 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
   <a-table
     :columns="columns"
     :row-key="record => record.login.uuid"
-    :data-source="dataSource"
+    :data-source="list"
     :pagination="pagination"
     :loading="loading"
     @change="handleTableChange"
@@ -38,7 +38,7 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
   </a-table>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed,watch } from 'vue';
 import type { TableProps } from '@antdv/ui';
 import { usePagination } from 'vue-request';
 import axios from 'axios';
@@ -90,13 +90,13 @@ const {
   current,
   pageSize,
 } = usePagination(queryData, {
-  formatResult: res => res.data.results,
   pagination: {
     currentKey: 'page',
     pageSizeKey: 'results',
   },
 });
-
+const list = computed(() => dataSource.value?.data?.results || [])
+console.log('dataSource',dataSource)
 const pagination = computed(() => ({
   total: 200,
   current: current.value,

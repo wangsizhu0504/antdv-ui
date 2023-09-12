@@ -23,7 +23,7 @@ Customize render list with Table component.
       :data-source="mockData"
       :disabled="disabled"
       :show-search="showSearch"
-      :filter-option="(inputValue, item) => item.title.indexOf(inputValue) !== -1"
+      :filter-option="(inputValue, item) => item.title?.indexOf(inputValue) !== -1"
       :show-select-all="false"
       @change="onChange"
     >

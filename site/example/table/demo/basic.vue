@@ -17,8 +17,8 @@ Simple table with actions.
 
 <template>
   <a-table :columns="columns" :data-source="data">
-    <template #headerCell="{ column }">
-      <template v-if="column.key === 'name'">
+    <template #headerCell="scope">
+      <template v-if="scope?.column.key === 'name'">
         <span>
           <smile-outlined />
           Name
@@ -26,16 +26,16 @@ Simple table with actions.
       </template>
     </template>
 
-    <template #bodyCell="{ column, record }">
-      <template v-if="column.key === 'name'">
+    <template #bodyCell="scope">
+      <template v-if="scope?.column.key === 'name'">
         <a>
-          {{ record.name }}
+          {{ scope?.record.name }}
         </a>
       </template>
-      <template v-else-if="column.key === 'tags'">
+      <template v-else-if="scope?.column.key === 'tags'">
         <span>
           <a-tag
-            v-for="tag in record.tags"
+            v-for="tag in scope?.record.tags"
             :key="tag"
             :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
           >
@@ -43,9 +43,9 @@ Simple table with actions.
           </a-tag>
         </span>
       </template>
-      <template v-else-if="column.key === 'action'">
+      <template v-else-if="scope?.column.key === 'action'">
         <span>
-          <a>Invite 一 {{ record.name }}</a>
+          <a>Invite 一 {{ scope?.record.name }}</a>
           <a-divider type="vertical" />
           <a>Delete</a>
           <a-divider type="vertical" />

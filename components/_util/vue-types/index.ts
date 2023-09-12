@@ -23,10 +23,17 @@ class PropTypes extends newPropTypes {
     })
   }
 
-  static get VNodeChild() {
+  static get looseBool() {
     return toValidableType('looseBool', {
       type: Boolean,
       default: undefined,
+    })
+  }
+
+  static get VueNode() {
+    return toValidableType('VueNode', {
+      type: Object,
+      default: () => null,
     })
   }
 }

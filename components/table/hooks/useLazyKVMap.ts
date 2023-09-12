@@ -1,4 +1,5 @@
 import { shallowRef, watch } from 'vue'
+import { isArray } from '../../_util/is'
 import type { Ref } from 'vue'
 import type { GetRowKey, Key } from '../interface'
 
@@ -21,6 +22,7 @@ export default function useLazyKVMap<RecordType>(
       const childrenColumnName = childrenColumnNameRef.value
 
       function dig(records: readonly RecordType[]) {
+        if (!isArray(records)) return
         records.forEach((record, index) => {
           const rowKey = getRowKey(record, index)
           kvMap.set(rowKey, record)

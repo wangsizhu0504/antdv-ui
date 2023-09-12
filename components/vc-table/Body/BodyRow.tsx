@@ -4,6 +4,7 @@ import { getColumnsKey } from '../utils/valueUtil'
 import { useInjectTable } from '../context/TableContext'
 import { useInjectBody } from '../context/BodyContext'
 import classNames from '../../_util/classNames'
+import { isArray } from '../../_util/is'
 import ExpandedRow from './ExpandedRow'
 import type { MouseEventHandler } from '../../_util/EventInterface'
 import type { CustomizeComponent, GetComponentProps, GetRowKey, Key } from '../interface'
@@ -62,7 +63,11 @@ export default defineComponent<BodyRowProps<unknown>>({
     // Only when row is not expandable and `children` exist in record
     const nestExpandable = computed(() => bodyContext.expandableType === 'nest')
     const hasNestChildren = computed(
-      () => props.childrenColumnName && props.record && props.record[props.childrenColumnName],
+      () => props.childrenColumnName
+        && props.record
+        && props.record[props.childrenColumnName]
+        && isArray(props.record[props.childrenColumnName])
+        && props.record[props.childrenColumnName].length > 0,
     )
     const mergedExpandable = computed(() => rowSupportExpand.value || nestExpandable.value)
 
@@ -142,19 +147,19 @@ export default defineComponent<BodyRowProps<unknown>>({
             const appendNode
               = (colIndex === (expandIconColumnIndex || 0) && nestExpandable.value)
                 ? (
-                <>
-                  <span
-                    style={{ paddingLeft: `${indentSize * indent}px` }}
-                    class={`${prefixCls}-row-indent indent-level-${indent}`}
-                  />
-                  {expandIcon({
-                    prefixCls,
-                    expanded: expanded.value,
-                    expandable: hasNestChildren.value,
-                    record,
-                    onExpand: onInternalTriggerExpand,
-                  })}
-                </>
+                  <>
+                    <span
+                      style={{ paddingLeft: `${indentSize * indent}px` }}
+                      class={`${prefixCls}-row-indent indent-level-${indent}`}
+                    />
+                    {expandIcon({
+                      prefixCls,
+                      expanded: expanded.value,
+                      expandable: hasNestChildren.value,
+                      record,
+                      onExpand: onInternalTriggerExpand,
+                    })}
+                  </>
                   )
                 : null
             return (
