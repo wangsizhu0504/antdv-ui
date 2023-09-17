@@ -1,23 +1,9 @@
 import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
 import Button from '../button'
-import type { CSSProperties, FunctionalComponent } from 'vue'
-import type { Direction } from '../config-provider'
+import type { TransferOperationProps } from './props'
+import type { FunctionalComponent } from 'vue'
 
 function noop() {}
-
-export interface TransferOperationProps {
-  class?: string
-  leftArrowText?: string
-  rightArrowText?: string
-  moveToLeft?: (e: MouseEvent) => void
-  moveToRight?: (e: MouseEvent) => void
-  leftActive?: boolean
-  rightActive?: boolean
-  style?: CSSProperties | string
-  disabled?: boolean
-  direction?: Direction
-  oneWay?: boolean
-}
 
 const Operation: FunctionalComponent<TransferOperationProps> = (props) => {
   const {

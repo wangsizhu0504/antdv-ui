@@ -2,48 +2,18 @@ import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import classNames from '../_util/classNames'
 import useResponsiveObserve, { responsiveArray } from '../_util/responsiveObserve'
 import { useConfigInject, useFlexGapSupport } from '../hooks'
-import { someType } from '../_util/type'
 import { useRowStyle } from './style'
 import useProvideRow from './context'
+import { rowProps } from './props'
+import type { Gap } from './type'
 import type { Breakpoint, ScreenMap } from '../_util/responsiveObserve'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-
-const RowAligns = ['top', 'middle', 'bottom', 'stretch'] as const
-const RowJustify = [
-  'start',
-  'end',
-  'center',
-  'space-around',
-  'space-between',
-  'space-evenly',
-] as const
-
-type Responsive = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
-type ResponsiveLike<T> = {
-  [key in Responsive]?: T;
-}
-
-type Gap = number | undefined
-export type Gutter = number | undefined | Partial<Record<Breakpoint, number>>
-
-type ResponsiveAligns = ResponsiveLike<(typeof RowAligns)[number]>
-type ResponsiveJustify = ResponsiveLike<(typeof RowJustify)[number]>
+import type { CSSProperties } from 'vue'
 
 export interface rowContextState {
   gutter?: [number, number]
 }
 
-export const rowProps = () => ({
-  align: someType<(typeof RowAligns)[number] | ResponsiveAligns>([String, Object]),
-  justify: someType<(typeof RowJustify)[number] | ResponsiveJustify>([String, Object]),
-  prefixCls: String,
-  gutter: someType<Gutter | [Gutter, Gutter]>([Number, Array, Object], 0),
-  wrap: { type: Boolean, default: undefined },
-})
-
-export type RowProps = Partial<ExtractPropTypes<ReturnType<typeof rowProps>>>
-
-const ARow = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ARow',
   inheritAttrs: false,
@@ -190,5 +160,3 @@ const ARow = defineComponent({
       )
   },
 })
-
-export default ARow

@@ -1,13 +1,10 @@
 import { computed, defineComponent, ref, toRef, toRefs, watchEffect } from 'vue'
-import { baseSelectPropsWithoutPrivate } from '../vc-select/BaseSelect'
 import { useId, useMergedState } from '../hooks'
 import { conductCheck } from '../vc-tree/utils/conductUtil'
 import { BaseSelect } from '../vc-select'
 import devWarning from '../vc-util/devWarning'
 import useMaxLevel from '../vc-tree/useMaxLevel'
 import { initDefaultProps } from '../_util/props-util'
-import PropTypes from '../_util/vue-types'
-import { objectType } from '../_util/type'
 import omit from '../_util/omit'
 import { SHOW_CHILD, SHOW_PARENT, fillFieldNames, toPathKey, toPathKeys } from './utils/commonUtil'
 import useEntities from './hooks/useEntities'
@@ -18,156 +15,15 @@ import { formatStrategyValues, toPathOptions } from './utils/treeUtil'
 import useDisplayValues from './hooks/useDisplayValues'
 import { useProvideCascader } from './context'
 import OptionList from './OptionList'
-import type { Key, VueNode } from '../_util/type'
-import type { DisplayValueType, Placement } from '../vc-select/BaseSelect'
+import { vcCascaderProps } from './props'
+import type { SingleValueType, ValueType } from './types'
+import type { Key } from '../_util/type'
+import type { DisplayValueType } from '../vc-select/BaseSelect'
 import type { BaseSelectProps, BaseSelectRef } from '../vc-select'
-import type { CSSProperties, ExtractPropTypes, PropType, Ref } from 'vue'
+import type { CSSProperties, Ref } from 'vue'
 
 export { SHOW_PARENT, SHOW_CHILD }
-export interface ShowSearchType<OptionType extends BaseOptionType = DefaultOptionType> {
-  filter?: (inputValue: string, options: OptionType[], fieldNames: FieldNames) => boolean
-  render?: (arg?: {
-    inputValue: string
-    path: OptionType[]
-    prefixCls: string
-    fieldNames: FieldNames
-  }) => any
-  sort?: (a: OptionType[], b: OptionType[], inputValue: string, fieldNames: FieldNames) => number
-  matchInputWidth?: boolean
-  limit?: number | false
-}
 
-export interface FieldNames {
-  label?: string
-  value?: string
-  children?: string
-}
-
-export interface InternalFieldNames extends Required<FieldNames> {
-  key: string
-}
-
-export type SingleValueType = (string | number)[]
-
-export type ValueType = SingleValueType | SingleValueType[]
-export type ShowCheckedStrategy = typeof SHOW_PARENT | typeof SHOW_CHILD
-
-export interface BaseOptionType {
-  disabled?: boolean
-  [name: string]: any
-}
-export interface DefaultOptionType extends BaseOptionType {
-  label?: any
-  value?: string | number | null
-  children?: DefaultOptionType[]
-}
-
-function baseCascaderProps<OptionType extends BaseOptionType = DefaultOptionType>() {
-  return {
-    ...omit(baseSelectPropsWithoutPrivate(), ['tokenSeparators', 'mode', 'showSearch']),
-    // MISC
-    id: String,
-    prefixCls: String,
-    fieldNames: objectType<FieldNames>(),
-    children: Array as PropType<VueNode[]>,
-
-    // Value
-    value: { type: [String, Number, Array] as PropType<ValueType> },
-    defaultValue: { type: [String, Number, Array] as PropType<ValueType> },
-    changeOnSelect: { type: Boolean, default: undefined },
-    displayRender: Function as PropType<
-      (opt: { labels: string[], selectedOptions?: OptionType[] }) => any
-    >,
-    checkable: { type: Boolean, default: undefined },
-    showCheckedStrategy: { type: String as PropType<ShowCheckedStrategy>, default: SHOW_PARENT },
-    // Search
-    showSearch: {
-      type: [Boolean, Object] as PropType<boolean | ShowSearchType<OptionType>>,
-      default: undefined as boolean | ShowSearchType<OptionType>,
-    },
-    searchValue: String,
-    onSearch: Function as PropType<(value: string) => void>,
-
-    // Trigger
-    expandTrigger: String as PropType<'hover' | 'click'>,
-
-    // Options
-    options: Array as PropType<OptionType[]>,
-    /** @private Internal usage. Do not use in your production. */
-    dropdownPrefixCls: String,
-    loadData: Function as PropType<(selectOptions: OptionType[]) => void>,
-
-    // Open
-    /** @deprecated Use `open` instead */
-    popupVisible: { type: Boolean, default: undefined },
-
-    /** @deprecated Use `dropdownClassName` instead */
-    popupClassName: String,
-    dropdownClassName: String,
-    dropdownMenuColumnStyle: {
-      type: Object as PropType<CSSProperties>,
-      default: undefined as CSSProperties,
-    },
-
-    /** @deprecated Use `dropdownStyle` instead */
-    popupStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-    dropdownStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-
-    /** @deprecated Use `placement` instead */
-    popupPlacement: String as PropType<Placement>,
-    placement: String as PropType<Placement>,
-
-    /** @deprecated Use `onDropdownVisibleChange` instead */
-    onPopupVisibleChange: Function as PropType<(open: boolean) => void>,
-    onDropdownVisibleChange: Function as PropType<(open: boolean) => void>,
-
-    // Icon
-    expandIcon: PropTypes.any,
-    loadingIcon: PropTypes.any,
-  }
-}
-
-export type BaseCascaderProps = Partial<ExtractPropTypes<ReturnType<typeof baseCascaderProps>>>
-
-type OnSingleChange<OptionType> = (value: SingleValueType, selectOptions: OptionType[]) => void
-type OnMultipleChange<OptionType> = (
-  value: SingleValueType[],
-  selectOptions: OptionType[][],
-) => void
-
-export function singleCascaderProps<OptionType extends BaseOptionType = DefaultOptionType>() {
-  return {
-    ...baseCascaderProps(),
-    checkable: Boolean as PropType<false>,
-    onChange: Function as PropType<OnSingleChange<OptionType>>,
-  }
-}
-
-export type SingleCascaderProps = Partial<ExtractPropTypes<ReturnType<typeof singleCascaderProps>>>
-
-export function multipleCascaderProps<OptionType extends BaseOptionType = DefaultOptionType>() {
-  return {
-    ...baseCascaderProps(),
-    checkable: Boolean as PropType<true>,
-    onChange: Function as PropType<OnMultipleChange<OptionType>>,
-  }
-}
-
-export type MultipleCascaderProps = Partial<
-  ExtractPropTypes<ReturnType<typeof singleCascaderProps>>
->
-
-export function internalCascaderProps<OptionType extends BaseOptionType = DefaultOptionType>() {
-  return {
-    ...baseCascaderProps(),
-    onChange: Function as PropType<
-      (value: ValueType, selectOptions: OptionType[] | OptionType[][]) => void
-    >,
-    customSlots: Object as PropType<Record<string, Function>>,
-  }
-}
-
-export type CascaderProps = Partial<ExtractPropTypes<ReturnType<typeof internalCascaderProps>>>
 export type CascaderRef = Omit<BaseSelectRef, 'scrollTo'>
 
 function isMultipleValue(value: ValueType): value is SingleValueType[] {
@@ -188,7 +44,7 @@ export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'Cascader',
   inheritAttrs: false,
-  props: initDefaultProps(internalCascaderProps(), {}),
+  props: initDefaultProps(vcCascaderProps(), {}),
   setup(props, { attrs, expose, slots }) {
     const mergedId = useId(toRef(props, 'id'))
     const multiple = computed(() => !!props.checkable)

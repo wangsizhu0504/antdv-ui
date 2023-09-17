@@ -1,23 +1,6 @@
 import { computed, inject, provide } from 'vue'
-import type { ComputedRef, InjectionKey } from 'vue'
-import type { ColumnType } from './interface'
-
-export interface ContextSlots {
-  emptyText?: (...args: any[]) => any
-  expandIcon?: (...args: any[]) => any
-  title?: (...args: any[]) => any
-  footer?: (...args: any[]) => any
-  summary?: (...args: any[]) => any
-  bodyCell?: (...args: any[]) => any
-  expandColumnTitle?: (...args: any[]) => any
-  headerCell?: (...args: any[]) => any
-  customFilterIcon?: (...args: any[]) => any
-  customFilterDropdown?: (...args: any[]) => any
-  // 兼容 2.x 的 columns slots 配置
-  [key: string]: ((...args: any[]) => any) | undefined
-}
-
-type SlotsContextProps = ComputedRef<ContextSlots>
+import type { InjectionKey } from 'vue'
+import type { ColumnType, SlotsContextProps } from './types'
 
 const SlotsContextKey: InjectionKey<SlotsContextProps> = Symbol('SlotsContextProps')
 

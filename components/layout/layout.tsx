@@ -1,29 +1,17 @@
 import { computed, createVNode, defineComponent, provide, ref } from 'vue'
 import { useConfigInject } from '../hooks'
-import { SiderHookProviderKey } from './injectionKey'
+
+import { SiderHookProviderKey } from '../constant'
 import useStyle from './style'
-import type { ExtractPropTypes, HTMLAttributes } from 'vue'
-
-export const basicProps = () => ({
-  prefixCls: String,
-  hasSider: { type: Boolean, default: undefined },
-  tagName: String,
-})
-
-export type BasicProps = Partial<ExtractPropTypes<ReturnType<typeof basicProps>>> & HTMLAttributes
-
-interface GeneratorArgument {
-  suffixCls: string
-  tagName: 'header' | 'footer' | 'main' | 'section'
-  name: string
-}
+import { layoutProps } from './props'
+import type { GeneratorArgument } from './type'
 
 function generator({ suffixCls, tagName, name }: GeneratorArgument) {
   return (BasicComponent: typeof BasicLayout) => {
     const Adapter = defineComponent({
       compatConfig: { MODE: 3 },
       name,
-      props: basicProps(),
+      props: layoutProps(),
       setup(props, { slots }) {
         const { prefixCls } = useConfigInject(suffixCls, props)
         return () => {
@@ -42,7 +30,7 @@ function generator({ suffixCls, tagName, name }: GeneratorArgument) {
 
 const Basic = defineComponent({
   compatConfig: { MODE: 3 },
-  props: basicProps(),
+  props: layoutProps(),
   setup(props, { slots }) {
     return () => createVNode(props.tagName, { class: props.prefixCls }, slots)
   },
@@ -51,7 +39,7 @@ const Basic = defineComponent({
 const BasicLayout = defineComponent({
   compatConfig: { MODE: 3 },
   inheritAttrs: false,
-  props: basicProps(),
+  props: layoutProps(),
   setup(props, { slots, attrs }) {
     const { prefixCls, direction } = useConfigInject('', props)
     const [wrapSSR, hashId] = useStyle(prefixCls)
@@ -107,6 +95,4 @@ const Content = generator({
   name: 'ALayoutContent',
 })(Basic)
 
-export { Header, Footer, Content }
-
-export default Layout
+export { Layout, Header, Footer, Content }

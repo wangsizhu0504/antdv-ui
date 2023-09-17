@@ -3,19 +3,10 @@ import { useConfigInject } from '../hooks'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import classNames from '../_util/classNames'
 import useStyle from './style'
-import Element, { skeletonElementProps } from './Element'
-import type { ExtractPropTypes, PropType } from 'vue'
+import Element from './Element'
+import { avatarProps } from './props'
 
-export const avatarProps = () => {
-  return {
-    ...skeletonElementProps(),
-    shape: String as PropType<'circle' | 'square'>,
-  }
-}
-
-export type SkeletonAvatarProps = Partial<ExtractPropTypes<ReturnType<typeof avatarProps>>>
-
-const SkeletonAvatar = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ASkeletonAvatar',
   props: initDefaultProps(avatarProps(), {
@@ -44,5 +35,3 @@ const SkeletonAvatar = defineComponent({
     }
   },
 })
-
-export default SkeletonAvatar

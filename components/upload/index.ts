@@ -1,18 +1,22 @@
-import Upload, { LIST_IGNORE } from './Upload'
-import Dragger from './Dragger'
+import { LIST_IGNORE } from '../constant'
+import upload from './Upload'
+import dragger from './Dragger'
 import type { App } from 'vue'
 
-export type { UploadProps, UploadListProps, UploadChangeParam, UploadFile } from './interface'
-
-/* istanbul ignore next */
-export const UploadDragger = Dragger
-
-export default Object.assign(Upload, {
-  Dragger,
+export const Upload = Object.assign(upload, {
+  Dragger: dragger,
   LIST_IGNORE,
   install(app: App) {
-    app.component(Upload.name, Upload)
-    app.component(Dragger.name, Dragger)
+    app.component(upload.name, upload)
+    app.component(dragger.name, dragger)
     return app
   },
 })
+
+/* istanbul ignore next */
+export const UploadDragger = dragger
+
+export default Upload
+
+export * from './types'
+export * from './props'

@@ -9,13 +9,14 @@ import {
 } from 'vue'
 import { BarsOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
 import classNames from '../_util/classNames'
-import PropTypes from '../_util/vue-types'
-import { tuple } from '../_util/type'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import { isNumeric } from '../_util/is'
 import { useConfigInject } from '../hooks'
-import { SiderCollapsedKey, SiderHookProviderKey } from './injectionKey'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+
+import { SiderCollapsedKey, SiderHookProviderKey } from '../constant'
+import { siderProps } from './props'
+import type { CollapseType } from './type'
+import type { CSSProperties } from 'vue'
 
 const dimensionMaxMap = {
   xs: '479.98px',
@@ -25,34 +26,6 @@ const dimensionMaxMap = {
   xl: '1199.98px',
   xxl: '1599.98px',
   xxxl: '1999.98px',
-}
-
-export type CollapseType = 'clickTrigger' | 'responsive'
-
-export const siderProps = () => ({
-  prefixCls: String,
-  collapsible: { type: Boolean, default: undefined },
-  collapsed: { type: Boolean, default: undefined },
-  defaultCollapsed: { type: Boolean, default: undefined },
-  reverseArrow: { type: Boolean, default: undefined },
-  zeroWidthTriggerStyle: {
-    type: Object as PropType<CSSProperties>,
-    default: () => ({}),
-  },
-  trigger: PropTypes.any,
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  collapsedWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  breakpoint: PropTypes.oneOf(tuple('xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl')),
-  theme: PropTypes.oneOf(tuple('light', 'dark')).def('dark'),
-  onBreakpoint: Function as PropType<(broken: boolean) => void>,
-  onCollapse: Function as PropType<(collapsed: boolean, type: CollapseType) => void>,
-})
-
-export type SiderProps = Partial<ExtractPropTypes<ReturnType<typeof siderProps>>>
-
-export interface SiderContextProps {
-  sCollapsed?: boolean
-  collapsedWidth?: string | number
 }
 
 const generateId = (() => {

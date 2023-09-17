@@ -1,17 +1,7 @@
 import { defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
-import PropTypes from '../_util/vue-types'
+import { listItemMetaProps } from './props'
 import type { CustomSlotsType } from '../_util/type'
-import type { ExtractPropTypes } from 'vue'
-
-export const listItemMetaProps = () => ({
-  avatar: PropTypes.any,
-  description: PropTypes.any,
-  prefixCls: String,
-  title: PropTypes.any,
-})
-
-export type ListItemMetaProps = Partial<ExtractPropTypes<ReturnType<typeof listItemMetaProps>>>
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

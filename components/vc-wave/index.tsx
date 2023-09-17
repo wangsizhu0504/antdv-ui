@@ -20,7 +20,7 @@ export interface WaveProps {
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'Wave',
+  name: 'VcWave',
   props: {
     disabled: Boolean,
   },

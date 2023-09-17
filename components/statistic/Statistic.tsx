@@ -1,33 +1,12 @@
 import { defineComponent } from 'vue'
-import Skeleton from '../skeleton/Skeleton'
-
-// CSSINJS
+import Skeleton from '../skeleton'
 import { useConfigInject } from '../hooks'
-import { anyType, booleanType, functionType, someType, vNodeType } from '../_util/type'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import useStyle from './style'
 import StatisticNumber from './Number'
+import { statisticProps } from './props'
 import type { CustomSlotsType } from '../_util/type'
-import type { Formatter, valueType } from './utils'
-import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
-
-export const statisticProps = () => ({
-  prefixCls: String,
-  decimalSeparator: String,
-  groupSeparator: String,
-  format: String,
-  value: someType<valueType>([Number, String, Object]),
-  valueStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-  valueRender: functionType<(node: VNode) => VNode>(),
-  formatter: anyType<Formatter>(),
-  precision: Number,
-  prefix: vNodeType(),
-  suffix: vNodeType(),
-  title: vNodeType(),
-  loading: booleanType(),
-})
-
-export type StatisticProps = Partial<ExtractPropTypes<ReturnType<typeof statisticProps>>>
+import type { Formatter } from './types'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

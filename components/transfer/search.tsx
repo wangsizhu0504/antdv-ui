@@ -2,25 +2,14 @@ import { SearchOutlined } from '@ant-design/icons-vue'
 import { defineComponent } from 'vue'
 import Input from '../input'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
-import type { ExtractPropTypes } from 'vue'
+import { transferSearchProps } from './props'
 import type { ChangeEvent } from '../_util/EventInterface'
-
-export const transferSearchProps = {
-  prefixCls: String,
-  placeholder: String,
-  value: String,
-  handleClear: Function,
-  disabled: { type: Boolean, default: undefined },
-  onChange: Function,
-}
-
-export type TransferSearchProps = Partial<ExtractPropTypes<typeof transferSearchProps>>
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'Search',
   inheritAttrs: false,
-  props: initDefaultProps(transferSearchProps, {
+  props: initDefaultProps(transferSearchProps(), {
     placeholder: '',
   }),
   emits: ['change'],

@@ -12,10 +12,10 @@ import type {
   FilterValue,
   GetPopupContainer,
   TransformColumns,
-} from '../../interface'
+} from '../../types'
 import type { TableLocale } from '../../../locale'
 import type { Ref } from 'vue'
-import type { FilterState } from './type'
+import type { FilterConfig, FilterState } from './type'
 
 function collectFilterStates<RecordType>(
   columns: ColumnsType<RecordType>,
@@ -164,18 +164,6 @@ export function getFilterData<RecordType>(
     }
     return currentData
   }, data)
-}
-
-interface FilterConfig<RecordType> {
-  prefixCls: Ref<string>
-  dropdownPrefixCls: Ref<string>
-  mergedColumns: Ref<ColumnsType<RecordType>>
-  locale: Ref<TableLocale>
-  onFilterChange: (
-    filters: Record<string, FilterValue | null>,
-    filterStates: FilterState<RecordType>[],
-  ) => void
-  getPopupContainer?: Ref<GetPopupContainer>
 }
 
 function useFilter<RecordType>({

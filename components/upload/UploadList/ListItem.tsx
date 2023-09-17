@@ -4,52 +4,10 @@ import Tooltip from '../../tooltip'
 import Progress from '../../progress'
 import { useConfigInject } from '../../hooks'
 import Transition, { getTransitionProps } from '../../_util/components/transition'
-import { arrayType, booleanType, functionType, objectType, stringType } from '../../_util/type'
-import type { VueNode } from '../../_util/type'
-import type {
-  ItemRender,
-  UploadFile,
-  UploadListProgressProps,
-  UploadListType,
-} from '../interface'
-import type { UploadLocale } from '../../locale'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
+import { listItemProps } from '../props'
+import type { UploadListProgressProps } from '../types'
+import type { CSSProperties } from 'vue'
 
-export const listItemProps = () => {
-  return {
-    prefixCls: String,
-    locale: objectType<UploadLocale>(undefined as UploadLocale),
-    file: objectType<UploadFile>(),
-    items: arrayType<UploadFile[]>(),
-    listType: stringType<UploadListType>(),
-    isImgUrl: functionType<(file: UploadFile) => boolean>(),
-
-    showRemoveIcon: booleanType(),
-    showDownloadIcon: booleanType(),
-    showPreviewIcon: booleanType(),
-    removeIcon: functionType<(opt: { file: UploadFile }) => VueNode>(),
-    downloadIcon: functionType<(opt: { file: UploadFile }) => VueNode>(),
-    previewIcon: functionType<(opt: { file: UploadFile }) => VueNode>(),
-
-    iconRender: functionType<(opt: { file: UploadFile }) => VueNode>(),
-    actionIconRender:
-      functionType<
-        (opt: {
-          customIcon: VueNode
-          callback: () => void
-          prefixCls: string
-          title?: string | undefined
-        }) => VueNode
-      >(),
-    itemRender: functionType<ItemRender>(),
-    onPreview: functionType<(file: UploadFile, e: Event) => void>(),
-    onClose: functionType<(file: UploadFile) => void>(),
-    onDownload: functionType<(file: UploadFile) => void>(),
-    progress: objectType<UploadListProgressProps>(),
-  }
-}
-
-export type ListItemProps = Partial<ExtractPropTypes<ReturnType<typeof listItemProps>>>
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ListItem',

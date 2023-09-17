@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import Upload from './Upload'
-import { uploadProps } from './interface'
+import { uploadProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

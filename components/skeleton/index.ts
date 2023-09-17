@@ -1,42 +1,39 @@
-import Skeleton from './Skeleton'
-import SkeletonButton from './Button'
-import SkeletonInput from './Input'
-import SkeletonImage from './Image'
-import SkeletonAvatar from './Avatar'
-import SkeletonTitle from './Title'
+import skeleton from './Skeleton'
+import button from './Button'
+import input from './Input'
+import image from './Image'
+import avatar from './Avatar'
+import title from './Title'
 import type { App, Plugin } from 'vue'
 
-export type { SkeletonButtonProps } from './Button'
-export type { SkeletonInputProps } from './Input'
-export type { SkeletonImageProps } from './Image'
-export type { SkeletonAvatarProps } from './Avatar'
-export type { SkeletonTitleProps } from './Title'
+export const SkeletonButton = button
+export const SkeletonAvatar = avatar
+export const SkeletonInput = input
+export const SkeletonImage = image
+export const SkeletonTitle = title
 
-export type { SkeletonProps } from './Skeleton'
-export { skeletonProps } from './Skeleton'
+export const Skeleton = Object.assign(skeleton, {
+  Button: SkeletonButton,
+  Avatar: SkeletonAvatar,
+  Input: SkeletonInput,
+  Image: SkeletonImage,
+  Title: SkeletonTitle,
+  install(app: App) {
+    app.component(skeleton.name, skeleton)
+    app.component(button.name, button)
+    app.component(avatar.name, avatar)
+    app.component(input.name, input)
+    app.component(image.name, image)
+    app.component(title.name, title)
+    return app
+  },
+})
 
-const AntdSkeleton = Skeleton
-AntdSkeleton.Button = SkeletonButton
-AntdSkeleton.Avatar = SkeletonAvatar
-AntdSkeleton.Input = SkeletonInput
-AntdSkeleton.Image = SkeletonImage
-AntdSkeleton.Title = SkeletonTitle
-
-/* istanbul ignore next */
-AntdSkeleton.install = function (app: App) {
-  app.component(AntdSkeleton.name, AntdSkeleton)
-  app.component(AntdSkeleton.Button.name, AntdSkeleton.Button)
-  app.component(AntdSkeleton.Avatar.name, AntdSkeleton.Avatar)
-  app.component(AntdSkeleton.Input.name, AntdSkeleton.Input)
-  app.component(AntdSkeleton.Image.name, AntdSkeleton.Image)
-  app.component(AntdSkeleton.Title.name, AntdSkeleton.Title)
-  return app
-}
-export { SkeletonButton, SkeletonAvatar, SkeletonInput, SkeletonImage, SkeletonTitle }
-export default AntdSkeleton as typeof AntdSkeleton &
-Plugin & {
+export default Skeleton as typeof Skeleton & Plugin & {
   readonly Button: typeof SkeletonButton
   readonly Avatar: typeof SkeletonAvatar
   readonly Input: typeof SkeletonInput
   readonly Image: typeof SkeletonImage
 }
+
+export * from './props'

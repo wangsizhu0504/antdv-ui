@@ -1,7 +1,8 @@
 import { withInstall } from '../_util/type'
-import Pagination from './Pagination'
+import pagination from './Pagination'
 
-export { paginationProps, paginationConfig } from './Pagination'
-export type { PaginationProps, PaginationConfig } from './Pagination'
+export const Pagination = pagination
+export default withInstall(pagination)
 
-export default withInstall(Pagination)
+export * from './props'
+export * from './type'

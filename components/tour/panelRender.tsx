@@ -5,13 +5,14 @@ import defaultLocale from '../locale/lang/en_US'
 import LocaleReceiver from '../locale-provider/LocaleReceiver'
 import Button from '../button'
 import classNames from '../_util/classNames'
-import { tourStepProps } from './interface'
+
+import { tourStepProps } from './props'
+import type { TourBtnProps } from './props'
 import type { ButtonProps } from '../button'
 
 import type { VueNode } from '../_util/type'
-import type { TourBtnProps } from './interface'
 
-const panelRender = defineComponent({
+export default defineComponent({
   name: 'ATourPanel',
   inheritAttrs: false,
   props: tourStepProps(),
@@ -140,5 +141,3 @@ const panelRender = defineComponent({
     }
   },
 })
-
-export default panelRender

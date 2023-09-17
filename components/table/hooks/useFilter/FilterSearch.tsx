@@ -3,7 +3,7 @@ import { SearchOutlined } from '@ant-design/icons-vue'
 import Input from '../../../input'
 import { functionType, objectType, someType, stringType } from '../../../_util/type'
 import type { TableLocale } from '../../../locale'
-import type { FilterSearchType } from '../../interface'
+import type { FilterSearchType } from '../../types'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

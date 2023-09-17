@@ -1,7 +1,6 @@
 import { computed, defineComponent, ref, watch } from 'vue'
 import VcTooltip from '../vc-tooltip'
 import classNames from '../_util/classNames'
-import PropTypes from '../_util/vue-types'
 import warning from '../_util/warning'
 import {
   filterEmpty,
@@ -19,23 +18,13 @@ import raf from '../_util/raf'
 import { getTransitionName } from '../_util/components/transition'
 import { parseColor } from './util'
 import useStyle from './style'
-import abstractTooltipProps from './abstractTooltipProps'
-import type { CSSProperties, ExtractPropTypes, SlotsType } from 'vue'
-
-export type { TriggerType, TooltipPlacement } from './abstractTooltipProps'
-export type { AdjustOverflow, PlacementsConfig } from '../_util/placements'
+import { tooltipProps } from './props'
+import type { TooltipProps } from './props'
+import type { CSSProperties, SlotsType } from 'vue'
 
 // https://github.com/react-component/tooltip
 // https://github.com/yiminghe/dom-align
-export interface TooltipAlignConfig {
-  points?: [string, string]
-  offset?: [number | string, number | string]
-  targetOffset?: [number | string, number | string]
-  overflow?: { adjustX: boolean, adjustY: boolean }
-  useCssRight?: boolean
-  useCssBottom?: boolean
-  useCssTransform?: boolean
-}
+
 const splitObject = <T extends CSSProperties>(
   obj: T,
   keys: (keyof T)[],
@@ -50,23 +39,6 @@ const splitObject = <T extends CSSProperties>(
   })
   return { picked, omitted }
 }
-
-export const tooltipProps = () => ({
-  ...abstractTooltipProps(),
-  title: PropTypes.any,
-})
-
-export const tooltipDefaultProps = () => ({
-  trigger: 'hover',
-  align: {},
-  placement: 'top',
-  mouseEnterDelay: 0.1,
-  mouseLeaveDelay: 0.1,
-  arrowPointAtCenter: false,
-  autoAdjustOverflow: true,
-})
-
-export type TooltipProps = Partial<ExtractPropTypes<ReturnType<typeof tooltipProps>>>
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

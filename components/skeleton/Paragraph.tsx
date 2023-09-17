@@ -1,18 +1,7 @@
 import { defineComponent } from 'vue'
-import type { ExtractPropTypes, PropType } from 'vue'
+import { skeletonParagraphProps } from './props'
 
-type widthUnit = number | string
-export const skeletonParagraphProps = () => ({
-  prefixCls: String,
-  width: { type: [Number, String, Array] as PropType<widthUnit[] | widthUnit> },
-  rows: Number,
-})
-
-export type SkeletonParagraphProps = Partial<
-  ExtractPropTypes<ReturnType<typeof skeletonParagraphProps>>
->
-
-const SkeletonParagraph = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'SkeletonParagraph',
   props: skeletonParagraphProps(),
@@ -40,5 +29,3 @@ const SkeletonParagraph = defineComponent({
     }
   },
 })
-
-export default SkeletonParagraph

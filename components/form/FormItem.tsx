@@ -17,9 +17,7 @@ import { warning } from '../vc-util/warning'
 import Row from '../grid/Row'
 import classNames from '../_util/classNames'
 import { useConfigInject } from '../hooks'
-import { tuple } from '../_util/type'
 import { filterEmpty } from '../_util/props-util'
-import PropTypes from '../_util/vue-types'
 import { validateRules as validateRulesUtil } from './utils/validateUtil'
 import { getNamePath } from './utils/valueUtil'
 import { useInjectForm } from './context'
@@ -28,39 +26,10 @@ import FormItemInput from './FormItemInput'
 import { FormItemInputContext, useProvideFormItemContext } from './FormItemContext'
 import useDebounce from './utils/useDebounce'
 import useStyle from './style'
+import { formItemProps } from './props'
 import type { FormItemStatusContextProps } from './FormItemContext'
-import type {
-  FormLabelAlign,
-  InternalNamePath,
-  Rule,
-  RuleError,
-  RuleObject,
-  ValidateOptions,
-} from './interface'
+import type { Rule, RuleError, RuleObject, ValidateOptions } from './type'
 import type { CustomSlotsType } from '../_util/type'
-import type { ColProps } from '../grid/Col'
-import type {
-  ComponentPublicInstance,
-  ComputedRef,
-  ExtractPropTypes,
-  HTMLAttributes,
-  PropType,
-  Ref,
-} from 'vue'
-
-const ValidateStatuses = tuple('success', 'warning', 'error', 'validating', '')
-export type ValidateStatus = (typeof ValidateStatuses)[number]
-
-export interface FieldExpose {
-  fieldValue: Ref<any>
-  fieldId: ComputedRef<any>
-  fieldName: ComputedRef<any>
-  resetField: () => void
-  clearValidate: () => void
-  namePath: ComputedRef<InternalNamePath>
-  rules?: ComputedRef<Rule[]>
-  validateRules: (options: ValidateOptions) => Promise<void> | Promise<RuleError[]>
-}
 
 const iconMap: { [key: string]: any } = {
   success: CheckCircleFilled,
@@ -99,40 +68,6 @@ function getPropByPath(obj: any, namePathList: any, strict?: boolean) {
     v: tempObj ? tempObj[keyArr[i]] : undefined,
   }
 }
-export const formItemProps = () => ({
-  htmlFor: String,
-  prefixCls: String,
-  label: PropTypes.any,
-  help: PropTypes.any,
-  extra: PropTypes.any,
-  labelCol: { type: Object as PropType<ColProps & HTMLAttributes> },
-  wrapperCol: { type: Object as PropType<ColProps & HTMLAttributes> },
-  hasFeedback: { type: Boolean, default: false },
-  colon: { type: Boolean, default: undefined },
-  labelAlign: String as PropType<FormLabelAlign>,
-  prop: { type: [String, Number, Array] as PropType<string | number | Array<string | number>> },
-  name: { type: [String, Number, Array] as PropType<string | number | Array<string | number>> },
-  rules: [Array, Object] as PropType<Rule[] | Rule>,
-  autoLink: { type: Boolean, default: true },
-  required: { type: Boolean, default: undefined },
-  validateFirst: { type: Boolean, default: undefined },
-  validateStatus: PropTypes.oneOf(tuple('', 'success', 'warning', 'error', 'validating')),
-  validateTrigger: { type: [String, Array] as PropType<string | string[]> },
-  messageVariables: { type: Object as PropType<Record<string, string>> },
-  hidden: Boolean,
-  noStyle: Boolean,
-})
-
-export type FormItemProps = Partial<ExtractPropTypes<ReturnType<typeof formItemProps>>>
-
-export interface FormItemExpose {
-  onFieldBlur: () => void
-  onFieldChange: () => void
-  clearValidate: () => void
-  resetField: () => void
-}
-
-export type FormItemInstance = ComponentPublicInstance<FormItemProps, FormItemExpose>
 
 let indexGuid = 0
 

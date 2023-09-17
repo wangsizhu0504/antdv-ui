@@ -2,24 +2,10 @@ import { computed, defineComponent } from 'vue'
 import { Circle as VCCircle } from '../vc-progress'
 import { initDefaultProps } from '../_util/props-util'
 import Tooltip from '../tooltip'
-import { anyType } from '../_util/type'
-import { progressProps } from './props'
+import { circleProps } from './props'
 import { getPercentage, getSize, getStrokeColor } from './utils'
-import type { ProgressGradient, ProgressProps } from './props'
+import type { ProgressProps } from './props'
 import type { CSSProperties } from 'vue'
-
-export interface CircleProps extends ProgressProps {
-  strokeColor?: string | ProgressGradient
-}
-
-export const circleProps = () => ({
-  ...progressProps(),
-  strokeColor: anyType<string | ProgressGradient>(),
-})
-
-const CIRCLE_MIN_STROKE_WIDTH = 3
-
-const getMinPercent = (width: number): number => (CIRCLE_MIN_STROKE_WIDTH / width) * 100
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -29,6 +15,10 @@ export default defineComponent({
     trailColor: null as unknown as string,
   }),
   setup(props, { slots, attrs }) {
+    const CIRCLE_MIN_STROKE_WIDTH = 3
+
+    const getMinPercent = (width: number): number => (CIRCLE_MIN_STROKE_WIDTH / width) * 100
+
     const originWidth = computed(() => props.width ?? 120)
     const mergedSize = computed(() => props.size ?? [originWidth.value, originWidth.value])
 

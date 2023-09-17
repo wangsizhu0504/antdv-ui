@@ -8,7 +8,7 @@ import {
   watchEffect,
 } from 'vue'
 import { isImageUrl, previewImage } from '../utils'
-import { uploadListProps } from '../interface'
+import { uploadListProps } from '../props'
 import Button from '../../button'
 import { filterEmpty, initDefaultProps, isValidElement } from '../../_util/props-util'
 import { useConfigInject } from '../../hooks'
@@ -17,7 +17,7 @@ import collapseMotion from '../../_util/components/collapseMotion'
 import ListItem from './ListItem'
 import type { VueNode } from '../../_util/type'
 import type { ButtonProps } from '../../button'
-import type { InternalUploadFile, UploadFile } from '../interface'
+import type { InternalUploadFile, UploadFile } from '../types'
 import type { HTMLAttributes } from 'vue'
 
 const HackSlot = (_, { slots }) => {

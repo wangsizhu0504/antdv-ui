@@ -1,6 +1,9 @@
 import { withInstall } from '../_util/type'
-import Progress from './progress'
+import progress from './Progress'
 
-export type { ProgressProps } from './props'
+const Progress = withInstall(progress)
 
-export default withInstall(Progress)
+export default Progress
+
+export * from './props'
+export * from './type'

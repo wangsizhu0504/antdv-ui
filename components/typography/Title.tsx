@@ -1,17 +1,8 @@
-import omit from '../_util/omit'
-import { tupleNum } from '../_util/type'
 import warning from '../_util/warning'
-import Base, { baseProps } from './Base'
-import type { ExtractPropTypes, FunctionalComponent, PropType } from 'vue'
-
-const TITLE_ELE_LIST = tupleNum(1, 2, 3, 4, 5)
-
-export const titleProps = () => ({
-  ...omit(baseProps(), ['component', 'strong']),
-  level: Number as PropType<(typeof TITLE_ELE_LIST)[number]>,
-})
-
-export type TitleProps = Partial<ExtractPropTypes<ReturnType<typeof titleProps>>>
+import Base from './Base'
+import { TITLE_ELE_LIST, titleProps } from './props'
+import type { TitleProps } from './props'
+import type { FunctionalComponent } from 'vue'
 
 const Title: FunctionalComponent<TitleProps> = (props, { slots, attrs }) => {
   const { level = 1, ...restProps } = props

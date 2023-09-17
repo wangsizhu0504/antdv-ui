@@ -3,20 +3,10 @@ import { useConfigInject } from '../hooks'
 import { initDefaultProps } from '../_util/props-util'
 import classNames from '../_util/classNames'
 import useStyle from './style'
-import Element, { skeletonElementProps } from './Element'
-import type { ExtractPropTypes, PropType } from 'vue'
+import Element from './Element'
+import { skeletonButtonProps } from './props'
 
-export const skeletonButtonProps = () => {
-  return {
-    ...skeletonElementProps(),
-    size: String as PropType<'large' | 'small' | 'default'>,
-    block: Boolean,
-  }
-}
-
-export type SkeletonButtonProps = Partial<ExtractPropTypes<ReturnType<typeof skeletonButtonProps>>>
-
-const SkeletonButton = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ASkeletonButton',
   props: initDefaultProps(skeletonButtonProps(), {
@@ -45,5 +35,3 @@ const SkeletonButton = defineComponent({
     }
   },
 })
-
-export default SkeletonButton

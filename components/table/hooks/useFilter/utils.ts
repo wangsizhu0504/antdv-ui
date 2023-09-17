@@ -1,4 +1,4 @@
-import type { ColumnFilterItem, FilterValue } from '../../../table/interface'
+import type { ColumnFilterItem, FilterValue } from '../../../table/types'
 
 export function flattenKeys(filters?: ColumnFilterItem[]) {
   let keys: FilterValue = [];

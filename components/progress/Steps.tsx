@@ -1,19 +1,8 @@
 import { computed, defineComponent } from 'vue'
-import { someType } from '../_util/type'
-import { progressProps } from './props'
+import { stepsProps } from './props'
 import { getSize } from './utils'
+import type { ProgressSize } from './type'
 import type { VueNode } from '../_util/type'
-import type { ProgressSize } from './props'
-import type { ExtractPropTypes } from 'vue'
-
-export const stepsProps = () => ({
-  ...progressProps(),
-  steps: Number,
-  strokeColor: someType<string | string[]>(),
-  trailColor: String,
-})
-
-export type StepsProps = Partial<ExtractPropTypes<ReturnType<typeof stepsProps>>>
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

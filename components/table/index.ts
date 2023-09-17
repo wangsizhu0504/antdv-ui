@@ -1,5 +1,5 @@
 import { EXPAND_COLUMN, Summary, SummaryCell, SummaryRow } from '../vc-table'
-import Table, { tableProps } from './Table'
+import Table from './Table'
 import Column from './Column'
 import ColumnGroup from './ColumnGroup'
 import {
@@ -8,31 +8,19 @@ import {
   SELECTION_INVERT,
   SELECTION_NONE,
 } from './hooks/useSelection'
-import type { TablePaginationConfig, TableProps } from './Table'
+
 import type { App } from 'vue'
 
-export type { ColumnProps } from './Column'
-export type { ColumnsType, ColumnType, ColumnGroupType } from './interface'
-export type { TableProps, TablePaginationConfig }
+export const TableSummaryRow = SummaryRow
+export const TableSummaryCell = SummaryCell
+export const TableColumn = Column
+export const TableColumnGroup = ColumnGroup
 
-const TableSummaryRow = SummaryRow
-const TableSummaryCell = SummaryCell
-
-const TableSummary = Object.assign(Summary, {
+export const TableSummary = Object.assign(Summary, {
   Cell: TableSummaryCell,
   Row: TableSummaryRow,
   name: 'ATableSummary',
 })
-
-/* istanbul ignore next */
-export {
-  tableProps,
-  TableSummary,
-  TableSummaryRow,
-  TableSummaryCell,
-  Column as TableColumn,
-  ColumnGroup as TableColumnGroup,
-}
 
 export default Object.assign(Table, {
   SELECTION_ALL,
@@ -53,3 +41,6 @@ export default Object.assign(Table, {
     return app
   },
 })
+
+export * from './types'
+export * from './props'

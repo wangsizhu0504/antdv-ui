@@ -2,22 +2,9 @@ import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
 import useStyle from './style'
-import type { ExtractPropTypes, PropType } from 'vue'
+import { checkableTagProps } from './props'
 
-const checkableTagProps = () => ({
-  'prefixCls': String,
-  'checked': { type: Boolean, default: undefined },
-  'onChange': {
-    type: Function as PropType<(checked: boolean) => void>,
-  },
-  'onClick': {
-    type: Function as PropType<(e: MouseEvent) => void>,
-  },
-  'onUpdate:checked': Function as PropType<(checked: boolean) => void>,
-})
-export type CheckableTagProps = Partial<ExtractPropTypes<ReturnType<typeof checkableTagProps>>>
-
-const CheckableTag = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ACheckableTag',
   inheritAttrs: false,
@@ -51,5 +38,3 @@ const CheckableTag = defineComponent({
     }
   },
 })
-
-export default CheckableTag

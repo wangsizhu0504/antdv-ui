@@ -1,24 +1,11 @@
 import { cloneVNode, defineComponent, isVNode, onBeforeUnmount, shallowRef, watch } from 'vue'
 import { debounce } from 'lodash-es'
-import PropTypes from '../_util/vue-types'
 import { filterEmpty, getPropsSlot } from '../_util/props-util'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import { useConfigInject } from '../hooks'
 import useStyle from './style'
-import type { ExtractPropTypes, PropType, VNode } from 'vue'
-
-export type SpinSize = 'small' | 'default' | 'large'
-export const spinProps = () => ({
-  prefixCls: String,
-  spinning: { type: Boolean, default: undefined },
-  size: String as PropType<SpinSize>,
-  wrapperClassName: String,
-  tip: PropTypes.any,
-  delay: Number,
-  indicator: PropTypes.any,
-})
-
-export type SpinProps = Partial<ExtractPropTypes<ReturnType<typeof spinProps>>>
+import { spinProps } from './props'
+import type { VNode } from 'vue'
 
 // Render indicator
 let defaultIndicator: () => VNode = null
@@ -41,6 +28,7 @@ export default defineComponent({
     spinning: true,
     wrapperClassName: '',
   }),
+  setDefaultIndicator,
   setup(props, { attrs, slots }) {
     const { prefixCls, size, direction } = useConfigInject('spin', props)
     const [wrapSSR, hashId] = useStyle(prefixCls)

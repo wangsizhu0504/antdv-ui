@@ -5,7 +5,6 @@ import TextArea from './TextArea'
 import Password from './Password'
 import type { App, Plugin } from 'vue'
 
-export type { InputProps, TextAreaProps } from './inputProps'
 const AntdInput = Input
 AntdInput.Group = Group
 AntdInput.Search = Search
@@ -29,10 +28,12 @@ export {
   Password as InputPassword,
 }
 
-export default AntdInput as typeof AntdInput &
-Plugin & {
+export default AntdInput as typeof AntdInput & Plugin & {
   readonly Group: typeof Group
   readonly Search: typeof Search
   readonly TextArea: typeof TextArea
   readonly Password: typeof Password
 }
+
+export * from './type'
+export * from './props'

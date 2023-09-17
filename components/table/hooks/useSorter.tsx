@@ -5,7 +5,6 @@ import Tooltip from '../../tooltip'
 import classNames from '../../_util/classNames'
 import { useState } from '../../hooks'
 import KeyCode from '../../_util/KeyCode'
-import type { DefaultRecordType } from '../../vc-table/interface'
 import type { TooltipProps } from '../../tooltip'
 import type {
   ColumnGroupType,
@@ -13,11 +12,11 @@ import type {
   ColumnType,
   ColumnsType,
   CompareFn,
-  Key,
   SortOrder,
+  SortState,
   SorterResult,
   TransformColumns,
-} from '../interface'
+} from '../types'
 import type { TableLocale } from '../../locale'
 import type { Ref } from 'vue'
 
@@ -48,13 +47,6 @@ function nextSortDirection(sortDirections: SortOrder[], current: SortOrder | nul
     return sortDirections[0]
 
   return sortDirections[sortDirections.indexOf(current) + 1]
-}
-
-export interface SortState<RecordType = DefaultRecordType> {
-  column: ColumnType<RecordType>
-  key: Key
-  sortOrder: SortOrder | null
-  multiplePriority: number | false
 }
 
 function collectSortStates<RecordType>(

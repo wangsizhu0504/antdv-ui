@@ -73,7 +73,6 @@ export { default as Drawer } from './drawer'
 export type { EmptyProps } from './empty'
 export { default as Empty } from './empty'
 
-export type * from './float-button'
 export { default as FloatButton, FloatButtonGroup, BackTop } from './float-button'
 
 export type { FormProps, FormItemProps, FormInstance, FormItemInstance } from './form'

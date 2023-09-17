@@ -2,3 +2,6 @@
 import Align from './Align'
 
 export default Align
+
+export * from './types'
+export * from './props'

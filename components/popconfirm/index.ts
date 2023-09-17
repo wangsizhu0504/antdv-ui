@@ -1,7 +1,8 @@
 import { withInstall } from '../_util/type'
-import Popconfirm from './popconfirm'
+import popconfirm from './Popconfirm'
+
+export const Popconfirm = withInstall(popconfirm)
+export default Popconfirm
 
 export * from './props'
 export * from './type'
-
-export default withInstall(Popconfirm)

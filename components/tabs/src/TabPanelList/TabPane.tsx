@@ -1,25 +1,7 @@
 import { computed, defineComponent, ref, watch } from 'vue'
-import PropTypes from '../../../_util/vue-types'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
+import { tabPaneProps } from '../props'
+import type { CSSProperties } from 'vue'
 import type { CustomSlotsType } from '../../../_util/type'
-
-const tabPaneProps = () => ({
-  tab: PropTypes.any,
-  disabled: { type: Boolean },
-  forceRender: { type: Boolean },
-  closable: { type: Boolean },
-  animated: { type: Boolean },
-  active: { type: Boolean },
-  destroyInactiveTabPane: { type: Boolean },
-
-  // Pass by TabPaneList
-  prefixCls: { type: String },
-  tabKey: { type: [String, Number] },
-  id: { type: String },
-  // closeIcon: PropTypes.any,
-})
-
-export type TabPaneProps = Partial<ExtractPropTypes<ReturnType<typeof tabPaneProps>>>
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

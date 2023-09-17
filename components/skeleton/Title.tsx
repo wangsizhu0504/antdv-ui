@@ -1,12 +1,5 @@
 import { defineComponent } from 'vue'
-import type { ExtractPropTypes, PropType } from 'vue'
-
-export const skeletonTitleProps = () => ({
-  prefixCls: String,
-  width: { type: [Number, String] as PropType<string | number> },
-})
-
-export type SkeletonTitleProps = Partial<ExtractPropTypes<ReturnType<typeof skeletonTitleProps>>>
+import { skeletonTitleProps } from './props'
 
 const SkeletonTitle = defineComponent({
   compatConfig: { MODE: 3 },

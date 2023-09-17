@@ -1,20 +1,9 @@
 import omit from '../_util/omit'
 import warning from '../_util/warning'
-import Base, { baseProps } from './Base'
-import type { EllipsisConfig } from './Base'
-import type { ExtractPropTypes, FunctionalComponent, PropType } from 'vue'
-
-export const textProps = () => ({
-  ...omit(baseProps(), ['component']),
-  ellipsis: {
-    type: [Boolean, Object] as PropType<
-      boolean | Omit<EllipsisConfig, 'expandable' | 'rows' | 'onExpand'>
-    >,
-    default: undefined as boolean | Omit<EllipsisConfig, 'expandable' | 'rows' | 'onExpand'>,
-  },
-})
-
-export type TextProps = Partial<ExtractPropTypes<ReturnType<typeof textProps>>>
+import Base from './Base'
+import { textProps } from './props'
+import type { TextProps } from './props'
+import type { FunctionalComponent } from 'vue'
 
 const Text: FunctionalComponent<TextProps> = (props, { slots, attrs }) => {
   const { ellipsis } = props

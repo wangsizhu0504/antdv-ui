@@ -1,9 +1,6 @@
-import Layout, { Content, Footer, Header } from './layout'
+import { Content, Footer, Header, Layout } from './layout'
 import Sider from './Sider'
 import type { App } from 'vue'
-
-export type { BasicProps as LayoutProps } from './layout'
-export type { SiderProps } from './Sider'
 
 /* istanbul ignore next */
 export const LayoutHeader = Header
@@ -25,3 +22,6 @@ export default Object.assign(Layout, {
     return app
   },
 })
+
+export * from './type'
+export * from './props'

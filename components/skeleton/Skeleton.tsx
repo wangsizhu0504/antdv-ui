@@ -6,34 +6,10 @@ import Title from './Title'
 import Paragraph from './Paragraph'
 import Element from './Element'
 import useStyle from './style'
-import type { SkeletonParagraphProps } from './Paragraph'
-import type { SkeletonTitleProps } from './Title'
-import type { SkeletonAvatarProps as AvatarProps } from './Avatar'
-import type { ExtractPropTypes, PropType } from 'vue'
+import { type SkeletonAvatarProps as AvatarProps, type SkeletonParagraphProps, type SkeletonTitleProps, skeletonProps } from './props'
 
 /* This only for skeleton internal. */
 type SkeletonAvatarProps = Omit<AvatarProps, 'active'>
-
-export const skeletonProps = () => ({
-  active: { type: Boolean, default: undefined },
-  loading: { type: Boolean, default: undefined },
-  prefixCls: String,
-  avatar: {
-    type: [Boolean, Object] as PropType<SkeletonAvatarProps | boolean>,
-    default: undefined as SkeletonAvatarProps | boolean,
-  },
-  title: {
-    type: [Boolean, Object] as PropType<SkeletonTitleProps | boolean>,
-    default: undefined as SkeletonTitleProps | boolean,
-  },
-  paragraph: {
-    type: [Boolean, Object] as PropType<SkeletonParagraphProps | boolean>,
-    default: undefined as SkeletonParagraphProps | boolean,
-  },
-  round: { type: Boolean, default: undefined },
-})
-
-export type SkeletonProps = Partial<ExtractPropTypes<ReturnType<typeof skeletonProps>>>
 
 function getComponentProps<T>(prop: T | boolean | undefined): T | {} {
   if (prop && typeof prop === 'object')
@@ -41,6 +17,7 @@ function getComponentProps<T>(prop: T | boolean | undefined): T | {} {
 
   return {}
 }
+
 function getAvatarBasicProps(hasTitle: boolean, hasParagraph: boolean): SkeletonAvatarProps {
   if (hasTitle && !hasParagraph) {
     // Square avatar
@@ -76,7 +53,7 @@ function getParagraphBasicProps(hasAvatar: boolean, hasTitle: boolean): Skeleton
   return basicProps
 }
 
-const Skeleton = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ASkeleton',
   props: initDefaultProps(skeletonProps(), {
@@ -165,5 +142,3 @@ const Skeleton = defineComponent({
     }
   },
 })
-
-export default Skeleton

@@ -14,7 +14,7 @@ import raf from '../_util/raf'
 import warning from '../_util/warning'
 import antInput from '../_util/antInputDirective'
 import omit from '../_util/omit'
-import { textAreaProps } from './inputProps'
+import { textAreaProps } from './props'
 import calculateNodeHeight from './calculateNodeHeight'
 import type { VNode } from 'vue'
 
@@ -22,7 +22,7 @@ const RESIZE_STATUS_NONE = 0
 const RESIZE_STATUS_RESIZING = 1
 const RESIZE_STATUS_RESIZED = 2
 
-const ResizableTextArea = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ResizableTextArea',
   inheritAttrs: false,
@@ -162,5 +162,3 @@ const ResizableTextArea = defineComponent({
     }
   },
 })
-
-export default ResizableTextArea

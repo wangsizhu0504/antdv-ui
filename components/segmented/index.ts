@@ -1,6 +1,9 @@
 import { withInstall } from '../_util/type'
-import Segmented from './src'
-import type { SegmentedProps } from './src'
+import segmented from './Segmented'
 
-export default withInstall(Segmented)
-export type { SegmentedProps }
+export const Segmented = withInstall(segmented)
+
+export default Segmented
+
+export * from './props'
+export * from './types'

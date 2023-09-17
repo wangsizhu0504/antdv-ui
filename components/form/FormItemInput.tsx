@@ -4,27 +4,13 @@ import classNames from '../_util/classNames'
 import Col from '../grid/Col'
 import ErrorList from './ErrorList'
 import { useInjectForm, useProvideForm, useProvideFormItemPrefix } from './context'
-import type { ValidateStatus } from './FormItem'
 import type { ColProps } from '../grid/Col'
-import type { CustomSlotsType, VueNode } from '../_util/type'
+import type { CustomSlotsType } from '../_util/type'
 import type { HTMLAttributes } from 'vue'
 
-export interface FormItemInputMiscProps {
-  prefixCls: string
-  errors: VueNode[]
-  hasFeedback?: boolean
-  validateStatus?: ValidateStatus
-}
-
-export interface FormItemInputProps {
-  wrapperCol?: ColProps
-  help?: VueNode
-  extra?: VueNode
-  status?: ValidateStatus
-}
-
-const FormItemInput = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
+  name: 'FormItemInput',
   slots: Object as CustomSlotsType<{
     help: any
     errors: any
@@ -111,5 +97,3 @@ const FormItemInput = defineComponent({
     }
   },
 })
-
-export default FormItemInput

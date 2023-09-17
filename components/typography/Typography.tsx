@@ -2,25 +2,10 @@ import { defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
 import useStyle from './style'
-import type { Direction } from '../config-provider'
-import type { HTMLAttributes, PropType } from 'vue'
+import { typographyProps } from './props'
 
 // CSSINJS
 
-export interface TypographyProps extends HTMLAttributes {
-  direction?: Direction
-  prefixCls?: string
-}
-
-export interface InternalTypographyProps extends TypographyProps {
-  component?: string
-}
-export const typographyProps = () => ({
-  prefixCls: String,
-  direction: String as PropType<Direction>,
-  // Form Internal use
-  component: String,
-})
 const Typography = defineComponent({
   name: 'ATypography',
   inheritAttrs: false,

@@ -1,13 +1,6 @@
 import classNames from '../_util/classNames'
+import type { DefaultExpandIconProps } from './types'
 import type { TableLocale } from '../locale'
-
-interface DefaultExpandIconProps<RecordType> {
-  prefixCls: string
-  onExpand: (record: RecordType, e: MouseEvent) => void
-  record: RecordType
-  expanded: boolean
-  expandable: boolean
-}
 
 function renderExpandIcon(locale: TableLocale) {
   return function expandIcon<RecordType>({

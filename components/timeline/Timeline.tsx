@@ -2,27 +2,13 @@ import { cloneVNode, defineComponent } from 'vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
-import PropTypes from '../_util/vue-types'
 import { filterEmpty } from '../_util/props-util'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 
-import { booleanType, tuple } from '../_util/type'
 import TimelineItem from './TimelineItem'
 import useStyle from './style'
-import type { ExtractPropTypes, SlotsType } from 'vue'
-
-// CSSINJS
-
-export const timelineProps = () => ({
-  prefixCls: String,
-  /** 指定最后一个幽灵节点是否存在或内容 */
-  pending: PropTypes.any,
-  pendingDot: PropTypes.any,
-  reverse: booleanType(),
-  mode: PropTypes.oneOf(tuple('left', 'alternate', 'right', '')),
-})
-
-export type TimelineProps = Partial<ExtractPropTypes<ReturnType<typeof timelineProps>>>
+import { timelineProps } from './props'
+import type { SlotsType } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

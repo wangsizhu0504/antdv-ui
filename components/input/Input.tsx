@@ -15,7 +15,7 @@ import { NoCompactStyle, useCompactItemContext } from '../space/Compact'
 
 // CSSINJS
 import { useInjectDisabled } from '../config-provider/DisabledContext'
-import inputProps from './inputProps'
+import { inputProps } from './props'
 import useStyle from './style'
 import type { InputFocusOptions } from '../vc-input/utils/commonUtils'
 

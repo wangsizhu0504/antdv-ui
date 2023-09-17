@@ -5,17 +5,17 @@ import { isValidElement } from '../_util/props-util'
 import { cloneElement } from '../_util/vnode'
 import { useConfigInject } from '../hooks'
 import omit from '../_util/omit'
-import inputProps from './inputProps'
+import { inputProps } from './props'
 import Input from './Input'
 import type { PropType } from 'vue'
-import type { InputProps } from './inputProps'
+import type { InputProps } from './props'
 
 const ActionMap = {
   click: 'onClick',
   hover: 'onMouseover',
 }
-const defaultIconRender = (visible: boolean) =>
-  visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
+const defaultIconRender = (visible: boolean) => visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
+
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AInputPassword',

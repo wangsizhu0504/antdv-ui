@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import extendsObject from '../../_util/extendsObject'
 import { useState } from '../../hooks'
-import type { TablePaginationConfig } from '../interface'
+import type { TablePaginationConfig } from '../types'
 import type { Ref } from 'vue'
 import type { PaginationProps } from '../../pagination'
 

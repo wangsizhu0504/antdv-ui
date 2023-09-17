@@ -5,63 +5,23 @@ import useOffsets from '../hooks/useOffsets'
 import { useInjectTabs } from '../TabContext'
 import useTouchMove from '../hooks/useTouchMove'
 import useSyncState from '../hooks/useSyncState'
-import { functionType, objectType } from '../../../_util/type'
-import PropTypes from '../../../_util/vue-types'
 import { useRefs, useState } from '../../../hooks'
 import raf from '../../../_util/raf'
 import classNames from '../../../_util/classNames'
 import ResizeObserver from '../../../vc-resize-observer'
 import { toPx } from '../../../_util/util'
+import { tabNavListProps } from '../props'
 import TabNode from './TabNode'
 import OperationNode from './OperationNode'
 import AddButton from './AddButton'
-import type { CustomSlotsType, Key } from '../../../_util/type'
+import type { CustomSlotsType } from '../../../_util/type'
 import type {
-  AnimatedConfig,
-  EditableConfig,
-  OnTabScroll,
-  RenderTabBar,
-  TabBarExtraContent,
-  TabBarExtraPosition,
-  TabPosition,
+  ExtraContentProps,
   TabSizeMap,
-  TabsLocale,
-} from '../interface'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+} from '../types'
+import type { CSSProperties } from 'vue'
 
 const DEFAULT_SIZE = { width: 0, height: 0, left: 0, top: 0, right: 0 }
-export const tabNavListProps = () => {
-  return {
-    id: { type: String },
-    tabPosition: { type: String as PropType<TabPosition> },
-    activeKey: { type: [String, Number] },
-    rtl: { type: Boolean },
-    animated: objectType<AnimatedConfig>(),
-    editable: objectType<EditableConfig>(),
-    moreIcon: PropTypes.any,
-    moreTransitionName: { type: String },
-    mobile: { type: Boolean },
-    tabBarGutter: { type: Number },
-    renderTabBar: { type: Function as PropType<RenderTabBar> },
-    locale: objectType<TabsLocale>(),
-    popupClassName: String,
-    getPopupContainer: functionType<
-      ((triggerNode?: HTMLElement | undefined) => HTMLElement) | undefined
-    >(),
-    onTabClick: {
-      type: Function as PropType<(activeKey: Key, e: MouseEvent | KeyboardEvent) => void>,
-    },
-    onTabScroll: { type: Function as PropType<OnTabScroll> },
-  }
-}
-
-export type TabNavListProps = Partial<ExtractPropTypes<ReturnType<typeof tabNavListProps>>>
-
-interface ExtraContentProps {
-  position: TabBarExtraPosition
-  prefixCls: string
-  extra?: (info?: { position: 'left' | 'right' }) => TabBarExtraContent
-}
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

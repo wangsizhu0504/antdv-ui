@@ -1,22 +1,12 @@
 import { defineComponent, ref } from 'vue'
-import type { CSSProperties, PropType } from 'vue'
-import type { EditableConfig, TabsLocale } from '../interface'
-
-export interface AddButtonProps {
-  prefixCls: string
-  editable?: EditableConfig
-  locale?: TabsLocale
-}
+import { addButtonProps } from '../props'
+import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AddButton',
   inheritAttrs: false,
-  props: {
-    prefixCls: String,
-    editable: { type: Object as PropType<EditableConfig> },
-    locale: { type: Object as PropType<TabsLocale>, default: undefined as TabsLocale },
-  },
+  props: addButtonProps(),
   setup(props, { expose, attrs }) {
     const domRef = ref()
     expose({

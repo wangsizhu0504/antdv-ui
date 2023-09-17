@@ -396,7 +396,7 @@ export default defineComponent<FilterDropdownProps<any>>({
                     selectedKeys.length > 0 && selectedKeys.length < filterFlattenKeys.value.length
                   }
                 >
-                  {locale.filterCheckall}
+                  {locale.filterCheckAll}
                 </Checkbox>
                   )
                 : null}

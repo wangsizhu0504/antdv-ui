@@ -1,28 +1,11 @@
 import { computed, defineComponent } from 'vue'
-import PropTypes from '../_util/vue-types'
-import type { ExtractPropTypes } from 'vue'
-
-export const starProps = {
-  value: Number,
-  index: Number,
-  prefixCls: String,
-  allowHalf: { type: Boolean, default: undefined },
-  disabled: { type: Boolean, default: undefined },
-  character: PropTypes.any,
-  characterRender: Function,
-  focused: { type: Boolean, default: undefined },
-  count: Number,
-  onClick: Function,
-  onHover: Function,
-}
-
-export type StarProps = Partial<ExtractPropTypes<typeof starProps>>
+import { starProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'Star',
   inheritAttrs: false,
-  props: starProps,
+  props: starProps(),
   emits: ['hover', 'click'],
   setup(props, { emit }) {
     const onHover = (e: MouseEvent) => {

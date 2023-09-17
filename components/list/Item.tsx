@@ -1,5 +1,4 @@
 import { defineComponent, inject, ref } from 'vue'
-import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
 import { flattenChildren, isEmptyElement, isStringElement } from '../_util/props-util'
 import { Col } from '../grid'
@@ -7,19 +6,9 @@ import { cloneElement } from '../_util/vnode'
 import { useConfigInject } from '../hooks'
 import { ListContextKey } from './contextKey'
 import ItemMeta from './ItemMeta'
+import { listItemProps } from './props'
 import type { CustomSlotsType } from '../_util/type'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { ListGridType } from '.'
 
-export const listItemProps = () => ({
-  prefixCls: String,
-  extra: PropTypes.any,
-  actions: PropTypes.array,
-  grid: Object as PropType<ListGridType>,
-  colStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-})
-
-export type ListItemProps = Partial<ExtractPropTypes<ReturnType<typeof listItemProps>>>
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AListItem',
@@ -104,9 +93,7 @@ export default defineComponent({
           {itemChildren}
         </Col>
           )
-        : (
-            itemChildren
-          )
+        : itemChildren
     }
   },
 })

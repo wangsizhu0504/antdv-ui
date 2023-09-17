@@ -1,6 +1,6 @@
 import ResizeObserver from 'resize-observer-polyfill'
 import contains from '../vc-util/Dom/contains'
-import type { TargetPoint } from './interface'
+import type { TargetPoint } from './types'
 
 export function isSamePoint(prev: TargetPoint, next: TargetPoint) {
   if (prev === next) return true

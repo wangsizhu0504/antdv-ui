@@ -1,28 +1,17 @@
 import { defineComponent, onBeforeUnmount, onMounted, onUpdated, ref } from 'vue'
 import omit from '../_util/omit'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
-import { someType } from '../_util/type'
-import Statistic, { statisticProps } from './Statistic'
+import Statistic from './Statistic'
 import { formatCountdown as formatCD } from './utils'
-import type { FormatConfig, countdownValueType, valueType } from './utils'
-import type { ExtractPropTypes, PropType } from 'vue'
+import { countdownProps } from './props'
+import type { FormatConfig, countdownValueType, valueType } from './types'
 
 const REFRESH_INTERVAL = 1000 / 30
 
 function getTime(value?: countdownValueType) {
   return new Date(value as any).getTime()
 }
-export const countdownProps = () => {
-  return {
-    ...statisticProps(),
-    value: someType<countdownValueType>([Number, String, Object]),
-    format: String,
-    onFinish: Function as PropType<() => void>,
-    onChange: Function as PropType<(value?: countdownValueType) => void>,
-  }
-}
 
-export type CountdownProps = Partial<ExtractPropTypes<ReturnType<typeof countdownProps>>>
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AStatisticCountdown',

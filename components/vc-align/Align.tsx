@@ -16,37 +16,8 @@ import addEventListener from '../vc-util/Dom/addEventListener'
 import { cloneElement } from '../_util/vnode'
 import { isSamePoint, monitorResize, restoreFocus } from './util'
 import useBuffer from './hooks/useBuffer'
-import type { AlignResult, AlignType, TargetPoint, TargetType } from './interface'
-import type { PropType } from 'vue'
-
-type OnAlign = (source: HTMLElement, result: AlignResult) => void
-
-export interface AlignProps {
-  align: AlignType
-  target: TargetType
-  onAlign?: OnAlign
-  monitorBufferTime?: number
-  monitorWindowResize?: boolean
-  disabled?: boolean
-}
-
-export const alignProps = {
-  align: Object as PropType<AlignType>,
-  target: [Object, Function] as PropType<TargetType>,
-  onAlign: Function as PropType<OnAlign>,
-  monitorBufferTime: Number,
-  monitorWindowResize: Boolean,
-  disabled: Boolean,
-}
-
-interface MonitorRef {
-  element?: HTMLElement
-  cancel: () => void
-}
-
-export interface RefAlign {
-  forceAlign: () => void
-}
+import { alignProps } from './props'
+import type { AlignResult, AlignType, MonitorRef, TargetPoint, TargetType } from './types'
 
 function getElement(func: TargetType) {
   if (typeof func !== 'function') return null
@@ -61,7 +32,7 @@ function getPoint(point: TargetType) {
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'Align',
-  props: alignProps,
+  props: alignProps(),
   emits: ['align'],
   setup(props, { expose, slots }) {
     const cacheRef = ref<{ element?: HTMLElement, point?: TargetPoint, align?: AlignType }>({})

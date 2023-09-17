@@ -1,5 +1,5 @@
 import { camelize, flattenChildren } from '../_util/props-util'
-import type { ColumnTitle, ColumnTitleProps, ColumnType, ColumnsType, Key } from './interface'
+import type { ColumnTitle, ColumnTitleProps, ColumnType, ColumnsType, Key } from './types'
 
 export function getColumnKey<RecordType>(column: ColumnType<RecordType>, defaultKey: string): Key {
   if ('key' in column && column.key !== undefined && column.key !== null)

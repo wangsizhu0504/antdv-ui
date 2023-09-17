@@ -1,21 +1,22 @@
-import Tabs, { TabPane } from './src'
+import tabs from './src/Tabs'
+import tabPane from './src/TabPanelList/TabPane'
+
 import type { App, Plugin } from 'vue'
 
-export type { TabsProps, TabPaneProps } from './src'
+export const TabPane = tabPane
 
-const AntdTabs = Tabs
-AntdTabs.TabPane = TabPane
+export const Tabs = Object.assign(tabs, {
+  TabPane: tabPane,
+  install(app: App) {
+    app.component(tabs.name, tabs)
+    app.component(tabPane.name, tabPane)
+    return app
+  },
+})
 
-/* istanbul ignore next */
-AntdTabs.install = function (app: App) {
-  app.component(AntdTabs.name, AntdTabs)
-  app.component(AntdTabs.TabPane.name, AntdTabs.TabPane)
-  return app
-}
-
-export default AntdTabs as typeof AntdTabs &
-Plugin & {
+export default Tabs as typeof Tabs & Plugin & {
   readonly TabPane: typeof TabPane
 }
 
-export { TabPane }
+export * from './src/types'
+export * from './src/props'

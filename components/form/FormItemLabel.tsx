@@ -3,23 +3,8 @@ import classNames from '../_util/classNames'
 import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
 import Col from '../grid/Col'
 import { useInjectForm } from './context'
-import type { ColProps } from '../grid/Col'
-import type { FormLabelAlign } from './interface'
-import type { VueNode } from '../_util/type'
-import type { FunctionalComponent, HTMLAttributes } from 'vue'
-import type { RequiredMark } from './Form'
-
-export interface FormItemLabelProps {
-  colon?: boolean
-  htmlFor?: string
-  label?: VueNode
-  labelAlign?: FormLabelAlign
-  labelCol?: ColProps & HTMLAttributes
-  requiredMark?: RequiredMark
-  required?: boolean
-  prefixCls: string
-  onClick: Function
-}
+import type { FormItemLabelProps, FormLabelAlign } from './type'
+import type { FunctionalComponent } from 'vue'
 
 const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, emit, attrs }) => {
   const { prefixCls, htmlFor, labelCol, labelAlign, colon, required, requiredMark } = {

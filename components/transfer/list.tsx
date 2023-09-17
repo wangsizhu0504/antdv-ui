@@ -10,7 +10,7 @@ import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
 import ListBody from './ListBody'
 import Search from './search'
-import type { RadioChangeEvent } from '../radio/interface'
+import type { RadioChangeEvent } from '../radio'
 import type { CSSProperties, ExtractPropTypes, SlotsType, VNode, VNodeTypes } from 'vue'
 import type { TransferDirection, TransferItem } from './index'
 

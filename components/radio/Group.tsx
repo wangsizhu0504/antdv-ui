@@ -1,44 +1,12 @@
 import { computed, defineComponent, nextTick, ref, watch } from 'vue'
 import classNames from '../_util/classNames'
-import PropTypes from '../_util/vue-types'
 import { useConfigInject } from '../hooks'
-import { arrayType, booleanType, functionType, stringType } from '../_util/type'
 import { useInjectFormItemContext } from '../form/FormItemContext'
 import useStyle from './style'
 import { useProvideRadioGroupContext } from './context'
 import Radio from './Radio'
-import type { ExtractPropTypes } from 'vue'
-import type { RadioChangeEvent, RadioGroupButtonStyle, RadioGroupOptionType } from './interface'
-
-// CSSINJS
-
-const RadioGroupSizeTypes = ['large', 'default', 'small'] as const
-
-export type RadioGroupSize = (typeof RadioGroupSizeTypes)[number]
-
-export type RadioGroupOption = RadioGroupOptionType
-
-export interface RadioGroupChildOption {
-  label?: any
-  value: any
-  disabled?: boolean
-}
-
-export const radioGroupProps = () => ({
-  'prefixCls': String,
-  'value': PropTypes.any,
-  'size': stringType<RadioGroupSize>(),
-  'options': arrayType<Array<string | RadioGroupChildOption | number>>(),
-  'disabled': booleanType(),
-  'name': String,
-  'buttonStyle': stringType<RadioGroupButtonStyle>('outline'),
-  'id': String,
-  'optionType': stringType<RadioGroupOptionType>('default'),
-  'onChange': functionType<(e: RadioChangeEvent) => void>(),
-  'onUpdate:value': functionType<(val: any) => void>(),
-})
-
-export type RadioGroupProps = Partial<ExtractPropTypes<ReturnType<typeof radioGroupProps>>>
+import { radioGroupProps } from './props'
+import type { RadioChangeEvent, RadioGroupChildOption } from './types'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

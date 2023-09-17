@@ -1,6 +1,6 @@
 import { computed, defineComponent, onMounted, ref, toRef } from 'vue'
 import defaultLocale from '../locale/lang/en_US'
-import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
+import { useLocaleReceiver } from '../locale-provider'
 import VcUpload from '../vc-upload'
 import devWarning from '../vc-util/devWarning'
 import { useInjectFormItemContext } from '../form'
@@ -9,16 +9,15 @@ import { useInjectDisabled } from '../config-provider/DisabledContext'
 import { useConfigInject, useMergedState } from '../hooks'
 import classNames from '../_util/classNames'
 import { flattenChildren, initDefaultProps } from '../_util/props-util'
+import { LIST_IGNORE } from '../constant'
 import useStyle from './style'
 import UploadList from './UploadList'
-import { uploadProps } from './interface'
+import { uploadProps } from './props'
 import { file2Obj, getFileItem, removeFileItem, updateFileList } from './utils'
-import type { FileType, ShowUploadListInterface, UploadChangeParam, UploadFile } from './interface'
+import type { FileType, ShowUploadListInterface, UploadChangeParam, UploadFile } from './types'
 import type { VueNode } from '../_util/type'
 import type { UploadProps as RcUploadProps } from '../vc-upload'
 import type { CSSProperties } from 'vue'
-
-export const LIST_IGNORE = `__LIST_IGNORE_${Date.now()}__`
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

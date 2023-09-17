@@ -1,74 +1,9 @@
-import { presetPrimaryColors } from '@ant-design/colors'
 import { computed, defineComponent } from 'vue'
 import devWarning from '../vc-util/devWarning'
-import { anyType, stringType } from '../_util/type'
-import { progressProps } from './props'
-import { getSize, getSuccessPercent, validProgress } from './utils'
-import type { ProgressGradient, ProgressSize, StringGradients } from './props'
-import type { Direction } from '../config-provider'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-
-export const lineProps = () => ({
-  ...progressProps(),
-  strokeColor: anyType<string | ProgressGradient>(),
-  direction: stringType<Direction>(),
-})
-
-export type LineProps = Partial<ExtractPropTypes<ReturnType<typeof lineProps>>>
-
-/**
- * {
- *   '0%': '#afc163',
- *   '75%': '#009900',
- *   '50%': 'green',     ====>     '#afc163 0%, #66FF00 25%, #00CC00 50%, #009900 75%, #ffffff 100%'
- *   '25%': '#66FF00',
- *   '100%': '#ffffff'
- * }
- */
-export const sortGradient = (gradients: StringGradients) => {
-  let tempArr = []
-  Object.keys(gradients).forEach((key) => {
-    const formattedKey = Number.parseFloat(key.replace(/%/g, ''))
-    if (!Number.isNaN(formattedKey)) {
-      tempArr.push({
-        key: formattedKey,
-        value: gradients[key],
-      })
-    }
-  })
-  tempArr = tempArr.sort((a, b) => a.key - b.key)
-  return tempArr.map(({ key, value }) => `${value} ${key}%`).join(', ')
-}
-
-/**
- * Then this man came to realize the truth: Besides six pence, there is the moon. Besides bread and
- * butter, there is the bug. And... Besides women, there is the code.
- *
- * @example
- *   {
- *     "0%": "#afc163",
- *     "25%": "#66FF00",
- *     "50%": "#00CC00", // ====>  linear-gradient(to right, #afc163 0%, #66FF00 25%,
- *     "75%": "#009900", //        #00CC00 50%, #009900 75%, #ffffff 100%)
- *     "100%": "#ffffff"
- *   }
- */
-export const handleGradient = (
-  strokeColor: ProgressGradient,
-  directionConfig?: Direction,
-): CSSProperties => {
-  const {
-    from = presetPrimaryColors.blue,
-    to = presetPrimaryColors.blue,
-    direction = directionConfig === 'rtl' ? 'to left' : 'to right',
-    ...rest
-  } = strokeColor
-  if (Object.keys(rest).length !== 0) {
-    const sortedGradients = sortGradient(rest as StringGradients)
-    return { backgroundImage: `linear-gradient(${direction}, ${sortedGradients})` }
-  }
-  return { backgroundImage: `linear-gradient(${direction}, ${from}, ${to})` }
-}
+import { getSize, getSuccessPercent, handleGradient, validProgress } from './utils'
+import { lineProps } from './props'
+import type { ProgressSize } from './type'
+import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

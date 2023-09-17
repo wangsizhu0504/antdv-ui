@@ -2,38 +2,14 @@ import { computed, defineComponent, onMounted, watch } from 'vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 import Menu, { MenuItem } from '../../../menu'
 import Dropdown from '../../../vc-dropdown'
-import { functionType } from '../../../_util/type'
 import KeyCode from '../../../_util/KeyCode'
 import classNames from '../../../_util/classNames'
-import PropTypes from '../../../_util/vue-types'
 import { useState } from '../../../hooks'
 import { useProvideOverride } from '../../../menu/src/OverrideContext'
+import { operationNodeProps } from '../props'
 import AddButton from './AddButton'
 import type { CustomSlotsType, Key } from '../../../_util/type'
-import type { EditableConfig, Tab, TabsLocale } from '../interface'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-
-export const operationNodeProps = {
-  prefixCls: { type: String },
-  id: { type: String },
-  tabs: { type: Object as PropType<(Tab & { closeIcon?: () => any })[]> },
-  rtl: { type: Boolean },
-  tabBarGutter: { type: Number },
-  activeKey: { type: [String, Number] },
-  mobile: { type: Boolean },
-  moreIcon: PropTypes.any,
-  moreTransitionName: { type: String },
-  editable: { type: Object as PropType<EditableConfig> },
-  locale: { type: Object as PropType<TabsLocale>, default: undefined as TabsLocale },
-  removeAriaLabel: String,
-  onTabClick: { type: Function as PropType<(key: Key, e: MouseEvent | KeyboardEvent) => void> },
-  popupClassName: String,
-  getPopupContainer: functionType<
-    ((triggerNode?: HTMLElement | undefined) => HTMLElement) | undefined
-  >(),
-}
-
-export type OperationNodeProps = Partial<ExtractPropTypes<typeof operationNodeProps>>
+import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

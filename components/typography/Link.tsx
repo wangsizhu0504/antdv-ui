@@ -1,13 +1,8 @@
 import warning from '../_util/warning'
-import omit from '../_util/omit'
-import Base, { baseProps } from './Base'
-import type { AnchorHTMLAttributes, ExtractPropTypes, FunctionalComponent } from 'vue'
-
-export const linkProps = () =>
-  omit({ ...baseProps(), ellipsis: { type: Boolean, default: undefined } }, ['component'])
-
-export type LinkProps = Partial<ExtractPropTypes<ReturnType<typeof linkProps>>> &
-AnchorHTMLAttributes
+import Base from './Base'
+import { linkProps } from './props'
+import type { LinkProps } from './props'
+import type { FunctionalComponent } from 'vue'
 
 const Link: FunctionalComponent<LinkProps> = (props, { slots, attrs }) => {
   const { ellipsis, rel, ...restProps } = { ...props, ...attrs }
@@ -23,6 +18,7 @@ const Link: FunctionalComponent<LinkProps> = (props, { slots, attrs }) => {
     component: 'a',
   }
   // https://github.com/ant-design/ant-design/issues/26622
+
   // @ts-expect-error
   delete mergedProps.navigate
 

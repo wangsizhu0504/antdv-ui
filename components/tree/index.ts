@@ -3,25 +3,6 @@ import Tree from './Tree'
 import DirectoryTree from './DirectoryTree'
 import type { App } from 'vue'
 
-export type { EventDataNode, DataNode } from '../vc-tree/interface'
-
-export type {
-  TreeProps,
-  AntTreeNodeMouseEvent,
-  AntTreeNodeExpandedEvent,
-  AntTreeNodeCheckedEvent,
-  AntTreeNodeSelectedEvent,
-  AntTreeNodeDragEnterEvent,
-  AntTreeNodeDropEvent,
-  AntdTreeNodeAttribute,
-  TreeDataItem,
-} from './Tree'
-
-export type {
-  ExpandAction as DirectoryTreeExpandAction,
-  DirectoryTreeProps,
-} from './DirectoryTree'
-
 /* istanbul ignore next */
 
 const TreeNode = VcTreeNode
@@ -38,3 +19,8 @@ export default Object.assign(Tree, {
     return app
   },
 })
+
+export type { EventDataNode, DataNode } from '../vc-tree/interface'
+
+export * from './types'
+export * from './props'

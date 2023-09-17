@@ -1,144 +1,22 @@
 import { computed, defineComponent, ref, watchEffect } from 'vue'
 import VcTree from '../vc-tree'
-import { treeProps as vcTreeProps } from '../vc-tree/props'
 import devWarning from '../vc-util/devWarning'
 import { warning } from '../vc-util/warning'
 
 // CSSINJS
-import { arrayType, booleanType, functionType, objectType, someType } from '../_util/type'
 import omit from '../_util/omit'
 import { useConfigInject } from '../hooks'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import { filterEmpty } from '../_util/props-util'
-import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
 import renderSwitcherIcon from './utils/iconUtil'
 import dropIndicatorRender from './utils/dropIndicator'
 import useStyle from './style'
+import { treeProps } from './props'
+import type { TreeProps } from './props'
 import type { SwitcherIconProps } from './utils/iconUtil'
-import type { TreeNodeProps } from '../vc-tree/props'
-import type { DataNode, EventDataNode, FieldNames, Key, ScrollTo } from '../vc-tree/interface'
-import type { ExtractPropTypes, SlotsType } from 'vue'
-
-export interface AntdTreeNodeAttribute {
-  eventKey: string
-  prefixCls: string
-  class: string
-  expanded: boolean
-  selected: boolean
-  checked: boolean
-  halfChecked: boolean
-  children: any
-  title: any
-  pos: string
-  dragOver: boolean
-  dragOverGapTop: boolean
-  dragOverGapBottom: boolean
-  isLeaf: boolean
-  selectable: boolean
-  disabled: boolean
-  disableCheckbox: boolean
-}
-
-export type AntTreeNodeProps = TreeNodeProps
-
-// [Legacy] Compatible for v2
-export type TreeDataItem = DataNode
-
-export interface AntTreeNodeBaseEvent {
-  node: EventDataNode
-  nativeEvent: MouseEvent
-}
-
-export interface AntTreeNodeCheckedEvent extends AntTreeNodeBaseEvent {
-  event: 'check'
-  checked?: boolean
-  checkedNodes?: DataNode[]
-}
-
-export interface AntTreeNodeSelectedEvent extends AntTreeNodeBaseEvent {
-  event: 'select'
-  selected?: boolean
-  selectedNodes?: DataNode[]
-}
-
-export interface AntTreeNodeExpandedEvent extends AntTreeNodeBaseEvent {
-  expanded?: boolean
-}
-
-export interface AntTreeNodeMouseEvent {
-  node: EventDataNode
-  event: DragEvent
-}
-
-export interface AntTreeNodeDragEnterEvent extends AntTreeNodeMouseEvent {
-  expandedKeys: Key[]
-}
-
-export interface AntTreeNodeDropEvent {
-  node: EventDataNode
-  dragNode: EventDataNode
-  dragNodesKeys: Key[]
-  dropPosition: number
-  dropToGap?: boolean
-  event: MouseEvent
-}
-
-export const treeProps = () => {
-  const baseTreeProps = vcTreeProps()
-  return {
-    ...baseTreeProps,
-    'showLine': someType<boolean | { showLeafIcon: boolean }>([Boolean, Object]),
-    /** 是否支持多选 */
-    'multiple': booleanType(),
-    /** 是否自动展开父节点 */
-    'autoExpandParent': booleanType(),
-    /** checkable状态下节点选择完全受控（父子节点选中状态不再关联） */
-    'checkStrictly': booleanType(),
-    /** 是否支持选中 */
-    'checkable': booleanType(),
-    /** 是否禁用树 */
-    'disabled': booleanType(),
-    /** 默认展开所有树节点 */
-    'defaultExpandAll': booleanType(),
-    /** 默认展开对应树节点 */
-    'defaultExpandParent': booleanType(),
-    /** 默认展开指定的树节点 */
-    'defaultExpandedKeys': arrayType<Key[]>(),
-    /** （受控）展开指定的树节点 */
-    'expandedKeys': arrayType<Key[]>(),
-    /** （受控）选中复选框的树节点 */
-    'checkedKeys': someType<Key[] | { checked: Key[], halfChecked: Key[] }>([Array, Object]),
-    /** 默认选中复选框的树节点 */
-    'defaultCheckedKeys': arrayType<Key[]>(),
-    /** （受控）设置选中的树节点 */
-    'selectedKeys': arrayType<Key[]>(),
-    /** 默认选中的树节点 */
-    'defaultSelectedKeys': arrayType<Key[]>(),
-    'selectable': booleanType(),
-
-    'loadedKeys': arrayType<Key[]>(),
-    'draggable': booleanType(),
-    'showIcon': booleanType(),
-    'icon': functionType<(nodeProps: AntdTreeNodeAttribute) => any>(),
-    'switcherIcon': PropTypes.any,
-    'prefixCls': String,
-    /**
-     * @default{title,key,children}
-     * deprecated, please use `fieldNames` instead
-     * 替换treeNode中 title,key,children字段为treeData中对应的字段
-     */
-    'replaceFields': objectType<FieldNames>(),
-    'blockNode': booleanType(),
-    'openAnimation': PropTypes.any,
-    'onDoubleclick': baseTreeProps.onDblclick,
-    'onUpdate:selectedKeys': functionType<(keys: Key[]) => void>(),
-    'onUpdate:checkedKeys': functionType<(keys: Key[]) => void>(),
-    'onUpdate:expandedKeys': functionType<(keys: Key[]) => void>(),
-  }
-}
-
-export type TreeProps = Partial<ExtractPropTypes<ReturnType<typeof treeProps>>>
+import type { ScrollTo } from '../vc-tree/interface'
+import type { SlotsType } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

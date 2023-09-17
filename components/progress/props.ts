@@ -6,32 +6,10 @@ import {
   someType,
   stringType,
 } from '../_util/type'
+import type { Direction } from '../config-provider'
+import type { ProgressGradient, ProgressSize, ProgressStatusesType, ProgressType, SuccessProps } from './type'
 import type { ExtractPropTypes } from 'vue'
 import type { VueNode } from '../_util/type'
-
-export const progressStatuses = ['normal', 'exception', 'active', 'success'] as const
-export type ProgressStatusesType = (typeof progressStatuses)[number]
-const progressType = ['line', 'circle', 'dashboard'] as const
-export type ProgressType = (typeof progressType)[number]
-const progressSize = ['default', 'small'] as const
-export type ProgressSize = (typeof progressSize)[number] | number | [number, number]
-
-export interface StringGradients {
-  [percentage: string]: string
-}
-
-interface FromToGradients {
-  from: string
-  to: string
-}
-export type ProgressGradient = { direction?: string } & (StringGradients | FromToGradients)
-
-export interface SuccessProps {
-  percent?: number
-  /** @deprecated Use `percent` instead */
-  progress?: number
-  strokeColor?: string
-}
 
 export const progressProps = () => ({
   prefixCls: String,
@@ -56,5 +34,31 @@ export const progressProps = () => ({
   title: String,
   progressStatus: stringType<ProgressStatusesType>(),
 })
+
+export interface CircleProps extends ProgressProps {
+  strokeColor?: string | ProgressGradient
+}
+
+export const circleProps = () => ({
+  ...progressProps(),
+  strokeColor: anyType<string | ProgressGradient>(),
+})
+
+export const lineProps = () => ({
+  ...progressProps(),
+  strokeColor: anyType<string | ProgressGradient>(),
+  direction: stringType<Direction>(),
+})
+
+export const stepsProps = () => ({
+  ...progressProps(),
+  steps: Number,
+  strokeColor: someType<string | string[]>(),
+  trailColor: String,
+})
+
+export type StepsProps = Partial<ExtractPropTypes<ReturnType<typeof stepsProps>>>
+
+export type LineProps = Partial<ExtractPropTypes<ReturnType<typeof lineProps>>>
 
 export type ProgressProps = Partial<ExtractPropTypes<ReturnType<typeof progressProps>>>

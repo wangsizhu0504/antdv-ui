@@ -1,7 +1,6 @@
 import { computed, defineComponent, ref } from 'vue'
 import classNames from '../_util/classNames'
-import RcSelect, { OptGroup, Option, selectProps as vcSelectProps } from '../vc-select'
-import PropTypes from '../_util/vue-types'
+import RcSelect, { OptGroup, Option } from '../vc-select'
 import { useConfigInject } from '../hooks'
 import { DefaultRenderEmpty } from '../config-provider/renderEmpty'
 import omit from '../_util/omit'
@@ -10,7 +9,6 @@ import { getTransitionDirection, getTransitionName } from '../_util/components/t
 import { initDefaultProps } from '../_util/props-util'
 
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
-import { booleanType, functionType, someType, stringType } from '../_util/type'
 import { useCompactItemContext } from '../space/Compact'
 
 // CSSINJS
@@ -18,41 +16,12 @@ import { useInjectDisabled } from '../config-provider/DisabledContext'
 import devWarning from '../vc-util/devWarning'
 import getIcons from './utils/iconUtil'
 import useStyle from './style'
+import { type SelectProps, selectProps } from './props'
 import type { CustomSlotsType } from '../_util/type'
-import type { InputStatus } from '../_util/statusUtils'
-import type { SizeType } from '../config-provider'
 import type { SelectCommonPlacement } from '../_util/components/transition'
 import type { BaseSelectRef } from '../vc-select'
-import type { SelectValue } from './type'
-import type { SelectProps } from './props'
 
 const SECRET_COMBOBOX_MODE_DO_NOT_USE = 'SECRET_COMBOBOX_MODE_DO_NOT_USE'
-
-export const selectProps = () => ({
-  ...omit(vcSelectProps<SelectValue>(), [
-    'inputIcon',
-    'mode',
-    'getInputElement',
-    'getRawInputElement',
-    'backfill',
-  ]),
-  'value': someType<SelectValue>([Array, Object, String, Number]),
-  'defaultValue': someType<SelectValue>([Array, Object, String, Number]),
-  'notFoundContent': PropTypes.any,
-  'suffixIcon': PropTypes.any,
-  'itemIcon': PropTypes.any,
-  'size': stringType<SizeType>(),
-  'mode': stringType<'multiple' | 'tags' | 'SECRET_COMBOBOX_MODE_DO_NOT_USE'>(),
-  'bordered': booleanType(true),
-  'transitionName': String,
-  'choiceTransitionName': stringType(''),
-  'popupClassName': String,
-  /** @deprecated Please use `popupClassName` instead */
-  'dropdownClassName': String,
-  'placement': stringType<SelectCommonPlacement>(),
-  'status': stringType<InputStatus>(),
-  'onUpdate:value': functionType<(val: SelectValue) => void>(),
-})
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

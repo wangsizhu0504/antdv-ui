@@ -11,11 +11,9 @@ import {
 } from '@ant-design/icons-vue'
 import { useConfigInject } from '../hooks'
 import PreviewGroup from '../vc-image/src/PreviewGroup'
-import { anyType } from '../_util/type'
 import { getTransitionName } from '../_util/components/transition'
 import useStyle from './style'
-import type { ExtractPropTypes } from 'vue'
-import type { PreviewGroupPreview } from '../vc-image/src/PreviewGroup'
+import { previewGroupProps } from './props'
 
 export const icons = {
   rotateLeft: <RotateLeftOutlined />,
@@ -28,13 +26,8 @@ export const icons = {
   flipX: <SwapOutlined />,
   flipY: <SwapOutlined rotate={90} />,
 }
-const previewGroupProps = () => ({
-  previewPrefixCls: String,
-  preview: anyType<boolean | PreviewGroupPreview>(),
-})
-export type ImageGroupProps = Partial<ExtractPropTypes<ReturnType<typeof previewGroupProps>>>
 
-const InternalPreviewGroup = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AImagePreviewGroup',
   inheritAttrs: false,
@@ -74,4 +67,3 @@ const InternalPreviewGroup = defineComponent({
     }
   },
 })
-export default InternalPreviewGroup

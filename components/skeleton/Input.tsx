@@ -2,17 +2,12 @@ import { computed, defineComponent } from 'vue'
 import classNames from '../_util/classNames'
 import { useConfigInject } from '../hooks'
 import omit from '../_util/omit'
-import Element, { skeletonElementProps } from './Element'
+import Element from './Element'
 import useStyle from './style'
-import type { SkeletonElementProps } from './Element'
+import { skeletonElementProps } from './props'
 import type { PropType } from 'vue'
 
-export interface SkeletonInputProps extends Omit<SkeletonElementProps, 'size' | 'shape'> {
-  size?: 'large' | 'small' | 'default'
-  block?: boolean
-}
-
-const SkeletonInput = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ASkeletonInput',
   props: {
@@ -43,5 +38,3 @@ const SkeletonInput = defineComponent({
     }
   },
 })
-
-export default SkeletonInput

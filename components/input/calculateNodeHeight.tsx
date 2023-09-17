@@ -1,5 +1,6 @@
 // Thanks to https://github.com/andreypopp/react-textarea-autosize/
 
+import type { NodeType } from './type'
 import type { CSSProperties } from 'vue'
 
 /**
@@ -37,13 +38,6 @@ const SIZING_STYLE = [
   'box-sizing',
   'word-break',
 ]
-
-export interface NodeType {
-  sizingStyle: string
-  paddingSize: number
-  borderSize: number
-  boxSizing: string
-}
 
 const computedStyleCache: { [key: string]: NodeType } = {}
 let hiddenTextarea: HTMLTextAreaElement

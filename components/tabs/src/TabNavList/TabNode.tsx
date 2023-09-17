@@ -1,46 +1,13 @@
 import { computed, defineComponent, ref } from 'vue'
 import KeyCode from '../../../_util/KeyCode'
 import classNames from '../../../_util/classNames'
-import type { CSSProperties, PropType } from 'vue'
-import type { EditableConfig, Tab } from '../interface'
-import type { FocusEventHandler } from '../../../_util/EventInterface'
-
-export interface TabNodeProps {
-  id: string
-  prefixCls: string
-  tab: Tab
-  active: boolean
-  closable?: boolean
-  editable?: EditableConfig
-  onClick?: (e: MouseEvent | KeyboardEvent) => void
-  onResize?: (width: number, height: number, left: number, top: number) => void
-  renderWrapper?: (node: any) => any
-  removeAriaLabel?: string
-  onRemove: () => void
-  onFocus: FocusEventHandler
-}
+import { tabNodeProps } from '../props'
+import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'TabNode',
-  props: {
-    id: { type: String as PropType<string> },
-    prefixCls: { type: String as PropType<string> },
-    tab: { type: Object as PropType<Tab & { closeIcon?: () => any }> },
-    active: { type: Boolean },
-    closable: { type: Boolean },
-    editable: { type: Object as PropType<EditableConfig> },
-    onClick: { type: Function as PropType<(e: MouseEvent | KeyboardEvent) => void> },
-    onResize: {
-      type: Function as PropType<
-        (width: number, height: number, left: number, top: number) => void
-      >,
-    },
-    renderWrapper: { type: Function as PropType<(node: any) => any> },
-    removeAriaLabel: { type: String },
-    // onRemove: { type: Function as PropType<() => void> },
-    onFocus: { type: Function as PropType<FocusEventHandler> },
-  },
+  props: tabNodeProps(),
   emits: ['click', 'resize', 'remove', 'focus'],
   setup(props, { expose, attrs }) {
     const domRef = ref()

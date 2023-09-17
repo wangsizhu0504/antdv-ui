@@ -1,8 +1,5 @@
-import Row from './Row'
-import Col from './Col'
+export { default as Row } from './Row'
+export { default as Col } from './Col'
 
-export type { RowProps } from './Row'
-
-export type { ColProps, ColSize } from './Col'
-
-export { Row, Col }
+export * from './type'
+export * from './props'

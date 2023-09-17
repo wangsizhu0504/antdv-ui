@@ -2,19 +2,10 @@ import { computed, defineComponent, ref, watch } from 'vue'
 import { isEqual } from 'lodash-es'
 import scrollIntoView from 'scroll-into-view-if-needed'
 import { toArray } from '../_util/util'
-import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
 import warning from '../_util/warning'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
-import {
-  anyType,
-  booleanType,
-  functionType,
-  objectType,
-  someType,
-  stringType,
-  tuple,
-} from '../_util/type'
+
 import { useConfigInject } from '../hooks'
 import { useInjectGlobalForm } from '../config-provider/context'
 import { useProviderSize } from '../config-provider/SizeContext'
@@ -26,80 +17,17 @@ import { allPromiseFinish } from './utils/asyncUtil'
 import { defaultValidateMessages } from './utils/messages'
 import { cloneByNamePathList, containsNamePath, getNamePath } from './utils/valueUtil'
 import FormItem from './FormItem'
+import { formProps } from './props'
 import type {
-  Callbacks,
-  FormLabelAlign,
+  FieldExpose,
+  FormExpose,
   InternalNamePath,
   NamePath,
-  Rule,
   RuleError,
   ValidateErrorEntity,
-
   ValidateOptions,
-} from './interface'
-import type { SizeType } from '../config-provider'
-import type { ColProps } from '../grid/Col'
-import type { ValidateMessages } from '../locale'
+} from './type'
 import type { Options } from 'scroll-into-view-if-needed'
-import type { ComponentPublicInstance, ExtractPropTypes, HTMLAttributes } from 'vue'
-import type { FieldExpose } from './FormItem'
-
-export type RequiredMark = boolean | 'optional'
-export type FormLayout = 'horizontal' | 'inline' | 'vertical'
-
-export const formProps = () => ({
-  layout: PropTypes.oneOf(tuple('horizontal', 'inline', 'vertical')),
-  labelCol: objectType<ColProps & HTMLAttributes>(),
-  wrapperCol: objectType<ColProps & HTMLAttributes>(),
-  colon: booleanType(),
-  labelAlign: stringType<FormLabelAlign>(),
-  labelWrap: booleanType(),
-  prefixCls: String,
-  requiredMark: someType<RequiredMark | ''>([String, Boolean]),
-  /** @deprecated Will warning in future branch. Pls use `requiredMark` instead. */
-  hideRequiredMark: booleanType(),
-  model: PropTypes.object,
-  rules: objectType<{ [k: string]: Rule[] | Rule }>(),
-  validateMessages: objectType<ValidateMessages>(),
-  validateOnRuleChange: booleanType(),
-  // 提交失败自动滚动到第一个错误字段
-  scrollToFirstError: anyType<boolean | Options>(),
-  onSubmit: functionType<(e: Event) => void>(),
-  name: String,
-  validateTrigger: someType<string | string[]>([String, Array]),
-  size: stringType<SizeType>(),
-  disabled: booleanType(),
-  onValuesChange: functionType<Callbacks['onValuesChange']>(),
-  onFieldsChange: functionType<Callbacks['onFieldsChange']>(),
-  onFinish: functionType<Callbacks['onFinish']>(),
-  onFinishFailed: functionType<Callbacks['onFinishFailed']>(),
-  onValidate: functionType<Callbacks['onValidate']>(),
-})
-
-export type FormProps = Partial<ExtractPropTypes<ReturnType<typeof formProps>>>
-
-export interface FormExpose {
-  resetFields: (name?: NamePath) => void
-  clearValidate: (name?: NamePath) => void
-  validateFields: (
-    nameList?: NamePath[] | string,
-    options?: ValidateOptions,
-  ) => Promise<{
-    [key: string]: any
-  }>
-  getFieldsValue: (nameList?: InternalNamePath[] | true) => {
-    [key: string]: any
-  }
-  validate: (
-    nameList?: NamePath[] | string,
-    options?: ValidateOptions,
-  ) => Promise<{
-    [key: string]: any
-  }>
-  scrollToField: (name: NamePath, options?: {}) => void
-}
-
-export type FormInstance = ComponentPublicInstance<FormProps, FormExpose>
 
 function isEqualName(name1: NamePath, name2: NamePath) {
   return isEqual(toArray(name1), toArray(name2))

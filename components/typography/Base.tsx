@@ -25,102 +25,17 @@ import raf from '../_util/raf'
 import Editable from './Editable'
 import measure from './util'
 import Typography from './Typography'
-import type { EventHandler } from '../_util/EventInterface'
-import type { TypographyProps } from './Typography'
-import type { AutoSizeType } from '../input/inputProps'
-import type { CSSProperties, HTMLAttributes, PropType, VNodeTypes } from 'vue'
 
-export type BaseType = 'secondary' | 'success' | 'warning' | 'danger'
+import { baseProps } from './props'
+import type { BlockProps, CopyConfig, EditConfig, EllipsisConfig, Locale } from './types'
+import type { CSSProperties, HTMLAttributes, VNodeTypes } from 'vue'
 
 const isLineClampSupport = isStyleSupport('webkitLineClamp')
 const isTextOverflowSupport = isStyleSupport('textOverflow')
 
-export interface CopyConfig {
-  text?: string
-  onCopy?: (event?: MouseEvent) => void
-  tooltip?: boolean
-}
-
-export interface EditConfig {
-  editing?: boolean
-  tooltip?: boolean
-  onStart?: () => void
-  onChange?: (value: string) => void
-  onCancel?: () => void
-  onEnd?: () => void
-  maxlength?: number
-  autoSize?: boolean | AutoSizeType
-  triggerType?: ('icon' | 'text')[]
-}
-
-export interface EllipsisConfig {
-  rows?: number
-  expandable?: boolean
-  suffix?: string
-  symbol?: string
-  onExpand?: EventHandler
-  onEllipsis?: (ellipsis: boolean) => void
-  tooltip?: any
-}
-
-export interface BlockProps extends TypographyProps {
-  title?: string
-  editable?: boolean | EditConfig
-  copyable?: boolean | CopyConfig
-  type?: BaseType
-  disabled?: boolean
-  ellipsis?: boolean | EllipsisConfig
-  // decorations
-  code?: boolean
-  mark?: boolean
-  underline?: boolean
-  delete?: boolean
-  strong?: boolean
-  keyboard?: boolean
-  content?: string
-}
-
-interface Locale {
-  edit?: string
-  copy?: string
-  copied?: string
-  expand?: string
-}
-
-interface InternalBlockProps extends BlockProps {
-  component: string
-}
-
 const ELLIPSIS_STR = '...'
 
-export const baseProps = () => ({
-  'editable': {
-    type: [Boolean, Object] as PropType<InternalBlockProps['editable']>,
-    default: undefined as InternalBlockProps['editable'],
-  },
-  'copyable': {
-    type: [Boolean, Object] as PropType<InternalBlockProps['copyable']>,
-    default: undefined as InternalBlockProps['copyable'],
-  },
-  'prefixCls': String,
-  'component': String,
-  'type': String as PropType<BaseType>,
-  'disabled': { type: Boolean, default: undefined },
-  'ellipsis': {
-    type: [Boolean, Object] as PropType<InternalBlockProps['ellipsis']>,
-    default: undefined as InternalBlockProps['ellipsis'],
-  },
-  'code': { type: Boolean, default: undefined },
-  'mark': { type: Boolean, default: undefined },
-  'underline': { type: Boolean, default: undefined },
-  'delete': { type: Boolean, default: undefined },
-  'strong': { type: Boolean, default: undefined },
-  'keyboard': { type: Boolean, default: undefined },
-  'content': String,
-  'onUpdate:content': Function as PropType<(content: string) => void>,
-})
-
-const Base = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'TypographyBase',
   inheritAttrs: false,
@@ -610,5 +525,3 @@ const Base = defineComponent({
     }
   },
 })
-
-export default Base

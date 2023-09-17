@@ -18,7 +18,7 @@ export interface TableLocale {
   filterConfirm?: any
   filterReset?: any
   filterEmptyText?: any
-  filterCheckall?: any
+  filterCheckAll?: any
   filterSearchPlaceholder?: any
   emptyText?: any | (() => any)
   selectAll?: any

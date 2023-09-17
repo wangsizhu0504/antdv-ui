@@ -154,7 +154,7 @@ const localeValues: Locale = {
     filterConfirm: '确定',
     filterReset: '重置',
     filterEmptyText: '无筛选项',
-    filterCheckall: '全选',
+    filterCheckAll: '全选',
     filterSearchPlaceholder: '在筛选项中搜索',
     selectAll: '全选当页',
     selectInvert: '反选当页',

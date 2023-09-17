@@ -1,85 +1,15 @@
 import { computed, defineComponent } from 'vue'
 import { isEmpty } from 'lodash-es'
-import { createContext, useConfigInject } from '../hooks'
+import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
 
-import PropTypes from '../_util/vue-types'
-import { booleanType, tuple } from '../_util/type'
 import { flattenChildren } from '../_util/props-util'
 import useStyle from './style'
-import type { ExtractPropTypes, PropType, Ref } from 'vue'
-import type { DirectionType, SizeType } from '../config-provider'
+import CompactItem from './Item'
+import { spaceCompactProps } from './props'
+import { SpaceCompactItemContext } from './context'
 
-export const spaceCompactItemProps = () => ({
-  compactSize: String as PropType<SizeType>,
-  compactDirection: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
-  isFirstItem: booleanType(),
-  isLastItem: booleanType(),
-})
-
-export type SpaceCompactItemContextType = Partial<
-  ExtractPropTypes<ReturnType<typeof spaceCompactItemProps>>
->
-
-export const SpaceCompactItemContext = createContext<SpaceCompactItemContextType | null>(null)
-
-export const useCompactItemContext = (prefixCls: Ref<string>, direction: Ref<DirectionType>) => {
-  const compactItemContext = SpaceCompactItemContext.useInject()
-
-  const compactItemClassnames = computed(() => {
-    if (!compactItemContext || isEmpty(compactItemContext)) return ''
-
-    const { compactDirection, isFirstItem, isLastItem } = compactItemContext
-    const separator = compactDirection === 'vertical' ? '-vertical-' : '-'
-
-    return classNames({
-      [`${prefixCls.value}-compact${separator}item`]: true,
-      [`${prefixCls.value}-compact${separator}first-item`]: isFirstItem,
-      [`${prefixCls.value}-compact${separator}last-item`]: isLastItem,
-      [`${prefixCls.value}-compact${separator}item-rtl`]: direction.value === 'rtl',
-    })
-  })
-
-  return {
-    compactSize: computed(() => compactItemContext?.compactSize),
-    compactDirection: computed(() => compactItemContext?.compactDirection),
-    compactItemClassnames,
-  }
-}
-
-export const NoCompactStyle = defineComponent({
-  name: 'NoCompactStyle',
-  setup(_, { slots }) {
-    SpaceCompactItemContext.useProvide(null)
-    return () => {
-      return slots.default?.()
-    }
-  },
-})
-
-export const spaceCompactProps = () => ({
-  prefixCls: String,
-  size: {
-    type: String as PropType<SizeType>,
-  },
-  direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
-  align: PropTypes.oneOf(tuple('start', 'end', 'center', 'baseline')),
-  block: { type: Boolean, default: undefined },
-})
-
-export type SpaceCompactProps = Partial<ExtractPropTypes<ReturnType<typeof spaceCompactProps>>>
-
-const CompactItem = defineComponent({
-  name: 'CompactItem',
-  props: spaceCompactItemProps(),
-  setup(props, { slots }) {
-    SpaceCompactItemContext.useProvide(props)
-
-    return () => slots.default?.()
-  },
-})
-
-const Compact = defineComponent({
+export default defineComponent({
   name: 'ASpaceCompact',
   inheritAttrs: false,
   props: spaceCompactProps(),
@@ -129,5 +59,3 @@ const Compact = defineComponent({
     }
   },
 })
-
-export default Compact

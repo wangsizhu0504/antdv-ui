@@ -7,7 +7,7 @@ import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
 import { useConfigInject } from '../hooks'
 import omit from '../_util/omit'
-import inputProps from './inputProps'
+import { inputProps } from './props'
 import Input from './Input'
 import type {
   ChangeEvent,

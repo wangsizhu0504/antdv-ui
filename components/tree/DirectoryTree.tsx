@@ -9,23 +9,16 @@ import {
 } from '../vc-tree/utils/treeUtil'
 import { useConfigInject } from '../hooks'
 import { filterEmpty } from '../_util/props-util'
-import { someType } from '../_util/type'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 import classNames from '../_util/classNames'
-import Tree, { treeProps } from './Tree'
+import Tree from './Tree'
 import { calcRangeKeys, convertDirectoryKeysToNodes } from './utils/dictUtil'
-import type { AntdTreeNodeAttribute, TreeProps } from './Tree'
+import { directoryTreeProps } from './props'
+import type { TreeProps } from './props'
+
+import type { AntdTreeNodeAttribute } from './types'
 import type { DataNode, EventDataNode, Key, ScrollTo } from '../vc-tree/interface'
-import type { ExtractPropTypes, SlotsType } from 'vue'
-
-export type ExpandAction = false | 'click' | 'doubleclick' | 'dblclick'
-
-export const directoryTreeProps = () => ({
-  ...treeProps(),
-  expandAction: someType<ExpandAction>([Boolean, String]),
-})
-
-export type DirectoryTreeProps = Partial<ExtractPropTypes<ReturnType<typeof directoryTreeProps>>>
+import type { SlotsType } from 'vue'
 
 function getIcon(props: AntdTreeNodeAttribute) {
   const { isLeaf, expanded } = props

@@ -1,34 +1,12 @@
-import { computed, defineComponent, inject, unref } from 'vue'
+import { computed, defineComponent, inject } from 'vue'
 import { enUS as defaultLocaleData } from '../locale'
-import type { ComputedRef, PropType, Ref, VNodeTypes } from 'vue'
-import type { Locale } from '../locale'
+import { localReceiverProps } from './props'
+import type { LocaleReceiverContext } from './type'
 
-export type LocaleComponentName = Exclude<keyof Locale, 'locale'>
-
-export interface LocaleReceiverProps {
-  componentName?: string
-  defaultLocale?: Locale | Function
-  children: (locale: Locale, localeCode?: string, fullLocale?: Locale) => VNodeTypes
-}
-
-export interface LocaleReceiverContext {
-  antLocale?: Record<string, any>
-}
-
-const LocaleReceiver = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'LocaleReceiver',
-  props: {
-    componentName: String as PropType<LocaleComponentName>,
-    defaultLocale: {
-      type: [Object, Function],
-    },
-    children: {
-      type: Function as PropType<
-        (locale: any, localeCode?: string, fullLocale?: object) => VNodeTypes
-      >,
-    },
-  },
+  props: localReceiverProps(),
   setup(props, { slots }) {
     const localeData = inject<LocaleReceiverContext>('localeData', {})
     const locale = computed(() => {
@@ -59,26 +37,3 @@ const LocaleReceiver = defineComponent({
     }
   },
 })
-
-export function useLocaleReceiver<T extends LocaleComponentName>(
-  componentName: T,
-  defaultLocale?: Locale[T] | Function | ComputedRef<Locale[T] | Function>,
-  propsLocale?: Ref<Locale[T]>,
-): [ComputedRef<Locale[T]>] {
-  const localeData = inject<LocaleReceiverContext>('localeData', {} as LocaleReceiverContext)
-  const componentLocale = computed<Locale[T]>(() => {
-    const { antLocale } = localeData
-    const locale
-      = unref(defaultLocale) || defaultLocaleData[componentName || 'global']
-    const localeFromContext = (componentName && antLocale) ? antLocale[componentName] : {}
-
-    return {
-      ...(typeof locale === 'function' ? (locale as Function)() : locale),
-      ...(localeFromContext || {}),
-      ...(unref(propsLocale) || {}),
-    }
-  })
-  return [componentLocale]
-}
-
-export default LocaleReceiver

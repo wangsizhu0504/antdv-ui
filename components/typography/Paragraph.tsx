@@ -1,10 +1,6 @@
-import omit from '../_util/omit'
-import Base, { baseProps } from './Base'
-import type { ExtractPropTypes, FunctionalComponent } from 'vue'
-
-export const paragraphProps = () => omit(baseProps(), ['component'])
-
-export type ParagraphProps = Partial<ExtractPropTypes<ReturnType<typeof paragraphProps>>>
+import Base from './Base'
+import { type ParagraphProps, paragraphProps } from './props'
+import type { FunctionalComponent } from 'vue'
 
 const Paragraph: FunctionalComponent<ParagraphProps> = (props, { slots, attrs }) => {
   const paragraphProps = {

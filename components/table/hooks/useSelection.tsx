@@ -11,23 +11,19 @@ import Dropdown from '../../dropdown'
 import Menu from '../../menu'
 import Radio from '../../radio'
 import useMaxLevel from '../../vc-tree/useMaxLevel'
+import type {
+  ColumnType,
+  ColumnsType,
+  Key,
+  SelectionItem,
+  TableRowSelection,
+  TransformColumns,
+  UseSelectionConfig,
+} from '../types'
 import type { CheckboxProps } from '../../checkbox'
 import type { GetCheckDisabled } from '../../vc-tree/interface'
 import type { FixedType } from '../../vc-table/interface'
 import type { DataNode } from '../../tree'
-import type {
-  ColumnType,
-  ColumnsType,
-  ExpandType,
-  GetPopupContainer,
-  GetRowKey,
-  Key,
-  SelectionItem,
-
-  TableRowSelection,
-  TransformColumns,
-} from '../interface'
-import type { TableLocale } from '../../locale'
 import type { Ref } from 'vue'
 
 // TODO: warning if use ajax!!!
@@ -37,17 +33,6 @@ export const SELECTION_ALL = 'SELECT_ALL' as const
 export const SELECTION_INVERT = 'SELECT_INVERT' as const
 export const SELECTION_NONE = 'SELECT_NONE' as const
 const EMPTY_LIST: Key[] = []
-interface UseSelectionConfig<RecordType> {
-  prefixCls: Ref<string>
-  pageData: Ref<RecordType[]>
-  data: Ref<RecordType[]>
-  getRowKey: Ref<GetRowKey<RecordType>>
-  getRecordByKey: (key: Key) => RecordType
-  expandType: Ref<ExpandType>
-  childrenColumnName: Ref<string>
-  locale: Ref<TableLocale>
-  getPopupContainer?: Ref<GetPopupContainer>
-}
 
 export type INTERNAL_SELECTION_ITEM =
   | SelectionItem

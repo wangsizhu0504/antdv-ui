@@ -1,25 +1,9 @@
 import { computed, defineComponent, ref, watch } from 'vue'
 import Pagination from '../pagination'
 import classNames from '../_util/classNames'
-import PropTypes from '../_util/vue-types'
-import { booleanType } from '../_util/type'
 import ListItem from './ListItem'
-import type { ExtractPropTypes } from 'vue'
-import type { TransferItem } from '.'
-
-export const transferListBodyProps = {
-  prefixCls: String,
-  filteredRenderItems: PropTypes.array.def([]),
-  selectedKeys: PropTypes.array,
-  disabled: booleanType(),
-  showRemove: booleanType(),
-  pagination: PropTypes.any,
-  onItemSelect: Function,
-  onScroll: Function,
-  onItemRemove: Function,
-}
-
-export type TransferListBodyProps = Partial<ExtractPropTypes<typeof transferListBodyProps>>
+import { transferListBodyProps } from './props'
+import type { TransferItem } from './types'
 
 function parsePagination(pagination) {
   if (!pagination)
@@ -46,7 +30,7 @@ const ListBody = defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ListBody',
   inheritAttrs: false,
-  props: transferListBodyProps,
+  props: transferListBodyProps(),
   emits: ['itemSelect', 'itemRemove', 'scroll'],
   setup(props, { emit, expose }) {
     const current = ref(1)

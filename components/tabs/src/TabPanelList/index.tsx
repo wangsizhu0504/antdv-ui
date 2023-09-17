@@ -1,30 +1,13 @@
 import { defineComponent } from 'vue'
 import { useInjectTabs } from '../TabContext'
 import { cloneElement } from '../../../_util/vnode'
-import type { PropType } from 'vue'
-import type { AnimatedConfig, TabPosition } from '../interface'
-import type { Key } from '../../../_util/type'
+import { tabPanelListProps } from '../props'
 
-export interface TabPanelListProps {
-  activeKey: Key
-  id: string
-  rtl: boolean
-  animated?: AnimatedConfig
-  tabPosition?: TabPosition
-  destroyInactiveTabPane?: boolean
-}
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'TabPanelList',
   inheritAttrs: false,
-  props: {
-    activeKey: { type: [String, Number] as PropType<Key> },
-    id: { type: String },
-    rtl: { type: Boolean },
-    animated: { type: Object as PropType<AnimatedConfig>, default: undefined as AnimatedConfig },
-    tabPosition: { type: String as PropType<TabPosition> },
-    destroyInactiveTabPane: { type: Boolean },
-  },
+  props: tabPanelListProps(),
   setup(props) {
     const { tabs, prefixCls } = useInjectTabs()
     return () => {

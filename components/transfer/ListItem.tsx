@@ -5,32 +5,16 @@ import Checkbox from '../checkbox'
 import LocaleReceiver from '../locale-provider/LocaleReceiver'
 import TransButton from '../_util/components/transButton'
 import classNames from '../_util/classNames'
-import PropTypes from '../_util/vue-types'
-import { booleanType } from '../_util/type'
+import { transferListItemProps } from './props'
 import type { TransferLocale } from '../locale'
-import type { ExtractPropTypes } from 'vue'
 
 function noop() {}
-
-export const transferListItemProps = {
-  renderedText: PropTypes.any,
-  renderedEl: PropTypes.any,
-  item: PropTypes.any,
-  checked: booleanType(),
-  prefixCls: String,
-  disabled: booleanType(),
-  showRemove: booleanType(),
-  onClick: Function,
-  onRemove: Function,
-}
-
-export type TransferListItemProps = Partial<ExtractPropTypes<typeof transferListItemProps>>
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ListItem',
   inheritAttrs: false,
-  props: transferListItemProps,
+  props: transferListItemProps(),
   emits: ['click', 'remove'],
   setup(props, { emit }) {
     return () => {

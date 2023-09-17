@@ -1,21 +1,12 @@
 import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
+import { sizes } from '../constant'
 import { useInjectRow } from './context'
 import { useColStyle } from './style'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-
-type ColSpanType = number | string
-
-type FlexType = number | 'none' | 'auto' | string
-
-export interface ColSize {
-  span?: ColSpanType
-  order?: ColSpanType
-  offset?: ColSpanType
-  push?: ColSpanType
-  pull?: ColSpanType
-}
+import { colProps } from './props'
+import type { ColSize, FlexType } from './type'
+import type { CSSProperties } from 'vue'
 
 function parseFlex(flex: FlexType): string {
   if (typeof flex === 'number')
@@ -27,43 +18,6 @@ function parseFlex(flex: FlexType): string {
   return flex
 }
 
-export const colProps = () => ({
-  span: [String, Number],
-  order: [String, Number],
-  offset: [String, Number],
-  push: [String, Number],
-  pull: [String, Number],
-  xs: {
-    type: [String, Number, Object] as PropType<string | number | ColSize>,
-    default: undefined as string | number | ColSize,
-  },
-  sm: {
-    type: [String, Number, Object] as PropType<string | number | ColSize>,
-    default: undefined as string | number | ColSize,
-  },
-  md: {
-    type: [String, Number, Object] as PropType<string | number | ColSize>,
-    default: undefined as string | number | ColSize,
-  },
-  lg: {
-    type: [String, Number, Object] as PropType<string | number | ColSize>,
-    default: undefined as string | number | ColSize,
-  },
-  xl: {
-    type: [String, Number, Object] as PropType<string | number | ColSize>,
-    default: undefined as string | number | ColSize,
-  },
-  xxl: {
-    type: [String, Number, Object] as PropType<string | number | ColSize>,
-    default: undefined as string | number | ColSize,
-  },
-  prefixCls: String,
-  flex: [String, Number],
-})
-
-export type ColProps = Partial<ExtractPropTypes<ReturnType<typeof colProps>>>
-
-const sizes = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ACol',

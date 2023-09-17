@@ -1,5 +1,6 @@
 import { computed, defineComponent, shallowRef, watch } from 'vue'
 import { DownOutlined, UpOutlined } from '@ant-design/icons-vue'
+import { omit } from 'lodash-es'
 import classNames from '../_util/classNames'
 import {
   FormItemInputContext,
@@ -8,7 +9,6 @@ import {
 } from '../form/FormItemContext'
 import { useConfigInject } from '../hooks'
 import { cloneElement } from '../_util/vnode'
-import omit from '../_util/omit'
 import PropTypes from '../_util/vue-types'
 import { isValidValue } from '../_util/is'
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
@@ -17,15 +17,15 @@ import { booleanType, stringType } from '../_util/type'
 // CSSINJS
 import { NoCompactStyle, useCompactItemContext } from '../space/Compact'
 import { useInjectDisabled } from '../config-provider/DisabledContext'
+import { VcInputNumber, vcInputNumberProps } from '../vc-input-number'
 import useStyle from './style'
-import VcInputNumber, { inputNumberProps as baseInputNumberProps } from './src/InputNumber'
 import type { InputStatus } from '../_util/statusUtils'
 import type { SizeType } from '../config-provider'
 import type { App, ExtractPropTypes, HTMLAttributes } from 'vue'
 
 import type { CustomSlotsType } from '../_util/type'
 
-const baseProps = baseInputNumberProps()
+const baseProps = vcInputNumberProps()
 export const inputNumberProps = () => ({
   ...baseProps,
   'size': stringType<SizeType>(),

@@ -1,21 +1,9 @@
 import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
-import PropTypes from '../_util/vue-types'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
 
-import { booleanType, tuple } from '../_util/type'
-import type { ExtractPropTypes, SlotsType } from 'vue'
-
-export const timelineItemProps = () => ({
-  prefixCls: String,
-  color: String,
-  dot: PropTypes.any,
-  pending: booleanType(),
-  position: PropTypes.oneOf(tuple('left', 'right', '')).def(''),
-  label: PropTypes.any,
-})
-
-export type TimelineItemProps = Partial<ExtractPropTypes<ReturnType<typeof timelineItemProps>>>
+import { timelineItemProps } from './props'
+import type { SlotsType } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
