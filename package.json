@@ -5,7 +5,7 @@
   },
   "scripts": {
     "cz": "czg",
-    "dev": "vite serve site",
+    "dev": "npm run routes && vite serve site",
     "preview": "vite preview site",
     "build:site": "vite build site",
     "test": "vitest",
@@ -13,7 +13,7 @@
     "token": "pnpm run token:meta && pnpm run token:collect",
     "token:meta": "node scripts/generate-token-meta.js",
     "token:collect": "esno scripts/collect-token-statistic.ts",
-    "gen:routes": "esno scripts/generate-routes.ts",
+    "routes": "esno scripts/generate-routes.ts",
     "build": "pnpm run -C build start",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx,.md,.json --max-warnings 0 --cache",
     "lint:fix": "pnpm run lint --fix",
