@@ -7,14 +7,14 @@ import { useState } from '../../hooks'
 import KeyCode from '../../_util/KeyCode'
 import type { TooltipProps } from '../../tooltip'
 import type {
-  ColumnGroupType,
   ColumnTitleProps,
-  ColumnType,
-  ColumnsType,
   CompareFn,
   SortOrder,
   SortState,
   SorterResult,
+  TableColumnGroupType,
+  TableColumnType,
+  TableColumnsType,
   TransformColumns,
 } from '../types'
 import type { TableLocale } from '../../locale'
@@ -23,7 +23,7 @@ import type { Ref } from 'vue'
 const ASCEND = 'ascend'
 const DESCEND = 'descend'
 
-function getMultiplePriority<RecordType>(column: ColumnType<RecordType>): number | false {
+function getMultiplePriority<RecordType>(column: TableColumnType<RecordType>): number | false {
   if (typeof column.sorter === 'object' && typeof column.sorter.multiple === 'number')
     return column.sorter.multiple
 
@@ -31,7 +31,7 @@ function getMultiplePriority<RecordType>(column: ColumnType<RecordType>): number
 }
 
 function getSortFunction<RecordType>(
-  sorter: ColumnType<RecordType>['sorter'],
+  sorter: TableColumnType<RecordType>['sorter'],
 ): CompareFn<RecordType> | false {
   if (typeof sorter === 'function')
     return sorter
@@ -50,13 +50,13 @@ function nextSortDirection(sortDirections: SortOrder[], current: SortOrder | nul
 }
 
 function collectSortStates<RecordType>(
-  columns: ColumnsType<RecordType>,
+  columns: TableColumnsType<RecordType>,
   init: boolean,
   pos?: string,
 ): SortState<RecordType>[] {
   let sortStates: SortState<RecordType>[] = []
 
-  function pushState(column: ColumnsType<RecordType>[number], columnPos: string) {
+  function pushState(column: TableColumnsType<RecordType>[number], columnPos: string) {
     sortStates.push({
       column,
       key: getColumnKey(column, columnPos),
@@ -68,14 +68,14 @@ function collectSortStates<RecordType>(
   (columns || []).forEach((column, index) => {
     const columnPos = getColumnPos(index, pos)
 
-    if ((column as ColumnGroupType<RecordType>).children) {
+    if ((column as TableColumnGroupType<RecordType>).children) {
       if ('sortOrder' in column) {
         // Controlled
         pushState(column, columnPos)
       }
       sortStates = [
         ...sortStates,
-        ...collectSortStates((column as ColumnGroupType<RecordType>).children, init, columnPos),
+        ...collectSortStates((column as TableColumnGroupType<RecordType>).children, init, columnPos),
       ]
     } else if (column.sorter) {
       if ('sortOrder' in column) {
@@ -98,17 +98,17 @@ function collectSortStates<RecordType>(
 
 function injectSorter<RecordType>(
   prefixCls: string,
-  columns: ColumnsType<RecordType>,
+  columns: TableColumnsType<RecordType>,
   sorterStates: SortState<RecordType>[],
   triggerSorter: (sorterStates: SortState<RecordType>) => void,
   defaultSortDirections: SortOrder[],
   tableLocale?: TableLocale,
   tableShowSorterTooltip?: boolean | TooltipProps,
   pos?: string,
-): ColumnsType<RecordType> {
+): TableColumnsType<RecordType> {
   return (columns || []).map((column, index) => {
     const columnPos = getColumnPos(index, pos)
-    let newColumn: ColumnsType<RecordType>[number] = column
+    let newColumn: TableColumnsType<RecordType>[number] = column
 
     if (newColumn.sorter) {
       const sortDirections: SortOrder[] = newColumn.sortDirections || defaultSortDirections
@@ -311,7 +311,7 @@ export function getSortData<RecordType>(
 
 interface SorterConfig<RecordType> {
   prefixCls: Ref<string>
-  mergedColumns: Ref<ColumnsType<RecordType>>
+  mergedColumns: Ref<TableColumnsType<RecordType>>
   onSorterChange: (
     sorterResult: SorterResult<RecordType> | SorterResult<RecordType>[],
     sortStates: SortState<RecordType>[],
@@ -416,7 +416,7 @@ export default function useFilterSorter<RecordType>({
     onSorterChange(generateSorterInfo(newSorterStates), newSorterStates)
   }
 
-  const transformColumns = (innerColumns: ColumnsType<RecordType>) =>
+  const transformColumns = (innerColumns: TableColumnsType<RecordType>) =>
     injectSorter(
       prefixCls.value,
       innerColumns,

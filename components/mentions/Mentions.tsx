@@ -12,7 +12,7 @@ import Spin from '../spin'
 import devWarning from '../vc-util/devWarning'
 import useStyle from './style'
 import { mentionsProps } from './props'
-import type { MentionsOptionProps } from './type'
+import type { MentionsOptionProps } from './types'
 import type { CustomSlotsType } from '../_util/type'
 
 function loadingFilterOption() {

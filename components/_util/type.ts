@@ -88,4 +88,15 @@ export function someType<T>(types?: any[], defaultVal?: T) {
   return types ? { type: types as PropType<T>, default: defaultVal as T } : anyType<T>(defaultVal)
 }
 
+export type getContainerFunc = () => HTMLElement
+
+export type RawValue = string | number
+export interface LabeledValue {
+  key?: string
+  value: RawValue
+  label?: any
+}
+
+export type SelectValue = RawValue | RawValue[] | LabeledValue | LabeledValue[] | undefined
+
 export type CustomSlotsType<T> = SlotsType<T>

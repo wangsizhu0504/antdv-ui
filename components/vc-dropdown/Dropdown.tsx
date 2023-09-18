@@ -1,38 +1,14 @@
 import { Fragment, computed, defineComponent, ref, watch } from 'vue'
 import Trigger from '../vc-trigger'
-import PropTypes from '../_util/vue-types'
 import { cloneElement } from '../_util/vnode'
 import classNames from '../_util/classNames'
 import { skipFlattenKey } from '../_util/props-util'
 import placements from './placements'
-import type { CSSProperties, PropType } from 'vue'
+import { vcDropdownProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  props: {
-    minOverlayWidthMatchTrigger: { type: Boolean, default: undefined },
-    arrow: { type: Boolean, default: false },
-    prefixCls: PropTypes.string.def('rc-dropdown'),
-    transitionName: String,
-    overlayClassName: PropTypes.string.def(''),
-    openClassName: String,
-    animation: PropTypes.any,
-    align: PropTypes.object,
-    overlayStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-    placement: PropTypes.string.def('bottomLeft'),
-    overlay: PropTypes.any,
-    trigger: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).def(
-      'hover',
-    ),
-    alignPoint: { type: Boolean, default: undefined },
-    showAction: PropTypes.array,
-    hideAction: PropTypes.array,
-    getPopupContainer: Function,
-    visible: { type: Boolean, default: undefined },
-    defaultVisible: { type: Boolean, default: false },
-    mouseEnterDelay: PropTypes.number.def(0.15),
-    mouseLeaveDelay: PropTypes.number.def(0.1),
-  },
+  props: vcDropdownProps(),
   emits: ['visibleChange', 'overlayClick'],
   setup(props, { slots, emit, expose }) {
     const triggerVisible = ref(!!props.visible)

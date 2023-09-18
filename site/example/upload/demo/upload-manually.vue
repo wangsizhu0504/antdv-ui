@@ -36,7 +36,7 @@ Upload files manually after `beforeUpload` returns `false`.
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue';
-import request from 'umi-request';
+import request from 'axios';
 import { UploadOutlined } from '@ant-design/icons-vue';
 import { message } from '@antdv/ui';
 import type { UploadProps } from '@antdv/ui';
@@ -45,9 +45,9 @@ const fileList = ref<UploadProps['fileList']>([]);
 const uploading = ref<boolean>(false);
 
 const handleRemove: UploadProps['onRemove'] = file => {
-  const index = fileList.value.indexOf(file);
-  const newFileList = fileList.value.slice();
-  newFileList.splice(index, 1);
+  const index = fileList.value?.indexOf(file);
+  const newFileList = fileList.value?.slice();
+  index && newFileList?.splice(index, 1);
   fileList.value = newFileList;
 };
 
@@ -58,7 +58,7 @@ const beforeUpload: UploadProps['beforeUpload'] = file => {
 
 const handleUpload = () => {
   const formData = new FormData();
-  fileList.value.forEach((file: UploadProps['fileList'][number]) => {
+  fileList.value?.forEach((file: UploadProps['fileList'][number]) => {
     formData.append('files[]', file as any);
   });
   uploading.value = true;

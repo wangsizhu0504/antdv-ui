@@ -1,7 +1,7 @@
 import { computed, defineComponent, onUnmounted, reactive, ref, watch } from 'vue'
 import classNames from '../_util/classNames'
 import { singleNumberProps } from './props'
-import type { UnitNumberProps } from './type'
+import type { UnitNumberProps } from './types'
 import type { CSSProperties } from 'vue'
 
 function UnitNumber({ prefixCls, value, current, offset = 0 }: UnitNumberProps) {

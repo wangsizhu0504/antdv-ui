@@ -1,30 +1,14 @@
 import { defineComponent } from 'vue'
-import { anyType, objectType } from '../../_util/type'
-import type { ExtractPropTypes, HTMLAttributes } from 'vue'
-import type { VueNode } from '../../_util/type'
+import { vcMentionOptionProps } from './props'
 
-export const baseOptionsProps = {
-  value: String,
-  disabled: Boolean,
-  payload: objectType<Record<string, any>>(),
-}
-export const optionProps = {
-  ...baseOptionsProps,
-  label: anyType<VueNode | ((o: BaseOptionsProps) => VueNode)>([]),
-}
-export type BaseOptionsProps = Partial<ExtractPropTypes<typeof baseOptionsProps>> &
-Partial<HTMLAttributes>
-
-export type OptionProps = Partial<ExtractPropTypes<typeof optionProps>> & Partial<HTMLAttributes>
-
-export const optionOptions = {
+export const vcMentionOptionOptions = {
   name: 'Option',
-  props: optionProps,
+  props: vcMentionOptionProps,
   render(_props: any, { slots }: any) {
     return slots.default?.()
   },
 }
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  ...optionOptions,
+  ...vcMentionOptionOptions,
 })

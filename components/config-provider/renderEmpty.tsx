@@ -2,7 +2,7 @@ import { computed, inject } from 'vue'
 import Empty from '../empty'
 import { configProviderKey } from '../constant'
 import { defaultConfigProvider } from './context'
-import type { RenderEmptyProps } from './type'
+import type { RenderEmptyProps } from './types'
 import type { VueNode } from '../_util/type'
 
 export const DefaultRenderEmpty = (props: RenderEmptyProps) => {

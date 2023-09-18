@@ -4,12 +4,12 @@ import initDefaultProps from '../_util/props-util/initDefaultProps'
 import classNames from '../_util/classNames'
 import useStyle from './style'
 import Element from './Element'
-import { avatarProps } from './props'
+import { skeletonAvatarProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ASkeletonAvatar',
-  props: initDefaultProps(avatarProps(), {
+  props: initDefaultProps(skeletonAvatarProps(), {
     size: 'default',
     shape: 'circle',
   }),

@@ -1,19 +1,18 @@
 import { computed, defineComponent } from 'vue'
 import { EyeOutlined } from '@ant-design/icons-vue'
 import defaultLocale from '../locale/lang/en_US'
-import ImageInternal from '../vc-image'
-import { imageProps } from '../vc-image/src/Image'
+import ImageInternal, { vcImageProps } from '../vc-image'
 import { useConfigInject } from '../hooks'
 import { getTransitionName } from '../_util/components/transition'
 import classNames from '../_util/classNames'
 import useStyle from './style'
 import { icons } from './PreviewGroup'
-import type { ImageProps } from './type'
+import type { ImageProps } from './types'
 
 export default defineComponent<ImageProps>({
   name: 'AImage',
   inheritAttrs: false,
-  props: imageProps() as any,
+  props: vcImageProps() as any,
   setup(props, { slots, attrs }) {
     const { prefixCls, rootPrefixCls, configProvider } = useConfigInject('image', props)
     // Style

@@ -11,13 +11,12 @@ import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
 import { hasPrefixSuffix } from '../vc-input/utils/commonUtils'
 import VcInput from '../vc-input/Input'
 import omit from '../_util/omit'
-import { NoCompactStyle, useCompactItemContext } from '../space/Compact'
+import { NoCompactStyle, useCompactItemContext } from '../space'
 
-// CSSINJS
 import { useInjectDisabled } from '../config-provider/DisabledContext'
 import { inputProps } from './props'
 import useStyle from './style'
-import type { InputFocusOptions } from '../vc-input/utils/commonUtils'
+import type { InputFocusOptions } from '../vc-input/types'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

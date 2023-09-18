@@ -9,11 +9,11 @@ import type { Key } from '../_util/type'
 import type { NotificationAPI } from '../vc-notification'
 import type { VNode } from 'vue'
 import type {
-  ArgsProps,
+  NotificationArgsProps,
   NotificationConfig,
   NotificationInstance,
   NotificationPlacement,
-} from './interface'
+} from './types'
 
 const DEFAULT_OFFSET = 24
 const DEFAULT_DURATION = 4.5
@@ -88,7 +88,7 @@ export function useInternalNotification(
   // Wrap with notification content
 
   // >>> Open
-  const open = (config: ArgsProps) => {
+  const open = (config: NotificationArgsProps) => {
     if (!holderRef.value)
       return
 

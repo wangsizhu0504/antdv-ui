@@ -1,5 +1,5 @@
 import { EXPAND_COLUMN, Summary, SummaryCell, SummaryRow } from '../vc-table'
-import Table from './Table'
+import ATable from './Table'
 import Column from './Column'
 import ColumnGroup from './ColumnGroup'
 import {
@@ -22,7 +22,7 @@ export const TableSummary = Object.assign(Summary, {
   name: 'ATableSummary',
 })
 
-export default Object.assign(Table, {
+export const Table = Object.assign(ATable, {
   SELECTION_ALL,
   SELECTION_INVERT,
   SELECTION_NONE,
@@ -32,12 +32,12 @@ export default Object.assign(Table, {
   ColumnGroup,
   Summary: TableSummary,
   install: (app: App) => {
+    app.component(ATable.name, ATable)
+    app.component(Column.name, Column)
+    app.component(ColumnGroup.name, ColumnGroup)
     app.component(TableSummary.name, TableSummary)
     app.component(TableSummaryCell.name, TableSummaryCell)
     app.component(TableSummaryRow.name, TableSummaryRow)
-    app.component(Table.name, Table)
-    app.component(Column.name, Column)
-    app.component(ColumnGroup.name, ColumnGroup)
     return app
   },
 })

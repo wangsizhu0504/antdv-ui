@@ -5,7 +5,7 @@ import type {
   InternalFieldNames,
   ShowCheckedStrategy,
   SingleValueType,
-} from '../Cascader'
+} from '../types'
 import type { OptionsInfo } from '../hooks/useEntities'
 
 export function formatStrategyValues(

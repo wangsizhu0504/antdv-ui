@@ -7,7 +7,7 @@ import {
   vNodeType,
 } from '../_util/type'
 import PropTypes from '../_util/vue-types'
-import type { ListGridType, ListItemLayout, ListLocale, ListSize } from './type'
+import type { ListGridType, ListItemLayout, ListLocale, ListSize } from './types'
 import type { Key } from '../_util/type'
 import type { PaginationConfig } from '../pagination'
 import type { SpinProps } from '../spin'

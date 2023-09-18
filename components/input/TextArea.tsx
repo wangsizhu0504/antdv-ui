@@ -22,7 +22,7 @@ import { textAreaProps } from './props'
 import useStyle from './style'
 import type { VueNode } from '../_util/type'
 import type { FocusEventHandler } from '../_util/EventInterface'
-import type { InputFocusOptions } from '../vc-input/utils/commonUtils'
+import type { InputFocusOptions } from '../vc-input'
 import type { CSSProperties } from 'vue'
 
 function fixEmojiLength(value: string, maxLength: number) {

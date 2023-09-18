@@ -1,9 +1,9 @@
 import defaultLocale from '../locale/lang/en_US'
 import classNames from '../_util/classNames'
-import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
+import { useLocaleReceiver } from '../locale-provider'
 import Col from '../grid/Col'
 import { useInjectForm } from './context'
-import type { FormItemLabelProps, FormLabelAlign } from './type'
+import type { FormItemLabelProps, FormLabelAlign } from './types'
 import type { FunctionalComponent } from 'vue'
 
 const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, emit, attrs }) => {

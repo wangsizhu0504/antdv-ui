@@ -1,9 +1,9 @@
 import { withInstall } from '../_util/type'
 import carousel from './Carousel'
 
-const ACarousel = withInstall(carousel)
+export const Carousel = withInstall(carousel)
 
-export * from './type'
+export default Carousel
+
+export * from './types'
 export * from './props'
-
-export default ACarousel

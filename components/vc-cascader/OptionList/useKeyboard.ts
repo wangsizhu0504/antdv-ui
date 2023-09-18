@@ -3,7 +3,7 @@ import { SEARCH_MARK } from '../hooks/useSearchOptions'
 import { useBaseProps } from '../../vc-select'
 import KeyCode from '../../_util/KeyCode'
 import type { Ref, SetupContext } from 'vue'
-import type { DefaultOptionType, InternalFieldNames, SingleValueType } from '../Cascader'
+import type { DefaultOptionType, InternalFieldNames, SingleValueType } from '../types'
 import type { RefOptionListProps } from '../../vc-select/OptionList'
 import type { Key } from '../../_util/type'
 

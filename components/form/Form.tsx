@@ -26,14 +26,14 @@ import type {
   RuleError,
   ValidateErrorEntity,
   ValidateOptions,
-} from './type'
+} from './types'
 import type { Options } from 'scroll-into-view-if-needed'
 
 function isEqualName(name1: NamePath, name2: NamePath) {
   return isEqual(toArray(name1), toArray(name2))
 }
 
-const Form = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AForm',
   inheritAttrs: false,
@@ -333,8 +333,3 @@ const Form = defineComponent({
     }
   },
 })
-
-export default Form as typeof Form & {
-  readonly Item: typeof FormItem
-  readonly useForm: typeof useForm
-}

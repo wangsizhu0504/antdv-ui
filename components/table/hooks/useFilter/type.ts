@@ -1,16 +1,16 @@
 import type { TableLocale } from '../../../locale'
 import type { Ref } from 'vue'
 import type {
-  ColumnType,
-  ColumnsType,
   FilterKey,
   FilterValue,
   GetPopupContainer,
+  TableColumnType,
+  TableColumnsType,
 } from '../../../table/types'
 import type { DefaultRecordType, Key } from '../../../vc-table/interface'
 
 export interface FilterState<RecordType = DefaultRecordType> {
-  column: ColumnType<RecordType>
+  column: TableColumnType<RecordType>
   key: Key
   filteredKeys?: FilterKey
   forceFiltered?: boolean
@@ -19,7 +19,7 @@ export interface FilterState<RecordType = DefaultRecordType> {
 export interface FilterConfig<RecordType> {
   prefixCls: Ref<string>
   dropdownPrefixCls: Ref<string>
-  mergedColumns: Ref<ColumnsType<RecordType>>
+  mergedColumns: Ref<TableColumnsType<RecordType>>
   locale: Ref<TableLocale>
   onFilterChange: (
     filters: Record<string, FilterValue | null>,

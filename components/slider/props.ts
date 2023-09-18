@@ -7,7 +7,7 @@ import {
 } from '../_util/type'
 import type { SliderMarks, SliderRange, Value } from './types'
 import type { FocusEventHandler } from '../_util/EventInterface'
-import type { TooltipPlacement } from '../tooltip/Tooltip'
+import type { TooltipPlacement } from '../tooltip'
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 
 // CSSINJS

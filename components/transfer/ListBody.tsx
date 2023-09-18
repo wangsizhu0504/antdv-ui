@@ -26,7 +26,7 @@ function parsePagination(pagination) {
   return defaultPagination
 }
 
-const ListBody = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ListBody',
   inheritAttrs: false,
@@ -148,5 +148,3 @@ const ListBody = defineComponent({
     }
   },
 })
-
-export default ListBody

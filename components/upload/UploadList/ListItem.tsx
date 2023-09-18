@@ -4,15 +4,15 @@ import Tooltip from '../../tooltip'
 import Progress from '../../progress'
 import { useConfigInject } from '../../hooks'
 import Transition, { getTransitionProps } from '../../_util/components/transition'
-import { listItemProps } from '../props'
+import { uploadListItemProps } from '../props'
 import type { UploadListProgressProps } from '../types'
 import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'ListItem',
+  name: 'UploadListItem',
   inheritAttrs: false,
-  props: listItemProps(),
+  props: uploadListItemProps(),
   setup(props, { slots, attrs }) {
     const showProgress = shallowRef(false)
     const progressRafRef = shallowRef()

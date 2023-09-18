@@ -7,7 +7,7 @@ import BreadcrumbItem from './BreadcrumbItem'
 import useStyle from './style'
 import { breadcrumbProps } from './props'
 import type { BreadcrumbItemProps } from './props'
-import type { Route } from './type'
+import type { Route } from './types'
 
 import type { CustomSlotsType, VueNode } from '../_util/type'
 

@@ -1,6 +1,6 @@
 import { computed, inject, provide } from 'vue'
 import type { InjectionKey } from 'vue'
-import type { ColumnType, SlotsContextProps } from './types'
+import type { SlotsContextProps, TableColumnType } from './types'
 
 const SlotsContextKey: InjectionKey<SlotsContextProps> = Symbol('SlotsContextProps')
 
@@ -13,7 +13,7 @@ export const useInjectSlots = () => {
 }
 
 interface ContextProps {
-  onResizeColumn: (w: number, column: ColumnType<any>) => void
+  onResizeColumn: (w: number, column: TableColumnType<any>) => void
 }
 
 const ContextKey: InjectionKey<ContextProps> = Symbol('ContextProps')

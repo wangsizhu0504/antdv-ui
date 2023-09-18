@@ -21,11 +21,11 @@ import type { EventHandler } from '../../../_util/EventInterface'
 import type { DataNode, EventDataNode } from '../../../tree'
 import type {
   ColumnFilterItem,
-  ColumnType,
   FilterSearchType,
   GetPopupContainer,
   Key,
-} from '../../interface'
+  TableColumnType,
+} from '../../types'
 import type { TableLocale } from '../../../locale'
 
 interface FilterRestProps {
@@ -105,7 +105,7 @@ export interface FilterDropdownProps<RecordType> {
   tablePrefixCls: string
   prefixCls: string
   dropdownPrefixCls: string
-  column: ColumnType<RecordType>
+  column: TableColumnType<RecordType>
   filterState?: FilterState<RecordType>
   filterMultiple: boolean
   filterMode?: 'menu' | 'tree'

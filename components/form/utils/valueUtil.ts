@@ -1,7 +1,7 @@
 import { toArray } from '../../_util/util'
 import get from '../../vc-util/get'
 import set from '../../vc-util/set'
-import type { InternalNamePath, NamePath } from '../interface'
+import type { InternalNamePath, NamePath } from '../types'
 
 /**
  * Convert name to internal supported format.

@@ -1,5 +1,5 @@
 import { arrayType, booleanType, functionType, someType, stringType } from '../_util/type'
-import type { PaginationPosition } from './type'
+import type { PaginationPosition } from './types'
 import type { ExtractPropTypes } from 'vue'
 
 export const paginationProps = () => ({

@@ -1,7 +1,7 @@
 import omit from '../_util/omit'
 import { eventType } from '../_util/type'
-import { inputProps as vcInputProps } from '../vc-input/inputProps'
-import type { AutoSizeType } from './type'
+import { vcInputProps } from '../vc-input'
+import type { AutoSizeType } from './types'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { CompositionEventHandler } from '../_util/EventInterface'
 

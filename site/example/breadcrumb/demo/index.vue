@@ -11,8 +11,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import US from './../index.en-US.md';
-import CN from './../index.zh-CN.md';
+import US from '../index.en-US.md';
+import CN from '../index.zh-CN.md';
 import Basic from './basic.vue';
 import Overlay from './overlay.vue';
 import Router from './router.vue';

@@ -1,10 +1,10 @@
 import { getClass, getSlot, getStyle } from '../_util/props-util'
 import Cell from './Cell'
 import { useProviderContext } from './useContext'
-import type { CellConfig, RowProps } from './type'
+import type { CellConfig, DescRowProps } from './types'
 import type { CSSProperties, FunctionalComponent, VNode } from 'vue'
 
-const Row: FunctionalComponent<RowProps> = (props) => {
+const Row: FunctionalComponent<DescRowProps> = (props) => {
   const renderCells = (
     items: VNode[],
     { colon, prefixCls, bordered },

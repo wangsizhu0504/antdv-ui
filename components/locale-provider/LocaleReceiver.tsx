@@ -1,7 +1,7 @@
 import { computed, defineComponent, inject } from 'vue'
 import { enUS as defaultLocaleData } from '../locale'
 import { localReceiverProps } from './props'
-import type { LocaleReceiverContext } from './type'
+import type { LocaleReceiverContext } from './types'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

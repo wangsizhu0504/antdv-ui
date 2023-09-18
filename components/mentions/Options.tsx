@@ -1,10 +1,10 @@
 import { defineComponent } from 'vue'
-import { optionOptions, optionProps } from '../vc-mentions/src/Option'
+import { vcMentionOptionOptions, vcMentionOptionProps } from '../vc-mentions'
 
 /* istanbul ignore next */
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  ...optionOptions,
+  ...vcMentionOptionOptions,
   name: 'AMentionsOption',
-  props: optionProps,
+  props: vcMentionOptionProps,
 })

@@ -1,7 +1,8 @@
 import { withInstall } from '../_util/type'
 import divider from './Divider'
 
-const ADivider = withInstall(divider)
-export default ADivider
+export const Divider = withInstall(divider)
+
+export default Divider
 
 export * from './props'

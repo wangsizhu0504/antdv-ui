@@ -1,26 +1,27 @@
-import Breadcrumb from './Breadcrumb'
-import BreadcrumbItem from './BreadcrumbItem'
-import BreadcrumbSeparator from './BreadcrumbSeparator'
+import breadcrumb from './Breadcrumb'
+import breadcrumbItem from './BreadcrumbItem'
+import breadcrumbSeparator from './BreadcrumbSeparator'
 import type { App, Plugin } from 'vue'
 
-export * from './props'
-export * from './type'
+export const BreadcrumbItem = breadcrumbItem
+export const BreadcrumbSeparator = breadcrumbSeparator
 
-const AntdBreadcrumb = Breadcrumb
-AntdBreadcrumb.Item = BreadcrumbItem
-AntdBreadcrumb.Separator = BreadcrumbSeparator
+export const Breadcrumb = Object.assign(breadcrumb, {
+  Item: breadcrumbItem,
+  Separator: breadcrumbSeparator,
+  install(app: App) {
+    app.component(breadcrumb.name, breadcrumb)
+    app.component(breadcrumbItem.name, breadcrumbItem)
+    app.component(breadcrumbSeparator.name, breadcrumbSeparator)
+    return app
+  },
+})
 
-/* istanbul ignore next */
-AntdBreadcrumb.install = function (app: App) {
-  app.component(AntdBreadcrumb.name, AntdBreadcrumb)
-  app.component(AntdBreadcrumb.Item.name, AntdBreadcrumb.Item)
-  app.component(AntdBreadcrumb.Separator.name, AntdBreadcrumb.Separator)
-  return app
-}
-
-export { BreadcrumbItem, BreadcrumbSeparator }
-export default AntdBreadcrumb as typeof AntdBreadcrumb &
+export default Breadcrumb as typeof Breadcrumb &
 Plugin & {
   readonly Item: typeof BreadcrumbItem
   readonly Separator: typeof BreadcrumbSeparator
 }
+
+export * from './props'
+export * from './types'

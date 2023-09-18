@@ -1,6 +1,6 @@
 import PropTypes from '../_util/vue-types'
 import { mentionsProps as baseMentionsProps } from '../vc-mentions/src/mentionsProps'
-import type { MentionsOptionProps } from './type'
+import type { MentionsOptionProps } from './types'
 import type { InputStatus } from '../_util/statusUtils'
 import type { KeyboardEventHandler } from '../_util/EventInterface'
 import type { ExtractPropTypes, PropType } from 'vue'

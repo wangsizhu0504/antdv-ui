@@ -2,7 +2,7 @@ import { computed, defineComponent } from 'vue'
 import { Circle as VCCircle } from '../vc-progress'
 import { initDefaultProps } from '../_util/props-util'
 import Tooltip from '../tooltip'
-import { circleProps } from './props'
+import { progressCircleProps } from './props'
 import { getPercentage, getSize, getStrokeColor } from './utils'
 import type { ProgressProps } from './props'
 import type { CSSProperties } from 'vue'
@@ -11,7 +11,7 @@ export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ProgressCircle',
   inheritAttrs: false,
-  props: initDefaultProps(circleProps(), {
+  props: initDefaultProps(progressCircleProps(), {
     trailColor: null as unknown as string,
   }),
   setup(props, { slots, attrs }) {

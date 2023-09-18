@@ -2,9 +2,10 @@ import PropTypes from '../_util/vue-types'
 import { objectType } from '../_util/type'
 
 import { PlacementTypes } from '../constant'
+import type { getContainerFunc } from '../_util/type'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { KeyboardEventHandler, MouseEventHandler } from '../_util/EventInterface'
-import type { ILevelMove, PushState, getContainerFunc, sizeType } from './type'
+import type { ILevelMove, PushState, sizeType } from './types'
 
 export const drawerProps = () => ({
   'autofocus': { type: Boolean, default: undefined },

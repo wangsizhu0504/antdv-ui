@@ -1,5 +1,5 @@
 import classNames from './classNames'
-import type { ValidateStatus } from '../form/FormItem'
+import type { ValidateStatus } from '../form'
 
 const InputStatuses = ['warning', 'error', ''] as const
 

@@ -16,9 +16,8 @@ import { collapseProps } from './props'
 import useStyle from './style'
 import type { CustomSlotsType, Key } from '../_util/type'
 
-// CSSINJS
 import type { CSSProperties } from 'vue'
-import type { CollapsibleType } from './type'
+import type { CollapsibleType } from './types'
 import type { CollapsePanelProps } from './props'
 
 export default defineComponent({

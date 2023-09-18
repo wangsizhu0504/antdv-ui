@@ -1,12 +1,12 @@
 import { omit } from 'lodash-es'
-import { cascaderProps as vcCascaderProps } from '../vc-cascader'
+import { vcCascaderProps } from '../vc-cascader'
 import PropTypes from '../_util/vue-types'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { SizeType } from '../config-provider'
-import type { CascaderOptionType } from './type'
+import type { CascaderOptionType } from './types'
 import type { SelectCommonPlacement } from '../_util/components/transition'
 import type { InputStatus } from '../_util/statusUtils'
-import type { ValueType } from '../vc-cascader/Cascader'
+import type { ValueType } from '../vc-cascader'
 
 export function cascaderProps<DataNodeType extends CascaderOptionType = CascaderOptionType>() {
   return {

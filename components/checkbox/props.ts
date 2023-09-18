@@ -1,6 +1,6 @@
 import PropTypes from '../_util/vue-types'
 import { arrayType, booleanType, functionType, stringType } from '../_util/type'
-import type { CheckboxChangeEvent, CheckboxOptionType, CheckboxValueType } from './type'
+import type { CheckboxChangeEvent, CheckboxOptionType, CheckboxValueType } from './types'
 import type { ExtractPropTypes } from 'vue'
 import type { MouseEventHandler } from '../_util/EventInterface'
 

@@ -24,7 +24,7 @@ import {
   replaceWithMeasure,
   setInputSelection,
 } from './util'
-import type { OptionProps } from './Option'
+import type { VcMentionOptionProps } from './props'
 import type { EventHandler } from '../../_util/EventInterface'
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 
@@ -82,7 +82,7 @@ export default defineComponent({
       })
       callback?.()
     }
-    const selectOption = (option: OptionProps) => {
+    const selectOption = (option: VcMentionOptionProps) => {
       const { split } = props
       const { value: mentionValue = '' } = option
       const { text, selectionLocation } = replaceWithMeasure(state.value, {
@@ -104,7 +104,7 @@ export default defineComponent({
     const getOptions = (measureText?: string) => {
       const targetMeasureText = measureText || state.measureText || ''
       const { filterOption } = props
-      const list = props.options.filter((option: OptionProps) => {
+      const list = props.options.filter((option: VcMentionOptionProps) => {
         /** Return all result if `filterOption` is false. */
         if (!!filterOption === false)
           return true

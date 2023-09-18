@@ -32,7 +32,7 @@ export type PickerBaseProps<DateType> = InjectDefaultProps<RCPickerBaseProps<Dat
 export type PickerDateProps<DateType> = InjectDefaultProps<RCPickerDateProps<DateType>>
 export type PickerTimeProps<DateType> = InjectDefaultProps<RCPickerTimeProps<DateType>>
 
-export type PickerProps<DateType> =
+export type GeneraDatePickerProps<DateType> =
   | PickerBaseProps<DateType>
   | PickerDateProps<DateType>
   | PickerTimeProps<DateType>

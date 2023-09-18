@@ -1,6 +1,6 @@
 import { computed, inject, provide, ref } from 'vue'
 import { DisabledContextKey } from '../constant'
-import type { DisabledType } from './type'
+import type { DisabledType } from './types'
 import type { Ref } from 'vue'
 
 export const useInjectDisabled = () => {

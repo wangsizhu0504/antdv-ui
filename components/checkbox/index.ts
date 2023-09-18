@@ -1,21 +1,22 @@
-import Checkbox from './Checkbox'
-import CheckboxGroup from './Group'
+import checkbox from './Checkbox'
+import checkboxGroup from './Group'
 import type { App, Plugin } from 'vue'
 
-const AntdCheckbox = Checkbox
-AntdCheckbox.Group = CheckboxGroup
+export const CheckboxGroup = checkboxGroup
 
-/* istanbul ignore next */
-AntdCheckbox.install = function (app: App) {
-  app.component(AntdCheckbox.name, AntdCheckbox)
-  app.component(AntdCheckbox.Group.name, AntdCheckbox.Group)
-  return app
-}
-export { CheckboxGroup }
+export const Checkbox = Object.assign(checkbox, {
+  Group: CheckboxGroup,
+  install(app: App) {
+    app.component(checkbox.name, checkbox)
+    app.component(checkboxGroup.name, checkboxGroup)
+    return app
+  },
 
-export default AntdCheckbox as typeof AntdCheckbox & Plugin & {
+})
+
+export default Checkbox as typeof Checkbox & Plugin & {
   readonly Group: typeof CheckboxGroup
 }
 
-export * from './type'
+export * from './types'
 export * from './props'

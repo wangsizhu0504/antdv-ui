@@ -1,6 +1,6 @@
 import PropTypes from '../_util/vue-types'
 import { tuple } from '../_util/type'
-import type { CollapseType } from './type'
+import type { CollapseType } from './types'
 import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
 
 export const layoutProps = () => ({

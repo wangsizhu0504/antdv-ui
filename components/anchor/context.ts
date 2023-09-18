@@ -1,5 +1,5 @@
 import { computed, inject, provide } from 'vue'
-import type { AnchorDirection } from './type'
+import type { AnchorDirection } from './types'
 import type { ComputedRef, InjectionKey, Ref } from 'vue'
 
 export interface AnchorContext {

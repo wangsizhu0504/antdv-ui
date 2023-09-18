@@ -65,7 +65,7 @@ export default defineComponent({
       ref="inputRef"
       v-model:value="search"
       :placeholder="$t('app.components.overview.search')"
-      class="components-overview-search"
+      class="site-example-overview-search"
       auto-focus
     >
       <template #suffix>
@@ -74,8 +74,8 @@ export default defineComponent({
     </a-input>
     <a-divider />
     <template v-for="group in menuItems" :key="group.title">
-      <div class="components-overview">
-        <h2 class="ant-typography components-overview-group-title">
+      <div class="site-example-overview">
+        <h2 class="ant-typography site-example-overview-group-title">
           <a-space align="center">
             {{ isZhCN ? group.title : group.enTitle }}
             <a-tag style="display: block">
@@ -94,14 +94,14 @@ export default defineComponent({
                     : { to: getLocalizedPathname(component.path, isZhCN) }
                 "
               >
-                <a-card size="small" class="components-overview-card">
+                <a-card size="small" class="site-example-overview-card">
                   <template #title>
-                    <div class="components-overview-title">
+                    <div class="site-example-overview-title">
                       {{ component.title }}
                       {{ isZhCN ? component.subtitle : '' }}
                     </div>
                   </template>
-                  <div class="components-overview-img">
+                  <div class="site-example-overview-img">
                     <img
                       :src="isDark && component.coverDark ? component.coverDark : component.cover"
                       :alt="component.title"

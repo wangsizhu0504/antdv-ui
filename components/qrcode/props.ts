@@ -1,6 +1,6 @@
 import { objectType, stringType } from '../_util/type'
 import type { ExtractPropTypes } from 'vue'
-import type { ImageSettings } from './type'
+import type { ImageSettings } from './types'
 
 export const qrProps = () => ({
   size: { type: Number, default: 160 },

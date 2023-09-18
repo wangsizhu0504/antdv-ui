@@ -1,23 +1,21 @@
-import Anchor from './Anchor'
-import AnchorLink from './AnchorLink'
+import anchor from './Anchor'
+import anchorLink from './AnchorLink'
 import type { App, Plugin } from 'vue'
 
-const AntdAnchor = Anchor
-AntdAnchor.Link = AnchorLink
+export const AnchorLink = anchorLink
 
-/* istanbul ignore next */
-AntdAnchor.install = function (app: App) {
-  app.component(AntdAnchor.name, AntdAnchor)
-  app.component(AntdAnchor.Link.name, AntdAnchor.Link)
-  return app
-}
+export const Anchor = Object.assign(anchor, {
+  Link: AnchorLink,
+  install(app: App) {
+    app.component(anchor.name, anchor)
+    app.component(anchorLink.name, anchorLink)
+    return app
+  },
+})
 
-export * from './type'
-export * from './props'
-
-export { AnchorLink, AnchorLink as Link }
-
-export default AntdAnchor as typeof Anchor &
-Plugin & {
+export default Anchor as typeof Anchor & Plugin & {
   readonly Link: typeof AnchorLink
 }
+
+export * from './types'
+export * from './props'

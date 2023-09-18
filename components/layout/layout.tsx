@@ -4,7 +4,7 @@ import { useConfigInject } from '../hooks'
 import { SiderHookProviderKey } from '../constant'
 import useStyle from './style'
 import { layoutProps } from './props'
-import type { GeneratorArgument } from './type'
+import type { GeneratorArgument } from './types'
 
 function generator({ suffixCls, tagName, name }: GeneratorArgument) {
   return (BasicComponent: typeof BasicLayout) => {

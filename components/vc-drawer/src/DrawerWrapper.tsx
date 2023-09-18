@@ -2,12 +2,13 @@ import { defineComponent, ref } from 'vue'
 import { initDefaultProps } from '../../_util/props-util'
 import PortalWrapper from '../../_util/components/PortalWrapper'
 import Child from './DrawerChild'
-import { drawerProps } from './IDrawerPropTypes'
+import { vcDrawerProps } from './props'
 
-const DrawerWrapper = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   inheritAttrs: false,
-  props: initDefaultProps(drawerProps(), {
+  name: 'VcDrawerWrapper',
+  props: initDefaultProps(vcDrawerProps(), {
     prefixCls: 'drawer',
     placement: 'left',
     getContainer: 'body',
@@ -96,5 +97,3 @@ const DrawerWrapper = defineComponent({
     }
   },
 })
-
-export default DrawerWrapper

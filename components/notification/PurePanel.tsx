@@ -5,9 +5,8 @@ import Notice from '../vc-notification/Notice'
 import { useConfigInject } from '../hooks'
 import { renderHelper } from '../_util/util'
 import useStyle from './style'
-import type { NoticeProps } from '../vc-notification/Notice'
+import type { NotificationPureContentProps, NotificationPurePanelProps } from './types'
 import type { VueNode } from '../_util/type'
-import type { IconType } from './interface'
 
 export function getCloseIcon(prefixCls: string, closeIcon?: VueNode) {
   return (
@@ -17,15 +16,6 @@ export function getCloseIcon(prefixCls: string, closeIcon?: VueNode) {
       </span>
     )
   )
-}
-
-export interface PureContentProps {
-  prefixCls: string
-  icon?: VueNode
-  message?: VueNode
-  description?: VueNode
-  btn?: VueNode
-  type?: IconType
 }
 
 export const TypeIcon = {
@@ -50,7 +40,7 @@ export function PureContent({
   message,
   description,
   btn,
-}: PureContentProps) {
+}: NotificationPureContentProps) {
   let iconNode = null
   if (icon) {
     iconNode = <span class={`${prefixCls}-icon`}>{renderHelper(icon)}</span>
@@ -74,14 +64,8 @@ export function PureContent({
   )
 }
 
-export interface PurePanelProps
-  extends Omit<NoticeProps, 'prefixCls' | 'eventKey'>,
-  Omit<PureContentProps, 'prefixCls'> {
-  prefixCls?: string
-}
-
 /** @private Internal Component. Do not use in your production. */
-export default defineComponent<PurePanelProps>({
+export default defineComponent<NotificationPurePanelProps>({
   name: 'PurePanel',
   inheritAttrs: false,
   props: ['prefixCls', 'icon', 'type', 'message', 'description', 'btn', 'closeIcon'] as any,

@@ -2,12 +2,12 @@ import { computed, defineComponent, provide, ref, watch } from 'vue'
 import { useInjectFormItemContext } from '../form/FormItemContext'
 import { useConfigInject } from '../hooks'
 import Checkbox from './Checkbox'
-import { CheckboxGroupContextKey } from './type'
+import { CheckboxGroupContextKey } from './types'
 import { checkboxGroupProps } from './props'
 
 // CSSINJS
 import useStyle from './style'
-import type { CheckboxOptionType } from './type'
+import type { CheckboxOptionType } from './types'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

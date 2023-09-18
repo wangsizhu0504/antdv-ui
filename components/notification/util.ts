@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'vue'
 import type { CSSMotionProps } from '../_util/components/transition'
-import type { NotificationPlacement } from './interface'
+import type { NotificationPlacement } from './types'
 
 export function getPlacementStyle(
   placement: NotificationPlacement,

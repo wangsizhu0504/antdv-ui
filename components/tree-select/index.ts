@@ -8,6 +8,7 @@ import treeSelect from './TreeSelect'
 import type { App } from 'vue'
 
 export const TreeSelectNode = TreeNode
+
 export const TreeSelect = Object.assign(treeSelect, {
   TreeNode,
   SHOW_ALL: SHOW_ALL as typeof SHOW_ALL,
@@ -20,3 +21,6 @@ export const TreeSelect = Object.assign(treeSelect, {
   },
 })
 export default TreeSelect
+
+export * from './props'
+export * from './types'

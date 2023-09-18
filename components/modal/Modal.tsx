@@ -2,22 +2,18 @@ import { defineComponent } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
 import classNames from '../_util/classNames'
 import Dialog from '../vc-dialog'
-import PropTypes from '../_util/vue-types'
 import addEventListener from '../vc-util/Dom/addEventListener'
 import Button, { convertLegacyProps } from '../button'
-import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
+import { useLocaleReceiver } from '../locale-provider'
 import initDefaultProps from '../_util/props-util/initDefaultProps'
-import { objectType } from '../_util/type'
 import { canUseDocElement } from '../_util/styleChecker'
 import { useConfigInject } from '../hooks'
 import { getTransitionName } from '../_util/components/transition'
 import warning from '../_util/warning'
 import useStyle from './style'
 
-import type { MousePosition, getContainerFunc } from './type'
-import type { VueNode } from '../_util/type'
-import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../button'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+import { modalProps } from './props'
+import type { MousePosition } from './types'
 
 let mousePosition: MousePosition
 // ref: https://github.com/ant-design/ant-design/issues/15795
@@ -33,57 +29,7 @@ const getClickPosition = (e: MouseEvent) => {
 }
 
 // 只有点击事件支持从鼠标位置动画展开
-if (canUseDocElement())
-  addEventListener(document.documentElement, 'click', getClickPosition, true)
-
-export const modalProps = () => ({
-  'prefixCls': String,
-  /** @deprecated Please use `open` instead. */
-  'visible': { type: Boolean, default: undefined },
-  'open': { type: Boolean, default: undefined },
-  'confirmLoading': { type: Boolean, default: undefined },
-  'title': PropTypes.any,
-  'closable': { type: Boolean, default: undefined },
-  'closeIcon': PropTypes.any,
-  'onOk': Function as PropType<(e: MouseEvent) => void>,
-  'onCancel': Function as PropType<(e: MouseEvent) => void>,
-  'onUpdate:visible': Function as PropType<(visible: boolean) => void>,
-  'onUpdate:open': Function as PropType<(open: boolean) => void>,
-  'onChange': Function as PropType<(open: boolean) => void>,
-  'afterClose': Function as PropType<() => void>,
-  'centered': { type: Boolean, default: undefined },
-  'width': [String, Number],
-  'footer': PropTypes.any,
-  'okText': PropTypes.any,
-  'okType': String as PropType<LegacyButtonType>,
-  'cancelText': PropTypes.any,
-  'icon': PropTypes.any,
-  'maskClosable': { type: Boolean, default: undefined },
-  'forceRender': { type: Boolean, default: undefined },
-  'okButtonProps': objectType<ButtonPropsType>(),
-  'cancelButtonProps': objectType<ButtonPropsType>(),
-  'destroyOnClose': { type: Boolean, default: undefined },
-  'wrapClassName': String,
-  'maskTransitionName': String,
-  'transitionName': String,
-  'getContainer': {
-    type: [String, Function, Boolean, Object] as PropType<
-      string | HTMLElement | getContainerFunc | false
-    >,
-    default: undefined,
-  },
-  'zIndex': Number,
-  'bodyStyle': objectType<CSSProperties>(),
-  'maskStyle': objectType<CSSProperties>(),
-  'mask': { type: Boolean, default: undefined },
-  'keyboard': { type: Boolean, default: undefined },
-  'wrapProps': Object,
-  'focusTriggerAfterClose': { type: Boolean, default: undefined },
-  'modalRender': Function as PropType<(arg: { originVNode: VueNode }) => VueNode>,
-  'mousePosition': objectType<MousePosition>(),
-})
-
-export type ModalProps = Partial<ExtractPropTypes<ReturnType<typeof modalProps>>>
+if (canUseDocElement()) addEventListener(document.documentElement, 'click', getClickPosition, true)
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

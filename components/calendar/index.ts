@@ -3,10 +3,10 @@ import { withInstall } from '../_util/type'
 
 import generateCalendar from './generateCalendar'
 
-const Calendar = generateCalendar(generateConfig)
+const calendar = generateCalendar(generateConfig)
 
-const ACalendar = withInstall(Calendar)
+export const Calendar = withInstall(calendar)
 
-export * from './type'
+export * from './types'
 
-export default ACalendar
+export default Calendar

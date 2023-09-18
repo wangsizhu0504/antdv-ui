@@ -74,10 +74,10 @@ const onFinish = (values: any) => {
 </script>
 
 <style scoped>
-#components-form-demo-advanced-search .ant-form {
+#site-example-form-demo-advanced-search .ant-form {
   max-width: none;
 }
-#components-form-demo-advanced-search .search-result-list {
+#site-example-form-demo-advanced-search .search-result-list {
   margin-top: 16px;
   border: 1px dashed #e9e9e9;
   border-radius: 2px;
@@ -92,7 +92,7 @@ const onFinish = (values: any) => {
   padding: 24px;
   border-radius: 2px;
 }
-[data-theme='dark'] #components-form-demo-advanced-search .search-result-list {
+[data-theme='dark'] #site-example-form-demo-advanced-search .search-result-list {
   border: 1px dashed #434343;
   background: rgba(255, 255, 255, 0.04);
 }

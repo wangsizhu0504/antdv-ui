@@ -1,7 +1,8 @@
 import { ref, shallowRef, watchEffect } from 'vue'
 import { isNumber } from '../../_util/is'
 import { warning } from '../../vc-util/warning'
-import type { BaseCascaderProps, ShowSearchType } from '../Cascader'
+import type { BaseCascaderProps } from '../props'
+import type { ShowSearchType } from '../types'
 import type { Ref } from 'vue'
 
 // Convert `showSearch` to unique config

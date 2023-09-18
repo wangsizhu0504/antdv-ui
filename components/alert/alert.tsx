@@ -33,7 +33,7 @@ const iconMapOutlined = {
   warning: ExclamationCircleOutlined,
 }
 
-const Alert = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AAlert',
   inheritAttrs: false,
@@ -183,5 +183,3 @@ const Alert = defineComponent({
     }
   },
 })
-
-export default Alert

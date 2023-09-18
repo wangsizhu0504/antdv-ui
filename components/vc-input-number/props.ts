@@ -1,6 +1,6 @@
 import { booleanType, functionType, someType, stringType } from '../_util/type'
+import type { ValueType } from './types'
 import type { KeyboardEventHandler } from '../_util/EventInterface'
-import type { ValueType } from './utils/MiniDecimal'
 
 export const vcInputNumberProps = () => ({
   /** value will show as string */

@@ -11,7 +11,6 @@ import {
 
 import classnames from '../../_util/classNames'
 import Dialog from '../../vc-dialog'
-import { type IDialogChildProps, dialogPropTypes } from '../../vc-dialog/IDialogPropTypes'
 import { getOffset } from '../../vc-util/Dom/css'
 import addEventListener from '../../vc-util/Dom/addEventListener'
 import KeyCode from '../../_util/KeyCode'
@@ -19,46 +18,19 @@ import { warning } from '../../vc-util/warning'
 import { useGroupProviderContext } from './hooks/useContext'
 import getFixScaleEleTransPosition from './getFixScaleEleTransPosition'
 import useFrameSetState from './hooks/useFrameSetState'
+import { vcPreviewProps } from './props'
 import type { MouseEventHandler, WheelEventHandler } from '../../_util/EventInterface'
-import type { PropType, VNode } from 'vue'
-
-export interface PreviewProps extends Omit<IDialogChildProps, 'onClose' | 'mask'> {
-  onClose?: (e: Element) => void
-  src?: string
-  alt?: string
-  rootClassName?: string
-  icons?: {
-    rotateLeft?: VNode
-    rotateRight?: VNode
-    zoomIn?: VNode
-    zoomOut?: VNode
-    close?: VNode
-    left?: VNode
-    right?: VNode
-    flipX?: VNode
-    flipY?: VNode
-  }
-}
 
 const initialPosition = {
   x: 0,
   y: 0,
 }
-export const previewProps = {
-  ...dialogPropTypes(),
-  src: String,
-  alt: String,
-  rootClassName: String,
-  icons: {
-    type: Object as PropType<PreviewProps['icons']>,
-    default: () => ({} as PreviewProps['icons']),
-  },
-}
-const Preview = defineComponent({
+
+export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'Preview',
+  name: 'VcPreview',
   inheritAttrs: false,
-  props: previewProps,
+  props: vcPreviewProps(),
   emits: ['close', 'afterClose'],
   setup(props, { emit, attrs }) {
     const { rotateLeft, rotateRight, zoomIn, zoomOut, close, left, right, flipX, flipY } = reactive(
@@ -413,5 +385,3 @@ const Preview = defineComponent({
     }
   },
 })
-
-export default Preview

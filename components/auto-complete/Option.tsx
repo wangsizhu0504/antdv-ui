@@ -1,4 +1,4 @@
-import type { OptionFC } from './type'
+import type { OptionFC } from './types'
 
 const Option: OptionFC = () => null
 Option.isSelectOption = true

@@ -16,78 +16,28 @@ import useStyle from '../style'
 import shallowEqual from '../../_util/shallowequal'
 import { useConfigInject } from '../../hooks'
 import devWarning from '../../vc-util/devWarning'
-import { SiderCollapsedKey } from '../../layout/injectionKey'
+
 import { flattenChildren } from '../../_util/props-util'
 import Overflow from '../../vc-overflow'
 import { cloneElement } from '../../_util/vnode'
 import collapseMotion from '../../_util/components/collapseMotion'
+import { SiderCollapsedKey } from '../../constant'
 import { useInjectOverride } from './OverrideContext'
 import useItems from './hooks/useItems'
 import { OVERFLOW_KEY, PathContext } from './hooks/useKeyPath'
 import SubMenu from './SubMenu'
 import MenuItem from './MenuItem'
 import useProvideMenu, { MenuContextProvider, useProvideFirstLevel } from './hooks/useMenuContext'
+import { menuProps } from './props'
+import type { MenuProps } from './props'
 import type {
-  BuiltinPlacements,
-  MenuClickEventHandler,
   MenuInfo,
   MenuMode,
-  MenuTheme,
-  SelectEventHandler,
-  SelectInfo,
-  TriggerSubMenuAction,
-} from './interface'
-import type { ItemType } from './hooks/useItems'
-import type { FocusEventHandler, MouseEventHandler } from '../../_util/EventInterface'
-import type { CSSMotionProps } from '../../_util/components/transition'
+  MenuSelectInfo,
+} from './types'
 import type { CustomSlotsType, Key } from '../../_util/type'
-import type { ExtractPropTypes, PropType, VNode } from 'vue'
+import type { VNode } from 'vue'
 import type { StoreMenuInfo } from './hooks/useMenuContext'
-
-export const menuProps = () => ({
-  'id': String,
-  'prefixCls': String,
-  // donot use items, now only support inner use
-  'items': Array as PropType<ItemType[]>,
-  'disabled': Boolean,
-  'inlineCollapsed': Boolean,
-  'disabledOverflow': Boolean,
-  'forceSubMenuRender': Boolean,
-  'openKeys': Array as PropType<Key[]>,
-  'selectedKeys': Array as PropType<Key[]>,
-  'activeKey': String, // 内部组件使用
-  'selectable': { type: Boolean, default: true },
-  'multiple': { type: Boolean, default: false },
-  'tabindex': { type: [Number, String] },
-  'motion': Object as PropType<CSSMotionProps>,
-  'role': String,
-  'theme': { type: String as PropType<MenuTheme>, default: 'light' },
-  'mode': { type: String as PropType<MenuMode>, default: 'vertical' },
-
-  'inlineIndent': { type: Number, default: 24 },
-  'subMenuOpenDelay': { type: Number, default: 0 },
-  'subMenuCloseDelay': { type: Number, default: 0.1 },
-
-  'builtinPlacements': { type: Object as PropType<BuiltinPlacements> },
-
-  'triggerSubMenuAction': { type: String as PropType<TriggerSubMenuAction>, default: 'hover' },
-
-  'getPopupContainer': Function as PropType<(node: HTMLElement) => HTMLElement>,
-
-  'expandIcon': Function as PropType<(p?: { isOpen: boolean, [key: string]: any }) => any>,
-  'onOpenChange': Function as PropType<(keys: Key[]) => void>,
-  'onSelect': Function as PropType<SelectEventHandler>,
-  'onDeselect': Function as PropType<SelectEventHandler>,
-  'onClick': [Function, Array] as PropType<MenuClickEventHandler>,
-  'onFocus': Function as PropType<FocusEventHandler>,
-  'onBlur': Function as PropType<FocusEventHandler>,
-  'onMousedown': Function as PropType<MouseEventHandler>,
-  'onUpdate:openKeys': Function as PropType<(keys: Key[]) => void>,
-  'onUpdate:selectedKeys': Function as PropType<(keys: Key[]) => void>,
-  'onUpdate:activeKey': Function as PropType<(key: Key) => void>,
-})
-
-export type MenuProps = Partial<ExtractPropTypes<ReturnType<typeof menuProps>>>
 
 const EMPTY_LIST: string[] = []
 export default defineComponent({
@@ -224,7 +174,7 @@ export default defineComponent({
         }
 
         // Trigger event
-        const selectInfo: SelectInfo = {
+        const selectInfo: MenuSelectInfo = {
           ...info,
           selectedKeys: newSelectedKeys,
         }

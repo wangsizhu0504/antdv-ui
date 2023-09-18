@@ -4,7 +4,7 @@ import InternalTable from './InternalTable'
 import { convertChildrenToColumns } from './util'
 
 import { tableProps } from './props'
-import type { ColumnType } from './types'
+import type { TableColumnType } from './types'
 import type { RenderExpandIconProps } from '../vc-table/interface'
 import type { SlotsType } from 'vue'
 
@@ -29,11 +29,11 @@ export default defineComponent({
       value: any
       record: Record<string, any>
       index: number
-      column: ColumnType
+      column: TableColumnType
     }
     headerCell?: {
       title: any
-      column: ColumnType
+      column: TableColumnType
     }
     customFilterIcon?: any
     customFilterDropdown?: any

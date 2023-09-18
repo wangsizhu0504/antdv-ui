@@ -1,4 +1,4 @@
-import { Content, Footer, Header, Layout } from './layout'
+import { Content, Footer, Header, Layout as layout } from './layout'
 import Sider from './Sider'
 import type { App } from 'vue'
 
@@ -8,13 +8,13 @@ export const LayoutFooter = Footer
 export const LayoutSider = Sider
 export const LayoutContent = Content
 
-export default Object.assign(Layout, {
+export const Layout = Object.assign(layout, {
   Header,
   Footer,
   Content,
   Sider,
   install: (app: App) => {
-    app.component(Layout.name, Layout)
+    app.component(layout.name, layout)
     app.component(Header.name, Header)
     app.component(Footer.name, Footer)
     app.component(Sider.name, Sider)
@@ -23,5 +23,7 @@ export default Object.assign(Layout, {
   },
 })
 
-export * from './type'
+export default Layout
+
+export * from './types'
 export * from './props'

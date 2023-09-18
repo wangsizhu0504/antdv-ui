@@ -1,6 +1,8 @@
 import { withInstall } from '../_util/type'
-import Alert from './alert'
+import alert from './alert'
 
 export * from './props'
 
-export default withInstall(Alert)
+export const Alert = withInstall(alert)
+
+export default Alert

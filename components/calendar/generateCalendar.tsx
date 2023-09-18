@@ -1,12 +1,12 @@
 import { computed, defineComponent, toRef } from 'vue'
 import { useConfigInject, useMergedState } from '../hooks'
 import { PickerPanel } from '../vc-picker'
-import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
+import { useLocaleReceiver } from '../locale-provider'
 import classNames from '../_util/classNames'
 import { enUS } from '../locale'
 import CalendarHeader from './Header'
 import useStyle from './style'
-import type { CalendarMode, CalendarProps, SelectInfo } from './type'
+import type { CalendarMode, CalendarProps, CalendarSelectInfo } from './types'
 import type { GenerateConfig } from '../vc-picker/generate'
 
 import type { CustomSlotsType } from '../_util/type'
@@ -15,7 +15,7 @@ import type { PickerLocale } from '../locale'
 
 // CSSINJS
 
-function generateCalendar<
+export default function generateCalendar<
   DateType,
   Props extends CalendarProps<DateType> = CalendarProps<DateType>,
 >(generateConfig: GenerateConfig<DateType>) {
@@ -164,7 +164,7 @@ function generateCalendar<
         triggerPanelChange(mergedValue.value, newMode)
       }
 
-      const onInternalSelect = (date: DateType, source: SelectInfo['source']) => {
+      const onInternalSelect = (date: DateType, source: CalendarSelectInfo['source']) => {
         triggerChange(date)
         emit('select', maybeToString(date), { source })
       }
@@ -311,5 +311,3 @@ function generateCalendar<
 
   return Calendar
 }
-
-export default generateCalendar

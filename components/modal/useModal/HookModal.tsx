@@ -2,22 +2,10 @@ import { computed, defineComponent } from 'vue'
 import defaultLocale from '../../locale/lang/en_US'
 import ConfirmDialog from '../ConfirmDialog'
 import { useConfigContextInject } from '../../config-provider/context'
-import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver'
+import { useLocaleReceiver } from '../../locale-provider'
 import initDefaultProps from '../../_util/props-util/initDefaultProps'
-import type { ModalFuncProps } from '../type'
+import type { HookModalProps, ModalFuncProps } from '../types'
 import type { PropType } from 'vue'
-
-export interface HookModalProps {
-  afterClose: () => void
-  config: ModalFuncProps
-  destroyAction: (...args: any[]) => void
-  open: boolean
-}
-
-export interface HookModalRef {
-  destroy: () => void
-  update: (config: ModalFuncProps) => void
-}
 
 const comfirmFuncProps = () => ({
   config: Object as PropType<ModalFuncProps>,

@@ -12,7 +12,6 @@ import {
 import classNames from '../_util/classNames'
 import ResizeObserver from '../vc-resize-observer'
 import throttleByAnimationFrame from '../_util/throttleByAnimationFrame'
-import { withInstall } from '../_util/type'
 import useConfigInject from '../config-provider/hooks/useConfigInject'
 import omit from '../_util/omit'
 import {
@@ -24,10 +23,10 @@ import {
 } from './utils'
 import useStyle from './style'
 import { affixProps } from './props'
-import { AffixStatus } from './type'
-import type { AffixState } from './type'
+import { AffixStatus } from './types'
+import type { AffixState } from './types'
 
-const Affix = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AAffix',
   inheritAttrs: false,
@@ -232,5 +231,3 @@ const Affix = defineComponent({
     }
   },
 })
-
-export default withInstall(Affix)

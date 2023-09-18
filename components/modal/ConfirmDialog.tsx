@@ -2,23 +2,11 @@ import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, InfoCirc
 import { defineComponent } from 'vue'
 import ActionButton from '../_util/components/ActionButton'
 import classNames from '../_util/classNames'
-import { useLocaleReceiver } from '../locale-provider/LocaleReceiver'
+import { useLocaleReceiver } from '../locale-provider'
 import { getTransitionName } from '../_util/components/transition'
 import warning from '../_util/warning'
 import Dialog from './Modal'
-import type { ModalLocale } from '../locale'
-import type { ModalFuncProps } from './type'
-
-interface ConfirmDialogProps extends ModalFuncProps {
-  afterClose?: () => void
-  close?: (...args: any[]) => void
-  autoFocusButton?: null | 'ok' | 'cancel'
-  rootPrefixCls: string
-  iconPrefixCls?: string
-
-  /** @private Internal Usage. Do not override this */
-  locale?: ModalLocale
-}
+import type { ConfirmDialogProps } from './types'
 
 function renderSomeContent(someContent: any) {
   if (typeof someContent === 'function')

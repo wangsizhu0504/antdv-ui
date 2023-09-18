@@ -4,9 +4,7 @@ import classNames from '../_util/classNames'
 import { useConfigContextInject } from '../config-provider/context'
 import Notice from '../vc-notification/Notice'
 import useStyle from './style'
-import type { NoticeProps } from '../vc-notification/Notice'
-import type { VueNode } from '../_util/type'
-import type { NoticeType } from './interface'
+import type { MessagePureContentProps, MessagePurePanelProps } from './props'
 
 export const TypeIcon = {
   info: <InfoCircleFilled />,
@@ -16,13 +14,7 @@ export const TypeIcon = {
   loading: <LoadingOutlined />,
 }
 
-export interface PureContentProps {
-  prefixCls: string
-  type?: NoticeType
-  icon?: VueNode
-}
-
-export const PureContent = defineComponent<PureContentProps>({
+export const PureContent = defineComponent<MessagePureContentProps>({
   name: 'PureContent',
   inheritAttrs: false,
   props: ['prefixCls', 'type', 'icon'] as any,
@@ -39,15 +31,9 @@ export const PureContent = defineComponent<PureContentProps>({
   },
 })
 
-export interface PurePanelProps
-  extends Omit<NoticeProps, 'prefixCls' | 'eventKey'>,
-  Omit<PureContentProps, 'prefixCls'> {
-  prefixCls?: string
-}
-
 /** @private Internal Component. Do not use in your production. */
 
-export default defineComponent<PurePanelProps>({
+export default defineComponent<MessagePurePanelProps>({
   name: 'PurePanel',
   inheritAttrs: false,
   props: ['prefixCls', 'class', 'type', 'icon', 'content'] as any,

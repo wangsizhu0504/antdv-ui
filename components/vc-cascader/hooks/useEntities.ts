@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import { VALUE_SPLIT } from '../utils/commonUtil'
 import { convertDataToEntities } from '../../vc-tree/utils/treeUtil'
-import type { DefaultOptionType, InternalFieldNames } from '../Cascader'
+import type { DefaultOptionType, InternalFieldNames } from '../types'
 import type { Ref } from 'vue'
 import type { DataEntity } from '../../vc-tree/interface'
 

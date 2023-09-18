@@ -1,8 +1,8 @@
 import { withInstall } from '../_util/type'
-import Watermark from './Watermark'
+import AWatermark from './Watermark'
 
-export const AWatermark = withInstall(Watermark)
-export default AWatermark
+export const Watermark = withInstall(AWatermark)
+export default Watermark
 
 export * from './type'
 export * from './props'

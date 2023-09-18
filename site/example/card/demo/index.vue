@@ -25,8 +25,8 @@ import Meta from './meta.vue';
 import Simple from './simple.vue';
 import Tabs from './tabs.vue';
 
-import CN from './../index.zh-CN.md';
-import US from './../index.en-US.md';
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

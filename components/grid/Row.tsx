@@ -5,7 +5,7 @@ import { useConfigInject, useFlexGapSupport } from '../hooks'
 import { useRowStyle } from './style'
 import useProvideRow from './context'
 import { rowProps } from './props'
-import type { Gap } from './type'
+import type { Gap } from './types'
 import type { Breakpoint, ScreenMap } from '../_util/responsiveObserve'
 import type { CSSProperties } from 'vue'
 

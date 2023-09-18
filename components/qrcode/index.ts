@@ -3,5 +3,7 @@ import qrCode from './QRCode'
 
 export const QRCode = withInstall(qrCode)
 
-export * from './type'
+export default QRCode
+
+export * from './types'
 export * from './props'

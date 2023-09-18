@@ -5,11 +5,12 @@ import {
   filterOption as defaultFilterOption,
   validateSearch as defaultValidateSearch,
 } from './util'
-import type { OptionProps } from './Option'
+
+import type { Direction } from './types'
+import type { VcMentionOptionProps } from './props'
 import type { PropType } from 'vue'
 
 export const PlaceMent = tuple('top', 'bottom')
-export type Direction = 'ltr' | 'rtl'
 
 export const mentionsProps = {
   autofocus: { type: Boolean, default: undefined },
@@ -29,7 +30,7 @@ export const mentionsProps = {
   getPopupContainer: {
     type: Function as PropType<() => HTMLElement>,
   },
-  options: arrayType<OptionProps[]>(),
+  options: arrayType<VcMentionOptionProps[]>(),
   loading: { type: Boolean, default: undefined },
   rows: [Number, String],
   direction: { type: String as PropType<Direction> },

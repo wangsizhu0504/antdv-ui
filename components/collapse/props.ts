@@ -1,7 +1,7 @@
 import { booleanType, functionType, someType, stringType } from '../_util/type'
 import PropTypes from '../_util/vue-types'
 import type { ExtractPropTypes } from 'vue'
-import type { ActiveKeyType, CollapsibleType, PanelProps } from './type'
+import type { ActiveKeyType, CollapsibleType, PanelProps } from './types'
 import type { Key } from '../_util/type'
 
 export const collapseProps = () => ({

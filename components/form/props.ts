@@ -7,9 +7,9 @@ import type {
   FormLabelAlign,
   RequiredMark,
   Rule,
-} from './type'
+} from './types'
 import type { SizeType } from '../config-provider'
-import type { ColProps } from '../grid/Col'
+import type { ColProps } from '../grid/'
 import type { ValidateMessages } from '../locale'
 import type { Options } from 'scroll-into-view-if-needed'
 import type { ComponentPublicInstance, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'

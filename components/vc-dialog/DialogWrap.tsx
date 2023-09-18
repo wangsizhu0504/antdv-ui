@@ -3,15 +3,14 @@ import { useProvidePortal } from '../vc-trigger/context'
 import { initDefaultProps } from '../_util/props-util'
 import Portal from '../_util/components/PortalWrapper'
 import Dialog from './Dialog'
-import getDialogPropTypes from './IDialogPropTypes'
-import type { IDialogChildProps } from './IDialogPropTypes'
+import { vcDialogProps } from './props'
+import type { IDialogChildProps } from './props'
 
-const IDialogPropTypes = getDialogPropTypes()
-const DialogWrap = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'DialogWrap',
   inheritAttrs: false,
-  props: initDefaultProps(IDialogPropTypes, {
+  props: initDefaultProps(vcDialogProps(), {
     visible: false,
   }),
   setup(props, { attrs, slots }) {
@@ -72,5 +71,3 @@ const DialogWrap = defineComponent({
     }
   },
 })
-
-export default DialogWrap

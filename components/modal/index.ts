@@ -1,23 +1,19 @@
-import Modal from './Modal'
+import AModal from './Modal'
 import useModal from './useModal'
 import confirm, { withConfirm, withError, withInfo, withSuccess, withWarn } from './confirm'
 import destroyFns from './destroyFns'
-import type { ModalFunc, ModalFuncProps } from './type'
+
+import type { ModalFunc, ModalFuncProps } from './types'
 import type { App, Plugin } from 'vue'
 
-export * from './type'
-
 export type { ActionButtonProps } from '../_util/components/ActionButton'
-export type { ModalProps } from './Modal'
 
 function modalWarn(props: ModalFuncProps) {
   return confirm(withWarn(props))
 }
 
-const AntdModal = Modal
-
-AntdModal.useModal = useModal
-Object.assign(AntdModal, {
+export const Modal = Object.assign(AModal, {
+  useModal,
   info: function infoFn(props: ModalFuncProps) {
     return confirm(withInfo(props))
   },
@@ -39,15 +35,13 @@ Object.assign(AntdModal, {
         close()
     }
   },
+  install(app: App) {
+    app.component(AModal.name, AModal)
+    return app
+  },
 })
 
-/* istanbul ignore next */
-AntdModal.install = function (app: App) {
-  app.component(AntdModal.name, AntdModal)
-  return app
-}
-export default AntdModal as typeof AntdModal &
-Plugin & {
+export default Modal as typeof Modal & Plugin & {
   readonly info: ModalFunc
 
   readonly success: ModalFunc
@@ -64,3 +58,8 @@ Plugin & {
 
   readonly useModal: typeof useModal
 }
+
+export * from './types'
+export * from './props'
+
+export { useModal }

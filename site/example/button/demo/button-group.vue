@@ -17,7 +17,7 @@ Debug usage
 </docs>
 
 <template>
-  <div id="components-button-demo-button-group">
+  <div id="site-example-button-demo-button-group">
     <h4>Basic</h4>
     <a-button-group>
       <a-button>Cancel</a-button>
@@ -66,16 +66,16 @@ import {
 </script>
 
 <style scoped>
-#components-button-demo-button-group > h4 {
+#site-example-button-demo-button-group > h4 {
   margin: 16px 0;
   font-size: 14px;
   line-height: 1;
   font-weight: normal;
 }
-#components-button-demo-button-group > h4:first-child {
+#site-example-button-demo-button-group > h4:first-child {
   margin-top: 0;
 }
-#components-button-demo-button-group .ant-btn-group {
+#site-example-button-demo-button-group .ant-btn-group {
   margin-right: 8px;
 }
 </style>

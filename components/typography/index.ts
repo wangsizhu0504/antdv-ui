@@ -13,14 +13,14 @@ export const TypographyParagraph = paragraph
 export const TypographyBase = base
 
 export const Typography = Object.assign(typography, {
-  Text: TypographyText,
-  Title: TypographyTitle,
-  Paragraph: TypographyParagraph,
-  Link: TypographyLink,
-  Base: TypographyBase,
+  Text: text,
+  Title: title,
+  Paragraph: paragraph,
+  Link: link,
+  Base: base,
   install(app: App) {
     app.component(typography.name, typography)
-    app.component(text.displayName, Text)
+    app.component(text.displayName, text)
     app.component(title.displayName, title)
     app.component(paragraph.displayName, paragraph)
     app.component(link.displayName, link)

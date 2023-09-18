@@ -5,7 +5,7 @@ import { sizes } from '../constant'
 import { useInjectRow } from './context'
 import { useColStyle } from './style'
 import { colProps } from './props'
-import type { ColSize, FlexType } from './type'
+import type { ColSize, FlexType } from './types'
 import type { CSSProperties } from 'vue'
 
 function parseFlex(flex: FlexType): string {

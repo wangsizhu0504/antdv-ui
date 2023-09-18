@@ -28,7 +28,7 @@ import useDebounce from './utils/useDebounce'
 import useStyle from './style'
 import { formItemProps } from './props'
 import type { FormItemStatusContextProps } from './FormItemContext'
-import type { Rule, RuleError, RuleObject, ValidateOptions } from './type'
+import type { Rule, RuleError, RuleObject, ValidateOptions } from './types'
 import type { CustomSlotsType } from '../_util/type'
 
 const iconMap: { [key: string]: any } = {

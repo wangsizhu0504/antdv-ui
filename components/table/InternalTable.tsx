@@ -10,9 +10,7 @@ import { useBreakpoint, useConfigInject } from '../hooks'
 import classNames from '../_util/classNames'
 import omit from '../_util/omit'
 import { initDefaultProps } from '../_util/props-util'
-import {
-  objectType,
-} from '../_util/type'
+import { objectType } from '../_util/type'
 import scrollTo from '../_util/scrollTo'
 import usePagination, { DEFAULT_PAGE_SIZE, getPaginationParam } from './hooks/usePagination'
 import useLazyKVMap from './hooks/useLazyKVMap'
@@ -30,8 +28,6 @@ import type { FilterState } from './hooks/useFilter/type'
 
 import type {
   ChangeEventInfo,
-  ColumnType,
-  ColumnsType,
   ContextSlots,
   ExpandType,
   FilterValue,
@@ -39,6 +35,8 @@ import type {
   SortState,
   SorterResult,
   TableAction,
+  TableColumnType,
+  TableColumnsType,
   TablePaginationConfig,
 } from './types'
 import type { Breakpoint } from '../_util/responsiveObserve'
@@ -80,7 +78,7 @@ export default defineComponent({
         Object.keys(screens.value).filter((m: Breakpoint) => screens.value[m]),
       )
       return props.columns.filter(
-        (c: ColumnType<DefaultRecordType>) =>
+        (c: TableColumnType<DefaultRecordType>) =>
           !c.responsive || c.responsive.some((r: Breakpoint) => matched.has(r)),
       )
     })
@@ -371,7 +369,7 @@ export default defineComponent({
       return typeof props.indentSize === 'number' ? props.indentSize : 15
     })
 
-    const transformColumns = (innerColumns: ColumnsType<any>): ColumnsType<any> => {
+    const transformColumns = (innerColumns: TableColumnsType<any>): TableColumnsType<any> => {
       const res = transformTitleColumns(
         transformSelectionColumns(
           transformFilterColumns(transformSorterColumns(transformBasicColumns(innerColumns))),

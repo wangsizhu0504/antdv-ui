@@ -1,8 +1,6 @@
 // rc-cascader@3.4.2
-import Cascader, {
-  SHOW_CHILD,
-  SHOW_PARENT,
-} from './Cascader'
+import Cascader from './Cascader'
+import { SHOW_CHILD, SHOW_PARENT } from './utils/commonUtil'
 
 export * from './types'
 export * from './props'

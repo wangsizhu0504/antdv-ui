@@ -1,15 +1,15 @@
 import { computed, defineComponent } from 'vue'
 import devWarning from '../vc-util/devWarning'
 import { getSize, getSuccessPercent, handleGradient, validProgress } from './utils'
-import { lineProps } from './props'
-import type { ProgressSize } from './type'
+import { progressLineProps } from './props'
+import type { ProgressSize } from './types'
 import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ProgressLine',
   inheritAttrs: false,
-  props: lineProps(),
+  props: progressLineProps(),
   setup(props, { slots, attrs }) {
     const backgroundProps = computed<CSSProperties>(() => {
       const { strokeColor, direction } = props

@@ -1,25 +1,26 @@
-import FloatButton from './FloatButton'
-import FloatButtonGroup from './FloatButtonGroup'
-import BackTop from './BackTop'
+import floatButton from './FloatButton'
+import floatButtonGroup from './FloatButtonGroup'
+import backTop from './BackTop'
 import type { App, Plugin } from 'vue'
 
-const AFloatButton = FloatButton
-AFloatButton.Group = FloatButtonGroup
-AFloatButton.BackTop = BackTop
+export const BackTop = backTop
+export const FloatButtonGroup = floatButtonGroup
 
-/* istanbul ignore next */
-AFloatButton.install = function (app: App) {
-  app.component(AFloatButton.name, AFloatButton)
-  app.component(AFloatButton.Group.name, AFloatButton.Group)
-  app.component(AFloatButton.BackTop.name, AFloatButton.BackTop)
-  return app
-}
+export const FloatButton = Object.assign(floatButton, {
+  Group: floatButtonGroup,
+  BackTop: backTop,
+  install(app: App) {
+    app.component(floatButton.name, floatButton)
+    app.component(floatButtonGroup.name, floatButtonGroup)
+    app.component(BackTop.name, BackTop)
+    return app
+  },
+})
 
-export default AFloatButton as typeof AFloatButton & Plugin & {
+export default FloatButton as typeof FloatButton & Plugin & {
   readonly Group: typeof FloatButtonGroup
   readonly BackTop: typeof BackTop
 }
 
-export { FloatButton, FloatButtonGroup, BackTop }
 export * from './props'
-export * from './type'
+export * from './types'

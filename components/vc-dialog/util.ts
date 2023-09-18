@@ -1,3 +1,5 @@
+import type { CompatibleDocument } from './types'
+
 // =============================== Motion ===============================
 export function getMotionName(prefixCls: string, transitionName?: string, animationName?: string) {
   let motionName = transitionName
@@ -26,10 +28,6 @@ function getScroll(w: Window, top?: boolean): number {
   }
   return ret
 }
-
-type CompatibleDocument = {
-  parentWindow?: Window
-} & Document
 
 export function offset(el: Element) {
   const rect = el.getBoundingClientRect()

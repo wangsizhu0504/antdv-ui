@@ -12,10 +12,10 @@ import Menu from '../../menu'
 import Radio from '../../radio'
 import useMaxLevel from '../../vc-tree/useMaxLevel'
 import type {
-  ColumnType,
-  ColumnsType,
   Key,
   SelectionItem,
+  TableColumnType,
+  TableColumnsType,
   TableRowSelection,
   TransformColumns,
   UseSelectionConfig,
@@ -302,7 +302,7 @@ export default function useSelection<RecordType>(
   })
   const flattedDataLength = computed(() => flattedData.value.length)
   // ======================= Columns ========================
-  const transformColumns = (columns: ColumnsType<RecordType>): ColumnsType<RecordType> => {
+  const transformColumns = (columns: TableColumnsType<RecordType>): TableColumnsType<RecordType> => {
     const {
       onSelectAll,
       onSelectMultiple,
@@ -587,7 +587,7 @@ export default function useSelection<RecordType>(
       }
     }
 
-    const renderSelectionCell: ColumnType<RecordType>['customRender'] = ({ record, index }) => {
+    const renderSelectionCell: TableColumnType<RecordType>['customRender'] = ({ record, index }) => {
       const { node, checked } = renderCell({ record, index })
 
       if (customizeRenderCell)
@@ -625,9 +625,9 @@ export default function useSelection<RecordType>(
     )
 
     // Fixed column logic
-    const prevCol: ColumnType<RecordType> & Record<string, any>
+    const prevCol: TableColumnType<RecordType> & Record<string, any>
       = cloneColumns[selectionColumnIndex - 1]
-    const nextCol: ColumnType<RecordType> & Record<string, any>
+    const nextCol: TableColumnType<RecordType> & Record<string, any>
       = cloneColumns[selectionColumnIndex + 1]
 
     let mergedFixed: FixedType | undefined = fixed

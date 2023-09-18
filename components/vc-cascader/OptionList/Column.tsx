@@ -2,26 +2,9 @@ import { isLeaf, toPathKey } from '../utils/commonUtil'
 import { SEARCH_MARK } from '../hooks/useSearchOptions'
 import { useInjectCascader } from '../context'
 import Checkbox from './Checkbox'
-import type { Key } from '../../_util/type'
-import type { DefaultOptionType, SingleValueType } from '../Cascader'
+import type { ColumnProps } from '../props'
 
 export const FIX_LABEL = '__cascader_fix_label__'
-export interface ColumnProps {
-  prefixCls: string
-  multiple?: boolean
-  options: DefaultOptionType[]
-  /** Current Column opened item key */
-  activeValue?: Key
-  /** The value path before current column */
-  prevValuePath: Key[]
-  onToggleOpen: (open: boolean) => void
-  onSelect: (valuePath: SingleValueType, leaf: boolean) => void
-  onActive: (valuePath: SingleValueType) => void
-  checkedSet: Set<Key>
-  halfCheckedSet: Set<Key>
-  loadingKeys: Key[]
-  isSelectable: (option: DefaultOptionType) => boolean
-}
 
 export default function Column({
   prefixCls,

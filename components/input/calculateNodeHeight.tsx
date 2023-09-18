@@ -1,6 +1,6 @@
 // Thanks to https://github.com/andreypopp/react-textarea-autosize/
 
-import type { NodeType } from './type'
+import type { NodeType } from './types'
 import type { CSSProperties } from 'vue'
 
 /**

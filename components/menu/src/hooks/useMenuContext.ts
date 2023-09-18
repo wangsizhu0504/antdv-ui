@@ -6,7 +6,7 @@ import type {
   MenuMode,
   MenuTheme,
   TriggerSubMenuAction,
-} from '../interface'
+} from '../types'
 import type { Key } from '../../../_util/type'
 import type { CSSMotionProps } from '../../../_util/components/transition'
 

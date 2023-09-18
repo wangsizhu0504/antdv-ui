@@ -48,8 +48,8 @@ export interface ColumnTitleProps<RecordType> {
   /** @deprecated Please use `sorterColumns` instead. */
   sortOrder?: SortOrder
   /** @deprecated Please use `sorterColumns` instead. */
-  sortColumn?: ColumnType<RecordType>
-  sortColumns?: { column: ColumnType<RecordType>, order: SortOrder }[]
+  sortColumn?: TableColumnType<RecordType>
+  sortColumns?: { column: TableColumnType<RecordType>, order: SortOrder }[]
 
   filters?: Record<string, FilterValue>
 }
@@ -75,10 +75,10 @@ export interface FilterDropdownProps<RecordType> {
   /** Only close filterDropdown */
   close: () => void
   visible: boolean
-  column: ColumnType<RecordType>
+  column: TableColumnType<RecordType>
 }
 
-export interface ColumnType<RecordType = DefaultRecordType>
+export interface TableColumnType<RecordType = DefaultRecordType>
   extends Omit<RcColumnType<RecordType>, 'title'> {
   title?: ColumnTitle<RecordType>
   // Sorter
@@ -102,7 +102,7 @@ export interface ColumnType<RecordType = DefaultRecordType>
   filterMultiple?: boolean
   filteredValue?: FilterValue | null
   defaultFilteredValue?: FilterValue | null
-  filterIcon?: VueNode | ((opt: { filtered: boolean, column: ColumnType }) => VueNode)
+  filterIcon?: VueNode | ((opt: { filtered: boolean, column: TableColumnType }) => VueNode)
   filterMode?: 'menu' | 'tree'
   filterSearch?: FilterSearchType<ColumnFilterItem>
   onFilter?: (value: string | number | boolean, record: RecordType) => boolean
@@ -119,13 +119,13 @@ export interface ColumnType<RecordType = DefaultRecordType>
   onFilterDropdownVisibleChange?: (visible: boolean) => void
 }
 
-export interface ColumnGroupType<RecordType> extends Omit<ColumnType<RecordType>, 'dataIndex'> {
-  children: ColumnsType<RecordType>
+export interface TableColumnGroupType<RecordType> extends Omit<TableColumnType<RecordType>, 'dataIndex'> {
+  children: TableColumnsType<RecordType>
 }
 
-export type ColumnsType<RecordType = DefaultRecordType> = (
-  | ColumnGroupType<RecordType>
-  | ColumnType<RecordType>
+export type TableColumnsType<RecordType = DefaultRecordType> = (
+  | TableColumnGroupType<RecordType>
+  | TableColumnType<RecordType>
 )[]
 
 export interface SelectionItem {
@@ -171,8 +171,8 @@ export interface TableRowSelection<T = DefaultRecordType> {
 }
 
 export type TransformColumns<RecordType> = (
-  columns: ColumnsType<RecordType>,
-) => ColumnsType<RecordType>
+  columns: TableColumnsType<RecordType>,
+) => TableColumnsType<RecordType>
 
 export interface TableCurrentDataSource<RecordType = DefaultRecordType> {
   currentDataSource: RecordType[]
@@ -180,7 +180,7 @@ export interface TableCurrentDataSource<RecordType = DefaultRecordType> {
 }
 
 export interface SorterResult<RecordType = DefaultRecordType> {
-  column?: ColumnType<RecordType>
+  column?: TableColumnType<RecordType>
   order?: SortOrder
   field?: Key | readonly Key[]
   columnKey?: Key
@@ -204,7 +204,7 @@ export interface TablePaginationConfig extends PaginationProps {
 
 export interface TransformCellTextProps {
   text: any
-  column: ColumnType
+  column: TableColumnType
   record: any
   index: number
 }
@@ -222,7 +222,7 @@ export interface UseSelectionConfig<RecordType> {
 }
 
 export interface SortState<RecordType = DefaultRecordType> {
-  column: ColumnType<RecordType>
+  column: TableColumnType<RecordType>
   key: Key
   sortOrder: SortOrder | null
   multiplePriority: number | false
@@ -282,7 +282,7 @@ export interface TableProps<RecordType = DefaultRecordType>
   > {
   dropdownPrefixCls?: string
   dataSource?: RcTableProps<RecordType>['data']
-  columns?: ColumnsType<RecordType>
+  columns?: TableColumnsType<RecordType>
   pagination?: false | TablePaginationConfig
   loading?: boolean | SpinProps
   size?: SizeType
@@ -295,7 +295,7 @@ export interface TableProps<RecordType = DefaultRecordType>
     sorter: SorterResult<RecordType> | SorterResult<RecordType>[],
     extra: TableCurrentDataSource<RecordType>,
   ) => void
-  onResizeColumn?: (w: number, col: ColumnType) => void
+  onResizeColumn?: (w: number, col: TableColumnType) => void
   rowSelection?: TableRowSelection<RecordType>
 
   getPopupContainer?: GetPopupContainer
@@ -306,4 +306,4 @@ export interface TableProps<RecordType = DefaultRecordType>
   showSorterTooltip?: boolean | TooltipProps
 }
 
-export type ColumnProps<RecordType = unknown> = ColumnType<RecordType>
+export type TableColumnProps<RecordType = unknown> = TableColumnType<RecordType>

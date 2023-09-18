@@ -4,13 +4,14 @@ import ItemGroup from '../ItemGroup'
 import MenuDivider from '../Divider'
 import MenuItem from '../MenuItem'
 import type {
+  ItemType,
   MenuDividerType as VcMenuDividerType,
   MenuItemGroupType as VcMenuItemGroupType,
   MenuItemType as VcMenuItemType,
   SubMenuType as VcSubMenuType,
-} from '../interface'
+} from '../types'
 import type { VNode } from 'vue'
-import type { MenuProps } from '../Menu'
+import type { MenuProps } from '../props'
 import type { Key } from '../../../_util/type'
 import type { StoreMenuInfo } from './useMenuContext'
 
@@ -34,8 +35,6 @@ export interface MenuDividerType extends VcMenuDividerType {
   dashed?: boolean
   key?: Key
 }
-
-export type ItemType = MenuItemType | SubMenuType | MenuItemGroupType | MenuDividerType | null
 
 function convertItemsToNodes(
   list: ItemType[],

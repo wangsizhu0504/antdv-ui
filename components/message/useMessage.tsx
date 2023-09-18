@@ -2,18 +2,18 @@ import { shallowRef } from 'vue'
 import { wrapPromiseFn } from '../_util/util'
 import classNames from '../_util/classNames'
 import { PureContent } from './PurePanel'
-import { Holder } from './holder'
+import Holder from './holder'
+import type { MessageArgsProps } from './props'
 import type { VNode } from 'vue'
 import type { Key } from '../_util/type'
 import type {
-  ArgsProps,
   ConfigOptions,
   HolderRef,
   MessageInstance,
   MessageType,
   NoticeType,
   TypeOpen,
-} from './interface'
+} from './types'
 
 import type { HolderProps } from './holder'
 
@@ -36,7 +36,7 @@ export function useInternalMessage(
   }
 
   // >>> Open
-  const open = (config: ArgsProps): MessageType => {
+  const open = (config: MessageArgsProps): MessageType => {
     if (!holderRef.value) {
       const fakeResult: any = () => {}
       fakeResult.then = () => {}
@@ -98,7 +98,7 @@ export function useInternalMessage(
   const keys: NoticeType[] = ['info', 'success', 'warning', 'error', 'loading']
   keys.forEach((type) => {
     const typeOpen: TypeOpen = (jointContent, duration, onClose) => {
-      let config: ArgsProps
+      let config: MessageArgsProps
       if (jointContent && typeof jointContent === 'object' && 'content' in jointContent) {
         config = jointContent
       } else {

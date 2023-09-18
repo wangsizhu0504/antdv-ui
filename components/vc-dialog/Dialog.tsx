@@ -7,12 +7,13 @@ import pickAttrs from '../_util/pickAttrs'
 import { initDefaultProps } from '../_util/props-util'
 import { getMotionName, getUUID } from './util'
 import Mask from './Mask'
-import dialogPropTypes from './IDialogPropTypes'
+
 import Content from './Content'
+import { vcDialogProps } from './props'
+import type { ContentRef } from './types'
 import type { MouseEventHandler } from '../_util/EventInterface'
 import type ScrollLocker from '../vc-util/Dom/scrollLocker'
 import type { PropType } from 'vue'
-import type { ContentRef } from './Content'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -21,7 +22,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: initDefaultProps(
     {
-      ...dialogPropTypes(),
+      ...vcDialogProps(),
       getOpenCount: Function as PropType<() => number>,
       scrollLocker: Object as PropType<ScrollLocker>,
     },

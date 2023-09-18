@@ -1,8 +1,8 @@
 import { defineComponent, ref } from 'vue'
 import Select from '../select'
-import { Button, Group } from '../radio'
+import { RadioButton, RadioGroup } from '../radio'
 import { FormItemInputContext } from '../form/FormItemContext'
-import type { CalendarHeaderProps, ModeSwitchProps, SharedProps } from './type'
+import type { CalendarHeaderProps, ModeSwitchProps, SharedProps } from './types'
 
 const YearSelectOffset = 10
 const YearSelectTotal = 20
@@ -106,7 +106,7 @@ MonthSelect.inheritAttrs = false
 function ModeSwitch<DateType>(props: ModeSwitchProps<DateType>) {
   const { prefixCls, locale, mode, fullscreen, onModeChange } = props
   return (
-    <Group
+    <RadioGroup
       onChange={({ target: { value } }) => {
         onModeChange(value)
       }}
@@ -114,9 +114,9 @@ function ModeSwitch<DateType>(props: ModeSwitchProps<DateType>) {
       size={fullscreen ? undefined : 'small'}
       class={`${prefixCls}-mode-switch`}
     >
-      <Button value="month">{locale.month}</Button>
-      <Button value="year">{locale.year}</Button>
-    </Group>
+      <RadioButton value="month">{locale.month}</RadioButton>
+      <RadioButton value="year">{locale.year}</RadioButton>
+    </RadioGroup>
   )
 }
 

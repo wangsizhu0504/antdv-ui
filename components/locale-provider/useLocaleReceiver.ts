@@ -1,6 +1,6 @@
 import { computed, inject, unref } from 'vue'
 import { enUS as defaultLocaleData } from '../locale'
-import type { LocaleComponentName, LocaleReceiverContext } from './type'
+import type { LocaleComponentName, LocaleReceiverContext } from './types'
 import type { ComputedRef, Ref } from 'vue'
 import type { Locale } from '../locale'
 

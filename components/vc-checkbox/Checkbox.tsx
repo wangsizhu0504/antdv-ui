@@ -1,29 +1,15 @@
 // based on rc-checkbox 2.3.2
 import { defineComponent, ref, watch } from 'vue'
 import classNames from '../_util/classNames'
-import PropTypes from '../_util/vue-types'
 import { initDefaultProps } from '../_util/props-util'
+import { vcCheckboxProps } from './props'
 import type { HTMLAttributes } from 'vue'
 
-export const checkboxProps = {
-  prefixCls: String,
-  name: String,
-  id: String,
-  type: String,
-  defaultChecked: { type: [Boolean, Number], default: undefined },
-  checked: { type: [Boolean, Number], default: undefined },
-  disabled: Boolean,
-  tabindex: { type: [Number, String] },
-  readonly: Boolean,
-  autofocus: Boolean,
-  value: PropTypes.any,
-  required: Boolean,
-}
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'Checkbox',
   inheritAttrs: false,
-  props: initDefaultProps(checkboxProps, {
+  props: initDefaultProps(vcCheckboxProps(), {
     prefixCls: 'rc-checkbox',
     type: 'checkbox',
     defaultChecked: false,

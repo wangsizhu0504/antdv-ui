@@ -11,9 +11,9 @@ import omit from '../../_util/omit'
 import { getMergedStatus, getStatusClassNames } from '../../_util/statusUtils'
 
 // CSSINJS
-import { useCompactItemContext } from '../../space/Compact'
+import { useCompactItemContext } from '../../space'
 import devWarning from '../../vc-util/devWarning'
-import { useLocaleReceiver } from '../../locale-provider/LocaleReceiver'
+import { useLocaleReceiver } from '../../locale-provider'
 import { Components, getTimeProps } from './util'
 import { commonProps, rangePickerProps } from './props'
 import type { RangePickerProps } from './type'

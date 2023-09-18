@@ -1,6 +1,6 @@
 import { computed, inject, provide } from 'vue'
 import { GlobalFormContextKey, configProviderKey, defaultIconPrefixCls } from '../constant'
-import type { ConfigProviderInnerProps, GlobalFormCOntextProps } from './type'
+import type { ConfigProviderInnerProps, GlobalFormCOntextProps } from './types'
 
 export const useProvideGlobalForm = (state: GlobalFormCOntextProps) => {
   provide(GlobalFormContextKey, state)

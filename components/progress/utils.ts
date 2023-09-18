@@ -3,7 +3,7 @@ import devWarning from '../vc-util/devWarning'
 
 import type { CircleProps, ProgressProps } from './props'
 
-import type { ProgressGradient, StringGradients } from './type'
+import type { ProgressGradient, StringGradients } from './types'
 import type { Direction } from '../config-provider'
 import type { CSSProperties } from 'vue'
 

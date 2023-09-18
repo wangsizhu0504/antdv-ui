@@ -13,7 +13,7 @@ import { CloseOutlined } from '@ant-design/icons-vue'
 import { omit } from 'lodash-es'
 import VcDrawer from '../vc-drawer'
 import devWarning from '../vc-util/devWarning'
-import { NoCompactStyle } from '../space/Compact'
+import { NoCompactStyle } from '../space'
 import { getPropsSlot, initDefaultProps } from '../_util/props-util'
 import classnames from '../_util/classNames'
 import { useConfigInject, useScrollLocker } from '../hooks'
@@ -23,7 +23,7 @@ import { getTransitionName, getTransitionProps } from '../_util/components/trans
 import useStyle from './style'
 import { drawerProps } from './props'
 import type { CustomSlotsType } from '../_util/type'
-import type { PushState } from './type'
+import type { PushState } from './types'
 import type { CSSProperties } from 'vue'
 
 const defaultPushState: PushState = { distance: 180 }

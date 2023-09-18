@@ -1,13 +1,13 @@
 import { computed, defineComponent } from 'vue'
-import { stepsProps } from './props'
+import { progressStepsProps } from './props'
 import { getSize } from './utils'
-import type { ProgressSize } from './type'
+import type { ProgressSize } from './types'
 import type { VueNode } from '../_util/type'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'Steps',
-  props: stepsProps(),
+  name: 'ProgressSteps',
+  props: progressStepsProps(),
   setup(props, { slots }) {
     const current = computed(() => Math.round(props.steps * ((props.percent || 0) / 100)))
     const mergedSize = computed(

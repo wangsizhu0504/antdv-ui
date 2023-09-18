@@ -1,6 +1,6 @@
 import { someType } from '../_util/type'
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { ColSize, Gutter, ResponsiveAligns, ResponsiveJustify } from './type'
+import type { ColSize, Gutter, ResponsiveAligns, ResponsiveJustify } from './types'
 import type { RowAligns, RowJustify } from '../constant'
 
 export const colProps = () => ({

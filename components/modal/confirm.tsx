@@ -5,15 +5,7 @@ import ConfirmDialog from './ConfirmDialog'
 
 import { getConfirmLocale } from './locale'
 import destroyFns from './destroyFns'
-import type { ModalFuncProps } from './type'
-
-type ConfigUpdate = ModalFuncProps | ((prevConfig: ModalFuncProps) => ModalFuncProps)
-export type ModalStaticFunctions<T = ModalFunc> = Record<NonNullable<ModalFuncProps['type']>, T>
-
-export type ModalFunc = (props: ModalFuncProps) => {
-  destroy: () => void
-  update: (configUpdate: ConfigUpdate) => void
-}
+import type { ConfigUpdate, ModalFuncProps } from './types'
 
 const confirm = (config: ModalFuncProps) => {
   const container = document.createDocumentFragment()
@@ -109,8 +101,6 @@ const confirm = (config: ModalFuncProps) => {
   }
 }
 
-export default confirm
-
 export function withWarn(props: ModalFuncProps): ModalFuncProps {
   return {
     ...props,
@@ -145,3 +135,5 @@ export function withConfirm(props: ModalFuncProps): ModalFuncProps {
     type: 'confirm',
   }
 }
+
+export default confirm

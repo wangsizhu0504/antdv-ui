@@ -1,7 +1,7 @@
 import Trigger from '../vc-trigger'
 import classNames from '../_util/classNames'
 import useMergeProps from './hooks/useMergeProps'
-import type { AlignType } from '../vc-align/interface'
+import type { AlignType } from '../vc-align'
 import type { CSSProperties } from 'vue'
 
 const BUILT_IN_PLACEMENTS = {

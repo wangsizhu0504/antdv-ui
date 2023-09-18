@@ -10,3 +10,7 @@ export const Steps = Object.assign(steps, {
     return app
   },
 })
+
+export default Steps
+
+export * from './props'

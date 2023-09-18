@@ -3,11 +3,9 @@ import { withConfirm, withError, withInfo, withSuccess, withWarn } from '../conf
 import destroyFns from '../destroyFns'
 import HookModal from './HookModal'
 import type { Ref } from 'vue'
-import type { ModalFuncProps } from '../type'
-import type { ModalStaticFunctions } from '../confirm'
+import type { HookModalRef, ModalFuncProps, ModalFuncWithRef, ModalStaticFunctions } from '../types'
 
-import type { MaybeRef, VueNode } from '../../_util/type'
-import type { HookModalRef } from './HookModal'
+import type { VueNode } from '../../_util/type'
 
 let uuid = 0
 
@@ -34,10 +32,6 @@ const ElementsHolder = defineComponent({
     }
   },
 })
-export type ModalFuncWithRef = (props: MaybeRef<ModalFuncProps>) => {
-  destroy: () => void
-  update: (configUpdate: ModalFuncProps) => void
-}
 
 function useModal(): readonly [
   Omit<ModalStaticFunctions<ModalFuncWithRef>, 'warn'>,

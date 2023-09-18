@@ -1,8 +1,8 @@
 import { defineComponent, inject, onBeforeUnmount, shallowRef } from 'vue'
-import Menu, { Item as MenuItem } from '../../menu'
+import { Menu, MenuItem } from '../../menu'
 import Spin from '../../spin'
 import MentionsContextKey from './MentionsContext'
-import type { OptionProps } from './Option'
+import type { VcMentionOptionProps } from './props'
 import type { PropType } from 'vue'
 
 function noop() {}
@@ -12,8 +12,8 @@ export default defineComponent({
   props: {
     prefixCls: String,
     options: {
-      type: Array as PropType<OptionProps[]>,
-      default: () => [],
+      type: Array as PropType<VcMentionOptionProps[]>,
+      default: () => [] as VcMentionOptionProps[],
     },
   },
   setup(props, { slots }) {

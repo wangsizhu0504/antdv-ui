@@ -23,8 +23,6 @@ export type TimeRangePickerProps<DateType> = Omit<
   onOk?: (dates: RangeValue<DateType> | RangeValue<string>) => void
 }
 
-export type TimePickerProps<DateType> = CommonProps<DateType> &
-DatePickerProps<DateType> &
-CommonTimePickerProps & {
+export type TimePickerProps<DateType> = CommonProps<DateType> & DatePickerProps<DateType> & CommonTimePickerProps & {
   addon?: () => void
 }

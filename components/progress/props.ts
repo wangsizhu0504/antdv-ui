@@ -7,7 +7,7 @@ import {
   stringType,
 } from '../_util/type'
 import type { Direction } from '../config-provider'
-import type { ProgressGradient, ProgressSize, ProgressStatusesType, ProgressType, SuccessProps } from './type'
+import type { ProgressGradient, ProgressSize, ProgressStatusesType, ProgressType, SuccessProps } from './types'
 import type { ExtractPropTypes } from 'vue'
 import type { VueNode } from '../_util/type'
 
@@ -39,26 +39,28 @@ export interface CircleProps extends ProgressProps {
   strokeColor?: string | ProgressGradient
 }
 
-export const circleProps = () => ({
+export const progressCircleProps = () => ({
   ...progressProps(),
   strokeColor: anyType<string | ProgressGradient>(),
 })
 
-export const lineProps = () => ({
+export const progressLineProps = () => ({
   ...progressProps(),
   strokeColor: anyType<string | ProgressGradient>(),
   direction: stringType<Direction>(),
 })
 
-export const stepsProps = () => ({
+export const progressStepsProps = () => ({
   ...progressProps(),
   steps: Number,
   strokeColor: someType<string | string[]>(),
   trailColor: String,
 })
 
-export type StepsProps = Partial<ExtractPropTypes<ReturnType<typeof stepsProps>>>
+export type ProgressStepsProps = Partial<ExtractPropTypes<ReturnType<typeof progressStepsProps>>>
 
-export type LineProps = Partial<ExtractPropTypes<ReturnType<typeof lineProps>>>
+export type ProgressLineProps = Partial<ExtractPropTypes<ReturnType<typeof progressLineProps>>>
+
+export type ProgressCircleProps = Partial<ExtractPropTypes<ReturnType<typeof progressCircleProps>>>
 
 export type ProgressProps = Partial<ExtractPropTypes<ReturnType<typeof progressProps>>>

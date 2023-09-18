@@ -1,12 +1,12 @@
 import { inject, provide } from 'vue'
+import type { BaseCascaderProps } from './props'
 import type { CSSProperties, InjectionKey, Ref } from 'vue'
 import type { VueNode } from '../_util/type'
 import type {
-  BaseCascaderProps,
   DefaultOptionType,
   InternalFieldNames,
   SingleValueType,
-} from './Cascader'
+} from './types'
 
 export interface CascaderContextProps {
   options: Ref<BaseCascaderProps['options']>

@@ -6,40 +6,20 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import PropTypes from '../../_util/vue-types'
 import { flattenChildren, isValidElement } from '../../_util/props-util'
 import { cloneElement } from '../../_util/vnode'
 import Tooltip from '../../tooltip'
 import KeyCode from '../../_util/KeyCode'
 import Overflow from '../../vc-overflow'
 import devWarning from '../../vc-util/devWarning'
-import { objectType } from '../../_util/type'
 import { useInjectFirstLevel, useInjectMenu } from './hooks/useMenuContext'
 import { useInjectKeyPath, useMeasure } from './hooks/useKeyPath'
 import useDirectionStyle from './hooks/useDirectionStyle'
+import { menuItemProps } from './props'
 import type { CustomSlotsType } from '../../_util/type'
-import type { ItemType, MenuInfo } from './interface'
-import type { MouseEventHandler } from '../../_util/EventInterface'
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { MenuInfo } from './types'
 
 let indexGuid = 0
-export const menuItemProps = () => ({
-  id: String,
-  role: String,
-  disabled: Boolean,
-  danger: Boolean,
-  title: { type: [String, Boolean], default: undefined },
-  icon: PropTypes.any,
-  onMouseenter: Function as PropType<MouseEventHandler>,
-  onMouseleave: Function as PropType<MouseEventHandler>,
-  onClick: Function as PropType<MouseEventHandler>,
-  onKeydown: Function as PropType<MouseEventHandler>,
-  onFocus: Function as PropType<MouseEventHandler>,
-  // Internal user prop
-  originItemValue: objectType<ItemType>(),
-})
-
-export type MenuItemProps = Partial<ExtractPropTypes<ReturnType<typeof menuItemProps>>>
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

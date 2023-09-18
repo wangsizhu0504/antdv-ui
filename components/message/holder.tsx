@@ -5,7 +5,7 @@ import classNames from '../_util/classNames'
 import { getMotion } from '../vc-trigger/utils/motionUtil'
 import { useNotification as useVcNotification } from '../vc-notification'
 import useStyle from './style'
-import type { ConfigOptions } from './interface'
+import type { ConfigOptions } from './types'
 
 const DEFAULT_OFFSET = 8
 const DEFAULT_DURATION = 3
@@ -14,7 +14,7 @@ export type HolderProps = ConfigOptions & {
   onAllRemoved?: VoidFunction
 }
 
-export const Holder = defineComponent({
+export default defineComponent({
   name: 'Holder',
   inheritAttrs: false,
   props: [

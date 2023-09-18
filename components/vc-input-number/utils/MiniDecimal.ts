@@ -1,34 +1,9 @@
 import { getNumberPrecision, isE, num2str, trimNumber, validateNumber } from './numberUtil'
 import { supportBigInt } from './supportUtil'
-
-export type ValueType = string | number
+import type { DecimalClass, ValueType } from '../types'
 
 function isEmpty(value: ValueType) {
   return (!value && value !== 0 && !Number.isNaN(value)) || !String(value).trim()
-}
-
-export interface DecimalClass {
-  add: (value: ValueType) => DecimalClass
-
-  isEmpty: () => boolean
-
-  isNaN: () => boolean
-
-  isInvalidate: () => boolean
-
-  toNumber: () => number
-
-  /**
-   * Parse value as string. Will return empty string if `isInvalidate`.
-   * You can set `safe=false` to get origin string content.
-   */
-  toString: (safe?: boolean) => string
-
-  equals: (target: DecimalClass) => boolean
-
-  lessEquals: (target: DecimalClass) => boolean
-
-  negate: () => DecimalClass
 }
 
 /**

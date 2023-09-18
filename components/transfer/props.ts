@@ -77,6 +77,51 @@ export const transferListItemProps = () => ({
   onClick: Function,
   onRemove: Function,
 })
+
+export const transferListProps = {
+  prefixCls: String,
+  dataSource: arrayType<TransferItem[]>([]),
+  filter: String,
+  filterOption: Function,
+  checkedKeys: PropTypes.arrayOf(PropTypes.string),
+  handleFilter: Function,
+  handleClear: Function,
+  renderItem: Function,
+  showSearch: booleanType(false),
+  searchPlaceholder: String,
+  notFoundContent: PropTypes.any,
+  itemUnit: String,
+  itemsUnit: String,
+  renderList: PropTypes.any,
+  disabled: booleanType(),
+  direction: stringType<TransferDirection>(),
+  showSelectAll: booleanType(),
+  remove: String,
+  selectAll: String,
+  selectCurrent: String,
+  selectInvert: String,
+  removeAll: String,
+  removeCurrent: String,
+  selectAllLabel: PropTypes.any,
+  showRemove: booleanType(),
+  pagination: PropTypes.any,
+  onItemSelect: Function,
+  onItemSelectAll: Function,
+  onItemRemove: Function,
+  onScroll: Function,
+}
+
+export const transferSearchProps = () => ({
+  prefixCls: String,
+  placeholder: String,
+  value: String,
+  handleClear: Function,
+  disabled: { type: Boolean, default: undefined },
+  onChange: Function,
+})
+
+export type TransferListProps = Partial<ExtractPropTypes<typeof transferListProps>>
+
 export interface TransferOperationProps {
   class?: string
   leftArrowText?: string
@@ -90,16 +135,6 @@ export interface TransferOperationProps {
   direction?: Direction
   oneWay?: boolean
 }
-
-export const transferSearchProps = () => ({
-  prefixCls: String,
-  placeholder: String,
-  value: String,
-  handleClear: Function,
-  disabled: { type: Boolean, default: undefined },
-  onChange: Function,
-})
-
 export type TransferSearchProps = Partial<ExtractPropTypes<ReturnType<typeof transferSearchProps>>>
 
 export type TransferListItemProps = Partial<ExtractPropTypes<ReturnType<typeof transferListItemProps>>>

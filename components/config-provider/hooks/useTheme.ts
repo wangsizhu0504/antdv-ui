@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { defaultConfig } from '../../theme/internal'
-import type { ThemeConfig } from '../type'
+import type { ThemeConfig } from '../types'
 import type { Ref } from 'vue'
 
 export default function useTheme(theme?: Ref<ThemeConfig>, parentTheme?: Ref<ThemeConfig>) {

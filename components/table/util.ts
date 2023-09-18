@@ -1,7 +1,7 @@
 import { camelize, flattenChildren } from '../_util/props-util'
-import type { ColumnTitle, ColumnTitleProps, ColumnType, ColumnsType, Key } from './types'
+import type { ColumnTitle, ColumnTitleProps, Key, TableColumnType, TableColumnsType } from './types'
 
-export function getColumnKey<RecordType>(column: ColumnType<RecordType>, defaultKey: string): Key {
+export function getColumnKey<RecordType>(column: TableColumnType<RecordType>, defaultKey: string): Key {
   if ('key' in column && column.key !== undefined && column.key !== null)
     return column.key
 
@@ -27,7 +27,7 @@ export function renderColumnTitle<RecordType>(
 
 export function convertChildrenToColumns<RecordType>(
   elements: any[] = [],
-): ColumnsType<RecordType> {
+): TableColumnsType<RecordType> {
   const flattenElements = flattenChildren(elements)
   const columns = []
   flattenElements.forEach((element) => {

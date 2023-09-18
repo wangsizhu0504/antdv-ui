@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType, VNodeTypes } from 'vue'
-import type { LocaleComponentName } from './type'
+import type { LocaleComponentName } from './types'
 import type { Locale } from '../locale'
 
 export const localReceiverProps = () => ({

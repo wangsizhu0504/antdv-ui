@@ -2,7 +2,7 @@ import PropTypes from '../_util/vue-types'
 
 import { booleanType, eventType, objectType, someType } from '../_util/type'
 import { buttonProps } from '../button'
-import type { Align, DropdownArrowOptions, Trigger } from './type'
+import type { Align, DropdownArrowOptions, Trigger } from './types'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 import type { MouseEventHandler } from '../_util/EventInterface'

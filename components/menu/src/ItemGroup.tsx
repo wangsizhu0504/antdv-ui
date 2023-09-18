@@ -1,20 +1,9 @@
 import { computed, defineComponent } from 'vue'
 import { getPropsSlot } from '../../_util/props-util'
-import PropTypes from '../../_util/vue-types'
-import { objectType } from '../../_util/type'
 import { useInjectMenu } from './hooks/useMenuContext'
 import { useMeasure } from './hooks/useKeyPath'
-import type { ExtractPropTypes } from 'vue'
-import type { ItemType } from './interface'
+import { menuItemGroupProps } from './props'
 import type { CustomSlotsType } from '../../_util/type'
-
-export const menuItemGroupProps = () => ({
-  title: PropTypes.any,
-  // Internal user prop
-  originItemValue: objectType<ItemType>(),
-})
-
-export type MenuItemGroupProps = Partial<ExtractPropTypes<ReturnType<typeof menuItemGroupProps>>>
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

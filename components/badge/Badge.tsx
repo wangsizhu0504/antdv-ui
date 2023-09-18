@@ -6,7 +6,6 @@ import { isPresetColor } from '../_util/colors'
 import classNames from '../_util/classNames'
 import { cloneElement } from '../_util/vnode'
 import { isNumeric } from '../_util/is'
-import Ribbon from './Ribbon'
 import ScrollNumber from './ScrollNumber'
 import useStyle from './style'
 import { badgeProps } from './props'
@@ -16,7 +15,7 @@ import type { CSSProperties } from 'vue'
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ABadge',
-  Ribbon,
+
   inheritAttrs: false,
   props: badgeProps(),
   slots: Object as CustomSlotsType<{

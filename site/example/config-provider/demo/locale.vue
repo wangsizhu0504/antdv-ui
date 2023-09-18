@@ -115,8 +115,8 @@ import { ref, watch } from 'vue';
 import { Modal, theme } from '@antdv/ui';
 import type { TourProps, UploadFile } from '@antdv/ui';
 import { EllipsisOutlined } from '@ant-design/icons-vue';
-import enUS from '@antdv/ui/es/locale/en_US';
-import zhCN from '@antdv/ui/es/locale/zh_CN';
+import enUS from '@antdv/ui/es/locale/lang/en_US';
+import zhCN from '@antdv/ui/es/locale/lang/zh_CN';
 import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 

@@ -3,12 +3,12 @@ import { toPathOptions } from '../utils/treeUtil'
 import { toPathKey } from '../utils/commonUtil'
 import { isValidElement } from '../../_util/props-util'
 import { cloneElement } from '../../_util/vnode'
+import type { BaseCascaderProps } from '../props'
 import type {
-  BaseCascaderProps,
   DefaultOptionType,
   InternalFieldNames,
   SingleValueType,
-} from '../Cascader'
+} from '../types'
 import type { Ref, VNode } from 'vue'
 
 export default (

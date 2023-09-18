@@ -5,8 +5,7 @@ import { defaultValidateMessages } from './utils/messages'
 import { allPromiseFinish } from './utils/asyncUtil'
 import type { ValidateMessages } from '../locale'
 import type { Ref } from 'vue'
-import type { Callbacks, RuleError } from './interface'
-import type { ValidateStatus } from './FormItem'
+import type { Callbacks, RuleError, ValidateStatus } from './types'
 
 interface DebounceSettings {
   leading?: boolean
@@ -145,6 +144,44 @@ function useForm(
   }
 
   let lastValidatePromise = null
+
+  const validateField = (
+    name: string,
+    value: any,
+    rules: Record<string, unknown>[],
+    option: validateOptions = {},
+  ): Promise<RuleError[]> => {
+    const promise = validateRules(
+      [name],
+      value,
+      rules,
+      {
+        validateMessages: defaultValidateMessages,
+        ...option,
+      },
+      !!option.validateFirst,
+    )
+    if (!validateInfos[name])
+      return promise.catch((e: any) => e)
+
+    validateInfos[name].validateStatus = 'validating'
+    promise
+      .catch((e: any) => e)
+      .then((results: RuleError[] = []) => {
+        if (validateInfos[name].validateStatus === 'validating') {
+          const res = results.filter(result => result && result.errors.length)
+          validateInfos[name].validateStatus = res.length ? 'error' : 'success'
+          validateInfos[name].help = res.length ? res.map(r => r.errors) : null
+          options?.onValidate?.(
+            name,
+            !res.length,
+            res.length ? toRaw(validateInfos[name].help[0]) : null,
+          )
+        }
+      })
+    return promise
+  }
+
   const validateFields = (names: string[], option: validateOptions = {}, strict: boolean) => {
     // Collect result in promise list
     const promiseList: Promise<{
@@ -220,42 +257,6 @@ function useForm(
     returnPromise.catch((e: any) => e)
 
     return returnPromise
-  }
-  const validateField = (
-    name: string,
-    value: any,
-    rules: Record<string, unknown>[],
-    option: validateOptions = {},
-  ): Promise<RuleError[]> => {
-    const promise = validateRules(
-      [name],
-      value,
-      rules,
-      {
-        validateMessages: defaultValidateMessages,
-        ...option,
-      },
-      !!option.validateFirst,
-    )
-    if (!validateInfos[name])
-      return promise.catch((e: any) => e)
-
-    validateInfos[name].validateStatus = 'validating'
-    promise
-      .catch((e: any) => e)
-      .then((results: RuleError[] = []) => {
-        if (validateInfos[name].validateStatus === 'validating') {
-          const res = results.filter(result => result && result.errors.length)
-          validateInfos[name].validateStatus = res.length ? 'error' : 'success'
-          validateInfos[name].help = res.length ? res.map(r => r.errors) : null
-          options?.onValidate?.(
-            name,
-            !res.length,
-            res.length ? toRaw(validateInfos[name].help[0]) : null,
-          )
-        }
-      })
-    return promise
   }
 
   const validate = (names?: namesType, option?: validateOptions): Promise<any> => {

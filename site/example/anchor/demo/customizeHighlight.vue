@@ -22,12 +22,12 @@ Customize the anchor highlight.
     :items="[
       {
         key: '1',
-        href: '#components-anchor-demo-basic',
+        href: '#site-example-anchor-demo-basic',
         title: 'Basic demo',
       },
       {
         key: '2',
-        href: '#components-anchor-demo-static',
+        href: '#site-example-anchor-demo-static',
         title: 'Static demo',
       },
       {
@@ -53,6 +53,6 @@ Customize the anchor highlight.
 
 <script lang="ts" setup>
 const getCurrentAnchor = () => {
-  return '#components-anchor-demo-static'
+  return '#site-example-anchor-demo-static'
 }
 </script>

@@ -6,11 +6,11 @@ import FilterDropdown from './FilterDropdown'
 import { flattenKeys } from './utils'
 import type {
   ColumnTitleProps,
-  ColumnType,
-  ColumnsType,
   FilterKey,
   FilterValue,
   GetPopupContainer,
+  TableColumnType,
+  TableColumnsType,
   TransformColumns,
 } from '../../types'
 import type { TableLocale } from '../../../locale'
@@ -18,7 +18,7 @@ import type { Ref } from 'vue'
 import type { FilterConfig, FilterState } from './type'
 
 function collectFilterStates<RecordType>(
-  columns: ColumnsType<RecordType>,
+  columns: TableColumnsType<RecordType>,
   init: boolean,
   pos?: string,
 ): FilterState<RecordType>[] {
@@ -63,18 +63,18 @@ function collectFilterStates<RecordType>(
 function injectFilter<RecordType>(
   prefixCls: string,
   dropdownPrefixCls: string,
-  columns: ColumnsType<RecordType>,
+  columns: TableColumnsType<RecordType>,
   filterStates: FilterState<RecordType>[],
   locale: TableLocale,
   triggerFilter: (filterState: FilterState<RecordType>) => void,
   getPopupContainer?: GetPopupContainer | undefined,
   pos?: string,
-): ColumnsType<RecordType> {
+): TableColumnsType<RecordType> {
   return columns.map((column, index) => {
     const columnPos = getColumnPos(index, pos)
-    const { filterMultiple = true, filterMode, filterSearch } = column as ColumnType<RecordType>
+    const { filterMultiple = true, filterMode, filterSearch } = column as TableColumnType<RecordType>
 
-    let newColumn: ColumnsType<RecordType>[number] = column
+    let newColumn: TableColumnsType<RecordType>[number] = column
     const hasFilterDropdown
       = column.filterDropdown || column?.slots?.filterDropdown || column.customFilterDropdown
     if (newColumn.filters || hasFilterDropdown) {
@@ -235,7 +235,7 @@ function useFilter<RecordType>({
     onFilterChange(generateFilterInfo(newFilterStates), newFilterStates)
   }
 
-  const transformColumns = (innerColumns: ColumnsType<RecordType>) => {
+  const transformColumns = (innerColumns: TableColumnsType<RecordType>) => {
     return injectFilter(
       prefixCls.value,
       dropdownPrefixCls.value,

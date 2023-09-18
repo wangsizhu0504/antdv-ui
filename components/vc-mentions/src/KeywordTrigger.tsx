@@ -2,7 +2,7 @@ import { computed, defineComponent } from 'vue'
 import Trigger from '../../vc-trigger'
 import DropdownMenu from './DropdownMenu'
 import type { PropType } from 'vue'
-import type { OptionProps } from './Option'
+import type { VcMentionOptionProps } from './props'
 
 const BUILT_IN_PLACEMENTS = {
   bottomRight: {
@@ -45,8 +45,8 @@ export default defineComponent({
   props: {
     loading: { type: Boolean, default: undefined },
     options: {
-      type: Array as PropType<OptionProps[]>,
-      default: () => [],
+      type: Array as PropType<VcMentionOptionProps[]>,
+      default: () => [] as VcMentionOptionProps[],
     },
     prefixCls: String,
     placement: String,

@@ -6,7 +6,7 @@ import devWarning from '../vc-util/devWarning'
 import useMaxLevel from '../vc-tree/useMaxLevel'
 import { initDefaultProps } from '../_util/props-util'
 import omit from '../_util/omit'
-import { SHOW_CHILD, SHOW_PARENT, fillFieldNames, toPathKey, toPathKeys } from './utils/commonUtil'
+import { fillFieldNames, toPathKey, toPathKeys } from './utils/commonUtil'
 import useEntities from './hooks/useEntities'
 import useSearchConfig from './hooks/useSearchConfig'
 import useSearchOptions from './hooks/useSearchOptions'
@@ -21,8 +21,6 @@ import type { Key } from '../_util/type'
 import type { DisplayValueType } from '../vc-select/BaseSelect'
 import type { BaseSelectProps, BaseSelectRef } from '../vc-select'
 import type { CSSProperties, Ref } from 'vue'
-
-export { SHOW_PARENT, SHOW_CHILD }
 
 export type CascaderRef = Omit<BaseSelectRef, 'scrollTo'>
 

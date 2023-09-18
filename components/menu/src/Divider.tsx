@@ -1,13 +1,6 @@
 import { computed, defineComponent } from 'vue'
 import { useInjectMenu } from './hooks/useMenuContext'
-import type { ExtractPropTypes } from 'vue'
-
-export const menuDividerProps = () => ({
-  prefixCls: String,
-  dashed: Boolean,
-})
-
-export type MenuDividerProps = Partial<ExtractPropTypes<ReturnType<typeof menuDividerProps>>>
+import { menuDividerProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

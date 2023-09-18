@@ -1,4 +1,4 @@
-import type { OptionGroupFC } from './type'
+import type { OptionGroupFC } from './types'
 
 const OptGroup: OptionGroupFC = () => null
 OptGroup.isSelectOptGroup = true

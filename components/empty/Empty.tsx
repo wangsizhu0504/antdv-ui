@@ -10,10 +10,13 @@ import DefaultEmptyImg from './DefaultEmptyImg'
 import SimpleEmptyImg from './SimpleEmptyImg'
 import { emptyProps } from './props'
 import type { EmptyProps } from './props'
-import type { Locale } from './type'
 
 const defaultEmptyImg = <DefaultEmptyImg />
 const simpleEmptyImg = <SimpleEmptyImg />
+
+interface Locale {
+  description?: string
+}
 
 export default defineComponent({
   name: 'AEmpty',

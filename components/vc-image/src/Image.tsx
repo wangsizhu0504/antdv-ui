@@ -1,51 +1,24 @@
 import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 import { isNumber } from 'lodash-es'
 import cn from '../../_util/classNames'
-import PropTypes from '../../_util/vue-types'
 import { getOffset } from '../../vc-util/Dom/css'
 import { useMergedState } from '../../hooks'
 import Preview from './Preview'
 import PreviewGroup from './PreviewGroup'
 import { useGroupProviderContext } from './hooks/useContext'
 import { mergeDefaultValue } from './utils'
+import { vcImageProps } from './props'
 import type { ImagePreviewType, ImageStatus } from './types'
 import type { MouseEventHandler } from '../../_util/EventInterface'
-import type { CSSProperties, ImgHTMLAttributes, PropType } from 'vue'
-
-export const imageProps = () => ({
-  src: String,
-  wrapperClassName: String,
-  wrapperStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-  rootClassName: String,
-  prefixCls: String,
-  previewPrefixCls: String,
-  previewMask: {
-    type: [Boolean, Function] as PropType<false | (() => any)>,
-    default: undefined,
-  },
-  placeholder: PropTypes.any,
-  fallback: String,
-  preview: {
-    type: [Boolean, Object] as PropType<boolean | ImagePreviewType>,
-    default: true as boolean | ImagePreviewType,
-  },
-  onClick: {
-    type: Function as PropType<MouseEventHandler>,
-  },
-  onError: {
-    type: Function as PropType<HTMLImageElement['onerror']>,
-  },
-})
-
-export type ImageProps = Partial<ReturnType<typeof imageProps>>
+import type { CSSProperties, ImgHTMLAttributes } from 'vue'
 
 let uuid = 0
-const ImageInternal = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
-
+  PreviewGroup,
   name: 'VcImage',
   inheritAttrs: false,
-  props: imageProps(),
+  props: vcImageProps(),
   emits: ['click', 'error'],
   setup(props, { attrs, slots, emit }) {
     const prefixCls = computed(() => props.prefixCls)
@@ -277,9 +250,3 @@ const ImageInternal = defineComponent({
     }
   },
 })
-ImageInternal.PreviewGroup = PreviewGroup
-
-export default ImageInternal as typeof ImageInternal & {
-  readonly PreviewGroup: typeof PreviewGroup
-}
-export * from './types'

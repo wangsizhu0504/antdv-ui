@@ -11,41 +11,10 @@ import { useMergedState } from '../../hooks'
 import { mergeDefaultValue } from './utils'
 import Preview from './Preview'
 import { createGroupProviderContext } from './hooks/useContext'
-import type { PreviewProps } from './Preview'
-import type { ComputedRef, PropType, Ref } from 'vue'
-import type { ImagePreviewType } from './types'
 
-export interface PreviewGroupPreview
-  extends Omit<ImagePreviewType, 'icons' | 'mask' | 'maskClassName'> {
-  /**
-   * If Preview the show img index
-   * @default 0
-   */
-  current?: number
-}
-
-export interface GroupConsumerProps {
-  previewPrefixCls?: string
-  icons?: PreviewProps['icons']
-  preview?: boolean | PreviewGroupPreview
-}
-
-interface PreviewUrl {
-  url: string
-  canPreview: boolean
-}
-
-export interface GroupConsumerValue extends GroupConsumerProps {
-  isPreviewGroup?: Ref<boolean | undefined>
-  previewUrls: ComputedRef<Map<number, string>>
-  setPreviewUrls: (id: number, url: string, canPreview?: boolean) => void
-  current: Ref<number>
-  setCurrent: (current: number) => void
-  setShowPreview: (isShowPreview: boolean) => void
-  setMousePosition: (mousePosition: null | { x: number, y: number }) => void
-  registerImage: (id: number, url: string, canPreview?: boolean) => () => void
-  rootClassName?: string
-}
+import type { VcPreviewProps } from './props'
+import type { PropType } from 'vue'
+import type { ImagePreviewType, VcPreviewGroupPreview, VcPreviewUrl } from './types'
 
 export const imageGroupProps = () => ({
   previewPrefixCls: String,
@@ -54,7 +23,7 @@ export const imageGroupProps = () => ({
     default: true as boolean | ImagePreviewType,
   },
   icons: {
-    type: Object as PropType<PreviewProps['icons']>,
+    type: Object as PropType<VcPreviewProps['icons']>,
     default: () => ({}),
   },
 })
@@ -64,7 +33,7 @@ const Group = defineComponent({
   inheritAttrs: false,
   props: imageGroupProps(),
   setup(props, { slots }) {
-    const preview = computed<PreviewGroupPreview>(() => {
+    const preview = computed<VcPreviewGroupPreview>(() => {
       const defaultValues = {
         visible: undefined,
         onVisibleChange: () => {},
@@ -75,7 +44,7 @@ const Group = defineComponent({
         ? mergeDefaultValue(props.preview, defaultValues)
         : defaultValues
     })
-    const previewUrls = reactive<Map<number, PreviewUrl>>(new Map())
+    const previewUrls = reactive<Map<number, VcPreviewUrl>>(new Map())
     const current = ref<number>()
 
     const previewVisible = computed(() => preview.value.visible)

@@ -2,16 +2,14 @@ import { computed, defineComponent, ref, watchEffect } from 'vue'
 import warning from '../_util/warning'
 import classNames from '../_util/classNames'
 import SlickCarousel from '../vc-slick'
-import { withInstall } from '../_util/type'
 import { useConfigInject } from '../hooks'
 import useStyle from './style'
 import { carouselProps } from './props'
-import type { CarouselRef } from './type'
+import type { CarouselRef } from './types'
 import type { CSSProperties } from 'vue'
 
 // Carousel
-
-const Carousel = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ACarousel',
   inheritAttrs: false,
@@ -96,5 +94,3 @@ const Carousel = defineComponent({
     }
   },
 })
-
-export default withInstall(Carousel)

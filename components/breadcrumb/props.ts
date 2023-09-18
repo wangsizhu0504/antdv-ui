@@ -2,7 +2,7 @@ import PropTypes from '../_util/vue-types'
 import { type VueNode, eventType, objectType } from '../_util/type'
 
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { Route } from './type'
+import type { Route } from './types'
 import type { MouseEventHandler } from '../_util/EventInterface'
 import type { DropdownProps } from '../dropdown'
 

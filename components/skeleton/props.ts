@@ -7,7 +7,7 @@ export const skeletonElementProps = () => ({
   active: { type: Boolean, default: undefined },
 })
 
-export const avatarProps = () => {
+export const skeletonAvatarProps = () => {
   return {
     ...skeletonElementProps(),
     shape: String as PropType<'circle' | 'square'>,
@@ -69,4 +69,4 @@ export type SkeletonElementProps = Partial<ExtractPropTypes<ReturnType<typeof sk
 
 export type SkeletonButtonProps = Partial<ExtractPropTypes<ReturnType<typeof skeletonButtonProps>>>
 
-export type SkeletonAvatarProps = Partial<ExtractPropTypes<ReturnType<typeof avatarProps>>>
+export type SkeletonAvatarProps = Partial<ExtractPropTypes<ReturnType<typeof skeletonAvatarProps>>>

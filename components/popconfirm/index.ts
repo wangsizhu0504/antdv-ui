@@ -5,4 +5,4 @@ export const Popconfirm = withInstall(popconfirm)
 export default Popconfirm
 
 export * from './props'
-export * from './type'
+export * from './types'

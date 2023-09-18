@@ -5,7 +5,7 @@ import {
 } from '../vc-cascader'
 import cascader from './Cascader'
 
-const ACascader = withInstall<
+export const Cascader = withInstall<
   typeof cascader & {
     SHOW_PARENT: typeof SHOW_PARENT
     SHOW_CHILD: typeof SHOW_CHILD
@@ -17,7 +17,7 @@ const ACascader = withInstall<
   } as any),
 )
 
-export * from './type'
+export * from './types'
 export * from './props'
 
-export default ACascader
+export default Cascader

@@ -1,6 +1,6 @@
 import { vNodeType } from '../_util/type'
 import PropTypes from '../_util/vue-types'
-import type { CardSize, CardTabListType, CardType } from './type'
+import type { CardSize, CardTabListType, CardType } from './types'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 export const cardProps = () => ({

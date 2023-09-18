@@ -103,7 +103,7 @@ export function uploadListProps<T = any>() {
   }
 }
 
-export const listItemProps = () => {
+export const uploadListItemProps = () => {
   return {
     prefixCls: String,
     locale: objectType<UploadLocale>(undefined as UploadLocale),
@@ -137,7 +137,8 @@ export const listItemProps = () => {
   }
 }
 
-export type ListItemProps = Partial<ExtractPropTypes<ReturnType<typeof listItemProps>>>
 export type UploadListProps = Partial<ExtractPropTypes<ReturnType<typeof uploadListProps>>>
+
+export type UploadListItemProps = Partial<ExtractPropTypes<ReturnType<typeof uploadListItemProps>>>
 
 export type UploadProps = Partial<ExtractPropTypes<ReturnType<typeof uploadProps>>>

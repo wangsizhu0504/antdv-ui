@@ -23,8 +23,8 @@ import Title from './title.vue';
 import Colors from './colors.vue';
 import Link from './link.vue';
 import Ribbon from './ribbon.vue';
-import CN from './../index.zh-CN.md';
-import US from './../index.en_US.md';
+import CN from '../index.zh-CN.md';
+import US from '../index.en-US.md';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -46,10 +46,10 @@ export default defineComponent({
 </script>
 
 <style>
-[id^='components-badge-demo-'] .ant-badge:not(.ant-badge-not-a-wrapper) {
+[id^='site-example-badge-demo-'] .ant-badge:not(.ant-badge-not-a-wrapper) {
   margin-right: 20px;
 }
-[id^='components-badge-demo-'] .head-example {
+[id^='site-example-badge-demo-'] .head-example {
   width: 42px;
   height: 42px;
   border-radius: 4px;
@@ -57,7 +57,7 @@ export default defineComponent({
   display: inline-block;
   vertical-align: middle;
 }
-[id^='components-badge-demo-'] .ant-badge-not-a-wrapper:not(.ant-badge-status) {
+[id^='site-example-badge-demo-'] .ant-badge-not-a-wrapper:not(.ant-badge-status) {
   margin-right: 8px;
 }
 </style>

@@ -4,7 +4,7 @@ import { defaultValidateMessages } from './utils/messages'
 import type { ComputedRef, InjectionKey } from 'vue'
 import type { ValidateMessages } from '../locale'
 import type { ColProps } from '../grid'
-import type { FieldExpose, FormLabelAlign, RequiredMark, Rule, ValidateStatus } from './type'
+import type { FieldExpose, FormLabelAlign, RequiredMark, Rule, ValidateStatus } from './types'
 
 export interface FormContextProps {
   model?: ComputedRef<any>

@@ -3,11 +3,11 @@ import { generate } from '@ant-design/colors'
 import { updateCSS } from '../vc-util/Dom/dynamicCSS'
 import warning from '../_util/warning'
 import canUseDom from '../_util/canUseDom'
-import type { Theme } from './type'
+import type { ThemeColor } from './types'
 
 const dynamicStyleMark = `-ant-${Date.now()}-${Math.random()}`
 
-export function getStyle(globalPrefixCls: string, theme: Theme) {
+export function getStyle(globalPrefixCls: string, theme: ThemeColor) {
   const variables: Record<string, string> = {}
 
   const formatColor = (color: TinyColor, updater?: (cloneColor: TinyColor) => TinyColor) => {
@@ -86,7 +86,7 @@ export function getStyle(globalPrefixCls: string, theme: Theme) {
   `.trim()
 }
 
-export function registerTheme(globalPrefixCls: string, theme: Theme) {
+export function registerTheme(globalPrefixCls: string, theme: ThemeColor) {
   const style = getStyle(globalPrefixCls, theme)
 
   if (canUseDom())

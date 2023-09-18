@@ -1,5 +1,5 @@
 import type { MentionsProps } from './Mentions'
-import type { OptionProps } from './Option'
+import type { VcMentionOptionProps } from './props'
 
 /**
  * Cut input selection into 2 part and return text before selection start
@@ -115,7 +115,7 @@ export function validateSearch(text: string, props: MentionsProps) {
   return !split || !text.includes(split)
 }
 
-export function filterOption(input: string, { value = '' }: OptionProps): boolean {
+export function filterOption(input: string, { value = '' }: VcMentionOptionProps): boolean {
   const lowerCase = input.toLowerCase()
   return value.toLowerCase().includes(lowerCase)
 }

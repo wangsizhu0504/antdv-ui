@@ -50,7 +50,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-[id^='components-alert-demo'] .ant-alert {
+[id^='site-example-alert-demo'] .ant-alert {
   margin-bottom: 16px;
 }
 </style>

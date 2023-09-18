@@ -1,8 +1,8 @@
 import { defineComponent } from 'vue'
-import type { ColumnProps } from './types'
+import type { TableColumnProps } from './types'
 import type { CustomSlotsType } from '../_util/type'
 
-export default defineComponent<ColumnProps>({
+export default defineComponent<TableColumnProps>({
   name: 'ATableColumn',
   slots: Object as CustomSlotsType<{
     title?: any

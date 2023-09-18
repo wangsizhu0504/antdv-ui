@@ -20,7 +20,7 @@ import AnchorLink from './AnchorLink'
 import useStyle from './style'
 import useProvideAnchor from './context'
 import { anchorProps } from './props'
-import type { AnchorContainer, AnchorLinkItemProps, AnchorState, Section } from './type'
+import type { AnchorContainer, AnchorLinkItemProps, AnchorState, Section } from './types'
 
 function getDefaultContainer() {
   return window

@@ -47,7 +47,8 @@ Custom each Segmented Item.
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { UserOutlined } from '@ant-design/icons-vue';
-import ASegmented from '@antdv/ui/es/segmented/src/segmented';
+import {Segmented} from '@antdv/ui';
+const ASegmented = Segmented;
 const data = ref([
   {
     value: 'user1',

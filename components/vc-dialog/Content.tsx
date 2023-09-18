@@ -1,23 +1,19 @@
 import { computed, defineComponent, nextTick, ref } from 'vue'
 import Transition, { getTransitionProps } from '../_util/components/transition'
-import dialogPropTypes from './IDialogPropTypes'
+
 import { offset } from './util'
+import { vcDialogProps } from './props'
 import type { MouseEventHandler } from '../_util/EventInterface'
 import type { CSSProperties, PropType } from 'vue'
 
 const sentinelStyle = { width: 0, height: 0, overflow: 'hidden', outline: 'none' }
 
-export interface ContentRef {
-  focus: () => void
-  changeActive: (next: boolean) => void
-}
 export default defineComponent({
   compatConfig: { MODE: 3 },
-
-  name: 'DialogContent',
+  name: 'VcDialogContent',
   inheritAttrs: false,
   props: {
-    ...dialogPropTypes(),
+    ...vcDialogProps(),
     motionName: String,
     ariaId: String,
     onVisibleChanged: Function as PropType<(visible: boolean) => void>,

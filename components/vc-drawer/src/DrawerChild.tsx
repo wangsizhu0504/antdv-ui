@@ -11,18 +11,15 @@ import classnames from '../../_util/classNames'
 import KeyCode from '../../_util/KeyCode'
 import omit from '../../_util/omit'
 import { dataToArray, windowIsUndefined } from './utils'
-import { drawerChildProps } from './IDrawerPropTypes'
+import { vcDrawerChildProps } from './props'
 
 const currentDrawer: Record<string, boolean> = {}
 
-export interface scrollLockOptions {
-  container: HTMLElement
-}
-
-const DrawerChild = defineComponent({
+export default defineComponent({
   compatConfig: { MODE: 3 },
   inheritAttrs: false,
-  props: drawerChildProps(),
+  name: 'VcDrawerChild',
+  props: vcDrawerChildProps(),
   emits: ['close', 'handleClick', 'change'],
   setup(props, { emit, slots }) {
     const contentWrapper = shallowRef<HTMLElement>()
@@ -248,5 +245,3 @@ const DrawerChild = defineComponent({
     }
   },
 })
-
-export default DrawerChild

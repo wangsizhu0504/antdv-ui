@@ -1,4 +1,4 @@
-import AutoComplete from './AutoComplete'
+import autoComplete from './AutoComplete'
 
 import Option from './Option'
 import OptGroup from './OptGroup'
@@ -7,18 +7,18 @@ import type { App } from 'vue'
 export const AutoCompleteOptGroup = OptGroup
 export const AutoCompleteOption = Option
 
-const AAutoComplete = Object.assign(AutoComplete, {
+export const AutoComplete = Object.assign(autoComplete, {
   Option,
   OptGroup,
   install(app: App) {
-    app.component(AutoComplete.name, AutoComplete)
+    app.component(autoComplete.name, autoComplete)
     app.component(Option.displayName, Option)
     app.component(OptGroup.displayName, OptGroup)
     return app
   },
 })
 
-export * from './type'
-export * from './props'
+export default AutoComplete
 
-export default AAutoComplete
+export * from './types'
+export * from './props'

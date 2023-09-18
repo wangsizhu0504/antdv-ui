@@ -1,23 +1,24 @@
-import Button from './Button'
-import ButtonGroup from './ButtonGroup'
+import button from './Button'
+import buttonGroup from './ButtonGroup'
 import type { App, Plugin } from 'vue'
+
+export const ButtonGroup = buttonGroup
+
+export const Button = Object.assign(button, {
+  Group: buttonGroup,
+  install(app: App) {
+    app.component(button.name, button)
+    app.component(buttonGroup.name, buttonGroup)
+    return app
+  },
+})
+
+/* istanbul ignore next */
+
+export default Button as typeof Button & Plugin & {
+  readonly Group: typeof ButtonGroup
+}
 
 export * from './props'
 export * from './type'
 export * from './utils'
-
-const AntdButton = Button
-AntdButton.Group = ButtonGroup
-
-/* istanbul ignore next */
-Button.install = function (app: App) {
-  app.component(AntdButton.name, AntdButton)
-  app.component(AntdButton.Group.name, AntdButton.Group)
-  return app
-}
-
-export { ButtonGroup }
-
-export default AntdButton as typeof AntdButton & Plugin & {
-  readonly Group: typeof ButtonGroup
-}

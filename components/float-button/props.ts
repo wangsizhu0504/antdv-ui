@@ -2,7 +2,7 @@ import { booleanType, functionType, objectType, stringType } from '../_util/type
 import PropTypes from '../_util/vue-types'
 import type { ExtractPropTypes } from 'vue'
 import type { MouseEventHandler } from '../_util/EventInterface'
-import type { FloatButtonBadgeProps, FloatButtonGroupTrigger, FloatButtonShape, FloatButtonType } from './type'
+import type { FloatButtonBadgeProps, FloatButtonGroupTrigger, FloatButtonShape, FloatButtonType } from './types'
 
 export const floatButtonProps = () => {
   return {

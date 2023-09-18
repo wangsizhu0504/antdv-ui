@@ -2,15 +2,15 @@ import { computed, defineComponent, reactive, watch, watchEffect } from 'vue'
 
 import defaultLocale from '../locale/lang/en_US'
 import { createTheme } from '../cssinjs'
-import LocaleProvider, { ANT_MARK } from '../locale-provider'
+import LocaleProvider from '../locale-provider'
 
 import LocaleReceiver from '../locale-provider/LocaleReceiver'
 
 import message from '../message'
-import notification from '../notification'
+import { notification } from '../notification'
 import defaultSeedToken from '../theme/themes/seed'
 import { DesignTokenProvider } from '../theme/internal'
-import { defaultIconPrefixCls } from '../constant'
+import { ANT_MARK, defaultIconPrefixCls } from '../constant'
 import { getGlobalIconPrefixCls, getGlobalPrefixCls, globalConfigForApi } from './config'
 import defaultRenderEmpty from './renderEmpty'
 import { useProviderDisabled } from './DisabledContext'
@@ -28,7 +28,7 @@ import { type ConfigProviderProps, configProviderProps } from './props'
 
 import type { Locale, ValidateMessages } from '../locale'
 import type { WatchStopHandle } from 'vue'
-import type { ConfigProviderInnerProps, GlobalConfigProviderProps, RenderEmptyHandler, Theme } from './type'
+import type { ConfigProviderInnerProps, GlobalConfigProviderProps, RenderEmptyHandler, ThemeColor } from './types'
 
 const globalConfigBySet = reactive<ConfigProviderProps>({}) // 权重最大
 
@@ -66,7 +66,7 @@ watchEffect(() => {
 
 let stopWatchEffect: WatchStopHandle
 
-export const setGlobalConfig = (params: GlobalConfigProviderProps & { theme?: Theme }) => {
+export const setGlobalConfig = (params: GlobalConfigProviderProps & { theme?: ThemeColor }) => {
   if (stopWatchEffect)
     stopWatchEffect()
 

@@ -6,7 +6,7 @@ import useStyle from './style'
 import MotionThumb from './MotionThumb'
 import SegmentedOption from './Options'
 import { segmentedProps } from './props'
-import type { SegmentedBaseOption, SegmentedOptionType, SegmentedValue } from './type'
+import type { SegmentedBaseOption, SegmentedOptionType, SegmentedValue } from './types'
 import type { CustomSlotsType } from '../_util/type'
 import type { ChangeEvent } from '../_util/EventInterface'
 

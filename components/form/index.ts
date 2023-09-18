@@ -1,29 +1,30 @@
-import Form from './Form'
-import FormItem from './FormItem'
-import useForm from './useForm'
-import FormItemRest, { useInjectFormItemContext } from './FormItemContext'
+import form from './Form'
+import formItem from './FormItem'
+import formItemRest, { useInjectFormItemContext } from './FormItemContext'
+import type useForm from './useForm'
 import type { App, Plugin } from 'vue'
 
-export * from './type'
-export * from './props'
+export const FormItem = formItem
+export const FormItemRest = formItemRest
+export { useInjectFormItemContext }
 
-const AntdForm = Form
-AntdForm.useInjectFormItemContext = useInjectFormItemContext
-AntdForm.ItemRest = FormItemRest
-/* istanbul ignore next */
-AntdForm.install = function (app: App) {
-  app.component(AntdForm.name, AntdForm)
-  app.component(AntdForm.Item.name, AntdForm.Item)
-  app.component(AntdForm.ItemRest.name, AntdForm.ItemRest)
-  return app
-}
+export const Form = Object.assign(form, {
+  ItemRest: formItemRest,
+  useInjectFormItemContext,
+  install(app: App) {
+    app.component(form.name, form)
+    app.component(formItem.name, formItem)
+    app.component(formItemRest.name, formItemRest)
+    return app
+  },
+})
 
-export { FormItem, FormItemRest, useForm, useInjectFormItemContext }
-
-export default AntdForm as typeof AntdForm &
-Plugin & {
+export default Form as typeof Form & Plugin & {
   readonly Item: typeof Form.Item
   readonly ItemRest: typeof FormItemRest
   readonly useForm: typeof useForm
   readonly useInjectFormItemContext: typeof useInjectFormItemContext
 }
+
+export * from './types'
+export * from './props'

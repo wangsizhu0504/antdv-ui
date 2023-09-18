@@ -11,7 +11,7 @@ import {
 import antInputDirective from '../_util/antInputDirective'
 import omit from '../_util/omit'
 import classNames from '../_util/classNames'
-import { inputProps } from './inputProps'
+
 import {
   fixControlledValue,
   hasAddon,
@@ -20,15 +20,17 @@ import {
   triggerFocus,
 } from './utils/commonUtils'
 import BaseInput from './BaseInput'
-import type { InputFocusOptions } from './utils/commonUtils'
-import type { InputProps } from './inputProps'
+import { vcInputProps } from './props'
+import type { InputFocusOptions } from './types'
+import type { VcInputProps } from './props'
+
 import type { ChangeEvent, FocusEventHandler } from '../_util/EventInterface'
 import type { VNode } from 'vue'
 
 export default defineComponent({
-  name: 'VCInput',
+  name: 'VcInput',
   inheritAttrs: false,
-  props: inputProps(),
+  props: vcInputProps(),
   setup(props, { slots, attrs, expose, emit }) {
     const stateValue = shallowRef(props.value === undefined ? props.defaultValue : props.value)
     const focused = shallowRef(false)
@@ -144,7 +146,7 @@ export default defineComponent({
         allowClear,
         type = 'text',
       } = props
-      const otherProps = omit(props as InputProps & { placeholder: string }, [
+      const otherProps = omit(props as VcInputProps & { placeholder: string }, [
         'prefixCls',
         'onPressEnter',
         'addonBefore',

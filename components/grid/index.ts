@@ -1,5 +1,9 @@
-export { default as Row } from './Row'
-export { default as Col } from './Col'
+import { withInstall } from '../_util/type'
+import row from './Row'
+import col from './Col'
 
-export * from './type'
+export const Col = withInstall(col)
+export const Row = withInstall(row)
+
+export * from './types'
 export * from './props'

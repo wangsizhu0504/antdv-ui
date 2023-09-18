@@ -11,7 +11,7 @@ import {
 import devWarning from '../vc-util/devWarning'
 import { createContext } from '../hooks'
 import type { ComputedRef, ConcreteComponent, InjectionKey } from 'vue'
-import type { ValidateStatus } from './type'
+import type { ValidateStatus } from './types'
 
 export interface FormItemContext {
   id: ComputedRef<string>

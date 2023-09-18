@@ -1,6 +1,6 @@
 import { inject, provide } from 'vue'
 import { AvatarContextKey } from '../constant'
-import type { AvatarContextType } from './type'
+import type { AvatarContextType } from './types'
 
 export const useAvatarInjectContext = () => {
   return inject(AvatarContextKey, {})

@@ -1,12 +1,7 @@
+import { withInstall } from '../_util/type'
 import result from './Result'
-import type { App } from 'vue'
 
-export const Result = Object.assign(result, {
-  install(app: App) {
-    app.component(Result.name, Result)
-    return app
-  },
-})
+export const Result = withInstall(result)
 
 export default Result
 

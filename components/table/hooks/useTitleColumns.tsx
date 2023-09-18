@@ -1,9 +1,9 @@
 import { renderColumnTitle } from '../util'
 import type { Ref } from 'vue'
-import type { ColumnTitleProps, ColumnsType, TransformColumns } from '../types'
+import type { ColumnTitleProps, TableColumnsType, TransformColumns } from '../types'
 
 function fillTitle<RecordType>(
-  columns: ColumnsType<RecordType>,
+  columns: TableColumnsType<RecordType>,
   columnTitleProps: ColumnTitleProps<RecordType>,
 ) {
   return columns.map((column) => {
@@ -21,7 +21,7 @@ function fillTitle<RecordType>(
 export default function useTitleColumns<RecordType>(
   columnTitleProps: Ref<ColumnTitleProps<RecordType>>,
 ): [TransformColumns<RecordType>] {
-  const filledColumns = (columns: ColumnsType<RecordType>) =>
+  const filledColumns = (columns: TableColumnsType<RecordType>) =>
     fillTitle(columns, columnTitleProps.value)
 
   return [filledColumns]

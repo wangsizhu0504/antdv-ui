@@ -1,4 +1,5 @@
 import { filterEmpty } from '../../_util/props-util'
+import type { InputFocusOptions } from '../types'
 
 const isValid = (value: any) => {
   return (
@@ -71,9 +72,6 @@ export function resolveOnChange(
     return
   }
   onChange(event)
-}
-export interface InputFocusOptions extends FocusOptions {
-  cursor?: 'start' | 'end' | 'all'
 }
 
 export function triggerFocus(

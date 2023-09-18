@@ -1,5 +1,5 @@
 import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'
-import type { AffixEmits, AffixExpose } from './type'
+import type { AffixEmits, AffixExpose } from './types'
 
 function getDefaultTarget() {
   return typeof window !== 'undefined' ? window : null

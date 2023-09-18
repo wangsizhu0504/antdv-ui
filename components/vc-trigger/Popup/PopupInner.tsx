@@ -17,7 +17,7 @@ import { innerProps } from './interface'
 import useStretchStyle from './useStretchStyle'
 import useVisibleStatus from './useVisibleStatus'
 import type { PopupInnerProps } from './interface'
-import type { RefAlign } from '../../vc-align/Align'
+import type { RefAlign } from '../../vc-align'
 import type { AlignType } from '../interface'
 import type { CSSProperties } from 'vue'
 

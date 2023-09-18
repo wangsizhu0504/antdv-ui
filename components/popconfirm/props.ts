@@ -1,4 +1,4 @@
-import abstractTooltipProps from '../tooltip/abstractTooltipProps'
+import { abstractTooltipProps } from '../tooltip'
 import { anyType, objectType, stringType } from '../_util/type'
 import type { ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
 import type { ButtonProps, LegacyButtonType } from '../button'

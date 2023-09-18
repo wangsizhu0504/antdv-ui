@@ -1,26 +1,25 @@
 import { TreeNode as VcTreeNode } from '../vc-tree'
-import Tree from './Tree'
-import DirectoryTree from './DirectoryTree'
+import ATree from './Tree'
+import ADirectoryTree from './DirectoryTree'
 import type { App } from 'vue'
 
 /* istanbul ignore next */
 
-const TreeNode = VcTreeNode
+export const TreeNode = VcTreeNode
+export const DirectoryTree = ADirectoryTree
 
-export { DirectoryTree, TreeNode }
-
-export default Object.assign(Tree, {
+export const Tree = Object.assign(ATree, {
   DirectoryTree,
   TreeNode,
   install: (app: App) => {
-    app.component(Tree.name, Tree)
+    app.component(ATree.name, ATree)
     app.component(TreeNode.name, TreeNode)
     app.component(DirectoryTree.name, DirectoryTree)
     return app
   },
 })
 
-export type { EventDataNode, DataNode } from '../vc-tree/interface'
+export default Tree
 
 export * from './types'
 export * from './props'

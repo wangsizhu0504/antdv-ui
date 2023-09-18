@@ -1,5 +1,5 @@
 import PropTypes from '../_util/vue-types'
-import type { AvatarSize } from './type'
+import type { AvatarSize } from './types'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 export const avatarProps = () => ({

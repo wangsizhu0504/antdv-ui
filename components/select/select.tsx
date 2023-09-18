@@ -9,7 +9,7 @@ import { getTransitionDirection, getTransitionName } from '../_util/components/t
 import { initDefaultProps } from '../_util/props-util'
 
 import { getMergedStatus, getStatusClassNames } from '../_util/statusUtils'
-import { useCompactItemContext } from '../space/Compact'
+import { useCompactItemContext } from '../space'
 
 // CSSINJS
 import { useInjectDisabled } from '../config-provider/DisabledContext'

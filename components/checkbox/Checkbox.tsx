@@ -13,13 +13,13 @@ import { flattenChildren } from '../_util/props-util'
 import warning from '../_util/warning'
 import { FormItemInputContext, useInjectFormItemContext } from '../form/FormItemContext'
 import { useConfigInject } from '../hooks'
-import { CheckboxGroupContextKey } from './type'
+import { CheckboxGroupContextKey } from './types'
 
 // CSSINJS
 import useStyle from './style'
 import { checkboxProps } from './props'
 import type { CheckboxProps } from './props'
-import type { CheckboxChangeEvent } from './type'
+import type { CheckboxChangeEvent } from './types'
 import type { EventHandler } from '../_util/EventInterface'
 import type { CSSProperties } from 'vue'
 

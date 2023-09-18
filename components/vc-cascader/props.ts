@@ -2,11 +2,13 @@ import { omit } from 'lodash-es'
 import { objectType } from '../_util/type'
 import PropTypes from '../_util/vue-types'
 import { baseSelectPropsWithoutPrivate } from '../vc-select/BaseSelect'
-import { SHOW_PARENT } from './Cascader'
-import type { Placement } from '../vc-select/BaseSelect'
-import type { VueNode } from '../_util/type'
 
-import type { BaseOptionType, DefaultOptionType, FieldNames, OnMultipleChange, OnSingleChange, ShowCheckedStrategy, ShowSearchType, ValueType } from './types'
+import { SHOW_PARENT } from './utils/commonUtil'
+import type { MouseEventHandler } from '../_util/EventInterface'
+import type { Placement } from '../vc-select/BaseSelect'
+import type { Key, VueNode } from '../_util/type'
+
+import type { BaseOptionType, DefaultOptionType, FieldNames, OnMultipleChange, OnSingleChange, ShowCheckedStrategy, ShowSearchType, SingleValueType, ValueType } from './types'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
 function baseCascaderProps<OptionType extends BaseOptionType = DefaultOptionType>() {
@@ -108,3 +110,28 @@ export function vcCascaderProps<OptionType extends BaseOptionType = DefaultOptio
 
 export type CascaderProps = Partial<ExtractPropTypes<ReturnType<typeof vcCascaderProps>>>
 export type SingleCascaderProps = Partial<ExtractPropTypes<ReturnType<typeof singleCascaderProps>>>
+
+export interface CheckboxProps {
+  prefixCls: string
+  checked?: boolean
+  halfChecked?: boolean
+  disabled?: boolean
+  onClick?: MouseEventHandler
+}
+
+export interface ColumnProps {
+  prefixCls: string
+  multiple?: boolean
+  options: DefaultOptionType[]
+  /** Current Column opened item key */
+  activeValue?: Key
+  /** The value path before current column */
+  prevValuePath: Key[]
+  onToggleOpen: (open: boolean) => void
+  onSelect: (valuePath: SingleValueType, leaf: boolean) => void
+  onActive: (valuePath: SingleValueType) => void
+  checkedSet: Set<Key>
+  halfCheckedSet: Set<Key>
+  loadingKeys: Key[]
+  isSelectable: (option: DefaultOptionType) => boolean
+}

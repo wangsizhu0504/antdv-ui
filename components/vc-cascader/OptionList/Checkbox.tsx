@@ -1,13 +1,5 @@
 import { useInjectCascader } from '../context'
-import type { MouseEventHandler } from '../../_util/EventInterface'
-
-export interface CheckboxProps {
-  prefixCls: string
-  checked?: boolean
-  halfChecked?: boolean
-  disabled?: boolean
-  onClick?: MouseEventHandler
-}
+import type { CheckboxProps } from '../props'
 
 export default function Checkbox({
   prefixCls,

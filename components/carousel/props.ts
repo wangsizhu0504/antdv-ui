@@ -1,6 +1,6 @@
 import PropTypes from '../_util/vue-types'
 import { booleanType, functionType, stringType } from '../_util/type'
-import type { CarouselEffect, DotPosition, LazyLoadTypes, SwipeDirection } from './type'
+import type { CarouselEffect, DotPosition, LazyLoadTypes, SwipeDirection } from './types'
 import type { ExtractPropTypes } from 'vue'
 
 export const carouselProps = () => ({

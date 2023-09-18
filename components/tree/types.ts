@@ -66,3 +66,5 @@ export interface AntTreeNodeDropEvent {
   dropToGap?: boolean
   event: MouseEvent
 }
+
+export type { EventDataNode, DataNode } from '../vc-tree/interface'

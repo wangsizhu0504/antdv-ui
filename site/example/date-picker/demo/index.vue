@@ -66,7 +66,7 @@ export default defineComponent({
 });
 </script>
 <style>
-#components-date-picker-demo .ant-calendar-picker {
+#site-example-date-picker-demo .ant-calendar-picker {
   margin: 0 8px 12px 0;
 }
 </style>

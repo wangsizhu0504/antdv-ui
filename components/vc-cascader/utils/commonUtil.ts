@@ -3,7 +3,7 @@ import type {
   FieldNames,
   InternalFieldNames,
   SingleValueType,
-} from '../Cascader'
+} from '../types'
 
 export const VALUE_SPLIT = '__RC_CASCADER_SPLIT__'
 export const SHOW_PARENT = 'SHOW_PARENT'

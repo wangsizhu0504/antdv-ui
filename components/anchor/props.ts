@@ -2,7 +2,7 @@ import { anyType, arrayType, objectType } from '../_util/type'
 import PropTypes from '../_util/vue-types'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { VueNode } from '../_util/type'
-import type { AnchorContainer, AnchorDirection, AnchorLinkItemProps } from './type'
+import type { AnchorContainer, AnchorDirection, AnchorLinkItemProps } from './types'
 
 export const anchorProps = {
   prefixCls: String,

@@ -2,9 +2,9 @@ import { objectType } from '../_util/type'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { Locale, ValidateMessages } from '../locale'
 
-import type { TransformCellTextProps } from '../table/interface'
-import type { RequiredMark } from '../form/Form'
-import type { CSPConfig, RenderEmptyHandler, SizeType, ThemeConfig } from './type'
+import type { TransformCellTextProps } from '../table'
+import type { RequiredMark } from '../form'
+import type { CSPConfig, RenderEmptyHandler, SizeType, ThemeConfig } from './types'
 
 export const configProviderProps = () => ({
   iconPrefixCls: String,

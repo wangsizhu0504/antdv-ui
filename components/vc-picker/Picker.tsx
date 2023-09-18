@@ -38,7 +38,7 @@ import type {
 } from './PickerPanel'
 import type { ChangeEvent, FocusEventHandler, MouseEventHandler } from '../_util/EventInterface'
 import type { VueNode } from '../_util/type'
-import type { AlignType } from '../vc-align/interface'
+import type { AlignType } from '../vc-align'
 import type { CSSProperties, HTMLAttributes, Ref } from 'vue'
 
 export interface PickerRefConfig {

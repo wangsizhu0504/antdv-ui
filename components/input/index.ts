@@ -1,39 +1,36 @@
-import Input from './Input'
-import Group from './Group'
-import Search from './Search'
-import TextArea from './TextArea'
-import Password from './Password'
+import input from './Input'
+import group from './Group'
+import search from './Search'
+import textArea from './TextArea'
+import password from './Password'
 import type { App, Plugin } from 'vue'
 
-const AntdInput = Input
-AntdInput.Group = Group
-AntdInput.Search = Search
-AntdInput.TextArea = TextArea
-AntdInput.Password = Password
+export const InputGroup = group
+export const InputSearch = search
+export const Textarea = textArea
+export const InputPassword = password
 
-/* istanbul ignore next */
-AntdInput.install = function (app: App) {
-  app.component(AntdInput.name, AntdInput)
-  app.component(AntdInput.Group.name, AntdInput.Group)
-  app.component(AntdInput.Search.name, AntdInput.Search)
-  app.component(AntdInput.TextArea.name, AntdInput.TextArea)
-  app.component(AntdInput.Password.name, AntdInput.Password)
-  return app
+export const Input = Object.assign(input, {
+  Group: group,
+  Search: search,
+  TextArea: textArea,
+  Password: password,
+  install(app: App) {
+    app.component(input.name, input)
+    app.component(group.name, group)
+    app.component(search.name, search)
+    app.component(textArea.name, textArea)
+    app.component(password.name, password)
+    return app
+  },
+})
+
+export default Input as typeof Input & Plugin & {
+  readonly Group: typeof group
+  readonly Search: typeof search
+  readonly TextArea: typeof textArea
+  readonly Password: typeof password
 }
 
-export {
-  Group as InputGroup,
-  Search as InputSearch,
-  TextArea as Textarea,
-  Password as InputPassword,
-}
-
-export default AntdInput as typeof AntdInput & Plugin & {
-  readonly Group: typeof Group
-  readonly Search: typeof Search
-  readonly TextArea: typeof TextArea
-  readonly Password: typeof Password
-}
-
-export * from './type'
+export * from './types'
 export * from './props'

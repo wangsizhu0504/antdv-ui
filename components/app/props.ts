@@ -1,5 +1,5 @@
 import { objectType } from '../_util/type'
-import type { AppConfig } from './type'
+import type { AppConfig } from './types'
 import type { ExtractPropTypes } from 'vue'
 
 export const appProps = () => {

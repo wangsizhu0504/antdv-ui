@@ -14,7 +14,7 @@ import useActive from './useActive'
 import Column, { FIX_LABEL } from './Column'
 import type { Key } from '../../_util/type'
 import type { EventHandler } from '../../_util/EventInterface'
-import type { DefaultOptionType, SingleValueType } from '../Cascader'
+import type { DefaultOptionType, SingleValueType } from '../types'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

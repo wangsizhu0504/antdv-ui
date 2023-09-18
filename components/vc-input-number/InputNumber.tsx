@@ -9,9 +9,9 @@ import { getNumberPrecision, num2str, validateNumber } from './utils/numberUtil'
 import StepHandler from './StepHandler'
 import getMiniDecimal, { toFixed } from './utils/MiniDecimal'
 import { vcInputNumberProps } from './props'
+import type { DecimalClass, ValueType } from './types'
 import type { ChangeEvent, KeyboardEventHandler } from '../_util/EventInterface'
 import type { HTMLAttributes } from 'vue'
-import type { DecimalClass, ValueType } from './utils/MiniDecimal'
 import type { CustomSlotsType } from '../_util/type'
 
 /**

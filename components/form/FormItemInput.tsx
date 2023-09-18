@@ -4,7 +4,8 @@ import classNames from '../_util/classNames'
 import Col from '../grid/Col'
 import ErrorList from './ErrorList'
 import { useInjectForm, useProvideForm, useProvideFormItemPrefix } from './context'
-import type { ColProps } from '../grid/Col'
+import type { ColProps } from '../grid'
+
 import type { CustomSlotsType } from '../_util/type'
 import type { HTMLAttributes } from 'vue'
 

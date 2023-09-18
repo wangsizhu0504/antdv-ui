@@ -7,4 +7,4 @@ export default LocaleProvider
 
 export * from './useLocaleReceiver'
 export * from './props'
-export * from './type'
+export * from './types'

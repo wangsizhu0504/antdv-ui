@@ -1,4 +1,4 @@
-import type { SHOW_CHILD, SHOW_PARENT } from './Cascader'
+import type { SHOW_CHILD, SHOW_PARENT } from './utils/commonUtil'
 
 export interface ShowSearchType<OptionType extends BaseOptionType = DefaultOptionType> {
   filter?: (inputValue: string, options: OptionType[], fieldNames: FieldNames) => boolean

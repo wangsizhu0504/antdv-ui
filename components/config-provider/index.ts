@@ -1,16 +1,14 @@
-import ConfigProvider from './ConfigProvider'
+import { withInstall } from '../_util/type'
+import configProvider from './ConfigProvider'
 import type { setGlobalConfig } from './ConfigProvider'
-import type { App, Plugin } from 'vue'
+import type { Plugin } from 'vue'
 
-export * from './props'
-export * from './type'
-export * from './config'
+export const ConfigProvider = withInstall(configProvider)
 
-const AConfigProvider = ConfigProvider
-AConfigProvider.install = function (app: App) {
-  app.component(ConfigProvider.name, ConfigProvider)
-}
-
-export default AConfigProvider as typeof ConfigProvider & Plugin & {
+export default ConfigProvider as typeof ConfigProvider & Plugin & {
   readonly config: typeof setGlobalConfig
 }
+
+export * from './props'
+export * from './types'
+export * from './config'

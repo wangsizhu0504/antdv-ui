@@ -17,7 +17,7 @@ Support 6 placements.
 </docs>
 
 <template>
-  <div id="components-dropdown-demo-placement">
+  <div id="site-example-dropdown-demo-placement">
     <template v-for="(placement, index) in placements" :key="placement">
       <a-dropdown :placement="placement">
         <a-button>{{ placement }}</a-button>

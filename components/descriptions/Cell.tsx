@@ -1,4 +1,4 @@
-import type { CellProps } from './type'
+import type { CellProps } from './types'
 import type { FunctionalComponent } from 'vue'
 
 function notEmpty(val: any) {

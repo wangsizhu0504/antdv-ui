@@ -4,15 +4,14 @@ import Dropdown from '../dropdown'
 import Menu from '../menu'
 import Checkbox from '../checkbox'
 import { groupKeysMap } from '../_util/transKeys'
-import { arrayType, booleanType, stringType } from '../_util/type'
 import { filterEmpty, isValidElement, splitAttrs } from '../_util/props-util'
-import PropTypes from '../_util/vue-types'
 import classNames from '../_util/classNames'
 import ListBody from './ListBody'
 import Search from './search'
+import { transferListProps } from './props'
 import type { RadioChangeEvent } from '../radio'
-import type { CSSProperties, ExtractPropTypes, SlotsType, VNode, VNodeTypes } from 'vue'
-import type { TransferDirection, TransferItem } from './index'
+import type { CSSProperties, SlotsType, VNode, VNodeTypes } from 'vue'
+import type { TransferItem } from './types'
 
 const defaultRender = () => null
 
@@ -27,41 +26,6 @@ function isRenderResultPlainObject(result: VNode) {
 function getEnabledItemKeys<RecordType extends TransferItem>(items: RecordType[]) {
   return items.filter(data => !data.disabled).map(data => data.key)
 }
-
-export const transferListProps = {
-  prefixCls: String,
-  dataSource: arrayType<TransferItem[]>([]),
-  filter: String,
-  filterOption: Function,
-  checkedKeys: PropTypes.arrayOf(PropTypes.string),
-  handleFilter: Function,
-  handleClear: Function,
-  renderItem: Function,
-  showSearch: booleanType(false),
-  searchPlaceholder: String,
-  notFoundContent: PropTypes.any,
-  itemUnit: String,
-  itemsUnit: String,
-  renderList: PropTypes.any,
-  disabled: booleanType(),
-  direction: stringType<TransferDirection>(),
-  showSelectAll: booleanType(),
-  remove: String,
-  selectAll: String,
-  selectCurrent: String,
-  selectInvert: String,
-  removeAll: String,
-  removeCurrent: String,
-  selectAllLabel: PropTypes.any,
-  showRemove: booleanType(),
-  pagination: PropTypes.any,
-  onItemSelect: Function,
-  onItemSelectAll: Function,
-  onItemRemove: Function,
-  onScroll: Function,
-}
-
-export type TransferListProps = Partial<ExtractPropTypes<typeof transferListProps>>
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

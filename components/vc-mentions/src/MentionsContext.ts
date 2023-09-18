@@ -1,10 +1,10 @@
 import type { InjectionKey, Ref } from 'vue'
-import type { OptionProps } from './Option'
+import type { VcMentionOptionProps } from './props'
 
 export interface MentionsContext {
   activeIndex: Ref<number>
   setActiveIndex?: (index: number) => void
-  selectOption?: (option: OptionProps) => void
+  selectOption?: (option: VcMentionOptionProps) => void
   onFocus?: EventListener
   onBlur?: EventListener
   loading?: Ref<boolean>

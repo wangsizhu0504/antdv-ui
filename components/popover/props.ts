@@ -1,4 +1,4 @@
-import abstractTooltipProps from '../tooltip/abstractTooltipProps'
+import { abstractTooltipProps } from '../tooltip'
 import { anyType } from '../_util/type'
 import type { ExtractPropTypes } from 'vue'
 

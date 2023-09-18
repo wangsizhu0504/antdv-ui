@@ -6,7 +6,7 @@ import { getTransitionProps } from '../../_util/components/transition'
 import { useInjectForceRender, useInjectMenu } from './hooks/useMenuContext'
 import { placements, placementsRtl } from './placements'
 import type { CustomSlotsType } from '../../_util/type'
-import type { MenuMode } from './interface'
+import type { MenuMode } from './types'
 import type { PropType } from 'vue'
 
 const popupPlacementMap = {
@@ -15,6 +15,7 @@ const popupPlacementMap = {
   'vertical-left': 'rightTop',
   'vertical-right': 'leftTop',
 }
+
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'PopupTrigger',
