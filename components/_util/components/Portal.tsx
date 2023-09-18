@@ -1,4 +1,12 @@
-import { Teleport, defineComponent, nextTick, onBeforeMount, onUpdated, watch } from 'vue'
+import {
+  Teleport,
+  defineComponent,
+  nextTick,
+  onBeforeMount,
+  onMounted,
+  onUpdated,
+  watch,
+} from 'vue'
 import { useInjectPortal } from '../../vc-trigger/context'
 
 export default defineComponent({
@@ -19,6 +27,8 @@ export default defineComponent({
     const { shouldRender } = useInjectPortal()
     onBeforeMount(() => {
       isSSR = false
+    })
+    onMounted(() => {
       if (shouldRender.value)
         container = props.getContainer()
     })

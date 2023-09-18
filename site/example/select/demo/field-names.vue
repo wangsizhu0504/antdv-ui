@@ -42,7 +42,7 @@ const options = ref<SelectProps['options']>([
     children: [
       {
         id: 'small jack',
-        name: 'samll Jack',
+        name: 'small Jack',
       },
     ],
   },
