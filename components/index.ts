@@ -5,7 +5,7 @@ import type { App } from 'vue'
 
 export * from './components'
 export * from './cssinjs'
-export { useConfigContextInject as useAntdContext } from './config-provider/context'
+export { useConfigContextInject as useAntdContext } from './config-provider'
 export { default as theme } from './theme'
 export const install = function (app: App) {
   Object.keys(components).forEach((key) => {

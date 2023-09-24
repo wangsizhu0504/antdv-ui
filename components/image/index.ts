@@ -1,21 +1,21 @@
-import image from './Image'
-import previewGroup from './PreviewGroup'
+import AImage from './src/Image'
+import AImagePreviewGroup from './src/PreviewGroup'
 import type { App, Plugin } from 'vue'
 
-export const ImagePreviewGroup = previewGroup
+export const ImagePreviewGroup = AImagePreviewGroup
 
-export const Image = Object.assign(image, {
-  PreviewGroup: previewGroup,
+export const Image = Object.assign(AImage, {
+  PreviewGroup: AImagePreviewGroup,
   install(app: App) {
-    app.component(image.name, image)
-    app.component(previewGroup.name, previewGroup)
+    app.component(AImage.name, AImage)
+    app.component(AImagePreviewGroup.name, AImagePreviewGroup)
     return app
   },
 })
 
 export default Image as typeof Image & Plugin & {
-  readonly PreviewGroup: typeof previewGroup
+  readonly PreviewGroup: typeof AImagePreviewGroup
 }
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'

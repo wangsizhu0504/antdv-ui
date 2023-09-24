@@ -1,12 +1,12 @@
 import {
+  PropTypes,
   booleanType,
   functionType,
   objectType,
   someType,
   stringType,
-} from '../../_util/type'
-import PropTypes from '../../_util/vue-types'
-import type { FocusEventHandler, MouseEventHandler } from '../../_util/EventInterface'
+} from '../../_utils/vue'
+import type { FocusEventHandler, Key, MouseEventHandler } from '../../_utils/types'
 import type {
   AnimatedConfig, EditableConfig,
   OnTabScroll,
@@ -17,7 +17,6 @@ import type {
   TabsType,
 } from './types'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { Key } from '../../_util/type'
 
 import type { SizeType } from '../../config-provider'
 

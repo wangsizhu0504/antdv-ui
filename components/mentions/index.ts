@@ -1,15 +1,15 @@
-import mentions from './Mentions'
-import mentionsOption from './Options'
-import { getMentions } from './util'
+import AMentions from './src/Mentions'
+import AMentionsOption from './src/Option'
+import { getMentions } from './src/util'
 import type { App } from 'vue'
 
-export const MentionsOption = mentionsOption
+export const MentionsOption = AMentionsOption
 
-export const Mentions = Object.assign(mentions, {
-  Option: mentionsOption,
+export const Mentions = Object.assign(AMentions, {
+  Option: AMentionsOption,
   getMentions,
   install: (app: App) => {
-    app.component(mentions.name, mentions)
+    app.component(AMentions.name, AMentions)
     app.component(MentionsOption.name, MentionsOption)
     return app
   },
@@ -17,5 +17,5 @@ export const Mentions = Object.assign(mentions, {
 
 export default Mentions
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'

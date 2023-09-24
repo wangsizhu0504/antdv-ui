@@ -1,9 +1,9 @@
 import { computed, defineComponent } from 'vue'
-import { getPropsSlot } from '../../_util/props-util'
+import { getPropsSlot } from '../../_utils/vue'
 import { useInjectMenu } from './hooks/useMenuContext'
 import { useMeasure } from './hooks/useKeyPath'
 import { menuItemGroupProps } from './props'
-import type { CustomSlotsType } from '../../_util/type'
+import type { CustomSlotsType } from '../../_utils/types'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

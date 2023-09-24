@@ -1,9 +1,9 @@
-import { withInstall } from '../_util/type'
-import progress from './Progress'
+import { withInstall } from '../_utils/vue'
+import AProgress from './src/Progress'
 
-export const Progress = withInstall(progress)
+export const Progress = withInstall(AProgress)
 
 export default Progress
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

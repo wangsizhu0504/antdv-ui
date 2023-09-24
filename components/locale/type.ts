@@ -1,4 +1,4 @@
-import type { VueNode } from '../_util/type'
+import type { VueNode } from '../_utils/types'
 
 export interface PaginationLocale {
   items_per_page?: string

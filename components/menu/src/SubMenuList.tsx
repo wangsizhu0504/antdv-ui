@@ -1,4 +1,4 @@
-import classNames from '../../_util/classNames'
+import { classNames } from '../../_utils/dom'
 import { useInjectMenu } from './hooks/useMenuContext'
 import type { FunctionalComponent } from 'vue'
 

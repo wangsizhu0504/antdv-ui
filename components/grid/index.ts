@@ -1,4 +1,4 @@
-import { withInstall } from '../_util/type'
+import { withInstall } from '../_utils/vue'
 import row from './Row'
 import col from './Col'
 

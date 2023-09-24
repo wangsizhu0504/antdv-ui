@@ -1,8 +1,8 @@
-import { withInstall } from '../_util/type'
-import empty from './Empty'
+import { withInstall } from '../_utils/vue'
+import AEmpty from './src/Empty'
 
-export const Empty = withInstall(empty)
+export const Empty = withInstall(AEmpty)
 
 export default Empty
 
-export * from './props'
+export * from './src/props'

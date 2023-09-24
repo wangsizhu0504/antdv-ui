@@ -1,26 +1,26 @@
-import card from './Card'
-import meta from './Meta'
-import grid from './Grid'
+import ACard from './src/Card'
+import ACardMeta from './src/Meta'
+import ACardGrid from './src/Grid'
 import type { App, Plugin } from 'vue'
 
-export const CardMeta = meta
-export const CardGrid = grid
+export const CardMeta = ACardMeta
+export const CardGrid = ACardGrid
 
-export const Card = Object.assign(card, {
-  Meta: meta,
-  Grid: grid,
+export const Card = Object.assign(ACard, {
+  Meta: ACardMeta,
+  Grid: ACardGrid,
   install(app: App) {
-    app.component(card.name, card)
-    app.component(meta.name, meta)
-    app.component(grid.name, grid)
+    app.component(ACard.name, ACard)
+    app.component(ACardMeta.name, ACardMeta)
+    app.component(ACardGrid.name, ACardGrid)
     return app
   },
 })
 
 export default Card as typeof Card & Plugin & {
-  readonly Meta: typeof meta
-  readonly Grid: typeof grid
+  readonly Meta: typeof ACardMeta
+  readonly Grid: typeof ACardGrid
 }
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'

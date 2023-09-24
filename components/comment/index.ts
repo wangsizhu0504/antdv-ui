@@ -1,8 +1,8 @@
-import { withInstall } from '../_util/type'
-import comment from './Comment'
+import { withInstall } from '../_utils/vue'
+import AComment from './src/Comment'
 
-export const Comment = withInstall(comment)
+export const Comment = withInstall(AComment)
 
 export default Comment
 
-export * from './props'
+export * from './src/props'

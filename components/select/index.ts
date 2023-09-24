@@ -1,5 +1,5 @@
-import { OptGroup, Option } from '../vc-select'
-import ASelect from './select'
+import { OptGroup, Option } from '../_internal/select'
+import ASelect from './src/Select'
 import type { App, Plugin } from 'vue'
 
 export const SelectOption = Option
@@ -21,5 +21,5 @@ export default Select as typeof Select & Plugin & {
   readonly SECRET_COMBOBOX_MODE_DO_NOT_USE: 'SECRET_COMBOBOX_MODE_DO_NOT_USE'
 }
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'

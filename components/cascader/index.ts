@@ -1,23 +1,23 @@
-import { withInstall } from '../_util/type'
+import { withInstall } from '../_utils/vue'
 import {
   SHOW_CHILD,
   SHOW_PARENT,
-} from '../vc-cascader'
-import cascader from './Cascader'
+} from './src/utils/commonUtil'
+import ACascader from './src/Cascader'
 
 export const Cascader = withInstall<
-  typeof cascader & {
+  typeof ACascader & {
     SHOW_PARENT: typeof SHOW_PARENT
     SHOW_CHILD: typeof SHOW_CHILD
   }
 >(
-  Object.assign(cascader, {
+  Object.assign(ACascader, {
     SHOW_CHILD,
     SHOW_PARENT,
   } as any),
 )
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'
 
 export default Cascader

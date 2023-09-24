@@ -1,14 +1,15 @@
 import { computed, defineComponent, onMounted, watch } from 'vue'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
+import KeyCode from '../../../_utils/keyCode'
+import { classNames } from '../../../_utils/dom'
 import Menu, { MenuItem } from '../../../menu'
-import Dropdown from '../../../vc-dropdown'
-import KeyCode from '../../../_util/KeyCode'
-import classNames from '../../../_util/classNames'
+import InnerDropdown from '../../../dropdown/src/InnerDropdown'
+
 import { useState } from '../../../hooks'
 import { useProvideOverride } from '../../../menu/src/OverrideContext'
 import { operationNodeProps } from '../props'
 import AddButton from './AddButton'
-import type { CustomSlotsType, Key } from '../../../_util/type'
+import type { CustomSlotsType, Key } from '../../../_utils/types'
 import type { CSSProperties } from 'vue'
 
 export default defineComponent({
@@ -138,7 +139,7 @@ export default defineComponent({
       const moreNode = mobile
         ? null
         : (
-        <Dropdown
+        <InnerDropdown
           prefixCls={dropdownPrefix}
           trigger={['hover']}
           visible={open.value}
@@ -211,7 +212,7 @@ export default defineComponent({
               </button>
             ),
           }}
-        ></Dropdown>
+        ></InnerDropdown>
           )
 
       return (

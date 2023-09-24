@@ -1,9 +1,9 @@
-import { withInstall } from '../_util/type'
-import result from './Result'
+import { withInstall } from '../_utils/vue'
+import AResult from './src/Result'
 
-export const Result = withInstall(result)
+export const Result = withInstall(AResult)
 
 export default Result
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

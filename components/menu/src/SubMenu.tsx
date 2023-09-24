@@ -6,12 +6,13 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { getPropsSlot, isValidElement } from '../../_util/props-util'
-import classNames from '../../_util/classNames'
-import { cloneElement } from '../../_util/vnode'
-import Overflow from '../../vc-overflow'
-import devWarning from '../../vc-util/devWarning'
-import { isValid } from '../../_util/is'
+
+import Overflow from '../../_internal/overflow'
+import { getPropsSlot } from '../../_utils/vue'
+import { isValid, isValidElement } from '../../_utils/is'
+import { warning } from '../../_utils/log'
+
+import { classNames, cloneElement } from '../../_utils/dom'
 import {
   MenuContextProvider,
   useInjectForceRender,
@@ -25,7 +26,7 @@ import PopupTrigger from './PopupTrigger'
 import SubMenuList from './SubMenuList'
 import InlineSubMenuList from './InlineSubMenuList'
 import { subMenuProps } from './props'
-import type { CustomSlotsType } from '../../_util/type'
+import type { CustomSlotsType } from '../../_utils/types'
 
 let indexGuid = 0
 
@@ -46,7 +47,7 @@ export default defineComponent({
     const instance = getCurrentInstance()
     const vnodeKey
       = typeof instance.vnode.key === 'symbol' ? String(instance.vnode.key) : instance.vnode.key
-    devWarning(
+    warning(
       typeof instance.vnode.key !== 'symbol',
       'SubMenu',
       `SubMenu \`:key="${String(vnodeKey)}"\` not support Symbol type`,

@@ -1,9 +1,9 @@
-import { withInstall } from '../_util/type'
-import segmented from './Segmented'
+import { withInstall } from '../_utils/vue'
+import ASegmented from './src/Segmented'
 
-export const Segmented = withInstall(segmented)
+export const Segmented = withInstall(ASegmented)
 
 export default Segmented
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

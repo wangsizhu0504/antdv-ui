@@ -1,6 +1,6 @@
-import { withInstall } from '../_util/type'
-import transfer from './Transfer'
+import { withInstall } from '../_utils/vue'
+import ATransfer from './src/Transfer'
 
-export const Transfer = withInstall(transfer)
+export const Transfer = withInstall(ATransfer)
 
 export default Transfer

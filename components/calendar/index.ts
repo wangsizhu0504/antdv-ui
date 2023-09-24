@@ -1,12 +1,12 @@
-import generateConfig from '../vc-picker/generate/dayjs'
-import { withInstall } from '../_util/type'
+import generateConfig from '../_internal/picker/generate/dayjs'
+import { withInstall } from '../_utils/vue'
 
-import generateCalendar from './generateCalendar'
+import generateCalendar from './src/generateCalendar'
 
-const calendar = generateCalendar(generateConfig)
+const ACalendar = generateCalendar(generateConfig)
 
-export const Calendar = withInstall(calendar)
+export const Calendar = withInstall(ACalendar)
 
-export * from './types'
+export * from './src/types'
 
 export default Calendar

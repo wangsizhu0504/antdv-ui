@@ -6,17 +6,20 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { flattenChildren, isValidElement } from '../../_util/props-util'
-import { cloneElement } from '../../_util/vnode'
+
 import Tooltip from '../../tooltip'
-import KeyCode from '../../_util/KeyCode'
-import Overflow from '../../vc-overflow'
-import devWarning from '../../vc-util/devWarning'
+
+import Overflow from '../../_internal/overflow'
+import { flattenChildren } from '../../_utils/vue'
+import { isValidElement } from '../../_utils/is'
+import { warning } from '../../_utils/log'
+import KeyCode from '../../_utils/keyCode'
+import { cloneElement } from '../../_utils/dom'
 import { useInjectFirstLevel, useInjectMenu } from './hooks/useMenuContext'
 import { useInjectKeyPath, useMeasure } from './hooks/useKeyPath'
 import useDirectionStyle from './hooks/useDirectionStyle'
 import { menuItemProps } from './props'
-import type { CustomSlotsType } from '../../_util/type'
+import type { CustomSlotsType } from '../../_utils/types'
 import type { MenuInfo } from './types'
 
 let indexGuid = 0
@@ -37,7 +40,7 @@ export default defineComponent({
     const isMeasure = useMeasure()
     const key
       = typeof instance.vnode.key === 'symbol' ? String(instance.vnode.key) : instance.vnode.key
-    devWarning(
+    warning(
       typeof instance.vnode.key !== 'symbol',
       'MenuItem',
       `MenuItem \`:key="${String(key)}"\` not support Symbol type`,

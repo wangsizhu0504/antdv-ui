@@ -1,13 +1,14 @@
 // Accessibility https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
 import { defineComponent } from 'vue'
+import { omit } from 'lodash-es'
 import {
-  camelize,
   flattenChildren,
   initDefaultProps,
-  isValidElement,
-} from '../../_util/props-util'
+} from '../../_utils/vue'
 
-import omit from '../../_util/omit'
+import { camelize } from '../../_utils/util'
+import { isValidElement } from '../../_utils/is'
+
 import { tabsProps } from './props'
 import InternalTabs from './InternalTabs'
 import type { Tab } from './types'

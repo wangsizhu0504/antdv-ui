@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import canUseDom from '../_util/canUseDom'
+import { canUseDom } from '../_utils/dom'
 
 let uuid = 0
 

@@ -1,4 +1,4 @@
-import { someType } from '../_util/type'
+import { someType } from '../_utils/vue'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { ColSize, Gutter, ResponsiveAligns, ResponsiveJustify } from './types'
 import type { RowAligns, RowJustify } from '../constant'

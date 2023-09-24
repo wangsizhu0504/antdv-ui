@@ -2,7 +2,7 @@ import hash from '@emotion/hash'
 import unitless from '@emotion/unitless'
 import { compile, serialize, stringify } from 'stylis'
 import { computed } from 'vue'
-import { removeCSS, updateCSS } from '../../../vc-util/Dom/dynamicCSS'
+import { removeCSS, updateCSS } from '../../../_utils/dom/dynamicCSS'
 import { contentQuotesLinter, hashedAnimationLinter } from '../../linters'
 import {
   ATTR_CACHE_PATH,
@@ -13,14 +13,14 @@ import {
 } from '../../StyleContext'
 import { supportLayer } from '../../util'
 import useGlobalCache from '../useGlobalCache'
-import canUseDom from '../../../_util/canUseDom'
+import { canUseDom } from '../../../_utils/dom'
 import {
   ATTR_CACHE_MAP,
   existPath,
   getStyleAndHash,
   serialize as serializeCacheMap,
 } from './cacheMapUtil'
-import type { VueNode } from '../../../_util/type'
+import type { VueNode } from '../../../_utils/types'
 import type * as CSS from 'csstype'
 
 import type { Linter, Theme, Transformer } from '../..'

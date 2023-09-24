@@ -36,3 +36,5 @@ export default Menu as typeof Menu & Plugin & {
 
 export * from './src/props'
 export * from './src/types'
+
+export * from './src/OverrideContext'

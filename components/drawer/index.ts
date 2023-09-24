@@ -1,9 +1,9 @@
-import { withInstall } from '../_util/type'
-import drawer from './Drawer'
+import { withInstall } from '../_utils/vue'
+import ADrawer from './src/Drawer'
 
-export const Drawer = withInstall(drawer)
+export const Drawer = withInstall(ADrawer)
 
 export default Drawer
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

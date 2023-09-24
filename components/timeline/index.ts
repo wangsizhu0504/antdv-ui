@@ -1,13 +1,13 @@
-import timeline from './Timeline'
-import timelineItem from './TimelineItem'
+import ATimeline from './src/Timeline'
+import ATimelineItem from './src/TimelineItem'
 import type { App, Plugin } from 'vue'
 
-export const TimelineItem = timelineItem
-export const Timeline = Object.assign(timeline, {
-  Item: timelineItem,
+export const TimelineItem = ATimelineItem
+export const Timeline = Object.assign(ATimeline, {
+  Item: ATimelineItem,
   install(app: App) {
-    app.component(timeline.name, timeline)
-    app.component(timelineItem.name, timelineItem)
+    app.component(ATimeline.name, ATimeline)
+    app.component(ATimelineItem.name, ATimelineItem)
     return app
   },
 })
@@ -16,4 +16,4 @@ export default Timeline as typeof Timeline & Plugin & {
   readonly Item: typeof TimelineItem
 }
 
-export * from './props'
+export * from './src/props'

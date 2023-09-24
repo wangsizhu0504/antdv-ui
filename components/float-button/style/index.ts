@@ -3,7 +3,7 @@ import { genComponentStyleHook, mergeToken } from '../../theme'
 import { initFadeMotion } from '../../style/motion/fade'
 import { resetComponent } from '../../style'
 import { initMotion } from '../../style/motion/motion'
-import getOffset from '../util'
+import getOffset from '../src/util'
 import type { FullToken, GenerateStyle } from '../../theme'
 import type { CSSObject } from '../../cssinjs'
 

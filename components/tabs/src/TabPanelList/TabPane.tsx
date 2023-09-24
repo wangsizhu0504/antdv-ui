@@ -1,7 +1,7 @@
 import { computed, defineComponent, ref, watch } from 'vue'
 import { tabPaneProps } from '../props'
+import type { CustomSlotsType } from '../../../_utils/types'
 import type { CSSProperties } from 'vue'
-import type { CustomSlotsType } from '../../../_util/type'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

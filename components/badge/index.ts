@@ -1,14 +1,14 @@
-import badge from './Badge'
-import badgeRibbon from './Ribbon'
+import ABadge from './src/Badge'
+import ABadgeRibbon from './src/Ribbon'
 import type { App, Plugin } from 'vue'
 
-export const BadgeRibbon = badgeRibbon
+export const BadgeRibbon = ABadgeRibbon
 
-export const Badge = Object.assign(badge, {
-  Ribbon: badgeRibbon,
+export const Badge = Object.assign(ABadge, {
+  Ribbon: ABadgeRibbon,
   install(app: App) {
-    app.component(badge.name, badge)
-    app.component(badgeRibbon.name, badgeRibbon)
+    app.component(ABadge.name, ABadge)
+    app.component(ABadgeRibbon.name, ABadgeRibbon)
     return app
   },
 })
@@ -17,5 +17,5 @@ export default Badge as typeof Badge & Plugin & {
   readonly Ribbon: typeof BadgeRibbon
 }
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

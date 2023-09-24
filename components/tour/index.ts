@@ -1,8 +1,8 @@
-import { withInstall } from '../_util/type'
-import tour from './Tour'
+import { withInstall } from '../_utils/vue'
+import ATour from './src/Tour'
 
-export const Tour = withInstall(tour)
+export const Tour = withInstall(ATour)
 
 export default Tour
 
-export * from './props'
+export * from './src/props'

@@ -1,9 +1,9 @@
-import { withInstall } from '../_util/type'
-import slider from './Slider'
+import { withInstall } from '../_utils/vue'
+import ASlider from './src/Slider'
 
-export const Slider = withInstall(slider)
+export const Slider = withInstall(ASlider)
 
 export default Slider
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

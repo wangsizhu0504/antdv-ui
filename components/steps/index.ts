@@ -1,5 +1,5 @@
-import steps from './Steps'
-import step from './Step'
+import steps from './src/Steps'
+import step from './src/Step'
 import type { App } from 'vue'
 
 export const Steps = Object.assign(steps, {
@@ -13,4 +13,4 @@ export const Steps = Object.assign(steps, {
 
 export default Steps
 
-export * from './props'
+export * from './src/props'

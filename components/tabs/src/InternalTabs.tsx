@@ -3,27 +3,26 @@ import { computed, defineComponent, onMounted, watchEffect } from 'vue'
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue'
 import { pick } from 'lodash-es'
 import useStyle from '../style'
-import {
-  initDefaultProps,
-} from '../../_util/props-util'
-import useConfigInject from '../../config-provider/hooks/useConfigInject'
+
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useMergedState, useState } from '../../hooks'
-import isMobile from '../../vc-util/isMobile'
-import classNames from '../../_util/classNames'
-import devWarning from '../../vc-util/devWarning'
-import {
-  arrayType,
-} from '../../_util/type'
+
+import { arrayType, initDefaultProps } from '../../_utils/vue'
+import { isMobile } from '../../_utils/is'
+import { warning } from '../../_utils/log'
+
+import { classNames } from '../../_utils/dom'
 import TabNavList from './TabNavList'
 import TabPanelList from './TabPanelList'
 import { useProvideTabs } from './TabContext'
 import { tabsProps } from './props'
+import type { Key } from '../../_utils/types'
 import type {
   AnimatedConfig,
   EditableConfig,
   Tab,
 } from './types'
-import type { Key } from '../../_util/type'
+
 import type { SlotsType } from 'vue'
 
 // Used for accessibility
@@ -55,17 +54,17 @@ export default defineComponent({
   }>,
   // emits: ['tabClick', 'tabScroll', 'change', 'update:activeKey'],
   setup(props, { attrs, slots }) {
-    devWarning(
+    warning(
       !(props.onPrevClick !== undefined) && !(props.onNextClick !== undefined),
       'Tabs',
       '`onPrevClick / @prevClick` and `onNextClick / @nextClick` has been removed. Please use `onTabScroll / @tabScroll` instead.',
     )
-    devWarning(
+    warning(
       !(props.tabBarExtraContent !== undefined),
       'Tabs',
       '`tabBarExtraContent` prop has been removed. Please use `rightExtra` slot instead.',
     )
-    devWarning(
+    warning(
       !(slots.tabBarExtraContent !== undefined),
       'Tabs',
       '`tabBarExtraContent` slot is deprecated. Please use `rightExtra` slot instead.',

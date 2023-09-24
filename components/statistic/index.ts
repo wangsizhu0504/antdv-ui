@@ -1,21 +1,21 @@
-import statistic from './Statistic'
-import countdown from './Countdown'
+import AStatistic from './src/Statistic'
+import ACountdown from './src/Countdown'
 import type { App, Plugin } from 'vue'
 
-export const StatisticCountdown = countdown
+export const StatisticCountdown = ACountdown
 
-export const Statistic = Object.assign(statistic, {
-  Countdown: countdown,
+export const Statistic = Object.assign(AStatistic, {
+  Countdown: ACountdown,
   install(app: App) {
-    app.component(statistic.name, statistic)
-    app.component(countdown.name, countdown)
+    app.component(AStatistic.name, AStatistic)
+    app.component(ACountdown.name, ACountdown)
     return app
   },
 })
 
 export default Statistic as typeof Statistic & Plugin & {
-  readonly Countdown: typeof countdown
+  readonly Countdown: typeof ACountdown
 }
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

@@ -1,5 +1,5 @@
-import PropTypes from '../../_util/vue-types'
-import { objectType } from '../../_util/type'
+import { PropTypes, objectType } from '../../_utils/vue'
+import type { CSSMotionProps, FocusEventHandler, Key, MouseEventHandler } from '../../_utils/types'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type {
   BuiltinPlacements,
@@ -10,9 +10,6 @@ import type {
   SelectEventHandler,
   TriggerSubMenuAction,
 } from './types'
-import type { FocusEventHandler, MouseEventHandler } from '../../_util/EventInterface'
-import type { CSSMotionProps } from '../../_util/components/transition'
-import type { Key } from '../../_util/type'
 
 export const menuDividerProps = () => ({
   prefixCls: String,

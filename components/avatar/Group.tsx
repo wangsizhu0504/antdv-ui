@@ -1,8 +1,9 @@
 import { computed, defineComponent, watchEffect } from 'vue'
 import Popover from '../popover'
-import { cloneElement } from '../_util/vnode'
-import { flattenChildren, getPropsSlot } from '../_util/props-util'
+
 import { useConfigInject } from '../hooks'
+import { flattenChildren, getPropsSlot } from '../_utils/vue'
+import { cloneElement } from '../_utils/dom'
 import Avatar from './Avatar'
 import useStyle from './style'
 import { useAvatarProviderContext } from './AvatarContext'

@@ -1,5 +1,4 @@
-import { computed, defineComponent, ref, watch } from 'vue'
-import Transition from '../../_util/components/transition'
+import { Transition, computed, defineComponent, ref, watch } from 'vue'
 import { MenuContextProvider, useInjectMenu } from './hooks/useMenuContext'
 import SubMenuList from './SubMenuList'
 import type { MenuMode } from './types'

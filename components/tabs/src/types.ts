@@ -1,5 +1,5 @@
 import type { TabPaneProps } from './props'
-import type { Key, VueNode } from '../../_util/type'
+import type { Key, VueNode } from '../../_utils/types'
 
 export type TabSizeMap = Map<Key, { width: number, height: number, left: number, top: number }>
 

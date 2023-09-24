@@ -1,7 +1,7 @@
 import { genPresetColor } from '../../style/presetColor'
 import { resetComponent } from '../../style'
 import { genComponentStyleHook, mergeToken } from '../../theme'
-import { capitalize } from '../../_util/util'
+import { capitalize } from '../../_utils/util'
 import type { FullToken } from '../../theme'
 import type { CSSObject } from '../../cssinjs'
 import type { CSSProperties } from 'vue'

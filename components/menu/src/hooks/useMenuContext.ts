@@ -1,4 +1,6 @@
 import { defineComponent, inject, provide, toRef } from 'vue'
+
+import type { CSSMotionProps, Key } from '../../../_utils/types'
 import type { ComputedRef, InjectionKey, PropType, Ref } from 'vue'
 import type {
   BuiltinPlacements,
@@ -7,8 +9,6 @@ import type {
   MenuTheme,
   TriggerSubMenuAction,
 } from '../types'
-import type { Key } from '../../../_util/type'
-import type { CSSMotionProps } from '../../../_util/components/transition'
 
 export interface StoreMenuInfo {
   eventKey: string

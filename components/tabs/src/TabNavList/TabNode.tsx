@@ -1,6 +1,6 @@
 import { computed, defineComponent, ref } from 'vue'
-import KeyCode from '../../../_util/KeyCode'
-import classNames from '../../../_util/classNames'
+import KeyCode from '../../../_utils/keyCode'
+import { classNames } from '../../../_utils/dom'
 import { tabNodeProps } from '../props'
 import type { CSSProperties } from 'vue'
 

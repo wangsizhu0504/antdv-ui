@@ -1,30 +1,30 @@
-import skeleton from './Skeleton'
-import button from './Button'
-import input from './Input'
-import image from './Image'
-import avatar from './Avatar'
-import title from './Title'
+import ASkeleton from './src/Skeleton'
+import AButton from './src/Button'
+import AInput from './src/Input'
+import AImage from './src/Image'
+import AAvatar from './src/Avatar'
+import ATitle from './src/Title'
 import type { App, Plugin } from 'vue'
 
-export const SkeletonButton = button
-export const SkeletonAvatar = avatar
-export const SkeletonInput = input
-export const SkeletonImage = image
-export const SkeletonTitle = title
+export const SkeletonButton = AButton
+export const SkeletonAvatar = AAvatar
+export const SkeletonInput = AInput
+export const SkeletonImage = AImage
+export const SkeletonTitle = ATitle
 
-export const Skeleton = Object.assign(skeleton, {
+export const Skeleton = Object.assign(ASkeleton, {
   Button: SkeletonButton,
   Avatar: SkeletonAvatar,
   Input: SkeletonInput,
   Image: SkeletonImage,
   Title: SkeletonTitle,
   install(app: App) {
-    app.component(skeleton.name, skeleton)
-    app.component(button.name, button)
-    app.component(avatar.name, avatar)
-    app.component(input.name, input)
-    app.component(image.name, image)
-    app.component(title.name, title)
+    app.component(ASkeleton.name, ASkeleton)
+    app.component(AButton.name, AButton)
+    app.component(AAvatar.name, AAvatar)
+    app.component(AInput.name, AInput)
+    app.component(AImage.name, AImage)
+    app.component(ATitle.name, ATitle)
     return app
   },
 })
@@ -36,4 +36,4 @@ export default Skeleton as typeof Skeleton & Plugin & {
   readonly Image: typeof SkeletonImage
 }
 
-export * from './props'
+export * from './src/props'

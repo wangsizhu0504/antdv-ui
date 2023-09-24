@@ -1,12 +1,12 @@
 import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
-import classNames from '../_util/classNames'
-import useResponsiveObserve, { responsiveArray } from '../_util/responsiveObserve'
-import { useConfigInject, useFlexGapSupport } from '../hooks'
+import { classNames } from '../_utils/dom'
+import { useConfigInject, useFlexGapSupport, useResponsiveObserver } from '../hooks'
+import { responsiveArray } from '../constant'
 import { useRowStyle } from './style'
 import useProvideRow from './context'
 import { rowProps } from './props'
+import type { Breakpoint, ScreenMap } from '../_utils/types'
 import type { Gap } from './types'
-import type { Breakpoint, ScreenMap } from '../_util/responsiveObserve'
 import type { CSSProperties } from 'vue'
 
 export interface rowContextState {
@@ -24,7 +24,7 @@ export default defineComponent({
 
     let token: number
 
-    const responsiveObserve = useResponsiveObserve()
+    const responsiveObserve = useResponsiveObserver()
 
     const screens = ref<ScreenMap>({
       xs: true,

@@ -1,10 +1,10 @@
-import { withInstall } from '../_util/type'
-import localeProvider from './LocaleProvider'
+import { withInstall } from '../_utils/vue'
+import ALocaleProvider from './src/LocaleProvider'
 
-export const LocaleProvider = withInstall(localeProvider)
+export const LocaleProvider = withInstall(ALocaleProvider)
 
 export default LocaleProvider
 
-export * from './useLocaleReceiver'
-export * from './props'
-export * from './types'
+export * from './src/useLocaleReceiver'
+export * from './src/props'
+export * from './src/types'

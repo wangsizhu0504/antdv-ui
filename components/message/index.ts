@@ -1,5 +1,5 @@
-import Message from './Message'
-import useMessage from './useMessage'
+import Message from './src/Message'
+import useMessage from './src/useMessage'
 
 export const message = Object.assign(Message, {
   useMessage,
@@ -7,7 +7,7 @@ export const message = Object.assign(Message, {
 
 export default message
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'
 
-export { default as useMessage } from './useMessage'
+export { default as useMessage } from './src/useMessage'

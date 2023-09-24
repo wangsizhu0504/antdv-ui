@@ -4,20 +4,22 @@ import { enUS } from '../../locale'
 import { getPlaceholder, transPlacement2DropdownAlign } from '../util'
 import useStyle from '../style'
 import { useLocaleReceiver } from '../../locale-provider'
-import RCPicker from '../../vc-picker'
+import RCPicker from '../../_internal/picker'
 import { useConfigInject } from '../../hooks'
-import classNames from '../../_util/classNames'
 
-import devWarning from '../../vc-util/devWarning'
-import { FormItemInputContext, useInjectFormItemContext } from '../../form/FormItemContext'
-import { getMergedStatus, getStatusClassNames } from '../../_util/statusUtils'
+import { warning } from '../../_utils/log'
+import { getMergedStatus, getStatusClassNames } from '../../_utils/status'
+import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
+
 import { useCompactItemContext } from '../../space'
+import { classNames } from '../../_utils/dom'
 import { Components, getTimeProps } from './util'
 import { commonProps, datePickerProps } from './props'
-import type { CustomSlotsType } from '../../_util/type'
+import type { CustomSlotsType } from '../../_utils/types'
+
 import type { CommonProps, DatePickerProps } from './props'
-import type { PanelMode, PickerMode } from '../../vc-picker/interface'
-import type { GenerateConfig } from '../../vc-picker/generate/index'
+import type { PanelMode, PickerMode } from '../../_internal/picker/interface'
+import type { GenerateConfig } from '../../_internal/picker/generate/index'
 
 // CSSINJS
 
@@ -58,24 +60,24 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
         const formItemInputContext = FormItemInputContext.useInject()
         // =================== Warning =====================
         if (process.env.NODE_ENV !== 'production') {
-          devWarning(
+          warning(
             picker !== 'quarter',
             displayName || 'DatePicker',
             `DatePicker.${displayName} is legacy usage. Please use DatePicker[picker='${picker}'] directly.`,
           )
 
-          devWarning(
+          warning(
             !props.dropdownClassName,
             displayName || 'DatePicker',
             '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
           )
-          devWarning(
+          warning(
             !(props.monthCellContentRender || slots.monthCellContentRender),
             displayName || 'DatePicker',
             '`monthCellContentRender` is deprecated. Please use `monthCellRender"` instead.',
           )
 
-          devWarning(
+          warning(
             !attrs.getCalendarContainer,
             displayName || 'DatePicker',
             '`getCalendarContainer` is deprecated. Please use `getPopupContainer"` instead.',

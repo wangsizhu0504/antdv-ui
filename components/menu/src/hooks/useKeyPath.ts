@@ -1,6 +1,6 @@
 import { computed, defineComponent, inject, provide } from 'vue'
 import type { ComputedRef, InjectionKey } from 'vue'
-import type { Key } from '../../../_util/type'
+import type { Key } from '../../../_utils/types'
 import type { StoreMenuInfo } from './useMenuContext'
 
 export const OVERFLOW_KEY = '$$__vc-menu-more__key'

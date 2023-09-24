@@ -1,13 +1,14 @@
-import dropdown from './Dropdown'
-import button from './DropdownButton'
+import ADropdown from './src/Dropdown'
+import ADropdownButton from './src/DropdownButton'
 import type { App, Plugin } from 'vue'
 
-export const DropdownButton = button
-export const Dropdown = Object.assign(dropdown, {
+export const DropdownButton = ADropdownButton
+
+export const Dropdown = Object.assign(ADropdown, {
   Button: DropdownButton,
   install(app: App) {
-    app.component(dropdown.name, dropdown)
-    app.component(button.name, button)
+    app.component(ADropdown.name, ADropdown)
+    app.component(ADropdownButton.name, ADropdownButton)
     return app
   },
 })
@@ -16,5 +17,5 @@ export default Dropdown as typeof Dropdown & Plugin & {
   readonly Button: typeof DropdownButton
 }
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

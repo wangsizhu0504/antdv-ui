@@ -1,6 +1,6 @@
 import { computed, defineComponent } from 'vue'
 import { useConfigInject } from '../hooks'
-import classNames from '../_util/classNames'
+import { classNames } from '../_utils/dom'
 import { sizes } from '../constant'
 import { useInjectRow } from './context'
 import { useColStyle } from './style'

@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { useInjectTabs } from '../TabContext'
-import { cloneElement } from '../../../_util/vnode'
 import { tabPanelListProps } from '../props'
+import { cloneElement } from '../../../_utils/dom'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

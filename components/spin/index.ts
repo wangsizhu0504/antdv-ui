@@ -1,9 +1,9 @@
-import { withInstall } from '../_util/type'
-import spin from './Spin'
+import { withInstall } from '../_utils/vue'
+import ASpin from './src/Spin'
 
-export const Spin = withInstall(spin)
+export const Spin = withInstall(ASpin)
 
 export default Spin
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

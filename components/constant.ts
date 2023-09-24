@@ -1,6 +1,7 @@
+import type { Breakpoint } from './_utils/types'
 import type { SiderCollapsed, SiderHookProvider } from './layout'
-import type { FormContextProps } from './form/context'
-import type { Breakpoint } from './_util/responsiveObserve'
+import type { FormContextProps } from './form/src/context'
+
 import type { ConfigProviderInnerProps, DisabledType, GlobalFormCOntextProps, SizeType } from './config-provider'
 import type { AppConfig } from './app'
 import type { InjectionKey, Ref } from 'vue'
@@ -18,6 +19,10 @@ export const RowJustify = [
   'space-between',
   'space-evenly',
 ] as const
+
+export const skipFlattenKey = Symbol('skipFlatten')
+
+export const responsiveArray: Breakpoint[] = ['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs']
 
 export const AvatarContextKey: InjectionKey<AvatarContextType> = Symbol('AvatarContextKey')
 
@@ -59,3 +64,13 @@ export const ANT_MARK = 'internalMark'
 export const progressStatuses = ['normal', 'exception', 'active', 'success'] as const
 export const progressSize = ['default', 'small'] as const
 export const progressType = ['line', 'circle', 'dashboard'] as const
+
+export const PresetStatusColorTypes = [
+  'success',
+  'processing',
+  'error',
+  'default',
+  'warning',
+] as const
+
+export const InputStatuses = ['warning', 'error', ''] as const

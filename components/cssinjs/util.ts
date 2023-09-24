@@ -1,6 +1,5 @@
 import hash from '@emotion/hash'
-import canUseDom from '../_util/canUseDom'
-import { removeCSS, updateCSS } from '../vc-util/Dom/dynamicCSS'
+import { canUseDom, removeCSS, updateCSS } from '../_utils/dom'
 import { Theme } from './theme'
 import type { App, Plugin } from 'vue'
 

@@ -1,9 +1,9 @@
-import { withInstall } from '../_util/type'
-import affix from './affix'
+import { withInstall } from '../_utils/vue'
+import AAffix from './src/Affix'
 
-export const Affix = withInstall(affix)
+export const Affix = withInstall(AAffix)
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'
 
 export default Affix

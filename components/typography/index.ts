@@ -1,40 +1,40 @@
-import base from './Base'
-import paragraph from './Paragraph'
-import text from './Text'
-import title from './Title'
-import link from './Link'
-import typography from './Typography'
+import ATypographyBase from './src/Base'
+import ATypographyParagraph from './src/Paragraph'
+import ATypographyText from './src/Text'
+import ATypographyTitle from './src/Title'
+import ATypographyLink from './src/Link'
+import typography from './src/Typography'
 import type { App, Plugin } from 'vue'
 
-export const TypographyText = text
-export const TypographyTitle = title
-export const TypographyLink = link
-export const TypographyParagraph = paragraph
-export const TypographyBase = base
+export const TypographyText = ATypographyText
+export const TypographyTitle = ATypographyTitle
+export const TypographyLink = ATypographyLink
+export const TypographyParagraph = ATypographyParagraph
+export const TypographyBase = ATypographyBase
 
 export const Typography = Object.assign(typography, {
-  Text: text,
-  Title: title,
-  Paragraph: paragraph,
-  Link: link,
-  Base: base,
+  Text: ATypographyText,
+  Title: ATypographyTitle,
+  Paragraph: ATypographyParagraph,
+  Link: ATypographyLink,
+  Base: ATypographyBase,
   install(app: App) {
     app.component(typography.name, typography)
-    app.component(text.displayName, text)
-    app.component(title.displayName, title)
-    app.component(paragraph.displayName, paragraph)
-    app.component(link.displayName, link)
+    app.component(ATypographyText.displayName, ATypographyText)
+    app.component(ATypographyTitle.displayName, ATypographyTitle)
+    app.component(ATypographyParagraph.displayName, ATypographyParagraph)
+    app.component(ATypographyLink.displayName, ATypographyLink)
     return app
   },
 })
 
 export default Typography as typeof Typography & Plugin & {
-  readonly Text: typeof text
-  readonly Title: typeof title
-  readonly Paragraph: typeof paragraph
-  readonly Link: typeof link
-  readonly Base: typeof base
+  readonly Text: typeof ATypographyText
+  readonly Title: typeof ATypographyTitle
+  readonly Paragraph: typeof ATypographyParagraph
+  readonly Link: typeof ATypographyLink
+  readonly Base: typeof ATypographyBase
 }
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

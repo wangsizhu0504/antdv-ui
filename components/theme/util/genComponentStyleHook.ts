@@ -3,7 +3,7 @@ import { useStyleRegister } from '../../cssinjs'
 import { useToken } from '../internal'
 
 import { genCommonStyle, genLinkStyle } from '../../style'
-import { useConfigContextInject } from '../../config-provider/context'
+import { useConfigContextInject } from '../../config-provider/src/context'
 import statisticToken, { merge as mergeToken } from './statistic'
 import type { ComponentTokenMap, GlobalToken } from '../interface'
 import type { UseComponentStyleResult } from '..'

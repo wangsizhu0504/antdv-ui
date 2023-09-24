@@ -48,7 +48,7 @@ import type { ComponentToken as TourComponentToken } from '../../tour/style'
 import type { ComponentToken as QRCodeComponentToken } from '../../qrcode/style'
 
 import type { ComponentToken as AppComponentToken } from '../../app/style'
-import type { ComponentToken as WaveToken } from '../../vc-wave/style'
+import type { ComponentToken as WaveToken } from '../../_internal/wave/style'
 
 export interface ComponentTokenMap {
   Affix?: {}

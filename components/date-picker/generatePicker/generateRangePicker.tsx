@@ -1,26 +1,27 @@
 import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled, SwapRightOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent, ref } from 'vue'
+import { omit } from 'lodash-es'
 import { enUS } from '../../locale'
 import { getRangePlaceholder, transPlacement2DropdownAlign } from '../util'
 import useStyle from '../style'
-import { RangePicker as VCRangePicker } from '../../vc-picker'
+import { RangePicker as VCRangePicker } from '../../_internal/picker'
 import { useConfigInject } from '../../hooks'
-import classNames from '../../_util/classNames'
-import { FormItemInputContext, useInjectFormItemContext } from '../../form/FormItemContext'
-import omit from '../../_util/omit'
-import { getMergedStatus, getStatusClassNames } from '../../_util/statusUtils'
+
+import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
 
 // CSSINJS
 import { useCompactItemContext } from '../../space'
-import devWarning from '../../vc-util/devWarning'
+import { warning } from '../../_utils/log'
+import { getMergedStatus, getStatusClassNames } from '../../_utils/status'
 import { useLocaleReceiver } from '../../locale-provider'
+import { classNames } from '../../_utils/dom'
 import { Components, getTimeProps } from './util'
 import { commonProps, rangePickerProps } from './props'
 import type { RangePickerProps } from './type'
 import type { CommonProps } from './props'
-import type { RangePickerSharedProps } from '../../vc-picker/RangePicker'
-import type { PanelMode, RangeValue } from '../../vc-picker/interface'
-import type { GenerateConfig } from '../../vc-picker/generate/index'
+import type { RangePickerSharedProps } from '../../_internal/picker/RangePicker'
+import type { PanelMode, RangeValue } from '../../_internal/picker/interface'
+import type { GenerateConfig } from '../../_internal/picker/generate/index'
 import type { SlotsType } from 'vue'
 
 export default function generateRangePicker<DateType, ExtraProps = {}>(
@@ -55,12 +56,12 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
 
       // =================== Warning =====================
       if (process.env.NODE_ENV !== 'production') {
-        devWarning(
+        warning(
           !props.dropdownClassName,
           'RangePicker',
           '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
         )
-        devWarning(
+        warning(
           !attrs.getCalendarContainer,
           'DatePicker',
           '`getCalendarContainer` is deprecated. Please use `getPopupContainer"` instead.',

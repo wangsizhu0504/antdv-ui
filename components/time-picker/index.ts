@@ -1,5 +1,5 @@
-import TimePicker from './dayjs'
+import TimePicker from './src/dayjs'
 
-export * from './dayjs'
+export * from './src/dayjs'
 
 export default TimePicker

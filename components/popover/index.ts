@@ -1,7 +1,7 @@
-import { withInstall } from '../_util/type'
-import popover from './Popover'
+import { withInstall } from '../_utils/vue'
+import APopover from './src/Popover'
 
-export const Popover = withInstall(popover)
+export const Popover = withInstall(APopover)
 export default Popover
 
-export * from './props'
+export * from './src/props'

@@ -1,4 +1,4 @@
-import warning from '../../_util/warning'
+import { warning } from '../../_utils/log'
 import type { DerivativeFunc, TokenType } from './interface'
 
 let uuid = 0

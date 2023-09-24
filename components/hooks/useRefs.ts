@@ -1,6 +1,6 @@
 import { onBeforeUpdate, ref } from 'vue'
 import type { ComponentPublicInstance, Ref } from 'vue'
-import type { Key } from '../_util/type'
+import type { Key } from '../_utils/types'
 
 type RefType = HTMLElement | ComponentPublicInstance
 export type RefsValue = Map<Key, RefType>

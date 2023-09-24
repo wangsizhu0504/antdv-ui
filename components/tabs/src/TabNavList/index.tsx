@@ -1,20 +1,22 @@
 import { computed, defineComponent, onBeforeUnmount, shallowRef, watch, watchEffect } from 'vue'
 import { pick } from 'lodash-es'
+import { wrapperRaf } from '../../../_utils/vue'
+import { toPx } from '../../../_utils/util'
+import { classNames } from '../../../_utils/dom'
 import { useRafState } from '../hooks/useRaf'
 import useOffsets from '../hooks/useOffsets'
 import { useInjectTabs } from '../TabContext'
 import useTouchMove from '../hooks/useTouchMove'
 import useSyncState from '../hooks/useSyncState'
 import { useRefs, useState } from '../../../hooks'
-import raf from '../../../_util/raf'
-import classNames from '../../../_util/classNames'
-import ResizeObserver from '../../../vc-resize-observer'
-import { toPx } from '../../../_util/util'
+
+import ResizeObserver from '../../../_internal/resize-observer'
 import { tabNavListProps } from '../props'
 import TabNode from './TabNode'
 import OperationNode from './OperationNode'
 import AddButton from './AddButton'
-import type { CustomSlotsType } from '../../../_util/type'
+import type { CustomSlotsType } from '../../../_utils/types'
+
 import type {
   ExtraContentProps,
   TabSizeMap,
@@ -289,7 +291,7 @@ export default defineComponent({
     // Delay set ink style to avoid remove tab blink
     const inkBarRafRef = shallowRef<number>()
     const cleanInkBarRaf = () => {
-      raf.cancel(inkBarRafRef.value)
+      wrapperRaf.cancel(inkBarRafRef.value)
     }
 
     watch([activeTabOffset, tabPositionTopOrBottom, () => props.rtl], () => {
@@ -310,7 +312,7 @@ export default defineComponent({
       }
 
       cleanInkBarRaf()
-      inkBarRafRef.value = raf(() => {
+      inkBarRafRef.value = wrapperRaf(() => {
         setInkStyle(newInkStyle)
       })
     })

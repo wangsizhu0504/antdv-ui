@@ -1,21 +1,21 @@
-import checkableTag from './CheckableTag'
-import tag from './Tag'
+import ACheckableTag from './src/CheckableTag'
+import ATag from './src/Tag'
 import type { App, Plugin } from 'vue'
 
-export const CheckableTag = checkableTag
+export const CheckableTag = ACheckableTag
 
-export const Tag = Object.assign(tag, {
-  CheckableTag,
+export const Tag = Object.assign(ATag, {
+  CheckableTag: ACheckableTag,
   install(app: App) {
-    app.component(Tag.name, Tag)
-    app.component(CheckableTag.name, CheckableTag)
+    app.component(ATag.name, ATag)
+    app.component(ACheckableTag.name, ACheckableTag)
     return app
   },
 
 })
 
 export default Tag as typeof Tag & Plugin & {
-  readonly CheckableTag: typeof CheckableTag
+  readonly CheckableTag: typeof ACheckableTag
 }
 
-export * from './props'
+export * from './src/props'

@@ -1,8 +1,8 @@
-import { withInstall } from '../_util/type'
-import pagination from './Pagination'
+import { withInstall } from '../_utils/vue'
+import pagination from './src/Pagination'
 
 export const Pagination = withInstall(pagination)
 export default Pagination
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

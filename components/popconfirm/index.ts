@@ -1,8 +1,8 @@
-import { withInstall } from '../_util/type'
-import popconfirm from './Popconfirm'
+import { withInstall } from '../_utils/vue'
+import APopconfirm from './src/Popconfirm'
 
-export const Popconfirm = withInstall(popconfirm)
+export const Popconfirm = withInstall(APopconfirm)
 export default Popconfirm
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

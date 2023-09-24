@@ -1,14 +1,13 @@
 import { computed, watchEffect } from 'vue'
-import getScrollBarSize from '../_util/getScrollBarSize'
-import { removeCSS, updateCSS } from '../vc-util/Dom/dynamicCSS'
-import canUseDom from '../_util/canUseDom'
+import { canUseDom, removeCSS, updateCSS } from '../_utils/dom'
+import { getScrollBarSize } from '../_utils/scroll'
 import type { Ref } from 'vue'
 
 const UNIQUE_ID = `vc-util-locker-${Date.now()}`
 
 let uuid = 0
 
-/** ../vc-util/Dom/dynam
+/** ../_utils/dom/dynam
  * Test usage export. Do not use in your production
  */
 export function isBodyOverflowing() {

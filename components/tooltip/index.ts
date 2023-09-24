@@ -1,11 +1,9 @@
-import { withInstall } from '../_util/type'
-import toolTip from './Tooltip'
+import { withInstall } from '../_utils/vue'
+import AToolTip from './src/Tooltip'
 
-export const Tooltip = withInstall(toolTip)
+export const Tooltip = withInstall(AToolTip)
 
 export default Tooltip
 
-export * from './types'
-export * from './props'
-
-export type { AdjustOverflow, PlacementsConfig } from '../_util/placements'
+export * from './src/types'
+export * from './src/props'

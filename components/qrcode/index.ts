@@ -1,9 +1,9 @@
-import { withInstall } from '../_util/type'
-import qrCode from './QRCode'
+import { withInstall } from '../_utils/vue'
+import qrCode from './src/QRCode'
 
 export const QRCode = withInstall(qrCode)
 
 export default QRCode
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'

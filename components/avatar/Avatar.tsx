@@ -1,14 +1,16 @@
 import { computed, defineComponent, nextTick, onMounted, shallowRef, watch } from 'vue'
-import { getPropsSlot } from '../_util/props-util'
+
 import { useBreakpoint, useConfigInject } from '../hooks'
-import { responsiveArray } from '../_util/responsiveObserve'
-import ResizeObserver from '../vc-resize-observer'
-import eagerComputed from '../_util/eagerComputed'
+
+import ResizeObserver from '../_internal/resize-observer'
+
+import { eagerComputed } from '../_utils/eagerComputed'
+import { getPropsSlot } from '../_utils/vue'
+import { responsiveArray } from '../constant'
 import { useAvatarInjectContext } from './AvatarContext'
 import useStyle from './style'
 import { avatarProps } from './props'
-import type { Breakpoint } from '../_util/responsiveObserve'
-import type { CustomSlotsType, VueNode } from '../_util/type'
+import type { Breakpoint, CustomSlotsType, VueNode } from '../_utils/types'
 import type { CSSProperties } from 'vue'
 
 export default defineComponent({

@@ -3,12 +3,12 @@ import type {
   PickerBaseProps as RCPickerBaseProps,
   PickerDateProps as RCPickerDateProps,
   PickerTimeProps as RCPickerTimeProps,
-} from '../../vc-picker/Picker'
+} from '../../_internal/picker/Picker'
 import type {
   RangePickerBaseProps as RCRangePickerBaseProps,
   RangePickerDateProps as RCRangePickerDateProps,
   RangePickerTimeProps as RCRangePickerTimeProps,
-} from '../../vc-picker/RangePicker'
+} from '../../_internal/picker/RangePicker'
 import type { SizeType } from '../../config-provider'
 
 type InjectDefaultProps<Props> = Omit<

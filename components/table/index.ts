@@ -1,13 +1,13 @@
-import { EXPAND_COLUMN, Summary, SummaryCell, SummaryRow } from '../vc-table'
-import ATable from './Table'
-import Column from './Column'
-import ColumnGroup from './ColumnGroup'
+import { EXPAND_COLUMN, Summary, SummaryCell, SummaryRow } from '../_internal/table'
+import ATable from './src/Table'
+import Column from './src/Column'
+import ColumnGroup from './src/ColumnGroup'
 import {
   SELECTION_ALL,
   SELECTION_COLUMN,
   SELECTION_INVERT,
   SELECTION_NONE,
-} from './hooks/useSelection'
+} from './src/hooks/useSelection'
 
 import type { App } from 'vue'
 
@@ -42,5 +42,5 @@ export const Table = Object.assign(ATable, {
   },
 })
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'

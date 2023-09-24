@@ -1,8 +1,8 @@
-import { withInstall } from '../_util/type'
-import rate from './Rate'
+import { withInstall } from '../_utils/vue'
+import ARate from './src/Rate'
 
-export const Rate = withInstall(rate)
+export const Rate = withInstall(ARate)
 
 export default Rate
 
-export * from './props'
+export * from './src/props'

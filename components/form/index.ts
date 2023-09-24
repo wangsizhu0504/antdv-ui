@@ -1,20 +1,20 @@
-import form from './Form'
-import formItem from './FormItem'
-import formItemRest, { useInjectFormItemContext } from './FormItemContext'
-import type useForm from './useForm'
+import AForm from './src/Form'
+import AFormItem from './src/FormItem'
+import AFormItemRest, { useInjectFormItemContext } from './src/FormItemContext'
+import type useForm from './src/useForm'
 import type { App, Plugin } from 'vue'
 
-export const FormItem = formItem
-export const FormItemRest = formItemRest
+export const FormItem = AFormItem
+export const FormItemRest = AFormItemRest
 export { useInjectFormItemContext }
 
-export const Form = Object.assign(form, {
-  ItemRest: formItemRest,
+export const Form = Object.assign(AForm, {
+  ItemRest: AFormItemRest,
   useInjectFormItemContext,
   install(app: App) {
-    app.component(form.name, form)
-    app.component(formItem.name, formItem)
-    app.component(formItemRest.name, formItemRest)
+    app.component(AForm.name, AForm)
+    app.component(AFormItem.name, AFormItem)
+    app.component(AFormItemRest.name, AFormItemRest)
     return app
   },
 })
@@ -26,5 +26,5 @@ export default Form as typeof Form & Plugin & {
   readonly useInjectFormItemContext: typeof useInjectFormItemContext
 }
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'

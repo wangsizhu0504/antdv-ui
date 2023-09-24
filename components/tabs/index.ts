@@ -1,15 +1,15 @@
-import tabs from './src/Tabs'
-import tabPane from './src/TabPanelList/TabPane'
+import ATabs from './src/Tabs'
+import ATabPane from './src/TabPanelList/TabPane'
 
 import type { App, Plugin } from 'vue'
 
-export const TabPane = tabPane
+export const TabPane = ATabPane
 
-export const Tabs = Object.assign(tabs, {
-  TabPane: tabPane,
+export const Tabs = Object.assign(ATabs, {
+  TabPane: ATabPane,
   install(app: App) {
-    app.component(tabs.name, tabs)
-    app.component(tabPane.name, tabPane)
+    app.component(ATabs.name, ATabs)
+    app.component(ATabPane.name, ATabPane)
     return app
   },
 })

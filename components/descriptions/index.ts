@@ -1,14 +1,14 @@
-import descriptions from './Descriptions'
-import item from './Item'
+import ADescriptions from './src/Descriptions'
+import ADescriptionItem from './src/Item'
 import type { App, Plugin } from 'vue'
 
-export const DescriptionsItem = item
+export const DescriptionsItem = ADescriptionItem
 
-export const Descriptions = Object.assign(descriptions, {
-  Item: item,
+export const Descriptions = Object.assign(ADescriptions, {
+  Item: ADescriptionItem,
   install(app: App) {
-    app.component(descriptions.name, descriptions)
-    app.component(item.name, item)
+    app.component(ADescriptions.name, ADescriptions)
+    app.component(ADescriptionItem.name, ADescriptionItem)
     return app
   },
 })
@@ -17,5 +17,5 @@ export default Descriptions as typeof Descriptions & Plugin & {
   readonly Item: typeof DescriptionsItem
 }
 
-export * from './props'
-export * from './types'
+export * from './src/props'
+export * from './src/types'

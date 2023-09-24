@@ -1,5 +1,5 @@
+import type { Breakpoint } from '../_utils/types'
 import type { RowAligns, RowJustify } from '../constant'
-import type { Breakpoint } from '../_util/responsiveObserve'
 
 export type ColSpanType = number | string
 

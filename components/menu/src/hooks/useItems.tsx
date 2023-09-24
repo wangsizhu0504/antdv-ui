@@ -3,6 +3,7 @@ import SubMenu from '../SubMenu'
 import ItemGroup from '../ItemGroup'
 import MenuDivider from '../Divider'
 import MenuItem from '../MenuItem'
+import type { Key } from '../../../_utils/types'
 import type {
   ItemType,
   MenuDividerType as VcMenuDividerType,
@@ -12,7 +13,6 @@ import type {
 } from '../types'
 import type { VNode } from 'vue'
 import type { MenuProps } from '../props'
-import type { Key } from '../../../_util/type'
 import type { StoreMenuInfo } from './useMenuContext'
 
 export interface MenuItemType extends VcMenuItemType {

@@ -1,8 +1,8 @@
-import { withInstall } from '../_util/type'
-import alert from './alert'
+import { withInstall } from '../_utils/vue'
+import AAlert from './src/Alert'
 
-export * from './props'
+export * from './src/props'
 
-export const Alert = withInstall(alert)
+export const Alert = withInstall(AAlert)
 
 export default Alert

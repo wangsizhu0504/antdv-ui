@@ -13,15 +13,16 @@ import {
 import { uniq } from 'lodash-es'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 import useStyle from '../style'
-import shallowEqual from '../../_util/shallowequal'
-import { useConfigInject } from '../../hooks'
-import devWarning from '../../vc-util/devWarning'
 
-import { flattenChildren } from '../../_util/props-util'
-import Overflow from '../../vc-overflow'
-import { cloneElement } from '../../_util/vnode'
-import collapseMotion from '../../_util/components/collapseMotion'
+import { useConfigInject } from '../../hooks'
+import { warning } from '../../_utils/log'
+import { flattenChildren, shallowEqual } from '../../_utils/vue'
+
+import Overflow from '../../_internal/overflow'
+
 import { SiderCollapsedKey } from '../../constant'
+import { collapseMotion } from '../../_internal/collapseMotion'
+import { cloneElement } from '../../_utils/dom'
 import { useInjectOverride } from './OverrideContext'
 import useItems from './hooks/useItems'
 import { OVERFLOW_KEY, PathContext } from './hooks/useKeyPath'
@@ -29,13 +30,14 @@ import SubMenu from './SubMenu'
 import MenuItem from './MenuItem'
 import useProvideMenu, { MenuContextProvider, useProvideFirstLevel } from './hooks/useMenuContext'
 import { menuProps } from './props'
+import type { CustomSlotsType, Key } from '../../_utils/types'
 import type { MenuProps } from './props'
 import type {
   MenuInfo,
   MenuMode,
   MenuSelectInfo,
 } from './types'
-import type { CustomSlotsType, Key } from '../../_util/type'
+
 import type { VNode } from 'vue'
 import type { StoreMenuInfo } from './hooks/useMenuContext'
 
@@ -76,18 +78,18 @@ export default defineComponent({
       isMounted.value = true
     })
     watchEffect(() => {
-      devWarning(
+      warning(
         !(props.inlineCollapsed === true && props.mode !== 'inline'),
         'Menu',
         '`inlineCollapsed` should only be used when `mode` is inline.',
       )
 
-      devWarning(
+      warning(
         !(siderCollapsed.value !== undefined && props.inlineCollapsed === true),
         'Menu',
         '`inlineCollapsed` not control Menu under Sider. Should set `collapsed` on Sider instead.',
       )
-      // devWarning(
+      // warning(
       //   !!props.items && !slots.default,
       //   'Menu',
       //   '`children` will be removed in next major version. Please use `items` instead.',

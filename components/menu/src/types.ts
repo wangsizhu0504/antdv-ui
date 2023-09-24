@@ -1,5 +1,6 @@
+import type { Key } from '../../_utils/types'
 import type { CSSProperties } from 'vue'
-import type { Key } from '../../_util/type'
+
 import type { MenuItemProps } from './props'
 
 // ========================= Options =========================

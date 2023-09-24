@@ -3,7 +3,7 @@ import { computed, defineComponent, inject, provide, ref, watchEffect } from 'vu
 import { toReactive } from '@vueuse/core'
 import { createTheme, useCacheToken } from '../cssinjs'
 import { version } from '../version'
-import { objectType } from '../_util/type'
+import { objectType } from '../_utils/vue'
 
 import defaultDerivative from './themes/default'
 import defaultSeedToken from './themes/seed'

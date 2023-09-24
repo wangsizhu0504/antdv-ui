@@ -1,9 +1,9 @@
-import { withInstall } from '../_util/type'
-import carousel from './Carousel'
+import { withInstall } from '../_utils/vue'
+import ACarousel from './src/Carousel'
 
-export const Carousel = withInstall(carousel)
+export const Carousel = withInstall(ACarousel)
 
 export default Carousel
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'

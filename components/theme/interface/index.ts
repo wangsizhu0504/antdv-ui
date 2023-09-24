@@ -1,6 +1,7 @@
+import type { VueNode } from '../../_utils/types'
 import type { Ref } from 'vue'
 import type { CSSInterpolation } from '../../cssinjs'
-import type { VueNode } from '../../_util/type'
+
 import type { ComponentTokenMap } from './components'
 import type { AliasToken } from './alias'
 

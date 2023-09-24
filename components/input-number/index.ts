@@ -1,8 +1,8 @@
-import { withInstall } from '../_util/type'
-import inputNumber from './InputNumber'
+import { withInstall } from '../_utils/vue'
+import AInputNumber from './src/InputNumber'
 
-export const InputNumber = withInstall(inputNumber)
+export const InputNumber = withInstall(AInputNumber)
 
 export default InputNumber
 
-export * from './props'
+export * from './src/props'

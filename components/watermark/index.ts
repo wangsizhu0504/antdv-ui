@@ -1,4 +1,4 @@
-import { withInstall } from '../_util/type'
+import { withInstall } from '../_utils/vue'
 import AWatermark from './Watermark'
 
 export const Watermark = withInstall(AWatermark)

@@ -1,11 +1,11 @@
 import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue'
-import Trigger from '../../vc-trigger'
-import raf from '../../_util/raf'
-import classNames from '../../_util/classNames'
-import { getTransitionProps } from '../../_util/components/transition'
+import Trigger from '../../_internal/trigger'
+import { wrapperRaf } from '../../_utils/vue'
+import { getTransitionProps } from '../../_internal/transition'
+import { classNames } from '../../_utils/dom'
 import { useInjectForceRender, useInjectMenu } from './hooks/useMenuContext'
 import { placements, placementsRtl } from './placements'
-import type { CustomSlotsType } from '../../_util/type'
+import type { CustomSlotsType } from '../../_utils/types'
 import type { MenuMode } from './types'
 import type { PropType } from 'vue'
 
@@ -62,15 +62,15 @@ export default defineComponent({
     watch(
       () => props.visible,
       (visible) => {
-        raf.cancel(visibleRef.value)
-        visibleRef.value = raf(() => {
+        wrapperRaf.cancel(visibleRef.value)
+        visibleRef.value = wrapperRaf(() => {
           innerVisible.value = visible
         })
       },
       { immediate: true },
     )
     onBeforeUnmount(() => {
-      raf.cancel(visibleRef.value)
+      wrapperRaf.cancel(visibleRef.value)
     })
 
     const onVisibleChange = (visible: boolean) => {

@@ -1,8 +1,8 @@
-import { withInstall } from '../_util/type'
-import pageHeader from './PageHeader'
+import { withInstall } from '../_utils/vue'
+import pageHeader from './src/PageHeader'
 
 export const PageHeader = withInstall(pageHeader)
 
 export default PageHeader
 
-export * from './props'
+export * from './src/props'
