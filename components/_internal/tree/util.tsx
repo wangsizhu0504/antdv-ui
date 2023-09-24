@@ -3,6 +3,7 @@
  */
 
 import { warningFn } from '../../_utils/log'
+import type { Key } from '../../_utils/types'
 import type {
   BasicDataNode,
   DataEntity,
@@ -10,7 +11,6 @@ import type {
   Direction,
   DragNodeEvent,
   FlattenNode,
-  Key,
   NodeElement,
 } from './interface'
 import type { AllowDrop, TreeProps } from './props'

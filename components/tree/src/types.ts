@@ -1,5 +1,6 @@
+import type { Key } from '../../_utils/types'
 import type { TreeNodeProps } from '../../_internal/tree/props'
-import type { DataNode, EventDataNode, Key } from '../../_internal/tree/interface'
+import type { DataNode, EventDataNode } from '../../_internal/tree/interface'
 
 export type ExpandAction = false | 'click' | 'doubleclick' | 'dblclick'
 

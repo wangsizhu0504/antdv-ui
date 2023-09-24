@@ -3,13 +3,13 @@ import { INTERNAL_COL_DEFINE } from '../utils/legacyUtil'
 import { EXPAND_COLUMN } from '../constant'
 import { warningFn } from '../../../_utils/log'
 import { useInjectSlots } from '../../../table/src/context'
+import type { Key } from '../../../_utils/types'
 import type {
   ColumnGroupType,
   ColumnType,
   ColumnsType,
   FixedType,
   GetRowKey,
-  Key,
   RenderExpandIcon,
   TriggerEventHandler,
 } from '../interface'

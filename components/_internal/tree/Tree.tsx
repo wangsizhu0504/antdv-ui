@@ -38,9 +38,10 @@ import { conductCheck } from './utils/conductUtil'
 import DropIndicator from './DropIndicator'
 import { treeProps } from './props'
 import useMaxLevel from './useMaxLevel'
+import type { Key } from '../../_utils/types'
 import type { CheckInfo, DraggableFn } from './props'
 import type { TreeNodeRequiredProps } from './utils/treeUtil'
-import type { DragNodeEvent, EventDataNode, FlattenNode, Key, ScrollTo } from './interface'
+import type { DragNodeEvent, EventDataNode, FlattenNode, ScrollTo } from './interface'
 import type { NodeDragEventHandler, NodeMouseEventHandler } from './contextTypes'
 
 const MAX_RETRY_TIMES = 10

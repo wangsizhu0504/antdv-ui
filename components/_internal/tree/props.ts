@@ -1,12 +1,12 @@
 import { PropTypes } from '../../_utils/vue'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { EventHandler } from '../../_utils/types'
+import type { EventHandler, Key } from '../../_utils/types'
 import type {
   NodeDragEventParams,
   NodeMouseEventHandler,
   NodeMouseEventParams,
 } from './contextTypes'
-import type { DataNode, Direction, EventDataNode, FieldNames, FlattenNode, Key } from './interface'
+import type { DataNode, Direction, EventDataNode, FieldNames, FlattenNode } from './interface'
 import type { BasicDataNode } from '.'
 
 export interface CheckInfo {

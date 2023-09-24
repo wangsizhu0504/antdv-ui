@@ -1,5 +1,6 @@
 import { note } from '../../../_utils/log'
-import type { BasicDataNode, DataEntity, DataNode, GetCheckDisabled, Key } from '../interface'
+import type { Key } from '../../../_utils/types'
+import type { BasicDataNode, DataEntity, DataNode, GetCheckDisabled } from '../interface'
 
 interface ConductReturnType {
   checkedKeys: Key[]

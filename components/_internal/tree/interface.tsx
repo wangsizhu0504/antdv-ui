@@ -1,3 +1,4 @@
+import type { Key } from '../../_utils/types'
 import type { CSSProperties, VNode } from 'vue'
 import type { TreeNodeProps } from './props'
 
@@ -44,8 +45,6 @@ export interface EventDataNode extends DataNode {
 }
 
 export type IconType = any
-
-export type Key = string | number
 
 export type NodeElement = VNode<TreeNodeProps>
 

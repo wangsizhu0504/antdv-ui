@@ -1,6 +1,7 @@
 import { camelize } from '../../_utils/util'
 import { flattenChildren } from '../../_utils/vue'
-import type { ColumnTitle, ColumnTitleProps, Key, TableColumnType, TableColumnsType } from './types'
+import type { Key } from '../../_utils/types'
+import type { ColumnTitle, ColumnTitleProps, TableColumnType, TableColumnsType } from './types'
 
 export function getColumnKey<RecordType>(column: TableColumnType<RecordType>, defaultKey: string): Key {
   if ('key' in column && column.key !== undefined && column.key !== null)

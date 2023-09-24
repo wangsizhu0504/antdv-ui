@@ -14,10 +14,9 @@ import type {
   FieldNames,
   FlattenNode,
   GetKey,
-  Key,
   NodeElement,
 } from '../interface'
-import type { VueNode } from '../../../_utils/types'
+import type { Key, VueNode } from '../../../_utils/types'
 
 export function getKey(key: Key, pos: string) {
   if (key !== null && key !== undefined)

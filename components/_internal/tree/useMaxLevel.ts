@@ -1,6 +1,7 @@
 import { ref, shallowRef, watchEffect } from 'vue'
+import type { Key } from '../../_utils/types'
 import type { ShallowRef } from 'vue'
-import type { BasicDataNode, DataEntity, DataNode, Key } from './interface'
+import type { BasicDataNode, DataEntity, DataNode } from './interface'
 
 export default function useMaxLevel<TreeDataType extends BasicDataNode = DataNode>(
   keyEntities: ShallowRef<Record<Key, DataEntity<TreeDataType>>>,

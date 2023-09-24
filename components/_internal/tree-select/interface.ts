@@ -1,6 +1,6 @@
-export type SelectSource = 'option' | 'selection' | 'input' | 'clear'
+import type { Key } from '../../_utils/types'
 
-export type Key = string | number
+export type SelectSource = 'option' | 'selection' | 'input' | 'clear'
 
 export type RawValueType = string | number
 

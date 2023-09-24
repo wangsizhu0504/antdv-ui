@@ -1,4 +1,5 @@
-import type { GetRowKey, Key, RenderExpandIconProps } from '../interface'
+import type { Key } from '../../../_utils/types'
+import type { GetRowKey, RenderExpandIconProps } from '../interface'
 
 export function renderExpandIcon<RecordType>({
   prefixCls,

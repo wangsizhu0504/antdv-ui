@@ -1,7 +1,8 @@
 /* istanbul ignore file */
 
+import type { Key } from '../../_utils/types'
 import type { FunctionalComponent } from 'vue'
-import type { DataNode, Key } from './interface'
+import type { DataNode } from './interface'
 
 export interface TreeNodeProps extends Omit<DataNode, 'children'> {
   value: Key

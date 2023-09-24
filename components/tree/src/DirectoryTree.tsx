@@ -13,10 +13,11 @@ import { classNames } from '../../_utils/dom'
 import Tree from './Tree'
 import { calcRangeKeys, convertDirectoryKeysToNodes } from './utils/dictUtil'
 import { directoryTreeProps } from './props'
+import type { Key } from '../../_utils/types'
 import type { TreeProps } from './props'
 
 import type { AntdTreeNodeAttribute } from './types'
-import type { DataNode, EventDataNode, Key, ScrollTo } from '../../_internal/tree/interface'
+import type { DataNode, EventDataNode, ScrollTo } from '../../_internal/tree/interface'
 import type { SlotsType } from 'vue'
 
 function getIcon(props: AntdTreeNodeAttribute) {

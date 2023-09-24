@@ -1,7 +1,8 @@
 import { shallowRef, watch } from 'vue'
 import { isArray } from '../../../_utils/is'
+import type { Key } from '../../../_utils/types'
 import type { Ref } from 'vue'
-import type { GetRowKey, Key } from '../types'
+import type { GetRowKey } from '../types'
 
 interface MapCache<RecordType> {
   kvMap?: Map<Key, RecordType>

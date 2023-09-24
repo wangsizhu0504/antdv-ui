@@ -5,6 +5,7 @@ import type { App } from 'vue'
 
 export * from './components'
 export * from './cssinjs'
+export * from './_utils/types/global'
 export { useConfigContextInject as useAntdContext } from './config-provider'
 export { default as theme } from './theme'
 export const install = function (app: App) {

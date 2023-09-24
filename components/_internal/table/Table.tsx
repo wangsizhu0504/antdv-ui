@@ -49,7 +49,6 @@ import type {
   ExpandedRowRender,
   GetComponentProps,
   GetRowKey,
-  Key,
   PanelRender,
   RenderExpandIcon,
   RowClassName,
@@ -59,7 +58,7 @@ import type {
   TransformCellText,
   TriggerEventHandler,
 } from './interface'
-import type { EventHandler } from '../../_utils/types'
+import type { EventHandler, Key } from '../../_utils/types'
 import type { CSSProperties } from 'vue'
 
 // Used for conditions cache

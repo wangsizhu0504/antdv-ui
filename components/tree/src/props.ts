@@ -3,7 +3,8 @@ import { treeProps as vcTreeProps } from '../../_internal/tree/props'
 // CSSINJS
 import { arrayType, booleanType, functionType, objectType, someType } from '../../_utils/vue'
 import { PropTypes } from '../../_utils/vue'
-import type { FieldNames, Key } from '../../_internal/tree/interface'
+import type { Key } from '../../_utils/types'
+import type { FieldNames } from '../../_internal/tree/interface'
 import type { ExtractPropTypes } from 'vue'
 
 import type { AntdTreeNodeAttribute, ExpandAction } from './types'

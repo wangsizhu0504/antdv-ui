@@ -1,4 +1,5 @@
-import type { DataNode, FieldNames, Key } from '../interface'
+import type { Key } from '../../../_utils/types'
+import type { DataNode, FieldNames } from '../interface'
 import type { DefaultOptionType, InternalFieldName } from '../TreeSelect'
 
 export function toArray<T>(value: T | T[]): T[] {

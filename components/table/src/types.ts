@@ -14,7 +14,7 @@ import type {
 import type { TooltipProps } from '../../tooltip'
 import type { CheckboxProps } from '../../checkbox'
 import type { PaginationProps } from '../../pagination'
-import type { Breakpoint, VueNode } from '../../_utils/types'
+import type { Breakpoint, Key, VueNode } from '../../_utils/types'
 import type { INTERNAL_SELECTION_ITEM } from './hooks/useSelection'
 import type { TableProps as RcTableProps } from '../../_internal/table/Table'
 import type { SizeType } from '../../config-provider'
@@ -22,8 +22,6 @@ import type { SizeType } from '../../config-provider'
 // import { TableAction } from './Table';
 
 export type { GetRowKey, ExpandableConfig }
-
-export type Key = string | number
 
 export type RowSelectionType = 'checkbox' | 'radio'
 

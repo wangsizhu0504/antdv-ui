@@ -9,7 +9,8 @@ import { useProvideHover } from '../context/HoverContext'
 import BodyRow from './BodyRow'
 import MeasureCell from './MeasureCell'
 import ExpandedRow from './ExpandedRow'
-import type { GetComponentProps, GetRowKey, Key } from '../interface'
+import type { Key } from '../../../_utils/types'
+import type { GetComponentProps, GetRowKey } from '../interface'
 
 export interface BodyProps<RecordType> {
   data: RecordType[]

@@ -7,8 +7,8 @@ import { useInjectBody } from '../context/BodyContext'
 import { isArray } from '../../../_utils/is'
 import { classNames } from '../../../_utils/dom'
 import ExpandedRow from './ExpandedRow'
-import type { MouseEventHandler } from '../../../_utils/types'
-import type { CustomizeComponent, GetComponentProps, GetRowKey, Key } from '../interface'
+import type { Key, MouseEventHandler } from '../../../_utils/types'
+import type { CustomizeComponent, GetComponentProps, GetRowKey } from '../interface'
 
 export interface BodyRowProps<RecordType> {
   record: RecordType

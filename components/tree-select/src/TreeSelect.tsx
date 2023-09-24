@@ -21,9 +21,7 @@ import { treeSelectProps } from './props'
 import type { SwitcherIconProps } from '../../tree/src/utils/iconUtil'
 import type { SelectCommonPlacement } from '../../_internal/transition'
 import type { TreeSelectProps } from './props'
-import type { CustomSlotsType } from '../../_utils/types'
-
-import type { Key } from '../../_internal/tree-select/interface'
+import type { CustomSlotsType, Key } from '../../_utils/types'
 
 const getTransitionName = (rootPrefixCls: string, motion: string, transitionName?: string) => {
   if (transitionName !== undefined)

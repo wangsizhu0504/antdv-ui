@@ -24,11 +24,10 @@ import type { LegacyContextProps } from './LegacyContext'
 import type { TreeSelectContextProps } from './TreeSelectContext'
 import type { CheckedStrategy } from './utils/strategyUtil'
 import type { DisplayValueType } from '../select/BaseSelect'
-import type { VueNode } from '../../_utils/types'
+import type { Key, VueNode } from '../../_utils/types'
 import type { ExpandAction } from '../tree/props'
 import type { BaseSelectProps, BaseSelectRef, SelectProps } from '../select'
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { Key } from './interface'
 
 export type OnInternalSelect = (value: RawValueType, info: { selected: boolean }) => void
 

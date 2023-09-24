@@ -4,10 +4,11 @@
  */
 
 import { inject, provide } from 'vue'
+import type { Key } from '../../_utils/types'
 import type { InjectionKey } from 'vue'
 import type { TreeProps } from '../tree'
 import type { DataEntity, IconType } from '../tree/interface'
-import type { InternalDataEntity, Key, LegacyDataNode, RawValueType } from './interface'
+import type { InternalDataEntity, LegacyDataNode, RawValueType } from './interface'
 
 export interface LegacyContextProps {
   checkable: boolean

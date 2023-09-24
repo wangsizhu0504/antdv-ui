@@ -15,13 +15,12 @@ import { warning } from '../../../_utils/log'
 import { flattenKeys } from './utils'
 import FilterDropdownMenuWrapper from './FilterWrapper'
 import FilterSearch from './FilterSearch'
-import type { EventHandler } from '../../../_utils/types'
+import type { EventHandler, Key } from '../../../_utils/types'
 import type {
   ColumnFilterItem,
   FilterSearchType,
   FilterState,
   GetPopupContainer,
-  Key,
   TableColumnType,
 } from '../types'
 import type { CheckboxChangeEvent } from '../../../checkbox'

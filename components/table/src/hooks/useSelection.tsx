@@ -11,8 +11,8 @@ import Dropdown from '../../../dropdown'
 import Menu from '../../../menu'
 import Radio from '../../../radio'
 import useMaxLevel from '../../../_internal/tree/useMaxLevel'
+import type { Key } from '../../../_utils/types'
 import type {
-  Key,
   SelectionItem,
   TableColumnType,
   TableColumnsType,

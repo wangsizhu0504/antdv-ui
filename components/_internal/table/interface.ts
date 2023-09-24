@@ -15,9 +15,8 @@
  * - onFilterDropdownOpenChange
  */
 
+import type { Key } from '../../_utils/types'
 import type { CSSProperties, Ref, TdHTMLAttributes } from 'vue'
-
-export type Key = number | string
 
 export type FixedType = 'left' | 'right' | boolean
 

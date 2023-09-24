@@ -1,4 +1,5 @@
-import type { DataNode, FieldNames, Key } from '../../../_internal/tree/interface'
+import type { Key } from '../../../_utils/types'
+import type { DataNode, FieldNames } from '../../../_internal/tree/interface'
 
 enum Record {
   None,

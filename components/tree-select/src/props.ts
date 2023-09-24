@@ -8,9 +8,9 @@ import type { SelectCommonPlacement } from '../../_internal/transition'
 import type { SizeType } from '../../config-provider'
 import type { TreeProps } from '../../tree'
 import type { BaseOptionType, DefaultOptionType } from '../../_internal/tree-select/TreeSelect'
-import type { FieldNames, Key } from '../../_internal/tree-select/interface'
+import type { FieldNames } from '../../_internal/tree-select/interface'
 import type { ExtractPropTypes } from 'vue'
-import type { InputStatus } from '../../_utils/types'
+import type { InputStatus, Key } from '../../_utils/types'
 
 export function treeSelectProps<
   ValueType = any,
