@@ -15,18 +15,20 @@ export default defineComponent({
         : typeof mergedCheckable === 'boolean'
           ? null
           : mergedCheckable
-    return (
-      <span
-        class={{
-          [props.prefixCls]: true,
-          [`${props.prefixCls}-checked`]: props.checked,
-          [`${props.prefixCls}-indeterminate`]: !props.checked && props.halfChecked,
-          [`${props.prefixCls}-disabled`]: props.disabled,
-        }}
-        onClick={props.onClick}
-      >
-        {customCheckbox}
-      </span>
-    )
+    return () => {
+      return (
+        <span
+          class={{
+            [props.prefixCls]: true,
+            [`${props.prefixCls}-checked`]: props.checked,
+            [`${props.prefixCls}-indeterminate`]: !props.checked && props.halfChecked,
+            [`${props.prefixCls}-disabled`]: props.disabled,
+          }}
+          onClick={props.onClick}
+        >
+          {customCheckbox}
+        </span>
+      )
+    }
   },
 })

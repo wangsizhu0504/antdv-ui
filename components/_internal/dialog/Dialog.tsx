@@ -1,5 +1,5 @@
 import { defineComponent, onBeforeUnmount, shallowRef, watch, watchEffect } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { classNames, contains } from '../../_utils/dom'
 import KeyCode from '../../_utils/keyCode'
 import pickAttrs from '../../_utils/pickAttrs'

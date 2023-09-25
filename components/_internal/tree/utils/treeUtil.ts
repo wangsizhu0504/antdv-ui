@@ -1,4 +1,4 @@
-import { omit } from 'lodash-es'
+import { omit } from '../../../_utils/omit'
 import { getPosition, isTreeNode } from '../util'
 import { camelize } from '../../../_utils/util'
 import { warningFn } from '../../../_utils/log'

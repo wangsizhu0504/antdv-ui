@@ -1,6 +1,6 @@
 import { computed, defineComponent, nextTick, onBeforeMount, onMounted, ref, watch } from 'vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { useInjectFormItemContext } from '../../form/src/FormItemContext'
 import KeyCode from '../../_utils/keyCode'
 import Wave from '../../_internal/wave'

@@ -10,7 +10,7 @@ import {
   watch,
 } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import VcDrawer from '../../_internal/drawer'
 import { getPropsSlot, initDefaultProps } from '../../_utils/vue'
 import { warning } from '../../_utils/log'

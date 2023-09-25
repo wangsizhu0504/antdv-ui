@@ -1,5 +1,5 @@
 import { computed, defineComponent, ref } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { classNames } from '../../_utils/dom'
 import RcSelect, { OptGroup, Option } from '../../_internal/select'
 import { useConfigInject } from '../../hooks'

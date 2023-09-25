@@ -1,6 +1,6 @@
 import type { InputProps } from '@antdv/ui'
 import { ConfigProvider, Input, InputNumber, Select, theme } from '@antdv/ui'
-import classNames from '@antdv/ui/es/_util/classNames'
+import { classNames } from '@antdv/ui/es/_utils/dom'
 import type { PropType } from 'vue'
 import { computed, defineComponent, ref, toRefs, watch, watchEffect } from 'vue'
 import tinycolor from 'tinycolor2'

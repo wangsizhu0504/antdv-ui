@@ -1,5 +1,5 @@
 import { computed, defineComponent, ref } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import VcTreeSelect from '../../_internal/tree-select'
 import { warning, warningFn } from '../../_utils/log'
 import { getMergedStatus, getStatusClassNames } from '../../_utils/status'

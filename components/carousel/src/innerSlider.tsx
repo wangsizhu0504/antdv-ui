@@ -5,6 +5,7 @@ import ResizeObserver from 'resize-observer-polyfill'
 import BaseMixin from '../../_utils/baseMixin'
 
 import { classNames } from '../../_utils/dom'
+import { supportsPassive } from '../../_utils/supportsPassive'
 import { carouselSliderProps } from './props'
 import initialState from './initialState'
 import {

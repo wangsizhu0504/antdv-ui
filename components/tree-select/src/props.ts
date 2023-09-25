@@ -1,4 +1,4 @@
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import {
   treeSelectProps as vcTreeSelectProps,
 } from '../../_internal/tree-select'

@@ -1,4 +1,4 @@
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 
 import { PropTypes, booleanType, functionType, someType, stringType } from '../../_utils/vue'
 import { selectProps as vcSelectProps } from '../../_internal/select'

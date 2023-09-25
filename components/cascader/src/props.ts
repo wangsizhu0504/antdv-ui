@@ -1,4 +1,4 @@
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { PropTypes, objectType } from '../../_utils/vue'
 import { baseSelectPropsWithoutPrivate } from '../../_internal/select/BaseSelect'
 import { SHOW_PARENT } from './utils/commonUtil'
@@ -132,7 +132,9 @@ export const cascaderOptionColumnProps = () => ({
     required: true,
   },
   multiple: PropTypes.bool,
-  options: PropTypes.bool,
+  options: {
+    type: Array as PropType<DefaultOptionType[]>,
+  },
   /** Current Column opened item key */
   activeValue: {
     type: [String, Number] as PropType<Key>,

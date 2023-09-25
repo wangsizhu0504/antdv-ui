@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
-import { isString, omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
+import { isString } from '../../_utils/is'
 import { classNames } from '../../_utils/dom'
 import { stepRenderProps } from './props'
 import type { EventHandler } from '../../_utils/types'

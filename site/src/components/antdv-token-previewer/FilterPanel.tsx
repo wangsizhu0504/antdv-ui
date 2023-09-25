@@ -1,6 +1,6 @@
 import type { CSSProperties, PropType } from 'vue'
 import { defineComponent, ref, toRefs } from 'vue'
-import classNames from '@antdv/ui/es/_util/classNames'
+import { classNames } from '@antdv/ui/es/_utils/dom'
 import { Segmented, Tag } from '@antdv/ui'
 import makeStyle from './utils/makeStyle'
 

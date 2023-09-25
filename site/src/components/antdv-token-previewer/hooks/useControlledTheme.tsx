@@ -1,6 +1,6 @@
 import type { DerivativeFunc } from '@antdv/ui/es/cssinjs'
 import { theme as antTheme } from '@antdv/ui'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider/context'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider'
 import type { Ref } from 'vue'
 import { computed, ref, watchEffect } from 'vue'
 import type { MutableTheme, Theme } from '../interface'

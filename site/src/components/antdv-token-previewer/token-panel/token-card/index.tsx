@@ -16,9 +16,9 @@ import {
   TabletOutlined,
 } from '@ant-design/icons-vue'
 import { Collapse, Space } from '@antdv/ui'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider/context'
-import classNames from '@antdv/ui/es/_util/classNames'
-import PropTypes from '@antdv/ui/es/_util/vue-types'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider'
+import {classNames} from '@antdv/ui/es/_utils/dom'
+import {PropTypes} from '@antdv/ui/es/_utils/vue'
 import { Motion, ShapeLine } from '../../icons'
 import type { MutableTheme, TokenValue } from '../../interface'
 import type { TokenType } from '../../utils/classifyToken'

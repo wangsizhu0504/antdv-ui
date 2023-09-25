@@ -1,6 +1,6 @@
 // Accessibility https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
 import { defineComponent } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import {
   flattenChildren,
   initDefaultProps,

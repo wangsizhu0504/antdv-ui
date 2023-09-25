@@ -1,5 +1,5 @@
 import { computed, defineComponent, nextTick, reactive, toRaw, watch } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import List from '../virtual-list'
 import KeyCode from '../../_utils/keyCode'
 import { classNames } from '../../_utils/dom'

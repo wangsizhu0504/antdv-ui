@@ -1,6 +1,6 @@
 import { computed, defineComponent } from 'vue'
 import { RightOutlined } from '@ant-design/icons-vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { warning } from '../../_utils/log'
 import { initDefaultProps } from '../../_utils/vue'
 import { isValidElement } from '../../_utils/is'

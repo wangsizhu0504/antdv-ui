@@ -7,7 +7,7 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { fixControlledValue, resolveOnChange, triggerFocus } from '../../_internal/input/utils/commonUtils'
 import { classNames } from '../../_utils/dom'
 import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'

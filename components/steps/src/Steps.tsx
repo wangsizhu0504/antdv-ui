@@ -1,6 +1,6 @@
 import { computed, defineComponent } from 'vue'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import Progress from '../../progress'
 import Tooltip from '../../tooltip'
 import { useToken } from '../../theme/internal'

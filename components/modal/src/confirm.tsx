@@ -1,5 +1,5 @@
 import { createVNode, render as vueRender } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import ConfigProvider from '../../config-provider'
 import { globalConfigForApi } from '../../config-provider/src/config'
 import ConfirmDialog from './ConfirmDialog'

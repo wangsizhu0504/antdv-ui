@@ -8,14 +8,20 @@ import { useNotification } from '../../notification'
 import useStyle from '../style'
 import {
   useInjectAppConfigContext,
+  useInjectAppContext,
   useProvideAppConfigContext,
   useProvideAppContext,
 } from './context'
 
 import { appProps } from './props'
 
+const useApp = () => {
+  return useInjectAppContext()
+}
+
 export default defineComponent({
   name: 'AApp',
+  useApp,
   props: initDefaultProps(appProps(), {}),
   setup(props, { slots }) {
     const { prefixCls } = useConfigInject('app', props)

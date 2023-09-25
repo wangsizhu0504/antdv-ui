@@ -1,6 +1,6 @@
 import { computed, defineComponent, ref, shallowRef, toRaw, toRef, toRefs, watchEffect } from 'vue'
 import { toReactive } from '@vueuse/core'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { BaseSelect } from '../select'
 import { warningFn } from '../../_utils/log'
 import { PropTypes, initDefaultProps } from '../../_utils/vue'

@@ -1,4 +1,4 @@
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { warning } from '../../_utils/log'
 import Base from './Base'
 import { textProps } from './props'

@@ -1,12 +1,14 @@
-import steps from './src/Steps'
-import step from './src/Step'
+import ASteps from './src/Steps'
+import AStep from './src/Step'
 import type { App } from 'vue'
 
-export const Steps = Object.assign(steps, {
-  Step: step,
+export const Step = AStep
+
+export const Steps = Object.assign(ASteps, {
+  Step: AStep,
   install: (app: App) => {
-    app.component(Steps.name, Steps)
-    app.component(step.name, step)
+    app.component(ASteps.name, ASteps)
+    app.component(AStep.name, AStep)
     return app
   },
 })

@@ -1,4 +1,4 @@
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { eventType } from '../../_utils/vue'
 import { vcInputProps } from '../../_internal/input'
 import type { CompositionEventHandler } from '../../_utils/types'

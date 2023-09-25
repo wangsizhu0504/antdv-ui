@@ -1,6 +1,6 @@
 import { Button, Layout, theme as antdTheme, message } from '@antdv/ui'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider/context'
-import classNames from '@antdv/ui/es/_util/classNames'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider'
+import { classNames } from '@antdv/ui/es/_utils/dom'
 import { computed, defineComponent, ref, toRefs, watchEffect } from 'vue'
 import type { PropType } from 'vue'
 import ComponentPanel from './component-panel'
@@ -132,11 +132,11 @@ const Previewer = defineComponent({
     const themes = ref<ThemeSelectProps['themes']>(
       theme.value
         ? [
-            {
-              ...theme.value,
-              fixed: true,
-            },
-          ]
+          {
+            ...theme.value,
+            fixed: true,
+          },
+        ]
         : defaultThemes.value,
     )
 
@@ -150,11 +150,11 @@ const Previewer = defineComponent({
     watchEffect(() => {
       themes.value = theme.value
         ? [
-            {
-              ...theme.value,
-              fixed: true,
-            },
-          ]
+          {
+            ...theme.value,
+            fixed: true,
+          },
+        ]
         : defaultThemes.value
       shownThemes.value = theme.value ? [theme.value.key] : shownThemes.value
       enabledThemes.value = theme.value ? [theme.value.key] : enabledThemes.value
@@ -201,9 +201,9 @@ const Previewer = defineComponent({
               themes.value = themes.value.map(themeItem =>
                 themeItem.key === themeEntity.key
                   ? {
-                      ...themeItem,
-                      config: newTheme,
-                    }
+                    ...themeItem,
+                    config: newTheme,
+                  }
                   : themeItem,
               )
             }
@@ -310,9 +310,9 @@ const Previewer = defineComponent({
                 selectedTokens={selectedTokens.value}
                 enableTokenSelect
                 onTokenSelect={tokenName =>
-                  (selectedTokens.value = selectedTokens.value.includes(tokenName)
-                    ? selectedTokens.value.filter(item => item !== tokenName)
-                    : [...selectedTokens.value, tokenName])
+                (selectedTokens.value = selectedTokens.value.includes(tokenName)
+                  ? selectedTokens.value.filter(item => item !== tokenName)
+                  : [...selectedTokens.value, tokenName])
                 }
               />
             </Sider>

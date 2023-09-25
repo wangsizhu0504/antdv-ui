@@ -1,6 +1,6 @@
 import { defineComponent, toRefs } from 'vue'
 import type { CSSProperties } from 'vue'
-import classNames from '@antdv/ui/es/_util/classNames'
+import { classNames } from '@antdv/ui/es/_utils/dom'
 import makeStyle from './utils/makeStyle'
 import getColorBgImg from './utils/getColorBgImg'
 

@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import IconDisplay from '../../../site/src/theme/template/IconDisplay';
+import IconDisplay from '../../../src/theme/template/IconDisplay';
 import Basic from './basic.vue';
 import Custom from './custom.vue';
 import Iconfont from './iconfont.vue';

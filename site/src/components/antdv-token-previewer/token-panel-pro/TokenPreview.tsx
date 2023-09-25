@@ -1,4 +1,4 @@
-import type { ThemeConfig } from '@antdv/ui/es/config-provider/context'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider'
 import type { PropType } from 'vue'
 import { defineComponent, toRefs } from 'vue'
 

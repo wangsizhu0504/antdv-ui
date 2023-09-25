@@ -8,7 +8,7 @@ import {
   watch,
   withDirectives,
 } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import ResizeObserver from '../../_internal/resize-observer'
 import { classNames } from '../../_utils/dom'
 import { warning } from '../../_utils/log'

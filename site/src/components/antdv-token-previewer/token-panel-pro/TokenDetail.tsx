@@ -1,6 +1,6 @@
 import { Tooltip } from '@antdv/ui'
 import tokenMeta from '@antdv/ui/es/version/token-meta.json'
-import classNames from '@antdv/ui/es/_util/classNames'
+import { classNames } from '@antdv/ui/es/_utils/dom'
 import type { PropType } from 'vue'
 import { computed, defineComponent, toRefs } from 'vue'
 import type { MutableTheme, TokenValue } from '../interface'

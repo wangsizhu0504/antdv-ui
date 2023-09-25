@@ -7,7 +7,7 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../../_utils/omit'
 import KeyCode from '../../../_utils/keyCode'
 import { classNames } from '../../../_utils/dom'
 import { dataToArray, windowIsUndefined } from './utils'

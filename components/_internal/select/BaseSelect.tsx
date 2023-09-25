@@ -11,7 +11,7 @@ import {
   watchEffect,
 } from 'vue'
 import { toReactive } from '@vueuse/core'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 
 import useInjectLegacySelectContext from '../tree-select/LegacyContext'
 import { classNames, cloneElement } from '../../_utils/dom'

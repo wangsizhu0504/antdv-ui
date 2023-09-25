@@ -1,4 +1,4 @@
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { tupleNum } from '../../_utils/vue'
 import type { Direction } from '../../config-provider'
 import type { AnchorHTMLAttributes, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'

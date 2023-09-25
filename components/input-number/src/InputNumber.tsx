@@ -1,6 +1,6 @@
 import { computed, defineComponent, shallowRef, watch } from 'vue'
 import { DownOutlined, UpOutlined } from '@ant-design/icons-vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { classNames, cloneElement } from '../../_utils/dom'
 import {
   FormItemInputContext,

@@ -2,8 +2,8 @@
 // @ts-nocheck
 import { CaretRightOutlined } from '@ant-design/icons-vue'
 import { Collapse, Space } from '@antdv/ui'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider/context'
-import classNames from '@antdv/ui/es/_util/classNames'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider'
+import { classNames } from '@antdv/ui/es/_utils/dom'
 import type { CSSProperties, PropType } from 'vue'
 import { computed, defineComponent, ref, toRefs, watch } from 'vue'
 import ColorPreview from '../../ColorPreview'

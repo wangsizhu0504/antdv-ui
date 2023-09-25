@@ -11,7 +11,7 @@ import {
   watchEffect,
   withDirectives,
 } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 
 import { initDefaultProps } from '../../_utils/vue'
 import antInputDirective from '../../_utils/antInputDirective'

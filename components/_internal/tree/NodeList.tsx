@@ -3,7 +3,7 @@
  */
 
 import { computed, defineComponent, ref, shallowRef, watch } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import VirtualList from '../virtual-list'
 import { useInjectKeysState, useInjectTreeContext } from './contextTypes'
 import MotionTreeNode from './MotionTreeNode'

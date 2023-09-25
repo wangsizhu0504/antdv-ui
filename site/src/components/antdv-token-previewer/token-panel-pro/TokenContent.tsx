@@ -9,10 +9,10 @@ import {
   Tooltip,
   Typography,
 } from '@antdv/ui'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider/context'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider'
 import seed from '@antdv/ui/es/theme/themes/seed'
 import tokenMeta from '@antdv/ui/es/version/token-meta.json'
-import classNames from '@antdv/ui/es/_util/classNames'
+import { classNames } from '@antdv/ui/es/_utils/dom'
 
 import type { PropType } from 'vue'
 import { computed, defineComponent, ref, toRefs, watch, watchEffect } from 'vue'
@@ -71,9 +71,9 @@ const useStyle = makeStyle('ColorTokenContent', token => ({
         borderRadius: 8,
       },
       [`> ${token.rootCls}-collapse-item > ${token.rootCls}-collapse-content > ${token.rootCls}-collapse-content-box`]:
-        {
-          paddingBlock: '0 12px',
-        },
+      {
+        paddingBlock: '0 12px',
+      },
 
       '.token-panel-pro-token-collapse-description': {
         color: token.colorTextTertiary,

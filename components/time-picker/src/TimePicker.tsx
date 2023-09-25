@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import generatePicker from '../../date-picker/generatePicker'
 import {
   commonProps,

@@ -1,6 +1,6 @@
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { classNames, cloneElement } from '../../_utils/dom'
 import { isValidElement } from '../../_utils/is'
 import { useConfigInject } from '../../hooks'

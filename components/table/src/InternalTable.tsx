@@ -1,5 +1,5 @@
 import { computed, defineComponent, nextTick, reactive, ref, toRef, watch, watchEffect } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import defaultLocale from '../../locale/lang/en_US'
 import RcTable from '../../_internal/table'
 import { INTERNAL_HOOKS } from '../../_internal/table/Table'

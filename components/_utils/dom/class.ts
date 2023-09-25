@@ -1,4 +1,4 @@
-import { isArray, isObject, isString } from 'lodash-es'
+import { isArray, isObject, isString } from '../is'
 
 export function hasClass(node, className) {
   if (node.classList)

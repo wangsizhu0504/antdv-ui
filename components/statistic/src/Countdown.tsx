@@ -1,5 +1,5 @@
 import { defineComponent, onBeforeUnmount, onMounted, onUpdated, ref } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { initDefaultProps } from '../../_utils/vue'
 import Statistic from './Statistic'
 import { formatCountdown as formatCD } from './utils'

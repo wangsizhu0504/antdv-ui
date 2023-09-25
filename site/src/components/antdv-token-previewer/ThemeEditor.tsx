@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
 import { computed, defineComponent, ref, toRefs } from 'vue'
 import type { DerivativeFunc } from '@antdv/ui/es/cssinjs'
-import classNames from '@antdv/ui/es/_util/classNames'
+import { classNames } from '@antdv/ui/es/_utils/dom'
 import type { SelectedToken, Theme } from './interface'
 import type { Locale } from './locale'
 import { useProvideLocaleContext, zhCN } from './locale'

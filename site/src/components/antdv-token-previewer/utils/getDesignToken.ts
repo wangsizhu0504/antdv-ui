@@ -1,4 +1,4 @@
-import type { ThemeConfig } from '@antdv/ui/es/config-provider/context'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider'
 import type { GlobalToken, MapToken } from '@antdv/ui/es/theme/interface'
 import defaultMap from '@antdv/ui/es/theme/themes/default'
 import seed from '@antdv/ui/es/theme/themes/seed'

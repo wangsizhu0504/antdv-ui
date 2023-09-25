@@ -1,6 +1,6 @@
 import { computed, defineComponent, onBeforeUnmount, onBeforeUpdate, onMounted, ref } from 'vue'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { classNames } from '../../_utils/dom'
 import {
   FormItemInputContext,

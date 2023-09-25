@@ -1,5 +1,5 @@
 import { ref, shallowRef, watchEffect } from 'vue'
-import { isNumber } from 'lodash-es'
+import { isNumber } from '../../../_utils/is'
 import { warningFn } from '../../../_utils/log'
 import type { BaseCascaderProps } from '../props'
 import type { ShowSearchType } from '../interface'

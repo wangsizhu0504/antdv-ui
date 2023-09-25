@@ -1,6 +1,6 @@
 import { computed, defineComponent, ref, toRef } from 'vue'
 import { ExclamationCircleFilled } from '@ant-design/icons-vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import defaultLocale from '../../locale/lang/en_US'
 import Popover from '../../popover'
 import { initDefaultProps } from '../../_utils/vue'

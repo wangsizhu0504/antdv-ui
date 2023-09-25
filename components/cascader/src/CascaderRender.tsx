@@ -1,5 +1,5 @@
 import { computed, defineComponent, ref, toRef, toRefs, watchEffect } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { useId, useMergedState } from '../../hooks'
 import { conductCheck } from '../../_internal/tree/utils/conductUtil'
 import { BaseSelect } from '../../_internal/select'

@@ -1,5 +1,5 @@
 import { computed, defineComponent } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { useConfigInject } from '../../hooks'
 import { classNames } from '../../_utils/dom'
 

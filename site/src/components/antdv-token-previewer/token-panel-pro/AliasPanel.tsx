@@ -5,7 +5,7 @@ import {
   ShrinkOutlined,
 } from '@ant-design/icons-vue'
 import { Button, Collapse, Empty, Tooltip } from '@antdv/ui'
-import classNames from '@antdv/ui/es/_util/classNames'
+import { classNames } from '@antdv/ui/es/_utils/dom'
 import { useMergedState } from '@antdv/ui/es/hooks'
 import { computed, defineComponent, toRefs } from 'vue'
 import type { PropType, Ref } from 'vue'

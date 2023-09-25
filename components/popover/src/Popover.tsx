@@ -1,5 +1,5 @@
 import { computed, defineComponent, ref } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import Tooltip, { tooltipDefaultProps } from '../../tooltip'
 import { warning } from '../../_utils/log'
 import { filterEmpty, initDefaultProps } from '../../_utils/vue'

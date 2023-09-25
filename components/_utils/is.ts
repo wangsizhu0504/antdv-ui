@@ -7,6 +7,9 @@ export const isValid = (value: any): boolean => {
   return value !== undefined && value !== null && value !== ''
 }
 
+export const isString = (val: unknown): val is string => typeof val === 'string'
+export const isNumber = (val: any): val is number => typeof val === 'number'
+
 export const isFunction = val => typeof val === 'function'
 
 export function isValidValue(val: any) {

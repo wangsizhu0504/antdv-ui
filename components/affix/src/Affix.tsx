@@ -9,7 +9,7 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import ResizeObserver from '../../_internal/resize-observer'
 
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'

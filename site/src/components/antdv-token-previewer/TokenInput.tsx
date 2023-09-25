@@ -1,5 +1,5 @@
 import { Button, Input, InputNumber, Popover } from '@antdv/ui'
-import classNames from '@antdv/ui/es/_util/classNames'
+import { classNames } from '@antdv/ui/es/_utils/dom'
 import type { PropType } from 'vue'
 import { computed, defineComponent, ref, toRefs, watch } from 'vue'
 import { debounce } from 'lodash'

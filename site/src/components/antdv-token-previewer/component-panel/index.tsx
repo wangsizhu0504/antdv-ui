@@ -1,6 +1,6 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import { Breadcrumb, Segmented, Switch } from '@antdv/ui'
-import classNames from '@antdv/ui/es/_util/classNames'
+import { classNames } from '@antdv/ui/es/_utils/dom'
 import type { PropType } from 'vue'
 import { computed, defineComponent, ref, toRefs, watch, watchEffect } from 'vue'
 import type { FilterMode } from '../FilterPanel'

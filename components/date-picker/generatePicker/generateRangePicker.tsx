@@ -1,6 +1,6 @@
 import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled, SwapRightOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent, ref } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import { enUS } from '../../locale'
 import { getRangePlaceholder, transPlacement2DropdownAlign } from '../util'
 import useStyle from '../style'

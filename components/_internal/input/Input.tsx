@@ -8,7 +8,7 @@ import {
   watch,
   withDirectives,
 } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import antInputDirective from '../../_utils/antInputDirective'
 import { classNames } from '../../_utils/dom'
 

@@ -1,5 +1,5 @@
-import type { ThemeConfig } from '@antdv/ui/es/config-provider/context'
-import type { VueNode } from '@antdv/ui/es/_util/type'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider'
+import type { VueNode } from '@antdv/ui/es/_utils/types'
 
 export interface Theme {
   name: string

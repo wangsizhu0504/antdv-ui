@@ -1,5 +1,5 @@
 import { computed, defineComponent, ref, watchEffect } from 'vue'
-import { omit } from 'lodash-es'
+import { omit } from '../../_utils/omit'
 import VcTree from '../../_internal/tree'
 import { filterEmpty, initDefaultProps } from '../../_utils/vue'
 import { warning, warningFn } from '../../_utils/log'
