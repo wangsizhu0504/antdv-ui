@@ -1,7 +1,7 @@
-import type { SelectCommonPlacement } from '../_internal/transition'
-import type { DatePickerLocale } from '../locale'
-import type { DirectionType } from '../config-provider'
-import type { PickerMode } from '../_internal/picker/interface'
+import type { SelectCommonPlacement } from '../../_internal/transition'
+import type { DatePickerLocale } from '../../locale'
+import type { DirectionType } from '../../config-provider'
+import type { PickerMode } from '../../_internal/picker/interface'
 
 export function getPlaceholder(
   locale: DatePickerLocale,

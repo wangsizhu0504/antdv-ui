@@ -1,4 +1,4 @@
-import { arrayType, objectType, someType } from '../_utils/vue'
+import { arrayType, objectType, someType } from '../../_utils/vue'
 import type { WatermarkFontType } from './type'
 import type { ExtractPropTypes } from 'vue'
 

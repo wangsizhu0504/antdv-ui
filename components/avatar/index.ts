@@ -1,21 +1,21 @@
-import avatar from './Avatar'
-import avatarGroup from './Group'
+import AAvatar from './src/Avatar'
+import AAvatarGroup from './src/Group'
 import type { App, Plugin } from 'vue'
 
-export const AvatarGroup = avatarGroup
+export const AvatarGroup = AAvatarGroup
 
-export const Avatar = Object.assign(avatar, {
-  Group: AvatarGroup,
+export const Avatar = Object.assign(AAvatar, {
+  Group: AAvatarGroup,
   install(app: App) {
-    app.component(avatar.name, avatar)
-    app.component(avatarGroup.name, avatarGroup)
+    app.component(AAvatar.name, AAvatar)
+    app.component(AAvatarGroup.name, AAvatarGroup)
     return app
   },
 })
 
 export default Avatar as typeof Avatar & Plugin & {
-  readonly Group: typeof avatarGroup
+  readonly Group: typeof AAvatarGroup
 }
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'

@@ -1,7 +1,7 @@
 import { computed, defineComponent, onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
 import { useMutationObserver } from '@vueuse/core'
 
-import { initDefaultProps } from '../_utils/vue'
+import { initDefaultProps } from '../../_utils/vue'
 import { getPixelRatio, getStyleStr, reRendering, rotateWatermark } from './utils'
 import { watermarkProps } from './props'
 import type { CSSProperties, StyleValue } from 'vue'

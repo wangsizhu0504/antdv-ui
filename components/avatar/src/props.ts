@@ -1,4 +1,4 @@
-import { PropTypes } from '../_utils/vue'
+import { PropTypes } from '../../_utils/vue'
 import type { AvatarSize } from './types'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 

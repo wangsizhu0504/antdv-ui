@@ -1,11 +1,11 @@
 import { computed, defineComponent, watchEffect } from 'vue'
-import Popover from '../popover'
+import Popover from '../../popover'
 
-import { useConfigInject } from '../hooks'
-import { flattenChildren, getPropsSlot } from '../_utils/vue'
-import { cloneElement } from '../_utils/dom'
+import { useConfigInject } from '../../hooks'
+import { flattenChildren, getPropsSlot } from '../../_utils/vue'
+import { cloneElement } from '../../_utils/dom'
+import useStyle from '../style'
 import Avatar from './Avatar'
-import useStyle from './style'
 import { useAvatarProviderContext } from './AvatarContext'
 
 import { groupProps } from './props'

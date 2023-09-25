@@ -1,9 +1,9 @@
-import datePicker from './DatePicker'
+import ADatePicker from './src/DatePicker'
 
-export const DatePicker = datePicker
+export const DatePicker = ADatePicker
 
 export default DatePicker
 
-export * from './generatePicker/type'
-export * from './generatePicker/props'
-export * from './DatePicker'
+export * from './src/generatePicker/type'
+export * from './src/generatePicker/props'
+export * from './src/DatePicker'

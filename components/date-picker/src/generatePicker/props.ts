@@ -5,11 +5,11 @@ import {
   objectType,
   someType,
   stringType,
-} from '../../_utils/vue'
+} from '../../../_utils/vue'
 import type { CSSProperties } from 'vue'
-import type { DatePickerLocale } from '../../locale'
-import type { FocusEventHandler, InputStatus, MouseEventHandler, VueNode } from '../../_utils/types'
-import type { SizeType } from '../../config-provider'
+import type { DatePickerLocale } from '../../../locale'
+import type { FocusEventHandler, InputStatus, MouseEventHandler, VueNode } from '../../../_utils/types'
+import type { SizeType } from '../../../config-provider'
 import type {
   CustomFormat,
   DisabledTime,
@@ -19,11 +19,11 @@ import type {
   PickerMode,
   PresetDate,
   RangeValue,
-} from '../../_internal/picker/interface'
-import type { DateRender } from '../../_internal/picker/panels/DatePanel/DateBody'
-import type { MonthCellRender } from '../../_internal/picker/panels/MonthPanel/MonthBody'
-import type { SharedTimeProps } from '../../_internal/picker/panels/TimePanel'
-import type { RangeDateRender, RangeInfo, RangeType } from '../../_internal/picker/RangePicker'
+} from '../../../_internal/picker/interface'
+import type { DateRender } from '../../../_internal/picker/panels/DatePanel/DateBody'
+import type { MonthCellRender } from '../../../_internal/picker/panels/MonthPanel/MonthBody'
+import type { SharedTimeProps } from '../../../_internal/picker/panels/TimePanel'
+import type { RangeDateRender, RangeInfo, RangeType } from '../../../_internal/picker/RangePicker'
 
 const DataPickerPlacements = ['bottomLeft', 'bottomRight', 'topLeft', 'topRight'] as const
 type DataPickerPlacement = (typeof DataPickerPlacements)[number]

@@ -1,9 +1,9 @@
 import { withInstall } from '../_utils/vue'
-import row from './Row'
-import col from './Col'
+import ARow from './src/Row'
+import ACol from './src/Col'
 
-export const Col = withInstall(col)
-export const Row = withInstall(row)
+export const Col = withInstall(ACol)
+export const Row = withInstall(ARow)
 
-export * from './types'
-export * from './props'
+export * from './src/types'
+export * from './src/props'

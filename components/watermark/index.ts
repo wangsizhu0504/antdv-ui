@@ -1,8 +1,9 @@
 import { withInstall } from '../_utils/vue'
-import AWatermark from './Watermark'
+import AWatermark from './src/Watermark'
 
 export const Watermark = withInstall(AWatermark)
+
 export default Watermark
 
-export * from './type'
-export * from './props'
+export * from './src/type'
+export * from './src/props'
