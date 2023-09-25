@@ -1,7 +1,7 @@
 import { computed, defineComponent } from 'vue'
-import { Circle as VCCircle } from '../../_internal/progress'
 import { initDefaultProps } from '../../_utils/vue'
 import Tooltip from '../../tooltip'
+import InternalCircle from './InternalCircle'
 import { progressCircleProps } from './props'
 import { getPercentage, getSize, getStrokeColor } from './utils'
 import type { ProgressProps } from './props'
@@ -64,7 +64,7 @@ export default defineComponent({
 
     return () => {
       const circleContent = (
-        <VCCircle
+        <InternalCircle
           percent={percent.value}
           strokeWidth={circleWidth.value}
           trailWidth={circleWidth.value}

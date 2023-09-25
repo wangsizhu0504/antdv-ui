@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import { defineComponent } from 'vue'
-import BaseMixin from '../../../_utils/baseMixin'
-import { PropTypes, hasProp } from '../../../_utils/vue'
+import BaseMixin from '../../_utils/baseMixin'
+import { PropTypes, hasProp } from '../../_utils/vue'
 import Track from './common/Track'
 import createSlider from './common/createSlider'
 import * as utils from './utils'

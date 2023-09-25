@@ -1,15 +1,15 @@
 import { defineComponent, ref } from 'vue'
 import { classNames, cloneElement } from '../../_utils/dom'
-import { hasAddon, hasPrefixSuffix } from './utils/commonUtils'
+import { hasAddon, hasPrefixSuffix } from './util'
 
-import { vcBaseInputProps } from './props'
+import { baseInputProps } from './props'
 import type { MouseEventHandler } from '../../_utils/types'
 import type { CSSProperties } from 'vue'
 
 export default defineComponent({
   name: 'BaseInput',
   inheritAttrs: false,
-  props: vcBaseInputProps(),
+  props: baseInputProps(),
   setup(props, { slots, attrs }) {
     const containerRef = ref()
     const onInputMouseDown: MouseEventHandler = (e) => {

@@ -18,19 +18,19 @@ import {
   hasPrefixSuffix,
   resolveOnChange,
   triggerFocus,
-} from './utils/commonUtils'
+} from './util'
 import BaseInput from './BaseInput'
-import { vcInputProps } from './props'
+import { internalInputProps } from './props'
 import type { InputFocusOptions } from './types'
-import type { VcInputProps } from './props'
+import type { InternalInputProps } from './props'
 
 import type { ChangeEvent, FocusEventHandler } from '../../_utils/types'
 import type { VNode } from 'vue'
 
 export default defineComponent({
-  name: 'VcInput',
+  name: 'InternalInput',
   inheritAttrs: false,
-  props: vcInputProps(),
+  props: internalInputProps(),
   setup(props, { slots, attrs, expose, emit }) {
     const stateValue = shallowRef(props.value === undefined ? props.defaultValue : props.value)
     const focused = shallowRef(false)
@@ -146,7 +146,7 @@ export default defineComponent({
         allowClear,
         type = 'text',
       } = props
-      const otherProps = omit(props as VcInputProps & { placeholder: string }, [
+      const otherProps = omit(props as InternalInputProps & { placeholder: string }, [
         'prefixCls',
         'onPressEnter',
         'addonBefore',

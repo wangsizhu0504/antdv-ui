@@ -1,8 +1,8 @@
 import { computed, defineComponent, ref } from 'vue'
-import { useRefs } from '../../../hooks'
-import { initDefaultProps } from '../../../_utils/vue'
+import { useRefs } from '../../hooks'
+import { initDefaultProps } from '../../_utils/vue'
 import { defaultProps, useTransitionDuration } from './common'
-import { propTypes } from './types'
+import { internalCircleProps } from './props'
 import type { GapPositionType } from './types'
 
 let gradientSeed = 0
@@ -68,8 +68,8 @@ function getPathStyles(
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
-  name: 'VCCircle',
-  props: initDefaultProps(propTypes, defaultProps),
+  name: 'InternalCircle',
+  props: initDefaultProps(internalCircleProps(), defaultProps),
   setup(props) {
     gradientSeed += 1
     const gradientId = ref(gradientSeed)

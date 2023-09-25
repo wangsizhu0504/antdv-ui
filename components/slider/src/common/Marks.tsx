@@ -1,6 +1,6 @@
-import { isValidElement } from '../../../../_utils/is'
-import { supportsPassive } from '../../../../_utils/supportsPassive'
-import { classNames } from '../../../../_utils/dom'
+import { isValidElement } from '../../../_utils/is'
+import { supportsPassive } from '../../../_utils/supportsPassive'
+import { classNames } from '../../../_utils/dom'
 
 const Marks = (_: any, { attrs, slots }: any) => {
   const {

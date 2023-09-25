@@ -11,7 +11,6 @@ import {
 } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
 import { omit } from '../../_utils/omit'
-import VcDrawer from '../../_internal/drawer'
 import { getPropsSlot, initDefaultProps } from '../../_utils/vue'
 import { warning } from '../../_utils/log'
 import { isNumeric } from '../../_utils/is'
@@ -21,6 +20,7 @@ import { useConfigInject, useScrollLocker } from '../../hooks'
 
 import { getTransitionName, getTransitionProps } from '../../_internal/transition'
 import useStyle from '../style'
+import DrawerWrapper from './DrawerWrapper'
 import { drawerProps } from './props'
 import type { CustomSlotsType } from '../../_utils/types'
 import type { PushState } from './types'
@@ -329,7 +329,7 @@ export default defineComponent({
       }
       return wrapSSR(
         <NoCompactStyle>
-          <VcDrawer
+          <DrawerWrapper
             {...vcDrawerProps}
             maskMotion={maskMotion.value}
             motion={panelMotion}
@@ -343,7 +343,7 @@ export default defineComponent({
               handler: props.handle ? () => props.handle : slots.handle,
               default: () => renderBody(prefixCls.value),
             }}
-          ></VcDrawer>
+          ></DrawerWrapper>
         </NoCompactStyle>,
       )
     }

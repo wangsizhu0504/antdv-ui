@@ -7,19 +7,19 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { omit } from '../../../_utils/omit'
-import KeyCode from '../../../_utils/keyCode'
-import { classNames } from '../../../_utils/dom'
+import { omit } from '../../_utils/omit'
+import KeyCode from '../../_utils/keyCode'
+import { classNames } from '../../_utils/dom'
 import { dataToArray, windowIsUndefined } from './utils'
-import { vcDrawerChildProps } from './props'
+import { drawerChildProps } from './props'
 
 const currentDrawer: Record<string, boolean> = {}
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   inheritAttrs: false,
-  name: 'VcDrawerChild',
-  props: vcDrawerChildProps(),
+  name: 'DrawerChild',
+  props: drawerChildProps(),
   emits: ['close', 'handleClick', 'change'],
   setup(props, { emit, slots }) {
     const contentWrapper = shallowRef<HTMLElement>()

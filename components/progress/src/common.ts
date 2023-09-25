@@ -1,9 +1,9 @@
 import { onUpdated, ref } from 'vue'
 import type { Ref } from 'vue'
-import type { RefsValue } from '../../../hooks'
-import type { ProgressProps } from './types'
+import type { RefsValue } from '../../hooks'
+import type { InternalCircleProps } from './props'
 
-export const defaultProps: Partial<ProgressProps> = {
+export const defaultProps: Partial<InternalCircleProps> = {
   percent: 0,
   prefixCls: 'vc-progress',
   strokeColor: '#2db7f5',

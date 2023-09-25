@@ -1,5 +1,5 @@
 import { defineComponent, onActivated, onBeforeUnmount, ref, watch } from 'vue'
-import Tooltip, { tooltipProps } from '../../tooltip'
+import { Tooltip, tooltipProps } from '../../tooltip'
 import { wrapperRaf } from '../../_utils/vue'
 
 export default defineComponent({

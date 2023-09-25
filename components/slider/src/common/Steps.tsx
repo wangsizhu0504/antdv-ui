@@ -1,7 +1,7 @@
-import { classNames } from '../../../../_utils/dom'
-import { warning } from '../../../../_utils/log'
+import { classNames } from '../../../_utils/dom'
+import { warning } from '../../../_utils/log'
 import type { CSSProperties } from 'vue'
-import type { VueNode } from '../../../../_utils/types'
+import type { VueNode } from '../../../_utils/types'
 
 const calcPoints = (
   _vertical: boolean,

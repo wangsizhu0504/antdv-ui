@@ -1,7 +1,7 @@
 import { computed, defineComponent, onBeforeUnmount, onMounted, shallowRef } from 'vue'
 
-import { addEventListenerWrap, classNames } from '../../../_utils/dom'
-import { PropTypes } from '../../../_utils/vue'
+import { addEventListenerWrap, classNames } from '../../_utils/dom'
+import { PropTypes } from '../../_utils/vue'
 import type { CSSProperties, PropType } from 'vue'
 
 export default defineComponent({

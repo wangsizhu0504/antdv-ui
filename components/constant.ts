@@ -44,6 +44,8 @@ export const SiderCollapsedKey: InjectionKey<SiderCollapsed> = Symbol('siderColl
 
 export const SiderHookProviderKey: InjectionKey<SiderHookProvider> = Symbol('siderHookProvider')
 
+export const inputDefaultValue = Symbol('InputDefaultKey') as unknown as string
+
 export const defaultIconPrefixCls = 'anticon'
 
 export const PlacementTypes = ['top', 'right', 'bottom', 'left'] as const

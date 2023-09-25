@@ -10,3 +10,8 @@ export type sizeType = (typeof SizeTypes)[number]
 export interface PushState {
   distance: string | number
 }
+
+export interface scrollLockOptions {
+  container: HTMLElement
+}
+export type IPlacement = 'left' | 'top' | 'right' | 'bottom'

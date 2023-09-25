@@ -8,15 +8,15 @@ import {
   useInjectFormItemContext,
 } from '../../form/src/FormItemContext'
 import { useConfigInject } from '../../hooks'
-import { hasPrefixSuffix } from '../../_internal/input/utils/commonUtils'
-import VcInput from '../../_internal/input/Input'
 import { NoCompactStyle, useCompactItemContext } from '../../space'
 
 import { useInjectDisabled } from '../../config-provider'
 import { getMergedStatus, getStatusClassNames } from '../../_utils/status'
 import useStyle from '../style'
+import InternalInput from './InternalInput'
+import { hasPrefixSuffix } from './util'
 import { inputProps } from './props'
-import type { InputFocusOptions } from '../../_internal/input/types'
+import type { InputFocusOptions } from './types'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -131,7 +131,7 @@ export default defineComponent({
       const inputHasPrefixSuffix = hasPrefixSuffix({ prefix, suffix }) || !!hasFeedback
       const clearIcon = slots.clearIcon || (() => <CloseCircleFilled />)
       return wrapSSR(
-        <VcInput
+        <InternalInput
           {...attrs}
           {...omit(rest, ['onUpdate:value', 'onChange', 'onInput'])}
           onChange={triggerChange}
@@ -196,7 +196,7 @@ export default defineComponent({
             hashId.value,
           )}
           v-slots={{ ...slots, clearIcon }}
-        ></VcInput>,
+        ></InternalInput>,
       )
     }
   },

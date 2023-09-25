@@ -1,4 +1,4 @@
-import keyCode from '../../../_utils/keyCode'
+import keyCode from '../../_utils/keyCode'
 
 export function isEventFromHandle(e: { target: HTMLElement }, handles) {
   try {

@@ -21,3 +21,9 @@ export interface SuccessProps {
   progress?: number
   strokeColor?: string
 }
+
+export type StrokeColorType = string | string[] | object
+
+export type GapPositionType = 'top' | 'right' | 'bottom' | 'left'
+
+export type StrokeLinecapType = 'round' | 'butt' | 'square'

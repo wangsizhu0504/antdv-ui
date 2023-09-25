@@ -1,14 +1,12 @@
 import { computed, defineComponent, ref } from 'vue'
-import VcSlider from '../../_internal/slider/src/Slider'
-import VcRange from '../../_internal/slider/src/Range'
-import VcHandle from '../../_internal/slider/src/Handle'
-
 import { useInjectFormItemContext } from '../../form/src/FormItemContext'
-
 import { useConfigInject } from '../../hooks'
 import { classNames } from '../../_utils/dom'
 import { warning } from '../../_utils/log'
 import useStyle from '../style'
+import SliderHandle from './Handle'
+import SliderRange from './Range'
+import InternalSlider from './InternalSlider'
 import SliderTooltip from './SliderTooltip'
 import { sliderProps } from './props'
 import type { HandleGeneratorFn, HandleGeneratorInfo, SliderValue, Visibles } from './types'
@@ -93,7 +91,7 @@ export default defineComponent({
           overlayClassName={`${prefixCls.value}-tooltip`}
           getPopupContainer={getTooltipPopupContainer || getPopupContainer?.value}
         >
-          <VcHandle
+          <SliderHandle
             {...restProps}
             value={value}
             onMouseenter={() => toggleTooltipOpen(index, true)}
@@ -129,7 +127,7 @@ export default defineComponent({
 
       if (range) {
         return wrapSSR(
-          <VcRange
+          <SliderRange
             {...attrs}
             {...restProps}
             step={restProps.step!}
@@ -151,7 +149,7 @@ export default defineComponent({
         )
       }
       return wrapSSR(
-        <VcSlider
+        <InternalSlider
           {...attrs}
           {...restProps}
           id={id}
