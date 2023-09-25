@@ -12,7 +12,7 @@ import {
 } from '../../_utils/vue'
 import { supportsPassive } from '../../_utils/supportsPassive'
 import BaseMixin from '../../_utils/baseMixin'
-import { PortalWrapper } from '../../_internal/portal'
+import { PortalWrapper } from '../portal'
 import { useProvidePortal } from './context'
 import { getAlignFromPlacement, getAlignPopupClassName } from './utils/alignUtil'
 import Popup from './Popup'

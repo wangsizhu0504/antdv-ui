@@ -8,7 +8,7 @@ import {
   shallowRef,
   render as vueRender,
 } from 'vue'
-import { getTransitionGroupProps } from '../../_internal/transition'
+import { getTransitionGroupProps } from '../transition'
 import ConfigProvider from '../../config-provider'
 import { globalConfigForApi } from '../../config-provider/src/config'
 import { classNames } from '../../_utils/dom'

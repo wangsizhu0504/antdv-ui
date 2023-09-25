@@ -1,5 +1,5 @@
 import { computed, defineComponent, shallowRef, watch } from 'vue'
-import ResizeObserver from '../../_internal/resize-observer'
+import ResizeObserver from '../resize-observer'
 import { classNames } from '../../_utils/dom'
 import { PropTypes } from '../../_utils/vue'
 import RawItem from './RawItem'

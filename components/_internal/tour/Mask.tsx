@@ -2,7 +2,7 @@ import { defineComponent } from 'vue'
 import { classNames } from '../../_utils/dom'
 import { useId } from '../../hooks'
 import { booleanType, objectType, someType } from '../../_utils/vue'
-import { PortalWrapper } from '../../_internal/portal'
+import { PortalWrapper } from '../portal'
 import type { CSSProperties } from 'vue'
 import type { PosInfo } from './hooks/useTarget'
 

@@ -134,8 +134,7 @@ export default defineComponent({
 
           if (init) {
             // Clean up container if needed
-            const getContainerIsFunc
-              = typeof getContainer === 'function' && typeof prevGetContainer === 'function'
+            const getContainerIsFunc = typeof getContainer === 'function' && typeof prevGetContainer === 'function'
             if (
               getContainerIsFunc
                 ? getContainer.toString() !== prevGetContainer.toString()

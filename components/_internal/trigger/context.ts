@@ -6,6 +6,7 @@ export interface PortalContextProps {
   inTriggerContext: boolean // 仅处理 trigger 上下文的 portal
 }
 const PortalContextKey: InjectionKey<PortalContextProps> = Symbol('PortalContextKey')
+
 export const useProvidePortal = (instance: any, config = { inTriggerContext: true }) => {
   provide(PortalContextKey, {
     inTriggerContext: config.inTriggerContext,

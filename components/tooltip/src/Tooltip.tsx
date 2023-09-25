@@ -267,6 +267,7 @@ export default defineComponent({
           props.transitionName,
         ),
       }
+
       return wrapSSR(
         <TooltipRender
           {...vcTooltipProps}

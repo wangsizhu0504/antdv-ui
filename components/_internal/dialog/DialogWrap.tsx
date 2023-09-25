@@ -1,7 +1,7 @@
 import { defineComponent, ref, watch } from 'vue'
 import { useProvidePortal } from '../trigger/context'
 import { initDefaultProps } from '../../_utils/vue'
-import { PortalWrapper } from '../../_internal/portal'
+import { PortalWrapper } from '../portal'
 import Dialog from './Dialog'
 import { vcDialogProps } from './props'
 import type { IDialogChildProps } from './props'

@@ -1,20 +1,15 @@
 import { defineComponent } from 'vue'
 import { PropTypes } from '../../_utils/vue'
-import type { ExtractPropTypes } from 'vue'
-
-const tooltipContentProps = {
-  prefixCls: String,
-  id: String,
-  overlayInnerStyle: PropTypes.any,
-}
-
-export type TooltipContentProps = Partial<ExtractPropTypes<typeof tooltipContentProps>>
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'TooltipContent',
-  props: tooltipContentProps,
-  setup(props: TooltipContentProps, { slots }) {
+  props: {
+    prefixCls: String,
+    id: String,
+    overlayInnerStyle: PropTypes.any,
+  },
+  setup(props, { slots }) {
     return () => (
       <div
         class={`${props.prefixCls}-inner`}

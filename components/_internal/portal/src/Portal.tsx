@@ -7,17 +7,15 @@ import {
   onUpdated,
   watch,
 } from 'vue'
-import { useInjectPortal } from '../../../_internal/trigger/context'
+import { useInjectPortal } from '../../trigger/context'
+import { PropTypes } from '../../../_utils/vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'Portal',
   inheritAttrs: false,
   props: {
-    getContainer: {
-      type: Function,
-      required: true,
-    },
+    getContainer: PropTypes.func.isRequired,
     didUpdate: Function,
   },
   setup(props, { slots }) {
@@ -27,6 +25,9 @@ export default defineComponent({
     const { shouldRender } = useInjectPortal()
     onBeforeMount(() => {
       isSSR = false
+      const containerDom = props.getContainer()
+      if (shouldRender.value && containerDom)
+        container = containerDom
     })
     onMounted(() => {
       if (shouldRender.value)
@@ -46,14 +47,14 @@ export default defineComponent({
       })
     })
     // onBeforeUnmount(() => {
-    //   if (container && container.parentNode)
-    //     container.parentNode.removeChild(container)
-    // })
+    //   if (container && container.parentNode) {
+    //     container.parentNode.removeChild(container);
+    //   }
+    // });
     return () => {
       if (!shouldRender.value) return null
       if (isSSR)
         return slots.default?.()
-
       return container ? <Teleport to={container} v-slots={slots}></Teleport> : null
     }
   },

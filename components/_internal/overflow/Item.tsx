@@ -1,5 +1,5 @@
 import { computed, defineComponent, onUnmounted, ref } from 'vue'
-import ResizeObserver from '../../_internal/resize-observer'
+import ResizeObserver from '../resize-observer'
 import { classNames } from '../../_utils/dom'
 import { PropTypes } from '../../_utils/vue'
 import type { Key, VueNode } from '../../_utils/types'

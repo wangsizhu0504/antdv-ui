@@ -1,5 +1,5 @@
 import { isWindow } from '../is'
-import { wrapperRaf } from '../vue/raf'
+import wrapperRaf from '../vue/raf'
 
 import { getScroll } from './getScroll'
 
