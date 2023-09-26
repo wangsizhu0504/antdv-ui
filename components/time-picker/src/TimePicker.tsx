@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue'
 import { omit } from '../../_utils/omit'
-import generatePicker from '../../date-picker/generatePicker'
+import generatePicker from '../../date-picker/src/generatePicker'
 import {
   commonProps,
   datePickerProps,

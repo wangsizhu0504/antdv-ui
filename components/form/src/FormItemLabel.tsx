@@ -1,7 +1,7 @@
 import defaultLocale from '../../locale/lang/en_US'
 import { classNames } from '../../_utils/dom'
 import { useLocaleReceiver } from '../../locale-provider'
-import Col from '../../grid/Col'
+import { Col } from '../../grid'
 import { useInjectForm } from './context'
 import type { FormItemLabelProps, FormLabelAlign } from './types'
 import type { FunctionalComponent } from 'vue'

@@ -1,7 +1,7 @@
 import { computed, defineComponent } from 'vue'
 import { filterEmpty } from '../../_utils/vue'
 import { classNames } from '../../_utils/dom'
-import Col from '../../grid/Col'
+import { Col } from '../../grid'
 import ErrorList from './ErrorList'
 import { useInjectForm, useProvideForm, useProvideFormItemPrefix } from './context'
 import type { ColProps } from '../../grid'

@@ -1,4 +1,4 @@
-import dayjsGenerateConfig from '../_internal/picker/generate/dayjs'
+import dayjsGenerateConfig from '../../_internal/picker/generate/dayjs'
 import generatePicker from './generatePicker'
 import type { Dayjs } from 'dayjs'
 import type { App } from 'vue'

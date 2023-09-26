@@ -1,7 +1,7 @@
 import PickerButton from '../PickerButton'
 import PickerTag from '../PickerTag'
-import type { PickerMode } from '../../_internal/picker/interface'
-import type { SharedTimeProps } from '../../_internal/picker/panels/TimePanel'
+import type { PickerMode } from '../../../_internal/picker/interface'
+import type { SharedTimeProps } from '../../../_internal/picker/panels/TimePanel'
 
 export const Components = { button: PickerButton, rangeItem: PickerTag }
 

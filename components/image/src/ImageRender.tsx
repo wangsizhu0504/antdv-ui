@@ -1,5 +1,5 @@
 import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
-import { isNumber } from 'lodash-es'
+import { isNumber } from '../../_utils/is'
 import { getOffset } from '../../_utils/dom/css'
 import { useMergedState } from '../../hooks'
 import { classNames } from '../../_utils/dom'
