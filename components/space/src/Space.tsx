@@ -93,7 +93,10 @@ export default defineComponent({
           style={[style.value, attrs.style as CSSProperties]}
         >
           {items.map((child, index) => {
-            const originIndex = children.indexOf(child)
+            let originIndex = children.indexOf(child)
+            if (originIndex === -1)
+              originIndex = `$$space-${index}`
+
             let itemStyle: CSSProperties = {}
             if (!supportFlexGap.value) {
               if (direction === 'vertical') {
