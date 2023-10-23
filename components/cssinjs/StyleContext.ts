@@ -1,4 +1,12 @@
-import { defineComponent, inject, provide, shallowRef, unref, watch } from 'vue'
+import {
+  defineComponent,
+  getCurrentInstance,
+  inject,
+  provide,
+  shallowRef,
+  unref,
+  watch,
+} from 'vue'
 import CacheEntity from './Cache'
 import { withInstall } from './util'
 import type { InjectionKey, PropType, Ref, ShallowRef } from 'vue'
@@ -78,6 +86,26 @@ const StyleContextKey: InjectionKey<ShallowRef<Partial<StyleContextProps>>>
   = Symbol('StyleContextKey')
 
 export type UseStyleProviderProps = Partial<StyleContextProps> | Ref<Partial<StyleContextProps>>
+
+// fix: https://github.com/vueComponent/ant-design-vue/issues/7023
+const getCache = () => {
+  const instance = getCurrentInstance()
+  let cache: CacheEntity
+  if (instance && instance.appContext) {
+    const globalCache = instance.appContext?.config?.globalProperties?.__ANTDV_CSSINJS_CACHE__
+    if (globalCache) {
+      cache = globalCache
+    } else {
+      cache = createCache()
+      if (instance.appContext.config.globalProperties)
+        instance.appContext.config.globalProperties.__ANTDV_CSSINJS_CACHE__ = cache
+    }
+  } else {
+    cache = createCache()
+  }
+  return cache
+}
+
 const defaultStyleContext: StyleContextProps = {
   cache: createCache(),
   defaultCache: true,
@@ -85,7 +113,8 @@ const defaultStyleContext: StyleContextProps = {
 }
 // fix: https://github.com/vueComponent/ant-design-vue/issues/6912
 export const useStyleInject = () => {
-  return inject(StyleContextKey, shallowRef({ ...defaultStyleContext, cache: createCache() }))
+  const cache = getCache()
+  return inject(StyleContextKey, shallowRef({ ...defaultStyleContext, cache }))
 }
 export const useStyleProvider = (props: UseStyleProviderProps) => {
   const parentContext = useStyleInject()
