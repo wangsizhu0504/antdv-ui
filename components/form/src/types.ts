@@ -297,4 +297,5 @@ export interface FormItemLabelProps {
   required?: boolean
   prefixCls: string
   onClick: Function
+  tooltip: string
 }

@@ -63,6 +63,7 @@ export const formItemProps = () => ({
   messageVariables: { type: Object as PropType<Record<string, string>> },
   hidden: Boolean,
   noStyle: Boolean,
+  tooltip: String,
 })
 
 export type FormItemProps = Partial<ExtractPropTypes<ReturnType<typeof formItemProps>>>

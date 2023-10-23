@@ -85,6 +85,7 @@ export default defineComponent({
     label: any
     extra: any
     default: any
+    tooltip: any
   }>,
   setup(props, { slots, attrs, expose }) {
     warningFn(props.prop === undefined, '`prop` is deprecated. Please use `name` instead.')
@@ -428,7 +429,8 @@ export default defineComponent({
                     requiredMark={formContext.requiredMark.value}
                     prefixCls={prefixCls.value}
                     onClick={onLabelClick}
-                    label={props.label ?? slots.label?.()}
+                    label={props.label}
+                    v-slots={{ label: slots.label, tooltip: slots.tooltip }}
                   />
                   {/* Input Group */}
                   <FormItemInput

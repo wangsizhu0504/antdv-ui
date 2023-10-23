@@ -206,9 +206,13 @@ export default defineComponent({
     })
 
     const wrapperStyle = computed(() => {
-      const { zIndex } = props
+      const { zIndex, contentWrapperStyle } = props
       const val = offsetStyle.value
-      return [{ zIndex, transform: sPush.value ? pushTransform.value : undefined }, val]
+      return [
+        { zIndex, transform: sPush.value ? pushTransform.value : undefined },
+        { ...contentWrapperStyle },
+        val,
+      ]
     })
 
     const renderCloseIcon = (prefixCls: string) => {
