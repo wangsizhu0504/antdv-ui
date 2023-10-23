@@ -90,4 +90,7 @@ export interface ConfigProviderInnerProps {
   componentSize?: ComputedRef<SizeType>
   componentDisabled?: ComputedRef<boolean>
   transformCellText?: ComputedRef<(tableProps: TransformCellTextProps) => any>
+  wave?: ComputedRef<{
+    disabled?: boolean
+  }>
 }

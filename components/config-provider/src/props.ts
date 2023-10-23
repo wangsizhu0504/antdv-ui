@@ -52,6 +52,9 @@ export const configProviderProps = () => ({
   select: objectType<{
     showSearch?: boolean
   }>(),
+  wave: objectType<{
+    disabled?: boolean
+  }>(),
 })
 
 export type ConfigProviderProps = Partial<ExtractPropTypes<ReturnType<typeof configProviderProps>>>
