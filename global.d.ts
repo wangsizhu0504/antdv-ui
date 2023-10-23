@@ -267,7 +267,6 @@ declare module 'vue' {
 
     AWatermark: typeof import('@antdv/ui')['Watermark'];
 
-    AStyleProvider: typeof import('@antdv/ui')['StyleProvider'];
   }
 }
-export {};
+export { };
