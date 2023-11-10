@@ -1,7 +1,7 @@
 {
   "name": "@antdv/ui",
   "version": "4.0.6",
-  "packageManager": "pnpm@8.8.0",
+  "packageManager": "pnpm@8.10.2",
   "publishConfig": {
     "access": "public"
   },
@@ -66,15 +66,15 @@
     "not dead"
   ],
   "peerDependencies": {
-    "@ant-design/icons-vue": "^6.1.0",
-    "vue": "^3.3.4"
+    "@ant-design/icons-vue": ">=6.0.0",
+    "vue": ">=3.0.0"
   },
   "dependencies": {
     "@ant-design/colors": "^7.0.0",
     "@ctrl/tinycolor": "^3.6.1",
     "@emotion/hash": "^0.9.1",
     "@emotion/unitless": "^0.8.1",
-    "@vueuse/core": "^10.4.1",
+    "@vueuse/core": "^10.6.0",
     "async-validator": "^4.2.5",
     "csstype": "^3.1.2",
     "dayjs": "^1.11.10",
@@ -87,11 +87,11 @@
     "vue-types": "^5.1.1"
   },
   "devDependencies": {
-    "@types/lodash-es": "^4.17.9",
+    "@types/lodash-es": "^4.17.11",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
     "typescript": "^5.2.2",
-    "vite": "^4.4.11",
-    "vite-plugin-dts": "^3.6.0",
+    "vite": "^4.5.0",
+    "vite-plugin-dts": "^3.6.3",
     "vitest": "^0.33.0"
   }
 }
