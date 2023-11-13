@@ -267,6 +267,8 @@ declare module 'vue' {
 
     AWatermark: typeof import('@antdv/ui')['Watermark'];
 
+    AFlex: typeof import('@antdv/ui')['Flex'];
+
   }
 }
 export { };
