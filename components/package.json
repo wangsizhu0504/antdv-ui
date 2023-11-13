@@ -1,7 +1,7 @@
 {
   "name": "@antdv/ui",
   "version": "4.0.6",
-  "packageManager": "pnpm@8.10.2",
+  "packageManager": "pnpm@8.10.3",
   "publishConfig": {
     "access": "public"
   },
@@ -74,7 +74,7 @@
     "@ctrl/tinycolor": "^3.6.1",
     "@emotion/hash": "^0.9.1",
     "@emotion/unitless": "^0.8.1",
-    "@vueuse/core": "^10.6.0",
+    "@vueuse/core": "^10.6.1",
     "async-validator": "^4.2.5",
     "csstype": "^3.1.2",
     "dayjs": "^1.11.10",

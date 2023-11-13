@@ -1,4 +1,4 @@
-import { cloneVNode } from 'vue'
+import { cloneVNode, isVNode } from 'vue'
 
 import { filterEmpty } from '../vue/props'
 import { warning } from '../log'
@@ -51,6 +51,10 @@ export function deepCloneElement<T, U>(
   if (Array.isArray(vnode)) {
     return vnode.map(item => deepCloneElement(item, nodeProps, override, mergeRef))
   } else {
+    // 需要判断是否为vnode方可进行clone操作
+    if (!isVNode(vnode))
+      return vnode
+
     const cloned = cloneElement(vnode, nodeProps, override, mergeRef) as any
     if (Array.isArray(cloned.children))
       cloned.children = deepCloneElement(cloned.children as VNode<T, U>[])
