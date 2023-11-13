@@ -29,7 +29,7 @@ import useHoverValue from './hooks/useHoverValue'
 import usePresets from './hooks/usePresets'
 import { legacyPropsWarning } from './utils/warnUtil'
 import type { SharedTimeProps } from './panels/TimePanel'
-import type { CustomFormat, PickerMode, PresetDate } from './interface'
+import type { CustomFormat, PanelMode, PickerMode, PresetDate, RangeValue } from './interface'
 import type { ContextOperationRefProps } from './PanelContext'
 import type {
   PickerPanelBaseProps,
@@ -80,6 +80,7 @@ export interface PickerSharedProps<DateType> {
   // Events
   onChange?: (value: DateType | null, dateString: string) => void
   onOpenChange?: (open: boolean) => void
+  onPanelChange?: (values: RangeValue<DateType>, modes: [PanelMode, PanelMode]) => void
   onFocus?: FocusEventHandler
   onBlur?: FocusEventHandler
   onMousedown?: MouseEventHandler
@@ -175,6 +176,7 @@ function Picker<DateType>() {
       'inputRender',
       'onChange',
       'onOpenChange',
+      'onPanelChange',
       'onFocus',
       'onBlur',
       'onMousedown',
