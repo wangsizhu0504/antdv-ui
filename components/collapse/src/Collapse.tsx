@@ -10,9 +10,9 @@ import {
   isValidElement,
 } from '../../_utils/is'
 import { useConfigInject } from '../../hooks'
-import { collapseMotion } from '../../_internal/collapseMotion'
 import useStyle from '../style'
 import { firstNotUndefined, getDataAndAriaProps } from '../../_utils/util'
+import { collapseMotion } from '../../_internal/collapseMotion'
 import { collapseProps } from './props'
 import type { CustomSlotsType, Key } from '../../_utils/types'
 
@@ -28,7 +28,6 @@ export default defineComponent({
     accordion: false,
     destroyInactivePanel: false,
     bordered: true,
-    openAnimation: collapseMotion('ant-motion-collapse', false),
     expandIconPosition: 'start',
   }),
   slots: Object as CustomSlotsType<{
@@ -57,7 +56,7 @@ export default defineComponent({
       },
       { deep: true },
     )
-    const { prefixCls, direction } = useConfigInject('collapse', props)
+    const { prefixCls, direction, rootPrefixCls } = useConfigInject('collapse', props)
 
     // style
     const [wrapSSR, hashId] = useStyle(prefixCls)
@@ -130,6 +129,7 @@ export default defineComponent({
       if (isEmptyElement(child)) return
       const activeKey = stateActiveKey.value
       const { accordion, destroyInactivePanel, collapsible, openAnimation } = props
+      const animation = openAnimation || collapseMotion(`${rootPrefixCls.value}-motion-collapse`)
 
       // If there is no key provide, use the panel order as default key
       const key = String(child.key ?? index)
@@ -159,7 +159,7 @@ export default defineComponent({
         isActive,
         prefixCls: prefixCls.value,
         destroyInactivePanel,
-        openAnimation,
+        openAnimation: animation,
         accordion,
         onItemClick: mergeCollapsible === 'disabled' ? null : onClickItem,
         expandIcon: renderExpandIcon,
