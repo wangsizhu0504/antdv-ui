@@ -1,10 +1,10 @@
 import { Transition, computed, defineComponent, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { addClass, removeClass } from '../../_utils/dom'
 import { motionThumbProps } from './props'
-import type { SegmentedValue, ThumbReact } from './types'
+import type { SegmentedValue, ThumbRect } from './types'
 import type { CSSProperties, TransitionProps } from 'vue'
 
-const calcThumbStyle = (targetElement: HTMLElement | null | undefined): ThumbReact =>
+const calcThumbStyle = (targetElement: HTMLElement | null | undefined): ThumbRect =>
   targetElement
     ? {
         left: targetElement.offsetLeft,
@@ -34,8 +34,8 @@ export default defineComponent({
       return ele?.offsetParent && ele
     }
 
-    const prevStyle = ref<ThumbReact>(null)
-    const nextStyle = ref<ThumbReact>(null)
+    const prevStyle = ref<ThumbRect>(null)
+    const nextStyle = ref<ThumbRect>(null)
 
     watch(
       () => props.value,

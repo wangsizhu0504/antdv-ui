@@ -16,7 +16,7 @@ export interface SegmentedBaseOption {
 export interface SegmentedOptionType extends SegmentedBaseOption {
   label?: VueNode | ((option: SegmentedBaseOption) => VueNode)
 }
-export type ThumbReact = {
+export type ThumbRect = {
   left: number
   right: number
   width: number
