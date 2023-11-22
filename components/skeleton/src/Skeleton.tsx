@@ -56,12 +56,13 @@ function getParagraphBasicProps(hasAvatar: boolean, hasTitle: boolean): Skeleton
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ASkeleton',
+  inheritAttrs: false,
   props: initDefaultProps(skeletonProps(), {
     avatar: false,
     title: true,
     paragraph: true,
   }),
-  setup(props, { slots }) {
+  setup(props, { slots, attrs }) {
     const { prefixCls, direction } = useConfigInject('skeleton', props)
     const [wrapSSR, hashId] = useStyle(prefixCls)
 
@@ -129,6 +130,7 @@ export default defineComponent({
           [`${pre}-rtl`]: direction.value === 'rtl',
           [`${pre}-round`]: round,
           [hashId.value]: true,
+          [`${attrs.class}`]: true,
         })
 
         return wrapSSR(
