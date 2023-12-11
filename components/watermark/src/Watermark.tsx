@@ -218,6 +218,8 @@ export default defineComponent({
     }
     useMutationObserver(containerRef, onMutate, {
       attributes: true,
+      subtree: true,
+      childList: true,
     })
     return () => {
       return (
