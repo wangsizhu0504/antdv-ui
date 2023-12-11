@@ -198,8 +198,8 @@ export default defineComponent({
               canPreview.value
                 ? onPreview
                 : (e) => {
-                    emit('click', e)
-                  }
+                  emit('click', e)
+                }
             }
             style={{
               width: toSizePx(width),
@@ -211,8 +211,8 @@ export default defineComponent({
               {...imgCommonProps}
               {...((isError.value && fallback)
                 ? {
-                    src: fallback,
-                  }
+                  src: fallback,
+                }
                 : { onLoad, onError, src: imgSrc })}
               ref={img}
             />
@@ -240,6 +240,7 @@ export default defineComponent({
               getContainer={getPreviewContainer.value}
               icons={icons}
               rootClassName={rootClassName}
+              v-slots={{ closeIcon: slots.closeIcon, toolbarRender: slots.toolbarRender }}
             />
           )}
         </>

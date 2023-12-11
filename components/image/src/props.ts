@@ -41,6 +41,8 @@ export const previewProps = () => ({
     type: Object as PropType<ImageIcons>,
     default: () => ({} as ImageIcons),
   },
+  minScale: Number,
+  maxScale: Number,
 })
 
 export interface PreviewProps extends Omit<IDialogChildProps, 'onClose' | 'mask'> {

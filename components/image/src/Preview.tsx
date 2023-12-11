@@ -18,7 +18,7 @@ import { useGroupProviderContext } from './hooks/useContext'
 import getFixScaleEleTransPosition from './getFixScaleEleTransPosition'
 import useFrameSetState from './hooks/useFrameSetState'
 import { previewProps } from './props'
-import type { MouseEventHandler, WheelEventHandler } from '../../_utils/types'
+import type { CustomSlotsType, MouseEventHandler, WheelEventHandler } from '../../_utils/types'
 
 const initialPosition = {
   x: 0,
@@ -31,10 +31,17 @@ export default defineComponent({
   inheritAttrs: false,
   props: previewProps(),
   emits: ['close', 'afterClose'],
-  setup(props, { emit, attrs }) {
+  slots: Object as CustomSlotsType<{
+    closeIcon: any
+    countRender: any
+    toolbarRender: any
+  }>,
+  setup(props, { emit, attrs, slots }) {
     const { rotateLeft, rotateRight, zoomIn, zoomOut, close, left, right, flipX, flipY } = reactive(
       props.icons,
     )
+
+    const { minScale = 1, maxScale = 50 } = reactive(props)
 
     const scale = shallowRef(1)
     const rotate = shallowRef(0)
@@ -69,6 +76,10 @@ export default defineComponent({
     const showLeftOrRightSwitches = computed(
       () => isPreviewGroup.value && previewGroupCount.value > 1,
     )
+    const showOperationsProgress = computed(
+      () => isPreviewGroup.value && previewGroupCount.value >= 1,
+    )
+
     const lastWheelZoomDirection = shallowRef({ wheelDirection: 0 })
 
     const onAfterClose = () => {
@@ -80,7 +91,7 @@ export default defineComponent({
       emit('afterClose')
     }
 
-    const onZoomIn = (isWheel?: boolean) => {
+    const onZoomIn = (isWheel) => {
       if (!isWheel)
         scale.value++
       else
@@ -88,7 +99,7 @@ export default defineComponent({
 
       setPosition(initialPosition)
     }
-    const onZoomOut = (isWheel?: boolean) => {
+    const onZoomOut = (isWheel) => {
       if (scale.value > 1) {
         if (!isWheel)
           scale.value--
@@ -136,30 +147,9 @@ export default defineComponent({
     const iconClassName = `${props.prefixCls}-operations-icon`
     const tools = [
       {
-        icon: close,
-        onClick: onClose,
-        type: 'close',
-      },
-      {
-        icon: zoomIn,
-        onClick: () => onZoomIn(),
-        type: 'zoomIn',
-      },
-      {
-        icon: zoomOut,
-        onClick: () => onZoomOut(),
-        type: 'zoomOut',
-        disabled: computed(() => scale.value === 1),
-      },
-      {
-        icon: rotateRight,
-        onClick: onRotateRight,
-        type: 'rotateRight',
-      },
-      {
-        icon: rotateLeft,
-        onClick: onRotateLeft,
-        type: 'rotateLeft',
+        icon: flipY,
+        onClick: onFlipY,
+        type: 'flipY',
       },
       {
         icon: flipX,
@@ -167,9 +157,26 @@ export default defineComponent({
         type: 'flipX',
       },
       {
-        icon: flipY,
-        onClick: onFlipY,
-        type: 'flipY',
+        icon: rotateLeft,
+        onClick: onRotateLeft,
+        type: 'rotateLeft',
+      },
+      {
+        icon: rotateRight,
+        onClick: onRotateRight,
+        type: 'rotateRight',
+      },
+      {
+        icon: zoomOut,
+        onClick: onZoomOut,
+        type: 'zoomOut',
+        disabled: computed(() => scale.value === minScale),
+      },
+      {
+        icon: zoomIn,
+        onClick: onZoomIn,
+        type: 'zoomIn',
+        disabled: computed(() => scale.value === maxScale),
       },
     ]
 
@@ -307,79 +314,118 @@ export default defineComponent({
     return () => {
       const { visible, prefixCls, rootClassName } = props
 
-      return (
-        <Dialog
-          {...attrs}
-          transitionName={props.transitionName}
-          maskTransitionName={props.maskTransitionName}
-          closable={false}
-          keyboard
-          prefixCls={prefixCls}
-          onClose={onClose}
-          afterClose={onAfterClose}
-          visible={visible}
-          wrapClassName={wrapClassName}
-          rootClassName={rootClassName}
-          getContainer={props.getContainer}
+      const toolsNode = tools.map(({ icon: IconType, onClick, type, disabled }) => (
+        <div
+          class={classNames(toolClassName, {
+            [`${props.prefixCls}-operations-operation-${type}`]: true,
+            [`${props.prefixCls}-operations-operation-disabled`]: disabled && disabled?.value,
+          })}
+          onClick={onClick}
+          key={type}
         >
-          <div class={[`${props.prefixCls}-operations-wrapper`, rootClassName]}>
-            <ul class={`${props.prefixCls}-operations`}>
-              {tools.map(({ icon: IconType, onClick, type, disabled }) => (
-                <li
-                  class={classNames(toolClassName, {
-                    [`${props.prefixCls}-operations-operation-disabled`]:
-                      disabled && disabled?.value,
-                  })}
-                  onClick={onClick}
-                  key={type}
-                >
-                  {cloneVNode(IconType, { class: iconClassName })}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div
-            class={`${props.prefixCls}-img-wrapper`}
-            style={{
-              transform: `scale3d(${flip.x * scale.value}, ${flip.y * scale.value}, 1) rotate(${
-                rotate.value
-              }deg)`,
-            }}
+          {cloneVNode(IconType, { class: iconClassName })}
+        </div>
+      ))
+
+      const toolbarNode = <div class={`${props.prefixCls}-operations`}>{toolsNode}</div>
+
+      return (
+        <>
+          <Dialog
+            {...attrs}
+            transitionName={props.transitionName}
+            maskTransitionName={props.maskTransitionName}
+            closable={false}
+            keyboard
+            prefixCls={prefixCls}
+            onClose={onClose}
+            afterClose={onAfterClose}
+            visible={visible}
+            wrapClassName={wrapClassName}
+            rootClassName={rootClassName}
+            getContainer={props.getContainer}
           >
-            <img
-              onMousedown={onMouseDown}
-              onDblclick={onDoubleClick}
-              ref={imgRef}
-              class={`${props.prefixCls}-img`}
-              src={combinationSrc.value}
-              alt={props.alt}
+            <div
+              class={`${props.prefixCls}-img-wrapper`}
               style={{
-                transform: `scale3d(${scale.value}, ${scale.value}, 1) rotate(${rotate.value}deg)`,
+                transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
               }}
-            />
-          </div>
-          {showLeftOrRightSwitches.value && (
-            <div
-              class={classNames(`${props.prefixCls}-switch-left`, {
-                [`${props.prefixCls}-switch-left-disabled`]: currentPreviewIndex.value <= 0,
-              })}
-              onClick={onSwitchLeft}
             >
-              {left}
+              <img
+                onMousedown={onMouseDown}
+                onDblclick={onDoubleClick}
+                ref={imgRef}
+                class={`${props.prefixCls}-img`}
+                src={combinationSrc.value}
+                alt={props.alt}
+                style={{
+                  transform: `scale3d(${flip.x * scale.value}, ${flip.y * scale.value}, 1) rotate(${
+                    rotate.value
+                  }deg)`,
+                }}
+              />
+            </div>
+          </Dialog>
+          {visible && (
+            <div class={classNames(`${props.prefixCls}-operations-wrapper`, rootClassName)}>
+              <button class={`${props.prefixCls}-close`} onClick={onClose}>
+                {slots.closeIcon?.({ onClose }) || close}
+              </button>
+
+              {showLeftOrRightSwitches.value && (
+                <>
+                  <div
+                    class={classNames(`${prefixCls}-switch-left`, {
+                      [`${props.prefixCls}-switch-left-disabled`]: currentPreviewIndex.value === 0,
+                    })}
+                    onClick={onSwitchLeft}
+                  >
+                    {left}
+                  </div>
+                  <div
+                    class={classNames(`${prefixCls}-switch-right`, {
+                      [`${props.prefixCls}-switch-right-disabled`]:
+                        currentPreviewIndex.value === previewGroupCount.value - 1,
+                    })}
+                    onClick={onSwitchRight}
+                  >
+                    {right}
+                  </div>
+                </>
+              )}
+
+              <div class={[`${props.prefixCls}-footer`]}>
+                {showOperationsProgress.value && (
+                  <div class={`${props.prefixCls}-progress`}>
+                    {`${currentPreviewIndex.value + 1} / ${previewGroupCount.value}`}
+                  </div>
+                )}
+                {slots.toolbarRender
+                  ? slots.toolbarRender?.({
+                    actions: {
+                      onFlipY,
+                      onFlipX,
+                      onRotateLeft,
+                      onRotateRight,
+                      onZoomOut,
+                      onZoomIn,
+                    },
+                    transform: {
+                      x: position.x,
+                      y: position.y,
+                      scale: scale.value,
+                      rotate,
+                      flip,
+                    },
+                    ...(groupContext
+                      ? { current: currentPreviewIndex.value, total: previewGroupCount.value }
+                      : {}),
+                  })
+                  : toolbarNode}
+              </div>
             </div>
           )}
-          {showLeftOrRightSwitches.value && (
-            <div
-              class={classNames(`${props.prefixCls}-switch-right`, {
-                [`${props.prefixCls}-switch-right-disabled`]:
-                  currentPreviewIndex.value >= previewGroupCount.value - 1,
-              })}
-              onClick={onSwitchRight}
-            >
-              {right}
-            </div>
-          )}
-        </Dialog>
+        </>
       )
     }
   },
