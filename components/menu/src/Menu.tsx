@@ -282,7 +282,7 @@ export default defineComponent({
     const rootPrefixCls = computed(() => getPrefixCls())
     const defaultMotions = computed(() => ({
       horizontal: { name: `${rootPrefixCls.value}-slide-up` },
-      inline: collapseMotion,
+      inline: collapseMotion(`${rootPrefixCls.value}-motion-collapse`),
       other: { name: `${rootPrefixCls.value}-zoom-big` },
     }))
 
@@ -337,16 +337,16 @@ export default defineComponent({
     const expandIcon = computed<MenuProps['expandIcon']>(() =>
       props.expandIcon || slots.expandIcon || override?.expandIcon?.value
         ? (opt) => {
-            let icon = props.expandIcon || slots.expandIcon
-            icon = typeof icon === 'function' ? icon(opt) : icon
-            return cloneElement(
+          let icon = props.expandIcon || slots.expandIcon
+          icon = typeof icon === 'function' ? icon(opt) : icon
+          return cloneElement(
               icon as unknown as VNode,
               {
                 class: `${prefixCls.value}-submenu-expand-icon`,
               },
               false,
-            )
-          }
+          )
+        }
         : null,
     )
     useProvideMenu({
@@ -390,12 +390,12 @@ export default defineComponent({
         = (mergedMode.value !== 'horizontal' || props.disabledOverflow)
           ? childList
           : childList.map((child, index) => (
-              // Always wrap provider to avoid sub node re-mount
-              <MenuContextProvider
-                key={child.key}
-                overflowDisabled={index > lastVisibleIndex.value}
-                v-slots={{ default: () => child }}
-              ></MenuContextProvider>
+            // Always wrap provider to avoid sub node re-mount
+            <MenuContextProvider
+              key={child.key}
+              overflowDisabled={index > lastVisibleIndex.value}
+              v-slots={{ default: () => child }}
+            ></MenuContextProvider>
           ))
       const overflowedIndicator = slots.overflowedIndicator?.() || <EllipsisOutlined />
 
