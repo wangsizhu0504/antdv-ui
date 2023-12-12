@@ -1,23 +1,23 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "lib": ["DOM", "ESNext"],
-    "module": "CommonJS",
-    "allowJs": true,
     "jsx": "preserve",
-    "jsxImportSource": "vue",
-    "types": ["node"],
-    "resolveJsonModule": true,
-    "useDefineForClassFields": true,
-    "isolatedModules": true,
-    "skipDefaultLibCheck": true,
     "experimentalDecorators": true,
-    "skipLibCheck": true,
-    "stripInternal": true,
+    "jsxImportSource": "vue",
+    "useDefineForClassFields": true,
+    "module": "CommonJS",
+    "baseUrl": ".",
     "paths": {
       "@antdv/ui/es/*": ["components/*"]
-    }
+    },
+    "types": ["node"],
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "stripInternal": true,
+    "isolatedModules": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   },
   "include": [
     "components",

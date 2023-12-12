@@ -1,21 +1,21 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "dist",
-    "baseUrl": ".",
-    "sourceMap": false,
-    "moduleResolution": "node",
     "target": "es6",
     "module": "ESNext",
-    "strictNullChecks": false,
-    "isolatedModules": true,
-    "noImplicitThis": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "noImplicitAny": false,
+    "rootDir": ".",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "types": [],
     "resolveJsonModule": true,
+    "sourceMap": false,
+    "outDir": "dist",
+    "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "types": []
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   }
 }

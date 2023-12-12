@@ -4,8 +4,8 @@
     "composite": true,
     "lib": ["ESNext"],
     "types": ["node"],
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
   "include": [
     "build/**/*",

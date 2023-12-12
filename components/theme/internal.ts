@@ -53,6 +53,7 @@ export const DesignTokenProvider = defineComponent({
     value: objectType<DesignTokenContext>(),
   },
   setup(props, { slots }) {
+    //@ts-expect-error
     useDesignTokenProvider(toReactive(computed(() => props.value)))
     return () => {
       return slots.default?.()
