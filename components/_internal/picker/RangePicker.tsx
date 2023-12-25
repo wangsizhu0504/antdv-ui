@@ -123,6 +123,10 @@ export interface RangePickerSharedProps<DateType> {
   activePickerIndex?: 0 | 1
   dateRender?: RangeDateRender<DateType>
   panelRender?: (originPanel: VueNode) => VueNode
+  prevIcon?: VueNode;
+  nextIcon?: VueNode;
+  superPrevIcon?: VueNode;
+  superNextIcon?: VueNode;
 }
 
 type OmitPickerProps<Props> = Omit<
@@ -244,6 +248,10 @@ function RangerPicker<DateType>() {
       'hideDisabledOptions',
       'disabledMinutes',
       'presets',
+      'prevIcon',
+      'nextIcon',
+      'superPrevIcon',
+      'superNextIcon',
     ] as any,
     setup(props, { attrs, expose }) {
       const needConfirmButton = computed(
