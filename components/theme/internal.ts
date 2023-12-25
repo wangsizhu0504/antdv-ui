@@ -1,6 +1,5 @@
-import { computed, defineComponent, inject, provide, ref, watchEffect } from 'vue'
+import { computed, defineComponent, inject, provide, shallowRef, triggerRef, unref, watch } from 'vue'
 
-import { toReactive } from '@vueuse/core'
 import { createTheme, useCacheToken } from '../cssinjs'
 import { version } from '../version'
 import { objectType } from '../_utils/vue'
@@ -34,27 +33,34 @@ export interface DesignTokenContext {
   hashed?: string | boolean
 }
 // defaultConfig
-const DesignTokenContextKey: InjectionKey<DesignTokenContext> = Symbol('DesignTokenContext')
+const DesignTokenContextKey: InjectionKey<ComputedRef<DesignTokenContext>> = Symbol('DesignTokenContext');
 
-export const globalDesignTokenApi = ref<DesignTokenContext>()
+export const globalDesignTokenApi = shallowRef<DesignTokenContext>()
 
-export const useDesignTokenProvider = (value: DesignTokenContext) => {
+export const useDesignTokenProvider = (value: ComputedRef<DesignTokenContext>) => {
   provide(DesignTokenContextKey, value)
-  watchEffect(() => {
-    globalDesignTokenApi.value = value
-  })
+  watch(
+    value,
+    () => {
+      globalDesignTokenApi.value = unref(value);
+      triggerRef(globalDesignTokenApi);
+    },
+    { immediate: true, deep: true },
+  );
 }
 
 export const useDesignTokenInject = () => {
-  return inject(DesignTokenContextKey, globalDesignTokenApi.value || defaultConfig)
+  return inject(
+    DesignTokenContextKey,
+    computed(() => globalDesignTokenApi.value || defaultConfig),
+  );
 }
 export const DesignTokenProvider = defineComponent({
   props: {
     value: objectType<DesignTokenContext>(),
   },
   setup(props, { slots }) {
-    //@ts-expect-error
-    useDesignTokenProvider(toReactive(computed(() => props.value)))
+    useDesignTokenProvider(computed(() => props.value));
     return () => {
       return slots.default?.()
     }
@@ -66,21 +72,24 @@ export function useToken(): [
   ComputedRef<GlobalToken>,
   ComputedRef<string>,
 ] {
-  const designTokenContext = inject<DesignTokenContext>(
+  const designTokenContext = inject<ComputedRef<DesignTokenContext>>(
     DesignTokenContextKey,
-    globalDesignTokenApi.value || defaultConfig,
-  )
+    computed(() => globalDesignTokenApi.value || defaultConfig),
+  );
 
-  const salt = computed(() => `${version}-${designTokenContext.hashed || ''}`)
+  const salt = computed(() => `${version}-${designTokenContext.value.hashed || ''}`);
 
-  const mergedTheme = computed(() => designTokenContext.theme || defaultTheme)
+  const mergedTheme = computed(() => designTokenContext.value.theme || defaultTheme);
 
   const cacheToken = useCacheToken<GlobalToken, SeedToken>(
     mergedTheme,
-    computed(() => [defaultSeedToken, designTokenContext.token]),
+    computed(() => [defaultSeedToken, designTokenContext.value.token]),
     computed(() => ({
       salt: salt.value,
-      override: { override: designTokenContext.token, ...designTokenContext.components },
+      override: {
+        override: designTokenContext.value.token,
+        ...designTokenContext.value.components,
+      },
       formatToken,
     })),
   )
@@ -88,6 +97,6 @@ export function useToken(): [
   return [
     mergedTheme,
     computed(() => cacheToken.value[0]),
-    computed(() => (designTokenContext.hashed ? cacheToken.value[1] : '')),
+    computed(() => (designTokenContext.value.hashed ? cacheToken.value[1] : '')),
   ]
 }
