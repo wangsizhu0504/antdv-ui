@@ -2,7 +2,7 @@
   "name": "@antdv/ui",
   "version": "4.0.6",
   "type": "module",
-  "packageManager": "pnpm@8.10.3",
+  "packageManager": "pnpm@8.12.1",
   "publishConfig": {
     "access": "public"
   },
@@ -75,7 +75,7 @@
     "@ctrl/tinycolor": "^4.0.2",
     "@emotion/hash": "^0.9.1",
     "@emotion/unitless": "^0.8.1",
-    "@vueuse/core": "^10.6.1",
+    "@vueuse/core": "^10.7.0",
     "async-validator": "^4.2.5",
     "csstype": "3.1.1",
     "dayjs": "^1.11.10",
@@ -91,8 +91,8 @@
     "@types/lodash-es": "^4.17.12",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.7",
+    "vite": "^5.0.10",
     "vite-plugin-dts": "^3.6.4",
-    "vitest": "^1.0.4"
+    "vitest": "^1.1.0"
   }
 }
