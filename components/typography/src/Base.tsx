@@ -78,6 +78,7 @@ export default defineComponent({
     })
     onMounted(() => {
       state.clientRendered = true
+      syncEllipsis();
     })
 
     onBeforeUnmount(() => {
@@ -92,7 +93,7 @@ export default defineComponent({
           resizeOnNextFrame()
         })
       },
-      { flush: 'post', deep: true, immediate: true },
+      { flush: 'post', deep: true },
     )
 
     watchEffect(() => {
@@ -256,7 +257,11 @@ export default defineComponent({
       }
     }
 
-    function resizeOnNextFrame() {
+    function resizeOnNextFrame(sizeInfo?: { width: number; height: number }) {
+      if (sizeInfo) {
+        const { width, height } = sizeInfo;
+        if (!width || !height) return;
+      }
       wrapperRaf.cancel(state.rafId)
       state.rafId = wrapperRaf(() => {
         // Do not bind `syncEllipsis`. It need for test usage on prototype
