@@ -8,15 +8,16 @@ import type { CSSProperties } from 'vue'
  */
 
 const HIDDEN_TEXTAREA_STYLE = `
- min-height:0 !important;
- max-height:none !important;
- height:0 !important;
- visibility:hidden !important;
- overflow:hidden !important;
- position:absolute !important;
- z-index:-1000 !important;
- top:0 !important;
- right:0 !important
+  min-height:0 !important;
+  max-height:none !important;
+  height:0 !important;
+  visibility:hidden !important;
+  overflow:hidden !important;
+  position:absolute !important;
+  z-index:-1000 !important;
+  top:0 !important;
+  right:0 !important;
+  pointer-events: none !important;
 `
 
 const SIZING_STYLE = [
@@ -37,9 +38,10 @@ const SIZING_STYLE = [
   'border-width',
   'box-sizing',
   'word-break',
+  'white-space',
 ]
 
-const computedStyleCache: { [key: string]: NodeType } = {}
+const computedStyleCache: Record<string, NodeType> = {};
 let hiddenTextarea: HTMLTextAreaElement
 
 export function calculateNodeStyling(node: HTMLElement, useCache = false) {
@@ -80,7 +82,7 @@ export function calculateNodeStyling(node: HTMLElement, useCache = false) {
   return nodeInfo
 }
 
-export default function calculateNodeHeight(
+export default function calculateAutoSizeStyle(
   uiTextNode: HTMLTextAreaElement,
   useCache = false,
   minRows: number | null = null,
@@ -113,8 +115,8 @@ export default function calculateNodeHeight(
   hiddenTextarea.setAttribute('style', `${sizingStyle};${HIDDEN_TEXTAREA_STYLE}`)
   hiddenTextarea.value = uiTextNode.value || uiTextNode.placeholder || ''
 
-  let minHeight = Number.MIN_SAFE_INTEGER
-  let maxHeight = Number.MAX_SAFE_INTEGER
+  let minHeight: number | undefined = undefined;
+  let maxHeight: number | undefined = undefined;
   let height = hiddenTextarea.scrollHeight
   let overflowY: any
 
@@ -146,11 +148,18 @@ export default function calculateNodeHeight(
       height = Math.min(maxHeight, height)
     }
   }
-  return {
+  const style: CSSProperties = {
     height: `${height}px`,
-    minHeight: `${minHeight}px`,
-    maxHeight: `${maxHeight}px`,
     overflowY,
     resize: 'none',
+  };
+
+  if (minHeight) {
+    style.minHeight = `${minHeight}px`;
   }
+  if (maxHeight) {
+    style.maxHeight = `${maxHeight}px`;
+  }
+
+  return style
 }
