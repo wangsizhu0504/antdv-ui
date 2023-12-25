@@ -220,6 +220,7 @@ export default defineComponent({
       attributes: true,
       subtree: true,
       childList: true,
+      attributeFilter: ['style', 'class'],
     })
     return () => {
       return (
