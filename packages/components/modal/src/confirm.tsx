@@ -1,5 +1,5 @@
 import { createVNode, render as vueRender } from 'vue'
-import { omit } from '@antdv/utils'
+import { omit, triggerVNodeUpdate } from '@antdv/utils'
 import ConfigProvider from '../../config-provider'
 import { globalConfigForApi } from '../../config-provider/src/config'
 import ConfirmDialog from './ConfirmDialog'
@@ -62,10 +62,8 @@ function confirm(config: ModalFuncProps) {
         ...configUpdate,
       }
     }
-    if (confirmDialogInstance) {
-      Object.assign(confirmDialogInstance.component.props, currentConfig)
-      confirmDialogInstance.component.update()
-    }
+    if (confirmDialogInstance)
+      triggerVNodeUpdate(confirmDialogInstance, currentConfig, container)
   }
 
   const Wrapper = (p: ModalFuncProps) => {
