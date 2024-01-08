@@ -5,7 +5,7 @@
     "node": ">= 16"
   },
   "scripts": {
-    "cz": "czg",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "dev": "npm run routes && vite serve site",
     "preview": "vite preview site",
     "build:site": "vite build site",
@@ -25,7 +25,8 @@
     "typecheck:node": "tsc -p tsconfig.node.json --noEmit",
     "clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
     "clean:dist": "rimraf dist",
-    "prepare": "husky install",
+    "prepare": "simple-git-hooks",
+    "preinstall": "npx only-allow pnpm",
     "stub": "pnpm run -r --parallel stub",
     "eslint": "eslint . --fix",
     "postinstall": "pnpm stub && concurrently \"pnpm gen:version\" \"pnpm gen:token\""
@@ -46,8 +47,6 @@
   "devDependencies": {
     "@antdv/build": "workspace:*",
     "@babel/plugin-transform-typescript": "^7.23.6",
-    "@commitlint/cli": "^18.4.4",
-    "@commitlint/config-conventional": "^18.4.4",
     "@kriszu/eslint-config": "^3.1.7",
     "@pnpm/find-workspace-packages": "^4.0.16",
     "@types/fs-extra": "^11.0.4",
@@ -57,6 +56,7 @@
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vue/compiler-sfc": "^3.4.5",
     "concurrently": "^7.2.2",
+    "conventional-changelog-cli": "^4.1.0",
     "eslint": "^8.56.0",
     "esno": "^4.0.0",
     "fetch-jsonp": "^1.3.0",
@@ -69,17 +69,13 @@
     "progress": "^2.0.3",
     "qs": "^6.11.2",
     "rimraf": "^5.0.5",
+    "simple-git-hooks": "^2.9.0",
     "typedoc": "^0.23.25",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
     "vite-plugin-dts": "^3.7.0",
     "vitest": "^1.1.1",
     "vue-request": "^2.0.4"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-git"
-    }
   },
   "pnpm": {
     "peerDependencyRules": {
@@ -89,6 +85,10 @@
         "react-dom"
       ]
     }
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec nano-staged --allow-empty --concurrent false",
+    "commit-msg": "pnpm exec vr commit-lint -p $1"
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
