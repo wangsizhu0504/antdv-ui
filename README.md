@@ -17,7 +17,7 @@ An enterprise-class UI components based on Ant Design and Vue.
 
 [![](https://cdn-images-1.medium.com/max/2000/1*NIlj0-TdLMbo_hzSBP8tmg.png)](https://www.antdv.com/)
 
-English | [简体中文](./README-zh_CN.md)
+English | [简体中文](./README.zh_CN.md)
 
 ## Features
 

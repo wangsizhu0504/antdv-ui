@@ -1,0 +1,16 @@
+{
+  "name": "@antdv/utils",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Antdv utils",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "index.ts",
+  "module": "index.ts",
+  "unpkg": "index.js",
+  "jsdelivr": "index.js",
+  "types": "index.d.ts",
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
+}

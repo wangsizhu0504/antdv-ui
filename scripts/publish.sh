@@ -2,21 +2,18 @@
 
 set -e
 
-echo " install package dependencies"
+pnpm i --frozen-lockfile
+pnpm update:version
 
-pnpm i
+echo "🧹 Cleaning..."
+pnpm clean
 
-# echo " update version"
-# pnpm update:version
-
-echo "set token"
-npm run token
-
-echo "build packages"
+echo "📦 Building..."
 pnpm build
 
-cd dist/components
-npm publish
+cd dist/antdv-ui
+echo "📦 Publishing..."
+npm publish --provenance
 cd -
 
 echo "✅ Publish completed"

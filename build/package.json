@@ -6,9 +6,6 @@
   "scripts": {
     "start": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
   },
-  "dependencies": {
-    "lodash": "^4.17.21"
-  },
   "devDependencies": {
     "@esbuild-kit/cjs-loader": "^2.4.2",
     "@pnpm/logger": "^5.0.0",
@@ -25,4 +22,5 @@
     "rollup-plugin-esbuild": "^5.0.0",
     "ts-morph": "^19.0.0"
   }
+
 }

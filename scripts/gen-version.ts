@@ -1,27 +1,30 @@
-import { writeFile } from 'node:fs/promises'
 import path from 'node:path'
+import { writeFile } from 'node:fs/promises'
 import consola from 'consola'
-import { antdPackage, antdRoot } from '../build/src/path'
-import { getPackageManifest } from '../build/src'
+
+import pkg from '../packages/antdv-ui/package.json'
 
 function getVersion() {
   const tagVer = process.env.TAG_VERSION
-  if (tagVer) {
+  if (tagVer)
     return tagVer.startsWith('v') ? tagVer.slice(1) : tagVer
-  } else {
-    console.log(antdPackage)
-    const pkg = getPackageManifest(antdPackage)
+  else
     return pkg.version
-  }
 }
 
-const version = getVersion()
-
 async function main() {
-  consola.info(`Version: ${version}`)
+  const version = getVersion()
+  const dirname = path.dirname(new URL(import.meta.url).pathname)
+  consola.info(`📦 Version: ${version}`)
   await writeFile(
-    path.resolve(antdRoot, 'version', 'version.ts'),
-    `export const version = '${version}'\n`,
+    path.join(dirname, '..', 'packages', 'antdv-ui', 'version', 'version.ts'),
+    `export default '${version}'\n`,
+    'utf8',
+  )
+  await writeFile(
+    path.join(dirname, '..', 'packages', 'components', 'version.ts'),
+    `export default '${version}'\n`,
+    'utf8',
   )
 }
 

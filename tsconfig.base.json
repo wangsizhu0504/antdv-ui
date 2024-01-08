@@ -1,21 +1,24 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "ESNext",
-    "rootDir": ".",
-    "moduleResolution": "node",
     "baseUrl": ".",
-    "types": [],
+    "rootDir": ".",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "paths": {
+      "@antdv/*": ["packages/*"]
+    },
     "resolveJsonModule": true,
-    "sourceMap": false,
-    "outDir": "dist",
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "noImplicitAny": false,
+    "types": [],
     "strictNullChecks": false,
+    "noImplicitAny": false,
     "noImplicitThis": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "outDir": "dist",
+    "sourceMap": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true
   }
 }

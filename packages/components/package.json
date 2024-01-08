@@ -1,0 +1,15 @@
+{
+  "name": "@antdv/components",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "all components are settled here",
+  "sideEffects": false,
+  "main": "index.ts",
+  "module": "index.ts",
+  "unpkg": "index.js",
+  "jsdelivr": "index.js",
+  "types": "index.d.ts",
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
+}

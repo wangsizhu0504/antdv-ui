@@ -1,33 +1,27 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "lib": ["DOM", "ESNext"],
+    "composite": true,
     "jsx": "preserve",
-    "experimentalDecorators": true,
     "jsxImportSource": "vue",
+    "lib": ["DOM", "ESNext"],
     "useDefineForClassFields": true,
     "module": "CommonJS",
-    "baseUrl": ".",
-    "paths": {
-      "@antdv/ui/es/*": ["components/*"]
-    },
-    "types": ["node"],
     "resolveJsonModule": true,
+    "types": ["node"],
     "allowJs": true,
     "stripInternal": true,
-    "isolatedModules": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
   "include": [
-    "components",
+    "packages",
     "typings/components.d.ts",
     "typings/env.d.ts",
-    "typings/typings.d.ts"
+    "typings/volar.d.ts"
   ],
   "exclude": [
     "node_modules",
-    "site",
     "**/dist",
     "**/__tests__/**/*",
     "**/gulpfile.ts",

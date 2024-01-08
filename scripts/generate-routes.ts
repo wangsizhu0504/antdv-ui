@@ -1,8 +1,6 @@
 import fs from 'node:fs'
-import path from 'node:path'
 import { globby } from 'globby'
 import matter from 'gray-matter'
-import { ESLint } from 'eslint';
 
 (async () => {
   const paths = await globby('site/example/*/index.*.md')
@@ -27,13 +25,13 @@ export default [
   )}
 ];`
 
-  const engine = new ESLint({
-    fix: true,
-    useEslintrc: false,
-    baseConfig: require(path.join(process.cwd(), '.eslintrc.js')),
-  })
+  // const engine = new ESLint({
+  //   fix: true,
+  //   useEslintrc: false,
+  //   baseConfig: require(path.join(process.cwd(), 'eslint.config.js')),
+  // })
 
-  const report = await engine.lintText(TEMPLATE)
+  // const report = await engine.lintText(TEMPLATE)
 
-  fs.writeFileSync('site/src/router/demoRoutes.ts', report[0].output)
+  fs.writeFileSync('site/src/router/demoRoutes.ts', TEMPLATE)
 })()

@@ -4,17 +4,9 @@ import consola from 'consola'
 import glob from 'fast-glob'
 import pc from 'picocolors'
 import { Project } from 'ts-morph'
-import {
-  antdRoot,
-  buildOutput,
-
-  projRoot,
-} from '../path'
-import {
-  excludeFiles,
-  pathRewriter,
-} from '../utils'
 import type { CompilerOptions, SourceFile } from 'ts-morph'
+import { antdRoot, buildOutput, pkgRoot, projRoot } from '../path'
+import { excludeFiles, pathRewriter } from '../utils'
 
 const TSCONFIG_PATH = path.resolve(projRoot, 'tsconfig.web.json')
 const outDir = path.resolve(buildOutput, 'types')
@@ -22,15 +14,14 @@ const outDir = path.resolve(buildOutput, 'types')
 /**
  * fork = require( https://github.com/egoist/vue-dts-gen/blob/main/src/index.ts
  */
-export const generateTypesDefinitions = async () => {
+export async function generateTypesDefinitions() {
   const compilerOptions: CompilerOptions = {
-    allowJs: true,
-    emitDeclarationOnly: true,
     declaration: true,
     outDir,
-    baseUrl: projRoot,
-    preserveSymlinks: true,
+    skipDefaultLibCheck: true,
     skipLibCheck: true,
+    emitDeclarationOnly: true,
+    preserveSymlinks: true,
     noImplicitAny: false,
   }
   const project = new Project({
@@ -86,18 +77,30 @@ async function addSourceFiles(project: Project) {
   project.addSourceFileAtPath(path.resolve(projRoot, 'typings/env.d.ts'))
 
   const globSourceFile = '**/*.{js?(x),ts?(x)}'
+  const filePaths = excludeFiles(
+    await glob([globSourceFile, '!antdv-ui/**/*'], {
+      cwd: pkgRoot,
+      absolute: true,
+      onlyFiles: true,
+    }),
+  )
   const antdPaths = excludeFiles(
     await glob(globSourceFile, {
       cwd: antdRoot,
       onlyFiles: true,
     }),
   )
+
   const sourceFiles: SourceFile[] = []
   await Promise.all([
+    ...filePaths.map(async (file) => {
+      const sourceFile = project.addSourceFileAtPath(file)
+      sourceFiles.push(sourceFile)
+    }),
     ...antdPaths.map(async (file) => {
       const content = await readFile(path.resolve(antdRoot, file), 'utf-8')
       sourceFiles.push(
-        project.createSourceFile(path.resolve(antdRoot, file), content, { overwrite: true }),
+        project.createSourceFile(path.resolve(pkgRoot, file), content),
       )
     }),
   ])

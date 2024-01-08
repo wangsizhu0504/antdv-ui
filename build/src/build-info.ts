@@ -1,8 +1,8 @@
 import path from 'node:path'
+import type { ModuleFormat } from 'rollup'
 import { antdOutput } from './path'
 
 import { PKG_NAME } from './constants'
-import type { ModuleFormat } from 'rollup'
 
 export const modules = ['esm', 'cjs'] as const
 export type Module = typeof modules[number]
@@ -24,7 +24,7 @@ export const buildConfig: Record<Module, BuildInfo> = {
   esm: {
     module: 'ESNext',
     format: 'esm',
-    ext: 'js',
+    ext: 'mjs',
     output: {
       name: 'es',
       path: path.resolve(antdOutput, 'es'),
@@ -51,6 +51,6 @@ export const buildConfigEntries = Object.entries(
 ) as BuildConfigEntries
 
 export type BuildConfig = typeof buildConfig
-export type BuildConfigEntries = [Module, BuildInfo][]
+export type BuildConfigEntries = Array<[Module, BuildInfo]>
 
 export const target = 'es2018'

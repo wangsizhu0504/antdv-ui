@@ -5,15 +5,15 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import esbuild from 'rollup-plugin-esbuild'
 import glob from 'fast-glob'
-import { antdRoot } from '../path'
+import type { OutputOptions } from 'rollup'
+import { antdRoot, pkgRoot } from '../path'
 import { excludeFiles, generateExternal, writeBundles } from '../utils'
 import { buildConfigEntries, target } from '../build-info'
-import type { OutputOptions } from 'rollup'
 
-export const buildModules = async () => {
+export async function buildModules() {
   const input = excludeFiles(
-    await glob('*.{js?(x),ts?(x)}', {
-      cwd: antdRoot,
+    await glob('**/*.{js?(x),ts?(x)}', {
+      cwd: pkgRoot,
       absolute: true,
       onlyFiles: true,
     }),
@@ -24,7 +24,7 @@ export const buildModules = async () => {
       vueJsx({
         mergeProps: false,
         enableObjectSlots: false,
-      }),
+      }) as any,
       nodeResolve({
         extensions: ['.mjs', '.js', '.json', '.ts', '.tsx'],
       }),
@@ -32,10 +32,6 @@ export const buildModules = async () => {
       esbuild({
         sourceMap: true,
         target,
-        // logOverride: { 'this-is-undefined-in-esm': 'silent' },
-        loaders: {
-          '.vue': 'ts',
-        },
       }),
     ],
     external: await generateExternal({ full: false }),

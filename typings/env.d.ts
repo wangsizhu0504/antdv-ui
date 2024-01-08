@@ -1,7 +1,7 @@
 declare module '*.json' {
-  const value: any;
-  export const version: string;
-  export default value;
+  const value: any
+  export const version: string
+  export default value
 }
 
 declare module '@vue/runtime-core' {
@@ -16,6 +16,6 @@ export {}
 
 declare module 'vue' {
   export type JSXComponent<Props = any> =
-    | { new (): ComponentPublicInstance<Props> }
-    | FunctionalComponent<Props>;
+    | (new () => ComponentPublicInstance<Props>)
+    | FunctionalComponent<Props>
 }

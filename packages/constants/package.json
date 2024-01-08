@@ -1,0 +1,7 @@
+{
+  "name": "@antdv/constants",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "main": "index.ts"
+}

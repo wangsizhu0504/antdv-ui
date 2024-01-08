@@ -1,8 +1,10 @@
-import { buildConfig } from '../build-info'
 import type { ProjectManifest } from '@pnpm/types'
+import findWorkspacePackages from '@pnpm/find-workspace-packages'
+import { buildConfig } from '../build-info'
 import type { Module } from '../build-info'
+import { projRoot } from '../path'
 
-export const excludeFiles = (files: string[]) => {
+export function excludeFiles(files: string[]) {
   const excludes = ['node_modules', 'test', 'mock', 'gulpfile', 'dist']
   return files.filter(
     path => !excludes.some(exclude => path.includes(exclude)),
@@ -10,7 +12,7 @@ export const excludeFiles = (files: string[]) => {
 }
 
 /** used for type generator */
-export const pathRewriter = (module: Module) => {
+export function pathRewriter(module: Module) {
   const config = buildConfig[module]
 
   return (id: string) => {
@@ -19,14 +21,12 @@ export const pathRewriter = (module: Module) => {
   }
 }
 
-export const getPackageManifest = (pkgPath: string) => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
+export function getPackageManifest(pkgPath: string) {
+  // eslint-disable-next-line ts/no-var-requires, ts/no-require-imports
   return require(pkgPath) as ProjectManifest
 }
 
-export const getPackageDependencies = (
-  pkgPath: string,
-): Record<'dependencies' | 'peerDependencies', string[]> => {
+export function getPackageDependencies(pkgPath: string): Record<'dependencies' | 'peerDependencies', string[]> {
   const manifest = getPackageManifest(pkgPath)
   const { dependencies = {}, peerDependencies = {} } = manifest
 
@@ -35,3 +35,5 @@ export const getPackageDependencies = (
     peerDependencies: Object.keys(peerDependencies),
   }
 }
+
+export const getWorkspacePackages = () => findWorkspacePackages(projRoot)

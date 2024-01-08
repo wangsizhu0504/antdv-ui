@@ -3,6 +3,7 @@
   "compilerOptions": {
     "composite": true,
     "lib": ["ESNext"],
+    "resolveJsonModule": true,
     "types": ["node"],
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
@@ -11,9 +12,8 @@
     "build/**/*",
     "build/**/*.json",
     "scripts/**/*",
-    "antdv-ui/version/index.ts",
-    "antdv-ui/theme/**/*",
-    "antdv-ui/package.json"
+    "packages/antdv-ui/version/*.ts",
+    "packages/antdv-ui/package.json"
   ],
   "exclude": ["dist"]
 }

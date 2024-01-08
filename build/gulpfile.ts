@@ -1,8 +1,6 @@
 import { mkdir } from 'node:fs/promises'
 import { parallel, series } from 'gulp'
-import {
-  antdOutput,
-} from './src/path'
+import { antdOutput } from './src/path'
 import { run, runTask, withTaskName } from './src'
 
 export default series(
@@ -13,6 +11,7 @@ export default series(
     runTask('buildModules'),
     runTask('buildFullBundle'),
     runTask('generateTypesDefinitions'),
+    runTask('generateWebTypes'),
   ),
 
   parallel(

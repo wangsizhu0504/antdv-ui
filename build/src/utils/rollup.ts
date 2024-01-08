@@ -1,8 +1,8 @@
+import type { OutputOptions, RollupBuild } from 'rollup'
 import { getPackageDependencies } from '../utils'
 import { antdPackage } from '../path'
-import type { OutputOptions, RollupBuild } from 'rollup'
 
-export const generateExternal = async (options: { full: boolean }) => {
+export async function generateExternal(options: { full: boolean }) {
   const { dependencies, peerDependencies } = getPackageDependencies(antdPackage)
 
   return (id: string) => {
