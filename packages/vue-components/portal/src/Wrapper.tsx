@@ -1,7 +1,6 @@
 import {
   computed,
   defineComponent,
-  getCurrentInstance,
   nextTick,
   onBeforeUnmount,
   onMounted,
@@ -56,6 +55,7 @@ export default defineComponent({
     const container = shallowRef<HTMLElement>()
     const componentRef = shallowRef()
     const rafId = shallowRef<number>()
+    const triggerUpdate = shallowRef(1)
     const defaultContainer = canUseDom() && document.createElement('div')
 
     const removeCurrentContainer = () => {
@@ -102,8 +102,6 @@ export default defineComponent({
       attachToParent()
     })
 
-    const instance = getCurrentInstance()
-
     useScrollLocker(
       computed(() => {
         return (
@@ -117,8 +115,14 @@ export default defineComponent({
     onMounted(() => {
       let init = false
       watch(
-        [() => props.visible, () => props.getContainer],
-        ([visible, getContainer], [prevVisible, prevGetContainer]) => {
+        [
+          () => props.visible,
+          () => props.getContainer,
+        ],
+        (
+          [visible, newGetContainer],
+          [prevVisible, prevGetContainer],
+        ) => {
           // Update count
           if (supportDom) {
             parent = getParent(props.getContainer)
@@ -132,11 +136,11 @@ export default defineComponent({
 
           if (init) {
             // Clean up container if needed
-            const getContainerIsFunc = typeof getContainer === 'function' && typeof prevGetContainer === 'function'
+            const getContainerIsFunc = typeof newGetContainer === 'function' && typeof prevGetContainer === 'function'
             if (
               getContainerIsFunc
-                ? getContainer.toString() !== prevGetContainer.toString()
-                : getContainer !== prevGetContainer
+                ? newGetContainer.toString() !== prevGetContainer.toString()
+                : newGetContainer !== prevGetContainer
             )
               removeCurrentContainer()
           }
@@ -148,7 +152,7 @@ export default defineComponent({
       nextTick(() => {
         if (!attachToParent()) {
           rafId.value = wrapperRaf(() => {
-            instance.update()
+            triggerUpdate.value += 1
           })
         }
       })
@@ -170,7 +174,7 @@ export default defineComponent({
         getOpenCount: () => openCount,
         getContainer,
       }
-      if (forceRender || visible || componentRef.value) {
+      if (triggerUpdate.value && (forceRender || visible || componentRef.value)) {
         portal = (
           <Portal
             getContainer={getContainer}

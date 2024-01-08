@@ -1,8 +1,7 @@
 // base 0.0.1-alpha.7
-import type { VNode } from 'vue'
+import type { ComponentPublicInstance, VNode } from 'vue'
 import {
   defineComponent,
-  getCurrentInstance,
   nextTick,
   onMounted,
   shallowRef,
@@ -26,6 +25,7 @@ export default defineComponent({
     const stateValue = shallowRef(props.value === undefined ? props.defaultValue : props.value)
     const focused = shallowRef(false)
     const inputRef = shallowRef<HTMLInputElement>()
+    const rootRef = shallowRef<ComponentPublicInstance>()
     watch(
       () => props.value,
       () => {
@@ -71,7 +71,6 @@ export default defineComponent({
     const triggerChange = (e: Event) => {
       emit('change', e)
     }
-    const instance = getCurrentInstance()
     const setValue = (value: string | number, callback?: Function) => {
       if (stateValue.value === value)
         return
@@ -81,7 +80,7 @@ export default defineComponent({
       } else {
         nextTick(() => {
           if (inputRef.value.value !== stateValue.value)
-            instance.update()
+            rootRef.value?.$forceUpdate()
         })
       }
       nextTick(() => {
@@ -160,7 +159,7 @@ export default defineComponent({
         'inputClassName',
         'wrapperClassName',
       ])
-      const inputProps = {
+      const getInputProps = {
         ...otherProps,
         ...attrs,
         autocomplete,
@@ -185,12 +184,12 @@ export default defineComponent({
         type,
       }
       if (valueModifiers.lazy)
-        delete inputProps.onInput
+        delete getInputProps.onInput
 
-      if (!inputProps.autofocus)
-        delete inputProps.autofocus
+      if (!getInputProps.autofocus)
+        delete getInputProps.autofocus
 
-      const inputNode = <input {...omit(inputProps, ['size'])} />
+      const inputNode = <input {...omit(getInputProps, ['size'])} />
       return withDirectives(inputNode as VNode, [[antInputDirective]])
     }
     const getSuffix = () => {
@@ -234,6 +233,7 @@ export default defineComponent({
         <BaseInput
           {...rest}
           {...attrs}
+          ref={rootRef}
           prefixCls={prefixCls}
           inputElement={getInputElement()}
           handleReset={handleReset}

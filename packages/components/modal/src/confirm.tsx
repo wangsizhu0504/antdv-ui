@@ -20,7 +20,6 @@ function confirm(config: ModalFuncProps) {
     if (confirmDialogInstance) {
       // destroy
       vueRender(null, container as any)
-      confirmDialogInstance.component.update()
       confirmDialogInstance = null
     }
     const triggerCancel = args.some(param => param && param.triggerCancel)

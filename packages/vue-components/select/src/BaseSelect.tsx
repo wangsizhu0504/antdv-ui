@@ -1,7 +1,6 @@
 import {
   computed,
   defineComponent,
-  getCurrentInstance,
   onBeforeUnmount,
   onMounted,
   provide,
@@ -594,10 +593,10 @@ export default defineComponent({
 
     // ============================= Dropdown ==============================
     const containerWidth = shallowRef<number>(null)
-    const instance = getCurrentInstance()
+    // const instance = getCurrentInstance()
     const onPopupMouseEnter = () => {
       // We need force update here since popup dom is render async
-      instance.update()
+      // instance.update()
     }
     onMounted(() => {
       watch(
@@ -630,15 +629,15 @@ export default defineComponent({
         prefixCls,
         id,
 
-        open,
-        defaultOpen,
+        // open,
+        // defaultOpen,
 
         mode,
 
         // Search related
-        showSearch,
-        searchValue,
-        onSearch,
+        // showSearch,
+        // searchValue,
+        // onSearch,
 
         // Icons
         allowClear,
@@ -661,22 +660,22 @@ export default defineComponent({
         dropdownMatchSelectWidth,
         dropdownRender,
         dropdownAlign,
-        showAction,
+        // showAction,
         direction,
 
         // Tags
-        tokenSeparators,
+        // tokenSeparators,
         tagRender,
         optionLabelRender,
 
         // Events
-        onPopupScroll,
-        onDropdownVisibleChange,
-        onFocus,
-        onBlur,
-        onKeyup,
-        onKeydown,
-        onMousedown,
+        // onPopupScroll,
+        // onDropdownVisibleChange,
+        // onFocus,
+        // onBlur,
+        // onKeyup,
+        // onKeydown,
+        // onMousedown,
 
         onClear,
         omitDomProps,
