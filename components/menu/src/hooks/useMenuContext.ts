@@ -1,14 +1,8 @@
 import { defineComponent, inject, provide, toRef } from 'vue'
 
-import type { CSSMotionProps, Key } from '../../../_utils/types'
 import type { ComputedRef, InjectionKey, PropType, Ref } from 'vue'
-import type {
-  BuiltinPlacements,
-  MenuClickEventHandler,
-  MenuMode,
-  MenuTheme,
-  TriggerSubMenuAction,
-} from '../types'
+import type { CSSMotionProps, Key } from '../../../_utils/types'
+import type { BuiltinPlacements, MenuClickEventHandler, MenuMode, MenuTheme, TriggerSubMenuAction } from '../types'
 
 export interface StoreMenuInfo {
   eventKey: string
@@ -32,7 +26,7 @@ export interface MenuContextProps {
   inlineCollapsed: Ref<boolean>
   theme?: ComputedRef<MenuTheme>
 
-  siderCollapsed?: ComputedRef<boolean>
+  siderCollapsed?: Ref<boolean>
 
   // // Mode
   mode: Ref<MenuMode>
@@ -79,30 +73,30 @@ export interface MenuContextProps {
 
 const MenuContextKey: InjectionKey<MenuContextProps> = Symbol('menuContextKey')
 
-const useProvideMenu = (props: MenuContextProps) => {
+function useProvideMenu(props: MenuContextProps) {
   provide(MenuContextKey, props)
 }
 
-const useInjectMenu = () => {
+function useInjectMenu() {
   return inject(MenuContextKey)
 }
 
 const ForceRenderKey: InjectionKey<boolean> = Symbol('ForceRenderKey')
 
-export const useProvideForceRender = (forceRender: boolean) => {
+export function useProvideForceRender(forceRender: boolean) {
   provide(ForceRenderKey, forceRender)
 }
 
-export const useInjectForceRender = () => {
+export function useInjectForceRender() {
   return inject(ForceRenderKey, false)
 }
 
 const MenuFirstLevelContextKey: InjectionKey<boolean> = Symbol('menuFirstLevelContextKey')
-const useProvideFirstLevel = (firstLevel: boolean) => {
+function useProvideFirstLevel(firstLevel: boolean) {
   provide(MenuFirstLevelContextKey, firstLevel)
 }
 
-const useInjectFirstLevel = () => {
+function useInjectFirstLevel() {
   return inject(MenuFirstLevelContextKey, true)
 }
 

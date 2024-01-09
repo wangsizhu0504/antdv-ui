@@ -25,7 +25,7 @@ export interface PropOptions<T = any, D = T> {
 }
 
 declare type VNodeChildAtom = VNode | string | number | boolean | null | undefined | void
-export type VueNode = VNodeChildAtom | VNodeChildAtom[] | JSX.Element
+export type VueNode = VNodeChildAtom | VNodeChildAtom[] | VNode
 
 export type MaybeRef<T> = T | Ref<T>
 

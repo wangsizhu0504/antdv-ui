@@ -2,32 +2,21 @@ import hash from '@emotion/hash'
 import unitless from '@emotion/unitless'
 import { compile, serialize, stringify } from 'stylis'
 import { computed } from 'vue'
+import type * as CSS from 'csstype'
+import type { Ref } from 'vue'
 import { removeCSS, updateCSS } from '../../../_utils/dom/dynamicCSS'
 import { contentQuotesLinter, hashedAnimationLinter } from '../../linters'
-import {
-  ATTR_CACHE_PATH,
-  ATTR_MARK,
-  ATTR_TOKEN,
-  CSS_IN_JS_INSTANCE,
-  useStyleInject,
-} from '../../StyleContext'
+import { ATTR_CACHE_PATH, ATTR_MARK, ATTR_TOKEN, CSS_IN_JS_INSTANCE, useStyleInject } from '../../StyleContext'
 import { supportLayer } from '../../util'
 import useGlobalCache from '../useGlobalCache'
 import { canUseDom } from '../../../_utils/dom'
-import {
-  ATTR_CACHE_MAP,
-  existPath,
-  getStyleAndHash,
-  serialize as serializeCacheMap,
-} from './cacheMapUtil'
 import type { VueNode } from '../../../_utils/types'
-import type * as CSS from 'csstype'
 
 import type { Linter, Theme, Transformer } from '../..'
 import type Cache from '../../Cache'
 import type Keyframes from '../../Keyframes'
 import type { HashPriority } from '../../StyleContext'
-import type { Ref } from 'vue'
+import { ATTR_CACHE_MAP, existPath, getStyleAndHash, serialize as serializeCacheMap } from './cacheMapUtil'
 
 const isClientSide = canUseDom()
 
@@ -40,17 +29,17 @@ export type CSSProperties = Omit<CSS.PropertiesFallback<number | string>, 'anima
 export type CSSPropertiesWithMultiValues = {
   [K in keyof CSSProperties]:
   | CSSProperties[K]
-  | Extract<CSSProperties[K], string>[]
+  | ReadonlyArray<Extract<CSSProperties[K], string>>
   | {
-    [SKIP_CHECK]: boolean
-    [MULTI_VALUE]?: boolean
-    value: CSSProperties[K] | Extract<CSSProperties[K], string>[]
+    [SKIP_CHECK]?: boolean;
+    [MULTI_VALUE]?: boolean;
+    value: CSSProperties[K] | Array<CSSProperties[K]>;
   };
 }
 
 export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject }
 
-type ArrayCSSInterpolation = CSSInterpolation[]
+type ArrayCSSInterpolation = readonly CSSInterpolation[]
 
 export type InterpolationPrimitive = null | undefined | boolean | number | string | CSSObject
 
@@ -116,25 +105,21 @@ export interface ParseInfo {
 const globalEffectStyleKeys = new Set()
 
 /**
- * @private Test only. Clear the global effect style keys.
+ * @private
  */
 export const _cf
   = process.env.NODE_ENV !== 'production' ? () => globalEffectStyleKeys.clear() : undefined
 
 // Parse CSSObject to style content
-export const parseStyle = (
-  interpolation: CSSInterpolation,
-  config: ParseConfig = {},
-  { root, injectHash, parentSelectors }: ParseInfo = {
-    root: true,
-    parentSelectors: [],
-  },
-): [
+export function parseStyle(interpolation: CSSInterpolation, config: ParseConfig = {}, { root, injectHash, parentSelectors }: ParseInfo = {
+  root: true,
+  parentSelectors: [],
+}): [
   parsedStr: string,
   // Style content which should be unique on all of the style (e.g. Keyframes).
   // Firefox will flick with same animation name when exist multiple same keyframes.
   effectStyle: Record<string, string>,
-] => {
+  ] {
   const { hashId, layer, path, hashPriority, transformers = [], linters = [] } = config
   let styleStr = ''
   let effectStyle: Record<string, string> = {}
@@ -290,7 +275,7 @@ export const parseStyle = (
 // ============================================================================
 // ==                                Register                                ==
 // ============================================================================
-function uniqueHash(path: (string | number)[], styleStr: string) {
+function uniqueHash(path: Array<string | number>, styleStr: string) {
   return hash(`${path.join('%')}${styleStr}`)
 }
 
@@ -488,14 +473,7 @@ export function extractStyle(cache: Cache, plain = false) {
     .map((key) => {
       const cachePath = key.slice(matchPrefix.length).replace(/%/g, '|')
 
-      const [styleStr, tokenKey, styleId, effectStyle, clientOnly, order]: [
-        string,
-        string,
-        string,
-        Record<string, string>,
-        boolean,
-        number,
-      ] = cache.cache.get(key)![1]
+      const [styleStr, tokenKey, styleId, effectStyle, clientOnly, order]: [ string, string, string, Record<string, string>, boolean, number ] = cache.cache.get(key)![1]
 
       // Skip client only style
       if (clientOnly)

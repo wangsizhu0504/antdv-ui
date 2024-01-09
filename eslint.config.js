@@ -1,12 +1,15 @@
 import kriszu from '@kriszu/eslint-config'
-import unocss from '@unocss/eslint-plugin'
 
-export default kriszu({}, {
+export default kriszu({
+  vue: true,
+  typescript: true,
+}, {
   rules: {
     'no-console': 'off',
     'no-void': 'off',
     'ts/no-use-before-define': 'off',
     'vue/no-extra-parens': 'off',
+    'node/prefer-global/process': 'off',
     'no-useless-call': 'off',
     'prefer-promise-reject-errors': 'off',
     'ts/no-unused-expressions': 'off',
@@ -25,7 +28,6 @@ export default kriszu({}, {
     'prefer-rest-params': 'off',
     'no-invalid-this': 'off',
     'ts/no-this-alias': 'off',
-    'no-void': 'off',
     'ts/no-unused-vars': 'off',
     'n/no-callback-literal': 'off',
     'n/prefer-global/process': 'off',
@@ -36,4 +38,4 @@ export default kriszu({}, {
     'vue/component-tags-order': 'off',
     'vue/block-tag-newline': 'off',
   },
-}, unocss.configs.flat)
+})

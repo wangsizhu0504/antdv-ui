@@ -1,10 +1,10 @@
+import type { InjectionKey, Ref } from 'vue'
 import type { Breakpoint } from './_utils/types'
 import type { SiderCollapsed, SiderHookProvider } from './layout'
 import type { FormContextProps } from './form/src/context'
 
 import type { ConfigProviderInnerProps, DisabledType, GlobalFormCOntextProps, SizeType } from './config-provider'
 import type { AppConfig } from './app'
-import type { InjectionKey, Ref } from 'vue'
 import type { AvatarContextType } from './avatar'
 
 export const sizes = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const
