@@ -1,7 +1,7 @@
 {
   "name": "@antdv/ui",
-  "version": "4.0.7",
   "type": "module",
+  "version": "4.0.8",
   "packageManager": "pnpm@8.12.1",
   "publishConfig": {
     "access": "public"
@@ -55,10 +55,10 @@
   "jsdelivr": "dist/index.full.js",
   "types": "es/index.d.ts",
   "files": [
-    "lib",
-    "es",
+    "README.md",
     "dist",
-    "README.md"
+    "es",
+    "lib"
   ],
   "browserslist": [
     "> 0.5%",
