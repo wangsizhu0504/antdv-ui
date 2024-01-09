@@ -1,7 +1,6 @@
 // base 0.0.1-alpha.7
 import {
   defineComponent,
-  getCurrentInstance,
   nextTick,
   onMounted,
   shallowRef,
@@ -25,7 +24,7 @@ import type { InputFocusOptions } from './types'
 import type { InternalInputProps } from './props'
 
 import type { ChangeEvent, FocusEventHandler } from '../../_utils/types'
-import type { VNode } from 'vue'
+import type { ComponentPublicInstance, VNode } from 'vue'
 
 export default defineComponent({
   name: 'InternalInput',
@@ -35,6 +34,7 @@ export default defineComponent({
     const stateValue = shallowRef(props.value === undefined ? props.defaultValue : props.value)
     const focused = shallowRef(false)
     const inputRef = shallowRef<HTMLInputElement>()
+    const rootRef = shallowRef<ComponentPublicInstance>();
     watch(
       () => props.value,
       () => {
@@ -80,7 +80,6 @@ export default defineComponent({
     const triggerChange = (e: Event) => {
       emit('change', e)
     }
-    const instance = getCurrentInstance()
     const setValue = (value: string | number, callback?: Function) => {
       if (stateValue.value === value)
         return
@@ -90,7 +89,7 @@ export default defineComponent({
       } else {
         nextTick(() => {
           if (inputRef.value.value !== stateValue.value)
-            instance.update()
+            rootRef.value?.$forceUpdate();
         })
       }
       nextTick(() => {
@@ -243,6 +242,7 @@ export default defineComponent({
         <BaseInput
           {...rest}
           {...attrs}
+          ref={rootRef}
           prefixCls={prefixCls}
           inputElement={getInputElement()}
           handleReset={handleReset}
