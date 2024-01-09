@@ -3,13 +3,13 @@ import {
   TransitionGroup,
   computed,
   defineComponent,
-  getCurrentInstance,
   onMounted,
   shallowRef,
   triggerRef,
   watch,
   watchEffect,
 } from 'vue'
+import type { HTMLAttributes } from 'vue'
 import { isImageUrl, previewImage } from '../utils/utils'
 import { uploadListProps } from '../props'
 import Button from '../../../button'
@@ -18,13 +18,12 @@ import { filterEmpty, initDefaultProps } from '../../../_utils/vue'
 import { isValidElement } from '../../../_utils/is'
 import { getTransitionGroupProps } from '../../../_internal/transition'
 import { collapseMotion } from '../../../_internal/collapseMotion'
-import ListItem from './ListItem'
 import type { VueNode } from '../../../_utils/types'
 import type { ButtonProps } from '../../../button'
 import type { InternalUploadFile, UploadFile } from '../types'
-import type { HTMLAttributes } from 'vue'
+import ListItem from './ListItem'
 
-const HackSlot = (_, { slots }) => {
+function HackSlot(_, { slots }) {
   return filterEmpty(slots.default?.())[0]
 }
 
@@ -50,20 +49,20 @@ export default defineComponent({
     onMounted(() => {
       motionAppear.value = true
     })
-     const mergedItems = shallowRef([]);
+    const mergedItems = shallowRef([])
     watch(
       () => props.items,
       (val = []) => {
-        mergedItems.value = val.slice();
+        mergedItems.value = val.slice()
       },
       {
         immediate: true,
         deep: true,
       },
-    );
+    )
     watchEffect(() => {
       if (props.listType !== 'picture' && props.listType !== 'picture-card')
-        return;
+        return
 
       let hasUpdate = false;
       (props.items || []).forEach((file: InternalUploadFile, index) => {
@@ -81,17 +80,16 @@ export default defineComponent({
         if (props.previewFile) {
           props.previewFile(file.originFileObj).then((previewDataUrl: string) => {
             // Need append '' to avoid dead loop
-            const thumbUrl = previewDataUrl || '';
+            const thumbUrl = previewDataUrl || ''
             if (thumbUrl !== file.thumbUrl) {
-              mergedItems.value[index].thumbUrl = thumbUrl;
-              hasUpdate = true;
+              mergedItems.value[index].thumbUrl = thumbUrl
+              hasUpdate = true
             }
           })
         }
       })
-      if (hasUpdate) {
-        triggerRef(mergedItems);
-      }
+      if (hasUpdate)
+        triggerRef(mergedItems)
     })
 
     // ============================= Events =============================
@@ -206,7 +204,7 @@ export default defineComponent({
         appendActionVisible,
       } = props
       const appendActionDom = appendAction?.()
-      const items = mergedItems.value;
+      const items = mergedItems.value
       return (
         <TransitionGroup {...transitionGroupProps.value} tag="div">
           {items.map((file) => {
@@ -241,11 +239,12 @@ export default defineComponent({
           })}
           {appendAction
             ? (
-            <HackSlot
-              key="__ant_upload_appendAction"
-              v-show={!!appendActionVisible}
-              v-slots={{ default: () => appendActionDom }}
-            ></HackSlot>
+              <HackSlot
+                key="__ant_upload_appendAction"
+                v-show={!!appendActionVisible}
+                v-slots={{ default: () => appendActionDom }}
+              >
+              </HackSlot>
               )
             : null}
         </TransitionGroup>

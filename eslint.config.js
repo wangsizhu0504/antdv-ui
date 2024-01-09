@@ -7,6 +7,7 @@ export default kriszu({
   rules: {
     'no-console': 'off',
     'no-void': 'off',
+    'jsdoc/empty-tags': 'off',
     'ts/no-use-before-define': 'off',
     'vue/no-extra-parens': 'off',
     'node/prefer-global/process': 'off',

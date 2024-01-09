@@ -1,7 +1,6 @@
 import {
   computed,
   defineComponent,
-  getCurrentInstance,
   nextTick,
   onBeforeUnmount,
   onMounted,
@@ -22,7 +21,7 @@ export function getOpenCount() {
   return process.env.NODE_ENV === 'test' ? openCount : 0
 }
 
-const getParent = (getContainer: GetContainer) => {
+function getParent(getContainer: GetContainer) {
   if (!supportDom)
     return null
 
@@ -149,7 +148,7 @@ export default defineComponent({
       nextTick(() => {
         if (!attachToParent()) {
           rafId.value = wrapperRaf(() => {
-            triggerUpdate.value += 1;
+            triggerUpdate.value += 1
           })
         }
       })
@@ -178,7 +177,8 @@ export default defineComponent({
             ref={componentRef}
             didUpdate={props.didUpdate}
             v-slots={{ default: () => slots.default?.(childProps) }}
-          ></Portal>
+          >
+          </Portal>
         )
       }
       return portal
