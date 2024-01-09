@@ -7,6 +7,7 @@ import ConfirmDialog from './ConfirmDialog'
 import { getConfirmLocale } from './locale'
 import destroyFns from './destroyFns'
 import type { ConfigUpdate, ModalFuncProps } from './types'
+import { triggerVNodeUpdate } from '../../_utils/vue/vnode'
 
 const confirm = (config: ModalFuncProps) => {
   const container = document.createDocumentFragment()
@@ -63,8 +64,7 @@ const confirm = (config: ModalFuncProps) => {
       }
     }
     if (confirmDialogInstance) {
-      Object.assign(confirmDialogInstance.component.props, currentConfig)
-      confirmDialogInstance.component.update()
+      triggerVNodeUpdate(confirmDialogInstance, currentConfig, container);
     }
   }
 
