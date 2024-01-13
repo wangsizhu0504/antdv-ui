@@ -9,13 +9,20 @@ import {
   Tooltip,
   Typography,
 } from '@antdv/ui'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider'
-import seed from '@antdv/ui/es/theme/themes/seed'
-import tokenMeta from '@antdv/ui/es/version/token-meta.json'
-import { classNames } from '@antdv/ui/es/_utils/dom'
+import type { ThemeConfig } from '@antdv/components/config-provider'
+import seed from '@antdv/components/theme/themes/seed'
+import tokenMeta from '@antdv/components/version/token-meta.json'
+import { classNames } from '@antdv/utils'
 
 import type { PropType } from 'vue'
-import { computed, defineComponent, ref, toRefs, watch, watchEffect } from 'vue'
+import {
+  computed,
+  defineComponent,
+  ref,
+  toRefs,
+  watch,
+  watchEffect,
+} from 'vue'
 import { debounce } from 'lodash'
 import type { MutableTheme, SelectedToken } from '../interface'
 
@@ -248,7 +255,7 @@ export interface SeedTokenProps {
   disabled?: boolean
 }
 
-const getSeedValue = (config: ThemeConfig, token: string) => {
+function getSeedValue(config: ThemeConfig, token: string) {
   return config.token?.[token] || seed[token] || getDesignToken(config)[token]
 }
 
@@ -407,7 +414,7 @@ const MapTokenCollapseContent = defineComponent({
         <Collapse class="token-panel-pro-token-collapse-map-collapse">
           {mapTokens.value?.map(mapToken => (
             <Panel
-              header={
+              header={(
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <div
                     style={{
@@ -460,7 +467,7 @@ const MapTokenCollapseContent = defineComponent({
                     />
                   </div>
                 </div>
-              }
+              )}
               key={mapToken}
             >
               <TokenDetail
@@ -576,7 +583,7 @@ const MapTokenCollapse = defineComponent({
   },
 })
 
-const groupMapToken = (token: string): string => {
+function groupMapToken(token: string): string {
   if (token.startsWith('colorFill'))
     return 'fill'
 
@@ -714,7 +721,7 @@ const TokenContent = defineComponent({
             >
               <Collapse
                 class="token-panel-pro-token-collapse"
-                expandIconPosition={'end'}
+                expandIconPosition="end"
                 ghost
                 accordion
                 v-model={[curActiveGroup.value, 'activeKey']}
@@ -730,11 +737,11 @@ const TokenContent = defineComponent({
                 {category.value.groups.map((group, index) => {
                   return (
                     <Panel
-                      header={
+                      header={(
                         <span style={{ fontWeight: 500 }}>
                           {locale.value._lang === 'zh-CN' ? group.name : group.nameEn}
                         </span>
-                      }
+                      )}
                       key={group.key}
                     >
                       <div>
@@ -771,8 +778,7 @@ const TokenContent = defineComponent({
                                     style={{ marginLeft: '12px' }}
                                     checked={infoFollowPrimary.value}
                                     onChange={e =>
-                                      props.onInfoFollowPrimaryChange(e.target.checked)
-                                    }
+                                      props.onInfoFollowPrimaryChange(e.target.checked)}
                                   >
                                     {locale.value.followPrimary}
                                   </Checkbox>

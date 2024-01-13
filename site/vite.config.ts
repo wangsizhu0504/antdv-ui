@@ -19,11 +19,11 @@ export default defineConfig({
       },
       {
         find: /^@antdv\/ui(\/(es|lib))?$/,
-        replacement: path.resolve(__dirname, '../components/index.ts'),
+        replacement: path.resolve(__dirname, '../packages/antdv-ui/index.ts'),
       },
       {
         find: /^@antdv\/ui\/(es|lib)\/(.*)$/,
-        replacement: `${path.resolve(__dirname, '../components')}/$2`,
+        replacement: `${path.resolve(__dirname, '../packages/antdv-ui')}/$2`,
       },
       {
         find: /@\//,

@@ -1,8 +1,15 @@
 import type { InputProps } from '@antdv/ui'
 import { ConfigProvider, Input, InputNumber, Select, theme } from '@antdv/ui'
-import { classNames } from '@antdv/ui/es/_utils/dom'
+import { classNames } from '@antdv/utils'
 import type { PropType } from 'vue'
-import { computed, defineComponent, ref, toRefs, watch, watchEffect } from 'vue'
+import {
+  computed,
+  defineComponent,
+  ref,
+  toRefs,
+  watch,
+  watchEffect,
+} from 'vue'
 import tinycolor from 'tinycolor2'
 import { HexColorPicker, RgbaColorPicker } from '../vue-colorful'
 import makeStyle from './utils/makeStyle'
@@ -94,7 +101,7 @@ export interface HexColorInputProps {
   alpha?: boolean
 }
 
-const getHexValue = (value: string, alpha = false) => {
+function getHexValue(value: string, alpha = false) {
   return alpha ? tinycolor(value).toHex8() : tinycolor(value).toHex()
 }
 const HexColorInput = defineComponent({
@@ -142,7 +149,10 @@ const HexColorInput = defineComponent({
               prefix: () => '#',
             }}
           />
-          <div class="color-panel-mode-title">HEX{alpha.value ? '8' : ''}</div>
+          <div class="color-panel-mode-title">
+            HEX
+            {alpha.value ? '8' : ''}
+          </div>
         </div>
       )
     }
@@ -216,7 +226,7 @@ const colorModes = ['HEX', 'HEX8', 'RGB', 'RGBA'] as const
 
 type ColorMode = (typeof colorModes)[number]
 
-const getColorStr = (color: any, mode: ColorMode) => {
+function getColorStr(color: any, mode: ColorMode) {
   switch (mode) {
     case 'HEX':
       return tinycolor(color).toHexString()

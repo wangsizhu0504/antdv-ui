@@ -1,12 +1,7 @@
-import {
-  CaretRightOutlined,
-  QuestionCircleOutlined,
-  RightOutlined,
-  ShrinkOutlined,
-} from '@ant-design/icons-vue'
+import { CaretRightOutlined, QuestionCircleOutlined, RightOutlined, ShrinkOutlined } from '@ant-design/icons-vue'
 import { Button, Collapse, Empty, Tooltip } from '@antdv/ui'
-import { classNames } from '@antdv/ui/es/_utils/dom'
-import { useMergedState } from '@antdv/ui/es/hooks'
+import { classNames } from '@antdv/utils'
+import { useMergedState } from '@antdv/hooks'
 import { computed, defineComponent, toRefs } from 'vue'
 import type { PropType, Ref } from 'vue'
 import type { AliasToken, MutableTheme, SelectedToken } from '../interface'
@@ -154,9 +149,9 @@ const AliasPanel = defineComponent({
             }, []),
           ),
         )
-        : activeSeeds.value?.reduce<(keyof AliasToken)[]>(
+        : activeSeeds.value?.reduce<Array<keyof AliasToken>>(
           (result, item) => result.concat((seedRelatedAlias as any)[item] ?? []),
-        [],
+          [],
         ),
     )
 
@@ -168,88 +163,88 @@ const AliasPanel = defineComponent({
         >
           {open.value
             ? (
-            <>
-              <div class="token-panel-pro-color-alias-title">
-                <span class="token-panel-pro-color-alias-title-text">Alias Token</span>
-                <Tooltip
-                  placement="topLeft"
-                  arrowPointAtCenter
-                  title="别名变量（Alias Token）是 Map Token 的别名。Alias Token 用于批量控制某些共性组件的样式。"
-                >
-                  <QuestionCircleOutlined style={{ fontSize: '14px', marginLeft: '4px' }} />
-                </Tooltip>
-                <Button
-                  type="text"
-                  style={{ marginLeft: 'auto' }}
-                  onClick={() => setOpen(false)}
-                  v-slots={{
-                    icon: () => <ShrinkOutlined />,
-                  }}
-                />
-              </div>
-              {description.value && (
-                <div class="token-panel-pro-color-alias-description">{description.value}</div>
-              )}
-              <div style={{ flex: 1, overflow: 'auto' }}>
-                <Collapse
-                  class="token-panel-pro-alias-collapse"
-                  ghost
-                  v-slots={{
-                    expandIcon: ({ isActive }) => (
-                      <CaretRightOutlined rotate={isActive ? 90 : 0} style={{ fontSize: '12px' }} />
-                    ),
-                  }}
-                >
-                  {shownAlias.value?.map(aliasToken => (
-                    <Panel
-                      key={aliasToken}
-                      v-slots={{
-                        header: () => (
-                          <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <span style={{ marginRight: '8px' }}>{aliasToken}</span>
-                            <span class="token-panel-pro-token-collapse-map-collapse-count">
-                              {getRelatedComponents(aliasToken).length}
-                            </span>
-                            <div
-                              style={{ padding: '4px', marginLeft: 'auto' }}
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                props.onTokenSelect?.(aliasToken, 'alias')
-                              }}
-                            >
-                              <Pick
-                                class={classNames('token-panel-pro-token-pick', {
-                                  'token-panel-pro-token-picked': (
-                                    selectedTokens as Ref<SelectedToken>
-                                  ).value?.alias?.includes(aliasToken),
-                                })}
-                              />
-                            </div>
-                          </div>
-                        ),
-                      }}
-                    >
-                      <TokenDetail
-                        style={{ paddingBottom: '10px' }}
-                        themes={[theme.value]}
-                        path={['token']}
-                        tokenName={aliasToken as keyof AliasToken}
-                      />
-                    </Panel>
-                  ))}
-                </Collapse>
-                {!shownAlias.value?.length && (
-                  <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="暂无相关 Alias Token" />
+              <>
+                <div class="token-panel-pro-color-alias-title">
+                  <span class="token-panel-pro-color-alias-title-text">Alias Token</span>
+                  <Tooltip
+                    placement="topLeft"
+                    arrowPointAtCenter
+                    title="别名变量（Alias Token）是 Map Token 的别名。Alias Token 用于批量控制某些共性组件的样式。"
+                  >
+                    <QuestionCircleOutlined style={{ fontSize: '14px', marginLeft: '4px' }} />
+                  </Tooltip>
+                  <Button
+                    type="text"
+                    style={{ marginLeft: 'auto' }}
+                    onClick={() => setOpen(false)}
+                    v-slots={{
+                      icon: () => <ShrinkOutlined />,
+                    }}
+                  />
+                </div>
+                {description.value && (
+                  <div class="token-panel-pro-color-alias-description">{description.value}</div>
                 )}
-              </div>
-            </>
+                <div style={{ flex: 1, overflow: 'auto' }}>
+                  <Collapse
+                    class="token-panel-pro-alias-collapse"
+                    ghost
+                    v-slots={{
+                      expandIcon: ({ isActive }) => (
+                        <CaretRightOutlined rotate={isActive ? 90 : 0} style={{ fontSize: '12px' }} />
+                      ),
+                    }}
+                  >
+                    {shownAlias.value?.map(aliasToken => (
+                      <Panel
+                        key={aliasToken}
+                        v-slots={{
+                          header: () => (
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                              <span style={{ marginRight: '8px' }}>{aliasToken}</span>
+                              <span class="token-panel-pro-token-collapse-map-collapse-count">
+                                {getRelatedComponents(aliasToken).length}
+                              </span>
+                              <div
+                                style={{ padding: '4px', marginLeft: 'auto' }}
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  props.onTokenSelect?.(aliasToken, 'alias')
+                                }}
+                              >
+                                <Pick
+                                  class={classNames('token-panel-pro-token-pick', {
+                                    'token-panel-pro-token-picked': (
+                                      selectedTokens as Ref<SelectedToken>
+                                    ).value?.alias?.includes(aliasToken),
+                                  })}
+                                />
+                              </div>
+                            </div>
+                          ),
+                        }}
+                      >
+                        <TokenDetail
+                          style={{ paddingBottom: '10px' }}
+                          themes={[theme.value]}
+                          path={['token']}
+                          tokenName={aliasToken as keyof AliasToken}
+                        />
+                      </Panel>
+                    ))}
+                  </Collapse>
+                  {!shownAlias.value?.length && (
+                    <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="暂无相关 Alias Token" />
+                  )}
+                </div>
+              </>
               )
             : (
-            <div class="token-panel-pro-color-alias-expand">
-              <div class="token-panel-pro-color-alias-expand-handler" onClick={() => setOpen(true)}>
-                <RightOutlined style={{ fontSize: '12px' }} />
+              <div class="token-panel-pro-color-alias-expand">
+                <div class="token-panel-pro-color-alias-expand-handler" onClick={() => setOpen(true)}>
+                  <RightOutlined style={{ fontSize: '12px' }} />
+                </div>
               </div>
-            </div>
               )}
         </div>,
       )

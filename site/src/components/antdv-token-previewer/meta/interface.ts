@@ -1,4 +1,4 @@
-import type { ComponentTokenMap } from '@antdv/ui/es/theme/interface'
+import type { ComponentTokenMap } from '@antdv/components/theme/interface'
 
 export interface TokenMeta {
   type: string
@@ -38,7 +38,7 @@ export interface TokenGroup<T> {
   aliasToken?: T[]
 
   // Children Group
-  groups?: TokenGroup<T>[]
+  groups?: Array<TokenGroup<T>>
 
   // Extra
   mapTokenGroups?: string[]
@@ -55,7 +55,7 @@ export interface TokenCategory<T> {
   desc: string
   descEn: string
 
-  groups: TokenGroup<T>[]
+  groups: Array<TokenGroup<T>>
 }
 
-export type TokenTree<T extends string = string> = TokenCategory<T>[]
+export type TokenTree<T extends string = string> = Array<TokenCategory<T>>

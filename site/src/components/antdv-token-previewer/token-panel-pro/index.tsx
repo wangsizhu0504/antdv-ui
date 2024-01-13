@@ -1,5 +1,5 @@
 import { Tabs } from '@antdv/ui'
-import { classNames } from '@antdv/ui/es/_utils/dom'
+import { classNames } from '@antdv/utils'
 import type { PropType } from 'vue'
 import { computed, defineComponent, ref, toRefs, watchEffect } from 'vue'
 import type { SelectedToken, Theme } from '../interface'

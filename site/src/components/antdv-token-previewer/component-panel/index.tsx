@@ -1,8 +1,15 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import { Breadcrumb, Segmented, Switch } from '@antdv/ui'
-import { classNames } from '@antdv/ui/es/_utils/dom'
+import { classNames } from '@antdv/utils'
 import type { PropType } from 'vue'
-import { computed, defineComponent, ref, toRefs, watch, watchEffect } from 'vue'
+import {
+  computed,
+  defineComponent,
+  ref,
+  toRefs,
+  watch,
+  watchEffect,
+} from 'vue'
 import type { FilterMode } from '../FilterPanel'
 import type { Theme, TokenName } from '../interface'
 import makeStyle from '../utils/makeStyle'
@@ -316,8 +323,7 @@ const Index = defineComponent({
                       <a
                         onClick={() =>
                           activeComponentCategory.value
-                          && scrollToComponent(activeComponentCategory.value?.[0])
-                        }
+                          && scrollToComponent(activeComponentCategory.value?.[0])}
                       >
                         {
                           Object.entries(antdComponents).find(([, value]) =>

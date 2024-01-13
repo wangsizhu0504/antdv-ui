@@ -1,11 +1,10 @@
 import { TinyColor } from '@ctrl/tinycolor'
 import { computed, watch } from 'vue'
-import { theme } from '@antdv/ui'
-import { useConfigContextInject } from '@antdv/ui/es/config-provider'
+import { theme, useConfigContextInject } from '@antdv/ui'
 
 const { useToken } = theme
 
-const useSiteToken = () => {
+function useSiteToken() {
   const result = useToken()
   const { getPrefixCls, iconPrefixCls } = useConfigContextInject()
   const rootPrefixCls = computed(() => getPrefixCls())

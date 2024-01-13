@@ -1,4 +1,4 @@
-import type { GlobalToken } from '@antdv/ui/es/theme/interface'
+import type { GlobalToken } from '@antdv/components/theme/interface'
 import type { TokenValue } from '../interface'
 
 function defineTokenType<T extends string>(types: T[]) {
@@ -70,7 +70,7 @@ export function getTypeOfToken(tokenName: string): TokenType {
   return 'others'
 }
 
-export const classifyToken = (token: Record<string, TokenValue>): Record<string, string[]> => {
+export function classifyToken(token: Record<string, TokenValue>): Record<string, string[]> {
   const groupedToken: Record<string, string[]> = {}
   Object.keys(token || {})
     .sort((a, b) => a.localeCompare(b))

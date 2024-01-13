@@ -1,6 +1,6 @@
 import type { PropType } from 'vue'
 import { computed, defineComponent, toRefs } from 'vue'
-import { classNames } from '@antdv/ui/es/_utils/dom'
+import { classNames } from '@antdv/utils'
 import { Button, Dropdown, Menu } from '@antdv/ui'
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue'
 import makeStyle from './utils/makeStyle'

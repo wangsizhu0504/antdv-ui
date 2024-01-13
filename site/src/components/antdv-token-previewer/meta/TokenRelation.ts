@@ -1,20 +1,20 @@
-import type { AliasToken, MapToken, SeedToken } from '@antdv/ui/es/theme/interface'
-import defaultMap from '@antdv/ui/es/theme/themes/default'
-import seedToken from '@antdv/ui/es/theme/themes/seed'
-import formatToken from '@antdv/ui/es/theme/util/alias'
+import type { AliasToken, MapToken, SeedToken } from '@antdv/components/theme/interface'
+import defaultMap from '@antdv/components/theme/themes/default'
+import seedToken from '@antdv/components/theme/themes/seed'
+import formatToken from '@antdv/components/theme/util/alias'
 
 export type PureAliasToken = Omit<AliasToken, keyof MapToken>
 
 type SeedRelatedMap = {
-  [key in keyof SeedToken]?: (keyof MapToken)[];
+  [key in keyof SeedToken]?: Array<keyof MapToken>;
 }
 
 type SeedRelatedAlias = {
-  [key in keyof SeedToken]?: (keyof PureAliasToken)[];
+  [key in keyof SeedToken]?: Array<keyof PureAliasToken>;
 }
 
 type MapRelatedAlias = {
-  [key in keyof MapToken]?: (keyof PureAliasToken)[];
+  [key in keyof MapToken]?: Array<keyof PureAliasToken>;
 }
 
 // Alias Token 优先级排序，数字小的排在前面，在 map 中的优先级比不在 map 中的优先级高，都不在 map 中的按字母顺序排序
@@ -44,7 +44,7 @@ const tokenOrder: {
   controlItemBgHover: 63,
 }
 
-export function sortToken<T extends (keyof AliasToken)[]>(arr: T): T {
+export function sortToken<T extends Array<keyof AliasToken>>(arr: T): T {
   if (!arr)
     return arr
 
@@ -139,7 +139,7 @@ export const seedRelatedMap: SeedRelatedMap = {
   ],
 }
 
-const getMapRelatedAlias = () => {
+function getMapRelatedAlias() {
   const mapRelatedAlias: any = {}
   const mapFn = defaultMap
   const mapToken = mapFn({ ...seedToken })
@@ -170,7 +170,7 @@ const getMapRelatedAlias = () => {
 
 export const mapRelatedAlias: MapRelatedAlias = getMapRelatedAlias()
 
-const getSeedRelatedAlias = (): SeedRelatedAlias => {
+function getSeedRelatedAlias(): SeedRelatedAlias {
   const result: SeedRelatedAlias = {}
   Object.keys(seedToken).forEach((key) => {
     const seedKey = key as keyof SeedToken

@@ -1,6 +1,6 @@
 import { Button, Layout, theme as antdTheme, message } from '@antdv/ui'
 import type { ThemeConfig } from '@antdv/ui/es/config-provider'
-import { classNames } from '@antdv/ui/es/_utils/dom'
+import { classNames } from '@antdv/utils'
 import { computed, defineComponent, ref, toRefs, watchEffect } from 'vue'
 import type { PropType } from 'vue'
 import ComponentPanel from './component-panel'

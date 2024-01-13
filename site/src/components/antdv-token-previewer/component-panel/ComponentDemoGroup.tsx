@@ -1,7 +1,7 @@
 import type { CSSProperties, PropType } from 'vue'
 import { defineComponent, toRefs } from 'vue'
 import { ConfigProvider, Tooltip } from '@antdv/ui'
-import { classNames } from '@antdv/ui/es/_utils/dom'
+import { classNames } from '@antdv/utils'
 import ComponentDemos from '../component-demos'
 import type { ComponentDemo, MutableTheme, TokenName } from '../interface'
 import { useInjectLocaleContext } from '../locale'

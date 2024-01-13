@@ -1,5 +1,5 @@
 import { getParameters } from 'codesandbox/lib/api/define'
-import packageInfo from '../../../components/package.json'
+import packageInfo from '../../../packages/antdv-ui/package.json'
 
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">

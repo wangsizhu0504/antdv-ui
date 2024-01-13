@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
     "target": "ESNext",
+    "jsx": "preserve",
+    "lib": ["DOM", "WebWorker"],
+    "baseUrl": "./",
     "module": "ESNext",
     "moduleResolution": "Node",
+    "paths": {
+      "@antdv/ui": ["../packages/antdv-ui"],
+      "@antdv/ui/es/*": ["../packages/components/*"],
+      "@/*": ["./src/*"]
+    },
     "resolveJsonModule": true,
+    "types": ["../typings/components"],
+    "strict": true,
+    "noImplicitAny": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitAny": false,
-    "skipLibCheck": true,
-    "lib": ["DOM", "WebWorker"],
-    "paths": {
-      "@antdv/ui": ["../components"],
-      "@antdv/ui/es/*": ["../components/*"],
-      "@/*": ["./src/*"]
-    },
-    "types": ["../typings/components"],
-    "jsx": "preserve"
+    "skipLibCheck": true
   },
   "include": ["**/*"],
   "exclude": ["node_modules"]

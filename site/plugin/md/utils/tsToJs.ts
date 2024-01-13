@@ -1,14 +1,14 @@
 import { transformSync } from '@babel/core'
 import { ESLint } from 'eslint'
 import transformTypescript from '@babel/plugin-transform-typescript'
-import baseConfig from '../../../../.eslintrc.js'
+import baseConfig from '../../../../eslint.config.js'
 
 const engine = new ESLint({
   fix: true,
   useEslintrc: false,
   baseConfig,
 })
-const tsToJs = async (content: string): Promise<string> => {
+async function tsToJs(content: string): Promise<string> {
   if (!content)
     return ''
 

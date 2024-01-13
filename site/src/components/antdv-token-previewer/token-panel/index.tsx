@@ -2,7 +2,7 @@ import type { PropType } from 'vue'
 import { computed, defineComponent, ref, toRefs, watchEffect } from 'vue'
 import { CheckOutlined } from '@ant-design/icons-vue'
 import { Dropdown, Input, Menu, Switch, theme as antdTheme } from '@antdv/ui'
-import { classNames } from '@antdv/ui/es/_utils/dom'
+import { classNames } from '@antdv/utils'
 import { SearchDropdown } from '../icons'
 import type { AliasToken, MutableTheme, TokenValue } from '../interface'
 import type { TokenType } from '../utils/classifyToken'
@@ -207,10 +207,10 @@ export default defineComponent({
               <Input
                 allowClear
                 onChange={(e) => {
-                  search.value = e.target.value
+                  search.value = e.target.value!
                 }}
                 bordered={false}
-                addonBefore={
+                addonBefore={(
                   <>
                     <Dropdown
                       v-slots={{
@@ -267,7 +267,7 @@ export default defineComponent({
                       />
                     </Dropdown>
                   </>
-                }
+                )}
                 class="preview-panel-search"
                 placeholder="搜索 Token / 色值 / 文本 / 圆角等"
               />

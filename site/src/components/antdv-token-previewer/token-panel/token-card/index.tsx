@@ -17,8 +17,8 @@ import {
 } from '@ant-design/icons-vue'
 import { Collapse, Space } from '@antdv/ui'
 import type { ThemeConfig } from '@antdv/ui/es/config-provider'
-import {classNames} from '@antdv/ui/es/_utils/dom'
-import {PropTypes} from '@antdv/ui/es/_utils/vue'
+import { PropTypes, classNames } from '@antdv/utils'
+
 import { Motion, ShapeLine } from '../../icons'
 import type { MutableTheme, TokenValue } from '../../interface'
 import type { TokenType } from '../../utils/classifyToken'
@@ -202,8 +202,7 @@ export default defineComponent({
                     <TokenItem
                       tokenPath={tokenPath.value}
                       onActiveChange={active =>
-                        props.onActiveTokenChange?.(active ? tokenName : undefined)
-                      }
+                        props.onActiveTokenChange?.(active ? tokenName : undefined)}
                       active={activeToken.value === tokenName}
                       tokenName={tokenName}
                       key={tokenName}
