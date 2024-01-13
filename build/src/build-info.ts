@@ -36,7 +36,7 @@ export const buildConfig: Record<Module, BuildInfo> = {
   cjs: {
     module: 'CommonJS',
     format: 'cjs',
-    ext: 'js',
+    ext: 'cjs',
     output: {
       name: 'lib',
       path: path.resolve(antdOutput, 'lib'),

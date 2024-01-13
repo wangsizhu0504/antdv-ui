@@ -14,13 +14,18 @@ console.log(chalk.green('🔥 Collecting token statistics...'))
 
 const EmptyElement = createVNode('div')
 
+const excludeDirs = ['version', 'config-provider', 'locale-provider', 'style-provider', 'style', 'auto-complete', 'col', 'row', 'time-picker']
 const styleFiles = glob.sync(
   path.join(
     process.cwd(),
-    'packages/components/!(config-provider|locale-provider|auto-complete|time-picker|)/style/index.?(ts|tsx)',
+    'packages/components/**/style/index.?(ts|tsx)',
   ),
+  {
+    ignore: excludeDirs.map(dir =>
+      path.join(process.cwd(), `packages/components/${dir}/**/*`),
+    ),
+  },
 )
-
 const bar = new ProgressBar('🚀 Collecting by component: [:bar] :component (:current/:total)', {
   complete: '=',
   incomplete: ' ',
@@ -42,8 +47,10 @@ styleFiles.forEach(async (file) => {
   } else {
     useStyle = require(file).default
   }
+
   const Component = defineComponent({
     setup() {
+      if (!useStyle)console.log(useStyle, file)
       // @ts-expect-error
       useStyle(ref('file'), ref())
       return () => EmptyElement

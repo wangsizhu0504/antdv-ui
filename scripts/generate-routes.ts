@@ -1,5 +1,5 @@
 import fs from 'node:fs'
-import { globby } from 'globby'
+import globby from 'globby'
 import matter from 'gray-matter'
 
 (async () => {
