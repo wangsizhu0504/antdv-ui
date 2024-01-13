@@ -1,6 +1,6 @@
 import type { App } from 'vue'
 import * as components from '@antdv/components'
-import cssinjs from '@antdv/cssinjs'
+import cssinjs from '@antdv/components/cssinjs'
 import version from './version'
 
 export { theme } from '@antdv/components'

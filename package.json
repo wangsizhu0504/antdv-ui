@@ -1,4 +1,5 @@
 {
+  "name": "@antdv/monorepo",
   "type": "module",
   "license": "MIT",
   "engines": {
@@ -34,7 +35,6 @@
   "dependencies": {
     "@antdv/components": "workspace:*",
     "@antdv/constants": "workspace:*",
-    "@antdv/cssinjs": "workspace:*",
     "@antdv/directives": "workspace:*",
     "@antdv/hooks": "workspace:*",
     "@antdv/locale": "workspace:*",
@@ -61,6 +61,7 @@
     "fetch-jsonp": "^1.3.0",
     "fs-extra": "^11.2.0",
     "glob": "^10.3.10",
+    "globby": "^11.1.0",
     "husky": "^8.0.3",
     "jsdom": "23.0.1",
     "lint-staged": "^15.2.0",
@@ -69,6 +70,7 @@
     "qs": "^6.11.2",
     "rimraf": "^5.0.5",
     "simple-git-hooks": "^2.9.0",
+    "tinycolor2": "^1.6.0",
     "typedoc": "^0.23.25",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",

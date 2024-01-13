@@ -68,8 +68,9 @@ import { Compact, Space } from '@antdv/components/space'
 import { Spin } from '@antdv/components/spin'
 import { Statistic, StatisticCountdown } from '@antdv/components/statistic'
 import { Step, Steps } from '@antdv/components/steps'
+import { StyleProvider } from '@antdv/components/style-provider'
 import { Switch } from '@antdv/components/switch'
-import { Table, TableColumn, TableColumnGroup, TableSummary, TableSummaryCell } from '@antdv/components/table'
+import Table, { TableColumn, TableColumnGroup, TableSummary, TableSummaryCell } from '@antdv/components/table'
 import { TabPane, Tabs } from '@antdv/components/tabs'
 import { CheckableTag, Tag } from '@antdv/components/tag'
 import { TimePicker, TimeRangePicker } from '@antdv/components/time-picker'
@@ -191,6 +192,7 @@ export default [
   StatisticCountdown,
   Steps,
   Step,
+  StyleProvider,
   Switch,
   Table,
   TableColumn,

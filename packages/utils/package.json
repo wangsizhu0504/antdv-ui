@@ -1,6 +1,5 @@
 {
   "name": "@antdv/utils",
-  "type": "module",
   "version": "0.0.1",
   "description": "Antdv utils",
   "license": "MIT",

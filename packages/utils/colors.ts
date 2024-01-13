@@ -1,5 +1,13 @@
-import { PresetColors, PresetStatusColorTypes } from '@antdv/constants'
+import { PresetColors } from '@antdv/constants'
 import type { InverseColor, PresetStatusColorType } from '@antdv/types'
+
+export const PresetStatusColorTypes = [
+  'success',
+  'processing',
+  'error',
+  'default',
+  'warning',
+] as const
 
 const inverseColors = PresetColors.map<InverseColor>(color => `${color}-inverse`)
 

@@ -1,6 +1,5 @@
 {
   "name": "@antdv/locale",
-  "type": "module",
   "version": "0.0.1",
   "description": "Antdv locale",
   "license": "MIT",

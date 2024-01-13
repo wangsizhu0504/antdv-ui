@@ -1,6 +1,5 @@
 {
   "name": "@antdv/vue-components",
-  "type": "module",
   "version": "0.0.1",
   "description": "Element Plus directives",
   "license": "MIT",

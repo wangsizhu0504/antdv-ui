@@ -1,5 +1,4 @@
 export * from './color'
-export * from './config'
 export * from './status'
 export * from './key'
 export * from './size'
