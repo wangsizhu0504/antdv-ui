@@ -1,9 +1,9 @@
 import { renderSlot } from 'vue'
-import { warning } from '@antdv/utils'
+import { devWarning } from '@antdv/utils'
 import type { Ref } from 'vue'
 
-import type { ContextSlots, TableColumnsType, TransformColumns } from '../types'
-import { EXPAND_COLUMN } from '../vc-table/constant'
+import { EXPAND_COLUMN } from '@antdv/vue-components'
+import type { ContextSlots, TableColumnsType, TransformColumns } from '../interface'
 import { SELECTION_COLUMN } from './useSelection'
 
 function fillSlots<RecordType>(columns: TableColumnsType<RecordType>, contextSlots: Ref<ContextSlots>) {
@@ -13,7 +13,7 @@ function fillSlots<RecordType>(columns: TableColumnsType<RecordType>, contextSlo
     const cloneColumn = { ...column }
     const { slots = {} } = cloneColumn
     cloneColumn.__originColumn__ = column
-    warning(
+    devWarning(
       !('slots' in cloneColumn),
       'Table',
       '`column.slots` is deprecated. Please use `v-slot:headerCell` `v-slot:bodyCell` instead.',

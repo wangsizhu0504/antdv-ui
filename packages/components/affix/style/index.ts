@@ -1,6 +1,5 @@
-import type { CSSObject } from '@antdv/cssinjs'
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import type { FullToken, GenerateStyle } from '../../theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken } from '@antdv/theme'
 
 interface AffixToken extends FullToken<'Affix'> {
   zIndexPopup: number

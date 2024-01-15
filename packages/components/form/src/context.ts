@@ -4,7 +4,7 @@ import type { ValidateMessages } from '@antdv/locale'
 import type { ValidateStatus } from '@antdv/types'
 import type { ColProps } from '../../grid'
 import { defaultValidateMessages } from './utils/messages'
-import type { FieldExpose, FormLabelAlign, RequiredMark, Rule } from './types'
+import type { FieldExpose, FormLabelAlign, RequiredMark, Rule } from './interface'
 
 export const FormContextKey: InjectionKey<FormContextProps> = Symbol('formContextKey')
 

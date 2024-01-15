@@ -1,7 +1,5 @@
-import { toArray } from '@antdv/utils'
-import type { InternalNamePath, NamePath } from '../types'
-import set from './set'
-import get from './get'
+import { get, set, toArray } from '@antdv/utils'
+import type { InternalNamePath, NamePath } from '../interface'
 
 /**
  * Convert name to internal supported format.

@@ -20,7 +20,7 @@ import type {
   FormLabelAlign,
   RequiredMark,
   Rule,
-} from './types'
+} from './interface'
 
 export function formProps() {
   return {

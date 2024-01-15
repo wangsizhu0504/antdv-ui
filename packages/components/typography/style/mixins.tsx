@@ -8,10 +8,9 @@
 }
 */
 import { gold } from '@ant-design/colors'
+import { operationUnit } from '@antdv/theme'
+import type { CSSObject, GenerateStyle } from '@antdv/theme'
 import { initInputToken } from '../../input/style'
-import { operationUnit } from '../../style'
-import type { CSSObject } from '@antdv/cssinjs'
-import type { GenerateStyle } from '../../theme'
 import type { TypographyToken } from '.'
 
 function getTitleStyle(fontSize: number, lineHeight: number, color: string, token: TypographyToken) {

@@ -19,7 +19,7 @@ import type {
   TabPosition,
   TabsLocale,
   TabsType,
-} from './types'
+} from './interface'
 
 export function addButtonProps() {
   return {

@@ -2,7 +2,7 @@ import { computed, defineComponent } from 'vue'
 import type { VueNode } from '@antdv/types'
 import { progressStepsProps } from './props'
 import { getSize } from './utils'
-import type { ProgressSize } from './types'
+import type { ProgressSize } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

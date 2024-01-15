@@ -1,6 +1,6 @@
 import { inject, provide, reactive } from 'vue'
 import type { InjectionKey } from 'vue'
-import type { AppConfig, useAppProps } from './types'
+import type { AppConfig, useAppProps } from './interface'
 
 export const AppConfigContextKey: InjectionKey<AppConfig> = Symbol('appConfigContext')
 export function useProvideAppConfigContext(appConfigContext: AppConfig) {

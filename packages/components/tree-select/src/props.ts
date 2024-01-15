@@ -9,20 +9,16 @@ import {
 } from '@antdv/utils'
 import type { ExtractPropTypes } from 'vue'
 import type { InputStatus, Key } from '@antdv/types'
-import type {
-  SelectCommonPlacement,
-  VcTreeSelectBaseOption,
-  VcTreeSelectDefaultOption,
-  VcTreeSelectFieldName,
-} from '@antdv/vue-components'
-import { vcTreeSelectProps } from '@antdv/vue-components'
+import type { SelectCommonPlacement } from '@antdv/vue-components'
+import type { BaseOptionType, DefaultOptionType, FieldNames } from '@antdv/vue-components/vc-tree-select/src/TreeSelect'
+import { treeSelectProps as vcTreeSelectProps } from '@antdv/vue-components/vc-tree-select/src/TreeSelect'
 
 import type { SizeType } from '../../config-provider'
 import type { TreeProps } from '../../tree'
 
 export function treeSelectProps<
   ValueType = any,
-  OptionType extends VcTreeSelectBaseOption | VcTreeSelectDefaultOption = VcTreeSelectDefaultOption,
+  OptionType extends BaseOptionType | DefaultOptionType = DefaultOptionType,
 >() {
   return {
     ...omit(vcTreeSelectProps<ValueType, OptionType>(), [
@@ -37,7 +33,7 @@ export function treeSelectProps<
     'size': stringType<SizeType>(),
     'bordered': booleanType(),
     'treeLine': someType<TreeProps['showLine']>([Boolean, Object]),
-    'replaceFields': objectType<VcTreeSelectFieldName>(),
+    'replaceFields': objectType<FieldNames>(),
     'placement': stringType<SelectCommonPlacement>(),
     'status': stringType<InputStatus>(),
     'popupClassName': String,

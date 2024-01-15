@@ -9,7 +9,7 @@ import type {
   MenuTheme,
   SelectEventHandler,
   TriggerSubMenuAction,
-} from './types'
+} from './interface'
 
 export function menuDividerProps() {
   return {

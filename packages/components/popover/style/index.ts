@@ -1,8 +1,7 @@
-import { initZoomMotion } from '../../style/motion'
-import { PresetColors, genComponentStyleHook, mergeToken } from '../../theme'
-import { resetComponent } from '../../style'
-import getArrowStyle from '../../style/placementArrow'
-import type { FullToken, GenerateStyle, PresetColorType } from '../../theme'
+import { PresetColors, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { FullToken, GenerateStyle, PresetColorType } from '@antdv/theme'
+import getArrowStyle from '@antdv/theme/style/placementArrow'
+import { initZoomMotion } from '@antdv/theme/style/motion'
 
 export interface ComponentToken {
   zIndexPopup: number

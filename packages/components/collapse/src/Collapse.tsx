@@ -17,7 +17,7 @@ import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { collapseProps } from './props'
 
-import type { CollapsibleType } from './types'
+import type { CollapsibleType } from './interface'
 import type { CollapsePanelProps } from './props'
 
 export default defineComponent({

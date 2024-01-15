@@ -1,6 +1,6 @@
 import { computed, defineComponent } from 'vue'
 import { CheckCircleFilled, CheckOutlined, CloseCircleFilled, CloseOutlined } from '@ant-design/icons-vue'
-import { initDefaultProps, warning } from '@antdv/utils'
+import { devWarning, initDefaultProps } from '@antdv/utils'
 import type { CustomSlotsType, VueNode } from '@antdv/types'
 import { progressStatuses } from '@antdv/constants'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
@@ -32,13 +32,13 @@ export default defineComponent({
     const { prefixCls, direction } = useConfigInject('progress', props)
     const [wrapSSR, hashId] = useStyle(prefixCls)
     if (process.env.NODE_ENV !== 'production') {
-      warning(
+      devWarning(
         'successPercent' in props,
         'Progress',
         '`successPercent` is deprecated. Please use `success.percent` instead.',
       )
 
-      warning('width' in props, 'Progress', '`width` is deprecated. Please use `size` instead.')
+      devWarning('width' in props, 'Progress', '`width` is deprecated. Please use `size` instead.')
     }
     const strokeColorNotArray = computed(() =>
       Array.isArray(props.strokeColor) ? props.strokeColor[0] : props.strokeColor,

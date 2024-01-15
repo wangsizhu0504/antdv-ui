@@ -1,5 +1,5 @@
 import { onBeforeUnmount, shallowRef } from 'vue'
-import { wrapperRaf } from '@antdv/utils'
+import { raf } from '@antdv/utils'
 
 /**
  * Always trigger latest once when call multiple time
@@ -8,7 +8,7 @@ export default () => {
   const idRef = shallowRef(0)
 
   const cleanUp = () => {
-    wrapperRaf.cancel(idRef.value)
+    raf.cancel(idRef.value)
   }
 
   onBeforeUnmount(() => {
@@ -18,7 +18,7 @@ export default () => {
   return (callback: () => void) => {
     cleanUp()
 
-    idRef.value = wrapperRaf(() => {
+    idRef.value = raf(() => {
       callback()
     })
   }

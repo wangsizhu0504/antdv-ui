@@ -1,8 +1,8 @@
 import RawAsyncValidator from 'async-validator'
 import { cloneVNode } from 'vue'
 
-import { isValidElement, warningFn } from '@antdv/utils'
-import type { InternalNamePath, RuleError, RuleObject, ValidateOptions } from '../types'
+import { isValidElement, warning } from '@antdv/utils'
+import type { InternalNamePath, RuleError, RuleObject, ValidateOptions } from '../interface'
 import { setValues } from './valueUtil'
 import { defaultValidateMessages } from './messages'
 
@@ -120,7 +120,7 @@ export function validateRules(
           const wrappedCallback = (...args: string[]) => {
             // Wait a tick to make sure return type is a promise
             Promise.resolve().then(() => {
-              warningFn(
+              warning(
                 !hasPromise,
                 'Your validator function has already return a promise. `callback` will be ignored.',
               )
@@ -139,7 +139,7 @@ export function validateRules(
            * 1. Use promise as the first priority.
            * 2. If promise not exist, use callback with warning instead
            */
-          warningFn(hasPromise, '`callback` is deprecated. Please return a promise instead.')
+          warning(hasPromise, '`callback` is deprecated. Please return a promise instead.')
 
           if (hasPromise) {
             (promise as Promise<void>)

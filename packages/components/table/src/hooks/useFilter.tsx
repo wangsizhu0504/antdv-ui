@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import { warning } from '@antdv/utils'
+import { devWarning } from '@antdv/utils'
 import type { Ref } from 'vue'
 import type { TableLocale } from '@antdv/locale'
 import { useState } from '@antdv/hooks'
@@ -14,7 +14,7 @@ import type {
   TableColumnType,
   TableColumnsType,
   TransformColumns,
-} from '../types'
+} from '../interface'
 import FilterDropdown from './FilterDropdown'
 import { flattenKeys } from './utils'
 
@@ -217,7 +217,7 @@ function useFilter<RecordType>({
         })
     }
 
-    warning(
+    devWarning(
       filteredKeysIsAllControlled,
       'Table',
       'Columns should all contain `filteredValue` or not contain `filteredValue`.',

@@ -17,5 +17,5 @@ export default Avatar as typeof Avatar & Plugin & {
   readonly Group: typeof AAvatarGroup
 }
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

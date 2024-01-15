@@ -6,12 +6,12 @@ import {
   ref,
   toRef,
 } from 'vue'
-import { cloneElement, flattenChildren, warning } from '@antdv/utils'
+import { cloneElement, devWarning, flattenChildren } from '@antdv/utils'
 import type { Breakpoint, CustomSlotsType, ScreenMap } from '@antdv/types'
 import type { VNode } from 'vue'
 import { responsiveArray } from '@antdv/constants'
+import { useResponsiveObserver } from '@antdv/hooks'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useResponsiveObserve from '../../base/responsiveObserve'
 import useStyle from '../style'
 import { createProviderContext } from './useContext'
 import Row from './Row'
@@ -38,7 +38,7 @@ export default defineComponent({
 
     const [wrapSSR, hashId] = useStyle(prefixCls)
 
-    const responsiveObserve = useResponsiveObserve()
+    const responsiveObserve = useResponsiveObserver()
 
     onBeforeMount(() => {
       token = responsiveObserve.value.subscribe((screen) => {
@@ -78,7 +78,7 @@ export default defineComponent({
         clone = cloneElement(node, {
           span: rowRestCol,
         })
-        warning(
+        devWarning(
           span === undefined,
           'Descriptions',
           'Sum of column `span` in a line not match `column` of Descriptions.',

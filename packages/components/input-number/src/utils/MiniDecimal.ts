@@ -1,4 +1,4 @@
-import type { DecimalClass, ValueType } from '../types'
+import type { DecimalClass, ValueType } from '../interface'
 import { getNumberPrecision, isE, num2str, trimNumber, validateNumber } from './numberUtil'
 import { supportBigInt } from './supportUtil'
 

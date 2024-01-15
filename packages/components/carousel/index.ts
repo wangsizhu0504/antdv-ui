@@ -5,5 +5,5 @@ export const Carousel = withInstall(ACarousel)
 
 export default Carousel
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

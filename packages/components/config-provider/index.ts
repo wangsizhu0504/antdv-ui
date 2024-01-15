@@ -10,6 +10,7 @@ export default ConfigProvider as typeof ConfigProvider & Plugin & {
 }
 
 export * from './src/props'
-export * from './src/types'
+export * from './src/interface'
 export * from './src/context'
 export { globalConfigForApi } from './src/config'
+export { default as useAntdContext } from './src/hooks/useConfigInject'

@@ -1,12 +1,15 @@
 import { defineComponent, ref } from 'vue'
-import { omit, warning } from '@antdv/utils'
+import { devWarning, omit } from '@antdv/utils'
 import type { SlotsType } from 'vue'
-import type { GenerateConfig, PanelMode, RangePickerSharedProps, RangeValue } from '@antdv/vue-components'
+import type { RangePickerSharedProps } from '@antdv/vue-components/vc-picker/src/RangePicker'
+import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface'
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
+
 import generatePicker from '../../date-picker/src/generatePicker'
 import { commonProps, datePickerProps, rangePickerProps } from '../../date-picker'
 import { useInjectFormItemContext } from '../../form/src/FormItemContext'
 import { commonTimePickerProps } from './props'
-import type { TimePickerProps, TimeRangePickerProps } from './types'
+import type { TimePickerProps, TimeRangePickerProps } from './interface'
 
 function createTimePicker<
   DateType,
@@ -38,7 +41,7 @@ function createTimePicker<
     setup(p, { slots, expose, emit, attrs }) {
       const props = p as unknown as DTimePickerProps
       const formItemContext = useInjectFormItemContext()
-      warning(
+      devWarning(
         !(slots.addon || props.addon),
         'TimePicker',
         '`addon` is deprecated. Please use `v-slot:renderExtraFooter` instead.',

@@ -9,7 +9,7 @@ import {
   ref,
 } from 'vue'
 import scrollIntoView from 'scroll-into-view-if-needed'
-import { addEventListenerWrap, classNames, getScroll, scrollTo, warning } from '@antdv/utils'
+import { addEventListenerWrap, classNames, devWarning, getScroll, scrollTo } from '@antdv/utils'
 import Affix from '../../affix'
 
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
@@ -17,7 +17,7 @@ import useStyle from '../style'
 import AnchorLink from './AnchorLink'
 import useProvideAnchor from './context'
 import { anchorProps } from './props'
-import type { AnchorContainer, AnchorLinkItemProps, AnchorState, Section } from './types'
+import type { AnchorContainer, AnchorLinkItemProps, AnchorState, Section } from './interface'
 
 function getDefaultContainer() {
   return window
@@ -52,7 +52,7 @@ export default defineComponent({
     const anchorDirection = computed(() => props.direction ?? 'vertical')
 
     if (process.env.NODE_ENV !== 'production') {
-      warning(
+      devWarning(
         props.items && typeof slots.default !== 'function',
         'Anchor',
         '`Anchor children` is deprecated. Please use `items` instead.',
@@ -60,7 +60,7 @@ export default defineComponent({
     }
 
     if (process.env.NODE_ENV !== 'production') {
-      warning(
+      devWarning(
         !(anchorDirection.value === 'horizontal' && props.items?.some(n => 'children' in n)),
         'Anchor',
         '`Anchor items#children` is not supported when `Anchor` direction is horizontal.',

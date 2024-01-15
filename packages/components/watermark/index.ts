@@ -5,5 +5,5 @@ export const Watermark = withInstall(AWatermark)
 
 export default Watermark
 
-export * from './src/type'
+export * from './src/interface'
 export * from './src/props'

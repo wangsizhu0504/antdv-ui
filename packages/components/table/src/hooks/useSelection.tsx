@@ -2,17 +2,21 @@ import { DownOutlined } from '@ant-design/icons-vue'
 import { computed, shallowRef, watchEffect } from 'vue'
 import type { Key } from '@antdv/types'
 import type { Ref } from 'vue'
-import { warning } from '@antdv/utils'
+import { devWarning } from '@antdv/utils'
 import { useMergedState, useState } from '@antdv/hooks'
 
-// import { arrAdd, arrDel, conductCheck, convertDataToEntities, useMaxLevel } from '@antdv/vue-components'
-// import type { GetCheckDisabled } from '@antdv/vue-components'
+import {
+  INTERNAL_COL_DEFINE,
+  arrAdd,
+  arrDel,
+  conductCheck,
+  convertDataToEntities,
+  useMaxLevel,
+} from '@antdv/vue-components'
+import type { GetCheckDisabled } from '@antdv/vue-components'
 
-import { arrAdd, arrDel } from '../../../tree/src/vc-tree/util'
-import { conductCheck } from '../../../tree/src/vc-tree/utils/conductUtil'
-import { convertDataToEntities } from '../../../tree/src/vc-tree/utils/treeUtil'
-import useMaxLevel from '../../../tree/src/vc-tree/useMaxLevel'
-import type { GetCheckDisabled } from '../../../tree/src/vc-tree/interface'
+import type { FixedType } from '@antdv/vue-components/vc-table/src/interface'
+
 import Checkbox from '../../../checkbox'
 import Dropdown from '../../../dropdown'
 import Menu from '../../../menu'
@@ -25,11 +29,9 @@ import type {
   TableRowSelection,
   TransformColumns,
   UseSelectionConfig,
-} from '../types'
+} from '../interface'
 import type { CheckboxProps } from '../../../checkbox'
 import type { DataNode } from '../../../tree'
-import { INTERNAL_COL_DEFINE } from '../vc-table/utils/legacyUtil'
-import type { FixedType } from '../vc-table/interface'
 
 // TODO: warning if use ajax!!!
 
@@ -133,7 +135,7 @@ export default function useSelection<RecordType>(
         process.env.NODE_ENV !== 'production'
         && ('checked' in checkboxProps || 'defaultChecked' in checkboxProps)
       ) {
-        warning(
+        devWarning(
           false,
           'Table',
           'Do not set `checked` or `defaultChecked` in `getCheckboxProps`. Please use `selectedRowKeys` instead.',
@@ -275,7 +277,7 @@ export default function useSelection<RecordType>(
 
             const keys = Array.from(keySet)
             if (onSelectInvert) {
-              warning(
+              devWarning(
                 false,
                 'Table',
                 '`onSelectInvert` will be removed in future. Please use `onChange` instead.',
@@ -322,7 +324,7 @@ export default function useSelection<RecordType>(
     const { prefixCls, getRecordByKey, getRowKey, expandType, getPopupContainer } = configRef
     if (!rowSelectionRef.value) {
       if (process.env.NODE_ENV !== 'production') {
-        warning(
+        devWarning(
           !columns.includes(SELECTION_COLUMN),
           'Table',
           '`rowSelection` is not config but `SELECTION_COLUMN` exists in the `columns`.',
@@ -474,7 +476,7 @@ export default function useSelection<RecordType>(
         let mergedIndeterminate: boolean
         if (expandType.value === 'nest') {
           mergedIndeterminate = indeterminate
-          warning(
+          devWarning(
             typeof checkboxProps?.indeterminate !== 'boolean',
             'Table',
             'set `indeterminate` using `rowSelection.getCheckboxProps` is not allowed with tree structured dataSource.',
@@ -623,7 +625,7 @@ export default function useSelection<RecordType>(
       process.env.NODE_ENV !== 'production'
       && cloneColumns.filter(col => col === SELECTION_COLUMN).length > 1
     )
-      warning(false, 'Table', 'Multiple `SELECTION_COLUMN` exist in `columns`.')
+      devWarning(false, 'Table', 'Multiple `SELECTION_COLUMN` exist in `columns`.')
 
     cloneColumns = cloneColumns.filter(
       (column, index) => column !== SELECTION_COLUMN || index === selectionColumnIndex,

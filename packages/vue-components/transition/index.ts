@@ -1,4 +1,3 @@
-export * from './src/props'
-export * from './src/type'
-export * from './src/transition'
+export * from './src/collapseMotion'
 export * from './src/transButton'
+export * from './src/transition'

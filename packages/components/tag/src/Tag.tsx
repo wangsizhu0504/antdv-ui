@@ -1,10 +1,10 @@
 import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
-import { classNames, isPresetColor, isPresetStatusColor, warning } from '@antdv/utils'
+import { classNames, devWarning, isPresetColor, isPresetStatusColor } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
 import type { CustomSlotsType } from '@antdv/types'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import Wave from '../../wave'
+import { Wave } from '../../wave'
 
 import useStyle from '../style'
 import CheckableTag from './CheckableTag'
@@ -31,7 +31,7 @@ export default defineComponent({
 
     // Warning for deprecated usage
     if (process.env.NODE_ENV !== 'production') {
-      warning(
+      devWarning(
         props.visible === undefined,
         'Tag',
         '`visible` is deprecated, please use `<Tag v-show="visible" />` instead.',

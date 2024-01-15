@@ -7,7 +7,7 @@ export const message = Object.assign(Message, {
 
 export default message
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'
 
 export { default as useMessage } from './src/useMessage'

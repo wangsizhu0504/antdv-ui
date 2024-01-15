@@ -9,7 +9,7 @@ import {
 import { classNames } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
 import { singleNumberProps } from './props'
-import type { UnitNumberProps } from './types'
+import type { UnitNumberProps } from './interface'
 
 function UnitNumber({ prefixCls, value, current, offset = 0 }: UnitNumberProps) {
   let style: CSSProperties | undefined

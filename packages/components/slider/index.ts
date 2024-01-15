@@ -6,4 +6,4 @@ export const Slider = withInstall(ASlider)
 export default Slider
 
 export * from './src/props'
-export * from './src/types'
+export * from './src/interface'

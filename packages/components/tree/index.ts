@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import VcTreeNode from './src/vc-tree/TreeNode'
+import VcTreeNode from '@antdv/vue-components/vc-tree/src/TreeNode'
 import ATree from './src/Tree'
 import ADirectoryTree from './src/DirectoryTree'
 
@@ -21,5 +21,5 @@ export const Tree = Object.assign(ATree, {
 
 export default Tree
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

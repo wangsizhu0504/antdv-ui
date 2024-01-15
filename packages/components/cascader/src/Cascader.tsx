@@ -1,9 +1,10 @@
 import { LeftOutlined, LoadingOutlined, RightOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent, ref, watchEffect } from 'vue'
-import type { SelectCommonPlacement, ShowSearchType } from '@antdv/vue-components'
+import type { SelectCommonPlacement } from '@antdv/vue-components'
 import { VcCascader, getTransitionDirection, getTransitionName } from '@antdv/vue-components'
 import type { VueNode } from '@antdv/types'
-import { classNames, getMergedStatus, getStatusClassNames, initDefaultProps, warning } from '@antdv/utils'
+import { classNames, devWarning, getMergedStatus, getStatusClassNames, initDefaultProps } from '@antdv/utils'
+import type { ShowSearchType } from '@antdv/vue-components/vc-cascader/src/Cascader'
 import { useCompactItemContext } from '../../space/src/context'
 import getIcons from '../../select/src/iconUtil'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
@@ -16,7 +17,7 @@ import { useInjectDisabled } from '../../config-provider/src/context'
 import useStyle from '../style'
 import type { CascaderProps } from './props'
 import { cascaderProps } from './props'
-import type { CascaderRef } from './types'
+import type { CascaderRef } from './interface'
 
 // Align the design since we use `rc-select` in root. This help:
 // - List search content will show all content
@@ -87,7 +88,7 @@ export default defineComponent({
   setup(props, { attrs, expose, slots, emit }) {
     // ====================== Warning ======================
     if (process.env.NODE_ENV !== 'production') {
-      warning(
+      devWarning(
         !props.dropdownClassName,
         'Cascader',
         '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
@@ -119,7 +120,7 @@ export default defineComponent({
     // =================== Warning =====================
     if (process.env.NODE_ENV !== 'production') {
       watchEffect(() => {
-        warning(
+        devWarning(
           !props.multiple || !props.displayRender || !slots.displayRender,
           'Cascader',
           '`displayRender` not work on `multiple`. Please use `tagRender` instead.',

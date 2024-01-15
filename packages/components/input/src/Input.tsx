@@ -17,7 +17,7 @@ import { useInjectDisabled } from '../../config-provider'
 import useStyle from '../style'
 import { hasPrefixSuffix } from './util'
 import { inputProps } from './props'
-import type { InputFocusOptions } from './types'
+import type { InputFocusOptions } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

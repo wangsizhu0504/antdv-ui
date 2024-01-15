@@ -12,7 +12,7 @@
     "build/**/*",
     "build/**/*.json",
     "scripts/**/*",
-    "packages/antdv-ui/version/*.ts",
+    "packages/version/*.ts",
     "packages/antdv-ui/package.json"
   ],
   "exclude": ["dist"]

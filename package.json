@@ -38,8 +38,10 @@
     "@antdv/directives": "workspace:*",
     "@antdv/hooks": "workspace:*",
     "@antdv/locale": "workspace:*",
+    "@antdv/theme": "workspace:*",
     "@antdv/types": "workspace:*",
     "@antdv/utils": "workspace:*",
+    "@antdv/version": "workspace:*",
     "@antdv/vue-components": "workspace:*",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21"

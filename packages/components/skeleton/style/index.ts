@@ -1,7 +1,7 @@
-import { Keyframes } from '@antdv/cssinjs'
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import type { CSSObject } from '@antdv/cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
+import { Keyframes } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken } from '@antdv/theme'
+import type { CSSObject } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme'
 
 export interface ComponentToken {
   color: string

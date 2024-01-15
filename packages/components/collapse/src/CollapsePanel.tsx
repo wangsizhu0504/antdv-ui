@@ -1,5 +1,5 @@
 import { Transition, defineComponent } from 'vue'
-import { classNames, initDefaultProps, warning } from '@antdv/utils'
+import { classNames, devWarning, initDefaultProps } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
@@ -25,7 +25,7 @@ export default defineComponent({
   }>,
   // emits: ['itemClick'],
   setup(props, { slots, emit, attrs }) {
-    warning(
+    devWarning(
       props.disabled === undefined,
       'Collapse.Panel',
       '`disabled` is deprecated. Please use `collapsible="disabled"` instead.',

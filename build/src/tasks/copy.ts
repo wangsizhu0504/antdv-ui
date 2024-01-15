@@ -7,10 +7,10 @@ import { buildConfig, withTaskName } from '..'
 import {
   antdOutput,
   antdPackage,
-  antdRoot,
   buildOutput,
-  compRoot,
   projRoot,
+  themeRoot,
+  versionRoot,
 } from '../path'
 import type { Module } from '..'
 
@@ -50,10 +50,10 @@ export function copyFiles() {
       path.resolve(antdOutput, 'volar.d.ts'),
     ),
     copyFile(
-      path.resolve(compRoot, 'style', 'reset.css'),
+      path.resolve(themeRoot, 'style', 'reset.css'),
       path.resolve(antdOutput, 'dist', 'reset.css'),
     ),
-    copyJSONFiles(path.resolve(antdRoot, 'version'), [
+    copyJSONFiles(path.resolve(versionRoot), [
       path.resolve(antdOutput, 'es/version'),
       path.resolve(antdOutput, 'lib/version'),
     ]),

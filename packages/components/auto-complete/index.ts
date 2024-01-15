@@ -20,5 +20,5 @@ export const AutoComplete = Object.assign(AAutoComplete, {
 
 export default AutoComplete
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

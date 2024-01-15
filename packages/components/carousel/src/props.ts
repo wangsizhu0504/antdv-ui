@@ -1,6 +1,6 @@
 import { PropTypes, booleanType, functionType, stringType } from '@antdv/utils'
 import type { ExtractPropTypes } from 'vue'
-import type { CarouselEffect, DotPosition, LazyLoadTypes, SwipeDirection } from './types'
+import type { CarouselEffect, DotPosition, LazyLoadTypes, SwipeDirection } from './interface'
 
 // Carousel
 export function carouselProps() {

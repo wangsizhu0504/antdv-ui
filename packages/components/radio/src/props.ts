@@ -7,7 +7,7 @@ import type {
   RadioGroupChildOption,
   RadioGroupOptionType,
   RadioGroupSize,
-} from './types'
+} from './interface'
 
 export function radioGroupProps() {
   return {

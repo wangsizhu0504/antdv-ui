@@ -1,5 +1,5 @@
 import { withInstall } from '@antdv/utils'
-import { SHOW_CHILD, SHOW_PARENT } from '@antdv/vue-components'
+import { SHOW_CHILD, SHOW_PARENT } from '@antdv/vue-components/vc-cascader/src/Cascader'
 import ACascader from './src/Cascader'
 
 export const Cascader = withInstall<
@@ -14,7 +14,7 @@ export const Cascader = withInstall<
   } as any),
 )
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'
 
 export default Cascader

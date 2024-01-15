@@ -17,13 +17,8 @@ async function main() {
   const dirname = path.dirname(new URL(import.meta.url).pathname)
   consola.info(`📦 Version: ${version}`)
   await writeFile(
-    path.join(dirname, '..', 'packages', 'antdv-ui', 'version', 'version.ts'),
-    `export default '${version}'\n`,
-    'utf8',
-  )
-  await writeFile(
-    path.join(dirname, '..', 'packages', 'components', 'version.ts'),
-    `export default '${version}'\n`,
+    path.join(dirname, '..', 'packages', 'version', 'version.ts'),
+    `export const version = '${version}'\n`,
     'utf8',
   )
 }

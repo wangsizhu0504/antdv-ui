@@ -2,7 +2,7 @@ import { defineComponent, inject, provide, toRef } from 'vue'
 
 import type { CSSMotionProps, Key } from '@antdv/types'
 import type { ComputedRef, InjectionKey, PropType, Ref } from 'vue'
-import type { BuiltinPlacements, MenuClickEventHandler, MenuMode, MenuTheme, TriggerSubMenuAction } from '../types'
+import type { BuiltinPlacements, MenuClickEventHandler, MenuMode, MenuTheme, TriggerSubMenuAction } from '../interface'
 
 export interface StoreMenuInfo {
   eventKey: string

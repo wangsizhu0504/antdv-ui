@@ -1,9 +1,9 @@
 import type { App } from 'vue'
 import * as components from '@antdv/components'
-import cssinjs from '@antdv/components/cssinjs'
-import version from './version'
+import { cssinjs } from '@antdv/theme/cssinjs'
+import { version } from '@antdv/version'
 
-export { theme } from '@antdv/components'
+export { theme } from '@antdv/theme'
 export const install = function (app: App) {
   Object.keys(components).forEach((key) => {
     if (key === 'theme') return

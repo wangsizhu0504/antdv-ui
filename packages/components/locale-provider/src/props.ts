@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType, VNodeTypes } from 'vue'
 import type { Locale } from '@antdv/locale'
-import type { LocaleComponentName } from './types'
+import type { LocaleComponentName } from './interface'
 
 export function localReceiverProps() {
   return {

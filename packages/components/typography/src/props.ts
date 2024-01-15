@@ -2,7 +2,7 @@ import { omit, tupleNum } from '@antdv/utils'
 import type { AnchorHTMLAttributes, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
 import type { Direction } from '../../config-provider'
 import type { AutoSizeType } from '../../input'
-import type { BaseType, EllipsisConfig, InternalBlockProps } from './types'
+import type { BaseType, EllipsisConfig, InternalBlockProps } from './interface'
 
 export function baseProps() {
   return {

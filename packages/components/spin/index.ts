@@ -6,4 +6,4 @@ export const Spin = withInstall(ASpin)
 export default Spin
 
 export * from './src/props'
-export * from './src/types'
+export * from './src/interface'

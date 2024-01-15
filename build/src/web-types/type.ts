@@ -28,7 +28,7 @@ export interface VueAttribute {
 
 export interface VueTag {
   name: string;
-  filename: string;
+  filename?: string;
   slots?: VueSlot[];
   events?: VueEvent[];
   attributes?: VueAttribute[];

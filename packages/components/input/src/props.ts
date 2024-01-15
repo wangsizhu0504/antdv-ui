@@ -11,7 +11,7 @@ import type {
 import type { ExtractPropTypes, PropType } from 'vue'
 
 import type { SizeType } from '../../config-provider'
-import type { AutoSizeType, ShowCountProps } from './types'
+import type { AutoSizeType, ShowCountProps } from './interface'
 
 export function baseInputProps() {
   return {

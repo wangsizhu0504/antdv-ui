@@ -1,6 +1,6 @@
 import { PropTypes } from '@antdv/utils'
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { SpinSize } from './types'
+import type { SpinSize } from './interface'
 
 export function spinProps() {
   return {

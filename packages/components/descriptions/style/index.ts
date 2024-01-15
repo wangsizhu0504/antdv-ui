@@ -1,7 +1,5 @@
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import { resetComponent, textEllipsis } from '../../style'
-import type { CSSObject } from '@antdv/cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
+import { genComponentStyleHook, mergeToken, resetComponent, textEllipsis } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
 
 interface DescriptionsToken extends FullToken<'Descriptions'> {
   descriptionsTitleMarginBottom: number

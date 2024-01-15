@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import type { Ref } from 'vue'
-import { defaultConfig } from '../../../theme/internal'
-import type { ThemeConfig } from '../types'
+import { defaultConfig } from '@antdv/theme'
+import type { ThemeConfig } from '../interface'
 
 export default function useTheme(theme?: Ref<ThemeConfig>, parentTheme?: Ref<ThemeConfig>) {
   const themeConfig = computed(() => theme?.value || {})

@@ -2,7 +2,7 @@
 import { computed, defineComponent, onMounted, watchEffect } from 'vue'
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue'
 import { pick } from 'lodash-es'
-import { arrayType, classNames, initDefaultProps, isMobile, warning } from '@antdv/utils'
+import { arrayType, classNames, devWarning, initDefaultProps, isMobile } from '@antdv/utils'
 import type { Key } from '@antdv/types'
 import type { SlotsType } from 'vue'
 import { useMergedState, useState } from '@antdv/hooks'
@@ -14,7 +14,7 @@ import TabNavList from './TabNavList'
 import TabPanelList from './TabPanelList'
 import { useProvideTabs } from './TabContext'
 import { tabsProps } from './props'
-import type { AnimatedConfig, EditableConfig, Tab } from './types'
+import type { AnimatedConfig, EditableConfig, Tab } from './interface'
 
 // Used for accessibility
 let uuid = 0
@@ -45,17 +45,17 @@ export default defineComponent({
   }>,
   // emits: ['tabClick', 'tabScroll', 'change', 'update:activeKey'],
   setup(props, { attrs, slots }) {
-    warning(
+    devWarning(
       !(props.onPrevClick !== undefined) && !(props.onNextClick !== undefined),
       'Tabs',
       '`onPrevClick / @prevClick` and `onNextClick / @nextClick` has been removed. Please use `onTabScroll / @tabScroll` instead.',
     )
-    warning(
+    devWarning(
       !(props.tabBarExtraContent !== undefined),
       'Tabs',
       '`tabBarExtraContent` prop has been removed. Please use `rightExtra` slot instead.',
     )
-    warning(
+    devWarning(
       !(slots.tabBarExtraContent !== undefined),
       'Tabs',
       '`tabBarExtraContent` slot is deprecated. Please use `rightExtra` slot instead.',

@@ -14,7 +14,7 @@ import type { ValidateStatus } from '@antdv/types'
 import { validateRules } from './utils/validateUtil'
 import { defaultValidateMessages } from './utils/messages'
 import { allPromiseFinish } from './utils/asyncUtil'
-import type { Callbacks, RuleError } from './types'
+import type { Callbacks, RuleError } from './interface'
 
 interface DebounceSettings {
   leading?: boolean

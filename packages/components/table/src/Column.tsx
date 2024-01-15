@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import type { CustomSlotsType } from '@antdv/types'
-import type { TableColumnProps } from './types'
+import type { TableColumnProps } from './interface'
 
 export default defineComponent<TableColumnProps>({
   name: 'ATableColumn',

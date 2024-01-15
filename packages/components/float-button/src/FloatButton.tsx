@@ -1,5 +1,5 @@
 import { computed, defineComponent, ref } from 'vue'
-import { classNames, initDefaultProps, warning } from '@antdv/utils'
+import { classNames, devWarning, initDefaultProps } from '@antdv/utils'
 import Tooltip from '../../tooltip'
 import Badge from '../../badge'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
@@ -75,7 +75,7 @@ export default defineComponent({
       )
 
       if (process.env.NODE_ENV !== 'production') {
-        warning(
+        devWarning(
           !(shape === 'circle' && description),
           'FloatButton',
           'supported only when `shape` is `square`. Due to narrow space for text, short sentence is recommended.',

@@ -1,8 +1,7 @@
 import { computed } from 'vue'
 import type { Ref } from 'vue'
-import { useStyleRegister } from '@antdv/cssinjs'
-import { resetIcon } from '../../style'
-import { useToken } from '../../theme/internal'
+import { useStyleRegister, useToken } from '@antdv/theme'
+import { resetIcon } from '@antdv/theme/style'
 
 function useStyle(iconPrefixCls: Ref<string>) {
   const [theme, token] = useToken()

@@ -2,7 +2,7 @@ import { PropTypes, anyType, arrayType, objectType } from '@antdv/utils'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { VueNode } from '@antdv/types'
 
-import type { AnchorContainer, AnchorDirection, AnchorLinkItemProps } from './types'
+import type { AnchorContainer, AnchorDirection, AnchorLinkItemProps } from './interface'
 
 export function anchorProps() {
   return {

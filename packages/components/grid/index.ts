@@ -5,5 +5,5 @@ import ACol from './src/Col'
 export const Col = withInstall(ACol)
 export const Row = withInstall(ARow)
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

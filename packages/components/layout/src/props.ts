@@ -1,6 +1,6 @@
 import { PropTypes, tuple } from '@antdv/utils'
 import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import type { CollapseType } from './types'
+import type { CollapseType } from './interface'
 
 export function layoutProps() {
   return {

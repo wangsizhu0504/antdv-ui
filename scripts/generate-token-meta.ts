@@ -37,7 +37,7 @@ function main() {
   app.options.addReader(new TypeDocReader())
   app.bootstrap({
     // typedoc options here
-    entryPoints: ['packages/components/theme/interface/index.ts'],
+    entryPoints: ['packages/theme/token/interface/index.ts'],
     skipErrorChecking: true,
   })
 
@@ -45,7 +45,7 @@ function main() {
 
   if (project) {
     // Project may not have converted correctly
-    const output = 'packages/antdv-ui/version/token-meta.json'
+    const output = 'packages/version/token-meta.json'
     const tokenMeta: Record<string, any> = {}
     let presetColors = []
     project?.children.forEach((type: any) => {

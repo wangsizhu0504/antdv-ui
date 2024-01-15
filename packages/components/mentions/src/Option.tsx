@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue'
-import { optionOptions, optionProps } from './vc-mentions/Option'
+import { optionOptions, optionProps } from '@antdv/vue-components/vc-mentions/src/Option'
 
 /* istanbul ignore next */
 export default defineComponent({

@@ -19,5 +19,5 @@ export default Space as typeof Space & Plugin & {
 }
 
 export * from './src/props'
-export * from './src/types'
+export * from './src/interface'
 export * from './src/context'

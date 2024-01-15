@@ -1,5 +1,5 @@
 import { defineComponent, onActivated, onBeforeUnmount, ref, watch } from 'vue'
-import { wrapperRaf } from '@antdv/utils'
+import { raf } from '@antdv/utils'
 import { Tooltip, tooltipProps } from '../../tooltip'
 
 export default defineComponent({
@@ -13,12 +13,12 @@ export default defineComponent({
     const rafRef = ref<number>(null)
 
     function cancelKeepAlign() {
-      wrapperRaf.cancel(rafRef.value!)
+      raf.cancel(rafRef.value!)
       rafRef.value = null
     }
 
     function keepAlign() {
-      rafRef.value = wrapperRaf(() => {
+      rafRef.value = raf(() => {
         innerRef.value?.forcePopupAlign()
         rafRef.value = null
       })

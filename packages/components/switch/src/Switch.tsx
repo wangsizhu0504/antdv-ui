@@ -8,15 +8,15 @@ import {
   watch,
 } from 'vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
-import { KeyCode, getPropsSlot, omit, warning } from '@antdv/utils'
+import { KeyCode, devWarning, getPropsSlot, omit } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
 import { useInjectFormItemContext } from '../../form/src/FormItemContext'
-import Wave from '../../wave'
+import { Wave } from '../../wave'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useInjectDisabled } from '../../config-provider'
 import useStyle from '../style'
 import { switchProps } from './props'
-import type { CheckedType } from './types'
+import type { CheckedType } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -36,12 +36,12 @@ export default defineComponent({
     const mergedDisabled = computed(() => props.disabled ?? disabledContext.value)
 
     onBeforeMount(() => {
-      warning(
+      devWarning(
         !('defaultChecked' in attrs),
         'Switch',
         '\'defaultChecked\' is deprecated, please use \'v-model:checked\'',
       )
-      warning(
+      devWarning(
         !('value' in attrs),
         'Switch',
         '`value` is not validate prop, do you mean `checked`?',

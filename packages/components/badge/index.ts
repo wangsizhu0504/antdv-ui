@@ -18,4 +18,4 @@ export default Badge as typeof Badge & Plugin & {
 }
 
 export * from './src/props'
-export * from './src/types'
+export * from './src/interface'

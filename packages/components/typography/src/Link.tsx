@@ -1,4 +1,4 @@
-import { warning } from '@antdv/utils'
+import { devWarning } from '@antdv/utils'
 import type { FunctionalComponent } from 'vue'
 import Base from './Base'
 import { linkProps } from './props'
@@ -6,7 +6,7 @@ import type { LinkProps } from './props'
 
 const Link: FunctionalComponent<LinkProps> = (props, { slots, attrs }) => {
   const { ellipsis, rel, ...restProps } = { ...props, ...attrs }
-  warning(
+  devWarning(
     typeof ellipsis !== 'object',
     'Typography.Link',
     '`ellipsis` only supports boolean value.',

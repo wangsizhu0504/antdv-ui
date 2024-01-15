@@ -1,6 +1,6 @@
 import { objectType } from '@antdv/utils'
 import type { ExtractPropTypes } from 'vue'
-import type { AppConfig } from './types'
+import type { AppConfig } from './interface'
 
 export function appProps() {
   return {

@@ -6,7 +6,7 @@ import { useLocaleReceiver } from '../../locale-provider'
 import { Col } from '../../grid'
 import Tooltip from '../../tooltip'
 import { useInjectForm } from './context'
-import type { FormItemLabelProps, FormLabelAlign } from './types'
+import type { FormItemLabelProps, FormLabelAlign } from './interface'
 
 const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, emit, attrs }) => {
   const { prefixCls, htmlFor, labelCol, labelAlign, colon, required, requiredMark } = {

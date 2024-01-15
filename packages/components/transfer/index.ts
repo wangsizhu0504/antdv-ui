@@ -5,5 +5,5 @@ export const Transfer = withInstall(ATransfer)
 
 export default Transfer
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

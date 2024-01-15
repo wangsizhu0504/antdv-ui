@@ -1,4 +1,5 @@
-import type { CSSObject } from '@antdv/cssinjs'
+import type { CSSObject, GenerateStyle } from '@antdv/theme'
+import { resetComponent, textEllipsis } from '@antdv/theme'
 import {
   initMoveMotion,
   initSlideMotion,
@@ -6,9 +7,7 @@ import {
   slideDownOut,
   slideUpIn,
   slideUpOut,
-} from '../../style/motion'
-import { resetComponent, textEllipsis } from '../../style'
-import type { GenerateStyle } from '../../theme'
+} from '@antdv/theme/style/motion'
 import type { SelectToken } from '.'
 
 const genItemStyle: GenerateStyle<SelectToken, CSSObject> = (token) => {

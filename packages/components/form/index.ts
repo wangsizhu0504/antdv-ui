@@ -26,5 +26,5 @@ export default Form as typeof Form & Plugin & {
   readonly useInjectFormItemContext: typeof useInjectFormItemContext
 }
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

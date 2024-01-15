@@ -11,7 +11,7 @@ import { getNumberPrecision, num2str, validateNumber } from './utils/numberUtil'
 import StepHandler from './StepHandler'
 import getMiniDecimal, { toFixed } from './utils/MiniDecimal'
 import { inputElementProps } from './props'
-import type { DecimalClass, ValueType } from './types'
+import type { DecimalClass, ValueType } from './interface'
 
 /**
  * We support `stringMode` which need handle correct type when user call in onChange

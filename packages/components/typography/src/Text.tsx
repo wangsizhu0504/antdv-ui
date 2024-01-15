@@ -1,4 +1,4 @@
-import { omit, warning } from '@antdv/utils'
+import { devWarning, omit } from '@antdv/utils'
 import type { FunctionalComponent } from 'vue'
 import Base from './Base'
 import { textProps } from './props'
@@ -6,7 +6,7 @@ import type { TextProps } from './props'
 
 const Text: FunctionalComponent<TextProps> = (props, { slots, attrs }) => {
   const { ellipsis } = props
-  warning(
+  devWarning(
     typeof ellipsis !== 'object'
       || !ellipsis
       || (!('expandable' in ellipsis) && !('rows' in ellipsis)),

@@ -18,7 +18,7 @@ import type {
   StrokeColorType,
   StrokeLinecapType,
   SuccessProps,
-} from './types'
+} from './interface'
 
 export function progressProps() {
   return {

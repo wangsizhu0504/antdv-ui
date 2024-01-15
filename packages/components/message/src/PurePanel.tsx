@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons-vue'
 import { computed, defineComponent } from 'vue'
 import { classNames } from '@antdv/utils'
-import VcNotice from '../../notification/src/vc-notification/Notice'
+import VcNotice from '@antdv/vue-components/vc-notification/src/Notice'
 import { useConfigContextInject } from '../../config-provider/src/context'
 import useStyle from '../style'
 import type { MessagePureContentProps, MessagePurePanelProps } from './props'

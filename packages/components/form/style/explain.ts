@@ -1,4 +1,4 @@
-import type { GenerateStyle } from '../../theme'
+import type { GenerateStyle } from '@antdv/theme'
 import type { FormToken } from '.'
 
 const genFormValidateMotionStyle: GenerateStyle<FormToken> = (token) => {

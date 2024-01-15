@@ -32,5 +32,5 @@ export default Input as typeof Input & Plugin & {
   readonly Password: typeof AInputPassword
 }
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

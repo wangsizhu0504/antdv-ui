@@ -18,4 +18,4 @@ export default Dropdown as typeof Dropdown & Plugin & {
 }
 
 export * from './src/props'
-export * from './src/types'
+export * from './src/interface'

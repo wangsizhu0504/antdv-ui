@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { PropTypes, tuple } from '@antdv/utils'
-import type { NodeMouseEventHandler } from '../../tree/src/vc-tree/contextTypes'
+import type { NodeMouseEventHandler } from '@antdv/vue-components'
 
 const AlertTypes = tuple('success', 'info', 'warning', 'error')
 

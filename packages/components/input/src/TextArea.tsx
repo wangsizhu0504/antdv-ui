@@ -20,7 +20,7 @@ import { fixControlledValue, resolveOnChange, triggerFocus } from './util'
 import ClearableLabeledInput from './ClearableLabeledInput'
 import ResizableTextArea from './ResizableTextArea'
 import { textAreaProps } from './props'
-import type { InputFocusOptions } from './types'
+import type { InputFocusOptions } from './interface'
 
 function fixEmojiLength(value: string, maxLength: number) {
   return [...(value || '')].slice(0, maxLength).join('')

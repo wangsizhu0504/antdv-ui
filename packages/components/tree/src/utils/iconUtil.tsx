@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons-vue'
 import { cloneVNode } from 'vue'
 import { isValidElement } from '@antdv/utils'
-import type { AntTreeNodeProps } from '../types'
+import type { AntTreeNodeProps } from '../interface'
 
 export interface SwitcherIconProps extends AntTreeNodeProps {
   expanded: boolean

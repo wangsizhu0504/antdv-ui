@@ -1,6 +1,6 @@
 // 此样式是vue版本独有样式，react版本没有拖拽改变列宽度功能
-import type { CSSObject } from '@antdv/cssinjs'
-import type { GenerateStyle } from '../../theme'
+import type { CSSObject } from '@antdv/theme'
+import type { GenerateStyle } from '@antdv/theme'
 import type { TableToken } from './index'
 
 const genResizeStyle: GenerateStyle<TableToken, CSSObject> = (token) => {

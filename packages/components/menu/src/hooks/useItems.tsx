@@ -11,7 +11,7 @@ import type {
   MenuItemGroupType as VcMenuItemGroupType,
   MenuItemType as VcMenuItemType,
   SubMenuType as VcSubMenuType,
-} from '../types'
+} from '../interface'
 import type { MenuProps } from '../props'
 import type { StoreMenuInfo } from './useMenuContext'
 

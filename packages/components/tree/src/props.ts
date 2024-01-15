@@ -9,10 +9,10 @@ import {
 
 import type { Key } from '@antdv/types'
 import type { ExtractPropTypes } from 'vue'
-import { treeProps as VcTreeProps } from './vc-tree/props'
+import { treeProps as VcTreeProps } from '@antdv/vue-components/vc-tree/src/props'
 
-import type { AntdTreeNodeAttribute, ExpandAction } from './types'
-import type { FieldNames } from './vc-tree/interface'
+import type { FieldNames } from '@antdv/vue-components/vc-tree/src/interface'
+import type { AntdTreeNodeAttribute, ExpandAction } from './interface'
 
 export function treeProps() {
   const baseTreeProps = VcTreeProps()

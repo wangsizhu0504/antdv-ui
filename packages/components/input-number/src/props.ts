@@ -5,7 +5,7 @@ import type { InputStatus, KeyboardEventHandler } from '@antdv/types'
 // CSSINJS
 import type { ExtractPropTypes } from 'vue'
 import type { SizeType } from '../../config-provider'
-import type { ValueType } from './types'
+import type { ValueType } from './interface'
 
 export function inputElementProps() {
   return {

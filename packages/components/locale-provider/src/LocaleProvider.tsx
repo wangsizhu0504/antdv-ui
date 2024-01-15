@@ -1,5 +1,5 @@
 import { defineComponent, provide, reactive, watch } from 'vue'
-import { warning } from '@antdv/utils'
+import { devWarning } from '@antdv/utils'
 import { ANT_MARK } from '@antdv/constants'
 import { changeConfirmLocale } from '../../modal/src/locale'
 
@@ -10,7 +10,7 @@ export default defineComponent({
   name: 'ALocaleProvider',
   props: localeProviderProps(),
   setup(props, { slots }) {
-    warning(
+    devWarning(
       props.ANT_MARK__ === ANT_MARK,
       'LocaleProvider',
       '`LocaleProvider` is deprecated. Please use `locale` with `ConfigProvider` instead',

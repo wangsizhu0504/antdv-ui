@@ -1,13 +1,10 @@
-import { wrapperRaf } from './vue'
+import { raf } from './vue/raf'
 
 type throttledFn = (...args: any[]) => void
-type ReturnThrottledFn = throttledFn & throttledCancelFn
 
-interface throttledCancelFn {
-  cancel: () => void
-}
+interface throttledCancelFn { cancel: () => void }
 
-export function throttleByAnimationFrame<T extends any[]>(fn: (...args: T) => void): ReturnThrottledFn {
+export function throttleByAnimationFrame<T extends any[]>(fn: (...args: T) => void) {
   let requestId: number | null
 
   const later = (args: T) => () => {
@@ -15,15 +12,15 @@ export function throttleByAnimationFrame<T extends any[]>(fn: (...args: T) => vo
     fn(...args)
   }
 
-  const throttled = (...args: T) => {
+  const throttled: throttledFn & throttledCancelFn = (...args: T) => {
     if (requestId == null)
-      requestId = wrapperRaf(later(args))
+      requestId = raf(later(args))
   }
 
   throttled.cancel = () => {
-    wrapperRaf.cancel(requestId!)
+    raf.cancel(requestId!)
     requestId = null
   }
 
-  return throttled as ReturnThrottledFn
+  return throttled
 }

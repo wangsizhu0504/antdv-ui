@@ -1,5 +1,5 @@
 import type { FunctionalComponent } from 'vue'
-import type { CellProps } from './types'
+import type { CellProps } from './interface'
 
 function notEmpty(val: any) {
   return val !== undefined && val !== null

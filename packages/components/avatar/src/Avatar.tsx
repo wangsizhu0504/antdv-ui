@@ -12,7 +12,7 @@ import type { CSSProperties } from 'vue'
 import type { Breakpoint, CustomSlotsType, VueNode } from '@antdv/types'
 import { ResizeObserver } from '@antdv/vue-components'
 import { responsiveArray } from '@antdv/constants'
-import useBreakpoint from '../../base/useBreakpoint'
+import { useBreakpoint } from '@antdv/hooks'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
 import useStyle from '../style'

@@ -1,4 +1,4 @@
-import type { MentionsConfig, MentionsEntity } from './types'
+import type { MentionsConfig, MentionsEntity } from './interface'
 
 export function getMentions(value = '', config: MentionsConfig = {}): MentionsEntity[] {
   const { prefix = '@', split = ' ' } = config

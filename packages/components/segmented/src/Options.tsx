@@ -1,7 +1,7 @@
 import { classNames } from '@antdv/utils'
 import type { ChangeEvent } from '@antdv/types'
 import type { FunctionalComponent } from 'vue'
-import type { SegmentedOptionType, SegmentedValue } from './types'
+import type { SegmentedOptionType, SegmentedValue } from './interface'
 
 const SegmentedOption: FunctionalComponent<
   SegmentedOptionType & {

@@ -1,10 +1,11 @@
 import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled } from '@ant-design/icons-vue'
 import { computed, defineComponent, ref } from 'vue'
-import { classNames, getMergedStatus, getStatusClassNames, warning } from '@antdv/utils'
+import { classNames, devWarning, getMergedStatus, getStatusClassNames } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
 import { enUS } from '@antdv/locale'
 import { VcPicker } from '@antdv/vue-components'
-import type { GenerateConfig, PanelMode, PickerMode } from '@antdv/vue-components'
+import type { PanelMode, PickerMode } from '@antdv/vue-components/vc-picker/src/interface'
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
 import { getPlaceholder, transPlacement2DropdownAlign } from '../util'
 import useStyle from '../../style'
 import { useLocaleReceiver } from '../../../locale-provider'
@@ -57,24 +58,24 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
         const formItemInputContext = FormItemInputContext.useInject()
         // =================== Warning =====================
         if (process.env.NODE_ENV !== 'production') {
-          warning(
+          devWarning(
             picker !== 'quarter',
             displayName || 'DatePicker',
             `DatePicker.${displayName} is legacy usage. Please use DatePicker[picker='${picker}'] directly.`,
           )
 
-          warning(
+          devWarning(
             !props.dropdownClassName,
             displayName || 'DatePicker',
             '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
           )
-          warning(
+          devWarning(
             !(props.monthCellContentRender || slots.monthCellContentRender),
             displayName || 'DatePicker',
             '`monthCellContentRender` is deprecated. Please use `monthCellRender"` instead.',
           )
 
-          warning(
+          devWarning(
             !attrs.getCalendarContainer,
             displayName || 'DatePicker',
             '`getCalendarContainer` is deprecated. Please use `getPopupContainer"` instead.',

@@ -1,11 +1,8 @@
-import { Keyframes } from '@antdv/cssinjs'
-import type { CSSObject } from '@antdv/cssinjs'
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import { initFadeMotion } from '../../style/motion/fade'
-import { resetComponent } from '../../style'
-import { initMotion } from '../../style/motion/motion'
+import { Keyframes, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
+import { initFadeMotion } from '@antdv/theme/style/motion/fade'
+import { initMotion } from '@antdv/theme/style/motion/motion'
 import getOffset from '../src/util'
-import type { FullToken, GenerateStyle } from '../../theme'
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {

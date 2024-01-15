@@ -4,7 +4,7 @@ import useModal from './src/useModal'
 import confirm, { withConfirm, withError, withInfo, withSuccess, withWarn } from './src/confirm'
 import destroyFns from './src/destroyFns'
 
-import type { ModalFunc, ModalFuncProps } from './src/types'
+import type { ModalFunc, ModalFuncProps } from './src/interface'
 
 function modalWarn(props: ModalFuncProps) {
   return confirm(withWarn(props))
@@ -57,7 +57,7 @@ export default Modal as typeof Modal & Plugin & {
   readonly useModal: typeof useModal
 }
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'
 
 export { useModal }

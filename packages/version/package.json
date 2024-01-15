@@ -1,0 +1,6 @@
+{
+  "name": "@antdv/version",
+  "private": true,
+  "license": "MIT",
+  "main": "index.ts"
+}

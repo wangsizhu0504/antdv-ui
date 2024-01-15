@@ -1,12 +1,12 @@
 import { computed, defineComponent, ref } from 'vue'
 import { ReloadOutlined } from '@ant-design/icons-vue'
-import { warning } from '@antdv/utils'
+import { devWarning } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
+import { useToken } from '@antdv/theme'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useLocaleReceiver } from '../../locale-provider'
 import Spin from '../../spin'
 import Button from '../../button'
-import { useToken } from '../../theme/internal'
 import useStyle from '../style'
 import QRCodeCanvas from './Canvas'
 import QRCodeSVG from './SVG'
@@ -20,7 +20,7 @@ export default defineComponent({
   emits: ['refresh'],
   setup(props, { emit, attrs, expose }) {
     if (process.env.NODE_ENV !== 'production') {
-      warning(
+      devWarning(
         !(props.icon && props.errorLevel === 'L'),
         'QRCode',
         'ErrorLevel `L` is not recommended to be used with `icon`, for scanning result would be affected by low level.',

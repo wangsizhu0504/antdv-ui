@@ -19,7 +19,7 @@ import type {
   TransferDirection,
   TransferItem,
   TransferRender,
-} from './types'
+} from './interface'
 
 export function transferProps() {
   return {

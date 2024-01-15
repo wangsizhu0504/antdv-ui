@@ -3,11 +3,11 @@ import { RightOutlined } from '@ant-design/icons-vue'
 import {
   classNames,
   cloneElement,
+  devWarning,
   getPlacements,
   initDefaultProps,
   isValidElement,
   omit,
-  warning,
 } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
 import { VcDropdown } from '@antdv/vue-components'
@@ -44,7 +44,7 @@ export default defineComponent({
         ['onVisibleChange', 'onOpenChange'],
         ['onUpdate:visible', 'onUpdate:open'],
       ].forEach(([deprecatedName, newName]) => {
-        warning(
+        devWarning(
           props[deprecatedName] === undefined,
           'Dropdown',
           `\`${deprecatedName}\` is deprecated which will be removed in next major version, please use \`${newName}\` instead.`,
@@ -76,7 +76,7 @@ export default defineComponent({
       onClick: () => {},
       validator: ({ mode }) => {
         // Warning if use other mode
-        warning(
+        devWarning(
           !mode || mode === 'vertical',
           'Dropdown',
           `mode="${mode}" is not supported for Dropdown's Menu.`,
@@ -93,7 +93,7 @@ export default defineComponent({
       const overlayProps = overlayNode.props || {}
 
       // Warning if use other mode
-      warning(
+      devWarning(
         !overlayProps.mode || overlayProps.mode === 'vertical',
         'Dropdown',
         `mode="${overlayProps.mode}" is not supported for Dropdown's Menu.`,
@@ -131,7 +131,7 @@ export default defineComponent({
 
       if (props.placement.includes('Center')) {
         const newPlacement = props.placement.slice(0, props.placement.indexOf('Center'))
-        warning(
+        devWarning(
           !props.placement.includes('Center'),
           'Dropdown',
           `You are using '${props.placement}' placement in Dropdown, which is deprecated. Try to use '${newPlacement}' instead.`,

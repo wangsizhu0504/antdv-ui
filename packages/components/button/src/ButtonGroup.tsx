@@ -1,6 +1,6 @@
 import { computed, defineComponent, reactive } from 'vue'
-import { flattenChildren, warning } from '@antdv/utils'
-import { useToken } from '../../theme/internal'
+import { devWarning, flattenChildren } from '@antdv/utils'
+import { useToken } from '@antdv/theme'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { buttonGroupProps } from './props'
 import { GroupSizeContext } from './context'
@@ -32,7 +32,7 @@ export default defineComponent({
           break
         default:
 
-          warning(!size, 'Button.Group', 'Invalid prop `size`.')
+          devWarning(!size, 'Button.Group', 'Invalid prop `size`.')
       }
       return {
         [`${prefixCls.value}`]: true,

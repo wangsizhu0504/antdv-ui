@@ -8,7 +8,7 @@ import useStyle from '../style'
 import { useInjectRadioGroupContext, useInjectRadioOptionTypeContext } from './context'
 import { radioProps } from './props'
 import type { RadioProps } from './props'
-import type { RadioChangeEvent } from './types'
+import type { RadioChangeEvent } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

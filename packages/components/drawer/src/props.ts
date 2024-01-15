@@ -2,7 +2,7 @@ import { PropTypes, arrayType, functionType, objectType } from '@antdv/utils'
 
 import type { KeyboardEventHandler, MouseEventHandler, getContainerFunc } from '@antdv/types'
 import type { CSSProperties, ExtractPropTypes, PropType, TransitionProps } from 'vue'
-import type { ILevelMove, IPlacement, PushState, sizeType } from './types'
+import type { ILevelMove, IPlacement, PushState, sizeType } from './interface'
 
 export const PlacementTypes = ['top', 'right', 'bottom', 'left'] as const
 

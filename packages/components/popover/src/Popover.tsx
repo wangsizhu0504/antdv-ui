@@ -1,5 +1,5 @@
 import { computed, defineComponent, ref } from 'vue'
-import { classNames, filterEmpty, initDefaultProps, omit, warning } from '@antdv/utils'
+import { classNames, devWarning, filterEmpty, initDefaultProps, omit } from '@antdv/utils'
 import { getTransitionName } from '@antdv/vue-components'
 import Tooltip, { tooltipDefaultProps } from '../../tooltip'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
@@ -19,7 +19,7 @@ export default defineComponent({
   }),
   setup(props, { expose, slots, attrs }) {
     const tooltipRef = ref()
-    warning(
+    devWarning(
       props.visible === undefined,
       'popover',
       '`visible` will be removed in next major version, please use `open` instead.',

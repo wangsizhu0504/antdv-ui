@@ -5,7 +5,7 @@ import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useColStyle } from '../style'
 import { useInjectRow } from './context'
 import { colProps } from './props'
-import type { ColSize, FlexType } from './types'
+import type { ColSize, FlexType } from './interface'
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const
 

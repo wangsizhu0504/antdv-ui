@@ -1,5 +1,5 @@
 import type { Key } from '@antdv/types'
-import type { DataNode, FieldNames } from '../vc-tree/interface'
+import type { DataNode, FieldNames } from '@antdv/vue-components/vc-tree/src/interface'
 
 enum Record {
   None,

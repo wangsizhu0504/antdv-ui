@@ -1,4 +1,4 @@
-import { warning } from '@antdv/utils'
+import { devWarning } from '@antdv/utils'
 import type { FunctionalComponent } from 'vue'
 import Base from './Base'
 import { TITLE_ELE_LIST, titleProps } from './props'
@@ -10,17 +10,17 @@ const Title: FunctionalComponent<TitleProps> = (props, { slots, attrs }) => {
   if (TITLE_ELE_LIST.includes(level)) {
     component = `h${level}`
   } else {
-    warning(false, 'Typography', 'Title only accept `1 | 2 | 3 | 4 | 5` as `level` value.')
+    devWarning(false, 'Typography', 'Title only accept `1 | 2 | 3 | 4 | 5` as `level` value.')
     component = 'h1'
   }
 
-  const titleProps = {
+  const getTitleProps = {
     ...restProps,
     component,
     ...attrs,
   }
 
-  return <Base {...titleProps} v-slots={slots}></Base>
+  return <Base {...getTitleProps} v-slots={slots}></Base>
 }
 
 Title.displayName = 'ATypographyTitle'

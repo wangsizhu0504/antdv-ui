@@ -5,7 +5,7 @@ import { camelize, flattenChildren, initDefaultProps, isValidElement, omit } fro
 import type { SlotsType } from 'vue'
 import { tabsProps } from './props'
 import InternalTabs from './InternalTabs'
-import type { Tab } from './types'
+import type { Tab } from './interface'
 
 function parseTabList(children: any[]): Tab[] {
   return children

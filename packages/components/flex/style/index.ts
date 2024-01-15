@@ -1,7 +1,6 @@
-import type { CSSInterpolation } from '@antdv/cssinjs'
+import type { CSSInterpolation, FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken } from '@antdv/theme'
 import { alignItemsValues, flexWrapValues, justifyContentValues } from '../src/util'
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import type { FullToken, GenerateStyle } from '../../theme'
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {

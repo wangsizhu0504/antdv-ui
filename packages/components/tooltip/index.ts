@@ -5,5 +5,5 @@ export const Tooltip = withInstall(AToolTip)
 
 export default Tooltip
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

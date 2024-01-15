@@ -1,6 +1,5 @@
-import type { CSSInterpolation, CSSObject } from '@antdv/cssinjs'
-import { mergeToken } from '../../theme'
-import { resetIcon } from '../../style'
+import type { CSSInterpolation, CSSObject } from '@antdv/theme'
+import { mergeToken, resetIcon } from '@antdv/theme'
 import type { SelectToken } from '.'
 
 const FIXED_ITEM_MARGIN = 2

@@ -1,4 +1,4 @@
-import type { PropType, Ref, SlotsType, VNode } from 'vue'
+import type { BaseTransitionProps, SlotsType } from 'vue'
 
 /**
  * https://stackoverflow.com/a/59187769
@@ -15,20 +15,6 @@ export type Data = Record<string, unknown>
 
 export type Key = string | number
 
-type DefaultFactory<T> = (props: Data) => T | null | undefined
-
-export interface PropOptions<T = any, D = T> {
-  type?: PropType<T> | true | null
-  required?: boolean
-  default?: D | DefaultFactory<D> | null | undefined | object
-  validator?(value: unknown): boolean
-}
-
-declare type VNodeChildAtom = VNode | string | number | boolean | null | undefined | void
-export type VueNode = VNodeChildAtom | VNodeChildAtom[] | VNode
-
-export type MaybeRef<T> = T | Ref<T>
-
 export type getContainerFunc = () => HTMLElement
 
 export type RawValue = string | number
@@ -41,11 +27,6 @@ export interface LabeledValue {
 export type SelectValue = RawValue | RawValue[] | LabeledValue | LabeledValue[] | undefined
 
 export type Recordable<T = any> = Record<string, T>
-
-export type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
-export type BreakpointMap = Record<Breakpoint, string>
-export type ScreenMap = Partial<Record<Breakpoint, boolean>>
-export type ScreenSizeMap = Partial<Record<Breakpoint, number>>
 
 export type CustomSlotsType<T> = SlotsType<T>
 
@@ -60,4 +41,9 @@ export interface PlacementsConfig {
   verticalArrowShift?: number
   arrowPointAtCenter?: boolean
   autoAdjustOverflow?: boolean | AdjustOverflow
+}
+
+export interface CSSMotionProps extends Partial<BaseTransitionProps<Element>> {
+  name?: string
+  css?: boolean
 }

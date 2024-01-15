@@ -6,7 +6,7 @@ import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import StatisticNumber from './Number'
 import { statisticProps } from './props'
-import type { Formatter } from './types'
+import type { Formatter } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

@@ -1,5 +1,5 @@
 import { isWindow } from '../is'
-import { wrapperRaf } from '../vue/raf'
+import { raf } from '../vue/raf'
 
 import { getScroll } from './getScroll'
 
@@ -14,11 +14,11 @@ export function easeInOutCubic(t: number, b: number, c: number, d: number) {
 
 interface ScrollToOptions {
   /** Scroll container, default as window */
-  getContainer?: () => HTMLElement | Window | Document
+  getContainer?: () => HTMLElement | Window | Document;
   /** Scroll end callback */
-  callback?: () => any
+  callback?: () => any;
   /** Animation duration, default as 450 */
-  duration?: number
+  duration?: number;
 }
 
 export function scrollTo(y: number, options: ScrollToOptions = {}) {
@@ -39,9 +39,9 @@ export function scrollTo(y: number, options: ScrollToOptions = {}) {
       (container as HTMLElement).scrollTop = nextScrollTop
 
     if (time < duration)
-      wrapperRaf(frameFunc)
+      raf(frameFunc)
     else if (typeof callback === 'function')
       callback()
   }
-  wrapperRaf(frameFunc)
+  raf(frameFunc)
 }

@@ -1,7 +1,7 @@
 import { inject, provide, ref } from 'vue'
 import type { InjectionKey, Ref } from 'vue'
 
-import type { FloatButtonShape } from './types'
+import type { FloatButtonShape } from './interface'
 
 interface FloatButtonGroupContext {
   shape: Ref<FloatButtonShape>

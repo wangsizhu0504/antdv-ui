@@ -3,16 +3,17 @@ import { computed, defineComponent, reactive, watch, watchEffect } from 'vue'
 import type { WatchStopHandle } from 'vue'
 import { enUS as defaultLocale } from '@antdv/locale'
 import type { Locale, ValidateMessages } from '@antdv/locale'
+
+import { createTheme } from '@antdv/theme'
+import defaultSeedToken from '@antdv/theme/token/themes/seed'
+import { DesignTokenProvider } from '@antdv/theme/token/internal'
 import { ANT_MARK } from '@antdv/constants'
-import { createTheme } from '@antdv/cssinjs'
 import LocaleProvider from '../../locale-provider'
 
 import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
 
 import message from '../../message'
 import { notification } from '../../notification'
-import defaultSeedToken from '../../theme/themes/seed'
-import { DesignTokenProvider } from '../../theme/internal'
 
 import useStyle from '../style'
 import { getGlobalIconPrefixCls, getGlobalPrefixCls, globalConfigForApi } from './config'
@@ -30,7 +31,7 @@ import { registerTheme } from './cssVariables'
 
 import { type ConfigProviderProps, configProviderProps } from './props'
 
-import type { ConfigProviderInnerProps, GlobalConfigProviderProps, RenderEmptyHandler, ThemeColor } from './types'
+import type { ConfigProviderInnerProps, GlobalConfigProviderProps, RenderEmptyHandler, ThemeColor } from './interface'
 
 const globalConfigBySet = reactive<ConfigProviderProps>({}) // 权重最大
 

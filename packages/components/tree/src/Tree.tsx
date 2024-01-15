@@ -1,18 +1,11 @@
 import { computed, defineComponent, ref, watchEffect } from 'vue'
-import {
-  classNames,
-  filterEmpty,
-  initDefaultProps,
-  omit,
-  warning,
-  warningFn,
-} from '@antdv/utils'
+import { classNames, devWarning, filterEmpty, initDefaultProps, omit } from '@antdv/utils'
 import type { SlotsType } from 'vue'
 
-import type { ScrollTo } from '@antdv/vue-components'
+import { VcTree } from '@antdv/vue-components'
+import type { ScrollTo } from '@antdv/vue-components/vc-virtual-list/src/List'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
-import VcTree from './vc-tree/Tree'
 import renderSwitcherIcon from './utils/iconUtil'
 import dropIndicatorRender from './utils/dropIndicator'
 import { treeProps } from './props'
@@ -39,7 +32,7 @@ export default defineComponent({
     leafIcon?: any
   }>,
   setup(props, { attrs, expose, emit, slots }) {
-    warningFn(
+    devWarning(
       !(props.treeData === undefined && slots.default),
       '`children` of Tree is deprecated. Please use `treeData` instead.',
     )
@@ -67,7 +60,7 @@ export default defineComponent({
     })
 
     watchEffect(() => {
-      warning(
+      devWarning(
         props.replaceFields === undefined,
         'Tree',
         '`replaceFields` is deprecated, please use fieldNames instead',

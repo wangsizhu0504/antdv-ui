@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'vue'
 import type { VueNode } from '@antdv/types'
-import type { NoticeProps } from '../../notification/src/vc-notification/Notice'
-import type { NoticeType } from './types'
+import type { NoticeProps } from '@antdv/vue-components/vc-notification/src/Notice'
+import type { NoticeType } from './interface'
 
 export interface MessageArgsProps {
   content: string | (() => VueNode) | VueNode

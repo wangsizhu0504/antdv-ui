@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import type { CustomSlotsType } from '@antdv/types'
-import type { ColumnGroupProps } from './vc-table/sugar/ColumnGroup'
+import type { ColumnGroupProps } from '@antdv/vue-components/vc-table/src/sugar/ColumnGroup'
 
 export default defineComponent<ColumnGroupProps<any>>({
   name: 'ATableColumnGroup',

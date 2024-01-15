@@ -22,5 +22,5 @@ export default Radio as typeof Radio & Plugin & {
   readonly Button: typeof ARadioButton
 }
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

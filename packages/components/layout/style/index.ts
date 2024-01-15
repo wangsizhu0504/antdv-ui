@@ -1,6 +1,6 @@
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import type { CSSObject } from '@antdv/cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
+import { genComponentStyleHook, mergeToken } from '@antdv/theme'
+import type { CSSObject } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme'
 import genLayoutLightStyle from './light'
 
 export interface ComponentToken {

@@ -17,5 +17,5 @@ export default Image as typeof Image & Plugin & {
   readonly PreviewGroup: typeof AImagePreviewGroup
 }
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

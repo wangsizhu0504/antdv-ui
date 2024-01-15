@@ -13,7 +13,7 @@ import type { CSSProperties } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
 import { siderProps } from './props'
-import type { CollapseType } from './types'
+import type { CollapseType } from './interface'
 import { SiderCollapsedKey, SiderHookProviderKey } from './injectionKey'
 
 const dimensionMaxMap = {

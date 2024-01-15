@@ -3,11 +3,11 @@ import { useInjectFormItemContext } from '../../form/src/FormItemContext'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import Checkbox from './Checkbox'
-import { CheckboxGroupContextKey } from './types'
+import { CheckboxGroupContextKey } from './interface'
 import { checkboxGroupProps } from './props'
 
 // CSSINJS
-import type { CheckboxOptionType } from './types'
+import type { CheckboxOptionType } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

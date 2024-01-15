@@ -1,5 +1,5 @@
 import { onBeforeUnmount, shallowRef } from 'vue'
-import { wrapperRaf } from '@antdv/utils'
+import { raf } from '@antdv/utils'
 
 import type { Ref } from 'vue'
 
@@ -9,8 +9,8 @@ export function useRaf<Callback extends Function>(callback: Callback) {
 
   function trigger(...args: any[]) {
     if (!removedRef.value) {
-      wrapperRaf.cancel(rafRef.value)
-      rafRef.value = wrapperRaf(() => {
+      raf.cancel(rafRef.value)
+      rafRef.value = raf(() => {
         callback(...args)
       })
     }
@@ -18,7 +18,7 @@ export function useRaf<Callback extends Function>(callback: Callback) {
 
   onBeforeUnmount(() => {
     removedRef.value = true
-    wrapperRaf.cancel(rafRef.value)
+    raf.cancel(rafRef.value)
   })
 
   return trigger

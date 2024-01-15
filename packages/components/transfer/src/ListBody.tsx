@@ -3,7 +3,7 @@ import { classNames } from '@antdv/utils'
 import Pagination from '../../pagination'
 import ListItem from './ListItem'
 import { transferListBodyProps } from './props'
-import type { TransferItem } from './types'
+import type { TransferItem } from './interface'
 
 function parsePagination(pagination) {
   if (!pagination)

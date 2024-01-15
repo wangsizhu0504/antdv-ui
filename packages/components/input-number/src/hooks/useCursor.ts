@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import type { Ref } from 'vue'
-import { warningFn } from '@antdv/utils'
+import { warning } from '@antdv/utils'
 
 /**
  * Keep input cursor in the correct position if possible.
@@ -65,7 +65,7 @@ export default function useCursor(
 
         inputRef.value.setSelectionRange(startPos, startPos)
       } catch (e) {
-        warningFn(
+        warning(
           false,
           `Something warning of cursor restore. Please fire issue about this: ${e.message}`,
         )

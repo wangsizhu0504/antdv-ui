@@ -2,7 +2,7 @@ import { booleanType, functionType, objectType, someType, stringType } from '@an
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { FocusEventHandler } from '@antdv/types'
 import type { TooltipPlacement } from '../../tooltip'
-import type { SliderMarks, SliderRange, Value } from './types'
+import type { SliderMarks, SliderRange, Value } from './interface'
 
 // CSSINJS
 

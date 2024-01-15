@@ -1,5 +1,5 @@
 import type { InjectionKey } from 'vue'
-import type { SiderCollapsed, SiderHookProvider } from './types'
+import type { SiderCollapsed, SiderHookProvider } from './interface'
 
 export const SiderCollapsedKey: InjectionKey<SiderCollapsed> = Symbol('siderCollapsed')
 

@@ -1,6 +1,6 @@
 import { FilterFilled } from '@ant-design/icons-vue'
 import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue'
-import { classNames, isEqual, warning } from '@antdv/utils'
+import { classNames, devWarning, isEqual } from '@antdv/utils'
 import type { EventHandler, Key } from '@antdv/types'
 import type { TableLocale } from '@antdv/locale'
 import { useInjectSlots } from '../context'
@@ -12,7 +12,7 @@ import Dropdown from '../../../dropdown'
 import Empty from '../../../empty'
 import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
 import Tree from '../../../tree'
-import type { ColumnFilterItem, FilterSearchType, FilterState, GetPopupContainer, TableColumnType } from '../types'
+import type { ColumnFilterItem, FilterSearchType, FilterState, GetPopupContainer, TableColumnType } from '../interface'
 import type { CheckboxChangeEvent } from '../../../checkbox'
 import type { DataNode, EventDataNode } from '../../../tree'
 import FilterSearch from './FilterSearch'
@@ -144,7 +144,7 @@ export default defineComponent<FilterDropdownProps<any>>({
           props.column.onFilterDropdownVisibleChange,
         ],
       ].forEach(([deprecatedName, newName, prop]) => {
-        warning(
+        devWarning(
           prop === undefined || prop === null,
           'Table',
           `\`${deprecatedName}\` is deprecated. Please use \`${newName}\` instead.`,

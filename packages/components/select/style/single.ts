@@ -1,6 +1,6 @@
-import type { CSSInterpolation, CSSObject } from '@antdv/cssinjs'
-import { resetComponent } from '../../style'
-import { mergeToken } from '../../theme'
+import type { CSSInterpolation, CSSObject } from '@antdv/theme'
+import { mergeToken } from '@antdv/theme'
+import { resetComponent } from '@antdv/theme'
 import type { SelectToken } from '.'
 
 function genSizeStyle(token: SelectToken, suffix?: string): CSSObject {

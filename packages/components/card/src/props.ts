@@ -1,6 +1,6 @@
 import { PropTypes, vNodeType } from '@antdv/utils'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { CardSize, CardTabListType, CardType } from './types'
+import type { CardSize, CardTabListType, CardType } from './interface'
 
 export function cardProps() {
   return {

@@ -8,7 +8,7 @@ import {
   watchEffect,
   withDirectives,
 } from 'vue'
-import { classNames, omit, warning, wrapperRaf } from '@antdv/utils'
+import { classNames, devWarning, omit, raf } from '@antdv/utils'
 import type { CSSProperties, VNode } from 'vue'
 import { ResizeObserver } from '@antdv/vue-components'
 import { antInputDirective } from '@antdv/directives'
@@ -32,8 +32,8 @@ export default defineComponent({
     const textareaStyles = ref({})
     const resizeStatus = ref(RESIZE_STABLE)
     onBeforeUnmount(() => {
-      wrapperRaf.cancel(nextFrameActionId)
-      wrapperRaf.cancel(resizeFrameId)
+      raf.cancel(nextFrameActionId)
+      raf.cancel(resizeFrameId)
     })
 
     // https://github.com/ant-design/ant-design/issues/21870
@@ -101,7 +101,7 @@ export default defineComponent({
     const instance = getCurrentInstance()
     const resizeRafRef = ref()
     const cleanRaf = () => {
-      wrapperRaf.cancel(resizeRafRef.value)
+      raf.cancel(resizeRafRef.value)
     }
     const onInternalResize = (size: { width: number; height: number }) => {
       if (resizeStatus.value === RESIZE_STABLE) {
@@ -109,7 +109,7 @@ export default defineComponent({
 
         if (needAutoSize.value) {
           cleanRaf()
-          resizeRafRef.value = wrapperRaf(() => {
+          resizeRafRef.value = raf(() => {
             startResize()
           })
         }
@@ -128,7 +128,7 @@ export default defineComponent({
       instance,
     })
 
-    warning(
+    devWarning(
       props.autosize === undefined,
       'Input.TextArea',
       'autosize is deprecated, please use autoSize instead.',

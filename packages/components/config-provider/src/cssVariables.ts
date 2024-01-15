@@ -1,8 +1,8 @@
 import { TinyColor } from '@ctrl/tinycolor'
 import { generate } from '@ant-design/colors'
-import { canUseDom, updateCSS, warning } from '@antdv/utils'
+import { canUseDom, devWarning, updateCSS } from '@antdv/utils'
 
-import type { ThemeColor } from './types'
+import type { ThemeColor } from './interface'
 
 const dynamicStyleMark = `-ant-${Date.now()}-${Math.random()}`
 
@@ -88,5 +88,5 @@ export function registerTheme(globalPrefixCls: string, theme: ThemeColor) {
   if (canUseDom())
     updateCSS(style, `${dynamicStyleMark}-dynamic-theme`)
   else
-    warning(false, 'ConfigProvider', 'SSR do not support dynamic theme with css variables.')
+    devWarning(false, 'ConfigProvider', 'SSR do not support dynamic theme with css variables.')
 }

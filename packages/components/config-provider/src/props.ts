@@ -4,7 +4,7 @@ import type { Locale, ValidateMessages } from '@antdv/locale'
 
 import type { TransformCellTextProps } from '../../table'
 import type { RequiredMark } from '../../form'
-import type { CSPConfig, RenderEmptyHandler, SizeType, ThemeConfig } from './types'
+import type { CSPConfig, RenderEmptyHandler, SizeType, ThemeConfig } from './interface'
 
 export function configProviderProps() {
   return {

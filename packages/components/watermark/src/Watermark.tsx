@@ -6,12 +6,12 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { useMutationObserver } from '@vueuse/core'
+import { useMutationObserver } from '@antdv/hooks'
 
 import { initDefaultProps } from '@antdv/utils'
 
 import type { CSSProperties, StyleValue } from 'vue'
-import { useToken } from '../../theme/internal'
+import { useToken } from '@antdv/theme'
 import { getPixelRatio, getStyleStr, reRendering, rotateWatermark } from './utils'
 import { watermarkProps } from './props'
 

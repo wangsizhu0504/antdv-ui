@@ -17,8 +17,8 @@ import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { addObserveTarget, getFixedBottom, getFixedTop, getTargetRect, removeObserveTarget } from './utils'
 import { affixProps } from './props'
-import { AffixStatus } from './types'
-import type { AffixState } from './types'
+import { AffixStatus } from './interface'
+import type { AffixState } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

@@ -6,7 +6,7 @@ import ConfirmDialog from './ConfirmDialog'
 
 import { getConfirmLocale } from './locale'
 import destroyFns from './destroyFns'
-import type { ConfigUpdate, ModalFuncProps } from './types'
+import type { ConfigUpdate, ModalFuncProps } from './interface'
 
 function confirm(config: ModalFuncProps) {
   const container = document.createDocumentFragment()

@@ -6,10 +6,12 @@ import {
   InfoCircleOutlined,
 } from '@ant-design/icons-vue'
 import { classNames, renderHelper } from '@antdv/utils'
+import VcNotification from '@antdv/vue-components/vc-notification/src/Notification'
+import type {
+  NotificationInstance as VCNotificationInstance,
+} from '@antdv/vue-components/vc-notification/src/Notification'
 import { globalConfig } from '../../config-provider/src/config'
 import useStyle from '../style'
-import type { NotificationInstance as VCNotificationInstance } from './vc-notification/Notification'
-import VcNotification from './vc-notification/Notification'
 import useNotification from './useNotification'
 import { getPlacementStyle } from './util'
 import type {
@@ -18,7 +20,7 @@ import type {
   NotificationArgsProps,
   NotificationConfig,
   NotificationPlacement,
-} from './types'
+} from './interface'
 
 const notificationInstance: { [key: string]: VCNotificationInstance } = {}
 let defaultDuration = 4.5

@@ -1,5 +1,5 @@
-import type { CSSObject } from '@antdv/cssinjs'
-import type { GenerateStyle } from '../../theme'
+import type { CSSObject } from '@antdv/theme'
+import type { GenerateStyle } from '@antdv/theme'
 import type { StepsToken } from '.'
 
 const genStepsInlineStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {

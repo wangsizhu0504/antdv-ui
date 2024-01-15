@@ -1,5 +1,5 @@
-import { clearFix, textEllipsis } from '../../style'
-import type { GenerateStyle } from '../../theme'
+import type { GenerateStyle } from '@antdv/theme'
+import { clearFix, textEllipsis } from '@antdv/theme'
 import type { UploadToken } from '.'
 
 const genListStyle: GenerateStyle<UploadToken> = (token) => {

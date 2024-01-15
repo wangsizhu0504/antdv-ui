@@ -1,7 +1,5 @@
-import { resetComponent } from '../../style'
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import type { CSSInterpolation, CSSObject } from '@antdv/cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
+import type { CSSInterpolation, CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 
 export interface ComponentToken {}
 

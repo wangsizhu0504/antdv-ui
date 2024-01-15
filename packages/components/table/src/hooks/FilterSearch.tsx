@@ -4,7 +4,7 @@ import { functionType, objectType, someType, stringType } from '@antdv/utils'
 import type { TableLocale } from '@antdv/locale'
 import Input from '../../../input'
 
-import type { FilterSearchType } from '../types'
+import type { FilterSearchType } from '../interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

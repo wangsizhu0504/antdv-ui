@@ -7,10 +7,10 @@ import {
   stringType,
 } from '@antdv/utils'
 import type { TableLocale } from '@antdv/locale'
+import type { TableProps as VcTableProps } from '@antdv/vue-components/vc-table/src/Table'
 import type { SizeType } from '../../config-provider'
 import type { TooltipProps } from '../../tooltip'
 import type { SpinProps } from '../../spin'
-import type { TableProps as VcTableProps } from './vc-table/Table'
 import type {
   FilterValue,
   GetPopupContainer,
@@ -22,7 +22,7 @@ import type {
   TablePaginationConfig,
   TableProps,
   TableRowSelection,
-} from './types'
+} from './interface'
 
 export function tableProps() {
   return {

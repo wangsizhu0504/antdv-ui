@@ -1,5 +1,5 @@
-import { genFocusOutline } from '../../style'
-import type { CSSInterpolation } from '@antdv/cssinjs'
+import { genFocusOutline } from '@antdv/theme'
+import type { CSSInterpolation } from '@antdv/theme'
 import type { MenuToken } from '.'
 
 function accessibilityFocus(token: MenuToken) {

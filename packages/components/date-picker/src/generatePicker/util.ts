@@ -1,4 +1,5 @@
-import type { PickerMode, SharedTimeProps } from '@antdv/vue-components'
+import type { SharedTimeProps } from '@antdv/vue-components/vc-picker/src/panels/TimePanel'
+import type { PickerMode } from '@antdv/vue-components/vc-picker/src/interface'
 import PickerButton from '../PickerButton'
 import PickerTag from '../PickerTag'
 

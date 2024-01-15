@@ -1,13 +1,13 @@
 import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, InfoCircleFilled } from '@ant-design/icons-vue'
 import { defineComponent } from 'vue'
 
-import { classNames, warning } from '@antdv/utils'
+import { classNames, devWarning } from '@antdv/utils'
 import { getTransitionName } from '@antdv/vue-components'
 import ActionButton from '../../button/src/ActionButton'
 import { useLocaleReceiver } from '../../locale-provider'
 
 import Dialog from './Modal'
-import type { ConfirmDialogProps } from './types'
+import type { ConfirmDialogProps } from './interface'
 
 function renderSomeContent(someContent: any) {
   if (typeof someContent === 'function')
@@ -63,7 +63,7 @@ export default defineComponent<ConfirmDialogProps>({
     const [locale] = useLocaleReceiver('Modal')
 
     if (process.env.NODE_ENV !== 'production') {
-      warning(
+      devWarning(
         props.visible === undefined,
         'Modal',
         '`visible` is deprecated, please use `open` instead.',

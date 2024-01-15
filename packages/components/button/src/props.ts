@@ -2,7 +2,7 @@ import { PropTypes, eventType } from '@antdv/utils'
 import type { MouseEventHandler } from '@antdv/types'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { SizeType } from '../../config-provider'
-import type { ButtonHTMLType, ButtonShape, ButtonType } from './type'
+import type { ButtonHTMLType, ButtonShape, ButtonType } from './interface'
 
 export function buttonProps() {
   return {

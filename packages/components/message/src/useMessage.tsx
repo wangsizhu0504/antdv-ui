@@ -12,7 +12,7 @@ import type {
   MessageType,
   NoticeType,
   TypeOpen,
-} from './types'
+} from './interface'
 
 import type { HolderProps } from './holder'
 

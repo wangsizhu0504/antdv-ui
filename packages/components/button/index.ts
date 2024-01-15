@@ -20,5 +20,5 @@ export default Button as typeof Button & Plugin & {
 }
 
 export * from './src/props'
-export * from './src/type'
+export * from './src/interface'
 export * from './src/utils'

@@ -2,7 +2,7 @@ import { computed } from 'vue'
 
 import type { Ref } from 'vue'
 import { useState } from '@antdv/hooks'
-import type { TablePaginationConfig } from '../types'
+import type { TablePaginationConfig } from '../interface'
 import type { PaginationProps } from '../../../pagination'
 
 export const DEFAULT_PAGE_SIZE = 10

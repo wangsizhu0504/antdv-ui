@@ -9,10 +9,10 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { flattenChildren, initDefaultProps, warning } from '@antdv/utils'
+import { devWarning, flattenChildren, initDefaultProps } from '@antdv/utils'
 import type { VNode } from 'vue'
 import type { CustomSlotsType } from '@antdv/types'
-import Wave from '../../wave'
+import { Wave } from '../../wave'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useInjectDisabled } from '../../config-provider'
 
@@ -21,7 +21,7 @@ import useStyle from '../style'
 import LoadingIcon from './LoadingIcon'
 import { buttonProps } from './props'
 import { GroupSizeContext } from './context'
-import type { ButtonType } from './type'
+import type { ButtonType } from './interface'
 
 type Loading = boolean | number
 
@@ -151,7 +151,7 @@ export default defineComponent({
     }
 
     watchEffect(() => {
-      warning(
+      devWarning(
         !(props.ghost && isUnBorderedButtonType(props.type)),
         'Button',
         '`link` or `text` button can\'t be a `ghost` button.',

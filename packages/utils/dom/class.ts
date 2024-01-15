@@ -1,6 +1,6 @@
 import { isArray, isObject, isString } from '../is'
 
-export function hasClass(node: HTMLDivElement, className: string) {
+export function hasClass(node: Element, className: string) {
   if (node.classList)
     return node.classList.contains(className)
 
@@ -8,7 +8,7 @@ export function hasClass(node: HTMLDivElement, className: string) {
   return ` ${originClass} `.includes(` ${className} `)
 }
 
-export function addClass(node: HTMLDivElement, className: string) {
+export function addClass(node, className) {
   if (node.classList) {
     node.classList.add(className)
   } else {
@@ -17,7 +17,7 @@ export function addClass(node: HTMLDivElement, className: string) {
   }
 }
 
-export function removeClass(node: HTMLDivElement, className: string) {
+export function removeClass(node, className) {
   if (node.classList) {
     node.classList.remove(className)
   } else {
@@ -28,12 +28,7 @@ export function removeClass(node: HTMLDivElement, className: string) {
   }
 }
 
-/**
- *  拼接 元素类名
- * @param args
- * @returns {string} 拼接后的元素类名
- */
-export function classNames(...args: any[]): any {
+export function classNames(...args: any[]) {
   const classes = []
   for (let i = 0; i < args.length; i++) {
     const value = args[i]

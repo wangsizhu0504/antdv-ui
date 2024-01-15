@@ -4,9 +4,9 @@ import {
   KeyCode,
   classNames,
   cloneVNodes,
+  devWarning,
   initDefaultProps,
   omit,
-  warning,
 } from '@antdv/utils'
 import type { SlotsType } from 'vue'
 import { enUS as defaultLocale } from '@antdv/locale'
@@ -54,7 +54,7 @@ export default defineComponent({
   // emits: ['update:open', 'visibleChange'],
   setup(props: PopconfirmProps, { slots, emit, expose, attrs }) {
     const rootRef = ref()
-    warning(
+    devWarning(
       props.visible === undefined,
       'Popconfirm',
       '`visible` will be removed in next major version, please use `open` instead.',

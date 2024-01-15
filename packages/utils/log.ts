@@ -2,7 +2,7 @@ let warned: Record<string, boolean> = {}
 
 type Warning = (valid: boolean, component: string, message?: string) => void
 
-export function warningFn(valid: boolean, message: string) {
+export function warning(valid: boolean, message: string) {
   // Support uglify
   if (process.env.NODE_ENV !== 'production' && !valid && console !== undefined)
     console.error(`Warning: ${message}`)
@@ -30,7 +30,7 @@ export function call(
 }
 
 export function warningOnce(valid: boolean, message: string) {
-  call(warningFn, valid, message)
+  call(warning, valid, message)
 }
 
 export function noteOnce(valid: boolean, message: string) {
@@ -38,9 +38,9 @@ export function noteOnce(valid: boolean, message: string) {
 }
 
 // eslint-disable-next-line import/no-mutable-exports
-let warning: Warning = () => {}
+let devWarning: Warning = () => {}
 if (process.env.NODE_ENV !== 'production') {
-  warning = (valid, component, message) => {
+  devWarning = (valid, component, message) => {
     warningOnce(valid, `[antdv-ui: ${component}] ${message}`)
 
     // StrictMode will inject console which will not throw warning in React 17.
@@ -48,5 +48,8 @@ if (process.env.NODE_ENV !== 'production') {
       resetWarned()
   }
 }
+export function warningFn(valid: boolean, component: string, message: string): void {
+  warningOnce(valid, `[ant-design-vue: ${component}] ${message}`)
+};
 
-export { warning }
+export { devWarning }

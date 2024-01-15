@@ -174,8 +174,7 @@ yarn.lock
 # End of https://www.toptal.com/developers/gitignore/api/macos,vue,react,node
 
 report.html
-packages/antdv-ui/version/version.ts
-packages/components/version.ts
-packages/antdv-ui/version/token.json
-packages/antdv-ui/version/token-meta.json
+packages/version/version.ts
+packages/version/token.json
+packages/version/token-meta.json
 site/src/router/demoRoutes.ts

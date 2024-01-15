@@ -1,11 +1,12 @@
 import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue'
-import { classNames, wrapperRaf } from '@antdv/utils'
+import { classNames, raf } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
 import type { PropType } from 'vue'
-import { VcTrigger, getTransitionProps } from '@antdv/vue-components'
+import { VcTrigger } from '@antdv/vue-components/vc-trigger'
+import { getTransitionProps } from '@antdv/vue-components/transition'
 import { useInjectForceRender, useInjectMenu } from './hooks/useMenuContext'
 import { placements, placementsRtl } from './placements'
-import type { MenuMode } from './types'
+import type { MenuMode } from './interface'
 
 const popupPlacementMap = {
   'horizontal': 'bottomLeft',
@@ -60,15 +61,15 @@ export default defineComponent({
     watch(
       () => props.visible,
       (visible) => {
-        wrapperRaf.cancel(visibleRef.value)
-        visibleRef.value = wrapperRaf(() => {
+        raf.cancel(visibleRef.value)
+        visibleRef.value = raf(() => {
           innerVisible.value = visible
         })
       },
       { immediate: true },
     )
     onBeforeUnmount(() => {
-      wrapperRaf.cancel(visibleRef.value)
+      raf.cancel(visibleRef.value)
     })
 
     const onVisibleChange = (visible: boolean) => {

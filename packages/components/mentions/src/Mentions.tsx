@@ -1,22 +1,22 @@
 import { computed, defineComponent, shallowRef, watch } from 'vue'
 import {
   classNames,
+  devWarning,
   flattenChildren,
   getMergedStatus,
   getOptionProps,
   getStatusClassNames,
   omit,
-  warning,
 } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
+import { VcMentions } from '@antdv/vue-components'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
 import { useProvideOverride } from '../../menu'
 import Spin from '../../spin'
 import useStyle from '../style'
-import VcMentions from './vc-mentions/Mentions'
 import { mentionsProps } from './props'
-import type { MentionsOptionProps } from './types'
+import type { MentionsOptionProps } from './interface'
 
 function loadingFilterOption() {
   return true
@@ -35,7 +35,7 @@ export default defineComponent({
   setup(props, { slots, emit, attrs, expose }) {
     // =================== Warning =====================
     if (process.env.NODE_ENV !== 'production') {
-      warning(
+      devWarning(
         !flattenChildren(slots.default?.() || []).length,
         'Mentions',
         '`Mentions.Option` is deprecated. Please use `options` instead.',
@@ -56,7 +56,7 @@ export default defineComponent({
       onClick: () => {},
       validator: ({ mode }) => {
         // Warning if use other mode
-        warning(
+        devWarning(
           !mode || mode === 'vertical',
           'Mentions',
           `mode="${mode}" is not supported for Mentions's Menu.`,

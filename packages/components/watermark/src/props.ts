@@ -1,6 +1,6 @@
 import { arrayType, objectType, someType } from '@antdv/utils'
 import type { ExtractPropTypes } from 'vue'
-import type { WatermarkFontType } from './type'
+import type { WatermarkFontType } from './interface'
 
 export function watermarkProps() {
   return {

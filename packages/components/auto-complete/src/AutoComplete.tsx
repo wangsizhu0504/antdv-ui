@@ -1,6 +1,6 @@
 import { defineComponent, ref } from 'vue'
 import { omit } from 'lodash'
-import { flattenChildren, isValidElement, warning } from '@antdv/utils'
+import { devWarning, flattenChildren, isValidElement } from '@antdv/utils'
 import type { SlotsType, VNode } from 'vue'
 import Select from '../../select'
 
@@ -26,17 +26,17 @@ export default defineComponent({
     clearIcon: any
   }>,
   setup(props, { slots, attrs, expose }) {
-    warning(
+    devWarning(
       !('dataSource' in slots),
       'AutoComplete',
       '`dataSource` slot is deprecated, please use props `options` instead.',
     )
-    warning(
+    devWarning(
       !('options' in slots),
       'AutoComplete',
       '`options` slot is deprecated, please use props `options` instead.',
     )
-    warning(
+    devWarning(
       !props.dropdownClassName,
       'AutoComplete',
       '`dropdownClassName` is deprecated, please use `popupClassName` instead.',

@@ -2,7 +2,7 @@ import { canUseDom } from './canUseDom'
 import { contains } from './contains'
 
 const APPEND_ORDER = 'data-vc-order'
-const MARK_KEY = 'vc-util-key'
+const MARK_KEY = `vc-util-key`
 
 const containerCache = new Map<ContainerType, Node & ParentNode>()
 
@@ -11,11 +11,11 @@ export type Prepend = boolean | 'queue'
 export type AppendType = 'prependQueue' | 'append' | 'prepend'
 
 interface Options {
-  attachTo?: ContainerType
-  csp?: { nonce?: string }
-  prepend?: Prepend
-  mark?: string
-  priority?: number
+  attachTo?: ContainerType;
+  csp?: { nonce?: string };
+  prepend?: Prepend;
+  mark?: string;
+  priority?: number;
 }
 
 function getMark({ mark }: Options = {}) {

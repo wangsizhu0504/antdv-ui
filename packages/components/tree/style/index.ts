@@ -1,10 +1,7 @@
-import { Keyframes } from '@antdv/cssinjs'
-import { genCollapseMotion } from '../../style/motion'
+import { Keyframes, genComponentStyleHook, genFocusOutline, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSInterpolation, CSSObject, DerivativeToken } from '@antdv/theme'
+import { genCollapseMotion } from '@antdv/theme/style/motion'
 import { getStyle as getCheckboxStyle } from '../../checkbox/style'
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import { genFocusOutline, resetComponent } from '../../style'
-import type { DerivativeToken } from '../../theme'
-import type { CSSInterpolation, CSSObject } from '@antdv/cssinjs'
 
 // ============================ Keyframes =============================
 const treeNodeFX = new Keyframes('ant-tree-node-fx-do-not-use', {

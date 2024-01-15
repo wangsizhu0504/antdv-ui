@@ -18,7 +18,7 @@ import type {
   TableColumnType,
   TableColumnsType,
   TransformColumns,
-} from '../types'
+} from '../interface'
 
 const ASCEND = 'ascend'
 const DESCEND = 'descend'

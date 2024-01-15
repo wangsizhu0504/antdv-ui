@@ -6,7 +6,7 @@ import useStyle from '../style'
 import MotionThumb from './MotionThumb'
 import SegmentedOption from './Options'
 import { segmentedProps } from './props'
-import type { SegmentedBaseOption, SegmentedOptionType, SegmentedValue } from './types'
+import type { SegmentedBaseOption, SegmentedOptionType, SegmentedValue } from './interface'
 
 function normalizeOptions(options: Array<SegmentedOptionType | string | number>) {
   return options.map((option) => {

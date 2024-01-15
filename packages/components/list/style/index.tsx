@@ -1,7 +1,7 @@
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import { resetComponent } from '../../style'
-import type { CSSObject } from '@antdv/cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
+import { genComponentStyleHook, mergeToken } from '@antdv/theme'
+import { resetComponent } from '@antdv/theme'
+import type { CSSObject } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme'
 
 export interface ComponentToken {
   contentWidth: number

@@ -1,9 +1,10 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { PropTypes, omit } from '@antdv/utils'
-import type { SelectCommonPlacement, ValueType } from '@antdv/vue-components'
-import { vcCascaderProps } from '@antdv/vue-components'
+import type { SelectCommonPlacement } from '@antdv/vue-components'
+import type { ValueType } from '@antdv/vue-components/vc-cascader/src/Cascader'
+import { internalCascaderProps as vcCascaderProps } from '@antdv/vue-components/vc-cascader/src/Cascader'
 import type { InputStatus, SizeType } from '@antdv/types'
-import type { CascaderOptionType } from './types'
+import type { CascaderOptionType } from './interface'
 
 export function cascaderProps<DataNodeType extends CascaderOptionType = CascaderOptionType>() {
   return {

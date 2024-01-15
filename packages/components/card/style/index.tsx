@@ -1,7 +1,5 @@
-import { clearFix, resetComponent, textEllipsis } from '../../style'
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import type { CSSObject } from '@antdv/cssinjs'
-import type { FullToken, GenerateStyle } from '../../theme'
+import { clearFix, genComponentStyleHook, mergeToken, resetComponent, textEllipsis } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
 
 export interface ComponentToken {}
 

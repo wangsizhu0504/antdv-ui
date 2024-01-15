@@ -1,6 +1,5 @@
-import { textEllipsis } from '../../style'
-import type { CSSObject } from '@antdv/cssinjs'
-import type { GenerateStyle } from '../../theme'
+import { textEllipsis } from '@antdv/theme'
+import type { CSSObject, GenerateStyle } from '@antdv/theme'
 import type { TableToken } from './index'
 
 const genEllipsisStyle: GenerateStyle<TableToken, CSSObject> = (token) => {

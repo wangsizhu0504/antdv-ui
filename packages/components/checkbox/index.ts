@@ -18,5 +18,5 @@ export default Checkbox as typeof Checkbox & Plugin & {
   readonly Group: typeof CheckboxGroup
 }
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

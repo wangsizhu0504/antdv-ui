@@ -1,7 +1,7 @@
 import { PropTypes, arrayType, booleanType, functionType, stringType } from '@antdv/utils'
 import type { ExtractPropTypes } from 'vue'
 import type { MouseEventHandler } from '@antdv/types'
-import type { CheckboxChangeEvent, CheckboxOptionType, CheckboxValueType } from './types'
+import type { CheckboxChangeEvent, CheckboxOptionType, CheckboxValueType } from './interface'
 
 export function abstractCheckboxGroupProps() {
   return {

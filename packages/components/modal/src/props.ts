@@ -3,7 +3,7 @@ import { PropTypes, objectType } from '@antdv/utils'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { VueNode, getContainerFunc } from '@antdv/types'
 import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../../button'
-import type { MousePosition } from './types'
+import type { MousePosition } from './interface'
 
 export function modalProps() {
   return {

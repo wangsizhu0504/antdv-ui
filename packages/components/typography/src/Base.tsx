@@ -11,7 +11,7 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { findDOMNode, isStyleSupport, omit, warning, wrapperRaf } from '@antdv/utils'
+import { devWarning, findDOMNode, isStyleSupport, omit, raf } from '@antdv/utils'
 import type { CSSProperties, HTMLAttributes, VNodeTypes } from 'vue'
 import { ResizeObserver, TransButton } from '@antdv/vue-components'
 import { useMergedState } from '@antdv/hooks'
@@ -25,7 +25,7 @@ import Typography from './Typography'
 
 import { baseProps } from './props'
 import copy from './copy'
-import type { BlockProps, CopyConfig, EditConfig, EllipsisConfig, Locale } from './types'
+import type { BlockProps, CopyConfig, EditConfig, EllipsisConfig, Locale } from './interface'
 
 const isLineClampSupport = isStyleSupport('webkitLineClamp')
 const isTextOverflowSupport = isStyleSupport('textOverflow')
@@ -80,7 +80,7 @@ export default defineComponent({
 
     onBeforeUnmount(() => {
       clearTimeout(state.copyId)
-      wrapperRaf.cancel(state.rafId)
+      raf.cancel(state.rafId)
     })
 
     watch(
@@ -95,12 +95,12 @@ export default defineComponent({
 
     watchEffect(() => {
       if (props.content === undefined) {
-        warning(
+        devWarning(
           !props.editable,
           'Typography',
           'When `editable` is enabled, please use `content` instead of children',
         )
-        warning(
+        devWarning(
           !props.ellipsis,
           'Typography',
           'When `ellipsis` is enabled, please use `content` instead of children',
@@ -259,8 +259,8 @@ export default defineComponent({
         const { width, height } = sizeInfo
         if (!width || !height) return
       }
-      wrapperRaf.cancel(state.rafId)
-      state.rafId = wrapperRaf(() => {
+      raf.cancel(state.rafId)
+      state.rafId = raf(() => {
         // Do not bind `syncEllipsis`. It need for test usage on prototype
         syncEllipsis()
       })

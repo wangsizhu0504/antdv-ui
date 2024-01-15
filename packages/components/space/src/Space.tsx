@@ -7,7 +7,7 @@ import { useFlexGapSupport } from '@antdv/hooks'
 import useStyle from '../style'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { spaceProps } from './props'
-import type { SpaceSize } from './types'
+import type { SpaceSize } from './interface'
 
 const spaceSize = {
   small: 8,

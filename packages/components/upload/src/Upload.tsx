@@ -1,10 +1,10 @@
 import { computed, defineComponent, onMounted, ref, toRef } from 'vue'
-import { classNames, flattenChildren, initDefaultProps, warning } from '@antdv/utils'
+import { classNames, devWarning, flattenChildren, initDefaultProps } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
 import type { VueNode } from '@antdv/types'
 import { enUS as defaultLocale } from '@antdv/locale'
 import { useMergedState } from '@antdv/hooks'
-import type { RcUploadProps } from '@antdv/vue-components'
+import type { UploadProps as RcUploadProps } from '@antdv/vue-components/vc-upload/src/interface'
 import { VcUpload } from '@antdv/vue-components'
 import { useLocaleReceiver } from '../../locale-provider'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
@@ -57,18 +57,18 @@ export default defineComponent({
 
     const upload = ref(null)
     onMounted(() => {
-      warning(
+      devWarning(
         props.fileList !== undefined || attrs.value === undefined,
         'Upload',
         '`value` is not a valid prop, do you mean `fileList`?',
       )
 
-      warning(
+      devWarning(
         props.transformFile === undefined,
         'Upload',
         '`transformFile` is deprecated. Please use `beforeUpload` directly.',
       )
-      warning(
+      devWarning(
         props.remove === undefined,
         'Upload',
         '`remove` props is deprecated. Please use `remove` event.',

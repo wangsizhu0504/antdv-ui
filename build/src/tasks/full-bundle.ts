@@ -8,7 +8,7 @@ import { parallel } from 'gulp'
 import type { Plugin } from 'rollup'
 import { glob } from 'glob'
 import { antdOutput, antdPackage, antdRoot, localeRoot } from '../path'
-import { PKG_BRAND_NAME, PKG_CAMELCASE_NAME } from '../constants'
+import { PKG_BRAND_NAME, PKG_CAME_CASE_NAME } from '../constants'
 import { formatBundleFilename, generateExternal, getPackageManifest, withTaskName, writeBundles } from '../utils'
 import { target } from '../build-info'
 
@@ -64,7 +64,7 @@ async function buildFullEntry(minify: boolean) {
         formatBundleFilename('index.full', minify, 'js'),
       ),
       exports: 'named',
-      name: PKG_CAMELCASE_NAME,
+      name: PKG_CAME_CASE_NAME,
       globals: {
         'vue': 'Vue',
         '@ant-design/icons-vue': 'AntdIcon',

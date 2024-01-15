@@ -1,4 +1,6 @@
-import type { RefObject } from '@antdv/types'
+export interface RefObject extends Function {
+  current?: any;
+}
 
 export function createRef(): any {
   const func: RefObject = (node: any) => {
@@ -7,7 +9,7 @@ export function createRef(): any {
   return func
 }
 
-export function fillRef<T>(ref: any, node: T) {
+export function fillRef<T>(ref, node: T) {
   if (typeof ref === 'function')
     ref(node)
   else if (typeof ref === 'object' && ref && 'current' in ref)

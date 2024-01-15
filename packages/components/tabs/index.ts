@@ -17,5 +17,5 @@ export default Tabs as typeof Tabs & Plugin & {
   readonly TabPane: typeof TabPane
 }
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

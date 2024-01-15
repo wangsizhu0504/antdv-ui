@@ -8,7 +8,7 @@ import {
   watch,
 } from 'vue'
 import { PropTypes } from '@antdv/utils'
-import { useInjectPortal } from '../../trigger/src/context'
+import { useInjectPortal } from '../../vc-trigger/src/context'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -39,6 +39,7 @@ export default defineComponent({
       // https://github.com/vueComponent/ant-design-vue/issues/6937
       setContainer()
     })
+
     const stopWatch = watch(shouldRender, () => {
       if (shouldRender.value && !container)
         container = props.getContainer()
@@ -61,6 +62,7 @@ export default defineComponent({
       if (!shouldRender.value) return null
       if (isSSR)
         return slots.default?.()
+
       return container ? <Teleport to={container} v-slots={slots}></Teleport> : null
     }
   },

@@ -1,4 +1,4 @@
-import type { FieldError } from '../types'
+import type { FieldError } from '../interface'
 
 export function allPromiseFinish(promiseList: Array<Promise<FieldError>>): Promise<FieldError[]> {
   let hasError = false

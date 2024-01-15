@@ -7,16 +7,16 @@ import {
   watch,
 } from 'vue'
 
-import { KeyCode, cloneElement, flattenChildren, isValidElement, warning } from '@antdv/utils'
+import { KeyCode, cloneElement, devWarning, flattenChildren, isValidElement } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
-import { VcOverflow } from '@antdv/vue-components'
+import { VcOverflow } from '@antdv/vue-components/vc-overflow'
 import Tooltip from '../../tooltip'
 
 import { useInjectFirstLevel, useInjectMenu } from './hooks/useMenuContext'
 import { useInjectKeyPath, useMeasure } from './hooks/useKeyPath'
 import useDirectionStyle from './hooks/useDirectionStyle'
 import { menuItemProps } from './props'
-import type { MenuInfo } from './types'
+import type { MenuInfo } from './interface'
 
 let indexGuid = 0
 
@@ -36,7 +36,7 @@ export default defineComponent({
     const isMeasure = useMeasure()
     const key
       = typeof instance.vnode.key === 'symbol' ? String(instance.vnode.key) : instance.vnode.key
-    warning(
+    devWarning(
       typeof instance.vnode.key !== 'symbol',
       'MenuItem',
       `MenuItem \`:key="${String(key)}"\` not support Symbol type`,

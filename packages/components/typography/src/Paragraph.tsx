@@ -3,13 +3,13 @@ import Base from './Base'
 import { type ParagraphProps, paragraphProps } from './props'
 
 const Paragraph: FunctionalComponent<ParagraphProps> = (props, { slots, attrs }) => {
-  const paragraphProps = {
+  const getParagraphProps = {
     ...props,
     component: 'div',
     ...attrs,
   }
 
-  return <Base {...paragraphProps} v-slots={slots}></Base>
+  return <Base {...getParagraphProps} v-slots={slots}></Base>
 }
 
 Paragraph.displayName = 'ATypographyParagraph'

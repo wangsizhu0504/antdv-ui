@@ -1,5 +1,5 @@
-import { resetComponent } from '../../style'
-import type { GenerateStyle } from '../../theme'
+import { resetComponent } from '@antdv/theme'
+import type { GenerateStyle } from '@antdv/theme'
 import type { TableToken } from './index'
 
 const genFilterStyle: GenerateStyle<TableToken> = (token) => {

@@ -4,7 +4,7 @@ import { findDOMNode, objectType } from '@antdv/utils'
 import { useDestroyed } from '@antdv/hooks'
 import type { ButtonProps } from './props'
 import Button from './Button'
-import type { LegacyButtonType } from './type'
+import type { LegacyButtonType } from './interface'
 import { convertLegacyProps } from './utils'
 
 const actionButtonProps = {

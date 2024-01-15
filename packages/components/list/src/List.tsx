@@ -10,7 +10,7 @@ import { classNames, eagerComputed, flattenChildren, initDefaultProps } from '@a
 
 import type { Breakpoint, CustomSlotsType, Key } from '@antdv/types'
 import { responsiveArray } from '@antdv/constants'
-import useBreakpoint from '../../base/useBreakpoint'
+import { useBreakpoint } from '@antdv/hooks'
 import Spin from '../../spin'
 import Pagination from '../../pagination'
 import { Row } from '../../grid'

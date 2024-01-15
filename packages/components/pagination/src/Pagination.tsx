@@ -3,7 +3,7 @@ import { DoubleLeftOutlined, DoubleRightOutlined, LeftOutlined, RightOutlined } 
 import { classNames } from '@antdv/utils'
 import { enUS } from '@antdv/locale'
 import { VcPagination } from '@antdv/vue-components'
-import useBreakpoint from '../../base/useBreakpoint'
+import { useBreakpoint } from '@antdv/hooks'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useLocaleReceiver } from '../../locale-provider'
 import useStyle from '../style'

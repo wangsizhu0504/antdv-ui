@@ -1,10 +1,12 @@
 import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled, SwapRightOutlined } from '@ant-design/icons-vue'
 import { computed, defineComponent, ref } from 'vue'
-import { classNames, getMergedStatus, getStatusClassNames, omit, warning } from '@antdv/utils'
+import { classNames, devWarning, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils'
 import type { SlotsType } from 'vue'
 import { enUS } from '@antdv/locale'
 import { VcRangePicker } from '@antdv/vue-components'
-import type { GenerateConfig, PanelMode, RangePickerSharedProps, RangeValue } from '@antdv/vue-components'
+import type { RangePickerSharedProps } from '@antdv/vue-components/vc-picker/src/RangePicker'
+import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface'
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
 import { getRangePlaceholder, transPlacement2DropdownAlign } from '../util'
 import useStyle from '../../style'
 import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
@@ -18,7 +20,7 @@ import { useLocaleReceiver } from '../../../locale-provider'
 
 import { Components, getTimeProps } from './util'
 import { commonProps, rangePickerProps } from './props'
-import type { RangePickerProps } from './type'
+import type { RangePickerProps } from './interface'
 import type { CommonProps } from './props'
 
 export default function generateRangePicker<DateType, ExtraProps = {}>(
@@ -53,12 +55,12 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
 
       // =================== Warning =====================
       if (process.env.NODE_ENV !== 'production') {
-        warning(
+        devWarning(
           !props.dropdownClassName,
           'RangePicker',
           '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
         )
-        warning(
+        devWarning(
           !attrs.getCalendarContainer,
           'DatePicker',
           '`getCalendarContainer` is deprecated. Please use `getPopupContainer"` instead.',

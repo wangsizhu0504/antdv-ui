@@ -11,7 +11,7 @@ import type { CSSProperties } from 'vue'
 import { useRefs, useState } from '@antdv/hooks'
 import { ResizeObserver } from '@antdv/vue-components'
 import type { CustomSlotsType } from '@antdv/types'
-import { classNames, toPx, wrapperRaf } from '@antdv/utils'
+import { classNames, raf, toPx } from '@antdv/utils'
 
 import { useRafState } from '../hooks/useRaf'
 import useOffsets from '../hooks/useOffsets'
@@ -20,7 +20,7 @@ import useTouchMove from '../hooks/useTouchMove'
 import useSyncState from '../hooks/useSyncState'
 
 import { tabNavListProps } from '../props'
-import type { ExtraContentProps, TabSizeMap } from '../types'
+import type { ExtraContentProps, TabSizeMap } from '../interface'
 import TabNode from './TabNode'
 import OperationNode from './OperationNode'
 import AddButton from './AddButton'
@@ -293,7 +293,7 @@ export default defineComponent({
     // Delay set ink style to avoid remove tab blink
     const inkBarRafRef = shallowRef<number>()
     const cleanInkBarRaf = () => {
-      wrapperRaf.cancel(inkBarRafRef.value)
+      raf.cancel(inkBarRafRef.value)
     }
 
     watch([activeTabOffset, tabPositionTopOrBottom, () => props.rtl], () => {
@@ -314,7 +314,7 @@ export default defineComponent({
       }
 
       cleanInkBarRaf()
-      inkBarRafRef.value = wrapperRaf(() => {
+      inkBarRafRef.value = raf(() => {
         setInkStyle(newInkStyle)
       })
     })

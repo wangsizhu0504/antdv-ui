@@ -1,5 +1,5 @@
 import { DEFAULT_IMG_SCALE, DEFAULT_MARGIN_SIZE, SPEC_MARGIN_SIZE } from './constant'
-import type { Excavation, ImageSettings, Modules } from './types'
+import type { Excavation, ImageSettings, Modules } from './interface'
 
 export function generatePath(modules: Modules, margin = 0): string {
   const ops: string[] = []

@@ -27,7 +27,7 @@ import type { RenderEmptyHandler } from '../../config-provider'
 import List from './list'
 import Operation from './operation'
 import { transferProps } from './props'
-import type { ListStyle, TransferDirection, TransferItem } from './types'
+import type { ListStyle, TransferDirection, TransferItem } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

@@ -11,7 +11,7 @@ import type { Key } from '@antdv/types'
 import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
 import type { PaginationConfig } from '../../pagination'
 import type { SpinProps } from '../../spin'
-import type { ListGridType, ListItemLayout, ListLocale, ListSize } from './types'
+import type { ListGridType, ListItemLayout, ListLocale, ListSize } from './interface'
 
 export function listProps() {
   return {

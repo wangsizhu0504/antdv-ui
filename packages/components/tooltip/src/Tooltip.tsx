@@ -2,6 +2,7 @@ import { computed, defineComponent, ref, watch } from 'vue'
 import {
   classNames,
   cloneElement,
+  devWarning,
   filterEmpty,
   firstNotUndefined,
   getPlacements,
@@ -9,11 +10,11 @@ import {
   initDefaultProps,
   isFragment,
   isValidElement,
-  warning,
-  wrapperRaf,
+  raf,
 } from '@antdv/utils'
 import type { CSSProperties, SlotsType } from 'vue'
-import { VcTooltip, getTransitionName } from '@antdv/vue-components'
+import { VcTooltip } from '@antdv/vue-components/vc-tooltip'
+import { getTransitionName } from '@antdv/vue-components/transition'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { parseColor } from './util'
@@ -59,7 +60,7 @@ export default defineComponent({
         ['visible', 'open'],
         ['onVisibleChange', 'onOpenChange'],
       ].forEach(([deprecatedName, newName]) => {
-        warning(
+        devWarning(
           props[deprecatedName] === undefined,
           'Tooltip',
           `\`${deprecatedName}\` is deprecated, please use \`${newName}\` instead.`,
@@ -78,8 +79,8 @@ export default defineComponent({
 
     let rafId: any
     watch(mergedOpen, (val) => {
-      wrapperRaf.cancel(rafId)
-      rafId = wrapperRaf(() => {
+      raf.cancel(rafId)
+      rafId = raf(() => {
         innerOpen.value = !!val
       })
     })

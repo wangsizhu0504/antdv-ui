@@ -1,3 +1,5 @@
+import { genComponentStyleHook, resetComponent, textEllipsis } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme'
 import {
   genActiveStyle,
   genBasicInputStyle,
@@ -6,9 +8,6 @@ import {
   genStatusStyle,
   initInputToken,
 } from '../../input/style'
-import { genComponentStyleHook } from '../../theme'
-import { resetComponent, textEllipsis } from '../../style'
-import type { FullToken, GenerateStyle } from '../../theme'
 import type { InputToken } from '../../input/style'
 
 export interface ComponentToken {

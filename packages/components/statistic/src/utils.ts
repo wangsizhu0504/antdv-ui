@@ -1,4 +1,4 @@
-import type { CountdownFormatConfig, valueType } from './types'
+import type { CountdownFormatConfig, valueType } from './interface'
 
 // Countdown
 const timeUnits: Array<[string, number]> = [

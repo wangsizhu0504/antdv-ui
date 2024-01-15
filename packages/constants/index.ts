@@ -1,4 +1,6 @@
 export * from './color'
+export * from './component'
 export * from './status'
 export * from './key'
 export * from './size'
+export * from './placements'

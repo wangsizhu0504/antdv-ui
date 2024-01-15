@@ -6,7 +6,7 @@ import useStyle from '../style'
 import { useProvideRadioGroupContext } from './context'
 import Radio from './Radio'
 import { radioGroupProps } from './props'
-import type { RadioChangeEvent, RadioGroupChildOption } from './types'
+import type { RadioChangeEvent, RadioGroupChildOption } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

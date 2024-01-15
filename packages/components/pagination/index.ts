@@ -5,4 +5,4 @@ export const Pagination = withInstall(pagination)
 export default Pagination
 
 export * from './src/props'
-export * from './src/types'
+export * from './src/interface'

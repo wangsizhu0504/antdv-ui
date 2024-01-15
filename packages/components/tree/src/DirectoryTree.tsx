@@ -14,17 +14,21 @@ import type { SlotsType } from 'vue'
 
 // import { conductExpandParent, convertDataToEntities, convertTreeToData, fillFieldNames } from '@antdv/vue-components'
 // import type { DataNode, EventDataNode, ScrollTo } from '@antdv/vue-components'
+import {
+  convertDataToEntities,
+  convertTreeToData,
+  fillFieldNames,
+} from '@antdv/vue-components/vc-tree/src/utils/treeUtil'
+import { conductExpandParent } from '@antdv/vue-components/vc-tree/src/util'
+import type { DataNode, EventDataNode, ScrollTo } from '@antdv/vue-components/vc-tree/src/interface'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { convertDataToEntities, convertTreeToData, fillFieldNames } from './vc-tree/utils/treeUtil'
-import { conductExpandParent } from './vc-tree/util'
 
-import type { DataNode, EventDataNode, ScrollTo } from './vc-tree/interface'
 import Tree from './Tree'
 import { calcRangeKeys, convertDirectoryKeysToNodes } from './utils/dictUtil'
 import { directoryTreeProps } from './props'
 import type { TreeProps } from './props'
 
-import type { AntdTreeNodeAttribute } from './types'
+import type { AntdTreeNodeAttribute } from './interface'
 
 function getIcon(props: AntdTreeNodeAttribute) {
   const { isLeaf, expanded } = props

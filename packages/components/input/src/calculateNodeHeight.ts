@@ -1,7 +1,7 @@
 // Thanks to https://github.com/andreypopp/react-textarea-autosize/
 
 import type { CSSProperties } from 'vue'
-import type { NodeType } from './types'
+import type { NodeType } from './interface'
 
 /**
  * calculateNodeHeight(uiTextNode, useCache = false)

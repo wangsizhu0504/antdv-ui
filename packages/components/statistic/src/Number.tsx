@@ -1,5 +1,5 @@
 import type { FunctionalComponent, VNodeTypes } from 'vue'
-import type { NumberProps } from './types'
+import type { NumberProps } from './interface'
 
 const StatisticNumber: FunctionalComponent<NumberProps> = (props) => {
   const { value, formatter, precision, decimalSeparator, groupSeparator = '', prefixCls } = props

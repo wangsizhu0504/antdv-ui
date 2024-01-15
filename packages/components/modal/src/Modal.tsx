@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
-import { addEventListenerWrap, canUseDocElement, classNames, initDefaultProps, warning } from '@antdv/utils'
+import { addEventListenerWrap, canUseDocElement, classNames, devWarning, initDefaultProps } from '@antdv/utils'
 import { VcDialog, getTransitionName } from '@antdv/vue-components'
 import Button, { convertLegacyProps } from '../../button'
 import { useLocaleReceiver } from '../../locale-provider'
@@ -9,7 +9,7 @@ import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
 import useStyle from '../style'
 import { modalProps } from './props'
-import type { MousePosition } from './types'
+import type { MousePosition } from './interface'
 
 let mousePosition: MousePosition
 // ref: https://github.com/ant-design/ant-design/issues/15795
@@ -45,7 +45,7 @@ export default defineComponent({
     )
     const [wrapSSR, hashId] = useStyle(prefixCls)
 
-    warning(
+    devWarning(
       props.visible === undefined,
       'Modal',
       '`visible` will be removed in next major version, please use `open` instead.',

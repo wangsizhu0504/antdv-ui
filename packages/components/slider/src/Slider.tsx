@@ -1,5 +1,5 @@
 import { computed, defineComponent, ref } from 'vue'
-import { classNames, warning } from '@antdv/utils'
+import { classNames, devWarning } from '@antdv/utils'
 import type { SlotsType } from 'vue'
 import { VcHandle, VcRange, VcSlider } from '@antdv/vue-components'
 import { useInjectFormItemContext } from '../../form/src/FormItemContext'
@@ -7,7 +7,7 @@ import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import SliderTooltip from './SliderTooltip'
 import { sliderProps } from './props'
-import type { HandleGeneratorFn, HandleGeneratorInfo, SliderValue, Visibles } from './types'
+import type { HandleGeneratorFn, HandleGeneratorInfo, SliderValue, Visibles } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -23,7 +23,7 @@ export default defineComponent({
     // Warning for deprecated usage
     if (process.env.NODE_ENV !== 'production') {
       [['tooltipVisible', 'tooltipOpen']].forEach(([deprecatedName, newName]) => {
-        warning(
+        devWarning(
           props.tooltipVisible === undefined,
           'Slider',
           `\`${deprecatedName}\` is deprecated, please use \`${newName}\` instead.`,

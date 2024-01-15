@@ -5,7 +5,7 @@ import { enUS as defaultLocale } from '@antdv/locale'
 import ConfirmDialog from '../ConfirmDialog'
 import { useConfigContextInject } from '../../../config-provider'
 import { useLocaleReceiver } from '../../../locale-provider'
-import type { HookModalProps, ModalFuncProps } from '../types'
+import type { HookModalProps, ModalFuncProps } from '../interface'
 
 function comfirmFuncProps() {
   return {

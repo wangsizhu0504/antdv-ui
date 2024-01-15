@@ -6,4 +6,4 @@ export const Result = withInstall(AResult)
 export default Result
 
 export * from './src/props'
-export * from './src/types'
+export * from './src/interface'

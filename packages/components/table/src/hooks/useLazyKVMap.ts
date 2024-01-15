@@ -2,7 +2,7 @@ import { shallowRef, watch } from 'vue'
 import type { Key } from '@antdv/types'
 import type { Ref } from 'vue'
 import { isArray } from '@antdv/utils'
-import type { GetRowKey } from '../types'
+import type { GetRowKey } from '../interface'
 
 interface MapCache<RecordType> {
   kvMap?: Map<Key, RecordType>

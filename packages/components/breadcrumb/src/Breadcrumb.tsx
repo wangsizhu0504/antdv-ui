@@ -1,5 +1,5 @@
 import { cloneVNode, defineComponent } from 'vue'
-import { flattenChildren, getPropsSlot, warning } from '@antdv/utils'
+import { devWarning, flattenChildren, getPropsSlot } from '@antdv/utils'
 import type { CustomSlotsType, VueNode } from '@antdv/types'
 import Menu from '../../menu'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
@@ -7,7 +7,7 @@ import useStyle from '../style'
 import BreadcrumbItem from './BreadcrumbItem'
 import { breadcrumbProps } from './props'
 import type { BreadcrumbItemProps } from './props'
-import type { Route } from './types'
+import type { Route } from './interface'
 
 function getBreadcrumbName(route: Route, params: unknown) {
   if (!route.breadcrumbName)
@@ -124,7 +124,7 @@ export default defineComponent({
         })
       } else if (children.length) {
         crumbs = children.map((element, index) => {
-          warning(
+          devWarning(
             typeof element.type === 'object'
               && (element.type.__ANT_BREADCRUMB_ITEM || element.type.__ANT_BREADCRUMB_SEPARATOR),
             'Breadcrumb',

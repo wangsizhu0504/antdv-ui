@@ -7,13 +7,13 @@ export type ChangeEventHandler = (e: ChangeEvent) => void
 export type WheelEventHandler = (e: WheelEvent) => void
 export type ChangeEvent = Event & {
   target: {
-    value?: string | undefined
-  }
+    value?: string | undefined;
+  };
 }
 export type CheckboxChangeEvent = Event & {
   target: {
-    checked?: boolean
-  }
+    checked?: boolean;
+  };
 }
 
 export type EventHandler = (...args: any[]) => void

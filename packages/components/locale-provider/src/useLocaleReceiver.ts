@@ -2,7 +2,7 @@ import { computed, inject, unref } from 'vue'
 import type { ComputedRef, Ref } from 'vue'
 import { enUS as defaultLocaleData } from '@antdv/locale'
 import type { Locale } from '@antdv/locale'
-import type { LocaleComponentName, LocaleReceiverContext } from './types'
+import type { LocaleComponentName, LocaleReceiverContext } from './interface'
 
 export function useLocaleReceiver<T extends LocaleComponentName>(
   componentName: T,

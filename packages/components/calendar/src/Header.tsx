@@ -2,7 +2,7 @@ import { defineComponent, ref } from 'vue'
 import Select from '../../select'
 import { RadioButton, RadioGroup } from '../../radio'
 import { FormItemInputContext } from '../../form/src/FormItemContext'
-import type { CalendarHeaderProps, ModeSwitchProps, SharedProps } from './types'
+import type { CalendarHeaderProps, ModeSwitchProps, SharedProps } from './interface'
 
 const YearSelectOffset = 10
 const YearSelectTotal = 20

@@ -1,7 +1,7 @@
 import { PropTypes } from '@antdv/utils'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { LiteralUnion, PresetColorType, PresetStatusColorType } from '@antdv/types'
-import type { PresetColorKey } from '../../theme'
+import type { PresetColorKey } from '@antdv/theme'
 
 export function badgeProps() {
   return {

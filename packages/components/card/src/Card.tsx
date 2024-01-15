@@ -1,6 +1,6 @@
 import { defineComponent, isVNode, renderSlot } from 'vue'
 import { isPlainObject } from 'lodash-es'
-import { filterEmptyWithUndefined, flattenChildren, isEmptyElement, warning } from '@antdv/utils'
+import { devWarning, filterEmptyWithUndefined, flattenChildren, isEmptyElement } from '@antdv/utils'
 import type { VNode, VNodeTypes } from 'vue'
 import type { CustomSlotsType } from '@antdv/types'
 import Tabs from '../../tabs'
@@ -9,7 +9,7 @@ import Skeleton from '../../skeleton'
 import useStyle from '../style'
 import type { SizeType } from '../../config-provider'
 import { cardProps } from './props'
-import type { CardTabListType } from './types'
+import type { CardTabListType } from './interface'
 
 const { TabPane } = Tabs
 
@@ -111,7 +111,7 @@ export default defineComponent({
               {tabList.map((item) => {
                 const { tab: temp, slots: itemSlots } = item as CardTabListType
                 const name = itemSlots?.tab
-                warning(
+                devWarning(
                   !itemSlots,
                   'Card',
                   'tabList slots is deprecated, Please use `customTab` instead.',

@@ -23,4 +23,4 @@ export default FloatButton as typeof FloatButton & Plugin & {
 }
 
 export * from './src/props'
-export * from './src/types'
+export * from './src/interface'

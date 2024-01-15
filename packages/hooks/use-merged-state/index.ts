@@ -1,13 +1,13 @@
-import { ref, toRaw, unref, watch, watchEffect } from 'vue'
 import type { Ref, UnwrapRef } from 'vue'
+import { ref, toRaw, unref, watch, watchEffect } from 'vue'
 
 export function useMergedState<T, R = Ref<T>>(
   defaultStateValue: T | (() => T),
   option?: {
-    defaultValue?: T | (() => T)
-    value?: Ref<T> | Ref<UnwrapRef<T>>
-    onChange?: (val: T, prevValue: T) => void
-    postState?: (val: T) => T
+    defaultValue?: T | (() => T);
+    value?: Ref<T> | Ref<UnwrapRef<T>>;
+    onChange?: (val: T, prevValue: T) => void;
+    postState?: (val: T) => T;
   },
 ): [R, (val: T) => void] {
   const { defaultValue, value = ref() } = option || {}
@@ -23,7 +23,7 @@ export function useMergedState<T, R = Ref<T>>(
   const mergedValue = ref(initValue) as Ref<T>
   watchEffect(() => {
     let val = value.value !== undefined ? value.value : innerValue.value
-    if (option.postState)
+    if (option?.postState)
       val = option.postState(val as T)
 
     mergedValue.value = val as T
@@ -32,7 +32,7 @@ export function useMergedState<T, R = Ref<T>>(
   function triggerChange(newValue: T) {
     const preVal = mergedValue.value
     innerValue.value = newValue
-    if (toRaw(mergedValue.value) !== newValue && option.onChange)
+    if (toRaw(mergedValue.value) !== newValue && option?.onChange)
       option.onChange(newValue, preVal)
   }
 

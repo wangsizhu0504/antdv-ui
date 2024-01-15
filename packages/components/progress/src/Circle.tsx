@@ -1,7 +1,7 @@
 import { computed, defineComponent } from 'vue'
 import { initDefaultProps } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
-import { VcCircle } from '@antdv/vue-components'
+import { Circle as VCCircle } from '@antdv/vue-components'
 import Tooltip from '../../tooltip'
 import { progressCircleProps } from './props'
 import { getPercentage, getSize, getStrokeColor } from './utils'
@@ -64,7 +64,7 @@ export default defineComponent({
 
     return () => {
       const circleContent = (
-        <VcCircle
+        <VCCircle
           percent={percent.value}
           strokeWidth={circleWidth.value}
           trailWidth={circleWidth.value}

@@ -1,11 +1,11 @@
-import type { CSSObject } from '@antdv/cssinjs'
-import { resetComponent } from '../../style'
+import type { CSSObject } from '@antdv/theme'
+import { resetComponent } from '@antdv/theme'
 import { genPanelStyle, initPickerPanelToken } from '../../date-picker/style'
 import { initInputToken } from '../../input/style'
-import { genComponentStyleHook, mergeToken } from '../../theme'
+import { genComponentStyleHook, mergeToken } from '@antdv/theme'
 import type { PickerPanelToken } from '../../date-picker/style'
 import type { InputToken } from '../../input/style'
-import type { FullToken } from '../../theme'
+import type { FullToken } from '@antdv/theme'
 
 export interface ComponentToken {
   yearControlWidth: number

@@ -1,6 +1,6 @@
 import type { InjectionKey } from 'vue'
 import { computed, inject, provide } from 'vue'
-import type { ConfigProviderInnerProps, GlobalFormCOntextProps } from '../types'
+import type { ConfigProviderInnerProps, GlobalFormCOntextProps } from '../interface'
 
 export const configProviderKey: InjectionKey<ConfigProviderInnerProps> = Symbol('configProvider')
 

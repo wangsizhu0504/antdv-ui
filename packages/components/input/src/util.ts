@@ -1,5 +1,5 @@
 import { filterEmpty } from '@antdv/utils'
-import type { InputFocusOptions } from './types'
+import type { InputFocusOptions } from './interface'
 
 function isValid(value: any) {
   return value !== undefined && value !== null && (Array.isArray(value) ? filterEmpty(value).length : true)

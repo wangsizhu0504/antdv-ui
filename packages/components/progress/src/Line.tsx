@@ -1,9 +1,9 @@
 import { computed, defineComponent } from 'vue'
-import { warning } from '@antdv/utils'
+import { devWarning } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
 import { getSize, getSuccessPercent, handleGradient, validProgress } from './utils'
 import { progressLineProps } from './props'
-import type { ProgressSize } from './types'
+import type { ProgressSize } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -40,7 +40,7 @@ export default defineComponent({
     )
 
     if (process.env.NODE_ENV !== 'production') {
-      warning(
+      devWarning(
         'strokeWidth' in props,
         'Progress',
         '`strokeWidth` is deprecated. Please use `size` instead.',

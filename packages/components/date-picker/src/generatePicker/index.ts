@@ -1,4 +1,4 @@
-import type { GenerateConfig } from '@antdv/vue-components'
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
 import generateSinglePicker from './generateSinglePicker'
 import generateRangePicker from './generateRangePicker'
 

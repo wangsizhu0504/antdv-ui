@@ -5,7 +5,7 @@ import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { MouseEventHandler } from '@antdv/types'
 import { buttonProps } from '../../button'
 import type { MenuProps } from '../../menu'
-import type { Align, DropdownArrowOptions, Trigger } from './types'
+import type { Align, DropdownArrowOptions, Trigger } from './interface'
 
 export function dropdownProps() {
   return {

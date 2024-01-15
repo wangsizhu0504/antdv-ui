@@ -9,10 +9,10 @@ import {
 } from '@ant-design/icons-vue'
 import { classNames, renderHelper } from '@antdv/utils'
 import type { VueNode } from '@antdv/types'
+import VcNotice from '@antdv/vue-components/vc-notification/src/Notice'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
-import VcNotice from './vc-notification/Notice'
-import type { NotificationPureContentProps, NotificationPurePanelProps } from './types'
+import type { NotificationPureContentProps, NotificationPurePanelProps } from './interface'
 
 export function getCloseIcon(prefixCls: string, closeIcon?: VueNode) {
   return (

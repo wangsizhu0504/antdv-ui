@@ -1,6 +1,6 @@
 import type { CSSMotionProps } from '@antdv/types'
 import type { CSSProperties } from 'vue'
-import type { NotificationPlacement } from './types'
+import type { NotificationPlacement } from './interface'
 
 export function getPlacementStyle(
   placement: NotificationPlacement,

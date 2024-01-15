@@ -12,11 +12,11 @@ import {
 import { CloseOutlined } from '@ant-design/icons-vue'
 import {
   classNames,
+  devWarning,
   getPropsSlot,
   initDefaultProps,
   isNumeric,
   omit,
-  warning,
 } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
 import type { CSSProperties } from 'vue'
@@ -28,7 +28,7 @@ import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import DrawerWrapper from './DrawerWrapper'
 import { drawerProps } from './props'
-import type { PushState } from './types'
+import type { PushState } from './interface'
 
 const defaultPushState: PushState = { distance: 180 }
 
@@ -89,7 +89,7 @@ export default defineComponent({
         : props.getContainer,
     )
 
-    warning(
+    devWarning(
       !props.afterVisibleChange,
       'Drawer',
       '`afterVisibleChange` prop is deprecated, please use `@afterVisibleChange` event instead',
@@ -101,7 +101,7 @@ export default defineComponent({
         ['onUpdate:visible', 'onUpdate:open'],
         ['onAfterVisibleChange', 'onAfterOpenChange'],
       ].forEach(([deprecatedName, newName]) => {
-        warning(
+        devWarning(
           !props[deprecatedName],
           'Drawer',
           `\`${deprecatedName}\` is deprecated, please use \`${newName}\` instead.`,

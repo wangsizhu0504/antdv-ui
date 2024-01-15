@@ -22,5 +22,5 @@ export default Card as typeof Card & Plugin & {
   readonly Grid: typeof ACardGrid
 }
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

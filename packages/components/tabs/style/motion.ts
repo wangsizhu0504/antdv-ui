@@ -1,5 +1,5 @@
-import { initSlideMotion } from '../../style/motion'
-import type { GenerateStyle } from '../../theme'
+import type { GenerateStyle } from '@antdv/theme'
+import { initSlideMotion } from '@antdv/theme/style/motion'
 import type { TabsToken } from '.'
 
 const genMotionStyle: GenerateStyle<TabsToken> = (token) => {

@@ -2,7 +2,7 @@ import { computed, h, inject } from 'vue'
 import type { InjectionKey } from 'vue'
 import { defaultConfigProvider, useInjectDisabled, useInjectSize } from '../context'
 import { DefaultRenderEmpty } from '../renderEmpty'
-import type { ConfigProviderInnerProps, SizeType } from '../types'
+import type { ConfigProviderInnerProps, SizeType } from '../interface'
 
 export const configProviderKey: InjectionKey<ConfigProviderInnerProps> = Symbol('configProvider')
 

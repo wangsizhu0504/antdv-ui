@@ -1,7 +1,7 @@
 import { computed, defineComponent, ref, watch } from 'vue'
 import { isEqual } from 'lodash-es'
 import scrollIntoView from 'scroll-into-view-if-needed'
-import { classNames, initDefaultProps, toArray, warning } from '@antdv/utils'
+import { classNames, devWarning, initDefaultProps, toArray } from '@antdv/utils'
 import type { Options } from 'scroll-into-view-if-needed'
 
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
@@ -22,7 +22,7 @@ import type {
   RuleError,
   ValidateErrorEntity,
   ValidateOptions,
-} from './types'
+} from './interface'
 
 function isEqualName(name1: NamePath, name2: NamePath) {
   return isEqual(toArray(name1), toArray(name2))
@@ -111,7 +111,7 @@ export default defineComponent({
     }
     const resetFields = (name?: NamePath | NamePath[]) => {
       if (!props.model) {
-        warning(false, 'Form', 'model is required for resetFields to work.')
+        devWarning(false, 'Form', 'model is required for resetFields to work.')
         return
       }
       getFieldsByNameList(name).forEach((field) => {
@@ -164,13 +164,13 @@ export default defineComponent({
       }
     }
     const validateFields = (nameList?: NamePath[], options?: ValidateOptions) => {
-      warning(
+      devWarning(
         !(nameList instanceof Function),
         'Form',
         'validateFields/validateField/validate not support callback, please use promise instead',
       )
       if (!props.model) {
-        warning(false, 'Form', 'model is required for validateFields to work.')
+        devWarning(false, 'Form', 'model is required for validateFields to work.')
         return Promise.reject('Form `model` is required for validateFields to work.')
       }
       const provideNameList = !!nameList

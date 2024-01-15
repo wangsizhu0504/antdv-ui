@@ -1,9 +1,7 @@
-import type { ComponentPublicInstance, Ref } from 'vue'
+import type { Ref } from 'vue'
 import { onBeforeUpdate, ref } from 'vue'
-import type { Key } from '@antdv/types'
+import type { Key, RefType, RefsValue } from '@antdv/types'
 
-type RefType = HTMLElement | ComponentPublicInstance
-export type RefsValue = Map<Key, RefType>
 type UseRef = [(key: Key) => (el: RefType) => void, Ref<RefsValue>]
 export function useRefs(): UseRef {
   const refs = ref<RefsValue>(new Map())

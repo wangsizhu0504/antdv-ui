@@ -8,7 +8,11 @@ import {
   someType,
   stringType,
 } from '@antdv/utils'
-import type { OriRcFile, RcCustomRequestOptions } from '@antdv/vue-components'
+
+import type {
+  RcFile as OriRcFile,
+  UploadRequestOption as RcCustomRequestOptions,
+} from '@antdv/vue-components/vc-upload/src/interface'
 import type { ProgressProps } from '../../progress'
 
 export interface FileType extends OriRcFile {

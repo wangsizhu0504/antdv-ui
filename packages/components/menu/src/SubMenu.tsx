@@ -10,13 +10,13 @@ import {
 import {
   classNames,
   cloneElement,
+  devWarning,
   getPropsSlot,
   isValid,
   isValidElement,
-  warning,
 } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
-import { VcOverflow } from '@antdv/vue-components'
+import { VcOverflow } from '@antdv/vue-components/vc-overflow'
 
 import {
   MenuContextProvider,
@@ -51,7 +51,7 @@ export default defineComponent({
     const instance = getCurrentInstance()
     const vnodeKey
       = typeof instance.vnode.key === 'symbol' ? String(instance.vnode.key) : instance.vnode.key
-    warning(
+    devWarning(
       typeof instance.vnode.key !== 'symbol',
       'SubMenu',
       `SubMenu \`:key="${String(vnodeKey)}"\` not support Symbol type`,

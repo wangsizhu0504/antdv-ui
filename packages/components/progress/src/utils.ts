@@ -1,11 +1,11 @@
 import { presetPrimaryColors } from '@ant-design/colors'
-import { warning } from '@antdv/utils'
+import { devWarning } from '@antdv/utils'
 
 import type { CSSProperties } from 'vue'
 import type { Direction } from '../../config-provider'
 import type { CircleProps, ProgressProps } from './props'
 
-import type { ProgressGradient, StringGradients } from './types'
+import type { ProgressGradient, StringGradients } from './interface'
 
 /**
  * {
@@ -72,7 +72,7 @@ export function getSuccessPercent({ success, successPercent }: ProgressProps) {
   let percent = successPercent
   /** @deprecated Use `percent` instead */
   if (success && 'progress' in success) {
-    warning(
+    devWarning(
       false,
       'Progress',
       '`success.progress` is deprecated. Please use `success.percent` instead.',
@@ -132,7 +132,7 @@ export function getSize(size: ProgressProps['size'], type: ProgressProps['type']
       [width, height] = [size, size]
     } else {
       if (process.env.NODE_ENV !== 'production') {
-        warning(
+        devWarning(
           false,
           'Progress',
           'Type "circle" and "dashboard" do not accept array as `size`, please use number or preset size instead.',

@@ -1,9 +1,7 @@
-import { genFocusStyle } from '../../style'
-import { genCompactItemStyle } from '../../style/compact-item'
-import { genCompactItemVerticalStyle } from '../../style/compact-item-vertical'
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import type { FullToken, GenerateStyle } from '../../theme'
-import type { CSSInterpolation, CSSObject } from '@antdv/cssinjs'
+import { genComponentStyleHook, genFocusStyle, mergeToken } from '@antdv/theme'
+import type { CSSInterpolation, CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
+import { genCompactItemStyle } from '@antdv/theme/style/compact-item'
+import { genCompactItemVerticalStyle } from '@antdv/theme/style/compact-item-vertical'
 import genGroupStyle from './group'
 
 /** Component only token. Which will handle additional calculation of alias token */

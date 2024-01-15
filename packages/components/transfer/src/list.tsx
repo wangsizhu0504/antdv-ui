@@ -9,7 +9,7 @@ import type { RadioChangeEvent } from '../../radio'
 import ListBody from './ListBody'
 import Search from './search'
 import { transferListProps } from './props'
-import type { TransferItem } from './types'
+import type { TransferItem } from './interface'
 
 const defaultRender = () => null
 

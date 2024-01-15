@@ -1,6 +1,5 @@
-import { genComponentStyleHook } from '../../theme'
-import { operationUnit } from '../../style'
-import type { FullToken, GenerateStyle } from '../../theme'
+import { genComponentStyleHook, operationUnit } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme'
 import {
   getCopiableStyles,
   getEditableStyles,

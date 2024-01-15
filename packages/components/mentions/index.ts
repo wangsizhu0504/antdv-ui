@@ -17,5 +17,5 @@ export const Mentions = Object.assign(AMentions, {
 
 export default Mentions
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

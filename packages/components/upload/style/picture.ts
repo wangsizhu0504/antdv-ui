@@ -1,6 +1,6 @@
 import { TinyColor } from '@ctrl/tinycolor'
-import { clearFix, textEllipsis } from '../../style'
-import type { GenerateStyle } from '../../theme'
+import type { GenerateStyle } from '@antdv/theme'
+import { clearFix, textEllipsis } from '@antdv/theme'
 import type { UploadToken } from '.'
 
 const genPictureStyle: GenerateStyle<UploadToken> = (token) => {

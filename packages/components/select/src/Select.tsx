@@ -1,20 +1,14 @@
 import { computed, defineComponent, ref } from 'vue'
 import {
   classNames,
+  devWarning,
   getMergedStatus,
   getStatusClassNames,
   initDefaultProps,
   omit,
-  warning,
 } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
-import {
-  VcSelect,
-  VcSelectOptGroup,
-  VcSelectOption,
-  getTransitionDirection,
-  getTransitionName,
-} from '@antdv/vue-components'
+import { VcOptGroup, VcOption, VcSelect, getTransitionDirection, getTransitionName } from '@antdv/vue-components'
 import type { BaseSelectRef, SelectCommonPlacement } from '@antdv/vue-components'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { DefaultRenderEmpty } from '../../config-provider/src/renderEmpty'
@@ -32,8 +26,8 @@ const SECRET_COMBOBOX_MODE_DO_NOT_USE = 'SECRET_COMBOBOX_MODE_DO_NOT_USE'
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ASelect',
-  Option: VcSelectOption,
-  OptionGroup: VcSelectOptGroup,
+  Option: VcOption,
+  OptionGroup: VcOptGroup,
   inheritAttrs: false,
   props: initDefaultProps(selectProps(), {
     listHeight: 256,
@@ -71,7 +65,7 @@ export default defineComponent({
       selectRef.value?.scrollTo(arg)
     }
 
-    const mode = computed(() => {
+    const getMode = computed(() => {
       const { mode } = props
 
       if ((mode as any) === 'combobox')
@@ -84,7 +78,7 @@ export default defineComponent({
     })
 
     if (process.env.NODE_ENV !== 'production') {
-      warning(
+      devWarning(
         !props.dropdownClassName,
         'Select',
         '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
@@ -152,11 +146,11 @@ export default defineComponent({
       focus,
       scrollTo,
     })
-    const isMultiple = computed(() => mode.value === 'multiple' || mode.value === 'tags')
+    const isMultiple = computed(() => getMode.value === 'multiple' || getMode.value === 'tags')
     const mergedShowArrow = computed(() =>
       props.showArrow !== undefined
         ? props.showArrow
-        : props.loading || !(isMultiple.value || mode.value === 'combobox'),
+        : props.loading || !(isMultiple.value || getMode.value === 'combobox'),
     )
 
     return () => {
@@ -180,7 +174,7 @@ export default defineComponent({
         mergedNotFound = notFoundContent
       else if (slots.notFoundContent)
         mergedNotFound = slots.notFoundContent()
-      else if (mode.value === 'combobox')
+      else if (getMode.value === 'combobox')
         mergedNotFound = null
       else
         mergedNotFound = renderEmpty?.('Select') || <DefaultRenderEmpty componentName="Select" />
@@ -228,7 +222,7 @@ export default defineComponent({
           placeholder={placeholder}
           listHeight={listHeight}
           listItemHeight={listItemHeight}
-          mode={mode.value}
+          mode={getMode.value}
           prefixCls={prefixCls.value}
           direction={direction.value}
           inputIcon={suffixIcon}

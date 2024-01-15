@@ -1,9 +1,6 @@
-import { Keyframes } from '@antdv/cssinjs'
-import type { CSSObject } from '@antdv/cssinjs'
-import { genPresetColor } from '../../style/presetColor'
-import { resetComponent } from '../../style'
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import type { FullToken, GenerateStyle } from '../../theme'
+import { Keyframes, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
+import { genPresetColor } from '@antdv/theme/style/presetColor'
 
 interface BadgeToken extends FullToken<'Badge'> {
   badgeFontHeight: number

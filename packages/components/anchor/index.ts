@@ -17,5 +17,5 @@ export default Anchor as typeof Anchor & Plugin & {
   readonly Link: typeof AnchorLink
 }
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

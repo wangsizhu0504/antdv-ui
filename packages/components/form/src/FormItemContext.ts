@@ -8,7 +8,7 @@ import {
   ref,
   watch,
 } from 'vue'
-import { warning } from '@antdv/utils'
+import { devWarning } from '@antdv/utils'
 import type { ComputedRef, ConcreteComponent, InjectionKey } from 'vue'
 import { createContext } from '@antdv/hooks'
 import type { ValidateStatus } from '@antdv/types'
@@ -43,7 +43,7 @@ export function useProvideFormItemContext(props: FormItemContext, useValidation:
   watch([useValidation, formItemFields], () => {
     if (process.env.NODE_ENV !== 'production') {
       if (useValidation.value && formItemFields.value.size > 1) {
-        warning(
+        devWarning(
           false,
           'Form.Item',
           `FormItem can only collect one field item, you haved set ${[

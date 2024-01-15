@@ -25,5 +25,5 @@ export const Layout = Object.assign(layout, {
 
 export default Layout
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

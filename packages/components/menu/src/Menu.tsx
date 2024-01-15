@@ -12,10 +12,11 @@ import {
 } from 'vue'
 import { uniq } from 'lodash-es'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
-import { cloneElement, flattenChildren, shallowEqual, warning } from '@antdv/utils'
+import { cloneElement, devWarning, flattenChildren, shallowEqual } from '@antdv/utils'
 import type { CustomSlotsType, Key } from '@antdv/types'
 import type { VNode } from 'vue'
-import { VcOverflow, collapseMotion } from '@antdv/vue-components'
+import { VcOverflow } from '@antdv/vue-components/vc-overflow'
+import { collapseMotion } from '@antdv/vue-components/transition'
 import useStyle from '../style'
 
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
@@ -29,7 +30,7 @@ import MenuItem from './MenuItem'
 import useProvideMenu, { MenuContextProvider, useProvideFirstLevel } from './hooks/useMenuContext'
 import { menuProps } from './props'
 import type { MenuProps } from './props'
-import type { MenuInfo, MenuMode, MenuSelectInfo } from './types'
+import type { MenuInfo, MenuMode, MenuSelectInfo } from './interface'
 
 import type { StoreMenuInfo } from './hooks/useMenuContext'
 
@@ -70,13 +71,13 @@ export default defineComponent({
       isMounted.value = true
     })
     watchEffect(() => {
-      warning(
+      devWarning(
         !(props.inlineCollapsed === true && props.mode !== 'inline'),
         'Menu',
         '`inlineCollapsed` should only be used when `mode` is inline.',
       )
 
-      warning(
+      devWarning(
         !(siderCollapsed.value !== undefined && props.inlineCollapsed === true),
         'Menu',
         '`inlineCollapsed` not control Menu under Sider. Should set `collapsed` on Sider instead.',

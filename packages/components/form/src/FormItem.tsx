@@ -12,7 +12,7 @@ import {
 } from 'vue'
 import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, LoadingOutlined } from '@ant-design/icons-vue'
 import { cloneDeep, find } from 'lodash-es'
-import { classNames, filterEmpty, toArray, warningFn } from '@antdv/utils'
+import { classNames, filterEmpty, toArray, warning } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
 import { Row } from '../../grid'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
@@ -26,7 +26,7 @@ import { FormItemInputContext, useProvideFormItemContext } from './FormItemConte
 import useDebounce from './utils/useDebounce'
 import { formItemProps } from './props'
 import type { FormItemStatusContextProps } from './FormItemContext'
-import type { Rule, RuleError, RuleObject, ValidateOptions } from './types'
+import type { Rule, RuleError, RuleObject, ValidateOptions } from './interface'
 
 const iconMap: { [key: string]: any } = {
   success: CheckCircleFilled,
@@ -85,7 +85,7 @@ export default defineComponent({
     tooltip: any
   }>,
   setup(props, { slots, attrs, expose }) {
-    warningFn(props.prop === undefined, '`prop` is deprecated. Please use `name` instead.')
+    warning(props.prop === undefined, '`prop` is deprecated. Please use `name` instead.')
     const eventKey = `form-item-${++indexGuid}`
     const { prefixCls } = useConfigInject('form', props)
     const [wrapSSR, hashId] = useStyle(prefixCls)

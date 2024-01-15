@@ -3,7 +3,7 @@ import type { VueNode } from '@antdv/types'
 import Empty from '../../empty'
 
 import { configProviderKey, defaultConfigProvider } from './context'
-import type { RenderEmptyProps } from './types'
+import type { RenderEmptyProps } from './interface'
 
 export function DefaultRenderEmpty(props: RenderEmptyProps) {
   const configProvider = inject(configProviderKey, {

@@ -6,15 +6,15 @@ const ProgressBar = require('progress')
 
 const { defineComponent, ref, createVNode, createSSRApp } = require('vue')
 const VueServerRenderer = require('vue/server-renderer')
-const { statistic } = require('../packages/components/theme/util/statistic')
-const { DesignTokenProvider } = require('../packages/components/theme/internal')
-const seedToken = require('../packages/components/theme/themes/seed')
+const { statistic } = require('../packages/theme/token/util/statistic')
+const { DesignTokenProvider } = require('../packages/theme/token/internal')
+const seedToken = require('../packages/theme/token/themes/seed')
 
 console.log(chalk.green('🔥 Collecting token statistics...'))
 
 const EmptyElement = createVNode('div')
 
-const excludeDirs = ['version', 'config-provider', 'locale-provider', 'style-provider', 'style', 'auto-complete', 'col', 'row', 'time-picker']
+const excludeDirs = ['config-provider', 'locale-provider', 'style-provider', 'auto-complete', 'col', 'row', 'time-picker']
 const styleFiles = glob.sync(
   path.join(
     process.cwd(),
@@ -79,7 +79,7 @@ styleFiles.forEach(async (file) => {
 });
 
 (() => {
-  const tokenPath = `${process.cwd()}/packages/antdv-ui/version/token.json`
+  const tokenPath = `${process.cwd()}/packages/version/token.json`
   if (statistic) fs.writeJsonSync(tokenPath, statistic, 'utf8')
 
   console.log(chalk.green('✅  Collected token statistics successfully, check it in'), tokenPath)

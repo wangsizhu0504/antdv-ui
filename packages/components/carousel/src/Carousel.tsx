@@ -1,11 +1,11 @@
 import { computed, defineComponent, ref, watchEffect } from 'vue'
-import { classNames, warning } from '@antdv/utils'
+import { classNames, devWarning } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
-import { VcSlickCarousel } from '@antdv/vue-components'
+import { VCSlick } from '@antdv/vue-components'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { carouselProps } from './props'
-import type { CarouselRef } from './types'
+import type { CarouselRef } from './interface'
 
 // Carousel
 export default defineComponent({
@@ -36,7 +36,7 @@ export default defineComponent({
       }),
     } as CarouselRef)
     watchEffect(() => {
-      warning(
+      devWarning(
         props.vertical === undefined,
         'Carousel',
         '`vertical` is deprecated, please use `dotPosition` instead.',
@@ -76,7 +76,7 @@ export default defineComponent({
       )
       return wrapSSR(
         <div class={className} style={style as CSSProperties}>
-          <VcSlickCarousel
+          <VCSlick
             ref={slickRef}
             {...props}
             {...restAttrs}

@@ -1,7 +1,5 @@
-import { genComponentStyleHook, mergeToken } from '../../theme'
-import { genFocusStyle, resetComponent, textEllipsis } from '../../style'
-import type { FullToken, GenerateStyle } from '../../theme'
-import type { CSSObject } from '@antdv/cssinjs'
+import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent, textEllipsis } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
 import genMotionStyle from './motion'
 
 export interface ComponentToken {

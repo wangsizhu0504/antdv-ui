@@ -1,10 +1,10 @@
 import {
   classNames,
+  devWarning,
   initDefaultProps,
   objectType,
   omit,
   scrollTo,
-  warning,
 } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
 import {
@@ -19,8 +19,11 @@ import {
 } from 'vue'
 import type { Breakpoint } from '@antdv/types'
 import { enUS as defaultLocale } from '@antdv/locale'
-import useBreakpoint from '../../base/useBreakpoint'
+import { useBreakpoint } from '@antdv/hooks'
 
+import { VcTable } from '@antdv/vue-components'
+import type { DefaultRecordType } from '@antdv/vue-components/vc-table/src/interface'
+import { INTERNAL_HOOKS } from '@antdv/vue-components/vc-table/src/Table'
 import type { SpinProps } from '../../spin'
 import Spin from '../../spin'
 import Pagination from '../../pagination'
@@ -28,7 +31,6 @@ import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useLocaleReceiver } from '../../locale-provider/src/useLocaleReceiver'
 
 import useStyle from '../style'
-import VcTable from './vc-table/Table'
 import usePagination, { DEFAULT_PAGE_SIZE, getPaginationParam } from './hooks/usePagination'
 import useLazyKVMap from './hooks/useLazyKVMap'
 import type {
@@ -44,7 +46,7 @@ import type {
   TableColumnType,
   TableColumnsType,
   TablePaginationConfig,
-} from './types'
+} from './interface'
 import useSelection from './hooks/useSelection'
 
 import useSorter, { getSortData } from './hooks/useSorter'
@@ -56,8 +58,6 @@ import { useProvideSlots, useProvideTableContext } from './context'
 
 import useColumns from './hooks/useColumns'
 import { tableProps } from './props'
-import type { DefaultRecordType } from './vc-table/interface'
-import { INTERNAL_HOOKS } from './vc-table/constant'
 
 const EMPTY_LIST: any[] = []
 
@@ -74,7 +74,7 @@ export default defineComponent({
     },
   ),
   setup(props, { attrs, slots, expose, emit }) {
-    warning(
+    devWarning(
       !(typeof props.rowKey === 'function' && props.rowKey.length > 1),
       'Table',
       '`index` parameter of `rowKey` function is deprecated. There is no guarantee that it will work as expected.',
@@ -295,7 +295,7 @@ export default defineComponent({
         return mergedData.value
 
       const { current = 1, total, pageSize = DEFAULT_PAGE_SIZE } = mergedPagination.value
-      warning(current > 0, 'Table', '`current` should be positive number.')
+      devWarning(current > 0, 'Table', '`current` should be positive number.')
 
       // Dynamic table data
       if (mergedData.value.length < total!) {
@@ -315,7 +315,7 @@ export default defineComponent({
           // Dynamic table data
           if (mergedData.value.length < total!) {
             if (mergedData.value.length > pageSize) {
-              warning(
+              devWarning(
                 false,
                 'Table',
                 '`dataSource` length is less than `pagination.total` but large than `pagination.pageSize`. Please make sure your config correct data with async mode.',

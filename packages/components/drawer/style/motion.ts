@@ -1,4 +1,4 @@
-import type { GenerateStyle } from '../../theme'
+import type { GenerateStyle } from '@antdv/theme'
 import type { DrawerToken } from '.'
 
 const genMotionStyle: GenerateStyle<DrawerToken> = (token: DrawerToken) => {

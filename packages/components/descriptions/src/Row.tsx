@@ -2,7 +2,7 @@ import { getClass, getSlot, getStyle } from '@antdv/utils'
 import type { CSSProperties, FunctionalComponent, VNode } from 'vue'
 import Cell from './Cell'
 import { useProviderContext } from './useContext'
-import type { CellConfig, DescRowProps } from './types'
+import type { CellConfig, DescRowProps } from './interface'
 
 const Row: FunctionalComponent<DescRowProps> = (props) => {
   const renderCells = (

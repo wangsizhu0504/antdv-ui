@@ -7,8 +7,8 @@ import {
 } from '@ant-design/icons-vue'
 import { classNames } from '@antdv/utils'
 import type { Key } from '@antdv/types'
-import type { NotificationInstance } from '../../notification/src/vc-notification/Notification'
-import VcNotification from '../../notification/src/vc-notification/Notification'
+import type { NotificationInstance } from '@antdv/vue-components/vc-notification/src/Notification'
+import VcNotification from '@antdv/vue-components/vc-notification/src/Notification'
 
 import useStyle from '../style'
 import type {
@@ -20,7 +20,7 @@ import type {
   MessageType,
   NoticeType,
   ThenableArgument,
-} from './types'
+} from './interface'
 import type { MessageArgsProps } from './props'
 
 let defaultDuration = 3

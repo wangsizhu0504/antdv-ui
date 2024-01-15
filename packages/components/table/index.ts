@@ -1,12 +1,11 @@
 import type { App } from 'vue'
 
+import { EXPAND_COLUMN, SummaryCell, SummaryRow } from '@antdv/vue-components'
+import Summary from '@antdv/vue-components/vc-table/src/Footer/Summary'
 import ATable from './src/Table'
 import Column from './src/Column'
 import ColumnGroup from './src/ColumnGroup'
 import { SELECTION_ALL, SELECTION_COLUMN, SELECTION_INVERT, SELECTION_NONE } from './src/hooks/useSelection'
-import { SummaryCell, SummaryRow } from './src/vc-table/Footer'
-import Summary from './src/vc-table/Footer/Summary'
-import { EXPAND_COLUMN } from './src/vc-table/constant'
 
 export const TableSummaryRow = SummaryRow
 export const TableSummaryCell = SummaryCell
@@ -39,5 +38,5 @@ export const Table = Object.assign(ATable, {
   },
 })
 
-export * from './src/types'
+export * from './src/interface'
 export * from './src/props'

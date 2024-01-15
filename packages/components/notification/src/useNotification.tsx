@@ -2,13 +2,18 @@ import { computed, defineComponent, shallowRef } from 'vue'
 import { classNames } from '@antdv/utils'
 import type { Key } from '@antdv/types'
 import type { VNode } from 'vue'
+import useVcNotification from '@antdv/vue-components/vc-notification/src/useNotification'
+import type { NotificationAPI } from '@antdv/vue-components/vc-notification/src/useNotification'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
-import useVcNotification from './vc-notification/useNotification'
-import type { NotificationAPI } from './vc-notification/useNotification'
 import { getMotion, getPlacementStyle } from './util'
 import { PureContent, getCloseIcon } from './PurePanel'
-import type { NotificationArgsProps, NotificationConfig, NotificationInstance, NotificationPlacement } from './types'
+import type {
+  NotificationArgsProps,
+  NotificationConfig,
+  NotificationInstance,
+  NotificationPlacement,
+} from './interface'
 
 const DEFAULT_OFFSET = 24
 const DEFAULT_DURATION = 4.5

@@ -3,7 +3,7 @@ import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
 import useStyle from '../style'
 import { layoutProps } from './props'
-import type { GeneratorArgument } from './types'
+import type { GeneratorArgument } from './interface'
 import { SiderHookProviderKey } from './injectionKey'
 
 function generator({ suffixCls, tagName, name }: GeneratorArgument) {

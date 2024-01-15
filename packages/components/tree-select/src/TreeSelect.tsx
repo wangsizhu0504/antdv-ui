@@ -1,13 +1,13 @@
 import { computed, defineComponent, ref } from 'vue'
 import {
   classNames,
+  devWarning,
   flattenChildren,
   getMergedStatus,
   getStatusClassNames,
   initDefaultProps,
   omit,
   warning,
-  warningFn,
 } from '@antdv/utils'
 import type { CustomSlotsType, Key } from '@antdv/types'
 import { VcTreeSelect, getTransitionDirection } from '@antdv/vue-components'
@@ -59,21 +59,21 @@ export default defineComponent({
     suffixIcon?: any
   }>,
   setup(props, { attrs, slots, expose, emit }) {
-    warningFn(
+    warning(
       !(props.treeData === undefined && slots.default),
       '`children` of TreeSelect is deprecated. Please use `treeData` instead.',
     )
-    warning(
+    devWarning(
       props.multiple !== false || !props.treeCheckable,
       'TreeSelect',
       '`multiple` will always be `true` when `treeCheckable` is true',
     )
-    warning(
+    devWarning(
       props.replaceFields === undefined,
       'TreeSelect',
       '`replaceFields` is deprecated, please use fieldNames instead',
     )
-    warning(
+    devWarning(
       !props.dropdownClassName,
       'TreeSelect',
       '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',

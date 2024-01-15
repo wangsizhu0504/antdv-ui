@@ -6,12 +6,12 @@ import { useMergedState } from '@antdv/hooks'
 import { enUS } from '@antdv/locale'
 import type { PickerLocale } from '@antdv/locale'
 import { VcPickerPanel } from '@antdv/vue-components'
-import type { GenerateConfig } from '@antdv/vue-components'
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useLocaleReceiver } from '../../locale-provider'
 import useStyle from '../style'
 import CalendarHeader from './Header'
-import type { CalendarMode, CalendarProps, CalendarSelectInfo } from './types'
+import type { CalendarMode, CalendarProps, CalendarSelectInfo } from './interface'
 
 // CSSINJS
 
