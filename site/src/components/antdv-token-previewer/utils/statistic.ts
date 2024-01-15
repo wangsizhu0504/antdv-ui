@@ -1,10 +1,10 @@
-import tokenStatistic from '@antdv/ui/es/version/token.json'
+import tokenStatistic from '@antdv/version/token.json'
 
 const tokenRelatedComponents: {
   [key in string]?: string[];
 } = {}
 
-const getRelatedComponentsSingle = (token: string): string[] => {
+function getRelatedComponentsSingle(token: string): string[] {
   if (!tokenRelatedComponents[token]) {
     tokenRelatedComponents[token] = Object.entries(tokenStatistic)
       .filter(([, tokens]) => {
@@ -15,7 +15,7 @@ const getRelatedComponentsSingle = (token: string): string[] => {
   return tokenRelatedComponents[token] ?? []
 }
 
-export const getRelatedComponents = (token: string | string[]): string[] => {
+export function getRelatedComponents(token: string | string[]): string[] {
   const mergedTokens = Array.isArray(token) ? token : [token]
   return Array.from(
     new Set(
@@ -26,5 +26,6 @@ export const getRelatedComponents = (token: string | string[]): string[] => {
   )
 }
 
-export const getComponentToken = (component: string) =>
-  tokenStatistic[component] as { component?: Record<string, any>; global: string[] }
+export function getComponentToken(component: string) {
+  return tokenStatistic[component] as { component?: Record<string, any>; global: string[] }
+}

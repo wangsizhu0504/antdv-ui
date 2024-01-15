@@ -1,8 +1,8 @@
 import type { ThemeConfig } from '@antdv/ui'
-import type { GlobalToken, MapToken } from '@antdv/components/theme/interface'
-import defaultMap from '@antdv/components/theme/themes/default'
-import seed from '@antdv/components/theme/themes/seed'
-import formatToken from '@antdv/components/theme/util/alias'
+import type { GlobalToken, MapToken } from '@antdv/theme/token/interface'
+import defaultMap from '@antdv/theme/token/themes/default'
+import seed from '@antdv/theme/token/themes/seed'
+import formatToken from '@antdv/theme/token/util/alias'
 
 export default function getDesignToken(config: ThemeConfig = {}): GlobalToken {
   const seedToken = { ...seed, ...config.token }

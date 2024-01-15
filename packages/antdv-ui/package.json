@@ -1,6 +1,6 @@
 {
   "name": "@antdv/ui",
-  "version": "4.0.8",
+  "version": "4.1.0",
   "publishConfig": {
     "access": "public"
   },
@@ -99,6 +99,7 @@
   },
   "dependencies": {
     "@ant-design/colors": "^7.0.2",
+    "@ant-design/icons-vue": "^7.0.1",
     "@ctrl/tinycolor": "^4.0.2",
     "@emotion/hash": "^0.9.1",
     "@emotion/unitless": "^0.8.1",

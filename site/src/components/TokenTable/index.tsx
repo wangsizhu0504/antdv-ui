@@ -2,7 +2,7 @@ import { computed, defineComponent, toRefs } from 'vue'
 import type { PropType } from 'vue'
 import type { TableProps } from '@antdv/ui'
 import { Table } from '@antdv/ui'
-import tokenMeta from '@antdv/ui/es/version/token-meta.json'
+import tokenMeta from '@antdv/version/token-meta.json'
 import { getDesignToken } from '../antdv-token-previewer'
 import useSiteToken from '../../hooks/useSiteToken'
 import ColorChunk from '../ColorChunk'
@@ -132,10 +132,16 @@ const TokenTable = defineComponent({
                   </span>
                 )
               }
-              return <span>{text} </span>
+              return (
+                <span>
+                  {text}
+                  {' '}
+                </span>
+              )
             },
           }}
-        ></Table>
+        >
+        </Table>
       )
     }
   },

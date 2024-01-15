@@ -10,8 +10,8 @@ import {
   Typography,
 } from '@antdv/ui'
 import type { ThemeConfig } from '@antdv/components/config-provider'
-import seed from '@antdv/components/theme/themes/seed'
-import tokenMeta from '@antdv/components/version/token-meta.json'
+import seed from '@antdv/theme/token/themes/seed'
+import tokenMeta from '@antdv/version/token-meta.json'
 import { classNames } from '@antdv/utils'
 
 import type { PropType } from 'vue'

@@ -115,7 +115,7 @@ export default defineComponent({
       let init = false
       watch(
         [() => props.visible, () => props.getContainer],
-        ([visible, getContainer], [prevVisible, prevGetContainer]) => {
+        ([visible, _], [prevVisible, prevGetContainer]) => {
           // Update count
           if (supportDom) {
             parent = getParent(props.getContainer)
@@ -130,11 +130,11 @@ export default defineComponent({
           if (init) {
             // Clean up container if needed
             const getContainerIsFunc
-              = typeof getContainer === 'function' && typeof prevGetContainer === 'function'
+              = typeof props.getContainer === 'function' && typeof prevGetContainer === 'function'
             if (
               getContainerIsFunc
-                ? getContainer.toString() !== prevGetContainer.toString()
-                : getContainer !== prevGetContainer
+                ? props.getContainer.toString() !== prevGetContainer.toString()
+                : props.getContainer !== prevGetContainer
             )
               removeCurrentContainer()
           }

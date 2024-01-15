@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@antdv/ui": "workspace:*",
+    "@vueuse/core": "^10.7.2",
     "codesandbox": "^2.2.3",
     "vue": "^3.3.4",
     "vue-router": "^4.2.2"

@@ -1,8 +1,8 @@
 import { computed, defineComponent, toRefs } from 'vue'
 import type { PropType } from 'vue'
 import { ConfigProvider, Table } from '@antdv/ui'
-import tokenMeta from '@antdv/ui/es/version/token-meta.json'
-import tokenData from '@antdv/ui/es/version/token.json'
+import tokenMeta from '@antdv/version/token-meta.json'
+import tokenData from '@antdv/version/token.json'
 import { getDesignToken } from '../antdv-token-previewer'
 import useSiteToken from '../../hooks/useSiteToken'
 import { useColumns } from '../TokenTable'
@@ -139,7 +139,12 @@ const SubTokenTable = defineComponent({
                       </span>
                     )
                   }
-                  return <span>{text} </span>
+                  return (
+                    <span>
+                      {text}
+                      {' '}
+                    </span>
+                  )
                 },
               }}
             />

@@ -16,6 +16,12 @@ Use `useBreakpoint` Hook provide personalized layout.
 
 </docs>
 
+<script lang="ts" setup>
+  import { useBreakpoint } from '@antdv/ui'
+
+  const screens = useBreakpoint()
+</script>
+
 <template>
   Current break point:
   <template v-for="(value, key) in screens">
@@ -24,8 +30,3 @@ Use `useBreakpoint` Hook provide personalized layout.
     </a-tag>
   </template>
 </template>
-<script lang="ts" setup>
-import { useBreakpoint } from '@antdv/ui/es/hooks';
-
-const screens = useBreakpoint();
-</script>

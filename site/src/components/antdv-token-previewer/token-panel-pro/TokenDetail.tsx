@@ -1,5 +1,5 @@
 import { Tooltip } from '@antdv/ui'
-import tokenMeta from '@antdv/ui/es/version/token-meta.json'
+import tokenMeta from '@antdv/version/token-meta.json'
 import { classNames } from '@antdv/utils'
 import type { PropType } from 'vue'
 import { computed, defineComponent, toRefs } from 'vue'

@@ -20,7 +20,7 @@ async function copyJSONFiles(sourceDir: string, destDir: string[]) {
   for (const file of files) {
     const filePath = path.join(sourceDir, file)
 
-    if (path.extname(filePath) === '.json') {
+    if (path.extname(filePath) === '.json' && file !== 'package.json') {
       await Promise.all(destDir.map((dir) => {
         const destFilePath = path.join(dir, file)
         return copyFile(filePath, destFilePath)

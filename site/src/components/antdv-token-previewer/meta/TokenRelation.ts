@@ -1,7 +1,7 @@
-import type { AliasToken, MapToken, SeedToken } from '@antdv/components/theme/interface'
-import defaultMap from '@antdv/components/theme/themes/default'
-import seedToken from '@antdv/components/theme/themes/seed'
-import formatToken from '@antdv/components/theme/util/alias'
+import type { AliasToken, MapToken, SeedToken } from '@antdv/theme/token/interface'
+import defaultMap from '@antdv/theme/token/themes/default'
+import seedToken from '@antdv/theme/token/themes/seed'
+import formatToken from '@antdv/theme/token/util/alias'
 
 export type PureAliasToken = Omit<AliasToken, keyof MapToken>
 
