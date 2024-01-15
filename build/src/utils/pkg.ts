@@ -3,22 +3,13 @@ import findWorkspacePackages from '@pnpm/find-workspace-packages'
 import { buildConfig } from '../build-info'
 import type { Module } from '../build-info'
 import { projRoot } from '../path'
+import { NPM_PKG_NAME, PKG_NAME, PKG_PREFIX } from '../constants'
 
 export function excludeFiles(files: string[]) {
   const excludes = ['node_modules', 'test', 'mock', 'gulpfile', 'dist']
   return files.filter(
     path => !excludes.some(exclude => path.includes(exclude)),
   )
-}
-
-/** used for type generator */
-export function pathRewriter(module: Module) {
-  const config = buildConfig[module]
-
-  return (id: string) => {
-    id = id.replaceAll('@/', `${config.bundle.path}/`)
-    return id
-  }
 }
 
 export function getPackageManifest(pkgPath: string) {
@@ -37,3 +28,13 @@ export function getPackageDependencies(pkgPath: string): Record<'dependencies' |
 }
 
 export const getWorkspacePackages = () => findWorkspacePackages(projRoot)
+
+/** used for type generator */
+export function pathRewriter(module: Module) {
+  const config = buildConfig[module]
+
+  return (id: string) => {
+    id = id.replaceAll(`${PKG_PREFIX}/`, `${config.bundle.path.replaceAll(PKG_NAME, NPM_PKG_NAME)}/`)
+    return id
+  }
+}
