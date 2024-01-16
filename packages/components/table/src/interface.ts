@@ -61,12 +61,16 @@ export interface FilterConfirmProps {
   closeDropdown: boolean
 }
 
+export interface FilterResetProps {
+  confirm?: boolean;
+  closeDropdown?: boolean;
+}
 export interface FilterDropdownProps<RecordType> {
   prefixCls: string
   setSelectedKeys: (selectedKeys: Key[]) => void
   selectedKeys: Key[]
   confirm: (param?: FilterConfirmProps) => void
-  clearFilters?: () => void
+  clearFilters?: (param?: FilterResetProps) => void;
   filters?: ColumnFilterItem[]
   /** Only close filterDropdown */
   close: () => void

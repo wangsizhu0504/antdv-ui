@@ -12,17 +12,19 @@ import Dropdown from '../../../dropdown'
 import Empty from '../../../empty'
 import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
 import Tree from '../../../tree'
-import type { ColumnFilterItem, FilterSearchType, FilterState, GetPopupContainer, TableColumnType } from '../interface'
+import type {
+  ColumnFilterItem,
+  FilterResetProps,
+  FilterSearchType,
+  FilterState,
+  GetPopupContainer,
+  TableColumnType,
+} from '../interface'
 import type { CheckboxChangeEvent } from '../../../checkbox'
 import type { DataNode, EventDataNode } from '../../../tree'
 import FilterSearch from './FilterSearch'
 import FilterDropdownMenuWrapper from './FilterWrapper'
 import { flattenKeys } from './utils'
-
-interface FilterRestProps {
-  confirm?: boolean
-  closeDropdown?: boolean
-}
 
 const { SubMenu, Item: MenuItem } = Menu
 
@@ -266,7 +268,7 @@ export default defineComponent<FilterDropdownProps<any>>({
     }
 
     const onReset = (
-      { confirm, closeDropdown }: FilterRestProps = { confirm: false, closeDropdown: false },
+      { confirm, closeDropdown }: FilterResetProps = { confirm: false, closeDropdown: false },
     ) => {
       if (confirm)
         internalTriggerFilter([])
