@@ -24,17 +24,14 @@ export default defineComponent({
     summary?: any
     expandedRowRender?: any
     expandColumnTitle?: any
-    bodyCell?: {
+    bodyCell?: (props: {
       text: any
       value: any
       record: Record<string, any>
       index: number
       column: TableColumnType
-    }
-    headerCell?: {
-      title: any
-      column: TableColumnType
-    }
+    }) => void,
+    headerCell?: (props: { title: any; column: TableColumnType }) => void;
     customFilterIcon?: any
     customFilterDropdown?: any
     default: any
