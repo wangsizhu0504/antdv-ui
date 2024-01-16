@@ -1,5 +1,6 @@
 import { note } from '@antdv/utils'
-import type { BasicDataNode, DataEntity, DataNode, GetCheckDisabled, Key } from '../interface'
+import type { Key } from '@antdv/types'
+import type { BasicDataNode, DataEntity, DataNode, GetCheckDisabled } from '../interface'
 
 interface ConductReturnType {
   checkedKeys: Key[];

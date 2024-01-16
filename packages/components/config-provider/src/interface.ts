@@ -1,5 +1,5 @@
 import type { ComputedRef, MaybeRef, Ref } from 'vue'
-import type { VueNode } from '@antdv/types'
+import type { SizeType, VueNode } from '@antdv/types'
 import type { Locale, ValidateMessages } from '@antdv/locale'
 import type { AliasToken, DerivativeFunc, SeedToken } from '@antdv/theme'
 import type { MapToken, OverrideToken } from '@antdv/theme/token/interface'
@@ -29,7 +29,6 @@ export interface ThemeColor {
   warningColor?: string
 }
 
-export type SizeType = 'small' | 'middle' | 'large' | undefined
 export type Direction = 'ltr' | 'rtl'
 export type MappingAlgorithm = DerivativeFunc<SeedToken, MapToken>
 export type RenderEmptyHandler = typeof renderEmpty

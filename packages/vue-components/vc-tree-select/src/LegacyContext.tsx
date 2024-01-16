@@ -6,8 +6,9 @@
 import type { InjectionKey } from 'vue'
 import { inject, provide } from 'vue'
 import type { TreeProps } from '@antdv/components/tree'
+import type { Key } from '@antdv/types'
 import type { DataEntity, IconType } from '../../vc-tree/src/interface'
-import type { InternalDataEntity, Key, LegacyDataNode, RawValueType } from './interface'
+import type { InternalDataEntity, LegacyDataNode, RawValueType } from './interface'
 
 export interface LegacyContextProps {
   checkable: boolean;

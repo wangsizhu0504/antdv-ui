@@ -15,4 +15,6 @@ export const Upload = Object.assign(AUpload, {
 /* istanbul ignore next */
 export const UploadDragger = ADragger
 
+export * from './src/interface'
+
 export default Upload

@@ -4,7 +4,7 @@ export * from '@antdv/components'
 export * from '@antdv/constants'
 export * from '@antdv/directives'
 export * from '@antdv/hooks'
-export * from '@antdv/types/global'
+export * from '@antdv/types'
 export { theme } from '@antdv/theme'
 export { useConfigContextInject as useAntdContext } from '@antdv/components'
 

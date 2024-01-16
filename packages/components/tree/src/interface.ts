@@ -1,5 +1,5 @@
 import type { Key } from '@antdv/types'
-import type { TreeNodeProps } from '@antdv/vue-components/vc-tree/src/props'
+import type { CheckInfo, TreeNodeProps } from '@antdv/vue-components/vc-tree/src/props'
 import type { DataNode, EventDataNode } from '@antdv/vue-components/vc-tree/src/interface'
 
 // import type { DataNode, EventDataNode, TreeNodeProps } from '@antdv/vue-components'
@@ -27,7 +27,7 @@ export interface AntdTreeNodeAttribute {
 }
 
 export type AntTreeNodeProps = TreeNodeProps
-
+export type AntTreeCheckInfo = CheckInfo
 // [Legacy] Compatible for v2
 export type TreeDataItem = DataNode
 

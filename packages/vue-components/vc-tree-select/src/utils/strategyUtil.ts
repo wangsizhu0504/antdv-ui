@@ -1,6 +1,7 @@
+import type { Key } from '@antdv/types'
 import type { DataEntity } from '../../../vc-tree/src/interface'
 import type { InternalFieldName } from '../TreeSelect'
-import type { Key, RawValueType } from '../interface'
+import type { RawValueType } from '../interface'
 import { isCheckDisabled } from './valueUtil'
 
 export const SHOW_ALL = 'SHOW_ALL'

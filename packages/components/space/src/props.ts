@@ -1,6 +1,6 @@
 import { PropTypes, booleanType, tuple } from '@antdv/utils'
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { SizeType } from '../../config-provider'
+import type { SizeType } from '@antdv/types'
 import type { SpaceSize } from './interface'
 
 export function spaceProps() {

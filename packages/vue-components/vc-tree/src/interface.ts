@@ -1,4 +1,5 @@
 import type { CSSProperties, VNode } from 'vue'
+import type { Key } from '@antdv/types'
 import type { TreeNodeProps } from './props'
 
 export type { ScrollTo } from '../../vc-virtual-list/src/List'
@@ -44,8 +45,6 @@ export interface EventDataNode extends DataNode {
 }
 
 export type IconType = any
-
-export type Key = string | number
 
 export type NodeElement = VNode<TreeNodeProps>
 

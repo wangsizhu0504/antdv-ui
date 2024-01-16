@@ -1,6 +1,6 @@
 import { anyType, booleanType, someType, stringType } from '@antdv/utils'
 import type { CSSProperties, ExtractPropTypes } from 'vue'
-import type { SizeType } from '../../config-provider'
+import type { SizeType } from '@antdv/types'
 
 export function flexProps() {
   return {

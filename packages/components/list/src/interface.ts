@@ -5,19 +5,19 @@ export interface ListContext {
   itemLayout?: Ref<string>
 }
 
-export type ColumnType = 'gutter' | 'column' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
+export type ListColumnType = 'gutter' | 'column' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
 
-export type ColumnCount = number
+export type ListColumnCount = number
 export interface ListGridType {
   gutter?: number
-  column?: ColumnCount
-  xs?: ColumnCount
-  sm?: ColumnCount
-  md?: ColumnCount
-  lg?: ColumnCount
-  xl?: ColumnCount
-  xxl?: ColumnCount
-  xxxl?: ColumnCount
+  column?: ListColumnCount
+  xs?: ListColumnCount
+  sm?: ListColumnCount
+  md?: ListColumnCount
+  lg?: ListColumnCount
+  xl?: ListColumnCount
+  xxl?: ListColumnCount
+  xxxl?: ListColumnCount
 }
 
 export type ListSize = 'small' | 'default' | 'large'

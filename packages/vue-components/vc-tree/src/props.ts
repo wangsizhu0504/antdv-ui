@@ -1,5 +1,5 @@
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { EventHandler } from '@antdv/types'
+import type { EventHandler, Key } from '@antdv/types'
 import { PropTypes } from '@antdv/utils'
 import type { NodeDragEventParams, NodeMouseEventHandler, NodeMouseEventParams } from './contextTypes'
 import type {
@@ -9,7 +9,6 @@ import type {
   EventDataNode,
   FieldNames,
   FlattenNode,
-  Key,
 } from './interface'
 
 export interface CheckInfo {

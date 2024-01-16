@@ -8,10 +8,9 @@ import {
 } from '@antdv/utils'
 
 import type { ExtractPropTypes } from 'vue'
-import type { InputStatus, SelectValue } from '@antdv/types'
+import type { InputStatus, SelectValue, SizeType } from '@antdv/types'
 import type { SelectCommonPlacement } from '@antdv/vue-components'
 import { vcSelectProps } from '@antdv/vue-components'
-import type { SizeType } from '../../config-provider'
 
 export function selectProps() {
   return {

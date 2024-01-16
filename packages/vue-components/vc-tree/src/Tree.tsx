@@ -10,6 +10,7 @@ import {
   watchEffect,
 } from 'vue'
 import { KeyCode, classNames, initDefaultProps, pickAttrs, warning } from '@antdv/utils'
+import type { Key } from '@antdv/types'
 import type { NodeDragEventHandler, NodeMouseEventHandler } from './contextTypes'
 import { TreeContext, useProvideKeysState } from './contextTypes'
 import {
@@ -22,7 +23,7 @@ import {
   parseCheckedKeys,
   posToArr,
 } from './util'
-import type { DragNodeEvent, EventDataNode, FlattenNode, Key, ScrollTo } from './interface'
+import type { DragNodeEvent, EventDataNode, FlattenNode, ScrollTo } from './interface'
 import type { TreeNodeRequiredProps } from './utils/treeUtil'
 import {
   convertDataToEntities,

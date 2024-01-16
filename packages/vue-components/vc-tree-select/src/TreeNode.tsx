@@ -1,9 +1,10 @@
 /* istanbul ignore file */
 
 import type { FunctionalComponent } from 'vue'
-import type { DataNode, Key } from './interface'
+import type { Key } from '@antdv/types'
+import type { TreeSelectDataNode } from './interface'
 
-export interface TreeNodeProps extends Omit<DataNode, 'children'> {
+export interface TreeNodeProps extends Omit<TreeSelectDataNode, 'children'> {
   value: Key;
 }
 

@@ -1,7 +1,6 @@
 import { PropTypes, eventType } from '@antdv/utils'
-import type { MouseEventHandler } from '@antdv/types'
+import type { MouseEventHandler, SizeType } from '@antdv/types'
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { SizeType } from '../../config-provider'
 import type { ButtonHTMLType, ButtonShape, ButtonType } from './interface'
 
 export function buttonProps() {
@@ -11,7 +10,7 @@ export function buttonProps() {
     htmlType: { type: String as PropType<ButtonHTMLType>, default: 'button' },
     shape: { type: String as PropType<ButtonShape> },
     size: {
-      type: String as PropType<SizeType>,
+      type: String as PropType<SizeType | undefined>,
     },
     loading: {
       type: [Boolean, Object] as PropType<boolean | { delay?: number }>,

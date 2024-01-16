@@ -8,7 +8,7 @@ import {
 } from '@antdv/utils'
 import type { TableLocale } from '@antdv/locale'
 import type { TableProps as VcTableProps } from '@antdv/vue-components/vc-table/src/Table'
-import type { SizeType } from '../../config-provider'
+import type { SizeType } from '@antdv/types'
 import type { TooltipProps } from '../../tooltip'
 import type { SpinProps } from '../../spin'
 import type {

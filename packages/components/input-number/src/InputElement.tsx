@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 // base rc-input-number@7.3.4
 import { computed, defineComponent, shallowRef, watch } from 'vue'
 
@@ -433,10 +434,25 @@ export default defineComponent({
         min,
         max,
         step = 1,
+        defaultValue,
+        value,
         disabled,
         readonly,
+        keyboard,
         controls = true,
         autofocus,
+
+        stringMode,
+
+        parser,
+        formatter,
+        precision,
+        decimalSeparator,
+
+        onChange,
+        onInput,
+        onPressEnter,
+        onStep,
         lazy,
         class: className,
         style,

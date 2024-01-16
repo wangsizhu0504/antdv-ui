@@ -9,11 +9,12 @@ import {
   shallowRef,
 } from 'vue'
 import { classNames, eagerComputed, pickAttrs, warning } from '@antdv/utils'
+import type { Key } from '@antdv/types'
 import { useInjectKeysState, useInjectTreeContext } from './contextTypes'
 import Indent from './Indent'
 import { convertNodePropsToEventData, getTreeNodeProps } from './utils/treeUtil'
 import { treeNodeProps } from './props'
-import type { DragNodeEvent, Key } from './interface'
+import type { DragNodeEvent } from './interface'
 
 const ICON_OPEN = 'open'
 const ICON_CLOSE = 'close'

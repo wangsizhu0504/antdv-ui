@@ -19,6 +19,6 @@ export const TreeSelect = Object.assign(ATreeSelect, {
   },
 })
 export default TreeSelect
-
+export * from '@antdv/vue-components/vc-tree-select/src/interface'
 export * from './src/props'
 export * from './src/interface'

@@ -1,6 +1,6 @@
 import { Fragment, isVNode } from 'vue'
 
-import type { VueInstance } from '@antdv/types/vue'
+import type { VueInstance } from '@antdv/types'
 import { isEmptyElement, isOn, isStringElement, isValid, isValidElement } from '../is'
 import { camelize, hyphenate } from '../lang/camelize'
 import { classNames } from '../dom/class'

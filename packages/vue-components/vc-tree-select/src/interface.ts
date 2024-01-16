@@ -1,6 +1,6 @@
-export type SelectSource = 'option' | 'selection' | 'input' | 'clear'
+import type { Key } from '@antdv/types'
 
-export type Key = string | number
+export type SelectSource = 'option' | 'selection' | 'input' | 'clear'
 
 export type RawValueType = string | number
 
@@ -14,7 +14,7 @@ export interface LabelValueType {
 
 export type DefaultValueType = RawValueType | RawValueType[] | LabelValueType | LabelValueType[]
 
-export interface DataNode {
+export interface TreeSelectDataNode {
   value?: RawValueType;
   title?: any;
   label?: any;
@@ -23,7 +23,7 @@ export interface DataNode {
   disableCheckbox?: boolean;
   checkable?: boolean;
   selectable?: boolean;
-  children?: DataNode[];
+  children?: TreeSelectDataNode[];
 
   /** Customize data info */
   [prop: string]: any;
@@ -41,18 +41,18 @@ export interface InternalDataEntity {
   children?: InternalDataEntity[];
 
   /** Origin DataNode */
-  node: DataNode;
+  node: TreeSelectDataNode;
 
-  dataRef: DataNode;
+  dataRef: TreeSelectDataNode;
 
   slots?: Record<string, string>; // 兼容 V2
 }
 
-export interface LegacyDataNode extends DataNode {
+export interface LegacyDataNode extends TreeSelectDataNode {
   props: any;
 }
 
-export interface TreeDataNode extends DataNode {
+export interface TreeDataNode extends TreeSelectDataNode {
   key: Key;
   children?: TreeDataNode[];
 }

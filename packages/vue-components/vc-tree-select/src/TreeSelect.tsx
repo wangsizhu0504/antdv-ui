@@ -10,7 +10,7 @@ import {
 } from 'vue'
 import type { ExtractPropTypes, PropType } from 'vue'
 import { PropTypes, initDefaultProps, omit, toReactive, warning } from '@antdv/utils'
-import type { VueNode } from '@antdv/types'
+import type { Key, VueNode } from '@antdv/types'
 import { useMergedState } from '@antdv/hooks'
 import type { BaseSelectProps, BaseSelectRef, DisplayValueType } from '../../vc-select/src/BaseSelect'
 import type { SelectProps } from '../../vc-select/src/Select'
@@ -34,7 +34,6 @@ import { fillAdditionalInfo, fillLegacyProps } from './utils/legacyUtil'
 import useCheckedKeys from './hooks/useCheckedKeys'
 import useFilterTreeData from './hooks/useFilterTreeData'
 import warningProps from './utils/warningPropsUtil'
-import type { Key } from './interface'
 
 export type OnInternalSelect = (value: RawValueType, info: { selected: boolean }) => void
 

@@ -1,8 +1,9 @@
 import { computed, h, inject } from 'vue'
 import type { InjectionKey } from 'vue'
+import type { SizeType } from '@antdv/types'
 import { defaultConfigProvider, useInjectDisabled, useInjectSize } from '../context'
 import { DefaultRenderEmpty } from '../renderEmpty'
-import type { ConfigProviderInnerProps, SizeType } from '../interface'
+import type { ConfigProviderInnerProps } from '../interface'
 
 export const configProviderKey: InjectionKey<ConfigProviderInnerProps> = Symbol('configProvider')
 

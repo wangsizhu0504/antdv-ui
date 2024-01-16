@@ -9,10 +9,10 @@ import {
   getStatusClassNames,
   tuple,
 } from '@antdv/utils'
-import type { InputStatus, MouseEventHandler, VueNode } from '@antdv/types'
+import type { InputStatus, MouseEventHandler, SizeType, VueNode } from '@antdv/types'
 import type { CSSProperties, PropType, VNode } from 'vue'
 import { FormItemInputContext } from '../../form/src/FormItemContext'
-import type { Direction, SizeType } from '../../config-provider'
+import type { Direction } from '../../config-provider'
 import { hasAddon } from './util'
 
 const ClearableInputType = ['text', 'input'] as const

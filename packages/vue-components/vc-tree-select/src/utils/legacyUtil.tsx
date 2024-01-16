@@ -1,14 +1,14 @@
 import { camelize, filterEmpty, warning } from '@antdv/utils'
 import type { VueNode } from '@antdv/types'
-import type { ChangeEventExtra, DataNode, LegacyCheckedNode, RawValueType } from '../interface'
+import type { ChangeEventExtra, LegacyCheckedNode, RawValueType, TreeSelectDataNode } from '../interface'
 import TreeNode from '../TreeNode'
 import type { DefaultOptionType, FieldNames } from '../TreeSelect'
 
 function isTreeSelectNode(node: any) {
   return node && node.type && (node.type as any).isTreeSelectNode
 }
-export function convertChildrenToData(rootNodes: VueNode[]): DataNode[] {
-  function dig(treeNodes: any[] = []): DataNode[] {
+export function convertChildrenToData(rootNodes: VueNode[]): TreeSelectDataNode[] {
+  function dig(treeNodes: any[] = []): TreeSelectDataNode[] {
     return filterEmpty(treeNodes).map((treeNode) => {
       // Filter invalidate node
       if (!isTreeSelectNode(treeNode)) {
@@ -37,7 +37,7 @@ export function convertChildrenToData(rootNodes: VueNode[]): DataNode[] {
         ...rest
       } = props
       const children = slots.default?.()
-      const dataNode: DataNode = {
+      const dataNode: TreeSelectDataNode = {
         ...rest,
         title,
         switcherIcon,
@@ -57,7 +57,7 @@ export function convertChildrenToData(rootNodes: VueNode[]): DataNode[] {
   return dig(rootNodes as any[])
 }
 
-export function fillLegacyProps(dataNode: DataNode): any {
+export function fillLegacyProps(dataNode: TreeSelectDataNode): any {
   // Skip if not dataNode exist
   if (!dataNode)
     return dataNode

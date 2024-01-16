@@ -10,7 +10,7 @@ import type {
   RangePickerTimeProps as RCRangePickerTimeProps,
 } from '@antdv/vue-components/vc-picker/src/RangePicker'
 
-import type { SizeType } from '../../../config-provider'
+import type { SizeType } from '@antdv/types'
 
 type InjectDefaultProps<Props> = Omit<
   Props,

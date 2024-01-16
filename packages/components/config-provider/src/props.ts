@@ -2,9 +2,10 @@ import { objectType } from '@antdv/utils'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { Locale, ValidateMessages } from '@antdv/locale'
 
+import type { SizeType } from '@antdv/types'
 import type { TransformCellTextProps } from '../../table'
 import type { RequiredMark } from '../../form'
-import type { CSPConfig, RenderEmptyHandler, SizeType, ThemeConfig } from './interface'
+import type { CSPConfig, RenderEmptyHandler, ThemeConfig } from './interface'
 
 export function configProviderProps() {
   return {

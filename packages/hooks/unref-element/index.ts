@@ -1,8 +1,8 @@
-import type { ComponentPublicInstance, MaybeRef } from 'vue'
+import type { MaybeRef } from 'vue'
 import { unref } from 'vue'
+import type { VueInstance } from '@antdv/types'
 import type { MaybeComputedRef } from '../types'
 
-export type VueInstance = ComponentPublicInstance
 export type MaybeElementRef<T extends MaybeElement = MaybeElement> = MaybeRef<T>
 export type MaybeComputedElementRef<T extends MaybeElement = MaybeElement> = MaybeComputedRef<T>
 export type MaybeElement = HTMLElement | SVGElement | VueInstance | undefined | null

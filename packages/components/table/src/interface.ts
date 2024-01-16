@@ -1,6 +1,6 @@
 import { tuple } from '@antdv/utils'
 import type { CSSProperties, ComputedRef, Ref } from 'vue'
-import type { Breakpoint, Key, VueNode } from '@antdv/types'
+import type { Breakpoint, Key, SizeType, VueNode } from '@antdv/types'
 import type { TableLocale } from '@antdv/locale'
 import type { TableProps as VcTableProps } from '@antdv/vue-components/vc-table/src/Table'
 import type {
@@ -16,7 +16,6 @@ import type { SpinProps } from '../../spin'
 import type { TooltipProps } from '../../tooltip'
 import type { CheckboxProps } from '../../checkbox'
 import type { PaginationProps } from '../../pagination'
-import type { SizeType } from '../../config-provider'
 import type { INTERNAL_SELECTION_ITEM } from './hooks/useSelection'
 
 // import { TableAction } from './Table';

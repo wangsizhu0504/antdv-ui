@@ -1,5 +1,5 @@
 import { camelize, filterEmpty, omit, warning } from '@antdv/utils'
-import type { VueNode } from '@antdv/types'
+import type { Key, VueNode } from '@antdv/types'
 import type {
   BasicDataNode,
   DataEntity,
@@ -8,7 +8,6 @@ import type {
   FieldNames,
   FlattenNode,
   GetKey,
-  Key,
   NodeElement,
 } from '../interface'
 import { getPosition, isTreeNode } from '../util'

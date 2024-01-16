@@ -19,19 +19,43 @@ Ant Design supports a default button size as well as a large and small size.
 If a large or small button is desired, set the `size` property to either `large` or `small` respectively. Omit the `size` property for a button with the default size.
 </docs>
 
+<script lang="ts" setup>
+  import { DownloadOutlined } from '@ant-design/icons-vue'
+  import type { SizeType } from '@antdv/ui'
+  import { ref } from 'vue'
+
+  const size = ref<SizeType>('large')
+</script>
+
 <template>
   <a-space direction="vertical">
     <a-radio-group v-model:value="size">
-      <a-radio-button value="large">Large</a-radio-button>
-      <a-radio-button value="default">Default</a-radio-button>
-      <a-radio-button value="small">Small</a-radio-button>
+      <a-radio-button value="large">
+        Large
+      </a-radio-button>
+      <a-radio-button value="default">
+        Default
+      </a-radio-button>
+      <a-radio-button value="small">
+        Small
+      </a-radio-button>
     </a-radio-group>
     <a-space>
-      <a-button type="primary" :size="size">Primary</a-button>
-      <a-button :size="size">Normal</a-button>
-      <a-button type="dashed" :size="size">Dashed</a-button>
-      <a-button danger :size="size">Danger</a-button>
-      <a-button type="link" :size="size">Link</a-button>
+      <a-button type="primary" :size="size">
+        Primary
+      </a-button>
+      <a-button :size="size">
+        Normal
+      </a-button>
+      <a-button type="dashed" :size="size">
+        Dashed
+      </a-button>
+      <a-button danger :size="size">
+        Danger
+      </a-button>
+      <a-button type="link" :size="size">
+        Link
+      </a-button>
     </a-space>
     <a-space>
       <a-button type="primary" :size="size">
@@ -64,9 +88,3 @@ If a large or small button is desired, set the `size` property to either `large`
     </a-space>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { DownloadOutlined } from '@ant-design/icons-vue';
-import type { SizeType } from '@antdv/ui/es/config-provider';
-import { ref } from 'vue';
-const size = ref<SizeType>('large');
-</script>

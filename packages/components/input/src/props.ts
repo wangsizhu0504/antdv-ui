@@ -7,10 +7,10 @@ import type {
   InputStatus,
   KeyboardEventHandler,
   MouseEventHandler,
+  SizeType,
 } from '@antdv/types'
 import type { ExtractPropTypes, PropType } from 'vue'
 
-import type { SizeType } from '../../config-provider'
 import type { AutoSizeType, ShowCountProps } from './interface'
 
 export function baseInputProps() {

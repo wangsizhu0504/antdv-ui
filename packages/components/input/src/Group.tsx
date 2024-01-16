@@ -1,10 +1,10 @@
 import { computed, defineComponent } from 'vue'
 import { classNames } from '@antdv/utils'
 import type { PropType } from 'vue'
+import type { SizeType } from '@antdv/types'
 import { FormItemInputContext } from '../../form/src/FormItemContext'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
-import type { SizeType } from '../../config-provider'
 
 // CSSINJS
 

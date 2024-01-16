@@ -1,14 +1,14 @@
 import type { Ref, ShallowRef } from 'vue'
 import { shallowRef, toRaw, watch } from 'vue'
 import type { VueNode } from '@antdv/types'
-import type { DataNode, SimpleModeConfig } from '../interface'
+import type { SimpleModeConfig, TreeSelectDataNode } from '../interface'
 import { convertChildrenToData } from '../utils/legacyUtil'
 import type { DefaultOptionType } from '../TreeSelect'
 
 function parseSimpleTreeData(
-  treeData: DataNode[],
+  treeData: TreeSelectDataNode[],
   { id, pId, rootPId }: SimpleModeConfig,
-): DataNode[] {
+): TreeSelectDataNode[] {
   const keyNodes = {}
   const rootNodeList = []
 
@@ -45,7 +45,7 @@ function parseSimpleTreeData(
  * Will not re-calculate if `treeData` or `children` not change.
  */
 export default function useTreeData(
-  treeData: Ref<DataNode[]>,
+  treeData: Ref<TreeSelectDataNode[]>,
   children: Ref<VueNode[]>,
   simpleMode: Ref<boolean | SimpleModeConfig>,
 ): ShallowRef<DefaultOptionType[]> {

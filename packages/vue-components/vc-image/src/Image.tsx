@@ -44,7 +44,11 @@ export function imageProps() {
     },
   }
 }
-export type ImageProps = Partial<ExtractPropTypes<ReturnType<typeof imageProps>>>
+
+export type ImageProps = Partial<
+  ExtractPropTypes<ReturnType<typeof imageProps>> &
+  Omit<ImgHTMLAttributes, 'placeholder' | 'onClick'>
+>
 
 let uuid = 0
 const ImageInternal = defineComponent({

@@ -4,6 +4,7 @@
 
 import { warning } from '@antdv/utils'
 
+import type { Key } from '@antdv/types'
 import type {
   BasicDataNode,
   DataEntity,
@@ -11,7 +12,6 @@ import type {
   Direction,
   DragNodeEvent,
   FlattenNode,
-  Key,
   NodeElement,
 } from './interface'
 import type { AllowDrop, TreeProps } from './props'

@@ -1,4 +1,5 @@
-import type { DataNode, FieldNames, Key } from '../interface'
+import type { Key } from '@antdv/types'
+import type { FieldNames, TreeSelectDataNode } from '../interface'
 import type { DefaultOptionType, InternalFieldName } from '../TreeSelect'
 
 export function toArray<T>(value: T | T[]): T[] {
@@ -21,7 +22,7 @@ export function fillFieldNames(fieldNames?: FieldNames) {
   }
 }
 
-export function isCheckDisabled(node: DataNode) {
+export function isCheckDisabled(node: TreeSelectDataNode) {
   return node.disabled || node.disableCheckbox || node.checkable === false
 }
 

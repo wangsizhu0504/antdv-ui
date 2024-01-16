@@ -5,7 +5,7 @@
 
 import type { ComputedRef, InjectionKey, PropType, ShallowRef } from 'vue'
 import { computed, defineComponent, inject, provide, shallowRef } from 'vue'
-import type { VueNode } from '@antdv/types'
+import type { Key, VueNode } from '@antdv/types'
 import type {
   DataEntity,
   Direction,
@@ -13,7 +13,6 @@ import type {
   EventDataNode,
   FlattenNode,
   IconType,
-  Key,
 } from './interface'
 
 import type { DraggableConfig } from './Tree'

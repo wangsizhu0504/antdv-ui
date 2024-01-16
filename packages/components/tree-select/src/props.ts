@@ -8,12 +8,11 @@ import {
   stringType,
 } from '@antdv/utils'
 import type { ExtractPropTypes } from 'vue'
-import type { InputStatus, Key } from '@antdv/types'
+import type { InputStatus, Key, SizeType } from '@antdv/types'
 import type { SelectCommonPlacement } from '@antdv/vue-components'
 import type { BaseOptionType, DefaultOptionType, FieldNames } from '@antdv/vue-components/vc-tree-select/src/TreeSelect'
 import { treeSelectProps as vcTreeSelectProps } from '@antdv/vue-components/vc-tree-select/src/TreeSelect'
 
-import type { SizeType } from '../../config-provider'
 import type { TreeProps } from '../../tree'
 
 export function treeSelectProps<
