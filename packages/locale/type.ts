@@ -223,5 +223,6 @@ export interface Locale {
   QRCode?: {
     expired?: string
     refresh?: string
+    scanned?: string,
   }
 }

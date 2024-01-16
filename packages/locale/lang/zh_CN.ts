@@ -270,6 +270,7 @@ const localeValues: Locale = {
   QRCode: {
     expired: '二维码已过期',
     refresh: '点击刷新',
+    scanned: '已扫描',
   },
 }
 

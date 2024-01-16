@@ -99,6 +99,7 @@ export default defineComponent({
                   </Button>
                 </>
               )}
+              {props.status === 'scanned' && <p class={`${pre}-scanned`}>{locale.value.scanned}</p>}
             </div>
           )}
           {props.type === 'canvas'
