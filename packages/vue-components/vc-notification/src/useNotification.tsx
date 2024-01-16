@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'vue'
-import { computed, shallowRef, watch } from 'vue'
+import { shallowRef, watch } from 'vue'
 import type { CSSMotionProps, Key, VueNode } from '@antdv/types'
 import HookNotification, { getUuid } from './HookNotification'
 import type { NotificationInstance, OpenConfig, Placement } from './Notification'
@@ -114,7 +114,7 @@ export default function useNotification(rootConfig: NotificationConfig = {}) {
     notices.value = []
   }
 
-  const contextHolder = computed(() => (
+  const contextHolder = () => (
     <HookNotification
       ref={notificationsRef}
       prefixCls={prefixCls}
@@ -129,7 +129,7 @@ export default function useNotification(rootConfig: NotificationConfig = {}) {
       getContainer={getContainer}
     >
     </HookNotification>
-  ))
+  )
 
   const taskQueue = shallowRef([] as Task[])
   // ========================= Refs =========================
@@ -177,5 +177,5 @@ export default function useNotification(rootConfig: NotificationConfig = {}) {
   })
 
   // ======================== Return ========================
-  return [api, () => contextHolder.value] as const
+  return [api, contextHolder] as const
 }
