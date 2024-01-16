@@ -1,8 +1,14 @@
+import process from 'node:process'
+import { resolve } from 'node:path'
 import consola from 'consola'
 import chalk from 'chalk'
 import type { Project } from '@pnpm/find-workspace-packages'
-import { getWorkspacePackages } from '../build/src/utils/pkg'
-import { errorAndExit } from '../build/src/utils/log'
+import findWorkspacePackages from '@pnpm/find-workspace-packages'
+
+export function errorAndExit(err: Error): never {
+  consola.error(err)
+  process.exit(1)
+}
 
 async function main() {
   const tagVersion = process.env.TAG_VERSION
@@ -22,9 +28,9 @@ async function main() {
   consola.debug(chalk.yellow(`Updating package.json`))
 
   const pkgs = Object.fromEntries(
-    (await getWorkspacePackages()).map(pkg => [pkg.manifest.name!, pkg]),
+    (await findWorkspacePackages(resolve(__dirname, '..'))).map(pkg => [pkg.manifest.name!, pkg]),
   )
-
+  console.log('pkgs', pkgs)
   const writeVersion = async (project: Project) => {
     await project.writeProjectManifest({
       ...project.manifest,

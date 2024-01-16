@@ -8,12 +8,10 @@ import {
   firstNotUndefined,
   getComponent,
   hasProp,
-  isObject,
   isValidElement,
   splitAttrs,
 } from '@antdv/utils'
 import { zhCN as LOCALE } from '@antdv/locale'
-import { isBoolean } from 'lodash'
 import { antInputDirective } from '@antdv/directives'
 import Pager from './Pager'
 import Options from './Options'
@@ -372,7 +370,7 @@ export default defineComponent({
     let firstPager = null
     let lastPager = null
     let gotoButton = null
-    const goButton = (isBoolean(showQuickJumper) && showQuickJumper) || (isObject(showQuickJumper) && showQuickJumper?.goButton)
+    const goButton = showQuickJumper && showQuickJumper.goButton
     const pageBufferSize = showLessItems ? 1 : 2
 
     const prevPage = stateCurrent - 1 > 0 ? stateCurrent - 1 : 0
