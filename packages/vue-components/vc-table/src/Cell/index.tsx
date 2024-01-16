@@ -1,7 +1,8 @@
 import type { CSSProperties, VNodeArrayChildren } from 'vue'
-import { Text, computed, defineComponent, isVNode, renderSlot } from 'vue'
+import { Text, computed, defineComponent, isVNode } from 'vue'
 import {
   classNames,
+  customRenderSlot,
   eagerComputed,
   filterEmpty,
   flattenChildren,
@@ -224,7 +225,7 @@ export default defineComponent<CellProps>({
           && contextSlots.value.bodyCell
           && !column.slots?.customRender
         ) {
-          const child = renderSlot(
+          const child = customRenderSlot(
             contextSlots.value,
             'bodyCell',
             {

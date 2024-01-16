@@ -1,6 +1,6 @@
-import { defineComponent, isVNode, renderSlot } from 'vue'
+import { defineComponent, isVNode } from 'vue'
 import { isPlainObject } from 'lodash-es'
-import { devWarning, filterEmptyWithUndefined, flattenChildren, isEmptyElement } from '@antdv/utils'
+import { customRenderSlot, devWarning, filterEmptyWithUndefined, flattenChildren, isEmptyElement } from '@antdv/utils'
 import type { VNode, VNodeTypes } from 'vue'
 import type { CustomSlotsType, SizeType } from '@antdv/types'
 import Tabs from '../../tabs'
@@ -116,7 +116,7 @@ export default defineComponent({
                   'tabList slots is deprecated, Please use `customTab` instead.',
                 )
                 let tab = temp !== undefined ? temp : slots[name] ? slots[name](item) : null
-                tab = renderSlot(slots, 'customTab', item as any, () => [tab])
+                tab = customRenderSlot(slots, 'customTab', item as any, () => [tab])
                 return <TabPane tab={tab} key={item.key} disabled={item.disabled} />
               })}
             </Tabs>

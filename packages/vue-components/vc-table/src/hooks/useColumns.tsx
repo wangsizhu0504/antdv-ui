@@ -1,6 +1,6 @@
-import { warning } from '@antdv/utils'
+import { customRenderSlot, warning } from '@antdv/utils'
 import type { ComputedRef, Ref } from 'vue'
-import { computed, renderSlot, watchEffect } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { useInjectSlots } from '@antdv/components/table/src/context'
 import type {
   ColumnGroupType,
@@ -178,7 +178,7 @@ function useColumns<RecordType>(
           class: `${prefixCls.value}-expand-icon-col`,
           columnType: 'EXPAND_COLUMN',
         },
-        title: renderSlot(contextSlots.value, 'expandColumnTitle', {}, () => ['']),
+        title: customRenderSlot(contextSlots.value, 'expandColumnTitle', {}, () => ['']),
         fixed: fixedColumn,
         class: `${prefixCls.value}-row-expand-icon-cell`,
         width: expandColumnWidth.value,
