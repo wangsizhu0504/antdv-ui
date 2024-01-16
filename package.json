@@ -20,7 +20,6 @@
     "build": "pnpm run -C build start",
     "lint": "eslint .",
     "lint:fix": "pnpm run lint --fix",
-    "lint:commit": "commitlint --from $(git merge-base origin/dev HEAD) --to HEAD > ./commit-lint.txt",
     "typecheck": "run-p typecheck:web typecheck:node",
     "typecheck:web": "vue-tsc -p tsconfig.web.json --composite false --noEmit",
     "typecheck:node": "tsc -p tsconfig.node.json --noEmit",
@@ -90,8 +89,7 @@
     }
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm exec nano-staged --allow-empty --concurrent false",
-    "commit-msg": "pnpm exec vr commit-lint -p $1"
+    "pre-commit": "pnpm exec lint-staged --allow-empty --concurrent false"
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
