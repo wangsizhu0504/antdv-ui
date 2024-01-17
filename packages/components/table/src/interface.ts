@@ -1,5 +1,5 @@
 import { tuple } from '@antdv/utils'
-import type { CSSProperties, ComputedRef, Ref } from 'vue'
+import type { CSSProperties, ComputedRef, Ref, VNodeArrayChildren } from 'vue'
 import type { Breakpoint, Key, SizeType, VueNode } from '@antdv/types'
 import type { TableLocale } from '@antdv/locale'
 import type { TableProps as VcTableProps } from '@antdv/vue-components/vc-table/src/Table'
@@ -49,8 +49,6 @@ export interface ColumnTitleProps<RecordType> {
 
   filters?: Record<string, FilterValue>
 }
-
-export type ColumnTitle<RecordType> = VueNode | ((props: ColumnTitleProps<RecordType>) => VueNode)
 
 export type FilterValue = Array<Key | boolean>
 export type FilterKey = Key[] | null
@@ -312,6 +310,10 @@ export interface FilterState<RecordType = DefaultRecordType> {
   filteredKeys?: FilterKey
   forceFiltered?: boolean
 }
+type ColumnTitleNode = VueNode | VNodeArrayChildren
+export type ColumnTitle<RecordType> =
+  | ColumnTitleNode
+  | ((props: ColumnTitleProps<RecordType>) => ColumnTitleNode)
 
 export interface FilterConfig<RecordType> {
   prefixCls: Ref<string>

@@ -1,5 +1,4 @@
-import { renderSlot } from 'vue'
-import { devWarning } from '@antdv/utils'
+import { customRenderSlot, devWarning } from '@antdv/utils'
 import type { Ref } from 'vue'
 
 import { EXPAND_COLUMN } from '@antdv/vue-components'
@@ -26,7 +25,7 @@ function fillSlots<RecordType>(columns: TableColumnsType<RecordType>, contextSlo
     })
 
     if (contextSlots.value.headerCell && !column.slots?.title) {
-      cloneColumn.title = renderSlot(
+      cloneColumn.title = customRenderSlot(
         contextSlots.value,
         'headerCell',
         {
