@@ -48,11 +48,11 @@
   "devDependencies": {
     "@antdv/build": "workspace:*",
     "@babel/plugin-transform-typescript": "^7.23.6",
-    "@kriszu/eslint-config": "^3.1.9",
+    "@kriszu/eslint-config": "^3.1.12",
     "@pnpm/find-workspace-packages": "^4.0.43",
     "@types/fs-extra": "^11.0.4",
     "@types/jsdom": "^21.1.6",
-    "@types/node": "^20.11.6",
+    "@types/node": "^20.11.16",
     "@vitejs/plugin-vue": "^5.0.3",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "concurrently": "^7.6.0",
@@ -65,7 +65,7 @@
     "globby": "^11.1.0",
     "husky": "^8.0.3",
     "jsdom": "23.0.1",
-    "lint-staged": "^15.2.0",
+    "lint-staged": "^15.2.2",
     "picocolors": "^1.0.0",
     "progress": "^2.0.3",
     "qs": "^6.11.2",
@@ -76,7 +76,7 @@
     "typescript": "^5.3.3",
     "vite": "^5.0.12",
     "vite-plugin-dts": "^3.7.2",
-    "vitest": "^1.2.1",
+    "vitest": "^1.2.2",
     "vue-request": "^2.0.4"
   },
   "pnpm": {
