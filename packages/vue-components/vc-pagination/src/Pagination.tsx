@@ -290,8 +290,10 @@ export default defineComponent({
       return total > totalBoundaryShowSizeChanger
     },
     runIfEnter(event, callback, ...restParams) {
-      if (event.key === 'Enter' || event.charCode === 13)
+      if (event.key === 'Enter' || event.charCode === 13) {
+        event.preventDefault()
         callback(...restParams)
+      }
     },
     runIfEnterPrev(event) {
       this.runIfEnter(event, this.prev)
