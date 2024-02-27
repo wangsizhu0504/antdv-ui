@@ -372,17 +372,18 @@ export default defineComponent({
       forceSubMenuRender: computed(() => props.forceSubMenuRender),
       rootClassName: hashId,
     })
+    const getChildrenList = () => itemsNodes.value || flattenChildren(slots.default?.())
     return () => {
-      const childList = itemsNodes.value || flattenChildren(slots.default?.())
+      const childList = getChildrenList()
       const allVisible
         = lastVisibleIndex.value >= childList.length - 1
         || mergedMode.value !== 'horizontal'
         || props.disabledOverflow
       // >>>>> Children
-      const wrappedChildList
-        = (mergedMode.value !== 'horizontal' || props.disabledOverflow)
-          ? childList
-          : childList.map((child, index) => {
+      const getWrapperList = (_childList) => {
+        return mergedMode.value !== 'horizontal' || props.disabledOverflow
+          ? _childList
+          : _childList.map((child, index) => {
             return (
               // Always wrap provider to avoid sub node re-mount
               <MenuContextProvider
@@ -393,6 +394,7 @@ export default defineComponent({
               </MenuContextProvider>
             )
           })
+      }
       const overflowedIndicator = slots.overflowedIndicator?.() || <EllipsisOutlined />
 
       return wrapSSR(
@@ -405,7 +407,7 @@ export default defineComponent({
           class={[className.value, attrs.class, hashId.value]}
           role="menu"
           id={props.id}
-          data={wrappedChildList}
+          data={getWrapperList(childList)}
           renderRawItem={node => node}
           renderRawRest={(omitItems) => {
             // We use origin list since wrapped list use context to prevent open
@@ -451,7 +453,7 @@ export default defineComponent({
         >
           <Teleport to="body">
             <div style={{ display: 'none' }} aria-hidden>
-              <PathContext>{wrappedChildList}</PathContext>
+              <PathContext>{getWrapperList(getChildrenList())}</PathContext>
             </div>
           </Teleport>
         </VcOverflow>,
