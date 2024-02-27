@@ -545,6 +545,7 @@ export default defineComponent({
       popupFocused.value = true
     }
     const onPopupFocusout = () => {
+      setMockFocused(false)
       popupFocused.value = false
     }
     provide('VCSelectContainerEvent', {
