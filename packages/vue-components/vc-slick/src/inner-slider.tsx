@@ -3,8 +3,8 @@
 import { debounce } from 'lodash-es'
 import ResizeObserver from 'resize-observer-polyfill'
 import { BaseMixin, classNames, supportsPassive } from '@antdv/utils'
-import defaultProps from './default-props'
-import initialState from './initial-state'
+import defaultProps from './default-props.js'
+import initialState from './initial-state.js'
 import {
   canGoNext,
   changeSlide,
@@ -21,7 +21,7 @@ import {
   swipeEnd,
   swipeMove,
   swipeStart,
-} from './utils/innerSliderUtils'
+} from './utils/innerSliderUtils.js'
 import Track from './track'
 import Dots from './dots'
 import { NextArrow, PrevArrow } from './arrows'

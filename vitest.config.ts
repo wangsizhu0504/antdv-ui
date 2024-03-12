@@ -13,9 +13,6 @@ export default defineConfig({
   test: {
     clearMocks: true,
     environment: 'jsdom',
-    setupFiles: ['./vitest.setup.ts'],
-    transformMode: {
-      web: [/\.[jt]sx$/],
-    },
+    // setupFiles: ['./vitest.setup.ts'],
   },
 })
