@@ -55,7 +55,7 @@ export default defineComponent({
           ref={tooltipRef}
           overlayClassName={overlayCls}
           v-slots={{ title: getOverlay, default: slots.default }}
-          transitionName={getTransitionName(rootPrefixCls.value, 'zoom-big', props.transitionName)}
+          transitionName={getTransitionName(rootPrefixCls.value, 'shake', props.transitionName)}
           data-popover-inject
         />,
       )

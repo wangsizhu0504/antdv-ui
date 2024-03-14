@@ -23,7 +23,7 @@ const Demo = defineComponent({
           cancel-text="No"
           onConfirm={confirm}
           onCancel={cancel}
-          placement={'topLeft'}
+          placement="topLeft"
           getPopupContainer={(node) => {
             if (node)
               return node.parentNode as HTMLElement

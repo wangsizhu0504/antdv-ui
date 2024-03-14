@@ -37,6 +37,7 @@ import {
   zoomUpOut,
 } from './zoom'
 import genCollapseMotion from './collapse'
+import { initShakeMotion } from './shake'
 
 export {
   initSlideMotion,
@@ -74,4 +75,5 @@ export {
   moveUpOut,
   initMoveMotion,
   genCollapseMotion,
+  initShakeMotion,
 }

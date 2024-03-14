@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import type { FullToken, GenerateStyle, UseComponentStyleResult } from '@antdv/theme'
-import { initZoomMotion } from '@antdv/theme/style/motion'
+import { initShakeMotion } from '@antdv/theme/style/motion'
 import { genPresetColor } from '@antdv/theme/style/presetColor'
 import getArrowStyle, { MAX_VERTICAL_CONTENT_RADIUS } from '@antdv/theme/style/placementArrow'
 
@@ -144,7 +144,11 @@ export default (prefixCls: Ref<string>, injectStyle: Ref<boolean>): UseComponent
         tooltipRadiusOuter: borderRadiusOuter > 4 ? 4 : borderRadiusOuter,
       })
 
-      return [genTooltipStyle(TooltipToken), initZoomMotion(token, 'zoom-big-fast')]
+      return [
+        genTooltipStyle(TooltipToken),
+        initShakeMotion(token),
+        // initZoomMotion(token, 'zoom-big-fast'),
+      ]
     },
     ({ zIndexPopupBase, colorBgSpotlight }) => ({
       zIndexPopup: zIndexPopupBase + 70,

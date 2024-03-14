@@ -199,7 +199,7 @@ export default defineComponent({
           onOpenChange={onOpenChange}
           open={open.value}
           overlayClassName={overlayClassNames}
-          transitionName={getTransitionName(rootPrefixCls.value, 'zoom-big', props.transitionName)}
+          transitionName={getTransitionName(rootPrefixCls.value, 'shake', props.transitionName)}
           v-slots={{ content: renderOverlay }}
           ref={rootRef}
           data-popover-inject

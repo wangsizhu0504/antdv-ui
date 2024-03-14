@@ -47,7 +47,7 @@ export default defineComponent({
     const fontStyle = computed(() => props.font?.fontStyle ?? 'normal')
     const fontFamily = computed(() => props.font?.fontFamily ?? 'sans-serif')
     const color = computed(() => props.font?.color ?? token.value.colorFill)
-    const markStyle = computed(() => {
+    const getMarkStyle = computed(() => {
       const markStyle: CSSProperties = {
         zIndex: props.zIndex ?? 9,
         position: 'absolute',
@@ -89,7 +89,7 @@ export default defineComponent({
         watermarkRef.value.setAttribute(
           'style',
           getStyleStr({
-            ...markStyle.value,
+            ...getMarkStyle.value,
             backgroundImage: `url('${base64Url}')`,
             backgroundSize: `${(gapX.value + markWidth) * BaseSize}px`,
           }),
@@ -229,17 +229,15 @@ export default defineComponent({
       childList: true,
       attributeFilter: ['style', 'class'],
     })
-    return () => {
-      return (
-        <div
-          {...attrs}
-          ref={containerRef}
-          class={[attrs.class, props.rootClassName]}
-          style={[{ position: 'relative' }, attrs.style as CSSProperties] as StyleValue}
-        >
-          {slots.default?.()}
-        </div>
-      )
-    }
+    return () => (
+      <div
+        {...attrs}
+        ref={containerRef}
+        class={[attrs.class, props.rootClassName]}
+        style={[{ position: 'relative' }, attrs.style as CSSProperties] as StyleValue}
+      >
+        {slots.default?.()}
+      </div>
+    )
   },
 })

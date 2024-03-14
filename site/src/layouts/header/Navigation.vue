@@ -1,47 +1,53 @@
 <script lang="ts">
-import { computed, defineComponent, inject, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import type { GlobalConfig } from '@/types'
-import { GLOBAL_CONFIG } from '@/SymbolKey'
-import { getLocalizedPathname } from '@/utils/util'
+  import { computed, defineComponent, inject, ref, watch } from 'vue'
+  import { useRoute } from 'vue-router'
+  import type { GlobalConfig } from '@/types'
+  import { GLOBAL_CONFIG } from '@/SymbolKey'
+  import { getLocalizedPathname } from '@/utils/util'
 
-export default defineComponent({
-  emits: ['langChange'],
-  setup() {
-    const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG)
-    const menuMode = computed(() => {
-      return globalConfig?.isMobile.value ? 'inline' : 'horizontal'
-    })
-    const route = useRoute()
-    const activeMenuItem = ref('home')
-    watch(
-      () => route.path,
-      (pathname) => {
-        const modules = pathname.split('/')
-        if (pathname === '/docs/resources' || pathname === '/docs/resources-cn')
-          activeMenuItem.value = 'docs/resources'
-        else if (modules[1] === 'components')
-          activeMenuItem.value = 'components'
-        else if (modules[1] === 'docs')
-          activeMenuItem.value = `${modules[1]}/${modules[2]}`
-        else
-          activeMenuItem.value = 'home'
-      },
-      { immediate: true },
-    )
-    return {
-      isMobile: globalConfig?.isMobile,
-      isZhCN: globalConfig?.isZhCN,
-      getLocalizedPathname,
-      menuMode,
-      activeMenuItem,
-    }
-  },
-})
+  export default defineComponent({
+    emits: ['langChange'],
+    setup() {
+      const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG)
+      const menuMode = computed(() => {
+        return globalConfig?.isMobile.value ? 'inline' : 'horizontal'
+      })
+      const route = useRoute()
+      const activeMenuItem = ref('home')
+      watch(
+        () => route.path,
+        (pathname) => {
+          const modules = pathname.split('/')
+          if (pathname === '/docs/resources' || pathname === '/docs/resources-cn')
+            activeMenuItem.value = 'docs/resources'
+          else if (modules[1] === 'components')
+            activeMenuItem.value = 'components'
+          else if (modules[1] === 'docs')
+            activeMenuItem.value = `${modules[1]}/${modules[2]}`
+          else
+            activeMenuItem.value = 'home'
+        },
+        { immediate: true },
+      )
+      return {
+        isMobile: globalConfig?.isMobile,
+        isZhCN: globalConfig?.isZhCN,
+        getLocalizedPathname,
+        menuMode,
+        activeMenuItem,
+      }
+    },
+  })
 </script>
 
 <template>
-  <a-menu id="nav" class="menu-site" :mode="menuMode" :selected-keys="[activeMenuItem]" disabled-overflow>
+  <a-menu
+    id="nav"
+    class="menu-site"
+    :mode="menuMode"
+    :selected-keys="[activeMenuItem]"
+    disabled-overflow
+  >
     <a-menu-item key="docs/vue">
       <router-link :to="getLocalizedPathname('/docs/vue/introduce', isZhCN)">
         {{ $t('app.header.menu.documentation') }}
@@ -52,35 +58,6 @@ export default defineComponent({
         {{ $t('app.header.menu.components') }}
       </router-link>
     </a-menu-item>
-    <a-sub-menu key="ecology">
-      <template #title>
-        {{ $t('app.header.menu.ecology') }}
-      </template>
-      <a-menu-item key="vue">
-        <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer" class="icon-menu">
-          <img src="/icon/vue.svg" />
-          <span>Vue</span>
-        </a>
-      </a-menu-item>
-      <a-menu-item key="VueUse">
-        <a href="https://vueuse.org/" target="_blank" rel="noopener noreferrer" class="icon-menu">
-          <img src="/icon/vueuse.svg" />
-          VueUse
-        </a>
-      </a-menu-item>
-      <a-menu-item key="vuerouter">
-        <a href="https://router.vuejs.org/zh/" target="_blank" rel="noopener noreferrer" class="icon-menu">
-          <img src="/icon/vue-router.svg" />
-          VueRouter
-        </a>
-      </a-menu-item>
-      <a-menu-item key="pinia">
-        <a href="https://pinia.vuejs.org/core-concepts/" target="_blank" rel="noopener noreferrer" class="icon-menu">
-          <img src="/icon/pinia.svg" />
-          Pinia
-        </a>
-      </a-menu-item>
-    </a-sub-menu>
     <template v-if="isMobile">
       <a-menu-item key="switch-lang" @click="$emit('langChange')">
         {{ $t('app.header.lang') }}
