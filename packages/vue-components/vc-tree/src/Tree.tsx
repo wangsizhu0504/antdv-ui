@@ -10,7 +10,7 @@ import {
   watchEffect,
 } from 'vue'
 import { KeyCode, classNames, initDefaultProps, pickAttrs, warning } from '@antdv/utils'
-import type { Key } from '@antdv/types'
+import type { Key, VueNode } from '@antdv/types'
 import type { NodeDragEventHandler, NodeMouseEventHandler } from './contextTypes'
 import { TreeContext, useProvideKeysState } from './contextTypes'
 import {
@@ -43,7 +43,7 @@ import useMaxLevel from './useMaxLevel'
 const MAX_RETRY_TIMES = 10
 
 export interface DraggableConfig {
-  icon?: any;
+  icon?: boolean | (() => VueNode) | VueNode;
   nodeDraggable?: DraggableFn;
 }
 
@@ -824,19 +824,15 @@ export default defineComponent({
     }
 
     const onFocus = (e: FocusEvent) => {
-      const { onFocus } = props
       focused.value = true
-      if (onFocus)
-        onFocus(e)
+      props.onFocus?.(e)
     }
 
     const onBlur = (e: FocusEvent) => {
-      const { onBlur } = props
       focused.value = false
       onActiveChange(null)
 
-      if (onBlur)
-        onBlur(e)
+      props.onBlur?.(e)
     }
 
     const onNodeExpand = (e: MouseEvent, treeNode: EventDataNode) => {
@@ -954,7 +950,7 @@ export default defineComponent({
       })
     })
     const onKeydown = (event) => {
-      const { onKeydown, checkable, selectable } = props
+      const { checkable, selectable } = props
 
       // >>>>>>>>>> Direction
       switch (event.which) {
@@ -1022,8 +1018,7 @@ export default defineComponent({
         }
       }
 
-      if (onKeydown)
-        onKeydown(event)
+      props.onKeydown?.(event)
     }
     expose({
       onNodeExpand,
@@ -1112,7 +1107,7 @@ export default defineComponent({
           draggableConfig = draggable
         } else if (typeof draggable === 'function') {
           draggableConfig = {
-            nodeDraggable: draggable,
+            nodeDraggable: draggable as DraggableFn,
           }
         } else {
           draggableConfig = {}

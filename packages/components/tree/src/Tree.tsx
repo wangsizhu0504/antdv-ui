@@ -4,6 +4,8 @@ import type { SlotsType } from 'vue'
 
 import { VcTree } from '@antdv/vue-components'
 import type { ScrollTo } from '@antdv/vue-components/vc-virtual-list/src/List'
+import type { DraggableConfig } from '@antdv/vue-components/vc-tree/src/Tree'
+import { HolderOutlined } from '@ant-design/icons-vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import renderSwitcherIcon from './utils/iconUtil'
@@ -93,6 +95,7 @@ export default defineComponent({
         itemHeight = 28,
         onDoubleclick,
         onDblclick,
+        draggable,
       } = props as TreeProps
       const newProps = {
         ...attrs,
@@ -101,6 +104,7 @@ export default defineComponent({
           'onUpdate:expandedKeys',
           'onUpdate:selectedKeys',
           'onDoubleclick',
+          'draggable',
         ]),
         showLine: Boolean(showLine),
         dropIndicatorRender,
@@ -109,6 +113,29 @@ export default defineComponent({
         itemHeight,
       }
       const children = slots.default ? filterEmpty(slots.default()) : undefined
+      const draggableConfigFunc = () => {
+        if (!draggable)
+          return false
+
+        let mergedDraggable: DraggableConfig = {}
+        switch (typeof draggable) {
+          case 'function':
+            mergedDraggable.nodeDraggable = draggable
+            break
+          case 'object':
+            mergedDraggable = { ...(draggable as DraggableConfig) }
+            break
+          default:
+            break
+          // Do nothing
+        }
+
+        if (mergedDraggable.icon !== false)
+          mergedDraggable.icon = mergedDraggable.icon || <HolderOutlined />
+
+        return mergedDraggable
+      }
+      const draggableConfig = draggableConfigFunc()
       return wrapSSR(
         <VcTree
           {...newProps}
@@ -126,6 +153,7 @@ export default defineComponent({
             attrs.class,
             hashId.value,
           )}
+          draggable={draggableConfig}
           direction={direction.value}
           checkable={checkable}
           selectable={selectable}

@@ -10,6 +10,7 @@ import type {
   FieldNames,
   FlattenNode,
 } from './interface'
+import type { DraggableConfig } from './Tree'
 
 export interface CheckInfo {
   event: 'check';
@@ -134,7 +135,7 @@ export function treeProps() {
     multiple: { type: Boolean, default: undefined },
     checkable: { type: Boolean, default: undefined },
     checkStrictly: { type: Boolean, default: undefined },
-    draggable: { type: [Function, Boolean] as PropType<DraggableFn | boolean> },
+    draggable: { type: [Function, Boolean, Object] as PropType<DraggableFn | boolean | DraggableConfig> },
     defaultExpandParent: { type: Boolean, default: undefined },
     autoExpandParent: { type: Boolean, default: undefined },
     defaultExpandAll: { type: Boolean, default: undefined },

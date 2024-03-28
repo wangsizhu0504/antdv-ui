@@ -9,9 +9,11 @@ import {
 
 import type { Key } from '@antdv/types'
 import type { ExtractPropTypes } from 'vue'
+import type { DraggableFn } from '@antdv/vue-components/vc-tree/src/props'
 import { treeProps as VcTreeProps } from '@antdv/vue-components/vc-tree/src/props'
 
 import type { FieldNames } from '@antdv/vue-components/vc-tree/src/interface'
+import type { DraggableConfig } from '@antdv/vue-components/vc-tree/src/Tree'
 import type { AntdTreeNodeAttribute, ExpandAction } from './interface'
 
 export function treeProps() {
@@ -48,7 +50,7 @@ export function treeProps() {
     'selectable': booleanType(),
 
     'loadedKeys': arrayType<Key[]>(),
-    'draggable': booleanType(),
+    'draggable': someType<boolean | DraggableConfig | DraggableFn>([Boolean, Object, Function]),
     'showIcon': booleanType(),
     'icon': functionType<(nodeProps: AntdTreeNodeAttribute) => any>(),
     'switcherIcon': PropTypes.any,
