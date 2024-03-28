@@ -3,16 +3,14 @@
 import { defineComponent } from 'vue'
 import { BaseMixin, cloneElement, getSlot, json2mq } from '@antdv/utils'
 import InnerSlider from './inner-slider'
-import defaultProps from './default-props'
-import { canUseDOM } from './utils/innerSliderUtils'
+import defaultProps from './default-props.js'
+import { canUseDOM } from './utils/innerSliderUtils.js'
 
 export default defineComponent({
   name: 'Slider',
   mixins: [BaseMixin],
   inheritAttrs: false,
-  props: {
-    ...defaultProps,
-  },
+  props: defaultProps,
   data() {
     this._responsiveMediaHandlers = []
     return {
@@ -190,6 +188,8 @@ export default defineComponent({
     const sliderProps = {
       ...this.$attrs,
       ...settings,
+      // fix: https://github.com/vueComponent/ant-design-vue/issues/7461
+      slidesToShow: Math.min(settings.slidesToShow, children.length),
       children: newChildren,
       ref: this.innerSliderRefHandler,
     }
