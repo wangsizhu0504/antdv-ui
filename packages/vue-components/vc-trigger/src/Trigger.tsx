@@ -408,11 +408,13 @@ export default defineComponent({
         stretch,
         alignPoint,
         mobile,
+        arrow,
         forceRender,
       } = this.$props
       const { sPopupVisible, point } = this.$data
       const popupProps = {
         prefixCls,
+        arrow,
         destroyPopupOnHide,
         visible: sPopupVisible,
         point: alignPoint ? point : null,

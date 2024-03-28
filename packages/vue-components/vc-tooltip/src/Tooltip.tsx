@@ -36,6 +36,7 @@ export default defineComponent({
     popupVisible: { type: Boolean, default: undefined },
     onVisibleChange: Function,
     onPopupAlign: Function,
+    arrow: { type: Boolean, default: true },
   },
   setup(props, { slots, attrs, expose }) {
     const triggerDOM = shallowRef()
@@ -43,9 +44,13 @@ export default defineComponent({
     const getPopupElement = () => {
       const { prefixCls, tipId, overlayInnerStyle } = props
       return [
-        <div class={`${prefixCls}-arrow`} key="arrow">
-          {getPropsSlot(slots, props, 'arrowContent')}
-        </div>,
+        props.arrow
+          ? (
+            <div class={`${prefixCls}-arrow`} key="arrow">
+              {getPropsSlot(slots, props, 'arrowContent')}
+            </div>
+            )
+          : null,
         <Content
           key="content"
           prefixCls={prefixCls}
@@ -121,6 +126,7 @@ export default defineComponent({
         onPopupVisibleChange: props.onVisibleChange || (noop as any),
         onPopupAlign: props.onPopupAlign || noop,
         ref: triggerDOM,
+        arrow: !!props.arrow,
         popup: getPopupElement(),
       }
       return <Trigger {...triggerProps} v-slots={{ default: slots.default }}></Trigger>

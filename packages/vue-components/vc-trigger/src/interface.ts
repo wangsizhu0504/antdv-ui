@@ -113,6 +113,7 @@ export function triggerProps() {
     onPopupVisibleChange: Function as PropType<(open: boolean) => void>,
     afterPopupVisibleChange: PropTypes.func.def(noop),
     popup: PropTypes.any,
+    arrow: PropTypes.bool.def(true),
     popupStyle: { type: Object as PropType<CSSProperties>, default: undefined as CSSProperties },
     prefixCls: PropTypes.string.def('rc-trigger-popup'),
     popupClassName: PropTypes.string.def(''),
