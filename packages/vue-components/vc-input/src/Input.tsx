@@ -158,7 +158,7 @@ export default defineComponent({
         'inputClassName',
         'wrapperClassName',
       ])
-      const inputProps = {
+      const getInputProps = {
         ...otherProps,
         ...attrs,
         autocomplete,
@@ -183,12 +183,12 @@ export default defineComponent({
         type,
       }
       if (valueModifiers.lazy)
-        delete inputProps.onInput
+        delete getInputProps.onInput
 
-      if (!inputProps.autofocus)
-        delete inputProps.autofocus
+      if (!getInputProps.autofocus)
+        delete getInputProps.autofocus
 
-      const inputNode = <input {...omit(inputProps, ['size'])} />
+      const inputNode = <input {...omit(getInputProps, ['size'])} />
       return withDirectives(inputNode as VNode, [[antInputDirective]])
     }
     const getSuffix = () => {

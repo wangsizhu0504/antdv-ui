@@ -116,9 +116,9 @@ const TimeBody = defineComponent({
     ) => {
       let newDate = props.value || props.generateConfig.getNow()
 
-      const mergedHour = Math.max(0, newHour)
-      const mergedMinute = Math.max(0, newMinute)
-      const mergedSecond = Math.max(0, newSecond)
+      const mergedHour = newHour < 0 ? minutes.value.find(h => !h.disabled).value : newHour
+      const mergedMinute = newMinute < 0 ? minutes.value.find(m => !m.disabled).value : newMinute
+      const mergedSecond = newSecond < 0 ? seconds.value.find(s => !s.disabled).value : newSecond
 
       newDate = utilSetTime(
         props.generateConfig,
@@ -143,7 +143,7 @@ const TimeBody = defineComponent({
 
     // const memorizedRawHours = useMemo(() => rawHours, rawHours, shouldUnitsUpdate);
 
-    const AMPMDisabled = computed(() => {
+    const getAMPMDisabled = computed(() => {
       if (!props.use12Hours)
         return [false, false]
 
@@ -178,7 +178,12 @@ const TimeBody = defineComponent({
         0,
         59,
         props.minuteStep ?? 1,
-        mergedDisabledMinutes.value && mergedDisabledMinutes.value(originHour.value),
+        mergedDisabledMinutes.value
+          && mergedDisabledMinutes.value(
+            originHour.value < 0
+              ? rawHours.value.find(rawHour => !rawHour.disabled).value
+              : originHour.value,
+          ),
       ),
     )
 
@@ -187,7 +192,15 @@ const TimeBody = defineComponent({
         0,
         59,
         props.secondStep ?? 1,
-        mergedDisabledSeconds.value && mergedDisabledSeconds.value(originHour.value, minute.value),
+        mergedDisabledSeconds.value
+          && mergedDisabledSeconds.value(
+            originHour.value < 0
+              ? rawHours.value.find(rawHour => !rawHour.disabled).value
+              : originHour.value,
+            minute.value < 0
+              ? minutes.value.find(rawMinute => !rawMinute.disabled).value
+              : minute.value,
+          ),
       ),
     )
 
@@ -294,8 +307,8 @@ const TimeBody = defineComponent({
         <TimeUnitColumn key="12hours" />,
         PMIndex,
         [
-          { label: 'AM', value: 0, disabled: AMPMDisabled.value[0] },
-          { label: 'PM', value: 1, disabled: AMPMDisabled.value[1] },
+          { label: 'AM', value: 0, disabled: getAMPMDisabled.value[0] },
+          { label: 'PM', value: 1, disabled: getAMPMDisabled.value[1] },
         ],
         (num) => {
           onSelect(setTime(!!num, hour.value, minute.value, second.value), 'mouse')
