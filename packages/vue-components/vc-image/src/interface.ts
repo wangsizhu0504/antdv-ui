@@ -1,4 +1,4 @@
-import type { ComputedRef, Ref } from 'vue'
+import type { ComputedRef, ImgHTMLAttributes, Ref } from 'vue'
 import type { IDialogChildProps } from '../../vc-dialog/src/IDialogPropTypes'
 import type { PreviewProps } from './Preview'
 
@@ -20,6 +20,7 @@ export interface GroupConsumerProps {
 export interface PreviewUrl {
   url: string;
   canPreview: boolean;
+  imgCommonProps: ImgHTMLAttributes;
 }
 
 export interface GroupConsumerValue extends GroupConsumerProps {
@@ -30,7 +31,12 @@ export interface GroupConsumerValue extends GroupConsumerProps {
   setCurrent: (current: number) => void;
   setShowPreview: (isShowPreview: boolean) => void;
   setMousePosition: (mousePosition: null | { x: number; y: number }) => void;
-  registerImage: (id: number, url: string, canPreview?: boolean) => () => void;
+  registerImage: (
+    id: number,
+    url: string,
+    canPreview?: boolean,
+    imgCommonProps?: ImgHTMLAttributes,
+  ) => () => void;
   rootClassName?: string;
 }
 

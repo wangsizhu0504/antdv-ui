@@ -8,8 +8,7 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import type { PropType, VNode } from 'vue'
-
+import type { ImgHTMLAttributes, PropType, VNode } from 'vue'
 import { KeyCode, addEventListenerWrap, classNames, getOffset, warning } from '@antdv/utils'
 import type { MouseEventHandler, WheelEventHandler } from '@antdv/types'
 import { type IDialogChildProps, dialogPropTypes } from '../../vc-dialog/src/IDialogPropTypes'
@@ -35,6 +34,7 @@ export interface PreviewProps extends Omit<IDialogChildProps, 'onClose' | 'mask'
     flipX?: VNode;
     flipY?: VNode;
   };
+  imgCommonProps?: ImgHTMLAttributes;
 }
 
 const initialPosition = {
@@ -49,6 +49,10 @@ export const previewProps = {
   icons: {
     type: Object as PropType<PreviewProps['icons']>,
     default: () => ({} as PreviewProps['icons']),
+  },
+  imgCommonProps: {
+    type: Object as PropType<PreviewProps['imgCommonProps']>,
+    default: () => ({}),
   },
 }
 const Preview = defineComponent({
@@ -332,7 +336,7 @@ const Preview = defineComponent({
     })
 
     return () => {
-      const { visible, prefixCls, rootClassName } = props
+      const { visible, prefixCls, rootClassName, imgCommonProps } = props
       return (
         <Dialog
           {...attrs}
@@ -371,6 +375,7 @@ const Preview = defineComponent({
             }}
           >
             <img
+              {...imgCommonProps}
               onMousedown={onMouseDown}
               onDblclick={onDoubleClick}
               ref={imgRef}

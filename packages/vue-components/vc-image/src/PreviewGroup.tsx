@@ -67,7 +67,7 @@ const Group = defineComponent({
     const canPreviewUrls = computed(
       () =>
         new Map<number, string>(
-          Array.from(previewUrls)
+          Array.from(previewUrls as Map<number, any>)
             .filter(([, { canPreview }]) => !!canPreview)
             .map(([id, { url }]) => [id, url]),
         ),
@@ -77,6 +77,7 @@ const Group = defineComponent({
       previewUrls.set(id, {
         url,
         canPreview,
+        imgCommonProps: {},
       })
     }
     const setCurrent = (val: number) => {
@@ -86,13 +87,14 @@ const Group = defineComponent({
       mousePosition.value = val
     }
 
-    const registerImage = (id: number, url: string, canPreview = true) => {
+    const registerImage = (id: number, url: string, canPreview = true, imgCommonProps = {}) => {
       const unRegister = () => {
         previewUrls.delete(id)
       }
       previewUrls.set(id, {
         url,
         canPreview,
+        imgCommonProps,
       })
       return unRegister
     }
@@ -149,6 +151,7 @@ const Group = defineComponent({
             src={canPreviewUrls.value.get(current.value)}
             icons={props.icons}
             getContainer={getPreviewContainer.value}
+            imgCommonProps={previewUrls.get(current.value)?.imgCommonProps}
           />
         </>
       )
