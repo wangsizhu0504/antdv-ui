@@ -2,8 +2,8 @@
 
 set -e
 
-pnpm i --frozen-lockfile
-pnpm update:version
+pnpm i --no-frozen-lockfile
+pnpm gen:version
 
 echo "🧹 Cleaning..."
 pnpm clean
