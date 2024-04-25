@@ -1,4 +1,4 @@
-import type { FunctionalComponent, PropType } from 'vue'
+import { type FunctionalComponent, type PropType, cloneVNode } from 'vue'
 import type { MouseEventHandler, VueNode } from '@antdv/types'
 import { PropTypes } from '@antdv/utils'
 import type { RenderNode } from './BaseSelect'
@@ -22,7 +22,7 @@ const TransBtn: TransBtnType = (props, { slots }) => {
   if (typeof customizeIcon === 'function')
     icon = customizeIcon(customizeIconProps)
   else
-    icon = customizeIcon
+    icon = cloneVNode(customizeIcon as any)
 
   return (
     <span

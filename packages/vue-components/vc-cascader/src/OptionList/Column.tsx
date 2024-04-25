@@ -1,4 +1,5 @@
 import type { Key } from '@antdv/types'
+import { cloneVNode } from 'vue'
 import { isLeaf, toPathKey } from '../utils/commonUtil'
 import type { DefaultOptionType, SingleValueType } from '../Cascader'
 import { SEARCH_MARK } from '../hooks/useSearchOptions'
@@ -146,10 +147,10 @@ export default function Column({
             )}
             <div class={`${menuItemPrefixCls}-content`}>{label}</div>
             {!isLoading && expandIcon && !isMergedLeaf && (
-              <div class={`${menuItemPrefixCls}-expand-icon`}>{expandIcon}</div>
+              <div class={`${menuItemPrefixCls}-expand-icon`}>{cloneVNode(expandIcon)}</div>
             )}
             {isLoading && loadingIcon && (
-              <div class={`${menuItemPrefixCls}-loading-icon`}>{loadingIcon}</div>
+              <div class={`${menuItemPrefixCls}-loading-icon`}>{cloneVNode(loadingIcon)}</div>
             )}
           </li>
         )
