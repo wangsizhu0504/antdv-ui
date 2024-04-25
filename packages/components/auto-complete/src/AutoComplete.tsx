@@ -19,6 +19,8 @@ export default defineComponent({
   props: autoCompleteProps(),
   // emits: ['change', 'select', 'focus', 'blur'],
   slots: Object as SlotsType<{
+    option: any;
+    // deprecated, should use props `options` instead, not slot
     options: any
     default: any
     notFoundContent: any
