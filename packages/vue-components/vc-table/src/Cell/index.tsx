@@ -4,16 +4,19 @@ import {
   computed,
   defineComponent,
   isVNode,
-  ref,
+  shallowRef,
   watch,
 } from 'vue'
 import {
+  addClass,
   classNames,
   customRenderSlot,
   eagerComputed,
   filterEmpty,
+  findDOMNode,
   flattenChildren,
   isValidElement,
+  removeClass,
   warning,
 } from '@antdv/utils'
 
@@ -116,7 +119,6 @@ export default defineComponent<CellProps>({
     'transformCellText',
   ] as any,
   setup(props, { slots }) {
-    const hoverRef = ref(null)
     const contextSlots = useInjectSlots()
     const { onHover, startRow, endRow } = useInjectHover()
     const colSpan = computed(() => {
@@ -166,6 +168,15 @@ export default defineComponent<CellProps>({
         return vnode
       }
     }
+    const hoverRef = shallowRef(null)
+    watch([hovering, () => props.prefixCls, hoverRef], () => {
+      const cellDom = findDOMNode(hoverRef.value)
+      if (!cellDom) return
+      if (hovering.value)
+        addClass(cellDom, `${props.prefixCls}-cell-row-hover`)
+      else
+        removeClass(cellDom, `${props.prefixCls}-cell-row-hover`)
+    })
     return () => {
       const {
         prefixCls,
