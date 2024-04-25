@@ -1,6 +1,5 @@
 import { genComponentStyleHook, mergeToken } from '@antdv/theme'
-import type { CSSObject } from '@antdv/theme'
-import type { FullToken, GenerateStyle } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
 import genLayoutLightStyle from './light'
 
 export interface ComponentToken {
@@ -45,6 +44,7 @@ const genLayoutStyle: GenerateStyle<LayoutToken, CSSObject> = (token) => {
       'display': 'flex',
       'flex': 'auto',
       'flexDirection': 'column',
+      'color': colorText,
 
       /* fix firefox can't set height smaller than content on flex item */
       'minHeight': 0,
