@@ -74,7 +74,7 @@ export default defineComponent({
         if (needAutoSize.value)
           startResize()
       },
-      { immediate: true, flush: 'post' },
+      { immediate: true },
     )
     const autoSizeStyle = ref<CSSProperties>()
     watch(
