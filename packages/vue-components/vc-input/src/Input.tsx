@@ -16,7 +16,7 @@ import { inputProps } from './inputProps'
 import type { InputFocusOptions } from './utils/commonUtils'
 import { fixControlledValue, hasAddon, hasPrefixSuffix, resolveOnChange, triggerFocus } from './utils/commonUtils'
 import BaseInput from './BaseInput'
-import BaseInputCore from './BaseInputCore'
+import BaseInputCore, { type BaseInputExpose } from './BaseInputCore'
 
 export default defineComponent({
   name: 'VCInput',
@@ -25,7 +25,7 @@ export default defineComponent({
   setup(props, { slots, attrs, expose, emit }) {
     const stateValue = shallowRef(props.value === undefined ? props.defaultValue : props.value)
     const focused = shallowRef(false)
-    const inputRef = shallowRef<HTMLInputElement>()
+    const inputRef = shallowRef<BaseInputExpose>()
     const rootRef = shallowRef<ComponentPublicInstance>()
     watch(
       () => props.value,
@@ -42,11 +42,11 @@ export default defineComponent({
     )
     const focus = (option?: InputFocusOptions) => {
       if (inputRef.value)
-        triggerFocus(inputRef.value, option)
+        triggerFocus(inputRef.value.input, option)
     }
 
     const blur = () => {
-      inputRef.value?.blur()
+      inputRef.value.input?.blur()
     }
 
     const setSelectionRange = (
@@ -54,17 +54,17 @@ export default defineComponent({
       end: number,
       direction?: 'forward' | 'backward' | 'none',
     ) => {
-      inputRef.value?.setSelectionRange(start, end, direction)
+      inputRef.value.input?.setSelectionRange(start, end, direction)
     }
 
     const select = () => {
-      inputRef.value?.select()
+      inputRef.value.input?.select()
     }
 
     expose({
       focus,
       blur,
-      input: computed(() => (inputRef.value as any)?.input),
+      input: computed(() => (inputRef.value.input as any)?.input),
       stateValue,
       setSelectionRange,
       select,
@@ -80,7 +80,7 @@ export default defineComponent({
         stateValue.value = value
       } else {
         nextTick(() => {
-          if (inputRef.value.value !== stateValue.value)
+          if (inputRef.value.input.value !== stateValue.value)
             rootRef.value?.$forceUpdate()
         })
       }
@@ -92,7 +92,7 @@ export default defineComponent({
       const { value } = e.target as any
       if (stateValue.value === value) return
       const newVal = e.target.value
-      resolveOnChange(inputRef.value, e, triggerChange)
+      resolveOnChange(inputRef.value.input as HTMLInputElement, e, triggerChange)
       setValue(newVal)
     }
 
@@ -114,7 +114,7 @@ export default defineComponent({
     }
 
     const handleReset = (e: MouseEvent) => {
-      resolveOnChange(inputRef.value, e, triggerChange)
+      resolveOnChange(inputRef.value.input as HTMLInputElement, e, triggerChange)
       setValue('', () => {
         focus()
       })
