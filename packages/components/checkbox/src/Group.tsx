@@ -42,7 +42,7 @@ export default defineComponent({
       })
     })
     const triggerUpdate = ref(Symbol('TriggerUpdateKey'))
-    const registeredValuesMap = ref<Map<symbol, string>>(new Map())
+    const registeredValuesMap = ref(new Map<Symbol, string>())
     const cancelValue = (id: symbol) => {
       registeredValuesMap.value.delete(id)
       triggerUpdate.value = Symbol('TriggerUpdateCancelKey')

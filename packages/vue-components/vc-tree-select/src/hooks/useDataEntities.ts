@@ -7,7 +7,7 @@ import { isNil } from '../utils/valueUtil'
 import type { FieldNames, RawValueType } from '../TreeSelect'
 
 export default (treeData: ShallowRef<any>, fieldNames: Ref<FieldNames>) => {
-  const valueEntities = shallowRef<Map<RawValueType, DataEntity>>(new Map())
+  const valueEntities = shallowRef(new Map<RawValueType, DataEntity>())
   const keyEntities = shallowRef<Record<string, DataEntity>>({})
   watchEffect(() => {
     const fieldNamesValue = fieldNames.value

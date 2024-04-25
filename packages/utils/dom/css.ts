@@ -96,11 +96,11 @@ export function getOffset(node: any) {
   return {
     left:
       box.left
-      + (window.pageXOffset || docElem.scrollLeft)
+      + (window.scrollX || docElem.scrollLeft)
       - (docElem.clientLeft || document.body.clientLeft || 0),
     top:
       box.top
-      + (window.pageYOffset || docElem.scrollTop)
+      + (window.scrollX || docElem.scrollTop)
       - (docElem.clientTop || document.body.clientTop || 0),
   }
 }
