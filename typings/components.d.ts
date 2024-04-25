@@ -253,7 +253,7 @@ declare module 'vue' {
 
     AWeekPicker: typeof import('../components/components')['WeekPicker'];
 
-    AQRCode: typeof import('../components/components')['QRCode'];
+    AQrCode: typeof import('../components/components')['QRCode'];
 
     ATour: typeof import('../components/components')['Tour'];
 
