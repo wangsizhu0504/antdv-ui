@@ -9,11 +9,11 @@ import {
   ref,
   toRef,
   watchEffect,
-  withDirectives,
 } from 'vue'
 import { KeyCode, classNames, initDefaultProps, omit } from '@antdv/utils'
 import type { EventHandler } from '@antdv/types'
-import { antInputDirective } from '@antdv/directives'
+import type { BaseInputExpose } from '@antdv/vue-components/vc-input/src/BaseInputCore'
+import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
 import { getBeforeSelectionText, getLastMeasureIndex, replaceWithMeasure, setInputSelection } from './util'
 import KeywordTrigger from './KeywordTrigger'
 import { defaultProps, vcMentionsProps } from './mentionsProps'
@@ -32,7 +32,7 @@ export default defineComponent({
   emits: ['change', 'select', 'search', 'focus', 'blur', 'pressenter'],
   setup(props, { emit, attrs, expose, slots }) {
     const measure = ref(null)
-    const textarea = ref(null)
+    const textarea = ref<BaseInputExpose>(null)
     const focusId = ref()
     const state = reactive({
       value: props.value || '',
@@ -52,8 +52,7 @@ export default defineComponent({
       emit('change', val)
     }
 
-    const onChange: EventHandler = ({ target: { value, composing }, isComposing }) => {
-      if (isComposing || composing) return
+    const onChange: EventHandler = ({ target: { value } }) => {
       triggerChange(value)
     }
 
@@ -181,13 +180,13 @@ export default defineComponent({
         measureLocation: state.measureLocation,
         targetText: mentionValue,
         prefix: state.measurePrefix,
-        selectionStart: textarea.value.selectionStart,
+        selectionStart: textarea.value.getSelectionStart(),
         split,
       })
       triggerChange(text)
       stopMeasure(() => {
         // We need restore the selection position
-        setInputSelection(textarea.value, selectionLocation)
+        setInputSelection(textarea.value.input as HTMLTextAreaElement, selectionLocation)
       })
 
       emit('select', option, state.measurePrefix)
@@ -230,7 +229,7 @@ export default defineComponent({
     onUpdated(() => {
       nextTick(() => {
         if (state.measuring)
-          measure.value.scrollTop = textarea.value.scrollTop
+          measure.value.scrollTop = textarea.value.getScrollTop()
       })
     })
     return () => {
@@ -265,7 +264,7 @@ export default defineComponent({
       }
       return (
         <div class={classNames(prefixCls, className)} style={style as CSSProperties}>
-          {withDirectives(<textarea ref={textarea} {...textareaProps} />, [[antInputDirective]])}
+          <BaseInputCore {...textareaProps} ref={textarea} tag="textarea"></BaseInputCore>
           {measuring && (
             <div ref={measure} class={`${prefixCls}-measure`}>
               {state.value.slice(0, measureLocation)}

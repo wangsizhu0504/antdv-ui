@@ -34,7 +34,6 @@
   "dependencies": {
     "@antdv/components": "workspace:*",
     "@antdv/constants": "workspace:*",
-    "@antdv/directives": "workspace:*",
     "@antdv/hooks": "workspace:*",
     "@antdv/locale": "workspace:*",
     "@antdv/theme": "workspace:*",

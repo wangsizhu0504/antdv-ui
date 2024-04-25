@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType, VNode } from 'vue'
-import { defineComponent, inject, withDirectives } from 'vue'
+import { defineComponent, inject } from 'vue'
 import { PropTypes, classNames, cloneElement } from '@antdv/utils'
 import type {
   ChangeEventHandler,
@@ -9,7 +9,7 @@ import type {
   KeyboardEventHandler,
   MouseEventHandler,
 } from '@antdv/types'
-import { antInputDirective } from '@antdv/directives'
+import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
 
 export const inputProps = {
   inputRef: PropTypes.any,
@@ -72,7 +72,7 @@ const Input = defineComponent({
         attrs,
       } = props
 
-      let inputNode: any = inputElement || withDirectives((<input />) as VNode, [[antInputDirective]])
+      let inputNode: any = inputElement || <BaseInputCore></BaseInputCore>
 
       const getInputProps = inputNode.props || {}
       const {

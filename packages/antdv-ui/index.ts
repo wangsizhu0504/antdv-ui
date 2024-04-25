@@ -2,7 +2,6 @@ import installer from './install'
 
 export * from '@antdv/components'
 export * from '@antdv/constants'
-export * from '@antdv/directives'
 export * from '@antdv/hooks'
 export * from '@antdv/types'
 export { theme } from '@antdv/theme'

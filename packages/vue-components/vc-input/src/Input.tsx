@@ -1,21 +1,22 @@
 // base 0.0.1-alpha.7
-import type { ComponentPublicInstance, VNode } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
 import {
+  computed,
   defineComponent,
   nextTick,
   onMounted,
   shallowRef,
   watch,
-  withDirectives,
 } from 'vue'
-import { classNames, omit } from '@antdv/utils'
-import { antInputDirective } from '@antdv/directives'
+import { omit } from 'lodash-es'
+import { classNames } from '@antdv/utils'
 import type { ChangeEvent, FocusEventHandler } from '@antdv/types'
 import type { InputProps } from './inputProps'
 import { inputProps } from './inputProps'
 import type { InputFocusOptions } from './utils/commonUtils'
 import { fixControlledValue, hasAddon, hasPrefixSuffix, resolveOnChange, triggerFocus } from './utils/commonUtils'
 import BaseInput from './BaseInput'
+import BaseInputCore from './BaseInputCore'
 
 export default defineComponent({
   name: 'VCInput',
@@ -63,7 +64,7 @@ export default defineComponent({
     expose({
       focus,
       blur,
-      input: inputRef,
+      input: computed(() => (inputRef.value as any)?.input),
       stateValue,
       setSelectionRange,
       select,
@@ -88,9 +89,8 @@ export default defineComponent({
       })
     }
     const handleChange = (e: ChangeEvent) => {
-      const { value, composing } = e.target as any
-      // https://github.com/vueComponent/ant-design-vue/issues/2203
-      if (((e as any).isComposing && composing && props.lazy) || stateValue.value === value) return
+      const { value } = e.target as any
+      if (stateValue.value === value) return
       const newVal = e.target.value
       resolveOnChange(inputRef.value, e, triggerChange)
       setValue(newVal)
@@ -181,6 +181,7 @@ export default defineComponent({
         key: 'ant-input',
         size: htmlSize,
         type,
+        lazy: props.lazy,
       }
       if (valueModifiers.lazy)
         delete getInputProps.onInput
@@ -188,8 +189,8 @@ export default defineComponent({
       if (!getInputProps.autofocus)
         delete getInputProps.autofocus
 
-      const inputNode = <input {...omit(getInputProps, ['size'])} />
-      return withDirectives(inputNode as VNode, [[antInputDirective]])
+      const inputNode = <BaseInputCore {...omit(inputProps, ['size'])} />
+      return inputNode
     }
     const getSuffix = () => {
       const { maxlength, suffix = slots.suffix?.(), showCount, prefixCls } = props

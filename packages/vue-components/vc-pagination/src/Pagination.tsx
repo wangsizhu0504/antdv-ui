@@ -1,4 +1,4 @@
-import { defineComponent, withDirectives } from 'vue'
+import { defineComponent } from 'vue'
 import {
   BaseMixin,
   KeyCode,
@@ -12,7 +12,7 @@ import {
   splitAttrs,
 } from '@antdv/utils'
 import { zhCN as LOCALE } from '@antdv/locale'
-import { antInputDirective } from '@antdv/directives'
+import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
 import Pager from './Pager'
 import Options from './Options'
 
@@ -429,19 +429,17 @@ export default defineComponent({
             title={showTitle ? `${stateCurrent}/${allPages}` : null}
             class={`${prefixCls}-simple-pager`}
           >
-            {withDirectives(
-              <input
-                type="text"
-                value={this.stateCurrentInputValue}
-                disabled={disabled}
-                onKeydown={this.handleKeyDown}
-                onKeyup={this.handleKeyUp}
-                onInput={this.handleKeyUp}
-                onChange={this.handleKeyUp}
-                size="3"
-              />,
-              [[antInputDirective]],
-            )}
+            <BaseInputCore
+              type="text"
+              value={this.stateCurrentInputValue}
+              disabled={disabled}
+              onKeydown={this.handleKeyDown}
+              onKeyup={this.handleKeyUp}
+              onInput={this.handleKeyUp}
+              onChange={this.handleKeyUp}
+              size="3"
+            >
+            </BaseInputCore>
             <span class={`${prefixCls}-slash`}>／</span>
             {allPages}
           </li>

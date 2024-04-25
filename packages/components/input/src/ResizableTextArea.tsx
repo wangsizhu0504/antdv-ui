@@ -6,13 +6,13 @@ import {
   ref,
   watch,
   watchEffect,
-  withDirectives,
 } from 'vue'
 import { classNames, devWarning, omit, raf } from '@antdv/utils'
-import type { CSSProperties, VNode } from 'vue'
+import type { CSSProperties } from 'vue'
 import { ResizeObserver } from '@antdv/vue-components'
-import { antInputDirective } from '@antdv/directives'
 
+import type { BaseInputExpose } from '@antdv/vue-components/vc-input/src/BaseInputCore'
+import BaseInput from '@antdv/vue-components/vc-input/src/BaseInputCore'
 import calculateAutoSizeStyle from './calculateNodeHeight'
 import { textAreaProps } from './props'
 
@@ -28,7 +28,7 @@ export default defineComponent({
   setup(props, { attrs, emit, expose }) {
     let nextFrameActionId: any
     let resizeFrameId: any
-    const textAreaRef = ref()
+    const textAreaRef = ref<BaseInputExpose>()
     const textareaStyles = ref({})
     const resizeStatus = ref(RESIZE_STABLE)
     onBeforeUnmount(() => {
@@ -39,12 +39,12 @@ export default defineComponent({
     // https://github.com/ant-design/ant-design/issues/21870
     const fixFirefoxAutoScroll = () => {
       try {
-        if (document.activeElement === textAreaRef.value) {
-          const currentStart = textAreaRef.value.selectionStart
-          const currentEnd = textAreaRef.value.selectionEnd
-          const scrollTop = textAreaRef.value.scrollTop
+        if (textAreaRef.value && document.activeElement === textAreaRef.value.input) {
+          const currentStart = textAreaRef.value.getSelectionStart()
+          const currentEnd = textAreaRef.value.getSelectionEnd()
+          const scrollTop = textAreaRef.value.getScrollTop()
           textAreaRef.value.setSelectionRange(currentStart, currentEnd)
-          textAreaRef.value.scrollTop = scrollTop
+          textAreaRef.value.setScrollTop(scrollTop)
         }
       } catch (e) {
         // Fix error in Chrome:
@@ -85,7 +85,7 @@ export default defineComponent({
           resizeStatus.value = RESIZE_MEASURING
         } else if (resizeStatus.value === RESIZE_MEASURING) {
           const getTextareaStyles = calculateAutoSizeStyle(
-            textAreaRef.value,
+            textAreaRef.value.input as HTMLTextAreaElement,
             false,
             minRows.value,
             maxRows.value,
@@ -124,7 +124,7 @@ export default defineComponent({
 
     expose({
       resizeTextarea,
-      textArea: textAreaRef,
+      textArea: computed(() => textAreaRef.value?.input),
       instance,
     })
 
@@ -174,9 +174,7 @@ export default defineComponent({
 
       return (
         <ResizeObserver onResize={onInternalResize} disabled={!needAutoSize.value}>
-          {withDirectives((<textarea {...textareaProps} ref={textAreaRef} />) as VNode, [
-            [antInputDirective],
-          ])}
+          <BaseInput {...textareaProps} ref={textAreaRef} tag="textarea"></BaseInput>
         </ResizeObserver>
       )
     }

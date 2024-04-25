@@ -1,7 +1,7 @@
-import { computed, defineComponent, ref, withDirectives } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { KeyCode, PropTypes } from '@antdv/utils'
-import { antInputDirective } from '@antdv/directives'
 import type { EventHandler } from '@antdv/types'
+import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -31,8 +31,8 @@ export default defineComponent({
       return `${opt.value} ${props.locale.items_per_page}`
     }
     const handleChange: EventHandler = (e) => {
-      const { value, composing } = e.target
-      if (e.isComposing || composing || goInputText.value === value) return
+      const { value } = e.target
+      if (goInputText.value === value) return
       goInputText.value = value
     }
     const handleBlur: EventHandler = (e) => {
@@ -147,18 +147,16 @@ export default defineComponent({
         goInput = (
           <div class={`${prefixCls}-quick-jumper`}>
             {locale.jump_to}
-            {withDirectives(
-              <input
-                disabled={disabled}
-                type="text"
-                value={goInputText.value}
-                onInput={handleChange}
-                onChange={handleChange}
-                onKeyup={go}
-                onBlur={handleBlur}
-              />,
-              [[antInputDirective]],
-            )}
+            <BaseInputCore
+              disabled={disabled}
+              type="text"
+              value={goInputText.value}
+              onInput={handleChange}
+              onChange={handleChange}
+              onKeyup={go}
+              onBlur={handleBlur}
+            >
+            </BaseInputCore>
             {locale.page}
             {gotoButton}
           </div>

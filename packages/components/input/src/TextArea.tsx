@@ -164,10 +164,8 @@ export default defineComponent({
     }
 
     const handleChange = (e: Event) => {
-      const { composing } = e.target as any
       let triggerValue = (e.target as any).value
-      compositing.value = !!((e as any).isComposing && composing)
-      if ((compositing.value && props.lazy) || stateValue.value === triggerValue) return
+      if (stateValue.value === triggerValue) return
 
       if (hasMaxLength.value) {
         // 1. 复制粘贴超过maxlength的情况 2.未超过maxlength的情况
@@ -221,6 +219,7 @@ export default defineComponent({
           id={resizeProps?.id ?? formItemContext.id.value}
           ref={resizableTextArea}
           maxlength={props.maxlength}
+          lazy={props.lazy}
         />
       )
     }
