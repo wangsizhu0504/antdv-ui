@@ -413,7 +413,7 @@ export default defineComponent({
         >
           <Row
             {...attrs}
-            class={`${prefixCls.value}-row`}
+            class={`${prefixCls.value}-item-row`}
             key="row"
             v-slots={{
               default: () => (
