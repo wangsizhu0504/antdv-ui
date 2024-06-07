@@ -74,6 +74,7 @@ const BaseInputCore = defineComponent({
       const event = document.createEvent('HTMLEvents')
       event.initEvent('input', true, true)
       e.target.dispatchEvent(event)
+      handleChange(e)
     }
     const handleInput = (e: Event) => {
       if (isComposing.value && props.lazy) {
