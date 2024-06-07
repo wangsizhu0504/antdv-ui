@@ -1,6 +1,6 @@
 import type { PropType } from 'vue'
 import { computed, defineComponent, ref, shallowRef, watch } from 'vue'
-import { PropTypes, anyType } from '@antdv/utils'
+import { PropTypes, anyType, styleObjectToString } from '@antdv/utils'
 import type { BaseInputInnerExpose } from './BaseInputInner'
 import BaseInputInner from './BaseInputInner'
 
@@ -38,7 +38,7 @@ const BaseInputCore = defineComponent({
       default: 'input',
     },
     size: String,
-    style: PropTypes.style,
+    style: PropTypes.oneOfType([String, Object]),
     class: PropTypes.string,
   },
   emits: [
@@ -138,13 +138,18 @@ const BaseInputCore = defineComponent({
     const handlePaste = (e: ClipboardEvent) => {
       emit('paste', e)
     }
+    const styleString = computed(() => {
+      return props.style && typeof props.style !== 'string'
+        ? styleObjectToString(props.style)
+        : props.style
+    })
     return () => {
-      const { tag: Tag, style, ...restProps } = props
+      const { style, lazy, ...restProps } = props
       return (
         <BaseInputInner
           {...restProps}
           {...attrs}
-          style={JSON.stringify(style)}
+          style={styleString.value}
           onInput={handleInput}
           onChange={handleChange}
           onBlur={handleBlur}

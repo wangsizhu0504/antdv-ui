@@ -1,3 +1,4 @@
+import { styleToString } from '@antdv/utils'
 import { createApp } from 'vue'
 import type { CSSProperties, VNodeTypes } from 'vue'
 
@@ -21,13 +22,6 @@ const wrapperStyle: CSSProperties = {
   margin: 0,
   display: 'inline',
   lineHeight: 'inherit',
-}
-
-function styleToString(style: CSSStyleDeclaration) {
-  // There are some different behavior between Firefox & Chrome.
-  // We have to handle this ourself.
-  const styleNames = Array.prototype.slice.apply(style)
-  return styleNames.map(name => `${name}: ${style.getPropertyValue(name)};`).join('')
 }
 
 function resetDomStyles(target: HTMLElement, origin: HTMLElement) {
