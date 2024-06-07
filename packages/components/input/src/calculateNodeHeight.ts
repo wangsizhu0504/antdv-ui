@@ -45,9 +45,8 @@ const computedStyleCache: Record<string, NodeType> = {}
 let hiddenTextarea: HTMLTextAreaElement
 
 export function calculateNodeStyling(node: HTMLElement, useCache = false) {
-  const nodeRef = (node.getAttribute('id')
-    || node.getAttribute('data-reactid')
-    || node.getAttribute('name')) as string
+  const nodeRef
+    = node.getAttribute('id') || node.getAttribute('data-reactid') || node.getAttribute('name')
 
   if (useCache && computedStyleCache[nodeRef])
     return computedStyleCache[nodeRef]

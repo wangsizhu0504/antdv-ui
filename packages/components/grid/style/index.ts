@@ -48,7 +48,9 @@ const genGridRowStyle: GenerateStyle<GridRowToken> = (token): CSSObject => {
       '&-space-around ': {
         justifyContent: 'space-around',
       },
-
+      '&-space-evenly ': {
+        justifyContent: 'space-evenly',
+      },
       // Align at the top
       '&-top': {
         alignItems: 'flex-start',

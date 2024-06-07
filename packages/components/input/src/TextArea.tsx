@@ -35,10 +35,10 @@ function setTriggerValue(
   let newTriggerValue = triggerValue
   if (isCursorInEnd) {
     // 光标在尾部，直接截断
-    newTriggerValue = fixEmojiLength(triggerValue, maxLength!)
+    newTriggerValue = fixEmojiLength(triggerValue, maxLength)
   } else if (
     [...(preValue || '')].length < triggerValue.length
-    && [...(triggerValue || '')].length > maxLength!
+    && [...(triggerValue || '')].length > maxLength
   ) {
     // 光标在中间，如果最后的值超过最大值，则采用原先的值
     newTriggerValue = preValue
@@ -55,7 +55,7 @@ export default defineComponent({
     const formItemContext = useInjectFormItemContext()
     const formItemInputContext = FormItemInputContext.useInject()
     const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status))
-    const stateValue = shallowRef(props.value === undefined ? props.defaultValue : props.value)
+    const stateValue = shallowRef(props.value ?? props.defaultValue)
     const resizableTextArea = shallowRef()
     const mergedValue = shallowRef('')
     const { prefixCls, size, direction } = useConfigInject('input', props)
