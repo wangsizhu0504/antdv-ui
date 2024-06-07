@@ -9,6 +9,8 @@ interface SelectorProps extends InnerSelectorProps {
   inputElement: VueNode;
   activeValue: string;
   optionLabelRender: Function;
+  // placeholder
+  compositionStatus: boolean;
 }
 const props = {
   inputElement: PropTypes.any,
@@ -19,6 +21,7 @@ const props = {
   searchValue: String,
   inputRef: PropTypes.any,
   placeholder: PropTypes.any,
+  compositionStatus: { type: Boolean, default: undefined },
   disabled: { type: Boolean, default: undefined },
   mode: String,
   showSearch: { type: Boolean, default: undefined },
@@ -63,7 +66,9 @@ const SingleSelector = defineComponent<SelectorProps>({
 
     // Not show text when closed expect combobox mode
     const hasTextInput = computed(() =>
-      props.mode !== 'combobox' && !props.open && !props.showSearch ? false : !!inputValue.value,
+      props.mode !== 'combobox' && !props.open && !props.showSearch
+        ? false
+        : !!inputValue.value || props.compositionStatus,
     )
 
     const title = computed(() => {
