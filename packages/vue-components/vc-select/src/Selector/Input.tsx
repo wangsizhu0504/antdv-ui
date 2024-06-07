@@ -95,6 +95,7 @@ const Input = defineComponent({
             'ref': inputRef,
             disabled,
             tabindex,
+            'lazy': false,
             'autocomplete': autocomplete || 'off',
             autofocus,
             'class': classNames(`${prefixCls}-selection-search-input`, inputNode?.props?.class),

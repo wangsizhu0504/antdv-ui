@@ -39,5 +39,6 @@ export default kriszu({
     'jsdoc/empty-tags': 'off',
     'ts/no-empty-interface': 'off',
     'no-prototype-builtins': 'off',
+    'unused-imports/no-unused-vars': 'off',
   },
 })

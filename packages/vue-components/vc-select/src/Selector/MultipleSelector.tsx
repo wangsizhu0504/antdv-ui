@@ -1,5 +1,14 @@
+/* eslint-disable style/jsx-one-expression-per-line */
 import type { PropType, Ref } from 'vue'
-import { computed, defineComponent, onMounted, shallowRef, watch } from 'vue'
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  ref,
+  shallowRef,
+  watch,
+  watchEffect,
+} from 'vue'
 import { PropTypes, classNames, pickAttrs } from '@antdv/utils'
 import type { VueNode } from '@antdv/types'
 import useInjectLegacySelectContext from '../../../vc-tree-select/src/LegacyContext'
@@ -21,7 +30,7 @@ type SelectorProps = InnerSelectorProps & {
   tokenSeparators?: string[];
   tagRender?: (props: CustomTagProps) => VueNode;
   onToggleOpen: any;
-
+  compositionStatus: boolean;
   // Motion
   choiceTransitionName?: string;
 
@@ -44,7 +53,7 @@ const props = {
   autocomplete: String,
   activeDescendantId: String,
   tabindex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-
+  compositionStatus: Boolean,
   removeIcon: PropTypes.any,
   choiceTransitionName: String,
 
@@ -89,11 +98,14 @@ const SelectSelector = defineComponent<SelectorProps>({
       () =>
         props.mode === 'tags' || ((props.showSearch && (props.open || focused.value)) as boolean),
     )
-
+    const targetValue = ref('')
+    watchEffect(() => {
+      targetValue.value = inputValue.value
+    })
     // We measure width and set to the input immediately
     onMounted(() => {
       watch(
-        inputValue,
+        targetValue,
         () => {
           inputWidth.value = measureRef.value.scrollWidth
         },
@@ -198,7 +210,12 @@ const SelectSelector = defineComponent<SelectorProps>({
 
       return defaultRenderSelector(content, content, false)
     }
-
+    const handleInput = (e: Event) => {
+      const composing = (e.target as any).composing
+      targetValue.value = (e.target as any).value
+      if (!composing)
+        props.onInputChange(e)
+    }
     return () => {
       const {
         id,
@@ -212,6 +229,7 @@ const SelectSelector = defineComponent<SelectorProps>({
         autocomplete,
         activeDescendantId,
         tabindex,
+        compositionStatus,
         onInputChange,
         onInputPaste,
         onInputKeyDown,
@@ -238,10 +256,10 @@ const SelectSelector = defineComponent<SelectorProps>({
             autocomplete={autocomplete}
             editable={inputEditable.value}
             activeDescendantId={activeDescendantId}
-            value={inputValue.value}
+            value={targetValue.value}
             onKeydown={onInputKeyDown}
             onMousedown={onInputMouseDown}
-            onChange={onInputChange}
+            onChange={handleInput}
             onPaste={onInputPaste}
             onCompositionstart={onInputCompositionStart}
             onCompositionend={onInputCompositionEnd}
@@ -253,8 +271,7 @@ const SelectSelector = defineComponent<SelectorProps>({
 
           {/* Measure Node */}
           <span ref={measureRef} class={`${selectionPrefixCls.value}-search-mirror`} aria-hidden>
-            {inputValue.value}
-&nbsp;
+            {targetValue.value}&nbsp;
           </span>
         </div>
       )
@@ -275,7 +292,7 @@ const SelectSelector = defineComponent<SelectorProps>({
       return (
         <>
           {selectionNode}
-          {!values.length && !inputValue.value && (
+          {!values.length && !inputValue.value && !compositionStatus && (
             <span class={`${selectionPrefixCls.value}-placeholder`}>{placeholder}</span>
           )}
         </>

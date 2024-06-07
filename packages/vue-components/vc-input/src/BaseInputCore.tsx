@@ -1,6 +1,8 @@
 import type { PropType } from 'vue'
-import { defineComponent, ref, shallowRef, watch } from 'vue'
-import { anyType } from '@antdv/utils'
+import { computed, defineComponent, ref, shallowRef, watch } from 'vue'
+import { PropTypes, anyType } from '@antdv/utils'
+import type { BaseInputInnerExpose } from './BaseInputInner'
+import BaseInputInner from './BaseInputInner'
 
 export interface BaseInputExpose {
   focus: () => void;
@@ -36,6 +38,8 @@ const BaseInputCore = defineComponent({
       default: 'input',
     },
     size: String,
+    style: PropTypes.style,
+    class: PropTypes.string,
   },
   emits: [
     'change',
@@ -46,9 +50,11 @@ const BaseInputCore = defineComponent({
     'compositionstart',
     'compositionend',
     'keyup',
+    'paste',
+    'mousedown',
   ],
   setup(props, { emit, attrs, expose }) {
-    const inputRef = shallowRef(null)
+    const inputRef = shallowRef<BaseInputInnerExpose>(null)
     const renderValue = ref()
     const isComposing = ref(false)
     watch(
@@ -119,19 +125,26 @@ const BaseInputCore = defineComponent({
     expose({
       focus,
       blur,
-      input: inputRef,
+      input: computed(() => inputRef.value?.input),
       setSelectionRange,
       select,
-      getSelectionStart: () => inputRef.value?.selectionStart,
-      getSelectionEnd: () => inputRef.value?.selectionEnd,
-      getScrollTop: () => inputRef.value?.scrollTop,
+      getSelectionStart: () => inputRef.value?.getSelectionStart(),
+      getSelectionEnd: () => inputRef.value?.getSelectionEnd(),
+      getScrollTop: () => inputRef.value?.getScrollTop(),
     })
+    const handleMousedown = (e: MouseEvent) => {
+      emit('mousedown', e)
+    }
+    const handlePaste = (e: ClipboardEvent) => {
+      emit('paste', e)
+    }
     return () => {
-      const { tag: Tag, ...restProps } = props
+      const { tag: Tag, style, ...restProps } = props
       return (
-        <Tag
+        <BaseInputInner
           {...restProps}
           {...attrs}
+          style={JSON.stringify(style)}
           onInput={handleInput}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -142,6 +155,8 @@ const BaseInputCore = defineComponent({
           onCompositionend={onCompositionend}
           onKeyup={handleKeyUp}
           onKeydown={handleKeyDown}
+          onPaste={handlePaste}
+          onMousedown={handleMousedown}
         />
       )
     }

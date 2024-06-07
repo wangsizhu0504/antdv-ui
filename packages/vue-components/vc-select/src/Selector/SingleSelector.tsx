@@ -48,11 +48,11 @@ const SingleSelector = defineComponent<SelectorProps>({
     const inputEditable = computed(() => combobox.value || props.showSearch)
 
     const inputValue = computed(() => {
-      let inputValue: string = props.searchValue || ''
+      let _inputValue: string = props.searchValue || ''
       if (combobox.value && props.activeValue && !inputChanged.value)
-        inputValue = props.activeValue
+        _inputValue = props.activeValue
 
-      return inputValue
+      return _inputValue
     })
     const legacyTreeSelectContext = useInjectLegacySelectContext()
     watch(
@@ -89,7 +89,13 @@ const SingleSelector = defineComponent<SelectorProps>({
         </span>
       )
     }
-
+    const handleInput = (e: Event) => {
+      const composing = (e.target as any).composing
+      if (!composing) {
+        inputChanged.value = true
+        props.onInputChange(e)
+      }
+    }
     return () => {
       const {
         inputElement,
@@ -106,7 +112,6 @@ const SingleSelector = defineComponent<SelectorProps>({
         optionLabelRender,
         onInputKeyDown,
         onInputMouseDown,
-        onInputChange,
         onInputPaste,
         onInputCompositionStart,
         onInputCompositionEnd,
@@ -150,10 +155,7 @@ const SingleSelector = defineComponent<SelectorProps>({
               value={inputValue.value}
               onKeydown={onInputKeyDown}
               onMousedown={onInputMouseDown}
-              onChange={(e) => {
-                inputChanged.value = true
-                onInputChange(e as any)
-              }}
+              onChange={handleInput}
               onPaste={onInputPaste}
               onCompositionstart={onInputCompositionStart}
               onCompositionend={onInputCompositionEnd}
