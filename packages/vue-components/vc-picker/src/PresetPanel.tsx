@@ -23,7 +23,8 @@ export default defineComponent({
               return (
                 <li
                   key={index}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation()
                     props.onClick(value)
                   }}
                   onMouseenter={() => {
