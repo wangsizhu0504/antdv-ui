@@ -11,7 +11,7 @@ export function floatButtonProps() {
     shape: stringType<FloatButtonShape>('circle'),
     tooltip: PropTypes.any,
     href: String,
-    target: functionType<() => Window | HTMLElement | null>(),
+    target: stringType<'_self' | '_blank' | '_parent' | '_top'>(),
     badge: objectType<FloatButtonBadgeProps>(),
     onClick: functionType<MouseEventHandler>(),
   }
