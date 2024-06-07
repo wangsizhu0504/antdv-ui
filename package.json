@@ -47,8 +47,9 @@
   "devDependencies": {
     "@antdv/build": "workspace:*",
     "@babel/plugin-transform-typescript": "^7.24.4",
-    "@kriszu/eslint-config": "^3.2.2",
+    "@kriszu/eslint-config": "^3.2.8",
     "@pnpm/find-workspace-packages": "^4.0.43",
+    "@pnpm/logger": "^4.0.0",
     "@types/fs-extra": "^11.0.4",
     "@types/jsdom": "^21.1.6",
     "@types/node": "^20.12.6",

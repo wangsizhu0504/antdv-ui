@@ -230,7 +230,6 @@ const SelectSelector = defineComponent<SelectorProps>({
         activeDescendantId,
         tabindex,
         compositionStatus,
-        onInputChange,
         onInputPaste,
         onInputKeyDown,
         onInputMouseDown,
