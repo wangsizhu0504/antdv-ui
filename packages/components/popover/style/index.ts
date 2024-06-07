@@ -1,7 +1,7 @@
 import { PresetColors, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import type { FullToken, GenerateStyle, PresetColorType } from '@antdv/theme'
 import getArrowStyle from '@antdv/theme/style/placementArrow'
-import { initShakeMotion, initZoomMotion } from '@antdv/theme/style/motion'
+import { initZoomMotion } from '@antdv/theme/style/motion'
 
 export interface ComponentToken {
   zIndexPopup: number
@@ -173,7 +173,7 @@ export default genComponentStyleHook(
       genColorStyle(popoverToken),
       wireframe && genWireframeStyle(popoverToken),
       initZoomMotion(popoverToken, 'zoom-big'),
-      initShakeMotion(popoverToken),
+      // initShakeMotion(popoverToken),
     ]
   },
   ({ zIndexPopupBase }) => ({

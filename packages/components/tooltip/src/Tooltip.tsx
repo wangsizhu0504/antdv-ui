@@ -268,7 +268,7 @@ export default defineComponent({
         onPopupAlign,
         transitionName: getTransitionName(
           rootPrefixCls.value,
-          'shake',
+          'zoom-big-fast',
           props.transitionName,
         ),
       }
