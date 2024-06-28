@@ -624,8 +624,9 @@ export default function useSelection<RecordType>(
     if (
       process.env.NODE_ENV !== 'production'
       && cloneColumns.filter(col => col === SELECTION_COLUMN).length > 1
-    )
+    ) {
       devWarning(false, 'Table', 'Multiple `SELECTION_COLUMN` exist in `columns`.')
+    }
 
     cloneColumns = cloneColumns.filter(
       (column, index) => column !== SELECTION_COLUMN || index === selectionColumnIndex,
@@ -651,8 +652,9 @@ export default function useSelection<RecordType>(
       && prevCol
       && prevCol[INTERNAL_COL_DEFINE]?.columnType === 'EXPAND_COLUMN'
       && prevCol.fixed === undefined
-    )
+    ) {
       prevCol.fixed = mergedFixed
+    }
 
     // Replace with real selection column
     const selectionColumn = {
