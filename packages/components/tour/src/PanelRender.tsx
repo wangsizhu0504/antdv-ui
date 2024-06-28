@@ -1,7 +1,7 @@
 import { computed, defineComponent, toRefs } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
 
-import { classNames } from '@antdv/utils'
+import { classNames, isFunction } from '@antdv/utils'
 import type { VueNode } from '@antdv/types'
 import { enUS as defaultLocale } from '@antdv/locale'
 import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
@@ -118,7 +118,9 @@ export default defineComponent({
                           size="small"
                           class={classNames(`${prefixCls}-prev-btn`, prevButtonProps?.className)}
                         >
-                          {prevButtonProps?.children ?? contextLocale.Previous}
+                          {isFunction(prevButtonProps?.children)
+                            ? prevButtonProps.children()
+                            : prevButtonProps?.children ?? contextLocale.Previous}
                         </Button>
                         )
                       : null}
@@ -129,8 +131,11 @@ export default defineComponent({
                       size="small"
                       class={classNames(`${prefixCls}-next-btn`, nextButtonProps?.className)}
                     >
-                      {nextButtonProps?.children
-                        ?? (isLastStep.value ? contextLocale.Finish : contextLocale.Next)}
+                      {isFunction(nextButtonProps?.children)
+                        ? nextButtonProps?.children()
+                        : isLastStep.value
+                          ? contextLocale.Finish
+                          : contextLocale.Next}
                     </Button>
                   </div>
                 </div>
