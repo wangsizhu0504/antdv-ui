@@ -6,10 +6,9 @@ import {
   someType,
   stringType,
 } from '@antdv/utils'
-import type { FocusEventHandler, Key, MouseEventHandler } from '@antdv/types'
+import type { FocusEventHandler, Key, MouseEventHandler, SizeType } from '@antdv/types'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
-import type { SizeType } from '@antdv/types'
 import type {
   AnimatedConfig,
   EditableConfig,

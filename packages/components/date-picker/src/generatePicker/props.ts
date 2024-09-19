@@ -111,64 +111,64 @@ function commonProps<DateType = any>() {
 }
 
 export interface CommonProps<DateType> {
-  id?: string
-  prefixCls?: string
+  'id'?: string
+  'prefixCls'?: string
   /**
    * @deprecated `dropdownClassName` is deprecated which will be removed in next major
    *   version.Please use `popupClassName` instead.
    */
 
-  dropdownClassName?: string
-  popupClassName?: string
-  popupStyle?: CSSProperties
-  transitionName?: string
-  placeholder?: string
-  allowClear?: boolean
-  autofocus?: boolean
-  disabled?: boolean
-  tabindex?: number
-  open?: boolean
-  defaultOpen?: boolean
-  inputReadOnly?: boolean
-  format?: string | CustomFormat<DateType> | Array<string | CustomFormat<DateType>>
-  suffixIcon?: VueNode
-  clearIcon?: VueNode
-  prevIcon?: VueNode
-  nextIcon?: VueNode
-  superPrevIcon?: VueNode
-  superNextIcon?: VueNode
-  getPopupContainer?: (triggerNode: HTMLElement) => HTMLElement
-  panelRender?: (originPanel: VueNode) => VueNode
-  onChange?: (value: DateType | string | null, dateString: string) => void
+  'dropdownClassName'?: string
+  'popupClassName'?: string
+  'popupStyle'?: CSSProperties
+  'transitionName'?: string
+  'placeholder'?: string
+  'allowClear'?: boolean
+  'autofocus'?: boolean
+  'disabled'?: boolean
+  'tabindex'?: number
+  'open'?: boolean
+  'defaultOpen'?: boolean
+  'inputReadOnly'?: boolean
+  'format'?: string | CustomFormat<DateType> | Array<string | CustomFormat<DateType>>
+  'suffixIcon'?: VueNode
+  'clearIcon'?: VueNode
+  'prevIcon'?: VueNode
+  'nextIcon'?: VueNode
+  'superPrevIcon'?: VueNode
+  'superNextIcon'?: VueNode
+  'getPopupContainer'?: (triggerNode: HTMLElement) => HTMLElement
+  'panelRender'?: (originPanel: VueNode) => VueNode
+  'onChange'?: (value: DateType | string | null, dateString: string) => void
   'onUpdate:value'?: (value: DateType | string | null) => void
-  onOk?: (value: DateType | string | null) => void
-  onOpenChange?: (open: boolean) => void
+  'onOk'?: (value: DateType | string | null) => void
+  'onOpenChange'?: (open: boolean) => void
   'onUpdate:open'?: (open: boolean) => void
-  onFocus?: FocusEventHandler
-  onBlur?: FocusEventHandler
-  onMousedown?: MouseEventHandler
-  onMouseup?: MouseEventHandler
-  onMouseenter?: MouseEventHandler
-  onMouseleave?: MouseEventHandler
-  onClick?: MouseEventHandler
-  onContextmenu?: MouseEventHandler
-  onKeydown?: (event: KeyboardEvent, preventDefault: () => void) => void
-  role?: string
-  name?: string
-  autocomplete?: string
-  direction?: 'ltr' | 'rtl'
-  showToday?: boolean
-  showTime?: boolean | SharedTimeProps<DateType>
-  locale?: DatePickerLocale
-  size?: SizeType
-  bordered?: boolean
-  dateRender?: DateRender<DateType>
-  disabledDate?: (date: DateType) => boolean
-  mode?: PanelMode
-  picker?: PickerMode
-  valueFormat?: string
-  placement?: DataPickerPlacement
-  status?: InputStatus
+  'onFocus'?: FocusEventHandler
+  'onBlur'?: FocusEventHandler
+  'onMousedown'?: MouseEventHandler
+  'onMouseup'?: MouseEventHandler
+  'onMouseenter'?: MouseEventHandler
+  'onMouseleave'?: MouseEventHandler
+  'onClick'?: MouseEventHandler
+  'onContextmenu'?: MouseEventHandler
+  'onKeydown'?: (event: KeyboardEvent, preventDefault: () => void) => void
+  'role'?: string
+  'name'?: string
+  'autocomplete'?: string
+  'direction'?: 'ltr' | 'rtl'
+  'showToday'?: boolean
+  'showTime'?: boolean | SharedTimeProps<DateType>
+  'locale'?: DatePickerLocale
+  'size'?: SizeType
+  'bordered'?: boolean
+  'dateRender'?: DateRender<DateType>
+  'disabledDate'?: (date: DateType) => boolean
+  'mode'?: PanelMode
+  'picker'?: PickerMode
+  'valueFormat'?: string
+  'placement'?: DataPickerPlacement
+  'status'?: InputStatus
 }
 
 function datePickerProps<DateType = any>() {

@@ -12,7 +12,7 @@ import type { Options } from 'scroll-into-view-if-needed'
 import type { ComponentPublicInstance, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
 import type { ValidateMessages } from '@antdv/locale'
 import type { SizeType } from '@antdv/types'
-import type { ColProps } from '../../grid/'
+import type { ColProps } from '../../grid'
 import type {
   Callbacks,
   FormExpose,

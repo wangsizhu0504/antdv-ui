@@ -327,8 +327,9 @@ export default defineComponent({
       if (
         props.disabled
         || (emptyListContent.value && mergedOpen.value && props.mode === 'combobox')
-      )
+      ) {
         mergedOpen.value = false
+      }
     })
 
     const triggerOpen = computed(() => (emptyListContent.value ? false : mergedOpen.value))

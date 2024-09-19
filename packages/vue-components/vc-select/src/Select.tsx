@@ -282,8 +282,9 @@ export default defineComponent({
         if (
           firstValue.value === null
           && (firstValue.label === null || firstValue.label === undefined)
-        )
+        ) {
           return []
+        }
       }
 
       return mergedValues.value.map(item => ({
@@ -360,8 +361,9 @@ export default defineComponent({
         || filteredOptions.value.some(
           item => item[props.optionFilterProp || 'value'] === mergedSearchValue.value,
         )
-      )
+      ) {
         return filteredOptions.value
+      }
 
       // Fill search value as option
       return [createTagOption(mergedSearchValue.value), ...filteredOptions.value]

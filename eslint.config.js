@@ -3,6 +3,7 @@ import kriszu from '@kriszu/eslint-config'
 export default kriszu({
   vue: true,
   typescript: true,
+  regexp: false,
 }, {
   rules: {
     'no-console': 'off',

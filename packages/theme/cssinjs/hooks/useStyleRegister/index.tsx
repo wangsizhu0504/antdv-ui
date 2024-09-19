@@ -54,7 +54,7 @@ export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSS
 // Preprocessor style content to browser support one
 export function normalizeStyle(styleStr: string): string {
   const serialized = serialize(compile(styleStr), stringify)
-  return serialized.replace(/\{%%%\:[^;];}/g, ';')
+  return serialized.replace(/\{%%%:[^;];\}/g, ';')
 }
 
 function isCompoundCSSProperty(value: CSSObject[string]) {

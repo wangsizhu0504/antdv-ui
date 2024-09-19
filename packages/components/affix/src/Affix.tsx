@@ -64,8 +64,9 @@ export default defineComponent({
         && placeholderRect.left === 0
         && placeholderRect.width === 0
         && placeholderRect.height === 0
-      )
+      ) {
         return
+      }
 
       const targetRect = getTargetRect(targetNode)
       const fixedTop = getFixedTop(placeholderRect, targetRect, offsetTop.value)
@@ -75,8 +76,9 @@ export default defineComponent({
         && placeholderRect.left === 0
         && placeholderRect.width === 0
         && placeholderRect.height === 0
-      )
+      ) {
         return
+      }
 
       if (fixedTop !== undefined) {
         const width = `${placeholderRect.width}px`
@@ -144,8 +146,9 @@ export default defineComponent({
           if (
             (fixedTop !== undefined && affixStyle.top === fixedTop)
             || (fixedBottom !== undefined && affixStyle.bottom === fixedBottom)
-          )
+          ) {
             return
+          }
         }
       }
       // Directly call prepare measure since it's already throttled.

@@ -150,8 +150,9 @@ export default function generateCalendar<
           if (
             (panelMode.value === 'date' && !isSameMonth(date, mergedValue.value))
             || (panelMode.value === 'month' && !isSameYear(date, mergedValue.value))
-          )
+          ) {
             triggerPanelChange(date, mergedMode.value)
+          }
 
           const val = maybeToString(date)
           emit('update:value', val)

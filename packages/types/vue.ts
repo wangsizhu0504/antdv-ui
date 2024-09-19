@@ -7,7 +7,7 @@ export interface PropOptions<T = any, D = T> {
   type?: PropType<T> | true | null;
   required?: boolean;
   default?: D | DefaultFactory<D> | null | undefined | object;
-  validator?(value: unknown): boolean;
+  validator?: (value: unknown) => boolean;
 }
 
 declare type VNodeChildAtom = VNode | string | number | boolean | null | undefined | void

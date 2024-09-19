@@ -45,7 +45,7 @@ export default function (query: any[]) {
     return query
 
   // Handling array of media queries
-  if (query instanceof Array) {
+  if (Array.isArray(query)) {
     query.forEach((q, index) => {
       mq += obj2mq(q)
       if (index < query.length - 1)

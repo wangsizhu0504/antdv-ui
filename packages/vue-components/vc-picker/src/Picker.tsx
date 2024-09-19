@@ -331,8 +331,9 @@ function Picker<DateType>() {
             !selectedValue.value
             // Normal disabled check
             || (props.disabledDate && props.disabledDate(selectedValue.value))
-          )
+          ) {
             return false
+          }
 
           triggerChange(selectedValue.value)
           triggerOpen(false)
