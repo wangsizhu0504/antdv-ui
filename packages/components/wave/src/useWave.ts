@@ -1,19 +1,24 @@
-import type { ComponentInternalInstance, ComputedRef, Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
+import { getCurrentInstance, onBeforeUnmount } from 'vue'
 import { findDOMNode } from '@antdv/utils'
 import showWaveEffect from './WaveEffect'
 
 export default function useWave(
-  instance: ComponentInternalInstance | null,
   className: Ref<string>,
   wave?: ComputedRef<{ disabled?: boolean }>,
 ): VoidFunction {
+  const instance = getCurrentInstance()
+  let stopWave: () => void
   function showWave() {
     const node = findDOMNode(instance)
-    if (wave?.value?.disabled || !node)
+    stopWave?.()
+    if (wave?.value?.disabled || !node) {
       return
-
-    showWaveEffect(node, className.value)
+    }
+    stopWave = showWaveEffect(node, className.value)
   }
-
+  onBeforeUnmount(() => {
+    stopWave?.()
+  })
   return showWave
 }

@@ -71,8 +71,9 @@ export default defineComponent({
           || !(window as any).File
           || !(file.originFileObj instanceof File || (file.originFileObj as Blob) instanceof Blob)
           || file.thumbUrl !== undefined
-        )
+        ) {
           return
+        }
 
         file.thumbUrl = ''
         if (props.previewFile) {

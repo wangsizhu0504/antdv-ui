@@ -31,13 +31,12 @@ export default defineComponent({
 
     // =============================== Wave ===============================
     const showWave = useWave(
-      instance,
       computed(() => classNames(prefixCls.value, hashId.value)),
       wave,
     )
     let onClick: (e: MouseEvent) => void
     const clear = () => {
-      const node = findDOMNode(instance)
+      const node = findDOMNode(instance) as HTMLElement
       node.removeEventListener('click', onClick, true)
     }
 
@@ -65,8 +64,9 @@ export default defineComponent({
                 || (node as HTMLInputElement).disabled
                 || node.className.includes('disabled')
                 || node.className.includes('-leave')
-              )
+              ) {
                 return
+              }
 
               showWave()
             }
