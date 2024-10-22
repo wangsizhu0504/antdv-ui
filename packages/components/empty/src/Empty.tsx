@@ -1,5 +1,8 @@
-import { computed, defineComponent, inject } from 'vue'
+import { type } from 'node:os'
+import { computed, defineComponent, h, inject } from 'vue'
 import { classNames, filterEmpty } from '@antdv/utils'
+import image from '@antdv/components/image'
+import type { VueNode } from '@antdv/types'
 import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
 
 import { configProviderKey, defaultConfigProvider } from '../../config-provider/src/context'
@@ -10,20 +13,15 @@ import SimpleEmptyImg from './SimpleEmptyImg'
 import { emptyProps } from './props'
 import type { EmptyProps } from './props'
 
-const defaultEmptyImg = <DefaultEmptyImg />
-const simpleEmptyImg = <SimpleEmptyImg />
-
 interface Locale {
   description?: string
 }
 
-export default defineComponent({
+const Empty = defineComponent({
   name: 'AEmpty',
   compatConfig: { MODE: 3 },
   inheritAttrs: false,
   props: emptyProps(),
-  PRESENTED_IMAGE_DEFAULT: defaultEmptyImg,
-  PRESENTED_IMAGE_SIMPLE: simpleEmptyImg,
   setup(props, { slots = {}, attrs }) {
     const configProvider = inject(configProviderKey, defaultConfigProvider)
     const prefixClsRef = computed(() => configProvider.getPrefixCls('empty', props.prefixCls))
@@ -33,12 +31,17 @@ export default defineComponent({
     return () => {
       const prefixCls = prefixClsRef.value
       const {
-        image = slots.image?.() || defaultEmptyImg,
+        image: mergedImage = slots.image?.() || h(DefaultEmptyImg),
         description = slots.description?.() || undefined,
         imageStyle,
         class: className = '',
         ...restProps
       } = { ...props, ...attrs }
+
+      const image
+        = typeof mergedImage === 'function' ? (mergedImage as () => VueNode)() : mergedImage
+      const isNormal
+        = typeof image === 'object' && 'type' in image && (image.type as any).PRESENTED_IMAGE_SIMPLE
 
       return wrapSSR(
         <LocaleReceiver
@@ -56,7 +59,7 @@ export default defineComponent({
             return (
               <div
                 class={classNames(prefixCls, className, hashId.value, {
-                  [`${prefixCls}-normal`]: image === simpleEmptyImg,
+                  [`${prefixCls}-normal`]: isNormal,
                   [`${prefixCls}-rtl`]: direction.value === 'rtl',
                 })}
                 {...restProps}
@@ -76,3 +79,7 @@ export default defineComponent({
     }
   },
 })
+Empty.PRESENTED_IMAGE_DEFAULT = () => h(DefaultEmptyImg)
+Empty.PRESENTED_IMAGE_SIMPLE = () => h(SimpleEmptyImg)
+
+export default Empty
