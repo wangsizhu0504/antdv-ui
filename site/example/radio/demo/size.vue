@@ -15,6 +15,15 @@ title:
 There are three sizes available: large, medium, and small. It can coordinate with input box.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value1 = ref<string>('a')
+  const value2 = ref<string>('a')
+  const value3 = ref<string>('a')
+</script>
+
 <template>
   <div>
     <div>
@@ -43,10 +52,3 @@ There are three sizes available: large, medium, and small. It can coordinate wit
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const value1 = ref<string>('a');
-const value2 = ref<string>('a');
-const value3 = ref<string>('a');
-</script>

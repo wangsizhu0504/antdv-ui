@@ -1,7 +1,14 @@
 import type { PropType } from 'vue'
 import { computed, defineComponent, toRefs } from 'vue'
 import { BuildOutlined, CarOutlined } from '@ant-design/icons-vue'
-import { ConfigProvider, Drawer, Empty, Tag, Tooltip, theme as antdTheme } from '@antdv/ui'
+import {
+  ConfigProvider,
+  Drawer,
+  Empty,
+  Tag,
+  Tooltip,
+  theme as antdTheme,
+} from '@antdv/ui'
 import { classNames } from '@antdv/utils'
 import ComponentDemos from '../component-demos'
 import type { AliasToken, ComponentDemo, MutableTheme, TokenName, TokenValue } from '../interface'
@@ -74,14 +81,16 @@ const ComponentFullDemos = defineComponent({
           {demos.value?.map(demo => (
             <ComponentCard
               key={demo.key}
-              title={
+              title={(
                 <Tooltip title={demo.tokens?.join(', ')}>
                   <span>
-                    {locale.value.demo.relatedTokens}: {demo.tokens?.join(', ')}
+                    {locale.value.demo.relatedTokens}
+                    :
+                    {demo.tokens?.join(', ')}
                     {(demo.tokens?.length || 0) > 2 ? '...' : ''}
                   </span>
                 </Tooltip>
-              }
+              )}
             >
               {demo.demo}
             </ComponentCard>
@@ -180,9 +189,8 @@ const ComponentTokenDrawer = defineComponent({
                 themes={[theme.value!]}
                 fallback={(() => componentToken.value.component) as any}
                 onTokenChange={(_, tokenName, value) =>
-                  handleComponentTokenChange(tokenName, value)
-                }
-                placeholder={
+                  handleComponentTokenChange(tokenName, value)}
+                placeholder={(
                   <Empty
                     image={Empty.PRESENTED_IMAGE_SIMPLE}
                     description="暂无相关 Component Token"
@@ -191,7 +199,7 @@ const ComponentTokenDrawer = defineComponent({
                       paddingBlock: '32px',
                     }}
                   />
-                }
+                )}
               />
               <TokenCard
                 icon={<CarOutlined />}
@@ -203,9 +211,8 @@ const ComponentTokenDrawer = defineComponent({
                 tokenPath={['components', component.value]}
                 fallback={themeConfig => getDesignToken(themeConfig) as AliasToken}
                 onTokenChange={(_, tokenName, value) =>
-                  handleComponentTokenChange(tokenName, value)
-                }
-                placeholder={
+                  handleComponentTokenChange(tokenName, value)}
+                placeholder={(
                   <Empty
                     image={Empty.PRESENTED_IMAGE_SIMPLE}
                     description="暂无相关 Alias Token"
@@ -214,7 +221,7 @@ const ComponentTokenDrawer = defineComponent({
                       paddingBlock: '32px',
                     }}
                   />
-                }
+                )}
               />
             </div>
           </div>

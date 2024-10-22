@@ -16,9 +16,21 @@ Using pre & post tabs example.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { SettingOutlined } from '@ant-design/icons-vue'
+
+  const value1 = ref<any>(100)
+  const value2 = ref<any>(100)
+  const value3 = ref<any>(100)
+  const value4 = ref<any>(100)
+  const addonBeforeValue = ref<any>('add')
+  const addonAfterValue = ref<any>('USD')
+</script>
+
 <template>
   <a-space direction="vertical">
-    <a-input-number v-model:value="value1" addon-before="+" addon-after="$"></a-input-number>
+    <a-input-number v-model:value="value1" addon-before="+" addon-after="$"/>
     <a-input-number v-model:value="value2">
       <template #addonBefore>
         <a-select v-model:value="addonBeforeValue" style="width: 60px">
@@ -45,13 +57,3 @@ Using pre & post tabs example.
     </a-input-number>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { SettingOutlined } from '@ant-design/icons-vue';
-const value1 = ref(100);
-const value2 = ref(100);
-const value3 = ref(100);
-const value4 = ref(100);
-const addonBeforeValue = ref('add');
-const addonAfterValue = ref('USD');
-</script>

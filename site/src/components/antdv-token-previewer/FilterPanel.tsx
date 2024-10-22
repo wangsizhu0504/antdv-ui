@@ -80,7 +80,7 @@ const FilterPanel = defineComponent({
     const filterMode = ref<FilterMode>(customFilterMode.value || 'filter')
 
     return () => {
-      if (selectedTokens.value.length === 0)
+      if (selectedTokens.value?.length === 0)
         return null
 
       return wrapSSR(
@@ -110,10 +110,8 @@ const FilterPanel = defineComponent({
                     key={token}
                     closable
                     onClose={() =>
-                      props.onSelectedTokensChange?.(
-                        selectedTokens.value?.filter(item => item !== token),
-                      )
-                    }
+                      // @ts-expect-error
+                      props.onSelectedTokensChange?.(selectedTokens.value?.filter(item => item !== token))}
                     style={{ marginBlock: '2px', cursor: 'pointer' }}
                     class="previewer-token-filter-tag"
                     onClick={() => props.onTokenClick?.(token)}

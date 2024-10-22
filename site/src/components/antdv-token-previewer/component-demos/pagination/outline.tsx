@@ -6,7 +6,7 @@ import type { ComponentDemo } from '../../interface'
 const Demo = defineComponent({
   setup() {
     return () => (
-      <Space direction={'vertical'}>
+      <Space direction="vertical">
         <Pagination showQuickJumper pageSize={1} defaultCurrent={2} total={10} />
       </Space>
     )

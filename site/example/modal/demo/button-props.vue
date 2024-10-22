@@ -16,6 +16,21 @@ Passing `okButtonProps` and `cancelButtonProps` can customize the ok button and 
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const open = ref<boolean>(false)
+
+  function showModal() {
+    open.value = true
+  }
+
+  function handleOk(e: MouseEvent) {
+    console.log(e)
+    open.value = false
+  }
+</script>
+
 <template>
   <div>
     <a-button type="primary" @click="showModal">Open Modal with customized button props</a-button>
@@ -32,17 +47,3 @@ Passing `okButtonProps` and `cancelButtonProps` can customize the ok button and 
     </a-modal>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const open = ref<boolean>(false);
-
-const showModal = () => {
-  open.value = true;
-};
-
-const handleOk = (e: MouseEvent) => {
-  console.log(e);
-  open.value = false;
-};
-</script>

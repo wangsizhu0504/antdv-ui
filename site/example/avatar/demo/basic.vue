@@ -15,6 +15,10 @@ title:
 Three sizes and two shapes are available.
 </docs>
 
+<script lang="ts" setup>
+  import { UserOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-space direction="vertical" :size="32">
     <a-space wrap :size="16">
@@ -47,7 +51,3 @@ Three sizes and two shapes are available.
     </a-space>
   </a-space>
 </template>
-
-<script lang="ts" setup>
-import { UserOutlined } from '@ant-design/icons-vue';
-</script>

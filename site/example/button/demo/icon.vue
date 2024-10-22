@@ -19,6 +19,11 @@ title:
 If you want specific control over the positioning and placement of the `Icon`, then that should be done by placing the `Icon` component within the `Button` rather than using the `icon` property.
 </docs>
 
+<script lang="ts" setup>
+  import { h } from 'vue'
+  import { SearchOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-space direction="vertical">
     <a-space warp>
@@ -45,7 +50,3 @@ If you want specific control over the positioning and placement of the `Icon`, t
     </a-space>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { h } from 'vue';
-import { SearchOutlined } from '@ant-design/icons-vue';
-</script>

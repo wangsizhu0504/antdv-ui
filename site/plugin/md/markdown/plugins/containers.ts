@@ -3,7 +3,7 @@ import type Token from 'markdown-it/lib/token'
 
 import container from 'markdown-it-container'
 
-export const containerPlugin = (md: MarkdownIt) => {
+export function containerPlugin(md: MarkdownIt) {
   md.use(...createContainer('tip', 'TIP'))
     .use(...createContainer('warning', 'WARNING'))
     .use(...createContainer('danger', 'WARNING'))
@@ -18,7 +18,7 @@ type ContainerArgs = [
   typeof container,
   string,
   {
-    render(tokens: Token[], idx: number): string
+    render: (tokens: Token[], idx: number) => string
   },
 ]
 

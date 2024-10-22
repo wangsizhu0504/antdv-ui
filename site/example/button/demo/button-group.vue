@@ -16,6 +16,10 @@ Debug usage
 Debug usage
 </docs>
 
+<script lang="ts" setup>
+  import { CloudDownloadOutlined, CloudOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <div id="site-example-button-demo-button-group">
     <h4>Basic</h4>
@@ -55,15 +59,6 @@ Debug usage
     </a-button-group>
   </div>
 </template>
-
-<script lang="ts" setup>
-import {
-  LeftOutlined,
-  RightOutlined,
-  CloudDownloadOutlined,
-  CloudOutlined,
-} from '@ant-design/icons-vue';
-</script>
 
 <style scoped>
 #site-example-button-demo-button-group > h4 {

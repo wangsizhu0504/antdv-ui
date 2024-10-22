@@ -32,8 +32,9 @@ export function getTypeOfToken(tokenName: string): TokenType {
       || tokenName.startsWith('colorIcon')
       || tokenName.startsWith('colorPlaceholder')
       || tokenName.startsWith('colorIcon')
-    )
+    ) {
       return 'colorText'
+    }
 
     if (tokenName.startsWith('colorBg') || tokenName.startsWith('colorPopupBg'))
       return 'colorBg'

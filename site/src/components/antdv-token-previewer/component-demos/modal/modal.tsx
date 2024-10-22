@@ -4,7 +4,7 @@ import type { ComponentDemo } from '../../interface'
 
 const Demo = defineComponent({
   setup() {
-    const isModalVisible = ref(false)
+    const isModalVisible = ref<any>(false)
     const showModal = () => {
       isModalVisible.value = true
     }
@@ -27,7 +27,11 @@ const Demo = defineComponent({
             onOk={handleOk}
             onCancel={handleCancel}
           >
-            <p>Some contents...</p> <p>Some contents...</p> <p>Some contents...</p>
+            <p>Some contents...</p>
+            {' '}
+            <p>Some contents...</p>
+            {' '}
+            <p>Some contents...</p>
           </Modal>
         </>
       )

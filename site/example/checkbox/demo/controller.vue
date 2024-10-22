@@ -16,6 +16,25 @@ Communicated with other components
 
 </docs>
 
+<script lang="ts" setup>
+  import { computed, ref } from 'vue'
+
+  const checked = ref<any>(false)
+  const disabled = ref<any>(false)
+
+  function toggleChecked() {
+    checked.value = !checked.value
+  }
+
+  function toggleDisable() {
+    disabled.value = !disabled.value
+  }
+
+  const label = computed(() => {
+    return `${checked.value ? 'Checked' : 'Unchecked'}-${disabled.value ? 'Disabled' : 'Enabled'}`
+  })
+</script>
+
 <template>
   <p :style="{ marginBottom: '20px' }">
     <a-checkbox v-model:checked="checked" :disabled="disabled">
@@ -31,21 +50,3 @@ Communicated with other components
     </a-button>
   </p>
 </template>
-<script lang="ts" setup>
-import { computed, ref } from 'vue';
-
-const checked = ref(false);
-const disabled = ref(false);
-
-const toggleChecked = () => {
-  checked.value = !checked.value;
-};
-
-const toggleDisable = () => {
-  disabled.value = !disabled.value;
-};
-
-const label = computed(() => {
-  return `${checked.value ? 'Checked' : 'Unchecked'}-${disabled.value ? 'Disabled' : 'Enabled'}`;
-});
-</script>

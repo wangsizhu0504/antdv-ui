@@ -19,6 +19,21 @@ Three columns layout is often used for advanced searching of data table.
 Because the width of label is not fixed, you may need to adjust it by customizing its style.
 
 </docs>
+
+<script lang="ts" setup>
+  import { reactive, ref } from 'vue'
+  import { DownOutlined, UpOutlined } from '@ant-design/icons-vue'
+  import type { FormInstance } from '@antdv/ui'
+
+  const expand = ref<any>(false)
+  const formRef = ref<FormInstance>()
+  const formState = reactive({})
+  function onFinish(values: any) {
+    console.log('Received values of form: ', values)
+    console.log('formState: ', formState)
+  }
+</script>
+
 <template>
   <div>
     <a-form
@@ -36,7 +51,7 @@ Because the width of label is not fixed, you may need to adjust it by customizin
               :label="`field-${i}`"
               :rules="[{ required: true, message: 'input something' }]"
             >
-              <a-input v-model:value="formState[`field-${i}`]" placeholder="placeholder"></a-input>
+              <a-input v-model:value="formState[`field-${i}`]" placeholder="placeholder"/>
             </a-form-item>
           </a-col>
         </template>
@@ -60,18 +75,6 @@ Because the width of label is not fixed, you may need to adjust it by customizin
     <div class="search-result-list">Search Result List</div>
   </div>
 </template>
-<script lang="ts" setup>
-import { reactive, ref } from 'vue';
-import { DownOutlined, UpOutlined } from '@ant-design/icons-vue';
-import type { FormInstance } from '@antdv/ui';
-const expand = ref(false);
-const formRef = ref<FormInstance>();
-const formState = reactive({});
-const onFinish = (values: any) => {
-  console.log('Received values of form: ', values);
-  console.log('formState: ', formState);
-};
-</script>
 
 <style scoped>
 #site-example-form-demo-advanced-search .ant-form {

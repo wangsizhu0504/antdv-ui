@@ -14,6 +14,11 @@ title:
 
 The most basic step bar.
 </docs>
+
+<script lang="ts" setup>
+  const description = 'This is a description.'
+</script>
+
 <template>
   <a-steps
     :current="1"
@@ -32,8 +37,5 @@ The most basic step bar.
         description,
       },
     ]"
-  ></a-steps>
+  />
 </template>
-<script lang="ts" setup>
-const description = 'This is a description.';
-</script>

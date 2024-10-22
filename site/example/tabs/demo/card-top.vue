@@ -15,6 +15,12 @@ Should be used at the top of container, needs to override styles.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const activeKey = ref<any>('2')
+</script>
+
 <template>
   <div class="card-container">
     <a-tabs v-model:activeKey="activeKey" type="card">
@@ -36,10 +42,6 @@ Should be used at the top of container, needs to override styles.
     </a-tabs>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const activeKey = ref('2');
-</script>
 
 <style scoped>
 .card-container p {

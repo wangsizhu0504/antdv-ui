@@ -16,6 +16,18 @@ A button is on the left, and a related functional menu is on the right. You can 
 
 </docs>
 
+<script lang="ts" setup>
+  import { DownOutlined, UserOutlined } from '@ant-design/icons-vue'
+  import type { MenuProps } from '@antdv/ui'
+
+  function handleButtonClick(e: Event) {
+    console.log('click left button', e)
+  }
+  const handleMenuClick: MenuProps['onClick'] = (e) => {
+    console.log('click', e)
+  }
+</script>
+
 <template>
   <div class="demo-dropdown-wrap">
     <a-dropdown-button @click="handleButtonClick">
@@ -100,16 +112,7 @@ A button is on the left, and a related functional menu is on the right. You can 
     </a-dropdown>
   </div>
 </template>
-<script lang="ts" setup>
-import { UserOutlined, DownOutlined } from '@ant-design/icons-vue';
-import type { MenuProps } from '@antdv/ui';
-const handleButtonClick = (e: Event) => {
-  console.log('click left button', e);
-};
-const handleMenuClick: MenuProps['onClick'] = e => {
-  console.log('click', e);
-};
-</script>
+
 <style lang="less" scoped>
 .demo-dropdown-wrap :deep(.ant-dropdown-button) {
   margin-right: 8px;

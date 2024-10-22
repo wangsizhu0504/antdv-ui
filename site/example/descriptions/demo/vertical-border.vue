@@ -1,7 +1,7 @@
 <docs>
 ---
 order: 5
-title: 
+title:
   zh-CN: 垂直带边框的
   en-US: Vertical Border
 ---

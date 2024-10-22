@@ -1,39 +1,39 @@
 <script>
-import * as AntdIcons from '@ant-design/icons-vue'
-import { Badge } from '@antdv/ui'
-import { defineComponent } from 'vue'
+  import * as AntdIcons from '@ant-design/icons-vue'
+  import { Badge } from '@antdv/ui'
+  import { defineComponent } from 'vue'
 
-const allIcons = AntdIcons
+  const allIcons = AntdIcons
 
-const kebabCase = function kebabCase(str) {
-  return str
-    .split(/(?=[A-Z])/)
-    .join('-')
-    .toLowerCase()
-}
+  const kebabCase = function kebabCase(str) {
+    return str
+      .split(/(?=[A-Z])/)
+      .join('-')
+      .toLowerCase()
+  }
 
-export default defineComponent({
-  components: {
-    ABadge: Badge,
-  },
-  props: ['name', 'type', 'isNew', 'theme', 'justCopied'],
-  data() {
-    const kebabCasedName = kebabCase(this.name)
-    const kebabCasedType = kebabCase(this.type)
-
-    this.allIcons = allIcons
-
-    return {
-      text: `<${kebabCasedName} />`,
-      kebabCasedType,
-    }
-  },
-  methods: {
-    onCopied() {
-      this.$emit('copied', this.type, this.text)
+  export default defineComponent({
+    components: {
+      ABadge: Badge,
     },
-  },
-})
+    props: ['name', 'type', 'isNew', 'theme', 'justCopied'],
+    data() {
+      const kebabCasedName = kebabCase(this.name)
+      const kebabCasedType = kebabCase(this.type)
+
+      this.allIcons = allIcons
+
+      return {
+        text: `<${kebabCasedName} />`,
+        kebabCasedType,
+      }
+    },
+    methods: {
+      onCopied() {
+        this.$emit('copied', this.type, this.text)
+      },
+    },
+  })
 </script>
 
 <template>
@@ -44,9 +44,9 @@ export default defineComponent({
   >
     <component :is="allIcons[name]" />
     <span class="anticon-class">
-      <a-badge :dot="isNew">
+      <ABadge :dot="isNew">
         {{ kebabCasedType }}
-      </a-badge>
+      </ABadge>
     </span>
   </li>
 </template>

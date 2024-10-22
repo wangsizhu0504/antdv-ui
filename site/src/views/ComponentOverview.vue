@@ -1,50 +1,50 @@
 <script lang="ts">
-import { computed, defineComponent, inject, onMounted, ref } from 'vue'
-import { SearchOutlined } from '@ant-design/icons-vue'
-import type { GlobalConfig } from '../App.vue'
-import { GLOBAL_CONFIG } from '../SymbolKey'
-import useMenus from '../hooks/useMenus'
-import { getLocalizedPathname } from '../utils/util'
+  import { computed, defineComponent, inject, onMounted, ref } from 'vue'
+  import { SearchOutlined } from '@ant-design/icons-vue'
+  import type { GlobalConfig } from '../App.vue'
+  import { GLOBAL_CONFIG } from '../SymbolKey'
+  import useMenus from '../hooks/useMenus'
+  import { getLocalizedPathname } from '../utils/util'
 
-export default defineComponent({
-  name: 'ComponentOverview',
-  components: {
-    SearchOutlined,
-  },
-  setup() {
-    const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG)
-    const themeMode = inject('themeMode')
-    const isDark = computed<boolean>(() => (themeMode as any).theme.value === 'dark')
-    const search = ref('')
-    const inputRef = ref()
-    const { dataSource } = useMenus()
-    const menuItems = computed(() => {
-      return [].concat(
-        ...dataSource.value.filter(i => i.order > -1)
-          .map((group) => {
-            const components = group.children.filter((component: any) =>
-              !search.value.trim()
+  export default defineComponent({
+    name: 'ComponentOverview',
+    components: {
+      SearchOutlined,
+    },
+    setup() {
+      const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG)
+      const themeMode = inject('themeMode')
+      const isDark = computed<boolean>(() => (themeMode as any).theme.value === 'dark')
+      const search = ref<any>('')
+      const inputRef = ref<any>()
+      const { dataSource } = useMenus()
+      const menuItems = computed(() => {
+        return [].concat(
+          ...dataSource.value.filter(i => i.order > -1)
+            .map((group) => {
+              const components = group.children.filter((component: any) =>
+                !search.value.trim()
                 || component.title.toLowerCase().includes(search.value.trim().toLowerCase())
                 || (component.subtitle || '').toLowerCase().includes(search.value.trim().toLowerCase()),
-            )
-            return { ...group, children: components }
-          }).filter(i => i.children.length),
-      ) as any[]
-    })
-    onMounted(() => {
-      inputRef.value.focus()
-    })
-    return {
-      globalConfig,
-      search,
-      menuItems,
-      getLocalizedPathname,
-      inputRef,
-      isZhCN: globalConfig?.isZhCN,
-      isDark,
-    }
-  },
-})
+              )
+              return { ...group, children: components }
+            }).filter(i => i.children.length),
+        ) as any[]
+      })
+      onMounted(() => {
+        inputRef.value.focus()
+      })
+      return {
+        globalConfig,
+        search,
+        menuItems,
+        getLocalizedPathname,
+        inputRef,
+        isZhCN: globalConfig?.isZhCN,
+        isDark,
+      }
+    },
+  })
 </script>
 
 <template>

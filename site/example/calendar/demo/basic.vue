@@ -15,14 +15,17 @@ title:
 A basic calendar component with Year/Month switch.
 
 </docs>
-<template>
-  <a-calendar v-model:value="value" @panelChange="onPanelChange" />
-</template>
+
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { Dayjs } from 'dayjs';
-const value = ref<Dayjs>();
-const onPanelChange = (value: Dayjs, mode: string) => {
-  console.log(value, mode);
-};
+  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs'
+
+  const value = ref<Dayjs>()
+  function onPanelChange(value: Dayjs, mode: string) {
+    console.log(value, mode)
+  }
 </script>
+
+<template>
+  <a-calendar v-model:value="value" @panel-change="onPanelChange" />
+</template>

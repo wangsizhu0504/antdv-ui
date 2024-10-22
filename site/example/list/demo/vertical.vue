@@ -16,6 +16,36 @@ Setting `itemLayout` property with `vertical` to create a vertical list.
 
 </docs>
 
+<script lang="ts" setup>
+  import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons-vue'
+
+  const listData: Array<Record<string, string>> = []
+
+  for (let i = 0; i < 23; i++) {
+    listData.push({
+      href: 'https://www.antdv.com/',
+      title: `ant design vue part ${i}`,
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      description:
+        'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+      content:
+        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+    })
+  }
+
+  const pagination = {
+    onChange: (page: number) => {
+      console.log(page)
+    },
+    pageSize: 3,
+  }
+  const actions: Array<Record<string, any>> = [
+    { icon: StarOutlined, text: '156' },
+    { icon: LikeOutlined, text: '156' },
+    { icon: MessageOutlined, text: '2' },
+  ]
+</script>
+
 <template>
   <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="listData">
     <template #footer>
@@ -50,31 +80,3 @@ Setting `itemLayout` property with `vertical` to create a vertical list.
     </template>
   </a-list>
 </template>
-<script lang="ts" setup>
-import { StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons-vue';
-const listData: Record<string, string>[] = [];
-
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    href: 'https://www.antdv.com/',
-    title: `ant design vue part ${i}`,
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    description:
-      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  });
-}
-
-const pagination = {
-  onChange: (page: number) => {
-    console.log(page);
-  },
-  pageSize: 3,
-};
-const actions: Record<string, any>[] = [
-  { icon: StarOutlined, text: '156' },
-  { icon: LikeOutlined, text: '156' },
-  { icon: MessageOutlined, text: '2' },
-];
-</script>

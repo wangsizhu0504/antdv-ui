@@ -66,8 +66,9 @@ export function pickAttrs(props: object, ariaOnly: boolean | PickConfig = false)
       || (mergedConfig.data && match(key, dataPrefix))
       // Attr
       || (mergedConfig.attr && (propList.includes(key) || propList.includes(key.toLowerCase())))
-    )
+    ) {
       attrs[key] = props[key]
+    }
   })
   return attrs
 }

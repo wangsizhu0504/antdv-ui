@@ -5,7 +5,7 @@ import type { ComponentDemo } from '../../interface'
 
 const Demo = defineComponent({
   setup() {
-    return () => <Result status={'warning'} title="Demo示意" subTitle="status 为warning" />
+    return () => <Result status="warning" title="Demo示意" subTitle="status 为warning" />
   },
 })
 

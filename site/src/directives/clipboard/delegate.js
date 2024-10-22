@@ -4,14 +4,14 @@ import closest from './closest'
  * Delegates event to a selector.
  *
  * @param {Element} element
- * @param {String} selector
- * @param {String} type
+ * @param {string} selector
+ * @param {string} type
  * @param {Function} callback
- * @param {Boolean} useCapture
- * @return {Object}
+ * @param {boolean} useCapture
+ * @return {object}
  */
 function _delegate(element, selector, type, callback, useCapture) {
-  // eslint-disable-next-line @typescript-eslint/no-invalid-this
+  // eslint-disable-next-line ts/no-invalid-this
   const listenerFn = listener.apply(this, arguments)
 
   element.addEventListener(type, listenerFn, useCapture)
@@ -26,12 +26,12 @@ function _delegate(element, selector, type, callback, useCapture) {
 /**
  * Delegates event to a selector.
  *
- * @param {Element|String|Array} [elements]
- * @param {String} selector
- * @param {String} type
+ * @param {Element | string | Array} [elements]
+ * @param {string} selector
+ * @param {string} type
  * @param {Function} callback
- * @param {Boolean} useCapture
- * @return {Object}
+ * @param {boolean} useCapture
+ * @return {object}
  */
 function delegate(elements, selector, type, callback, useCapture) {
   // Handle the regular Element usage
@@ -61,8 +61,8 @@ function delegate(elements, selector, type, callback, useCapture) {
  * Finds closest match and invokes callback.
  *
  * @param {Element} element
- * @param {String} selector
- * @param {String} type
+ * @param {string} selector
+ * @param {string} type
  * @param {Function} callback
  * @return {Function}
  */

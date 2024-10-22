@@ -97,8 +97,9 @@ function warningProps(props: SelectProps) {
             !isValidElement(subNode)
             || !node.type
             || (subNode.type as { isSelectOption?: boolean }).isSelectOption
-          )
+          ) {
             return true
+          }
 
           invalidateChildType = subNode.type
           return false

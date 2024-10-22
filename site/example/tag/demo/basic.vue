@@ -15,6 +15,12 @@ Usage of basic Tag, and it could be closable by set `closable` property. Closabl
 
 </docs>
 
+<script lang="ts" setup>
+  function log(e: MouseEvent) {
+    console.log(e)
+  }
+</script>
+
 <template>
   <div>
     <a-tag>Tag 1</a-tag>
@@ -23,8 +29,3 @@ Usage of basic Tag, and it could be closable by set `closable` property. Closabl
     <a-tag closable @close.prevent>Prevent Default</a-tag>
   </div>
 </template>
-<script lang="ts" setup>
-const log = (e: MouseEvent) => {
-  console.log(e);
-};
-</script>

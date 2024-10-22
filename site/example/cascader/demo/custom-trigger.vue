@@ -15,6 +15,53 @@ title:
 Separate trigger button and result.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { CascaderProps } from '@antdv/ui'
+
+  const options: CascaderProps['options'] = [
+    {
+      value: 'zhejiang',
+      label: 'Zhejiang',
+      children: [
+        {
+          value: 'hangzhou',
+          label: 'Hangzhou',
+          children: [
+            {
+              value: 'xihu',
+              label: 'West Lake',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: 'jiangsu',
+      label: 'Jiangsu',
+      children: [
+        {
+          value: 'nanjing',
+          label: 'Nanjing',
+          children: [
+            {
+              value: 'zhonghuamen',
+              label: 'Zhong Hua Men',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  const value = ref<string[]>([])
+  const text = ref<string>('Unselect')
+
+  const onChange: CascaderProps['onChange'] = (_value, selectedOptions) => {
+    text.value = selectedOptions.map(o => o.label).join(', ')
+  }
+</script>
+
 <template>
   <span>
     {{ text }} &nbsp;
@@ -28,47 +75,3 @@ Separate trigger button and result.
     </a-cascader>
   </span>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { CascaderProps } from '@antdv/ui';
-const options: CascaderProps['options'] = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
-  },
-];
-const value = ref<string[]>([]);
-const text = ref<string>('Unselect');
-
-const onChange: CascaderProps['onChange'] = (_value, selectedOptions) => {
-  text.value = selectedOptions.map(o => o.label).join(', ');
-};
-</script>

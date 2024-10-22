@@ -15,6 +15,48 @@ title:
 Custom Field Names
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { CascaderProps } from '@antdv/ui'
+
+  const options: CascaderProps['options'] = [
+    {
+      code: 'zhejiang',
+      name: 'Zhejiang',
+      items: [
+        {
+          code: 'hangzhou',
+          name: 'Hangzhou',
+          items: [
+            {
+              code: 'xihu',
+              name: 'West Lake',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      code: 'jiangsu',
+      name: 'Jiangsu',
+      items: [
+        {
+          code: 'nanjing',
+          name: 'Nanjing',
+          items: [
+            {
+              code: 'zhonghuamen',
+              name: 'Zhong Hua Men',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  const value = ref<string[]>([])
+</script>
+
 <template>
   <a-cascader
     v-model:value="value"
@@ -23,42 +65,3 @@ Custom Field Names
     placeholder="Please select"
   />
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { CascaderProps } from '@antdv/ui';
-const options: CascaderProps['options'] = [
-  {
-    code: 'zhejiang',
-    name: 'Zhejiang',
-    items: [
-      {
-        code: 'hangzhou',
-        name: 'Hangzhou',
-        items: [
-          {
-            code: 'xihu',
-            name: 'West Lake',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    code: 'jiangsu',
-    name: 'Jiangsu',
-    items: [
-      {
-        code: 'nanjing',
-        name: 'Nanjing',
-        items: [
-          {
-            code: 'zhonghuamen',
-            name: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
-  },
-];
-const value = ref<string[]>([]);
-</script>

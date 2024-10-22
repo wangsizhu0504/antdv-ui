@@ -2,14 +2,16 @@ import { defineComponent, ref } from 'vue'
 import { AutoComplete } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
 
-const mockVal = (str: string, repeat = 1) => ({
-  value: str.repeat(repeat),
-})
+function mockVal(str: string, repeat = 1) {
+  return {
+    value: str.repeat(repeat),
+  }
+}
 
 const Demo = defineComponent({
   setup() {
-    const value = ref('')
-    const options = ref<{ value: string }[]>([])
+    const value = ref<any>('')
+    const options = ref<Array<{ value: string }>>([])
     const onSearch = (searchText: string) => {
       options.value = !searchText
         ? []
@@ -32,8 +34,12 @@ const Demo = defineComponent({
             onSelect={onSelect}
             onSearch={onSearch}
             placeholder="input here"
-          />{' '}
-          <br /> <br />{' '}
+          />
+          {' '}
+          <br />
+          {' '}
+          <br />
+          {' '}
           <AutoComplete
             value={value.value}
             options={options.value}
@@ -42,7 +48,8 @@ const Demo = defineComponent({
             onSearch={onSearch}
             onChange={onChange}
             placeholder="control mode"
-          />{' '}
+          />
+          {' '}
         </>
       )
     }

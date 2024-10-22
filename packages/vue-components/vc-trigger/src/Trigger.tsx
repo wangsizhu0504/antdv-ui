@@ -212,8 +212,9 @@ export default defineComponent({
         && e.relatedTarget
         && !e.relatedTarget.setTimeout
         && contains(this.popupRef?.getElement(), e.relatedTarget)
-      )
+      ) {
         return
+      }
 
       if (this.isMouseLeaveToHide())
         this.delaySetPopupVisible(false, this.$props.mouseLeaveDelay)
@@ -290,8 +291,9 @@ export default defineComponent({
         && (this.isClickToHide() || this.isBlurToHide())
         && event
         && event.preventDefault
-      )
+      ) {
         event.preventDefault()
+      }
 
       if (event && event.domEvent)
         event.domEvent.preventDefault()
@@ -673,8 +675,9 @@ export default defineComponent({
         if (
           e
           && (!e.relatedTarget || !contains(e.target as HTMLElement, e.relatedTarget as HTMLElement))
-        )
+        ) {
           this.createTwoChains('onBlur')(e)
+        }
       }
     }
     const childrenClassName = classNames(child && child.props && child.props.class, $attrs.class)

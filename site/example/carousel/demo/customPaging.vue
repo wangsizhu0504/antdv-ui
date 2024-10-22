@@ -16,6 +16,23 @@ Custom paging display
 
 </docs>
 
+<script lang="ts">
+  import { defineComponent } from 'vue'
+
+  const baseUrl
+    = 'https://raw.githubusercontent.com/vueComponent/@antdv/ui/main/components/carousel/demo/'
+  export default defineComponent({
+    setup() {
+      const getImgUrl = (i: number) => {
+        return `${baseUrl}abstract0${i + 1}.jpg`
+      }
+      return {
+        getImgUrl,
+      }
+    },
+  })
+</script>
+
 <template>
   <a-carousel arrows dots-class="slick-dots slick-thumb">
     <template #customPaging="props">
@@ -28,22 +45,7 @@ Custom paging display
     </div>
   </a-carousel>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
 
-const baseUrl =
-  'https://raw.githubusercontent.com/vueComponent/@antdv/ui/main/components/carousel/demo/';
-export default defineComponent({
-  setup() {
-    const getImgUrl = (i: number) => {
-      return `${baseUrl}abstract0${i + 1}.jpg`;
-    };
-    return {
-      getImgUrl,
-    };
-  },
-});
-</script>
 <style scoped>
 /* For demo */
 :deep(.slick-dots) {

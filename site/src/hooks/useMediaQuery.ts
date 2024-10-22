@@ -43,7 +43,7 @@ export type MediaQueryKey = keyof typeof MediaQueryEnum
  * `Rendered more hooks than during the previous render.`
  * So should use Array.forEach
  */
-export const getScreenClassName = () => {
+export function getScreenClassName() {
   let className: MediaQueryKey = 'md'
   // support ssr
   if (typeof window === 'undefined')
@@ -60,8 +60,8 @@ export const getScreenClassName = () => {
   return className
 }
 
-const useMedia = () => {
-  const colSpan = ref(getScreenClassName());
+function useMedia() {
+  const colSpan = ref<any>(getScreenClassName());
   (Object.keys(MediaQueryEnum) as MediaQueryKey[]).forEach((key) => {
     const { matchMedia } = MediaQueryEnum[key]
     const mediaQuery = window.matchMedia(matchMedia)

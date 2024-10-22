@@ -28,7 +28,7 @@ const treeData = [
     ],
   },
 ]
-const Demo = () => {
+function Demo() {
   return (
     <Tree
       disabled

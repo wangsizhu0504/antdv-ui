@@ -1,6 +1,5 @@
 import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken } from '@antdv/theme'
-import { resetComponent } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 
 interface StatisticToken extends FullToken<'Statistic'> {
   statisticTitleFontSize: number

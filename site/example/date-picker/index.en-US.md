@@ -194,12 +194,12 @@ The following APIs are shared by DatePicker, RangePicker.
 #### formatType
 
 ```typescript
-import type { Dayjs } from 'dayjs';
+import type { Dayjs } from 'dayjs'
 
-type Generic = string;
-type GenericFn = (value: Dayjs) => string;
+type Generic = string
+type GenericFn = (value: Dayjs) => string
 
-export type FormatType = Generic | GenericFn | Array<Generic | GenericFn>;
+export type FormatType = Generic | GenericFn | Array<Generic | GenericFn>
 ```
 
 ## FAQ
@@ -219,12 +219,12 @@ Please use correct [language](/docs/vue/i18n) ([#5605](https://github.com/ant-de
 - Example: <https://codesandbox.io/s/dayjs-day-of-week-x9tuj2?file=/demo.tsx>
 
 ```js
-import dayjs from 'dayjs';
-import updateLocale from 'dayjs/plugin/updateLocale';
-import 'dayjs/locale/zh-cn';
+import dayjs from 'dayjs'
+import updateLocale from 'dayjs/plugin/updateLocale'
+import 'dayjs/locale/zh-cn'
 
-dayjs.extend(updateLocale);
+dayjs.extend(updateLocale)
 dayjs.updateLocale('zh-cn', {
   weekStart: 0,
-});
+})
 ```

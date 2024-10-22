@@ -144,20 +144,20 @@ const TokenInput = defineComponent({
         >
           {(canReset.value || hideTheme.value)
             ? (
-            <Button
-              style={{
-                fontSize: '12px',
-              }}
-              onClick={handleReset}
-              type="link"
-              size="small"
-              disabled={!canReset.value}
-            >
-              {locale.value.reset}
-            </Button>
+              <Button
+                style={{
+                  fontSize: '12px',
+                }}
+                onClick={handleReset}
+                type="link"
+                size="small"
+                disabled={!canReset.value}
+              >
+                {locale.value.reset}
+              </Button>
               )
             : (
-            <span style={{ padding: '0 8px' }}>{theme.value?.name}</span>
+              <span style={{ padding: '0 8px' }}>{theme.value?.name}</span>
               )}
         </span>
       )
@@ -170,7 +170,7 @@ const TokenInput = defineComponent({
             addonAfter={addonAfter}
             value={String(tokenValue.value)}
             disabled={readonly.value}
-            addonBefore={
+            addonBefore={(
               <Popover
                 trigger="click"
                 placement="bottomRight"
@@ -199,7 +199,7 @@ const TokenInput = defineComponent({
                   }}
                 />
               </Popover>
-            }
+            )}
             onChange={(e) => {
               handleTokenChange(e.target.value)
             }}

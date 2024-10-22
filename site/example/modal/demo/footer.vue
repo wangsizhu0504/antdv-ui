@@ -20,6 +20,29 @@ You could set `footer` to `null` if you don't need default footer buttons.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const loading = ref<boolean>(false)
+  const open = ref<boolean>(false)
+
+  function showModal() {
+    open.value = true
+  }
+
+  function handleOk() {
+    loading.value = true
+    setTimeout(() => {
+      loading.value = false
+      open.value = false
+    }, 2000)
+  }
+
+  function handleCancel() {
+    open.value = false
+  }
+</script>
+
 <template>
   <div>
     <a-button type="primary" @click="showModal">Open Modal with customized footer</a-button>
@@ -36,24 +59,3 @@ You could set `footer` to `null` if you don't need default footer buttons.
     </a-modal>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const loading = ref<boolean>(false);
-const open = ref<boolean>(false);
-
-const showModal = () => {
-  open.value = true;
-};
-
-const handleOk = () => {
-  loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-    open.value = false;
-  }, 2000);
-};
-
-const handleCancel = () => {
-  open.value = false;
-};
-</script>

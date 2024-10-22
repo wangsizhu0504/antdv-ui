@@ -16,6 +16,10 @@ There are 12 placement options available.
 
 </docs>
 
+<script lang="ts" setup>
+  const buttonWidth = 70
+</script>
+
 <template>
   <div id="components-a-tooltip-demo-placement">
     <div :style="{ marginLeft: `${buttonWidth}px`, whiteSpace: 'nowrap' }">
@@ -100,9 +104,7 @@ There are 12 placement options available.
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-const buttonWidth = 70;
-</script>
+
 <style scoped>
 :deep(#components-a-tooltip-demo-placement) .ant-btn {
   width: 70px;

@@ -16,6 +16,15 @@ The input box comes in three sizes. large is used in the form, while the medium 
 
 </docs>
 
+<script lang="ts" setup>
+  import dayjs from 'dayjs'
+  import { ref } from 'vue'
+
+  const value1 = ref<any>(dayjs('12:08:23', 'HH:mm'))
+  const value2 = ref<any>(dayjs('12:08:23', 'HH:mm'))
+  const value3 = ref<any>(dayjs('12:08:23', 'HH:mm'))
+</script>
+
 <template>
   <a-space direction="vertical">
     <a-time-picker v-model:value="value1" size="large" />
@@ -23,10 +32,3 @@ The input box comes in three sizes. large is used in the form, while the medium 
     <a-time-picker v-model:value="value3" size="small" />
   </a-space>
 </template>
-<script lang="ts" setup>
-import dayjs from 'dayjs';
-import { ref } from 'vue';
-const value1 = ref(dayjs('12:08:23', 'HH:mm'));
-const value2 = ref(dayjs('12:08:23', 'HH:mm'));
-const value3 = ref(dayjs('12:08:23', 'HH:mm'));
-</script>

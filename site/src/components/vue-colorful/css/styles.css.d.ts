@@ -1,2 +1,2 @@
-declare const cssString: string;
-export default cssString;
+declare const cssString: string
+export default cssString

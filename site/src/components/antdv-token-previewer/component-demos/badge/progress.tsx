@@ -6,7 +6,7 @@ const Demo = defineComponent({
   setup() {
     return () => (
       <Space size="small">
-        <Badge dot status={'processing'} />
+        <Badge dot status="processing" />
         Process
       </Space>
     )

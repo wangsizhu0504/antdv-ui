@@ -73,7 +73,12 @@ const Demo = defineComponent({
             } else if (column.key === 'action') {
               return (
                 <Space size="middle">
-                  <a>Invite {record.name}</a> <a>Delete</a>
+                  <a>
+                    Invite
+                    {record.name}
+                  </a>
+                  {' '}
+                  <a>Delete</a>
                 </Space>
               )
             } else {

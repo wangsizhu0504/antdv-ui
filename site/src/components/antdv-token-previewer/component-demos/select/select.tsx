@@ -8,9 +8,11 @@ function handleChange() {}
 const Demo = defineComponent({
   setup() {
     return () => (
-      <Space align={'start'}>
+      <Space align="start">
         <Select value="lucy" style={{ width: '120px' }} onChange={handleChange}>
-          <Option value="jack">Jack</Option> <Option value="lucy">Lucy</Option>
+          <Option value="jack">Jack</Option>
+          {' '}
+          <Option value="lucy">Lucy</Option>
           <Option value="disabled" disabled>
             Disabled
           </Option>

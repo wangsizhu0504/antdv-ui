@@ -16,6 +16,44 @@ Basic Usage
 
 </docs>
 
+<script lang="ts" setup>
+  import { MehOutlined, SmileOutlined } from '@ant-design/icons-vue'
+  import type { SelectProps } from '@antdv/ui'
+  import { ref } from 'vue'
+
+  function handleChange(value: string) {
+    console.log(`selected ${value}`)
+  }
+
+  const options1 = ref<SelectProps['options']>([
+    {
+      value: 'jack',
+      label: 'Jack',
+    },
+    {
+      value: 'lucy',
+      label: 'Lucy',
+    },
+    {
+      value: 'disabled',
+      label: 'Disabled',
+      disabled: true,
+    },
+    {
+      value: 'yiminghe',
+      label: 'Yiminghe',
+    },
+  ])
+  const options2 = ref<SelectProps['options']>([
+    {
+      value: 'lucy',
+      label: 'Lucy',
+    },
+  ])
+  const value1 = ref<any>('lucy')
+  const value2 = ref<any>('lucy')
+</script>
+
 <template>
   <a-space>
     <a-select
@@ -24,47 +62,10 @@ Basic Usage
       :options="options1"
       @change="handleChange"
     >
-      <template #suffixIcon><smile-outlined class="ant-select-suffix" /></template>
+      <template #suffixIcon><SmileOutlined class="ant-select-suffix" /></template>
     </a-select>
     <a-select v-model:value="value2" style="width: 120px" disabled :options="options2">
-      <template #suffixIcon><meh-outlined class="ant-select-suffix" /></template>
+      <template #suffixIcon><MehOutlined class="ant-select-suffix" /></template>
     </a-select>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { SmileOutlined, MehOutlined } from '@ant-design/icons-vue';
-import type { SelectProps } from '@antdv/ui';
-import { ref } from 'vue';
-
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
-};
-
-const options1 = ref<SelectProps['options']>([
-  {
-    value: 'jack',
-    label: 'Jack',
-  },
-  {
-    value: 'lucy',
-    label: 'Lucy',
-  },
-  {
-    value: 'disabled',
-    label: 'Disabled',
-    disabled: true,
-  },
-  {
-    value: 'yiminghe',
-    label: 'Yiminghe',
-  },
-]);
-const options2 = ref<SelectProps['options']>([
-  {
-    value: 'lucy',
-    label: 'Lucy',
-  },
-]);
-const value1 = ref('lucy');
-const value2 = ref('lucy');
-</script>

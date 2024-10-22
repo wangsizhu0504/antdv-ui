@@ -15,6 +15,18 @@ title:
 Vertical RadioGroup, with more radios.
 
 </docs>
+
+<script lang="ts" setup>
+  import { reactive, ref } from 'vue'
+
+  const value = ref<number>(1)
+  const radioStyle = reactive({
+    display: 'flex',
+    height: '30px',
+    lineHeight: '30px',
+  })
+</script>
+
 <template>
   <a-radio-group v-model:value="value">
     <a-radio :style="radioStyle" :value="1">Option A</a-radio>
@@ -26,12 +38,3 @@ Vertical RadioGroup, with more radios.
     </a-radio>
   </a-radio-group>
 </template>
-<script lang="ts" setup>
-import { reactive, ref } from 'vue';
-const value = ref<number>(1);
-const radioStyle = reactive({
-  display: 'flex',
-  height: '30px',
-  lineHeight: '30px',
-});
-</script>

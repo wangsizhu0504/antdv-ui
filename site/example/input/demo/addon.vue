@@ -15,6 +15,19 @@ title:
 Using pre & post tabs example.
 
 </docs>
+
+<script lang="ts" setup>
+  import { SettingOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
+
+  const value1 = ref<string>('mysite')
+  const value2 = ref<string>('mysite')
+  const value3 = ref<string>('Http://')
+  const value4 = ref<string>('.com')
+  const value5 = ref<string>('mysite')
+  const value6 = ref<string>('mysite')
+</script>
+
 <template>
   <a-space direction="vertical">
     <a-input v-model:value="value1" addon-before="Http://" addon-after=".com" />
@@ -36,7 +49,7 @@ Using pre & post tabs example.
     </a-input>
     <a-input v-model:value="value5">
       <template #addonAfter>
-        <setting-outlined />
+        <SettingOutlined />
       </template>
     </a-input>
 
@@ -47,14 +60,3 @@ Using pre & post tabs example.
     </a-input>
   </a-space>
 </template>
-
-<script lang="ts" setup>
-import { SettingOutlined } from '@ant-design/icons-vue';
-import { ref } from 'vue';
-const value1 = ref<string>('mysite');
-const value2 = ref<string>('mysite');
-const value3 = ref<string>('Http://');
-const value4 = ref<string>('.com');
-const value5 = ref<string>('mysite');
-const value6 = ref<string>('mysite');
-</script>

@@ -16,12 +16,16 @@ Add unit through `prefix` and `suffix`.
 
 </docs>
 
+<script lang="ts" setup>
+  import { LikeOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-row :gutter="16">
     <a-col :span="12">
       <a-statistic title="Feedback" :value="1128" style="margin-right: 50px">
         <template #suffix>
-          <like-outlined />
+          <LikeOutlined />
         </template>
       </a-statistic>
     </a-col>
@@ -34,6 +38,3 @@ Add unit through `prefix` and `suffix`.
     </a-col>
   </a-row>
 </template>
-<script lang="ts" setup>
-import { LikeOutlined } from '@ant-design/icons-vue';
-</script>

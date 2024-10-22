@@ -16,6 +16,20 @@ Basic drawer.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const open = ref<boolean>(false)
+
+  function afterOpenChange(bool: boolean) {
+    console.log('open', bool)
+  }
+
+  function showDrawer() {
+    open.value = true
+  }
+</script>
+
 <template>
   <a-button type="primary" @click="showDrawer">Open</a-button>
   <a-drawer
@@ -33,15 +47,3 @@ Basic drawer.
     <p>Some contents...</p>
   </a-drawer>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const open = ref<boolean>(false);
-
-const afterOpenChange = (bool: boolean) => {
-  console.log('open', bool);
-};
-
-const showDrawer = () => {
-  open.value = true;
-};
-</script>

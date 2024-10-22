@@ -21,8 +21,9 @@ export function restoreFocus(activeElement, container) {
     activeElement !== document.activeElement
     && contains(container, activeElement)
     && typeof activeElement.focus === 'function'
-  )
+  ) {
     activeElement.focus()
+  }
 }
 
 export function monitorResize(element: HTMLElement, callback: Function) {

@@ -15,6 +15,15 @@ title:
 You can show the total number of data by setting `showTotal`.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const current1 = ref<number>(1)
+  const current2 = ref<number>(2)
+  const pageSize1 = ref<number>(20)
+  const pageSize2 = ref<number>(20)
+</script>
+
 <template>
   <div>
     <a-pagination
@@ -32,10 +41,3 @@ You can show the total number of data by setting `showTotal`.
     />
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const current1 = ref<number>(1);
-const current2 = ref<number>(2);
-const pageSize1 = ref<number>(20);
-const pageSize2 = ref<number>(20);
-</script>

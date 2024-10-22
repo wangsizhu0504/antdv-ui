@@ -16,6 +16,10 @@ Divider and disabled menu item.
 
 </docs>
 
+<script lang="ts" setup>
+  import { DownOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-dropdown>
     <a class="ant-dropdown-link" @click.prevent>
@@ -40,6 +44,3 @@ Divider and disabled menu item.
     </template>
   </a-dropdown>
 </template>
-<script lang="ts" setup>
-import { DownOutlined } from '@ant-design/icons-vue';
-</script>

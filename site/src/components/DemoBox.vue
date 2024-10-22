@@ -18,10 +18,10 @@
       jsfiddle: Object,
     },
     setup(props) {
-      const codeExpand = ref(false)
-      const type = ref('TS')
-      const copyTooltipVisible = ref(false)
-      const copied = ref(false)
+      const codeExpand = ref<any>(false)
+      const type = ref<any>('TS')
+      const copyTooltipVisible = ref<any>(false)
+      const copied = ref<any>(false)
       const codeRef = ref<HTMLDivElement>()
       const sectionId = computed(() => {
         const relativePath = props.jsfiddle?.relativePath.replace('components/', '') || ''
@@ -76,8 +76,8 @@
         copied.value = true
       }
       const handleCodeSandbox = () => {
-        const code = codeRef.value!.innerText
-        const params = getCodeSandboxParams(code, {
+        const code = codeRef.value!.textContent
+        const params = getCodeSandboxParams(code!, {
           title: `${title.value} - @antdv/ui@${packageInfo.version}`,
         })
         const div = document.createElement('div')
@@ -103,7 +103,7 @@
           title,
         })
       })
-      const theme = computed(() => inject('themeMode', { theme: ref('light') }).theme.value)
+      const theme = computed(() => inject('themeMode', { theme: ref<any>('light') }).theme.value)
       return {
         docHtml,
         iframeDemo,
@@ -195,7 +195,7 @@
               "
               :class="codeExpand ? 'code-expand-icon-hide' : 'code-expand-icon-show'"
               @click="handleCodeExpand"
-            >
+            />
             <img
               alt="expand code"
               :src="
@@ -205,7 +205,7 @@
               "
               :class="codeExpand ? 'code-expand-icon-show' : 'code-expand-icon-hide'"
               @click="handleCodeExpand"
-            >
+            />
           </span>
         </a-tooltip>
       </div>

@@ -15,6 +15,10 @@ title:
 Usually used for reminders and notifications.
 </docs>
 
+<script lang="ts" setup>
+  import { UserOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-space :size="24">
     <a-badge :count="1">
@@ -29,7 +33,3 @@ Usually used for reminders and notifications.
     </a-badge>
   </a-space>
 </template>
-
-<script lang="ts" setup>
-import { UserOutlined } from '@ant-design/icons-vue';
-</script>

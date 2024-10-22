@@ -80,8 +80,9 @@ namespace qrcodegen {
         )
         || mask < -1
         || mask > 7
-      )
+      ) {
         throw new RangeError('Invalid value')
+      }
 
       // Find the minimal version number to use
       let version: int
@@ -503,8 +504,9 @@ namespace qrcodegen {
             color === this.modules[y][x + 1]
             && color === this.modules[y + 1][x]
             && color === this.modules[y + 1][x + 1]
-          )
+          ) {
             result += QrCode.PENALTY_N2
+          }
         }
       }
 

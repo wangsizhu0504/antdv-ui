@@ -16,6 +16,31 @@ Search the options while expanded.
 
 </docs>
 
+<script lang="ts" setup>
+  import type { SelectProps } from '@antdv/ui'
+  import { ref } from 'vue'
+
+  const options = ref<SelectProps['options']>([
+    { value: 'jack', label: 'Jack' },
+    { value: 'lucy', label: 'Lucy' },
+    { value: 'tom', label: 'Tom' },
+  ])
+  function handleChange(value: string) {
+    console.log(`selected ${value}`)
+  }
+  function handleBlur() {
+    console.log('blur')
+  }
+  function handleFocus() {
+    console.log('focus')
+  }
+  function filterOption(input: string, option: any) {
+    return option.value.toLowerCase().includes(input.toLowerCase())
+  }
+
+  const value = ref<string | undefined>(undefined)
+</script>
+
 <template>
   <a-select
     v-model:value="value"
@@ -27,28 +52,5 @@ Search the options while expanded.
     @focus="handleFocus"
     @blur="handleBlur"
     @change="handleChange"
-  ></a-select>
+  />
 </template>
-<script lang="ts" setup>
-import type { SelectProps } from '@antdv/ui';
-import { ref } from 'vue';
-const options = ref<SelectProps['options']>([
-  { value: 'jack', label: 'Jack' },
-  { value: 'lucy', label: 'Lucy' },
-  { value: 'tom', label: 'Tom' },
-]);
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
-};
-const handleBlur = () => {
-  console.log('blur');
-};
-const handleFocus = () => {
-  console.log('focus');
-};
-const filterOption = (input: string, option: any) => {
-  return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0;
-};
-
-const value = ref<string | undefined>(undefined);
-</script>

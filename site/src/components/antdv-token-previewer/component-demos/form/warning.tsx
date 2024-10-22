@@ -7,7 +7,7 @@ const Demo = defineComponent({
     return () => {
       const onFinish = () => {}
       const onFinishFailed = () => {}
-      const formRef = ref()
+      const formRef = ref<any>()
       const formData = reactive({
         username: '',
       })
@@ -26,7 +26,7 @@ const Demo = defineComponent({
             name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            <Input status={'warning'} v-model={[formData.username, 'value']} />
+            <Input status="warning" v-model={[formData.username, 'value']} />
           </FormItem>
         </Form>
       )

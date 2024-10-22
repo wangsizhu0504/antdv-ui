@@ -23,6 +23,88 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
 **Note, this example use [Mock API](https://randomuser.me) that you can look up in Network Console.**
 </docs>
 
+<script lang="ts" setup>
+  import { computed } from 'vue'
+  import type { TableProps } from '@antdv/ui'
+  import { usePagination } from 'vue-request'
+  import axios from 'axios'
+
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      sorter: true,
+      width: '20%',
+    },
+    {
+      title: 'Gender',
+      dataIndex: 'gender',
+      filters: [
+        { text: 'Male', value: 'male' },
+        { text: 'Female', value: 'female' },
+      ],
+      width: '20%',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+    },
+  ]
+
+  type APIParams = {
+    results: number;
+    page?: number;
+    sortField?: string;
+    sortOrder?: number;
+    [key: string]: any;
+  }
+  type APIResult = {
+    results: Array<{
+      gender: 'female' | 'male';
+      name: string;
+      email: string;
+    }>;
+  }
+
+  function queryData(params: APIParams) {
+    return axios.get<APIResult>('https://randomuser.me/api?noinfo', { params })
+  }
+
+  const {
+    data: dataSource,
+    run,
+    loading,
+    current,
+    pageSize,
+  } = usePagination(queryData, {
+    pagination: {
+      currentKey: 'page',
+      pageSizeKey: 'results',
+    },
+  })
+  const list = computed(() => dataSource.value?.data?.results || [])
+  console.log('dataSource', dataSource)
+  const pagination = computed(() => ({
+    total: 200,
+    current: current.value,
+    pageSize: pageSize.value,
+  }))
+
+  const handleTableChange: TableProps['onChange'] = (
+    pag: { pageSize: number; current: number },
+    filters: any,
+    sorter: any,
+  ) => {
+    run({
+      results: pag.pageSize,
+      page: pag?.current,
+      sortField: sorter.field,
+      sortOrder: sorter.order,
+      ...filters,
+    })
+  }
+</script>
+
 <template>
   <a-table
     :columns="columns"
@@ -37,83 +119,3 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
     </template>
   </a-table>
 </template>
-<script lang="ts" setup>
-import { computed,watch } from 'vue';
-import type { TableProps } from '@antdv/ui';
-import { usePagination } from 'vue-request';
-import axios from 'axios';
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    sorter: true,
-    width: '20%',
-  },
-  {
-    title: 'Gender',
-    dataIndex: 'gender',
-    filters: [
-      { text: 'Male', value: 'male' },
-      { text: 'Female', value: 'female' },
-    ],
-    width: '20%',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-  },
-];
-
-type APIParams = {
-  results: number;
-  page?: number;
-  sortField?: string;
-  sortOrder?: number;
-  [key: string]: any;
-};
-type APIResult = {
-  results: {
-    gender: 'female' | 'male';
-    name: string;
-    email: string;
-  }[];
-};
-
-const queryData = (params: APIParams) => {
-  return axios.get<APIResult>('https://randomuser.me/api?noinfo', { params });
-};
-
-const {
-  data: dataSource,
-  run,
-  loading,
-  current,
-  pageSize,
-} = usePagination(queryData, {
-  pagination: {
-    currentKey: 'page',
-    pageSizeKey: 'results',
-  },
-});
-const list = computed(() => dataSource.value?.data?.results || [])
-console.log('dataSource',dataSource)
-const pagination = computed(() => ({
-  total: 200,
-  current: current.value,
-  pageSize: pageSize.value,
-}));
-
-const handleTableChange: TableProps['onChange'] = (
-  pag: { pageSize: number; current: number },
-  filters: any,
-  sorter: any,
-) => {
-  run({
-    results: pag.pageSize,
-    page: pag?.current,
-    sortField: sorter.field,
-    sortOrder: sorter.order,
-    ...filters,
-  });
-};
-</script>

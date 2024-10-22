@@ -21,11 +21,12 @@ const Demo = defineComponent({
     return () => (
       <Mentions
         style={{ width: '100%' }}
-        status={'error'}
+        status="error"
         disabled
         defaultValue="@afc163"
         options={options}
-      ></Mentions>
+      >
+      </Mentions>
     )
   },
 })

@@ -16,6 +16,18 @@ Button component compact example.
 
 </docs>
 
+<script lang="ts" setup>
+  import {
+    CommentOutlined,
+    DownloadOutlined,
+    EllipsisOutlined,
+    HeartOutlined,
+    LikeOutlined,
+    ShareAltOutlined,
+    StarOutlined,
+  } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <div>
     <a-space-compact block>
@@ -124,15 +136,3 @@ Button component compact example.
     </a-space-compact>
   </div>
 </template>
-
-<script lang="ts" setup>
-import {
-  DownloadOutlined,
-  EllipsisOutlined,
-  HeartOutlined,
-  LikeOutlined,
-  CommentOutlined,
-  StarOutlined,
-  ShareAltOutlined,
-} from '@ant-design/icons-vue';
-</script>

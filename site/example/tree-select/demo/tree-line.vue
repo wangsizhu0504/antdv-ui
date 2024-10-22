@@ -16,19 +16,57 @@ Use `treeLine` to show the line style.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref, watch } from 'vue'
+  import type { TreeSelectProps } from '@antdv/ui'
+
+  const treeLine = ref<any>(true)
+  const showLeafIcon = ref<any>(false)
+  const value = ref<string>()
+  const treeData = ref<TreeSelectProps['treeData']>([
+    {
+      title: 'parent 1',
+      value: 'parent 1',
+      children: [
+        {
+          title: 'parent 1-0',
+          value: 'parent 1-0',
+          children: [
+            {
+              title: 'my leaf',
+              value: 'leaf1',
+            },
+            {
+              title: 'your leaf',
+              value: 'leaf2',
+            },
+          ],
+        },
+        {
+          title: 'parent 1-1',
+          value: 'parent 1-1',
+        },
+      ],
+    },
+  ])
+  watch(value, () => {
+    console.log(value.value)
+  })
+</script>
+
 <template>
   <a-space direction="vertical">
     <a-switch
       v-model:checked="treeLine"
       checked-children="treeLine"
       un-checked-children="treeLine"
-    ></a-switch>
+    />
     <a-switch
       v-model:checked="showLeafIcon"
       :disabled="!treeLine"
       checked-children="showLeafIcon"
       un-checked-children="showLeafIcon"
-    ></a-switch>
+    />
     <a-tree-select
       v-model:value="value"
       style="width: 300px"
@@ -44,40 +82,3 @@ Use `treeLine` to show the line style.
     </a-tree-select>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref, watch } from 'vue';
-import type { TreeSelectProps } from '@antdv/ui';
-
-const treeLine = ref(true);
-const showLeafIcon = ref(false);
-const value = ref<string>();
-const treeData = ref<TreeSelectProps['treeData']>([
-  {
-    title: 'parent 1',
-    value: 'parent 1',
-    children: [
-      {
-        title: 'parent 1-0',
-        value: 'parent 1-0',
-        children: [
-          {
-            title: 'my leaf',
-            value: 'leaf1',
-          },
-          {
-            title: 'your leaf',
-            value: 'leaf2',
-          },
-        ],
-      },
-      {
-        title: 'parent 1-1',
-        value: 'parent 1-1',
-      },
-    ],
-  },
-]);
-watch(value, () => {
-  console.log(value.value);
-});
-</script>

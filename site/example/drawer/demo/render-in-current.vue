@@ -16,6 +16,20 @@ Render in current dom. custom container, check `getContainer`.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const open = ref<any>(false)
+
+  function showDrawer() {
+    open.value = true
+  }
+
+  function onClose() {
+    open.value = false
+  }
+</script>
+
 <template>
   <div
     :style="{
@@ -46,15 +60,3 @@ Render in current dom. custom container, check `getContainer`.
     </a-drawer>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const open = ref(false);
-
-const showDrawer = () => {
-  open.value = true;
-};
-
-const onClose = () => {
-  open.value = false;
-};
-</script>

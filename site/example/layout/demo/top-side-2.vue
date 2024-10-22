@@ -15,6 +15,16 @@ title:
 Both the top navigation and the sidebar, commonly used in application site.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons-vue'
+
+  const selectedKeys1 = ref<string[]>(['2'])
+  const selectedKeys2 = ref<string[]>(['1'])
+  const openKeys = ref<string[]>(['sub1'])
+</script>
+
 <template>
   <a-layout>
     <a-layout-header class="header">
@@ -41,7 +51,7 @@ Both the top navigation and the sidebar, commonly used in application site.
           <a-sub-menu key="sub1">
             <template #title>
               <span>
-                <user-outlined />
+                <UserOutlined />
                 subnav 1
               </span>
             </template>
@@ -53,7 +63,7 @@ Both the top navigation and the sidebar, commonly used in application site.
           <a-sub-menu key="sub2">
             <template #title>
               <span>
-                <laptop-outlined />
+                <LaptopOutlined />
                 subnav 2
               </span>
             </template>
@@ -65,7 +75,7 @@ Both the top navigation and the sidebar, commonly used in application site.
           <a-sub-menu key="sub3">
             <template #title>
               <span>
-                <notification-outlined />
+                <NotificationOutlined />
                 subnav 3
               </span>
             </template>
@@ -91,13 +101,6 @@ Both the top navigation and the sidebar, commonly used in application site.
     </a-layout>
   </a-layout>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons-vue';
-const selectedKeys1 = ref<string[]>(['2']);
-const selectedKeys2 = ref<string[]>(['1']);
-const openKeys = ref<string[]>(['sub1']);
-</script>
 
 <style scoped>
 #components-layout-demo-top-side-2 .logo {

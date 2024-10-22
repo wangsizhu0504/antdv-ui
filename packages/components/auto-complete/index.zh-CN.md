@@ -78,12 +78,12 @@ AutoComplete 组件是一个支持自动提示的 Input 组件，因而其不具
 #### v2
 
 ```ts
-dataSource = ['light', 'bamboo'];
+dataSource = ['light', 'bamboo']
 // or
 dataSource = [
   { value: 'light', text: 'Light' },
   { value: 'bamboo', text: 'Bamboo' },
-];
+]
 ```
 
 #### v3
@@ -92,5 +92,5 @@ dataSource = [
 options = [
   { value: 'light', label: 'Light' },
   { value: 'bamboo', label: 'Bamboo' },
-];
+]
 ```

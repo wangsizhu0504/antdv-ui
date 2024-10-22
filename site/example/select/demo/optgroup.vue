@@ -16,13 +16,50 @@ Using `OptGroup` or `options.options` to group the options.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { UserOutlined } from '@ant-design/icons-vue'
+  import type { SelectProps } from '@antdv/ui'
+
+  function handleChange(value: string) {
+    console.log(`selected ${value}`)
+  }
+
+  const options = ref<SelectProps['options']>([
+    {
+      label: 'Manager',
+      options: [
+        {
+          value: 'jack',
+          label: 'Jack',
+        },
+        {
+          value: 'lucy',
+          label: 'Lucy',
+        },
+      ],
+    },
+    {
+      label: 'Engineer',
+      options: [
+        {
+          value: 'yiminghe',
+          label: 'Yiminghe',
+        },
+      ],
+    },
+  ])
+
+  const value = ref<any>(['lucy'])
+</script>
+
 <template>
   <a-space>
     <a-select v-model:value="value" style="width: 200px" @change="handleChange">
       <a-select-opt-group>
         <template #label>
           <span>
-            <user-outlined />
+            <UserOutlined />
             Manager
           </span>
         </template>
@@ -39,42 +76,6 @@ Using `OptGroup` or `options.options` to group the options.
       :options="options"
       style="width: 200px"
       @change="handleChange"
-    ></a-select>
+    />
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { UserOutlined } from '@ant-design/icons-vue';
-import type { SelectProps } from '@antdv/ui';
-
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
-};
-
-const options = ref<SelectProps['options']>([
-  {
-    label: 'Manager',
-    options: [
-      {
-        value: 'jack',
-        label: 'Jack',
-      },
-      {
-        value: 'lucy',
-        label: 'Lucy',
-      },
-    ],
-  },
-  {
-    label: 'Engineer',
-    options: [
-      {
-        value: 'yiminghe',
-        label: 'Yiminghe',
-      },
-    ],
-  },
-]);
-
-const value = ref(['lucy']);
-</script>

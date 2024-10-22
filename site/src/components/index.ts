@@ -4,7 +4,7 @@ import demoBox from './DemoBox.vue'
 import demoContainer from './demoContainer.vue'
 import demoSort from './demoSort.jsx'
 
-export const registGlobalComponents = (app: App) => {
+export function registGlobalComponents(app: App) {
   app.component('Transition', Transition)
   app.component('TransitionGroup', TransitionGroup)
   app.component('DemoBox', demoBox)

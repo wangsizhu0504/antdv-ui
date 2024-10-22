@@ -23,6 +23,7 @@ Add status to DatePicker with `status`, which could be `error` or `warning`.
     <a-select status="warning" style="width: 100%" />
   </a-space>
 </template>
+
 <style scoped>
 #components-select-demo-status .ant-select {
   margin: 0;

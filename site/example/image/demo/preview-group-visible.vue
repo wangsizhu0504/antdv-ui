@@ -16,6 +16,12 @@ Preview a collection from one image.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const visible = ref<any>(false)
+</script>
+
 <template>
   <a-image
     :preview="{ visible: false }"
@@ -37,7 +43,3 @@ Preview a collection from one image.
     </a-image-preview-group>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const visible = ref(false);
-</script>

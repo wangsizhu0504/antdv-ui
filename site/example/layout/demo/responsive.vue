@@ -17,6 +17,22 @@ Layout.Sider supports responsive layout.
 > Note: You can get a responsive layout by setting `breakpoint`, the Sider will collapse to the width of `collapsedWidth` when window width is below the `breakpoint`. And a special trigger will appear if the `collapsedWidth` is set to `0`.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons-vue'
+
+  function onCollapse(collapsed: boolean, type: string) {
+    console.log(collapsed, type)
+  }
+
+  function onBreakpoint(broken: boolean) {
+    console.log(broken)
+  }
+
+  const selectedKeys = ref<string[]>(['4'])
+</script>
+
 <template>
   <a-layout>
     <a-layout-sider
@@ -28,19 +44,19 @@ Layout.Sider supports responsive layout.
       <div class="logo" />
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
-          <user-outlined />
+          <UserOutlined />
           <span class="nav-text">nav 1</span>
         </a-menu-item>
         <a-menu-item key="2">
-          <video-camera-outlined />
+          <VideoCameraOutlined />
           <span class="nav-text">nav 2</span>
         </a-menu-item>
         <a-menu-item key="3">
-          <upload-outlined />
+          <UploadOutlined />
           <span class="nav-text">nav 3</span>
         </a-menu-item>
         <a-menu-item key="4">
-          <user-outlined />
+          <UserOutlined />
           <span class="nav-text">nav 4</span>
         </a-menu-item>
       </a-menu>
@@ -56,19 +72,6 @@ Layout.Sider supports responsive layout.
     </a-layout>
   </a-layout>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons-vue';
-const onCollapse = (collapsed: boolean, type: string) => {
-  console.log(collapsed, type);
-};
-
-const onBreakpoint = (broken: boolean) => {
-  console.log(broken);
-};
-
-const selectedKeys = ref<string[]>(['4']);
-</script>
 
 <style scoped>
 #components-layout-demo-responsive .logo {

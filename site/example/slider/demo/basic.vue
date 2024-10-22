@@ -15,6 +15,14 @@ title:
 Basic slider. When `range` is `true`, display as dual thumb mode. When `disable` is `true`, the slider will not be interactable.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value1 = ref<number>(0)
+  const value2 = ref<[number, number]>([20, 50])
+  const disabled = ref<boolean>(false)
+</script>
+
 <template>
   <div>
     <a-slider id="test" v-model:value="value1" :disabled="disabled" />
@@ -23,12 +31,7 @@ Basic slider. When `range` is `true`, display as dual thumb mode. When `disable`
     <a-switch v-model:checked="disabled" size="small" />
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const value1 = ref<number>(0);
-const value2 = ref<[number, number]>([20, 50]);
-const disabled = ref<boolean>(false);
-</script>
+
 <style scoped>
 .code-box-demo .ant-slider {
   margin-bottom: 16px;

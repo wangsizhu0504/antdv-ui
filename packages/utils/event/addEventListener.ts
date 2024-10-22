@@ -7,8 +7,9 @@ export function addEventListenerWrap(target: any, eventType: string, cb: Functio
       opt === undefined
       && supportsPassive
       && (eventType === 'touchstart' || eventType === 'touchmove' || eventType === 'wheel')
-    )
+    ) {
       opt = { passive: false }
+    }
 
     target.addEventListener(eventType, cb, opt)
   }

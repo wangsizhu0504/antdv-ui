@@ -8,7 +8,7 @@ const Demo = defineComponent({
   setup() {
     return () => (
       <div>
-        <Text type={'warning'}>Warning Title</Text>
+        <Text type="warning">Warning Title</Text>
       </div>
     )
   },

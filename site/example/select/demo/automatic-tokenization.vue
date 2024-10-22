@@ -16,6 +16,25 @@ Try to copy `Lucy,Jack` to the input. Only available in tags and multiple mode.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref, watch } from 'vue'
+  import type { SelectProps } from '@antdv/ui'
+
+  const options = ref<SelectProps['options']>([
+    {
+      value: 'a1',
+      label: 'a1',
+    },
+  ])
+  const value = ref<string[]>([])
+  function handleChange(value: []) {
+    console.log(`selected ${value}`)
+  }
+  watch(value, () => {
+    console.log('value', value.value)
+  })
+</script>
+
 <template>
   <a-select
     v-model:value="value"
@@ -25,22 +44,5 @@ Try to copy `Lucy,Jack` to the input. Only available in tags and multiple mode.
     placeholder="Automatic tokenization"
     :options="options"
     @change="handleChange"
-  ></a-select>
+  />
 </template>
-<script lang="ts" setup>
-import { ref, watch } from 'vue';
-import type { SelectProps } from '@antdv/ui';
-const options = ref<SelectProps['options']>([
-  {
-    value: 'a1',
-    label: 'a1',
-  },
-]);
-const value = ref<string[]>([]);
-const handleChange = (value: []) => {
-  console.log(`selected ${value}`);
-};
-watch(value, () => {
-  console.log('value', value.value);
-});
-</script>

@@ -337,8 +337,9 @@ function RangerPicker<DateType>() {
               mergedDisabled.value[i]
               && !getValue(postValues, i)
               && !getValue(props.allowEmpty, i)
-            )
+            ) {
               postValues = updateValues(postValues, props.generateConfig.getNow(), i)
+            }
           }
           return postValues
         },
@@ -431,8 +432,9 @@ function RangerPicker<DateType>() {
                     - (props.direction === 'rtl' || arrowRef.value.offsetLeft > arrowLeft.value
                       ? 0
                       : arrowRef.value.offsetLeft)
-              )
+              ) {
                 panelLeft.value = arrowLeft.value
+              }
             }
           } else if (mergedActivePickerIndex.value === 0) {
             panelLeft.value = 0
@@ -564,8 +566,9 @@ function RangerPicker<DateType>() {
             onChange
             && (!isEqual(generateConfig, getValue(mergedValue.value, 0), startValue)
               || !isEqual(generateConfig, getValue(mergedValue.value, 1), endValue))
-          )
+          ) {
             onChange(values, [startStr, endStr])
+          }
         }
 
         // >>>>> Open picker when
@@ -701,8 +704,9 @@ function RangerPicker<DateType>() {
             !selectedValue.value
             // Normal disabled check
             || (props.disabledDate && props.disabledDate(selectedValue.value[index]))
-          )
+          ) {
             return false
+          }
 
           triggerChange(selectedValue.value, index)
           resetText()
@@ -759,8 +763,9 @@ function RangerPicker<DateType>() {
           && (startFocused.value || endFocused.value)
           && !startInputRef.value.contains(e.target as Node)
           && !endInputRef.value.contains(e.target as Node)
-        )
+        ) {
           e.preventDefault()
+        }
       }
 
       // ============================= Sync ==============================
@@ -845,10 +850,12 @@ function RangerPicker<DateType>() {
           && hoverRangedValue.value[0]
           && hoverRangedValue.value[1]
           && props.generateConfig.isAfter(hoverRangedValue.value[1], hoverRangedValue.value[0])
-        )
+        ) {
           return hoverRangedValue.value
-        else
+        }
+        else {
           return null
+        }
       })
       function renderPanel(
         panelPosition: 'left' | 'right' | false = false,
@@ -930,8 +937,9 @@ function RangerPicker<DateType>() {
                 if (
                   panelPosition === 'right'
                   && mergedModes.value[mergedActivePickerIndex.value] === newMode
-                )
+                ) {
                   viewDate = getClosingViewDate(viewDate, newMode as any, generateConfig, -1)
+                }
 
                 setViewDate(viewDate, mergedActivePickerIndex.value)
               }}

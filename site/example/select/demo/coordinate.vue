@@ -18,34 +18,36 @@ Using the [Cascader](/components/cascader) component is strongly recommended ins
 
 </docs>
 
+<script lang="ts" setup>
+  import { computed, ref, watch } from 'vue'
+
+  const provinceData = ['Zhejiang', 'Jiangsu']
+  const cityData = {
+    Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
+    Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang'],
+  }
+  const province = ref<any>(provinceData[0])
+  const secondCity = ref<any>(cityData[province.value][0])
+  const cities = computed(() => {
+    return cityData[province.value]
+  })
+
+  watch(province, (val) => {
+    secondCity.value = cityData[val][0]
+  })
+</script>
+
 <template>
   <a-space>
     <a-select
       v-model:value="province"
       style="width: 120px"
       :options="provinceData.map(pro => ({ value: pro }))"
-    ></a-select>
+    />
     <a-select
       v-model:value="secondCity"
       style="width: 120px"
       :options="cities.map(city => ({ value: city }))"
-    ></a-select>
+    />
   </a-space>
 </template>
-<script lang="ts" setup>
-import { computed, ref, watch } from 'vue';
-const provinceData = ['Zhejiang', 'Jiangsu'];
-const cityData = {
-  Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
-  Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang'],
-};
-const province = ref(provinceData[0]);
-const secondCity = ref(cityData[province.value][0]);
-const cities = computed(() => {
-  return cityData[province.value];
-});
-
-watch(province, val => {
-  secondCity.value = cityData[val][0];
-});
-</script>

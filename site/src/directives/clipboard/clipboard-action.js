@@ -6,7 +6,7 @@ import select from './select'
  */
 class ClipboardAction {
   /**
-   * @param {Object} options
+   * @param {object} options
    */
   constructor(options) {
     this.resolveOptions(options)
@@ -15,7 +15,7 @@ class ClipboardAction {
 
   /**
    * Defines base properties passed from constructor.
-   * @param {Object} options
+   * @param {object} options
    */
   resolveOptions(options = {}) {
     this.action = options.action
@@ -116,7 +116,7 @@ class ClipboardAction {
 
   /**
    * Fires an event based on the copy operation result.
-   * @param {Boolean} succeeded
+   * @param {boolean} succeeded
    */
   handleResult(succeeded) {
     this.emitter.emit(succeeded ? 'success' : 'error', {
@@ -140,7 +140,7 @@ class ClipboardAction {
 
   /**
    * Sets the `action` to be performed which can be either 'copy' or 'cut'.
-   * @param {String} action
+   * @param {string} action
    */
   set action(action = 'copy') {
     this._action = action
@@ -151,7 +151,7 @@ class ClipboardAction {
 
   /**
    * Gets the `action` property.
-   * @return {String}
+   * @return {string}
    */
   get action() {
     return this._action
@@ -189,7 +189,7 @@ class ClipboardAction {
 
   /**
    * Gets the `target` property.
-   * @return {String|HTMLElement}
+   * @return {string | HTMLElement}
    */
   get target() {
     return this._target

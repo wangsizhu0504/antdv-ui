@@ -5,7 +5,7 @@ import type { ComponentDemo } from '../../interface'
 
 import options from './data'
 
-const handleChange = (value: any) => {
+function handleChange(value: any) {
   console.log(`selected ${value}`)
 }
 
@@ -18,7 +18,7 @@ const Demo = defineComponent({
         style={{
           width: '100%',
         }}
-        status={'warning'}
+        status="warning"
         options={options}
         placeholder="Please select"
         value={['a10', 'c12']}

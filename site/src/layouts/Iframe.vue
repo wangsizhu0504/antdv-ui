@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { provide } from 'vue'
+  import { provide } from 'vue'
 
-defineOptions({
-  name: 'IframeLayout',
-})
-provide('inIframe', true)
+  defineOptions({
+    name: 'IframeLayout',
+  })
+  provide('inIframe', true)
 </script>
 
 <template>

@@ -16,6 +16,21 @@ Basic modal.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const open = ref<boolean>(false)
+
+  function showModal() {
+    open.value = true
+  }
+
+  function handleOk(e: MouseEvent) {
+    console.log(e)
+    open.value = false
+  }
+</script>
+
 <template>
   <div>
     <a-button type="primary" @click="showModal">Open Modal</a-button>
@@ -26,16 +41,3 @@ Basic modal.
     </a-modal>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const open = ref<boolean>(false);
-
-const showModal = () => {
-  open.value = true;
-};
-
-const handleOk = (e: MouseEvent) => {
-  console.log(e);
-  open.value = false;
-};
-</script>

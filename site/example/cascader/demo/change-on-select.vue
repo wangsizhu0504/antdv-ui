@@ -15,6 +15,48 @@ title:
 Allow only select parent options.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { CascaderProps } from '@antdv/ui'
+
+  const options: CascaderProps['options'] = [
+    {
+      value: 'zhejiang',
+      label: 'Zhejiang',
+      children: [
+        {
+          value: 'hangzhou',
+          label: 'Hangzhou',
+          children: [
+            {
+              value: 'xihu',
+              label: 'West Lake',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: 'jiangsu',
+      label: 'Jiangsu',
+      children: [
+        {
+          value: 'nanjing',
+          label: 'Nanjing',
+          children: [
+            {
+              value: 'zhonghuamen',
+              label: 'Zhong Hua Men',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  const value = ref<string[]>([])
+</script>
+
 <template>
   <a-cascader
     v-model:value="value"
@@ -23,43 +65,3 @@ Allow only select parent options.
     change-on-select
   />
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { CascaderProps } from '@antdv/ui';
-const options: CascaderProps['options'] = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
-  },
-];
-const value = ref<string[]>([]);
-</script>

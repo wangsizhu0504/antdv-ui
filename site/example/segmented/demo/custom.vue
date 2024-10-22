@@ -13,8 +13,72 @@ title:
 ## en-US
 Custom each Segmented Item.
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { UserOutlined } from '@ant-design/icons-vue'
+  import { Segmented } from '@antdv/ui'
+
+  const ASegmented = Segmented
+  const data = ref<any>([
+    {
+      value: 'user1',
+      payload: {
+        src: 'https://joeschmoe.io/api/v1/random',
+        style: { backgroundColor: '#f56a00' },
+      },
+    },
+    {
+      value: 'user2',
+      payload: {
+        style: { backgroundColor: '#f56a00' },
+        content: 'K',
+      },
+    },
+    {
+      value: 'user3',
+      payload: {
+        icon: UserOutlined,
+        style: { backgroundColor: '#f56a00' },
+      },
+    },
+  ])
+  const options2 = ref<any>([
+    {
+      value: 'spring',
+      payload: {
+        title: 'Spring',
+        subTitle: 'Jan-Mar',
+      },
+    },
+    {
+      value: 'summer',
+      payload: {
+        title: 'Summer',
+        subTitle: 'Apr-Jun',
+      },
+    },
+    {
+      value: 'autumn',
+      payload: {
+        title: 'Autumn',
+        subTitle: 'Jul-Sept',
+      },
+    },
+    {
+      value: 'winter',
+      payload: {
+        title: 'Winter',
+        subTitle: 'Oct-Dec',
+      },
+    },
+  ])
+  const value = ref<any>('user1')
+  const value2 = ref<any>('spring')
+</script>
+
 <template>
-  <a-segmented v-model:value="value" :options="data">
+  <ASegmented v-model:value="value" :options="data">
     <template #label="{ value: val, payload = {} }">
       <div style="padding: 4px 4px">
         <template v-if="payload.icon">
@@ -31,77 +95,15 @@ Custom each Segmented Item.
         <div>{{ val }}</div>
       </div>
     </template>
-  </a-segmented>
+  </ASegmented>
   <br />
   <br />
-  <a-segmented v-model:value="value2" :options="options2">
+  <ASegmented v-model:value="value2" :options="options2">
     <template #label="{ payload }">
       <div style="padding: 4px 4px">
         <div>{{ payload.title }}</div>
         <div>{{ payload.subTitle }}</div>
       </div>
     </template>
-  </a-segmented>
+  </ASegmented>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { UserOutlined } from '@ant-design/icons-vue';
-import {Segmented} from '@antdv/ui';
-const ASegmented = Segmented;
-const data = ref([
-  {
-    value: 'user1',
-    payload: {
-      src: 'https://joeschmoe.io/api/v1/random',
-      style: { backgroundColor: '#f56a00' },
-    },
-  },
-  {
-    value: 'user2',
-    payload: {
-      style: { backgroundColor: '#f56a00' },
-      content: 'K',
-    },
-  },
-  {
-    value: 'user3',
-    payload: {
-      icon: UserOutlined,
-      style: { backgroundColor: '#f56a00' },
-    },
-  },
-]);
-const options2 = ref([
-  {
-    value: 'spring',
-    payload: {
-      title: 'Spring',
-      subTitle: 'Jan-Mar',
-    },
-  },
-  {
-    value: 'summer',
-    payload: {
-      title: 'Summer',
-      subTitle: 'Apr-Jun',
-    },
-  },
-  {
-    value: 'autumn',
-    payload: {
-      title: 'Autumn',
-      subTitle: 'Jul-Sept',
-    },
-  },
-  {
-    value: 'winter',
-    payload: {
-      title: 'Winter',
-      subTitle: 'Oct-Dec',
-    },
-  },
-]);
-const value = ref('user1');
-const value2 = ref('spring');
-</script>

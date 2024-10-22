@@ -288,8 +288,9 @@ function PickerPanel<DateType>() {
         if (
           onPanelChange
           && (mergedMode.value !== nextMode || isEqual(generateConfig, viewDate.value, viewDate.value))
-        )
+        ) {
           onPanelChange(viewValue, nextMode)
+        }
       }
 
       const triggerSelect = (
@@ -311,8 +312,9 @@ function PickerPanel<DateType>() {
             onChange
             && !isEqual(generateConfig, date, mergedValue.value)
             && !disabledDate?.(date)
-          )
+          ) {
             onChange(date)
+          }
         }
       }
 
@@ -329,8 +331,9 @@ function PickerPanel<DateType>() {
               KeyCode.PAGE_DOWN,
               KeyCode.ENTER,
             ].includes(e.which)
-          )
+          ) {
             e.preventDefault()
+          }
 
           return panelRef.value.onKeydown(e)
         }

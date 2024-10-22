@@ -15,6 +15,12 @@ Default activate first tab.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const activeKey = ref<any>('1')
+</script>
+
 <template>
   <a-tabs v-model:activeKey="activeKey">
     <a-tab-pane key="1" tab="Tab 1">Content of Tab Pane 1</a-tab-pane>
@@ -22,7 +28,3 @@ Default activate first tab.
     <a-tab-pane key="3" tab="Tab 3">Content of Tab Pane 3</a-tab-pane>
   </a-tabs>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const activeKey = ref('1');
-</script>

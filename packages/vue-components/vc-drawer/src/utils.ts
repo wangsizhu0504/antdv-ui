@@ -96,8 +96,9 @@ export function getTouchParentScroll(root: HTMLElement, currentTarget: HTMLEleme
         || (x
           && ((currentTarget.scrollLeft >= scrollX && differX < 0)
             || (currentTarget.scrollLeft <= 0 && differX > 0)))))
-  )
+  ) {
     return getTouchParentScroll(root, currentTarget.parentNode as HTMLElement, differX, differY)
+  }
 
   return false
 }

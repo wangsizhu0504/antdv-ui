@@ -16,6 +16,12 @@ Set a `target` for 'Affix', which is listen to scroll event of target element (d
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const containerRef = ref<any>()
+</script>
+
 <template>
   <div id="components-affix-demo-target" ref="containerRef" class="scrollable-container">
     <div class="background">
@@ -27,12 +33,6 @@ Set a `target` for 'Affix', which is listen to scroll event of target element (d
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue'
-
-const containerRef = ref()
-</script>
 
 <style scoped>
 #components-affix-demo-target.scrollable-container {

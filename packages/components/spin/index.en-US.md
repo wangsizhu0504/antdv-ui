@@ -28,8 +28,8 @@ When part of the page is waiting for asynchronous data or during a rendering pro
 - `Spin.setDefaultIndicator({indicator})` As `indicator`, you can define the global default spin element
 
 ```jsx
-import { h } from 'vue';
+import { h } from 'vue'
 Spin.setDefaultIndicator({
   indicator: h('i', { class: 'anticon anticon-loading anticon-spin ant-spin-dot' }),
-});
+})
 ```

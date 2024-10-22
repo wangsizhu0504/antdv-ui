@@ -1,7 +1,7 @@
 import type { Router } from 'vue-router'
 import NProgress from 'nprogress'
 
-export const registerRouterGuard = (router: Router) => {
+export function registerRouterGuard(router: Router) {
   router.beforeEach((to, from, next) => {
     if (to.path !== from.path)
       NProgress.start()

@@ -62,7 +62,7 @@ notification.config({
   bottom: '50px',
   duration: 3,
   rtl: true,
-});
+})
 ```
 
 | Property | Description | Type | Default | Version |

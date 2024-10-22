@@ -6,12 +6,12 @@ import { getNonce } from '../utils/nonce'
 // Bundler is configured to load this as a processed minified CSS-string
 import styles from '../css/styles.css?inline'
 
-const styleElementMap: Map<Document, HTMLStyleElement> = new Map()
+const styleElementMap = new Map<Document, HTMLStyleElement>()
 
 /**
  * Injects CSS code into the document's <head>
  */
-export const useStyleSheet = (nodeRef: Ref<HTMLDivElement>): void => {
+export function useStyleSheet(nodeRef: Ref<HTMLDivElement>): void {
   const parentDocument = computed(() => (nodeRef.value ? nodeRef.value.ownerDocument : document))
   watchEffect(() => {
     if (typeof parentDocument.value !== 'undefined' && !styleElementMap.has(parentDocument.value)) {

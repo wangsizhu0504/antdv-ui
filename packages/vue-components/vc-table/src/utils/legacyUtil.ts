@@ -32,8 +32,9 @@ export function getExpandableProps<RecordType>(
         'expandIconColumnIndex',
         'showExpandColumn',
       ].some(prop => prop in props)
-    )
+    ) {
       warning(false, 'expanded related props have been moved into `expandable`.')
+    }
 
     config = legacyExpandableConfig
   }

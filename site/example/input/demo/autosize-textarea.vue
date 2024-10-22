@@ -17,6 +17,14 @@ title:
 > `autosize` is deprecated after `1.5.0`, please use `autoSize`.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value1 = ref<string>('')
+  const value2 = ref<string>('')
+</script>
+
 <template>
   <div>
     <a-textarea
@@ -32,8 +40,3 @@ title:
     />
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const value1 = ref<string>('');
-const value2 = ref<string>('');
-</script>

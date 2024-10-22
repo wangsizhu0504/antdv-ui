@@ -15,10 +15,13 @@ title:
 The simplest usage.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value = ref<number>(2)
+</script>
+
 <template>
   <a-rate v-model:value="value" />
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const value = ref<number>(2);
-</script>

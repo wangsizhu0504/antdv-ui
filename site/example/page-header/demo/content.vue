@@ -16,6 +16,44 @@ Show all props provided by PageHeader.
 
 </docs>
 
+<script lang="ts" setup>
+  import { EllipsisOutlined } from '@ant-design/icons-vue'
+
+  const routes = [
+    {
+      path: 'index',
+      breadcrumbName: 'First-level Menu',
+    },
+    {
+      path: 'first',
+      breadcrumbName: 'Second-level Menu',
+    },
+    {
+      path: 'second',
+      breadcrumbName: 'Third-level Menu',
+    },
+  ]
+
+  interface IconLink {
+    src: string;
+    text: string;
+  }
+  const iconLinks: IconLink[] = [
+    {
+      src: 'https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg',
+      text: 'Quick Start',
+    },
+    {
+      src: 'https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg',
+      text: 'Product Info',
+    },
+    {
+      src: 'https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg',
+      text: 'Product Doc',
+    },
+  ]
+</script>
+
 <template>
   <div class="components-page-header-demo-content">
     <a-page-header
@@ -89,43 +127,6 @@ Show all props provided by PageHeader.
   </div>
 </template>
 
-<script lang="ts" setup>
-import { EllipsisOutlined } from '@ant-design/icons-vue';
-
-const routes = [
-  {
-    path: 'index',
-    breadcrumbName: 'First-level Menu',
-  },
-  {
-    path: 'first',
-    breadcrumbName: 'Second-level Menu',
-  },
-  {
-    path: 'second',
-    breadcrumbName: 'Third-level Menu',
-  },
-];
-
-interface IconLink {
-  src: string;
-  text: string;
-}
-const iconLinks: IconLink[] = [
-  {
-    src: 'https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg',
-    text: 'Quick Start',
-  },
-  {
-    src: 'https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg',
-    text: 'Product Info',
-  },
-  {
-    src: 'https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg',
-    text: 'Product Doc',
-  },
-];
-</script>
 <style scoped>
 #components-page-header-demo-content .image {
   margin: 0 0 0 60px;

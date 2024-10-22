@@ -18,6 +18,12 @@ Use `stringMode` to support high precision decimals support.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value = ref<string>('1')
+</script>
+
 <template>
   <a-input-number
     v-model:value="value"
@@ -28,7 +34,3 @@ Use `stringMode` to support high precision decimals support.
     string-mode
   />
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const value = ref<string>('1');
-</script>

@@ -59,10 +59,11 @@ export function isImageUrl(file: UploadFile): boolean {
   if (
     /^data:image\//.test(url)
     || /(webp|svg|png|gif|jpg|jpeg|jfif|bmp|dpg|ico)$/i.test(extension)
-  )
+  ) {
     return true
+  }
 
-  if (/^data:/.test(url)) {
+  if (url.startsWith('data:')) {
     // other file types of base64
     return false
   }

@@ -15,14 +15,15 @@ title:
 Use `tipFormatter` to format content of `Tooltip`. If `tipFormatter` is null, hide it.
 </docs>
 
+<script lang="ts" setup>
+  function formatter(value: number) {
+    return `${value}%`
+  }
+</script>
+
 <template>
   <div>
     <a-slider :tip-formatter="formatter" />
     <a-slider :tip-formatter="null" />
   </div>
 </template>
-<script lang="ts" setup>
-const formatter = (value: number) => {
-  return `${value}%`;
-};
-</script>

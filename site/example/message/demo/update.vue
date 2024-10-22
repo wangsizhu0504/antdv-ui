@@ -16,6 +16,27 @@ Update message content with unique `key`，or use reactive data.
 
 </docs>
 
+<script lang="ts" setup>
+  import { message } from '@antdv/ui'
+  import { ref } from 'vue'
+
+  const key = 'updatable'
+  function openMessage() {
+    message.loading({ content: 'Loading...', key })
+    setTimeout(() => {
+      message.success({ content: 'Loaded!', key, duration: 2 })
+    }, 1000)
+  }
+  const content = ref<any>('Loading...')
+  function openMessage2() {
+    // content must use function
+    message.loading({ content: () => content.value })
+    setTimeout(() => {
+      content.value = 'Loaded!'
+    }, 1000)
+  }
+</script>
+
 <template>
   <a-button type="primary" @click="openMessage">Open the message box (update by key)</a-button>
   <br />
@@ -24,22 +45,3 @@ Update message content with unique `key`，or use reactive data.
     Open the message box (update by reactive)
   </a-button>
 </template>
-<script lang="ts" setup>
-import { message } from '@antdv/ui';
-import { ref } from 'vue';
-const key = 'updatable';
-const openMessage = () => {
-  message.loading({ content: 'Loading...', key });
-  setTimeout(() => {
-    message.success({ content: 'Loaded!', key, duration: 2 });
-  }, 1000);
-};
-const content = ref('Loading...');
-const openMessage2 = () => {
-  // content must use function
-  message.loading({ content: () => content.value });
-  setTimeout(() => {
-    content.value = 'Loaded!';
-  }, 1000);
-};
-</script>

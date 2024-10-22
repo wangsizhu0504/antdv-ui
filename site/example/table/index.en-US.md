@@ -190,7 +190,7 @@ One of the Table `columns` prop for describing the table's columns, Column has t
 #### Breakpoint
 
 ```ts
-type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
 ```
 
 ### ColumnGroup
@@ -273,9 +273,9 @@ If `dataSource[i].key` is not provided, then you should specify the primary key 
 
 ```jsx
 // primary key is uid
-return <Table rowKey="uid" />;
+return <Table rowKey="uid" />
 // or
-return <Table rowKey={record => record.uid} />;
+return <Table rowKey={record => record.uid} />
 ```
 
 ## FAQ

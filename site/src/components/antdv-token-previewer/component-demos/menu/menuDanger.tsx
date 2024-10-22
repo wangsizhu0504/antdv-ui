@@ -22,7 +22,7 @@ const items: MenuProps['items'] = [
   },
 ]
 
-const Demo = () => {
+function Demo() {
   const onClick: MenuProps['onClick'] = (e) => {
     console.log('click ', e)
   }

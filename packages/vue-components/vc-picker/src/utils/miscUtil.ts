@@ -22,8 +22,9 @@ export default function getDataOrAriaProps(props: any) {
     if (
       (key.startsWith('data-') || key.startsWith('aria-') || key === 'role' || key === 'name')
       && !key.startsWith('data-__')
-    )
+    ) {
       retProps[key] = props[key]
+    }
   })
 
   return retProps

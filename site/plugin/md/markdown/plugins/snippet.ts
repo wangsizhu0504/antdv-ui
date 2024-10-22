@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import type MarkdownIt from 'markdown-it'
 import type { RuleBlock } from 'markdown-it/lib/parser_block'
 
-export const snippetPlugin = (md: MarkdownIt, root: string) => {
+export function snippetPlugin(md: MarkdownIt, root: string) {
   const parser: RuleBlock = (state, startLine, _endLine, silent) => {
     const CH = '<'.charCodeAt(0)
     const pos = state.bMarks[startLine] + state.tShift[startLine]

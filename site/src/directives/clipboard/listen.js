@@ -5,10 +5,10 @@ import delegate from './delegate'
  * Validates all params and calls the right
  * listener function based on its target type.
  *
- * @param {String|HTMLElement|HTMLCollection|NodeList} target
- * @param {String} type
+ * @param {string | HTMLElement | HTMLCollection | NodeList} target
+ * @param {string} type
  * @param {Function} callback
- * @return {Object}
+ * @return {object}
  */
 function listen(target, type, callback) {
   if (!target && !type && !callback)
@@ -38,9 +38,9 @@ function listen(target, type, callback) {
  * and returns a remove listener function.
  *
  * @param {HTMLElement} node
- * @param {String} type
+ * @param {string} type
  * @param {Function} callback
- * @return {Object}
+ * @return {object}
  */
 function listenNode(node, type, callback) {
   node.addEventListener(type, callback)
@@ -57,9 +57,9 @@ function listenNode(node, type, callback) {
  * and returns a remove listener function.
  *
  * @param {NodeList|HTMLCollection} nodeList
- * @param {String} type
+ * @param {string} type
  * @param {Function} callback
- * @return {Object}
+ * @return {object}
  */
 function listenNodeList(nodeList, type, callback) {
   Array.prototype.forEach.call(nodeList, (node) => {
@@ -79,10 +79,10 @@ function listenNodeList(nodeList, type, callback) {
  * Add an event listener to a selector
  * and returns a remove listener function.
  *
- * @param {String} selector
- * @param {String} type
+ * @param {string} selector
+ * @param {string} type
  * @param {Function} callback
- * @return {Object}
+ * @return {object}
  */
 function listenSelector(selector, type, callback) {
   return delegate(document.body, selector, type, callback)

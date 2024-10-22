@@ -16,6 +16,42 @@ We can set presetted ranges to RangePicker to improve user experience.
 
 </docs>
 
+<script lang="ts" setup>
+  import type { Dayjs } from 'dayjs'
+  import dayjs from 'dayjs'
+  import { ref } from 'vue'
+
+  type RangeValue = [Dayjs, Dayjs]
+  function onChange(date: Dayjs) {
+    if (date) {
+      console.log('Date: ', date)
+    } else {
+      console.log('Clear')
+    }
+  }
+  function onRangeChange(dates: RangeValue, dateStrings: string[]) {
+    if (dates) {
+      console.log('From: ', dates[0], ', to: ', dates[1])
+      console.log('From: ', dateStrings[0], ', to: ', dateStrings[1])
+    } else {
+      console.log('Clear')
+    }
+  }
+
+  const presets = ref<any>([
+    { label: 'Yesterday', value: dayjs().add(-1, 'd') },
+    { label: 'Last Week', value: dayjs().add(-7, 'd') },
+    { label: 'Last Month', value: dayjs().add(-1, 'month') },
+  ])
+
+  const rangePresets = ref<any>([
+    { label: 'Last 7 Days', value: [dayjs().add(-7, 'd'), dayjs()] },
+    { label: 'Last 14 Days', value: [dayjs().add(-14, 'd'), dayjs()] },
+    { label: 'Last 30 Days', value: [dayjs().add(-30, 'd'), dayjs()] },
+    { label: 'Last 90 Days', value: [dayjs().add(-90, 'd'), dayjs()] },
+  ])
+</script>
+
 <template>
   <a-space direction="vertical" :size="12">
     <a-date-picker :presets="presets" @change="onChange" />
@@ -29,36 +65,3 @@ We can set presetted ranges to RangePicker to improve user experience.
     />
   </a-space>
 </template>
-<script lang="ts" setup>
-import dayjs, { Dayjs } from 'dayjs';
-import { ref } from 'vue';
-type RangeValue = [Dayjs, Dayjs];
-const onChange = (date: Dayjs) => {
-  if (date) {
-    console.log('Date: ', date);
-  } else {
-    console.log('Clear');
-  }
-};
-const onRangeChange = (dates: RangeValue, dateStrings: string[]) => {
-  if (dates) {
-    console.log('From: ', dates[0], ', to: ', dates[1]);
-    console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
-  } else {
-    console.log('Clear');
-  }
-};
-
-const presets = ref([
-  { label: 'Yesterday', value: dayjs().add(-1, 'd') },
-  { label: 'Last Week', value: dayjs().add(-7, 'd') },
-  { label: 'Last Month', value: dayjs().add(-1, 'month') },
-]);
-
-const rangePresets = ref([
-  { label: 'Last 7 Days', value: [dayjs().add(-7, 'd'), dayjs()] },
-  { label: 'Last 14 Days', value: [dayjs().add(-14, 'd'), dayjs()] },
-  { label: 'Last 30 Days', value: [dayjs().add(-30, 'd'), dayjs()] },
-  { label: 'Last 90 Days', value: [dayjs().add(-90, 'd'), dayjs()] },
-]);
-</script>

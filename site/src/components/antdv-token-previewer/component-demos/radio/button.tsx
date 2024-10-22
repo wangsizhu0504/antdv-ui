@@ -6,11 +6,11 @@ const Demo = defineComponent({
   setup() {
     return () => (
       <Space>
-        <Radio.Group value={'a'} buttonStyle="solid">
-          <Radio.Button value={'a'} checked>
+        <Radio.Group value="a" buttonStyle="solid">
+          <Radio.Button value="a" checked>
             Hangzhou
           </Radio.Button>
-          <Radio.Button value={'b'}>Shanghai</Radio.Button>
+          <Radio.Button value="b">Shanghai</Radio.Button>
         </Radio.Group>
 
         <div>

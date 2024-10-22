@@ -6,12 +6,12 @@ import zhCN from './zh-CN'
 
 const contextKey: InjectionKey<Ref<Locale>> = Symbol('localeContext')
 
-export const useProvideLocaleContext = (props: Ref<Locale>) => {
+export function useProvideLocaleContext(props: Ref<Locale>) {
   provide(contextKey, props)
   return props
 }
 
-export const useInjectLocaleContext = () => {
+export function useInjectLocaleContext() {
   return inject(
     contextKey,
     computed(() => zhCN),

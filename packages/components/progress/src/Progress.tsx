@@ -93,12 +93,15 @@ export default defineComponent({
         format
         || slots?.format
         || (progressStatus.value !== 'exception' && progressStatus.value !== 'success')
-      )
+      ) {
         text = textFormatter(validProgress(percent), validProgress(successPercent))
-      else if (progressStatus.value === 'exception')
+      }
+      else if (progressStatus.value === 'exception') {
         text = isLineType ? <CloseCircleFilled /> : <CloseOutlined />
-      else if (progressStatus.value === 'success')
+      }
+      else if (progressStatus.value === 'success') {
         text = isLineType ? <CheckCircleFilled /> : <CheckOutlined />
+      }
 
       return (
         <span

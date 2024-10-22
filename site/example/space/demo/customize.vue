@@ -15,6 +15,12 @@ title:
 Custom spacing size.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const size = ref<any>(8)
+</script>
+
 <template>
   <div>
     <a-slider v-model:value="size" />
@@ -28,7 +34,3 @@ Custom spacing size.
     </a-space>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const size = ref(8);
-</script>

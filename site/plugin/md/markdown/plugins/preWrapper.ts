@@ -10,7 +10,7 @@
 import type MarkdownIt from 'markdown-it'
 import type { MarkdownParsedData } from '../markdown'
 
-export const preWrapperPlugin = (md: MarkdownIt) => {
+export function preWrapperPlugin(md: MarkdownIt) {
   const fence = md.renderer.rules.fence!
   md.renderer.rules.fence = (...args) => {
     const [tokens, idx] = args

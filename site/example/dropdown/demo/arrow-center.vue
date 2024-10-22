@@ -16,6 +16,10 @@ By specifying `arrow` prop with `{ pointAtCenter: true }`, the arrow will point 
 
 </docs>
 
+<script lang="ts" setup>
+  const placements = ['topLeft', 'top', 'topRight', 'bottomLeft', 'bottom', 'bottomRight'] as const
+</script>
+
 <template>
   <a-space style="display: flex; flex-wrap: wrap">
     <template v-for="placement in placements" :key="placement">
@@ -38,6 +42,3 @@ By specifying `arrow` prop with `{ pointAtCenter: true }`, the arrow will point 
     </template>
   </a-space>
 </template>
-<script lang="ts" setup>
-const placements = ['topLeft', 'top', 'topRight', 'bottomLeft', 'bottom', 'bottomRight'] as const;
-</script>

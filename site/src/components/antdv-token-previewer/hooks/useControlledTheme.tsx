@@ -35,7 +35,7 @@ const useControlledTheme: UseControlledTheme = ({ theme: customTheme, defaultThe
   const theme = ref<Theme>(customTheme?.value ?? defaultTheme)
   const infoFollowPrimary = ref<boolean>(false)
   const themeRef = ref<Theme>(theme.value)
-  const renderHolder = ref(0)
+  const renderHolder = ref<any>(0)
 
   const forceUpdate = () => (renderHolder.value = renderHolder.value + 1)
 

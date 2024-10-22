@@ -73,17 +73,17 @@ ConfigProvider 使用 Vue 的 [provide / inject](https://vuejs.org/v2/api/#provi
 ```jsx
 ConfigProvider.config({
   prefixCls: 'ant',
-});
+})
 ```
 
 or
 
 ```jsx
 // 如下配置支持响应式数据，你可以通过 prefixCls.value = 'other' 直接改变
-const prefixCls = ref('ant');
+const prefixCls = ref('ant')
 ConfigProvider.config({
   prefixCls,
-});
+})
 ```
 
 ## FAQ

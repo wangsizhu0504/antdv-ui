@@ -19,6 +19,53 @@ Click to upload user's avatar, and validate size and format of picture with `bef
 > The return value of function `beforeUpload` can be a Promise to check asynchronously. [demo](http://react-component.github.io/upload/examples/beforeUpload.html)
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { LoadingOutlined, PlusOutlined } from '@ant-design/icons-vue'
+  import { message } from '@antdv/ui'
+  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
+
+  function getBase64(img: Blob, callback: (base64Url: string) => void) {
+    const reader = new FileReader()
+    reader.addEventListener('load', () => callback(reader.result as string))
+    reader.readAsDataURL(img)
+  }
+
+  const fileList = ref<any>([])
+  const loading = ref<boolean>(false)
+  const imageUrl = ref<string>('')
+
+  function handleChange(info: UploadChangeParam) {
+    if (info.file.status === 'uploading') {
+      loading.value = true
+      return
+    }
+    if (info.file.status === 'done') {
+      // Get this url from response in real world.
+      getBase64(info.file.originFileObj, (base64Url: string) => {
+        imageUrl.value = base64Url
+        loading.value = false
+      })
+    }
+    if (info.file.status === 'error') {
+      loading.value = false
+      message.error('upload error')
+    }
+  }
+
+  function beforeUpload(file: UploadProps['fileList'][number]) {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG file!')
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Image must smaller than 2MB!')
+    }
+    return isJpgOrPng && isLt2M
+  }
+</script>
+
 <template>
   <a-upload
     v-model:file-list="fileList"
@@ -32,58 +79,13 @@ Click to upload user's avatar, and validate size and format of picture with `bef
   >
     <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
     <div v-else>
-      <loading-outlined v-if="loading"></loading-outlined>
-      <plus-outlined v-else></plus-outlined>
+      <LoadingOutlined v-if="loading"/>
+      <PlusOutlined v-else/>
       <div class="ant-upload-text">Upload</div>
     </div>
   </a-upload>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { PlusOutlined, LoadingOutlined } from '@ant-design/icons-vue';
-import { message } from '@antdv/ui';
-import type { UploadChangeParam, UploadProps } from '@antdv/ui';
 
-function getBase64(img: Blob, callback: (base64Url: string) => void) {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result as string));
-  reader.readAsDataURL(img);
-}
-
-const fileList = ref([]);
-const loading = ref<boolean>(false);
-const imageUrl = ref<string>('');
-
-const handleChange = (info: UploadChangeParam) => {
-  if (info.file.status === 'uploading') {
-    loading.value = true;
-    return;
-  }
-  if (info.file.status === 'done') {
-    // Get this url from response in real world.
-    getBase64(info.file.originFileObj, (base64Url: string) => {
-      imageUrl.value = base64Url;
-      loading.value = false;
-    });
-  }
-  if (info.file.status === 'error') {
-    loading.value = false;
-    message.error('upload error');
-  }
-};
-
-const beforeUpload = (file: UploadProps['fileList'][number]) => {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG file!');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
-  }
-  return isJpgOrPng && isLt2M;
-};
-</script>
 <style scoped>
 .avatar-uploader > .ant-upload {
   width: 128px;

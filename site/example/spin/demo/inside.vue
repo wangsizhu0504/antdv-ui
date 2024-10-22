@@ -21,6 +21,7 @@ Spin in a container.
     <a-spin />
   </div>
 </template>
+
 <style scoped>
 .example {
   text-align: center;

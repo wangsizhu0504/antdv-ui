@@ -9,7 +9,7 @@ const Demo = defineComponent({
 
     return () => {
       return (
-        <Space direction={'vertical'}>
+        <Space direction="vertical">
           <div style={{ padding: '12px' }}>
             <Tag color="magenta">magenta</Tag>
             <Tag color="red">red</Tag>

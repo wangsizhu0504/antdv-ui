@@ -16,6 +16,15 @@ You can manually specify the position of the popup via `placement`.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs'
+
+  const placement = ref<any>('topLeft' as const)
+  const value1 = ref<Dayjs>()
+  const value2 = ref<[Dayjs, Dayjs]>()
+</script>
+
 <template>
   <a-radio-group v-model:value="placement">
     <a-radio-button value="topLeft">topLeft</a-radio-button>
@@ -30,10 +39,3 @@ You can manually specify the position of the popup via `placement`.
     <a-time-range-picker v-model:value="value2" :placement="placement" />
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { Dayjs } from 'dayjs';
-const placement = ref('topLeft' as const);
-const value1 = ref<Dayjs>();
-const value2 = ref<[Dayjs, Dayjs]>();
-</script>

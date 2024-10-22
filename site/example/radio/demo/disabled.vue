@@ -15,6 +15,19 @@ Radio 不可用。
 Radio unavailable.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const disabled = ref<boolean>(true)
+  const checked1 = ref<boolean>(true)
+  const checked2 = ref<boolean>(false)
+
+  function toggleDisabled() {
+    disabled.value = !disabled.value
+  }
+</script>
+
 <template>
   <div>
     <a-radio v-model:checked="checked1" :disabled="disabled">Disabled</a-radio>
@@ -25,13 +38,3 @@ Radio unavailable.
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const disabled = ref<boolean>(true);
-const checked1 = ref<boolean>(true);
-const checked2 = ref<boolean>(false);
-
-const toggleDisabled = () => {
-  disabled.value = !disabled.value;
-};
-</script>

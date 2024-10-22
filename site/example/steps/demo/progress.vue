@@ -16,6 +16,13 @@ Steps with progress.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const current = ref<number>(1)
+  const description = 'This is a description.'
+</script>
+
 <template>
   <a-steps
     v-model:current="current"
@@ -35,7 +42,7 @@ Steps with progress.
         description,
       },
     ]"
-  ></a-steps>
+  />
   <a-steps
     v-model:current="current"
     :percent="60"
@@ -55,10 +62,5 @@ Steps with progress.
         description,
       },
     ]"
-  ></a-steps>
+  />
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const current = ref<number>(1);
-const description = 'This is a description.';
-</script>

@@ -44,8 +44,9 @@ E.prototype = {
     const liveEvents = []
 
     if (evts && callback) {
-      for (let i = 0, len = evts.length; i < len; i++)
+      for (let i = 0, len = evts.length; i < len; i++) {
         if (evts[i].fn !== callback && evts[i].fn._ !== callback) liveEvents.push(evts[i])
+      }
     }
 
     // Remove event from queue to prevent memory leak

@@ -16,6 +16,13 @@ A borderless style of Collapse.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const activeKey = ref<any>(['1'])
+  const text = `A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.`
+</script>
+
 <template>
   <a-collapse v-model:activeKey="activeKey" :bordered="false">
     <a-collapse-panel key="1" header="This is panel header 1">
@@ -29,8 +36,3 @@ A borderless style of Collapse.
     </a-collapse-panel>
   </a-collapse>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const activeKey = ref(['1']);
-const text = `A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.`;
-</script>

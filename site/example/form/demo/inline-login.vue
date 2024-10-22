@@ -15,6 +15,31 @@ title:
 Inline login form is often used in navigation bar.
 
 </docs>
+
+<script lang="ts" setup>
+  import { computed, reactive } from 'vue'
+  import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
+
+  interface FormState {
+    username: string;
+    password: string;
+  }
+  const formState = reactive<FormState>({
+    username: '',
+    password: '',
+  })
+  function onFinish(values: any) {
+    console.log('Success:', values)
+  }
+
+  function onFinishFailed(errorInfo: any) {
+    console.log('Failed:', errorInfo)
+  }
+  const disabled = computed(() => {
+    return !(formState.username && formState.password)
+  })
+</script>
+
 <template>
   <a-form
     :model="formState"
@@ -22,7 +47,7 @@ Inline login form is often used in navigation bar.
     layout="inline"
     autocomplete="off"
     @finish="onFinish"
-    @finishFailed="onFinishFailed"
+    @finish-failed="onFinishFailed"
   >
     <a-form-item
       label="Username"
@@ -53,25 +78,3 @@ Inline login form is often used in navigation bar.
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { reactive, computed } from 'vue';
-import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-interface FormState {
-  username: string;
-  password: string;
-}
-const formState = reactive<FormState>({
-  username: '',
-  password: '',
-});
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
-const disabled = computed(() => {
-  return !(formState.username && formState.password);
-});
-</script>

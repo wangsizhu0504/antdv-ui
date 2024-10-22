@@ -16,6 +16,17 @@ In order to fit in more tabs, they can slide left and right (or up and down).
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { TabsProps } from '@antdv/ui'
+
+  const mode = ref<TabsProps['tabPosition']>('top')
+  const activeKey = ref<any>(1)
+  const callback: TabsProps['onTabScroll'] = (val) => {
+    console.log(val)
+  }
+</script>
+
 <template>
   <div>
     <a-radio-group v-model:value="mode" :style="{ marginBottom: '8px' }">
@@ -26,18 +37,9 @@ In order to fit in more tabs, they can slide left and right (or up and down).
       v-model:activeKey="activeKey"
       :tab-position="mode"
       :style="{ height: '200px' }"
-      @tabScroll="callback"
+      @tab-scroll="callback"
     >
       <a-tab-pane v-for="i in 30" :key="i" :tab="`Tab-${i}`">Content of tab {{ i }}</a-tab-pane>
     </a-tabs>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { TabsProps } from '@antdv/ui';
-const mode = ref<TabsProps['tabPosition']>('top');
-const activeKey = ref(1);
-const callback: TabsProps['onTabScroll'] = val => {
-  console.log(val);
-};
-</script>

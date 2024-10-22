@@ -15,6 +15,23 @@ title:
 Change `pageSize`.
 </docs>
 
+<script lang="ts" setup>
+  import { ref, watch } from 'vue'
+
+  const pageSize = ref<any>(20)
+  const current1 = ref<any>(3)
+  const current2 = ref<any>(4)
+  function onShowSizeChange(current: number, pageSize: number) {
+    console.log(current, pageSize)
+  }
+  watch(pageSize, () => {
+    console.log('pageSize', pageSize.value)
+  })
+  watch(current1, () => {
+    console.log('current', current1.value)
+  })
+</script>
+
 <template>
   <div>
     <a-pagination
@@ -22,7 +39,7 @@ Change `pageSize`.
       v-model:pageSize="pageSize"
       show-size-changer
       :total="500"
-      @showSizeChange="onShowSizeChange"
+      @show-size-change="onShowSizeChange"
     />
     <br />
     <a-pagination
@@ -30,22 +47,7 @@ Change `pageSize`.
       show-size-changer
       :total="500"
       disabled
-      @showSizeChange="onShowSizeChange"
+      @show-size-change="onShowSizeChange"
     />
   </div>
 </template>
-<script lang="ts" setup>
-import { ref, watch } from 'vue';
-const pageSize = ref(20);
-const current1 = ref(3);
-const current2 = ref(4);
-const onShowSizeChange = (current: number, pageSize: number) => {
-  console.log(current, pageSize);
-};
-watch(pageSize, () => {
-  console.log('pageSize', pageSize.value);
-});
-watch(current1, () => {
-  console.log('current', current1.value);
-});
-</script>

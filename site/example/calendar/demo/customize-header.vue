@@ -16,9 +16,38 @@ Customize Calendar header content.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs'
+
+  const value = ref<Dayjs>()
+
+  function onPanelChange(value: Dayjs, mode: string) {
+    console.log(value, mode)
+  }
+
+  function getMonths(value: Dayjs) {
+    const localeData = value.localeData()
+    const months = []
+    for (let i = 0; i < 12; i++) {
+      months.push(localeData.monthsShort(value.month(i)))
+    }
+    return months
+  }
+
+  function getYears(value: Dayjs) {
+    const year = value.year()
+    const years = []
+    for (let i = year - 10; i < year + 10; i += 1) {
+      years.push(i)
+    }
+    return years
+  }
+</script>
+
 <template>
   <div style="width: 300px; border: 1px solid #d9d9d9; border-radius: 4px">
-    <a-calendar v-model:value="value" :fullscreen="false" @panelChange="onPanelChange">
+    <a-calendar v-model:value="value" :fullscreen="false" @panel-change="onPanelChange">
       <template #headerRender="{ value: current, type, onChange, onTypeChange }">
         <div style="padding: 10px">
           <div style="margin-bottom: 10px">Custom header</div>
@@ -76,30 +105,3 @@ Customize Calendar header content.
     </a-calendar>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { Dayjs } from 'dayjs';
-const value = ref<Dayjs>();
-
-const onPanelChange = (value: Dayjs, mode: string) => {
-  console.log(value, mode);
-};
-
-const getMonths = (value: Dayjs) => {
-  const localeData = value.localeData();
-  const months = [];
-  for (let i = 0; i < 12; i++) {
-    months.push(localeData.monthsShort(value.month(i)));
-  }
-  return months;
-};
-
-const getYears = (value: Dayjs) => {
-  const year = value.year();
-  const years = [];
-  for (let i = year - 10; i < year + 10; i += 1) {
-    years.push(i);
-  }
-  return years;
-};
-</script>

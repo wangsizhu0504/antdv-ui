@@ -1,7 +1,7 @@
 <docs>
 ---
 order: 0
-title: 
+title:
   zh-CN: 基本
   en-US: Basic
 ---

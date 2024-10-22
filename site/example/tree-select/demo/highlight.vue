@@ -16,6 +16,53 @@ Search Value Hightlight
 
 </docs>
 
+<script lang="ts" setup>
+  import type { TreeSelectProps } from '@antdv/ui'
+  import { ref, watch } from 'vue'
+
+  const value = ref<string>()
+  const treeData = ref<TreeSelectProps['treeData']>([
+    {
+      label: 'parent 1',
+      value: 'parent 1',
+      children: [
+        {
+          label: 'parent 1',
+          value: 'parent 1',
+          children: [
+            {
+              label: 'parent 1-0',
+              value: 'parent 1-0',
+              children: [
+                {
+                  label: 'my leaf',
+                  value: 'leaf1',
+                },
+                {
+                  label: 'your leaf',
+                  value: 'leaf2',
+                },
+              ],
+            },
+            {
+              label: 'parent 1-1',
+              value: 'parent 1-1',
+            },
+          ],
+        },
+        {
+          label: 'parent 1-1',
+          value: 'parent 1-1',
+        },
+      ],
+    },
+  ])
+  watch(value, () => {
+    console.log(value.value)
+  })
+  const searchValue = ref<any>('')
+</script>
+
 <template>
   <a-tree-select
     v-model:value="value"
@@ -50,48 +97,3 @@ Search Value Hightlight
     </template>
   </a-tree-select>
 </template>
-<script lang="ts" setup>
-import type { TreeSelectProps } from '@antdv/ui';
-import { ref, watch } from 'vue';
-const value = ref<string>();
-const treeData = ref<TreeSelectProps['treeData']>([
-  {
-    label: 'parent 1',
-    value: 'parent 1',
-    children: [
-      {
-        label: 'parent 1',
-        value: 'parent 1',
-        children: [
-          {
-            label: 'parent 1-0',
-            value: 'parent 1-0',
-            children: [
-              {
-                label: 'my leaf',
-                value: 'leaf1',
-              },
-              {
-                label: 'your leaf',
-                value: 'leaf2',
-              },
-            ],
-          },
-          {
-            label: 'parent 1-1',
-            value: 'parent 1-1',
-          },
-        ],
-      },
-      {
-        label: 'parent 1-1',
-        value: 'parent 1-1',
-      },
-    ],
-  },
-]);
-watch(value, () => {
-  console.log(value.value);
-});
-const searchValue = ref('');
-</script>

@@ -5,7 +5,7 @@ import type { ComponentDemo } from '../../interface'
 const Demo = defineComponent({
   setup() {
     return () => {
-      const visible = ref(false)
+      const visible = ref<any>(false)
 
       const showDrawer = () => {
         visible.value = true

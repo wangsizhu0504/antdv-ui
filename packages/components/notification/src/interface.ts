@@ -21,7 +21,7 @@ export interface NotificationInstance {
   info: StaticFn
   warning: StaticFn
   open: StaticFn
-  destroy(key?: Key): void
+  destroy: (key?: Key) => void
 }
 
 export interface NotificationConfig {
@@ -59,10 +59,10 @@ export interface NotificationArgsProps {
 }
 
 export interface NotificationApi extends NotificationInstance {
-  warn(args: NotificationArgsProps): void
-  close(key: string): void
-  config(options: NotificationConfig): void
-  destroy(): void
+  warn: (args: NotificationArgsProps) => void
+  close: (key: string) => void
+  config: (options: NotificationConfig) => void
+  destroy: () => void
   useNotification: typeof useNotification
 }
 

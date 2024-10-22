@@ -40,8 +40,9 @@ export function set<Entity = any, Output = Entity, Value = any>(
     && removeIfUndefined
     && value === undefined
     && !get(entity, paths.slice(0, -1))
-  )
+  ) {
     return entity as unknown as Output
+  }
 
   return internalSet(entity, paths, value, removeIfUndefined)
 }

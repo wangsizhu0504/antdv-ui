@@ -29,7 +29,7 @@ export const ColorInput = defineComponent({
     const { color } = toRefs(props)
     const { escape, validate, format, process } = props
 
-    const value = ref(escape(color.value))
+    const value = ref<any>(escape(color.value))
 
     // Trigger `onChange` handler only if the input value is a valid color
     const handleChange = (e) => {

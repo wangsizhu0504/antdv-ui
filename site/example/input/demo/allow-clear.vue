@@ -15,6 +15,14 @@ title:
 Input type of password.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value1 = ref<string>('')
+  const value2 = ref<string>('')
+</script>
+
 <template>
   <div>
     <a-input v-model:value="value1" placeholder="input with clear icon" allow-clear />
@@ -23,8 +31,3 @@ Input type of password.
     <a-textarea v-model:value="value2" placeholder="textarea with clear icon" allow-clear />
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const value1 = ref<string>('');
-const value2 = ref<string>('');
-</script>

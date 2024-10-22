@@ -17,6 +17,12 @@ The most basic usage.
 
 </docs>
 
+<script lang="ts" setup>
+  import { CustomerServiceOutlined } from '@ant-design/icons-vue'
+
+  const handleClick = () => console.log('click')
+</script>
+
 <template>
   <a-float-button @click="handleClick" />
 
@@ -44,8 +50,3 @@ The most basic usage.
     </template>
   </a-float-button>
 </template>
-
-<script lang="ts" setup>
-import { CustomerServiceOutlined } from '@ant-design/icons-vue';
-const handleClick = () => console.log('click');
-</script>

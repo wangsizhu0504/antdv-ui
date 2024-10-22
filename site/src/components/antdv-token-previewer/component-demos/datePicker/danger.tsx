@@ -1,7 +1,7 @@
 import { DatePicker } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
 
-const Demo = () => <DatePicker status={'error'} />
+const Demo = () => <DatePicker status="error" />
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,

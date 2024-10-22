@@ -9,8 +9,8 @@ const Demo = defineComponent({
       <>
         <Progress percent={30} />
         <Progress percent={50} status="active" />
-        <Progress percent={70} type={'dashboard'} />
-        <Progress percent={80} type={'circle'} />
+        <Progress percent={70} type="dashboard" />
+        <Progress percent={80} type="circle" />
         <Progress steps={8} percent={30} />
       </>
     )

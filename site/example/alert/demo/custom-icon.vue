@@ -16,31 +16,35 @@ Custom Icon make information more clear and more friendly.
 
 </docs>
 
+<script lang="ts" setup>
+  import { SmileOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-space direction="vertical" style="width: 100%">
     <a-alert message="showIcon = false" type="success">
       <template #icon>
-        <smile-outlined />
+        <SmileOutlined />
       </template>
     </a-alert>
     <a-alert message="Success Tips" type="success" show-icon>
       <template #icon>
-        <smile-outlined />
+        <SmileOutlined />
       </template>
     </a-alert>
     <a-alert message="Informational Notes" type="info" show-icon>
       <template #icon>
-        <smile-outlined />
+        <SmileOutlined />
       </template>
     </a-alert>
     <a-alert message="Warning" type="warning" show-icon>
       <template #icon>
-        <smile-outlined />
+        <SmileOutlined />
       </template>
     </a-alert>
     <a-alert message="Error" type="error" show-icon>
       <template #icon>
-        <smile-outlined />
+        <SmileOutlined />
       </template>
     </a-alert>
     <a-alert
@@ -50,7 +54,7 @@ Custom Icon make information more clear and more friendly.
       show-icon
     >
       <template #icon>
-        <smile-outlined />
+        <SmileOutlined />
       </template>
     </a-alert>
     <a-alert
@@ -60,7 +64,7 @@ Custom Icon make information more clear and more friendly.
       show-icon
     >
       <template #icon>
-        <smile-outlined />
+        <SmileOutlined />
       </template>
     </a-alert>
     <a-alert
@@ -70,7 +74,7 @@ Custom Icon make information more clear and more friendly.
       show-icon
     >
       <template #icon>
-        <smile-outlined />
+        <SmileOutlined />
       </template>
     </a-alert>
     <a-alert
@@ -80,12 +84,8 @@ Custom Icon make information more clear and more friendly.
       show-icon
     >
       <template #icon>
-        <smile-outlined />
+        <SmileOutlined />
       </template>
     </a-alert>
   </a-space>
 </template>
-
-<script lang="ts" setup>
-import { SmileOutlined } from '@ant-design/icons-vue'
-</script>

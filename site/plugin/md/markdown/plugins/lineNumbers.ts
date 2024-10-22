@@ -3,7 +3,7 @@
 
 import type MarkdownIt from 'markdown-it'
 
-export const lineNumberPlugin = (md: MarkdownIt) => {
+export function lineNumberPlugin(md: MarkdownIt) {
   const fence = md.renderer.rules.fence!
   md.renderer.rules.fence = (...args) => {
     const rawCode = fence(...args)

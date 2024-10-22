@@ -1,8 +1,8 @@
 <docs>
 ---
-order: 4 
-title: 
-  zh-CN: 自定义描述文案 
+order: 4
+title:
+  zh-CN: 自定义描述文案
   en-US: Customized description
 ---
 
@@ -21,6 +21,6 @@ Customized description content.
     <a-alert
       message="Alert message title"
       description="Further details about the context of this alert."
-    ></a-alert>
+    />
   </a-spin>
 </template>

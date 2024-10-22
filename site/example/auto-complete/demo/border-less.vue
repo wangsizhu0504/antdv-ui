@@ -15,6 +15,31 @@ title:
 border less.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  interface MockVal {
+    value: string;
+  }
+
+  function mockVal(str: string, repeat = 1): MockVal {
+    return {
+      value: str.repeat(repeat),
+    }
+  }
+  const value = ref<any>('')
+  const options = ref<MockVal[]>([])
+  function onSearch(searchText: string) {
+    console.log('searchText')
+    options.value = !searchText
+      ? []
+      : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
+  }
+  function onSelect(value: string) {
+    console.log('onSelect', value)
+  }
+</script>
+
 <template>
   <a-auto-complete
     v-model:value="value"
@@ -26,28 +51,3 @@ border less.
     @search="onSearch"
   />
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-interface MockVal {
-  value: string;
-}
-
-const mockVal = (str: string, repeat = 1): MockVal => {
-  return {
-    value: str.repeat(repeat),
-  };
-};
-const value = ref('');
-const options = ref<MockVal[]>([]);
-const onSearch = (searchText: string) => {
-  console.log('searchText');
-  options.value = !searchText
-    ? []
-    : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
-};
-const onSelect = (value: string) => {
-  console.log('onSelect', value);
-};
-</script>

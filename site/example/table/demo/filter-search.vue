@@ -17,85 +17,87 @@ title:
 
 </docs>
 
-<template>
-  <a-table :columns="columns" :data-source="data" @change="onChange"></a-table>
-</template>
 <script lang="ts" setup>
-import type { TableProps } from '@antdv/ui';
-const columns: TableProps['columns'] = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    filters: [
-      {
-        text: 'Joe',
-        value: 'Joe',
-      },
-      {
-        text: 'Category 1',
-        value: 'Category 1',
-      },
-      {
-        text: 'Category 2',
-        value: 'Category 2',
-      },
-    ],
-    filterMode: 'tree',
-    filterSearch: true,
-    onFilter: (value, record) => record.name.startsWith(value),
-    width: '30%',
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    sorter: (a, b) => a.age - b.age,
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    filters: [
-      {
-        text: 'London',
-        value: 'London',
-      },
-      {
-        text: 'New York',
-        value: 'New York',
-      },
-    ],
-    onFilter: (value, record) => record.address.startsWith(value),
-    filterSearch: (input, filter) => (filter.value as string).indexOf(input) > -1,
-    width: '40%',
-  },
-];
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-  },
-  {
-    key: '4',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
-  },
-];
+  import type { TableProps } from '@antdv/ui'
 
-function onChange(pagination, filters, sorter, extra) {
-  console.log('params', pagination, filters, sorter, extra);
-}
+  const columns: TableProps['columns'] = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      filters: [
+        {
+          text: 'Joe',
+          value: 'Joe',
+        },
+        {
+          text: 'Category 1',
+          value: 'Category 1',
+        },
+        {
+          text: 'Category 2',
+          value: 'Category 2',
+        },
+      ],
+      filterMode: 'tree',
+      filterSearch: true,
+      onFilter: (value, record) => record.name.startsWith(value),
+      width: '30%',
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      sorter: (a, b) => a.age - b.age,
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      filters: [
+        {
+          text: 'London',
+          value: 'London',
+        },
+        {
+          text: 'New York',
+          value: 'New York',
+        },
+      ],
+      onFilter: (value, record) => record.address.startsWith(value),
+      filterSearch: (input, filter) => (filter.value as string).includes(input),
+      width: '40%',
+    },
+  ]
+  const data = [
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+    },
+    {
+      key: '4',
+      name: 'Jim Red',
+      age: 32,
+      address: 'London No. 2 Lake Park',
+    },
+  ]
+
+  function onChange(pagination, filters, sorter, extra) {
+    console.log('params', pagination, filters, sorter, extra)
+  }
 </script>
+
+<template>
+  <a-table :columns="columns" :data-source="data" @change="onChange"/>
+</template>

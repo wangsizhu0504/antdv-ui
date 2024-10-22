@@ -15,21 +15,24 @@ title:
 The `onChange` callback function will fire when the user changes the slider's value. The `onAfterChange` callback function will fire when `onmouseup` fired.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value1 = ref<number>(30)
+  const value2 = ref<[number, number]>([20, 50])
+
+  function onAfterChange(value: number) {
+    console.log('afterChange: ', value)
+  }
+</script>
+
 <template>
   <div class="code-box-demo">
-    <a-slider v-model:value="value1" @afterChange="onAfterChange" />
-    <a-slider v-model:value="value2" range :step="10" @afterChange="onAfterChange" />
+    <a-slider v-model:value="value1" @after-change="onAfterChange" />
+    <a-slider v-model:value="value2" range :step="10" @after-change="onAfterChange" />
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const value1 = ref<number>(30);
-const value2 = ref<[number, number]>([20, 50]);
 
-const onAfterChange = (value: number) => {
-  console.log('afterChange: ', value);
-};
-</script>
 <style scoped>
 .code-box-demo .ant-slider {
   margin-bottom: 16px;

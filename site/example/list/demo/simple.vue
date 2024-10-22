@@ -20,6 +20,16 @@ Customizing the header and footer of list by setting `header` and `footer` prope
 
 </docs>
 
+<script lang="ts" setup>
+  const data: string[] = [
+    'Racing car sprays burning fuel into crowd.',
+    'Japanese princess to wed commoner.',
+    'Australian walks 100km after outback crash.',
+    'Man charged over missing wedding girl.',
+    'Los Angeles battles huge wildfires.',
+  ]
+</script>
+
 <template>
   <h3 :style="{ margin: '16px 0' }">Small Size</h3>
   <a-list size="small" bordered :data-source="data">
@@ -58,12 +68,3 @@ Customizing the header and footer of list by setting `header` and `footer` prope
     </template>
   </a-list>
 </template>
-<script lang="ts" setup>
-const data: string[] = [
-  'Racing car sprays burning fuel into crowd.',
-  'Japanese princess to wed commoner.',
-  'Australian walks 100km after outback crash.',
-  'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.',
-];
-</script>

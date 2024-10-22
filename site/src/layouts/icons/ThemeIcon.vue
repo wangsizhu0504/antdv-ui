@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import Icon from '@ant-design/icons-vue'
+  import Icon from '@ant-design/icons-vue'
 
-defineOptions({
-  name: 'ThemeIcon',
-})
+  defineOptions({
+    name: 'ThemeIcon',
+  })
 </script>
 
 <template>

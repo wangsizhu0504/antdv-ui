@@ -16,16 +16,18 @@ You can set `two-tone-color` prop to specific primary color for two-tone icons.
 
 </docs>
 
+<script lang="ts" setup>
+  import { CheckCircleTwoTone, HeartTwoTone, SmileTwoTone } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-space>
-    <smile-two-tone />
-    <heart-two-tone two-tone-color="#eb2f96" />
-    <check-circle-two-tone two-tone-color="#52c41a" />
+    <SmileTwoTone />
+    <HeartTwoTone two-tone-color="#eb2f96" />
+    <CheckCircleTwoTone two-tone-color="#52c41a" />
   </a-space>
 </template>
-<script lang="ts" setup>
-import { SmileTwoTone, HeartTwoTone, CheckCircleTwoTone } from '@ant-design/icons-vue';
-</script>
+
 <style scoped>
 .icons-list :deep(.anticon) {
   margin-right: 6px;

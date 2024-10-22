@@ -16,6 +16,10 @@ Display statistic data in Card.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <div style="background: #ececec; padding: 30px">
     <a-row :gutter="16">
@@ -30,7 +34,7 @@ Display statistic data in Card.
             style="margin-right: 50px"
           >
             <template #prefix>
-              <arrow-up-outlined />
+              <ArrowUpOutlined />
             </template>
           </a-statistic>
         </a-card>
@@ -46,7 +50,7 @@ Display statistic data in Card.
             :value-style="{ color: '#cf1322' }"
           >
             <template #prefix>
-              <arrow-down-outlined />
+              <ArrowDownOutlined />
             </template>
           </a-statistic>
         </a-card>
@@ -54,6 +58,3 @@ Display statistic data in Card.
     </a-row>
   </div>
 </template>
-<script lang="ts" setup>
-import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons-vue';
-</script>

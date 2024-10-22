@@ -2,13 +2,14 @@
 // 1. adding target="_blank" to external links
 // 2. normalize internal links to end with `.html`
 
+// eslint-disable-next-line node/prefer-global/url
 import { URL } from 'node:url'
 import type MarkdownIt from 'markdown-it'
 import type { MarkdownParsedData } from '../markdown'
 
 const indexRE = /(^|.*\/)index.md(#?.*)$/i
 
-export const linkPlugin = (md: MarkdownIt, externalAttrs: Record<string, string>) => {
+export function linkPlugin(md: MarkdownIt, externalAttrs: Record<string, string>) {
   md.renderer.rules.link_open = (tokens, idx, options, _env, self) => {
     const token = tokens[idx]
     const hrefIndex = token.attrIndex('href')
@@ -26,13 +27,13 @@ export const linkPlugin = (md: MarkdownIt, externalAttrs: Record<string, string>
         // mail links
         && !url.startsWith('mailto:')
       ) {
-        normalizeHref(hrefAttr)
+        normalizeHref<any>(hrefAttr)
       }
     }
     return self.renderToken(tokens, idx, options)
   }
 
-  function normalizeHref(hrefAttr: [string, string]) {
+  function normalizeHref<any>(hrefAttr: [string, string]) {
     let url = hrefAttr[1]
 
     const indexMatch = url.match(indexRE)

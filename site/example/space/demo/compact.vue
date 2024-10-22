@@ -16,6 +16,39 @@ Compact Mode for form component.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { CopyOutlined } from '@ant-design/icons-vue'
+  import type { TreeSelectProps } from '@antdv/ui'
+
+  const treeData = ref<TreeSelectProps['treeData']>([
+    {
+      title: 'parent 1',
+      value: 'parent 1',
+      children: [
+        {
+          title: 'parent 1-0',
+          value: 'parent 1-0',
+          children: [
+            {
+              title: 'my leaf',
+              value: 'leaf1',
+            },
+            {
+              title: 'your leaf',
+              value: 'leaf2',
+            },
+          ],
+        },
+        {
+          title: 'parent 1-1',
+          value: 'parent 1-1',
+        },
+      ],
+    },
+  ])
+</script>
+
 <template>
   <a-space direction="vertical" size="middle" class="site-space-compact-wrapper">
     <a-space-compact block>
@@ -180,41 +213,8 @@ Compact Mode for form component.
         allow-clear
         tree-default-expand-all
         :tree-data="treeData"
-      ></a-tree-select>
+      />
       <a-button type="primary">Submit</a-button>
     </a-space-compact>
   </a-space>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { CopyOutlined } from '@ant-design/icons-vue';
-import { TreeSelectProps } from '@antdv/ui';
-
-const treeData = ref<TreeSelectProps['treeData']>([
-  {
-    title: 'parent 1',
-    value: 'parent 1',
-    children: [
-      {
-        title: 'parent 1-0',
-        value: 'parent 1-0',
-        children: [
-          {
-            title: 'my leaf',
-            value: 'leaf1',
-          },
-          {
-            title: 'your leaf',
-            value: 'leaf2',
-          },
-        ],
-      },
-      {
-        title: 'parent 1-1',
-        value: 'parent 1-1',
-      },
-    ],
-  },
-]);
-</script>

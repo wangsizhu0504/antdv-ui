@@ -1,7 +1,7 @@
 <docs>
 ---
 order: 3
-title: 
+title:
   zh-CN: 响应式
   en-US: Responsive
 ---

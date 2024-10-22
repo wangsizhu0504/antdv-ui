@@ -136,8 +136,9 @@ const DrawerChild = defineComponent({
             && child.nodeName !== 'STYLE'
             && child.nodeName !== 'LINK'
             && child !== container
-          )
+          ) {
             levelDom.push(child)
+          }
         })
       } else if (level) {
         dataToArray(level).forEach((key) => {

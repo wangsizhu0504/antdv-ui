@@ -16,6 +16,40 @@ You can manually specify the position of the popup via `placement`.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { TreeSelectProps } from '@antdv/ui'
+
+  const placement = ref<any>('topLeft' as const)
+  const value = ref<string>()
+  const treeData = ref<TreeSelectProps['treeData']>([
+    {
+      label: 'parent 1',
+      value: 'parent 1',
+      children: [
+        {
+          label: 'parent 1-0',
+          value: 'parent 1-0',
+          children: [
+            {
+              label: 'my leaf',
+              value: 'leaf1',
+            },
+            {
+              label: 'your leaf',
+              value: 'leaf2',
+            },
+          ],
+        },
+        {
+          label: 'parent 1-1',
+          value: 'parent 1-1',
+        },
+      ],
+    },
+  ])
+</script>
+
 <template>
   <a-radio-group v-model:value="placement">
     <a-radio-button value="topLeft">topLeft</a-radio-button>
@@ -43,35 +77,3 @@ You can manually specify the position of the popup via `placement`.
     </template>
   </a-tree-select>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { TreeSelectProps } from '@antdv/ui';
-const placement = ref('topLeft' as const);
-const value = ref<string>();
-const treeData = ref<TreeSelectProps['treeData']>([
-  {
-    label: 'parent 1',
-    value: 'parent 1',
-    children: [
-      {
-        label: 'parent 1-0',
-        value: 'parent 1-0',
-        children: [
-          {
-            label: 'my leaf',
-            value: 'leaf1',
-          },
-          {
-            label: 'your leaf',
-            value: 'leaf2',
-          },
-        ],
-      },
-      {
-        label: 'parent 1-1',
-        value: 'parent 1-1',
-      },
-    ],
-  },
-]);
-</script>

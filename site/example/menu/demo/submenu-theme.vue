@@ -16,13 +16,60 @@ You can config SubMenu theme with `theme` prop to enable different theme color e
 
 </docs>
 
+<script lang="ts" setup>
+  import type { ComputedRef, VueElement } from 'vue'
+  import { computed, h, ref } from 'vue'
+  import { MailOutlined } from '@ant-design/icons-vue'
+  import type { MenuProps } from '@antdv/ui'
+
+  const selectedKeys = ref<string[]>(['1'])
+  const openKeys = ref<string[]>(['sub1'])
+  const theme = ref<MenuProps['theme']>('light')
+
+  function getItem(
+    label: VueElement | string,
+    key: string,
+    icon?: any,
+    children?: MenuProps['items'],
+    theme?: 'light' | 'dark',
+  ): MenuProps['items'][number] {
+    return {
+      key,
+      icon,
+      children,
+      label,
+      theme,
+    }
+  }
+
+  const items: ComputedRef<MenuProps['items']> = computed(() => [
+    getItem(
+      'Navigation One',
+      'sub1',
+      () => h(MailOutlined),
+      [getItem('Option 1', '1'), getItem('Option 2', '2'), getItem('Option 3', '3')],
+      theme.value,
+    ),
+    getItem('Option 5', '5'),
+    getItem('Option 6', '6'),
+  ])
+
+  function handleClick(info: any) {
+    console.log('click', info)
+  }
+
+  function changeTheme(checked: boolean) {
+    theme.value = checked ? 'dark' : 'light'
+  }
+</script>
+
 <template>
   <div>
     <a-switch
       :checked="theme === 'dark'"
       checked-children="dark"
       un-checked-children="light"
-      @Change="changeTheme"
+      @change="changeTheme"
     />
     <br />
     <br />
@@ -37,48 +84,3 @@ You can config SubMenu theme with `theme` prop to enable different theme color e
     />
   </div>
 </template>
-<script lang="ts" setup>
-import { computed, ref, VueElement, ComputedRef, h } from 'vue';
-import { MailOutlined } from '@ant-design/icons-vue';
-import type { MenuProps } from '@antdv/ui';
-
-const selectedKeys = ref<string[]>(['1']);
-const openKeys = ref<string[]>(['sub1']);
-const theme = ref<MenuProps['theme']>('light');
-
-function getItem(
-  label: VueElement | string,
-  key: string,
-  icon?: any,
-  children?: MenuProps['items'],
-  theme?: 'light' | 'dark',
-): MenuProps['items'][number] {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    theme,
-  };
-}
-
-const items: ComputedRef<MenuProps['items']> = computed(() => [
-  getItem(
-    'Navigation One',
-    'sub1',
-    () => h(MailOutlined),
-    [getItem('Option 1', '1'), getItem('Option 2', '2'), getItem('Option 3', '3')],
-    theme.value,
-  ),
-  getItem('Option 5', '5'),
-  getItem('Option 6', '6'),
-]);
-
-function handleClick(info: any) {
-  console.log('click', info);
-}
-
-function changeTheme(checked: boolean) {
-  theme.value = checked ? 'dark' : 'light';
-}
-</script>

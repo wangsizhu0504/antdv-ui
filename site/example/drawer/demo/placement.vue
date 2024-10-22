@@ -16,6 +16,22 @@ The Drawer can appear from any edge of the screen.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { DrawerProps } from '@antdv/ui'
+
+  const placement = ref<DrawerProps['placement']>('left')
+  const open = ref<boolean>(false)
+
+  function showDrawer() {
+    open.value = true
+  }
+
+  function onClose() {
+    open.value = false
+  }
+</script>
+
 <template>
   <a-radio-group v-model:value="placement" style="margin-right: 8px">
     <a-radio value="top">top</a-radio>
@@ -36,17 +52,3 @@ The Drawer can appear from any edge of the screen.
     <p>Some contents...</p>
   </a-drawer>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { DrawerProps } from '@antdv/ui';
-const placement = ref<DrawerProps['placement']>('left');
-const open = ref<boolean>(false);
-
-const showDrawer = () => {
-  open.value = true;
-};
-
-const onClose = () => {
-  open.value = false;
-};
-</script>

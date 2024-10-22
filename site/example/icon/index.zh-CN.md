@@ -80,10 +80,10 @@ import { StarOutlined, StarFilled, StarTwoTone } from '@ant-design/icons-vue';
 对于双色图标，可以通过使用 `Icon.getTwoToneColor()` 和 `Icon.setTwoToneColor(colorString)` 来全局设置图标主色。
 
 ```jsx
-import { getTwoToneColor, setTwoToneColor } from '@ant-design/icons-vue';
+import { getTwoToneColor, setTwoToneColor } from '@ant-design/icons-vue'
 
-setTwoToneColor('#eb2f96');
-getTwoToneColor(); // #eb2f96
+setTwoToneColor('#eb2f96')
+getTwoToneColor() // #eb2f96
 ```
 
 ### 自定义 font 图标
@@ -91,17 +91,17 @@ getTwoToneColor(); // #eb2f96
 在 `1.2.0` 之后，我们提供了一个 `createFromIconfontCN` 方法，方便开发者调用在 [iconfont.cn](http://iconfont.cn/) 上自行管理的图标。
 
 ```jsx
-import { createFromIconfontCN } from '@ant-design/icons-vue';
-import { defineComponent } from 'vue';
+import { createFromIconfontCN } from '@ant-design/icons-vue'
+import { defineComponent } from 'vue'
 const MyIcon = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js', // 在 iconfont.cn 上生成
-});
+})
 
 export default defineComponent({
   setup() {
-    return () => <MyIcon type="icon-dianzan" />;
+    return () => <MyIcon type="icon-dianzan" />
   },
-});
+})
 ```
 
 其本质上是创建了一个使用 `<use>` 标签来渲染图标的组件。
@@ -124,26 +124,26 @@ export default defineComponent({
 ```js
 // vue.config.js
 module.exports = {
-  chainWebpack: config => {
-    const svgRule = config.module.rule('svg');
+  chainWebpack: (config) => {
+    const svgRule = config.module.rule('svg')
 
-    svgRule.uses.clear();
+    svgRule.uses.clear()
 
-    svgRule.use('vue-svg-loader').loader('vue-svg-loader');
+    svgRule.use('vue-svg-loader').loader('vue-svg-loader')
   },
-};
+}
 ```
 
 ```jsx
-import { defineComponent } from 'vue';
-import Icon from '@ant-design/icons-vue';
-import MessageSvg from 'path/to/message.svg'; // '*.svg' 文件的路径
+import MessageSvg from 'node:path/to/message.svg' // '*.svg' 文件的路径
+import { defineComponent } from 'vue'
+import Icon from '@ant-design/icons-vue'
 
 export default defineComponent({
   setup() {
-    return () => <Icon type={MessageSvg} />;
+    return () => <Icon type={MessageSvg} />
   },
-});
+})
 ```
 
 `Icon` 中的 `component` 组件的接受的属性如下：

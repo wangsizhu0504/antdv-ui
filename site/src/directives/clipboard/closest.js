@@ -18,7 +18,7 @@ if (typeof Element !== 'undefined' && !Element.prototype.matches) {
  * Finds the closest parent that matches a selector.
  *
  * @param {Element} element
- * @param {String} selector
+ * @param {string} selector
  * @return {Function}
  */
 function closest(element, selector) {

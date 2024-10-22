@@ -16,6 +16,55 @@ Disabled part of dates and time by `disabledDate` and `disabledTime` respectivel
 
 </docs>
 
+<script lang="ts" setup>
+  import type { Dayjs } from 'dayjs'
+  import dayjs from 'dayjs'
+  import { ref } from 'vue'
+
+  function range(start: number, end: number) {
+    const result = []
+
+    for (let i = start; i < end; i++) {
+      result.push(i)
+    }
+
+    return result
+  }
+
+  function disabledDate(current: Dayjs) {
+    // Can not select days before today and today
+    return current && current < dayjs().endOf('day')
+  }
+
+  function disabledDateTime() {
+    return {
+      disabledHours: () => range(0, 24).splice(4, 20),
+      disabledMinutes: () => range(30, 60),
+      disabledSeconds: () => [55, 56],
+    }
+  }
+
+  function disabledRangeTime(_: Dayjs, type: 'start' | 'end') {
+    if (type === 'start') {
+      return {
+        disabledHours: () => range(0, 60).splice(4, 20),
+        disabledMinutes: () => range(30, 60),
+        disabledSeconds: () => [55, 56],
+      }
+    }
+    return {
+      disabledHours: () => range(0, 60).splice(20, 4),
+      disabledMinutes: () => range(0, 31),
+      disabledSeconds: () => [55, 56],
+    }
+  }
+
+  const value1 = ref<Dayjs>()
+  const value2 = ref<Dayjs>()
+  const value3 = ref<[Dayjs, Dayjs]>()
+  const value4 = ref<[Dayjs, Dayjs]>()
+</script>
+
 <template>
   <a-space direction="vertical">
     <a-date-picker
@@ -40,49 +89,3 @@ Disabled part of dates and time by `disabledDate` and `disabledTime` respectivel
     />
   </a-space>
 </template>
-<script lang="ts" setup>
-import dayjs, { Dayjs } from 'dayjs';
-import { ref } from 'vue';
-const range = (start: number, end: number) => {
-  const result = [];
-
-  for (let i = start; i < end; i++) {
-    result.push(i);
-  }
-
-  return result;
-};
-
-const disabledDate = (current: Dayjs) => {
-  // Can not select days before today and today
-  return current && current < dayjs().endOf('day');
-};
-
-const disabledDateTime = () => {
-  return {
-    disabledHours: () => range(0, 24).splice(4, 20),
-    disabledMinutes: () => range(30, 60),
-    disabledSeconds: () => [55, 56],
-  };
-};
-
-const disabledRangeTime = (_: Dayjs, type: 'start' | 'end') => {
-  if (type === 'start') {
-    return {
-      disabledHours: () => range(0, 60).splice(4, 20),
-      disabledMinutes: () => range(30, 60),
-      disabledSeconds: () => [55, 56],
-    };
-  }
-  return {
-    disabledHours: () => range(0, 60).splice(20, 4),
-    disabledMinutes: () => range(0, 31),
-    disabledSeconds: () => [55, 56],
-  };
-};
-
-const value1 = ref<Dayjs>();
-const value2 = ref<Dayjs>();
-const value3 = ref<[Dayjs, Dayjs]>();
-const value4 = ref<[Dayjs, Dayjs]>();
-</script>

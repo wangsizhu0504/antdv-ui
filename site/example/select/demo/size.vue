@@ -16,6 +16,20 @@ The height of the input field for the select defaults to 32px. If size is set to
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { SelectProps } from '@antdv/ui'
+
+  function popupScroll() {
+    console.log('popupScroll')
+  }
+  const size = ref<SelectProps['size']>('middle')
+  const value1 = ref<any>('a1')
+  const value2 = ref<any>(['a1', 'b2'])
+  const value3 = ref<any>(['a1', 'b2'])
+  const options = [...Array(25)].map((_, i) => ({ value: (i + 10).toString(36) + (i + 1) }))
+</script>
+
 <template>
   <a-radio-group v-model:value="size">
     <a-radio-button value="large">Large</a-radio-button>
@@ -30,7 +44,7 @@ The height of the input field for the select defaults to 32px. If size is set to
       :size="size"
       style="width: 200px"
       :options="options"
-    ></a-select>
+    />
     <a-select
       v-model:value="value2"
       :options="options"
@@ -38,8 +52,8 @@ The height of the input field for the select defaults to 32px. If size is set to
       :size="size"
       placeholder="Please select"
       style="width: 200px"
-      @popupScroll="popupScroll"
-    ></a-select>
+      @popup-scroll="popupScroll"
+    />
     <a-select
       v-model:value="value3"
       :options="options"
@@ -47,18 +61,6 @@ The height of the input field for the select defaults to 32px. If size is set to
       :size="size"
       placeholder="Please select"
       style="width: 200px"
-    ></a-select>
+    />
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { SelectProps } from '@antdv/ui';
-const popupScroll = () => {
-  console.log('popupScroll');
-};
-const size = ref<SelectProps['size']>('middle');
-const value1 = ref('a1');
-const value2 = ref(['a1', 'b2']);
-const value3 = ref(['a1', 'b2']);
-const options = [...Array(25)].map((_, i) => ({ value: (i + 10).toString(36) + (i + 1) }));
-</script>

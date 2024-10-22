@@ -17,6 +17,10 @@ When multiple buttons are used together, `<FloatButton.Group />` is recommended.
 
 </docs>
 
+<script lang="ts" setup>
+  import { QuestionCircleOutlined, SyncOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-float-button-group shape="circle" :style="{ right: '24px' }">
     <a-float-button>
@@ -43,7 +47,3 @@ When multiple buttons are used together, `<FloatButton.Group />` is recommended.
     <a-back-top :visibility-height="0" />
   </a-float-button-group>
 </template>
-
-<script lang="ts" setup>
-import { QuestionCircleOutlined, SyncOutlined } from '@ant-design/icons-vue';
-</script>

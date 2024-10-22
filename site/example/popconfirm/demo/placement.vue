@@ -16,6 +16,18 @@ There are 12 `placement` options available. Use `arrowPointAtCenter` if you want
 
 </docs>
 
+<script lang="ts" setup>
+  import { message } from '@antdv/ui'
+
+  const buttonWidth = 70
+
+  const text = 'Are you sure to delete this task?'
+
+  function confirm() {
+    message.info('Clicked on Yes.')
+  }
+</script>
+
 <template>
   <div id="components-a-popconfirm-demo-placement">
     <div :style="{ marginLeft: `${buttonWidth}px`, whiteSpace: 'nowrap' }">
@@ -112,16 +124,7 @@ There are 12 `placement` options available. Use `arrowPointAtCenter` if you want
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import { message } from '@antdv/ui';
-const buttonWidth = 70;
 
-const text = 'Are you sure to delete this task?';
-
-const confirm = () => {
-  message.info('Clicked on Yes.');
-};
-</script>
 <style scoped>
 :deep(#components-a-popconfirm-demo-placement) .ant-btn {
   width: 70px;

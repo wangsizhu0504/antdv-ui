@@ -16,6 +16,17 @@ Custom sizes to fit in a variety of containers.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { DescriptionsProps } from '@antdv/ui'
+
+  const size = ref<DescriptionsProps['size']>('default')
+  function onChange(e: any) {
+    console.log('size checked', e.target.value)
+    size.value = e.target.value
+  }
+</script>
+
 <template>
   <div>
     <a-radio-group v-model:value="size" @change="onChange">
@@ -65,12 +76,3 @@ Custom sizes to fit in a variety of containers.
     </a-descriptions>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { DescriptionsProps } from '@antdv/ui';
-const size = ref<DescriptionsProps['size']>('default');
-const onChange = (e: any) => {
-  console.log('size checked', e.target.value);
-  size.value = e.target.value;
-};
-</script>

@@ -15,12 +15,12 @@ const typeOrder: any = {
   其他: { order: 6, en: 'Other' },
   废弃: { order: 7, en: 'Deprecated' },
 }
-const useMenus = (): {
+function useMenus(): {
   menus: ComputedRef<any[]>
   dataSource: ComputedRef<any[]>
   currentMenuIndex: ComputedRef<number>
   activeMenuItem: ComputedRef<string>
-} => {
+} {
   const route = useRoute()
   const router = useRouter()
   const routes = router.getRoutes()

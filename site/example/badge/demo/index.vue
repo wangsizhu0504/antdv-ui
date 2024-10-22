@@ -1,3 +1,36 @@
+<script lang="ts">
+  import { defineComponent } from 'vue'
+  import CN from '../index.zh-CN.md'
+  import US from '../index.en-US.md'
+  import Basic from './basic.vue'
+  import NoWapper from './no-wrapper.vue'
+  import Dot from './dot.vue'
+  import Change from './change.vue'
+  import Overflow from './overflow.vue'
+  import Status from './status.vue'
+  import Title from './title.vue'
+  import Colors from './colors.vue'
+  import Link from './link.vue'
+  import Ribbon from './ribbon.vue'
+
+  export default defineComponent({
+    CN,
+    US,
+    components: {
+      Basic,
+      NoWapper,
+      Overflow,
+      Dot,
+      Status,
+      Change,
+      Title,
+      Colors,
+      Link,
+      Ribbon,
+    },
+  })
+</script>
+
 <template>
   <demo-sort>
     <Basic />
@@ -12,38 +45,6 @@
     <Link />
   </demo-sort>
 </template>
-<script lang="ts">
-import Basic from './basic.vue';
-import NoWapper from './no-wrapper.vue';
-import Dot from './dot.vue';
-import Change from './change.vue';
-import Overflow from './overflow.vue';
-import Status from './status.vue';
-import Title from './title.vue';
-import Colors from './colors.vue';
-import Link from './link.vue';
-import Ribbon from './ribbon.vue';
-import CN from '../index.zh-CN.md';
-import US from '../index.en-US.md';
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  CN,
-  US,
-  components: {
-    Basic,
-    NoWapper,
-    Overflow,
-    Dot,
-    Status,
-    Change,
-    Title,
-    Colors,
-    Link,
-    Ribbon,
-  },
-});
-</script>
 
 <style>
 [id^='site-example-badge-demo-'] .ant-badge:not(.ant-badge-not-a-wrapper) {

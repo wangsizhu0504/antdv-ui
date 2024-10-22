@@ -18,26 +18,26 @@ export const Warning = defineComponent({
   setup() {
     return () => {
       return (
-        <Card size={'small'}>
-          <Space align={'start'} size={'large'}>
-            <Space direction={'vertical'} size={'large'}>
-              <Space size={'large'}>
+        <Card size="small">
+          <Space align="start" size="large">
+            <Space direction="vertical" size="large">
+              <Space size="large">
                 <div style={{ width: '200px' }}>{Title.demo}</div>
                 <div style={{ width: '100%' }}>{Input.demo}</div>
               </Space>
               {Alert.demo}
             </Space>
-            <Space direction={'vertical'} align={'center'} size={'large'}>
+            <Space direction="vertical" align="center" size="large">
               {Message.demo}
               {Popconfirm.demo}
-              <Space size={'large'}>
+              <Space size="large">
                 {Badge.demo}
                 {Tag.demo}
                 {Text.demo}
               </Space>
             </Space>
           </Space>
-          <Space size={'large'} style={{ marginTop: '32px' }}>
+          <Space size="large" style={{ marginTop: '32px' }}>
             <div>{Notification.demo}</div>
             <div>{Modal.demo}</div>
           </Space>

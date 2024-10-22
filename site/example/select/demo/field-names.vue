@@ -20,6 +20,46 @@ Only options passing is supported, a-select-option construction node is not supp
 
 </docs>
 
+<script lang="ts" setup>
+  import type { SelectProps } from '@antdv/ui'
+  import { ref } from 'vue'
+
+  const value = ref<any>('lucy')
+  const options = ref<SelectProps['options']>([
+    {
+      id: 'jack',
+      name: 'Jack',
+      children: [
+        {
+          id: 'small jack',
+          name: 'small Jack',
+        },
+      ],
+    },
+    {
+      id: 'lucy',
+      name: 'Lucy',
+    },
+    {
+      id: 'disabled',
+      name: 'Disabled',
+      disabled: true,
+    },
+    {
+      id: 'yiminghe',
+      name: 'Yiminghe',
+    },
+  ])
+
+  function focus() {
+    console.log('focus')
+  }
+
+  function handleChange(value: string) {
+    console.log(`selected ${value}`)
+  }
+</script>
+
 <template>
   <a-select
     ref="select"
@@ -29,43 +69,5 @@ Only options passing is supported, a-select-option construction node is not supp
     :field-names="{ label: 'name', value: 'id', options: 'children' }"
     @focus="focus"
     @change="handleChange"
-  ></a-select>
+  />
 </template>
-<script lang="ts" setup>
-import type { SelectProps } from '@antdv/ui';
-import { ref } from 'vue';
-const value = ref('lucy');
-const options = ref<SelectProps['options']>([
-  {
-    id: 'jack',
-    name: 'Jack',
-    children: [
-      {
-        id: 'small jack',
-        name: 'small Jack',
-      },
-    ],
-  },
-  {
-    id: 'lucy',
-    name: 'Lucy',
-  },
-  {
-    id: 'disabled',
-    name: 'Disabled',
-    disabled: true,
-  },
-  {
-    id: 'yiminghe',
-    name: 'Yiminghe',
-  },
-]);
-
-const focus = () => {
-  console.log('focus');
-};
-
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
-};
-</script>

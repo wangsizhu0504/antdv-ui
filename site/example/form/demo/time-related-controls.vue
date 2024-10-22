@@ -18,13 +18,51 @@ The `value` of time-related components is a `dayjs` object, which we need to pre
 
 or use `valueFormat` to format.
 </docs>
+
+<script lang="ts" setup>
+  import { reactive } from 'vue'
+
+  interface FormState {
+    'date-picker': string;
+    'date-time-picker': string;
+    'month-picker': string;
+    'range-picker': [string, string];
+    'range-time-picker': [string, string];
+    'time-picker': string;
+  }
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 8 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 16 },
+    },
+  }
+  const config = {
+    rules: [{ type: 'string' as const, required: true, message: 'Please select time!' }],
+  }
+  const rangeConfig = {
+    rules: [{ type: 'array' as const, required: true, message: 'Please select time!' }],
+  }
+  const formState = reactive({} as FormState)
+  function onFinish(values: any) {
+    console.log('Success:', values, formState)
+  }
+
+  function onFinishFailed(errorInfo: any) {
+    console.log('Failed:', errorInfo)
+  }
+</script>
+
 <template>
   <a-form
     :model="formState"
     name="time_related_controls"
     v-bind="formItemLayout"
     @finish="onFinish"
-    @finishFailed="onFinishFailed"
+    @finish-failed="onFinishFailed"
   >
     <a-form-item name="date-picker" label="DatePicker" v-bind="config">
       <a-date-picker v-model:value="formState['date-picker']" value-format="YYYY-MM-DD" />
@@ -72,39 +110,3 @@ or use `valueFormat` to format.
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { reactive } from 'vue';
-
-interface FormState {
-  'date-picker': string;
-  'date-time-picker': string;
-  'month-picker': string;
-  'range-picker': [string, string];
-  'range-time-picker': [string, string];
-  'time-picker': string;
-}
-const formItemLayout = {
-  labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 },
-  },
-  wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
-  },
-};
-const config = {
-  rules: [{ type: 'string' as const, required: true, message: 'Please select time!' }],
-};
-const rangeConfig = {
-  rules: [{ type: 'array' as const, required: true, message: 'Please select time!' }],
-};
-const formState = reactive({} as FormState);
-const onFinish = (values: any) => {
-  console.log('Success:', values, formState);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
-</script>

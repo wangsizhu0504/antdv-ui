@@ -15,6 +15,12 @@ title:
 Listening for anchor link change.
 </docs>
 
+<script lang="ts" setup>
+  function onChange(link: string) {
+    console.log('Anchor:OnChange', link)
+  }
+</script>
+
 <template>
   <a-anchor
     :affix="false"
@@ -50,9 +56,3 @@ Listening for anchor link change.
     @change="onChange"
   />
 </template>
-
-<script lang="ts" setup>
-const onChange = (link: string) => {
-  console.log('Anchor:OnChange', link)
-}
-</script>

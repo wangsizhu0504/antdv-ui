@@ -14,12 +14,36 @@ title:
 
 Demonstration of validation configuration for form controls which are not shown in the demos above.
 </docs>
+
+<script lang="ts" setup>
+  import { reactive } from 'vue'
+  import { InboxOutlined, UploadOutlined } from '@ant-design/icons-vue'
+
+  const formItemLayout = {
+    labelCol: { span: 6 },
+    wrapperCol: { span: 14 },
+  }
+
+  const formState = reactive<Record<string, any>>({
+    'input-number': 3,
+    'checkbox-group': ['A', 'B'],
+    'rate': 3.5,
+  })
+  function onFinish(values: any) {
+    console.log('Success:', values)
+  }
+
+  function onFinishFailed(errorInfo: any) {
+    console.log('Failed:', errorInfo)
+  }
+</script>
+
 <template>
   <a-form
     :model="formState"
     name="validate_other"
     v-bind="formItemLayout"
-    @finishFailed="onFinishFailed"
+    @finish-failed="onFinishFailed"
     @finish="onFinish"
   >
     <a-form-item label="Plain Text">
@@ -158,25 +182,3 @@ Demonstration of validation configuration for form controls which are not shown 
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { reactive } from 'vue';
-import { UploadOutlined, InboxOutlined } from '@ant-design/icons-vue';
-
-const formItemLayout = {
-  labelCol: { span: 6 },
-  wrapperCol: { span: 14 },
-};
-
-const formState = reactive<Record<string, any>>({
-  'input-number': 3,
-  'checkbox-group': ['A', 'B'],
-  rate: 3.5,
-});
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
-</script>

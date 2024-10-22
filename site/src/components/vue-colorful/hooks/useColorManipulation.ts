@@ -18,7 +18,7 @@ export function useColorManipulation<T extends AnyColor>(
 
   // By using this ref we're able to prevent extra updates
   // and the effects recursion during the color conversion
-  const cache = ref({ color, hsva: hsva.value })
+  const cache = ref<any>({ color, hsva: hsva.value })
 
   // Update local HSVA-value if `color` property value is changed,
   // but only if that's not the same color that we just sent to the parent

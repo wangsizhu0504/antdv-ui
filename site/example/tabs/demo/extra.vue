@@ -16,6 +16,12 @@ You can add extra actions to the right of Tabs.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const activeKey = ref<any>('1')
+</script>
+
 <template>
   <a-tabs v-model:activeKey="activeKey">
     <a-tab-pane key="1" tab="Tab 1">Content of tab 1</a-tab-pane>
@@ -29,10 +35,6 @@ You can add extra actions to the right of Tabs.
     </template>
   </a-tabs>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const activeKey = ref('1');
-</script>
 
 <style scoped>
 .tabs-extra-demo-button {

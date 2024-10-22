@@ -15,6 +15,10 @@ title:
 A simple step bar in the vertical direction.
 </docs>
 
+<script lang="ts" setup>
+  const description = 'This is a description.'
+</script>
+
 <template>
   <a-steps
     direction="vertical"
@@ -33,8 +37,5 @@ A simple step bar in the vertical direction.
         description,
       },
     ]"
-  ></a-steps>
+  />
 </template>
-<script lang="ts" setup>
-const description = 'This is a description.';
-</script>

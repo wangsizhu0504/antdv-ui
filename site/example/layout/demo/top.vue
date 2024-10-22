@@ -19,6 +19,13 @@ We always put contents in a fixed size navigation (eg: `1200px`), the layout of 
 Top-bottom structure is conform with the top-bottom viewing habit, it's a classical navigation pattern of websites. This pattern demonstrates efficiency in the main workarea, while using some vertical space. And because the horizontal space of the navigation is limited, this pattern is not suitable for cases when the first level navigation contains many elements or links
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const selectedKeys = ref<string[]>(['2'])
+</script>
+
 <template>
   <a-layout class="layout">
     <a-layout-header>
@@ -47,10 +54,7 @@ Top-bottom structure is conform with the top-bottom viewing habit, it's a classi
     </a-layout-footer>
   </a-layout>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const selectedKeys = ref<string[]>(['2']);
-</script>
+
 <style scoped>
 .site-layout-content {
   min-height: 280px;

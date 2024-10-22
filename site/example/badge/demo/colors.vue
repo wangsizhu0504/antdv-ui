@@ -16,6 +16,24 @@ New feature after 3.16.0. We preset a series of colorful Badge styles for use in
 
 </docs>
 
+<script lang="ts" setup>
+  const colors = [
+    'pink',
+    'red',
+    'yellow',
+    'orange',
+    'cyan',
+    'green',
+    'blue',
+    'purple',
+    'geekblue',
+    'magenta',
+    'volcano',
+    'gold',
+    'lime',
+  ]
+</script>
+
 <template>
   <h4 style="margin-bottom: 16px">Presets:</h4>
   <div>
@@ -32,20 +50,3 @@ New feature after 3.16.0. We preset a series of colorful Badge styles for use in
   <br />
   <a-badge color="#108ee9" text="#108ee9" />
 </template>
-<script lang="ts" setup>
-const colors = [
-  'pink',
-  'red',
-  'yellow',
-  'orange',
-  'cyan',
-  'green',
-  'blue',
-  'purple',
-  'geekblue',
-  'magenta',
-  'volcano',
-  'gold',
-  'lime',
-];
-</script>

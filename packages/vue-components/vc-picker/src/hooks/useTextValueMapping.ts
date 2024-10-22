@@ -26,8 +26,9 @@ export default function useTextValueMapping({
       if (
         cur.join('||') !== pre.join('||')
         && valueTexts.value.every(valText => valText !== text.value)
-      )
+      ) {
         resetText()
+      }
     },
     { immediate: true },
   )

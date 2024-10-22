@@ -96,8 +96,9 @@ export default defineComponent<NoticeProps>({
           preDuration !== newDuration
           || preUpdateMark !== newUpdateMark
           || (preVisible !== newVisible && newVisible)
-        )
+        ) {
           restartCloseTimer()
+        }
       },
       { flush: 'post' },
     )

@@ -15,6 +15,53 @@ title:
 Lookup-Patterns - Certain Category.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { UserOutlined } from '@ant-design/icons-vue'
+
+  const dataSource = [
+    {
+      value: 'Libraries',
+      options: [
+        {
+          value: 'AntDesignVue',
+          count: 10000,
+        },
+        {
+          value: 'AntDesignVue UI',
+          count: 10600,
+        },
+      ],
+    },
+    {
+      value: 'Solutions',
+      options: [
+        {
+          value: 'AntDesignVue UI FAQ',
+          count: 60100,
+        },
+        {
+          value: 'AntDesignVue FAQ',
+          count: 30010,
+        },
+      ],
+    },
+    {
+      value: 'Articles',
+      options: [
+        {
+          value: 'AntDesignVue design language',
+          count: 100000,
+        },
+      ],
+    },
+    {
+      value: 'all',
+    },
+  ]
+  const value = ref<any>('')
+</script>
+
 <template>
   <div class="certain-category-search-wrapper" style="width: 250px">
     <a-auto-complete
@@ -62,53 +109,6 @@ Lookup-Patterns - Certain Category.
     </a-auto-complete>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue'
-import { UserOutlined } from '@ant-design/icons-vue'
-
-const dataSource = [
-  {
-    value: 'Libraries',
-    options: [
-      {
-        value: 'AntDesignVue',
-        count: 10000,
-      },
-      {
-        value: 'AntDesignVue UI',
-        count: 10600,
-      },
-    ],
-  },
-  {
-    value: 'Solutions',
-    options: [
-      {
-        value: 'AntDesignVue UI FAQ',
-        count: 60100,
-      },
-      {
-        value: 'AntDesignVue FAQ',
-        count: 30010,
-      },
-    ],
-  },
-  {
-    value: 'Articles',
-    options: [
-      {
-        value: 'AntDesignVue design language',
-        count: 100000,
-      },
-    ],
-  },
-  {
-    value: 'all',
-  },
-]
-const value = ref('')
-</script>
 
 <style scoped>
 .certain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {

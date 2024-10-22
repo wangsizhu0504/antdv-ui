@@ -1,4 +1,3 @@
-/* eslint-disable n/prefer-global/buffer */
 import fs from 'node:fs'
 
 // import Buffer from 'node:buffer'
@@ -20,7 +19,7 @@ interface MarkdownCompileResult {
   vueSrc: string
   pageData: PageData
 }
-const inferTitle = (frontmatter: any, content: string) => {
+function inferTitle(frontmatter: any, content: string) {
   if (frontmatter.home)
     return 'Home'
 
@@ -34,7 +33,7 @@ const inferTitle = (frontmatter: any, content: string) => {
   return ''
 }
 
-const getHeadMetaContent = (head: HeadConfig[], name: string): string | undefined => {
+function getHeadMetaContent(head: HeadConfig[], name: string): string | undefined {
   if (!head || !head.length)
     return undefined
 
@@ -45,7 +44,7 @@ const getHeadMetaContent = (head: HeadConfig[], name: string): string | undefine
   return meta && meta[1].content
 }
 
-const inferDescription = (frontmatter: Record<string, any>) => {
+function inferDescription(frontmatter: Record<string, any>) {
   if (!frontmatter.head)
     return ''
 

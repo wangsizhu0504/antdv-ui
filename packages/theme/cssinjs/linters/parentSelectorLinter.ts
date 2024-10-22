@@ -7,8 +7,9 @@ const linter: Linter = (_key, _value, info) => {
       const selectors = selector.split(',')
       return selectors.some(item => item.split('&').length > 2)
     })
-  )
+  ) {
     lintWarning('Should not use more than one `&` in a selector.', info)
+  }
 }
 
 export default linter

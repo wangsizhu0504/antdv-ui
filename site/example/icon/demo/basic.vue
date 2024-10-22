@@ -16,22 +16,17 @@ Import icons from `@ant-design/icons-vue`, component name of icons with differen
 
 </docs>
 
+<script lang="ts" setup>
+  import { HomeOutlined, LoadingOutlined, SettingFilled, SmileOutlined, SyncOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-space>
-    <home-outlined />
-    <setting-filled />
-    <smile-outlined />
-    <sync-outlined spin />
-    <smile-outlined :rotate="180" />
-    <loading-outlined />
+    <HomeOutlined />
+    <SettingFilled />
+    <SmileOutlined />
+    <SyncOutlined spin />
+    <SmileOutlined :rotate="180" />
+    <LoadingOutlined />
   </a-space>
 </template>
-<script lang="ts" setup>
-import {
-  HomeOutlined,
-  SettingFilled,
-  SmileOutlined,
-  SyncOutlined,
-  LoadingOutlined,
-} from '@ant-design/icons-vue';
-</script>

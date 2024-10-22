@@ -16,6 +16,15 @@ Countdown component slots.
 
 </docs>
 
+<script lang="ts" setup>
+  import { QuestionCircleTwoTone } from '@ant-design/icons-vue'
+
+  function onFinish() {
+    console.log('finished!')
+  }
+  const deadline = Date.now() + 1000 * 60 * 60 * 20 * 2
+</script>
+
 <template>
   <a-row :gutter="16">
     <a-col :span="12">
@@ -26,7 +35,7 @@ Countdown component slots.
             <template #title>
               <span>hurry up!</span>
             </template>
-            <question-circle-two-tone style="margin-left: 5px" />
+            <QuestionCircleTwoTone style="margin-left: 5px" />
           </a-tooltip>
         </template>
       </a-statistic-countdown>
@@ -48,10 +57,3 @@ Countdown component slots.
     </a-col>
   </a-row>
 </template>
-<script lang="ts" setup>
-import { QuestionCircleTwoTone } from '@ant-design/icons-vue';
-const onFinish = () => {
-  console.log('finished!');
-};
-const deadline = Date.now() + 1000 * 60 * 60 * 20 * 2;
-</script>

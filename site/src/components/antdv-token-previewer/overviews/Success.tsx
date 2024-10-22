@@ -15,21 +15,21 @@ export const Success = defineComponent({
   setup() {
     return () => {
       return (
-        <Card size={'small'}>
-          <Space align={'start'} size={'large'}>
-            <Space direction={'vertical'} size={'large'}>
-              <Space align={'center'} size={'large'}>
+        <Card size="small">
+          <Space align="start" size="large">
+            <Space direction="vertical" size="large">
+              <Space align="center" size="large">
                 <div>{Tag.demo}</div>
                 {Input.demo}
               </Space>
               {Alert.demo}
             </Space>
-            <Space direction={'vertical'} align={'center'} size={'large'}>
+            <Space direction="vertical" align="center" size="large">
               {Message.demo}
               {Progress.demo}
             </Space>
           </Space>
-          <Space size={'large'} style={{ marginTop: '32px' }}>
+          <Space size="large" style={{ marginTop: '32px' }}>
             <div>{Notification.demo}</div>
             <div>{Timeline.demo}</div>
           </Space>

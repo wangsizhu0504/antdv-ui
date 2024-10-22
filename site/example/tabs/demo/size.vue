@@ -15,6 +15,14 @@ Large size tabs are usally used in page header, and small size could be used in 
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { TabsProps } from '@antdv/ui'
+
+  const size = ref<TabsProps['size']>('small')
+  const activeKey = ref<any>('1')
+</script>
+
 <template>
   <div>
     <a-radio-group v-model:value="size" style="margin-bottom: 16px">
@@ -29,9 +37,3 @@ Large size tabs are usally used in page header, and small size could be used in 
     </a-tabs>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { TabsProps } from '@antdv/ui';
-const size = ref<TabsProps['size']>('small');
-const activeKey = ref('1');
-</script>

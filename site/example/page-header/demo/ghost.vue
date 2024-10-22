@@ -16,6 +16,12 @@ The default PageHeader is a transparent background. In some cases, PageHeader ne
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const ghost = ref<any>(false)
+</script>
+
 <template>
   <div class="demo-page-header" style="background-color: #f5f5f5; padding: 24px">
     <a-page-header
@@ -44,10 +50,7 @@ The default PageHeader is a transparent background. In some cases, PageHeader ne
   </div>
   <a-checkbox v-model:checked="ghost" style="margin-top: 0.5rem">toggle ghost</a-checkbox>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const ghost = ref(false);
-</script>
+
 <style scoped>
 .demo-page-header :deep(tr:last-child td) {
   padding-bottom: 0;

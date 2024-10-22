@@ -13,7 +13,7 @@ function wrap(code: string, lang: string): string {
   return `<pre v-pre><code>${code}</code></pre>`
 }
 
-export const highlight = (str: string, lang: string) => {
+export function highlight(str: string, lang: string) {
   if (!lang)
     return wrap(str, 'text')
 

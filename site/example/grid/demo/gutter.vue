@@ -87,6 +87,7 @@ You can use an array to set vertical spacing, `[horizontal, vertical]` `[16, { x
     </a-col>
   </a-row>
 </template>
+
 <style scoped>
 .gutter-box {
   background: #0092ff;

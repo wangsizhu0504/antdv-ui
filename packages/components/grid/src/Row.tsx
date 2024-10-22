@@ -78,8 +78,9 @@ export default defineComponent({
           (!Array.isArray(currentGutter) && typeof currentGutter === 'object')
           || (Array.isArray(currentGutter)
             && (typeof currentGutter[0] === 'object' || typeof currentGutter[1] === 'object'))
-        )
+        ) {
           screens.value = screen
+        }
       })
     })
 

@@ -15,6 +15,13 @@ title:
 There are 12 `placement` options available.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const buttonWidth = ref<number>(70)
+</script>
+
 <template>
   <div id="components-popover-demo-placement">
     <div :style="{ marginLeft: `${buttonWidth}px`, whiteSpace: 'nowrap' }">
@@ -148,10 +155,6 @@ There are 12 `placement` options available.
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue';
-const buttonWidth = ref<number>(70);
-</script>
 <style scoped>
 #components-popover-demo-placement .ant-btn {
   width: 70px;

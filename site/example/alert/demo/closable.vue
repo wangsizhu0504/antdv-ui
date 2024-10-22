@@ -16,6 +16,12 @@ To show close button.
 
 </docs>
 
+<script lang="ts" setup>
+  function onClose(e: MouseEvent) {
+    console.log(e, 'I was closed.')
+  }
+</script>
+
 <template>
   <a-space direction="vertical" style="width: 100%">
     <a-alert
@@ -33,9 +39,3 @@ To show close button.
     />
   </a-space>
 </template>
-
-<script lang="ts" setup>
-const onClose = (e: MouseEvent) => {
-  console.log(e, 'I was closed.')
-}
-</script>

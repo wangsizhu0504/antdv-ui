@@ -93,24 +93,24 @@ App 组件只能在 `ConfigProvider` 之下才能使用 Design Token， 如果�
 #### 全局场景 (pinia 场景)
 
 ```ts
-import { App } from 'ant-design-vue';
-import type { MessageInstance } from 'ant-design-vue/es/message/interface';
-import type { ModalStaticFunctions } from 'ant-design-vue/es/modal/confirm';
-import type { NotificationInstance } from 'ant-design-vue/es/notification/interface';
+import { App } from 'ant-design-vue'
+import type { MessageInstance } from 'ant-design-vue/es/message/interface'
+import type { ModalStaticFunctions } from 'ant-design-vue/es/modal/confirm'
+import type { NotificationInstance } from 'ant-design-vue/es/notification/interface'
 
 export const useGloablStore = defineStore('global', () => {
-  const message: MessageInstance = ref();
-  const notification: NotificationInstance = ref();
+  const message: MessageInstance = ref()
+  const notification: NotificationInstance = ref()
   const modal: Omit<ModalStaticFunctions, 'warn'> = ref();
   (() => {
-    const staticFunction = App.useApp();
-    message.value = staticFunction.message;
-    modal.value = staticFunction.modal;
-    notification.value = staticFunction.notification;
-  })();
+    const staticFunction = App.useApp()
+    message.value = staticFunction.message
+    modal.value = staticFunction.modal
+    notification.value = staticFunction.notification
+  })()
 
-  return { message, notification, modal };
-});
+  return { message, notification, modal }
+})
 ```
 
 ```html

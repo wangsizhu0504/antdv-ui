@@ -2,7 +2,7 @@ import { Anchor } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
 
 const { Link } = Anchor
-const Demo = () => {
+function Demo() {
   return (
     <div style={{ padding: '12px' }}>
       <Anchor>

@@ -1,18 +1,18 @@
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
-import { getLocalizedPathname } from '../utils/util'
+  import { computed, defineComponent } from 'vue'
+  import { getLocalizedPathname } from '../utils/util'
 
-export default defineComponent({
-  name: 'PrevAndNext',
-  props: ['menus', 'isZhCN', 'currentMenuIndex'],
-  setup(props) {
-    return {
-      getLocalizedPathname,
-      prev: computed(() => props.menus[props.currentMenuIndex - 1]),
-      next: computed(() => props.menus[props.currentMenuIndex + 1]),
-    }
-  },
-})
+  export default defineComponent({
+    name: 'PrevAndNext',
+    props: ['menus', 'isZhCN', 'currentMenuIndex'],
+    setup(props) {
+      return {
+        getLocalizedPathname,
+        prev: computed(() => props.menus[props.currentMenuIndex - 1]),
+        next: computed(() => props.menus[props.currentMenuIndex + 1]),
+      }
+    },
+  })
 </script>
 
 <template>

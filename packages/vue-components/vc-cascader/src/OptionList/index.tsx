@@ -77,8 +77,9 @@ export default defineComponent({
             !lastOption
             || lastOption[fieldNames.value.children]
             || isLeaf(lastOption, fieldNames.value)
-          )
+          ) {
             loadingKeys.value = loadingKeys.value.filter(key => key !== loadingKey)
+          }
         })
       }
     })
@@ -111,8 +112,9 @@ export default defineComponent({
       if (
         !baseProps.multiple
         && (leaf || (changeOnSelect.value && (expandTrigger.value === 'hover' || fromKeyboard)))
-      )
+      ) {
         baseProps.toggleOpen(false)
+      }
     }
 
     // ========================== Option ==========================

@@ -8,10 +8,10 @@ const Demo = defineComponent({
   setup() {
     return () => (
       <div>
-        <Title type={'danger'} level={4}>
+        <Title type="danger" level={4}>
           Error Title
         </Title>
-        <Text type={'danger'}>error Text</Text>
+        <Text type="danger">error Text</Text>
       </div>
     )
   },

@@ -6,7 +6,7 @@ import type { ComponentDemo } from '../../interface'
 function onChange() {}
 const Demo = defineComponent({
   setup() {
-    const checked = ref(true)
+    const checked = ref<any>(true)
     return () => <Switch v-model={[checked.value, 'checked']} onChange={onChange} />
   },
 })

@@ -3,9 +3,9 @@ import type { ComponentDemo } from '../../interface'
 
 import options from './data'
 
-const Demo = () => {
+function Demo() {
   return (
-    <Cascader options={options} placeholder="Please select" searchValue={'jiang'} showSearch />
+    <Cascader options={options} placeholder="Please select" searchValue="jiang" showSearch />
   )
 }
 

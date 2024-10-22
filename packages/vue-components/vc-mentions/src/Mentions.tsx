@@ -130,8 +130,9 @@ export default defineComponent({
             || key === 'Shift'
             || measuring
             || (measureText !== prevMeasureText && matchOption)
-          )
+          ) {
             startMeasure(measureText, measurePrefix, measureIndex)
+          }
         } else if (measuring) {
           // Stop if measureText is invalidate
           stopMeasure()

@@ -519,8 +519,9 @@ export default defineComponent({
             && dragState.dropAllowed === false
             && dragState.dragOverNodeKey === null
           )
-        )
+        ) {
           resetDragState()
+        }
       } else if (
         !(
           dropPosition === dragState.dropPosition
@@ -1003,15 +1004,17 @@ export default defineComponent({
               && !eventNode.disabled
               && eventNode.checkable !== false
               && !eventNode.disableCheckbox
-            )
+            ) {
               onNodeCheck({} as MouseEvent, eventNode, !checkedKeysSet.value.has(activeKey.value))
+            }
             else if (
               !checkable
               && selectable
               && !eventNode.disabled
               && eventNode.selectable !== false
-            )
+            ) {
               onNodeSelect({} as MouseEvent, eventNode)
+            }
 
             break
           }

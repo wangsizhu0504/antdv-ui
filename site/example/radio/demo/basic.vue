@@ -15,10 +15,13 @@ title:
 The simplest usage.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const checked = ref<boolean>(false)
+</script>
+
 <template>
   <a-radio v-model:checked="checked">Radio</a-radio>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const checked = ref<boolean>(false);
-</script>

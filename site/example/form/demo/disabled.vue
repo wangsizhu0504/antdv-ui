@@ -15,6 +15,33 @@ title:
 Set component disabled, only works for antd components.
 </docs>
 
+<script lang="ts" setup>
+  import { reactive, ref } from 'vue'
+  import { PlusOutlined } from '@ant-design/icons-vue'
+  import type { CascaderProps, TreeSelectProps } from '@antdv/ui'
+
+  const componentDisabled = ref<any>(true)
+  const labelCol = { style: { width: '150px' } }
+  const wrapperCol = { span: 14 }
+  const radioValue = ref<any>('apple')
+  const treeData = reactive<TreeSelectProps['treeData']>([
+    { title: 'Light', value: 'light', children: [{ title: 'Bamboo', value: 'bamboo' }] },
+  ])
+  const options = reactive<CascaderProps['options']>([
+    {
+      value: 'zhejiang',
+      label: 'Zhejiang',
+      children: [
+        {
+          value: 'hangzhou',
+          label: 'Hangzhou',
+        },
+      ],
+    },
+  ])
+  const checked = ref<any>(false)
+</script>
+
 <template>
   <a-checkbox :checked="componentDisabled" @change="e => (componentDisabled = e.target.checked)">
     Form disabled
@@ -77,29 +104,3 @@ Set component disabled, only works for antd components.
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { ref, reactive } from 'vue';
-import { PlusOutlined } from '@ant-design/icons-vue';
-import type { TreeSelectProps, CascaderProps } from '@antdv/ui';
-
-const componentDisabled = ref(true);
-const labelCol = { style: { width: '150px' } };
-const wrapperCol = { span: 14 };
-const radioValue = ref('apple');
-const treeData = reactive<TreeSelectProps['treeData']>([
-  { title: 'Light', value: 'light', children: [{ title: 'Bamboo', value: 'bamboo' }] },
-]);
-const options = reactive<CascaderProps['options']>([
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-      },
-    ],
-  },
-]);
-const checked = ref(false);
-</script>

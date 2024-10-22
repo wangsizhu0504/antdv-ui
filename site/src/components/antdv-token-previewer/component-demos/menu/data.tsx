@@ -4,20 +4,15 @@ import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/ico
 
 type MenuItem = Required<MenuProps>['items'][number]
 
-const getItem = (
-  label: any,
-  key: string,
-  icon?: any,
-  children?: MenuItem[],
-  type?: 'group',
-): MenuItem =>
-  ({
+function getItem(label: any, key: string, icon?: any, children?: MenuItem[], type?: 'group'): MenuItem {
+  return {
     key,
     icon,
     children,
     label,
     type,
-  } as MenuItem)
+  } as MenuItem
+}
 
 const items: MenuProps['items'] = [
   getItem('Navigation One', 'sub1', <MailOutlined />, [

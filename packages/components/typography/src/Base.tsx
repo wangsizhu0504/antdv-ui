@@ -227,8 +227,9 @@ export default defineComponent({
         || !findDOMNode(contentRef.value)
         || state.expanded
         || props.content === undefined
-      )
+      ) {
         return
+      }
 
       // Do not measure if css already support ellipsis
       if (canUseCSSEllipsis.value) return

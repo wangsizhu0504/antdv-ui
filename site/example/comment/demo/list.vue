@@ -16,6 +16,32 @@ Displaying a series of comments using the `antd` List Component.
 
 </docs>
 
+<script lang="ts" setup>
+  import dayjs from 'dayjs'
+  import relativeTime from 'dayjs/plugin/relativeTime'
+
+  dayjs.extend(relativeTime)
+
+  const data = [
+    {
+      actions: ['Reply to'],
+      author: 'Han Solo',
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      content:
+        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+      datetime: dayjs().subtract(1, 'days'),
+    },
+    {
+      actions: ['Reply to'],
+      author: 'Han Solo',
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      content:
+        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+      datetime: dayjs().subtract(2, 'days'),
+    },
+  ]
+</script>
+
 <template>
   <a-list
     class="comment-list"
@@ -44,27 +70,3 @@ Displaying a series of comments using the `antd` List Component.
     </template>
   </a-list>
 </template>
-<script lang="ts" setup>
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-dayjs.extend(relativeTime);
-
-const data = [
-  {
-    actions: ['Reply to'],
-    author: 'Han Solo',
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-    datetime: dayjs().subtract(1, 'days'),
-  },
-  {
-    actions: ['Reply to'],
-    author: 'Han Solo',
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-    datetime: dayjs().subtract(2, 'days'),
-  },
-];
-</script>

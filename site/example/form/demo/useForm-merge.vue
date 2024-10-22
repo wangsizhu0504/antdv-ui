@@ -15,6 +15,56 @@ title:
 use [`Form.useForm`](#useform)  combined display form verification information.
 </docs>
 
+<script lang="ts" setup>
+  import { computed, reactive, toRaw } from 'vue'
+  import { toArray } from 'lodash-es'
+  import { Form } from '@antdv/ui'
+
+  const useForm = Form.useForm
+
+  const labelCol = { span: 4 }
+  const wrapperCol = { span: 14 }
+  const modelRef = reactive({
+    name: '',
+    region: undefined,
+    type: [],
+  })
+  const rulesRef = reactive({
+    name: [
+      {
+        required: true,
+        message: 'Please input name',
+      },
+    ],
+    region: [
+      {
+        required: true,
+        message: 'Please select region',
+      },
+    ],
+    type: [
+      {
+        required: true,
+        message: 'Please select type',
+        type: 'array',
+      },
+    ],
+  })
+  const { resetFields, validate, validateInfos, mergeValidateInfo } = useForm(modelRef, rulesRef)
+  function onSubmit() {
+    validate()
+      .then(() => {
+        console.log(toRaw(modelRef))
+      })
+      .catch((err) => {
+        console.log('error', err)
+      })
+  }
+  const errorInfos = computed(() => {
+    return mergeValidateInfo(toArray(validateInfos))
+  })
+</script>
+
 <template>
   <a-form :label-col="labelCol" :wrapper-col="wrapperCol">
     <a-form-item label="Activity name" required>
@@ -39,55 +89,7 @@ use [`Form.useForm`](#useform)  combined display form verification information.
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { reactive, toRaw, computed } from 'vue';
-import { toArray } from 'lodash-es';
-import { Form } from '@antdv/ui';
 
-const useForm = Form.useForm;
-
-const labelCol = { span: 4 };
-const wrapperCol = { span: 14 };
-const modelRef = reactive({
-  name: '',
-  region: undefined,
-  type: [],
-});
-const rulesRef = reactive({
-  name: [
-    {
-      required: true,
-      message: 'Please input name',
-    },
-  ],
-  region: [
-    {
-      required: true,
-      message: 'Please select region',
-    },
-  ],
-  type: [
-    {
-      required: true,
-      message: 'Please select type',
-      type: 'array',
-    },
-  ],
-});
-const { resetFields, validate, validateInfos, mergeValidateInfo } = useForm(modelRef, rulesRef);
-const onSubmit = () => {
-  validate()
-    .then(() => {
-      console.log(toRaw(modelRef));
-    })
-    .catch(err => {
-      console.log('error', err);
-    });
-};
-const errorInfos = computed(() => {
-  return mergeValidateInfo(toArray(validateInfos));
-});
-</script>
 <style scoped>
 .error-infos :deep(.ant-form-explain) {
   white-space: pre-line;

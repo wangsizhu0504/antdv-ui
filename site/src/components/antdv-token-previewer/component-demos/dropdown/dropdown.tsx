@@ -15,7 +15,9 @@ const Demo = defineComponent({
           }}
         >
           <a class="ant-dropdown-link" onClick={e => e.preventDefault()}>
-            Hover me <DownOutlined />
+            Hover me
+            {' '}
+            <DownOutlined />
           </a>
         </Dropdown>
       </div>

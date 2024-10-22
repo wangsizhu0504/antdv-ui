@@ -16,6 +16,21 @@ Preview the watermark effect by configuring custom parameters.
 
 </docs>
 
+<script lang="ts" setup>
+  import { reactive } from 'vue'
+
+  const model = reactive({
+    content: 'Ant Design Vue',
+    font: {
+      fontSize: 16,
+    },
+    zIndex: 11,
+    rotate: -22,
+    gap: [100, 100] as [number, number],
+    offset: [],
+  })
+</script>
+
 <template>
   <div style="display: flex">
     <a-watermark v-bind="model">
@@ -95,17 +110,3 @@ Preview the watermark effect by configuring custom parameters.
     </a-form>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { reactive } from 'vue';
-const model = reactive({
-  content: 'Ant Design Vue',
-  font: {
-    fontSize: 16,
-  },
-  zIndex: 11,
-  rotate: -22,
-  gap: [100, 100] as [number, number],
-  offset: [],
-});
-</script>

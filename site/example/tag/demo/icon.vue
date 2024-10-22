@@ -17,37 +17,33 @@ title:
 If you want specific control over the positioning and placement of the `Icon`, then that should be done by placing the `Icon` component within the `Tag` rather than using the `icon` property.
 </docs>
 
+<script lang="ts" setup>
+  import { FacebookOutlined, LinkedinOutlined, TwitterOutlined, YoutubeOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-tag color="#55acee">
     <template #icon>
-      <twitter-outlined />
+      <TwitterOutlined />
     </template>
     Twitter
   </a-tag>
   <a-tag color="#cd201f">
     <template #icon>
-      <youtube-outlined />
+      <YoutubeOutlined />
     </template>
     Youtube
   </a-tag>
   <a-tag color="#3b5999">
     <template #icon>
-      <facebook-outlined />
+      <FacebookOutlined />
     </template>
     Facebook
   </a-tag>
   <a-tag color="#55acee">
     <template #icon>
-      <linkedin-outlined />
+      <LinkedinOutlined />
     </template>
     LinkedIn
   </a-tag>
 </template>
-<script lang="ts" setup>
-import {
-  TwitterOutlined,
-  YoutubeOutlined,
-  FacebookOutlined,
-  LinkedinOutlined,
-} from '@ant-design/icons-vue';
-</script>

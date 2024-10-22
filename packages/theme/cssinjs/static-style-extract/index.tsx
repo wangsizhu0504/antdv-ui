@@ -1,6 +1,6 @@
 import { renderToString } from 'vue/server-renderer'
 import * as antd from '@antdv/components'
-import { StyleProvider, createCache, extractStyle as extStyle } from '../'
+import { StyleProvider, createCache, extractStyle as extStyle } from '..'
 import type { CustomRender } from './interface'
 
 const blackList: string[] = [

@@ -16,6 +16,18 @@ Adjust popup placement automatically when popup is invisible.
 
 </docs>
 
+<script lang="ts" setup>
+  const wrapStyles: Record<string, string> = {
+    overflow: 'hidden',
+    position: 'relative',
+    padding: '24px',
+    border: '1px solid #e9e9e9',
+  }
+  function getPopupContainer(trigger: HTMLElement) {
+    return trigger.parentElement
+  }
+</script>
+
 <template>
   <div :style="wrapStyles">
     <a-tooltip placement="left" title="Prompt Text" :get-popup-container="getPopupContainer">
@@ -32,14 +44,3 @@ Adjust popup placement automatically when popup is invisible.
     </a-tooltip>
   </div>
 </template>
-<script lang="ts" setup>
-const wrapStyles: Record<string, string> = {
-  overflow: 'hidden',
-  position: 'relative',
-  padding: '24px',
-  border: '1px solid #e9e9e9',
-};
-const getPopupContainer = (trigger: HTMLElement) => {
-  return trigger.parentElement;
-};
-</script>

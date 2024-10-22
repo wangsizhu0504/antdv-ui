@@ -15,6 +15,18 @@ title:
 Example of creating a search box by grouping a standard input with a search button.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value = ref<string>('')
+
+  function onSearch(searchValue: string) {
+    console.log('use value', searchValue)
+    console.log('or use this.value', value.value)
+  }
+</script>
+
 <template>
   <a-space direction="vertical">
     <a-input-search
@@ -48,13 +60,3 @@ Example of creating a search box by grouping a standard input with a search butt
     </a-input-search>
   </a-space>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-const value = ref<string>('');
-
-const onSearch = (searchValue: string) => {
-  console.log('use value', searchValue);
-  console.log('or use this.value', value.value);
-};
-</script>

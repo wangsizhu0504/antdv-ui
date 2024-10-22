@@ -16,6 +16,17 @@ Skeleton Button, Avatar, Input and Image.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { SkeletonAvatarProps, SkeletonButtonProps } from '@antdv/ui'
+
+  const active = ref<any>(false)
+  const block = ref<any>(false)
+  const size = ref<SkeletonButtonProps['size']>('default')
+  const buttonShape = ref<SkeletonButtonProps['shape']>('default')
+  const avatarShape = ref<SkeletonAvatarProps['shape']>('circle')
+</script>
+
 <template>
   <a-space>
     <a-skeleton-button :active="active" :size="size" :shape="buttonShape" :block="block" />
@@ -58,12 +69,3 @@ Skeleton Button, Avatar, Input and Image.
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { SkeletonButtonProps, SkeletonAvatarProps } from '@antdv/ui';
-const active = ref(false);
-const block = ref(false);
-const size = ref<SkeletonButtonProps['size']>('default');
-const buttonShape = ref<SkeletonButtonProps['shape']>('default');
-const avatarShape = ref<SkeletonAvatarProps['shape']>('circle');
-</script>

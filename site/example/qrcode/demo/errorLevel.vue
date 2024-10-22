@@ -14,6 +14,13 @@ title:
 set Error Level.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const segmentedData = ['L', 'M', 'Q', 'H']
+  const level = ref<any>(segmentedData[0])
+</script>
+
 <template>
   <a-qrcode
     :error-level="level"
@@ -23,9 +30,3 @@ set Error Level.
   <br />
   <a-segmented v-model:value="level" :options="segmentedData" />
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-const segmentedData = ['L', 'M', 'Q', 'H'];
-const level = ref(segmentedData[0]);
-</script>

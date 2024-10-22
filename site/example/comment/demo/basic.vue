@@ -16,6 +16,31 @@ A basic comment with author, avatar, time and actions.
 
 </docs>
 
+<script lang="ts" setup>
+  import dayjs from 'dayjs'
+  import { DislikeFilled, DislikeOutlined, LikeFilled, LikeOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
+  import relativeTime from 'dayjs/plugin/relativeTime'
+
+  dayjs.extend(relativeTime)
+
+  const likes = ref<number>(0)
+  const dislikes = ref<number>(0)
+  const action = ref<string>()
+
+  function like() {
+    likes.value = 1
+    dislikes.value = 0
+    action.value = 'liked'
+  }
+
+  function dislike() {
+    likes.value = 0
+    dislikes.value = 1
+    action.value = 'disliked'
+  }
+</script>
+
 <template>
   <a-comment>
     <template #actions>
@@ -65,26 +90,3 @@ A basic comment with author, avatar, time and actions.
     </template>
   </a-comment>
 </template>
-<script lang="ts" setup>
-import dayjs from 'dayjs';
-import { LikeFilled, LikeOutlined, DislikeFilled, DislikeOutlined } from '@ant-design/icons-vue';
-import { ref } from 'vue';
-import relativeTime from 'dayjs/plugin/relativeTime';
-dayjs.extend(relativeTime);
-
-const likes = ref<number>(0);
-const dislikes = ref<number>(0);
-const action = ref<string>();
-
-const like = () => {
-  likes.value = 1;
-  dislikes.value = 0;
-  action.value = 'liked';
-};
-
-const dislike = () => {
-  likes.value = 0;
-  dislikes.value = 1;
-  action.value = 'disliked';
-};
-</script>

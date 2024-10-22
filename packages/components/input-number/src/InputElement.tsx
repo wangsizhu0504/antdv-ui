@@ -1,4 +1,3 @@
-/* eslint-disable unused-imports/no-unused-vars */
 // base rc-input-number@7.3.4
 import { computed, defineComponent, shallowRef, watch } from 'vue'
 

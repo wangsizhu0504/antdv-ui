@@ -16,7 +16,7 @@ const initialTargetKeys = mockData.filter(item => +item.key > 10).map(item => it
 
 const Demo = defineComponent({
   setup() {
-    const targetKeys = ref(initialTargetKeys)
+    const targetKeys = ref<any>(initialTargetKeys)
     const selectedKeys = ref<string[]>([])
     const onScroll = () => {}
 
@@ -26,7 +26,7 @@ const Demo = defineComponent({
           dataSource={mockData}
           titles={['Source', 'Target']}
           targetKeys={targetKeys.value}
-          status={'warning'}
+          status="warning"
           selectedKeys={selectedKeys.value}
           onChange={(nextTargetKeys) => {
             targetKeys.value = nextTargetKeys

@@ -5,7 +5,7 @@ import type { ComponentDemo } from '../../interface'
 const Demo = defineComponent({
   setup() {
     return () => (
-      <Space direction={'vertical'}>
+      <Space direction="vertical">
         <Alert message="Success Tips" type="success" showIcon />
         <Alert
           message="Success Tips"

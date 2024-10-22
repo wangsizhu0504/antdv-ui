@@ -48,6 +48,7 @@ Config item align.
     </div>
   </div>
 </template>
+
 <style scoped>
 .space-align-container {
   display: flex;

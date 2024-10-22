@@ -16,19 +16,37 @@ More than one panel can be expanded at a time, the first panel is initialized to
 
 </docs>
 
+<script lang="ts" setup>
+  import { SettingOutlined } from '@ant-design/icons-vue'
+  import { ref, watch } from 'vue'
+  import type { CollapseProps } from '@antdv/ui'
+
+  const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
+  const activeKey = ref<any>(['1'])
+  const expandIconPosition = ref<CollapseProps['expandIconPosition']>('start')
+
+  function handleClick(event: MouseEvent) {
+    // If you don't want click extra trigger collapse, you can prevent this:
+    event.stopPropagation()
+  }
+  watch(activeKey, (val) => {
+    console.log(val)
+  })
+</script>
+
 <template>
   <a-collapse v-model:activeKey="activeKey" :expand-icon-position="expandIconPosition">
     <a-collapse-panel key="1" header="This is panel header 1">
       <p>{{ text }}</p>
-      <template #extra><setting-outlined @click="handleClick" /></template>
+      <template #extra><SettingOutlined @click="handleClick" /></template>
     </a-collapse-panel>
     <a-collapse-panel key="2" header="This is panel header 2">
       <p>{{ text }}</p>
-      <template #extra><setting-outlined @click="handleClick" /></template>
+      <template #extra><SettingOutlined @click="handleClick" /></template>
     </a-collapse-panel>
     <a-collapse-panel key="3" header="This is panel header 3" collapsible="disabled">
       <p>{{ text }}</p>
-      <template #extra><setting-outlined @click="handleClick" /></template>
+      <template #extra><SettingOutlined @click="handleClick" /></template>
     </a-collapse-panel>
   </a-collapse>
   <br />
@@ -38,20 +56,3 @@ More than one panel can be expanded at a time, the first panel is initialized to
     <a-select-option value="end">end</a-select-option>
   </a-select>
 </template>
-<script lang="ts" setup>
-import { SettingOutlined } from '@ant-design/icons-vue';
-import { ref, watch } from 'vue';
-import type { CollapseProps } from '@antdv/ui';
-
-const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
-const activeKey = ref(['1']);
-const expandIconPosition = ref<CollapseProps['expandIconPosition']>('start');
-
-const handleClick = (event: MouseEvent) => {
-  // If you don't want click extra trigger collapse, you can prevent this:
-  event.stopPropagation();
-};
-watch(activeKey, val => {
-  console.log(val);
-});
-</script>

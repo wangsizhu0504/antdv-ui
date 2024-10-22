@@ -14,6 +14,13 @@ title:
 Custom Color.
 </docs>
 
+<script lang="ts" setup>
+  import { theme } from '@antdv/ui'
+
+  const { useToken } = theme
+  const { token } = useToken()
+</script>
+
 <template>
   <a-space>
     <a-qrcode value="http://www.antdv.com" :color="token.colorSuccessText" />
@@ -24,10 +31,3 @@ Custom Color.
     />
   </a-space>
 </template>
-
-<script lang="ts" setup>
-import { theme } from '@antdv/ui';
-
-const { useToken } = theme;
-const { token } = useToken();
-</script>

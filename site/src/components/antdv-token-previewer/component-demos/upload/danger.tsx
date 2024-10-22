@@ -22,7 +22,7 @@ const Demo = defineComponent({
           <Button icon={<UploadOutlined />}>Upload</Button>
         </Upload>
         <Upload
-          listType={'picture'}
+          listType="picture"
           defaultFileList={[
             {
               uid: '3',

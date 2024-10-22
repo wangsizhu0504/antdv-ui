@@ -7,7 +7,7 @@ const Demo = defineComponent({
     return () => {
       const onFinish = () => {}
       const onFinishFailed = () => {}
-      const formRef = ref()
+      const formRef = ref<any>()
       const formData = reactive({
         username: '',
         password: '',

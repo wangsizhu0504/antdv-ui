@@ -15,6 +15,15 @@ title:
 Limit files with `maxCount`. Will replace current one when `maxCount` is `1`.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { UploadOutlined } from '@ant-design/icons-vue'
+  import type { UploadProps } from '@antdv/ui'
+
+  const fileList = ref<UploadProps['fileList']>([])
+  const fileList2 = ref<UploadProps['fileList']>([])
+</script>
+
 <template>
   <a-space direction="vertical" style="width: 100%" size="large">
     <a-upload
@@ -24,7 +33,7 @@ Limit files with `maxCount`. Will replace current one when `maxCount` is `1`.
       action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
     >
       <a-button>
-        <upload-outlined></upload-outlined>
+        <UploadOutlined/>
         Upload (Max: 1)
       </a-button>
     </a-upload>
@@ -35,16 +44,9 @@ Limit files with `maxCount`. Will replace current one when `maxCount` is `1`.
       action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
     >
       <a-button>
-        <upload-outlined></upload-outlined>
+        <UploadOutlined/>
         Upload (Max: 3)
       </a-button>
     </a-upload>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { UploadOutlined } from '@ant-design/icons-vue';
-import type { UploadProps } from '@antdv/ui';
-const fileList = ref<UploadProps['fileList']>([]);
-const fileList2 = ref<UploadProps['fileList']>([]);
-</script>

@@ -16,6 +16,52 @@ Multiple selection usage.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref, watch } from 'vue'
+  import type { TreeSelectProps } from '@antdv/ui'
+
+  const value = ref<string[]>([])
+  const treeData = ref<TreeSelectProps['treeData']>([
+    {
+      label: 'parent 1',
+      value: 'parent 1',
+      children: [
+        {
+          label: 'parent 1',
+          value: 'parent 1',
+          children: [
+            {
+              label: 'parent 1-0',
+              value: 'parent 1-0',
+              children: [
+                {
+                  label: 'my leaf',
+                  value: 'leaf1',
+                },
+                {
+                  label: 'your leaf',
+                  value: 'leaf2',
+                },
+              ],
+            },
+            {
+              label: 'parent 1-1',
+              value: 'parent 1-1',
+            },
+          ],
+        },
+        {
+          label: 'parent 1-1',
+          value: 'parent 1-1',
+        },
+      ],
+    },
+  ])
+  watch(value, () => {
+    console.log('select', value.value)
+  })
+</script>
+
 <template>
   <a-tree-select
     v-model:value="value"
@@ -35,48 +81,3 @@ Multiple selection usage.
     </template>
   </a-tree-select>
 </template>
-<script lang="ts" setup>
-import { ref, watch } from 'vue';
-import type { TreeSelectProps } from '@antdv/ui';
-
-const value = ref<string[]>([]);
-const treeData = ref<TreeSelectProps['treeData']>([
-  {
-    label: 'parent 1',
-    value: 'parent 1',
-    children: [
-      {
-        label: 'parent 1',
-        value: 'parent 1',
-        children: [
-          {
-            label: 'parent 1-0',
-            value: 'parent 1-0',
-            children: [
-              {
-                label: 'my leaf',
-                value: 'leaf1',
-              },
-              {
-                label: 'your leaf',
-                value: 'leaf2',
-              },
-            ],
-          },
-          {
-            label: 'parent 1-1',
-            value: 'parent 1-1',
-          },
-        ],
-      },
-      {
-        label: 'parent 1-1',
-        value: 'parent 1-1',
-      },
-    ],
-  },
-]);
-watch(value, () => {
-  console.log('select', value.value);
-});
-</script>

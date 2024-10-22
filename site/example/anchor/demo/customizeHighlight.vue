@@ -15,6 +15,12 @@ title:
 Customize the anchor highlight.
 </docs>
 
+<script lang="ts" setup>
+  function getCurrentAnchor() {
+    return '#site-example-anchor-demo-static'
+  }
+</script>
+
 <template>
   <a-anchor
     :affix="false"
@@ -50,9 +56,3 @@ Customize the anchor highlight.
     ]"
   />
 </template>
-
-<script lang="ts" setup>
-const getCurrentAnchor = () => {
-  return '#site-example-anchor-demo-static'
-}
-</script>

@@ -16,6 +16,19 @@ Skeleton contains sub component.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const loading = ref<boolean>(false)
+
+  function showSkeleton() {
+    loading.value = true
+    setTimeout(() => {
+      loading.value = false
+    }, 3000)
+  }
+</script>
+
 <template>
   <a-space direction="vertical" style="width: 100%" :size="16">
     <a-skeleton :loading="loading">
@@ -31,15 +44,3 @@ Skeleton contains sub component.
     <a-button :disabled="loading" @click="showSkeleton">Show Skeleton</a-button>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const loading = ref<boolean>(false);
-
-const showSkeleton = () => {
-  loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-  }, 3000);
-};
-</script>

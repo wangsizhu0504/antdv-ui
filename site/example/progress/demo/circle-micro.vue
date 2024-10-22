@@ -14,7 +14,6 @@ title:
 
 Responsive circular progress bar. When `width` is smaller than 20, progress information will be displayed in Tooltip.
 
-
 </docs>
 
 <template>

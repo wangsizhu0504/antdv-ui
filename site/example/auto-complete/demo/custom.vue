@@ -15,6 +15,24 @@ title:
 Customize Input Component.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value = ref<any>('')
+  const options = ref<Array<{ value: string }>>([])
+  function onSelect(value: string) {
+    console.log('onSelect', value)
+  }
+  function handleSearch(value: string) {
+    options.value = !value
+      ? []
+      : [{ value }, { value: value + value }, { value: value + value + value }]
+  }
+  function handleKeyPress(ev: KeyboardEvent) {
+    console.log('handleKeyPress', ev)
+  }
+</script>
+
 <template>
   <a-auto-complete
     v-model:value="value"
@@ -31,21 +49,3 @@ Customize Input Component.
     />
   </a-auto-complete>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue'
-
-const value = ref('')
-const options = ref<{ value: string }[]>([])
-const onSelect = (value: string) => {
-  console.log('onSelect', value)
-}
-const handleSearch = (value: string) => {
-  options.value = !value
-    ? []
-    : [{ value }, { value: value + value }, { value: value + value + value }]
-}
-const handleKeyPress = (ev: KeyboardEvent) => {
-  console.log('handleKeyPress', ev)
-}
-</script>

@@ -17,6 +17,48 @@ Load options lazily with `loadData`.
 > Note: `loadData` cannot work with `showSearch`.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { CascaderProps } from '@antdv/ui'
+
+  const options = ref<CascaderProps['options']>([
+    {
+      value: 'zhejiang',
+      label: 'Zhejiang',
+      isLeaf: false,
+    },
+    {
+      value: 'jiangsu',
+      label: 'Jiangsu',
+      isLeaf: false,
+    },
+  ])
+
+  const loadData: CascaderProps['loadData'] = (selectedOptions) => {
+    const targetOption = selectedOptions[selectedOptions.length - 1]
+    targetOption.loading = true
+
+    // load options lazily
+    setTimeout(() => {
+      targetOption.loading = false
+      targetOption.children = [
+        {
+          label: `${targetOption.label} Dynamic 1`,
+          value: 'dynamic1',
+        },
+        {
+          label: `${targetOption.label} Dynamic 2`,
+          value: 'dynamic2',
+        },
+      ]
+      options.value = [...options.value]
+    }, 1000)
+  }
+
+  const value = ref<string[]>([])
+</script>
+
 <template>
   <a-cascader
     v-model:value="value"
@@ -26,43 +68,3 @@ Load options lazily with `loadData`.
     change-on-select
   />
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { CascaderProps } from '@antdv/ui';
-
-const options = ref<CascaderProps['options']>([
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    isLeaf: false,
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    isLeaf: false,
-  },
-]);
-
-const loadData: CascaderProps['loadData'] = selectedOptions => {
-  const targetOption = selectedOptions[selectedOptions.length - 1];
-  targetOption.loading = true;
-
-  // load options lazily
-  setTimeout(() => {
-    targetOption.loading = false;
-    targetOption.children = [
-      {
-        label: `${targetOption.label} Dynamic 1`,
-        value: 'dynamic1',
-      },
-      {
-        label: `${targetOption.label} Dynamic 2`,
-        value: 'dynamic2',
-      },
-    ];
-    options.value = [...options.value];
-  }, 1000);
-};
-
-const value = ref<string[]>([]);
-</script>

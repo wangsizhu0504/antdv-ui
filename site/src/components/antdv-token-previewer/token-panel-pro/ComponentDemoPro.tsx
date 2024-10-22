@@ -109,17 +109,17 @@ const ComponentDemoPro = defineComponent({
             >
               {mode.value === 'overview'
                 ? (
-                <div style={{ margin: '12px' }}>{overviewDemo.value}</div>
+                  <div style={{ margin: '12px' }}>{overviewDemo.value}</div>
                   )
                 : (
-                <ComponentDemoGroup
-                  selectedTokens={selectedTokens.value}
-                  themes={[theme.value!]}
-                  components={components.value}
-                  activeComponents={activeComponents.value}
-                  componentDrawer={componentDrawer.value}
-                  hideTokens
-                />
+                  <ComponentDemoGroup
+                    selectedTokens={selectedTokens.value}
+                    themes={[theme.value!]}
+                    components={components.value}
+                    activeComponents={activeComponents.value}
+                    componentDrawer={componentDrawer.value}
+                    hideTokens
+                  />
                   )}
             </ConfigProvider>
           </div>

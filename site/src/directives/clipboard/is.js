@@ -1,8 +1,8 @@
 /**
  * Check if argument is a HTML element.
  *
- * @param {Object} value
- * @return {Boolean}
+ * @param {object} value
+ * @return {boolean}
  */
 export const node = function (value) {
   return value !== undefined && value instanceof HTMLElement && value.nodeType === 1
@@ -11,8 +11,8 @@ export const node = function (value) {
 /**
  * Check if argument is a list of HTML elements.
  *
- * @param {Object} value
- * @return {Boolean}
+ * @param {object} value
+ * @return {boolean}
  */
 export const nodeList = function (value) {
   const type = Object.prototype.toString.call(value)
@@ -28,8 +28,8 @@ export const nodeList = function (value) {
 /**
  * Check if argument is a string.
  *
- * @param {Object} value
- * @return {Boolean}
+ * @param {object} value
+ * @return {boolean}
  */
 export const string = function (value) {
   return typeof value === 'string' || value instanceof String
@@ -38,8 +38,8 @@ export const string = function (value) {
 /**
  * Check if argument is a function.
  *
- * @param {Object} value
- * @return {Boolean}
+ * @param {object} value
+ * @return {boolean}
  */
 export const fn = function (value) {
   const type = Object.prototype.toString.call(value)

@@ -42,14 +42,16 @@ function YearSelect<DateType>(props: SharedProps<DateType>) {
           if (
             newYear === generateConfig.getYear(endDate)
             && newMonth > generateConfig.getMonth(endDate)
-          )
+          ) {
             newDate = generateConfig.setMonth(newDate, generateConfig.getMonth(endDate))
+          }
 
           if (
             newYear === generateConfig.getYear(startDate)
             && newMonth < generateConfig.getMonth(startDate)
-          )
+          ) {
             newDate = generateConfig.setMonth(newDate, generateConfig.getMonth(startDate))
+          }
         }
 
         onChange(newDate)

@@ -16,6 +16,12 @@ Progressive when large image loading.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const random = ref<any>()
+</script>
+
 <template>
   <a-space :size="12">
     <a-image
@@ -33,7 +39,3 @@ Progressive when large image loading.
     <a-button type="primary" @click="random = Date.now()">reload</a-button>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const random = ref();
-</script>

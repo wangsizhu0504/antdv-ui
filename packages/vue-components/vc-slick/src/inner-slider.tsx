@@ -77,8 +77,9 @@ export default {
           typeof nextProps[key] === 'object'
           || typeof nextProps[key] === 'function'
           || typeof nextProps[key] === 'symbol'
-        )
+        ) {
           continue
+        }
 
         if (nextProps[key] !== this.preProps[key]) {
           setTrackStyle = true

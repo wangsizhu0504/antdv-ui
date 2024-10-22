@@ -19,6 +19,38 @@ Spacified the prop name of Option which will be rendered in select box.
 or use `tagRender` slot for custom rendering of tags.
 </docs>
 
+<script lang="ts" setup>
+  import { ref, watch } from 'vue'
+
+  const value = ref<any>(['china'])
+
+  const options = ref<any>([
+    {
+      value: 'china',
+      label: 'China (中国)',
+      icon: '🇨🇳',
+    },
+    {
+      value: 'usa',
+      label: 'USA (美国)',
+      icon: '🇺🇸',
+    },
+    {
+      value: 'japan',
+      label: 'Japan (日本)',
+      icon: '🇯🇵',
+    },
+    {
+      value: 'korea',
+      label: 'Korea (韩国)',
+      icon: '🇨🇰',
+    },
+  ])
+  watch(value, (val) => {
+    console.log(`selected:`, val)
+  })
+</script>
+
 <template>
   <a-space direction="vertical" style="width: 100%">
     <a-select
@@ -85,34 +117,3 @@ or use `tagRender` slot for custom rendering of tags.
     <span>Note: v-slot:tagRender support from v3.0</span>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref, watch } from 'vue';
-
-const value = ref(['china']);
-
-const options = ref([
-  {
-    value: 'china',
-    label: 'China (中国)',
-    icon: '🇨🇳',
-  },
-  {
-    value: 'usa',
-    label: 'USA (美国)',
-    icon: '🇺🇸',
-  },
-  {
-    value: 'japan',
-    label: 'Japan (日本)',
-    icon: '🇯🇵',
-  },
-  {
-    value: 'korea',
-    label: 'Korea (韩国)',
-    icon: '🇨🇰',
-  },
-]);
-watch(value, val => {
-  console.log(`selected:`, val);
-});
-</script>

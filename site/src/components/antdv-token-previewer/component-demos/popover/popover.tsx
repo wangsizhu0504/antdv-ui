@@ -6,7 +6,9 @@ const Demo = defineComponent({
   setup() {
     const content = () => (
       <div>
-        <p>Content</p> <p>Content</p>
+        <p>Content</p>
+        {' '}
+        <p>Content</p>
       </div>
     )
 

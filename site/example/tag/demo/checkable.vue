@@ -18,6 +18,16 @@ title:
 
 </docs>
 
+<script lang="ts" setup>
+  import { reactive } from 'vue'
+
+  const tagsData = reactive(['Movies', 'Books', 'Music', 'Sports'])
+  const selectTags = reactive([false, true, false, false])
+  function handleChange(tag: string, checked: boolean) {
+    console.log(tag, checked)
+  }
+</script>
+
 <template>
   <span style="margin-right: 8px">Categories:</span>
   <a-space :size="[0, 8]" wrap>
@@ -31,11 +41,3 @@ title:
     </a-checkable-tag>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { reactive } from 'vue';
-const tagsData = reactive(['Movies', 'Books', 'Music', 'Sports']);
-const selectTags = reactive([false, true, false, false]);
-const handleChange = (tag: string, checked: boolean) => {
-  console.log(tag, checked);
-};
-</script>

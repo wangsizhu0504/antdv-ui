@@ -15,6 +15,56 @@ title:
 For instance, add an external link after the selected value.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { CascaderProps } from '@antdv/ui'
+
+  const options: CascaderProps['options'] = [
+    {
+      value: 'zhejiang',
+      label: 'Zhejiang',
+      children: [
+        {
+          value: 'hangzhou',
+          label: 'Hangzhou',
+          children: [
+            {
+              value: 'xihu',
+              label: 'West Lake',
+              code: 752100,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: 'jiangsu',
+      label: 'Jiangsu',
+      children: [
+        {
+          value: 'nanjing',
+          label: 'Nanjing',
+          children: [
+            {
+              value: 'zhonghuamen',
+              label: 'Zhong Hua Men',
+              code: 453400,
+            },
+          ],
+        },
+      ],
+    },
+  ]
+
+  function handleAreaClick(e: Event, label: string, option: CascaderProps['options'][number]) {
+    e.stopPropagation()
+    console.log('clicked', label, option)
+  }
+
+  const value = ref<string[]>(['zhejiang', 'hangzhou', 'xihu'])
+</script>
+
 <template>
   <a-cascader
     v-model:value="value"
@@ -36,51 +86,3 @@ For instance, add an external link after the selected value.
     </template>
   </a-cascader>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { CascaderProps } from '@antdv/ui';
-const options: CascaderProps['options'] = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-            code: 752100,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-            code: 453400,
-          },
-        ],
-      },
-    ],
-  },
-];
-
-const handleAreaClick = (e: Event, label: string, option: CascaderProps['options'][number]) => {
-  e.stopPropagation();
-  console.log('clicked', label, option);
-};
-
-const value = ref<string[]>(['zhejiang', 'hangzhou', 'xihu']);
-</script>

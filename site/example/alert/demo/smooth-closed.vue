@@ -16,6 +16,15 @@ Smoothly and unaffectedly unmount Alert.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const visible = ref<boolean>(true)
+  function handleClose() {
+    visible.value = false
+  }
+</script>
+
 <template>
   <a-alert
     v-if="visible"
@@ -25,12 +34,3 @@ Smoothly and unaffectedly unmount Alert.
     :after-close="handleClose"
   />
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue'
-
-const visible = ref<boolean>(true)
-const handleClose = () => {
-  visible.value = false
-}
-</script>

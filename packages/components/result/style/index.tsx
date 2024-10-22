@@ -1,6 +1,5 @@
 import { genComponentStyleHook, mergeToken } from '@antdv/theme'
-import type { CSSObject } from '@antdv/theme'
-import type { FullToken, GenerateStyle } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
 
 export interface ComponentToken {
   imageWidth: number

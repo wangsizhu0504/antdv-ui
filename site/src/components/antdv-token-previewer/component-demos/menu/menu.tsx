@@ -12,8 +12,8 @@ const Demo = defineComponent({
         console.log('click ', e)
       }
 
-      const selectedKeys = ref(['1'])
-      const openKeys = ref(['sub1', 'sub2'])
+      const selectedKeys = ref<any>(['1'])
+      const openKeys = ref<any>(['sub1', 'sub2'])
 
       return (
         <div>

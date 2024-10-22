@@ -1,28 +1,28 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+  import { computed } from 'vue'
+  import { useRoute } from 'vue-router'
 
-const props = defineProps<{
-  pageData: Record<string, any>
-  isZhCN: boolean
-}>()
-defineOptions({
-  name: 'Demo',
-})
-const route = useRoute()
-const frontmatter = computed(() => props?.pageData?.frontmatter || {})
-const docHtml = computed(() => {
-  return props?.pageData?.html || ''
-})
-const description = computed(() => {
-  return docHtml.value.split('<h2 id="api">API <a class="header-anchor" href="#api">')[0]
-})
-const api = computed(() => {
-  return `
+  defineOptions({
+    name: 'Demo',
+  })
+  const props = defineProps<{
+    pageData: Record<string, any>
+    isZhCN: boolean
+  }>()
+  const route = useRoute()
+  const frontmatter = computed(() => props?.pageData?.frontmatter || {})
+  const docHtml = computed(() => {
+    return props?.pageData?.html || ''
+  })
+  const description = computed(() => {
+    return docHtml.value.split('<h2 id="api">API <a class="header-anchor" href="#api">')[0]
+  })
+  const api = computed(() => {
+    return `
       <h2 id="api"><span>API</span><a href="#api" class="anchor">#</a></h2>
       ${docHtml.value.split('<h2 id="api">API <a class="header-anchor" href="#api">')[1]}
       `
-})
+  })
 </script>
 
 <template>

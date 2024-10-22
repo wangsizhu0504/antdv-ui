@@ -1,5 +1,4 @@
-import { genComponentStyleHook, mergeToken } from '@antdv/theme'
-import { resetComponent } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import type { FullToken, GenerateStyle } from '@antdv/theme'
 
 export interface ComponentToken {

@@ -14,6 +14,30 @@ title:
 
 Basic Form data control. Includes layout, initial values, validation and submit.
 </docs>
+
+<script lang="ts" setup>
+  import { reactive } from 'vue'
+
+  interface FormState {
+    username: string;
+    password: string;
+    remember: boolean;
+  }
+
+  const formState = reactive<FormState>({
+    username: '',
+    password: '',
+    remember: true,
+  })
+  function onFinish(values: any) {
+    console.log('Success:', values)
+  }
+
+  function onFinishFailed(errorInfo: any) {
+    console.log('Failed:', errorInfo)
+  }
+</script>
+
 <template>
   <a-form
     :model="formState"
@@ -22,7 +46,7 @@ Basic Form data control. Includes layout, initial values, validation and submit.
     :wrapper-col="{ span: 16 }"
     autocomplete="off"
     @finish="onFinish"
-    @finishFailed="onFinishFailed"
+    @finish-failed="onFinishFailed"
   >
     <a-form-item
       label="Username"
@@ -49,25 +73,3 @@ Basic Form data control. Includes layout, initial values, validation and submit.
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { reactive } from 'vue';
-
-interface FormState {
-  username: string;
-  password: string;
-  remember: boolean;
-}
-
-const formState = reactive<FormState>({
-  username: '',
-  password: '',
-  remember: true,
-});
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
-</script>

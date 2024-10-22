@@ -33,12 +33,12 @@ Custom modal content render. use `vueuse` implements draggable.
   }
   const startX = ref<number>(0)
   const startY = ref<number>(0)
-  const startedDrag = ref(false)
-  const transformX = ref(0)
-  const transformY = ref(0)
-  const preTransformX = ref(0)
-  const preTransformY = ref(0)
-  const dragRect = ref({ left: 0, right: 0, top: 0, bottom: 0 })
+  const startedDrag = ref<any>(false)
+  const transformX = ref<any>(0)
+  const transformY = ref<any>(0)
+  const preTransformX = ref<any>(0)
+  const preTransformY = ref<any>(0)
+  const dragRect = ref<any>({ left: 0, right: 0, top: 0, bottom: 0 })
   watch([x, y], () => {
     if (!startedDrag.value) {
       startX.value = x.value

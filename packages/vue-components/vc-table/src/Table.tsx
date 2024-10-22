@@ -248,8 +248,9 @@ export default defineComponent<TableProps<DefaultRecordType>>({
         || mergedData.value.some(
           record => record && typeof record === 'object' && record[mergedChildrenColumnName.value],
         )
-      )
+      ) {
         return 'nest'
+      }
 
       return false
     })
@@ -299,8 +300,9 @@ export default defineComponent<TableProps<DefaultRecordType>>({
       && mergedData.value.some((record) => {
         return Array.isArray(record?.[mergedChildrenColumnName.value])
       })
-    )
+    ) {
       warning(false, '`expandedRowRender` should not use with nested Table')
+    }
 
     const componentWidth = ref(0)
 
@@ -549,8 +551,9 @@ export default defineComponent<TableProps<DefaultRecordType>>({
         fixHeader.value
         || stickyState.value.isSticky
         || flattenColumns.value.some(({ ellipsis }) => ellipsis)
-      )
+      ) {
         return 'fixed'
+      }
 
       return 'auto'
     })
@@ -669,8 +672,9 @@ export default defineComponent<TableProps<DefaultRecordType>>({
         && typeof customizeScrollBody === 'function'
         && hasData.value
         && !fixHeader.value
-      )
+      ) {
         warning(false, '`components.body` with render props is only work on `scroll.y`.')
+      }
 
       if (fixHeader.value || isSticky) {
         // >>>>>> Fixed Header

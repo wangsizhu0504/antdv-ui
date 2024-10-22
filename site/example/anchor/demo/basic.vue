@@ -15,6 +15,10 @@ title:
 The simplest usage.
 </docs>
 
+<script lang="ts" setup>
+  import { h } from 'vue'
+</script>
+
 <template>
   <a-anchor
     :items="[
@@ -36,7 +40,3 @@ The simplest usage.
     ]"
   />
 </template>
-
-<script lang="ts" setup>
-import { h } from 'vue'
-</script>

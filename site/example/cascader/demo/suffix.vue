@@ -15,6 +15,50 @@ title:
 Custom suffix icon
 
 </docs>
+
+<script lang="ts" setup>
+  import { SmileOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
+  import type { CascaderProps } from '@antdv/ui'
+
+  const options: CascaderProps['options'] = [
+    {
+      value: 'zhejiang',
+      label: 'Zhejiang',
+      children: [
+        {
+          value: 'hangzhou',
+          label: 'Hangzhou',
+          children: [
+            {
+              value: 'xihu',
+              label: 'West Lake',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: 'jiangsu',
+      label: 'Jiangsu',
+      children: [
+        {
+          value: 'nanjing',
+          label: 'Nanjing',
+          children: [
+            {
+              value: 'zhonghuamen',
+              label: 'Zhong Hua Men',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  const value1 = ref<string[]>([])
+  const value2 = ref<string[]>([])
+</script>
+
 <template>
   <a-space>
     <a-cascader
@@ -23,7 +67,7 @@ Custom suffix icon
       :options="options"
       placeholder="Please select"
     >
-      <template #suffixIcon><smile-outlined class="test" /></template>
+      <template #suffixIcon><SmileOutlined class="test" /></template>
     </a-cascader>
     <a-cascader
       v-model:value="value2"
@@ -34,44 +78,3 @@ Custom suffix icon
     />
   </a-space>
 </template>
-<script lang="ts" setup>
-import { SmileOutlined } from '@ant-design/icons-vue';
-import { ref } from 'vue';
-import type { CascaderProps } from '@antdv/ui';
-const options: CascaderProps['options'] = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
-  },
-];
-const value1 = ref<string[]>([]);
-const value2 = ref<string[]>([]);
-</script>

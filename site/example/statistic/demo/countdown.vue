@@ -16,6 +16,13 @@ Countdown component.
 
 </docs>
 
+<script lang="ts" setup>
+  function onFinish() {
+    console.log('finished!')
+  }
+  const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30
+</script>
+
 <template>
   <a-row :gutter="16">
     <a-col :span="12">
@@ -39,9 +46,3 @@ Countdown component.
     </a-col>
   </a-row>
 </template>
-<script lang="ts" setup>
-const onFinish = () => {
-  console.log('finished!');
-};
-const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
-</script>

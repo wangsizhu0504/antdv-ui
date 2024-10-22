@@ -68,8 +68,9 @@ export class ScrollLocker {
       (container === document.body
         && window.innerWidth - document.documentElement.clientWidth > 0)
       || container.scrollHeight > container.clientHeight
-    )
+    ) {
       scrollBarSize = getScrollBarSize()
+    }
 
     const containerClassName = container.className
 
@@ -109,8 +110,9 @@ export class ScrollLocker {
     if (
       !findLock
       || locks.some(({ options }) => options?.container === findLock.options?.container)
-    )
+    ) {
       return
+    }
 
     // Remove Effect
     const container = this.options?.container || document.body

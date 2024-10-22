@@ -15,12 +15,67 @@ title:
 Simple table with actions.
 </docs>
 
+<script lang="ts" setup>
+  import { DownOutlined, SmileOutlined } from '@ant-design/icons-vue'
+
+  const columns = [
+    {
+      name: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
+      key: 'address',
+    },
+    {
+      title: 'Tags',
+      key: 'tags',
+      dataIndex: 'tags',
+    },
+    {
+      title: 'Action',
+      key: 'action',
+    },
+  ]
+
+  const data = [
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      address: 'New York No. 1 Lake Park',
+      tags: ['nice', 'developer'],
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      age: 42,
+      address: 'London No. 1 Lake Park',
+      tags: ['loser'],
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      age: 32,
+      address: 'Sidney No. 1 Lake Park',
+      tags: ['cool', 'teacher'],
+    },
+  ]
+</script>
+
 <template>
   <a-table :columns="columns" :data-source="data">
     <template #headerCell="scope">
       <template v-if="scope?.column.key === 'name'">
         <span>
-          <smile-outlined />
+          <SmileOutlined />
           Name
         </span>
       </template>
@@ -51,63 +106,10 @@ Simple table with actions.
           <a-divider type="vertical" />
           <a class="ant-dropdown-link">
             More actions
-            <down-outlined />
+            <DownOutlined />
           </a>
         </span>
       </template>
     </template>
   </a-table>
 </template>
-<script lang="ts" setup>
-import { SmileOutlined, DownOutlined } from '@ant-design/icons-vue';
-const columns = [
-  {
-    name: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-  },
-  {
-    title: 'Action',
-    key: 'action',
-  },
-];
-
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-];
-</script>

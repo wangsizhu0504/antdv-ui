@@ -73,17 +73,17 @@ Setting `Modal`、`Message`、`Notification` rootPrefixCls.
 ```jsx
 ConfigProvider.config({
   prefixCls: 'ant',
-});
+})
 ```
 
 or
 
 ```jsx
 // some cinfig support reactively, you can change prefixCls.value = 'other'
-const prefixCls = ref('ant');
+const prefixCls = ref('ant')
 ConfigProvider.config({
   prefixCls,
-});
+})
 ```
 
 ## FAQ

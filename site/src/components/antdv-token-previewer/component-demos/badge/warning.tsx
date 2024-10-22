@@ -6,7 +6,7 @@ const Demo = defineComponent({
   setup() {
     return () => (
       <Space size="small">
-        <Badge dot status={'warning'} />
+        <Badge dot status="warning" />
         Warning
       </Space>
     )

@@ -27,7 +27,8 @@ const Demo = defineComponent({
         onSelect={onSelect}
         defaultValue="@afc163"
         options={options}
-      ></Mentions>
+      >
+      </Mentions>
     )
   },
 })

@@ -30,8 +30,10 @@ const Demo = defineComponent({
           }}
         >
           {' '}
-          <Typography.Text type={'danger'}>
-            Hover me <DownOutlined />
+          <Typography.Text type="danger">
+            Hover me
+            {' '}
+            <DownOutlined />
           </Typography.Text>
         </Dropdown>
       </div>

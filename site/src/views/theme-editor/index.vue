@@ -1,167 +1,176 @@
 <script lang="ts">
-import { defineAsyncComponent, defineComponent, nextTick, onMounted, ref, watch } from 'vue'
-import { message } from '@antdv/ui'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider'
+  import {
+    defineAsyncComponent,
+    defineComponent,
+    nextTick,
+    onMounted,
+    ref,
+    watch,
+  } from 'vue'
+  import { message } from '@antdv/ui'
+  import type { ThemeConfig } from '@antdv/ui/es/config-provider'
 
-import Header from '../../layouts/header/index.vue'
+  import Header from '../../layouts/header/index.vue'
 
-// antd换肤编辑器
-import { ThemeEditor, enUS, zhCN } from '../../components/antdv-token-previewer'
+  // antd换肤编辑器
+  import { ThemeEditor, enUS, zhCN } from '../../components/antdv-token-previewer'
 
-import locales from './locales'
-import { useLocale } from '@/locale'
+  import locales from './locales'
+  import { useLocale } from '@/locale'
 
-const ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME = 'ant-design-vue-v4-theme-editor-theme'
+  const ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME = 'ant-design-vue-v4-theme-editor-theme'
 
-function isObject(target: any) {
-  return Object.prototype.toString.call(target) === '[object Object]'
-}
+  function isObject(target: any) {
+    return Object.prototype.toString.call(target) === '[object Object]'
+  }
 
-export default defineComponent({
-  name: 'CustomTheme',
-  components: {
-    Header,
-    ThemeEditor,
-    JSONEditor: defineAsyncComponent(() => import('./JSONEditor/index.vue')), // 异步组件加载json编辑器
-  },
-  setup() {
-    // 国际化
-    const [locale, lang] = useLocale(locales)
+  export default defineComponent({
+    name: 'CustomTheme',
+    components: {
+      Header,
+      ThemeEditor,
+      JSONEditor: defineAsyncComponent(() => import('./JSONEditor/index.vue')), // 异步组件加载json编辑器
+    },
+    setup() {
+      // 国际化
+      const [locale, lang] = useLocale(locales)
 
-    // 换肤
-    const theme = ref<ThemeConfig>({})
+      // 换肤
+      const theme = ref<ThemeConfig>({})
 
-    const editModelOpen = ref<boolean>(false)
-    const editThemeFormatRight = ref<boolean>(true)
-    const themeConfigContent = ref({
-      text: '{}',
-      json: undefined,
-    })
-
-    const getTheme = () => {
-      const storedConfig = localStorage.getItem(ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME)
-      if (storedConfig)
-        theme.value = JSON.parse(storedConfig)
-    }
-
-    const setTheme = (theme) => {
-      localStorage.setItem(ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME, JSON.stringify(theme))
-    }
-
-    const editModelClose = () => {
-      editModelOpen.value = false
-    }
-
-    const editSave = () => {
-      if (!editThemeFormatRight.value) {
-        message.error(locale.value.editJsonContentTypeError)
-        return
-      }
-      const themeConfig = themeConfigContent.value.text
-        ? JSON.parse(themeConfigContent.value.text)
-        : themeConfigContent.value.json
-
-      if (!isObject(themeConfig)) {
-        message.error(locale.value.editJsonContentTypeError)
-        return
-      }
-      theme.value = themeConfig
-      editModelClose()
-      message.success(locale.value.editSuccessfully)
-    }
-
-    const handleSave = () => {
-      setTheme(theme.value)
-      message.success(locale.value.saveSuccessfully)
-    }
-
-    const handleEditConfig = () => {
-      editModelOpen.value = true
-    }
-
-    const handleEditConfigChange = (newcontent, _, status) => {
-      themeConfigContent.value = newcontent
-      if (
-        status.contentErrors
-        && Array.isArray(status.contentErrors.validationErrors)
-        && status.contentErrors.validationErrors.length === 0
-      )
-        editThemeFormatRight.value = true
-      else
-        editThemeFormatRight.value = false
-    }
-
-    const handleExport = () => {
-      const file = new File([JSON.stringify(theme.value, null, 2)], 'Ant Design Vue Theme.json', {
-        type: 'text/json; charset=utf-8;',
+      const editModelOpen = ref<boolean>(false)
+      const editThemeFormatRight = ref<boolean>(true)
+      const themeConfigContent = ref<any>({
+        text: '{}',
+        json: undefined,
       })
-      const tmpLink = document.createElement('a')
-      const objectUrl = URL.createObjectURL(file)
 
-      tmpLink.href = objectUrl
-      tmpLink.download = file.name
-      document.body.appendChild(tmpLink)
-      tmpLink.click()
-
-      document.body.removeChild(tmpLink)
-      URL.revokeObjectURL(objectUrl)
-    }
-
-    const handleThemeChange = (newTheme) => {
-      theme.value = newTheme.config
-    }
-
-    nextTick(() => {
-      getTheme()
-    })
-
-    watch(editModelOpen, (val) => {
-      if (!val) {
-        themeConfigContent.value = {
-          json: theme.value,
-          text: undefined,
-        } as any
+      const getTheme = () => {
+        const storedConfig = localStorage.getItem(ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME)
+        if (storedConfig)
+          theme.value = JSON.parse(storedConfig)
       }
-    })
 
-    watch(theme, (val) => {
-      if (!editModelOpen.value) {
-        themeConfigContent.value = {
-          json: val,
-          text: undefined,
-        } as any
+      const setTheme = (theme) => {
+        localStorage.setItem(ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME, JSON.stringify(theme))
       }
-    })
 
-    onMounted(() => {
-      document.title = `${locale.value.title} - @antdv/ui`
-    })
+      const editModelClose = () => {
+        editModelOpen.value = false
+      }
 
-    return {
-      locale,
-      lang,
+      const editSave = () => {
+        if (!editThemeFormatRight.value) {
+          message.error(locale.value.editJsonContentTypeError)
+          return
+        }
+        const themeConfig = themeConfigContent.value.text
+          ? JSON.parse(themeConfigContent.value.text)
+          : themeConfigContent.value.json
 
-      theme,
-      handleThemeChange,
+        if (!isObject(themeConfig)) {
+          message.error(locale.value.editJsonContentTypeError)
+          return
+        }
+        theme.value = themeConfig
+        editModelClose()
+        message.success(locale.value.editSuccessfully)
+      }
 
-      editModelOpen,
-      editThemeFormatRight,
-      themeConfigContent,
+      const handleSave = () => {
+        setTheme(theme.value)
+        message.success(locale.value.saveSuccessfully)
+      }
 
-      editModelClose,
-      editSave,
+      const handleEditConfig = () => {
+        editModelOpen.value = true
+      }
 
-      handleSave,
-      handleEditConfig,
-      handleEditConfigChange,
-      handleExport,
+      const handleEditConfigChange = (newcontent, _, status) => {
+        themeConfigContent.value = newcontent
+        if (
+          status.contentErrors
+          && Array.isArray(status.contentErrors.validationErrors)
+          && status.contentErrors.validationErrors.length === 0
+        ) {
+          editThemeFormatRight.value = true
+        }
+        else {
+          editThemeFormatRight.value = false
+        }
+      }
 
-      // 皮肤编辑器的国际化
-      zhCN,
-      enUS,
-    }
-  },
-})
+      const handleExport = () => {
+        const file = new File([JSON.stringify(theme.value, null, 2)], 'Ant Design Vue Theme.json', {
+          type: 'text/json; charset=utf-8;',
+        })
+        const tmpLink = document.createElement('a')
+        const objectUrl = URL.createObjectURL(file)
+
+        tmpLink.href = objectUrl
+        tmpLink.download = file.name
+        document.body.appendChild(tmpLink)
+        tmpLink.click()
+
+        document.body.removeChild(tmpLink)
+        URL.revokeObjectURL(objectUrl)
+      }
+
+      const handleThemeChange = (newTheme) => {
+        theme.value = newTheme.config
+      }
+
+      nextTick(() => {
+        getTheme()
+      })
+
+      watch(editModelOpen, (val) => {
+        if (!val) {
+          themeConfigContent.value = {
+            json: theme.value,
+            text: undefined,
+          } as any
+        }
+      })
+
+      watch(theme, (val) => {
+        if (!editModelOpen.value) {
+          themeConfigContent.value = {
+            json: val,
+            text: undefined,
+          } as any
+        }
+      })
+
+      onMounted(() => {
+        document.title = `${locale.value.title} - @antdv/ui`
+      })
+
+      return {
+        locale,
+        lang,
+
+        theme,
+        handleThemeChange,
+
+        editModelOpen,
+        editThemeFormatRight,
+        themeConfigContent,
+
+        editModelClose,
+        editSave,
+
+        handleSave,
+        handleEditConfig,
+        handleEditConfigChange,
+        handleExport,
+
+        // 皮肤编辑器的国际化
+        zhCN,
+        enUS,
+      }
+    },
+  })
 </script>
 
 <template>
@@ -212,7 +221,7 @@ export default defineComponent({
         :theme="{ name: 'Custom Theme', key: 'test', config: theme }"
         :style="{ height: 'calc(100vh - 64px - 56px)' }"
         :locale="lang === 'cn' ? zhCN : enUS"
-        @themeChange="handleThemeChange"
+        @theme-change="handleThemeChange"
       />
     </a-config-provider>
   </div>

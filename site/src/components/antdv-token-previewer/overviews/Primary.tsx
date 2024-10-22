@@ -20,13 +20,13 @@ export const Primary = defineComponent({
   setup() {
     return () => {
       return (
-        <Card size={'small'}>
-          <Space direction={'vertical'}>
-            <Space align={'start'} size={'large'}>
+        <Card size="small">
+          <Space direction="vertical">
+            <Space align="start" size="large">
               {Menu.demo}
-              <Space direction={'vertical'} size={'large'}>
-                <Space size={'large'} align={'start'}>
-                  <Space direction={'vertical'} size={'large'}>
+              <Space direction="vertical" size="large">
+                <Space size="large" align="start">
+                  <Space direction="vertical" size="large">
                     <div>{Button.demo}</div>
                     <div>
                       <span>{Radio.demo}</span>
@@ -40,7 +40,7 @@ export const Primary = defineComponent({
                 </Space>
                 {Pagination.demo}
                 <div style={{ padding: '12px' }}>{Steps.demo}</div>
-                <Space size={'large'} align={'start'}>
+                <Space size="large" align="start">
                   {Popconfirm.demo}
                   {Timeline.demo}
                 </Space>

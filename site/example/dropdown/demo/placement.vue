@@ -16,6 +16,19 @@ Support 6 placements.
 
 </docs>
 
+<script lang="ts" setup>
+  import type { DropdownProps } from '@antdv/ui'
+
+  const placements = [
+    'bottomLeft',
+    'bottom',
+    'bottomRight',
+    'topLeft',
+    'top',
+    'topRight',
+  ] as Array<DropdownProps['placement']>
+</script>
+
 <template>
   <div id="site-example-dropdown-demo-placement">
     <template v-for="(placement, index) in placements" :key="placement">
@@ -45,17 +58,7 @@ Support 6 placements.
     </template>
   </div>
 </template>
-<script lang="ts" setup>
-import type { DropdownProps } from '@antdv/ui';
-const placements = [
-  'bottomLeft',
-  'bottom',
-  'bottomRight',
-  'topLeft',
-  'top',
-  'topRight',
-] as DropdownProps['placement'][];
-</script>
+
 <style scoped>
 #components-dropdown-demo-placement .ant-btn {
   margin-right: 8px;

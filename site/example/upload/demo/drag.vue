@@ -19,6 +19,29 @@ You can drag files to a specific area, to upload. Alternatively, you can also up
 We can upload serveral files at once by giving the input the `multiple` attribute.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { InboxOutlined } from '@ant-design/icons-vue'
+  import { message } from '@antdv/ui'
+  import type { UploadChangeParam } from '@antdv/ui'
+
+  const fileList = ref<any>([])
+  function handleChange(info: UploadChangeParam) {
+    const status = info.file.status
+    if (status !== 'uploading') {
+      console.log(info.file, info.fileList)
+    }
+    if (status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully.`)
+    } else if (status === 'error') {
+      message.error(`${info.file.name} file upload failed.`)
+    }
+  }
+  function handleDrop(e: DragEvent) {
+    console.log(e)
+  }
+</script>
+
 <template>
   <a-upload-dragger
     v-model:fileList="fileList"
@@ -29,7 +52,7 @@ We can upload serveral files at once by giving the input the `multiple` attribut
     @drop="handleDrop"
   >
     <p class="ant-upload-drag-icon">
-      <inbox-outlined></inbox-outlined>
+      <InboxOutlined/>
     </p>
     <p class="ant-upload-text">Click or drag file to this area to upload</p>
     <p class="ant-upload-hint">
@@ -38,24 +61,3 @@ We can upload serveral files at once by giving the input the `multiple` attribut
     </p>
   </a-upload-dragger>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { InboxOutlined } from '@ant-design/icons-vue';
-import { message } from '@antdv/ui';
-import type { UploadChangeParam } from '@antdv/ui';
-const fileList = ref([]);
-const handleChange = (info: UploadChangeParam) => {
-  const status = info.file.status;
-  if (status !== 'uploading') {
-    console.log(info.file, info.fileList);
-  }
-  if (status === 'done') {
-    message.success(`${info.file.name} file uploaded successfully.`);
-  } else if (status === 'error') {
-    message.error(`${info.file.name} file upload failed.`);
-  }
-};
-function handleDrop(e: DragEvent) {
-  console.log(e);
-}
-</script>

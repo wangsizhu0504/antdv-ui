@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// eslint-disable-next-line ts/ban-ts-comment
 // @ts-nocheck
 import { CaretRightOutlined } from '@ant-design/icons-vue'
 import { Collapse, Space } from '@antdv/ui'
@@ -78,13 +78,13 @@ const AdditionInfo = defineComponent({
   },
 })
 
-const ShowUsageButton = ({
+function ShowUsageButton({
   selected,
   toggleSelected,
 }: {
   selected: boolean
   toggleSelected: (v: boolean) => void
-}) => {
+}) {
   return (
     <span
       style={{ marginInlineStart: '12px', verticalAlign: 'middle', cursor: 'pointer' }}
@@ -209,7 +209,7 @@ export default defineComponent({
       hideUsageCount,
     } = toRefs(props)
 
-    const infoVisible = ref(false)
+    const infoVisible = ref<any>(false)
     const [wrapSSR, hashId] = useStyle()
 
     watch(
@@ -246,7 +246,7 @@ export default defineComponent({
             <Panel
               key={tokenName.value}
               class="previewer-token-item"
-              header={
+              header={(
                 <div
                   style={{
                     display: 'flex',
@@ -309,16 +309,16 @@ export default defineComponent({
                     </div>
                   )}
                 </div>
-              }
+              )}
               extra={
                 enableTokenSelect.value
                   ? (
-                  <ShowUsageButton
-                    selected={!!selectedTokens.value?.includes(tokenName.value)}
-                    toggleSelected={() => {
-                      props.onTokenSelect?.(tokenName.value)
-                    }}
-                  />
+                    <ShowUsageButton
+                      selected={!!selectedTokens.value?.includes(tokenName.value)}
+                      toggleSelected={() => {
+                        props.onTokenSelect?.(tokenName.value)
+                      }}
+                    />
                     )
                   : undefined
               }

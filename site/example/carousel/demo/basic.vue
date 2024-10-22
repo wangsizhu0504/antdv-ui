@@ -16,6 +16,12 @@ Basic usage.
 
 </docs>
 
+<script lang="ts" setup>
+  function onChange(current: number) {
+    console.log(current)
+  }
+</script>
+
 <template>
   <a-carousel :after-change="onChange">
     <div><h3>1</h3></div>
@@ -24,12 +30,6 @@ Basic usage.
     <div><h3>4</h3></div>
   </a-carousel>
 </template>
-
-<script lang="ts" setup>
-const onChange = (current: number) => {
-  console.log(current);
-};
-</script>
 
 <style scoped>
 /* For demo */

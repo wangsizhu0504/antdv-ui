@@ -15,6 +15,15 @@ title:
 If you need several buttons, we recommend that you use 1 primary button + n secondary buttons, and if there are more than three operations, you can group some of them into [Dropdown.Button](/components/dropdown/#components-dropdown-demo-dropdown-button).
 </docs>
 
+<script lang="ts" setup>
+  import { DownOutlined } from '@ant-design/icons-vue'
+  import type { MenuProps } from '@antdv/ui'
+
+  const handleMenuClick: MenuProps['onClick'] = (e) => {
+    console.log('click', e)
+  }
+</script>
+
 <template>
   <a-space>
     <a-button type="primary">Primary</a-button>
@@ -34,11 +43,3 @@ If you need several buttons, we recommend that you use 1 primary button + n seco
     </a-dropdown>
   </a-space>
 </template>
-
-<script lang="ts" setup>
-import { DownOutlined } from '@ant-design/icons-vue';
-import type { MenuProps } from '@antdv/ui';
-const handleMenuClick: MenuProps['onClick'] = e => {
-  console.log('click', e);
-};
-</script>

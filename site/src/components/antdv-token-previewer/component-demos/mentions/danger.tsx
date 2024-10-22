@@ -26,10 +26,11 @@ const Demo = defineComponent({
         style={{ width: '100%' }}
         onChange={onChange}
         onSelect={onSelect}
-        status={'error'}
+        status="error"
         defaultValue="@afc163"
         options={options}
-      ></Mentions>
+      >
+      </Mentions>
     )
   },
 })

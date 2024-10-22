@@ -16,30 +16,32 @@ title:
 
 </docs>
 
+<script lang="ts" setup>
+  import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
+  import { createVNode } from 'vue'
+  import { Modal } from '@antdv/ui'
+
+  function showConfirm() {
+    for (let i = 0; i < 3; i += 1) {
+      setTimeout(() => {
+        Modal.confirm({
+          content: 'destroy all',
+          icon: createVNode(ExclamationCircleOutlined),
+          onOk() {
+            return new Promise((resolve, reject) => {
+              setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
+            }).catch(() => console.log('Oops errors!'))
+          },
+          cancelText: 'Click to destroy all',
+          onCancel() {
+            Modal.destroyAll()
+          },
+        })
+      }, i * 500)
+    }
+  }
+</script>
+
 <template>
   <a-button @click="showConfirm">Confirm</a-button>
 </template>
-<script lang="ts" setup>
-import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
-import { createVNode } from 'vue';
-import { Modal } from '@antdv/ui';
-const showConfirm = () => {
-  for (let i = 0; i < 3; i += 1) {
-    setTimeout(() => {
-      Modal.confirm({
-        content: 'destroy all',
-        icon: createVNode(ExclamationCircleOutlined),
-        onOk() {
-          return new Promise((resolve, reject) => {
-            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-          }).catch(() => console.log('Oops errors!'));
-        },
-        cancelText: 'Click to destroy all',
-        onCancel() {
-          Modal.destroyAll();
-        },
-      });
-    }, i * 500);
-  }
-};
-</script>

@@ -11,7 +11,7 @@ const HTML_OPEN_CLOSE_TAG_RE: RegExp = htmlRe.HTML_OPEN_CLOSE_TAG_RE
 
 // An array of opening and corresponding closing sequences for html tags,
 // last argument defines whether it can terminate a paragraph or not
-const HTML_SEQUENCES: [RegExp, RegExp, boolean][] = [
+const HTML_SEQUENCES: Array<[RegExp, RegExp, boolean]> = [
   [/^<(script|pre|style)(?=(\s|>|$))/i, /<\/(script|pre|style)>/i, true],
   [/^<!--/, /-->/, true],
   [/^<\?/, /\?>/, true],
@@ -25,8 +25,7 @@ const HTML_SEQUENCES: [RegExp, RegExp, boolean][] = [
   [new RegExp(`${HTML_OPEN_CLOSE_TAG_RE.source}\\s*$`), /^$/, false],
 ]
 
-export const componentPlugin = (md: MarkdownIt) => {
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
+export function componentPlugin(md: MarkdownIt) {
   md.block.ruler.at('html_block', htmlBlock)
 }
 

@@ -16,6 +16,20 @@ Messages of success, error and warning types.
 
 </docs>
 
+<script lang="ts" setup>
+  import { message } from '@antdv/ui'
+
+  function success() {
+    message.success('This is a success message')
+  }
+  function error() {
+    message.error('This is an error message')
+  }
+  function warning() {
+    message.warning('This is a warning message')
+  }
+</script>
+
 <template>
   <a-space>
     <a-button @click="success">Success</a-button>
@@ -23,15 +37,3 @@ Messages of success, error and warning types.
     <a-button @click="warning">Warning</a-button>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { message } from '@antdv/ui';
-const success = () => {
-  message.success('This is a success message');
-};
-const error = () => {
-  message.error('This is an error message');
-};
-const warning = () => {
-  message.warning('This is a warning message');
-};
-</script>

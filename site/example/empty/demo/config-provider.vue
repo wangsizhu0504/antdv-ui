@@ -16,6 +16,16 @@ Use ConfigProvider set global Empty style.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { SmileOutlined } from '@ant-design/icons-vue'
+
+  const customize = ref<boolean>(false)
+
+  const style = { width: '200px' }
+  const columns = [{ title: 'Name' }, { title: 'Age' }]
+</script>
+
 <template>
   <a-switch
     v-model:checked="customize"
@@ -26,7 +36,7 @@ Use ConfigProvider set global Empty style.
   <a-config-provider>
     <template v-if="customize" #renderEmpty>
       <div style="text-align: center">
-        <smile-outlined style="font-size: 20px" />
+        <SmileOutlined style="font-size: 20px" />
         <p>Data Not Found</p>
       </div>
     </template>
@@ -50,14 +60,7 @@ Use ConfigProvider set global Empty style.
     </div>
   </a-config-provider>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { SmileOutlined } from '@ant-design/icons-vue';
-const customize = ref<boolean>(false);
 
-const style = { width: '200px' };
-const columns = [{ title: 'Name' }, { title: 'Age' }];
-</script>
 <style scoped>
 .code-box-demo .config-provider h3 {
   font-size: inherit;

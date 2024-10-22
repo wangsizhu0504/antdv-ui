@@ -15,6 +15,71 @@ title:
 Nodes of the same level can only be expanded one
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref, watch } from 'vue'
+  import type { TreeProps } from '@antdv/ui'
+  import difference from 'lodash-es/difference'
+
+  const treeData: TreeProps['treeData'] = [
+    {
+      title: 'parent 1',
+      key: '0-0',
+      children: [
+        {
+          title: 'parent 1-0',
+          key: '0-0-0',
+          children: [
+            { title: 'leaf', key: '0-0-0-0' },
+            { title: 'leaf', key: '0-0-0-1' },
+          ],
+        },
+        {
+          title: 'parent 1-1',
+          key: '0-0-1',
+          children: [{ key: '0-0-1-0', title: 'sss' }],
+        },
+      ],
+    },
+    {
+      title: 'parent 2',
+      key: '1-0',
+      children: [
+        {
+          title: 'parent 2-0',
+          key: '1-0-0',
+        },
+        {
+          title: 'parent 2-1',
+          key: '2-0-1',
+        },
+      ],
+    },
+  ]
+
+  const expandedKeys = ref<string[]>([])
+  const selectedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+  const checkedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+  watch(expandedKeys, () => {
+    console.log('expandedKeys', expandedKeys)
+  })
+  watch(selectedKeys, () => {
+    console.log('selectedKeys', selectedKeys)
+  })
+  watch(checkedKeys, () => {
+    console.log('checkedKeys', checkedKeys)
+  })
+  function handleExpand(keys: string[], { expanded, node }) {
+    // node.parent add from 3.0.0-alpha.10
+    const tempKeys = ((node.parent ? node.parent.children : treeData) || []).map(({ key }) => key)
+    if (expanded) {
+      expandedKeys.value = difference(keys, tempKeys).concat(node.key)
+    } else {
+      expandedKeys.value = keys
+    }
+  }
+</script>
+
 <template>
   <a-tree
     v-model:selectedKeys="selectedKeys"
@@ -28,66 +93,3 @@ Nodes of the same level can only be expanded one
     </template>
   </a-tree>
 </template>
-<script lang="ts" setup>
-import { ref, watch } from 'vue';
-import type { TreeProps } from '@antdv/ui';
-import difference from 'lodash-es/difference';
-
-const treeData: TreeProps['treeData'] = [
-  {
-    title: 'parent 1',
-    key: '0-0',
-    children: [
-      {
-        title: 'parent 1-0',
-        key: '0-0-0',
-        children: [
-          { title: 'leaf', key: '0-0-0-0' },
-          { title: 'leaf', key: '0-0-0-1' },
-        ],
-      },
-      {
-        title: 'parent 1-1',
-        key: '0-0-1',
-        children: [{ key: '0-0-1-0', title: 'sss' }],
-      },
-    ],
-  },
-  {
-    title: 'parent 2',
-    key: '1-0',
-    children: [
-      {
-        title: 'parent 2-0',
-        key: '1-0-0',
-      },
-      {
-        title: 'parent 2-1',
-        key: '2-0-1',
-      },
-    ],
-  },
-];
-
-const expandedKeys = ref<string[]>([]);
-const selectedKeys = ref<string[]>(['0-0-0', '0-0-1']);
-const checkedKeys = ref<string[]>(['0-0-0', '0-0-1']);
-watch(expandedKeys, () => {
-  console.log('expandedKeys', expandedKeys);
-});
-watch(selectedKeys, () => {
-  console.log('selectedKeys', selectedKeys);
-});
-watch(checkedKeys, () => {
-  console.log('checkedKeys', checkedKeys);
-});
-const handleExpand = (keys: string[], { expanded, node }) => {
-  // node.parent add from 3.0.0-alpha.10
-  const tempKeys = ((node.parent ? node.parent.children : treeData) || []).map(({ key }) => key);
-  if (expanded) {
-    expandedKeys.value = difference(keys, tempKeys).concat(node.key);
-  } else {
-    expandedKeys.value = keys;
-  }
-};
-</script>

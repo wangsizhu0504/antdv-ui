@@ -16,6 +16,42 @@ Replace the title,key and children fields in treeNode with the corresponding fie
 
 </docs>
 
+<script lang="ts" setup>
+  import type { TreeSelectProps } from '@antdv/ui'
+  import { ref, watch } from 'vue'
+
+  const value = ref<string>()
+  const treeData = ref<TreeSelectProps['treeData']>([
+    {
+      name: 'parent 1',
+      value: 'parent 1',
+      children: [
+        {
+          name: 'parent 1-0',
+          value: 'parent 1-0',
+          children: [
+            {
+              name: 'my leaf',
+              value: 'leaf1',
+            },
+            {
+              name: 'your leaf',
+              value: 'leaf2',
+            },
+          ],
+        },
+        {
+          name: 'parent 1-1',
+          value: 'parent 1-1',
+        },
+      ],
+    },
+  ])
+  watch(value, () => {
+    console.log(value.value)
+  })
+</script>
+
 <template>
   <a-tree-select
     v-model:value="value"
@@ -32,40 +68,5 @@ Replace the title,key and children fields in treeNode with the corresponding fie
       value: 'value',
     }"
     tree-node-filter-prop="name"
-  ></a-tree-select>
+  />
 </template>
-<script lang="ts" setup>
-import type { TreeSelectProps } from '@antdv/ui';
-import { ref, watch } from 'vue';
-
-const value = ref<string>();
-const treeData = ref<TreeSelectProps['treeData']>([
-  {
-    name: 'parent 1',
-    value: 'parent 1',
-    children: [
-      {
-        name: 'parent 1-0',
-        value: 'parent 1-0',
-        children: [
-          {
-            name: 'my leaf',
-            value: 'leaf1',
-          },
-          {
-            name: 'your leaf',
-            value: 'leaf2',
-          },
-        ],
-      },
-      {
-        name: 'parent 1-1',
-        value: 'parent 1-1',
-      },
-    ],
-  },
-]);
-watch(value, () => {
-  console.log(value.value);
-});
-</script>

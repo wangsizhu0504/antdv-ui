@@ -3,12 +3,14 @@ import type { ComponentDemo } from '../../interface'
 
 const { CheckableTag } = Tag
 
-const Checkable = () => (
-  <div>
-    <CheckableTag checked>Error</CheckableTag>
-    <CheckableTag checked={false}>Error</CheckableTag>
-  </div>
-)
+function Checkable() {
+  return (
+    <div>
+      <CheckableTag checked>Error</CheckableTag>
+      <CheckableTag checked={false}>Error</CheckableTag>
+    </div>
+  )
+}
 
 const componentDemo: ComponentDemo = {
   demo: <Checkable />,

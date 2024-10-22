@@ -16,9 +16,28 @@ Render addon contents to timepicker panel's bottom.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs'
+
+  const open = ref<any>(false)
+  const open2 = ref<any>(false)
+  const value = ref<Dayjs>()
+
+  function handleOpenChange(openStatus: boolean) {
+    console.log('open', openStatus)
+    open.value = openStatus
+  }
+
+  function handleClose() {
+    open.value = false
+    open2.value = false
+  }
+</script>
+
 <template>
   <a-space direction="vertical">
-    <a-time-picker v-model:value="value" v-model:open="open" @openChange="handleOpenChange">
+    <a-time-picker v-model:value="value" v-model:open="open" @open-change="handleOpenChange">
       <template #renderExtraFooter="{ prefixCls }">
         <a-button size="small" type="primary" @click="handleClose">OK {{ prefixCls }}</a-button>
       </template>
@@ -30,20 +49,3 @@ Render addon contents to timepicker panel's bottom.
     </a-time-picker>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { Dayjs } from 'dayjs';
-const open = ref(false);
-const open2 = ref(false);
-const value = ref<Dayjs>();
-
-const handleOpenChange = (openStatus: boolean) => {
-  console.log('open', openStatus);
-  open.value = openStatus;
-};
-
-const handleClose = () => {
-  open.value = false;
-  open2.value = false;
-};
-</script>

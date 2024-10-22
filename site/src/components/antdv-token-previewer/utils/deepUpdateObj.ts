@@ -1,4 +1,4 @@
-const deepUpdateObj = (obj: any, path: string[], value: any): any => {
+function deepUpdateObj(obj: any, path: string[], value: any): any {
   if (path.length === 0)
     return obj
 

@@ -15,6 +15,39 @@ title:
 Use virtual list through `height` prop.
 
 </docs>
+
+<script lang="ts" setup>
+  import type { TreeProps } from '@antdv/ui'
+  import { ref, watch } from 'vue'
+
+  function dig(path = '0', level = 3) {
+    const list: TreeProps['treeData'] = []
+    for (let i = 0; i < 10; i += 1) {
+      const key = `${path}-${i}`
+      const treeNode: TreeProps['treeData'][number] = {
+        title: key,
+        key,
+      }
+
+      if (level > 0) {
+        treeNode.children = dig(key, level - 1)
+      }
+
+      list.push(treeNode)
+    }
+    return list
+  }
+
+  const selectedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+  const checkedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+  watch(selectedKeys, () => {
+    console.log('selectedKeys', selectedKeys)
+  })
+  watch(checkedKeys, () => {
+    console.log('checkedKeys', checkedKeys)
+  })
+</script>
+
 <template>
   <a-tree
     v-model:selectedKeys="selectedKeys"
@@ -30,34 +63,3 @@ Use virtual list through `height` prop.
     </template>
   </a-tree>
 </template>
-<script lang="ts" setup>
-import type { TreeProps } from '@antdv/ui';
-import { ref, watch } from 'vue';
-
-function dig(path = '0', level = 3) {
-  const list: TreeProps['treeData'] = [];
-  for (let i = 0; i < 10; i += 1) {
-    const key = `${path}-${i}`;
-    const treeNode: TreeProps['treeData'][number] = {
-      title: key,
-      key,
-    };
-
-    if (level > 0) {
-      treeNode.children = dig(key, level - 1);
-    }
-
-    list.push(treeNode);
-  }
-  return list;
-}
-
-const selectedKeys = ref<string[]>(['0-0-0', '0-0-1']);
-const checkedKeys = ref<string[]>(['0-0-0', '0-0-1']);
-watch(selectedKeys, () => {
-  console.log('selectedKeys', selectedKeys);
-});
-watch(checkedKeys, () => {
-  console.log('checkedKeys', checkedKeys);
-});
-</script>

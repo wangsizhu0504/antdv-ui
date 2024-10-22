@@ -172,10 +172,12 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
         dropNode: abstractDropDataNode,
         dropPosition: 0,
       })
-    )
+    ) {
       dropPosition = 0
-    else
+    }
+    else {
       dropAllowed = false
+    }
   } else if (dropLevelOffset === 0) {
     if (rawDropLevelOffset > -1.5) {
       // | Node     | <- abstractDropNode
@@ -188,10 +190,12 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
           dropNode: abstractDropDataNode,
           dropPosition: 1,
         })
-      )
+      ) {
         dropPosition = 1
-      else
+      }
+      else {
         dropAllowed = false
+      }
     } else {
       // | Node     | <- abstractDropNode
       // | ---==^== | <- mousePosition
@@ -206,18 +210,21 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
           dropNode: abstractDropDataNode,
           dropPosition: 0,
         })
-      )
+      ) {
         dropPosition = 0
+      }
       else if (
         allowDrop({
           dragNode: abstractDragDataNode,
           dropNode: abstractDropDataNode,
           dropPosition: 1,
         })
-      )
+      ) {
         dropPosition = 1
-      else
+      }
+      else {
         dropAllowed = false
+      }
     }
   } else {
     // | Node1 | <- abstractDropNode
@@ -231,10 +238,12 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
         dropNode: abstractDropDataNode,
         dropPosition: 1,
       })
-    )
+    ) {
       dropPosition = 1
-    else
+    }
+    else {
       dropAllowed = false
+    }
   }
 
   return {

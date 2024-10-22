@@ -16,6 +16,48 @@ Used together with `vue-router`
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  interface Route {
+    path: string;
+    breadcrumbName: string;
+    children?: Array<{
+      path: string;
+      breadcrumbName: string;
+    }>;
+  }
+  const basePath = '/components/breadcrumb'
+  const routes = ref<Route[]>([
+    {
+      path: 'index',
+      breadcrumbName: 'home',
+    },
+    {
+      path: 'first',
+      breadcrumbName: 'first',
+      children: [
+        {
+          path: '/general',
+          breadcrumbName: 'General',
+        },
+        {
+          path: '/layout',
+          breadcrumbName: 'Layout',
+        },
+        {
+          path: '/navigation',
+          breadcrumbName: 'Navigation',
+        },
+      ],
+    },
+    {
+      path: 'second',
+      breadcrumbName: 'second',
+    },
+  ])
+</script>
+
 <template>
   <div>
     <a-breadcrumb :routes="routes">
@@ -32,43 +74,3 @@ Used together with `vue-router`
     {{ $route.path }}
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-interface Route {
-  path: string;
-  breadcrumbName: string;
-  children?: Array<{
-    path: string;
-    breadcrumbName: string;
-  }>;
-}
-const basePath = '/components/breadcrumb';
-const routes = ref<Route[]>([
-  {
-    path: 'index',
-    breadcrumbName: 'home',
-  },
-  {
-    path: 'first',
-    breadcrumbName: 'first',
-    children: [
-      {
-        path: '/general',
-        breadcrumbName: 'General',
-      },
-      {
-        path: '/layout',
-        breadcrumbName: 'Layout',
-      },
-      {
-        path: '/navigation',
-        breadcrumbName: 'Navigation',
-      },
-    ],
-  },
-  {
-    path: 'second',
-    breadcrumbName: 'second',
-  },
-]);
-</script>

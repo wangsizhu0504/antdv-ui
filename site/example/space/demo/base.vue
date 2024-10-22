@@ -10,12 +10,15 @@ title:
 
 相邻组件水平间距。
 
-
 ## en-US
 
 Crowded components horizontal spacing.
 
 </docs>
+
+<script lang="ts" setup>
+  import { UploadOutlined } from '@ant-design/icons-vue'
+</script>
 
 <template>
   <a-space>
@@ -32,6 +35,3 @@ Crowded components horizontal spacing.
     </a-popconfirm>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { UploadOutlined } from '@ant-design/icons-vue';
-</script>

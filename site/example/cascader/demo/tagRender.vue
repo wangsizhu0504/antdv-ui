@@ -8,6 +8,69 @@ title:
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { CascaderProps } from '@antdv/ui'
+
+  const options: CascaderProps['options'] = [
+    {
+      value: 'zhejiang',
+      label: 'Zhejiang',
+      children: [
+        {
+          value: 'freezeKey',
+          label: 'freeze',
+          children: [
+            {
+              value: 'key1',
+              label: 'salmon',
+            },
+            {
+              value: 'key2',
+              label: 'beef',
+            },
+          ],
+        },
+        {
+          value: 'fruitsKey',
+          label: 'fruits',
+          children: [
+            {
+              value: 'key11',
+              label: 'apple',
+            },
+            {
+              value: 'key22',
+              label: 'banana',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: 'Chinese delicious food',
+      label: '中国美食',
+      children: [
+        {
+          value: 'key3',
+          label: '月饼',
+          children: [
+            {
+              value: 'key4',
+              label: '蛋黄馅',
+            },
+            {
+              value: 'key5',
+              label: '五仁馅',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+  const value = ref<string[]>([])
+</script>
+
 <template>
   <a-cascader
     v-model:value="value"
@@ -21,64 +84,3 @@ title:
     </template>
   </a-cascader>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { CascaderProps } from '@antdv/ui';
-const options: CascaderProps['options'] = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'freezeKey',
-        label: 'freeze',
-        children: [
-          {
-            value: 'key1',
-            label: 'salmon',
-          },
-          {
-            value: 'key2',
-            label: 'beef',
-          },
-        ],
-      },
-      {
-        value: 'fruitsKey',
-        label: 'fruits',
-        children: [
-          {
-            value: 'key11',
-            label: 'apple',
-          },
-          {
-            value: 'key22',
-            label: 'banana',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'Chinese delicious food',
-    label: '中国美食',
-    children: [
-      {
-        value: 'key3',
-        label: '月饼',
-        children: [
-          {
-            value: 'key4',
-            label: '蛋黄馅',
-          },
-          {
-            value: 'key5',
-            label: '五仁馅',
-          },
-        ],
-      },
-    ],
-  },
-];
-const value = ref<string[]>([]);
-</script>

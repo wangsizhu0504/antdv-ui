@@ -16,6 +16,15 @@ You can make preview controlled.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const visible = ref<boolean>(false)
+  function setVisible(value): void {
+    visible.value = value
+  }
+</script>
+
 <template>
   <div>
     <a-button type="primary" @click="() => setVisible(true)">show image preview</a-button>
@@ -30,10 +39,3 @@ You can make preview controlled.
     />
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const visible = ref<boolean>(false);
-const setVisible = (value): void => {
-  visible.value = value;
-};
-</script>

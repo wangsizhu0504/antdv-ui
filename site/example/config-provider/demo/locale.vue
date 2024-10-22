@@ -15,6 +15,109 @@ title:
 Components which need localization support are listed here, you can toggle the language in the demo.
 </docs>
 
+<script lang="ts" setup>
+  import { ref, watch } from 'vue'
+  import { Modal, theme } from '@antdv/ui'
+  import type { TourProps, UploadFile } from '@antdv/ui'
+  import { EllipsisOutlined } from '@ant-design/icons-vue'
+
+  // @ts-expect-error
+  import enUS from '@antdv/ui/es/locale/lang/en_US'
+
+  // @ts-expect-error
+  import zhCN from '@antdv/ui/es/locale/lang/zh_CN'
+  import dayjs from 'dayjs'
+  import 'dayjs/locale/zh-cn'
+
+  dayjs.locale('en')
+
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      filters: [
+        {
+          text: 'filter1',
+          value: 'filter1',
+        },
+      ],
+    },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+    },
+  ]
+
+  const visible = ref<any>(false)
+  const locale = ref<any>(enUS.locale)
+  watch(locale, (val) => {
+    dayjs.locale(val)
+  })
+  function info() {
+    Modal.info({
+      title: 'some info',
+      content: 'some info',
+    })
+  }
+  function confirm() {
+    Modal.confirm({
+      title: 'some info',
+      content: 'some info',
+    })
+  }
+
+  const formModel = ref<any>({
+    username: '',
+    age: '100',
+  })
+
+  const { token } = theme.useToken()
+
+  const fileList: UploadFile[] = [
+    {
+      uid: '-1',
+      name: 'image.png',
+      status: 'done',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },
+    {
+      uid: '-2',
+      percent: 50,
+      name: 'image.png',
+      status: 'uploading',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },
+    {
+      uid: '-3',
+      name: 'image.png',
+      status: 'error',
+    },
+  ]
+
+  const ref1 = ref<any>(null)
+  const ref2 = ref<any>(null)
+  const ref3 = ref<any>(null)
+  const current = ref<any>(0)
+  const tourOpen = ref<any>(false)
+  const steps: TourProps['steps'] = [
+    {
+      title: 'Upload File',
+      description: 'Put your files here.',
+      target: () => ref1.value && ref1.value.$el,
+    },
+    {
+      title: 'Save',
+      description: 'Save your changes.',
+      target: () => ref2.value && ref2.value.$el,
+    },
+    {
+      title: 'Other Actions',
+      description: 'Click to see other actions.',
+      target: () => ref3.value && ref3.value.$el,
+    },
+  ]
+</script>
+
 <template>
   <div style="margin-bottom: 16px">
     <span style="margin-right: 16px">Change locale of components:</span>
@@ -50,8 +153,8 @@ Components which need localization support are listed here, you can toggle the l
       <a-transfer :data-source="[]" show-search :target-keys="[]" :render="item => item.title" />
       <div
         :style="{
-          width: '320px',
-          border: `1px solid ${token.colorBorder}`,
+          'width': '320px',
+          'border': `1px solid ${token.colorBorder}`,
           'border-radius': '8px',
         }"
       >
@@ -82,7 +185,6 @@ Components which need localization support are listed here, you can toggle the l
         <a-qrcode
           value="https://antdv.com"
           status="expired"
-          @refresh="() => console.log('refresh')"
         />
         <a-image
           :width="160"
@@ -97,7 +199,7 @@ Components which need localization support are listed here, you can toggle the l
         <a-button ref="ref2" type="primary">save</a-button>
         <a-button ref="ref3">
           <template #icon>
-            <ellipsis-outlined />
+            <EllipsisOutlined />
           </template>
         </a-button>
       </a-space>
@@ -106,105 +208,7 @@ Components which need localization support are listed here, you can toggle the l
         :open="tourOpen"
         :steps="steps"
         @close="() => (tourOpen = false)"
-      ></a-tour>
+      />
     </a-space>
   </a-config-provider>
 </template>
-<script lang="ts" setup>
-import { ref, watch } from 'vue';
-import { Modal, theme } from '@antdv/ui';
-import type { TourProps, UploadFile } from '@antdv/ui';
-import { EllipsisOutlined } from '@ant-design/icons-vue';
-import enUS from '@antdv/ui/es/locale/lang/en_US';
-import zhCN from '@antdv/ui/es/locale/lang/zh_CN';
-import dayjs from 'dayjs';
-import 'dayjs/locale/zh-cn';
-
-dayjs.locale('en');
-
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    filters: [
-      {
-        text: 'filter1',
-        value: 'filter1',
-      },
-    ],
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-  },
-];
-
-const visible = ref(false);
-const locale = ref(enUS.locale);
-watch(locale, val => {
-  dayjs.locale(val);
-});
-const info = () => {
-  Modal.info({
-    title: 'some info',
-    content: 'some info',
-  });
-};
-const confirm = () => {
-  Modal.confirm({
-    title: 'some info',
-    content: 'some info',
-  });
-};
-
-const formModel = ref({
-  username: '',
-  age: '100',
-});
-
-const { token } = theme.useToken();
-
-const fileList: UploadFile[] = [
-  {
-    uid: '-1',
-    name: 'image.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-  {
-    uid: '-2',
-    percent: 50,
-    name: 'image.png',
-    status: 'uploading',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-  {
-    uid: '-3',
-    name: 'image.png',
-    status: 'error',
-  },
-];
-
-const ref1 = ref(null);
-const ref2 = ref(null);
-const ref3 = ref(null);
-const current = ref(0);
-const tourOpen = ref(false);
-const steps: TourProps['steps'] = [
-  {
-    title: 'Upload File',
-    description: 'Put your files here.',
-    target: () => ref1.value && ref1.value.$el,
-  },
-  {
-    title: 'Save',
-    description: 'Save your changes.',
-    target: () => ref2.value && ref2.value.$el,
-  },
-  {
-    title: 'Other Actions',
-    description: 'Click to see other actions.',
-    target: () => ref3.value && ref3.value.$el,
-  },
-];
-</script>

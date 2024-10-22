@@ -1,4 +1,6 @@
-import Clipboard from './clipboard' // FIXME: workaround for browserify
+import Clipboard from './clipboard'
+
+// FIXME: workaround for browserify
 
 const VueClipboardConfig = {
   autoSetContainer: false,

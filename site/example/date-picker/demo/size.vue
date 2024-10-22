@@ -16,6 +16,12 @@ The input box comes in three sizes. `default` will be used if `size` is omitted.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const size = ref<any>('default')
+</script>
+
 <template>
   <a-space direction="vertical" :size="12">
     <a-radio-group v-model:value="size">
@@ -29,7 +35,3 @@ The input box comes in three sizes. `default` will be used if `size` is omitted.
     <a-date-picker :size="size" placeholder="Select Week" picker="week" />
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const size = ref<any>('default');
-</script>

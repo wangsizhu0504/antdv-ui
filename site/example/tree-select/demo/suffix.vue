@@ -16,6 +16,44 @@ title:
 The most basic usage.
 </docs>
 
+<script lang="ts" setup>
+  import { ref, watch } from 'vue'
+  import { SmileOutlined } from '@ant-design/icons-vue'
+  import type { TreeSelectProps } from '@antdv/ui'
+
+  const value = ref<string>()
+  const value1 = ref<string[]>([])
+  const treeData = ref<TreeSelectProps['treeData']>([
+    {
+      title: 'parent 1',
+      value: 'parent 1',
+      children: [
+        {
+          title: 'parent 1-0',
+          value: 'parent 1-0',
+          children: [
+            {
+              title: 'my leaf',
+              value: 'leaf1',
+            },
+            {
+              title: 'your leaf',
+              value: 'leaf2',
+            },
+          ],
+        },
+        {
+          title: 'parent 1-1',
+          value: 'parent 1-1',
+        },
+      ],
+    },
+  ])
+  watch(value, () => {
+    console.log('select', value.value)
+  })
+</script>
+
 <template>
   <a-space direction="vertical" style="width: 100%">
     <a-tree-select
@@ -59,39 +97,3 @@ The most basic usage.
     </a-tree-select>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref, watch } from 'vue';
-import { SmileOutlined } from '@ant-design/icons-vue';
-import type { TreeSelectProps } from '@antdv/ui';
-const value = ref<string>();
-const value1 = ref<string[]>([]);
-const treeData = ref<TreeSelectProps['treeData']>([
-  {
-    title: 'parent 1',
-    value: 'parent 1',
-    children: [
-      {
-        title: 'parent 1-0',
-        value: 'parent 1-0',
-        children: [
-          {
-            title: 'my leaf',
-            value: 'leaf1',
-          },
-          {
-            title: 'your leaf',
-            value: 'leaf2',
-          },
-        ],
-      },
-      {
-        title: 'parent 1-1',
-        value: 'parent 1-1',
-      },
-    ],
-  },
-]);
-watch(value, () => {
-  console.log('select', value.value);
-});
-</script>

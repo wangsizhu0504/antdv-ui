@@ -18,26 +18,26 @@ export const Error = defineComponent({
   setup() {
     return () => {
       return (
-        <Card size={'small'}>
-          <Space align={'start'} size={'large'}>
-            <Space direction={'vertical'} size={'large'}>
-              <Space align={'center'} size={'large'} style={{ marginTop: '8px' }}>
+        <Card size="small">
+          <Space align="start" size="large">
+            <Space direction="vertical" size="large">
+              <Space align="center" size="large" style={{ marginTop: '8px' }}>
                 {Button.demo}
                 <div>{Tag.demo}</div>
                 {Badge.demo}
               </Space>
               {Alert.demo}
             </Space>
-            <Space direction={'vertical'} align={'center'} size={'large'}>
+            <Space direction="vertical" align="center" size="large">
               {Message.demo}
               {Progress.demo}
             </Space>
           </Space>
-          <Space size={'large'} style={{ marginTop: '32px' }}>
+          <Space size="large" style={{ marginTop: '32px' }}>
             <div>{Notification.demo}</div>
             <div>{Timeline.demo}</div>
           </Space>
-          <Space size={'large'}>
+          <Space size="large">
             {Menu.demo}
             <div style={{ width: 300 }}>{Upload.demo}</div>
             {Dropdown.demo}

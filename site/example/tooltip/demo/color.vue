@@ -16,6 +16,25 @@ We preset a series of colorful Tooltip styles for use in different situations.
 
 </docs>
 
+<script lang="ts" setup>
+  const colors = [
+    'pink',
+    'red',
+    'yellow',
+    'orange',
+    'cyan',
+    'green',
+    'blue',
+    'purple',
+    'geekblue',
+    'magenta',
+    'volcano',
+    'gold',
+    'lime',
+  ]
+  const customColors = ['#f50', '#2db7f5', '#87d068', '#108ee9']
+</script>
+
 <template>
   <div id="components-a-tooltip-demo-color">
     <a-divider orientation="left">Presets</a-divider>
@@ -32,25 +51,6 @@ We preset a series of colorful Tooltip styles for use in different situations.
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-const colors = [
-  'pink',
-  'red',
-  'yellow',
-  'orange',
-  'cyan',
-  'green',
-  'blue',
-  'purple',
-  'geekblue',
-  'magenta',
-  'volcano',
-  'gold',
-  'lime',
-];
-const customColors = ['#f50', '#2db7f5', '#87d068', '#108ee9'];
-</script>
 
 <style scoped>
 :deep(#components-a-tooltip-demo-color) .ant-btn {

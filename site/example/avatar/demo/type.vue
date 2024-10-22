@@ -15,6 +15,10 @@ title:
 Image, Icon and letter are supported, and the latter two kinds avatar can have custom colors and background colors.
 </docs>
 
+<script lang="ts" setup>
+  import { UserOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-space :size="16" wrap>
     <a-avatar>
@@ -33,7 +37,3 @@ Image, Icon and letter are supported, and the latter two kinds avatar can have c
     </a-avatar>
   </a-space>
 </template>
-
-<script lang="ts" setup>
-import { UserOutlined } from '@ant-design/icons-vue';
-</script>

@@ -289,7 +289,7 @@ const SeedTokenPreview = defineComponent({
     const { theme, tokenName, disabled } = toRefs(props) as any
 
     const tokenPath = computed(() => ['token', tokenName.value])
-    const tokenValue = ref(getSeedValue(theme.value.config, tokenName.value))
+    const tokenValue = ref<any>(getSeedValue(theme.value.config, tokenName.value))
 
     const locale = useInjectLocaleContext()
 
@@ -633,7 +633,7 @@ const TokenContent = defineComponent({
   setup(props, { attrs, emit }) {
     const { category, theme, selectedTokens, infoFollowPrimary, activeGroup } = toRefs(props)
 
-    const curActiveGroup = ref('')
+    const curActiveGroup = ref<any>('')
 
     watch(
       activeGroup,

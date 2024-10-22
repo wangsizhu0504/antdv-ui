@@ -15,6 +15,10 @@ title:
 The default trigger mode is `hover`, you can change it to `click`.
 </docs>
 
+<script lang="ts" setup>
+  import { DownOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-dropdown :trigger="['click']">
     <a class="ant-dropdown-link" @click.prevent>
@@ -35,6 +39,3 @@ The default trigger mode is `hover`, you can change it to `click`.
     </template>
   </a-dropdown>
 </template>
-<script lang="ts" setup>
-import { DownOutlined } from '@ant-design/icons-vue';
-</script>

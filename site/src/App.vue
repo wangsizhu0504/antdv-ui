@@ -52,7 +52,7 @@
         console.log('themeConf', themeConf)
         return themeConf
       })
-      const hashPriority = ref('low' as const)
+      const hashPriority = ref<any>('low' as const)
       watch(hashPriority, () => {
         location.reload()
       })
@@ -70,7 +70,7 @@
         responsive,
         lang: computed<any>(() => i18n.locale.value),
         isZhCN: computed(() => i18n.locale.value === 'zh-CN'),
-        blocked: ref(false),
+        blocked: ref<any>(false),
       }
       const changeTheme = (t: ThemeName) => {
         theme.value = t

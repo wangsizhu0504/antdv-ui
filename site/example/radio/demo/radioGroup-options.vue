@@ -15,6 +15,22 @@ title:
 Render radios by configuring `options`.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { RadioGroupProps } from '@antdv/ui'
+
+  const plainOptions = ['Apple', 'Pear', 'Orange']
+  const optionsWithDisabled: RadioGroupProps['options'] = [
+    { label: 'Apple', value: 'Apple' },
+    { label: 'Pear', value: 'Pear' },
+    { label: 'Orange', value: 'Orange', disabled: true },
+  ]
+  const value1 = ref<string>('Apple')
+  const value2 = ref<string>('Apple')
+  const value3 = ref<string>('Apple')
+</script>
+
 <template>
   <a-space direction="vertical">
     <a-radio-group v-model:value="value1" :options="plainOptions" />
@@ -25,16 +41,3 @@ Render radios by configuring `options`.
     <a-radio-group v-model:value="value3" option-type="button" :options="plainOptions" disabled />
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { RadioGroupProps } from '@antdv/ui';
-const plainOptions = ['Apple', 'Pear', 'Orange'];
-const optionsWithDisabled: RadioGroupProps['options'] = [
-  { label: 'Apple', value: 'Apple' },
-  { label: 'Pear', value: 'Pear' },
-  { label: 'Orange', value: 'Orange', disabled: true },
-];
-const value1 = ref<string>('Apple');
-const value2 = ref<string>('Apple');
-const value3 = ref<string>('Apple');
-</script>

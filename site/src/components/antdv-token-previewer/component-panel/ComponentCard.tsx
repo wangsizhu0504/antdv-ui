@@ -64,7 +64,7 @@ const ComponentCard = defineComponent({
     const { component, title, theme, drawer } = toRefs(props)
 
     const [wrapSSR, hashId] = useStyle()
-    const drawerOpen = ref(false)
+    const drawerOpen = ref<any>(false)
 
     return () => {
       return wrapSSR(

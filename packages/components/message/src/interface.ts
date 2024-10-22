@@ -38,14 +38,14 @@ export interface MessageInstance {
   error: TypeOpen
   warning: TypeOpen
   loading: TypeOpen
-  open(args: MessageArgsProps): MessageType
-  destroy(key?: Key): void
+  open: (args: MessageArgsProps) => MessageType
+  destroy: (key?: Key) => void
   useMessage: typeof useMessage
 }
 
 export interface MessageApi extends MessageInstance {
   warn: TypeOpen
-  config(options: ConfigOptions): void
+  config: (options: ConfigOptions) => void
 }
 export interface HolderRef extends NotificationAPI {
   prefixCls: string

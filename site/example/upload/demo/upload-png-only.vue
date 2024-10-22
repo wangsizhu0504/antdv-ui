@@ -16,6 +16,49 @@ title:
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { UploadOutlined } from '@ant-design/icons-vue'
+  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
+  import { Upload, message } from '@antdv/ui'
+
+  const fileList = ref<UploadProps['fileList']>([
+    {
+      uid: '1',
+      name: 'xxx.png',
+      status: 'done',
+      response: 'Server Error 500', // custom error message to show
+      url: 'http://www.baidu.com/xxx.png',
+    },
+    {
+      uid: '2',
+      name: 'yyy.png',
+      status: 'done',
+      url: 'http://www.baidu.com/yyy.png',
+    },
+    {
+      uid: '3',
+      name: 'zzz.png',
+      status: 'error',
+      response: 'Server Error 500', // custom error message to show
+      url: 'http://www.baidu.com/zzz.png',
+    },
+  ])
+
+  function handleChange({ file, fileList }: UploadChangeParam) {
+    if (file.status !== 'uploading') {
+      console.log(file, fileList)
+    }
+  }
+  const beforeUpload: UploadProps['beforeUpload'] = (file) => {
+    const isPNG = file.type === 'image/png'
+    if (!isPNG) {
+      message.error(`${file.name} is not a png file`)
+    }
+    return isPNG || Upload.LIST_IGNORE
+  }
+</script>
+
 <template>
   <a-upload
     v-model:file-list="fileList"
@@ -24,49 +67,8 @@ title:
     @change="handleChange"
   >
     <a-button>
-      <upload-outlined></upload-outlined>
+      <UploadOutlined/>
       Upload png only
     </a-button>
   </a-upload>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { UploadOutlined } from '@ant-design/icons-vue';
-import type { UploadChangeParam, UploadProps } from '@antdv/ui';
-import { message, Upload } from '@antdv/ui';
-const fileList = ref<UploadProps['fileList']>([
-  {
-    uid: '1',
-    name: 'xxx.png',
-    status: 'done',
-    response: 'Server Error 500', // custom error message to show
-    url: 'http://www.baidu.com/xxx.png',
-  },
-  {
-    uid: '2',
-    name: 'yyy.png',
-    status: 'done',
-    url: 'http://www.baidu.com/yyy.png',
-  },
-  {
-    uid: '3',
-    name: 'zzz.png',
-    status: 'error',
-    response: 'Server Error 500', // custom error message to show
-    url: 'http://www.baidu.com/zzz.png',
-  },
-]);
-
-const handleChange = ({ file, fileList }: UploadChangeParam) => {
-  if (file.status !== 'uploading') {
-    console.log(file, fileList);
-  }
-};
-const beforeUpload: UploadProps['beforeUpload'] = file => {
-  const isPNG = file.type === 'image/png';
-  if (!isPNG) {
-    message.error(`${file.name} is not a png file`);
-  }
-  return isPNG || Upload.LIST_IGNORE;
-};
-</script>

@@ -17,6 +17,18 @@ Modify theme by `theme` prop.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { theme } from '@antdv/ui'
+
+  const defaultData = {
+    borderRadius: 6,
+    colorPrimary: '#1677ff',
+  }
+  const data = ref<any>(defaultData)
+  const { token } = theme.useToken()
+</script>
+
 <template>
   <a-config-provider
     :theme="{ token: { colorPrimary: data.colorPrimary, borderRadius: `${data.borderRadius}px` } }"
@@ -38,17 +50,6 @@ Modify theme by `theme` prop.
     </a-form>
   </a-config-provider>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { theme } from '@antdv/ui';
-
-const defaultData = {
-  borderRadius: 6,
-  colorPrimary: '#1677ff',
-};
-const data = ref(defaultData);
-const { token } = theme.useToken();
-</script>
 
 <style scoped>
 input[type='color'] {

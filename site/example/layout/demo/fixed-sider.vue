@@ -16,6 +16,23 @@ title:
 When dealing with long content, a fixed sider can provide a better user experience.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import {
+    AppstoreOutlined,
+    BarChartOutlined,
+    CloudOutlined,
+    ShopOutlined,
+    TeamOutlined,
+    UploadOutlined,
+    UserOutlined,
+    VideoCameraOutlined,
+  } from '@ant-design/icons-vue'
+
+  const selectedKeys = ref<string[]>(['4'])
+</script>
+
 <template>
   <a-layout has-sider>
     <a-layout-sider
@@ -24,35 +41,35 @@ When dealing with long content, a fixed sider can provide a better user experien
       <div class="logo" />
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
-          <user-outlined />
+          <UserOutlined />
           <span class="nav-text">nav 1</span>
         </a-menu-item>
         <a-menu-item key="2">
-          <video-camera-outlined />
+          <VideoCameraOutlined />
           <span class="nav-text">nav 2</span>
         </a-menu-item>
         <a-menu-item key="3">
-          <upload-outlined />
+          <UploadOutlined />
           <span class="nav-text">nav 3</span>
         </a-menu-item>
         <a-menu-item key="4">
-          <bar-chart-outlined />
+          <BarChartOutlined />
           <span class="nav-text">nav 4</span>
         </a-menu-item>
         <a-menu-item key="5">
-          <cloud-outlined />
+          <CloudOutlined />
           <span class="nav-text">nav 5</span>
         </a-menu-item>
         <a-menu-item key="6">
-          <appstore-outlined />
+          <AppstoreOutlined />
           <span class="nav-text">nav 6</span>
         </a-menu-item>
         <a-menu-item key="7">
-          <team-outlined />
+          <TeamOutlined />
           <span class="nav-text">nav 7</span>
         </a-menu-item>
         <a-menu-item key="8">
-          <shop-outlined />
+          <ShopOutlined />
           <span class="nav-text">nav 8</span>
         </a-menu-item>
       </a-menu>
@@ -164,20 +181,6 @@ When dealing with long content, a fixed sider can provide a better user experien
     </a-layout>
   </a-layout>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  AppstoreOutlined,
-  TeamOutlined,
-  ShopOutlined,
-} from '@ant-design/icons-vue';
-const selectedKeys = ref<string[]>(['4']);
-</script>
 
 <style scoped>
 #components-layout-demo-fixed-sider .logo {

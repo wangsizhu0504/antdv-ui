@@ -14,6 +14,40 @@ title:
 
 `name` prop support nest data structure. Customize validate message template with `validateMessages` or `message`. Ref [here](https://github.com/vueComponent/@antdv/ui/blob/main/components/form/utils/messages.ts) about message template.
 </docs>
+
+<script lang="ts" setup>
+  import { reactive } from 'vue'
+
+  const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
+  }
+
+  const validateMessages = {
+    required: '${label} is required!',
+    types: {
+      email: '${label} is not a valid email!',
+      number: '${label} is not a valid number!',
+    },
+    number: {
+      range: '${label} must be between ${min} and ${max}',
+    },
+  }
+
+  const formState = reactive({
+    user: {
+      name: '',
+      age: undefined,
+      email: '',
+      website: '',
+      introduction: '',
+    },
+  })
+  function onFinish(values: any) {
+    console.log('Success:', values)
+  }
+</script>
+
 <template>
   <a-form
     :model="formState"
@@ -42,34 +76,3 @@ title:
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { reactive } from 'vue';
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
-
-const validateMessages = {
-  required: '${label} is required!',
-  types: {
-    email: '${label} is not a valid email!',
-    number: '${label} is not a valid number!',
-  },
-  number: {
-    range: '${label} must be between ${min} and ${max}',
-  },
-};
-
-const formState = reactive({
-  user: {
-    name: '',
-    age: undefined,
-    email: '',
-    website: '',
-    introduction: '',
-  },
-});
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
-</script>

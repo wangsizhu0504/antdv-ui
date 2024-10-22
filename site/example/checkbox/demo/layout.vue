@@ -16,6 +16,12 @@ We can use Checkbox and Grid Checkbox.group, to implement complex layout
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value = ref<any>([])
+</script>
+
 <template>
   <a-checkbox-group v-model:value="value" style="width: 100%">
     <a-row>
@@ -37,7 +43,3 @@ We can use Checkbox and Grid Checkbox.group, to implement complex layout
     </a-row>
   </a-checkbox-group>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const value = ref([]);
-</script>

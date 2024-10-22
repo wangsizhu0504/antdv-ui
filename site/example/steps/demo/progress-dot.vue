@@ -34,7 +34,7 @@ Steps with progress dot style.
           description: 'This is a description.',
         },
       ]"
-    ></a-steps>
+    />
     <a-divider />
     <a-steps
       progress-dot
@@ -62,6 +62,6 @@ Steps with progress dot style.
           description: 'This is a description.',
         },
       ]"
-    ></a-steps>
+    />
   </div>
 </template>

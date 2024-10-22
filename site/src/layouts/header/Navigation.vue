@@ -13,7 +13,7 @@
         return globalConfig?.isMobile.value ? 'inline' : 'horizontal'
       })
       const route = useRoute()
-      const activeMenuItem = ref('home')
+      const activeMenuItem = ref<any>('home')
       watch(
         () => route.path,
         (pathname) => {

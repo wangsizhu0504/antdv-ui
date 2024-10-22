@@ -16,6 +16,19 @@ Customize the suffix icon through `suffixIcon`
 
 </docs>
 
+<script lang="ts" setup>
+  import { SmileOutlined } from '@ant-design/icons-vue'
+  import type { Dayjs } from 'dayjs'
+
+  function onChange(date: Dayjs | string, dateString: string) {
+    console.log(date, dateString)
+  }
+
+  function onRangeChange(date: [Dayjs, Dayjs], dateString: [string, string]) {
+    console.log(date, dateString)
+  }
+</script>
+
 <template>
   <a-space direction="vertical">
     <a-date-picker @change="onChange">
@@ -44,14 +57,3 @@ Customize the suffix icon through `suffixIcon`
     <a-date-picker suffix-icon="ab" placeholder="Select week" picker="week" @change="onChange" />
   </a-space>
 </template>
-<script lang="ts" setup>
-import { SmileOutlined } from '@ant-design/icons-vue';
-import { Dayjs } from 'dayjs';
-const onChange = (date: Dayjs | string, dateString: string) => {
-  console.log(date, dateString);
-};
-
-const onRangeChange = (date: [Dayjs, Dayjs], dateString: [string, string]) => {
-  console.log(date, dateString);
-};
-</script>

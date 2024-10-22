@@ -16,6 +16,13 @@ use `upIcon` `downIcon` custom icon
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons-vue'
+
+  const value = ref<number>(3)
+</script>
+
 <template>
   <div>
     <a-input-number id="inputNumber" v-model:value="value" :min="1" :max="10">
@@ -28,8 +35,3 @@ use `upIcon` `downIcon` custom icon
     </a-input-number>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons-vue';
-const value = ref<number>(3);
-</script>

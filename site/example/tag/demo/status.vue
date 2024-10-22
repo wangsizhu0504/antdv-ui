@@ -16,6 +16,17 @@ We preset five different colors, you can set color property such as `success`,`p
 
 </docs>
 
+<script lang="ts" setup>
+  import {
+    CheckCircleOutlined,
+    ClockCircleOutlined,
+    CloseCircleOutlined,
+    ExclamationCircleOutlined,
+    MinusCircleOutlined,
+    SyncOutlined,
+  } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-divider orientation="left">Without icon</a-divider>
   <div>
@@ -29,49 +40,39 @@ We preset five different colors, you can set color property such as `success`,`p
   <div>
     <a-tag color="success">
       <template #icon>
-        <check-circle-outlined />
+        <CheckCircleOutlined />
       </template>
       success
     </a-tag>
     <a-tag color="processing">
       <template #icon>
-        <sync-outlined :spin="true" />
+        <SyncOutlined :spin="true" />
       </template>
       processing
     </a-tag>
     <a-tag color="error">
       <template #icon>
-        <close-circle-outlined />
+        <CloseCircleOutlined />
       </template>
       error
     </a-tag>
     <a-tag color="warning">
       <template #icon>
-        <exclamation-circle-outlined />
+        <ExclamationCircleOutlined />
       </template>
       warning
     </a-tag>
     <a-tag color="default">
       <template #icon>
-        <clock-circle-outlined />
+        <ClockCircleOutlined />
       </template>
       waiting
     </a-tag>
     <a-tag color="default">
       <template #icon>
-        <minus-circle-outlined />
+        <MinusCircleOutlined />
       </template>
       stop
     </a-tag>
   </div>
 </template>
-<script lang="ts" setup>
-import {
-  CheckCircleOutlined,
-  SyncOutlined,
-  CloseCircleOutlined,
-  ExclamationCircleOutlined,
-  ClockCircleOutlined,
-  MinusCircleOutlined,
-} from '@ant-design/icons-vue';
-</script>

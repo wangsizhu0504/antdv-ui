@@ -78,13 +78,15 @@ export function getSwipeDirection(touchObject, verticalSwiping = false) {
 export function canGoNext(spec) {
   let canGo = true
   if (!spec.infinite) {
-    if (spec.centerMode && spec.currentSlide >= spec.slideCount - 1)
+    if (spec.centerMode && spec.currentSlide >= spec.slideCount - 1) {
       canGo = false
+    }
     else if (
       spec.slideCount <= spec.slidesToShow
       || spec.currentSlide >= spec.slideCount - spec.slidesToShow
-    )
+    ) {
       canGo = false
+    }
   }
   return canGo
 }
@@ -398,8 +400,9 @@ export function swipeMove(e, spec) {
   if (
     Math.abs(touchObject.curX - touchObject.startX)
     < Math.abs(touchObject.curY - touchObject.startY) * 0.8
-  )
+  ) {
     return state
+  }
 
   if (touchObject.swipeLength > 10) {
     state.swiping = true

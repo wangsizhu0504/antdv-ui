@@ -6,7 +6,7 @@ function onChange() {}
 
 const Demo = defineComponent({
   setup() {
-    return () => <Input status={'warning'} defaultValue={3} onChange={onChange} />
+    return () => <Input status="warning" defaultValue={3} onChange={onChange} />
   },
 })
 

@@ -16,6 +16,186 @@ Components which support rtl direction are listed here, you can toggle the direc
 
 </docs>
 
+<script lang="ts" setup>
+  import { reactive, ref, watch } from 'vue'
+
+  import {
+    DownloadOutlined,
+    LeftOutlined,
+    MinusOutlined,
+    PlusOutlined,
+    RightOutlined,
+    SearchOutlined as SearchIcon,
+    SmileOutlined,
+  } from '@ant-design/icons-vue'
+  import type { CascaderProps, TreeProps, TreeSelectProps } from '@antdv/ui'
+
+  const state = reactive({
+    currentStep: 0,
+    modalVisible: false,
+
+    badgeCount: 5,
+    showBadge: true,
+    direction: 'ltr' as 'ltr' | 'rtl',
+    popupPlacement: 'bottomLeft' as CascaderProps['placement'],
+  })
+  const expandedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+  const selectedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+  const checkedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+
+  const treeData: TreeProps['treeData'] = [
+    {
+      title: 'parent 1',
+      key: '0-0',
+      children: [
+        {
+          title: 'parent 1-0',
+          key: '0-0-0',
+          disabled: true,
+          children: [
+            { title: 'leaf', key: '0-0-0-0', disableCheckbox: true },
+            { title: 'leaf', key: '0-0-0-1' },
+          ],
+        },
+        {
+          title: 'parent 1-1',
+          key: '0-0-1',
+          children: [{ key: '0-0-1-0', title: 'sss' }],
+        },
+      ],
+    },
+  ]
+
+  const treeSelectData = ref<TreeSelectProps['treeData']>([
+    {
+      title: 'parent 1',
+      value: 'parent 1',
+      children: [
+        {
+          title: 'parent 1-0',
+          value: 'parent 1-0',
+          children: [
+            {
+              title: 'my leaf',
+              value: 'leaf1',
+            },
+            {
+              title: 'your leaf',
+              value: 'leaf2',
+            },
+          ],
+        },
+        {
+          title: 'parent 1-1',
+          value: 'parent 1-1',
+        },
+      ],
+    },
+  ])
+  watch(
+    () => state.direction,
+    (directionValue) => {
+      if (directionValue === 'rtl') {
+        state.popupPlacement = 'bottomRight'
+      } else {
+        state.popupPlacement = 'bottomLeft'
+      }
+    },
+  )
+  const cascaderOptions = [
+    {
+      value: 'tehran',
+      label: 'تهران',
+      children: [
+        {
+          value: 'tehran-c',
+          label: 'تهران',
+          children: [
+            {
+              value: 'saadat-abad',
+              label: 'سعادت آیاد',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: 'ardabil',
+      label: 'اردبیل',
+      children: [
+        {
+          value: 'ardabil-c',
+          label: 'اردبیل',
+          children: [
+            {
+              value: 'primadar',
+              label: 'پیرمادر',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      value: 'gilan',
+      label: 'گیلان',
+      children: [
+        {
+          value: 'rasht',
+          label: 'رشت',
+          children: [
+            {
+              value: 'district-3',
+              label: 'منطقه ۳',
+            },
+          ],
+        },
+      ],
+    },
+  ]
+
+  // ==== Cascader ====
+  function cascaderFilter(inputValue, path) {
+    return path.some(option => option.label.toLowerCase().includes(inputValue.toLowerCase()))
+  }
+
+  function onCascaderChange(value) {
+    console.log(value)
+  }
+  // ==== End Cascader ====
+
+  // ==== Modal ====
+  function showModal() {
+    state.modalVisible = true
+  }
+
+  // ==== End Modal ====
+
+  function onStepsChange(currentStep) {
+    console.log('onChange:', currentStep)
+    state.currentStep = currentStep
+  }
+
+  // ==== Badge ====
+
+  function increaseBadge() {
+    const badgeCount = state.badgeCount + 1
+    state.badgeCount = badgeCount
+  }
+
+  function declineBadge() {
+    let badgeCount = state.badgeCount - 1
+    if (badgeCount < 0) {
+      badgeCount = 0
+    }
+    state.badgeCount = badgeCount
+  }
+
+  function onChangeBadge(showBadge) {
+    state.showBadge = showBadge
+  }
+  const rateValue = ref<any>(2)
+</script>
+
 <template>
   <span style="margin-right: 16px">Change direction of components:</span>
   <a-radio-group v-model:value="state.direction">
@@ -208,7 +388,7 @@ Components which support rtl direction are listed here, you can toggle the direc
                     allow-clear
                     tree-default-expand-all
                     :tree-data="treeSelectData"
-                  ></a-tree-select>
+                  />
                 </div>
               </a-col>
             </a-row>
@@ -246,7 +426,7 @@ Components which support rtl direction are listed here, you can toggle the direc
                         description: 'This is a description.',
                       },
                     ]"
-                  ></a-steps>
+                  />
                   <br />
                   <a-steps
                     :current="state.currentStep"
@@ -265,7 +445,7 @@ Components which support rtl direction are listed here, you can toggle the direc
                       },
                     ]"
                     @change="onStepsChange"
-                  ></a-steps>
+                  />
                 </div>
               </a-col>
             </a-row>
@@ -344,184 +524,7 @@ Components which support rtl direction are listed here, you can toggle the direc
     </a-space>
   </a-config-provider>
 </template>
-<script lang="ts" setup>
-import { reactive, watch, ref } from 'vue';
 
-import {
-  SearchOutlined as SearchIcon,
-  SmileOutlined,
-  DownloadOutlined,
-  LeftOutlined,
-  RightOutlined,
-  MinusOutlined,
-  PlusOutlined,
-} from '@ant-design/icons-vue';
-import type { TreeProps, TreeSelectProps, CascaderProps } from '@antdv/ui';
-
-const state = reactive({
-  currentStep: 0,
-  modalVisible: false,
-
-  badgeCount: 5,
-  showBadge: true,
-  direction: 'ltr' as 'ltr' | 'rtl',
-  popupPlacement: 'bottomLeft' as CascaderProps['placement'],
-});
-const expandedKeys = ref<string[]>(['0-0-0', '0-0-1']);
-const selectedKeys = ref<string[]>(['0-0-0', '0-0-1']);
-const checkedKeys = ref<string[]>(['0-0-0', '0-0-1']);
-
-const treeData: TreeProps['treeData'] = [
-  {
-    title: 'parent 1',
-    key: '0-0',
-    children: [
-      {
-        title: 'parent 1-0',
-        key: '0-0-0',
-        disabled: true,
-        children: [
-          { title: 'leaf', key: '0-0-0-0', disableCheckbox: true },
-          { title: 'leaf', key: '0-0-0-1' },
-        ],
-      },
-      {
-        title: 'parent 1-1',
-        key: '0-0-1',
-        children: [{ key: '0-0-1-0', title: 'sss' }],
-      },
-    ],
-  },
-];
-
-const treeSelectData = ref<TreeSelectProps['treeData']>([
-  {
-    title: 'parent 1',
-    value: 'parent 1',
-    children: [
-      {
-        title: 'parent 1-0',
-        value: 'parent 1-0',
-        children: [
-          {
-            title: 'my leaf',
-            value: 'leaf1',
-          },
-          {
-            title: 'your leaf',
-            value: 'leaf2',
-          },
-        ],
-      },
-      {
-        title: 'parent 1-1',
-        value: 'parent 1-1',
-      },
-    ],
-  },
-]);
-watch(
-  () => state.direction,
-  directionValue => {
-    if (directionValue === 'rtl') {
-      state.popupPlacement = 'bottomRight';
-    } else {
-      state.popupPlacement = 'bottomLeft';
-    }
-  },
-);
-const cascaderOptions = [
-  {
-    value: 'tehran',
-    label: 'تهران',
-    children: [
-      {
-        value: 'tehran-c',
-        label: 'تهران',
-        children: [
-          {
-            value: 'saadat-abad',
-            label: 'سعادت آیاد',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'ardabil',
-    label: 'اردبیل',
-    children: [
-      {
-        value: 'ardabil-c',
-        label: 'اردبیل',
-        children: [
-          {
-            value: 'primadar',
-            label: 'پیرمادر',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'gilan',
-    label: 'گیلان',
-    children: [
-      {
-        value: 'rasht',
-        label: 'رشت',
-        children: [
-          {
-            value: 'district-3',
-            label: 'منطقه ۳',
-          },
-        ],
-      },
-    ],
-  },
-];
-
-// ==== Cascader ====
-const cascaderFilter = (inputValue, path) =>
-  path.some(option => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1);
-
-const onCascaderChange = value => {
-  console.log(value);
-};
-// ==== End Cascader ====
-
-// ==== Modal ====
-const showModal = () => {
-  state.modalVisible = true;
-};
-
-// ==== End Modal ====
-
-const onStepsChange = currentStep => {
-  console.log('onChange:', currentStep);
-  state.currentStep = currentStep;
-};
-
-// ==== Badge ====
-
-const increaseBadge = () => {
-  const badgeCount = state.badgeCount + 1;
-  state.badgeCount = badgeCount;
-};
-
-const declineBadge = () => {
-  let badgeCount = state.badgeCount - 1;
-  if (badgeCount < 0) {
-    badgeCount = 0;
-  }
-  state.badgeCount = badgeCount;
-};
-
-const onChangeBadge = showBadge => {
-  state.showBadge = showBadge;
-};
-const rateValue = ref(2);
-</script>
 <style lang="less" scoped>
 .direction-components {
   width: 100%;

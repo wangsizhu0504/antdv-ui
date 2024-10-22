@@ -17,6 +17,37 @@ Add status to AutoComplete with `status`, which could be `error` or `warning`.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref, watch } from 'vue'
+
+  interface MockVal {
+    value: string;
+  }
+  function mockVal(str: string, repeat = 1): MockVal {
+    return {
+      value: str.repeat(repeat),
+    }
+  }
+  const value = ref<any>('')
+  const value1 = ref<any>('')
+  const options = ref<MockVal[]>([])
+  function onSearch(searchText: string) {
+    console.log('searchText')
+    options.value = !searchText
+      ? []
+      : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
+  }
+  function onSelect(value: string) {
+    console.log('onSelect', value)
+  }
+  function onClear() {
+    console.log('onClear')
+  }
+  watch(value, () => {
+    console.log('value', value.value)
+  })
+</script>
+
 <template>
   <a-space direction="vertical" style="width: 100%">
     <a-auto-complete
@@ -41,34 +72,3 @@ Add status to AutoComplete with `status`, which could be `error` or `warning`.
     />
   </a-space>
 </template>
-
-<script lang="ts" setup>
-import { ref, watch } from 'vue';
-
-interface MockVal {
-  value: string;
-}
-const mockVal = (str: string, repeat = 1): MockVal => {
-  return {
-    value: str.repeat(repeat),
-  };
-};
-const value = ref('');
-const value1 = ref('');
-const options = ref<MockVal[]>([]);
-const onSearch = (searchText: string) => {
-  console.log('searchText');
-  options.value = !searchText
-    ? []
-    : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
-};
-const onSelect = (value: string) => {
-  console.log('onSelect', value);
-};
-const onClear = () => {
-  console.log('onClear');
-};
-watch(value, () => {
-  console.log('value', value.value);
-});
-</script>

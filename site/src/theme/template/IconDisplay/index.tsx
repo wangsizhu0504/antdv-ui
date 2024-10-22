@@ -64,13 +64,19 @@ const IconDisplay = defineComponent({
         <h3 style="margin: 1.6em 0 .6em;">{this.$t('app.docs.components.icon.pick-theme')}</h3>
         <a-radio-group value={this.theme} onChange={this.handleChangeTheme}>
           <a-radio-button value={ThemeType.Outlined}>
-            <Icon component={OutlinedIcon} /> {this.$t('app.docs.components.icon.outlined')}
+            <Icon component={OutlinedIcon} />
+            {' '}
+            {this.$t('app.docs.components.icon.outlined')}
           </a-radio-button>
           <a-radio-button value={ThemeType.Filled}>
-            <Icon component={FilledIcon} /> {this.$t('app.docs.components.icon.filled')}
+            <Icon component={FilledIcon} />
+            {' '}
+            {this.$t('app.docs.components.icon.filled')}
           </a-radio-button>
           <a-radio-button value={ThemeType.TwoTone}>
-            <Icon component={TwoToneIcon} /> {this.$t('app.docs.components.icon.two-tone')}
+            <Icon component={TwoToneIcon} />
+            {' '}
+            {this.$t('app.docs.components.icon.two-tone')}
           </a-radio-button>
         </a-radio-group>
         {this.renderCategories()}

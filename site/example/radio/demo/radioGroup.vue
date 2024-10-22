@@ -15,6 +15,13 @@ title:
 A group of radio components.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value = ref<number>(1)
+</script>
+
 <template>
   <div>
     <a-radio-group v-model:value="value">
@@ -25,7 +32,3 @@ A group of radio components.
     </a-radio-group>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const value = ref<number>(1);
-</script>

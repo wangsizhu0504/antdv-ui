@@ -16,6 +16,26 @@ Creating a grid list by setting the `grid` property of List
 
 </docs>
 
+<script lang="ts" setup>
+  interface DataItem {
+    title: string;
+  }
+  const data: DataItem[] = [
+    {
+      title: 'Title 1',
+    },
+    {
+      title: 'Title 2',
+    },
+    {
+      title: 'Title 3',
+    },
+    {
+      title: 'Title 4',
+    },
+  ]
+</script>
+
 <template>
   <a-list :grid="{ gutter: 16, column: 4 }" :data-source="data">
     <template #renderItem="{ item }">
@@ -25,22 +45,3 @@ Creating a grid list by setting the `grid` property of List
     </template>
   </a-list>
 </template>
-<script lang="ts" setup>
-interface DataItem {
-  title: string;
-}
-const data: DataItem[] = [
-  {
-    title: 'Title 1',
-  },
-  {
-    title: 'Title 2',
-  },
-  {
-    title: 'Title 3',
-  },
-  {
-    title: 'Title 4',
-  },
-];
-</script>

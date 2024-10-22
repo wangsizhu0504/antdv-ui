@@ -15,6 +15,10 @@ title:
 Avatar group display.
 </docs>
 
+<script lang="ts" setup>
+  import { AntDesignOutlined, UserOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-avatar-group>
     <a-avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
@@ -95,7 +99,3 @@ Avatar group display.
     </a-avatar>
   </a-avatar-group>
 </template>
-
-<script lang="ts" setup>
-import { UserOutlined, AntDesignOutlined } from '@ant-design/icons-vue';
-</script>

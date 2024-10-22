@@ -14,6 +14,13 @@ title:
 
 Switch in different types of pickers by Select.
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const type = ref<any>('time')
+</script>
+
 <template>
   <a-space direction="vertical" :size="12">
     <a-select v-model:value="type">
@@ -32,7 +39,3 @@ Switch in different types of pickers by Select.
     </template>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const type = ref<any>('time');
-</script>

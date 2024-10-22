@@ -16,6 +16,11 @@ title:
 Add status to InputNumber with `status`, which could be `error` or `warning`.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ClockCircleOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-space direction="vertical" style="width: 100%">
     <a-input-number status="error" style="width: 100%" />
@@ -28,7 +33,3 @@ Add status to InputNumber with `status`, which could be `error` or `warning`.
     </a-input-number>
   </a-space>
 </template>
-
-<script lang="ts" setup>
-import { ClockCircleOutlined } from '@ant-design/icons-vue';
-</script>

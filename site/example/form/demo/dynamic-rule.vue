@@ -15,6 +15,47 @@ title:
 Perform different check rules according to different situations.
 
 </docs>
+
+<script lang="ts" setup>
+  import { reactive, ref, watch } from 'vue'
+  import type { FormInstance } from '@antdv/ui'
+
+  interface FormState {
+    username: string;
+    nickname: string;
+    checkNick: boolean;
+  }
+  const formRef = ref<FormInstance>()
+  const formState = reactive<FormState>({
+    username: '',
+    nickname: '',
+    checkNick: false,
+  })
+  watch(
+    () => formState.checkNick,
+    () => {
+      formRef.value.validateFields(['nickname'])
+    },
+    { flush: 'post' },
+  )
+  async function onCheck() {
+    try {
+      const values = await formRef.value.validateFields()
+      console.log('Success:', values)
+    } catch (errorInfo) {
+      console.log('Failed:', errorInfo)
+    }
+  }
+  const formItemLayout = {
+    labelCol: { span: 4 },
+    wrapperCol: { span: 8 },
+  }
+  const formTailLayout = {
+    labelCol: { span: 4 },
+    wrapperCol: { span: 8, offset: 4 },
+  }
+</script>
+
 <template>
   <a-form ref="formRef" :model="formState" name="dynamic_rule" v-bind="formItemLayout">
     <a-form-item
@@ -42,42 +83,3 @@ Perform different check rules according to different situations.
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { reactive, ref, watch } from 'vue';
-import type { FormInstance } from '@antdv/ui';
-
-interface FormState {
-  username: string;
-  nickname: string;
-  checkNick: boolean;
-}
-const formRef = ref<FormInstance>();
-const formState = reactive<FormState>({
-  username: '',
-  nickname: '',
-  checkNick: false,
-});
-watch(
-  () => formState.checkNick,
-  () => {
-    formRef.value.validateFields(['nickname']);
-  },
-  { flush: 'post' },
-);
-const onCheck = async () => {
-  try {
-    const values = await formRef.value.validateFields();
-    console.log('Success:', values);
-  } catch (errorInfo) {
-    console.log('Failed:', errorInfo);
-  }
-};
-const formItemLayout = {
-  labelCol: { span: 4 },
-  wrapperCol: { span: 8 },
-};
-const formTailLayout = {
-  labelCol: { span: 4 },
-  wrapperCol: { span: 8, offset: 4 },
-};
-</script>

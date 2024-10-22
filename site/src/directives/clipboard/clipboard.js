@@ -8,8 +8,8 @@ import listen from './listen'
  */
 class Clipboard extends Emitter {
   /**
-   * @param {String|HTMLElement|HTMLCollection|NodeList} trigger
-   * @param {Object} options
+   * @param {string | HTMLElement | HTMLCollection | NodeList} trigger
+   * @param {object} options
    */
   constructor(trigger, options) {
     super()
@@ -21,7 +21,7 @@ class Clipboard extends Emitter {
   /**
    * Defines if attributes would be resolved using internal setter functions
    * or custom functions that were passed in the constructor.
-   * @param {Object} options
+   * @param {object} options
    */
   resolveOptions(options = {}) {
     this.action = typeof options.action === 'function' ? options.action : this.defaultAction
@@ -32,7 +32,7 @@ class Clipboard extends Emitter {
 
   /**
    * Adds a click event listener to the passed trigger.
-   * @param {String|HTMLElement|HTMLCollection|NodeList} trigger
+   * @param {string | HTMLElement | HTMLCollection | NodeList} trigger
    */
   listenClick(trigger) {
     this.listener = listen(trigger, 'click', e => this.onClick(e))
@@ -80,7 +80,7 @@ class Clipboard extends Emitter {
   /**
    * Returns the support of the given action, or all actions if no action is
    * given.
-   * @param {String} [action]
+   * @param {string} [action]
    */
   static isSupported(action = ['copy', 'cut']) {
     const actions = typeof action === 'string' ? [action] : action
@@ -116,7 +116,7 @@ class Clipboard extends Emitter {
 
 /**
  * Helper function to retrieve attribute value.
- * @param {String} suffix
+ * @param {string} suffix
  * @param {Element} element
  */
 function getAttributeValue(suffix, element) {

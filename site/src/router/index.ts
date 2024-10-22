@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// eslint-disable-next-line ts/ban-ts-comment
 // @ts-nocheck
 import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -169,7 +169,7 @@ const router = createRouter({
   },
 })
 
-export const registerRouter = (app: App) => {
+export function registerRouter(app: App) {
   app.use(router)
   return router
 }

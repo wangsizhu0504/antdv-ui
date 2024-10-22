@@ -15,6 +15,45 @@ title:
 If uploaded file is a picture, the thumbnail can be shown.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { UploadOutlined } from '@ant-design/icons-vue'
+  import type { UploadProps } from '@antdv/ui'
+
+  const fileList = ref<UploadProps['fileList']>([
+    {
+      uid: '-1',
+      name: 'xxx.png',
+      status: 'done',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },
+    {
+      uid: '-2',
+      name: 'yyy.png',
+      status: 'done',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },
+  ])
+  const fileList1 = ref<UploadProps['fileList']>([
+    {
+      uid: '-1',
+      name: 'xxx.png',
+      status: 'done',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },
+    {
+      uid: '-2',
+      name: 'yyy.png',
+      status: 'done',
+      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },
+  ])
+</script>
+
 <template>
   <div>
     <a-upload
@@ -23,7 +62,7 @@ If uploaded file is a picture, the thumbnail can be shown.
       list-type="picture"
     >
       <a-button>
-        <upload-outlined></upload-outlined>
+        <UploadOutlined/>
         upload
       </a-button>
     </a-upload>
@@ -36,50 +75,13 @@ If uploaded file is a picture, the thumbnail can be shown.
       class="upload-list-inline"
     >
       <a-button>
-        <upload-outlined></upload-outlined>
+        <UploadOutlined/>
         upload
       </a-button>
     </a-upload>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { UploadOutlined } from '@ant-design/icons-vue';
-import type { UploadProps } from '@antdv/ui';
-const fileList = ref<UploadProps['fileList']>([
-  {
-    uid: '-1',
-    name: 'xxx.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-  {
-    uid: '-2',
-    name: 'yyy.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-]);
-const fileList1 = ref<UploadProps['fileList']>([
-  {
-    uid: '-1',
-    name: 'xxx.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-  {
-    uid: '-2',
-    name: 'yyy.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-]);
-</script>
 <style scoped>
 /* tile uploaded pictures */
 .upload-list-inline :deep(.ant-upload-list-item) {

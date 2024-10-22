@@ -15,6 +15,52 @@ title:
 [`Form.useForm`](#useform) use dot string splicing for nested data verification.
 </docs>
 
+<script lang="ts" setup>
+  import { reactive, toRaw } from 'vue'
+  import { Form } from '@antdv/ui'
+
+  const useForm = Form.useForm
+
+  const labelCol = { span: 4 }
+  const wrapperCol = { span: 14 }
+
+  const modelRef = reactive({
+    name: '',
+    sub: {
+      name: '',
+    },
+  })
+  const { resetFields, validate, validateInfos } = useForm(
+    modelRef,
+    reactive({
+      'name': [
+        {
+          required: true,
+          message: 'Please input name',
+        },
+      ],
+      'sub.name': [
+        {
+          required: true,
+          message: 'Please input sub name',
+        },
+      ],
+    }),
+  )
+  function onSubmit() {
+    validate()
+      .then((res) => {
+        console.log(res, toRaw(modelRef))
+      })
+      .catch((err) => {
+        console.log('error', err)
+      })
+  }
+  function reset() {
+    resetFields()
+  }
+</script>
+
 <template>
   <a-form :label-col="labelCol" :wrapper-col="wrapperCol">
     <a-form-item label="Activity name" v-bind="validateInfos.name">
@@ -29,48 +75,3 @@ title:
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { reactive, toRaw } from 'vue';
-import { Form } from '@antdv/ui';
-
-const useForm = Form.useForm;
-
-const labelCol = { span: 4 };
-const wrapperCol = { span: 14 };
-
-const modelRef = reactive({
-  name: '',
-  sub: {
-    name: '',
-  },
-});
-const { resetFields, validate, validateInfos } = useForm(
-  modelRef,
-  reactive({
-    name: [
-      {
-        required: true,
-        message: 'Please input name',
-      },
-    ],
-    'sub.name': [
-      {
-        required: true,
-        message: 'Please input sub name',
-      },
-    ],
-  }),
-);
-const onSubmit = () => {
-  validate()
-    .then(res => {
-      console.log(res, toRaw(modelRef));
-    })
-    .catch(err => {
-      console.log('error', err);
-    });
-};
-const reset = () => {
-  resetFields();
-};
-</script>

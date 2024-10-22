@@ -1,8 +1,8 @@
 import type { Ref } from 'vue'
-import { getStyle as getCheckboxStyle } from '../../checkbox/style'
 import { genComponentStyleHook, mergeToken } from '@antdv/theme'
-import { genTreeStyle } from '../../tree/style'
 import type { AliasToken, FullToken, GenerateStyle } from '@antdv/theme'
+import { getStyle as getCheckboxStyle } from '../../checkbox/style'
+import { genTreeStyle } from '../../tree/style'
 
 interface TreeSelectToken extends FullToken<'TreeSelect'> {
   treePrefixCls: string

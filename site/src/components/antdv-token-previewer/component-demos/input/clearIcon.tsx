@@ -5,7 +5,7 @@ import type { ComponentDemo } from '../../interface'
 
 const Demo = defineComponent({
   setup() {
-    return () => <Input placeholder="Basic usage" value={'右侧的图标就是 colorIcon'} allowClear />
+    return () => <Input placeholder="Basic usage" value="右侧的图标就是 colorIcon" allowClear />
   },
 })
 

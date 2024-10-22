@@ -1,27 +1,27 @@
 <script lang="ts" setup>
-import Github from './Github.vue'
-import Navigation from './Navigation.vue'
-import { getLocalizedPathname, isLocalStorageNameSupported, isZhCN } from '@/utils/util'
+  import Github from './Github.vue'
+  import Navigation from './Navigation.vue'
+  import { getLocalizedPathname, isLocalStorageNameSupported, isZhCN } from '@/utils/util'
 
-defineOptions({
-  name: 'HeaderMenu',
-})
-const onLangChange = () => {
-  const {
-    location: { pathname },
-  } = window
-  const currentProtocol = `${window.location.protocol}//`
-  const currentHref = window.location.href.substr(currentProtocol.length)
+  defineOptions({
+    name: 'HeaderMenu',
+  })
+  function onLangChange() {
+    const {
+      location: { pathname },
+    } = window
+    const currentProtocol = `${window.location.protocol}//`
+    const currentHref = window.location.href.substr(currentProtocol.length)
 
-  if (isLocalStorageNameSupported())
-    localStorage.setItem('locale', isZhCN(pathname) ? 'en-US' : 'zh-CN')
+    if (isLocalStorageNameSupported())
+      localStorage.setItem('locale', isZhCN(pathname) ? 'en-US' : 'zh-CN')
 
-  window.location.href = currentProtocol + currentHref.replace(window.location.pathname, getLocalizedPathname(pathname, !isZhCN(pathname)).path)
-}
+    window.location.href = currentProtocol + currentHref.replace(window.location.pathname, getLocalizedPathname(pathname, !isZhCN(pathname)).path)
+  }
 </script>
 
 <template>
-  <Navigation @langChange="onLangChange" />
+  <Navigation @lang-change="onLangChange" />
   <a-button
     key="lang-button"
     size="small"

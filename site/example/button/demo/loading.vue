@@ -15,6 +15,24 @@ title:
 A loading indicator can be added to a button by setting the `loading` property on the `Button`.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { PoweroffOutlined } from '@ant-design/icons-vue'
+
+  interface DelayLoading {
+    delay: number;
+  }
+  const loading = ref<boolean>(false)
+  const iconLoading = ref<boolean | DelayLoading>(false)
+  function enterIconLoading() {
+    iconLoading.value = { delay: 1000 }
+
+    setTimeout(() => {
+      iconLoading.value = false
+    }, 6000)
+  }
+</script>
+
 <template>
   <a-space direction="vertical">
     <a-space>
@@ -37,20 +55,3 @@ A loading indicator can be added to a button by setting the `loading` property o
     </a-space>
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { PoweroffOutlined } from '@ant-design/icons-vue';
-
-interface DelayLoading {
-  delay: number;
-}
-const loading = ref<boolean>(false);
-const iconLoading = ref<boolean | DelayLoading>(false);
-const enterIconLoading = () => {
-  iconLoading.value = { delay: 1000 };
-
-  setTimeout(() => {
-    iconLoading.value = false;
-  }, 6000);
-};
-</script>

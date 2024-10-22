@@ -1,7 +1,7 @@
 import type { ObjectColor } from '../types'
 import { hexToRgba } from './convert'
 
-export const equalColorObjects = (first: ObjectColor, second: ObjectColor): boolean => {
+export function equalColorObjects(first: ObjectColor, second: ObjectColor): boolean {
   if (first === second) return true
 
   for (const prop in first) {
@@ -13,18 +13,19 @@ export const equalColorObjects = (first: ObjectColor, second: ObjectColor): bool
     if (
       (first as unknown as Record<string, number>)[prop]
       !== (second as unknown as Record<string, number>)[prop]
-    )
+    ) {
       return false
+    }
   }
 
   return true
 }
 
-export const equalColorString = (first: string, second: string): boolean => {
+export function equalColorString(first: string, second: string): boolean {
   return first.replace(/\s/g, '') === second.replace(/\s/g, '')
 }
 
-export const equalHex = (first: string, second: string): boolean => {
+export function equalHex(first: string, second: string): boolean {
   if (first.toLowerCase() === second.toLowerCase()) return true
 
   // To compare colors like `#FFF` and `ffffff` we convert them into RGB objects

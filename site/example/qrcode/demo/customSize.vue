@@ -14,6 +14,25 @@ title:
 Custom Size.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue'
+
+  const size = ref<any>(160)
+  function decline() {
+    size.value = size.value - 10
+    if (size.value < 48) {
+      size.value = 48
+    }
+  }
+  function increase() {
+    size.value = size.value + 10
+    if (size.value > 300) {
+      size.value = 300
+    }
+  }
+</script>
+
 <template>
   <a-button-group>
     <a-button @click="decline">
@@ -35,22 +54,3 @@ Custom Size.
     icon="https://www.antdv.com/assets/logo.1ef800a8.svg"
   />
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue';
-
-const size = ref(160);
-const decline = () => {
-  size.value = size.value - 10;
-  if (size.value < 48) {
-    size.value = 48;
-  }
-};
-const increase = () => {
-  size.value = size.value + 10;
-  if (size.value > 300) {
-    size.value = 300;
-  }
-};
-</script>

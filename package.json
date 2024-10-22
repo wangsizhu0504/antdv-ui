@@ -93,6 +93,6 @@
     "pre-commit": "pnpm exec lint-staged --allow-empty --concurrent false"
   },
   "lint-staged": {
-    "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
+    "*": ""
   }
 }

@@ -16,6 +16,13 @@ You can manually specify the position of the popup via `placement`.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const placement = ref<any>('topLeft' as const)
+  const value = ref<any>('HangZhou')
+</script>
+
 <template>
   <a-radio-group v-model:value="placement">
     <a-radio-button value="topLeft">topLeft</a-radio-button>
@@ -36,8 +43,3 @@ You can manually specify the position of the popup via `placement`.
     <a-select-option value="WenZhou">WenZhou #325000</a-select-option>
   </a-select>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const placement = ref('topLeft' as const);
-const value = ref('HangZhou');
-</script>

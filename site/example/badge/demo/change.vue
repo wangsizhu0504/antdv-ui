@@ -15,6 +15,23 @@ title:
 The count will be animated as it changes.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue'
+
+  const count = ref<number>(5)
+  const show = ref<boolean>(true)
+  function decline() {
+    if (count.value >= 1) {
+      count.value--
+    }
+  }
+
+  function increase() {
+    count.value++
+  }
+</script>
+
 <template>
   <div>
     <a-badge :count="count">
@@ -22,10 +39,10 @@ The count will be animated as it changes.
     </a-badge>
     <a-button-group>
       <a-button @click="decline">
-        <minus-outlined />
+        <MinusOutlined />
       </a-button>
       <a-button @click="increase">
-        <plus-outlined />
+        <PlusOutlined />
       </a-button>
     </a-button-group>
   </div>
@@ -35,18 +52,3 @@ The count will be animated as it changes.
   </a-badge>
   <a-switch v-model:checked="show" />
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue';
-const count = ref<number>(5);
-const show = ref<boolean>(true);
-const decline = () => {
-  if (count.value >= 1) {
-    count.value--;
-  }
-};
-
-const increase = () => {
-  count.value++;
-};
-</script>

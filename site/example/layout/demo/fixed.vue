@@ -16,6 +16,13 @@ title:
 Fixed Header is generally used to fix the top navigation to facilitate page switching.
 
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const selectedKeys = ref<string[]>(['2'])
+</script>
+
 <template>
   <a-layout>
     <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
@@ -44,10 +51,7 @@ Fixed Header is generally used to fix the top navigation to facilitate page swit
     </a-layout-footer>
   </a-layout>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const selectedKeys = ref<string[]>(['2']);
-</script>
+
 <style scoped>
 #components-layout-demo-fixed .logo {
   width: 120px;

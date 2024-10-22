@@ -11,24 +11,26 @@
 // wrapped by <code>(markdown token: '`') tag.
 // import emojiData from 'markdown-it-emoji/lib/data/full.json'
 
-const parseEmojis = (str: string) => {
+function parseEmojis(str: string) {
   return String(str).replace(/:(.+?):/g, (placeholder, key) => placeholder)
 }
 
-const unescapeHtml = (html: string) =>
-  String(html)
+function unescapeHtml(html: string) {
+  return String(html)
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, '\'')
     .replace(/&#x3A;/g, ':')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
+}
 
-const removeMarkdownTokens = (str: string) =>
-  String(str)
+function removeMarkdownTokens(str: string) {
+  return String(str)
     .replace(/(\[(.[^\]]+)\]\((.[^)]+)\))/g, '$2') // []()
     .replace(/(`|\*{1,3}|_)(.*?[^\\])\1/g, '$2') // `{t}` | *{t}* | **{t}** | ***{t}*** | _{t}_
 
-    .replace(/(\\)(\*|_|`|\!|<|\$)/g, '$2') // remove escape char '\'
+    .replace(/(\\)(\*|_|`|\!|<|\$)/g, '$2')
+} // remove escape char '\'
 
 const trim = (str = '') => str?.trim()
 
@@ -36,11 +38,11 @@ const trim = (str = '') => str?.trim()
 // e.g.
 // Input: "<a> b",   Output: "b"
 // Input: "`<a>` b", Output: "`<a>` b"
-export const removeNonCodeWrappedHTML = (str: string): string => {
+export function removeNonCodeWrappedHTML(str: string): string {
   return String(str).replace(/(^|[^><`\\])<.*>([^><`]|$)/g, '$1$2')
 }
 
-const compose = (...processors: ((str: string) => string)[]) => {
+function compose(...processors: Array<(str: string) => string>) {
   if (processors.length === 0) return (input: string) => input
   if (processors.length === 1) return processors[0]
   return processors.reduce((prev, next) => {

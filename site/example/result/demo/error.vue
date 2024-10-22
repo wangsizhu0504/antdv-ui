@@ -16,6 +16,10 @@ Complex error feedback.
 
 </docs>
 
+<script lang="ts" setup>
+  import { CloseCircleOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-result
     status="error"
@@ -32,21 +36,19 @@ Complex error feedback.
         <strong>The content you submitted has the following error:</strong>
       </p>
       <p>
-        <close-circle-outlined :style="{ color: 'red' }" />
+        <CloseCircleOutlined :style="{ color: 'red' }" />
         Your account has been frozen
         <a>Thaw immediately &gt;</a>
       </p>
       <p>
-        <close-circle-outlined :style="{ color: 'red' }" />
+        <CloseCircleOutlined :style="{ color: 'red' }" />
         Your account is not yet eligible to apply
         <a>Apply Unlock &gt;</a>
       </p>
     </div>
   </a-result>
 </template>
-<script lang="ts" setup>
-import { CloseCircleOutlined } from '@ant-design/icons-vue';
-</script>
+
 <style scoped>
 .desc p {
   margin-bottom: 1em;

@@ -16,6 +16,16 @@ Customize the background, border and margin styles and icon for each panel.
 
 </docs>
 
+<script lang="ts" setup>
+  import { CaretRightOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
+
+  const activeKey = ref<any>(['1'])
+  const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
+  const customStyle
+    = 'background: #f7f7f7;border-radius: 4px;margin-bottom: 24px;border: 0;overflow: hidden'
+</script>
+
 <template>
   <a-collapse
     v-model:activeKey="activeKey"
@@ -23,7 +33,7 @@ Customize the background, border and margin styles and icon for each panel.
     style="background: rgb(255, 255, 255)"
   >
     <template #expandIcon="{ isActive }">
-      <caret-right-outlined :rotate="isActive ? 90 : 0" />
+      <CaretRightOutlined :rotate="isActive ? 90 : 0" />
     </template>
     <a-collapse-panel key="1" header="This is panel header 1" :style="customStyle">
       <p>{{ text }}</p>
@@ -36,12 +46,3 @@ Customize the background, border and margin styles and icon for each panel.
     </a-collapse-panel>
   </a-collapse>
 </template>
-<script lang="ts" setup>
-import { CaretRightOutlined } from '@ant-design/icons-vue';
-import { ref } from 'vue';
-
-const activeKey = ref(['1']);
-const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
-const customStyle =
-  'background: #f7f7f7;border-radius: 4px;margin-bottom: 24px;border: 0;overflow: hidden';
-</script>

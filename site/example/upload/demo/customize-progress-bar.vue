@@ -16,6 +16,36 @@ Use `progress` for customize progress bar.
 
 </docs>
 
+<script lang="ts" setup>
+  import { message } from '@antdv/ui'
+  import { UploadOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
+  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
+
+  function handleChange(info: UploadChangeParam) {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList)
+    }
+    if (info.file.status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully`)
+    } else if (info.file.status === 'error') {
+      message.error(`${info.file.name} file upload failed.`)
+    }
+  }
+
+  const fileList = ref<any>([])
+  const progress: UploadProps['progress'] = {
+    strokeColor: {
+      '0%': '#108ee9',
+      '100%': '#87d068',
+    },
+    strokeWidth: 3,
+    format: percent => `${Number.parseFloat(percent.toFixed(2))}%`,
+    class: 'test',
+  }
+  const headers = { authorization: 'authorization-text' }
+</script>
+
 <template>
   <a-upload
     v-model:file-list="fileList"
@@ -26,36 +56,8 @@ Use `progress` for customize progress bar.
     @change="handleChange"
   >
     <a-button>
-      <upload-outlined></upload-outlined>
+      <UploadOutlined/>
       Click to Upload
     </a-button>
   </a-upload>
 </template>
-<script lang="ts" setup>
-import { message } from '@antdv/ui';
-import { UploadOutlined } from '@ant-design/icons-vue';
-import { ref } from 'vue';
-import type { UploadChangeParam, UploadProps } from '@antdv/ui';
-const handleChange = (info: UploadChangeParam) => {
-  if (info.file.status !== 'uploading') {
-    console.log(info.file, info.fileList);
-  }
-  if (info.file.status === 'done') {
-    message.success(`${info.file.name} file uploaded successfully`);
-  } else if (info.file.status === 'error') {
-    message.error(`${info.file.name} file upload failed.`);
-  }
-};
-
-const fileList = ref([]);
-const progress: UploadProps['progress'] = {
-  strokeColor: {
-    '0%': '#108ee9',
-    '100%': '#87d068',
-  },
-  strokeWidth: 3,
-  format: percent => `${parseFloat(percent.toFixed(2))}%`,
-  class: 'test',
-};
-const headers = { authorization: 'authorization-text' };
-</script>

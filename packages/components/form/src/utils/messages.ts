@@ -1,4 +1,3 @@
-/* eslint-disable no-template-curly-in-string */
 const typeTemplate = '\'${name}\' is not a valid ${type}'
 
 export const defaultValidateMessages = {

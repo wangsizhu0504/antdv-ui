@@ -67,6 +67,7 @@ Use the operating area and customize the sub-nodes, suitable for use in the need
     </a-page-header>
   </div>
 </template>
+
 <style scoped>
 .demo-page-header :deep(tr:last-child td) {
   padding-bottom: 0;

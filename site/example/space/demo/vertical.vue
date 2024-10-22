@@ -11,7 +11,6 @@ title:
 相邻组件垂直间距。
 可以设置 `width: 100%` 独占一行。
 
-
 ## en-US
 
 Crowded components vertical spacing.

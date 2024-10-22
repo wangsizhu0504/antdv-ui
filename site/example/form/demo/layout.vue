@@ -15,6 +15,39 @@ title:
 There are three layout for form: `horizontal`, `vertical`, `inline`.
 </docs>
 
+<script lang="ts" setup>
+  import { computed, reactive } from 'vue'
+  import type { UnwrapRef } from 'vue'
+
+  interface FormState {
+    layout: 'horizontal' | 'vertical' | 'inline';
+    fieldA: string;
+    fieldB: string;
+  }
+  const formState: UnwrapRef<FormState> = reactive({
+    layout: 'horizontal',
+    fieldA: '',
+    fieldB: '',
+  })
+  const formItemLayout = computed(() => {
+    const { layout } = formState
+    return layout === 'horizontal'
+      ? {
+        labelCol: { span: 4 },
+        wrapperCol: { span: 14 },
+      }
+      : {}
+  })
+  const buttonItemLayout = computed(() => {
+    const { layout } = formState
+    return layout === 'horizontal'
+      ? {
+        wrapperCol: { span: 14, offset: 4 },
+      }
+      : {}
+  })
+</script>
+
 <template>
   <a-form :layout="formState.layout" :model="formState" v-bind="formItemLayout">
     <a-form-item label="Form Layout">
@@ -35,35 +68,3 @@ There are three layout for form: `horizontal`, `vertical`, `inline`.
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { computed, reactive } from 'vue';
-import type { UnwrapRef } from 'vue';
-
-interface FormState {
-  layout: 'horizontal' | 'vertical' | 'inline';
-  fieldA: string;
-  fieldB: string;
-}
-const formState: UnwrapRef<FormState> = reactive({
-  layout: 'horizontal',
-  fieldA: '',
-  fieldB: '',
-});
-const formItemLayout = computed(() => {
-  const { layout } = formState;
-  return layout === 'horizontal'
-    ? {
-        labelCol: { span: 4 },
-        wrapperCol: { span: 14 },
-      }
-    : {};
-});
-const buttonItemLayout = computed(() => {
-  const { layout } = formState;
-  return layout === 'horizontal'
-    ? {
-        wrapperCol: { span: 14, offset: 4 },
-      }
-    : {};
-});
-</script>

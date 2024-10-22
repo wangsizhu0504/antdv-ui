@@ -5,7 +5,7 @@ import type { ComponentDemo } from '../../interface'
 
 import options from './data'
 
-const handleChange = (value: any) => {
+function handleChange(value: any) {
   console.log(`selected ${value}`)
 }
 

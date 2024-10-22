@@ -16,16 +16,20 @@ Custom arrows display
 
 </docs>
 
+<script lang="ts" setup>
+  import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-carousel arrows>
     <template #prevArrow>
       <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
-        <left-circle-outlined />
+        <LeftCircleOutlined />
       </div>
     </template>
     <template #nextArrow>
       <div class="custom-slick-arrow" style="right: 10px">
-        <right-circle-outlined />
+        <RightCircleOutlined />
       </div>
     </template>
     <div><h3>1</h3></div>
@@ -34,10 +38,6 @@ Custom arrows display
     <div><h3>4</h3></div>
   </a-carousel>
 </template>
-
-<script lang="ts" setup>
-import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons-vue';
-</script>
 
 <style scoped>
 /* For demo */

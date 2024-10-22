@@ -162,8 +162,9 @@ export function getWeekStartDate<DateType>(
   if (
     generateConfig.getMonth(alignStartDate) === generateConfig.getMonth(value)
     && generateConfig.getDate(alignStartDate) > 1
-  )
+  ) {
     alignStartDate = generateConfig.addDate(alignStartDate, -7)
+  }
 
   return alignStartDate
 }
@@ -258,8 +259,9 @@ export function getCellDateDisabled<DateType>({
               generateConfig,
               disabledDate,
             })
-          )
+          ) {
             return false
+          }
 
           break
         }
@@ -272,8 +274,9 @@ export function getCellDateDisabled<DateType>({
               generateConfig,
               disabledDate,
             })
-          )
+          ) {
             return false
+          }
 
           break
         }

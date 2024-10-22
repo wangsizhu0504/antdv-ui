@@ -16,6 +16,15 @@ An event will be triggered when you click menu items, in which you can make diff
 
 </docs>
 
+<script lang="ts" setup>
+  import { DownOutlined } from '@ant-design/icons-vue'
+  import type { MenuProps } from '@antdv/ui'
+
+  const onClick: MenuProps['onClick'] = ({ key }) => {
+    console.log(`Click on item ${key}`)
+  }
+</script>
+
 <template>
   <a-dropdown>
     <a class="ant-dropdown-link" @click.prevent>
@@ -31,11 +40,3 @@ An event will be triggered when you click menu items, in which you can make diff
     </template>
   </a-dropdown>
 </template>
-<script lang="ts" setup>
-import { DownOutlined } from '@ant-design/icons-vue';
-import type { MenuProps } from '@antdv/ui';
-
-const onClick: MenuProps['onClick'] = ({ key }) => {
-  console.log(`Click on item ${key}`);
-};
-</script>

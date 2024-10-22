@@ -16,6 +16,13 @@ Use `label` show time alone.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { TimelineProps } from '@antdv/ui'
+
+  const mode = ref<TimelineProps['mode']>('left')
+</script>
+
 <template>
   <a-radio-group v-model:value="mode" style="margin-bottom: 20px">
     <a-radio value="left">Left</a-radio>
@@ -32,8 +39,3 @@ Use `label` show time alone.
     </a-timeline-item>
   </a-timeline>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { TimelineProps } from '@antdv/ui';
-const mode = ref<TimelineProps['mode']>('left');
-</script>

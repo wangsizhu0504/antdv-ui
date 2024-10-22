@@ -15,6 +15,17 @@ You can hide the arrow icon by passing `showArrow={false}` to `CollapsePanel` co
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref, watch } from 'vue'
+
+  const activeKey = ref<any>(['1'])
+  const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
+
+  watch(activeKey, (val) => {
+    console.log('activeKey', val)
+  })
+</script>
+
 <template>
   <a-collapse v-model:activeKey="activeKey">
     <a-collapse-panel key="1" header="This is panel header with arrow icon">
@@ -25,12 +36,3 @@ You can hide the arrow icon by passing `showArrow={false}` to `CollapsePanel` co
     </a-collapse-panel>
   </a-collapse>
 </template>
-<script lang="ts" setup>
-import { ref, watch } from 'vue';
-const activeKey = ref(['1']);
-const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
-
-watch(activeKey, val => {
-  console.log('activeKey', val);
-});
-</script>

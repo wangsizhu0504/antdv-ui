@@ -16,12 +16,13 @@ Set `icon` props to customize the icon.
 
 </docs>
 
+<script lang="ts" setup>
+  import { QuestionCircleOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-popconfirm title="Are you sure？">
-    <template #icon><question-circle-outlined style="color: red" /></template>
+    <template #icon><QuestionCircleOutlined style="color: red" /></template>
     <a href="#">Delete</a>
   </a-popconfirm>
 </template>
-<script lang="ts" setup>
-import { QuestionCircleOutlined } from '@ant-design/icons-vue';
-</script>

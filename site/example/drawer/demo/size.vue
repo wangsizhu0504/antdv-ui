@@ -16,6 +16,23 @@ The default width (or height) of Drawer is `378px`, and there is a presetted lar
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { DrawerProps } from '@antdv/ui'
+
+  const open = ref<boolean>(false)
+  const size = ref<DrawerProps['size']>('default')
+
+  function showDrawer(val: DrawerProps['size']) {
+    size.value = val
+    open.value = true
+  }
+
+  function onClose() {
+    open.value = false
+  }
+</script>
+
 <template>
   <a-button type="primary" style="margin-right: 8px" @click="showDrawer('default')">
     Open Default Size (378px)
@@ -31,18 +48,3 @@ The default width (or height) of Drawer is `378px`, and there is a presetted lar
     <p>Some contents...</p>
   </a-drawer>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { DrawerProps } from '@antdv/ui';
-const open = ref<boolean>(false);
-const size = ref<DrawerProps['size']>('default');
-
-const showDrawer = (val: DrawerProps['size']) => {
-  size.value = val;
-  open.value = true;
-};
-
-const onClose = () => {
-  open.value = false;
-};
-</script>

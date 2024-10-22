@@ -1,8 +1,5 @@
-import { Keyframes } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken } from '@antdv/theme'
-import { resetComponent } from '@antdv/theme'
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import type { CSSObject } from '@antdv/theme'
+import { Keyframes, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
 
 export interface ComponentToken {
   contentHeight: number

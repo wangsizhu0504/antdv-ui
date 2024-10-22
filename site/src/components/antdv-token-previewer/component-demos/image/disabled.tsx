@@ -2,7 +2,7 @@ import { Image } from '@antdv/ui'
 
 import type { ComponentDemo } from '../../interface'
 
-const Demo = () => {
+function Demo() {
   return <Image width={200} height={200} src="error" placeholder />
 }
 

@@ -16,6 +16,17 @@ Making collapse's background to transparent.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref, watch } from 'vue'
+
+  const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
+  const activeKey = ref<any>(['1'])
+
+  watch(activeKey, (val) => {
+    console.log(val)
+  })
+</script>
+
 <template>
   <a-collapse v-model:activeKey="activeKey" ghost>
     <a-collapse-panel key="1" header="This is panel header 1">
@@ -29,12 +40,3 @@ Making collapse's background to transparent.
     </a-collapse-panel>
   </a-collapse>
 </template>
-<script lang="ts" setup>
-import { ref, watch } from 'vue';
-const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
-const activeKey = ref(['1']);
-
-watch(activeKey, val => {
-  console.log(val);
-});
-</script>

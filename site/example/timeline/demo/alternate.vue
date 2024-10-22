@@ -16,6 +16,10 @@ Alternate timeline.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ClockCircleOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-timeline mode="alternate">
     <a-timeline-item>Create a services site 2015-09-01</a-timeline-item>
@@ -34,6 +38,3 @@ Alternate timeline.
     </a-timeline-item>
   </a-timeline>
 </template>
-<script lang="ts" setup>
-import { ClockCircleOutlined } from '@ant-design/icons-vue';
-</script>

@@ -16,20 +16,22 @@ If you are using [iconfont.cn](http://iconfont.cn/), you can use the icons in yo
 
 </docs>
 
+<script lang="ts" setup>
+  import { createFromIconfontCN } from '@ant-design/icons-vue'
+
+  const IconFont = createFromIconfontCN({
+    scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
+  })
+</script>
+
 <template>
   <a-space>
-    <icon-font type="icon-tuichu" />
-    <icon-font type="icon-facebook" />
-    <icon-font type="icon-twitter" />
+    <IconFont type="icon-tuichu" />
+    <IconFont type="icon-facebook" />
+    <IconFont type="icon-twitter" />
   </a-space>
 </template>
-<script lang="ts" setup>
-import { createFromIconfontCN } from '@ant-design/icons-vue';
 
-const IconFont = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
-});
-</script>
 <style scoped>
 .icons-list :deep(.anticon) {
   margin-right: 6px;

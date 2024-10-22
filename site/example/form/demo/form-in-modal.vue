@@ -15,6 +15,41 @@ title:
 When user visit a page with a list of items, and want to create a new item. The page can popup a form in Modal, then let user fill in the form to create an item.
 
 </docs>
+
+<script lang="ts" setup>
+  import { reactive, ref, toRaw } from 'vue'
+  import type { FormInstance } from '@antdv/ui'
+
+  interface Values {
+    title: string;
+    description: string;
+    modifier: string;
+  }
+
+  const formRef = ref<FormInstance>()
+  const visible = ref<any>(false)
+  const formState = reactive<Values>({
+    title: '',
+    description: '',
+    modifier: 'public',
+  })
+
+  function onOk() {
+    formRef.value
+      .validateFields()
+      .then((values) => {
+        console.log('Received values of form: ', values)
+        console.log('formState: ', toRaw(formState))
+        visible.value = false
+        formRef.value.resetFields()
+        console.log('reset formState: ', toRaw(formState))
+      })
+      .catch((info) => {
+        console.log('Validate Failed:', info)
+      })
+  }
+</script>
+
 <template>
   <div>
     <a-button type="primary" @click="visible = true">New Collection</a-button>
@@ -46,39 +81,7 @@ When user visit a page with a list of items, and want to create a new item. The 
     </a-modal>
   </div>
 </template>
-<script lang="ts" setup>
-import { reactive, ref, toRaw } from 'vue';
-import type { FormInstance } from '@antdv/ui';
 
-interface Values {
-  title: string;
-  description: string;
-  modifier: string;
-}
-
-const formRef = ref<FormInstance>();
-const visible = ref(false);
-const formState = reactive<Values>({
-  title: '',
-  description: '',
-  modifier: 'public',
-});
-
-const onOk = () => {
-  formRef.value
-    .validateFields()
-    .then(values => {
-      console.log('Received values of form: ', values);
-      console.log('formState: ', toRaw(formState));
-      visible.value = false;
-      formRef.value.resetFields();
-      console.log('reset formState: ', toRaw(formState));
-    })
-    .catch(info => {
-      console.log('Validate Failed:', info);
-    });
-};
-</script>
 <style scoped>
 .collection-create-form_last-form-item {
   margin-bottom: 0;

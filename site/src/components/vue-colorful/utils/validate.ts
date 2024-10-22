@@ -1,6 +1,6 @@
 const matcher = /^#?([0-9A-F]{3,8})$/i
 
-export const validHex = (value: string, alpha?: boolean): boolean => {
+export function validHex(value: string, alpha?: boolean): boolean {
   const match = matcher.exec(value)
   const length = match ? match[1].length : 0
 

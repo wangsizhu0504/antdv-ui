@@ -14,6 +14,7 @@ title:
 
 Read only, can't use mouse to interact.
 </docs>
+
 <template>
   <a-rate :value="2" disabled />
 </template>

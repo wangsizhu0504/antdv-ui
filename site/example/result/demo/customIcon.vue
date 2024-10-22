@@ -16,16 +16,17 @@ Custom icon.
 
 </docs>
 
+<script lang="ts" setup>
+  import { SmileTwoTone } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-result title="Great, we have done all the operations!">
     <template #icon>
-      <smile-twoTone />
+      <SmileTwoTone />
     </template>
     <template #extra>
       <a-button type="primary">Next</a-button>
     </template>
   </a-result>
 </template>
-<script lang="ts" setup>
-import { SmileTwoTone } from '@ant-design/icons-vue';
-</script>

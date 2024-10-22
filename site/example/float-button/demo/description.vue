@@ -19,8 +19,11 @@ Setting `description` prop to show FloatButton with description.
 
 > supported only when `shape` is `square`. Due to narrow space for text, short sentence is recommended.
 
-
 </docs>
+
+<script lang="ts" setup>
+  import { FileTextOutlined } from '@ant-design/icons-vue'
+</script>
 
 <template>
   <a-float-button
@@ -41,7 +44,7 @@ Setting `description` prop to show FloatButton with description.
     :style="{
       right: '94px',
     }"
-  ></a-float-button>
+  />
 
   <a-float-button
     shape="square"
@@ -55,7 +58,3 @@ Setting `description` prop to show FloatButton with description.
     </template>
   </a-float-button>
 </template>
-
-<script lang="ts" setup>
-import { FileTextOutlined } from '@ant-design/icons-vue';
-</script>

@@ -16,9 +16,13 @@ Create a reusable Vue component by using `Icon`. The property / slot `component`
 
 </docs>
 
+<script lang="ts" setup>
+  import Icon, { HomeOutlined } from '@ant-design/icons-vue'
+</script>
+
 <template>
   <a-space>
-    <icon :style="{ color: 'hotpink' }">
+    <Icon :style="{ color: 'hotpink' }">
       <template #component>
         <svg width="1em" height="1em" fill="currentColor" viewBox="0 0 1024 1024">
           <path
@@ -26,9 +30,9 @@ Create a reusable Vue component by using `Icon`. The property / slot `component`
           />
         </svg>
       </template>
-    </icon>
+    </Icon>
 
-    <icon :style="{ fontSize: '32px' }">
+    <Icon :style="{ fontSize: '32px' }">
       <template #component="svgProps">
         <svg viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor" v-bind="svgProps">
           <path
@@ -73,16 +77,14 @@ Create a reusable Vue component by using `Icon`. The property / slot `component`
           />
         </svg>
       </template>
-    </icon>
-    <icon>
+    </Icon>
+    <Icon>
       <template #component><HomeOutlined /></template>
-    </icon>
+    </Icon>
     <HomeOutlined />
   </a-space>
 </template>
-<script lang="ts" setup>
-import Icon, { HomeOutlined } from '@ant-design/icons-vue';
-</script>
+
 <style scoped>
 .custom-icons-list :deep(.anticon) {
   margin-right: 6px;

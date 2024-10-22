@@ -152,7 +152,7 @@ export default defineComponent({
 
     const [wrapSSR, hashId] = useStyle()
 
-    const activeKeys = ref(defaultOpen.value ? ['1'] : [])
+    const activeKeys = ref<any>(defaultOpen.value ? ['1'] : [])
 
     return () => {
       const icon = slots.icon ? slots.icon() : props.icon

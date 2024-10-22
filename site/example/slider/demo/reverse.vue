@@ -15,6 +15,14 @@ title:
 Using `reverse` to render slider reversely.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const value1 = ref<number>(30)
+  const value2 = ref<[number, number]>([20, 50])
+  const reverse = ref<boolean>(true)
+</script>
+
 <template>
   <div>
     <a-slider v-model:value="value1" :reverse="reverse" />
@@ -23,10 +31,3 @@ Using `reverse` to render slider reversely.
     <a-switch v-model:checked="reverse" size="small" />
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const value1 = ref<number>(30);
-const value2 = ref<[number, number]>([20, 50]);
-const reverse = ref<boolean>(true);
-</script>

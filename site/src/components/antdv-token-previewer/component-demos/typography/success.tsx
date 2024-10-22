@@ -8,10 +8,10 @@ const Demo = defineComponent({
   setup() {
     return () => (
       <div>
-        <Title type={'success'} level={4}>
+        <Title type="success" level={4}>
           Success Title
         </Title>
-        <Text type={'success'}>success Text</Text>
+        <Text type="success">success Text</Text>
       </div>
     )
   },

@@ -78,7 +78,7 @@ message.config({
   maxCount: 3,
   rtl: true,
   prefixCls: 'my-message',
-});
+})
 ```
 
 | 参数 | 说明 | 类型 | 默认值 | 版本 |  |

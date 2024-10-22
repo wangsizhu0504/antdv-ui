@@ -1,5 +1,4 @@
-import type { CSSObject } from '@antdv/theme'
-import type { GenerateStyle } from '@antdv/theme'
+import type { CSSObject, GenerateStyle } from '@antdv/theme'
 import type { TableToken } from './index'
 
 const genSorterStyle: GenerateStyle<TableToken, CSSObject> = (token) => {

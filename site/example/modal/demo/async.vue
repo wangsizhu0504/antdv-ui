@@ -12,13 +12,32 @@ title:
 
 ## en-US
 
-
 Asynchronously close a modal dialog when the OK button is pressed.
 
 For example, you can use this pattern when you submit a form.
 
-
 </docs>
+
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const modalText = ref<string>('Content of the modal')
+  const open = ref<boolean>(false)
+  const confirmLoading = ref<boolean>(false)
+
+  function showModal() {
+    open.value = true
+  }
+
+  function handleOk() {
+    modalText.value = 'The modal will be closed after two seconds'
+    confirmLoading.value = true
+    setTimeout(() => {
+      open.value = false
+      confirmLoading.value = false
+    }, 2000)
+  }
+</script>
 
 <template>
   <div>
@@ -28,22 +47,3 @@ For example, you can use this pattern when you submit a form.
     </a-modal>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const modalText = ref<string>('Content of the modal');
-const open = ref<boolean>(false);
-const confirmLoading = ref<boolean>(false);
-
-const showModal = () => {
-  open.value = true;
-};
-
-const handleOk = () => {
-  modalText.value = 'The modal will be closed after two seconds';
-  confirmLoading.value = true;
-  setTimeout(() => {
-    open.value = false;
-    confirmLoading.value = false;
-  }, 2000);
-};
-</script>

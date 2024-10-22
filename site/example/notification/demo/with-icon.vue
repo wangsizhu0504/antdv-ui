@@ -16,6 +16,18 @@ A notification box with a icon at the left side.
 
 </docs>
 
+<script lang="ts" setup>
+  import { notification } from '@antdv/ui'
+
+  function openNotificationWithIcon(type: string) {
+    notification[type]({
+      message: 'Notification Title',
+      description:
+        'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+    })
+  }
+</script>
+
 <template>
   <div>
     <a-button @click="() => openNotificationWithIcon('success')">Success</a-button>
@@ -24,13 +36,3 @@ A notification box with a icon at the left side.
     <a-button @click="() => openNotificationWithIcon('error')">Error</a-button>
   </div>
 </template>
-<script lang="ts" setup>
-import { notification } from '@antdv/ui';
-const openNotificationWithIcon = (type: string) => {
-  notification[type]({
-    message: 'Notification Title',
-    description:
-      'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-  });
-};
-</script>

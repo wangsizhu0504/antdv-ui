@@ -15,6 +15,15 @@ title:
 Clicking on an anchor does not record history.
 </docs>
 
+<script lang="ts" setup>
+  import type { AnchorProps } from '@antdv/ui'
+
+  const handleClick: AnchorProps['onClick'] = (e, link) => {
+    e.preventDefault()
+    console.log(link)
+  }
+</script>
+
 <template>
   <a-anchor
     :affix="false"
@@ -50,12 +59,3 @@ Clicking on an anchor does not record history.
     @click="handleClick"
   />
 </template>
-
-<script lang="ts" setup>
-import type { AnchorProps } from '@antdv/ui'
-
-const handleClick: AnchorProps['onClick'] = (e, link) => {
-  e.preventDefault()
-  console.log(link)
-}
-</script>

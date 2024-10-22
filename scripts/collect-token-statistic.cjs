@@ -39,12 +39,14 @@ styleFiles.forEach(async (file) => {
   bar.tick(1, { component: componentName })
   let useStyle = () => { }
   if (file.includes('grid')) {
+    // eslint-disable-next-line node/global-require
     const { useColStyle, useRowStyle } = require(file)
     useStyle = () => {
       useRowStyle()
       useColStyle()
     }
   } else {
+    // eslint-disable-next-line node/global-require
     useStyle = require(file).default
   }
 

@@ -6,7 +6,7 @@ const { TreeNode } = TreeSelect
 
 const Demo = defineComponent({
   setup() {
-    const treeValue = ref(undefined)
+    const treeValue = ref<any>(undefined)
     const onChange = (value) => {
       treeValue.value = value
     }
@@ -29,7 +29,7 @@ const Demo = defineComponent({
               <TreeNode value="leaf2" title="leaf2" />
             </TreeNode>
             <TreeNode value="parent 1-1" title="parent 1-1">
-              <TreeNode value="leaf3" title={'leaf3'} />
+              <TreeNode value="leaf3" title="leaf3" />
             </TreeNode>
           </TreeNode>
         </TreeSelect>

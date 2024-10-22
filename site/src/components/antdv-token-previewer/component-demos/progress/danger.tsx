@@ -6,10 +6,10 @@ import type { ComponentDemo } from '../../interface'
 const Demo = defineComponent({
   setup() {
     return () => (
-      <Space direction={'vertical'} size={'large'}>
-        <Space size={'large'}>
-          <Progress percent={70} status="exception" type={'dashboard'} />
-          <Progress percent={80} status="exception" type={'circle'} />
+      <Space direction="vertical" size="large">
+        <Space size="large">
+          <Progress percent={70} status="exception" type="dashboard" />
+          <Progress percent={80} status="exception" type="circle" />
         </Space>
         <Progress percent={50} status="exception" />
       </Space>

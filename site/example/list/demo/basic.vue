@@ -16,6 +16,26 @@ Basic list.
 
 </docs>
 
+<script lang="ts" setup>
+  interface DataItem {
+    title: string;
+  }
+  const data: DataItem[] = [
+    {
+      title: 'Ant Design Title 1',
+    },
+    {
+      title: 'Ant Design Title 2',
+    },
+    {
+      title: 'Ant Design Title 3',
+    },
+    {
+      title: 'Ant Design Title 4',
+    },
+  ]
+</script>
+
 <template>
   <a-list item-layout="horizontal" :data-source="data">
     <template #renderItem="{ item }">
@@ -34,22 +54,3 @@ Basic list.
     </template>
   </a-list>
 </template>
-<script lang="ts" setup>
-interface DataItem {
-  title: string;
-}
-const data: DataItem[] = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-];
-</script>

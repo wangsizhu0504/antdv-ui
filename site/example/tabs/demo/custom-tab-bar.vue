@@ -15,6 +15,12 @@ Customized bar of tab.
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+
+  const activeKey = ref<any>('1')
+</script>
+
 <template>
   <div>
     <a-tabs v-model:activeKey="activeKey">
@@ -27,7 +33,3 @@ Customized bar of tab.
     </a-tabs>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-const activeKey = ref('1');
-</script>

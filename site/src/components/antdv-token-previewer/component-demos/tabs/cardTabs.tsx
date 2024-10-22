@@ -7,7 +7,7 @@ const { TabPane } = Tabs
 const Demo = defineComponent({
   setup() {
     return () => (
-      <Tabs type={'card'} defaultActiveKey="1">
+      <Tabs type="card" defaultActiveKey="1">
         <TabPane tab="Tab 1" key="1">
           Content of Tab Pane 1
         </TabPane>

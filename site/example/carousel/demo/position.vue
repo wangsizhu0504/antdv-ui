@@ -15,6 +15,13 @@ title:
 There are 4 position options available.
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { CarouselProps } from '@antdv/ui'
+
+  const dotPosition = ref<CarouselProps['dotPosition']>('top')
+</script>
+
 <template>
   <a-radio-group v-model:value="dotPosition" style="margin-bottom: 8px">
     <a-radio-button value="top">Top</a-radio-button>
@@ -29,12 +36,6 @@ There are 4 position options available.
     <div><h3>4</h3></div>
   </a-carousel>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-import type { CarouselProps } from '@antdv/ui';
-const dotPosition = ref<CarouselProps['dotPosition']>('top');
-</script>
 
 <style scoped>
 /* For demo */

@@ -16,6 +16,20 @@ The basic example.
 
 </docs>
 
+<script lang="ts" setup>
+  import { message } from '@antdv/ui'
+
+  function confirm(e: MouseEvent) {
+    console.log(e)
+    message.success('Click on Yes')
+  }
+
+  function cancel(e: MouseEvent) {
+    console.log(e)
+    message.error('Click on No')
+  }
+</script>
+
 <template>
   <a-popconfirm
     title="Are you sure delete this task?"
@@ -27,15 +41,3 @@ The basic example.
     <a href="#">Delete</a>
   </a-popconfirm>
 </template>
-<script lang="ts" setup>
-import { message } from '@antdv/ui';
-const confirm = (e: MouseEvent) => {
-  console.log(e);
-  message.success('Click on Yes');
-};
-
-const cancel = (e: MouseEvent) => {
-  console.log(e);
-  message.error('Click on No');
-};
-</script>

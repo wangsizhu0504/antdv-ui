@@ -15,6 +15,25 @@ title:
 The vertical Slider.
 </docs>
 
+<script lang="ts" setup>
+  import { createVNode, ref } from 'vue'
+
+  const value1 = ref<number>(30)
+  const value2 = ref<[number, number]>([20, 50])
+  const value3 = ref<[number, number]>([26, 37])
+  const marks = ref<Record<number, any>>({
+    0: '0°C',
+    26: '26°C',
+    37: '37°C',
+    100: {
+      style: {
+        color: '#f50',
+      },
+      label: createVNode('strong', {}, '100°C'),
+    },
+  })
+</script>
+
 <template>
   <div style="height: 300px">
     <div style="display: inline-block; height: 300px; margin-left: 70px">
@@ -28,23 +47,7 @@ The vertical Slider.
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref, createVNode } from 'vue';
-const value1 = ref<number>(30);
-const value2 = ref<[number, number]>([20, 50]);
-const value3 = ref<[number, number]>([26, 37]);
-const marks = ref<Record<number, any>>({
-  0: '0°C',
-  26: '26°C',
-  37: '37°C',
-  100: {
-    style: {
-      color: '#f50',
-    },
-    label: createVNode('strong', {}, '100°C'),
-  },
-});
-</script>
+
 <style scoped>
 .code-box-demo .ant-slider {
   margin-bottom: 16px;

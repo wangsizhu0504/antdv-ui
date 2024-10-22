@@ -15,12 +15,34 @@ title:
 Inline login form is often used in navigation bar.
 </docs>
 
+<script lang="ts" setup>
+  import { reactive } from 'vue'
+  import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
+  import type { UnwrapRef } from 'vue'
+  import type { FormProps } from '@antdv/ui'
+
+  interface FormState {
+    user: string;
+    password: string;
+  }
+  const formState: UnwrapRef<FormState> = reactive({
+    user: '',
+    password: '',
+  })
+  const handleFinish: FormProps['onFinish'] = (values) => {
+    console.log(values, formState)
+  }
+  const handleFinishFailed: FormProps['onFinishFailed'] = (errors) => {
+    console.log(errors)
+  }
+</script>
+
 <template>
   <a-form
     layout="inline"
     :model="formState"
     @finish="handleFinish"
-    @finishFailed="handleFinishFailed"
+    @finish-failed="handleFinishFailed"
   >
     <a-form-item>
       <a-input v-model:value="formState.user" placeholder="Username">
@@ -43,24 +65,3 @@ Inline login form is often used in navigation bar.
     </a-form-item>
   </a-form>
 </template>
-<script lang="ts" setup>
-import { reactive } from 'vue';
-import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-import type { UnwrapRef } from 'vue';
-import type { FormProps } from '@antdv/ui';
-
-interface FormState {
-  user: string;
-  password: string;
-}
-const formState: UnwrapRef<FormState> = reactive({
-  user: '',
-  password: '',
-});
-const handleFinish: FormProps['onFinish'] = values => {
-  console.log(values, formState);
-};
-const handleFinishFailed: FormProps['onFinishFailed'] = errors => {
-  console.log(errors);
-};
-</script>

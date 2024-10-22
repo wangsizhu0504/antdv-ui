@@ -17,6 +17,21 @@ value 和 onChange 需要配合使用。也可以直接使用v-model。
 
 </docs>
 
+<script lang="ts" setup>
+  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs'
+  import dayjs from 'dayjs'
+
+  const value = ref<Dayjs>()
+
+  function onChange(time: Dayjs) {
+    console.log(time)
+    value.value = time
+  }
+
+  const value2 = ref<any>(dayjs())
+</script>
+
 <template>
   <a-space direction="vertical">
     <p>use value and @change</p>
@@ -27,16 +42,3 @@ value 和 onChange 需要配合使用。也可以直接使用v-model。
     <a-time-picker :value="value2" />
   </a-space>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import dayjs, { Dayjs } from 'dayjs';
-
-const value = ref<Dayjs>();
-
-const onChange = (time: Dayjs) => {
-  console.log(time);
-  value.value = time;
-};
-
-const value2 = ref(dayjs());
-</script>
