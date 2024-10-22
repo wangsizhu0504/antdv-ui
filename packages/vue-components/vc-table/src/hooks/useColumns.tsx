@@ -145,8 +145,9 @@ function useColumns<RecordType>(
       if (
         process.env.NODE_ENV !== 'production'
         && cloneColumns.filter(c => c === EXPAND_COLUMN).length > 1
-      )
+      ) {
         warning(false, 'There exist more than one `EXPAND_COLUMN` in `columns`.')
+      }
 
       const expandColumnIndex = cloneColumns.indexOf(EXPAND_COLUMN)
       cloneColumns = cloneColumns.filter(
@@ -157,15 +158,18 @@ function useColumns<RecordType>(
       const prevColumn = baseColumns.value[expandColumnIndex]
 
       let fixedColumn: FixedType | null
-      if ((expandFixed.value === 'left' || expandFixed.value) && !expandIconColumnIndex.value)
+      if ((expandFixed.value === 'left' || expandFixed.value) && !expandIconColumnIndex.value) {
         fixedColumn = 'left'
+      }
       else if (
         (expandFixed.value === 'right' || expandFixed.value)
         && expandIconColumnIndex.value === baseColumns.value.length
-      )
+      ) {
         fixedColumn = 'right'
-      else
+      }
+      else {
         fixedColumn = prevColumn ? prevColumn.fixed : null
+      }
 
       const expandedKeysValue = expandedKeys.value
       const rowExpandableValue = rowExpandable.value

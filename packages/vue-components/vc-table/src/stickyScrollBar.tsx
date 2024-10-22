@@ -211,8 +211,9 @@ export default defineComponent<StickyScrollBarProps>({
         bodyScrollWidth.value <= bodyWidth.value
         || !scrollBarWidth.value
         || scrollState.value.isHiddenScrollBar
-      )
+      ) {
         return null
+      }
 
       const { prefixCls } = tableContext
       return (

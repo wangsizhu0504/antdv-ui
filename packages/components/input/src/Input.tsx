@@ -77,8 +77,9 @@ export default defineComponent({
             inputRef.value?.input
             && inputRef.value?.input.getAttribute('type') === 'password'
             && inputRef.value?.input.hasAttribute('value')
-          )
+          ) {
             inputRef.value?.input.removeAttribute('value')
+          }
         }),
       )
     }

@@ -52,7 +52,7 @@ export interface ComponentDemoBlockProps {
   onTokenClick?: (token: TokenName) => void
   size?: 'small' | 'middle' | 'large'
   disabled?: boolean
-  demos?: (ComponentDemo & { active?: boolean })[]
+  demos?: Array<ComponentDemo & { active?: boolean }>
   theme: MutableTheme
   componentDrawer?: boolean
 }
@@ -66,7 +66,7 @@ export const ComponentDemoBlock = defineComponent({
     size: { type: String as PropType<'small' | 'middle' | 'large'>, default: 'middle' },
     disabled: { type: Boolean, default: false },
     demos: {
-      type: Array as PropType<(ComponentDemo & { active?: boolean })[]>,
+      type: Array as PropType<Array<ComponentDemo & { active?: boolean }>>,
       default: () => [],
     },
     theme: { type: Object as PropType<MutableTheme> },
@@ -91,20 +91,22 @@ export const ComponentDemoBlock = defineComponent({
             <ConfigProvider componentSize={size.value} componentDisabled={disabled.value}>
               {demos.value.some(item => item.active)
                 ? demos.value.map(demo => (
-                    <div key={demo.key} style={{ display: demo.active ? '' : 'none' }}>
-                      {demo.tokens && (
-                        <div class="previewer-component-demo-group-item-relative-token">
-                          <Tooltip title={demo.tokens.join(', ')}>
-                            <span>
-                              {locale.value.demo.relatedTokens}:{' '}
-                              {demo.tokens.slice(0, 2).join(', ')}
-                              {demo.tokens.length > 2 ? '...' : ''}
-                            </span>
-                          </Tooltip>
-                        </div>
-                      )}
-                      {demo.demo}
-                    </div>
+                  <div key={demo.key} style={{ display: demo.active ? '' : 'none' }}>
+                    {demo.tokens && (
+                      <div class="previewer-component-demo-group-item-relative-token">
+                        <Tooltip title={demo.tokens.join(', ')}>
+                          <span>
+                            {locale.value.demo.relatedTokens}
+                            :
+                            {' '}
+                            {demo.tokens.slice(0, 2).join(', ')}
+                            {demo.tokens.length > 2 ? '...' : ''}
+                          </span>
+                        </Tooltip>
+                      </div>
+                    )}
+                    {demo.demo}
+                  </div>
                 ))
                 : demos.value[0]?.demo}
             </ConfigProvider>
@@ -194,29 +196,29 @@ const ComponentDemoGroup = defineComponent({
                   {(themes as any).value.length > 1
                     ? (
                         (themes as any).value.map(theme => (
-                      <ConfigProvider key={theme.key} theme={theme.config}>
-                        <ComponentDemoBlock
-                          component={item}
-                          onTokenClick={props.onTokenClick}
-                          demos={demos}
-                          disabled={disabled.value}
-                          size={size.value}
-                          theme={theme}
-                          componentDrawer={componentDrawer.value}
-                        />
-                      </ConfigProvider>
+                          <ConfigProvider key={theme.key} theme={theme.config}>
+                            <ComponentDemoBlock
+                              component={item}
+                              onTokenClick={props.onTokenClick}
+                              demos={demos}
+                              disabled={disabled.value}
+                              size={size.value}
+                              theme={theme}
+                              componentDrawer={componentDrawer.value}
+                            />
+                          </ConfigProvider>
                         ))
                       )
                     : (
-                    <ComponentDemoBlock
-                      component={item}
-                      onTokenClick={props.onTokenClick}
-                      demos={demos}
-                      disabled={disabled.value}
-                      size={size.value}
-                      theme={(themes as any).value[0]}
-                      componentDrawer={componentDrawer.value}
-                    />
+                      <ComponentDemoBlock
+                        component={item}
+                        onTokenClick={props.onTokenClick}
+                        demos={demos}
+                        disabled={disabled.value}
+                        size={size.value}
+                        theme={(themes as any).value[0]}
+                        componentDrawer={componentDrawer.value}
+                      />
                       )}
                 </div>
               )

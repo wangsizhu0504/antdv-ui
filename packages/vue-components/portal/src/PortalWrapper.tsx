@@ -135,8 +135,9 @@ export default defineComponent({
               getContainerIsFunc
                 ? props.getContainer.toString() !== prevGetContainer.toString()
                 : props.getContainer !== prevGetContainer
-            )
+            ) {
               removeCurrentContainer()
+            }
           }
           init = true
         },

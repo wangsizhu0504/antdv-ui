@@ -14,24 +14,24 @@ export interface CalendarSelectInfo {
 }
 
 export interface CalendarProps<DateType> {
-  prefixCls?: string
-  locale?: typeof enUS.DatePicker
-  validRange?: [DateType, DateType]
-  disabledDate?: (date: DateType) => boolean
-  dateFullCellRender?: CustomRenderType<DateType>
-  dateCellRender?: CustomRenderType<DateType>
-  monthFullCellRender?: CustomRenderType<DateType>
-  monthCellRender?: CustomRenderType<DateType>
-  headerRender?: HeaderRender<DateType>
-  value?: DateType | string
-  defaultValue?: DateType | string
-  mode?: CalendarMode
-  fullscreen?: boolean
-  onChange?: (date: DateType | string) => void
+  'prefixCls'?: string
+  'locale'?: typeof enUS.DatePicker
+  'validRange'?: [DateType, DateType]
+  'disabledDate'?: (date: DateType) => boolean
+  'dateFullCellRender'?: CustomRenderType<DateType>
+  'dateCellRender'?: CustomRenderType<DateType>
+  'monthFullCellRender'?: CustomRenderType<DateType>
+  'monthCellRender'?: CustomRenderType<DateType>
+  'headerRender'?: HeaderRender<DateType>
+  'value'?: DateType | string
+  'defaultValue'?: DateType | string
+  'mode'?: CalendarMode
+  'fullscreen'?: boolean
+  'onChange'?: (date: DateType | string) => void
   'onUpdate:value'?: (date: DateType | string) => void
-  onPanelChange?: (date: DateType | string, mode: CalendarMode) => void
-  onSelect?: (date: DateType, selectInfo: CalendarSelectInfo) => void
-  valueFormat?: string
+  'onPanelChange'?: (date: DateType | string, mode: CalendarMode) => void
+  'onSelect'?: (date: DateType, selectInfo: CalendarSelectInfo) => void
+  'valueFormat'?: string
 }
 
 export type InjectDefaultProps<Props> = Omit<
