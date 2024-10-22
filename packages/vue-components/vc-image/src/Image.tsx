@@ -27,6 +27,8 @@ export function imageProps() {
     rootClassName: String,
     prefixCls: String,
     previewPrefixCls: String,
+    width: [Number, String],
+    height: [Number, String],
     previewMask: {
       type: [Boolean, Function] as PropType<false | (() => any)>,
       default: undefined,

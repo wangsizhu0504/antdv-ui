@@ -25,9 +25,9 @@ export interface TimeUnitColumnProps {
   onSelect?: (value: number) => void;
 }
 
-export default defineComponent<TimeUnitColumnProps>({
+export default defineComponent({
   name: 'TimeUnitColumn',
-  props: ['prefixCls', 'units', 'onSelect', 'value', 'active', 'hideDisabledOptions'] as any,
+  props: ['prefixCls', 'units', 'onSelect', 'value', 'active', 'hideDisabledOptions'],
   setup(props) {
     const { open } = useInjectPanel()
 

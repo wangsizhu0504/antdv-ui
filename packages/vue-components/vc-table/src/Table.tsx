@@ -151,7 +151,7 @@ export interface TableProps<RecordType = DefaultRecordType> {
   transformCellText?: TransformCellText<RecordType>;
 }
 
-export default defineComponent<TableProps<DefaultRecordType>>({
+export default defineComponent({
   name: 'VcTable',
   inheritAttrs: false,
   props: [
@@ -193,7 +193,7 @@ export default defineComponent<TableProps<DefaultRecordType>>({
     'canExpandable',
     'onUpdateInternalRefs',
     'transformCellText',
-  ] as any,
+  ],
   emits: ['expand', 'expandedRowsChange', 'updateInternalRefs', 'update:expandedRowKeys'],
   setup(props, { attrs, slots, emit }) {
     const mergedData = computed(() => props.data || EMPTY_DATA)
@@ -272,7 +272,7 @@ export default defineComponent<TableProps<DefaultRecordType>>({
     stop()
 
     const mergedExpandedKeys = computed(
-      () => new Set(props.expandedRowKeys || innerExpandedKeys.value || []),
+      (): Set<Key> => new Set(props.expandedRowKeys || innerExpandedKeys.value || []),
     )
 
     const onTriggerExpand: TriggerEventHandler<any> = (record) => {

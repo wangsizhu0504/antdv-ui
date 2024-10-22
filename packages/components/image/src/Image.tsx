@@ -3,15 +3,14 @@ import { EyeOutlined } from '@ant-design/icons-vue'
 import { classNames } from '@antdv/utils'
 import { enUS as defaultLocale } from '@antdv/locale'
 import { VcImage, getTransitionName, imageProps } from '@antdv/vue-components'
-import type { ImageProps } from '@antdv/vue-components'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { icons } from './PreviewGroup'
 
-export default defineComponent<ImageProps>({
+export default defineComponent({
   name: 'AImage',
   inheritAttrs: false,
-  props: imageProps() as any,
+  props: imageProps(),
   setup(props, { slots, attrs }) {
     const { prefixCls, rootPrefixCls, configProvider } = useConfigInject('image', props)
     // Style
