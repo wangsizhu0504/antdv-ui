@@ -1,7 +1,6 @@
-import { type } from 'node:os'
 import { computed, defineComponent, h, inject } from 'vue'
 import { classNames, filterEmpty } from '@antdv/utils'
-import image from '@antdv/components/image'
+
 import type { VueNode } from '@antdv/types'
 import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
 
