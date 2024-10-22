@@ -202,8 +202,12 @@ const ImageInternal = defineComponent({
         placeholder,
         wrapperStyle,
         rootClassName,
-      } = props
-      const { width, height, class: cls, style, alt } = attrs as ImgHTMLAttributes
+        width,
+        height,
+        class: cls,
+        style,
+        alt,
+      } = { ...props, ...attrs } as any
       const { icons, maskClassName, ...dialogProps } = preview.value
 
       const wrappperClass = classNames(prefixCls, wrapperClassName, rootClassName, {
