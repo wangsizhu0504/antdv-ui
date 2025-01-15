@@ -1,6 +1,6 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, genFocusOutline, genFocusStyle, mergeToken, resetComponent } from '@antdv/theme'
-import { genBasicInputStyle, genInputSmallStyle, initInputToken, type InputToken } from '../../input/style'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, genFocusOutline, genFocusStyle, mergeToken, resetComponent } from '@antdv/theme';
+import { genBasicInputStyle, genInputSmallStyle, initInputToken, type InputToken } from '../../input/style';
 
 interface PaginationToken extends InputToken<FullToken<'Pagination'>> {
   paginationItemSize: number
@@ -25,7 +25,7 @@ interface PaginationToken extends InputToken<FullToken<'Pagination'>> {
 }
 
 const genPaginationDisabledStyle: GenerateStyle<PaginationToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [`${componentCls}-disabled`]: {
@@ -125,11 +125,11 @@ const genPaginationDisabledStyle: GenerateStyle<PaginationToken, CSSObject> = (t
         },
       },
     },
-  }
-}
+  };
+};
 
 const genPaginationMiniStyle: GenerateStyle<PaginationToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [`&${componentCls}-mini ${componentCls}-total-text, &${componentCls}-mini ${componentCls}-simple-pager`]:
@@ -211,11 +211,11 @@ const genPaginationMiniStyle: GenerateStyle<PaginationToken, CSSObject> = (token
         },
       },
     },
-  }
-}
+  };
+};
 
 const genPaginationSimpleStyle: GenerateStyle<PaginationToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [`
@@ -277,11 +277,11 @@ const genPaginationSimpleStyle: GenerateStyle<PaginationToken, CSSObject> = (tok
         },
       },
     },
-  }
-}
+  };
+};
 
 const genPaginationJumpStyle: GenerateStyle<PaginationToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [`${componentCls}-jump-prev, ${componentCls}-jump-next`]: {
@@ -448,11 +448,11 @@ const genPaginationJumpStyle: GenerateStyle<PaginationToken, CSSObject> = (token
         },
       },
     },
-  }
-}
+  };
+};
 
 const genPaginationItemStyle: GenerateStyle<PaginationToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [`${componentCls}-item`]: {
@@ -516,11 +516,11 @@ const genPaginationItemStyle: GenerateStyle<PaginationToken, CSSObject> = (token
         },
       },
     },
-  }
-}
+  };
+};
 
 const genPaginationStyle: GenerateStyle<PaginationToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [componentCls]: {
@@ -584,11 +584,11 @@ const genPaginationStyle: GenerateStyle<PaginationToken, CSSObject> = (token) =>
     [`&${token.componentCls}-rtl`]: {
       direction: 'rtl',
     },
-  }
-}
+  };
+};
 
 const genBorderedStyle: GenerateStyle<PaginationToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [`${componentCls}${componentCls}-disabled`]: {
@@ -680,8 +680,8 @@ const genBorderedStyle: GenerateStyle<PaginationToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Pagination', (token) => {
@@ -709,9 +709,9 @@ export default genComponentStyleHook('Pagination', (token) => {
       paginationEllipsisTextIndent: '0.13em', // magic for ui experience
     },
     initInputToken(token),
-  )
+  );
   return [
     genPaginationStyle(paginationToken),
     token.wireframe && genBorderedStyle(paginationToken),
-  ]
-})
+  ];
+});

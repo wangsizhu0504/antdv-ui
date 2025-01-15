@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import Basic from './basic.vue'
-  import CheckAll from './check-all.vue'
-  import Controller from './controller.vue'
-  import Disabled from './disabled.vue'
-  import Group from './group.vue'
-  import Layout from './layout.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import Basic from './basic.vue';
+  import CheckAll from './check-all.vue';
+  import Controller from './controller.vue';
+  import Disabled from './disabled.vue';
+  import Group from './group.vue';
+  import Layout from './layout.vue';
 
   export default defineComponent({
     CN,
@@ -21,9 +21,9 @@
       Layout,
     },
     setup() {
-      return {}
+      return {};
     },
-  })
+  });
 </script>
 
 <template>

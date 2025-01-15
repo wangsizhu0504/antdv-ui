@@ -1,23 +1,23 @@
-import type { Locale, ValidateMessages } from '@antdv/locale'
+import type { Locale, ValidateMessages } from '@antdv/locale';
 
-import type { WatchStopHandle } from 'vue'
-import type { ConfigProviderInnerProps, GlobalConfigProviderProps, RenderEmptyHandler, ThemeColor } from './interface'
-import { ANT_MARK } from '@antdv/constants'
+import type { WatchStopHandle } from 'vue';
+import type { ConfigProviderInnerProps, GlobalConfigProviderProps, RenderEmptyHandler, ThemeColor } from './interface';
+import { ANT_MARK } from '@antdv/constants';
 
-import { enUS as defaultLocale } from '@antdv/locale'
-import { createTheme } from '@antdv/theme'
-import { DesignTokenProvider } from '@antdv/theme/token/internal'
-import defaultSeedToken from '@antdv/theme/token/themes/seed'
-import { computed, defineComponent, reactive, watch, watchEffect } from 'vue'
+import { enUS as defaultLocale } from '@antdv/locale';
+import { createTheme } from '@antdv/theme';
+import { DesignTokenProvider } from '@antdv/theme/token/internal';
+import defaultSeedToken from '@antdv/theme/token/themes/seed';
+import { computed, defineComponent, reactive, watch, watchEffect } from 'vue';
 
-import LocaleProvider from '../../locale-provider'
+import LocaleProvider from '../../locale-provider';
 
-import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
-import message from '../../message'
+import LocaleReceiver from '../../locale-provider/src/LocaleReceiver';
+import message from '../../message';
 
-import { notification } from '../../notification'
-import useStyle from '../style'
-import { getGlobalIconPrefixCls, getGlobalPrefixCls, globalConfigForApi } from './config'
+import { notification } from '../../notification';
+import useStyle from '../style';
+import { getGlobalIconPrefixCls, getGlobalPrefixCls, globalConfigForApi } from './config';
 import {
   defaultIconPrefixCls,
   useConfigContextInject,
@@ -25,15 +25,15 @@ import {
   useProvideGlobalForm,
   useProviderDisabled,
   useProviderSize,
-} from './context'
-import { registerTheme } from './cssVariables'
-import useTheme from './hooks/useTheme'
+} from './context';
+import { registerTheme } from './cssVariables';
+import useTheme from './hooks/useTheme';
 
-import { type ConfigProviderProps, configProviderProps } from './props'
+import { type ConfigProviderProps, configProviderProps } from './props';
 
-import defaultRenderEmpty from './renderEmpty'
+import defaultRenderEmpty from './renderEmpty';
 
-const globalConfigBySet = reactive<ConfigProviderProps>({}) // 权重最大
+const globalConfigBySet = reactive<ConfigProviderProps>({}); // 权重最大
 
 export const configConsumerProps = [
   'getTargetContainer',
@@ -45,40 +45,40 @@ export const configConsumerProps = [
   'autoInsertSpaceInButton',
   'locale',
   'pageHeader',
-]
+];
 
 watchEffect(() => {
-  Object.assign(globalConfigForApi, globalConfigBySet)
-  globalConfigForApi.prefixCls = getGlobalPrefixCls()
-  globalConfigForApi.iconPrefixCls = getGlobalIconPrefixCls()
+  Object.assign(globalConfigForApi, globalConfigBySet);
+  globalConfigForApi.prefixCls = getGlobalPrefixCls();
+  globalConfigForApi.iconPrefixCls = getGlobalIconPrefixCls();
   globalConfigForApi.getPrefixCls = (suffixCls?: string, customizePrefixCls?: string) => {
-    if (customizePrefixCls) return customizePrefixCls
+    if (customizePrefixCls) return customizePrefixCls;
     return suffixCls
       ? `${globalConfigForApi.prefixCls}-${suffixCls}`
-      : globalConfigForApi.prefixCls
-  }
+      : globalConfigForApi.prefixCls;
+  };
   globalConfigForApi.getRootPrefixCls = () => {
     // If Global prefixCls provided, use this
     if (globalConfigForApi.prefixCls)
-      return globalConfigForApi.prefixCls
+      return globalConfigForApi.prefixCls;
 
     // Fallback to default prefixCls
-    return getGlobalPrefixCls()
-  }
-})
+    return getGlobalPrefixCls();
+  };
+});
 
-let stopWatchEffect: WatchStopHandle
+let stopWatchEffect: WatchStopHandle;
 
 export function setGlobalConfig(params: GlobalConfigProviderProps & { theme?: ThemeColor }) {
   if (stopWatchEffect)
-    stopWatchEffect()
+    stopWatchEffect();
 
   stopWatchEffect = watchEffect(() => {
-    Object.assign(globalConfigBySet, reactive(params))
-    Object.assign(globalConfigForApi, reactive(params))
-  })
+    Object.assign(globalConfigBySet, reactive(params));
+    Object.assign(globalConfigForApi, reactive(params));
+  });
   if (params.theme)
-    registerTheme(getGlobalPrefixCls(), params.theme)
+    registerTheme(getGlobalPrefixCls(), params.theme);
 }
 
 export default defineComponent({
@@ -88,77 +88,77 @@ export default defineComponent({
   props: configProviderProps(),
   config: setGlobalConfig,
   setup(props, { slots }) {
-    const parentContext = useConfigContextInject()
+    const parentContext = useConfigContextInject();
     const getPrefixCls = (suffixCls?: string, customizePrefixCls?: string) => {
-      const { prefixCls = 'ant' } = props
-      if (customizePrefixCls) return customizePrefixCls
-      const mergedPrefixCls = prefixCls || parentContext.getPrefixCls('')
-      return suffixCls ? `${mergedPrefixCls}-${suffixCls}` : mergedPrefixCls
-    }
+      const { prefixCls = 'ant' } = props;
+      if (customizePrefixCls) return customizePrefixCls;
+      const mergedPrefixCls = prefixCls || parentContext.getPrefixCls('');
+      return suffixCls ? `${mergedPrefixCls}-${suffixCls}` : mergedPrefixCls;
+    };
     const iconPrefixCls = computed(
       () => props.iconPrefixCls || parentContext.iconPrefixCls.value || defaultIconPrefixCls,
-    )
-    const shouldWrapSSR = computed(() => iconPrefixCls.value !== parentContext.iconPrefixCls.value)
-    const csp = computed(() => props.csp || parentContext.csp?.value)
+    );
+    const shouldWrapSSR = computed(() => iconPrefixCls.value !== parentContext.iconPrefixCls.value);
+    const csp = computed(() => props.csp || parentContext.csp?.value);
 
-    const wrapSSR = useStyle(iconPrefixCls)
+    const wrapSSR = useStyle(iconPrefixCls);
 
     const mergedTheme = useTheme(
       computed(() => props.theme),
       computed(() => parentContext.theme?.value),
-    )
+    );
     const renderEmptyComponent = (name?: string) => {
       const renderEmpty = (props.renderEmpty
         || slots.renderEmpty
         || parentContext.renderEmpty
-        || defaultRenderEmpty) as RenderEmptyHandler
-      return renderEmpty(name)
-    }
+        || defaultRenderEmpty) as RenderEmptyHandler;
+      return renderEmpty(name);
+    };
     const autoInsertSpaceInButton = computed(
       () => props.autoInsertSpaceInButton ?? parentContext.autoInsertSpaceInButton?.value,
-    )
-    const locale = computed(() => props.locale || parentContext.locale?.value)
+    );
+    const locale = computed(() => props.locale || parentContext.locale?.value);
     watch(
       locale,
       () => {
-        globalConfigBySet.locale = locale.value
+        globalConfigBySet.locale = locale.value;
       },
       { immediate: true },
-    )
-    const direction = computed(() => props.direction || parentContext.direction?.value)
-    const space = computed(() => props.space ?? parentContext.space?.value)
-    const virtual = computed(() => props.virtual ?? parentContext.virtual?.value)
+    );
+    const direction = computed(() => props.direction || parentContext.direction?.value);
+    const space = computed(() => props.space ?? parentContext.space?.value);
+    const virtual = computed(() => props.virtual ?? parentContext.virtual?.value);
     const dropdownMatchSelectWidth = computed(
       () => props.dropdownMatchSelectWidth ?? parentContext.dropdownMatchSelectWidth?.value,
-    )
+    );
     const getTargetContainer = computed(() =>
       props.getTargetContainer !== undefined
         ? props.getTargetContainer
         : parentContext.getTargetContainer?.value,
-    )
+    );
     const getPopupContainer = computed(() =>
       props.getPopupContainer !== undefined
         ? props.getPopupContainer
         : parentContext.getPopupContainer?.value,
-    )
+    );
     const pageHeader = computed(() =>
       props.pageHeader !== undefined ? props.pageHeader : parentContext.pageHeader?.value,
-    )
+    );
     const input = computed(() =>
       props.input !== undefined ? props.input : parentContext.input?.value,
-    )
+    );
     const pagination = computed(() =>
       props.pagination !== undefined ? props.pagination : parentContext.pagination?.value,
-    )
+    );
     const form = computed(() =>
       props.form !== undefined ? props.form : parentContext.form?.value,
-    )
+    );
     const select = computed(() =>
       props.select !== undefined ? props.select : parentContext.select?.value,
-    )
-    const componentSize = computed(() => props.componentSize)
-    const componentDisabled = computed(() => props.componentDisabled)
-    const wave = computed(() => props.wave ?? parentContext.wave?.value)
+    );
+    const componentSize = computed(() => props.componentSize);
+    const componentDisabled = computed(() => props.componentDisabled);
+    const wave = computed(() => props.wave ?? parentContext.wave?.value);
     const configProvider: ConfigProviderInnerProps = {
       csp,
       autoInsertSpaceInButton,
@@ -170,7 +170,7 @@ export default defineComponent({
       getPrefixCls,
       iconPrefixCls,
       theme: computed(() => {
-        return mergedTheme.value ?? parentContext.theme?.value
+        return mergedTheme.value ?? parentContext.theme?.value;
       }),
       renderEmpty: renderEmptyComponent,
       getTargetContainer,
@@ -184,15 +184,15 @@ export default defineComponent({
       componentDisabled,
       transformCellText: computed(() => props.transformCellText),
       wave,
-    }
+    };
 
     // ================================ Dynamic theme ================================
     const memoTheme = computed(() => {
-      const { algorithm, token, ...rest } = mergedTheme.value || {}
+      const { algorithm, token, ...rest } = mergedTheme.value || {};
       const themeObj
         = algorithm && (!Array.isArray(algorithm) || algorithm.length > 0)
           ? createTheme(algorithm)
-          : undefined
+          : undefined;
 
       return {
         ...rest,
@@ -202,52 +202,52 @@ export default defineComponent({
           ...defaultSeedToken,
           ...token,
         },
-      }
-    })
+      };
+    });
     const validateMessagesRef = computed(() => {
       // Additional Form provider
-      let validateMessages: ValidateMessages = {}
+      let validateMessages: ValidateMessages = {};
 
       if (locale.value) {
         validateMessages
           = locale.value.Form?.defaultValidateMessages
           || defaultLocale.Form?.defaultValidateMessages
-          || {}
+          || {};
       }
       if (props.form && props.form.validateMessages)
-        validateMessages = { ...validateMessages, ...props.form.validateMessages }
+        validateMessages = { ...validateMessages, ...props.form.validateMessages };
 
-      return validateMessages
-    })
-    useConfigContextProvider(configProvider)
-    useProvideGlobalForm({ validateMessages: validateMessagesRef })
-    useProviderSize(componentSize)
-    useProviderDisabled(componentDisabled)
+      return validateMessages;
+    });
+    useConfigContextProvider(configProvider);
+    useProvideGlobalForm({ validateMessages: validateMessagesRef });
+    useProviderSize(componentSize);
+    useProviderDisabled(componentDisabled);
 
     const renderProvider = (legacyLocale: Locale) => {
-      let childNode = shouldWrapSSR.value ? wrapSSR(slots.default?.()) : slots.default?.()
+      let childNode = shouldWrapSSR.value ? wrapSSR(slots.default?.()) : slots.default?.();
       if (props.theme)
-        childNode = <DesignTokenProvider value={memoTheme.value}>{childNode}</DesignTokenProvider>
+        childNode = <DesignTokenProvider value={memoTheme.value}>{childNode}</DesignTokenProvider>;
       return (
         <LocaleProvider locale={locale.value || legacyLocale} ANT_MARK__={ANT_MARK}>
           {childNode}
         </LocaleProvider>
-      )
-    }
+      );
+    };
 
     watchEffect(() => {
       if (direction.value) {
         message.config({
           rtl: direction.value === 'rtl',
-        })
+        });
         notification.config({
           rtl: direction.value === 'rtl',
-        })
+        });
       }
-    })
+    });
 
     return () => (
       <LocaleReceiver children={(_, __, legacyLocale) => renderProvider(legacyLocale as Locale)} />
-    )
+    );
   },
-})
+});

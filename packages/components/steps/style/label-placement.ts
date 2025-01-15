@@ -1,8 +1,8 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { StepsToken } from '.'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { StepsToken } from '.';
 
 const genStepsLabelPlacementStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
-  const { componentCls, stepsIconSize, lineHeight, stepsSmallIconSize } = token
+  const { componentCls, stepsIconSize, lineHeight, stepsSmallIconSize } = token;
 
   return {
     [`&${componentCls}-label-vertical`]: {
@@ -50,6 +50,6 @@ const genStepsLabelPlacementStyle: GenerateStyle<StepsToken, CSSObject> = (token
         },
       },
     },
-  }
-}
-export default genStepsLabelPlacementStyle
+  };
+};
+export default genStepsLabelPlacementStyle;

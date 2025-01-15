@@ -17,13 +17,13 @@ There are two built-in themes: `light` and `dark`. The default value is `light`.
 </docs>
 
 <script lang="ts" setup>
-  import type { MenuTheme } from '@antdv/ui'
-  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
-  import { h, ref } from 'vue'
+  import type { MenuTheme } from '@antdv/ui';
+  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue';
+  import { h, ref } from 'vue';
 
-  const theme = ref<MenuTheme>('dark')
-  const selectedKeys = ref<any>(['1'])
-  const openKeys = ref<any>(['sub1'])
+  const theme = ref<MenuTheme>('dark');
+  const selectedKeys = ref<any>(['1']);
+  const openKeys = ref<any>(['sub1']);
   const items = ref<any>([
     {
       key: '1',
@@ -100,9 +100,9 @@ There are two built-in themes: `light` and `dark`. The default value is `light`.
         },
       ],
     },
-  ])
+  ]);
   function changeTheme(checked: boolean) {
-    theme.value = checked ? 'dark' : 'light'
+    theme.value = checked ? 'dark' : 'light';
   }
 </script>
 

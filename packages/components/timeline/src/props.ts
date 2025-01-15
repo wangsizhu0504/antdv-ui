@@ -1,6 +1,6 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes } from 'vue';
 
-import { booleanType, PropTypes, tuple } from '@antdv/utils'
+import { booleanType, PropTypes, tuple } from '@antdv/utils';
 
 export function timelineProps() {
   return {
@@ -10,7 +10,7 @@ export function timelineProps() {
     pendingDot: PropTypes.any,
     reverse: booleanType(),
     mode: PropTypes.oneOf(tuple('left', 'alternate', 'right', '')),
-  }
+  };
 }
 export function timelineItemProps() {
   return {
@@ -20,9 +20,9 @@ export function timelineItemProps() {
     pending: booleanType(),
     position: PropTypes.oneOf(tuple('left', 'right', '')).def(''),
     label: PropTypes.any,
-  }
+  };
 }
 
-export type TimelineItemProps = Partial<ExtractPropTypes<ReturnType<typeof timelineItemProps>>>
+export type TimelineItemProps = Partial<ExtractPropTypes<ReturnType<typeof timelineItemProps>>>;
 
-export type TimelineProps = Partial<ExtractPropTypes<ReturnType<typeof timelineProps>>>
+export type TimelineProps = Partial<ExtractPropTypes<ReturnType<typeof timelineProps>>>;

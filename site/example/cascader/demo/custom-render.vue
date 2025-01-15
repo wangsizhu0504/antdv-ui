@@ -17,8 +17,8 @@ For instance, add an external link after the selected value.
 </docs>
 
 <script lang="ts" setup>
-  import type { CascaderProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { CascaderProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
   const options: CascaderProps['options'] = [
     {
@@ -55,14 +55,14 @@ For instance, add an external link after the selected value.
         },
       ],
     },
-  ]
+  ];
 
   function handleAreaClick(e: Event, label: string, option: CascaderProps['options'][number]) {
-    e.stopPropagation()
-    console.log('clicked', label, option)
+    e.stopPropagation();
+    console.log('clicked', label, option);
   }
 
-  const value = ref<string[]>(['zhejiang', 'hangzhou', 'xihu'])
+  const value = ref<string[]>(['zhejiang', 'hangzhou', 'xihu']);
 </script>
 
 <template>

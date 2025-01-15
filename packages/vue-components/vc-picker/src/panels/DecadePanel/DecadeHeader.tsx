@@ -1,8 +1,8 @@
-import type { GenerateConfig } from '../../generate'
-import useMergeProps from '../../hooks/useMergeProps'
-import { useInjectPanel } from '../../PanelContext'
-import Header from '../Header'
-import { DECADE_DISTANCE_COUNT } from './constant'
+import type { GenerateConfig } from '../../generate';
+import useMergeProps from '../../hooks/useMergeProps';
+import { useInjectPanel } from '../../PanelContext';
+import Header from '../Header';
+import { DECADE_DISTANCE_COUNT } from './constant';
 
 export interface YearHeaderProps<DateType> {
   prefixCls: string;
@@ -14,17 +14,17 @@ export interface YearHeaderProps<DateType> {
 }
 
 function DecadeHeader<DateType>(_props: YearHeaderProps<DateType>) {
-  const props = useMergeProps(_props)
-  const { prefixCls, generateConfig, viewDate, onPrevDecades, onNextDecades } = props
-  const { hideHeader } = useInjectPanel()
+  const props = useMergeProps(_props);
+  const { prefixCls, generateConfig, viewDate, onPrevDecades, onNextDecades } = props;
+  const { hideHeader } = useInjectPanel();
   if (hideHeader)
-    return null
+    return null;
 
-  const headerPrefixCls = `${prefixCls}-header`
+  const headerPrefixCls = `${prefixCls}-header`;
 
-  const yearNumber = generateConfig.getYear(viewDate)
-  const startYear = Math.floor(yearNumber / DECADE_DISTANCE_COUNT) * DECADE_DISTANCE_COUNT
-  const endYear = startYear + DECADE_DISTANCE_COUNT - 1
+  const yearNumber = generateConfig.getYear(viewDate);
+  const startYear = Math.floor(yearNumber / DECADE_DISTANCE_COUNT) * DECADE_DISTANCE_COUNT;
+  const endYear = startYear + DECADE_DISTANCE_COUNT - 1;
 
   return (
     <Header
@@ -37,10 +37,10 @@ function DecadeHeader<DateType>(_props: YearHeaderProps<DateType>) {
       -
       {endYear}
     </Header>
-  )
+  );
 }
 
-DecadeHeader.displayName = 'DecadeHeader'
-DecadeHeader.inheritAttrs = false
+DecadeHeader.displayName = 'DecadeHeader';
+DecadeHeader.inheritAttrs = false;
 
-export default DecadeHeader
+export default DecadeHeader;

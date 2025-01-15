@@ -16,19 +16,19 @@ Custom render by using `itemRender` slot.
 </docs>
 
 <script lang="ts" setup>
-  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
-  import { UploadOutlined } from '@ant-design/icons-vue'
-  import { message } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { UploadChangeParam, UploadProps } from '@antdv/ui';
+  import { UploadOutlined } from '@ant-design/icons-vue';
+  import { message } from '@antdv/ui';
+  import { ref } from 'vue';
 
   function handleChange(info: UploadChangeParam) {
     if (info.file.status !== 'uploading') {
-      console.log(info.file, info.fileList)
+      console.log(info.file, info.fileList);
     }
     if (info.file.status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully`)
+      message.success(`${info.file.name} file uploaded successfully`);
     } else if (info.file.status === 'error') {
-      message.error(`${info.file.name} file upload failed.`)
+      message.error(`${info.file.name} file upload failed.`);
     }
   }
 
@@ -54,8 +54,8 @@ Custom render by using `itemRender` slot.
       response: 'Server Error 500', // custom error message to show
       url: 'http://www.baidu.com/zzz.png',
     },
-  ])
-  const headers = { authorization: 'authorization-text' }
+  ]);
+  const headers = { authorization: 'authorization-text' };
 </script>
 
 <template>

@@ -16,7 +16,7 @@ Simple table with actions.
 </docs>
 
 <script lang="ts" setup>
-  import { DownOutlined, SmileOutlined } from '@ant-design/icons-vue'
+  import { DownOutlined, SmileOutlined } from '@ant-design/icons-vue';
 
   const columns = [
     {
@@ -43,7 +43,7 @@ Simple table with actions.
       title: 'Action',
       key: 'action',
     },
-  ]
+  ];
 
   const data = [
     {
@@ -67,7 +67,7 @@ Simple table with actions.
       address: 'Sidney No. 1 Lake Park',
       tags: ['cool', 'teacher'],
     },
-  ]
+  ];
 </script>
 
 <template>

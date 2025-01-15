@@ -17,7 +17,7 @@ Custom arrows display
 </docs>
 
 <script lang="ts" setup>
-  import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons-vue'
+  import { LeftCircleOutlined, RightCircleOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

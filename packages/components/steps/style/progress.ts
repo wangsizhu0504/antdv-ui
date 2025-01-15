@@ -1,8 +1,8 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { StepsToken } from '.'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { StepsToken } from '.';
 
 const genStepsProgressStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
-  const { antCls, componentCls } = token
+  const { antCls, componentCls } = token;
 
   return {
     [`&${componentCls}-with-progress`]: {
@@ -53,7 +53,7 @@ const genStepsProgressStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genStepsProgressStyle
+export default genStepsProgressStyle;

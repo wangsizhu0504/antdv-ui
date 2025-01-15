@@ -1,6 +1,6 @@
-import { VerticalAlignTopOutlined } from '@ant-design/icons-vue'
-import { getScroll, initDefaultProps, scrollTo, throttleByAnimationFrame } from '@antdv/utils'
-import { getTransitionProps } from '@antdv/vue-components'
+import { VerticalAlignTopOutlined } from '@ant-design/icons-vue';
+import { getScroll, initDefaultProps, scrollTo, throttleByAnimationFrame } from '@antdv/utils';
+import { getTransitionProps } from '@antdv/vue-components';
 import {
   defineComponent,
   nextTick,
@@ -12,14 +12,14 @@ import {
   ref,
   Transition,
   watch,
-} from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+} from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import useStyle from '../style'
-import { floatButtonPrefixCls } from './constants'
-import { useInjectFloatButtonGroupContext } from './context'
-import FloatButton from './FloatButton'
-import { backTopProps } from './props'
+import useStyle from '../style';
+import { floatButtonPrefixCls } from './constants';
+import { useInjectFloatButtonGroupContext } from './context';
+import FloatButton from './FloatButton';
+import { backTopProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -34,82 +34,82 @@ export default defineComponent({
   }),
   // emits: ['click'],
   setup(props, { slots, attrs, emit }) {
-    const { prefixCls, direction } = useConfigInject(floatButtonPrefixCls, props)
+    const { prefixCls, direction } = useConfigInject(floatButtonPrefixCls, props);
 
-    const [wrapSSR] = useStyle(prefixCls)
+    const [wrapSSR] = useStyle(prefixCls);
 
-    const domRef = ref()
+    const domRef = ref();
     const state = reactive({
       visible: props.visibilityHeight === 0,
       scrollEvent: null,
-    })
+    });
 
     const getDefaultTarget = () =>
-      (domRef.value && domRef.value.ownerDocument) ? domRef.value.ownerDocument : window
+      (domRef.value && domRef.value.ownerDocument) ? domRef.value.ownerDocument : window;
 
     const scrollToTop = (e: Event) => {
-      const { target = getDefaultTarget, duration } = props
+      const { target = getDefaultTarget, duration } = props;
       scrollTo(0, {
         getContainer: target,
         duration,
-      })
-      emit('click', e)
-    }
+      });
+      emit('click', e);
+    };
 
     const handleScroll = throttleByAnimationFrame((e: Event | { target: any }) => {
-      const { visibilityHeight } = props
-      const scrollTop = getScroll(e.target, true)
-      state.visible = scrollTop >= visibilityHeight
-    })
+      const { visibilityHeight } = props;
+      const scrollTop = getScroll(e.target, true);
+      state.visible = scrollTop >= visibilityHeight;
+    });
 
     const bindScrollEvent = () => {
-      const { target } = props
-      const getTarget = target || getDefaultTarget
-      const container = getTarget()
-      handleScroll({ target: container })
-      container?.addEventListener('scroll', handleScroll)
-    }
+      const { target } = props;
+      const getTarget = target || getDefaultTarget;
+      const container = getTarget();
+      handleScroll({ target: container });
+      container?.addEventListener('scroll', handleScroll);
+    };
 
     const scrollRemove = () => {
-      const { target } = props
-      const getTarget = target || getDefaultTarget
-      const container = getTarget()
-      handleScroll.cancel()
-      container?.removeEventListener('scroll', handleScroll)
-    }
+      const { target } = props;
+      const getTarget = target || getDefaultTarget;
+      const container = getTarget();
+      handleScroll.cancel();
+      container?.removeEventListener('scroll', handleScroll);
+    };
 
     watch(
       () => props.target,
       () => {
-        scrollRemove()
+        scrollRemove();
         nextTick(() => {
-          bindScrollEvent()
-        })
+          bindScrollEvent();
+        });
       },
-    )
+    );
 
     onMounted(() => {
       nextTick(() => {
-        bindScrollEvent()
-      })
-    })
+        bindScrollEvent();
+      });
+    });
 
     onActivated(() => {
       nextTick(() => {
-        bindScrollEvent()
-      })
-    })
+        bindScrollEvent();
+      });
+    });
 
     onDeactivated(() => {
-      scrollRemove()
-    })
+      scrollRemove();
+    });
 
     onBeforeUnmount(() => {
-      scrollRemove()
-    })
-    const floatButtonGroupContext = useInjectFloatButtonGroupContext()
+      scrollRemove();
+    });
+    const floatButtonGroupContext = useInjectFloatButtonGroupContext();
     return () => {
-      const { description, type, shape, tooltip, badge } = props
+      const { description, type, shape, tooltip, badge } = props;
       const floatButtonProps = {
         ...attrs,
         shape: floatButtonGroupContext?.shape.value || shape,
@@ -123,9 +123,9 @@ export default defineComponent({
         type,
         tooltip,
         badge,
-      }
+      };
 
-      const transitionProps = getTransitionProps('fade')
+      const transitionProps = getTransitionProps('fade');
       return wrapSSR(
         <Transition {...transitionProps}>
           <FloatButton v-show={state.visible} {...floatButtonProps} ref={domRef}>
@@ -134,7 +134,7 @@ export default defineComponent({
             }}
           </FloatButton>
         </Transition>,
-      )
-    }
+      );
+    };
   },
-})
+});

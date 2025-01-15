@@ -17,7 +17,7 @@ There are 12 placement options available.
 </docs>
 
 <script lang="ts" setup>
-  const buttonWidth = 70
+  const buttonWidth = 70;
 </script>
 
 <template>

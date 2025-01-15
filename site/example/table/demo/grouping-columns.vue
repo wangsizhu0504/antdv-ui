@@ -17,9 +17,9 @@ Group table head with `columns[n].children`.
 </docs>
 
 <script lang="ts" setup>
-  import type { TableColumnsType } from '@antdv/ui'
+  import type { TableColumnsType } from '@antdv/ui';
 
-  type TableDataType = {
+  interface TableDataType {
     key: number;
     name: string;
     age: number;
@@ -112,7 +112,7 @@ Group table head with `columns[n].children`.
       width: 80,
       fixed: 'right',
     },
-  ]
+  ];
   const data = [...Array(100)].map((_, i) => ({
     key: i,
     name: 'John Brown',
@@ -123,7 +123,7 @@ Group table head with `columns[n].children`.
     companyAddress: 'Lake Street 42',
     companyName: 'SoftLake Co',
     gender: 'M',
-  }))
+  }));
 </script>
 
 <template>

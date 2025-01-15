@@ -17,15 +17,15 @@ custom mask style.
 </docs>
 
 <script lang="ts" setup>
-  import type { TourProps } from '@antdv/ui'
-  import { EllipsisOutlined } from '@ant-design/icons-vue'
-  import { createVNode, ref } from 'vue'
+  import type { TourProps } from '@antdv/ui';
+  import { EllipsisOutlined } from '@ant-design/icons-vue';
+  import { createVNode, ref } from 'vue';
 
-  const open = ref<boolean>(false)
+  const open = ref<boolean>(false);
 
-  const ref1 = ref<any>(null)
-  const ref2 = ref<any>(null)
-  const ref3 = ref<any>(null)
+  const ref1 = ref<any>(null);
+  const ref2 = ref<any>(null);
+  const ref3 = ref<any>(null);
 
   const steps: TourProps['steps'] = [
     {
@@ -54,10 +54,10 @@ custom mask style.
       target: () => ref3.value && ref3.value.$el,
       mask: false,
     },
-  ]
+  ];
 
   function handleOpen(val: boolean): void {
-    open.value = val
+    open.value = val;
   }
 </script>
 

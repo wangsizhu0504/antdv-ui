@@ -17,10 +17,10 @@ Show character counting.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value1 = ref<string>('test value')
-  const value2 = ref<string>('test value')
+  const value1 = ref<string>('test value');
+  const value2 = ref<string>('test value');
 </script>
 
 <template>

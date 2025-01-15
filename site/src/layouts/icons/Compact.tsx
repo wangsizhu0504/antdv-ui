@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'vue'
-import { defineComponent } from 'vue'
+import type { CSSProperties } from 'vue';
+import { defineComponent } from 'vue';
 
 const Compact = defineComponent({
   name: 'Compact',
@@ -52,9 +52,9 @@ const Compact = defineComponent({
             </g>
           </g>
         </svg>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default Compact
+export default Compact;

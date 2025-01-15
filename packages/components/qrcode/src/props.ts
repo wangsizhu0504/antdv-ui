@@ -1,6 +1,6 @@
-import type { ExtractPropTypes } from 'vue'
-import type { ImageSettings } from './interface'
-import { objectType, stringType } from '@antdv/utils'
+import type { ExtractPropTypes } from 'vue';
+import type { ImageSettings } from './interface';
+import { objectType, stringType } from '@antdv/utils';
 
 export function qrProps() {
   return {
@@ -11,7 +11,7 @@ export function qrProps() {
     bgColor: String,
     includeMargin: Boolean,
     imageSettings: objectType<ImageSettings>(),
-  }
+  };
 }
 
 export function qrcodeProps() {
@@ -22,7 +22,7 @@ export function qrcodeProps() {
     iconSize: { type: Number, default: 40 },
     status: stringType<'active' | 'expired' | 'loading' | 'scanned'>('active'),
     bordered: { type: Boolean, default: true },
-  }
+  };
 }
 
 export function qrcodeCanvasProps() {
@@ -32,7 +32,7 @@ export function qrcodeCanvasProps() {
     bgColor: String,
     fgColor: String,
     marginSize: Number,
-  }
+  };
 }
 
 export function qrcodeSvgProps() {
@@ -44,13 +44,13 @@ export function qrcodeSvgProps() {
     fgColor: String,
     marginSize: Number,
     title: String,
-  }
+  };
 }
 
-export type QRProps = Partial<ExtractPropTypes<ReturnType<typeof qrProps>>>
+export type QRProps = Partial<ExtractPropTypes<ReturnType<typeof qrProps>>>;
 
-export type QRCodeCanvasProps = Partial<ExtractPropTypes<ReturnType<typeof qrcodeCanvasProps>>>
+export type QRCodeCanvasProps = Partial<ExtractPropTypes<ReturnType<typeof qrcodeCanvasProps>>>;
 
-export type QRCodeSvgProps = Partial<ExtractPropTypes<ReturnType<typeof qrcodeSvgProps>>>
+export type QRCodeSvgProps = Partial<ExtractPropTypes<ReturnType<typeof qrcodeSvgProps>>>;
 
-export type QRCodeProps = Partial<ExtractPropTypes<ReturnType<typeof qrcodeProps>>>
+export type QRCodeProps = Partial<ExtractPropTypes<ReturnType<typeof qrcodeProps>>>;

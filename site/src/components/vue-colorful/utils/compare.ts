@@ -1,8 +1,8 @@
-import type { ObjectColor } from '../types'
-import { hexToRgba } from './convert'
+import type { ObjectColor } from '../types';
+import { hexToRgba } from './convert';
 
 export function equalColorObjects(first: ObjectColor, second: ObjectColor): boolean {
-  if (first === second) return true
+  if (first === second) return true;
 
   for (const prop in first) {
     // The following allows for a type-safe calling of this function (first & second have to be HSL, HSV, or RGB)
@@ -14,20 +14,20 @@ export function equalColorObjects(first: ObjectColor, second: ObjectColor): bool
       (first as unknown as Record<string, number>)[prop]
       !== (second as unknown as Record<string, number>)[prop]
     ) {
-      return false
+      return false;
     }
   }
 
-  return true
+  return true;
 }
 
 export function equalColorString(first: string, second: string): boolean {
-  return first.replace(/\s/g, '') === second.replace(/\s/g, '')
+  return first.replace(/\s/g, '') === second.replace(/\s/g, '');
 }
 
 export function equalHex(first: string, second: string): boolean {
-  if (first.toLowerCase() === second.toLowerCase()) return true
+  if (first.toLowerCase() === second.toLowerCase()) return true;
 
   // To compare colors like `#FFF` and `ffffff` we convert them into RGB objects
-  return equalColorObjects(hexToRgba(first), hexToRgba(second))
+  return equalColorObjects(hexToRgba(first), hexToRgba(second));
 }

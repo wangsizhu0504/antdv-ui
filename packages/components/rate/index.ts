@@ -1,8 +1,8 @@
-import { withInstall } from '@antdv/utils'
-import ARate from './src/Rate'
+import { withInstall } from '@antdv/utils';
+import ARate from './src/Rate';
 
-export const Rate = withInstall(ARate)
+export const Rate = withInstall(ARate);
 
-export default Rate
+export default Rate;
 
-export * from './src/props'
+export * from './src/props';

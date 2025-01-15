@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { GlobalConfig } from '../App.vue'
-  import { SearchOutlined } from '@ant-design/icons-vue'
-  import { computed, defineComponent, inject, onMounted, ref } from 'vue'
-  import useMenus from '../hooks/useMenus'
-  import { GLOBAL_CONFIG } from '../SymbolKey'
-  import { getLocalizedPathname } from '../utils/util'
+  import type { GlobalConfig } from '../App.vue';
+  import { SearchOutlined } from '@ant-design/icons-vue';
+  import { computed, defineComponent, inject, onMounted, ref } from 'vue';
+  import useMenus from '../hooks/useMenus';
+  import { GLOBAL_CONFIG } from '../SymbolKey';
+  import { getLocalizedPathname } from '../utils/util';
 
   export default defineComponent({
     name: 'ComponentOverview',
@@ -12,12 +12,12 @@
       SearchOutlined,
     },
     setup() {
-      const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG)
-      const themeMode = inject('themeMode')
-      const isDark = computed<boolean>(() => (themeMode as any).theme.value === 'dark')
-      const search = ref<any>('')
-      const inputRef = ref<any>()
-      const { dataSource } = useMenus()
+      const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG);
+      const themeMode = inject('themeMode');
+      const isDark = computed<boolean>(() => (themeMode as any).theme.value === 'dark');
+      const search = ref<any>('');
+      const inputRef = ref<any>();
+      const { dataSource } = useMenus();
       const menuItems = computed(() => {
         return [].concat(
           ...dataSource.value.filter(i => i.order > -1)
@@ -26,15 +26,15 @@
                 !search.value.trim()
                 || component.title.toLowerCase().includes(search.value.trim().toLowerCase())
                 || (component.subtitle || '').toLowerCase().includes(search.value.trim().toLowerCase()),
-              )
-              return { ...group, children: components }
+              );
+              return { ...group, children: components };
             })
             .filter(i => i.children.length),
-        ) as any[]
-      })
+        ) as any[];
+      });
       onMounted(() => {
-        inputRef.value.focus()
-      })
+        inputRef.value.focus();
+      });
       return {
         globalConfig,
         search,
@@ -43,9 +43,9 @@
         inputRef,
         isZhCN: globalConfig?.isZhCN,
         isDark,
-      }
+      };
     },
-  })
+  });
 </script>
 
 <template>

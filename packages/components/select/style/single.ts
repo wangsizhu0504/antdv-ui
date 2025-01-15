@@ -1,15 +1,15 @@
-import type { CSSInterpolation, CSSObject } from '@antdv/theme'
-import type { SelectToken } from '.'
-import { mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSInterpolation, CSSObject } from '@antdv/theme';
+import type { SelectToken } from '.';
+import { mergeToken, resetComponent } from '@antdv/theme';
 
 function genSizeStyle(token: SelectToken, suffix?: string): CSSObject {
-  const { componentCls, inputPaddingHorizontalBase, borderRadius } = token
+  const { componentCls, inputPaddingHorizontalBase, borderRadius } = token;
 
-  const selectHeightWithoutBorder = token.controlHeight - token.lineWidth * 2
+  const selectHeightWithoutBorder = token.controlHeight - token.lineWidth * 2;
 
-  const selectionItemPadding = Math.ceil(token.fontSize * 1.25)
+  const selectionItemPadding = Math.ceil(token.fontSize * 1.25);
 
-  const suffixCls = suffix ? `${componentCls}-${suffix}` : ''
+  const suffixCls = suffix ? `${componentCls}-${suffix}` : '';
 
   return {
     [`${componentCls}-single${suffixCls}`]: {
@@ -128,13 +128,13 @@ function genSizeStyle(token: SelectToken, suffix?: string): CSSObject {
         },
       },
     },
-  }
+  };
 }
 
 export default function genSingleStyle(token: SelectToken): CSSInterpolation {
-  const { componentCls } = token
+  const { componentCls } = token;
 
-  const inputPaddingHorizontalSM = token.controlPaddingHorizontalSM - token.lineWidth
+  const inputPaddingHorizontalSM = token.controlPaddingHorizontalSM - token.lineWidth;
 
   return [
     genSizeStyle(token),
@@ -187,5 +187,5 @@ export default function genSingleStyle(token: SelectToken): CSSInterpolation {
       }),
       'lg',
     ),
-  ]
+  ];
 }

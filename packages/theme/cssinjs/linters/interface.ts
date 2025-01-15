@@ -4,4 +4,4 @@ export interface LinterInfo {
   parentSelectors: string[]
 }
 
-export type Linter = (key: string, value: string | number, info: LinterInfo) => void
+export type Linter = (key: string, value: string | number, info: LinterInfo) => void;

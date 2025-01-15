@@ -17,11 +17,11 @@ Horizontal top navigation menu.
 </docs>
 
 <script lang="ts" setup>
-  import type { MenuProps } from '@antdv/ui'
-  import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
-  import { h, ref } from 'vue'
+  import type { MenuProps } from '@antdv/ui';
+  import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue';
+  import { h, ref } from 'vue';
 
-  const current = ref<string[]>(['mail'])
+  const current = ref<string[]>(['mail']);
   const items = ref<MenuProps['items']>([
     {
       key: 'mail',
@@ -76,7 +76,7 @@ Horizontal top navigation menu.
       label: h('a', { href: 'https://antdv.com', target: '_blank' }, 'Navigation Four - Link'),
       title: 'Navigation Four - Link',
     },
-  ])
+  ]);
 </script>
 
 <template>

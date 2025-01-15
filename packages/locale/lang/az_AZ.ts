@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'az',
@@ -131,6 +131,6 @@ const localeValues: Locale = {
     uploadError: 'Yükləmə xətası',
     previewFile: 'Fayla önbaxış',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

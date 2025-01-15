@@ -17,19 +17,19 @@ A basic calendar component with Year/Month switch.
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import dayjs from 'dayjs'
-  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import dayjs from 'dayjs';
+  import { ref } from 'vue';
 
-  const date = ref<any>(dayjs('2017-01-25'))
-  const selectedValue = ref<any>(dayjs('2017-01-25'))
+  const date = ref<any>(dayjs('2017-01-25'));
+  const selectedValue = ref<any>(dayjs('2017-01-25'));
 
   function onSelect(value: Dayjs) {
-    date.value = value
-    selectedValue.value = value
+    date.value = value;
+    selectedValue.value = value;
   }
   function onPanelChange(value: Dayjs) {
-    date.value = value
+    date.value = value;
   }
 </script>
 

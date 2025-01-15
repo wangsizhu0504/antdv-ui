@@ -18,7 +18,7 @@ You can control the order of the expand and select columns by using `Table.EXPAN
 </docs>
 
 <script lang="ts" setup>
-  import { Table } from '@antdv/ui'
+  import { Table } from '@antdv/ui';
 
   const columns = [
     { title: 'Name', dataIndex: 'name', key: 'name' },
@@ -26,7 +26,7 @@ You can control the order of the expand and select columns by using `Table.EXPAN
     { title: 'Age', dataIndex: 'age', key: 'age' },
     Table.SELECTION_COLUMN,
     { title: 'Address', dataIndex: 'address', key: 'address' },
-  ]
+  ];
 
   const data = [
     {
@@ -57,7 +57,7 @@ You can control the order of the expand and select columns by using `Table.EXPAN
       address: 'Sidney No. 1 Lake Park',
       description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
     },
-  ]
+  ];
 </script>
 
 <template>

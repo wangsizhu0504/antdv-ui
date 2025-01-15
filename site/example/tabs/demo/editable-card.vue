@@ -18,45 +18,45 @@ Only card type Tabs support adding & closable.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
   const panes = ref<Array<{ title: string; content: string; key: string; closable?: boolean }>>([
     { title: 'Tab 1', content: 'Content of Tab 1', key: '1' },
     { title: 'Tab 2', content: 'Content of Tab 2', key: '2' },
     { title: 'Tab 3', content: 'Content of Tab 3', key: '3', closable: false },
-  ])
+  ]);
 
-  const activeKey = ref<any>(panes.value[0].key)
+  const activeKey = ref<any>(panes.value[0].key);
 
-  const newTabIndex = ref<any>(0)
+  const newTabIndex = ref<any>(0);
 
   function add() {
-    activeKey.value = `newTab${++newTabIndex.value}`
-    panes.value.push({ title: 'New Tab', content: 'Content of new Tab', key: activeKey.value })
+    activeKey.value = `newTab${++newTabIndex.value}`;
+    panes.value.push({ title: 'New Tab', content: 'Content of new Tab', key: activeKey.value });
   }
 
   function remove(targetKey: string) {
-    let lastIndex = 0
+    let lastIndex = 0;
     panes.value.forEach((pane, i) => {
       if (pane.key === targetKey) {
-        lastIndex = i - 1
+        lastIndex = i - 1;
       }
-    })
-    panes.value = panes.value.filter(pane => pane.key !== targetKey)
+    });
+    panes.value = panes.value.filter(pane => pane.key !== targetKey);
     if (panes.value.length && activeKey.value === targetKey) {
       if (lastIndex >= 0) {
-        activeKey.value = panes.value[lastIndex].key
+        activeKey.value = panes.value[lastIndex].key;
       } else {
-        activeKey.value = panes.value[0].key
+        activeKey.value = panes.value[0].key;
       }
     }
   }
 
   function onEdit(targetKey: string | MouseEvent, action: string) {
     if (action === 'add') {
-      add()
+      add();
     } else {
-      remove(targetKey as string)
+      remove(targetKey as string);
     }
   }
 </script>

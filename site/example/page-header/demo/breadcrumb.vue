@@ -30,7 +30,7 @@ With breadcrumbs, it is suitable for deeper pages, allowing users to navigate qu
       path: 'second',
       breadcrumbName: 'Third-level Menu',
     },
-  ]
+  ];
 </script>
 
 <template>

@@ -1,7 +1,7 @@
-import type { MouseEventHandler, SizeType } from '@antdv/types'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { ButtonHTMLType, ButtonShape, ButtonType } from './interface'
-import { eventType, PropTypes } from '@antdv/utils'
+import type { MouseEventHandler, SizeType } from '@antdv/types';
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { ButtonHTMLType, ButtonShape, ButtonType } from './interface';
+import { eventType, PropTypes } from '@antdv/utils';
 
 export function buttonProps() {
   return {
@@ -28,7 +28,7 @@ export function buttonProps() {
     title: String,
     onClick: eventType<MouseEventHandler>(),
     onMousedown: eventType<MouseEventHandler>(),
-  }
+  };
 }
 
 export function buttonGroupProps() {
@@ -37,9 +37,9 @@ export function buttonGroupProps() {
     size: {
       type: String as PropType<SizeType>,
     },
-  }
+  };
 }
 
-export type ButtonProps = Partial<ExtractPropTypes<ReturnType<typeof buttonProps>>>
+export type ButtonProps = Partial<ExtractPropTypes<ReturnType<typeof buttonProps>>>;
 
-export type ButtonGroupProps = Partial<ExtractPropTypes<ReturnType<typeof buttonGroupProps>>>
+export type ButtonGroupProps = Partial<ExtractPropTypes<ReturnType<typeof buttonGroupProps>>>;

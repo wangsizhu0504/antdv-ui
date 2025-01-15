@@ -18,18 +18,18 @@ value 和 onChange 需要配合使用。也可以直接使用v-model。
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import dayjs from 'dayjs'
-  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import dayjs from 'dayjs';
+  import { ref } from 'vue';
 
-  const value = ref<Dayjs>()
+  const value = ref<Dayjs>();
 
   function onChange(time: Dayjs) {
-    console.log(time)
-    value.value = time
+    console.log(time);
+    value.value = time;
   }
 
-  const value2 = ref<any>(dayjs())
+  const value2 = ref<any>(dayjs());
 </script>
 
 <template>

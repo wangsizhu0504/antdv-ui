@@ -1,22 +1,22 @@
-import type { Key } from '@antdv/types'
-import type { NotificationAPI } from '@antdv/vue-components/vc-notification/src/useNotification'
-import type { VNode } from 'vue'
+import type { Key } from '@antdv/types';
+import type { NotificationAPI } from '@antdv/vue-components/vc-notification/src/useNotification';
+import type { VNode } from 'vue';
 import type {
   NotificationArgsProps,
   NotificationConfig,
   NotificationInstance,
   NotificationPlacement,
-} from './interface'
-import { classNames } from '@antdv/utils'
-import useVcNotification from '@antdv/vue-components/vc-notification/src/useNotification'
-import { computed, defineComponent, shallowRef } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import { getCloseIcon, PureContent } from './PurePanel'
-import { getMotion, getPlacementStyle } from './util'
+} from './interface';
+import { classNames } from '@antdv/utils';
+import useVcNotification from '@antdv/vue-components/vc-notification/src/useNotification';
+import { computed, defineComponent, shallowRef } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import { getCloseIcon, PureContent } from './PurePanel';
+import { getMotion, getPlacementStyle } from './util';
 
-const DEFAULT_OFFSET = 24
-const DEFAULT_DURATION = 4.5
+const DEFAULT_OFFSET = 24;
+const DEFAULT_DURATION = 4.5;
 
 // ==============================================================================
 // ==                                  Holder                                  ==
@@ -24,7 +24,7 @@ const DEFAULT_DURATION = 4.5
 type HolderProps = NotificationConfig & {
   onAllRemoved?: VoidFunction
   getPopupContainer?: () => HTMLElement
-}
+};
 
 interface HolderRef extends NotificationAPI {
   prefixCls: string
@@ -36,19 +36,19 @@ const Holder = defineComponent({
   inheritAttrs: false,
   props: ['prefixCls', 'class', 'type', 'icon', 'content', 'onAllRemoved'],
   setup(props: HolderProps, { expose }) {
-    const { getPrefixCls, getPopupContainer } = useConfigInject('notification', props)
-    const prefixCls = computed(() => props.prefixCls || getPrefixCls('notification'))
+    const { getPrefixCls, getPopupContainer } = useConfigInject('notification', props);
+    const prefixCls = computed(() => props.prefixCls || getPrefixCls('notification'));
     // =============================== Style ===============================
     const getStyles = (placement: NotificationPlacement) =>
-      getPlacementStyle(placement, props.top ?? DEFAULT_OFFSET, props.bottom ?? DEFAULT_OFFSET)
+      getPlacementStyle(placement, props.top ?? DEFAULT_OFFSET, props.bottom ?? DEFAULT_OFFSET);
 
     // Style
-    const [, hashId] = useStyle(prefixCls)
+    const [, hashId] = useStyle(prefixCls);
 
-    const getClassName = () => classNames(hashId.value, { [`${prefixCls.value}-rtl`]: props.rtl })
+    const getClassName = () => classNames(hashId.value, { [`${prefixCls.value}-rtl`]: props.rtl });
 
     // ============================== Motion ===============================
-    const getNotificationMotion = () => getMotion(prefixCls.value)
+    const getNotificationMotion = () => getMotion(prefixCls.value);
 
     // ============================== Origin ===============================
     const [api, holder] = useVcNotification({
@@ -64,17 +64,17 @@ const Holder = defineComponent({
       maxCount: props.maxCount,
       hashId: hashId.value,
       onAllRemoved: props.onAllRemoved,
-    })
+    });
 
     // ================================ Ref ================================
     expose({
       ...api,
       prefixCls: prefixCls.value,
       hashId,
-    })
-    return holder
+    });
+    return holder;
   },
-})
+});
 
 // ==============================================================================
 // ==                                   Hook                                   ==
@@ -82,20 +82,20 @@ const Holder = defineComponent({
 export function useInternalNotification(
   notificationConfig?: HolderProps,
 ): readonly [NotificationInstance, () => VNode] {
-  const holderRef = shallowRef<HolderRef>(null)
-  const holderKey = Symbol('notificationHolderKey')
+  const holderRef = shallowRef<HolderRef>(null);
+  const holderKey = Symbol('notificationHolderKey');
   // ================================ API ================================
   // Wrap with notification content
 
   // >>> Open
   const open = (config: NotificationArgsProps) => {
     if (!holderRef.value)
-      return
+      return;
 
-    const { open: originOpen, prefixCls, hashId } = holderRef.value
-    const noticePrefixCls = `${prefixCls}-notice`
+    const { open: originOpen, prefixCls, hashId } = holderRef.value;
+    const noticePrefixCls = `${prefixCls}-notice`;
 
-    const { message, description, icon, type, btn, class: className, ...restConfig } = config
+    const { message, description, icon, type, btn, class: className, ...restConfig } = config;
     return originOpen({
       placement: 'topRight',
       ...restConfig,
@@ -111,38 +111,38 @@ export function useInternalNotification(
       ),
       // @ts-expect-error
       class: classNames(type && `${noticePrefixCls}-${type}`, hashId, className),
-    })
-  }
+    });
+  };
 
   // >>> destroy
   const destroy = (key?: Key) => {
     if (key !== undefined)
-      holderRef.value?.close(key)
+      holderRef.value?.close(key);
     else
-      holderRef.value?.destroy()
-  }
+      holderRef.value?.destroy();
+  };
 
   const wrapAPI = {
     open,
     destroy,
-  } as NotificationInstance
+  } as NotificationInstance;
 
-  const keys = ['success', 'info', 'warning', 'error'] as const
+  const keys = ['success', 'info', 'warning', 'error'] as const;
   keys.forEach((type) => {
     wrapAPI[type] = config =>
       open({
         ...config,
         type,
-      })
-  })
+      });
+  });
 
   // ============================== Return ===============================
   return [
     wrapAPI,
     () => <Holder key={holderKey} {...notificationConfig} ref={holderRef} />,
-  ] as const
+  ] as const;
 }
 
 export default function useNotification(notificationConfig?: NotificationConfig) {
-  return useInternalNotification(notificationConfig)
+  return useInternalNotification(notificationConfig);
 }

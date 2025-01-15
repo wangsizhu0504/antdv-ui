@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import Basic from './basic.vue'
-  import Custom from './custom.vue'
-  import WatermarkImage from './image.vue'
-  import MultiLine from './multi-line.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import Basic from './basic.vue';
+  import Custom from './custom.vue';
+  import WatermarkImage from './image.vue';
+  import MultiLine from './multi-line.vue';
 
   export default defineComponent({
     CN,
@@ -16,7 +16,7 @@
       WatermarkImage,
       Custom,
     },
-  })
+  });
 </script>
 
 <template>

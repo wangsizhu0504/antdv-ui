@@ -15,11 +15,11 @@ Custom each Segmented Item.
 </docs>
 
 <script lang="ts" setup>
-  import { UserOutlined } from '@ant-design/icons-vue'
-  import { Segmented } from '@antdv/ui'
-  import { ref } from 'vue'
+  import { UserOutlined } from '@ant-design/icons-vue';
+  import { Segmented } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const ASegmented = Segmented
+  const ASegmented = Segmented;
   const data = ref<any>([
     {
       value: 'user1',
@@ -42,7 +42,7 @@ Custom each Segmented Item.
         style: { backgroundColor: '#f56a00' },
       },
     },
-  ])
+  ]);
   const options2 = ref<any>([
     {
       value: 'spring',
@@ -72,9 +72,9 @@ Custom each Segmented Item.
         subTitle: 'Oct-Dec',
       },
     },
-  ])
-  const value = ref<any>('user1')
-  const value2 = ref<any>('spring')
+  ]);
+  const value = ref<any>('user1');
+  const value2 = ref<any>('spring');
 </script>
 
 <template>

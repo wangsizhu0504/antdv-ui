@@ -1,2 +1,2 @@
-export * from './addEventListener'
-export * from './supportsPassive'
+export * from './addEventListener';
+export * from './supportsPassive';

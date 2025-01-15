@@ -1,8 +1,8 @@
-import type { MenuProps } from '@antdv/ui'
+import type { MenuProps } from '@antdv/ui';
 
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
+import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue';
 
-type MenuItem = Required<MenuProps>['items'][number]
+type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(label: any, key: string, icon?: any, children?: MenuItem[], type?: 'group'): MenuItem {
   return {
@@ -11,7 +11,7 @@ function getItem(label: any, key: string, icon?: any, children?: MenuItem[], typ
     children,
     label,
     type,
-  } as MenuItem
+  } as MenuItem;
 }
 
 const items: MenuProps['items'] = [
@@ -32,6 +32,6 @@ const items: MenuProps['items'] = [
     getItem('Option 11', '11'),
     getItem('Option 12', '12'),
   ]),
-]
+];
 
-export default items
+export default items;

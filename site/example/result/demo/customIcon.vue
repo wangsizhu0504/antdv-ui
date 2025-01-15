@@ -17,7 +17,7 @@ Custom icon.
 </docs>
 
 <script lang="ts" setup>
-  import { SmileTwoTone } from '@ant-design/icons-vue'
+  import { SmileTwoTone } from '@ant-design/icons-vue';
 </script>
 
 <template>

@@ -1,62 +1,62 @@
-import type { Ref, UnwrapRef } from 'vue'
-import { raf } from '@antdv/utils'
-import { onBeforeUnmount, ref, shallowRef } from 'vue'
+import type { Ref, UnwrapRef } from 'vue';
+import { raf } from '@antdv/utils';
+import { onBeforeUnmount, ref, shallowRef } from 'vue';
 
-export type Updater<State> = (prev: State) => State
+export type Updater<State> = (prev: State) => State;
 
 export function useLayoutState<State>(
   defaultState: State,
 ): [Ref<State>, (updater: Updater<State>) => void] {
-  const stateRef = shallowRef<State>(defaultState)
-  let rafId: number
-  const updateBatchRef = shallowRef<Array<Updater<State>>>([])
+  const stateRef = shallowRef<State>(defaultState);
+  let rafId: number;
+  const updateBatchRef = shallowRef<Array<Updater<State>>>([]);
   function setFrameState(updater: Updater<State>) {
-    updateBatchRef.value.push(updater)
-    raf.cancel(rafId)
+    updateBatchRef.value.push(updater);
+    raf.cancel(rafId);
     rafId = raf(() => {
-      const prevBatch = updateBatchRef.value
+      const prevBatch = updateBatchRef.value;
       // const prevState = stateRef.value;
-      updateBatchRef.value = []
+      updateBatchRef.value = [];
       prevBatch.forEach((batchUpdater) => {
-        stateRef.value = batchUpdater(stateRef.value as State)
-      })
-    })
+        stateRef.value = batchUpdater(stateRef.value as State);
+      });
+    });
   }
   onBeforeUnmount(() => {
-    raf.cancel(rafId)
-  })
+    raf.cancel(rafId);
+  });
 
-  return [stateRef as Ref<State>, setFrameState]
+  return [stateRef as Ref<State>, setFrameState];
 }
 
 /** Lock frame, when frame pass reset the lock. */
 export function useTimeoutLock<State>(
   defaultState?: State,
 ): [(state: UnwrapRef<State>) => void, () => UnwrapRef<State> | null] {
-  const frameRef = ref<State | null>(defaultState || null)
-  const timeoutRef = ref<any>()
+  const frameRef = ref<State | null>(defaultState || null);
+  const timeoutRef = ref<any>();
 
   function cleanUp() {
-    clearTimeout(timeoutRef.value)
+    clearTimeout(timeoutRef.value);
   }
 
   function setState(newState: UnwrapRef<State>) {
-    frameRef.value = newState
-    cleanUp()
+    frameRef.value = newState;
+    cleanUp();
 
     timeoutRef.value = setTimeout(() => {
-      frameRef.value = null
-      timeoutRef.value = undefined
-    }, 100)
+      frameRef.value = null;
+      timeoutRef.value = undefined;
+    }, 100);
   }
 
   function getState() {
-    return frameRef.value
+    return frameRef.value;
   }
 
   onBeforeUnmount(() => {
-    cleanUp()
-  })
+    cleanUp();
+  });
 
-  return [setState, getState]
+  return [setState, getState];
 }

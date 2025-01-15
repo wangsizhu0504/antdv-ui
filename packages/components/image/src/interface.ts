@@ -1,9 +1,9 @@
-import type { IDialogChildProps } from '@antdv/vue-components/vc-dialog/src/IDialogPropTypes'
-import type { ComputedRef, Ref, VNode } from 'vue'
+import type { IDialogChildProps } from '@antdv/vue-components/vc-dialog/src/IDialogPropTypes';
+import type { ComputedRef, Ref, VNode } from 'vue';
 
-export type GetContainer = string | HTMLElement | (() => HTMLElement)
+export type GetContainer = string | HTMLElement | (() => HTMLElement);
 
-export type ImageStatus = 'normal' | 'error' | 'loading'
+export type ImageStatus = 'normal' | 'error' | 'loading';
 
 export type ImagePreviewType = Omit<
   IDialogChildProps,
@@ -15,7 +15,7 @@ export type ImagePreviewType = Omit<
   getContainer?: GetContainer | false
   maskClassName?: string
   icons?: ImageIcons
-}
+};
 
 export interface ImageIcons {
   rotateLeft?: VNode

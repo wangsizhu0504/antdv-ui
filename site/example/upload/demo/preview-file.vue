@@ -16,21 +16,21 @@ Customize local preview. Can handle with non-image format files such as video.
 </docs>
 
 <script lang="ts" setup>
-  import type { UploadProps } from '@antdv/ui'
-  import { UploadOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { UploadProps } from '@antdv/ui';
+  import { UploadOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   const previewFile: UploadProps['previewFile'] = async (file) => {
-    console.log('Your upload file:', file)
+    console.log('Your upload file:', file);
     // Your process logic. Here we just mock to the same file
     const res = await fetch('https://next.json-generator.com/api/json/get/4ytyBoLK8', {
       method: 'POST',
       body: file,
-    })
-    const { thumbnail } = await res.json()
-    return thumbnail
-  }
-  const fileList = ref<any>([])
+    });
+    const { thumbnail } = await res.json();
+    return thumbnail;
+  };
+  const fileList = ref<any>([]);
 </script>
 
 <template>

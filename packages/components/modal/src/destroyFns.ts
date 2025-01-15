@@ -1,2 +1,2 @@
-const destroyFns: Function[] = []
-export default destroyFns
+const destroyFns: Function[] = [];
+export default destroyFns;

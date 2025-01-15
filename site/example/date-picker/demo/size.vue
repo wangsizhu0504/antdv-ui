@@ -17,9 +17,9 @@ The input box comes in three sizes. `default` will be used if `size` is omitted.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const size = ref<any>('default')
+  const size = ref<any>('default');
 </script>
 
 <template>

@@ -16,37 +16,37 @@ to work with `Form`.
 </docs>
 
 <script lang="ts" setup>
-  import { Form, Mentions } from '@antdv/ui'
-  import { reactive } from 'vue'
+  import { Form, Mentions } from '@antdv/ui';
+  import { reactive } from 'vue';
 
-  const useForm = Form.useForm
-  const { getMentions } = Mentions
+  const useForm = Form.useForm;
+  const { getMentions } = Mentions;
   async function checkMention(_, value) {
-    const mentions = getMentions(value)
+    const mentions = getMentions(value);
     if (mentions.length < 2) {
-      return Promise.reject('More than one must be selected!')
+      return Promise.reject('More than one must be selected!');
     } else {
-      return Promise.resolve()
+      return Promise.resolve();
     }
   }
   const modelRef = reactive({
     bio: '',
     coders: '',
-  })
+  });
   const rulesRef = reactive({
     bio: [{ required: true, message: 'Must input bio' }],
     coders: [{ required: true, validator: checkMention }],
-  })
-  const { resetFields, validate, validateInfos } = useForm(modelRef, rulesRef)
+  });
+  const { resetFields, validate, validateInfos } = useForm(modelRef, rulesRef);
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     validate()
       .then(() => {
-        console.log('Submit!!!', modelRef)
+        console.log('Submit!!!', modelRef);
       })
       .catch((errors) => {
-        console.log('Errors in the form!!!', errors)
-      })
+        console.log('Errors in the form!!!', errors);
+      });
   }
   const options = [
     {
@@ -61,7 +61,7 @@ to work with `Form`.
       value: 'yesmeck',
       label: 'yesmeck',
     },
-  ]
+  ];
 </script>
 
 <template>

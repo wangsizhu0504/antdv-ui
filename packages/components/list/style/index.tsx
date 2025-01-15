@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
 
 export interface ComponentToken {
   contentWidth: number
@@ -23,7 +23,7 @@ function genBorderedStyle(token: ListToken): CSSObject {
     listItemPaddingSM,
     marginLG,
     borderRadiusLG,
-  } = token
+  } = token;
   return {
     [`${listBorderedCls}`]: {
       border: `${token.lineWidth}px ${token.lineType} ${token.colorBorder}`,
@@ -47,10 +47,10 @@ function genBorderedStyle(token: ListToken): CSSObject {
         padding: `${padding}px ${paddingLG}px`,
       },
     },
-  }
+  };
 }
 function genResponsiveStyle(token: ListToken): CSSObject {
-  const { componentCls, screenSM, screenMD, marginLG, marginSM, margin } = token
+  const { componentCls, screenSM, screenMD, marginLG, marginSM, margin } = token;
   return {
     [`@media screen and (max-width:${screenMD})`]: {
       [`${componentCls}`]: {
@@ -95,7 +95,7 @@ function genResponsiveStyle(token: ListToken): CSSObject {
         },
       },
     },
-  }
+  };
 }
 
 // =============================== Base ===============================
@@ -118,7 +118,7 @@ const genBaseStyle: GenerateStyle<ListToken> = (token) => {
     colorTextDescription,
     motionDurationSlow,
     lineWidth,
-  } = token
+  } = token;
 
   return {
     [`${componentCls}`]: {
@@ -329,8 +329,8 @@ const genBaseStyle: GenerateStyle<ListToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
@@ -342,11 +342,11 @@ export default genComponentStyleHook(
       listItemPadding: `${token.paddingContentVertical}px ${token.paddingContentHorizontalLG}px`,
       listItemPaddingSM: `${token.paddingContentVerticalSM}px ${token.paddingContentHorizontal}px`,
       listItemPaddingLG: `${token.paddingContentVerticalLG}px ${token.paddingContentHorizontalLG}px`,
-    })
+    });
 
-    return [genBaseStyle(listToken), genBorderedStyle(listToken), genResponsiveStyle(listToken)]
+    return [genBaseStyle(listToken), genBorderedStyle(listToken), genResponsiveStyle(listToken)];
   },
   {
     contentWidth: 220,
   },
-)
+);

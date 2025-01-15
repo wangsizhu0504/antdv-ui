@@ -1,1 +1,1 @@
-export { default as ResizeObserver } from './src/index'
+export { default as ResizeObserver } from './src/index';

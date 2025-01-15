@@ -1,11 +1,11 @@
-import { detectFlexGapSupported } from '@antdv/utils'
-import { onMounted, shallowRef } from 'vue'
+import { detectFlexGapSupported } from '@antdv/utils';
+import { onMounted, shallowRef } from 'vue';
 
 export function useFlexGapSupport() {
-  const flexible = shallowRef(false)
+  const flexible = shallowRef(false);
   onMounted(() => {
-    flexible.value = detectFlexGapSupported()
-  })
+    flexible.value = detectFlexGapSupported();
+  });
 
-  return flexible
+  return flexible;
 }

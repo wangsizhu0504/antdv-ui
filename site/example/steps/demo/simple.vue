@@ -16,7 +16,7 @@ The most basic step bar.
 </docs>
 
 <script lang="ts" setup>
-  const description = 'This is a description.'
+  const description = 'This is a description.';
 </script>
 
 <template>

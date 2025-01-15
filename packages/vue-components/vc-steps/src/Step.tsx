@@ -1,6 +1,6 @@
-import type { EventHandler, VueNode } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-import type { Status, StepIconRender } from './interface'
+import type { EventHandler, VueNode } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes } from 'vue';
+import type { Status, StepIconRender } from './interface';
 import {
   booleanType,
   classNames,
@@ -9,11 +9,11 @@ import {
   PropTypes,
   stringType,
   withUndefined,
-} from '@antdv/utils'
-import { defineComponent } from 'vue'
+} from '@antdv/utils';
+import { defineComponent } from 'vue';
 
 function isString(str: any): str is string {
-  return typeof str === 'string'
+  return typeof str === 'string';
 }
 function noop() {}
 
@@ -43,10 +43,10 @@ export function VcStepProps() {
     stepIcon: functionType<StepIconRender>(),
     itemRender: functionType<(stepItem: VueNode) => VueNode>(),
     __legacy: booleanType(),
-  }
+  };
 }
 
-export type VCStepProps = Partial<ExtractPropTypes<ReturnType<typeof VcStepProps>>>
+export type VCStepProps = Partial<ExtractPropTypes<ReturnType<typeof VcStepProps>>>;
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'Step',
@@ -54,9 +54,9 @@ export default defineComponent({
   props: VcStepProps(),
   setup(props, { slots, emit, attrs }) {
     const onItemClick: EventHandler = (e) => {
-      emit('click', e)
-      emit('stepClick', props.stepIndex)
-    }
+      emit('click', e);
+      emit('stepClick', props.stepIndex);
+    };
     // if (props.__legacy !== false) {
     //   warning(
     //     false,
@@ -73,17 +73,17 @@ export default defineComponent({
         icons,
         progressDot = slots.progressDot,
         stepIcon = slots.stepIcon,
-      } = props
+      } = props;
 
-      let iconNode
+      let iconNode;
       const iconClassName = classNames(`${prefixCls}-icon`, `${iconPrefix}icon`, {
         [`${iconPrefix}icon-${icon}`]: icon && isString(icon),
         [`${iconPrefix}icon-check`]:
           !icon && status === 'finish' && ((icons && !icons.finish) || !icons),
         [`${iconPrefix}icon-cross`]:
           !icon && status === 'error' && ((icons && !icons.error) || !icons),
-      })
-      const iconDot = <span class={`${prefixCls}-icon-dot`} />
+      });
+      const iconDot = <span class={`${prefixCls}-icon-dot`} />;
       // `progressDot` enjoy the highest priority
       if (progressDot) {
         if (typeof progressDot === 'function') {
@@ -98,20 +98,20 @@ export default defineComponent({
                 prefixCls,
               })}
             </span>
-          )
+          );
         } else {
-          iconNode = <span class={`${prefixCls}-icon`}>{iconDot}</span>
+          iconNode = <span class={`${prefixCls}-icon`}>{iconDot}</span>;
         }
       } else if (icon && !isString(icon)) {
-        iconNode = <span class={`${prefixCls}-icon`}>{icon}</span>
+        iconNode = <span class={`${prefixCls}-icon`}>{icon}</span>;
       } else if (icons && icons.finish && status === 'finish') {
-        iconNode = <span class={`${prefixCls}-icon`}>{icons.finish}</span>
+        iconNode = <span class={`${prefixCls}-icon`}>{icons.finish}</span>;
       } else if (icons && icons.error && status === 'error') {
-        iconNode = <span class={`${prefixCls}-icon`}>{icons.error}</span>
+        iconNode = <span class={`${prefixCls}-icon`}>{icons.error}</span>;
       } else if (icon || status === 'finish' || status === 'error') {
-        iconNode = <span class={iconClassName} />
+        iconNode = <span class={iconClassName} />;
       } else {
-        iconNode = <span class={`${prefixCls}-icon`}>{stepNumber}</span>
+        iconNode = <span class={`${prefixCls}-icon`}>{stepNumber}</span>;
       }
 
       if (stepIcon) {
@@ -121,11 +121,11 @@ export default defineComponent({
           title,
           description,
           node: iconNode,
-        })
+        });
       }
 
-      return iconNode
-    }
+      return iconNode;
+    };
     return () => {
       const {
         prefixCls,
@@ -141,19 +141,19 @@ export default defineComponent({
         icon = slots.icon?.(),
         onClick,
         onStepClick,
-      } = props
-      const mergedStatus = status || 'wait'
+      } = props;
+      const mergedStatus = status || 'wait';
       const classString = classNames(`${prefixCls}-item`, `${prefixCls}-item-${mergedStatus}`, {
         [`${prefixCls}-item-custom`]: icon,
         [`${prefixCls}-item-active`]: active,
         [`${prefixCls}-item-disabled`]: disabled === true,
-      })
-      const stepItemStyle: CSSProperties = {}
+      });
+      const stepItemStyle: CSSProperties = {};
       if (itemWidth)
-        stepItemStyle.width = itemWidth
+        stepItemStyle.width = itemWidth;
 
       if (adjustMarginRight)
-        stepItemStyle.marginRight = adjustMarginRight
+        stepItemStyle.marginRight = adjustMarginRight;
 
       const accessibilityProps: {
         role?: string;
@@ -161,12 +161,12 @@ export default defineComponent({
         onClick?: EventHandler;
       } = {
         onClick: onClick || noop,
-      }
+      };
 
       if (onStepClick && !disabled) {
-        accessibilityProps.role = 'button'
-        accessibilityProps.tabindex = 0
-        accessibilityProps.onClick = onItemClick
+        accessibilityProps.role = 'button';
+        accessibilityProps.tabindex = 0;
+        accessibilityProps.onClick = onItemClick;
       }
       const stepNode = (
         <div
@@ -195,11 +195,11 @@ export default defineComponent({
             </div>
           </div>
         </div>
-      )
+      );
       if (props.itemRender)
-        return props.itemRender(stepNode)
+        return props.itemRender(stepNode);
 
-      return stepNode
-    }
+      return stepNode;
+    };
   },
-})
+});

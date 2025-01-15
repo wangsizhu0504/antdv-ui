@@ -1,16 +1,16 @@
-import type { PropType } from 'vue'
-import type { SelectedToken, Theme } from '../interface'
-import type { TokenGroup } from '../meta/interface'
-import { Tabs } from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, ref, toRefs, watchEffect } from 'vue'
-import { useInjectLocaleContext } from '../locale'
-import { tokenCategory } from '../meta'
-import makeStyle from '../utils/makeStyle'
-import AliasPanel from './AliasPanel'
-import TokenContent from './TokenContent'
+import type { PropType } from 'vue';
+import type { SelectedToken, Theme } from '../interface';
+import type { TokenGroup } from '../meta/interface';
+import { Tabs } from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, ref, toRefs, watchEffect } from 'vue';
+import { useInjectLocaleContext } from '../locale';
+import { tokenCategory } from '../meta';
+import makeStyle from '../utils/makeStyle';
+import AliasPanel from './AliasPanel';
+import TokenContent from './TokenContent';
 
-const { TabPane } = Tabs
+const { TabPane } = Tabs;
 
 const useStyle = makeStyle('TokenPanelPro', token => ({
   '.token-panel-pro': {
@@ -28,7 +28,7 @@ const useStyle = makeStyle('TokenPanelPro', token => ({
       },
     },
   },
-}))
+}));
 
 export interface TokenPanelProProps {
   theme: Theme
@@ -57,22 +57,22 @@ const TokenPanelPro = defineComponent({
     onAliasOpenChange: { type: Function as PropType<(value: boolean) => void> },
   },
   setup(props, { attrs }) {
-    const { theme, selectedTokens, infoFollowPrimary, aliasOpen } = toRefs(props)
+    const { theme, selectedTokens, infoFollowPrimary, aliasOpen } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
+    const [wrapSSR, hashId] = useStyle();
 
-    const activeGroup = ref<string>('brandColor')
-    const locale = useInjectLocaleContext()
+    const activeGroup = ref<string>('brandColor');
+    const locale = useInjectLocaleContext();
 
     const activeCategory = computed(() => {
       return tokenCategory.reduce<TokenGroup<string> | undefined>((result, category) => {
-        return result ?? category.groups.find(group => group.key === activeGroup.value)
-      }, undefined)
-    })
+        return result ?? category.groups.find(group => group.key === activeGroup.value);
+      }, undefined);
+    });
 
     watchEffect(() => {
-      props.onTokenSelect(activeCategory.value?.seedToken ?? [], 'seed')
-    })
+      props.onTokenSelect(activeCategory.value?.seedToken ?? [], 'seed');
+    });
 
     return () => {
       return wrapSSR(
@@ -85,7 +85,7 @@ const TokenPanelPro = defineComponent({
             class="token-panel-pro-tabs"
             onChange={(key) => {
               activeGroup.value
-                = tokenCategory.find(category => category.nameEn === key)?.groups[0].key ?? ''
+                = tokenCategory.find(category => category.nameEn === key)?.groups[0].key ?? '';
             }}
           >
             {tokenCategory.map(category => (
@@ -116,9 +116,9 @@ const TokenPanelPro = defineComponent({
             onTokenSelect={props.onTokenSelect}
           />
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default TokenPanelPro
+export default TokenPanelPro;

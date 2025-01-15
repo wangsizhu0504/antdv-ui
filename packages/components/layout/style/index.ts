@@ -1,6 +1,6 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken } from '@antdv/theme'
-import genLayoutLightStyle from './light'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken } from '@antdv/theme';
+import genLayoutLightStyle from './light';
 
 export interface ComponentToken {
   colorBgHeader: string
@@ -37,7 +37,7 @@ const genLayoutStyle: GenerateStyle<LayoutToken, CSSObject> = (token) => {
     motionDurationSlow,
     fontSize,
     borderRadius,
-  } = token
+  } = token;
 
   return {
     [componentCls]: {
@@ -191,15 +191,15 @@ const genLayoutStyle: GenerateStyle<LayoutToken, CSSObject> = (token) => {
         direction: 'rtl',
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
   'Layout',
   (token) => {
-    const { colorText, controlHeightSM, controlHeight, controlHeightLG, marginXXS } = token
-    const layoutHeaderPaddingInline = controlHeightLG * 1.25
+    const { colorText, controlHeightSM, controlHeight, controlHeightLG, marginXXS } = token;
+    const layoutHeaderPaddingInline = controlHeightLG * 1.25;
 
     const layoutToken = mergeToken<LayoutToken>(token, {
       // Layout
@@ -209,17 +209,17 @@ export default genComponentStyleHook(
       layoutFooterPadding: `${controlHeightSM}px ${layoutHeaderPaddingInline}px`,
       layoutTriggerHeight: controlHeightLG + marginXXS * 2, // = item height + margin
       layoutZeroTriggerSize: controlHeightLG,
-    })
+    });
 
-    return [genLayoutStyle(layoutToken)]
+    return [genLayoutStyle(layoutToken)];
   },
   (token) => {
-    const { colorBgLayout } = token
+    const { colorBgLayout } = token;
 
     return {
       colorBgHeader: '#001529',
       colorBgBody: colorBgLayout,
       colorBgTrigger: '#002140',
-    }
+    };
   },
-)
+);

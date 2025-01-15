@@ -1,8 +1,8 @@
-import { classNames } from '@antdv/utils'
-import { defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import { typographyProps } from './props'
+import { classNames } from '@antdv/utils';
+import { defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import { typographyProps } from './props';
 
 // CSSINJS
 
@@ -11,10 +11,10 @@ const Typography = defineComponent({
   inheritAttrs: false,
   props: typographyProps(),
   setup(props, { slots, attrs }) {
-    const { prefixCls, direction } = useConfigInject('typography', props)
+    const { prefixCls, direction } = useConfigInject('typography', props);
 
     // Style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     return () => {
       const {
@@ -22,7 +22,7 @@ const Typography = defineComponent({
         direction: _direction,
         component: Component = 'article' as any,
         ...restProps
-      } = { ...props, ...attrs }
+      } = { ...props, ...attrs };
       return wrapSSR(
         <Component
           {...restProps}
@@ -35,9 +35,9 @@ const Typography = defineComponent({
         >
           {slots.default?.()}
         </Component>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default Typography
+export default Typography;

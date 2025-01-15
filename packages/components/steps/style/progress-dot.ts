@@ -1,5 +1,5 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { StepsToken } from '.'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { StepsToken } from '.';
 
 const genStepsProgressDotStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
   const {
@@ -9,7 +9,7 @@ const genStepsProgressDotStyle: GenerateStyle<StepsToken, CSSObject> = (token) =
     stepsCurrentDotSize,
     stepsDotSize,
     motionDurationSlow,
-  } = token
+  } = token;
 
   return {
     [`&${componentCls}-dot, &${componentCls}-dot${componentCls}-small`]: {
@@ -126,7 +126,7 @@ const genStepsProgressDotStyle: GenerateStyle<StepsToken, CSSObject> = (token) =
         width: 'inherit',
       },
     },
-  }
-}
+  };
+};
 
-export default genStepsProgressDotStyle
+export default genStepsProgressDotStyle;

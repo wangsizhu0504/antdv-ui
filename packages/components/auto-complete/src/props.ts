@@ -1,7 +1,7 @@
-import type { InputStatus } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import { omit } from '@antdv/utils'
-import { selectProps } from '../../select'
+import type { InputStatus } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import { omit } from '@antdv/utils';
+import { selectProps } from '../../select';
 
 export function autoCompleteProps() {
   return {
@@ -23,7 +23,7 @@ export function autoCompleteProps() {
     filterOption: { type: [Boolean, Function], default: false },
     defaultActiveFirstOption: { type: Boolean, default: true },
     status: String as PropType<InputStatus>,
-  }
+  };
 }
 
-export type AutoCompleteProps = Partial<ExtractPropTypes<ReturnType<typeof autoCompleteProps>>>
+export type AutoCompleteProps = Partial<ExtractPropTypes<ReturnType<typeof autoCompleteProps>>>;

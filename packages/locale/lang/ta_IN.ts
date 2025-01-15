@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'ta',
@@ -148,6 +148,6 @@ const localeValues: Locale = {
   PageHeader: {
     back: 'பின் செல்லவும்',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

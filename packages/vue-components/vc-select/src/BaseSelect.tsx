@@ -1,11 +1,11 @@
-import type { FocusEventHandler, Key, KeyboardEventHandler, MouseEventHandler, VueNode } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { AlignType } from '../../vc-trigger/src/interface'
-import type { ScrollConfig, ScrollTo } from '../../vc-virtual-list/src/List'
-import type { BaseSelectContextProps } from './hooks/useBaseProps'
-import type { BaseOptionType } from './Select'
-import type { RefSelectorProps } from './Selector'
-import type { RefTriggerProps } from './SelectTrigger'
+import type { FocusEventHandler, Key, KeyboardEventHandler, MouseEventHandler, VueNode } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import type { AlignType } from '../../vc-trigger/src/interface';
+import type { ScrollConfig, ScrollTo } from '../../vc-virtual-list/src/List';
+import type { BaseSelectContextProps } from './hooks/useBaseProps';
+import type { BaseOptionType } from './Select';
+import type { RefSelectorProps } from './Selector';
+import type { RefTriggerProps } from './SelectTrigger';
 import {
   classNames,
   cloneElement,
@@ -16,7 +16,7 @@ import {
   KeyCode,
   PropTypes,
   toReactive,
-} from '@antdv/utils'
+} from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -28,16 +28,16 @@ import {
   toRefs,
   watch,
   watchEffect,
-} from 'vue'
-import useInjectLegacySelectContext from '../../vc-tree-select/src/LegacyContext'
-import { useProvideBaseSelectProps } from './hooks/useBaseProps'
-import useDelayReset from './hooks/useDelayReset'
-import useLock from './hooks/useLock'
-import useSelectTriggerControl from './hooks/useSelectTriggerControl'
-import Selector from './Selector'
-import SelectTrigger from './SelectTrigger'
-import TransBtn from './TransBtn'
-import { getSeparatedContent } from './utils/valueUtil'
+} from 'vue';
+import useInjectLegacySelectContext from '../../vc-tree-select/src/LegacyContext';
+import { useProvideBaseSelectProps } from './hooks/useBaseProps';
+import useDelayReset from './hooks/useDelayReset';
+import useLock from './hooks/useLock';
+import useSelectTriggerControl from './hooks/useSelectTriggerControl';
+import Selector from './Selector';
+import SelectTrigger from './SelectTrigger';
+import TransBtn from './TransBtn';
+import { getSeparatedContent } from './utils/valueUtil';
 
 const DEFAULT_OMIT_PROPS = [
   'value',
@@ -54,17 +54,17 @@ const DEFAULT_OMIT_PROPS = [
   'tabindex',
   'OptionList',
   'notFoundContent',
-] as const
+] as const;
 
-export type RenderNode = VueNode | ((props: any) => VueNode)
+export type RenderNode = VueNode | ((props: any) => VueNode);
 
-export type RenderDOMFunc = (props: any) => HTMLElement
+export type RenderDOMFunc = (props: any) => HTMLElement;
 
-export type Mode = 'multiple' | 'tags' | 'combobox'
+export type Mode = 'multiple' | 'tags' | 'combobox';
 
-export type Placement = 'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight'
+export type Placement = 'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight';
 
-export type RawValueType = string | number
+export type RawValueType = string | number;
 
 export interface RefOptionListProps {
   onKeydown: KeyboardEventHandler;
@@ -143,7 +143,7 @@ function baseSelectPrivateProps() {
 
     /** Tell if provided `options` is empty */
     emptyOptions: Boolean,
-  }
+  };
 }
 
 export interface DropdownObject {
@@ -151,7 +151,7 @@ export interface DropdownObject {
   props?: Record<string, any>;
 }
 
-export type DropdownRender = (opt?: DropdownObject) => VueNode
+export type DropdownRender = (opt?: DropdownObject) => VueNode;
 export function baseSelectPropsWithoutPrivate() {
   return {
     showSearch: { type: Boolean, default: undefined },
@@ -233,25 +233,25 @@ export function baseSelectPropsWithoutPrivate() {
     onMouseenter: Function as PropType<(e: MouseEvent) => void>,
     onMouseleave: Function as PropType<(e: MouseEvent) => void>,
     onClick: Function as PropType<(e: MouseEvent) => void>,
-  }
+  };
 }
 function baseSelectProps() {
   return {
     ...baseSelectPrivateProps(),
     ...baseSelectPropsWithoutPrivate(),
-  }
+  };
 }
 
 export type BaseSelectPrivateProps = Partial<
   ExtractPropTypes<ReturnType<typeof baseSelectPrivateProps>>
->
+>;
 
-export type BaseSelectProps = Partial<ExtractPropTypes<ReturnType<typeof baseSelectProps>>>
+export type BaseSelectProps = Partial<ExtractPropTypes<ReturnType<typeof baseSelectProps>>>;
 
-export type BaseSelectPropsWithoutPrivate = Omit<BaseSelectProps, keyof BaseSelectPrivateProps>
+export type BaseSelectPropsWithoutPrivate = Omit<BaseSelectProps, keyof BaseSelectPrivateProps>;
 
 export function isMultiple(mode: Mode) {
-  return mode === 'tags' || mode === 'multiple'
+  return mode === 'tags' || mode === 'multiple';
 }
 
 export default defineComponent({
@@ -260,131 +260,131 @@ export default defineComponent({
   inheritAttrs: false,
   props: initDefaultProps(baseSelectProps(), { showAction: [], notFoundContent: 'Not Found' }),
   setup(props, { attrs, expose, slots }) {
-    const multiple = computed(() => isMultiple(props.mode))
+    const multiple = computed(() => isMultiple(props.mode));
 
     const mergedShowSearch = computed(() =>
       props.showSearch !== undefined
         ? props.showSearch
         : multiple.value || props.mode === 'combobox',
-    )
-    const mobile = shallowRef(false)
+    );
+    const mobile = shallowRef(false);
     onMounted(() => {
-      mobile.value = isMobile()
-    })
-    const legacyTreeSelectContext = useInjectLegacySelectContext()
+      mobile.value = isMobile();
+    });
+    const legacyTreeSelectContext = useInjectLegacySelectContext();
     // ============================== Refs ==============================
-    const containerRef = shallowRef<HTMLDivElement>(null)
-    const selectorDomRef = createRef()
-    const triggerRef = shallowRef<RefTriggerProps>(null)
-    const selectorRef = shallowRef<RefSelectorProps>(null)
-    const listRef = shallowRef<RefOptionListProps>(null)
-    const blurRef = ref<boolean>(false)
+    const containerRef = shallowRef<HTMLDivElement>(null);
+    const selectorDomRef = createRef();
+    const triggerRef = shallowRef<RefTriggerProps>(null);
+    const selectorRef = shallowRef<RefSelectorProps>(null);
+    const listRef = shallowRef<RefOptionListProps>(null);
+    const blurRef = ref<boolean>(false);
 
     /** Used for component focused management */
-    const [mockFocused, setMockFocused, cancelSetMockFocused] = useDelayReset()
+    const [mockFocused, setMockFocused, cancelSetMockFocused] = useDelayReset();
 
     const focus = () => {
-      selectorRef.value?.focus()
-    }
+      selectorRef.value?.focus();
+    };
     const blur = () => {
-      selectorRef.value?.blur()
-    }
+      selectorRef.value?.blur();
+    };
     expose({
       focus,
       blur,
       scrollTo: arg => listRef.value?.scrollTo(arg),
-    })
+    });
 
     const mergedSearchValue = computed(() => {
       if (props.mode !== 'combobox')
-        return props.searchValue
+        return props.searchValue;
 
-      const val = props.displayValues[0]?.value
+      const val = props.displayValues[0]?.value;
 
-      return typeof val === 'string' || typeof val === 'number' ? String(val) : ''
-    })
+      return typeof val === 'string' || typeof val === 'number' ? String(val) : '';
+    });
 
     // ============================== Open ==============================
-    const initOpen = props.open !== undefined ? props.open : props.defaultOpen
-    const innerOpen = shallowRef(initOpen)
-    const mergedOpen = shallowRef(initOpen)
+    const initOpen = props.open !== undefined ? props.open : props.defaultOpen;
+    const innerOpen = shallowRef(initOpen);
+    const mergedOpen = shallowRef(initOpen);
     const setInnerOpen = (val: boolean) => {
-      innerOpen.value = props.open !== undefined ? props.open : val
-      mergedOpen.value = innerOpen.value
-    }
+      innerOpen.value = props.open !== undefined ? props.open : val;
+      mergedOpen.value = innerOpen.value;
+    };
     watch(
       () => props.open,
       () => {
-        setInnerOpen(props.open)
+        setInnerOpen(props.open);
       },
-    )
+    );
 
     // Not trigger `open` in `combobox` when `notFoundContent` is empty
-    const emptyListContent = computed(() => !props.notFoundContent && props.emptyOptions)
+    const emptyListContent = computed(() => !props.notFoundContent && props.emptyOptions);
 
     watchEffect(() => {
-      mergedOpen.value = innerOpen.value
+      mergedOpen.value = innerOpen.value;
       if (
         props.disabled
         || (emptyListContent.value && mergedOpen.value && props.mode === 'combobox')
       ) {
-        mergedOpen.value = false
+        mergedOpen.value = false;
       }
-    })
+    });
 
-    const triggerOpen = computed(() => (emptyListContent.value ? false : mergedOpen.value))
+    const triggerOpen = computed(() => (emptyListContent.value ? false : mergedOpen.value));
 
     const onToggleOpen = (newOpen?: boolean) => {
-      const nextOpen = newOpen !== undefined ? newOpen : !mergedOpen.value
+      const nextOpen = newOpen !== undefined ? newOpen : !mergedOpen.value;
 
       if (mergedOpen.value !== nextOpen && !props.disabled) {
-        setInnerOpen(nextOpen)
-        props.onDropdownVisibleChange && props.onDropdownVisibleChange(nextOpen)
+        setInnerOpen(nextOpen);
+        props.onDropdownVisibleChange && props.onDropdownVisibleChange(nextOpen);
         if (!nextOpen && popupFocused.value) {
-          popupFocused.value = false
+          popupFocused.value = false;
           setMockFocused(false, () => {
-            focusRef.value = false
-            blurRef.value = false
-          })
+            focusRef.value = false;
+            blurRef.value = false;
+          });
         }
       }
-    }
+    };
 
     const tokenWithEnter = computed(() =>
       (props.tokenSeparators || []).some(tokenSeparator => ['\n', '\r\n'].includes(tokenSeparator)),
-    )
+    );
 
     const onInternalSearch = (searchText: string, fromTyping: boolean, isCompositing: boolean) => {
-      let ret = true
-      let newSearchText = searchText
-      props.onActiveValueChange?.(null)
+      let ret = true;
+      let newSearchText = searchText;
+      props.onActiveValueChange?.(null);
 
       // Check if match the `tokenSeparators`
       const patchLabels: string[] = isCompositing
         ? null
-        : getSeparatedContent(searchText, props.tokenSeparators)
+        : getSeparatedContent(searchText, props.tokenSeparators);
 
       // Ignore combobox since it's not split-able
       if (props.mode !== 'combobox' && patchLabels) {
-        newSearchText = ''
+        newSearchText = '';
 
-        props.onSearchSplit?.(patchLabels)
+        props.onSearchSplit?.(patchLabels);
 
         // Should close when paste finish
-        onToggleOpen(false)
+        onToggleOpen(false);
 
         // Tell Selector that break next actions
-        ret = false
+        ret = false;
       }
 
       if (props.onSearch && mergedSearchValue.value !== newSearchText) {
         props.onSearch(newSearchText, {
           source: fromTyping ? 'typing' : 'effect',
-        })
+        });
       }
 
-      return ret
-    }
+      return ret;
+    };
 
     // Only triggered when menu is closed & mode is tags
     // If menu is open, OptionList will take charge
@@ -392,20 +392,20 @@ export default defineComponent({
     const onInternalSearchSubmit = (searchText: string) => {
       // prevent empty tags from appearing when you click the Enter button
       if (!searchText || !searchText.trim())
-        return
+        return;
 
-      props.onSearch?.(searchText, { source: 'submit' })
-    }
+      props.onSearch?.(searchText, { source: 'submit' });
+    };
 
     // Close will clean up single mode search text
     watch(
       mergedOpen,
       () => {
         if (!mergedOpen.value && !multiple.value && props.mode !== 'combobox')
-          onInternalSearch('', false, false)
+          onInternalSearch('', false, false);
       },
       { immediate: true, flush: 'post' },
-    )
+    );
 
     // ============================ Disabled ============================
     // Close dropdown & remove focus state when disabled change
@@ -413,13 +413,13 @@ export default defineComponent({
       () => props.disabled,
       () => {
         if (innerOpen.value && !!props.disabled)
-          setInnerOpen(false)
+          setInnerOpen(false);
 
         if (props.disabled && !blurRef.value)
-          setMockFocused(false)
+          setMockFocused(false);
       },
       { immediate: true },
-    )
+    );
 
     // ============================ Keyboard ============================
     /**
@@ -428,24 +428,24 @@ export default defineComponent({
      * - true: Search text is empty when first time backspace down
      * - false: Search text is not empty when first time backspace down
      */
-    const [getClearLock, setClearLock] = useLock()
+    const [getClearLock, setClearLock] = useLock();
 
     // KeyDown
     const onInternalKeyDown: KeyboardEventHandler = (event, ...rest) => {
-      const clearLock = getClearLock()
-      const { which } = event
+      const clearLock = getClearLock();
+      const { which } = event;
 
       if (which === KeyCode.ENTER) {
         // Do not submit form when type in the input
         if (props.mode !== 'combobox')
-          event.preventDefault()
+          event.preventDefault();
 
         // We only manage open state here, close logic should handle by list component
         if (!mergedOpen.value)
-          onToggleOpen(true)
+          onToggleOpen(true);
       }
 
-      setClearLock(!!mergedSearchValue.value)
+      setClearLock(!!mergedSearchValue.value);
 
       // Remove value by `backspace`
       if (
@@ -455,16 +455,16 @@ export default defineComponent({
         && !mergedSearchValue.value
         && props.displayValues.length
       ) {
-        const cloneDisplayValues = [...props.displayValues]
-        let removedDisplayValue = null
+        const cloneDisplayValues = [...props.displayValues];
+        let removedDisplayValue = null;
 
         for (let i = cloneDisplayValues.length - 1; i >= 0; i -= 1) {
-          const current = cloneDisplayValues[i]
+          const current = cloneDisplayValues[i];
 
           if (!current.disabled) {
-            cloneDisplayValues.splice(i, 1)
-            removedDisplayValue = current
-            break
+            cloneDisplayValues.splice(i, 1);
+            removedDisplayValue = current;
+            break;
           }
         }
 
@@ -472,153 +472,153 @@ export default defineComponent({
           props.onDisplayValuesChange(cloneDisplayValues, {
             type: 'remove',
             values: [removedDisplayValue],
-          })
+          });
         }
       }
 
       if (mergedOpen.value && listRef.value)
-        listRef.value.onKeydown(event, ...rest)
+        listRef.value.onKeydown(event, ...rest);
 
-      props.onKeydown?.(event, ...rest)
-    }
+      props.onKeydown?.(event, ...rest);
+    };
 
     // KeyUp
     const onInternalKeyUp: KeyboardEventHandler = (event: KeyboardEvent, ...rest) => {
       if (mergedOpen.value && listRef.value)
-        listRef.value.onKeyup(event, ...rest)
+        listRef.value.onKeyup(event, ...rest);
 
       if (props.onKeyup)
-        props.onKeyup(event, ...rest)
-    }
+        props.onKeyup(event, ...rest);
+    };
 
     // ============================ Selector ============================
     const onSelectorRemove = (val: DisplayValueType) => {
-      const newValues = props.displayValues.filter(i => i !== val)
+      const newValues = props.displayValues.filter(i => i !== val);
 
       props.onDisplayValuesChange(newValues, {
         type: 'remove',
         values: [val],
-      })
-    }
+      });
+    };
 
     // ========================== Focus / Blur ==========================
     /** Record real focus status */
-    const focusRef = shallowRef(false)
+    const focusRef = shallowRef(false);
     const onContainerFocus: FocusEventHandler = (...args) => {
-      setMockFocused(true)
+      setMockFocused(true);
 
       if (!props.disabled) {
         if (props.onFocus && !focusRef.value)
-          props.onFocus(...args)
+          props.onFocus(...args);
 
         // `showAction` should handle `focus` if set
         if (props.showAction && props.showAction.includes('focus'))
-          onToggleOpen(true)
+          onToggleOpen(true);
       }
 
-      focusRef.value = true
-    }
-    const popupFocused = ref(false)
+      focusRef.value = true;
+    };
+    const popupFocused = ref(false);
     const onContainerBlur: FocusEventHandler = (...args) => {
       if (popupFocused.value)
-        return
+        return;
 
-      blurRef.value = true
+      blurRef.value = true;
       setMockFocused(false, () => {
-        focusRef.value = false
-        blurRef.value = false
-        onToggleOpen(false)
-      })
+        focusRef.value = false;
+        blurRef.value = false;
+        onToggleOpen(false);
+      });
 
       if (props.disabled)
-        return
+        return;
 
-      const searchVal = mergedSearchValue.value
+      const searchVal = mergedSearchValue.value;
       if (searchVal) {
         // `tags` mode should move `searchValue` into values
         if (props.mode === 'tags') {
-          props.onSearch(searchVal, { source: 'submit' })
+          props.onSearch(searchVal, { source: 'submit' });
         } else if (props.mode === 'multiple') {
           // `multiple` mode only clean the search value but not trigger event
           props.onSearch('', {
             source: 'blur',
-          })
+          });
         }
       }
 
       if (props.onBlur)
-        props.onBlur(...args)
-    }
+        props.onBlur(...args);
+    };
     const onPopupFocusin = () => {
-      popupFocused.value = true
-    }
+      popupFocused.value = true;
+    };
     const onPopupFocusout = () => {
-      setMockFocused(false)
-      popupFocused.value = false
-    }
+      setMockFocused(false);
+      popupFocused.value = false;
+    };
     provide('VCSelectContainerEvent', {
       focus: onContainerFocus,
       blur: onContainerBlur,
-    })
+    });
 
     // Give focus back of Select
-    const activeTimeoutIds: any[] = []
+    const activeTimeoutIds: any[] = [];
 
     onMounted(() => {
-      activeTimeoutIds.forEach(timeoutId => clearTimeout(timeoutId))
-      activeTimeoutIds.splice(0, activeTimeoutIds.length)
-    })
+      activeTimeoutIds.forEach(timeoutId => clearTimeout(timeoutId));
+      activeTimeoutIds.splice(0, activeTimeoutIds.length);
+    });
     onBeforeUnmount(() => {
-      activeTimeoutIds.forEach(timeoutId => clearTimeout(timeoutId))
-      activeTimeoutIds.splice(0, activeTimeoutIds.length)
-    })
+      activeTimeoutIds.forEach(timeoutId => clearTimeout(timeoutId));
+      activeTimeoutIds.splice(0, activeTimeoutIds.length);
+    });
 
     const onInternalMouseDown: MouseEventHandler = (event, ...restArgs) => {
-      const { target } = event
-      const popupElement: HTMLDivElement = triggerRef.value?.getPopupElement()
+      const { target } = event;
+      const popupElement: HTMLDivElement = triggerRef.value?.getPopupElement();
 
       // We should give focus back to selector if clicked item is not focusable
       if (popupElement && popupElement.contains(target as HTMLElement)) {
         const timeoutId: any = setTimeout(() => {
-          const index = activeTimeoutIds.indexOf(timeoutId)
+          const index = activeTimeoutIds.indexOf(timeoutId);
           if (index !== -1)
-            activeTimeoutIds.splice(index, 1)
+            activeTimeoutIds.splice(index, 1);
 
-          cancelSetMockFocused()
+          cancelSetMockFocused();
 
           if (!mobile.value && !popupElement.contains(document.activeElement))
-            selectorRef.value?.focus()
-        })
+            selectorRef.value?.focus();
+        });
 
-        activeTimeoutIds.push(timeoutId)
+        activeTimeoutIds.push(timeoutId);
       }
 
-      props.onMousedown?.(event, ...restArgs)
-    }
+      props.onMousedown?.(event, ...restArgs);
+    };
 
     // ============================= Dropdown ==============================
-    const containerWidth = shallowRef<number>(null)
+    const containerWidth = shallowRef<number>(null);
     // const instance = getCurrentInstance();
     const onPopupMouseEnter = () => {
       // We need force update here since popup dom is render async
       // instance.update();
-    }
+    };
     onMounted(() => {
       watch(
         triggerOpen,
         () => {
           if (triggerOpen.value) {
-            const newWidth = Math.ceil(containerRef.value?.offsetWidth)
+            const newWidth = Math.ceil(containerRef.value?.offsetWidth);
             if (containerWidth.value !== newWidth && !Number.isNaN(newWidth))
-              containerWidth.value = newWidth
+              containerWidth.value = newWidth;
           }
         },
         { immediate: true, flush: 'post' },
-      )
-    })
+      );
+    });
 
     // Close when click on non-select element
-    useSelectTriggerControl([containerRef, triggerRef], triggerOpen, onToggleOpen)
+    useSelectTriggerControl([containerRef, triggerRef], triggerOpen, onToggleOpen);
     useProvideBaseSelectProps(
       toReactive({
         ...toRefs(props),
@@ -628,7 +628,7 @@ export default defineComponent({
         multiple,
         toggleOpen: onToggleOpen,
       } as unknown as BaseSelectContextProps),
-    )
+    );
     return () => {
       const {
         prefixCls,
@@ -693,39 +693,39 @@ export default defineComponent({
         OptionList,
 
         ...restProps
-      } = { ...props, ...attrs } as BaseSelectProps
+      } = { ...props, ...attrs } as BaseSelectProps;
       // ============================= Input ==============================
       // Only works in `combobox`
       const customizeInputElement: any
-        = (mode === 'combobox' && getInputElement && getInputElement()) || null
+        = (mode === 'combobox' && getInputElement && getInputElement()) || null;
 
       // Used for customize replacement for `vc-cascader`
       const customizeRawInputElement: any
-        = typeof getRawInputElement === 'function' && getRawInputElement()
+        = typeof getRawInputElement === 'function' && getRawInputElement();
       const domProps = {
         ...restProps,
-      } as Omit<keyof typeof restProps, (typeof DEFAULT_OMIT_PROPS)[number]>
+      } as Omit<keyof typeof restProps, (typeof DEFAULT_OMIT_PROPS)[number]>;
 
       // Used for raw custom input trigger
-      let onTriggerVisibleChange: null | ((newOpen: boolean) => void)
+      let onTriggerVisibleChange: null | ((newOpen: boolean) => void);
       if (customizeRawInputElement) {
         onTriggerVisibleChange = (newOpen: boolean) => {
-          onToggleOpen(newOpen)
-        }
+          onToggleOpen(newOpen);
+        };
       }
 
       DEFAULT_OMIT_PROPS.forEach((propName) => {
-        delete domProps[propName]
-      })
+        delete domProps[propName];
+      });
 
       omitDomProps?.forEach((propName) => {
-        delete domProps[propName]
-      })
+        delete domProps[propName];
+      });
 
       // ============================= Arrow ==============================
       const mergedShowArrow
-        = showArrow !== undefined ? showArrow : loading || (!multiple.value && mode !== 'combobox')
-      let arrowNode: VueNode
+        = showArrow !== undefined ? showArrow : loading || (!multiple.value && mode !== 'combobox');
+      let arrowNode: VueNode;
 
       if (mergedShowArrow) {
         arrowNode = (
@@ -742,20 +742,20 @@ export default defineComponent({
               showSearch: mergedShowSearch.value,
             }}
           />
-        )
+        );
       }
 
       // ============================= Clear ==============================
-      let clearNode: VueNode
+      let clearNode: VueNode;
       const onClearMouseDown: MouseEventHandler = () => {
-        onClear?.()
+        onClear?.();
 
         onDisplayValuesChange([], {
           type: 'clear',
           values: displayValues,
-        })
-        onInternalSearch('', false, false)
-      }
+        });
+        onInternalSearch('', false, false);
+      };
 
       if (!disabled && allowClear && (displayValues.length || mergedSearchValue.value)) {
         clearNode = (
@@ -766,7 +766,7 @@ export default defineComponent({
           >
             ×
           </TransBtn>
-        )
+        );
       }
 
       // =========================== OptionList ===========================
@@ -775,7 +775,7 @@ export default defineComponent({
           ref={listRef}
           v-slots={{ ...legacyTreeSelectContext.customSlots, option: slots.option }}
         />
-      )
+      );
 
       // ============================= Select =============================
       const mergedClassName = classNames(prefixCls, attrs.class, {
@@ -789,7 +789,7 @@ export default defineComponent({
         [`${prefixCls}-open`]: mergedOpen.value,
         [`${prefixCls}-customize-input`]: customizeInputElement,
         [`${prefixCls}-show-search`]: mergedShowSearch.value,
-      })
+      });
 
       // >>> Selector
       const selectorNode = (
@@ -853,18 +853,18 @@ export default defineComponent({
                       onRemove={onSelectorRemove}
                       tokenWithEnter={tokenWithEnter.value}
                     />
-                  )
+                  );
             },
           }}
         >
         </SelectTrigger>
-      )
+      );
       // >>> Render
-      let renderNode: VueNode
+      let renderNode: VueNode;
 
       // Render raw
       if (customizeRawInputElement) {
-        renderNode = selectorNode
+        renderNode = selectorNode;
       } else {
         renderNode = (
           <div
@@ -901,9 +901,9 @@ export default defineComponent({
             {arrowNode}
             {clearNode}
           </div>
-        )
+        );
       }
-      return renderNode
-    }
+      return renderNode;
+    };
   },
-})
+});

@@ -17,16 +17,16 @@ Render in current dom. custom container, check `getContainer`.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const open = ref<any>(false)
+  const open = ref<any>(false);
 
   function showDrawer() {
-    open.value = true
+    open.value = true;
   }
 
   function onClose() {
-    open.value = false
+    open.value = false;
   }
 </script>
 

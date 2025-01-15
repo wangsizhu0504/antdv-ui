@@ -24,7 +24,7 @@ A Solution for displaying large amounts of data with long columns.
 </docs>
 
 <script lang="ts" setup>
-  import type { TableColumnsType } from '@antdv/ui'
+  import type { TableColumnsType } from '@antdv/ui';
 
   const columns: TableColumnsType = [
     { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
@@ -43,7 +43,7 @@ A Solution for displaying large amounts of data with long columns.
       fixed: 'right',
       width: 100,
     },
-  ]
+  ];
 
   interface DataItem {
     key: number;
@@ -52,14 +52,14 @@ A Solution for displaying large amounts of data with long columns.
     address: string;
   }
 
-  const data: DataItem[] = []
+  const data: DataItem[] = [];
   for (let i = 0; i < 100; i++) {
     data.push({
       key: i,
       name: `Edrward ${i}`,
       age: 32,
       address: `London Park no. ${i}`,
-    })
+    });
   }
 </script>
 

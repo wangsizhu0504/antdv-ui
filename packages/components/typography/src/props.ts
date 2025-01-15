@@ -1,8 +1,8 @@
-import type { AnchorHTMLAttributes, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import type { Direction } from '../../config-provider'
-import type { AutoSizeType } from '../../input'
-import type { BaseType, EllipsisConfig, InternalBlockProps } from './interface'
-import { omit, tupleNum } from '@antdv/utils'
+import type { AnchorHTMLAttributes, ExtractPropTypes, HTMLAttributes, PropType } from 'vue';
+import type { Direction } from '../../config-provider';
+import type { AutoSizeType } from '../../input';
+import type { BaseType, EllipsisConfig, InternalBlockProps } from './interface';
+import { omit, tupleNum } from '@antdv/utils';
 
 export function baseProps() {
   return {
@@ -30,7 +30,7 @@ export function baseProps() {
     'keyboard': { type: Boolean, default: undefined },
     'content': String,
     'onUpdate:content': Function as PropType<(content: string) => void>,
-  }
+  };
 }
 
 export function editableProps() {
@@ -46,12 +46,12 @@ export function editableProps() {
     originContent: String,
     direction: String as PropType<Direction>,
     component: String,
-  }
+  };
 }
 
-export const linkProps = () => omit({ ...baseProps(), ellipsis: { type: Boolean, default: undefined } }, ['component'])
+export const linkProps = () => omit({ ...baseProps(), ellipsis: { type: Boolean, default: undefined } }, ['component']);
 
-export const paragraphProps = () => omit(baseProps(), ['component'])
+export const paragraphProps = () => omit(baseProps(), ['component']);
 
 export function textProps() {
   return {
@@ -62,25 +62,25 @@ export function textProps() {
       >,
       default: undefined as boolean | Omit<EllipsisConfig, 'expandable' | 'rows' | 'onExpand'>,
     },
-  }
+  };
 }
-export const TITLE_ELE_LIST = tupleNum(1, 2, 3, 4, 5)
+export const TITLE_ELE_LIST = tupleNum(1, 2, 3, 4, 5);
 export function titleProps() {
   return {
     ...omit(baseProps(), ['component', 'strong']),
     level: Number as PropType<(typeof TITLE_ELE_LIST)[number]>,
-  }
+  };
 }
 
-export type TitleProps = Partial<ExtractPropTypes<ReturnType<typeof titleProps>>>
+export type TitleProps = Partial<ExtractPropTypes<ReturnType<typeof titleProps>>>;
 
-export type TextProps = Partial<ExtractPropTypes<ReturnType<typeof textProps>>>
+export type TextProps = Partial<ExtractPropTypes<ReturnType<typeof textProps>>>;
 
-export type ParagraphProps = Partial<ExtractPropTypes<ReturnType<typeof paragraphProps>>>
+export type ParagraphProps = Partial<ExtractPropTypes<ReturnType<typeof paragraphProps>>>;
 
-export type LinkProps = Partial<ExtractPropTypes<ReturnType<typeof linkProps>>> & AnchorHTMLAttributes
+export type LinkProps = Partial<ExtractPropTypes<ReturnType<typeof linkProps>>> & AnchorHTMLAttributes;
 
-export type EditableProps = Partial<ExtractPropTypes<ReturnType<typeof editableProps>>>
+export type EditableProps = Partial<ExtractPropTypes<ReturnType<typeof editableProps>>>;
 
 export interface TypographyProps extends HTMLAttributes {
   direction?: Direction
@@ -96,5 +96,5 @@ export function typographyProps() {
     direction: String as PropType<Direction>,
     // Form Internal use
     component: String,
-  }
+  };
 }

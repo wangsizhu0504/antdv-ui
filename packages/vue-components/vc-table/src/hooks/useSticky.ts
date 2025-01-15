@@ -1,10 +1,10 @@
-import type { ComputedRef, Ref } from 'vue'
-import type { TableSticky } from '../interface'
-import { canUseDom } from '@antdv/utils'
-import { computed } from 'vue'
+import type { ComputedRef, Ref } from 'vue';
+import type { TableSticky } from '../interface';
+import { canUseDom } from '@antdv/utils';
+import { computed } from 'vue';
 
 // fix ssr render
-const defaultContainer = canUseDom() ? window : null
+const defaultContainer = canUseDom() ? window : null;
 
 /** Sticky header hooks */
 export default function useSticky(
@@ -24,10 +24,10 @@ export default function useSticky(
       offsetSummary = 0,
       offsetScroll = 0,
       getContainer = () => defaultContainer,
-    } = typeof stickyRef.value === 'object' ? stickyRef.value : {}
+    } = typeof stickyRef.value === 'object' ? stickyRef.value : {};
 
-    const container = getContainer() || defaultContainer
-    const isSticky = !!stickyRef.value
+    const container = getContainer() || defaultContainer;
+    const isSticky = !!stickyRef.value;
     return {
       isSticky,
       stickyClassName: isSticky ? `${prefixClsRef.value}-sticky-holder` : '',
@@ -35,6 +35,6 @@ export default function useSticky(
       offsetSummary,
       offsetScroll,
       container,
-    }
-  })
+    };
+  });
 }

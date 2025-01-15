@@ -1,5 +1,5 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import { PropTypes } from '@antdv/utils'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import { PropTypes } from '@antdv/utils';
 
 export function dialogPropTypes() {
   return {
@@ -43,7 +43,7 @@ export function dialogPropTypes() {
     focusTriggerAfterClose: { type: Boolean, default: undefined },
     onClose: Function as PropType<(e: MouseEvent | KeyboardEvent) => void>,
     modalRender: Function,
-  }
+  };
 }
-export type IDialogChildProps = Partial<ExtractPropTypes<ReturnType<typeof dialogPropTypes>>>
-export default dialogPropTypes
+export type IDialogChildProps = Partial<ExtractPropTypes<ReturnType<typeof dialogPropTypes>>>;
+export default dialogPropTypes;

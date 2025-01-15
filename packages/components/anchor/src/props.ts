@@ -1,8 +1,8 @@
-import type { VueNode } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { AnchorContainer, AnchorDirection, AnchorLinkItemProps } from './interface'
+import type { VueNode } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import type { AnchorContainer, AnchorDirection, AnchorLinkItemProps } from './interface';
 
-import { anyType, arrayType, objectType, PropTypes } from '@antdv/utils'
+import { anyType, arrayType, objectType, PropTypes } from '@antdv/utils';
 
 export function anchorProps() {
   return {
@@ -20,7 +20,7 @@ export function anchorProps() {
     direction: PropTypes.oneOf(['vertical', 'horizontal'] as AnchorDirection[]).def('vertical'),
     onChange: Function as PropType<(currentActiveLink: string) => void>,
     onClick: Function as PropType<(e: MouseEvent, link: { title: any, href: string }) => void>,
-  }
+  };
 }
 
 export function anchorLinkProps() {
@@ -34,9 +34,9 @@ export function anchorLinkProps() {
     target: String,
     /* private use  */
     customTitleProps: objectType<AnchorLinkItemProps>(),
-  }
+  };
 }
 
-export type AnchorProps = Partial<ExtractPropTypes<ReturnType<typeof anchorProps>>>
+export type AnchorProps = Partial<ExtractPropTypes<ReturnType<typeof anchorProps>>>;
 
-export type AnchorLinkProps = Partial<ExtractPropTypes<ReturnType<typeof anchorLinkProps>>>
+export type AnchorLinkProps = Partial<ExtractPropTypes<ReturnType<typeof anchorLinkProps>>>;

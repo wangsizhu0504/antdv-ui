@@ -1,9 +1,9 @@
-import type { VueNode } from '@antdv/types'
-import type { InnerSelectorProps } from './interface'
-import { pickAttrs, PropTypes } from '@antdv/utils'
-import { computed, defineComponent, Fragment, shallowRef, watch } from 'vue'
-import useInjectLegacySelectContext from '../../../vc-tree-select/src/LegacyContext'
-import Input from './Input'
+import type { VueNode } from '@antdv/types';
+import type { InnerSelectorProps } from './interface';
+import { pickAttrs, PropTypes } from '@antdv/utils';
+import { computed, defineComponent, Fragment, shallowRef, watch } from 'vue';
+import useInjectLegacySelectContext from '../../../vc-tree-select/src/LegacyContext';
+import Input from './Input';
 
 interface SelectorProps extends InnerSelectorProps {
   inputElement: VueNode;
@@ -38,64 +38,64 @@ const props = {
   onInputMouseDown: Function,
   onInputCompositionStart: Function,
   onInputCompositionEnd: Function,
-}
+};
 const SingleSelector = defineComponent<SelectorProps>({
   name: 'SingleSelector',
   setup(props) {
-    const inputChanged = shallowRef(false)
+    const inputChanged = shallowRef(false);
 
-    const combobox = computed(() => props.mode === 'combobox')
-    const inputEditable = computed(() => combobox.value || props.showSearch)
+    const combobox = computed(() => props.mode === 'combobox');
+    const inputEditable = computed(() => combobox.value || props.showSearch);
 
     const inputValue = computed(() => {
-      let _inputValue: string = props.searchValue || ''
+      let _inputValue: string = props.searchValue || '';
       if (combobox.value && props.activeValue && !inputChanged.value)
-        _inputValue = props.activeValue
+        _inputValue = props.activeValue;
 
-      return _inputValue
-    })
-    const legacyTreeSelectContext = useInjectLegacySelectContext()
+      return _inputValue;
+    });
+    const legacyTreeSelectContext = useInjectLegacySelectContext();
     watch(
       [combobox, () => props.activeValue],
       () => {
         if (combobox.value)
-          inputChanged.value = false
+          inputChanged.value = false;
       },
       { immediate: true },
-    )
+    );
 
     // Not show text when closed expect combobox mode
     const hasTextInput = computed(() =>
       props.mode !== 'combobox' && !props.open && !props.showSearch
         ? false
         : !!inputValue.value || props.compositionStatus,
-    )
+    );
 
     const title = computed(() => {
-      const item = props.values[0]
+      const item = props.values[0];
       return item && (typeof item.label === 'string' || typeof item.label === 'number')
         ? item.label.toString()
-        : undefined
-    })
+        : undefined;
+    });
 
     const renderPlaceholder = () => {
       if (props.values[0])
-        return null
+        return null;
 
-      const hiddenStyle = hasTextInput.value ? { visibility: 'hidden' as const } : undefined
+      const hiddenStyle = hasTextInput.value ? { visibility: 'hidden' as const } : undefined;
       return (
         <span class={`${props.prefixCls}-selection-placeholder`} style={hiddenStyle}>
           {props.placeholder}
         </span>
-      )
-    }
+      );
+    };
     const handleInput = (e: Event) => {
-      const composing = (e.target as any).composing
+      const composing = (e.target as any).composing;
       if (!composing) {
-        inputChanged.value = true
-        props.onInputChange(e)
+        inputChanged.value = true;
+        props.onInputChange(e);
       }
-    }
+    };
     return () => {
       const {
         inputElement,
@@ -115,28 +115,28 @@ const SingleSelector = defineComponent<SelectorProps>({
         onInputPaste,
         onInputCompositionStart,
         onInputCompositionEnd,
-      } = props
-      const item = values[0]
-      let titleNode = null
+      } = props;
+      const item = values[0];
+      let titleNode = null;
       // custom tree-select title by slot
 
       // For TreeSelect
       if (item && legacyTreeSelectContext.customSlots) {
-        const key = item.key ?? item.value
-        const originData = legacyTreeSelectContext.keyEntities[key]?.node || {}
+        const key = item.key ?? item.value;
+        const originData = legacyTreeSelectContext.keyEntities[key]?.node || {};
         titleNode
           = legacyTreeSelectContext.customSlots[originData.slots?.title]
           || legacyTreeSelectContext.customSlots.title
-          || item.label
+          || item.label;
         if (typeof titleNode === 'function')
-          titleNode = titleNode(originData)
+          titleNode = titleNode(originData);
 
         //  else if (treeSelectContext.value.slots.titleRender) {
         //   // 因历史 title 是覆盖逻辑，新增 titleRender，所有的 title 都走一遍 titleRender
         //   titleNode = treeSelectContext.value.slots.titleRender(item.option?.data || {});
         // }
       } else {
-        titleNode = optionLabelRender && item ? optionLabelRender(item.option) : item?.label
+        titleNode = optionLabelRender && item ? optionLabelRender(item.option) : item?.label;
       }
       return (
         <>
@@ -174,11 +174,11 @@ const SingleSelector = defineComponent<SelectorProps>({
           {/* Display placeholder */}
           {renderPlaceholder()}
         </>
-      )
-    }
+      );
+    };
   },
-})
-SingleSelector.props = props
-SingleSelector.inheritAttrs = false
+});
+SingleSelector.props = props;
+SingleSelector.inheritAttrs = false;
 
-export default SingleSelector
+export default SingleSelector;

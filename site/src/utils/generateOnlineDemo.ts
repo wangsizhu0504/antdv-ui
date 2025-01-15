@@ -1,5 +1,5 @@
-import { getParameters } from 'codesandbox/lib/api/define'
-import packageInfo from '../../../packages/antdv-ui/package.json'
+import { getParameters } from 'codesandbox/lib/api/define';
+import packageInfo from '../../../packages/antdv-ui/package.json';
 
 const indexHtml = `<!DOCTYPE html>
 <html lang="en">
@@ -15,7 +15,7 @@ const indexHtml = `<!DOCTYPE html>
     <div id="app"></div>
   </body>
 </html>
-`
+`;
 
 const appVue = `<template>
 <Demo />
@@ -30,7 +30,7 @@ components: {
   Demo,
 },
 });
-</script>`
+</script>`;
 
 const mainJs = `import { createApp } from 'vue';
 import Antd from '@antdv/ui';
@@ -40,15 +40,15 @@ import '@antdv/ui/dist/reset.css';
 const app = createApp(App);
 
 app.use(Antd).mount('#app');
-`
+`;
 
 function getDeps(code: string) {
   return (code.match(/from '([^']+)';\n/g) || [])
     .map(v => v.slice(6, v.length - 3))
     .reduce((prevV, dep) => {
-      prevV[dep] = 'latest'
-      return prevV
-    }, {})
+      prevV[dep] = 'latest';
+      return prevV;
+    }, {});
 }
 
 interface Meta {
@@ -92,5 +92,5 @@ export function getCodeSandboxParams(code: string, meta: Meta): string {
         isBinary: false,
       },
     },
-  })
+  });
 }

@@ -19,22 +19,22 @@ Using the [Cascader](/components/cascader) component is strongly recommended ins
 </docs>
 
 <script lang="ts" setup>
-  import { computed, ref, watch } from 'vue'
+  import { computed, ref, watch } from 'vue';
 
-  const provinceData = ['Zhejiang', 'Jiangsu']
+  const provinceData = ['Zhejiang', 'Jiangsu'];
   const cityData = {
     Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
     Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang'],
-  }
-  const province = ref<any>(provinceData[0])
-  const secondCity = ref<any>(cityData[province.value][0])
+  };
+  const province = ref<any>(provinceData[0]);
+  const secondCity = ref<any>(cityData[province.value][0]);
   const cities = computed(() => {
-    return cityData[province.value]
-  })
+    return cityData[province.value];
+  });
 
   watch(province, (val) => {
-    secondCity.value = cityData[val][0]
-  })
+    secondCity.value = cityData[val][0];
+  });
 </script>
 
 <template>

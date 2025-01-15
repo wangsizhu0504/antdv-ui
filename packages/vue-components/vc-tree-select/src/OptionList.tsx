@@ -1,11 +1,11 @@
-import type { EventDataNode } from '@antdv/components/tree'
-import type { Key } from '@antdv/types'
-import type { RefOptionListProps } from '../../vc-select/src/OptionList'
-import type { TreeProps } from '../../vc-tree/src/props'
-import type { ScrollTo } from '../../vc-virtual-list/src/List'
-import type { TreeDataNode } from './interface'
-import { useMemo } from '@antdv/hooks'
-import { KeyCode } from '@antdv/utils'
+import type { EventDataNode } from '@antdv/components/tree';
+import type { Key } from '@antdv/types';
+import type { RefOptionListProps } from '../../vc-select/src/OptionList';
+import type { TreeProps } from '../../vc-tree/src/props';
+import type { ScrollTo } from '../../vc-virtual-list/src/List';
+import type { TreeDataNode } from './interface';
+import { useMemo } from '@antdv/hooks';
+import { KeyCode } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -14,12 +14,12 @@ import {
   shallowRef,
   toRaw,
   watch,
-} from 'vue'
-import { useBaseProps } from '../../vc-select'
-import Tree from '../../vc-tree/src/Tree'
-import useInjectLegacySelectContext from './LegacyContext'
-import useInjectSelectContext from './TreeSelectContext'
-import { getAllKeys, isCheckDisabled } from './utils/valueUtil'
+} from 'vue';
+import { useBaseProps } from '../../vc-select';
+import Tree from '../../vc-tree/src/Tree';
+import useInjectLegacySelectContext from './LegacyContext';
+import useInjectSelectContext from './TreeSelectContext';
+import { getAllKeys, isCheckDisabled } from './utils/valueUtil';
 
 const HIDDEN_STYLE = {
   width: 0,
@@ -30,7 +30,7 @@ const HIDDEN_STYLE = {
   border: 0,
   padding: 0,
   margin: 0,
-}
+};
 
 interface TreeEventInfo {
   node: { key: Key };
@@ -38,145 +38,145 @@ interface TreeEventInfo {
   checked?: boolean;
 }
 
-type ReviseRefOptionListProps = Omit<RefOptionListProps, 'scrollTo'> & { scrollTo: ScrollTo }
+type ReviseRefOptionListProps = Omit<RefOptionListProps, 'scrollTo'> & { scrollTo: ScrollTo };
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'OptionList',
   inheritAttrs: false,
   setup(_, { slots, expose }) {
-    const baseProps = useBaseProps()
-    const legacyContext = useInjectLegacySelectContext()
-    const context = useInjectSelectContext()
-    const treeRef = ref()
+    const baseProps = useBaseProps();
+    const legacyContext = useInjectLegacySelectContext();
+    const context = useInjectSelectContext();
+    const treeRef = ref();
     const memoTreeData = useMemo(
       () => context.treeData,
       [() => baseProps.open, () => context.treeData],
       next => next[0],
-    )
+    );
 
     const mergedCheckedKeys = computed(() => {
-      const { checkable, halfCheckedKeys, checkedKeys } = legacyContext
+      const { checkable, halfCheckedKeys, checkedKeys } = legacyContext;
       if (!checkable)
-        return null
+        return null;
 
       return {
         checked: checkedKeys,
         halfChecked: halfCheckedKeys,
-      }
-    })
+      };
+    });
 
     watch(
       () => baseProps.open,
       () => {
         nextTick(() => {
           if (baseProps.open && !baseProps.multiple && legacyContext.checkedKeys.length)
-            treeRef.value?.scrollTo({ key: legacyContext.checkedKeys[0] })
-        })
+            treeRef.value?.scrollTo({ key: legacyContext.checkedKeys[0] });
+        });
       },
       { immediate: true, flush: 'post' },
-    )
+    );
 
     // ========================== Search ==========================
-    const lowerSearchValue = computed(() => String(baseProps.searchValue).toLowerCase())
+    const lowerSearchValue = computed(() => String(baseProps.searchValue).toLowerCase());
     const filterTreeNode = (treeNode: EventDataNode) => {
       if (!lowerSearchValue.value)
-        return false
+        return false;
 
       return String(treeNode[legacyContext.treeNodeFilterProp])
         .toLowerCase()
-        .includes(lowerSearchValue.value)
-    }
+        .includes(lowerSearchValue.value);
+    };
 
     // =========================== Keys ===========================
-    const expandedKeys = shallowRef<Key[]>(legacyContext.treeDefaultExpandedKeys)
-    const searchExpandedKeys = shallowRef<Key[]>(null)
+    const expandedKeys = shallowRef<Key[]>(legacyContext.treeDefaultExpandedKeys);
+    const searchExpandedKeys = shallowRef<Key[]>(null);
 
     watch(
       () => baseProps.searchValue,
       () => {
         if (baseProps.searchValue)
-          searchExpandedKeys.value = getAllKeys(toRaw(context.treeData), toRaw(context.fieldNames))
+          searchExpandedKeys.value = getAllKeys(toRaw(context.treeData), toRaw(context.fieldNames));
       },
       {
         immediate: true,
       },
-    )
+    );
     const mergedExpandedKeys = computed(() => {
       if (legacyContext.treeExpandedKeys)
-        return legacyContext.treeExpandedKeys.slice()
+        return legacyContext.treeExpandedKeys.slice();
 
-      return baseProps.searchValue ? searchExpandedKeys.value : expandedKeys.value
-    })
+      return baseProps.searchValue ? searchExpandedKeys.value : expandedKeys.value;
+    });
 
     const onInternalExpand = (keys: Key[]) => {
-      expandedKeys.value = keys
-      searchExpandedKeys.value = keys
+      expandedKeys.value = keys;
+      searchExpandedKeys.value = keys;
 
-      legacyContext.onTreeExpand?.(keys)
-    }
+      legacyContext.onTreeExpand?.(keys);
+    };
 
     // ========================== Events ==========================
     const onListMouseDown = (event: MouseEvent) => {
-      event.preventDefault()
-    }
+      event.preventDefault();
+    };
 
     const onInternalSelect = (_: Key[], { node }: TreeEventInfo) => {
-      const { checkable, checkedKeys } = legacyContext
+      const { checkable, checkedKeys } = legacyContext;
       if (checkable && isCheckDisabled(node))
-        return
+        return;
 
       context.onSelect?.(node.key, {
         selected: !checkedKeys.includes(node.key),
-      })
+      });
 
       if (!baseProps.multiple)
-        baseProps.toggleOpen?.(false)
-    }
+        baseProps.toggleOpen?.(false);
+    };
 
     // ========================= Keyboard =========================
-    const activeKey = ref<Key>(null)
-    const activeEntity = computed(() => legacyContext.keyEntities[activeKey.value])
+    const activeKey = ref<Key>(null);
+    const activeEntity = computed(() => legacyContext.keyEntities[activeKey.value]);
 
     const setActiveKey = (key: Key) => {
-      activeKey.value = key
-    }
+      activeKey.value = key;
+    };
     expose({
       scrollTo: (...args: any[]) => treeRef.value?.scrollTo?.(...args),
       onKeydown: (event: KeyboardEvent) => {
-        const { which } = event
+        const { which } = event;
         switch (which) {
           // >>> Arrow keys
           case KeyCode.UP:
           case KeyCode.DOWN:
           case KeyCode.LEFT:
           case KeyCode.RIGHT:
-            treeRef.value?.onKeydown(event)
-            break
+            treeRef.value?.onKeydown(event);
+            break;
 
           // >>> Select item
           case KeyCode.ENTER: {
             if (activeEntity.value) {
-              const { selectable, value } = activeEntity.value.node || {}
+              const { selectable, value } = activeEntity.value.node || {};
               if (selectable !== false) {
                 onInternalSelect(null, {
                   node: { key: activeKey.value },
                   selected: !legacyContext.checkedKeys.includes(value),
-                })
+                });
               }
             }
 
-            break
+            break;
           }
 
           // >>> Close
           case KeyCode.ESC: {
-            baseProps.toggleOpen(false)
+            baseProps.toggleOpen(false);
           }
         }
       },
       onKeyup: () => {},
-    } as ReviseRefOptionListProps)
+    } as ReviseRefOptionListProps);
 
     return () => {
       const {
@@ -185,9 +185,9 @@ export default defineComponent({
         searchValue,
         open,
         notFoundContent = slots.notFoundContent?.(),
-      } = baseProps
+      } = baseProps;
       const { listHeight, listItemHeight, virtual, dropdownMatchSelectWidth, treeExpandAction }
-        = context
+        = context;
       const {
         checkable,
         treeDefaultExpandAll,
@@ -200,24 +200,24 @@ export default defineComponent({
         treeMotion,
         onTreeLoad,
         checkedKeys,
-      } = legacyContext
+      } = legacyContext;
       // ========================== Render ==========================
       if (memoTreeData.value.length === 0) {
         return (
           <div role="listbox" class={`${prefixCls}-empty`} onMousedown={onListMouseDown}>
             {notFoundContent}
           </div>
-        )
+        );
       }
 
       const treeProps: Partial<TreeProps> = {
         fieldNames: context.fieldNames,
-      }
+      };
       if (treeLoadedKeys)
-        treeProps.loadedKeys = treeLoadedKeys
+        treeProps.loadedKeys = treeLoadedKeys;
 
       if (mergedExpandedKeys.value)
-        treeProps.expandedKeys = mergedExpandedKeys.value
+        treeProps.expandedKeys = mergedExpandedKeys.value;
 
       return (
         <div onMousedown={onListMouseDown}>
@@ -261,7 +261,7 @@ export default defineComponent({
             v-slots={{ ...slots, checkable: legacyContext.customSlots.treeCheckable }}
           />
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

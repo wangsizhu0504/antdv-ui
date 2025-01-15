@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken } from '@antdv/theme';
 
 export interface ComponentToken {
   imageWidth: number
@@ -31,7 +31,7 @@ const genBaseStyle: GenerateStyle<ResultToken> = (token): CSSObject => {
     paddingLG,
     marginXS,
     lineHeight,
-  } = token
+  } = token;
 
   return {
     // Result
@@ -93,11 +93,11 @@ const genBaseStyle: GenerateStyle<ResultToken> = (token): CSSObject => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genStatusIconStyle: GenerateStyle<ResultToken> = (token) => {
-  const { componentCls, iconCls } = token
+  const { componentCls, iconCls } = token;
 
   return {
     [`${componentCls}-success ${componentCls}-icon > ${iconCls}`]: {
@@ -112,29 +112,29 @@ const genStatusIconStyle: GenerateStyle<ResultToken> = (token) => {
     [`${componentCls}-warning ${componentCls}-icon > ${iconCls}`]: {
       color: token.resultWarningIconColor,
     },
-  }
-}
+  };
+};
 
 const genResultStyle: GenerateStyle<ResultToken> = token => [
   genBaseStyle(token),
   genStatusIconStyle(token),
-]
+];
 
 // ============================== Export ==============================
-const getStyle: GenerateStyle<ResultToken> = token => genResultStyle(token)
+const getStyle: GenerateStyle<ResultToken> = token => genResultStyle(token);
 
 export default genComponentStyleHook(
   'Result',
   (token) => {
-    const { paddingLG, fontSizeHeading3 } = token
+    const { paddingLG, fontSizeHeading3 } = token;
 
-    const resultSubtitleFontSize = token.fontSize
-    const resultExtraMargin = `${paddingLG}px 0 0 0`
+    const resultSubtitleFontSize = token.fontSize;
+    const resultExtraMargin = `${paddingLG}px 0 0 0`;
 
-    const resultInfoIconColor = token.colorInfo
-    const resultErrorIconColor = token.colorError
-    const resultSuccessIconColor = token.colorSuccess
-    const resultWarningIconColor = token.colorWarning
+    const resultInfoIconColor = token.colorInfo;
+    const resultErrorIconColor = token.colorError;
+    const resultSuccessIconColor = token.colorSuccess;
+    const resultWarningIconColor = token.colorWarning;
 
     const resultToken = mergeToken<ResultToken>(token, {
       resultTitleFontSize: fontSizeHeading3,
@@ -145,12 +145,12 @@ export default genComponentStyleHook(
       resultErrorIconColor,
       resultSuccessIconColor,
       resultWarningIconColor,
-    })
+    });
 
-    return [getStyle(resultToken)]
+    return [getStyle(resultToken)];
   },
   {
     imageWidth: 250,
     imageHeight: 295,
   },
-)
+);

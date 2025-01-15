@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes } from 'vue'
+import type { InputHTMLAttributes } from 'vue';
 
 export interface RgbColor {
   r: number
@@ -30,9 +30,9 @@ export interface HsvaColor extends HsvColor {
   a: number
 }
 
-export type ObjectColor = RgbColor | HslColor | HsvColor | RgbaColor | HslaColor | HsvaColor
+export type ObjectColor = RgbColor | HslColor | HsvColor | RgbaColor | HslaColor | HsvaColor;
 
-export type AnyColor = string | ObjectColor
+export type AnyColor = string | ObjectColor;
 
 export interface ColorModel<T extends AnyColor> {
   defaultColor: T
@@ -44,14 +44,14 @@ export interface ColorModel<T extends AnyColor> {
 type ColorPickerHTMLAttributes = Omit<
   InputHTMLAttributes,
   'color' | 'onChange' | 'onChangeCapture'
->
+>;
 
 export interface ColorPickerBaseProps<T extends AnyColor> extends ColorPickerHTMLAttributes {
   color: T
   onChange: (newColor: T) => void
 }
 
-type ColorInputHTMLAttributes = Omit<InputHTMLAttributes, 'onChange' | 'value'>
+type ColorInputHTMLAttributes = Omit<InputHTMLAttributes, 'onChange' | 'value'>;
 
 export interface ColorInputBaseProps extends ColorInputHTMLAttributes {
   color?: string

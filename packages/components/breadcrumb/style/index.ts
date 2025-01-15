@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent } from '@antdv/theme';
 
 interface BreadcrumbToken extends FullToken<'Breadcrumb'> {
   breadcrumbBaseColor: string
@@ -13,7 +13,7 @@ interface BreadcrumbToken extends FullToken<'Breadcrumb'> {
 }
 
 const genBreadcrumbStyle: GenerateStyle<BreadcrumbToken, CSSObject> = (token) => {
-  const { componentCls, iconCls } = token
+  const { componentCls, iconCls } = token;
 
   return {
     [componentCls]: {
@@ -105,8 +105,8 @@ const genBreadcrumbStyle: GenerateStyle<BreadcrumbToken, CSSObject> = (token) =>
         direction: 'rtl',
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Breadcrumb', (token) => {
@@ -119,7 +119,7 @@ export default genComponentStyleHook('Breadcrumb', (token) => {
     breadcrumbLastItemColor: token.colorText,
     breadcrumbSeparatorMargin: token.marginXS,
     breadcrumbSeparatorColor: token.colorTextDescription,
-  })
+  });
 
-  return [genBreadcrumbStyle(BreadcrumbToken)]
-})
+  return [genBreadcrumbStyle(BreadcrumbToken)];
+});

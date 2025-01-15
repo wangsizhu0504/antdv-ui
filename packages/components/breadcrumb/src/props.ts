@@ -1,9 +1,9 @@
-import type { MouseEventHandler, VueNode } from '@antdv/types'
+import type { MouseEventHandler, VueNode } from '@antdv/types';
 
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { DropdownProps } from '../../dropdown'
-import type { Route } from './interface'
-import { eventType, objectType, PropTypes } from '@antdv/utils'
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { DropdownProps } from '../../dropdown';
+import type { Route } from './interface';
+import { eventType, objectType, PropTypes } from '@antdv/utils';
 
 export function breadcrumbProps() {
   return {
@@ -16,7 +16,7 @@ export function breadcrumbProps() {
         (opt: { route: Route, params: unknown, routes: Route[], paths: string[] }) => VueNode
       >,
     },
-  }
+  };
 }
 
 export function breadcrumbItemProps() {
@@ -27,17 +27,17 @@ export function breadcrumbItemProps() {
     dropdownProps: objectType<DropdownProps>(),
     overlay: PropTypes.any,
     onClick: eventType<MouseEventHandler>(),
-  }
+  };
 }
 
 export function breadcrumbSeparatorProps() {
   return {
     prefixCls: String,
-  }
+  };
 }
 
-export type BreadcrumbProps = Partial<ExtractPropTypes<ReturnType<typeof breadcrumbProps>>>
+export type BreadcrumbProps = Partial<ExtractPropTypes<ReturnType<typeof breadcrumbProps>>>;
 
-export type BreadcrumbItemProps = Partial<ExtractPropTypes<ReturnType<typeof breadcrumbItemProps>>>
+export type BreadcrumbItemProps = Partial<ExtractPropTypes<ReturnType<typeof breadcrumbItemProps>>>;
 
-export type BreadcrumbSeparatorProps = Partial<ExtractPropTypes<ReturnType<typeof breadcrumbSeparatorProps>>>
+export type BreadcrumbSeparatorProps = Partial<ExtractPropTypes<ReturnType<typeof breadcrumbSeparatorProps>>>;

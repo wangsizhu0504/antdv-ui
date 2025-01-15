@@ -17,9 +17,9 @@ You can customize icons for different nodes.
 </docs>
 
 <script lang="ts" setup>
-  import type { TreeProps } from '@antdv/ui'
-  import { DownOutlined, FrownFilled, FrownOutlined, SmileOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { TreeProps } from '@antdv/ui';
+  import { DownOutlined, FrownFilled, FrownOutlined, SmileOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   const treeData: TreeProps['treeData'] = [
     {
@@ -30,8 +30,8 @@ You can customize icons for different nodes.
         { title: 'leaf', key: '0-0-1' },
       ],
     },
-  ]
-  const selectedKeys = ref<any>(['0-0-0'])
+  ];
+  const selectedKeys = ref<any>(['0-0-0']);
 </script>
 
 <template>

@@ -17,13 +17,13 @@ Custom sizes to fit in a variety of containers.
 </docs>
 
 <script lang="ts" setup>
-  import type { DescriptionsProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { DescriptionsProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const size = ref<DescriptionsProps['size']>('default')
+  const size = ref<DescriptionsProps['size']>('default');
   function onChange(e: any) {
-    console.log('size checked', e.target.value)
-    size.value = e.target.value
+    console.log('size checked', e.target.value);
+    size.value = e.target.value;
   }
 </script>
 

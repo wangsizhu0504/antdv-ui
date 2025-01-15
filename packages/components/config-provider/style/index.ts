@@ -1,10 +1,10 @@
-import type { Ref } from 'vue'
-import { useStyleRegister, useToken } from '@antdv/theme'
-import { resetIcon } from '@antdv/theme/style'
-import { computed } from 'vue'
+import type { Ref } from 'vue';
+import { useStyleRegister, useToken } from '@antdv/theme';
+import { resetIcon } from '@antdv/theme/style';
+import { computed } from 'vue';
 
 function useStyle(iconPrefixCls: Ref<string>) {
-  const [theme, token] = useToken()
+  const [theme, token] = useToken();
   // Generate style for icons
   return useStyleRegister(
     computed(() => ({
@@ -23,7 +23,7 @@ function useStyle(iconPrefixCls: Ref<string>) {
         },
       },
     ],
-  )
+  );
 }
 
-export default useStyle
+export default useStyle;

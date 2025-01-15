@@ -1,14 +1,14 @@
-import { theme, useConfigContextInject } from '@antdv/ui'
-import { TinyColor } from '@ctrl/tinycolor'
-import { computed, watch } from 'vue'
+import { theme, useConfigContextInject } from '@antdv/ui';
+import { TinyColor } from '@ctrl/tinycolor';
+import { computed, watch } from 'vue';
 
-const { useToken } = theme
+const { useToken } = theme;
 
 function useSiteToken() {
-  const result = useToken()
-  const { getPrefixCls, iconPrefixCls } = useConfigContextInject()
-  const rootPrefixCls = computed(() => getPrefixCls())
-  const { token } = result
+  const result = useToken();
+  const { getPrefixCls, iconPrefixCls } = useConfigContextInject();
+  const rootPrefixCls = computed(() => getPrefixCls());
+  const { token } = result;
 
   const mergedToken = computed(() => ({
     theme: result.theme.value,
@@ -29,14 +29,14 @@ function useSiteToken() {
       marginFar: token.value.marginXXL * 2,
       codeFamily: '\'SFMono-Regular\', Consolas, \'Liberation Mono\', Menlo, Courier, monospace',
     },
-  }))
-  let styleDom: HTMLStyleElement | null = null
+  }));
+  let styleDom: HTMLStyleElement | null = null;
   watch(
     mergedToken,
     () => {
-      styleDom = styleDom || document.createElement('style')
-      const tokenValue = mergedToken.value.token
-      const demoGridColor = token.value.colorPrimary
+      styleDom = styleDom || document.createElement('style');
+      const tokenValue = mergedToken.value.token;
+      const demoGridColor = token.value.colorPrimary;
       styleDom.innerHTML = `
       :root {
         --header-height: ${tokenValue.headerHeight}px;
@@ -82,14 +82,14 @@ function useSiteToken() {
         --shadow-1-down: ${tokenValue.boxShadowCard};
         --box-shadow: ${tokenValue.boxShadow};
       }
-    `
+    `;
       if (styleDom && !document.body.contains(styleDom))
-        document.body.appendChild(styleDom)
+        document.body.appendChild(styleDom);
     },
     { immediate: true },
-  )
+  );
 
-  return mergedToken
+  return mergedToken;
 }
 
-export default useSiteToken
+export default useSiteToken;

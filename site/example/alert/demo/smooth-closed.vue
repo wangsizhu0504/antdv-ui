@@ -17,11 +17,11 @@ Smoothly and unaffectedly unmount Alert.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const visible = ref<boolean>(true)
+  const visible = ref<boolean>(true);
   function handleClose() {
-    visible.value = false
+    visible.value = false;
   }
 </script>
 

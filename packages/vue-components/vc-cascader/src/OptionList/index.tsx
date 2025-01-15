@@ -1,5 +1,5 @@
-import type { EventHandler, Key } from '@antdv/types'
-import type { DefaultOptionType, SingleValueType } from '../Cascader'
+import type { EventHandler, Key } from '@antdv/types';
+import type { DefaultOptionType, SingleValueType } from '../Cascader';
 import {
   computed,
   defineComponent,
@@ -8,24 +8,24 @@ import {
   shallowRef,
   watch,
   watchEffect,
-} from 'vue'
-import useBaseProps from '../../../vc-select/src/hooks/useBaseProps'
-import { useInjectCascader } from '../context'
-import { isLeaf, scrollIntoParentView, toPathKey, toPathKeys, toPathValueStr } from '../utils/commonUtil'
-import { toPathOptions } from '../utils/treeUtil'
-import Column, { FIX_LABEL } from './Column'
-import useActive from './useActive'
-import useKeyboard from './useKeyboard'
+} from 'vue';
+import useBaseProps from '../../../vc-select/src/hooks/useBaseProps';
+import { useInjectCascader } from '../context';
+import { isLeaf, scrollIntoParentView, toPathKey, toPathKeys, toPathValueStr } from '../utils/commonUtil';
+import { toPathOptions } from '../utils/treeUtil';
+import Column, { FIX_LABEL } from './Column';
+import useActive from './useActive';
+import useKeyboard from './useKeyboard';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'OptionList',
   inheritAttrs: false,
   setup(_props, context) {
-    const { attrs, slots } = context
-    const baseProps = useBaseProps()
-    const containerRef = ref<HTMLDivElement>()
-    const rtl = computed(() => baseProps.direction === 'rtl')
+    const { attrs, slots } = context;
+    const baseProps = useBaseProps();
+    const containerRef = ref<HTMLDivElement>();
+    const rtl = computed(() => baseProps.direction === 'rtl');
     const {
       options,
       values,
@@ -38,141 +38,141 @@ export default defineComponent({
       loadData,
       expandTrigger,
       customSlots,
-    } = useInjectCascader()
+    } = useInjectCascader();
 
-    const mergedPrefixCls = computed(() => dropdownPrefixCls.value || baseProps.prefixCls)
+    const mergedPrefixCls = computed(() => dropdownPrefixCls.value || baseProps.prefixCls);
 
     // ========================= loadData =========================
-    const loadingKeys = shallowRef<string[]>([])
+    const loadingKeys = shallowRef<string[]>([]);
     const internalLoadData = (valueCells: Key[]) => {
       // Do not load when search
       if (!loadData.value || baseProps.searchValue)
-        return
+        return;
 
-      const optionList = toPathOptions(valueCells, options.value, fieldNames.value)
-      const rawOptions = optionList.map(({ option }) => option)
-      const lastOption = rawOptions[rawOptions.length - 1]
+      const optionList = toPathOptions(valueCells, options.value, fieldNames.value);
+      const rawOptions = optionList.map(({ option }) => option);
+      const lastOption = rawOptions[rawOptions.length - 1];
 
       if (lastOption && !isLeaf(lastOption, fieldNames.value)) {
-        const pathKey = toPathKey(valueCells)
+        const pathKey = toPathKey(valueCells);
 
-        loadingKeys.value = [...loadingKeys.value, pathKey]
-        loadData.value(rawOptions)
+        loadingKeys.value = [...loadingKeys.value, pathKey];
+        loadData.value(rawOptions);
       }
-    }
+    };
 
     watchEffect(() => {
       if (loadingKeys.value.length) {
         loadingKeys.value.forEach((loadingKey) => {
-          const valueStrCells = toPathValueStr(loadingKey)
+          const valueStrCells = toPathValueStr(loadingKey);
           const optionList = toPathOptions(
             valueStrCells,
             options.value,
             fieldNames.value,
             true,
-          ).map(({ option }) => option)
-          const lastOption = optionList[optionList.length - 1]
+          ).map(({ option }) => option);
+          const lastOption = optionList[optionList.length - 1];
 
           if (
             !lastOption
             || lastOption[fieldNames.value.children]
             || isLeaf(lastOption, fieldNames.value)
           ) {
-            loadingKeys.value = loadingKeys.value.filter(key => key !== loadingKey)
+            loadingKeys.value = loadingKeys.value.filter(key => key !== loadingKey);
           }
-        })
+        });
       }
-    })
+    });
 
     // ========================== Values ==========================
-    const checkedSet = computed(() => new Set(toPathKeys(values.value)))
-    const halfCheckedSet = computed(() => new Set(toPathKeys(halfValues.value)))
+    const checkedSet = computed(() => new Set(toPathKeys(values.value)));
+    const halfCheckedSet = computed(() => new Set(toPathKeys(halfValues.value)));
 
     // ====================== Accessibility =======================
-    const [activeValueCells, setActiveValueCells] = useActive()
+    const [activeValueCells, setActiveValueCells] = useActive();
 
     // =========================== Path ===========================
     const onPathOpen = (nextValueCells: Key[]) => {
-      setActiveValueCells(nextValueCells)
+      setActiveValueCells(nextValueCells);
 
       // Trigger loadData
-      internalLoadData(nextValueCells)
-    }
+      internalLoadData(nextValueCells);
+    };
 
     const isSelectable = (option: DefaultOptionType) => {
-      const { disabled } = option
+      const { disabled } = option;
 
-      const isMergedLeaf = isLeaf(option, fieldNames.value)
-      return !disabled && (isMergedLeaf || changeOnSelect.value || baseProps.multiple)
-    }
+      const isMergedLeaf = isLeaf(option, fieldNames.value);
+      return !disabled && (isMergedLeaf || changeOnSelect.value || baseProps.multiple);
+    };
 
     const onPathSelect = (valuePath: SingleValueType, leaf: boolean, fromKeyboard = false) => {
-      onSelect(valuePath)
+      onSelect(valuePath);
 
       if (
         !baseProps.multiple
         && (leaf || (changeOnSelect.value && (expandTrigger.value === 'hover' || fromKeyboard)))
       ) {
-        baseProps.toggleOpen(false)
+        baseProps.toggleOpen(false);
       }
-    }
+    };
 
     // ========================== Option ==========================
     const mergedOptions = computed(() => {
       if (baseProps.searchValue)
-        return searchOptions.value
+        return searchOptions.value;
 
-      return options.value
-    })
+      return options.value;
+    });
 
     // ========================== Column ==========================
     const optionColumns = computed(() => {
-      const optionList = [{ options: mergedOptions.value }]
-      let currentList = mergedOptions.value
+      const optionList = [{ options: mergedOptions.value }];
+      let currentList = mergedOptions.value;
       for (let i = 0; i < activeValueCells.value.length; i += 1) {
-        const activeValueCell = activeValueCells.value[i]
+        const activeValueCell = activeValueCells.value[i];
         const currentOption = currentList.find(
           option => option[fieldNames.value.value] === activeValueCell,
-        )
+        );
 
-        const subOptions = currentOption?.[fieldNames.value.children]
+        const subOptions = currentOption?.[fieldNames.value.children];
         if (!subOptions?.length)
-          break
+          break;
 
-        currentList = subOptions
-        optionList.push({ options: subOptions })
+        currentList = subOptions;
+        optionList.push({ options: subOptions });
       }
 
-      return optionList
-    })
+      return optionList;
+    });
 
     // ========================= Keyboard =========================
     const onKeyboardSelect = (selectValueCells: SingleValueType, option: DefaultOptionType) => {
       if (isSelectable(option))
-        onPathSelect(selectValueCells, isLeaf(option, fieldNames.value), true)
-    }
+        onPathSelect(selectValueCells, isLeaf(option, fieldNames.value), true);
+    };
 
-    useKeyboard(context, mergedOptions, fieldNames, activeValueCells, onPathOpen, onKeyboardSelect)
+    useKeyboard(context, mergedOptions, fieldNames, activeValueCells, onPathOpen, onKeyboardSelect);
     const onListMouseDown: EventHandler = (event) => {
-      event.preventDefault()
-    }
+      event.preventDefault();
+    };
     onMounted(() => {
       watch(
         activeValueCells,
         (cells) => {
           for (let i = 0; i < cells.length; i += 1) {
-            const cellPath = cells.slice(0, i + 1)
-            const cellKeyPath = toPathKey(cellPath)
+            const cellPath = cells.slice(0, i + 1);
+            const cellKeyPath = toPathKey(cellPath);
             const ele = containerRef.value?.querySelector<HTMLElement>(
               `li[data-path-key="${cellKeyPath.replace(/\\{0,2}"/g, '\\"')}"]`, // matches unescaped double quotes
-            )
+            );
             if (ele)
-              scrollIntoParentView(ele)
+              scrollIntoParentView(ele);
           }
         },
         { flush: 'post', immediate: true },
-      )
-    })
+      );
+    });
 
     return () => {
       // ========================== Render ==========================
@@ -180,9 +180,9 @@ export default defineComponent({
         notFoundContent = slots.notFoundContent?.() || customSlots.value.notFoundContent?.(),
         multiple,
         toggleOpen,
-      } = baseProps
+      } = baseProps;
       // >>>>> Empty
-      const isEmpty = !optionColumns.value[0]?.options?.length
+      const isEmpty = !optionColumns.value[0]?.options?.length;
 
       const emptyList: DefaultOptionType[] = [
         {
@@ -190,7 +190,7 @@ export default defineComponent({
           [FIX_LABEL as 'label']: notFoundContent,
           disabled: true,
         },
-      ]
+      ];
       const columnProps = {
         ...attrs,
         multiple: !isEmpty && multiple,
@@ -201,14 +201,14 @@ export default defineComponent({
         halfCheckedSet: halfCheckedSet.value,
         loadingKeys: loadingKeys.value,
         isSelectable,
-      }
+      };
 
       // >>>>> Columns
-      const mergedOptionColumns = isEmpty ? [{ options: emptyList }] : optionColumns.value
+      const mergedOptionColumns = isEmpty ? [{ options: emptyList }] : optionColumns.value;
 
       const columnNodes = mergedOptionColumns.map((col, index) => {
-        const prevValuePath = activeValueCells.value.slice(0, index)
-        const activeValue = activeValueCells.value[index]
+        const prevValuePath = activeValueCells.value.slice(0, index);
+        const activeValue = activeValueCells.value[index];
 
         return (
           <Column
@@ -219,8 +219,8 @@ export default defineComponent({
             prevValuePath={prevValuePath}
             activeValue={activeValue}
           />
-        )
-      })
+        );
+      });
       return (
         <div
           class={[
@@ -235,7 +235,7 @@ export default defineComponent({
         >
           {columnNodes}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

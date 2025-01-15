@@ -1,12 +1,12 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { Formatter } from './interface'
-import { initDefaultProps } from '@antdv/utils'
-import { defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import Skeleton from '../../skeleton'
-import useStyle from '../style'
-import StatisticNumber from './Number'
-import { statisticProps } from './props'
+import type { CustomSlotsType } from '@antdv/types';
+import type { Formatter } from './interface';
+import { initDefaultProps } from '@antdv/utils';
+import { defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import Skeleton from '../../skeleton';
+import useStyle from '../style';
+import StatisticNumber from './Number';
+import { statisticProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -25,18 +25,18 @@ export default defineComponent({
     default?: any
   }>,
   setup(props, { slots, attrs }) {
-    const { prefixCls, direction } = useConfigInject('statistic', props)
+    const { prefixCls, direction } = useConfigInject('statistic', props);
 
     // Style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     return () => {
-      const { value = 0, valueStyle, valueRender } = props
-      const pre = prefixCls.value
-      const title = props.title ?? slots.title?.()
-      const prefix = props.prefix ?? slots.prefix?.()
-      const suffix = props.suffix ?? slots.suffix?.()
-      const formatter = props.formatter ?? (slots.formatter as unknown as Formatter)
+      const { value = 0, valueStyle, valueRender } = props;
+      const pre = prefixCls.value;
+      const title = props.title ?? slots.title?.();
+      const prefix = props.prefix ?? slots.prefix?.();
+      const suffix = props.suffix ?? slots.suffix?.();
+      const formatter = props.formatter ?? (slots.formatter as unknown as Formatter);
       // data-for-update just for update component
       // https://github.com/vueComponent/ant-design-vue/pull/3170
       let valueNode = (
@@ -44,9 +44,9 @@ export default defineComponent({
           data-for-update={Date.now()}
           {...{ ...props, prefixCls: pre, value, formatter }}
         />
-      )
+      );
       if (valueRender)
-        valueNode = valueRender(valueNode)
+        valueNode = valueRender(valueNode);
 
       return wrapSSR(
         <div
@@ -62,7 +62,7 @@ export default defineComponent({
             </div>
           </Skeleton>
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

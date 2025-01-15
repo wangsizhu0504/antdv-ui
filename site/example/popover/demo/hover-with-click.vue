@@ -17,24 +17,24 @@ The following example shows how to create a popover which can be hovered and cli
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const clicked = ref<boolean>(false)
-  const hovered = ref<boolean>(false)
+  const clicked = ref<boolean>(false);
+  const hovered = ref<boolean>(false);
 
   function hide() {
-    clicked.value = false
-    hovered.value = false
+    clicked.value = false;
+    hovered.value = false;
   }
 
   function handleHoverChange(visible: boolean) {
-    clicked.value = false
-    hovered.value = visible
+    clicked.value = false;
+    hovered.value = visible;
   }
 
   function handleClickChange(visible: boolean) {
-    clicked.value = visible
-    hovered.value = false
+    clicked.value = visible;
+    hovered.value = false;
   }
 </script>
 

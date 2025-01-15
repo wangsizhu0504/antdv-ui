@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import Demo from './statistic'
+import type { ComponentDemo } from '../../interface';
+import Demo from './statistic';
 
-const previewerDemo: ComponentDemo[] = [Demo]
+const previewerDemo: ComponentDemo[] = [Demo];
 
-export default previewerDemo
+export default previewerDemo;

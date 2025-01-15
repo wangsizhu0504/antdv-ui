@@ -17,26 +17,26 @@ Use Drawer to quickly preview details of an object, such as those in a list.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
-  import descriptionItem from './descriptionItem/index.vue'
+  import { ref } from 'vue';
+  import descriptionItem from './descriptionItem/index.vue';
 
-  const open = ref<boolean>(false)
+  const open = ref<boolean>(false);
   const pStyle = {
     fontSize: '16px',
     color: 'rgba(0,0,0,0.85)',
     lineHeight: '24px',
     display: 'block',
     marginBottom: '16px',
-  }
+  };
   const pStyle2 = {
     marginBottom: '24px',
-  }
+  };
 
   function showDrawer() {
-    open.value = true
+    open.value = true;
   }
   function onClose() {
-    open.value = false
+    open.value = false;
   }
 </script>
 

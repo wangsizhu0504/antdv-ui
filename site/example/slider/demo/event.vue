@@ -16,13 +16,13 @@ The `onChange` callback function will fire when the user changes the slider's va
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value1 = ref<number>(30)
-  const value2 = ref<[number, number]>([20, 50])
+  const value1 = ref<number>(30);
+  const value2 = ref<[number, number]>([20, 50]);
 
   function onAfterChange(value: number) {
-    console.log('afterChange: ', value)
+    console.log('afterChange: ', value);
   }
 </script>
 

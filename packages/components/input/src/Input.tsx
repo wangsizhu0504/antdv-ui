@@ -1,7 +1,7 @@
-import type { InputFocusOptions } from './interface'
-import { CloseCircleFilled } from '@ant-design/icons-vue'
-import { classNames, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils'
-import { VcInput } from '@antdv/vue-components'
+import type { InputFocusOptions } from './interface';
+import { CloseCircleFilled } from '@ant-design/icons-vue';
+import { classNames, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils';
+import { VcInput } from '@antdv/vue-components';
 import {
   computed,
   defineComponent,
@@ -9,15 +9,15 @@ import {
   onBeforeUpdate,
   onMounted,
   ref,
-} from 'vue'
-import { useInjectDisabled } from '../../config-provider'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+} from 'vue';
+import { useInjectDisabled } from '../../config-provider';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import { FormItemInputContext, NoFormStatus, useInjectFormItemContext } from '../../form/src/FormItemContext'
-import { NoCompactStyle, useCompactItemContext } from '../../space'
-import useStyle from '../style'
-import { inputProps } from './props'
-import { hasPrefixSuffix } from './util'
+import { FormItemInputContext, NoFormStatus, useInjectFormItemContext } from '../../form/src/FormItemContext';
+import { NoCompactStyle, useCompactItemContext } from '../../space';
+import useStyle from '../style';
+import { inputProps } from './props';
+import { hasPrefixSuffix } from './util';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -25,41 +25,41 @@ export default defineComponent({
   inheritAttrs: false,
   props: inputProps(),
   setup(props, { slots, attrs, expose, emit }) {
-    const inputRef = ref()
-    const formItemContext = useInjectFormItemContext()
-    const formItemInputContext = FormItemInputContext.useInject()
-    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status))
-    const { direction, prefixCls, size, autocomplete } = useConfigInject('input', props)
+    const inputRef = ref();
+    const formItemContext = useInjectFormItemContext();
+    const formItemInputContext = FormItemInputContext.useInject();
+    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status));
+    const { direction, prefixCls, size, autocomplete } = useConfigInject('input', props);
 
     // ===================== Compact Item =====================
-    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction)
+    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
     const mergedSize = computed(() => {
-      return compactSize.value || size.value
-    })
+      return compactSize.value || size.value;
+    });
     // Style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
-    const disabled = useInjectDisabled()
+    const disabled = useInjectDisabled();
 
     const focus = (option?: InputFocusOptions) => {
-      inputRef.value?.focus(option)
-    }
+      inputRef.value?.focus(option);
+    };
 
     const blur = () => {
-      inputRef.value?.blur()
-    }
+      inputRef.value?.blur();
+    };
 
     const setSelectionRange = (
       start: number,
       end: number,
       _direction?: 'forward' | 'backward' | 'none',
     ) => {
-      inputRef.value?.setSelectionRange(start, end, _direction)
-    }
+      inputRef.value?.setSelectionRange(start, end, _direction);
+    };
 
     const select = () => {
-      inputRef.value?.select()
-    }
+      inputRef.value?.select();
+    };
 
     expose({
       focus,
@@ -67,9 +67,9 @@ export default defineComponent({
       input: inputRef,
       setSelectionRange,
       select,
-    })
+    });
     // ===================== Remove Password value =====================
-    const removePasswordTimeoutRef = ref<any[]>([])
+    const removePasswordTimeoutRef = ref<any[]>([]);
     const removePasswordTimeout = () => {
       removePasswordTimeoutRef.value.push(
         setTimeout(() => {
@@ -78,41 +78,41 @@ export default defineComponent({
             && inputRef.value?.input.getAttribute('type') === 'password'
             && inputRef.value?.input.hasAttribute('value')
           ) {
-            inputRef.value?.input.removeAttribute('value')
+            inputRef.value?.input.removeAttribute('value');
           }
         }),
-      )
-    }
+      );
+    };
     onMounted(() => {
-      removePasswordTimeout()
-    })
+      removePasswordTimeout();
+    });
     onBeforeUpdate(() => {
-      removePasswordTimeoutRef.value.forEach(item => clearTimeout(item))
-    })
+      removePasswordTimeoutRef.value.forEach(item => clearTimeout(item));
+    });
     onBeforeUnmount(() => {
-      removePasswordTimeoutRef.value.forEach(item => clearTimeout(item))
-    })
+      removePasswordTimeoutRef.value.forEach(item => clearTimeout(item));
+    });
 
     const handleBlur = (e: FocusEvent) => {
-      removePasswordTimeout()
-      emit('blur', e)
-      formItemContext.onFieldBlur()
-    }
+      removePasswordTimeout();
+      emit('blur', e);
+      formItemContext.onFieldBlur();
+    };
 
     const handleFocus = (e: FocusEvent) => {
-      removePasswordTimeout()
-      emit('focus', e)
-    }
+      removePasswordTimeout();
+      emit('focus', e);
+    };
 
     const triggerChange = (e: Event) => {
-      emit('update:value', (e.target as HTMLInputElement).value)
-      emit('change', e)
-      emit('input', e)
-      formItemContext.onFieldChange()
-    }
+      emit('update:value', (e.target as HTMLInputElement).value);
+      emit('change', e);
+      emit('input', e);
+      formItemContext.onFieldChange();
+    };
 
     return () => {
-      const { hasFeedback, feedbackIcon } = formItemInputContext
+      const { hasFeedback, feedbackIcon } = formItemInputContext;
       const {
         allowClear,
         bordered = true,
@@ -122,16 +122,16 @@ export default defineComponent({
         addonBefore = slots.addonBefore?.(),
         id = formItemContext.id?.value,
         ...rest
-      } = props
+      } = props;
       const suffixNode = (hasFeedback || suffix) && (
         <>
           {suffix}
           {hasFeedback && feedbackIcon}
         </>
-      )
-      const prefixClsValue = prefixCls.value
-      const inputHasPrefixSuffix = hasPrefixSuffix({ prefix, suffix }) || !!hasFeedback
-      const clearIcon = slots.clearIcon || (() => <CloseCircleFilled />)
+      );
+      const prefixClsValue = prefixCls.value;
+      const inputHasPrefixSuffix = hasPrefixSuffix({ prefix, suffix }) || !!hasFeedback;
+      const clearIcon = slots.clearIcon || (() => <CloseCircleFilled />);
       return wrapSSR(
         <VcInput
           {...attrs}
@@ -192,7 +192,7 @@ export default defineComponent({
           v-slots={{ ...slots, clearIcon }}
         >
         </VcInput>,
-      )
-    }
+      );
+    };
   },
-})
+});

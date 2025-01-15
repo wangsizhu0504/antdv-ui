@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'PresetPanel',
@@ -14,7 +14,7 @@ export default defineComponent({
   setup(props) {
     return () => {
       if (!props.presets.length)
-        return null
+        return null;
 
       return (
         <div class={`${props.prefixCls}-presets`}>
@@ -24,23 +24,23 @@ export default defineComponent({
                 <li
                   key={index}
                   onClick={(e) => {
-                    e.stopPropagation()
-                    props.onClick(value)
+                    e.stopPropagation();
+                    props.onClick(value);
                   }}
                   onMouseenter={() => {
-                    props.onHover?.(value)
+                    props.onHover?.(value);
                   }}
                   onMouseleave={() => {
-                    props.onHover?.(null)
+                    props.onHover?.(null);
                   }}
                 >
                   {label}
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

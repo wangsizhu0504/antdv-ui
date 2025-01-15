@@ -1,21 +1,21 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { clearFix, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
-import { TinyColor } from '@ctrl/tinycolor'
-import genBorderedStyle from './bordered'
-import genEllipsisStyle from './ellipsis'
-import genEmptyStyle from './empty'
-import genExpandStyle from './expand'
-import genFilterStyle from './filter'
-import genFixedStyle from './fixed'
-import genPaginationStyle from './pagination'
-import genRadiusStyle from './radius'
-import genResizeStyle from './resize'
-import genRtlStyle from './rtl'
-import genSelectionStyle from './selection'
-import genSizeStyle from './size'
-import genSorterStyle from './sorter'
-import genStickyStyle from './sticky'
-import genSummaryStyle from './summary'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { clearFix, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
+import { TinyColor } from '@ctrl/tinycolor';
+import genBorderedStyle from './bordered';
+import genEllipsisStyle from './ellipsis';
+import genEmptyStyle from './empty';
+import genExpandStyle from './expand';
+import genFilterStyle from './filter';
+import genFixedStyle from './fixed';
+import genPaginationStyle from './pagination';
+import genRadiusStyle from './radius';
+import genResizeStyle from './resize';
+import genRtlStyle from './rtl';
+import genSelectionStyle from './selection';
+import genSizeStyle from './size';
+import genSorterStyle from './sorter';
+import genStickyStyle from './sticky';
+import genSummaryStyle from './summary';
 
 export interface ComponentToken {}
 
@@ -90,8 +90,8 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
     tableFooterTextColor,
     tableFooterBg,
     paddingContentVerticalLG,
-  } = token
-  const tableBorder = `${lineWidth}px ${lineType} ${tableBorderColor}`
+  } = token;
+  const tableBorder = `${lineWidth}px ${lineType} ${tableBorderColor}`;
   return {
     [`${componentCls}-wrapper`]: {
       clear: 'both',
@@ -253,8 +253,8 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         background: tableFooterBg,
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Table', (token) => {
@@ -279,24 +279,24 @@ export default genComponentStyleHook('Table', (token) => {
     colorFillContent,
     colorFillSecondary,
     controlInteractiveSize: checkboxSize,
-  } = token
+  } = token;
 
-  const baseColorAction = new TinyColor(colorIcon)
-  const baseColorActionHover = new TinyColor(colorIconHover)
+  const baseColorAction = new TinyColor(colorIcon);
+  const baseColorActionHover = new TinyColor(colorIconHover);
 
-  const tableSelectedRowBg = controlItemBgActive
-  const zIndexTableFixed = 2
+  const tableSelectedRowBg = controlItemBgActive;
+  const zIndexTableFixed = 2;
 
   const colorFillSecondarySolid = new TinyColor(colorFillSecondary)
     .onBackground(colorBgContainer)
-    .toHexString()
+    .toHexString();
   const colorFillContentSolid = new TinyColor(colorFillContent)
     .onBackground(colorBgContainer)
-    .toHexString()
+    .toHexString();
 
   const colorFillAlterSolid = new TinyColor(colorFillAlter)
     .onBackground(colorBgContainer)
-    .toHexString()
+    .toHexString();
 
   const tableToken = mergeToken<TableToken>(token, {
     tableFontSize: fontSize,
@@ -351,7 +351,7 @@ export default genComponentStyleHook('Table', (token) => {
     tableScrollThumbBg: colorTextPlaceholder,
     tableScrollThumbBgHover: colorTextHeading,
     tableScrollBg: colorSplit,
-  })
+  });
 
   return [
     genTableStyle(tableToken),
@@ -371,5 +371,5 @@ export default genComponentStyleHook('Table', (token) => {
     genSizeStyle(tableToken),
     genResizeStyle(tableToken),
     genRtlStyle(tableToken),
-  ]
-})
+  ];
+});

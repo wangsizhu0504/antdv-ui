@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { ThemeConfig } from '@antdv/ui/es/config-provider'
-  import { useLocale } from '@/locale'
-  import { message } from '@antdv/ui'
+  import type { ThemeConfig } from '@antdv/ui/es/config-provider';
+  import { useLocale } from '@/locale';
+  import { message } from '@antdv/ui';
 
   import {
     defineAsyncComponent,
@@ -10,18 +10,18 @@
     onMounted,
     ref,
     watch,
-  } from 'vue'
-
-  import Header from '../../layouts/header/index.vue'
+  } from 'vue';
 
   // antd换肤编辑器
-  import { enUS, ThemeEditor, zhCN } from '../../components/antdv-token-previewer'
-  import locales from './locales'
+  import { enUS, ThemeEditor, zhCN } from '../../components/antdv-token-previewer';
 
-  const ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME = 'ant-design-vue-v4-theme-editor-theme'
+  import Header from '../../layouts/header/index.vue';
+  import locales from './locales';
+
+  const ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME = 'ant-design-vue-v4-theme-editor-theme';
 
   function isObject(target: any) {
-    return Object.prototype.toString.call(target) === '[object Object]'
+    return Object.prototype.toString.call(target) === '[object Object]';
   }
 
   export default defineComponent({
@@ -33,118 +33,118 @@
     },
     setup() {
       // 国际化
-      const [locale, lang] = useLocale(locales)
+      const [locale, lang] = useLocale(locales);
 
       // 换肤
-      const theme = ref<ThemeConfig>({})
+      const theme = ref<ThemeConfig>({});
 
-      const editModelOpen = ref<boolean>(false)
-      const editThemeFormatRight = ref<boolean>(true)
+      const editModelOpen = ref<boolean>(false);
+      const editThemeFormatRight = ref<boolean>(true);
       const themeConfigContent = ref<any>({
         text: '{}',
         json: undefined,
-      })
+      });
 
       const getTheme = () => {
-        const storedConfig = localStorage.getItem(ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME)
+        const storedConfig = localStorage.getItem(ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME);
         if (storedConfig)
-          theme.value = JSON.parse(storedConfig)
-      }
+          theme.value = JSON.parse(storedConfig);
+      };
 
       const setTheme = (theme) => {
-        localStorage.setItem(ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME, JSON.stringify(theme))
-      }
+        localStorage.setItem(ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME, JSON.stringify(theme));
+      };
 
       const editModelClose = () => {
-        editModelOpen.value = false
-      }
+        editModelOpen.value = false;
+      };
 
       const editSave = () => {
         if (!editThemeFormatRight.value) {
-          message.error(locale.value.editJsonContentTypeError)
-          return
+          message.error(locale.value.editJsonContentTypeError);
+          return;
         }
         const themeConfig = themeConfigContent.value.text
           ? JSON.parse(themeConfigContent.value.text)
-          : themeConfigContent.value.json
+          : themeConfigContent.value.json;
 
         if (!isObject(themeConfig)) {
-          message.error(locale.value.editJsonContentTypeError)
-          return
+          message.error(locale.value.editJsonContentTypeError);
+          return;
         }
-        theme.value = themeConfig
-        editModelClose()
-        message.success(locale.value.editSuccessfully)
-      }
+        theme.value = themeConfig;
+        editModelClose();
+        message.success(locale.value.editSuccessfully);
+      };
 
       const handleSave = () => {
-        setTheme(theme.value)
-        message.success(locale.value.saveSuccessfully)
-      }
+        setTheme(theme.value);
+        message.success(locale.value.saveSuccessfully);
+      };
 
       const handleEditConfig = () => {
-        editModelOpen.value = true
-      }
+        editModelOpen.value = true;
+      };
 
       const handleEditConfigChange = (newcontent, _, status) => {
-        themeConfigContent.value = newcontent
+        themeConfigContent.value = newcontent;
         if (
           status.contentErrors
           && Array.isArray(status.contentErrors.validationErrors)
           && status.contentErrors.validationErrors.length === 0
         ) {
-          editThemeFormatRight.value = true
+          editThemeFormatRight.value = true;
         }
         else {
-          editThemeFormatRight.value = false
+          editThemeFormatRight.value = false;
         }
-      }
+      };
 
       const handleExport = () => {
         const file = new File([JSON.stringify(theme.value, null, 2)], 'Ant Design Vue Theme.json', {
           type: 'text/json; charset=utf-8;',
-        })
-        const tmpLink = document.createElement('a')
-        const objectUrl = URL.createObjectURL(file)
+        });
+        const tmpLink = document.createElement('a');
+        const objectUrl = URL.createObjectURL(file);
 
-        tmpLink.href = objectUrl
-        tmpLink.download = file.name
-        document.body.appendChild(tmpLink)
-        tmpLink.click()
+        tmpLink.href = objectUrl;
+        tmpLink.download = file.name;
+        document.body.appendChild(tmpLink);
+        tmpLink.click();
 
-        document.body.removeChild(tmpLink)
-        URL.revokeObjectURL(objectUrl)
-      }
+        document.body.removeChild(tmpLink);
+        URL.revokeObjectURL(objectUrl);
+      };
 
       const handleThemeChange = (newTheme) => {
-        theme.value = newTheme.config
-      }
+        theme.value = newTheme.config;
+      };
 
       nextTick(() => {
-        getTheme()
-      })
+        getTheme();
+      });
 
       watch(editModelOpen, (val) => {
         if (!val) {
           themeConfigContent.value = {
             json: theme.value,
             text: undefined,
-          } as any
+          } as any;
         }
-      })
+      });
 
       watch(theme, (val) => {
         if (!editModelOpen.value) {
           themeConfigContent.value = {
             json: val,
             text: undefined,
-          } as any
+          } as any;
         }
-      })
+      });
 
       onMounted(() => {
-        document.title = `${locale.value.title} - @antdv/ui`
-      })
+        document.title = `${locale.value.title} - @antdv/ui`;
+      });
 
       return {
         locale,
@@ -168,9 +168,9 @@
         // 皮肤编辑器的国际化
         zhCN,
         enUS,
-      }
+      };
     },
-  })
+  });
 </script>
 
 <template>

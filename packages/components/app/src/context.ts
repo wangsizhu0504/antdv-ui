@@ -1,28 +1,28 @@
-import type { InjectionKey } from 'vue'
-import type { AppConfig, useAppProps } from './interface'
-import { inject, provide, reactive } from 'vue'
+import type { InjectionKey } from 'vue';
+import type { AppConfig, useAppProps } from './interface';
+import { inject, provide, reactive } from 'vue';
 
-export const AppConfigContextKey: InjectionKey<AppConfig> = Symbol('appConfigContext')
+export const AppConfigContextKey: InjectionKey<AppConfig> = Symbol('appConfigContext');
 export function useProvideAppConfigContext(appConfigContext: AppConfig) {
-  return provide(AppConfigContextKey, appConfigContext)
+  return provide(AppConfigContextKey, appConfigContext);
 }
 
 export function useInjectAppConfigContext() {
-  return inject(AppConfigContextKey, {})
+  return inject(AppConfigContextKey, {});
 }
 
-export const AppContextKey: InjectionKey<useAppProps> = Symbol('appContext')
+export const AppContextKey: InjectionKey<useAppProps> = Symbol('appContext');
 
 export function useProvideAppContext(appContext: useAppProps) {
-  return provide(AppContextKey, appContext)
+  return provide(AppContextKey, appContext);
 }
 
 const defaultAppContext: useAppProps = reactive({
   message: {},
   notification: {},
   modal: {},
-} as useAppProps)
+} as useAppProps);
 
 export function useInjectAppContext() {
-  return inject(AppContextKey, defaultAppContext)
+  return inject(AppContextKey, defaultAppContext);
 }

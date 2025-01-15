@@ -1,19 +1,19 @@
-import { Card, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import { Card, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
-import Button from '../component-demos/button/button-icon'
-import Checkbox from '../component-demos/checkbox/checkbox'
-import Menu from '../component-demos/menu/menu'
-import Pagination from '../component-demos/pagination/outline'
-import Popconfirm from '../component-demos/popconfirm/popconfirm'
-import RadioButton from '../component-demos/radio/button'
-import Radio from '../component-demos/radio/radio'
-import SelectTag from '../component-demos/select/selectTag'
-import Steps from '../component-demos/steps/steps'
-import Switch from '../component-demos/switch/switch'
-import Table from '../component-demos/table/table'
-import Tabs from '../component-demos/tabs/tabs'
-import Timeline from '../component-demos/timeline/timeline'
+import Button from '../component-demos/button/button-icon';
+import Checkbox from '../component-demos/checkbox/checkbox';
+import Menu from '../component-demos/menu/menu';
+import Pagination from '../component-demos/pagination/outline';
+import Popconfirm from '../component-demos/popconfirm/popconfirm';
+import RadioButton from '../component-demos/radio/button';
+import Radio from '../component-demos/radio/radio';
+import SelectTag from '../component-demos/select/selectTag';
+import Steps from '../component-demos/steps/steps';
+import Switch from '../component-demos/switch/switch';
+import Table from '../component-demos/table/table';
+import Tabs from '../component-demos/tabs/tabs';
+import Timeline from '../component-demos/timeline/timeline';
 
 export const Primary = defineComponent({
   name: 'Primary',
@@ -49,7 +49,7 @@ export const Primary = defineComponent({
             {Table.demo}
           </Space>
         </Card>
-      )
-    }
+      );
+    };
   },
-})
+});

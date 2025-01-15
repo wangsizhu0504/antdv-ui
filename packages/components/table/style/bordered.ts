@@ -1,9 +1,9 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
 
 const genBorderedStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
-  const { componentCls } = token
-  const tableBorder = `${token.lineWidth}px ${token.lineType} ${token.tableBorderColor}`
+  const { componentCls } = token;
+  const tableBorder = `${token.lineWidth}px ${token.lineType} ${token.tableBorderColor}`;
 
   const getSizeBorderStyle = (
     size: 'small' | 'middle',
@@ -21,7 +21,7 @@ const genBorderedStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         },
       },
     },
-  })
+  });
 
   return {
     [`${componentCls}-wrapper`]: {
@@ -152,7 +152,7 @@ const genBorderedStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genBorderedStyle
+export default genBorderedStyle;

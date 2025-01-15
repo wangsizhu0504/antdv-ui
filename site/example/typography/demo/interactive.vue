@@ -16,39 +16,39 @@ Provide additional interactive capacity of editable and copyable.
 </docs>
 
 <script lang="ts" setup>
-  import { CheckOutlined, HighlightOutlined, SmileFilled, SmileOutlined } from '@ant-design/icons-vue'
-  import { ref, watch } from 'vue'
+  import { CheckOutlined, HighlightOutlined, SmileFilled, SmileOutlined } from '@ant-design/icons-vue';
+  import { ref, watch } from 'vue';
 
-  const editableStr = ref<any>('This is an editable text.')
+  const editableStr = ref<any>('This is an editable text.');
   watch(editableStr, () => {
-    console.log('editableStr', editableStr.value)
-  })
-  const chooseTrigger = ref<Array<'icon' | 'text'>>(['icon'])
+    console.log('editableStr', editableStr.value);
+  });
+  const chooseTrigger = ref<Array<'icon' | 'text'>>(['icon']);
 
   function radioToState(input: string): Array<'icon' | 'text'> {
     switch (input) {
       case 'text':
-        return ['text']
+        return ['text'];
       case 'both':
-        return ['icon', 'text']
+        return ['icon', 'text'];
       case 'icon':
       default:
-        return ['icon']
+        return ['icon'];
     }
   }
 
   function stateToRadio() {
     if (chooseTrigger.value.includes('text')) {
-      return chooseTrigger.value.includes('icon') ? 'both' : 'text'
+      return chooseTrigger.value.includes('icon') ? 'both' : 'text';
     }
-    return 'icon'
+    return 'icon';
   }
-  const customIconStr = ref<any>('Custom Edit icon and replace tooltip text.')
-  const hideTooltipStr = ref<any>('Hide Edit tooltip.')
-  const lengthLimitedStr = ref<any>('This is an editable text with limited length.')
-  const clickTriggerStr = ref<any>('Text or icon as trigger - click to start editing.')
-  const customEnterIconStr = ref<any>('Editable text with a custom enter icon in edit field.')
-  const noEnterIconStr = ref<any>('Editable text with no enter icon in edit field.')
+  const customIconStr = ref<any>('Custom Edit icon and replace tooltip text.');
+  const hideTooltipStr = ref<any>('Hide Edit tooltip.');
+  const lengthLimitedStr = ref<any>('This is an editable text with limited length.');
+  const clickTriggerStr = ref<any>('Text or icon as trigger - click to start editing.');
+  const customEnterIconStr = ref<any>('Editable text with a custom enter icon in edit field.');
+  const noEnterIconStr = ref<any>('Editable text with no enter icon in edit field.');
 </script>
 
 <template>

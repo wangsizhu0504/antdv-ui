@@ -91,24 +91,24 @@ The App component can only use the token in the `ConfigProvider`, if you need to
 #### Global scene (pinia scene)
 
 ```ts
-import type { MessageInstance } from '@antdv/ui/es/message/interface'
-import type { ModalStaticFunctions } from '@antdv/ui/es/modal/confirm'
-import type { NotificationInstance } from '@antdv/ui/es/notification/interface'
-import { App } from '@antdv/ui'
+import type { MessageInstance } from '@antdv/ui/es/message/interface';
+import type { ModalStaticFunctions } from '@antdv/ui/es/modal/confirm';
+import type { NotificationInstance } from '@antdv/ui/es/notification/interface';
+import { App } from '@antdv/ui';
 
 export const useGloablStore = defineStore('global', () => {
-  const message: MessageInstance = ref()
-  const notification: NotificationInstance = ref()
+  const message: MessageInstance = ref();
+  const notification: NotificationInstance = ref();
   const modal: Omit<ModalStaticFunctions, 'warn'> = ref();
   (() => {
-    const staticFunction = App.useApp()
-    message.value = staticFunction.message
-    modal.value = staticFunction.modal
-    notification.value = staticFunction.notification
-  })()
+    const staticFunction = App.useApp();
+    message.value = staticFunction.message;
+    modal.value = staticFunction.modal;
+    notification.value = staticFunction.notification;
+  })();
 
-  return { message, notification, modal }
-})
+  return { message, notification, modal };
+});
 ```
 
 ```html

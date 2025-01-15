@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import Default from './grid'
+import type { ComponentDemo } from '../../interface';
+import Default from './grid';
 
-const previewerDemo: ComponentDemo[] = [Default]
+const previewerDemo: ComponentDemo[] = [Default];
 
-export default previewerDemo
+export default previewerDemo;

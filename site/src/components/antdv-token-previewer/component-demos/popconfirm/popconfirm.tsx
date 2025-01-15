@@ -1,12 +1,12 @@
-import type { ComponentDemo } from '../../interface'
-import { message, Popconfirm } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { message, Popconfirm } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 function confirm() {
-  message.success('Click on Yes')
+  message.success('Click on Yes');
 }
 function cancel() {
-  message.error('Click on No')
+  message.error('Click on No');
 }
 const Demo = defineComponent({
   setup() {
@@ -26,22 +26,22 @@ const Demo = defineComponent({
           placement="topLeft"
           getPopupContainer={(node) => {
             if (node)
-              return node.parentNode as HTMLElement
+              return node.parentNode as HTMLElement;
 
-            return document.body
+            return document.body;
           }}
         >
           <a href="#">Delete</a>
         </Popconfirm>
       </div>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorBgElevated', 'colorWarning'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

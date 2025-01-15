@@ -1,12 +1,12 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { UploadToken } from '.'
-import { clearFix, textEllipsis } from '@antdv/theme'
-import { TinyColor } from '@ctrl/tinycolor'
+import type { GenerateStyle } from '@antdv/theme';
+import type { UploadToken } from '.';
+import { clearFix, textEllipsis } from '@antdv/theme';
+import { TinyColor } from '@ctrl/tinycolor';
 
 const genPictureStyle: GenerateStyle<UploadToken> = (token) => {
-  const { componentCls, iconCls, uploadThumbnailSize, uploadProgressOffset } = token
-  const listCls = `${componentCls}-list`
-  const itemCls = `${listCls}-item`
+  const { componentCls, iconCls, uploadThumbnailSize, uploadProgressOffset } = token;
+  const listCls = `${componentCls}-list`;
+  const itemCls = `${listCls}-item`;
 
   return {
     [`${componentCls}-wrapper`]: {
@@ -75,16 +75,16 @@ const genPictureStyle: GenerateStyle<UploadToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genPictureCardStyle: GenerateStyle<UploadToken> = (token) => {
-  const { componentCls, iconCls, fontSizeLG, colorTextLightSolid } = token
+  const { componentCls, iconCls, fontSizeLG, colorTextLightSolid } = token;
 
-  const listCls = `${componentCls}-list`
-  const itemCls = `${listCls}-item`
+  const listCls = `${componentCls}-list`;
+  const itemCls = `${listCls}-item`;
 
-  const uploadPictureCardSize = token.uploadPicCardSize
+  const uploadPictureCardSize = token.uploadPicCardSize;
 
   return {
     [`${componentCls}-wrapper${componentCls}-picture-card-wrapper`]: {
@@ -221,7 +221,7 @@ const genPictureCardStyle: GenerateStyle<UploadToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export { genPictureCardStyle, genPictureStyle }
+export { genPictureCardStyle, genPictureStyle };

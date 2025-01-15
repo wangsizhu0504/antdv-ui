@@ -17,7 +17,7 @@ You could display an arrow.
 </docs>
 
 <script lang="ts" setup>
-  const placements = ['topLeft', 'top', 'topRight', 'bottomLeft', 'bottom', 'bottomRight'] as const
+  const placements = ['topLeft', 'top', 'topRight', 'bottomLeft', 'bottom', 'bottomRight'] as const;
 </script>
 
 <template>

@@ -1,9 +1,9 @@
-import type { getContainerFunc, VueNode } from '@antdv/types'
+import type { getContainerFunc, VueNode } from '@antdv/types';
 
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../../button'
-import type { MousePosition } from './interface'
-import { objectType, PropTypes } from '@antdv/utils'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../../button';
+import type { MousePosition } from './interface';
+import { objectType, PropTypes } from '@antdv/utils';
 
 export function modalProps() {
   return {
@@ -51,7 +51,7 @@ export function modalProps() {
     'focusTriggerAfterClose': { type: Boolean, default: undefined },
     'modalRender': Function as PropType<(arg: { originVNode: VueNode }) => VueNode>,
     'mousePosition': objectType<MousePosition>(),
-  }
+  };
 }
 
-export type ModalProps = Partial<ExtractPropTypes<ReturnType<typeof modalProps>>>
+export type ModalProps = Partial<ExtractPropTypes<ReturnType<typeof modalProps>>>;

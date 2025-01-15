@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Card, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Card, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -31,9 +31,9 @@ const Demo = defineComponent({
           <p>Card content</p>
         </Card>
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
@@ -47,6 +47,6 @@ const componentDemo: ComponentDemo = {
     'colorBgContainer',
   ],
   key: 'card',
-}
+};
 
-export default componentDemo
+export default componentDemo;

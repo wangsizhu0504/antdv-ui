@@ -1,10 +1,10 @@
-import type { VueNode } from '@antdv/types'
-import type { HTMLAttributes } from 'vue'
-import type { ButtonProps } from '../../../button'
-import type { InternalUploadFile, UploadFile } from '../interface'
-import { FileTwoTone, LoadingOutlined, PaperClipOutlined, PictureTwoTone } from '@ant-design/icons-vue'
-import { filterEmpty, initDefaultProps, isValidElement } from '@antdv/utils'
-import { collapseMotion, getTransitionGroupProps } from '@antdv/vue-components'
+import type { VueNode } from '@antdv/types';
+import type { HTMLAttributes } from 'vue';
+import type { ButtonProps } from '../../../button';
+import type { InternalUploadFile, UploadFile } from '../interface';
+import { FileTwoTone, LoadingOutlined, PaperClipOutlined, PictureTwoTone } from '@ant-design/icons-vue';
+import { filterEmpty, initDefaultProps, isValidElement } from '@antdv/utils';
+import { collapseMotion, getTransitionGroupProps } from '@antdv/vue-components';
 import {
   computed,
   defineComponent,
@@ -14,15 +14,15 @@ import {
   triggerRef,
   watch,
   watchEffect,
-} from 'vue'
-import Button from '../../../button'
-import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
-import { uploadListProps } from '../interface'
-import { isImageUrl, previewImage } from '../utils'
-import ListItem from './ListItem'
+} from 'vue';
+import Button from '../../../button';
+import useConfigInject from '../../../config-provider/src/hooks/useConfigInject';
+import { uploadListProps } from '../interface';
+import { isImageUrl, previewImage } from '../utils';
+import ListItem from './ListItem';
 
 function HackSlot(_, { slots }) {
-  return filterEmpty(slots.default?.())[0]
+  return filterEmpty(slots.default?.())[0];
 }
 
 export default defineComponent({
@@ -43,25 +43,25 @@ export default defineComponent({
     appendActionVisible: true,
   }),
   setup(props, { slots, expose }) {
-    const motionAppear = shallowRef(false)
+    const motionAppear = shallowRef(false);
 
     onMounted(() => {
-      motionAppear.value === true
-    })
-    const mergedItems = shallowRef([])
+      motionAppear.value === true;
+    });
+    const mergedItems = shallowRef([]);
     watch(
       () => props.items,
       (val = []) => {
-        mergedItems.value = val.slice()
+        mergedItems.value = val.slice();
       },
       {
         immediate: true,
         deep: true,
       },
-    )
+    );
     watchEffect(() => {
       if (props.listType !== 'picture' && props.listType !== 'picture-card')
-        return
+        return;
       let hasUpdate = false;
       (props.items || []).forEach((file: InternalUploadFile, index) => {
         if (
@@ -72,61 +72,61 @@ export default defineComponent({
           || !(file.originFileObj instanceof File || (file.originFileObj as Blob) instanceof Blob)
           || file.thumbUrl !== undefined
         ) {
-          return
+          return;
         }
 
-        file.thumbUrl = ''
+        file.thumbUrl = '';
         if (props.previewFile) {
           props.previewFile(file.originFileObj as File).then((previewDataUrl: string) => {
             // Need append '' to avoid dead loop
-            const thumbUrl = previewDataUrl || ''
+            const thumbUrl = previewDataUrl || '';
             if (thumbUrl !== file.thumbUrl) {
-              mergedItems.value[index].thumbUrl = thumbUrl
-              hasUpdate = true
+              mergedItems.value[index].thumbUrl = thumbUrl;
+              hasUpdate = true;
             }
-          })
+          });
         }
-      })
+      });
       if (hasUpdate)
-        triggerRef(mergedItems)
-    })
+        triggerRef(mergedItems);
+    });
 
     // ============================= Events =============================
     const onInternalPreview = (file: UploadFile, e?: Event) => {
       if (!props.onPreview)
-        return
+        return;
 
-      e?.preventDefault()
-      return props.onPreview(file)
-    }
+      e?.preventDefault();
+      return props.onPreview(file);
+    };
 
     const onInternalDownload = (file: UploadFile) => {
       if (typeof props.onDownload === 'function')
-        props.onDownload(file)
+        props.onDownload(file);
       else if (file.url)
-        window.open(file.url)
-    }
+        window.open(file.url);
+    };
 
     const onInternalClose = (file: UploadFile) => {
-      props.onRemove?.(file)
-    }
+      props.onRemove?.(file);
+    };
 
     const internalIconRender = ({ file }: { file: UploadFile }) => {
-      const iconRender = props.iconRender || slots.iconRender
+      const iconRender = props.iconRender || slots.iconRender;
       if (iconRender)
-        return iconRender({ file, listType: props.listType })
+        return iconRender({ file, listType: props.listType });
 
-      const isLoading = file.status === 'uploading'
+      const isLoading = file.status === 'uploading';
       const fileIcon
-        = props.isImageUrl && props.isImageUrl(file) ? <PictureTwoTone /> : <FileTwoTone />
-      let icon: VueNode = isLoading ? <LoadingOutlined /> : <PaperClipOutlined />
+        = props.isImageUrl && props.isImageUrl(file) ? <PictureTwoTone /> : <FileTwoTone />;
+      let icon: VueNode = isLoading ? <LoadingOutlined /> : <PaperClipOutlined />;
       if (props.listType === 'picture')
-        icon = isLoading ? <LoadingOutlined /> : fileIcon
+        icon = isLoading ? <LoadingOutlined /> : fileIcon;
       else if (props.listType === 'picture-card')
-        icon = isLoading ? props.locale.uploading : fileIcon
+        icon = isLoading ? props.locale.uploading : fileIcon;
 
-      return icon
-    }
+      return icon;
+    };
 
     const actionIconRender = (opt: {
       customIcon: VueNode;
@@ -134,58 +134,58 @@ export default defineComponent({
       prefixCls: string;
       title?: string;
     }) => {
-      const { customIcon, callback, prefixCls, title } = opt
+      const { customIcon, callback, prefixCls, title } = opt;
       const btnProps: ButtonProps & HTMLAttributes = {
         type: 'text',
         size: 'small',
         title,
         onClick: () => {
-          callback()
+          callback();
         },
         class: `${prefixCls}-list-item-action`,
-      }
+      };
       if (isValidElement(customIcon))
-        return <Button {...btnProps} v-slots={{ icon: () => customIcon }} />
+        return <Button {...btnProps} v-slots={{ icon: () => customIcon }} />;
 
       return (
         <Button {...btnProps}>
           <span>{customIcon}</span>
         </Button>
-      )
-    }
+      );
+    };
 
     expose({
       handlePreview: onInternalPreview,
       handleDownload: onInternalDownload,
-    })
+    });
 
-    const { prefixCls, rootPrefixCls } = useConfigInject('upload', props)
+    const { prefixCls, rootPrefixCls } = useConfigInject('upload', props);
 
     const listClassNames = computed(() => ({
       [`${prefixCls.value}-list`]: true,
       [`${prefixCls.value}-list-${props.listType}`]: true,
-    }))
+    }));
     const transitionGroupProps = computed(() => {
       const motion = {
         ...collapseMotion(`${rootPrefixCls.value}-motion-collapse`),
-      }
-      delete motion.onAfterAppear
-      delete motion.onAfterEnter
-      delete motion.onAfterLeave
+      };
+      delete motion.onAfterAppear;
+      delete motion.onAfterEnter;
+      delete motion.onAfterLeave;
       const motionConfig = {
         ...getTransitionGroupProps(
           `${prefixCls.value}-${props.listType === 'picture-card' ? 'animate-inline' : 'animate'}`,
         ),
         class: listClassNames.value,
         appear: motionAppear.value,
-      }
+      };
       return props.listType !== 'picture-card'
         ? {
             ...motion,
             ...motionConfig,
           }
-        : motionConfig
-    })
+        : motionConfig;
+    });
     return () => {
       const {
         listType,
@@ -201,13 +201,13 @@ export default defineComponent({
         appendAction,
         itemRender,
         appendActionVisible,
-      } = props
-      const appendActionDom = appendAction?.()
-      const items = mergedItems.value
+      } = props;
+      const appendActionDom = appendAction?.();
+      const items = mergedItems.value;
       return (
         <TransitionGroup {...transitionGroupProps.value} tag="div">
           {items.map((file) => {
-            const { uid: key } = file
+            const { uid: key } = file;
             return (
               <ListItem
                 key={key}
@@ -234,7 +234,7 @@ export default defineComponent({
                   actionIconRender,
                 }}
               />
-            )
+            );
           })}
           {appendAction
             ? (
@@ -247,7 +247,7 @@ export default defineComponent({
               )
             : null}
         </TransitionGroup>
-      )
-    }
+      );
+    };
   },
-})
+});

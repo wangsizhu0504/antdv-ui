@@ -6,53 +6,53 @@
 const camel2hyphen = function (str: string) {
   return str
     .replace(/[A-Z]/g, (match) => {
-      return `-${match.toLowerCase()}`
+      return `-${match.toLowerCase()}`;
     })
-    .toLowerCase()
-}
+    .toLowerCase();
+};
 
 const isDimension = function (feature: string) {
-  const re = /[height|width]$/
-  return re.test(feature)
-}
+  const re = /[height|width]$/;
+  return re.test(feature);
+};
 
 const obj2mq = function (obj: { [x: string]: any }) {
-  let mq = ''
-  const features = Object.keys(obj)
+  let mq = '';
+  const features = Object.keys(obj);
   features.forEach((feature, index) => {
-    let value = obj[feature]
-    feature = camel2hyphen(feature)
+    let value = obj[feature];
+    feature = camel2hyphen(feature);
     // Add px to dimension features
     if (isDimension(feature) && typeof value === 'number')
-      value = `${value}px`
+      value = `${value}px`;
 
     if (value === true)
-      mq += feature
+      mq += feature;
     else if (value === false)
-      mq += `not ${feature}`
+      mq += `not ${feature}`;
     else
-      mq += `(${feature}: ${value})`
+      mq += `(${feature}: ${value})`;
 
     if (index < features.length - 1)
-      mq += ' and '
-  })
-  return mq
-}
+      mq += ' and ';
+  });
+  return mq;
+};
 
 export default function (query: any[]) {
-  let mq = ''
+  let mq = '';
   if (typeof query === 'string')
-    return query
+    return query;
 
   // Handling array of media queries
   if (Array.isArray(query)) {
     query.forEach((q, index) => {
-      mq += obj2mq(q)
+      mq += obj2mq(q);
       if (index < query.length - 1)
-        mq += ', '
-    })
-    return mq
+        mq += ', ';
+    });
+    return mq;
   }
   // Handling single media query
-  return obj2mq(query)
+  return obj2mq(query);
 }

@@ -1,10 +1,10 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue';
 
-export type StrokeColorType = string | string[] | object
+export type StrokeColorType = string | string[] | object;
 
-export type GapPositionType = 'top' | 'right' | 'bottom' | 'left'
+export type GapPositionType = 'top' | 'right' | 'bottom' | 'left';
 
-export type StrokeLinecapType = 'round' | 'butt' | 'square'
+export type StrokeLinecapType = 'round' | 'butt' | 'square';
 
 export const propTypes = {
   gapDegree: Number,
@@ -25,6 +25,6 @@ export const propTypes = {
   trailColor: String,
   trailWidth: Number,
   transition: String,
-}
+};
 
-export type ProgressProps = Partial<ExtractPropTypes<typeof propTypes>>
+export type ProgressProps = Partial<ExtractPropTypes<typeof propTypes>>;

@@ -1,9 +1,9 @@
-import type { FunctionalComponent } from 'vue'
-import { classNames } from '@antdv/utils'
-import { useInjectMenu } from './hooks/useMenuContext'
+import type { FunctionalComponent } from 'vue';
+import { classNames } from '@antdv/utils';
+import { useInjectMenu } from './hooks/useMenuContext';
 
 const InternalSubMenuList: FunctionalComponent<any> = (_props, { slots, attrs }) => {
-  const { prefixCls, mode } = useInjectMenu()
+  const { prefixCls, mode } = useInjectMenu();
   return (
     <ul
       {...attrs}
@@ -16,9 +16,9 @@ const InternalSubMenuList: FunctionalComponent<any> = (_props, { slots, attrs })
     >
       {slots.default?.()}
     </ul>
-  )
-}
+  );
+};
 
-InternalSubMenuList.displayName = 'SubMenuList'
+InternalSubMenuList.displayName = 'SubMenuList';
 
-export default InternalSubMenuList
+export default InternalSubMenuList;

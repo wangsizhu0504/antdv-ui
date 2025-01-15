@@ -4,16 +4,16 @@ export interface RefObject extends Function {
 
 export function createRef(): any {
   const func: RefObject = (node: any) => {
-    func.current = node
-  }
-  return func
+    func.current = node;
+  };
+  return func;
 }
 
 export function fillRef<T>(ref, node: T) {
   if (typeof ref === 'function')
-    ref(node)
+    ref(node);
   else if (typeof ref === 'object' && ref && 'current' in ref)
-    (ref as any).current = node
+    (ref as any).current = node;
 }
 
 /**
@@ -22,7 +22,7 @@ export function fillRef<T>(ref, node: T) {
 export function composeRef<T>(...refs: any[]) {
   return (node: T) => {
     refs.forEach((ref) => {
-      fillRef(ref, node)
-    })
-  }
+      fillRef(ref, node);
+    });
+  };
 }

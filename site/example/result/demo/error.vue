@@ -17,7 +17,7 @@ Complex error feedback.
 </docs>
 
 <script lang="ts" setup>
-  import { CloseCircleOutlined } from '@ant-design/icons-vue'
+  import { CloseCircleOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

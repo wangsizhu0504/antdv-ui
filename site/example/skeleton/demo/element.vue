@@ -17,14 +17,14 @@ Skeleton Button, Avatar, Input and Image.
 </docs>
 
 <script lang="ts" setup>
-  import type { SkeletonAvatarProps, SkeletonButtonProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { SkeletonAvatarProps, SkeletonButtonProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const active = ref<any>(false)
-  const block = ref<any>(false)
-  const size = ref<SkeletonButtonProps['size']>('default')
-  const buttonShape = ref<SkeletonButtonProps['shape']>('default')
-  const avatarShape = ref<SkeletonAvatarProps['shape']>('circle')
+  const active = ref<any>(false);
+  const block = ref<any>(false);
+  const size = ref<SkeletonButtonProps['size']>('default');
+  const buttonShape = ref<SkeletonButtonProps['shape']>('default');
+  const avatarShape = ref<SkeletonAvatarProps['shape']>('circle');
 </script>
 
 <template>

@@ -1,35 +1,36 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import advancedSearchVue from './advanced-search.vue'
-  import Basic from './basic.vue'
-  import CustomValidation from './custom-validation.vue'
-  import CustomizedFormControls from './customized-form-controls.vue'
-  import Disabled from './disabled.vue'
-  import DynamicFormItem from './dynamic-form-item.vue'
-  import dynamicFormItemsVue from './dynamic-form-items.vue'
-  import dynamicFormItemsComplexVue from './dynamic-form-items-complex.vue'
-  import dynamicRuleVue from './dynamic-rule.vue'
-  import formContextVue from './form-context.vue'
-  import formInModalVue from './form-in-modal.vue'
-  import HorizontalLogin from './horizontal-login.vue'
-  import inlineLoginVue from './inline-login.vue'
-  import LabelWidth from './label-width.vue'
-  import Layout from './layout.vue'
-  import NestedForm from './nest-messages.vue'
-  import normalLoginVue from './normal-login.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import advancedSearchVue from './advanced-search.vue';
+  import Basic from './basic.vue';
+  import CustomValidation from './custom-validation.vue';
+  import CustomizedFormControls from './customized-form-controls.vue';
+  import Disabled from './disabled.vue';
+  import DynamicFormItem from './dynamic-form-item.vue';
+  import dynamicFormItemsComplexVue from './dynamic-form-items-complex.vue';
+  import dynamicFormItemsVue from './dynamic-form-items.vue';
+  import dynamicRuleVue from './dynamic-rule.vue';
+  import formContextVue from './form-context.vue';
+  import formInModalVue from './form-in-modal.vue';
+  import HorizontalLogin from './horizontal-login.vue';
+  import inlineLoginVue from './inline-login.vue';
+  import LabelWidth from './label-width.vue';
+  import Layout from './layout.vue';
+  import NestedForm from './nest-messages.vue';
+  import normalLoginVue from './normal-login.vue';
 
-  import timeRelatedControlsVue from './time-related-controls.vue'
-  import validationVue from './validation.vue'
+  import timeRelatedControlsVue from './time-related-controls.vue';
 
   // import Validation from './validation.vue';
-  import UseFormBasic from './useForm-basic.vue'
-  import UseFormMerge from './useForm-merge.vue'
-  import UseFormNested from './useForm-nested.vue'
-  import UseFormTrigger from './useForm-trigger.vue'
-  import validateOtherVue from './validate-other.vue'
-  import validateStaticVue from './validate-static.vue'
+  import UseFormBasic from './useForm-basic.vue';
+
+  import UseFormMerge from './useForm-merge.vue';
+  import UseFormNested from './useForm-nested.vue';
+  import UseFormTrigger from './useForm-trigger.vue';
+  import validateOtherVue from './validate-other.vue';
+  import validateStaticVue from './validate-static.vue';
+  import validationVue from './validation.vue';
 
   export default defineComponent({
     US,
@@ -61,7 +62,7 @@
       InlineLoginVue: inlineLoginVue,
       NormalLoginVue: normalLoginVue,
     },
-  })
+  });
 </script>
 
 <template>

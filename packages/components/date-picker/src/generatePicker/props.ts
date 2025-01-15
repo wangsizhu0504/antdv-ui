@@ -1,5 +1,5 @@
-import type { DatePickerLocale } from '@antdv/locale'
-import type { FocusEventHandler, InputStatus, MouseEventHandler, SizeType, VueNode } from '@antdv/types'
+import type { DatePickerLocale } from '@antdv/locale';
+import type { FocusEventHandler, InputStatus, MouseEventHandler, SizeType, VueNode } from '@antdv/types';
 import type {
   CustomFormat,
   DisabledTime,
@@ -9,13 +9,13 @@ import type {
   PickerMode,
   PresetDate,
   RangeValue,
-} from '@antdv/vue-components/vc-picker/src/interface'
-import type { DateRender } from '@antdv/vue-components/vc-picker/src/panels/DatePanel/DateBody'
-import type { MonthCellRender } from '@antdv/vue-components/vc-picker/src/panels/MonthPanel/MonthBody'
+} from '@antdv/vue-components/vc-picker/src/interface';
+import type { DateRender } from '@antdv/vue-components/vc-picker/src/panels/DatePanel/DateBody';
+import type { MonthCellRender } from '@antdv/vue-components/vc-picker/src/panels/MonthPanel/MonthBody';
 
-import type { SharedTimeProps } from '@antdv/vue-components/vc-picker/src/panels/TimePanel'
-import type { RangeDateRender, RangeInfo, RangeType } from '@antdv/vue-components/vc-picker/src/RangePicker'
-import type { CSSProperties } from 'vue'
+import type { SharedTimeProps } from '@antdv/vue-components/vc-picker/src/panels/TimePanel';
+import type { RangeDateRender, RangeInfo, RangeType } from '@antdv/vue-components/vc-picker/src/RangePicker';
+import type { CSSProperties } from 'vue';
 import {
   arrayType,
   booleanType,
@@ -23,14 +23,14 @@ import {
   objectType,
   someType,
   stringType,
-} from '@antdv/utils'
+} from '@antdv/utils';
 
-const DataPickerPlacements = ['bottomLeft', 'bottomRight', 'topLeft', 'topRight'] as const
-type DataPickerPlacement = (typeof DataPickerPlacements)[number]
+const DataPickerPlacements = ['bottomLeft', 'bottomRight', 'topLeft', 'topRight'] as const;
+type DataPickerPlacement = (typeof DataPickerPlacements)[number];
 
 type RangeShowTimeObject<DateType> = Omit<SharedTimeProps<DateType>, 'defaultValue'> & {
   defaultValue?: DateType[]
-}
+};
 
 function commonProps<DateType = any>() {
   return {
@@ -107,7 +107,7 @@ function commonProps<DateType = any>() {
     'disabledMinutes': functionType<DisabledTimes['disabledMinutes']>(),
     /** @deprecated Please use `disabledTime` instead. */
     'disabledSeconds': functionType<DisabledTimes['disabledSeconds']>(),
-  }
+  };
 }
 
 export interface CommonProps<DateType> {
@@ -183,7 +183,7 @@ function datePickerProps<DateType = any>() {
     monthCellRender: functionType<MonthCellRender<DateType>>(),
     // deprecated  Please use `monthCellRender"` instead.',
     monthCellContentRender: functionType<MonthCellRender<DateType>>(),
-  }
+  };
 }
 
 export interface DatePickerProps<DateType> {
@@ -243,7 +243,7 @@ function rangePickerProps<DateType>() {
         (values: RangeValue<DateType> | RangeValue<string>, modes: [PanelMode, PanelMode]) => void
       >(),
     'onOk': functionType<(dates: RangeValue<DateType> | RangeValue<string>) => void>(),
-  }
+  };
 }
 
 export interface ExtraDatePickerProps<DateType> {
@@ -260,4 +260,4 @@ export interface ExtraRangePickerProps<DateType> {
   value?: RangeValue<DateType> | RangeValue<string>
 }
 
-export { commonProps, datePickerProps, rangePickerProps }
+export { commonProps, datePickerProps, rangePickerProps };

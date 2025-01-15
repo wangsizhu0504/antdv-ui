@@ -1,19 +1,19 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { PropType } from 'vue'
-import type { MenuMode } from './interface'
-import { classNames, raf } from '@antdv/utils'
-import { getTransitionProps } from '@antdv/vue-components/transition'
-import { VcTrigger } from '@antdv/vue-components/vc-trigger'
-import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue'
-import { useInjectForceRender, useInjectMenu } from './hooks/useMenuContext'
-import { placements, placementsRtl } from './placements'
+import type { CustomSlotsType } from '@antdv/types';
+import type { PropType } from 'vue';
+import type { MenuMode } from './interface';
+import { classNames, raf } from '@antdv/utils';
+import { getTransitionProps } from '@antdv/vue-components/transition';
+import { VcTrigger } from '@antdv/vue-components/vc-trigger';
+import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue';
+import { useInjectForceRender, useInjectMenu } from './hooks/useMenuContext';
+import { placements, placementsRtl } from './placements';
 
 const popupPlacementMap = {
   'horizontal': 'bottomLeft',
   'vertical': 'rightTop',
   'vertical-left': 'rightTop',
   'vertical-right': 'leftTop',
-}
+};
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -35,7 +35,7 @@ export default defineComponent({
   }>,
   emits: ['visibleChange'],
   setup(props, { slots, emit }) {
-    const innerVisible = shallowRef(false)
+    const innerVisible = shallowRef(false);
     const {
       getPopupContainer,
       rtl,
@@ -47,41 +47,41 @@ export default defineComponent({
       motion,
       defaultMotions,
       rootClassName,
-    } = useInjectMenu()
-    const forceRender = useInjectForceRender()
+    } = useInjectMenu();
+    const forceRender = useInjectForceRender();
     const placement = computed(() =>
       rtl.value
         ? { ...placementsRtl, ...builtinPlacements.value }
         : { ...placements, ...builtinPlacements.value },
-    )
+    );
 
-    const popupPlacement = computed(() => popupPlacementMap[props.mode])
+    const popupPlacement = computed(() => popupPlacementMap[props.mode]);
 
-    const visibleRef = shallowRef<number>()
+    const visibleRef = shallowRef<number>();
     watch(
       () => props.visible,
       (visible) => {
-        raf.cancel(visibleRef.value)
+        raf.cancel(visibleRef.value);
         visibleRef.value = raf(() => {
-          innerVisible.value = visible
-        })
+          innerVisible.value = visible;
+        });
       },
       { immediate: true },
-    )
+    );
     onBeforeUnmount(() => {
-      raf.cancel(visibleRef.value)
-    })
+      raf.cancel(visibleRef.value);
+    });
 
     const onVisibleChange = (visible: boolean) => {
-      emit('visibleChange', visible)
-    }
+      emit('visibleChange', visible);
+    };
     const mergedMotion = computed(() => {
-      const m = motion.value || defaultMotions.value?.[props.mode] || defaultMotions.value?.other
-      const res = typeof m === 'function' ? m() : m
-      return res ? getTransitionProps(res.name, { css: true }) : undefined
-    })
+      const m = motion.value || defaultMotions.value?.[props.mode] || defaultMotions.value?.other;
+      const res = typeof m === 'function' ? m() : m;
+      return res ? getTransitionProps(res.name, { css: true }) : undefined;
+    });
     return () => {
-      const { prefixCls, popupClassName, mode, popupOffset, disabled } = props
+      const { prefixCls, popupClassName, mode, popupOffset, disabled } = props;
       return (
         <VcTrigger
           prefixCls={prefixCls}
@@ -111,7 +111,7 @@ export default defineComponent({
           }}
         >
         </VcTrigger>
-      )
-    }
+      );
+    };
   },
-})
+});

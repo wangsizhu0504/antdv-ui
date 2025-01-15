@@ -18,7 +18,7 @@ Empty state placeholder.
 ```jsx
 <Empty>
   <Button>Create</Button>
-</Empty>
+</Empty>;
 ```
 
 | Property | Description | Type | Default | Version |

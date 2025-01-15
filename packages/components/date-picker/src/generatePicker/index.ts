@@ -1,6 +1,6 @@
-import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
-import generateRangePicker from './generateRangePicker'
-import generateSinglePicker from './generateSinglePicker'
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate';
+import generateRangePicker from './generateRangePicker';
+import generateSinglePicker from './generateSinglePicker';
 
 function generatePicker<DateType, ExtraProps extends {} = {}>(
   generateConfig: GenerateConfig<DateType>,
@@ -8,10 +8,10 @@ function generatePicker<DateType, ExtraProps extends {} = {}>(
 ) {
   // =========================== Picker ===========================
   const { DatePicker, WeekPicker, MonthPicker, YearPicker, TimePicker, QuarterPicker }
-    = generateSinglePicker<DateType, ExtraProps>(generateConfig, extraProps)
+    = generateSinglePicker<DateType, ExtraProps>(generateConfig, extraProps);
 
   // ======================== Range Picker ========================
-  const RangePicker = generateRangePicker<DateType, ExtraProps>(generateConfig, extraProps)
+  const RangePicker = generateRangePicker<DateType, ExtraProps>(generateConfig, extraProps);
 
   return {
     DatePicker,
@@ -21,7 +21,7 @@ function generatePicker<DateType, ExtraProps extends {} = {}>(
     TimePicker,
     QuarterPicker,
     RangePicker,
-  }
+  };
 }
 
-export default generatePicker
+export default generatePicker;

@@ -17,8 +17,8 @@ Disable option by specifying the `disabled` property in `options`.
 </docs>
 
 <script lang="ts" setup>
-  import type { CascaderProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { CascaderProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
   const options: CascaderProps['options'] = [
     {
@@ -54,8 +54,8 @@ Disable option by specifying the `disabled` property in `options`.
         },
       ],
     },
-  ]
-  const value = ref<string[]>([])
+  ];
+  const value = ref<string[]>([]);
 </script>
 
 <template>

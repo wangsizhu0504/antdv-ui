@@ -1,16 +1,16 @@
-import { placements } from '@antdv/constants'
+import { placements } from '@antdv/constants';
 
 const autoAdjustOverflowEnabled = {
   adjustX: 1,
   adjustY: 1,
-}
+};
 
 const autoAdjustOverflowDisabled = {
   adjustX: 0,
   adjustY: 0,
-}
+};
 
-const targetOffset = [0, 0]
+const targetOffset = [0, 0];
 
 export interface AdjustOverflow {
   adjustX?: 0 | 1;
@@ -27,12 +27,12 @@ export interface PlacementsConfig {
 
 export function getOverflowOptions(autoAdjustOverflow?: boolean | AdjustOverflow) {
   if (typeof autoAdjustOverflow === 'boolean')
-    return autoAdjustOverflow ? autoAdjustOverflowEnabled : autoAdjustOverflowDisabled
+    return autoAdjustOverflow ? autoAdjustOverflowEnabled : autoAdjustOverflowDisabled;
 
   return {
     ...autoAdjustOverflowDisabled,
     ...autoAdjustOverflow,
-  }
+  };
 }
 
 export function getPlacements(config: PlacementsConfig) {
@@ -42,7 +42,7 @@ export function getPlacements(config: PlacementsConfig) {
     verticalArrowShift = 8,
     autoAdjustOverflow,
     arrowPointAtCenter,
-  } = config
+  } = config;
   const placementMap = {
     left: {
       points: ['cr', 'cl'],
@@ -92,7 +92,7 @@ export function getPlacements(config: PlacementsConfig) {
       points: ['br', 'cl'],
       offset: [-4, verticalArrowShift + arrowWidth],
     },
-  }
+  };
   Object.keys(placementMap).forEach((key) => {
     placementMap[key] = arrowPointAtCenter
       ? {
@@ -103,9 +103,9 @@ export function getPlacements(config: PlacementsConfig) {
       : {
           ...placements[key],
           overflow: getOverflowOptions(autoAdjustOverflow),
-        }
+        };
 
-    placementMap[key].ignoreShake = true
-  })
-  return placementMap
+    placementMap[key].ignoreShake = true;
+  });
+  return placementMap;
 }

@@ -1,6 +1,6 @@
-import type { InputStatus } from '@antdv/types'
-import type { ExtractPropTypes } from 'vue'
-import { booleanType, stringType } from '@antdv/utils'
+import type { InputStatus } from '@antdv/types';
+import type { ExtractPropTypes } from 'vue';
+import { booleanType, stringType } from '@antdv/utils';
 
 export function commonTimePickerProps() {
   return {
@@ -16,7 +16,7 @@ export function commonTimePickerProps() {
     hideDisabledOptions: booleanType(),
     popupClassName: String,
     status: stringType<InputStatus>(),
-  }
+  };
 }
 
-export type CommonTimePickerProps = Partial<ExtractPropTypes<ReturnType<typeof commonTimePickerProps>>>
+export type CommonTimePickerProps = Partial<ExtractPropTypes<ReturnType<typeof commonTimePickerProps>>>;

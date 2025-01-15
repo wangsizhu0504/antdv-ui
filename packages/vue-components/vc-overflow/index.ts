@@ -1,1 +1,1 @@
-export { default as VcOverflow } from './src/Overflow'
+export { default as VcOverflow } from './src/Overflow';

@@ -17,11 +17,11 @@ There are three sizes available to a numeric input box. By default, the size is 
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value1 = ref<number>(3)
-  const value2 = ref<number>(3)
-  const value3 = ref<number>(3)
+  const value1 = ref<number>(3);
+  const value2 = ref<number>(3);
+  const value3 = ref<number>(3);
 </script>
 
 <template>

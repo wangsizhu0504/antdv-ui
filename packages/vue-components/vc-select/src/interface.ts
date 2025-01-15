@@ -1,5 +1,5 @@
-import type { Key } from '@antdv/types'
-import type { RawValueType } from './BaseSelect'
+import type { Key } from '@antdv/types';
+import type { RawValueType } from './BaseSelect';
 
 export interface FlattenOptionData<OptionType> {
   label?: any;

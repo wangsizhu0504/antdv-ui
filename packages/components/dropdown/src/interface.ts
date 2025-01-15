@@ -1,4 +1,4 @@
-export type Trigger = 'click' | 'hover' | 'contextmenu'
+export type Trigger = 'click' | 'hover' | 'contextmenu';
 
 export interface DropdownArrowOptions {
   pointAtCenter?: boolean

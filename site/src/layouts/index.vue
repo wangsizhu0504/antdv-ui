@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { GlobalConfig } from '@/types'
-  import { CloseOutlined, LinkOutlined, MenuOutlined } from '@ant-design/icons-vue'
-  import { useWindowScroll } from '@vueuse/core'
+  import type { GlobalConfig } from '@/types';
+  import { CloseOutlined, LinkOutlined, MenuOutlined } from '@ant-design/icons-vue';
+  import { useWindowScroll } from '@vueuse/core';
   import {
     computed,
     defineComponent,
@@ -9,22 +9,22 @@
     provide,
     ref,
     watch,
-  } from 'vue'
-  import { useRoute } from 'vue-router'
-  import useMenus from '../hooks/useMenus'
-  import { GLOBAL_CONFIG } from '../SymbolKey'
-  import Demo from './Demo.vue'
-  import LayoutHeader from './header/index.vue'
-  import CompactIcon from './icons/Compact'
-  import DarkIcon from './icons/Dark'
-  import ThemeEditorIcon from './icons/ThemeEditorIcon'
-  import ThemeIcon from './icons/ThemeIcon.vue'
-  import Menu from './Menu.vue'
-  import PrevAndNext from './PrevAndNext.vue'
+  } from 'vue';
+  import { useRoute } from 'vue-router';
+  import useMenus from '../hooks/useMenus';
+  import { GLOBAL_CONFIG } from '../SymbolKey';
+  import Demo from './Demo.vue';
+  import LayoutHeader from './header/index.vue';
+  import CompactIcon from './icons/Compact';
+  import DarkIcon from './icons/Dark';
+  import ThemeEditorIcon from './icons/ThemeEditorIcon';
+  import ThemeIcon from './icons/ThemeIcon.vue';
+  import Menu from './Menu.vue';
+  import PrevAndNext from './PrevAndNext.vue';
 
   // eslint-disable-next-line no-control-regex
-  const rControl = /[\u0000-\u001F]/g
-  const rSpecial = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'<>,.?/]+/g
+  const rControl = /[\u0000-\u001F]/g;
+  const rSpecial = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'<>,.?/]+/g;
 
   export default defineComponent({
     name: 'Layout',
@@ -42,18 +42,18 @@
       LinkOutlined,
     },
     setup() {
-      const { y } = useWindowScroll()
-      const visible = ref<any>(false)
-      const route = useRoute()
-      const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG)
-      const { menus, activeMenuItem, currentMenuIndex, dataSource } = useMenus()
+      const { y } = useWindowScroll();
+      const visible = ref<any>(false);
+      const route = useRoute();
+      const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG);
+      const { menus, activeMenuItem, currentMenuIndex, dataSource } = useMenus();
 
-      const demos = ref<any[]>([])
+      const demos = ref<any[]>([]);
 
       provide('addDemosInfo', (info: any) => {
         if (!demos.value.find(d => d.href === info.href))
-          demos.value.push(info)
-      })
+          demos.value.push(info);
+      });
 
       const themeMode = inject('themeMode', {
         theme: ref<any>('light'),
@@ -62,30 +62,30 @@
         changeTheme: (_key: any) => void 0,
 
         changeCompactTheme: (_key: any) => void 0,
-      })
+      });
 
       watch(
         () => route.path,
         () => {
-          demos.value.length = 0
+          demos.value.length = 0;
         },
-      )
+      );
 
       const isDemo = computed(() => {
         return (
           route.path.indexOf('/components') === 0 && route.path.indexOf('/components/overview') !== 0
-        )
-      })
+        );
+      });
 
       const matchCom = computed(() => {
-        return route.matched[route.matched.length - 1]?.components?.default
-      })
-      const isZhCN = globalConfig?.isZhCN
+        return route.matched[route.matched.length - 1]?.components?.default;
+      });
+      const isZhCN = globalConfig?.isZhCN;
       const pageData = computed(() =>
         isDemo.value
           ? matchCom.value?.[isZhCN?.value ? 'CN' : 'US']?.pageData
           : (matchCom.value as any)?.pageData,
-      )
+      );
       const slugifyTitle = (str: string) => {
         return (
           str
@@ -99,14 +99,14 @@
             .replace(/^\-+|\-+$/g, '')
             // ensure it doesn't start with a number (#121)
             .replace(/^(\d)/, '_$1')
-        )
-      }
+        );
+      };
       const headers = computed(() => {
-        let tempHeaders = (pageData.value?.headers || []).filter((h: any) => h.level === 2)
+        let tempHeaders = (pageData.value?.headers || []).filter((h: any) => h.level === 2);
         if (isDemo.value) {
-          tempHeaders = [...demos.value]
+          tempHeaders = [...demos.value];
 
-          tempHeaders.push({ title: 'API', href: '#api' })
+          tempHeaders.push({ title: 'API', href: '#api' });
         }
 
         return tempHeaders.map(header => ({
@@ -114,18 +114,18 @@
           key: header.title,
           title: isZhCN?.value ? header.title : (header.enTitle || header.title),
           href: (header.href || `#${slugifyTitle(header.title)}`).toLocaleLowerCase(),
-        }))
-      })
+        }));
+      });
 
       const mainContainerClass = computed(() => {
         return {
           'main-container': true,
           'main-container-component': isDemo.value,
-        }
-      })
+        };
+      });
       const handleClickShowButton = () => {
-        visible.value = !visible.value
-      }
+        visible.value = !visible.value;
+      };
       return {
         themeMode,
         visible,
@@ -146,9 +146,9 @@
           fontSize: '20px',
         },
         y,
-      }
+      };
     },
-  })
+  });
 </script>
 
 <template>

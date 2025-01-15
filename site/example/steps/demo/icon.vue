@@ -16,9 +16,9 @@ You can use your own custom icons by setting the property `icon` for `Steps.Step
 </docs>
 
 <script lang="ts" setup>
-  import type { StepProps } from '@antdv/ui'
-  import { LoadingOutlined, SmileOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons-vue'
-  import { h } from 'vue'
+  import type { StepProps } from '@antdv/ui';
+  import { LoadingOutlined, SmileOutlined, SolutionOutlined, UserOutlined } from '@ant-design/icons-vue';
+  import { h } from 'vue';
 
   const items = [
     {
@@ -41,7 +41,7 @@ You can use your own custom icons by setting the property `icon` for `Steps.Step
       status: 'wait',
       icon: h(SmileOutlined),
     },
-  ] as StepProps[]
+  ] as StepProps[];
 </script>
 
 <template>

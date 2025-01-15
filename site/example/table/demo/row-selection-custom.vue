@@ -15,8 +15,8 @@ Use `rowSelection.selections` custom selections, default no select dropdown, sho
 </docs>
 
 <script lang="ts" setup>
-  import { Table } from '@antdv/ui'
-  import { computed, ref, unref } from 'vue'
+  import { Table } from '@antdv/ui';
+  import { computed, ref, unref } from 'vue';
 
   interface DataType {
     key: string | number;
@@ -38,23 +38,23 @@ Use `rowSelection.selections` custom selections, default no select dropdown, sho
       title: 'Address',
       dataIndex: 'address',
     },
-  ]
+  ];
 
-  const data: DataType[] = []
+  const data: DataType[] = [];
   for (let i = 0; i < 46; i++) {
     data.push({
       key: i,
       name: `Edward King ${i}`,
       age: 32,
       address: `London, Park Lane no. ${i}`,
-    })
+    });
   }
 
-  const selectedRowKeys = ref<Array<DataType['key']>>([]) // Check here to configure the default column
+  const selectedRowKeys = ref<Array<DataType['key']>>([]); // Check here to configure the default column
 
   function onSelectChange(changableRowKeys: string[]) {
-    console.log('selectedRowKeys changed: ', changableRowKeys)
-    selectedRowKeys.value = changableRowKeys
+    console.log('selectedRowKeys changed: ', changableRowKeys);
+    selectedRowKeys.value = changableRowKeys;
   }
 
   const rowSelection = computed(() => {
@@ -70,33 +70,33 @@ Use `rowSelection.selections` custom selections, default no select dropdown, sho
           key: 'odd',
           text: 'Select Odd Row',
           onSelect: (changableRowKeys) => {
-            let newSelectedRowKeys = []
+            let newSelectedRowKeys = [];
             newSelectedRowKeys = changableRowKeys.filter((_key, index) => {
               if (index % 2 !== 0) {
-                return false
+                return false;
               }
-              return true
-            })
-            selectedRowKeys.value = newSelectedRowKeys
+              return true;
+            });
+            selectedRowKeys.value = newSelectedRowKeys;
           },
         },
         {
           key: 'even',
           text: 'Select Even Row',
           onSelect: (changableRowKeys) => {
-            let newSelectedRowKeys = []
+            let newSelectedRowKeys = [];
             newSelectedRowKeys = changableRowKeys.filter((_key, index) => {
               if (index % 2 !== 0) {
-                return true
+                return true;
               }
-              return false
-            })
-            selectedRowKeys.value = newSelectedRowKeys
+              return false;
+            });
+            selectedRowKeys.value = newSelectedRowKeys;
           },
         },
       ],
-    }
-  })
+    };
+  });
 </script>
 
 <template>

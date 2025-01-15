@@ -1,7 +1,7 @@
-import type { ComponentDemo } from '../../interface'
-import { Anchor } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Anchor } from '@antdv/ui';
 
-const { Link } = Anchor
+const { Link } = Anchor;
 function Demo() {
   return (
     <div style={{ padding: '12px' }}>
@@ -14,13 +14,13 @@ function Demo() {
         </Link>
       </Anchor>
     </div>
-  )
+  );
 }
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorPrimary', 'colorSplit', 'colorBgContainer'],
   key: 'anchor',
-}
+};
 
-export default componentDemo
+export default componentDemo;

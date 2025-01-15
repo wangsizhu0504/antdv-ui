@@ -1,4 +1,4 @@
-import deselectCurrent from './toggle-selection'
+import deselectCurrent from './toggle-selection';
 
 interface Options {
   debug?: boolean
@@ -11,110 +11,110 @@ const clipboardToIE11Formatting = {
   'text/plain': 'Text',
   'text/html': 'Url',
   'default': 'Text',
-}
+};
 
-const defaultMessage = 'Copy to clipboard: #{key}, Enter'
+const defaultMessage = 'Copy to clipboard: #{key}, Enter';
 
 function format(message: string) {
-  const copyKey = `${/mac os x/i.test(navigator.userAgent) ? '⌘' : 'Ctrl'}+C`
-  return message.replace(/#{\s*key\s*}/g, copyKey)
+  const copyKey = `${/mac os x/i.test(navigator.userAgent) ? '⌘' : 'Ctrl'}+C`;
+  return message.replace(/#{\s*key\s*}/g, copyKey);
 }
 
 function copy(text: string, options?: Options): boolean {
-  let message
-  let reselectPrevious
-  let range
-  let selection
-  let mark
-  let success = false
+  let message;
+  let reselectPrevious;
+  let range;
+  let selection;
+  let mark;
+  let success = false;
   if (!options)
-    options = {}
+    options = {};
 
-  const debug = options.debug || false
+  const debug = options.debug || false;
   try {
-    reselectPrevious = deselectCurrent()
+    reselectPrevious = deselectCurrent();
 
-    range = document.createRange()
-    selection = document.getSelection()
+    range = document.createRange();
+    selection = document.getSelection();
 
-    mark = document.createElement('span')
-    mark.textContent = text
+    mark = document.createElement('span');
+    mark.textContent = text;
     // reset user styles for span element
-    mark.style.all = 'unset'
+    mark.style.all = 'unset';
     // prevents scrolling to the end of the page
-    mark.style.position = 'fixed'
-    mark.style.top = 0
-    mark.style.clip = 'rect(0, 0, 0, 0)'
+    mark.style.position = 'fixed';
+    mark.style.top = 0;
+    mark.style.clip = 'rect(0, 0, 0, 0)';
     // used to preserve spaces and line breaks
-    mark.style.whiteSpace = 'pre'
+    mark.style.whiteSpace = 'pre';
     // do not inherit user-select (it may be `none`)
-    mark.style.webkitUserSelect = 'text'
-    mark.style.MozUserSelect = 'text'
-    mark.style.msUserSelect = 'text'
-    mark.style.userSelect = 'text'
+    mark.style.webkitUserSelect = 'text';
+    mark.style.MozUserSelect = 'text';
+    mark.style.msUserSelect = 'text';
+    mark.style.userSelect = 'text';
     mark.addEventListener('copy', (e) => {
-      e.stopPropagation()
+      e.stopPropagation();
       if (options.format) {
-        e.preventDefault()
+        e.preventDefault();
         if (typeof e.clipboardData === 'undefined') {
           // IE 11
-          debug && console.warn('unable to use e.clipboardData')
+          debug && console.warn('unable to use e.clipboardData');
           debug && console.warn('trying IE specific stuff');
-          (window as any).clipboardData.clearData()
+          (window as any).clipboardData.clearData();
           const format
             = clipboardToIE11Formatting[options.format] || clipboardToIE11Formatting.default;
-          (window as any).clipboardData.setData(format, text)
+          (window as any).clipboardData.setData(format, text);
         } else {
           // all other browsers
-          e.clipboardData.clearData()
-          e.clipboardData.setData(options.format, text)
+          e.clipboardData.clearData();
+          e.clipboardData.setData(options.format, text);
         }
       }
       if (options.onCopy) {
-        e.preventDefault()
-        options.onCopy(e.clipboardData)
+        e.preventDefault();
+        options.onCopy(e.clipboardData);
       }
-    })
+    });
 
-    document.body.appendChild(mark)
+    document.body.appendChild(mark);
 
-    range.selectNodeContents(mark)
-    selection.addRange(range)
+    range.selectNodeContents(mark);
+    selection.addRange(range);
 
-    const successful = document.execCommand('copy')
+    const successful = document.execCommand('copy');
     if (!successful)
-      throw new Error('copy command was unsuccessful')
+      throw new Error('copy command was unsuccessful');
 
-    success = true
+    success = true;
   } catch (err) {
-    debug && console.error('unable to copy using execCommand: ', err)
-    debug && console.warn('trying IE specific stuff')
+    debug && console.error('unable to copy using execCommand: ', err);
+    debug && console.warn('trying IE specific stuff');
     try {
-      (window as any).clipboardData.setData(options.format || 'text', text)
-      options.onCopy && options.onCopy((window as any).clipboardData)
-      success = true
+      (window as any).clipboardData.setData(options.format || 'text', text);
+      options.onCopy && options.onCopy((window as any).clipboardData);
+      success = true;
     } catch (err) {
-      debug && console.error('unable to copy using clipboardData: ', err)
-      debug && console.error('falling back to prompt')
-      message = format('message' in options ? options.message : defaultMessage)
+      debug && console.error('unable to copy using clipboardData: ', err);
+      debug && console.error('falling back to prompt');
+      message = format('message' in options ? options.message : defaultMessage);
       // eslint-disable-next-line no-alert
-      window.prompt(message, text)
+      window.prompt(message, text);
     }
   } finally {
     if (selection) {
       if (typeof selection.removeRange == 'function')
-        selection.removeRange(range)
+        selection.removeRange(range);
       else
-        selection.removeAllRanges()
+        selection.removeAllRanges();
     }
 
     if (mark)
-      document.body.removeChild(mark)
+      document.body.removeChild(mark);
 
-    reselectPrevious()
+    reselectPrevious();
   }
 
-  return success
+  return success;
 }
 
-export default copy
+export default copy;

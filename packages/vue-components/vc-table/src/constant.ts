@@ -1,1 +1,1 @@
-export const EXPAND_COLUMN = {} as const
+export const EXPAND_COLUMN = {} as const;

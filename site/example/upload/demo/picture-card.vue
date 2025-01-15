@@ -16,22 +16,22 @@ After users upload picture, the thumbnail will be shown in list. The upload butt
 </docs>
 
 <script lang="ts" setup>
-  import type { UploadProps } from '@antdv/ui'
-  import { PlusOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { UploadProps } from '@antdv/ui';
+  import { PlusOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   function getBase64(file: File) {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = () => resolve(reader.result)
-      reader.onerror = error => reject(error)
-    })
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
   }
 
-  const previewVisible = ref<any>(false)
-  const previewImage = ref<any>('')
-  const previewTitle = ref<any>('')
+  const previewVisible = ref<any>(false);
+  const previewImage = ref<any>('');
+  const previewTitle = ref<any>('');
 
   const fileList = ref<UploadProps['fileList']>([
     {
@@ -70,19 +70,19 @@ After users upload picture, the thumbnail will be shown in list. The upload butt
       name: 'image.png',
       status: 'error',
     },
-  ])
+  ]);
 
   function handleCancel() {
-    previewVisible.value = false
-    previewTitle.value = ''
+    previewVisible.value = false;
+    previewTitle.value = '';
   }
   async function handlePreview(file: UploadProps['fileList'][number]) {
     if (!file.url && !file.preview) {
-      file.preview = (await getBase64(file.originFileObj)) as string
+      file.preview = (await getBase64(file.originFileObj)) as string;
     }
-    previewImage.value = file.url || file.preview
-    previewVisible.value = true
-    previewTitle.value = file.name || file.url.substring(file.url.lastIndexOf('/') + 1)
+    previewImage.value = file.url || file.preview;
+    previewVisible.value = true;
+    previewTitle.value = file.name || file.url.substring(file.url.lastIndexOf('/') + 1);
   }
 </script>
 

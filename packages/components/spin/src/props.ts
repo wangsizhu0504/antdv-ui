@@ -1,6 +1,6 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { SpinSize } from './interface'
-import { PropTypes } from '@antdv/utils'
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { SpinSize } from './interface';
+import { PropTypes } from '@antdv/utils';
 
 export function spinProps() {
   return {
@@ -11,7 +11,7 @@ export function spinProps() {
     tip: PropTypes.any,
     delay: Number,
     indicator: PropTypes.any,
-  }
+  };
 }
 
-export type SpinProps = Partial<ExtractPropTypes<ReturnType<typeof spinProps>>>
+export type SpinProps = Partial<ExtractPropTypes<ReturnType<typeof spinProps>>>;

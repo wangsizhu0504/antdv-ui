@@ -1,8 +1,8 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
 
 const genPaginationStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
-  const { componentCls, antCls } = token
+  const { componentCls, antCls } = token;
   return {
     [`${componentCls}-wrapper`]: {
       // ========================== Pagination ==========================
@@ -32,7 +32,7 @@ const genPaginationStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genPaginationStyle
+export default genPaginationStyle;

@@ -1,7 +1,7 @@
-import type { ComponentDemo } from '../../interface'
-import { Col, Row } from '@antdv/ui'
-import { defineComponent } from 'vue'
-import makeStyle from '../../utils/makeStyle'
+import type { ComponentDemo } from '../../interface';
+import { Col, Row } from '@antdv/ui';
+import { defineComponent } from 'vue';
+import makeStyle from '../../utils/makeStyle';
 
 const useStyle = makeStyle('GridDemo', token => ({
   '.previewer-grid-demo': {
@@ -21,11 +21,11 @@ const useStyle = makeStyle('GridDemo', token => ({
       },
     },
   },
-}))
+}));
 
 const Demo = defineComponent({
   setup() {
-    const [, hashId] = useStyle()
+    const [, hashId] = useStyle();
 
     return () => (
       <div class={['previewer-grid-demo', hashId.value]}>
@@ -51,12 +51,12 @@ const Demo = defineComponent({
           <Col span={6}>col-6</Col>
         </Row>
       </div>
-    )
+    );
   },
-})
+});
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

@@ -16,7 +16,7 @@ Static method for `message`, `notification`, `modal`.
 </docs>
 
 <script lang="ts" setup>
-  import myPage from './myPage.vue'
+  import myPage from './myPage.vue';
 </script>
 
 <template>

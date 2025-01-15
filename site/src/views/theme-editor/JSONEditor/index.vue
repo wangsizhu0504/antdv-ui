@@ -1,5 +1,5 @@
 <script>
-  import { JSONEditor, Mode } from 'vanilla-jsoneditor'
+  import { JSONEditor, Mode } from 'vanilla-jsoneditor';
 
   // JSONEditor properties as of version 0.3.60
   const propNames = [
@@ -25,15 +25,15 @@
     'onChangeQueryLanguage',
     'onFocus',
     'onBlur',
-  ]
+  ];
 
   function pickDefinedProps(object, propNames) {
-    const props = {}
+    const props = {};
     for (const propName of propNames) {
       if (object[propName] !== undefined)
-        props[propName] = object[propName]
+        props[propName] = object[propName];
     }
-    return props
+    return props;
   }
 
   export default {
@@ -46,17 +46,17 @@
           ...pickDefinedProps(this, propNames),
           mode: Mode.text,
         },
-      })
+      });
     },
     updated() {
-      const props = pickDefinedProps(this, propNames)
-      this.editor.updateProps(props)
+      const props = pickDefinedProps(this, propNames);
+      this.editor.updateProps(props);
     },
     beforeUnmount() {
-      this.editor.destroy()
-      this.editor = null
+      this.editor.destroy();
+      this.editor = null;
     },
-  }
+  };
 </script>
 
 <template>

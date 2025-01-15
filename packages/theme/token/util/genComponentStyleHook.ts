@@ -1,18 +1,18 @@
-import type { Ref } from 'vue'
-import type { CSSInterpolation } from '../../cssinjs'
-import type { ComponentTokenMap, GlobalToken, UseComponentStyleResult } from '../interface'
-import { useConfigContextInject } from '@antdv/components/config-provider/src/context'
-import { computed } from 'vue'
-import { useStyleRegister } from '../../cssinjs'
-import { genCommonStyle, genLinkStyle } from '../../style'
+import type { Ref } from 'vue';
+import type { CSSInterpolation } from '../../cssinjs';
+import type { ComponentTokenMap, GlobalToken, UseComponentStyleResult } from '../interface';
+import { useConfigContextInject } from '@antdv/components/config-provider/src/context';
+import { computed } from 'vue';
+import { useStyleRegister } from '../../cssinjs';
+import { genCommonStyle, genLinkStyle } from '../../style';
 
-import { useToken } from '../internal'
-import statisticToken, { merge as mergeToken } from './statistic'
+import { useToken } from '../internal';
+import statisticToken, { merge as mergeToken } from './statistic';
 
-export type OverrideTokenWithoutDerivative = ComponentTokenMap
-export type OverrideComponent = keyof OverrideTokenWithoutDerivative
+export type OverrideTokenWithoutDerivative = ComponentTokenMap;
+export type OverrideComponent = keyof OverrideTokenWithoutDerivative;
 export type GlobalTokenWithComponent<ComponentName extends OverrideComponent> = GlobalToken &
-ComponentTokenMap[ComponentName]
+ComponentTokenMap[ComponentName];
 
 export interface StyleInfo<ComponentName extends OverrideComponent> {
   hashId: string
@@ -31,10 +31,10 @@ export type TokenWithCommonCls<T> = T & {
   iconCls: string
   /** Wrap ant prefixCls class with `.` prefix */
   antCls: string
-}
+};
 export type FullToken<ComponentName extends OverrideComponent> = TokenWithCommonCls<
   GlobalTokenWithComponent<ComponentName>
->
+>;
 
 export default function genComponentStyleHook<ComponentName extends OverrideComponent>(
   component: ComponentName,
@@ -44,44 +44,44 @@ export default function genComponentStyleHook<ComponentName extends OverrideComp
   | ((token: GlobalToken) => OverrideTokenWithoutDerivative[ComponentName]),
 ) {
   return (_prefixCls?: Ref<string>): UseComponentStyleResult => {
-    const prefixCls = computed(() => _prefixCls?.value)
-    const [theme, token, hashId] = useToken()
-    const { getPrefixCls, iconPrefixCls } = useConfigContextInject()
-    const rootPrefixCls = computed(() => getPrefixCls())
+    const prefixCls = computed(() => _prefixCls?.value);
+    const [theme, token, hashId] = useToken();
+    const { getPrefixCls, iconPrefixCls } = useConfigContextInject();
+    const rootPrefixCls = computed(() => getPrefixCls());
     const sharedInfo = computed(() => {
       return {
         theme: theme.value,
         token: token.value,
         hashId: hashId.value,
         path: ['Shared', rootPrefixCls.value],
-      }
-    })
+      };
+    });
     // Generate style for all a tags in antd component.
     useStyleRegister(sharedInfo, () => [
       {
         // Link
         '&': genLinkStyle(token.value),
       },
-    ])
+    ]);
     const componentInfo = computed(() => {
       return {
         theme: theme.value,
         token: token.value,
         hashId: hashId.value,
         path: [component, prefixCls.value, iconPrefixCls.value],
-      }
-    })
+      };
+    });
     return [
       useStyleRegister(componentInfo, () => {
-        const { token: proxyToken, flush } = statisticToken(token.value)
+        const { token: proxyToken, flush } = statisticToken(token.value);
 
         const defaultComponentToken
           = typeof getDefaultToken === 'function'
             ? (getDefaultToken as any)(proxyToken)
-            : getDefaultToken
-        const mergedComponentToken = { ...defaultComponentToken, ...token.value[component] }
+            : getDefaultToken;
+        const mergedComponentToken = { ...defaultComponentToken, ...token.value[component] };
 
-        const componentCls = `.${prefixCls.value}`
+        const componentCls = `.${prefixCls.value}`;
         const mergedToken = mergeToken<
           TokenWithCommonCls<GlobalTokenWithComponent<OverrideComponent>>
         >(
@@ -93,18 +93,18 @@ export default function genComponentStyleHook<ComponentName extends OverrideComp
             antCls: `.${rootPrefixCls.value}`,
           },
           mergedComponentToken,
-        )
+        );
         const styleInterpolation = styleFn(mergedToken as unknown as FullToken<ComponentName>, {
           hashId: hashId.value,
           prefixCls: prefixCls.value,
           rootPrefixCls: rootPrefixCls.value,
           iconPrefixCls: iconPrefixCls.value,
           overrideComponentToken: token.value[component],
-        })
-        flush(component, mergedComponentToken)
-        return [genCommonStyle(token.value, prefixCls.value), styleInterpolation]
+        });
+        flush(component, mergedComponentToken);
+        return [genCommonStyle(token.value, prefixCls.value), styleInterpolation];
       }),
       hashId,
-    ]
-  }
+    ];
+  };
 }

@@ -1,16 +1,16 @@
-import { useToken } from '@antdv/theme'
-import { TinyColor } from '@ctrl/tinycolor'
-import { computed, defineComponent } from 'vue'
+import { useToken } from '@antdv/theme';
+import { TinyColor } from '@ctrl/tinycolor';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'SimpleEmptyImg',
   PRESENTED_IMAGE_SIMPLE: true,
   setup() {
-    const [, token] = useToken()
+    const [, token] = useToken();
 
     const color = computed(() => {
-      const { colorFill, colorFillTertiary, colorFillQuaternary, colorBgContainer } = token.value
+      const { colorFill, colorFillTertiary, colorFillQuaternary, colorBgContainer } = token.value;
 
       return {
         borderColor: new TinyColor(colorFill).onBackground(colorBgContainer).toHexString(),
@@ -18,8 +18,8 @@ export default defineComponent({
         contentColor: new TinyColor(colorFillQuaternary)
           .onBackground(colorBgContainer)
           .toHexString(),
-      }
-    })
+      };
+    });
 
     return () => (
       <svg width="64" height="41" viewBox="0 0 64 41" xmlns="http://www.w3.org/2000/svg">
@@ -34,6 +34,6 @@ export default defineComponent({
           </g>
         </g>
       </svg>
-    )
+    );
   },
-})
+});

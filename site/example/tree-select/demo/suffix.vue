@@ -17,12 +17,12 @@ The most basic usage.
 </docs>
 
 <script lang="ts" setup>
-  import type { TreeSelectProps } from '@antdv/ui'
-  import { SmileOutlined } from '@ant-design/icons-vue'
-  import { ref, watch } from 'vue'
+  import type { TreeSelectProps } from '@antdv/ui';
+  import { SmileOutlined } from '@ant-design/icons-vue';
+  import { ref, watch } from 'vue';
 
-  const value = ref<string>()
-  const value1 = ref<string[]>([])
+  const value = ref<string>();
+  const value1 = ref<string[]>([]);
   const treeData = ref<TreeSelectProps['treeData']>([
     {
       title: 'parent 1',
@@ -48,10 +48,10 @@ The most basic usage.
         },
       ],
     },
-  ])
+  ]);
   watch(value, () => {
-    console.log('select', value.value)
-  })
+    console.log('select', value.value);
+  });
 </script>
 
 <template>

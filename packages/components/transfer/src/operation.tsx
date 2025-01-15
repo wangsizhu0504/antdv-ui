@@ -1,7 +1,7 @@
-import type { FunctionalComponent } from 'vue'
-import type { TransferOperationProps } from './props'
-import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
-import Button from '../../button'
+import type { FunctionalComponent } from 'vue';
+import type { TransferOperationProps } from './props';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue';
+import Button from '../../button';
 
 function noop() {}
 
@@ -18,7 +18,7 @@ const Operation: FunctionalComponent<TransferOperationProps> = (props) => {
     style,
     direction,
     oneWay,
-  } = props
+  } = props;
 
   return (
     <div class={className} style={style}>
@@ -43,9 +43,9 @@ const Operation: FunctionalComponent<TransferOperationProps> = (props) => {
         </Button>
       )}
     </div>
-  )
-}
-Operation.displayName = 'Operation'
-Operation.inheritAttrs = false
+  );
+};
+Operation.displayName = 'Operation';
+Operation.inheritAttrs = false;
 
-export default Operation
+export default Operation;

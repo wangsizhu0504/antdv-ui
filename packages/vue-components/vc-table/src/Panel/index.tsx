@@ -1,7 +1,7 @@
 function Panel(_, { slots }) {
-  return <div>{slots.default?.()}</div>
+  return <div>{slots.default?.()}</div>;
 }
 
-Panel.displayName = 'Panel'
+Panel.displayName = 'Panel';
 
-export default Panel
+export default Panel;

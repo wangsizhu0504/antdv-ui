@@ -1,4 +1,4 @@
-import { get } from './get'
+import { get } from './get';
 
 function internalSet<Entity = any, Output = Entity, Value = any>(
   entity: Entity,
@@ -7,25 +7,25 @@ function internalSet<Entity = any, Output = Entity, Value = any>(
   removeIfUndefined: boolean,
 ): Output {
   if (!paths.length)
-    return value as unknown as Output
+    return value as unknown as Output;
 
-  const [path, ...restPath] = paths
+  const [path, ...restPath] = paths;
 
-  let clone: Output
+  let clone: Output;
   if (!entity && typeof path === 'number')
-    clone = [] as unknown as Output
+    clone = [] as unknown as Output;
   else if (Array.isArray(entity))
-    clone = [...entity] as unknown as Output
+    clone = [...entity] as unknown as Output;
   else
-    clone = { ...entity } as unknown as Output
+    clone = { ...entity } as unknown as Output;
 
   // Delete prop if `removeIfUndefined` and value is undefined
   if (removeIfUndefined && value === undefined && restPath.length === 1)
-    delete clone[path][restPath[0]]
+    delete clone[path][restPath[0]];
   else
-    clone[path] = internalSet(clone[path], restPath, value, removeIfUndefined)
+    clone[path] = internalSet(clone[path], restPath, value, removeIfUndefined);
 
-  return clone
+  return clone;
 }
 
 export function set<Entity = any, Output = Entity, Value = any>(
@@ -41,8 +41,8 @@ export function set<Entity = any, Output = Entity, Value = any>(
     && value === undefined
     && !get(entity, paths.slice(0, -1))
   ) {
-    return entity as unknown as Output
+    return entity as unknown as Output;
   }
 
-  return internalSet(entity, paths, value, removeIfUndefined)
+  return internalSet(entity, paths, value, removeIfUndefined);
 }

@@ -17,9 +17,9 @@ title:
 </docs>
 
 <script lang="ts" setup>
-  import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-  import { Modal } from '@antdv/ui'
-  import { createVNode } from 'vue'
+  import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+  import { Modal } from '@antdv/ui';
+  import { createVNode } from 'vue';
 
   function showConfirm() {
     for (let i = 0; i < 3; i += 1) {
@@ -29,15 +29,15 @@ title:
           icon: createVNode(ExclamationCircleOutlined),
           onOk() {
             return new Promise((resolve, reject) => {
-              setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-            }).catch(() => console.log('Oops errors!'))
+              setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+            }).catch(() => console.log('Oops errors!'));
           },
           cancelText: 'Click to destroy all',
           onCancel() {
-            Modal.destroyAll()
+            Modal.destroyAll();
           },
-        })
-      }, i * 500)
+        });
+      }, i * 500);
     }
   }
 </script>

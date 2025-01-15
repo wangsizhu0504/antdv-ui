@@ -17,12 +17,12 @@ Use `visible` prop to control the display of the card.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const visible = ref<boolean>(false)
+  const visible = ref<boolean>(false);
 
   function hide() {
-    visible.value = false
+    visible.value = false;
   }
 </script>
 

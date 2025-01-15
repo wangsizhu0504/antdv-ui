@@ -25,7 +25,7 @@ Button component compact example.
     LikeOutlined,
     ShareAltOutlined,
     StarOutlined,
-  } from '@ant-design/icons-vue'
+  } from '@ant-design/icons-vue';
 </script>
 
 <template>

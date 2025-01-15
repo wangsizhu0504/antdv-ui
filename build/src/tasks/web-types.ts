@@ -1,9 +1,9 @@
-import path from 'node:path'
+import path from 'node:path';
 
-import pkg from '../../../packages/antdv-ui/package.json'
-import { PKG_NAME } from '../constants'
-import { antdOutput, compRoot, projRoot } from '../path'
-import { parseAndWrite } from '../web-types'
+import pkg from '../../../packages/antdv-ui/package.json';
+import { PKG_NAME } from '../constants';
+import { antdOutput, compRoot, projRoot } from '../path';
+import { parseAndWrite } from '../web-types';
 
 export async function generateWebTypes() {
   try {
@@ -16,10 +16,10 @@ export async function generateWebTypes() {
       test: /en-US\.md/,
       outputDir: antdOutput,
       tagPrefix: 'a-',
-    })
-    console.log(`generator types success: ${result} tags generated`)
+    });
+    console.log(`generator types success: ${result} tags generated`);
   } catch (error) {
-    console.error('generator types error', error)
-    return Promise.reject(error)
+    console.error('generator types error', error);
+    return Promise.reject(error);
   }
 }

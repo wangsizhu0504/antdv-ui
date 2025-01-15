@@ -1,8 +1,8 @@
-import { flattenChildren } from '@antdv/utils'
-import { computed, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import { dividerProps } from './props'
+import { flattenChildren } from '@antdv/utils';
+import { computed, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import { dividerProps } from './props';
 
 export default defineComponent({
   name: 'ADivider',
@@ -10,17 +10,17 @@ export default defineComponent({
   compatConfig: { MODE: 3 },
   props: dividerProps(),
   setup(props, { slots, attrs }) {
-    const { prefixCls: prefixClsRef, direction } = useConfigInject('divider', props)
-    const [wrapSSR, hashId] = useStyle(prefixClsRef)
+    const { prefixCls: prefixClsRef, direction } = useConfigInject('divider', props);
+    const [wrapSSR, hashId] = useStyle(prefixClsRef);
     const hasCustomMarginLeft = computed(
       () => props.orientation === 'left' && props.orientationMargin != null,
-    )
+    );
     const hasCustomMarginRight = computed(
       () => props.orientation === 'right' && props.orientationMargin != null,
-    )
+    );
     const classString = computed(() => {
-      const { type, dashed, plain } = props
-      const prefixCls = prefixClsRef.value
+      const { type, dashed, plain } = props;
+      const prefixCls = prefixClsRef.value;
       return {
         [prefixCls]: true,
         [hashId.value]: !!hashId.value,
@@ -30,24 +30,24 @@ export default defineComponent({
         [`${prefixCls}-rtl`]: direction.value === 'rtl',
         [`${prefixCls}-no-default-orientation-margin-left`]: hasCustomMarginLeft.value,
         [`${prefixCls}-no-default-orientation-margin-right`]: hasCustomMarginRight.value,
-      }
-    })
+      };
+    });
     const innerStyle = computed(() => {
       const marginValue
         = typeof props.orientationMargin === 'number'
           ? `${props.orientationMargin}px`
-          : props.orientationMargin
+          : props.orientationMargin;
       return {
         ...(hasCustomMarginLeft.value && { marginLeft: marginValue }),
         ...(hasCustomMarginRight.value && { marginRight: marginValue }),
-      }
-    })
+      };
+    });
     const orientationPrefix = computed(() =>
       props.orientation.length > 0 ? `-${props.orientation}` : props.orientation,
-    )
+    );
 
     return () => {
-      const children = flattenChildren(slots.default?.())
+      const children = flattenChildren(slots.default?.());
       return wrapSSR(
         <div
           {...attrs}
@@ -68,7 +68,7 @@ export default defineComponent({
               )
             : null}
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue'
-import Select, { selectProps } from '../../select'
+import { defineComponent } from 'vue';
+import Select, { selectProps } from '../../select';
 
 export const MiniSelect = defineComponent({
   name: 'MiniSelect',
@@ -13,11 +13,11 @@ export const MiniSelect = defineComponent({
         ...props,
         size: 'small',
         ...attrs,
-      }
-      return <Select {...getSelectProps} v-slots={slots}></Select>
-    }
+      };
+      return <Select {...getSelectProps} v-slots={slots}></Select>;
+    };
   },
-})
+});
 
 export const MiddleSelect = defineComponent({
   name: 'MiddleSelect',
@@ -30,8 +30,8 @@ export const MiddleSelect = defineComponent({
         ...props,
         size: 'middle',
         ...attrs,
-      }
-      return <Select {...getSelectProps} v-slots={slots}></Select>
-    }
+      };
+      return <Select {...getSelectProps} v-slots={slots}></Select>;
+    };
   },
-})
+});

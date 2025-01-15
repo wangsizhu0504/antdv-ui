@@ -17,9 +17,9 @@ To use `confirm()` to show a confirmation modal dialog.
 </docs>
 
 <script lang="ts" setup>
-  import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-  import { Modal } from '@antdv/ui'
-  import { createVNode } from 'vue'
+  import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+  import { Modal } from '@antdv/ui';
+  import { createVNode } from 'vue';
 
   function showConfirm() {
     Modal.confirm({
@@ -27,13 +27,13 @@ To use `confirm()` to show a confirmation modal dialog.
       icon: createVNode(ExclamationCircleOutlined),
       content: createVNode('div', { style: 'color:red;' }, 'Some descriptions'),
       onOk() {
-        console.log('OK')
+        console.log('OK');
       },
       onCancel() {
-        console.log('Cancel')
+        console.log('Cancel');
       },
       class: 'test',
-    })
+    });
   }
   function showDeleteConfirm() {
     Modal.confirm({
@@ -44,12 +44,12 @@ To use `confirm()` to show a confirmation modal dialog.
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        console.log('OK')
+        console.log('OK');
       },
       onCancel() {
-        console.log('Cancel')
+        console.log('Cancel');
       },
-    })
+    });
   }
   function showPropsConfirm() {
     Modal.confirm({
@@ -63,12 +63,12 @@ To use `confirm()` to show a confirmation modal dialog.
       },
       cancelText: 'No',
       onOk() {
-        console.log('OK')
+        console.log('OK');
       },
       onCancel() {
-        console.log('Cancel')
+        console.log('Cancel');
       },
-    })
+    });
   }
 
   function showPromiseConfirm() {
@@ -79,14 +79,14 @@ To use `confirm()` to show a confirmation modal dialog.
       async onOk() {
         try {
           return await new Promise((resolve, reject) => {
-            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-          })
+            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+          });
         } catch {
-          return console.log('Oops errors!')
+          return console.log('Oops errors!');
         }
       },
       onCancel() {},
-    })
+    });
   }
 </script>
 

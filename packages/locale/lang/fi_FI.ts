@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'fi',
@@ -134,6 +134,6 @@ const localeValues: Locale = {
     copied: 'Kopioitu',
     expand: 'Näytä lisää',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

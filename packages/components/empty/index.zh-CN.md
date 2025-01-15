@@ -19,7 +19,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*obM7S5lIxeMAAA
 ```jsx
 <Empty>
   <Button>创建</Button>
-</Empty>
+</Empty>;
 ```
 
 | 参数        | 说明                                         | 类型             | 默认值 | 版本 |

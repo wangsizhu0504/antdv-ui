@@ -1,12 +1,12 @@
-import type { CardProps } from '@antdv/ui'
-import type { PropType } from 'vue'
-import type { MutableTheme, TokenName } from '../interface'
-import { Button, Card } from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import { defineComponent, ref, toRefs } from 'vue'
-import { Control } from '../icons'
-import makeStyle from '../utils/makeStyle'
-import ComponentTokenDrawer from './ComponentTokenDrawer'
+import type { CardProps } from '@antdv/ui';
+import type { PropType } from 'vue';
+import type { MutableTheme, TokenName } from '../interface';
+import { Button, Card } from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import { defineComponent, ref, toRefs } from 'vue';
+import { Control } from '../icons';
+import makeStyle from '../utils/makeStyle';
+import ComponentTokenDrawer from './ComponentTokenDrawer';
 
 const useStyle = makeStyle('ComponentCard', token => ({
   [`${token.rootCls}-card.component-card`]: {
@@ -38,9 +38,9 @@ const useStyle = makeStyle('ComponentCard', token => ({
       },
     },
   },
-}))
+}));
 
-export const getComponentDemoId = (component: string) => `antdv-token-previewer-${component}`
+export const getComponentDemoId = (component: string) => `antdv-token-previewer-${component}`;
 
 export interface ComponentCardProps {
   title: CardProps['title']
@@ -61,10 +61,10 @@ const ComponentCard = defineComponent({
     theme: { type: Object as PropType<MutableTheme> },
   },
   setup(props, { attrs, slots }) {
-    const { component, title, theme, drawer } = toRefs(props)
+    const { component, title, theme, drawer } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
-    const drawerOpen = ref<any>(false)
+    const [wrapSSR, hashId] = useStyle();
+    const drawerOpen = ref<any>(false);
 
     return () => {
       return wrapSSR(
@@ -80,8 +80,8 @@ const ComponentCard = defineComponent({
                   <Button
                     type="text"
                     onClick={(e) => {
-                      e.stopPropagation()
-                      drawerOpen.value = true
+                      e.stopPropagation();
+                      drawerOpen.value = true;
                     }}
                   >
                     <Control class="component-token-control-icon" />
@@ -100,9 +100,9 @@ const ComponentCard = defineComponent({
             />
           )}
         </>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default ComponentCard
+export default ComponentCard;

@@ -1,9 +1,9 @@
-import type { Ref } from 'vue'
-import type { GenerateConfig } from '../generate'
-import type { PickerMode, RangeValue } from '../interface'
-import { computed, ref, watchEffect } from 'vue'
-import { getClosingViewDate, isSameDecade, isSameMonth, isSameYear } from '../utils/dateUtil'
-import { getValue, updateValues } from '../utils/miscUtil'
+import type { Ref } from 'vue';
+import type { GenerateConfig } from '../generate';
+import type { PickerMode, RangeValue } from '../interface';
+import { computed, ref, watchEffect } from 'vue';
+import { getClosingViewDate, isSameDecade, isSameMonth, isSameYear } from '../utils/dateUtil';
+import { getValue, updateValues } from '../utils/miscUtil';
 
 function getStartEndDistance<DateType>(
   startDate: DateType,
@@ -11,26 +11,26 @@ function getStartEndDistance<DateType>(
   picker: PickerMode,
   generateConfig: GenerateConfig<DateType>,
 ): 'same' | 'closing' | 'far' {
-  const startNext = getClosingViewDate(startDate, picker, generateConfig, 1)
+  const startNext = getClosingViewDate(startDate, picker, generateConfig, 1);
 
   function getDistance(compareFunc: (start: DateType | null, end: DateType | null) => boolean) {
     if (compareFunc(startDate, endDate))
-      return 'same'
+      return 'same';
 
     if (compareFunc(startNext, endDate))
-      return 'closing'
+      return 'closing';
 
-    return 'far'
+    return 'far';
   }
 
   switch (picker) {
     case 'year':
-      return getDistance((start, end) => isSameDecade(generateConfig, start, end))
+      return getDistance((start, end) => isSameDecade(generateConfig, start, end));
     case 'quarter':
     case 'month':
-      return getDistance((start, end) => isSameYear(generateConfig, start, end))
+      return getDistance((start, end) => isSameYear(generateConfig, start, end));
     default:
-      return getDistance((start, end) => isSameMonth(generateConfig, start, end))
+      return getDistance((start, end) => isSameMonth(generateConfig, start, end));
   }
 }
 
@@ -40,25 +40,25 @@ function getRangeViewDate<DateType>(
   picker: PickerMode,
   generateConfig: GenerateConfig<DateType>,
 ): DateType | null {
-  const startDate = getValue(values, 0)
-  const endDate = getValue(values, 1)
+  const startDate = getValue(values, 0);
+  const endDate = getValue(values, 1);
 
   if (index === 0)
-    return startDate
+    return startDate;
 
   if (startDate && endDate) {
-    const distance = getStartEndDistance(startDate, endDate, picker, generateConfig)
+    const distance = getStartEndDistance(startDate, endDate, picker, generateConfig);
     switch (distance) {
       case 'same':
-        return startDate
+        return startDate;
       case 'closing':
-        return startDate
+        return startDate;
       default:
-        return getClosingViewDate(endDate, picker, generateConfig, -1)
+        return getClosingViewDate(endDate, picker, generateConfig, -1);
     }
   }
 
-  return startDate
+  return startDate;
 }
 
 export default function useRangeViewDates<DateType>({
@@ -75,15 +75,15 @@ export default function useRangeViewDates<DateType>({
   const defaultViewDates = ref<[DateType | null, DateType | null]>([
     getValue(defaultDates, 0),
     getValue(defaultDates, 1),
-  ])
-  const viewDates = ref<RangeValue<DateType>>(null)
-  const startDate = computed(() => getValue(values.value, 0))
-  const endDate = computed(() => getValue(values.value, 1))
+  ]);
+  const viewDates = ref<RangeValue<DateType>>(null);
+  const startDate = computed(() => getValue(values.value, 0));
+  const endDate = computed(() => getValue(values.value, 1));
 
   const getViewDate = (index: 0 | 1): DateType => {
     // If set default view date, use it
     if (defaultViewDates.value[index])
-      return defaultViewDates.value[index]! as DateType
+      return defaultViewDates.value[index]! as DateType;
 
     return (
       (getValue(viewDates.value, index) as any)
@@ -91,35 +91,35 @@ export default function useRangeViewDates<DateType>({
       || startDate.value
       || endDate.value
       || generateConfig.value.getNow()
-    )
-  }
+    );
+  };
 
-  const startViewDate = ref(null)
+  const startViewDate = ref(null);
 
-  const endViewDate = ref(null)
+  const endViewDate = ref(null);
   watchEffect(() => {
-    startViewDate.value = getViewDate(0)
-    endViewDate.value = getViewDate(1)
-  })
+    startViewDate.value = getViewDate(0);
+    endViewDate.value = getViewDate(1);
+  });
 
   function setViewDate(viewDate: DateType | null, index: 0 | 1) {
     if (viewDate) {
-      let newViewDates = updateValues(viewDates.value, viewDate as any, index)
+      let newViewDates = updateValues(viewDates.value, viewDate as any, index);
       // Set view date will clean up default one
       // Should always be an array
-      defaultViewDates.value = updateValues(defaultViewDates.value, null, index) || [null, null]
+      defaultViewDates.value = updateValues(defaultViewDates.value, null, index) || [null, null];
 
       // Reset another one when not have value
-      const anotherIndex = (index + 1) % 2
+      const anotherIndex = (index + 1) % 2;
       if (!getValue(values.value, anotherIndex))
-        newViewDates = updateValues(newViewDates, viewDate, anotherIndex)
+        newViewDates = updateValues(newViewDates, viewDate, anotherIndex);
 
-      viewDates.value = newViewDates
+      viewDates.value = newViewDates;
     } else if (startDate.value || endDate.value) {
       // Reset all when has values when `viewDate` is `null` which means from open trigger
-      viewDates.value = null
+      viewDates.value = null;
     }
   }
 
-  return [startViewDate, endViewDate, setViewDate]
+  return [startViewDate, endViewDate, setViewDate];
 }

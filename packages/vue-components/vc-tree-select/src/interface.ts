@@ -1,8 +1,8 @@
-import type { Key } from '@antdv/types'
+import type { Key } from '@antdv/types';
 
-export type SelectSource = 'option' | 'selection' | 'input' | 'clear'
+export type SelectSource = 'option' | 'selection' | 'input' | 'clear';
 
-export type RawValueType = string | number
+export type RawValueType = string | number;
 
 export interface LabelValueType {
   key?: Key;
@@ -12,7 +12,7 @@ export interface LabelValueType {
   halfChecked?: boolean;
 }
 
-export type DefaultValueType = RawValueType | RawValueType[] | LabelValueType | LabelValueType[]
+export type DefaultValueType = RawValueType | RawValueType[] | LabelValueType | LabelValueType[];
 
 export interface TreeSelectDataNode {
   value?: RawValueType;

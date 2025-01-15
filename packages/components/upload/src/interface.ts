@@ -1,11 +1,11 @@
-import type { VueNode } from '@antdv/types'
+import type { VueNode } from '@antdv/types';
 import type {
   RcFile as OriRcFile,
   UploadRequestOption as RcCustomRequestOptions,
-} from '@antdv/vue-components/vc-upload/src/interface'
-import type { CSSProperties, ExtractPropTypes, ImgHTMLAttributes } from 'vue'
+} from '@antdv/vue-components/vc-upload/src/interface';
+import type { CSSProperties, ExtractPropTypes, ImgHTMLAttributes } from 'vue';
 
-import type { ProgressProps } from '../../progress'
+import type { ProgressProps } from '../../progress';
 import {
   arrayType,
   booleanType,
@@ -13,13 +13,13 @@ import {
   objectType,
   someType,
   stringType,
-} from '@antdv/utils'
+} from '@antdv/utils';
 
 export interface FileType extends OriRcFile {
   readonly lastModifiedDate: Date;
 }
 
-export type UploadFileStatus = 'error' | 'success' | 'done' | 'uploading' | 'removed'
+export type UploadFileStatus = 'error' | 'success' | 'done' | 'uploading' | 'removed';
 
 export interface HttpRequestHeader {
   [key: string]: string;
@@ -71,12 +71,12 @@ export interface UploadLocale {
   previewFile?: string;
 }
 
-export type UploadType = 'drag' | 'select'
-export type UploadListType = 'text' | 'picture' | 'picture-card'
+export type UploadType = 'drag' | 'select';
+export type UploadListType = 'text' | 'picture' | 'picture-card';
 export type UploadListProgressProps = Omit<ProgressProps, 'percent' | 'type'> & {
   class?: string;
   style?: CSSProperties;
-}
+};
 
 export type ItemRender<T = any> = (opt: {
   originNode: VueNode;
@@ -87,13 +87,13 @@ export type ItemRender<T = any> = (opt: {
     preview: () => void;
     remove: () => void;
   };
-}) => VueNode
+}) => VueNode;
 
-type PreviewFileHandler = (file: FileType | Blob) => PromiseLike<string>
+type PreviewFileHandler = (file: FileType | Blob) => PromiseLike<string>;
 type TransformFileHandler = (
   file: FileType,
-) => string | Blob | FileType | PromiseLike<string | Blob | FileType>
-type BeforeUploadValueType = void | boolean | string | Blob | FileType
+) => string | Blob | FileType | PromiseLike<string | Blob | FileType>;
+type BeforeUploadValueType = void | boolean | string | Blob | FileType;
 
 function uploadProps<T = any>() {
   return {
@@ -157,10 +157,10 @@ function uploadProps<T = any>() {
     'removeIcon': functionType<(opt: { file: UploadFile }) => VueNode>(),
     'downloadIcon': functionType<(opt: { file: UploadFile }) => VueNode>(),
     'previewIcon': functionType<(opt: { file: UploadFile }) => VueNode>(),
-  }
+  };
 }
 
-export type UploadProps = Partial<ExtractPropTypes<ReturnType<typeof uploadProps>>>
+export type UploadProps = Partial<ExtractPropTypes<ReturnType<typeof uploadProps>>>;
 
 export interface UploadState<T = any> {
   fileList: Array<UploadFile<T>>;
@@ -190,8 +190,8 @@ function uploadListProps<T = any>() {
     appendAction: functionType<() => VueNode>(),
     appendActionVisible: booleanType(),
     itemRender: functionType<ItemRender<T>>(),
-  }
+  };
 }
 
-export type UploadListProps = Partial<ExtractPropTypes<ReturnType<typeof uploadListProps>>>
-export { uploadListProps, uploadProps }
+export type UploadListProps = Partial<ExtractPropTypes<ReturnType<typeof uploadListProps>>>;
+export { uploadListProps, uploadProps };

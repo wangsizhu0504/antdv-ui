@@ -1,5 +1,5 @@
-import type { EventHandler } from '@antdv/types'
-import type { CSSProperties } from 'vue'
+import type { EventHandler } from '@antdv/types';
+import type { CSSProperties } from 'vue';
 import type {
   ColumnsType,
   ColumnType,
@@ -18,8 +18,8 @@ import type {
   TableSticky,
   TransformCellText,
   TriggerEventHandler,
-} from './interface'
-import { useState } from '@antdv/hooks'
+} from './interface';
+import { useState } from '@antdv/hooks';
 import {
   classNames,
   getTargetScrollBarSize,
@@ -28,7 +28,7 @@ import {
   reactivePick,
   toPx,
   warning,
-} from '@antdv/utils'
+} from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -42,35 +42,35 @@ import {
   toRefs,
   watch,
   watchEffect,
-} from 'vue'
-import VCResizeObserver from '../../vc-resize-observer/src/index'
-import Body from './Body'
-import ColGroup from './ColGroup'
-import { useProvideBody } from './context/BodyContext'
-import { useProvideExpandedRow } from './context/ExpandedRowContext'
-import { useProvideResize } from './context/ResizeContext'
-import { useProvideSticky } from './context/StickyContext'
-import { useProvideTable } from './context/TableContext'
-import FixedHolder from './FixedHolder'
-import Footer from './Footer'
-import Header from './Header/Header'
-import useColumns from './hooks/useColumns'
-import { useLayoutState, useTimeoutLock } from './hooks/useFrame'
-import useSticky from './hooks/useSticky'
-import useStickyOffsets from './hooks/useStickyOffsets'
-import Panel from './Panel'
-import StickyScrollBar from './stickyScrollBar'
-import { findAllChildrenKeys, renderExpandIcon } from './utils/expandUtil'
-import { getCellFixedInfo } from './utils/fixUtil'
-import { getColumnsKey, getPathValue, mergeObject, validateValue } from './utils/valueUtil'
+} from 'vue';
+import VCResizeObserver from '../../vc-resize-observer/src/index';
+import Body from './Body';
+import ColGroup from './ColGroup';
+import { useProvideBody } from './context/BodyContext';
+import { useProvideExpandedRow } from './context/ExpandedRowContext';
+import { useProvideResize } from './context/ResizeContext';
+import { useProvideSticky } from './context/StickyContext';
+import { useProvideTable } from './context/TableContext';
+import FixedHolder from './FixedHolder';
+import Footer from './Footer';
+import Header from './Header/Header';
+import useColumns from './hooks/useColumns';
+import { useLayoutState, useTimeoutLock } from './hooks/useFrame';
+import useSticky from './hooks/useSticky';
+import useStickyOffsets from './hooks/useStickyOffsets';
+import Panel from './Panel';
+import StickyScrollBar from './stickyScrollBar';
+import { findAllChildrenKeys, renderExpandIcon } from './utils/expandUtil';
+import { getCellFixedInfo } from './utils/fixUtil';
+import { getColumnsKey, getPathValue, mergeObject, validateValue } from './utils/valueUtil';
 
 // Used for conditions cache
-const EMPTY_DATA = []
+const EMPTY_DATA = [];
 
 // Used for customize scroll
-const EMPTY_SCROLL_TARGET = {}
+const EMPTY_SCROLL_TARGET = {};
 
-export const INTERNAL_HOOKS = 'rc-table-internal-hook'
+export const INTERNAL_HOOKS = 'rc-table-internal-hook';
 
 export interface TableProps<RecordType = DefaultRecordType> {
   prefixCls?: string;
@@ -196,44 +196,44 @@ export default defineComponent({
   ],
   emits: ['expand', 'expandedRowsChange', 'updateInternalRefs', 'update:expandedRowKeys'],
   setup(props, { attrs, slots, emit }) {
-    const mergedData = computed(() => props.data || EMPTY_DATA)
-    const hasData = computed(() => !!mergedData.value.length)
+    const mergedData = computed(() => props.data || EMPTY_DATA);
+    const hasData = computed(() => !!mergedData.value.length);
     // ==================== Customize =====================
     const mergedComponents = computed(() =>
       mergeObject<TableComponents<any>>(props.components, {}),
-    )
+    );
 
     const getComponent = (path, defaultComponent?: string) => getPathValue<CustomizeComponent, TableComponents<any>>(mergedComponents.value, path)
-      || defaultComponent
+      || defaultComponent;
 
     const getRowKey = computed(() => {
-      const rowKey = props.rowKey
+      const rowKey = props.rowKey;
       if (typeof rowKey === 'function')
-        return rowKey
+        return rowKey;
 
       return (record) => {
-        const key = record && record[rowKey]
+        const key = record && record[rowKey];
 
         if (process.env.NODE_ENV !== 'production') {
           warning(
             key !== undefined,
             'Each record in table should have a unique `key` prop, or set `rowKey` to an unique primary key.',
-          )
+          );
         }
 
-        return key
-      }
-    })
+        return key;
+      };
+    });
 
     // ====================== Expand ======================
 
-    const mergedExpandIcon = computed(() => props.expandIcon || renderExpandIcon)
+    const mergedExpandIcon = computed(() => props.expandIcon || renderExpandIcon);
 
-    const mergedChildrenColumnName = computed(() => props.childrenColumnName || 'children')
+    const mergedChildrenColumnName = computed(() => props.childrenColumnName || 'children');
 
     const expandableType = computed(() => {
       if (props.expandedRowRender)
-        return 'row'
+        return 'row';
 
       /**
        * Fix https://github.com/ant-design/ant-design/issues/21154
@@ -249,62 +249,62 @@ export default defineComponent({
           record => record && typeof record === 'object' && record[mergedChildrenColumnName.value],
         )
       ) {
-        return 'nest'
+        return 'nest';
       }
 
-      return false
-    })
+      return false;
+    });
 
-    const innerExpandedKeys = shallowRef([])
+    const innerExpandedKeys = shallowRef([]);
     const stop = watchEffect(() => {
       if (props.defaultExpandedRowKeys)
-        innerExpandedKeys.value = props.defaultExpandedRowKeys
+        innerExpandedKeys.value = props.defaultExpandedRowKeys;
 
       if (props.defaultExpandAllRows) {
         innerExpandedKeys.value = findAllChildrenKeys(
           mergedData.value,
           getRowKey.value,
           mergedChildrenColumnName.value,
-        )
+        );
       }
-    })
+    });
     // defalutXxxx 仅仅第一次生效
-    stop()
+    stop();
 
     const mergedExpandedKeys = computed(
       (): Set<Key> => new Set(props.expandedRowKeys || innerExpandedKeys.value || []),
-    )
+    );
 
     const onTriggerExpand: TriggerEventHandler<any> = (record) => {
-      const key = getRowKey.value(record, mergedData.value.indexOf(record))
+      const key = getRowKey.value(record, mergedData.value.indexOf(record));
 
-      let newExpandedKeys: Key[]
-      const hasKey = mergedExpandedKeys.value.has(key)
+      let newExpandedKeys: Key[];
+      const hasKey = mergedExpandedKeys.value.has(key);
       if (hasKey) {
-        mergedExpandedKeys.value.delete(key)
-        newExpandedKeys = [...mergedExpandedKeys.value]
+        mergedExpandedKeys.value.delete(key);
+        newExpandedKeys = [...mergedExpandedKeys.value];
       } else {
-        newExpandedKeys = [...mergedExpandedKeys.value, key]
+        newExpandedKeys = [...mergedExpandedKeys.value, key];
       }
-      innerExpandedKeys.value = newExpandedKeys
+      innerExpandedKeys.value = newExpandedKeys;
 
-      emit('expand', !hasKey, record)
-      emit('update:expandedRowKeys', newExpandedKeys)
-      emit('expandedRowsChange', newExpandedKeys)
-    }
+      emit('expand', !hasKey, record);
+      emit('update:expandedRowKeys', newExpandedKeys);
+      emit('expandedRowsChange', newExpandedKeys);
+    };
 
     // Warning if use `expandedRowRender` and nest children in the same time
     if (
       process.env.NODE_ENV !== 'production'
       && props.expandedRowRender
       && mergedData.value.some((record) => {
-        return Array.isArray(record?.[mergedChildrenColumnName.value])
+        return Array.isArray(record?.[mergedChildrenColumnName.value]);
       })
     ) {
-      warning(false, '`expandedRowRender` should not use with nested Table')
+      warning(false, '`expandedRowRender` should not use with nested Table');
     }
 
-    const componentWidth = ref(0)
+    const componentWidth = ref(0);
 
     const [columns, flattenColumns] = useColumns(
       {
@@ -318,113 +318,113 @@ export default defineComponent({
         expandIcon: mergedExpandIcon,
       },
       computed(() => (props.internalHooks === INTERNAL_HOOKS ? props.transformColumns : null)),
-    )
+    );
 
     const columnContext = computed(() => ({
       columns: columns.value,
       flattenColumns: flattenColumns.value,
-    }))
+    }));
 
     // ====================== Scroll ======================
-    const fullTableRef = ref<HTMLDivElement>()
-    const scrollHeaderRef = ref<HTMLDivElement>()
-    const scrollBodyRef = ref<HTMLDivElement>()
+    const fullTableRef = ref<HTMLDivElement>();
+    const scrollHeaderRef = ref<HTMLDivElement>();
+    const scrollBodyRef = ref<HTMLDivElement>();
     const scrollBodySizeInfo = ref<{ scrollWidth: number; clientWidth: number }>({
       scrollWidth: 0,
       clientWidth: 0,
-    })
-    const scrollSummaryRef = ref<HTMLDivElement>()
-    const [pingedLeft, setPingedLeft] = useState(false)
-    const [pingedRight, setPingedRight] = useState(false)
-    const [colsWidths, updateColsWidths] = useLayoutState(new Map<Key, number>())
+    });
+    const scrollSummaryRef = ref<HTMLDivElement>();
+    const [pingedLeft, setPingedLeft] = useState(false);
+    const [pingedRight, setPingedRight] = useState(false);
+    const [colsWidths, updateColsWidths] = useLayoutState(new Map<Key, number>());
 
     // Convert map to number width
-    const colsKeys = computed(() => getColumnsKey(flattenColumns.value))
+    const colsKeys = computed(() => getColumnsKey(flattenColumns.value));
     const colWidths = computed(() =>
       colsKeys.value.map(columnKey => colsWidths.value.get(columnKey)),
-    )
-    const columnCount = computed(() => flattenColumns.value.length)
-    const stickyOffsets = useStickyOffsets(colWidths, columnCount, toRef(props, 'direction'))
-    const fixHeader = computed(() => props.scroll && validateValue(props.scroll.y))
+    );
+    const columnCount = computed(() => flattenColumns.value.length);
+    const stickyOffsets = useStickyOffsets(colWidths, columnCount, toRef(props, 'direction'));
+    const fixHeader = computed(() => props.scroll && validateValue(props.scroll.y));
     const horizonScroll = computed(
       () => (props.scroll && validateValue(props.scroll.x)) || Boolean(props.expandFixed),
-    )
+    );
     const fixColumn = computed(
       () => horizonScroll.value && flattenColumns.value.some(({ fixed }) => fixed),
-    )
+    );
 
     // Sticky
-    const stickyRef = ref<{ setScrollLeft: (left: number) => void }>()
-    const stickyState = useSticky(toRef(props, 'sticky'), toRef(props, 'prefixCls'))
+    const stickyRef = ref<{ setScrollLeft: (left: number) => void }>();
+    const stickyState = useSticky(toRef(props, 'sticky'), toRef(props, 'prefixCls'));
 
-    const summaryFixedInfos = reactive<Record<string, boolean | string>>({})
+    const summaryFixedInfos = reactive<Record<string, boolean | string>>({});
     const fixFooter = computed(() => {
-      const info = Object.values(summaryFixedInfos)[0]
-      return (fixHeader.value || stickyState.value.isSticky) && info
-    })
+      const info = Object.values(summaryFixedInfos)[0];
+      return (fixHeader.value || stickyState.value.isSticky) && info;
+    });
 
     const summaryCollect = (uniKey: string, fixed: boolean | string) => {
       if (fixed)
-        summaryFixedInfos[uniKey] = fixed
+        summaryFixedInfos[uniKey] = fixed;
       else
-        delete summaryFixedInfos[uniKey]
-    }
+        delete summaryFixedInfos[uniKey];
+    };
 
     // Scroll
-    const scrollXStyle = ref<CSSProperties>({})
-    const scrollYStyle = ref<CSSProperties>({})
-    const scrollTableStyle = ref<CSSProperties>({})
+    const scrollXStyle = ref<CSSProperties>({});
+    const scrollYStyle = ref<CSSProperties>({});
+    const scrollTableStyle = ref<CSSProperties>({});
 
     watchEffect(() => {
       if (fixHeader.value) {
         scrollYStyle.value = {
           overflowY: 'scroll',
           maxHeight: toPx(props.scroll.y),
-        }
+        };
       }
 
       if (horizonScroll.value) {
-        scrollXStyle.value = { overflowX: 'auto' }
+        scrollXStyle.value = { overflowX: 'auto' };
         // When no vertical scrollbar, should hide it
         // https://github.com/ant-design/ant-design/pull/20705
         // https://github.com/ant-design/ant-design/issues/21879
         if (!fixHeader.value)
-          scrollYStyle.value = { overflowY: 'hidden' }
+          scrollYStyle.value = { overflowY: 'hidden' };
 
         scrollTableStyle.value = {
           width: props.scroll.x === true ? 'auto' : toPx(props.scroll.x),
           minWidth: '100%',
-        }
+        };
       }
-    })
+    });
 
     const onColumnResize = (columnKey: Key, width: number) => {
       if (isVisible(fullTableRef.value)) {
         updateColsWidths((widths) => {
           if (widths.get(columnKey) !== width) {
-            const newWidths = new Map(widths)
-            newWidths.set(columnKey, width)
-            return newWidths
+            const newWidths = new Map(widths);
+            newWidths.set(columnKey, width);
+            return newWidths;
           }
-          return widths
-        })
+          return widths;
+        });
       }
-    }
+    };
 
-    const [setScrollTarget, getScrollTarget] = useTimeoutLock(null)
+    const [setScrollTarget, getScrollTarget] = useTimeoutLock(null);
 
     function forceScroll(scrollLeft: number, target: HTMLDivElement | ((left: number) => void)) {
       if (!target)
-        return
+        return;
 
       if (typeof target === 'function') {
-        target(scrollLeft)
-        return
+        target(scrollLeft);
+        return;
       }
-      const domTarget = (target as any).$el || target
+      const domTarget = (target as any).$el || target;
       if (domTarget.scrollLeft !== scrollLeft)
 
-        domTarget.scrollLeft = scrollLeft
+        domTarget.scrollLeft = scrollLeft;
     }
 
     const onScroll: EventHandler = ({
@@ -434,83 +434,83 @@ export default defineComponent({
       currentTarget: HTMLElement;
       scrollLeft?: number;
     }) => {
-      const isRTL = props.direction === 'rtl'
+      const isRTL = props.direction === 'rtl';
       const mergedScrollLeft
-        = typeof scrollLeft === 'number' ? scrollLeft : currentTarget.scrollLeft
+        = typeof scrollLeft === 'number' ? scrollLeft : currentTarget.scrollLeft;
 
-      const compareTarget = currentTarget || EMPTY_SCROLL_TARGET
+      const compareTarget = currentTarget || EMPTY_SCROLL_TARGET;
       if (!getScrollTarget() || getScrollTarget() === compareTarget) {
-        setScrollTarget(compareTarget)
+        setScrollTarget(compareTarget);
 
-        forceScroll(mergedScrollLeft, scrollHeaderRef.value)
-        forceScroll(mergedScrollLeft, scrollBodyRef.value)
-        forceScroll(mergedScrollLeft, scrollSummaryRef.value)
-        forceScroll(mergedScrollLeft, stickyRef.value?.setScrollLeft)
+        forceScroll(mergedScrollLeft, scrollHeaderRef.value);
+        forceScroll(mergedScrollLeft, scrollBodyRef.value);
+        forceScroll(mergedScrollLeft, scrollSummaryRef.value);
+        forceScroll(mergedScrollLeft, stickyRef.value?.setScrollLeft);
       }
 
       if (currentTarget) {
-        const { scrollWidth, clientWidth } = currentTarget
+        const { scrollWidth, clientWidth } = currentTarget;
         if (isRTL) {
-          setPingedLeft(-mergedScrollLeft < scrollWidth - clientWidth)
-          setPingedRight(-mergedScrollLeft > 0)
+          setPingedLeft(-mergedScrollLeft < scrollWidth - clientWidth);
+          setPingedRight(-mergedScrollLeft > 0);
         } else {
-          setPingedLeft(mergedScrollLeft > 0)
-          setPingedRight(mergedScrollLeft < scrollWidth - clientWidth)
+          setPingedLeft(mergedScrollLeft > 0);
+          setPingedRight(mergedScrollLeft < scrollWidth - clientWidth);
         }
       }
-    }
+    };
 
     const triggerOnScroll = () => {
       if (horizonScroll.value && scrollBodyRef.value) {
-        onScroll({ currentTarget: scrollBodyRef.value })
+        onScroll({ currentTarget: scrollBodyRef.value });
       } else {
-        setPingedLeft(false)
-        setPingedRight(false)
+        setPingedLeft(false);
+        setPingedRight(false);
       }
-    }
-    let timtout
+    };
+    let timtout;
     const updateWidth = (width: number) => {
       if (width !== componentWidth.value) {
-        triggerOnScroll()
-        componentWidth.value = fullTableRef.value ? fullTableRef.value.offsetWidth : width
+        triggerOnScroll();
+        componentWidth.value = fullTableRef.value ? fullTableRef.value.offsetWidth : width;
       }
-    }
+    };
     const onFullTableResize = ({ width }) => {
-      clearTimeout(timtout)
+      clearTimeout(timtout);
       if (componentWidth.value === 0) {
-        updateWidth(width)
-        return
+        updateWidth(width);
+        return;
       }
       timtout = setTimeout(() => {
-        updateWidth(width)
-      }, 100)
-    }
+        updateWidth(width);
+      }, 100);
+    };
 
     watch(
       [horizonScroll, () => props.data, () => props.columns],
       () => {
         if (horizonScroll.value)
-          triggerOnScroll()
+          triggerOnScroll();
       },
       { flush: 'post' },
-    )
+    );
 
-    const [scrollbarSize, setScrollbarSize] = useState(0)
-    useProvideSticky()
+    const [scrollbarSize, setScrollbarSize] = useState(0);
+    useProvideSticky();
     onMounted(() => {
       nextTick(() => {
-        triggerOnScroll()
-        setScrollbarSize(getTargetScrollBarSize(scrollBodyRef.value).width)
+        triggerOnScroll();
+        setScrollbarSize(getTargetScrollBarSize(scrollBodyRef.value).width);
         scrollBodySizeInfo.value = {
           scrollWidth: scrollBodyRef.value?.scrollWidth || 0,
           clientWidth: scrollBodyRef.value?.clientWidth || 0,
-        }
-      })
-    })
+        };
+      });
+    });
     onUpdated(() => {
       nextTick(() => {
-        const scrollWidth = scrollBodyRef.value?.scrollWidth || 0
-        const clientWidth = scrollBodyRef.value?.clientWidth || 0
+        const scrollWidth = scrollBodyRef.value?.scrollWidth || 0;
+        const clientWidth = scrollBodyRef.value?.clientWidth || 0;
         if (
           scrollBodySizeInfo.value.scrollWidth !== scrollWidth
           || scrollBodySizeInfo.value.clientWidth !== clientWidth
@@ -518,10 +518,10 @@ export default defineComponent({
           scrollBodySizeInfo.value = {
             scrollWidth,
             clientWidth,
-          }
+          };
         }
-      })
-    })
+      });
+    });
 
     watchEffect(
       () => {
@@ -530,37 +530,37 @@ export default defineComponent({
             body: scrollBodyRef.value
               ? (scrollBodyRef.value as any).$el || scrollBodyRef.value
               : null,
-          })
+          });
         }
       },
       { flush: 'post' },
-    )
+    );
 
     // Table layout
     const mergedTableLayout = computed(() => {
       if (props.tableLayout)
-        return props.tableLayout
+        return props.tableLayout;
 
       // https://github.com/ant-design/ant-design/issues/25227
       // When scroll.x is max-content, no need to fix table layout
       // it's width should stretch out to fit content
       if (fixColumn.value)
-        return props.scroll.x === 'max-content' ? 'auto' : 'fixed'
+        return props.scroll.x === 'max-content' ? 'auto' : 'fixed';
 
       if (
         fixHeader.value
         || stickyState.value.isSticky
         || flattenColumns.value.some(({ ellipsis }) => ellipsis)
       ) {
-        return 'fixed'
+        return 'fixed';
       }
 
-      return 'auto'
-    })
+      return 'auto';
+    });
 
     const emptyNode = () => {
-      return hasData.value ? null : slots.emptyText?.() || 'No Data'
-    }
+      return hasData.value ? null : slots.emptyText?.() || 'No Data';
+    };
     useProvideTable(
       reactive({
         ...toRefs(reactivePick(props, 'prefixCls', 'direction', 'transformCellText')),
@@ -579,7 +579,7 @@ export default defineComponent({
         isSticky: computed(() => stickyState.value.isSticky),
         summaryCollect,
       }),
-    )
+    );
     useProvideBody(
       reactive({
         ...toRefs(
@@ -600,18 +600,18 @@ export default defineComponent({
         expandableType,
         onTriggerExpand,
       }),
-    )
+    );
 
     useProvideResize({
       onColumnResize,
-    })
+    });
 
     useProvideExpandedRow({
       componentWidth,
       fixHeader,
       fixColumn,
       horizonScroll,
-    })
+    });
 
     // Body
     const bodyTable = () => (
@@ -625,14 +625,14 @@ export default defineComponent({
         childrenColumnName={mergedChildrenColumnName.value}
         v-slots={{ emptyNode }}
       />
-    )
+    );
 
     const bodyColGroup = () => (
       <ColGroup
         colWidths={flattenColumns.value.map(({ width }) => width)}
         columns={flattenColumns.value}
       />
-    )
+    );
     return () => {
       const {
         prefixCls,
@@ -648,14 +648,14 @@ export default defineComponent({
         id,
         showHeader,
         customHeaderRow,
-      } = props
+      } = props;
       const { isSticky, offsetHeader, offsetSummary, offsetScroll, stickyClassName, container }
-        = stickyState.value
-      const TableComponent = getComponent(['table'], 'table')
-      const customizeScrollBody = getComponent(['body']) as unknown as CustomizeScrollBody<any>
-      const summaryNode = slots.summary?.({ pageData: mergedData.value })
+        = stickyState.value;
+      const TableComponent = getComponent(['table'], 'table');
+      const customizeScrollBody = getComponent(['body']) as unknown as CustomizeScrollBody<any>;
+      const summaryNode = slots.summary?.({ pageData: mergedData.value });
 
-      let groupTableNode = () => null
+      let groupTableNode = () => null;
 
       // Header props
       const headerProps = {
@@ -665,7 +665,7 @@ export default defineComponent({
         customHeaderRow,
         fixHeader: fixHeader.value,
         scroll,
-      }
+      };
 
       if (
         process.env.NODE_ENV !== 'production'
@@ -673,12 +673,12 @@ export default defineComponent({
         && hasData.value
         && !fixHeader.value
       ) {
-        warning(false, '`components.body` with render props is only work on `scroll.y`.')
+        warning(false, '`components.body` with render props is only work on `scroll.y`.');
       }
 
       if (fixHeader.value || isSticky) {
         // >>>>>> Fixed Header
-        let bodyContent = () => null
+        let bodyContent = () => null;
 
         if (typeof customizeScrollBody === 'function') {
           bodyContent = () =>
@@ -686,21 +686,21 @@ export default defineComponent({
               scrollbarSize: scrollbarSize.value,
               ref: scrollBodyRef,
               onScroll,
-            })
+            });
 
           headerProps.colWidths = flattenColumns.value.map(({ width }, index) => {
             const colWidth
-              = index === columns.value.length - 1 ? (width as number) - scrollbarSize.value : width
+              = index === columns.value.length - 1 ? (width as number) - scrollbarSize.value : width;
             if (typeof colWidth === 'number' && !Number.isNaN(colWidth))
-              return colWidth
+              return colWidth;
 
             warning(
               false,
               'When use `components.body` with render props. Each column should have a fixed `width` value.',
-            )
+            );
 
-            return 0
-          }) as number[]
+            return 0;
+          }) as number[];
         } else {
           bodyContent = () => (
             <div
@@ -727,7 +727,7 @@ export default defineComponent({
                 )}
               </TableComponent>
             </div>
-          )
+          );
         }
 
         // Fixed holder share the props
@@ -739,7 +739,7 @@ export default defineComponent({
           direction,
           stickyClassName,
           onScroll,
-        }
+        };
 
         groupTableNode = () => (
           <>
@@ -794,7 +794,7 @@ export default defineComponent({
               />
             )}
           </>
-        )
+        );
       } else {
         // >>>>>> Unique table
         groupTableNode = () => (
@@ -820,9 +820,9 @@ export default defineComponent({
               )}
             </TableComponent>
           </div>
-        )
+        );
       }
-      const ariaProps = pickAttrs(attrs, { aria: true, data: true })
+      const ariaProps = pickAttrs(attrs, { aria: true, data: true });
       const fullTable = () => (
         <div
           {...ariaProps}
@@ -849,7 +849,7 @@ export default defineComponent({
           <div class={`${prefixCls}-container`}>{groupTableNode()}</div>
           {footer && <Panel class={`${prefixCls}-footer`}>{footer(mergedData.value)}</Panel>}
         </div>
-      )
+      );
 
       if (horizonScroll.value) {
         return (
@@ -858,9 +858,9 @@ export default defineComponent({
             v-slots={{ default: fullTable }}
           >
           </VCResizeObserver>
-        )
+        );
       }
-      return fullTable()
-    }
+      return fullTable();
+    };
   },
-})
+});

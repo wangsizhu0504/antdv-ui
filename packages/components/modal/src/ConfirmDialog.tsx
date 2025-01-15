@@ -1,19 +1,19 @@
-import type { ConfirmDialogProps } from './interface'
-import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, InfoCircleFilled } from '@ant-design/icons-vue'
+import type { ConfirmDialogProps } from './interface';
+import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, InfoCircleFilled } from '@ant-design/icons-vue';
 
-import { classNames, devWarning } from '@antdv/utils'
-import { getTransitionName } from '@antdv/vue-components'
-import { defineComponent } from 'vue'
-import ActionButton from '../../button/src/ActionButton'
+import { classNames, devWarning } from '@antdv/utils';
+import { getTransitionName } from '@antdv/vue-components';
+import { defineComponent } from 'vue';
+import ActionButton from '../../button/src/ActionButton';
 
-import { useLocaleReceiver } from '../../locale-provider'
-import Dialog from './Modal'
+import { useLocaleReceiver } from '../../locale-provider';
+import Dialog from './Modal';
 
 function renderSomeContent(someContent: any) {
   if (typeof someContent === 'function')
-    return someContent()
+    return someContent();
 
-  return someContent
+  return someContent;
 }
 
 export default defineComponent<ConfirmDialogProps>({
@@ -60,14 +60,14 @@ export default defineComponent<ConfirmDialogProps>({
     'footer',
   ] as any,
   setup(props, { attrs }) {
-    const [locale] = useLocaleReceiver('Modal')
+    const [locale] = useLocaleReceiver('Modal');
 
     if (process.env.NODE_ENV !== 'production') {
       devWarning(
         props.visible === undefined,
         'Modal',
         '`visible` is deprecated, please use `open` instead.',
-      )
+      );
     }
     return () => {
       const {
@@ -101,49 +101,49 @@ export default defineComponent<ConfirmDialogProps>({
         bodyStyle,
         wrapClassName,
         footer,
-      } = props
+      } = props;
 
       // Icon
-      let mergedIcon = icon
+      let mergedIcon = icon;
 
       // 支持传入{ icon: null }来隐藏`Modal.confirm`默认的Icon
       if (!icon && icon !== null) {
         switch (type) {
           case 'info':
-            mergedIcon = <InfoCircleFilled />
-            break
+            mergedIcon = <InfoCircleFilled />;
+            break;
 
           case 'success':
-            mergedIcon = <CheckCircleFilled />
-            break
+            mergedIcon = <CheckCircleFilled />;
+            break;
 
           case 'error':
-            mergedIcon = <CloseCircleFilled />
-            break
+            mergedIcon = <CloseCircleFilled />;
+            break;
 
           default:
-            mergedIcon = <ExclamationCircleFilled />
+            mergedIcon = <ExclamationCircleFilled />;
         }
       }
-      const okType = props.okType || 'primary'
-      const prefixCls = props.prefixCls || 'ant-modal'
-      const contentPrefixCls = `${prefixCls}-confirm`
-      const style = attrs.style || {}
+      const okType = props.okType || 'primary';
+      const prefixCls = props.prefixCls || 'ant-modal';
+      const contentPrefixCls = `${prefixCls}-confirm`;
+      const style = attrs.style || {};
 
-      const mergedOkCancel = okCancel ?? type === 'confirm'
+      const mergedOkCancel = okCancel ?? type === 'confirm';
       const autoFocusButton
-        = props.autoFocusButton === null ? false : props.autoFocusButton || 'ok'
+        = props.autoFocusButton === null ? false : props.autoFocusButton || 'ok';
 
-      const confirmPrefixCls = `${prefixCls}-confirm`
+      const confirmPrefixCls = `${prefixCls}-confirm`;
 
       const classString = classNames(
         confirmPrefixCls,
         `${confirmPrefixCls}-${props.type}`,
         { [`${confirmPrefixCls}-rtl`]: direction === 'rtl' },
         attrs.class,
-      )
+      );
 
-      const mergedLocal = locale.value
+      const mergedLocal = locale.value;
 
       const cancelButton = mergedOkCancel && (
         <ActionButton
@@ -155,7 +155,7 @@ export default defineComponent<ConfirmDialogProps>({
         >
           {renderSomeContent(props.cancelText) || mergedLocal.cancelText}
         </ActionButton>
-      )
+      );
       return (
         <Dialog
           prefixCls={prefixCls}
@@ -218,7 +218,7 @@ export default defineComponent<ConfirmDialogProps>({
                 )}
           </div>
         </Dialog>
-      )
-    }
+      );
+    };
   },
-})
+});

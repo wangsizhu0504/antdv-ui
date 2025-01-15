@@ -1,7 +1,7 @@
-import type { InjectionKey } from 'vue'
-import type { ExpandAction } from '../../vc-tree/src/props'
-import type { DefaultOptionType, InternalFieldName, OnInternalSelect } from './TreeSelect'
-import { inject, provide } from 'vue'
+import type { InjectionKey } from 'vue';
+import type { ExpandAction } from '../../vc-tree/src/props';
+import type { DefaultOptionType, InternalFieldName, OnInternalSelect } from './TreeSelect';
+import { inject, provide } from 'vue';
 
 export interface TreeSelectContextProps {
   virtual?: boolean;
@@ -16,11 +16,11 @@ export interface TreeSelectContextProps {
 
 const TreeSelectContextPropsKey: InjectionKey<TreeSelectContextProps> = Symbol(
   'TreeSelectContextPropsKey',
-)
+);
 
 export function useProvideSelectContext(props: TreeSelectContextProps) {
-  return provide(TreeSelectContextPropsKey, props)
+  return provide(TreeSelectContextPropsKey, props);
 }
 export default function useInjectSelectContext() {
-  return inject(TreeSelectContextPropsKey, {} as TreeSelectContextProps)
+  return inject(TreeSelectContextPropsKey, {} as TreeSelectContextProps);
 }

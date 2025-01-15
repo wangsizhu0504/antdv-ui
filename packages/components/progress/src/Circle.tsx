@@ -1,11 +1,11 @@
-import type { CSSProperties } from 'vue'
-import type { ProgressProps } from './props'
-import { initDefaultProps } from '@antdv/utils'
-import { Circle as VCCircle } from '@antdv/vue-components'
-import { computed, defineComponent } from 'vue'
-import Tooltip from '../../tooltip'
-import { progressCircleProps } from './props'
-import { getPercentage, getSize, getStrokeColor } from './utils'
+import type { CSSProperties } from 'vue';
+import type { ProgressProps } from './props';
+import { initDefaultProps } from '@antdv/utils';
+import { Circle as VCCircle } from '@antdv/vue-components';
+import { computed, defineComponent } from 'vue';
+import Tooltip from '../../tooltip';
+import { progressCircleProps } from './props';
+import { getPercentage, getSize, getStrokeColor } from './utils';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -15,52 +15,52 @@ export default defineComponent({
     trailColor: null as unknown as string,
   }),
   setup(props, { slots, attrs }) {
-    const CIRCLE_MIN_STROKE_WIDTH = 3
+    const CIRCLE_MIN_STROKE_WIDTH = 3;
 
-    const getMinPercent = (width: number): number => (CIRCLE_MIN_STROKE_WIDTH / width) * 100
+    const getMinPercent = (width: number): number => (CIRCLE_MIN_STROKE_WIDTH / width) * 100;
 
-    const originWidth = computed(() => props.width ?? 120)
-    const mergedSize = computed(() => props.size ?? [originWidth.value, originWidth.value])
+    const originWidth = computed(() => props.width ?? 120);
+    const mergedSize = computed(() => props.size ?? [originWidth.value, originWidth.value]);
 
-    const sizeRef = computed(() => getSize(mergedSize.value as ProgressProps['size'], 'circle'))
+    const sizeRef = computed(() => getSize(mergedSize.value as ProgressProps['size'], 'circle'));
     const gapDeg = computed(() => {
       // Support gapDeg = 0 when type = 'dashboard'
       if (props.gapDegree || props.gapDegree === 0)
-        return props.gapDegree
+        return props.gapDegree;
 
       if (props.type === 'dashboard')
-        return 75
+        return 75;
 
-      return undefined
-    })
+      return undefined;
+    });
 
     const circleStyle = computed<CSSProperties>(() => {
       return {
         width: `${sizeRef.value.width}px`,
         height: `${sizeRef.value.height}px`,
         fontSize: `${sizeRef.value.width * 0.15 + 6}px`,
-      }
-    })
+      };
+    });
 
     const circleWidth = computed(
       () => props.strokeWidth ?? Math.max(getMinPercent(sizeRef.value.width), 6),
-    )
+    );
     const gapPos = computed(
       () => props.gapPosition || (props.type === 'dashboard' && 'bottom') || undefined,
-    )
+    );
 
     // using className to style stroke color
-    const percent = computed(() => getPercentage(props))
+    const percent = computed(() => getPercentage(props));
     const isGradient = computed(
       () => Object.prototype.toString.call(props.strokeColor) === '[object Object]',
-    )
+    );
     const strokeColor = computed(() =>
       getStrokeColor({ success: props.success, strokeColor: props.strokeColor }),
-    )
+    );
     const wrapperClassName = computed(() => ({
       [`${props.prefixCls}-inner`]: true,
       [`${props.prefixCls}-circle-gradient`]: isGradient.value,
-    }))
+    }));
 
     return () => {
       const circleContent = (
@@ -75,7 +75,7 @@ export default defineComponent({
           gapDegree={gapDeg.value}
           gapPosition={gapPos.value}
         />
-      )
+      );
       return (
         <div
           {...attrs}
@@ -95,7 +95,7 @@ export default defineComponent({
                 </>
               )}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

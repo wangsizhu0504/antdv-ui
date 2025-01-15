@@ -1,17 +1,17 @@
-import Icon, * as AntdIcons from '@ant-design/icons-vue'
-import { Radio } from '@antdv/ui'
-import { defineComponent } from 'vue'
-import Category from './Category'
-import { categories } from './fields'
-import { FilledIcon, OutlinedIcon, TwoToneIcon } from './themeIcons'
+import Icon, * as AntdIcons from '@ant-design/icons-vue';
+import { Radio } from '@antdv/ui';
+import { defineComponent } from 'vue';
+import Category from './Category';
+import { categories } from './fields';
+import { FilledIcon, OutlinedIcon, TwoToneIcon } from './themeIcons';
 
 const ThemeType = {
   Filled: 'Filled',
   Outlined: 'Outlined',
   TwoTone: 'TwoTone',
-}
+};
 
-const allIcons = AntdIcons
+const allIcons = AntdIcons;
 
 const IconDisplay = defineComponent({
   cagetories: categories,
@@ -24,26 +24,26 @@ const IconDisplay = defineComponent({
   data() {
     return {
       theme: ThemeType.Outlined,
-    }
+    };
   },
   methods: {
     handleChangeTheme(e) {
-      this.theme = e.target.value
+      this.theme = e.target.value;
     },
 
     renderCategories() {
-      const { theme } = this
+      const { theme } = this;
 
       return Object.keys(categories)
         .map((key) => {
-          const iconList = categories[key]
+          const iconList = categories[key];
 
           return {
             category: key,
             icons: iconList
               .map(iconName => iconName + theme)
               .filter(iconName => allIcons[iconName]),
-          }
+          };
         })
         .filter(({ icons }) => !!icons.length)
         .map(({ category, icons }) => (
@@ -54,7 +54,7 @@ const IconDisplay = defineComponent({
             icons={icons}
             newIcons={IconDisplay.newIconNames}
           />
-        ))
+        ));
     },
   },
 
@@ -81,8 +81,8 @@ const IconDisplay = defineComponent({
         </a-radio-group>
         {this.renderCategories()}
       </div>
-    )
+    );
   },
-})
+});
 
-export default IconDisplay
+export default IconDisplay;

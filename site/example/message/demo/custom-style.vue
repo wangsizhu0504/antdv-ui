@@ -17,7 +17,7 @@ The `style` and `class` are available to customize Message.
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
+  import { message } from '@antdv/ui';
 
   function success() {
     message.success({
@@ -26,7 +26,7 @@ The `style` and `class` are available to customize Message.
       style: {
         marginTop: '20vh',
       },
-    })
+    });
   }
 </script>
 

@@ -17,9 +17,9 @@ Progressive when large image loading.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const random = ref<any>()
+  const random = ref<any>();
 </script>
 
 <template>

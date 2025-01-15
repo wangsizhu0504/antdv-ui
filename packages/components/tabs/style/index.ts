@@ -1,6 +1,6 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent, textEllipsis } from '@antdv/theme'
-import genMotionStyle from './motion'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent, textEllipsis } from '@antdv/theme';
+import genMotionStyle from './motion';
 
 export interface ComponentToken {
   zIndexPopup: number
@@ -28,7 +28,7 @@ const genCardStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
     tabsCardHeadBackground,
     tabsCardGutter,
     colorSplit,
-  } = token
+  } = token;
   return {
     [`${componentCls}-card`]: {
       [`> ${componentCls}-nav, > div > ${componentCls}-nav`]: {
@@ -131,11 +131,11 @@ const genCardStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
         },
       },
     },
-  }
-}
+  };
+};
 
 const genDropdownStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => {
-  const { componentCls, tabsHoverColor, dropdownEdgeChildVerticalPadding } = token
+  const { componentCls, tabsHoverColor, dropdownEdgeChildVerticalPadding } = token;
   return {
     [`${componentCls}-dropdown`]: {
       ...resetComponent(token),
@@ -220,11 +220,11 @@ const genDropdownStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject
         },
       },
     },
-  }
-}
+  };
+};
 
 const genPositionStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => {
-  const { componentCls, margin, colorSplit } = token
+  const { componentCls, margin, colorSplit } = token;
   return {
     // ========================== Top & Bottom ==========================
     [`${componentCls}-top, ${componentCls}-bottom`]: {
@@ -449,11 +449,11 @@ const genPositionStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject
         },
       },
     },
-  }
-}
+  };
+};
 
 const genSizeStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => {
-  const { componentCls, padding } = token
+  const { componentCls, padding } = token;
   return {
     [componentCls]: {
       '&-small': {
@@ -518,13 +518,13 @@ const genSizeStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
         },
       },
     },
-  }
-}
+  };
+};
 
 const genTabStyle: GenerateStyle<TabsToken, CSSObject> = (token: TabsToken) => {
-  const { componentCls, tabsActiveColor, tabsHoverColor, iconCls, tabsHorizontalGutter } = token
+  const { componentCls, tabsActiveColor, tabsHoverColor, iconCls, tabsHorizontalGutter } = token;
 
-  const tabCls = `${componentCls}-tab`
+  const tabCls = `${componentCls}-tab`;
 
   return {
     [tabCls]: {
@@ -603,12 +603,12 @@ const genTabStyle: GenerateStyle<TabsToken, CSSObject> = (token: TabsToken) => {
         value: `0 0 0 ${tabsHorizontalGutter}px`,
       },
     },
-  }
-}
+  };
+};
 
 const genRtlStyle: GenerateStyle<TabsToken, CSSObject> = (token: TabsToken) => {
-  const { componentCls, tabsHorizontalGutter, iconCls, tabsCardGutter } = token
-  const rtlCls = `${componentCls}-rtl`
+  const { componentCls, tabsHorizontalGutter, iconCls, tabsCardGutter } = token;
+  const rtlCls = `${componentCls}-rtl`;
   return {
     [rtlCls]: {
       direction: 'rtl',
@@ -701,8 +701,8 @@ const genRtlStyle: GenerateStyle<TabsToken, CSSObject> = (token: TabsToken) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genTabsStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => {
   const {
@@ -713,7 +713,7 @@ const genTabsStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
     tabsHoverColor,
     tabsActiveColor,
     colorSplit,
-  } = token
+  } = token;
 
   return {
     [componentCls]: {
@@ -862,14 +862,14 @@ const genTabsStyle: GenerateStyle<TabsToken> = (token: TabsToken): CSSObject => 
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
   'Tabs',
   (token) => {
-    const tabsCardHeight = token.controlHeightLG
+    const tabsCardHeight = token.controlHeightLG;
 
     const tabsToken = mergeToken<TabsToken>(token, {
       tabsHoverColor: token.colorPrimaryHover,
@@ -886,7 +886,7 @@ export default genComponentStyleHook(
       tabsActiveTextShadow: '0 0 0.25px currentcolor',
       tabsDropdownHeight: 200,
       tabsDropdownWidth: 120,
-    })
+    });
 
     return [
       genSizeStyle(tabsToken),
@@ -896,9 +896,9 @@ export default genComponentStyleHook(
       genCardStyle(tabsToken),
       genTabsStyle(tabsToken),
       genMotionStyle(tabsToken),
-    ]
+    ];
   },
   token => ({
     zIndexPopup: token.zIndexPopupBase + 50,
   }),
-)
+);

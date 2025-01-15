@@ -17,15 +17,15 @@ Using pre & post tabs example.
 </docs>
 
 <script lang="ts" setup>
-  import { SettingOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { SettingOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const value1 = ref<any>(100)
-  const value2 = ref<any>(100)
-  const value3 = ref<any>(100)
-  const value4 = ref<any>(100)
-  const addonBeforeValue = ref<any>('add')
-  const addonAfterValue = ref<any>('USD')
+  const value1 = ref<any>(100);
+  const value2 = ref<any>(100);
+  const value3 = ref<any>(100);
+  const value4 = ref<any>(100);
+  const addonBeforeValue = ref<any>('add');
+  const addonAfterValue = ref<any>('USD');
 </script>
 
 <template>

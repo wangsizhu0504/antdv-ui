@@ -1,24 +1,24 @@
-import type { App } from 'vue'
-import AAutoComplete from './src/AutoComplete'
+import type { App } from 'vue';
+import AAutoComplete from './src/AutoComplete';
 
-import OptGroup from './src/OptGroup'
-import Option from './src/Option'
+import OptGroup from './src/OptGroup';
+import Option from './src/Option';
 
-export const AutoCompleteOptGroup = OptGroup
-export const AutoCompleteOption = Option
+export const AutoCompleteOptGroup = OptGroup;
+export const AutoCompleteOption = Option;
 
 export const AutoComplete = Object.assign(AAutoComplete, {
   Option,
   OptGroup,
   install(app: App) {
-    app.component(AAutoComplete.name, AAutoComplete)
-    app.component(Option.displayName, Option)
-    app.component(OptGroup.displayName, OptGroup)
-    return app
+    app.component(AAutoComplete.name, AAutoComplete);
+    app.component(Option.displayName, Option);
+    app.component(OptGroup.displayName, OptGroup);
+    return app;
   },
-})
+});
 
-export default AutoComplete
+export default AutoComplete;
 
-export * from './src/interface'
-export * from './src/props'
+export * from './src/interface';
+export * from './src/props';

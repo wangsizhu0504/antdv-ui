@@ -1,6 +1,6 @@
-import type { AliasToken } from '../interface'
-import type { TokenTree } from './interface'
-import { seedRelatedAlias, seedRelatedMap } from './TokenRelation'
+import type { AliasToken } from '../interface';
+import type { TokenTree } from './interface';
+import { seedRelatedAlias, seedRelatedMap } from './TokenRelation';
 
 // @ts-expect-error
 const category: TokenTree<keyof AliasToken> = [
@@ -234,6 +234,6 @@ const category: TokenTree<keyof AliasToken> = [
       },
     ],
   },
-]
+];
 
-export default category
+export default category;

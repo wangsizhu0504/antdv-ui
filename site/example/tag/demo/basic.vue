@@ -17,7 +17,7 @@ Usage of basic Tag, and it could be closable by set `closable` property. Closabl
 
 <script lang="ts" setup>
   function log(e: MouseEvent) {
-    console.log(e)
+    console.log(e);
   }
 </script>
 

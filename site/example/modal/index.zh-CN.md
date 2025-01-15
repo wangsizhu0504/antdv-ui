@@ -95,14 +95,14 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*fBrgSJBmavgAAA
 以上函数调用后，会返回一个引用，可以通过该引用更新和关闭弹窗。
 
 ```jsx
-const modal = Modal.info()
+const modal = Modal.info();
 
 modal.update({
   title: '修改的标题',
   content: '修改的内容',
-})
+});
 
-modal.destroy()
+modal.destroy();
 ```
 
 - `Modal.destroyAll`

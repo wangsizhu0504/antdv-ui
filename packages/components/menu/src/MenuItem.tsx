@@ -1,8 +1,8 @@
-import type { CustomSlotsType } from '@antdv/types'
+import type { CustomSlotsType } from '@antdv/types';
 
-import type { MenuInfo } from './interface'
-import { cloneElement, devWarning, flattenChildren, isValidElement, KeyCode } from '@antdv/utils'
-import { VcOverflow } from '@antdv/vue-components/vc-overflow'
+import type { MenuInfo } from './interface';
+import { cloneElement, devWarning, flattenChildren, isValidElement, KeyCode } from '@antdv/utils';
+import { VcOverflow } from '@antdv/vue-components/vc-overflow';
 import {
   computed,
   defineComponent,
@@ -10,15 +10,15 @@ import {
   onBeforeUnmount,
   shallowRef,
   watch,
-} from 'vue'
+} from 'vue';
 
-import Tooltip from '../../tooltip'
-import useDirectionStyle from './hooks/useDirectionStyle'
-import { useInjectKeyPath, useMeasure } from './hooks/useKeyPath'
-import { useInjectFirstLevel, useInjectMenu } from './hooks/useMenuContext'
-import { menuItemProps } from './props'
+import Tooltip from '../../tooltip';
+import useDirectionStyle from './hooks/useDirectionStyle';
+import { useInjectKeyPath, useMeasure } from './hooks/useKeyPath';
+import { useInjectFirstLevel, useInjectMenu } from './hooks/useMenuContext';
+import { menuItemProps } from './props';
 
-let indexGuid = 0
+let indexGuid = 0;
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -32,18 +32,18 @@ export default defineComponent({
   }>,
 
   setup(props, { slots, emit, attrs }) {
-    const instance = getCurrentInstance()
-    const isMeasure = useMeasure()
+    const instance = getCurrentInstance();
+    const isMeasure = useMeasure();
     const key
-      = typeof instance.vnode.key === 'symbol' ? String(instance.vnode.key) : instance.vnode.key
+      = typeof instance.vnode.key === 'symbol' ? String(instance.vnode.key) : instance.vnode.key;
     devWarning(
       typeof instance.vnode.key !== 'symbol',
       'MenuItem',
       `MenuItem \`:key="${String(key)}"\` not support Symbol type`,
-    )
+    );
 
-    const eventKey = `menu_item_${++indexGuid}_$$_${key}`
-    const { parentEventKeys, parentKeys } = useInjectKeyPath()
+    const eventKey = `menu_item_${++indexGuid}_$$_${key}`;
+    const { parentEventKeys, parentKeys } = useInjectKeyPath();
     const {
       prefixCls,
       activeKeys,
@@ -56,12 +56,12 @@ export default defineComponent({
       selectedKeys,
       registerMenuInfo,
       unRegisterMenuInfo,
-    } = useInjectMenu()
-    const firstLevel = useInjectFirstLevel()
-    const isActive = shallowRef(false)
+    } = useInjectMenu();
+    const firstLevel = useInjectFirstLevel();
+    const isActive = shallowRef(false);
     const keysPath = computed(() => {
-      return [...parentKeys.value, key]
-    })
+      return [...parentKeys.value, key];
+    });
 
     // const keysPath = computed(() => [...parentEventKeys.value, eventKey]);
     const menuInfo = {
@@ -70,32 +70,32 @@ export default defineComponent({
       parentEventKeys,
       parentKeys,
       isLeaf: true,
-    }
-    registerMenuInfo(eventKey, menuInfo)
+    };
+    registerMenuInfo(eventKey, menuInfo);
 
     onBeforeUnmount(() => {
-      unRegisterMenuInfo(eventKey)
-    })
+      unRegisterMenuInfo(eventKey);
+    });
 
     watch(
       activeKeys,
       () => {
-        isActive.value = !!activeKeys.value.find(val => val === key)
+        isActive.value = !!activeKeys.value.find(val => val === key);
       },
       { immediate: true },
-    )
-    const mergedDisabled = computed(() => disabled.value || props.disabled)
-    const selected = computed(() => selectedKeys.value.includes(key))
+    );
+    const mergedDisabled = computed(() => disabled.value || props.disabled);
+    const selected = computed(() => selectedKeys.value.includes(key));
     const classNames = computed(() => {
-      const itemCls = `${prefixCls.value}-item`
+      const itemCls = `${prefixCls.value}-item`;
       return {
         [`${itemCls}`]: true,
         [`${itemCls}-danger`]: props.danger,
         [`${itemCls}-active`]: isActive.value,
         [`${itemCls}-selected`]: selected.value,
         [`${itemCls}-disabled`]: mergedDisabled.value,
-      }
-    })
+      };
+    });
 
     const getEventInfo = (e: MouseEvent | KeyboardEvent): MenuInfo => {
       return {
@@ -108,99 +108,99 @@ export default defineComponent({
           ...props,
           ...attrs,
         },
-      }
-    }
+      };
+    };
 
     // ============================ Events ============================
     const onInternalClick = (e: MouseEvent) => {
       if (mergedDisabled.value)
-        return
+        return;
 
-      const info = getEventInfo(e)
-      emit('click', e)
-      onItemClick(info)
-    }
+      const info = getEventInfo(e);
+      emit('click', e);
+      onItemClick(info);
+    };
 
     const onMouseEnter = (event: MouseEvent) => {
       if (!mergedDisabled.value) {
-        changeActiveKeys(keysPath.value)
-        emit('mouseenter', event)
+        changeActiveKeys(keysPath.value);
+        emit('mouseenter', event);
       }
-    }
+    };
     const onMouseLeave = (event: MouseEvent) => {
       if (!mergedDisabled.value) {
-        changeActiveKeys([])
-        emit('mouseleave', event)
+        changeActiveKeys([]);
+        emit('mouseleave', event);
       }
-    }
+    };
 
     const onInternalKeyDown = (e: KeyboardEvent) => {
-      emit('keydown', e)
+      emit('keydown', e);
 
       if (e.which === KeyCode.ENTER) {
-        const info = getEventInfo(e)
+        const info = getEventInfo(e);
 
         // Legacy. Key will also trigger click event
-        emit('click', e)
-        onItemClick(info)
+        emit('click', e);
+        onItemClick(info);
       }
-    }
+    };
 
     /**
      * Used for accessibility. Helper will focus element without key board.
      * We should manually trigger an active
      */
     const onInternalFocus = (e: FocusEvent) => {
-      changeActiveKeys(keysPath.value)
-      emit('focus', e)
-    }
+      changeActiveKeys(keysPath.value);
+      emit('focus', e);
+    };
 
     const renderItemChildren = (icon: any, children: any) => {
-      const wrapNode = <span class={`${prefixCls.value}-title-content`}>{children}</span>
+      const wrapNode = <span class={`${prefixCls.value}-title-content`}>{children}</span>;
       // inline-collapsed.md demo 依赖 span 来隐藏文字,有 icon 属性，则内部包裹一个 span
       // ref: https://github.com/ant-design/ant-design/pull/23456
       if (!icon || (isValidElement(children) && children.type === 'span')) {
         if (children && inlineCollapsed.value && firstLevel && typeof children === 'string') {
           return (
             <div class={`${prefixCls.value}-inline-collapsed-noicon`}>{children.charAt(0)}</div>
-          )
+          );
         }
       }
-      return wrapNode
-    }
+      return wrapNode;
+    };
 
     // ========================== DirectionStyle ==========================
-    const directionStyle = useDirectionStyle(computed(() => keysPath.value.length))
+    const directionStyle = useDirectionStyle(computed(() => keysPath.value.length));
 
     return () => {
-      if (isMeasure) return null
-      const title = props.title ?? slots.title?.()
-      const children = flattenChildren(slots.default?.())
-      const childrenLength = children.length
-      let tooltipTitle: any = title
+      if (isMeasure) return null;
+      const title = props.title ?? slots.title?.();
+      const children = flattenChildren(slots.default?.());
+      const childrenLength = children.length;
+      let tooltipTitle: any = title;
       if (typeof title === 'undefined')
-        tooltipTitle = firstLevel && childrenLength ? children : ''
+        tooltipTitle = firstLevel && childrenLength ? children : '';
       else if (title === false)
-        tooltipTitle = ''
+        tooltipTitle = '';
 
       const tooltipProps: any = {
         title: tooltipTitle,
-      }
+      };
 
       if (!siderCollapsed.value && !inlineCollapsed.value) {
-        tooltipProps.title = null
+        tooltipProps.title = null;
         // Reset `visible` to fix control mode tooltip display not correct
         // ref: https://github.com/ant-design/ant-design/issues/16742
-        tooltipProps.open = false
+        tooltipProps.open = false;
       }
 
       // ============================ Render ============================
-      const optionRoleProps = {}
+      const optionRoleProps = {};
 
       if (props.role === 'option')
-        optionRoleProps['aria-selected'] = selected.value
+        optionRoleProps['aria-selected'] = selected.value;
 
-      const icon = props.icon ?? slots.icon?.(props)
+      const icon = props.icon ?? slots.icon?.(props);
       return (
         <Tooltip
           {...tooltipProps}
@@ -242,7 +242,7 @@ export default defineComponent({
             {renderItemChildren(icon, children)}
           </VcOverflow.Item>
         </Tooltip>
-      )
-    }
+      );
+    };
   },
-})
+});

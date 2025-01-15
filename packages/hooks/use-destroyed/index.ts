@@ -1,10 +1,10 @@
-import { onBeforeUnmount, shallowRef } from 'vue'
+import { onBeforeUnmount, shallowRef } from 'vue';
 
 export function useDestroyed() {
-  const destroyed = shallowRef(false)
+  const destroyed = shallowRef(false);
   onBeforeUnmount(() => {
-    destroyed.value = true
-  })
+    destroyed.value = true;
+  });
 
-  return destroyed
+  return destroyed;
 }

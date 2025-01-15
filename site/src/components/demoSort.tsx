@@ -1,5 +1,5 @@
-import { GLOBAL_CONFIG } from '@/SymbolKey'
-import { defineComponent, inject } from 'vue'
+import { GLOBAL_CONFIG } from '@/SymbolKey';
+import { defineComponent, inject } from 'vue';
 
 export default defineComponent({
   props: {
@@ -9,18 +9,18 @@ export default defineComponent({
     },
   },
   setup(props, { slots }) {
-    const globalConfig = inject(GLOBAL_CONFIG)
+    const globalConfig = inject(GLOBAL_CONFIG);
     // 手机访问强制开启单行 demo 模式
-    const isSingleCol = props.cols === 1 || (globalConfig as any).isMobile.value
-    const leftChildren: any = []
-    const rightChildren: any = []
-    const children = slots.default?.() || []
+    const isSingleCol = props.cols === 1 || (globalConfig as any).isMobile.value;
+    const leftChildren: any = [];
+    const rightChildren: any = [];
+    const children = slots.default?.() || [];
     children.forEach((demo, index) => {
       if (index % 2 === 0 || isSingleCol)
-        leftChildren.push(demo)
+        leftChildren.push(demo);
       else
-        rightChildren.push(demo)
-    })
+        rightChildren.push(demo);
+    });
     return () => {
       return (
         <a-row gutter={16}>
@@ -38,7 +38,7 @@ export default defineComponent({
                 </a-col>
               )}
         </a-row>
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -17,17 +17,17 @@ To customize the text of the buttons, you need to set `okText` and `cancelText` 
 </docs>
 
 <script lang="ts" setup>
-  import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-  import { Modal } from '@antdv/ui'
-  import { createVNode, ref } from 'vue'
+  import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+  import { Modal } from '@antdv/ui';
+  import { createVNode, ref } from 'vue';
 
-  const open = ref<boolean>(false)
+  const open = ref<boolean>(false);
 
   function showModal() {
-    open.value = true
+    open.value = true;
   }
   function hideModal() {
-    open.value = false
+    open.value = false;
   }
 
   function confirm() {
@@ -37,7 +37,7 @@ To customize the text of the buttons, you need to set `okText` and `cancelText` 
       content: 'Bla bla ...',
       okText: '确认',
       cancelText: '取消',
-    })
+    });
   }
 </script>
 

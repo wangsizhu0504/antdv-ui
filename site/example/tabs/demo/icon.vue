@@ -17,10 +17,10 @@ The Tab with Icon.
 </docs>
 
 <script lang="ts" setup>
-  import { AndroidOutlined, AppleOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { AndroidOutlined, AppleOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const activeKey = ref<any>('1')
+  const activeKey = ref<any>('1');
 </script>
 
 <template>

@@ -20,7 +20,7 @@ or use `valueFormat` to format.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive } from 'vue'
+  import { reactive } from 'vue';
 
   interface FormState {
     'date-picker': string;
@@ -39,20 +39,20 @@ or use `valueFormat` to format.
       xs: { span: 24 },
       sm: { span: 16 },
     },
-  }
+  };
   const config = {
     rules: [{ type: 'string' as const, required: true, message: 'Please select time!' }],
-  }
+  };
   const rangeConfig = {
     rules: [{ type: 'array' as const, required: true, message: 'Please select time!' }],
-  }
-  const formState = reactive({} as FormState)
+  };
+  const formState = reactive({} as FormState);
   function onFinish(values: any) {
-    console.log('Success:', values, formState)
+    console.log('Success:', values, formState);
   }
 
   function onFinishFailed(errorInfo: any) {
-    console.log('Failed:', errorInfo)
+    console.log('Failed:', errorInfo);
   }
 </script>
 

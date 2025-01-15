@@ -1,6 +1,6 @@
-import type { Key } from '@antdv/types'
-import type { ComputedRef, InjectionKey, PropType } from 'vue'
-import { computed, defineComponent, inject, provide } from 'vue'
+import type { Key } from '@antdv/types';
+import type { ComputedRef, InjectionKey, PropType } from 'vue';
+import { computed, defineComponent, inject, provide } from 'vue';
 
 export interface OverflowContextProviderValueType {
   prefixCls: string;
@@ -21,7 +21,7 @@ export interface OverflowContextProviderValueType {
 
 const OverflowContextProviderKey: InjectionKey<
   ComputedRef<OverflowContextProviderValueType | null>
-> = Symbol('OverflowContextProviderKey')
+> = Symbol('OverflowContextProviderKey');
 
 export const OverflowContextProvider = defineComponent({
   compatConfig: { MODE: 3 },
@@ -34,14 +34,14 @@ export const OverflowContextProvider = defineComponent({
     provide(
       OverflowContextProviderKey,
       computed(() => props.value),
-    )
-    return () => slots.default?.()
+    );
+    return () => slots.default?.();
   },
-})
+});
 
 export function useInjectOverflowContext(): ComputedRef<OverflowContextProviderValueType | null> {
   return inject(
     OverflowContextProviderKey,
     computed(() => null),
-  )
+  );
 }

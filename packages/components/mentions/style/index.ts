@@ -1,6 +1,6 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import type { InputToken } from '../../input/style'
-import { genComponentStyleHook, resetComponent, textEllipsis } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import type { InputToken } from '../../input/style';
+import { genComponentStyleHook, resetComponent, textEllipsis } from '@antdv/theme';
 import {
   genActiveStyle,
   genBasicInputStyle,
@@ -8,7 +8,7 @@ import {
   genPlaceholderStyle,
   genStatusStyle,
   initInputToken,
-} from '../../input/style'
+} from '../../input/style';
 
 export interface ComponentToken {
   zIndexPopup: number
@@ -16,7 +16,7 @@ export interface ComponentToken {
   controlItemWidth: number
 }
 
-type MentionsToken = InputToken<FullToken<'Mentions'>>
+type MentionsToken = InputToken<FullToken<'Mentions'>>;
 
 const genMentionsStyle: GenerateStyle<MentionsToken> = (token) => {
   const {
@@ -34,11 +34,11 @@ const genMentionsStyle: GenerateStyle<MentionsToken> = (token) => {
     colorBgElevated,
     borderRadiusLG,
     boxShadowSecondary,
-  } = token
+  } = token;
 
   const itemPaddingVertical = Math.round(
     (token.controlHeight - token.fontSize * token.lineHeight) / 2,
-  )
+  );
 
   return {
     [componentCls]: {
@@ -213,19 +213,19 @@ const genMentionsStyle: GenerateStyle<MentionsToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
   'Mentions',
   (token) => {
-    const mentionsToken = initInputToken<FullToken<'Mentions'>>(token)
-    return [genMentionsStyle(mentionsToken)]
+    const mentionsToken = initInputToken<FullToken<'Mentions'>>(token);
+    return [genMentionsStyle(mentionsToken)];
   },
   token => ({
     dropdownHeight: 250,
     controlItemWidth: 100,
     zIndexPopup: token.zIndexPopupBase + 50,
   }),
-)
+);

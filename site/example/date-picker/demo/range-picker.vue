@@ -17,15 +17,15 @@ Set range picker type by `picker` prop.
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import { ref } from 'vue';
 
-  type RangeValue = [Dayjs, Dayjs]
-  const value1 = ref<RangeValue>()
-  const value2 = ref<RangeValue>()
-  const value3 = ref<RangeValue>()
-  const value4 = ref<RangeValue>()
-  const value5 = ref<RangeValue>()
+  type RangeValue = [Dayjs, Dayjs];
+  const value1 = ref<RangeValue>();
+  const value2 = ref<RangeValue>();
+  const value3 = ref<RangeValue>();
+  const value4 = ref<RangeValue>();
+  const value5 = ref<RangeValue>();
 </script>
 
 <template>

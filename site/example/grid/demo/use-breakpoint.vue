@@ -17,9 +17,9 @@ Use `useBreakpoint` Hook provide personalized layout.
 </docs>
 
 <script lang="ts" setup>
-  import { useBreakpoint } from '@antdv/ui'
+  import { useBreakpoint } from '@antdv/ui';
 
-  const screens = useBreakpoint()
+  const screens = useBreakpoint();
 </script>
 
 <template>

@@ -1,7 +1,7 @@
-import type { Key, VueNode } from '@antdv/types'
-import type { NoticeProps } from '@antdv/vue-components/vc-notification/src/Notice'
-import type { CSSProperties } from 'vue'
-import type useNotification from './useNotification'
+import type { Key, VueNode } from '@antdv/types';
+import type { NoticeProps } from '@antdv/vue-components/vc-notification/src/Notice';
+import type { CSSProperties } from 'vue';
+import type useNotification from './useNotification';
 
 export type NotificationPlacement =
   | 'top'
@@ -9,11 +9,11 @@ export type NotificationPlacement =
   | 'topRight'
   | 'bottom'
   | 'bottomLeft'
-  | 'bottomRight'
+  | 'bottomRight';
 
-export type IconType = 'success' | 'info' | 'error' | 'warning' | 'warn'
+export type IconType = 'success' | 'info' | 'error' | 'warning' | 'warn';
 
-type StaticFn = (args: NotificationArgsProps) => void
+type StaticFn = (args: NotificationArgsProps) => void;
 
 export interface NotificationInstance {
   success: StaticFn

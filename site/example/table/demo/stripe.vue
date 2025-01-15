@@ -19,7 +19,7 @@ Use `rowClassName` Customize the table with Striped.
     { title: 'Name', dataIndex: 'name' },
     { title: 'Age', dataIndex: 'age' },
     { title: 'Address', dataIndex: 'address' },
-  ]
+  ];
   const data = [
     {
       key: '1',
@@ -45,7 +45,7 @@ Use `rowClassName` Customize the table with Striped.
       age: 15,
       address: 'Sidney No. 1 Lake Park',
     },
-  ]
+  ];
 </script>
 
 <template>

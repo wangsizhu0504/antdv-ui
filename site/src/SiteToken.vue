@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-  import useSiteToken from './hooks/useSiteToken'
+  import useSiteToken from './hooks/useSiteToken';
 
-  useSiteToken()
+  useSiteToken();
 </script>
 
 <template>

@@ -1,10 +1,10 @@
-import type { ModalLocale } from '@antdv/locale'
-import type { getContainerFunc, VueNode } from '@antdv/types'
-import type { CSSProperties, MaybeRef } from 'vue'
-import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../../button'
-import type { Direction } from '../../config-provider'
+import type { ModalLocale } from '@antdv/locale';
+import type { getContainerFunc, VueNode } from '@antdv/types';
+import type { CSSProperties, MaybeRef } from 'vue';
+import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../../button';
+import type { Direction } from '../../config-provider';
 
-export type MousePosition = { x: number, y: number } | null
+export type MousePosition = { x: number, y: number } | null;
 
 export interface ModalFuncProps {
   prefixCls?: string
@@ -55,12 +55,12 @@ export interface ModalFuncProps {
   visible?: boolean
 }
 
-export type ConfigUpdate = ModalFuncProps | ((prevConfig: ModalFuncProps) => ModalFuncProps)
+export type ConfigUpdate = ModalFuncProps | ((prevConfig: ModalFuncProps) => ModalFuncProps);
 
 export type ModalFunc = (props: ModalFuncProps) => {
   destroy: () => void
   update: (configUpdate: ConfigUpdate) => void
-}
+};
 
 export interface ConfirmDialogProps extends ModalFuncProps {
   afterClose?: () => void
@@ -88,6 +88,6 @@ export interface HookModalRef {
 export type ModalFuncWithRef = (props: MaybeRef<ModalFuncProps>) => {
   destroy: () => void
   update: (configUpdate: ModalFuncProps) => void
-}
+};
 
-export type ModalStaticFunctions<T = ModalFunc> = Record<NonNullable<ModalFuncProps['type']>, T>
+export type ModalStaticFunctions<T = ModalFunc> = Record<NonNullable<ModalFuncProps['type']>, T>;

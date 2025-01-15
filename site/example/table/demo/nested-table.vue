@@ -18,7 +18,7 @@ Showing more detailed info of every row.
 </docs>
 
 <script lang="ts" setup>
-  import { DownOutlined } from '@ant-design/icons-vue'
+  import { DownOutlined } from '@ant-design/icons-vue';
 
   const columns = [
     { title: 'Name', dataIndex: 'name', key: 'name' },
@@ -28,7 +28,7 @@ Showing more detailed info of every row.
     { title: 'Creator', dataIndex: 'creator', key: 'creator' },
     { title: 'Date', dataIndex: 'createdAt', key: 'createdAt' },
     { title: 'Action', key: 'operation' },
-  ]
+  ];
 
   interface DataItem {
     key: number;
@@ -40,7 +40,7 @@ Showing more detailed info of every row.
     createdAt: string;
   }
 
-  const data: DataItem[] = []
+  const data: DataItem[] = [];
   for (let i = 0; i < 3; ++i) {
     data.push({
       key: i,
@@ -50,7 +50,7 @@ Showing more detailed info of every row.
       upgradeNum: 500,
       creator: 'Jack',
       createdAt: '2014-12-24 23:12:00',
-    })
+    });
   }
 
   const innerColumns = [
@@ -63,7 +63,7 @@ Showing more detailed info of every row.
       dataIndex: 'operation',
       key: 'operation',
     },
-  ]
+  ];
 
   interface innerDataItem {
     key: number;
@@ -72,14 +72,14 @@ Showing more detailed info of every row.
     upgradeNum: string;
   }
 
-  const innerData: innerDataItem[] = []
+  const innerData: innerDataItem[] = [];
   for (let i = 0; i < 3; ++i) {
     innerData.push({
       key: i,
       date: '2014-12-24 23:12:00',
       name: `This is production name ${i + 1}`,
       upgradeNum: 'Upgraded: 56',
-    })
+    });
   }
 </script>
 

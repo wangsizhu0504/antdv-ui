@@ -1,31 +1,31 @@
-import type { FlattenOptionData } from '../interface'
-import type { BaseOptionType, DefaultOptionType, FieldNames, RawValueType } from '../Select'
-import { warning } from '@antdv/utils'
+import type { FlattenOptionData } from '../interface';
+import type { BaseOptionType, DefaultOptionType, FieldNames, RawValueType } from '../Select';
+import { warning } from '@antdv/utils';
 
 function getKey(data: BaseOptionType, index: number) {
-  const { key } = data
-  let value: RawValueType
+  const { key } = data;
+  let value: RawValueType;
 
   if ('value' in data)
-    ({ value } = data)
+    ({ value } = data);
 
   if (key !== null && key !== undefined)
-    return key
+    return key;
 
   if (value !== undefined)
-    return value
+    return value;
 
-  return `rc-index-key-${index}`
+  return `rc-index-key-${index}`;
 }
 
 export function fillFieldNames(fieldNames: FieldNames | undefined, childrenAsData: boolean) {
-  const { label, value, options } = fieldNames || {}
+  const { label, value, options } = fieldNames || {};
 
   return {
     label: label || (childrenAsData ? 'children' : 'label'),
     value: value || 'value',
     options: options || 'options',
-  }
+  };
 }
 
 /**
@@ -37,20 +37,20 @@ export function flattenOptions<OptionType extends BaseOptionType = DefaultOption
   options: OptionType[],
   { fieldNames, childrenAsData }: { fieldNames?: FieldNames; childrenAsData?: boolean } = {},
 ): Array<FlattenOptionData<OptionType>> {
-  const flattenList: Array<FlattenOptionData<OptionType>> = []
+  const flattenList: Array<FlattenOptionData<OptionType>> = [];
 
   const {
     label: fieldLabel,
     value: fieldValue,
     options: fieldOptions,
-  } = fillFieldNames(fieldNames, false)
+  } = fillFieldNames(fieldNames, false);
 
   function dig(list: OptionType[], isGroupOption: boolean) {
     list.forEach((data) => {
-      const label = data[fieldLabel]
+      const label = data[fieldLabel];
 
       if (isGroupOption || !(fieldOptions in data)) {
-        const value = data[fieldValue]
+        const value = data[fieldValue];
         // Option
         flattenList.push({
           key: getKey(data, flattenList.length),
@@ -58,11 +58,11 @@ export function flattenOptions<OptionType extends BaseOptionType = DefaultOption
           data,
           label,
           value,
-        })
+        });
       } else {
-        let grpLabel = label
+        let grpLabel = label;
         if (grpLabel === undefined && childrenAsData)
-          grpLabel = data.label
+          grpLabel = data.label;
 
         // Option Group
         flattenList.push({
@@ -70,56 +70,56 @@ export function flattenOptions<OptionType extends BaseOptionType = DefaultOption
           group: true,
           data,
           label: grpLabel,
-        })
+        });
 
-        dig(data[fieldOptions], true)
+        dig(data[fieldOptions], true);
       }
-    })
+    });
   }
 
-  dig(options, false)
+  dig(options, false);
 
-  return flattenList
+  return flattenList;
 }
 
 /**
  * Inject `props` into `option` for legacy usage
  */
 export function injectPropsWithOption<T extends object>(option: T): T {
-  const newOption = { ...option }
+  const newOption = { ...option };
   if (!('props' in newOption)) {
     Object.defineProperty(newOption, 'props', {
       get() {
         warning(
           false,
           'Return type is option instead of Option instance. Please read value directly instead of reading from `props`.',
-        )
-        return newOption
+        );
+        return newOption;
       },
-    })
+    });
   }
 
-  return newOption
+  return newOption;
 }
 
 export function getSeparatedContent(text: string, tokens: string[]): string[] {
   if (!tokens || !tokens.length)
-    return null
+    return null;
 
-  let match = false
+  let match = false;
 
   function separate(str: string, [token, ...restTokens]: string[]) {
     if (!token)
-      return [str]
+      return [str];
 
-    const list = str.split(token)
-    match = match || list.length > 1
+    const list = str.split(token);
+    match = match || list.length > 1;
 
     return list
       .reduce((prevList, unitStr) => [...prevList, ...separate(unitStr, restTokens)], [])
-      .filter(unit => unit)
+      .filter(unit => unit);
   }
 
-  const list = separate(text, tokens)
-  return match ? list : null
+  const list = separate(text, tokens);
+  return match ? list : null;
 }

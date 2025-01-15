@@ -33,7 +33,7 @@ Basic list.
     {
       title: 'Ant Design Title 4',
     },
-  ]
+  ];
 </script>
 
 <template>

@@ -1,5 +1,5 @@
-import type { PropType } from 'vue'
-import type { VueTypeDef, VueTypeValidableDef } from 'vue-types'
+import type { PropType } from 'vue';
+import type { VueTypeDef, VueTypeValidableDef } from 'vue-types';
 
 export function initDefaultProps<T>(types: T, defaultProps: {
   [K in keyof T]?: T[K] extends VueTypeValidableDef<infer U>
@@ -10,19 +10,19 @@ export function initDefaultProps<T>(types: T, defaultProps: {
         ? U
         : any;
 }): T {
-  const propTypes: T = { ...types }
+  const propTypes: T = { ...types };
   Object.keys(defaultProps).forEach((k) => {
-    const prop = propTypes[k] as VueTypeValidableDef
+    const prop = propTypes[k] as VueTypeValidableDef;
     if (prop) {
       if (prop.type || prop.default)
-        prop.default = defaultProps[k]
+        prop.default = defaultProps[k];
       else if (prop.def)
-        prop.def(defaultProps[k])
+        prop.def(defaultProps[k]);
       else
-        propTypes[k] = { type: prop, default: defaultProps[k] }
+        propTypes[k] = { type: prop, default: defaultProps[k] };
     } else {
-      throw new Error(`not have ${k} prop`)
+      throw new Error(`not have ${k} prop`);
     }
-  })
-  return propTypes
+  });
+  return propTypes;
 }

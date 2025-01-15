@@ -16,8 +16,8 @@ Lookup-Patterns - Certain Category.
 </docs>
 
 <script lang="ts" setup>
-  import { UserOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { UserOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   const dataSource = [
     {
@@ -58,8 +58,8 @@ Lookup-Patterns - Certain Category.
     {
       value: 'all',
     },
-  ]
-  const value = ref<any>('')
+  ];
+  const value = ref<any>('');
 </script>
 
 <template>

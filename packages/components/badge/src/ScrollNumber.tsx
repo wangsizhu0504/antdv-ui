@@ -1,10 +1,10 @@
-import type { CSSProperties, DefineComponent, HTMLAttributes } from 'vue'
-import type { ScrollNumberProps } from './props'
-import { classNames, cloneElement, filterEmpty } from '@antdv/utils'
-import { defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { scrollNumberProps } from './props'
-import SingleNumber from './SingleNumber'
+import type { CSSProperties, DefineComponent, HTMLAttributes } from 'vue';
+import type { ScrollNumberProps } from './props';
+import { classNames, cloneElement, filterEmpty } from '@antdv/utils';
+import { defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { scrollNumberProps } from './props';
+import SingleNumber from './SingleNumber';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -12,7 +12,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: scrollNumberProps(),
   setup(props, { attrs, slots }) {
-    const { prefixCls } = useConfigInject('scroll-number', props)
+    const { prefixCls } = useConfigInject('scroll-number', props);
 
     return () => {
       const {
@@ -22,7 +22,7 @@ export default defineComponent({
         class: className,
         style,
         ...restProps
-      } = { ...props, ...attrs } as ScrollNumberProps & HTMLAttributes & { style: CSSProperties }
+      } = { ...props, ...attrs } as ScrollNumberProps & HTMLAttributes & { style: CSSProperties };
       // ============================ Render ============================
       const newProps = {
         ...restProps,
@@ -30,12 +30,12 @@ export default defineComponent({
         'data-show': props.show,
         'class': classNames(prefixCls.value, className),
         'title': title as string,
-      }
+      };
 
       // Only integer need motion
-      let numberNodes: any = count
+      let numberNodes: any = count;
       if (count && Number(count) % 1 === 0) {
-        const numberList = String(count).split('')
+        const numberList = String(count).split('');
 
         numberNodes = numberList.map((num, i) => {
           return (
@@ -45,8 +45,8 @@ export default defineComponent({
               value={num}
               key={numberList.length - i}
             />
-          )
-        })
+          );
+        });
       }
 
       // allow specify the border
@@ -56,9 +56,9 @@ export default defineComponent({
         newProps.style = {
           ...(style as CSSProperties),
           boxShadow: `0 0 0 1px ${style.borderColor} inset`,
-        }
+        };
       }
-      const children = filterEmpty(slots.default?.())
+      const children = filterEmpty(slots.default?.());
       if (children && children.length) {
         return cloneElement(
           children,
@@ -66,10 +66,10 @@ export default defineComponent({
             class: classNames(`${prefixCls.value}-custom-component`),
           },
           false,
-        )
+        );
       }
 
-      return <Tag {...newProps}>{numberNodes}</Tag>
-    }
+      return <Tag {...newProps}>{numberNodes}</Tag>;
+    };
   },
-})
+});

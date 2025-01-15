@@ -17,11 +17,11 @@ The combination of radio button style.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value1 = ref<string>('a')
-  const value2 = ref<string>('a')
-  const value3 = ref<string>('a')
+  const value1 = ref<string>('a');
+  const value2 = ref<string>('a');
+  const value3 = ref<string>('a');
 </script>
 
 <template>

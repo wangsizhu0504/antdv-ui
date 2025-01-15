@@ -1,13 +1,13 @@
 <script>
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import ArrowCenter from './arrow-point-at-center.vue'
-  import Basic from './basic.vue'
-  import Control from './control.vue'
-  import HoverWithClick from './hover-with-click.vue'
-  import Placement from './placement.vue'
-  import TriggerType from './triggerType.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import ArrowCenter from './arrow-point-at-center.vue';
+  import Basic from './basic.vue';
+  import Control from './control.vue';
+  import HoverWithClick from './hover-with-click.vue';
+  import Placement from './placement.vue';
+  import TriggerType from './triggerType.vue';
 
   export default defineComponent({
     CN,
@@ -20,7 +20,7 @@
       ArrowCenter,
       HoverWithClick,
     },
-  })
+  });
 </script>
 
 <template>

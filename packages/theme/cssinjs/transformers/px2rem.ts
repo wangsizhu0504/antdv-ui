@@ -1,10 +1,10 @@
-import type { CSSObject } from '..'
-import type { Transformer } from './interface'
+import type { CSSObject } from '..';
+import type { Transformer } from './interface';
 
 /**
  * respect https://github.com/cuth/postcss-pxtorem
  */
-import unitless from '@emotion/unitless'
+import unitless from '@emotion/unitless';
 
 export interface Px2RemOptions {
   /**
@@ -24,51 +24,51 @@ export interface Px2RemOptions {
   mediaQuery?: boolean
 }
 
-const pxRegex = /url\([^)]+\)|var\([^)]+\)|(\d*\.?\d+)px/g
+const pxRegex = /url\([^)]+\)|var\([^)]+\)|(\d*\.?\d+)px/g;
 
 function toFixed(number: number, precision: number) {
-  const multiplier = 10 ** (precision + 1)
-  const wholeNumber = Math.floor(number * multiplier)
-  return (Math.round(wholeNumber / 10) * 10) / multiplier
+  const multiplier = 10 ** (precision + 1);
+  const wholeNumber = Math.floor(number * multiplier);
+  return (Math.round(wholeNumber / 10) * 10) / multiplier;
 }
 
 export function px2remTransformer(options: Px2RemOptions = {}): Transformer {
-  const { rootValue = 16, precision = 5, mediaQuery = false } = options
+  const { rootValue = 16, precision = 5, mediaQuery = false } = options;
 
   const pxReplace = (m: string, $1: any) => {
-    if (!$1) return m
-    const pixels = Number.parseFloat($1)
+    if (!$1) return m;
+    const pixels = Number.parseFloat($1);
     // covenant: pixels <= 1, not transform to rem @zombieJ
-    if (pixels <= 1) return m
-    const fixedVal = toFixed(pixels / rootValue, precision)
-    return `${fixedVal}rem`
-  }
+    if (pixels <= 1) return m;
+    const fixedVal = toFixed(pixels / rootValue, precision);
+    return `${fixedVal}rem`;
+  };
 
   const visit = (cssObj: CSSObject): CSSObject => {
-    const clone: CSSObject = { ...cssObj }
+    const clone: CSSObject = { ...cssObj };
 
     Object.entries(cssObj).forEach(([key, value]) => {
       if (typeof value === 'string' && value.includes('px')) {
-        const newValue = value.replace(pxRegex, pxReplace)
-        clone[key] = newValue
+        const newValue = value.replace(pxRegex, pxReplace);
+        clone[key] = newValue;
       }
 
       // no unit
       if (!unitless[key] && typeof value === 'number' && value !== 0)
-        clone[key] = `${value}px`.replace(pxRegex, pxReplace)
+        clone[key] = `${value}px`.replace(pxRegex, pxReplace);
 
       // Media queries
-      const mergedKey = key.trim()
+      const mergedKey = key.trim();
       if (mergedKey.startsWith('@') && mergedKey.includes('px') && mediaQuery) {
-        const newKey = key.replace(pxRegex, pxReplace)
+        const newKey = key.replace(pxRegex, pxReplace);
 
-        clone[newKey] = clone[key]
-        delete clone[key]
+        clone[newKey] = clone[key];
+        delete clone[key];
       }
-    })
+    });
 
-    return clone
-  }
+    return clone;
+  };
 
-  return { visit }
+  return { visit };
 }

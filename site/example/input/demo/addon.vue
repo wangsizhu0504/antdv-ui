@@ -17,15 +17,15 @@ Using pre & post tabs example.
 </docs>
 
 <script lang="ts" setup>
-  import { SettingOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { SettingOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const value1 = ref<string>('mysite')
-  const value2 = ref<string>('mysite')
-  const value3 = ref<string>('Http://')
-  const value4 = ref<string>('.com')
-  const value5 = ref<string>('mysite')
-  const value6 = ref<string>('mysite')
+  const value1 = ref<string>('mysite');
+  const value2 = ref<string>('mysite');
+  const value3 = ref<string>('Http://');
+  const value4 = ref<string>('.com');
+  const value5 = ref<string>('mysite');
+  const value6 = ref<string>('mysite');
 </script>
 
 <template>

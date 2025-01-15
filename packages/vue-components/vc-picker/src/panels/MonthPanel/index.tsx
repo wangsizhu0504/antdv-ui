@@ -1,16 +1,16 @@
-import type { PanelSharedProps } from '../../interface'
-import type { MonthCellRender } from './MonthBody'
-import useMergeProps from '../../hooks/useMergeProps'
-import { createKeydownHandler } from '../../utils/uiUtil'
-import MonthBody, { MONTH_COL_COUNT } from './MonthBody'
-import MonthHeader from './MonthHeader'
+import type { PanelSharedProps } from '../../interface';
+import type { MonthCellRender } from './MonthBody';
+import useMergeProps from '../../hooks/useMergeProps';
+import { createKeydownHandler } from '../../utils/uiUtil';
+import MonthBody, { MONTH_COL_COUNT } from './MonthBody';
+import MonthHeader from './MonthHeader';
 
 export type MonthPanelProps<DateType> = {
   monthCellContentRender?: MonthCellRender<DateType>;
-} & PanelSharedProps<DateType>
+} & PanelSharedProps<DateType>;
 
 function MonthPanel<DateType>(_props: MonthPanelProps<DateType>) {
-  const props = useMergeProps(_props)
+  const props = useMergeProps(_props);
   const {
     prefixCls,
     operationRef,
@@ -20,35 +20,35 @@ function MonthPanel<DateType>(_props: MonthPanelProps<DateType>) {
     viewDate,
     onPanelChange,
     onSelect,
-  } = props
+  } = props;
 
-  const panelPrefixCls = `${prefixCls}-month-panel`
+  const panelPrefixCls = `${prefixCls}-month-panel`;
 
   // ======================= Keyboard =======================
   operationRef.value = {
     onKeydown: (event: KeyboardEvent) =>
       createKeydownHandler(event, {
         onLeftRight: (diff) => {
-          onSelect(generateConfig.addMonth(value || viewDate, diff), 'key')
+          onSelect(generateConfig.addMonth(value || viewDate, diff), 'key');
         },
         onCtrlLeftRight: (diff) => {
-          onSelect(generateConfig.addYear(value || viewDate, diff), 'key')
+          onSelect(generateConfig.addYear(value || viewDate, diff), 'key');
         },
         onUpDown: (diff) => {
-          onSelect(generateConfig.addMonth(value || viewDate, diff * MONTH_COL_COUNT), 'key')
+          onSelect(generateConfig.addMonth(value || viewDate, diff * MONTH_COL_COUNT), 'key');
         },
         onEnter: () => {
-          onPanelChange('date', value || viewDate)
+          onPanelChange('date', value || viewDate);
         },
       }),
-  }
+  };
 
   // ==================== View Operation ====================
   const onYearChange = (diff: number) => {
-    const newDate = generateConfig.addYear(viewDate, diff)
-    onViewDateChange(newDate)
-    onPanelChange(null, newDate)
-  }
+    const newDate = generateConfig.addYear(viewDate, diff);
+    onViewDateChange(newDate);
+    onPanelChange(null, newDate);
+  };
 
   return (
     <div class={panelPrefixCls}>
@@ -56,28 +56,28 @@ function MonthPanel<DateType>(_props: MonthPanelProps<DateType>) {
         {...props}
         prefixCls={prefixCls}
         onPrevYear={() => {
-          onYearChange(-1)
+          onYearChange(-1);
         }}
         onNextYear={() => {
-          onYearChange(1)
+          onYearChange(1);
         }}
         onYearClick={() => {
-          onPanelChange('year', viewDate)
+          onPanelChange('year', viewDate);
         }}
       />
       <MonthBody<DateType>
         {...props}
         prefixCls={prefixCls}
         onSelect={(date) => {
-          onSelect(date, 'mouse')
-          onPanelChange('date', date)
+          onSelect(date, 'mouse');
+          onPanelChange('date', date);
         }}
       />
     </div>
-  )
+  );
 }
 
-MonthPanel.displayName = 'MonthPanel'
-MonthPanel.inheritAttrs = false
+MonthPanel.displayName = 'MonthPanel';
+MonthPanel.inheritAttrs = false;
 
-export default MonthPanel
+export default MonthPanel;

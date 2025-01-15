@@ -1,5 +1,5 @@
-import genCollapseMotion from './collapse'
-import { fadeIn, fadeOut, initFadeMotion } from './fade'
+import genCollapseMotion from './collapse';
+import { fadeIn, fadeOut, initFadeMotion } from './fade';
 import {
   initMoveMotion,
   moveDownIn,
@@ -10,8 +10,8 @@ import {
   moveRightOut,
   moveUpIn,
   moveUpOut,
-} from './move'
-import { initShakeMotion } from './shake'
+} from './move';
+import { initShakeMotion } from './shake';
 import {
   initSlideMotion,
   slideDownIn,
@@ -22,7 +22,7 @@ import {
   slideRightOut,
   slideUpIn,
   slideUpOut,
-} from './slide'
+} from './slide';
 import {
   initZoomMotion,
   zoomBigIn,
@@ -37,7 +37,7 @@ import {
   zoomRightOut,
   zoomUpIn,
   zoomUpOut,
-} from './zoom'
+} from './zoom';
 
 export {
   fadeIn,
@@ -76,4 +76,4 @@ export {
   zoomRightOut,
   zoomUpIn,
   zoomUpOut,
-}
+};

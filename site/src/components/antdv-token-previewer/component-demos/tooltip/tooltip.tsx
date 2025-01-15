@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Tooltip } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Tooltip } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -10,13 +10,13 @@ const Demo = defineComponent({
           <span>Tooltip will show on mouse enter.</span>
         </Tooltip>
       </div>
-    )
+    );
   },
-})
+});
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorBgSpotlight', 'colorTextLightSolid'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

@@ -1,8 +1,8 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { StepsToken } from '.'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { StepsToken } from '.';
 
 const genStepsCustomIconStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
-  const { componentCls, stepsIconCustomTop, stepsIconCustomSize, stepsIconCustomFontSize } = token
+  const { componentCls, stepsIconCustomTop, stepsIconCustomSize, stepsIconCustomFontSize } = token;
 
   return {
     [`${componentCls}-item-custom`]: {
@@ -29,7 +29,7 @@ const genStepsCustomIconStyle: GenerateStyle<StepsToken, CSSObject> = (token) =>
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genStepsCustomIconStyle
+export default genStepsCustomIconStyle;

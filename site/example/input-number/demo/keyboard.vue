@@ -16,10 +16,10 @@ Control keyboard behavior by `keyboard`.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<number>(3)
-  const keyboard = ref<any>(true)
+  const value = ref<number>(3);
+  const keyboard = ref<any>(true);
 </script>
 
 <template>

@@ -1,5 +1,5 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { MenuToken } from '.'
+import type { GenerateStyle } from '@antdv/theme';
+import type { MenuToken } from '.';
 
 const getRTLStyle: GenerateStyle<MenuToken> = ({ componentCls, menuArrowOffset }) => ({
   [`${componentCls}-rtl`]: {
@@ -23,6 +23,6 @@ const getRTLStyle: GenerateStyle<MenuToken> = ({ componentCls, menuArrowOffset }
       },
     },
   },
-})
+});
 
-export default getRTLStyle
+export default getRTLStyle;

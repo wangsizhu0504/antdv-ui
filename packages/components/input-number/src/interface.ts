@@ -1,4 +1,4 @@
-export type ValueType = string | number
+export type ValueType = string | number;
 export interface DecimalClass {
   add: (value: ValueType) => DecimalClass
 

@@ -17,28 +17,28 @@ The `indeterminate` property can help you to achieve a 'check all' effect.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, watch } from 'vue'
+  import { reactive, watch } from 'vue';
 
-  const plainOptions = ['Apple', 'Pear', 'Orange']
+  const plainOptions = ['Apple', 'Pear', 'Orange'];
   const state = reactive({
     indeterminate: true,
     checkAll: false,
     checkedList: ['Apple', 'Orange'],
-  })
+  });
 
   function onCheckAllChange(e: any) {
     Object.assign(state, {
       checkedList: e.target.checked ? plainOptions : [],
       indeterminate: false,
-    })
+    });
   }
   watch(
     () => state.checkedList,
     (val) => {
-      state.indeterminate = !!val.length && val.length < plainOptions.length
-      state.checkAll = val.length === plainOptions.length
+      state.indeterminate = !!val.length && val.length < plainOptions.length;
+      state.checkAll = val.length === plainOptions.length;
     },
-  )
+  );
 </script>
 
 <template>

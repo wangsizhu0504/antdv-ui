@@ -21,10 +21,10 @@ Only options passing is supported, a-select-option construction node is not supp
 </docs>
 
 <script lang="ts" setup>
-  import type { SelectProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { SelectProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const value = ref<any>('lucy')
+  const value = ref<any>('lucy');
   const options = ref<SelectProps['options']>([
     {
       id: 'jack',
@@ -49,14 +49,14 @@ Only options passing is supported, a-select-option construction node is not supp
       id: 'yiminghe',
       name: 'Yiminghe',
     },
-  ])
+  ]);
 
   function focus() {
-    console.log('focus')
+    console.log('focus');
   }
 
   function handleChange(value: string) {
-    console.log(`selected ${value}`)
+    console.log(`selected ${value}`);
   }
 </script>
 

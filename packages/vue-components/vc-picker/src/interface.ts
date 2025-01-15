@@ -1,6 +1,6 @@
-import type { VueNode } from '@antdv/types'
-import type { Ref } from 'vue'
-import type { GenerateConfig } from './generate'
+import type { VueNode } from '@antdv/types';
+import type { Ref } from 'vue';
+import type { GenerateConfig } from './generate';
 
 export interface Locale {
   locale: string;
@@ -42,9 +42,9 @@ export interface Locale {
   shortMonths?: string[];
 }
 
-export type PanelMode = 'time' | 'date' | 'week' | 'month' | 'quarter' | 'year' | 'decade'
+export type PanelMode = 'time' | 'date' | 'week' | 'month' | 'quarter' | 'year' | 'decade';
 
-export type PickerMode = Exclude<PanelMode, 'datetime' | 'decade'>
+export type PickerMode = Exclude<PanelMode, 'datetime' | 'decade'>;
 
 export interface PanelRefProps {
   onKeydown?: (e: KeyboardEvent) => boolean;
@@ -52,9 +52,9 @@ export interface PanelRefProps {
   onClose?: () => void;
 }
 
-export type NullableDateType<DateType> = DateType | null | undefined
+export type NullableDateType<DateType> = DateType | null | undefined;
 
-export type OnSelect<DateType> = (value: DateType, type: 'key' | 'mouse' | 'submit') => void
+export type OnSelect<DateType> = (value: DateType, type: 'key' | 'mouse' | 'submit') => void;
 
 export interface PanelSharedProps<DateType> {
   prefixCls: string;
@@ -89,12 +89,12 @@ export interface DisabledTimes {
   disabledSeconds?: (hour: number, minute: number) => number[];
 }
 
-export type DisabledTime<DateType> = (date: DateType | null) => DisabledTimes
+export type DisabledTime<DateType> = (date: DateType | null) => DisabledTimes;
 
-export type OnPanelChange<DateType> = (value: DateType, mode: PanelMode) => void
+export type OnPanelChange<DateType> = (value: DateType, mode: PanelMode) => void;
 
-export type EventValue<DateType> = DateType | null
-export type RangeValue<DateType> = [EventValue<DateType>, EventValue<DateType>] | null
+export type EventValue<DateType> = DateType | null;
+export type RangeValue<DateType> = [EventValue<DateType>, EventValue<DateType>] | null;
 
 export interface Components {
   button?: any;
@@ -105,9 +105,9 @@ export type RangeList = Array<{
   onClick: () => void;
   onMouseenter: () => void;
   onMouseleave: () => void;
-}>
+}>;
 
-export type CustomFormat<DateType> = (value: DateType) => string
+export type CustomFormat<DateType> = (value: DateType) => string;
 
 export interface PresetDate<T> {
   label: VueNode;

@@ -1,8 +1,8 @@
-import { initDefaultProps } from '@antdv/utils'
-import { defineComponent, ref } from 'vue'
-import PortalWrapper from '../../portal/src/PortalWrapper'
-import Child from './DrawerChild'
-import { drawerProps } from './IDrawerPropTypes'
+import { initDefaultProps } from '@antdv/utils';
+import { defineComponent, ref } from 'vue';
+import PortalWrapper from '../../portal/src/PortalWrapper';
+import Child from './DrawerChild';
+import { drawerProps } from './IDrawerPropTypes';
 
 const DrawerWrapper = defineComponent({
   compatConfig: { MODE: 3 },
@@ -25,15 +25,15 @@ const DrawerWrapper = defineComponent({
   }),
   emits: ['handleClick', 'close'],
   setup(props, { emit, slots }) {
-    const dom = ref<HTMLElement>(null)
+    const dom = ref<HTMLElement>(null);
 
     const onHandleClick = (e: MouseEvent | KeyboardEvent) => {
-      emit('handleClick', e)
-    }
+      emit('handleClick', e);
+    };
 
     const onClose = (e: MouseEvent | KeyboardEvent) => {
-      emit('close', e)
-    }
+      emit('close', e);
+    };
 
     return () => {
       const {
@@ -43,9 +43,9 @@ const DrawerWrapper = defineComponent({
         rootStyle,
         forceRender,
         ...otherProps
-      } = props
+      } = props;
 
-      let portal = null
+      let portal = null;
       if (!getContainer) {
         return (
           <Child
@@ -59,11 +59,11 @@ const DrawerWrapper = defineComponent({
             inline={true}
           >
           </Child>
-        )
+        );
       }
 
       // 如果有 handler 为内置强制渲染；
-      const $forceRender = !!slots.handler || forceRender
+      const $forceRender = !!slots.handler || forceRender;
       if ($forceRender || props.open || dom.value) {
         portal = (
           <PortalWrapper
@@ -92,11 +92,11 @@ const DrawerWrapper = defineComponent({
             }}
           >
           </PortalWrapper>
-        )
+        );
       }
-      return portal
-    }
+      return portal;
+    };
   },
-})
+});
 
-export default DrawerWrapper
+export default DrawerWrapper;

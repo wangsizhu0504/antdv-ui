@@ -1,11 +1,11 @@
-import { filterEmpty } from '@antdv/utils'
+import { filterEmpty } from '@antdv/utils';
 
 function isValid(value: any) {
   return (
     value !== undefined
     && value !== null
     && (Array.isArray(value) ? filterEmpty(value).length : true)
-  )
+  );
 }
 
 export function hasPrefixSuffix(propsAndSlots: any) {
@@ -13,18 +13,18 @@ export function hasPrefixSuffix(propsAndSlots: any) {
     isValid(propsAndSlots.prefix)
     || isValid(propsAndSlots.suffix)
     || isValid(propsAndSlots.allowClear)
-  )
+  );
 }
 
 export function hasAddon(propsAndSlots: any) {
-  return isValid(propsAndSlots.addonBefore) || isValid(propsAndSlots.addonAfter)
+  return isValid(propsAndSlots.addonBefore) || isValid(propsAndSlots.addonAfter);
 }
 
 export function fixControlledValue(value: string | number) {
   if (typeof value === 'undefined' || value === null)
-    return ''
+    return '';
 
-  return String(value)
+  return String(value);
 }
 
 export function resolveOnChange(
@@ -34,43 +34,43 @@ export function resolveOnChange(
   targetValue?: string,
 ) {
   if (!onChange)
-    return
+    return;
 
-  const event: any = e
+  const event: any = e;
 
   if (e.type === 'click') {
     Object.defineProperty(event, 'target', {
       writable: true,
-    })
+    });
     Object.defineProperty(event, 'currentTarget', {
       writable: true,
-    })
+    });
     // click clear icon
     // event = Object.create(e);
-    const currentTarget = target.cloneNode(true)
+    const currentTarget = target.cloneNode(true);
 
-    event.target = currentTarget
+    event.target = currentTarget;
     event.currentTarget = currentTarget;
     // change target ref value cause e.target.value should be '' when clear input
-    (currentTarget as any).value = ''
-    onChange(event)
-    return
+    (currentTarget as any).value = '';
+    onChange(event);
+    return;
   }
   // Trigger by composition event, this means we need force change the input value
   if (targetValue !== undefined) {
     Object.defineProperty(event, 'target', {
       writable: true,
-    })
+    });
     Object.defineProperty(event, 'currentTarget', {
       writable: true,
-    })
-    event.target = target
-    event.currentTarget = target
-    target.value = targetValue
-    onChange(event)
-    return
+    });
+    event.target = target;
+    event.currentTarget = target;
+    target.value = targetValue;
+    onChange(event);
+    return;
   }
-  onChange(event)
+  onChange(event);
 }
 export interface InputFocusOptions extends FocusOptions {
   cursor?: 'start' | 'end' | 'all';
@@ -80,26 +80,26 @@ export function triggerFocus(
   element?: HTMLInputElement | HTMLTextAreaElement,
   option?: InputFocusOptions,
 ) {
-  if (!element) return
+  if (!element) return;
 
-  element.focus(option)
+  element.focus(option);
 
   // Selection content
-  const { cursor } = option || {}
+  const { cursor } = option || {};
   if (cursor) {
-    const len = element.value.length
+    const len = element.value.length;
 
     switch (cursor) {
       case 'start':
-        element.setSelectionRange(0, 0)
-        break
+        element.setSelectionRange(0, 0);
+        break;
 
       case 'end':
-        element.setSelectionRange(len, len)
-        break
+        element.setSelectionRange(len, len);
+        break;
 
       default:
-        element.setSelectionRange(0, len)
+        element.setSelectionRange(0, len);
     }
   }
 }

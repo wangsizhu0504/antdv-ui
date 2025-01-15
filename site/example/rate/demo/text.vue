@@ -17,10 +17,10 @@ Add copywriting in rate components.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<number>(3)
-  const desc = ref<string[]>(['terrible', 'bad', 'normal', 'good', 'wonderful'])
+  const value = ref<number>(3);
+  const desc = ref<string[]>(['terrible', 'bad', 'normal', 'good', 'wonderful']);
 </script>
 
 <template>

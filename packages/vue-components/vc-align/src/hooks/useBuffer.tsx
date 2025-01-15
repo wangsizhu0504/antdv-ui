@@ -1,39 +1,39 @@
-import type { ComputedRef } from 'vue'
+import type { ComputedRef } from 'vue';
 
 export default (callback: () => boolean, buffer: ComputedRef<number>) => {
-  let called = false
-  let timeout = null
+  let called = false;
+  let timeout = null;
 
   function cancelTrigger() {
-    clearTimeout(timeout)
+    clearTimeout(timeout);
   }
 
   function trigger(force?: boolean) {
     if (!called || force === true) {
       if (callback() === false) {
         // Not delay since callback cancelled self
-        return
+        return;
       }
 
-      called = true
-      cancelTrigger()
+      called = true;
+      cancelTrigger();
       timeout = setTimeout(() => {
-        called = false
-      }, buffer.value)
+        called = false;
+      }, buffer.value);
     } else {
-      cancelTrigger()
+      cancelTrigger();
       timeout = setTimeout(() => {
-        called = false
-        trigger()
-      }, buffer.value)
+        called = false;
+        trigger();
+      }, buffer.value);
     }
   }
 
   return [
     trigger,
     () => {
-      called = false
-      cancelTrigger()
+      called = false;
+      cancelTrigger();
     },
-  ]
-}
+  ];
+};

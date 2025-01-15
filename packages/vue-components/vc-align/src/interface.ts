@@ -1,5 +1,5 @@
 /** Two char of 't' 'b' 'c' 'l' 'r'. Example: 'lt' */
-export type AlignPoint = string
+export type AlignPoint = string;
 
 export interface AlignType {
   /**
@@ -58,4 +58,4 @@ export interface TargetPoint {
   pageY?: number;
 }
 
-export type TargetType = (() => HTMLElement) | TargetPoint
+export type TargetType = (() => HTMLElement) | TargetPoint;

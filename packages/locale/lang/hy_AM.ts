@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'hy-am',
@@ -148,6 +148,6 @@ const localeValues: Locale = {
   PageHeader: {
     back: 'Հետ',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

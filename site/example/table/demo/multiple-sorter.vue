@@ -46,7 +46,7 @@ title:
         multiple: 1,
       },
     },
-  ]
+  ];
 
   const data = [
     {
@@ -77,10 +77,10 @@ title:
       math: 99,
       english: 89,
     },
-  ]
+  ];
 
   function onChange(pagination, filters, sorter, extra) {
-    console.log('params', pagination, filters, sorter, extra)
+    console.log('params', pagination, filters, sorter, extra);
   }
 </script>
 

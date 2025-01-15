@@ -1,16 +1,16 @@
-import type { Articles } from './parser'
-import type { VueTag } from './type'
-import { formatType, removeVersion, toKebabCase } from './utils'
+import type { Articles } from './parser';
+import type { VueTag } from './type';
+import { formatType, removeVersion, toKebabCase } from './utils';
 
 function getComponentName(name: string, tagPrefix: string) {
   if (name)
-    return tagPrefix + toKebabCase(name.split(' ')[0])
+    return tagPrefix + toKebabCase(name.split(' ')[0]);
 
-  return ''
+  return '';
 }
 
 function parserProps(tag: VueTag, line: any) {
-  const [name, desc, type, defaultVal] = line
+  const [name, desc, type, defaultVal] = line;
   if (
     type
     && (type.includes('v-slot')
@@ -21,7 +21,7 @@ function parserProps(tag: VueTag, line: any) {
     tag.slots!.push({
       name: removeVersion(name),
       description: desc,
-    })
+    });
   }
   tag.attributes!.push({
     name: removeVersion(name),
@@ -31,7 +31,7 @@ function parserProps(tag: VueTag, line: any) {
       type: formatType(type || ''),
       kind: 'expression',
     },
-  })
+  });
 }
 
 export function formatter(
@@ -41,45 +41,45 @@ export function formatter(
   tagPrefix = '',
 ) {
   if (!articals.length)
-    return
+    return;
 
-  const tags: VueTag[] = []
+  const tags: VueTag[] = [];
   const tag: VueTag = {
     name: kebabComponentName,
     slots: [],
     events: [],
     attributes: [],
-  }
-  tags.push(tag)
+  };
+  tags.push(tag);
 
-  const tables = articals.filter(artical => artical.type === 'table')
+  const tables = articals.filter(artical => artical.type === 'table');
 
   tables.forEach((item) => {
-    const { table } = item
-    const prevIndex = articals.indexOf(item) - 1
-    const prevArtical = articals[prevIndex]
+    const { table } = item;
+    const prevIndex = articals.indexOf(item) - 1;
+    const prevArtical = articals[prevIndex];
 
     if (!prevArtical || !prevArtical.content || !table || !table.body)
-      return
+      return;
 
-    const tableTitle = prevArtical.content
+    const tableTitle = prevArtical.content;
 
     if (tableTitle.includes('API')) {
       table.body.forEach((line) => {
-        parserProps(tag, line)
-      })
-      return
+        parserProps(tag, line);
+      });
+      return;
     }
 
     if (tableTitle.includes('events') && !tableTitle.includes(componentName)) {
       table.body.forEach((line) => {
-        const [name, desc] = line
+        const [name, desc] = line;
         tag.events!.push({
           name: removeVersion(name),
           description: desc,
-        })
-      })
-      return
+        });
+      });
+      return;
     }
 
     // 额外的子组件
@@ -93,12 +93,12 @@ export function formatter(
         slots: [],
         events: [],
         attributes: [],
-      }
+      };
       table.body.forEach((line) => {
-        parserProps(childTag, line)
-      })
-      tags.push(childTag)
-      return
+        parserProps(childTag, line);
+      });
+      tags.push(childTag);
+      return;
     }
 
     // 额外的子组件事件
@@ -106,20 +106,20 @@ export function formatter(
       const childTagName = getComponentName(
         tableTitle.replace('.', '').replace('events', ''),
         tagPrefix,
-      )
-      const childTag: VueTag | undefined = tags.find(i => i.name === childTagName.trim())
+      );
+      const childTag: VueTag | undefined = tags.find(i => i.name === childTagName.trim());
       if (!childTag)
-        return
+        return;
 
       table.body.forEach((line) => {
-        const [name, desc] = line
+        const [name, desc] = line;
         childTag.events!.push({
           name: removeVersion(name),
           description: desc,
-        })
-      })
+        });
+      });
     }
-  })
+  });
 
-  return tags
+  return tags;
 }

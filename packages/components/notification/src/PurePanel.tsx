@@ -1,5 +1,5 @@
-import type { VueNode } from '@antdv/types'
-import type { NotificationPureContentProps, NotificationPurePanelProps } from './interface'
+import type { VueNode } from '@antdv/types';
+import type { NotificationPureContentProps, NotificationPurePanelProps } from './interface';
 import {
   CheckCircleFilled,
   CloseCircleFilled,
@@ -7,12 +7,12 @@ import {
   ExclamationCircleFilled,
   InfoCircleFilled,
   LoadingOutlined,
-} from '@ant-design/icons-vue'
-import { classNames, renderHelper } from '@antdv/utils'
-import VcNotice from '@antdv/vue-components/vc-notification/src/Notice'
-import { computed, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
+} from '@ant-design/icons-vue';
+import { classNames, renderHelper } from '@antdv/utils';
+import VcNotice from '@antdv/vue-components/vc-notification/src/Notice';
+import { computed, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
 
 export function getCloseIcon(prefixCls: string, closeIcon?: VueNode) {
   return (
@@ -21,7 +21,7 @@ export function getCloseIcon(prefixCls: string, closeIcon?: VueNode) {
         <CloseOutlined class={`${prefixCls}-close-icon`} />
       </span>
     )
-  )
+  );
 }
 
 export const TypeIcon = {
@@ -30,14 +30,14 @@ export const TypeIcon = {
   error: <CloseCircleFilled />,
   warning: <ExclamationCircleFilled />,
   loading: <LoadingOutlined />,
-}
+};
 
 const typeToIcon = {
   success: CheckCircleFilled,
   info: InfoCircleFilled,
   error: CloseCircleFilled,
   warning: ExclamationCircleFilled,
-}
+};
 
 export function PureContent({
   prefixCls,
@@ -47,12 +47,12 @@ export function PureContent({
   description,
   btn,
 }: NotificationPureContentProps) {
-  let iconNode = null
+  let iconNode = null;
   if (icon) {
-    iconNode = <span class={`${prefixCls}-icon`}>{renderHelper(icon)}</span>
+    iconNode = <span class={`${prefixCls}-icon`}>{renderHelper(icon)}</span>;
   } else if (type) {
-    const Icon = typeToIcon[type]
-    iconNode = <Icon class={`${prefixCls}-icon ${prefixCls}-icon-${type}`} />
+    const Icon = typeToIcon[type];
+    iconNode = <Icon class={`${prefixCls}-icon ${prefixCls}-icon-${type}`} />;
   }
 
   return (
@@ -67,7 +67,7 @@ export function PureContent({
       <div class={`${prefixCls}-description`}>{description}</div>
       {btn && <div class={`${prefixCls}-btn`}>{btn}</div>}
     </div>
-  )
+  );
 }
 
 /** @private Internal Component. Do not use in your production. */
@@ -76,11 +76,11 @@ export default defineComponent<NotificationPurePanelProps>({
   inheritAttrs: false,
   props: ['prefixCls', 'icon', 'type', 'message', 'description', 'btn', 'closeIcon'] as any,
   setup(props) {
-    const { getPrefixCls } = useConfigInject('notification', props)
-    const prefixCls = computed(() => props.prefixCls || getPrefixCls('notification'))
-    const noticePrefixCls = computed(() => `${prefixCls.value}-notice`)
+    const { getPrefixCls } = useConfigInject('notification', props);
+    const prefixCls = computed(() => props.prefixCls || getPrefixCls('notification'));
+    const noticePrefixCls = computed(() => `${prefixCls.value}-notice`);
 
-    const [, hashId] = useStyle(prefixCls)
+    const [, hashId] = useStyle(prefixCls);
     return () => {
       return (
         <VcNotice
@@ -101,7 +101,7 @@ export default defineComponent<NotificationPurePanelProps>({
             btn={props.btn}
           />
         </VcNotice>
-      )
-    }
+      );
+    };
   },
-})
+});

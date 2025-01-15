@@ -1,6 +1,6 @@
-import type { InputStatus, ValidateStatus } from '@antdv/types'
+import type { InputStatus, ValidateStatus } from '@antdv/types';
 
-import { classNames } from './dom'
+import { classNames } from './dom';
 
 export function getStatusClassNames(
   prefixCls: string,
@@ -13,9 +13,9 @@ export function getStatusClassNames(
     [`${prefixCls}-status-error`]: status === 'error',
     [`${prefixCls}-status-validating`]: status === 'validating',
     [`${prefixCls}-has-feedback`]: hasFeedback,
-  })
+  });
 }
 
 export function getMergedStatus(contextStatus?: ValidateStatus, customStatus?: InputStatus) {
-  return customStatus || contextStatus
+  return customStatus || contextStatus;
 }

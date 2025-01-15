@@ -1,38 +1,38 @@
-import type { InjectionKey, Ref } from 'vue'
-import { computed, inject, provide } from 'vue'
+import type { InjectionKey, Ref } from 'vue';
+import { computed, inject, provide } from 'vue';
 
 export interface PortalContextProps {
   shouldRender: Ref<boolean>;
   inTriggerContext: boolean; // 仅处理 trigger 上下文的 portal
 }
-const PortalContextKey: InjectionKey<PortalContextProps> = Symbol('PortalContextKey')
+const PortalContextKey: InjectionKey<PortalContextProps> = Symbol('PortalContextKey');
 export function useProvidePortal(instance: any, config = { inTriggerContext: true }) {
   provide(PortalContextKey, {
     inTriggerContext: config.inTriggerContext,
     shouldRender: computed(() => {
-      const { sPopupVisible, popupRef, forceRender, autoDestroy } = instance || {}
+      const { sPopupVisible, popupRef, forceRender, autoDestroy } = instance || {};
       // if (popPortal) return true;
-      let shouldRender = false
+      let shouldRender = false;
       if (sPopupVisible || popupRef || forceRender)
-        shouldRender = true
+        shouldRender = true;
 
       if (!sPopupVisible && autoDestroy)
-        shouldRender = false
+        shouldRender = false;
 
-      return shouldRender
+      return shouldRender;
     }),
-  })
+  });
 }
 
 export function useInjectPortal() {
-  useProvidePortal({}, { inTriggerContext: false })
+  useProvidePortal({}, { inTriggerContext: false });
   const portalContext = inject(PortalContextKey, {
     shouldRender: computed(() => false),
     inTriggerContext: false,
-  })
+  });
   return {
     shouldRender: computed(
       () => portalContext.shouldRender.value || portalContext.inTriggerContext === false,
     ),
-  }
+  };
 }

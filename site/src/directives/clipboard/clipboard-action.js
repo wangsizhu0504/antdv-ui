@@ -1,4 +1,4 @@
-import select from './select'
+import select from './select';
 
 /**
  * Inner class which performs selection from either `text` or `target`
@@ -9,8 +9,8 @@ class ClipboardAction {
    * @param {object} options
    */
   constructor(options) {
-    this.resolveOptions(options)
-    this.initSelection()
+    this.resolveOptions(options);
+    this.initSelection();
   }
 
   /**
@@ -18,14 +18,14 @@ class ClipboardAction {
    * @param {object} options
    */
   resolveOptions(options = {}) {
-    this.action = options.action
-    this.container = options.container
-    this.emitter = options.emitter
-    this.target = options.target
-    this.text = options.text
-    this.trigger = options.trigger
+    this.action = options.action;
+    this.container = options.container;
+    this.emitter = options.emitter;
+    this.target = options.target;
+    this.text = options.text;
+    this.trigger = options.trigger;
 
-    this.selectedText = ''
+    this.selectedText = '';
   }
 
   /**
@@ -34,9 +34,9 @@ class ClipboardAction {
    */
   initSelection() {
     if (this.text)
-      this.selectFake()
+      this.selectFake();
     else if (this.target)
-      this.selectTarget()
+      this.selectTarget();
   }
 
   /**
@@ -44,34 +44,34 @@ class ClipboardAction {
    * and makes a selection on it.
    */
   selectFake() {
-    const isRTL = document.documentElement.getAttribute('dir') === 'rtl'
+    const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
 
-    this.removeFake()
+    this.removeFake();
 
-    this.fakeHandlerCallback = () => this.removeFake()
-    this.fakeHandler = this.container.addEventListener('click', this.fakeHandlerCallback) || true
+    this.fakeHandlerCallback = () => this.removeFake();
+    this.fakeHandler = this.container.addEventListener('click', this.fakeHandlerCallback) || true;
 
-    this.fakeElem = document.createElement('textarea')
+    this.fakeElem = document.createElement('textarea');
     // Prevent zooming on iOS
-    this.fakeElem.style.fontSize = '12pt'
+    this.fakeElem.style.fontSize = '12pt';
     // Reset box model
-    this.fakeElem.style.border = '0'
-    this.fakeElem.style.padding = '0'
-    this.fakeElem.style.margin = '0'
+    this.fakeElem.style.border = '0';
+    this.fakeElem.style.padding = '0';
+    this.fakeElem.style.margin = '0';
     // Move element out of screen horizontally
-    this.fakeElem.style.position = 'absolute'
-    this.fakeElem.style[isRTL ? 'right' : 'left'] = '-9999px'
+    this.fakeElem.style.position = 'absolute';
+    this.fakeElem.style[isRTL ? 'right' : 'left'] = '-9999px';
     // Move element to the same position vertically
-    const yPosition = window.pageYOffset || document.documentElement.scrollTop
-    this.fakeElem.style.top = `${yPosition}px`
+    const yPosition = window.pageYOffset || document.documentElement.scrollTop;
+    this.fakeElem.style.top = `${yPosition}px`;
 
-    this.fakeElem.setAttribute('readonly', '')
-    this.fakeElem.value = this.text
+    this.fakeElem.setAttribute('readonly', '');
+    this.fakeElem.value = this.text;
 
-    this.container.appendChild(this.fakeElem)
+    this.container.appendChild(this.fakeElem);
 
-    this.selectedText = select(this.fakeElem)
-    this.copyText()
+    this.selectedText = select(this.fakeElem);
+    this.copyText();
   }
 
   /**
@@ -80,14 +80,14 @@ class ClipboardAction {
    */
   removeFake() {
     if (this.fakeHandler) {
-      this.container.removeEventListener('click', this.fakeHandlerCallback)
-      this.fakeHandler = null
-      this.fakeHandlerCallback = null
+      this.container.removeEventListener('click', this.fakeHandlerCallback);
+      this.fakeHandler = null;
+      this.fakeHandlerCallback = null;
     }
 
     if (this.fakeElem) {
-      this.container.removeChild(this.fakeElem)
-      this.fakeElem = null
+      this.container.removeChild(this.fakeElem);
+      this.fakeElem = null;
     }
   }
 
@@ -95,23 +95,23 @@ class ClipboardAction {
    * Selects the content from element passed on `target` property.
    */
   selectTarget() {
-    this.selectedText = select(this.target)
-    this.copyText()
+    this.selectedText = select(this.target);
+    this.copyText();
   }
 
   /**
    * Executes the copy operation based on the current selection.
    */
   copyText() {
-    let succeeded
+    let succeeded;
 
     try {
-      succeeded = document.execCommand(this.action)
+      succeeded = document.execCommand(this.action);
     } catch (err) {
-      succeeded = false
+      succeeded = false;
     }
 
-    this.handleResult(succeeded)
+    this.handleResult(succeeded);
   }
 
   /**
@@ -124,7 +124,7 @@ class ClipboardAction {
       text: this.selectedText,
       trigger: this.trigger,
       clearSelection: this.clearSelection.bind(this),
-    })
+    });
   }
 
   /**
@@ -132,10 +132,10 @@ class ClipboardAction {
    */
   clearSelection() {
     if (this.trigger)
-      this.trigger.focus()
+      this.trigger.focus();
 
-    document.activeElement.blur()
-    window.getSelection().removeAllRanges()
+    document.activeElement.blur();
+    window.getSelection().removeAllRanges();
   }
 
   /**
@@ -143,10 +143,10 @@ class ClipboardAction {
    * @param {string} action
    */
   set action(action = 'copy') {
-    this._action = action
+    this._action = action;
 
     if (this._action !== 'copy' && this._action !== 'cut')
-      throw new Error('Invalid "action" value, use either "copy" or "cut"')
+      throw new Error('Invalid "action" value, use either "copy" or "cut"');
   }
 
   /**
@@ -154,7 +154,7 @@ class ClipboardAction {
    * @return {string}
    */
   get action() {
-    return this._action
+    return this._action;
   }
 
   /**
@@ -168,7 +168,7 @@ class ClipboardAction {
         if (this.action === 'copy' && target.hasAttribute('disabled')) {
           throw new Error(
             'Invalid "target" attribute. Please use "readonly" instead of "disabled" attribute',
-          )
+          );
         }
 
         if (
@@ -177,12 +177,12 @@ class ClipboardAction {
         ) {
           throw new Error(
             'Invalid "target" attribute. You can\'t cut text from elements with "readonly" or "disabled" attributes',
-          )
+          );
         }
 
-        this._target = target
+        this._target = target;
       } else {
-        throw new Error('Invalid "target" value, use a valid Element')
+        throw new Error('Invalid "target" value, use a valid Element');
       }
     }
   }
@@ -192,15 +192,15 @@ class ClipboardAction {
    * @return {string | HTMLElement}
    */
   get target() {
-    return this._target
+    return this._target;
   }
 
   /**
    * Destroy lifecycle.
    */
   destroy() {
-    this.removeFake()
+    this.removeFake();
   }
 }
 
-export default ClipboardAction
+export default ClipboardAction;

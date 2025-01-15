@@ -1,29 +1,29 @@
-import type { VueNode } from '@antdv/types'
-import type * as CSS from 'csstype'
-import type { Ref } from 'vue'
-import type { Linter, Theme, Transformer } from '../..'
-import type Cache from '../../Cache'
-import type Keyframes from '../../Keyframes'
-import type { HashPriority } from '../../StyleContext'
-import { canUseDom, removeCSS, updateCSS } from '@antdv/utils'
-import hash from '@emotion/hash'
-import unitless from '@emotion/unitless'
-import { compile, serialize, stringify } from 'stylis'
-import { computed } from 'vue'
+import type { VueNode } from '@antdv/types';
+import type * as CSS from 'csstype';
+import type { Ref } from 'vue';
+import type { Linter, Theme, Transformer } from '../..';
+import type Cache from '../../Cache';
+import type Keyframes from '../../Keyframes';
+import type { HashPriority } from '../../StyleContext';
+import { canUseDom, removeCSS, updateCSS } from '@antdv/utils';
+import hash from '@emotion/hash';
+import unitless from '@emotion/unitless';
+import { compile, serialize, stringify } from 'stylis';
+import { computed } from 'vue';
 
-import { contentQuotesLinter, hashedAnimationLinter } from '../../linters'
-import { ATTR_CACHE_PATH, ATTR_MARK, ATTR_TOKEN, CSS_IN_JS_INSTANCE, useStyleInject } from '../../StyleContext'
-import { supportLayer } from '../../util'
-import useGlobalCache from '../useGlobalCache'
-import { ATTR_CACHE_MAP, existPath, getStyleAndHash, serialize as serializeCacheMap } from './cacheMapUtil'
+import { contentQuotesLinter, hashedAnimationLinter } from '../../linters';
+import { ATTR_CACHE_PATH, ATTR_MARK, ATTR_TOKEN, CSS_IN_JS_INSTANCE, useStyleInject } from '../../StyleContext';
+import { supportLayer } from '../../util';
+import useGlobalCache from '../useGlobalCache';
+import { ATTR_CACHE_MAP, existPath, getStyleAndHash, serialize as serializeCacheMap } from './cacheMapUtil';
 
-const isClientSide = canUseDom()
+const isClientSide = canUseDom();
 
-const SKIP_CHECK = '_skip_check_'
-const MULTI_VALUE = '_multi_value_'
+const SKIP_CHECK = '_skip_check_';
+const MULTI_VALUE = '_multi_value_';
 export type CSSProperties = Omit<CSS.PropertiesFallback<number | string>, 'animationName'> & {
   animationName?: CSS.PropertiesFallback<number | string>['animationName'] | Keyframes
-}
+};
 
 export type CSSPropertiesWithMultiValues = {
   [K in keyof CSSProperties]:
@@ -34,17 +34,17 @@ export type CSSPropertiesWithMultiValues = {
     [MULTI_VALUE]?: boolean;
     value: CSSProperties[K] | Array<CSSProperties[K]>;
   };
-}
+};
 
-export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject }
+export type CSSPseudos = { [K in CSS.Pseudos]?: CSSObject };
 
-type ArrayCSSInterpolation = readonly CSSInterpolation[]
+type ArrayCSSInterpolation = readonly CSSInterpolation[];
 
-export type InterpolationPrimitive = null | undefined | boolean | number | string | CSSObject
+export type InterpolationPrimitive = null | undefined | boolean | number | string | CSSObject;
 
-export type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation | Keyframes
+export type CSSInterpolation = InterpolationPrimitive | ArrayCSSInterpolation | Keyframes;
 
-export type CSSOthersObject = Record<string, CSSInterpolation>
+export type CSSOthersObject = Record<string, CSSInterpolation>;
 
 export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSSOthersObject {}
 
@@ -53,35 +53,35 @@ export interface CSSObject extends CSSPropertiesWithMultiValues, CSSPseudos, CSS
 // ============================================================================
 // Preprocessor style content to browser support one
 export function normalizeStyle(styleStr: string): string {
-  const serialized = serialize(compile(styleStr), stringify)
-  return serialized.replace(/\{%%%:[^;];\}/g, ';')
+  const serialized = serialize(compile(styleStr), stringify);
+  return serialized.replace(/\{%%%:[^;];\}/g, ';');
 }
 
 function isCompoundCSSProperty(value: CSSObject[string]) {
-  return typeof value === 'object' && value && (SKIP_CHECK in value || MULTI_VALUE in value)
+  return typeof value === 'object' && value && (SKIP_CHECK in value || MULTI_VALUE in value);
 }
 
 // 注入 hash 值
 function injectSelectorHash(key: string, hashId: string, hashPriority?: HashPriority) {
   if (!hashId)
-    return key
+    return key;
 
-  const hashClassName = `.${hashId}`
-  const hashSelector = hashPriority === 'low' ? `:where(${hashClassName})` : hashClassName
+  const hashClassName = `.${hashId}`;
+  const hashSelector = hashPriority === 'low' ? `:where(${hashClassName})` : hashClassName;
 
   // 注入 hashId
   const keys = key.split(',').map((k) => {
-    const fullPath = k.trim().split(/\s+/)
+    const fullPath = k.trim().split(/\s+/);
 
     // 如果 Selector 第一个是 HTML Element，那我们就插到它的后面。反之，就插到最前面。
-    let firstPath = fullPath[0] || ''
-    const htmlElement = firstPath.match(/^\w+/)?.[0] || ''
+    let firstPath = fullPath[0] || '';
+    const htmlElement = firstPath.match(/^\w+/)?.[0] || '';
 
-    firstPath = `${htmlElement}${hashSelector}${firstPath.slice(htmlElement.length)}`
+    firstPath = `${htmlElement}${hashSelector}${firstPath.slice(htmlElement.length)}`;
 
-    return [firstPath, ...fullPath.slice(1)].join(' ')
-  })
-  return keys.join(',')
+    return [firstPath, ...fullPath.slice(1)].join(' ');
+  });
+  return keys.join(',');
 }
 
 export interface ParseConfig {
@@ -101,13 +101,13 @@ export interface ParseInfo {
 
 // Global effect style will mount once and not removed
 // The effect will not save in SSR cache (e.g. keyframes)
-const globalEffectStyleKeys = new Set()
+const globalEffectStyleKeys = new Set();
 
 /**
  * @private Test only. Clear the global effect style keys.
  */
 export const _cf
-  = process.env.NODE_ENV !== 'production' ? () => globalEffectStyleKeys.clear() : undefined
+  = process.env.NODE_ENV !== 'production' ? () => globalEffectStyleKeys.clear() : undefined;
 
 // Parse CSSObject to style content
 export function parseStyle(interpolation: CSSInterpolation, config: ParseConfig = {}, { root, injectHash, parentSelectors }: ParseInfo = {
@@ -119,52 +119,52 @@ export function parseStyle(interpolation: CSSInterpolation, config: ParseConfig 
   // Firefox will flick with same animation name when exist multiple same keyframes.
   effectStyle: Record<string, string>,
   ] {
-  const { hashId, layer, path, hashPriority, transformers = [], linters = [] } = config
-  let styleStr = ''
-  let effectStyle: Record<string, string> = {}
+  const { hashId, layer, path, hashPriority, transformers = [], linters = [] } = config;
+  let styleStr = '';
+  let effectStyle: Record<string, string> = {};
 
   function parseKeyframes(keyframes: Keyframes) {
-    const animationName = keyframes.getName(hashId)
+    const animationName = keyframes.getName(hashId);
     if (!effectStyle[animationName]) {
       const [parsedStr] = parseStyle(keyframes.style, config, {
         root: false,
         parentSelectors,
-      })
+      });
 
-      effectStyle[animationName] = `@keyframes ${keyframes.getName(hashId)}${parsedStr}`
+      effectStyle[animationName] = `@keyframes ${keyframes.getName(hashId)}${parsedStr}`;
     }
   }
 
   function flattenList(list: ArrayCSSInterpolation, fullList: CSSObject[] = []) {
     list.forEach((item) => {
       if (Array.isArray(item))
-        flattenList(item, fullList)
+        flattenList(item, fullList);
       else if (item)
-        fullList.push(item as CSSObject)
-    })
+        fullList.push(item as CSSObject);
+    });
 
-    return fullList
+    return fullList;
   }
 
   const flattenStyleList = flattenList(
     Array.isArray(interpolation) ? interpolation : [interpolation],
-  )
+  );
 
   flattenStyleList.forEach((originStyle) => {
     // Only root level can use raw string
-    const style: CSSObject = typeof originStyle === 'string' && !root ? {} : originStyle
+    const style: CSSObject = typeof originStyle === 'string' && !root ? {} : originStyle;
 
     if (typeof style === 'string') {
-      styleStr += `${style}\n`
+      styleStr += `${style}\n`;
     } else if ((style as any)._keyframe) {
       // Keyframe
-      parseKeyframes(style as unknown as Keyframes)
+      parseKeyframes(style as unknown as Keyframes);
     } else {
-      const mergedStyle = transformers.reduce((prev, trans) => trans?.visit?.(prev) || prev, style)
+      const mergedStyle = transformers.reduce((prev, trans) => trans?.visit?.(prev) || prev, style);
 
       // Normal CSSObject
       Object.keys(mergedStyle).forEach((key) => {
-        const value = mergedStyle[key]
+        const value = mergedStyle[key];
 
         if (
           typeof value === 'object'
@@ -172,21 +172,21 @@ export function parseStyle(interpolation: CSSInterpolation, config: ParseConfig 
           && (key !== 'animationName' || !(value as Keyframes)._keyframe)
           && !isCompoundCSSProperty(value)
         ) {
-          let subInjectHash = false
+          let subInjectHash = false;
 
           // 当成嵌套对象来处理
-          let mergedKey = key.trim()
+          let mergedKey = key.trim();
           // Whether treat child as root. In most case it is false.
-          let nextRoot = false
+          let nextRoot = false;
 
           // 拆分多个选择器
           if ((root || injectHash) && hashId) {
             if (mergedKey.startsWith('@')) {
               // 略过媒体查询，交给子节点继续插入 hashId
-              subInjectHash = true
+              subInjectHash = true;
             } else {
               // 注入 hashId
-              mergedKey = injectSelectorHash(key, hashId, hashPriority)
+              mergedKey = injectSelectorHash(key, hashId, hashPriority);
             }
           } else if (root && !hashId && (mergedKey === '&' || mergedKey === '')) {
             // In case of `{ '&': { a: { color: 'red' } } }` or `{ '': { a: { color: 'red' } } }` without hashId,
@@ -194,22 +194,22 @@ export function parseStyle(interpolation: CSSInterpolation, config: ParseConfig 
             // But it does not conform to stylis syntax,
             // and finally we will get `{color:red;}` as css, which is wrong.
             // So we need to remove key in root, and treat child `{ a: { color: 'red' } }` as root.
-            mergedKey = ''
-            nextRoot = true
+            mergedKey = '';
+            nextRoot = true;
           }
 
           const [parsedStr, childEffectStyle] = parseStyle(value as any, config, {
             root: nextRoot,
             injectHash: subInjectHash,
             parentSelectors: [...parentSelectors, mergedKey],
-          })
+          });
 
           effectStyle = {
             ...effectStyle,
             ...childEffectStyle,
-          }
+          };
 
-          styleStr += `${mergedKey}${parsedStr}`
+          styleStr += `${mergedKey}${parsedStr}`;
         } else {
           function appendStyle(cssKey: string, cssValue: any) {
             if (
@@ -218,64 +218,64 @@ export function parseStyle(interpolation: CSSInterpolation, config: ParseConfig 
             ) {
               [contentQuotesLinter, hashedAnimationLinter, ...linters].forEach(linter =>
                 linter(cssKey, cssValue, { path, hashId, parentSelectors }),
-              )
+              );
             }
 
             // 如果是样式则直接插入
-            const styleName = cssKey.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`)
+            const styleName = cssKey.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`);
 
             // Auto suffix with px
-            let formatValue = cssValue
+            let formatValue = cssValue;
             if (!unitless[cssKey] && typeof formatValue === 'number' && formatValue !== 0)
-              formatValue = `${formatValue}px`
+              formatValue = `${formatValue}px`;
 
             // handle animationName & Keyframe value
             if (cssKey === 'animationName' && (cssValue as Keyframes)?._keyframe) {
-              parseKeyframes(cssValue as Keyframes)
-              formatValue = (cssValue as Keyframes).getName(hashId)
+              parseKeyframes(cssValue as Keyframes);
+              formatValue = (cssValue as Keyframes).getName(hashId);
             }
 
-            styleStr += `${styleName}:${formatValue};`
+            styleStr += `${styleName}:${formatValue};`;
           }
-          const actualValue = (value as any)?.value ?? value
+          const actualValue = (value as any)?.value ?? value;
           if (
             typeof value === 'object'
             && (value as any)?.[MULTI_VALUE]
             && Array.isArray(actualValue)
           ) {
             actualValue.forEach((item) => {
-              appendStyle(key, item)
-            })
+              appendStyle(key, item);
+            });
           } else {
-            appendStyle(key, actualValue)
+            appendStyle(key, actualValue);
           }
         }
-      })
+      });
     }
-  })
+  });
 
   if (!root) {
-    styleStr = `{${styleStr}}`
+    styleStr = `{${styleStr}}`;
   } else if (layer && supportLayer()) {
-    const layerCells = layer.split(',')
-    const layerName = layerCells[layerCells.length - 1].trim()
-    styleStr = `@layer ${layerName} {${styleStr}}`
+    const layerCells = layer.split(',');
+    const layerName = layerCells[layerCells.length - 1].trim();
+    styleStr = `@layer ${layerName} {${styleStr}}`;
 
     // Order of layer if needed
     if (layerCells.length > 1) {
       // zombieJ: stylis do not support layer order, so we need to handle it manually.
-      styleStr = `@layer ${layer}{%%%:%}${styleStr}`
+      styleStr = `@layer ${layer}{%%%:%}${styleStr}`;
     }
   }
 
-  return [styleStr, effectStyle]
+  return [styleStr, effectStyle];
 }
 
 // ============================================================================
 // ==                                Register                                ==
 // ============================================================================
 function uniqueHash(path: Array<string | number>, styleStr: string) {
-  return hash(`${path.join('%')}${styleStr}`)
+  return hash(`${path.join('%')}${styleStr}`);
 }
 
 // function Empty() {
@@ -303,16 +303,16 @@ export default function useStyleRegister(
   }>,
   styleFn: () => CSSInterpolation,
 ) {
-  const styleContext = useStyleInject()
+  const styleContext = useStyleInject();
 
-  const tokenKey = computed(() => info.value.token._tokenKey as string)
+  const tokenKey = computed(() => info.value.token._tokenKey as string);
 
-  const fullPath = computed(() => [tokenKey.value, ...info.value.path])
+  const fullPath = computed(() => [tokenKey.value, ...info.value.path]);
 
   // Check if need insert style
-  let isMergedClientSide = isClientSide
+  let isMergedClientSide = isClientSide;
   if (process.env.NODE_ENV !== 'production' && styleContext.value.mock !== undefined)
-    isMergedClientSide = styleContext.value.mock === 'client'
+    isMergedClientSide = styleContext.value.mock === 'client';
 
   // const [cacheStyle[0], cacheStyle[1], cacheStyle[2]]
   useGlobalCache<
@@ -329,16 +329,16 @@ export default function useStyleRegister(
     fullPath,
     // Create cache if needed
     () => {
-      const { path, hashId, layer, nonce, clientOnly, order = 0 } = info.value
-      const cachePath = fullPath.value.join('|')
+      const { path, hashId, layer, nonce, clientOnly, order = 0 } = info.value;
+      const cachePath = fullPath.value.join('|');
       // Get style from SSR inline style directly
       if (existPath(cachePath)) {
-        const [inlineCacheStyleStr, styleHash] = getStyleAndHash(cachePath)
+        const [inlineCacheStyleStr, styleHash] = getStyleAndHash(cachePath);
         if (inlineCacheStyleStr)
-          return [inlineCacheStyleStr, tokenKey.value, styleHash, {}, clientOnly, order]
+          return [inlineCacheStyleStr, tokenKey.value, styleHash, {}, clientOnly, order];
       }
-      const styleObj = styleFn()
-      const { hashPriority, container, transformers, linters, cache } = styleContext.value
+      const styleObj = styleFn();
+      const { hashPriority, container, transformers, linters, cache } = styleContext.value;
 
       const [parsedStyle, effectStyle] = parseStyle(styleObj, {
         hashId,
@@ -347,9 +347,9 @@ export default function useStyleRegister(
         path: path.join('-'),
         transformers,
         linters,
-      })
-      const styleStr = normalizeStyle(parsedStyle)
-      const styleId = uniqueHash(fullPath.value, styleStr)
+      });
+      const styleStr = normalizeStyle(parsedStyle);
+      const styleId = uniqueHash(fullPath.value, styleStr);
 
       if (isMergedClientSide) {
         const mergedCSSConfig: Parameters<typeof updateCSS>[2] = {
@@ -357,50 +357,50 @@ export default function useStyleRegister(
           prepend: 'queue',
           attachTo: container,
           priority: order,
-        }
+        };
 
-        const nonceStr = typeof nonce === 'function' ? nonce() : nonce
+        const nonceStr = typeof nonce === 'function' ? nonce() : nonce;
 
         if (nonceStr)
-          mergedCSSConfig.csp = { nonce: nonceStr }
+          mergedCSSConfig.csp = { nonce: nonceStr };
 
         const style = updateCSS(styleStr, styleId, mergedCSSConfig);
 
-        (style as any)[CSS_IN_JS_INSTANCE] = cache.instanceId
+        (style as any)[CSS_IN_JS_INSTANCE] = cache.instanceId;
 
         // Used for `useCacheToken` to remove on batch when token removed
-        style.setAttribute(ATTR_TOKEN, tokenKey.value)
+        style.setAttribute(ATTR_TOKEN, tokenKey.value);
 
         // Dev usage to find which cache path made this easily
         if (process.env.NODE_ENV !== 'production')
-          style.setAttribute(ATTR_CACHE_PATH, fullPath.value.join('|'))
+          style.setAttribute(ATTR_CACHE_PATH, fullPath.value.join('|'));
 
         // Inject client side effect style
         Object.keys(effectStyle).forEach((effectKey) => {
           if (!globalEffectStyleKeys.has(effectKey)) {
-            globalEffectStyleKeys.add(effectKey)
+            globalEffectStyleKeys.add(effectKey);
 
             // Inject
             updateCSS(normalizeStyle(effectStyle[effectKey]), `_effect-${effectKey}`, {
               mark: ATTR_MARK,
               prepend: 'queue',
               attachTo: container,
-            })
+            });
           }
-        })
+        });
       }
 
-      return [styleStr, tokenKey.value, styleId, effectStyle, clientOnly, order]
+      return [styleStr, tokenKey.value, styleId, effectStyle, clientOnly, order];
     },
     // Remove cache if no need
     ([, , styleId], fromHMR) => {
       if ((fromHMR || styleContext.value.autoClear) && isClientSide)
-        removeCSS(styleId, { mark: ATTR_MARK })
+        removeCSS(styleId, { mark: ATTR_MARK });
     },
-  )
+  );
 
   return (node: VueNode) => {
-    return node
+    return node;
     // let styleNode: VueNode;
     // if (!styleContext.ssrInline || isMergedClientSide || !styleContext.defaultCache) {
     //   styleNode = <Empty />;
@@ -422,25 +422,25 @@ export default function useStyleRegister(
     //     {node}
     //   </>
     // );
-  }
+  };
 }
 
 // ============================================================================
 // ==                                  SSR                                   ==
 // ============================================================================
 export function extractStyle(cache: Cache, plain = false) {
-  const matchPrefix = 'style%'
+  const matchPrefix = 'style%';
 
   // prefix with `style` is used for `useStyleRegister` to cache style context
-  const styleKeys = Array.from(cache.cache.keys()).filter(key => key.startsWith(matchPrefix))
+  const styleKeys = Array.from(cache.cache.keys()).filter(key => key.startsWith(matchPrefix));
 
   // Common effect styles like animation
-  const effectStyles: Record<string, boolean> = {}
+  const effectStyles: Record<string, boolean> = {};
 
   // Mapping of cachePath to style hash
-  const cachePathMap: Record<string, string> = {}
+  const cachePathMap: Record<string, string> = {};
 
-  let styleText = ''
+  let styleText = '';
 
   function toStyleStr(
     style: string,
@@ -452,71 +452,71 @@ export function extractStyle(cache: Cache, plain = false) {
       ...customizeAttrs,
       [ATTR_TOKEN]: tokenKey,
       [ATTR_MARK]: styleId,
-    }
+    };
 
     const attrStr = Object.keys(attrs)
       .map((attr) => {
-        const val = attrs[attr]
-        return val ? `${attr}="${val}"` : null
+        const val = attrs[attr];
+        return val ? `${attr}="${val}"` : null;
       })
       .filter(v => v)
-      .join(' ')
+      .join(' ');
 
-    return plain ? style : `<style ${attrStr}>${style}</style>`
+    return plain ? style : `<style ${attrStr}>${style}</style>`;
   }
 
   // ====================== Fill Style ======================
-  type OrderStyle = [order: number, style: string]
+  type OrderStyle = [order: number, style: string];
 
   const orderStyles: OrderStyle[] = styleKeys
     .map((key) => {
-      const cachePath = key.slice(matchPrefix.length).replace(/%/g, '|')
+      const cachePath = key.slice(matchPrefix.length).replace(/%/g, '|');
 
-      const [styleStr, tokenKey, styleId, effectStyle, clientOnly, order]: [ string, string, string, Record<string, string>, boolean, number ] = cache.cache.get(key)![1]
+      const [styleStr, tokenKey, styleId, effectStyle, clientOnly, order]: [ string, string, string, Record<string, string>, boolean, number ] = cache.cache.get(key)![1];
 
       // Skip client only style
       if (clientOnly)
-        return null! as OrderStyle
+        return null! as OrderStyle;
 
       // ====================== Style ======================
       // Used for vc-util
       const sharedAttrs = {
         'data-vc-order': 'prependQueue',
         'data-vc-priority': `${order}`,
-      }
+      };
 
-      let keyStyleText = toStyleStr(styleStr, tokenKey, styleId, sharedAttrs)
+      let keyStyleText = toStyleStr(styleStr, tokenKey, styleId, sharedAttrs);
 
       // Save cache path with hash mapping
-      cachePathMap[cachePath] = styleId
+      cachePathMap[cachePath] = styleId;
 
       // =============== Create effect style ===============
       if (effectStyle) {
         Object.keys(effectStyle).forEach((effectKey) => {
           // Effect style can be reused
           if (!effectStyles[effectKey]) {
-            effectStyles[effectKey] = true
+            effectStyles[effectKey] = true;
             keyStyleText += toStyleStr(
               normalizeStyle(effectStyle[effectKey]),
               tokenKey,
               `_effect-${effectKey}`,
               sharedAttrs,
-            )
+            );
           }
-        })
+        });
       }
 
-      const ret: OrderStyle = [order, keyStyleText]
+      const ret: OrderStyle = [order, keyStyleText];
 
-      return ret
+      return ret;
     })
-    .filter(o => o)
+    .filter(o => o);
 
   orderStyles
     .sort((o1, o2) => o1[0] - o2[0])
     .forEach(([, style]) => {
-      styleText += style
-    })
+      styleText += style;
+    });
 
   // ==================== Fill Cache Path ====================
   styleText += toStyleStr(
@@ -526,7 +526,7 @@ export function extractStyle(cache: Cache, plain = false) {
     {
       [ATTR_CACHE_MAP]: ATTR_CACHE_MAP,
     },
-  )
+  );
 
-  return styleText
+  return styleText;
 }

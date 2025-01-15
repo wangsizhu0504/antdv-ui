@@ -1,14 +1,14 @@
-import type { CSSProperties } from 'vue'
-import type { PosInfo } from './hooks/useTarget'
-import { useId } from '@antdv/hooks'
-import { booleanType, classNames, objectType, someType } from '@antdv/utils'
-import { defineComponent } from 'vue'
-import Portal from '../../portal/src/PortalWrapper'
+import type { CSSProperties } from 'vue';
+import type { PosInfo } from './hooks/useTarget';
+import { useId } from '@antdv/hooks';
+import { booleanType, classNames, objectType, someType } from '@antdv/utils';
+import { defineComponent } from 'vue';
+import Portal from '../../portal/src/PortalWrapper';
 
 const COVER_PROPS = {
   'fill': 'transparent',
   'pointer-events': 'auto',
-}
+};
 
 export interface MaskProps {
   prefixCls?: string;
@@ -34,12 +34,12 @@ const Mask = defineComponent({
     zIndex: { type: Number },
   },
   setup(props, { attrs }) {
-    const id = useId()
+    const id = useId();
     return () => {
-      const { prefixCls, open, rootClassName, pos, showMask, fill, animated, zIndex } = props
+      const { prefixCls, open, rootClassName, pos, showMask, fill, animated, zIndex } = props;
 
-      const maskId = `${prefixCls}-mask-${id}`
-      const mergedAnimated = typeof animated === 'object' ? animated?.placeholder : animated
+      const maskId = `${prefixCls}-mask-${id}`;
+      const mergedAnimated = typeof animated === 'object' ? animated?.placeholder : animated;
       return (
         <Portal
           visible={open}
@@ -124,9 +124,9 @@ const Mask = defineComponent({
               ),
           }}
         />
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default Mask
+export default Mask;

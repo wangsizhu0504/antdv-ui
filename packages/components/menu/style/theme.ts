@@ -1,11 +1,11 @@
-import type { CSSInterpolation } from '@antdv/theme'
-import type { MenuToken } from '.'
-import { genFocusOutline } from '@antdv/theme'
+import type { CSSInterpolation } from '@antdv/theme';
+import type { MenuToken } from '.';
+import { genFocusOutline } from '@antdv/theme';
 
 function accessibilityFocus(token: MenuToken) {
   return {
     ...genFocusOutline(token),
-  }
+  };
 }
 
 function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation {
@@ -45,7 +45,7 @@ function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation 
     // Horizontal
     colorItemTextSelectedHorizontal,
     colorItemBgSelectedHorizontal,
-  } = token
+  } = token;
 
   return {
     [`${componentCls}-${themeSuffix}`]: {
@@ -258,7 +258,7 @@ function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation 
         },
       },
     },
-  }
+  };
 }
 
-export default getThemeStyle
+export default getThemeStyle;

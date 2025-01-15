@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Mentions } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Mentions } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -17,7 +17,7 @@ const Demo = defineComponent({
         value: 'yesmeck',
         label: 'yesmeck',
       },
-    ]
+    ];
     return () => (
       <Mentions
         style={{ width: '100%' }}
@@ -27,14 +27,14 @@ const Demo = defineComponent({
         options={options}
       >
       </Mentions>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorBgContainerDisabled', 'colorTextDisabled'],
   key: 'disabled',
-}
+};
 
-export default componentDemo
+export default componentDemo;

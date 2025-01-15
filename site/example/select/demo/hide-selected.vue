@@ -17,12 +17,12 @@ Hide already selected options in the dropdown.
 </docs>
 
 <script lang="ts" setup>
-  import { computed, ref } from 'vue'
+  import { computed, ref } from 'vue';
 
-  const OPTIONS = ['Apples', 'Nails', 'Bananas', 'Helicopters']
-  const selectedItems = ref<string[]>([])
+  const OPTIONS = ['Apples', 'Nails', 'Bananas', 'Helicopters'];
+  const selectedItems = ref<string[]>([]);
 
-  const filteredOptions = computed(() => OPTIONS.filter(o => !selectedItems.value.includes(o)))
+  const filteredOptions = computed(() => OPTIONS.filter(o => !selectedItems.value.includes(o)));
 </script>
 
 <template>

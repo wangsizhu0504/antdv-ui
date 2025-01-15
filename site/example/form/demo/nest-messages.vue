@@ -16,12 +16,12 @@ title:
 </docs>
 
 <script lang="ts" setup>
-  import { reactive } from 'vue'
+  import { reactive } from 'vue';
 
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
-  }
+  };
 
   const validateMessages = {
     required: '${label} is required!',
@@ -32,7 +32,7 @@ title:
     number: {
       range: '${label} must be between ${min} and ${max}',
     },
-  }
+  };
 
   const formState = reactive({
     user: {
@@ -42,9 +42,9 @@ title:
       website: '',
       introduction: '',
     },
-  })
+  });
   function onFinish(values: any) {
-    console.log('Success:', values)
+    console.log('Success:', values);
   }
 </script>
 

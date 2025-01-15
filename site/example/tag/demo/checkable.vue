@@ -19,12 +19,12 @@ title:
 </docs>
 
 <script lang="ts" setup>
-  import { reactive } from 'vue'
+  import { reactive } from 'vue';
 
-  const tagsData = reactive(['Movies', 'Books', 'Music', 'Sports'])
-  const selectTags = reactive([false, true, false, false])
+  const tagsData = reactive(['Movies', 'Books', 'Music', 'Sports']);
+  const selectTags = reactive([false, true, false, false]);
   function handleChange(tag: string, checked: boolean) {
-    console.log(tag, checked)
+    console.log(tag, checked);
   }
 </script>
 

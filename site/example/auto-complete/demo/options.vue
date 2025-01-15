@@ -16,18 +16,18 @@ For 3.0+, You could pass `v-slot:option` to custom option.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<any>('')
-  const options = ref<Array<{ value: string }>>([])
+  const value = ref<any>('');
+  const options = ref<Array<{ value: string }>>([]);
   function handleSearch(val: string) {
-    let res: Array<{ value: string }>
+    let res: Array<{ value: string }>;
     if (!val || val.includes('@')) {
-      res = []
+      res = [];
     } else {
-      res = ['gmail.com', '163.com', 'qq.com'].map(domain => ({ value: `${val}@${domain}` }))
+      res = ['gmail.com', '163.com', 'qq.com'].map(domain => ({ value: `${val}@${domain}` }));
     }
-    options.value = res
+    options.value = res;
   }
 </script>
 

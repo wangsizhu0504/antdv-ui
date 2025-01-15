@@ -16,9 +16,9 @@ Should be used at the top of container, needs to override styles.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const activeKey = ref<any>('2')
+  const activeKey = ref<any>('2');
 </script>
 
 <template>

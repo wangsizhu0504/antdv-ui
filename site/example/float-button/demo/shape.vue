@@ -18,9 +18,9 @@ The most basic usage.
 </docs>
 
 <script lang="ts" setup>
-  import { CustomerServiceOutlined } from '@ant-design/icons-vue'
+  import { CustomerServiceOutlined } from '@ant-design/icons-vue';
 
-  const handleClick = () => console.log('click')
+  const handleClick = () => console.log('click');
 </script>
 
 <template>

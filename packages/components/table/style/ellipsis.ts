@@ -1,9 +1,9 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
-import { textEllipsis } from '@antdv/theme'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
+import { textEllipsis } from '@antdv/theme';
 
 const genEllipsisStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
   return {
     [`${componentCls}-wrapper`]: {
       [`${componentCls}-cell-ellipsis`]: {
@@ -30,7 +30,7 @@ const genEllipsisStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genEllipsisStyle
+export default genEllipsisStyle;

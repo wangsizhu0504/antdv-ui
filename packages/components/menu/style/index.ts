@@ -1,12 +1,12 @@
-import type { CSSObject, FullToken, GenerateStyle, UseComponentStyleResult } from '@antdv/theme'
-import type { Ref } from 'vue'
-import { clearFix, genComponentStyleHook, mergeToken, resetComponent, resetIcon } from '@antdv/theme'
-import { genCollapseMotion, initSlideMotion, initZoomMotion } from '@antdv/theme/style/motion'
-import { TinyColor } from '@ctrl/tinycolor'
-import getHorizontalStyle from './horizontal'
-import getRTLStyle from './rtl'
-import getThemeStyle from './theme'
-import getVerticalStyle from './vertical'
+import type { CSSObject, FullToken, GenerateStyle, UseComponentStyleResult } from '@antdv/theme';
+import type { Ref } from 'vue';
+import { clearFix, genComponentStyleHook, mergeToken, resetComponent, resetIcon } from '@antdv/theme';
+import { genCollapseMotion, initSlideMotion, initZoomMotion } from '@antdv/theme/style/motion';
+import { TinyColor } from '@ctrl/tinycolor';
+import getHorizontalStyle from './horizontal';
+import getRTLStyle from './rtl';
+import getThemeStyle from './theme';
+import getVerticalStyle from './vertical';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {
@@ -76,7 +76,7 @@ function genMenuItemStyle(token: MenuToken): CSSObject {
     motionEaseOut,
     iconCls,
     controlHeightSM,
-  } = token
+  } = token;
 
   return {
     // >>>>> Item
@@ -141,7 +141,7 @@ function genMenuItemStyle(token: MenuToken): CSSObject {
         cursor: 'not-allowed',
       },
     },
-  }
+  };
 }
 
 function genSubMenuArrowStyle(token: MenuToken): CSSObject {
@@ -152,7 +152,7 @@ function genSubMenuArrowStyle(token: MenuToken): CSSObject {
     borderRadius,
     menuArrowSize,
     menuArrowOffset,
-  } = token
+  } = token;
 
   return {
     [`${componentCls}-submenu`]: {
@@ -192,7 +192,7 @@ function genSubMenuArrowStyle(token: MenuToken): CSSObject {
         },
       },
     },
-  }
+  };
 }
 
 // =============================== Base ===============================
@@ -216,7 +216,7 @@ const getBaseStyle: GenerateStyle<MenuToken> = (token) => {
     menuArrowOffset,
     lineType,
     menuPanelMaskInset,
-  } = token
+  } = token;
 
   return [
     // Misc
@@ -424,8 +424,8 @@ const getBaseStyle: GenerateStyle<MenuToken> = (token) => {
         },
       },
     },
-  ]
-}
+  ];
+};
 
 // ============================== Export ==============================
 export default (prefixCls: Ref<string>, injectStyle?: Ref<boolean>): UseComponentStyleResult => {
@@ -434,14 +434,14 @@ export default (prefixCls: Ref<string>, injectStyle?: Ref<boolean>): UseComponen
     (token, { overrideComponentToken }) => {
       // Dropdown will handle menu style self. We do not need to handle this.
       if (injectStyle?.value === false)
-        return []
+        return [];
 
       const { colorBgElevated, colorPrimary, colorError, colorErrorHover, colorTextLightSolid }
-        = token
+        = token;
 
-      const { controlHeightLG, fontSize } = token
+      const { controlHeightLG, fontSize } = token;
 
-      const menuArrowSize = (fontSize / 7) * 5
+      const menuArrowSize = (fontSize / 7) * 5;
 
       // Menu Token
       const menuToken = mergeToken<MenuToken>(token, {
@@ -452,9 +452,9 @@ export default (prefixCls: Ref<string>, injectStyle?: Ref<boolean>): UseComponen
         menuArrowOffset: `${menuArrowSize * 0.25}px`,
         menuPanelMaskInset: -7, // Still a hardcode here since it's offset by rc-align
         menuSubMenuBg: colorBgElevated,
-      })
+      });
 
-      const colorTextDark = new TinyColor(colorTextLightSolid).setAlpha(0.65).toRgbString()
+      const colorTextDark = new TinyColor(colorTextLightSolid).setAlpha(0.65).toRgbString();
 
       const menuDarkToken = mergeToken<MenuToken>(
         menuToken,
@@ -490,7 +490,7 @@ export default (prefixCls: Ref<string>, injectStyle?: Ref<boolean>): UseComponen
         {
           ...overrideComponentToken,
         },
-      )
+      );
 
       return [
         // Basic
@@ -515,7 +515,7 @@ export default (prefixCls: Ref<string>, injectStyle?: Ref<boolean>): UseComponen
         initSlideMotion(menuToken, 'slide-up'),
         initSlideMotion(menuToken, 'slide-down'),
         initZoomMotion(menuToken, 'zoom-big'),
-      ]
+      ];
     },
     (token) => {
       const {
@@ -532,7 +532,7 @@ export default (prefixCls: Ref<string>, injectStyle?: Ref<boolean>): UseComponen
         lineWidthBold,
         controlItemBgActive,
         colorBgTextHover,
-      } = token
+      } = token;
 
       return {
         dropdownWidth: 160,
@@ -566,9 +566,9 @@ export default (prefixCls: Ref<string>, injectStyle?: Ref<boolean>): UseComponen
         colorDangerItemBgSelected: colorErrorBg,
 
         itemMarginInline: token.marginXXS,
-      }
+      };
     },
-  )
+  );
 
-  return useOriginHook(prefixCls)
-}
+  return useOriginHook(prefixCls);
+};

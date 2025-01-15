@@ -1,10 +1,10 @@
-import type { CustomSlotsType } from '@antdv/types'
-import { classNames, devWarning, initDefaultProps } from '@antdv/utils'
-import { defineComponent, Transition } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import type { CustomSlotsType } from '@antdv/types';
+import { classNames, devWarning, initDefaultProps } from '@antdv/utils';
+import { defineComponent, Transition } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import PanelContent from './PanelContent'
-import { collapsePanelProps } from './props'
+import PanelContent from './PanelContent';
+import { collapsePanelProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -29,15 +29,15 @@ export default defineComponent({
       props.disabled === undefined,
       'Collapse.Panel',
       '`disabled` is deprecated. Please use `collapsible="disabled"` instead.',
-    )
-    const { prefixCls } = useConfigInject('collapse', props)
+    );
+    const { prefixCls } = useConfigInject('collapse', props);
     const handleItemClick = () => {
-      emit('itemClick', props.panelKey)
-    }
+      emit('itemClick', props.panelKey);
+    };
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.keyCode === 13 || e.which === 13)
-        handleItemClick()
-    }
+        handleItemClick();
+    };
     return () => {
       const {
         header = slots.header?.(),
@@ -51,25 +51,25 @@ export default defineComponent({
         expandIcon = slots.expandIcon,
         extra = slots.extra?.(),
         collapsible,
-      } = props
-      const disabled = collapsible === 'disabled'
-      const prefixClsValue = prefixCls.value
+      } = props;
+      const disabled = collapsible === 'disabled';
+      const prefixClsValue = prefixCls.value;
       const headerCls = classNames(`${prefixClsValue}-header`, {
         [headerClass]: headerClass,
         [`${prefixClsValue}-header-collapsible-only`]: collapsible === 'header',
         [`${prefixClsValue}-icon-collapsible-only`]: collapsible === 'icon',
-      })
+      });
       const itemCls = classNames({
         [`${prefixClsValue}-item`]: true,
         [`${prefixClsValue}-item-active`]: isActive,
         [`${prefixClsValue}-item-disabled`]: disabled,
         [`${prefixClsValue}-no-arrow`]: !showArrow,
         [`${attrs.class}`]: !!attrs.class,
-      })
+      });
 
-      let icon = <i class="arrow" />
+      let icon = <i class="arrow" />;
       if (showArrow && typeof expandIcon === 'function')
-        icon = expandIcon(props)
+        icon = expandIcon(props);
 
       const panelContent = (
         <PanelContent
@@ -81,12 +81,12 @@ export default defineComponent({
           v-slots={{ default: slots.default }}
         >
         </PanelContent>
-      )
+      );
       const transitionProps = {
         appear: false,
         css: false,
         ...openAnimation,
-      }
+      };
 
       return (
         <div {...attrs} class={itemCls}>
@@ -111,7 +111,7 @@ export default defineComponent({
             {!destroyInactivePanel || isActive ? panelContent : null}
           </Transition>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

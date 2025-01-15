@@ -1,6 +1,6 @@
-import type { VueNode } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-import { anyType, objectType } from '@antdv/utils'
+import type { VueNode } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes } from 'vue';
+import { anyType, objectType } from '@antdv/utils';
 
 export function emptyProps() {
   return {
@@ -8,7 +8,7 @@ export function emptyProps() {
     imageStyle: objectType<CSSProperties>(),
     image: anyType<VueNode>(),
     description: anyType<VueNode>(),
-  }
+  };
 }
 
-export type EmptyProps = Partial<ExtractPropTypes<ReturnType<typeof emptyProps>>>
+export type EmptyProps = Partial<ExtractPropTypes<ReturnType<typeof emptyProps>>>;

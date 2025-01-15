@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'vue'
-import { defineComponent } from 'vue'
+import type { CSSProperties } from 'vue';
+import { defineComponent } from 'vue';
 
 const Margin = defineComponent({
   name: 'Margin',
@@ -48,9 +48,9 @@ const Margin = defineComponent({
             </g>
           </g>
         </svg>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default Margin
+export default Margin;

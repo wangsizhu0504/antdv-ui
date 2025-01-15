@@ -1,10 +1,10 @@
-import type { getContainerFunc, KeyboardEventHandler, MouseEventHandler } from '@antdv/types'
+import type { getContainerFunc, KeyboardEventHandler, MouseEventHandler } from '@antdv/types';
 
-import type { CSSProperties, ExtractPropTypes, PropType, TransitionProps } from 'vue'
-import type { ILevelMove, IPlacement, PushState, sizeType } from './interface'
-import { arrayType, functionType, objectType, PropTypes } from '@antdv/utils'
+import type { CSSProperties, ExtractPropTypes, PropType, TransitionProps } from 'vue';
+import type { ILevelMove, IPlacement, PushState, sizeType } from './interface';
+import { arrayType, functionType, objectType, PropTypes } from '@antdv/utils';
 
-export const PlacementTypes = ['top', 'right', 'bottom', 'left'] as const
+export const PlacementTypes = ['top', 'right', 'bottom', 'left'] as const;
 
 function baseProps() {
   return {
@@ -39,7 +39,7 @@ function baseProps() {
     // Motion
     motion: functionType<(placement: IPlacement) => TransitionProps>(),
     maskMotion: objectType<TransitionProps>(),
-  }
+  };
 }
 
 export function drawerWrapperProps() {
@@ -52,7 +52,7 @@ export function drawerWrapperProps() {
       PropTypes.object,
       PropTypes.looseBool,
     ]),
-  }
+  };
 }
 
 export function drawerChildProps() {
@@ -62,7 +62,7 @@ export function drawerChildProps() {
     getOpenCount: Function as PropType<() => number>,
     scrollLocker: PropTypes.any,
     inline: Boolean,
-  }
+  };
 }
 
 export function drawerProps() {
@@ -124,7 +124,7 @@ export function drawerProps() {
     'onUpdate:visible': Function as PropType<(visible: boolean) => void>,
     'onUpdate:open': Function as PropType<(open: boolean) => void>,
     'onClose': Function as PropType<MouseEventHandler | KeyboardEventHandler>,
-  }
+  };
 }
 
-export type DrawerProps = Partial<ExtractPropTypes<ReturnType<typeof drawerProps>>>
+export type DrawerProps = Partial<ExtractPropTypes<ReturnType<typeof drawerProps>>>;

@@ -1,8 +1,8 @@
-import type { Key } from '@antdv/types'
-import type { CSSProperties, VNode } from 'vue'
-import type { TreeNodeProps } from './props'
+import type { Key } from '@antdv/types';
+import type { CSSProperties, VNode } from 'vue';
+import type { TreeNodeProps } from './props';
 
-export type { ScrollTo } from '../../vc-virtual-list/src/List'
+export type { ScrollTo } from '../../vc-virtual-list/src/List';
 
 /** For fieldNames, we provides a abstract interface */
 export interface BasicDataNode {
@@ -44,9 +44,9 @@ export interface EventDataNode extends DataNode {
   eventKey?: Key; // 兼容 v2， 推荐直接用 key
 }
 
-export type IconType = any
+export type IconType = any;
 
-export type NodeElement = VNode<TreeNodeProps>
+export type NodeElement = VNode<TreeNodeProps>;
 
 export interface DragNodeEvent {
   key: Key;
@@ -84,11 +84,11 @@ export interface FlattenNode {
   isEnd: boolean[];
 }
 
-export type GetKey<RecordType> = (record: RecordType, index?: number) => Key
+export type GetKey<RecordType> = (record: RecordType, index?: number) => Key;
 
-export type GetCheckDisabled<RecordType> = (record: RecordType) => boolean
+export type GetCheckDisabled<RecordType> = (record: RecordType) => boolean;
 
-export type Direction = 'ltr' | 'rtl' | undefined
+export type Direction = 'ltr' | 'rtl' | undefined;
 
 export interface FieldNames {
   title?: string;

@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Button, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Button, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -24,14 +24,14 @@ const Demo = defineComponent({
           Link
         </Button>
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorTextDisabled', 'colorBgContainerDisabled'],
   key: 'disabled',
-}
+};
 
-export default componentDemo
+export default componentDemo;

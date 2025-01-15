@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-  import { getLocalizedPathname, isLocalStorageNameSupported, isZhCN } from '@/utils/util'
-  import Github from './Github.vue'
-  import Navigation from './Navigation.vue'
+  import { getLocalizedPathname, isLocalStorageNameSupported, isZhCN } from '@/utils/util';
+  import Github from './Github.vue';
+  import Navigation from './Navigation.vue';
 
   defineOptions({
     name: 'HeaderMenu',
-  })
+  });
   function onLangChange() {
     const {
       location: { pathname },
-    } = window
-    const currentProtocol = `${window.location.protocol}//`
-    const currentHref = window.location.href.substr(currentProtocol.length)
+    } = window;
+    const currentProtocol = `${window.location.protocol}//`;
+    const currentHref = window.location.href.substr(currentProtocol.length);
 
     if (isLocalStorageNameSupported())
-      localStorage.setItem('locale', isZhCN(pathname) ? 'en-US' : 'zh-CN')
+      localStorage.setItem('locale', isZhCN(pathname) ? 'en-US' : 'zh-CN');
 
-    window.location.href = currentProtocol + currentHref.replace(window.location.pathname, getLocalizedPathname(pathname, !isZhCN(pathname)).path)
+    window.location.href = currentProtocol + currentHref.replace(window.location.pathname, getLocalizedPathname(pathname, !isZhCN(pathname)).path);
   }
 </script>
 

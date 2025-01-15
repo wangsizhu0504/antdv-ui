@@ -1,6 +1,6 @@
-import type { Ref } from 'vue'
-import type { LabeledValueType, RawValueType } from '../TreeSelect'
-import { computed, shallowRef, toRaw, watch } from 'vue'
+import type { Ref } from 'vue';
+import type { LabeledValueType, RawValueType } from '../TreeSelect';
+import { computed, shallowRef, toRaw, watch } from 'vue';
 
 /**
  * This function will try to call requestIdleCallback if available to save performance.
@@ -9,35 +9,35 @@ import { computed, shallowRef, toRaw, watch } from 'vue'
 export default (values: Ref<LabeledValueType[]>): [Ref<LabeledValueType[]>] => {
   const cacheRef = shallowRef({
     valueLabels: new Map<RawValueType, any>(),
-  })
-  const mergedValues = shallowRef()
+  });
+  const mergedValues = shallowRef();
   watch(
     values,
     () => {
-      mergedValues.value = toRaw(values.value)
+      mergedValues.value = toRaw(values.value);
     },
     { immediate: true },
-  )
+  );
   const newFilledValues = computed(() => {
-    const { valueLabels } = cacheRef.value
-    const valueLabelsCache = new Map<RawValueType, any>()
+    const { valueLabels } = cacheRef.value;
+    const valueLabelsCache = new Map<RawValueType, any>();
 
     const filledValues = mergedValues.value.map((item) => {
-      const { value } = item
-      const mergedLabel = item.label ?? valueLabels.get(value)
+      const { value } = item;
+      const mergedLabel = item.label ?? valueLabels.get(value);
 
       // Save in cache
-      valueLabelsCache.set(value, mergedLabel)
+      valueLabelsCache.set(value, mergedLabel);
 
       return {
         ...item,
         label: mergedLabel,
-      }
-    })
+      };
+    });
 
-    cacheRef.value.valueLabels = valueLabelsCache
+    cacheRef.value.valueLabels = valueLabelsCache;
 
-    return filledValues
-  })
-  return [newFilledValues]
-}
+    return filledValues;
+  });
+  return [newFilledValues];
+};

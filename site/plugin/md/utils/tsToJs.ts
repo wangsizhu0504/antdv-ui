@@ -1,7 +1,7 @@
-import { transformSync } from '@babel/core'
+import { transformSync } from '@babel/core';
 
 // import { ESLint } from 'eslint'
-import transformTypescript from '@babel/plugin-transform-typescript'
+import transformTypescript from '@babel/plugin-transform-typescript';
 
 // import baseConfig from '../../../../eslint.config.js'
 
@@ -12,7 +12,7 @@ import transformTypescript from '@babel/plugin-transform-typescript'
 // })
 async function tsToJs(content: string): Promise<string> {
   if (!content)
-    return ''
+    return '';
 
   const { code } = transformSync(content, {
     configFile: false,
@@ -24,11 +24,11 @@ async function tsToJs(content: string): Promise<string> {
         },
       ],
     ],
-  })
+  });
   // const report = await engine.lintText(code)
   // let output = report[0].output
   // output = output ? output.trim() : output
-  return code!
+  return code!;
 }
 
-export default tsToJs
+export default tsToJs;

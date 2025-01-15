@@ -1,10 +1,10 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { DropdownToken } from '.'
+import type { GenerateStyle } from '@antdv/theme';
+import type { DropdownToken } from '.';
 
 const genStatusStyle: GenerateStyle<DropdownToken> = (token) => {
-  const { componentCls, menuCls, colorError, colorTextLightSolid } = token
+  const { componentCls, menuCls, colorError, colorTextLightSolid } = token;
 
-  const itemCls = `${menuCls}-item`
+  const itemCls = `${menuCls}-item`;
 
   return {
     [`${componentCls}, ${componentCls}-menu-submenu`]: {
@@ -19,7 +19,7 @@ const genStatusStyle: GenerateStyle<DropdownToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genStatusStyle
+export default genStatusStyle;

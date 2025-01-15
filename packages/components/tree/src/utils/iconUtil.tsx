@@ -1,13 +1,13 @@
-import type { AntTreeNodeProps } from '../interface'
+import type { AntTreeNodeProps } from '../interface';
 import {
   CaretDownFilled,
   FileOutlined,
   LoadingOutlined,
   MinusSquareOutlined,
   PlusSquareOutlined,
-} from '@ant-design/icons-vue'
-import { isValidElement } from '@antdv/utils'
-import { cloneVNode } from 'vue'
+} from '@ant-design/icons-vue';
+import { isValidElement } from '@antdv/utils';
+import { cloneVNode } from 'vue';
 
 export interface SwitcherIconProps extends AntTreeNodeProps {
   expanded: boolean
@@ -20,46 +20,46 @@ export default function renderSwitcherIcon(
   leafIcon?: (props: SwitcherIconProps) => any,
   showLine?: boolean | { showLeafIcon: boolean } | undefined,
 ) {
-  const { isLeaf, expanded, loading } = props
-  let icon = switcherIcon
+  const { isLeaf, expanded, loading } = props;
+  let icon = switcherIcon;
   if (loading)
-    return <LoadingOutlined class={`${prefixCls}-switcher-loading-icon`} />
+    return <LoadingOutlined class={`${prefixCls}-switcher-loading-icon`} />;
 
-  let showLeafIcon: boolean
+  let showLeafIcon: boolean;
   if (showLine && typeof showLine === 'object')
-    showLeafIcon = showLine.showLeafIcon
+    showLeafIcon = showLine.showLeafIcon;
 
-  let defaultIcon = null
-  const switcherCls = `${prefixCls}-switcher-icon`
+  let defaultIcon = null;
+  const switcherCls = `${prefixCls}-switcher-icon`;
   if (isLeaf) {
     if (!showLine)
-      return null
+      return null;
 
     if (showLeafIcon && leafIcon)
-      return leafIcon(props)
+      return leafIcon(props);
 
     if (typeof showLine === 'object' && !showLeafIcon)
-      defaultIcon = <span class={`${prefixCls}-switcher-leaf-line`} />
+      defaultIcon = <span class={`${prefixCls}-switcher-leaf-line`} />;
     else
-      defaultIcon = <FileOutlined class={`${prefixCls}-switcher-line-icon`} />
+      defaultIcon = <FileOutlined class={`${prefixCls}-switcher-line-icon`} />;
 
-    return defaultIcon
+    return defaultIcon;
   } else {
-    defaultIcon = <CaretDownFilled class={switcherCls} />
+    defaultIcon = <CaretDownFilled class={switcherCls} />;
     if (showLine) {
       defaultIcon = expanded
         ? <MinusSquareOutlined class={`${prefixCls}-switcher-line-icon`} />
-        : <PlusSquareOutlined class={`${prefixCls}-switcher-line-icon`} />
+        : <PlusSquareOutlined class={`${prefixCls}-switcher-line-icon`} />;
     }
   }
 
   if (typeof switcherIcon === 'function') {
-    icon = switcherIcon({ ...props, defaultIcon, switcherCls })
+    icon = switcherIcon({ ...props, defaultIcon, switcherCls });
   } else if (isValidElement(icon)) {
     icon = cloneVNode(icon, {
       class: switcherCls,
-    })
+    });
   }
 
-  return icon || defaultIcon
+  return icon || defaultIcon;
 }

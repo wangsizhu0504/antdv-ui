@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
+import type { ComponentDemo } from '../../interface';
 
-import { Progress, Space } from '@antdv/ui'
+import { Progress, Space } from '@antdv/ui';
 
 function Demo() {
   return (
@@ -11,13 +11,13 @@ function Demo() {
       </Space>
       <Progress percent={50} status="success" />
     </Space>
-  )
+  );
 }
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorSuccess'],
   key: 'success',
-}
+};
 
-export default componentDemo
+export default componentDemo;

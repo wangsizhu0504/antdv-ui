@@ -23,11 +23,11 @@ If you want to use a customized trigger, you can hide the default one by setting
     UploadOutlined,
     UserOutlined,
     VideoCameraOutlined,
-  } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const selectedKeys = ref<string[]>(['1'])
-  const collapsed = ref<boolean>(false)
+  const selectedKeys = ref<string[]>(['1']);
+  const collapsed = ref<boolean>(false);
 </script>
 
 <template>

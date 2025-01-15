@@ -1,8 +1,8 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { StepsToken } from '.'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { StepsToken } from '.';
 
 const genStepsVerticalStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
-  const { componentCls, stepsSmallIconSize, stepsIconSize } = token
+  const { componentCls, stepsSmallIconSize, stepsIconSize } = token;
 
   return {
     [`&${componentCls}-vertical`]: {
@@ -66,6 +66,6 @@ const genStepsVerticalStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
-export default genStepsVerticalStyle
+  };
+};
+export default genStepsVerticalStyle;

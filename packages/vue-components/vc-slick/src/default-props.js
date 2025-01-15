@@ -1,4 +1,4 @@
-import { PropTypes } from '@antdv/utils'
+import { PropTypes } from '@antdv/utils';
 
 const defaultProps = {
   accessibility: { type: Boolean, default: true },
@@ -51,6 +51,6 @@ const defaultProps = {
   waitForAnimate: { type: Boolean, default: true },
   children: PropTypes.array,
   __propsSymbol__: PropTypes.any,
-}
+};
 
-export default defaultProps
+export default defaultProps;

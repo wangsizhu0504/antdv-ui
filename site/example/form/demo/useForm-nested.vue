@@ -16,20 +16,20 @@ title:
 </docs>
 
 <script lang="ts" setup>
-  import { Form } from '@antdv/ui'
-  import { reactive, toRaw } from 'vue'
+  import { Form } from '@antdv/ui';
+  import { reactive, toRaw } from 'vue';
 
-  const useForm = Form.useForm
+  const useForm = Form.useForm;
 
-  const labelCol = { span: 4 }
-  const wrapperCol = { span: 14 }
+  const labelCol = { span: 4 };
+  const wrapperCol = { span: 14 };
 
   const modelRef = reactive({
     name: '',
     sub: {
       name: '',
     },
-  })
+  });
   const { resetFields, validate, validateInfos } = useForm(
     modelRef,
     reactive({
@@ -46,18 +46,18 @@ title:
         },
       ],
     }),
-  )
+  );
   function onSubmit() {
     validate()
       .then((res) => {
-        console.log(res, toRaw(modelRef))
+        console.log(res, toRaw(modelRef));
       })
       .catch((err) => {
-        console.log('error', err)
-      })
+        console.log('error', err);
+      });
   }
   function reset() {
-    resetFields()
+    resetFields();
   }
 </script>
 

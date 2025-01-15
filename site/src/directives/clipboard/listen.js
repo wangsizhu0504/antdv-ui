@@ -1,5 +1,5 @@
-import delegate from './delegate'
-import is from './is'
+import delegate from './delegate';
+import is from './is';
 
 /**
  * Validates all params and calls the right
@@ -12,24 +12,24 @@ import is from './is'
  */
 function listen(target, type, callback) {
   if (!target && !type && !callback)
-    throw new Error('Missing required arguments')
+    throw new Error('Missing required arguments');
 
   if (!is.string(type))
-    throw new TypeError('Second argument must be a String')
+    throw new TypeError('Second argument must be a String');
 
   if (!is.fn(callback))
-    throw new TypeError('Third argument must be a Function')
+    throw new TypeError('Third argument must be a Function');
 
   if (is.node(target)) {
-    return listenNode(target, type, callback)
+    return listenNode(target, type, callback);
   } else if (is.nodeList(target)) {
-    return listenNodeList(target, type, callback)
+    return listenNodeList(target, type, callback);
   } else if (is.string(target)) {
-    return listenSelector(target, type, callback)
+    return listenSelector(target, type, callback);
   } else {
     throw new TypeError(
       'First argument must be a String, HTMLElement, HTMLCollection, or NodeList',
-    )
+    );
   }
 }
 
@@ -43,13 +43,13 @@ function listen(target, type, callback) {
  * @return {object}
  */
 function listenNode(node, type, callback) {
-  node.addEventListener(type, callback)
+  node.addEventListener(type, callback);
 
   return {
     destroy() {
-      node.removeEventListener(type, callback)
+      node.removeEventListener(type, callback);
     },
-  }
+  };
 }
 
 /**
@@ -63,16 +63,16 @@ function listenNode(node, type, callback) {
  */
 function listenNodeList(nodeList, type, callback) {
   Array.prototype.forEach.call(nodeList, (node) => {
-    node.addEventListener(type, callback)
-  })
+    node.addEventListener(type, callback);
+  });
 
   return {
     destroy() {
       Array.prototype.forEach.call(nodeList, (node) => {
-        node.removeEventListener(type, callback)
-      })
+        node.removeEventListener(type, callback);
+      });
     },
-  }
+  };
 }
 
 /**
@@ -85,7 +85,7 @@ function listenNodeList(nodeList, type, callback) {
  * @return {object}
  */
 function listenSelector(selector, type, callback) {
-  return delegate(document.body, selector, type, callback)
+  return delegate(document.body, selector, type, callback);
 }
 
-export default listen
+export default listen;

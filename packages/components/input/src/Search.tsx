@@ -1,13 +1,13 @@
-import type { ChangeEvent, CompositionEventHandler, MouseEventHandler } from '@antdv/types'
-import type { PropType } from 'vue'
-import { SearchOutlined } from '@ant-design/icons-vue'
-import { classNames, cloneElement, omit, PropTypes } from '@antdv/utils'
-import { isPlainObject } from 'lodash-es'
-import { computed, defineComponent, shallowRef } from 'vue'
-import Button from '../../button'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import Input from './Input'
-import { inputProps } from './props'
+import type { ChangeEvent, CompositionEventHandler, MouseEventHandler } from '@antdv/types';
+import type { PropType } from 'vue';
+import { SearchOutlined } from '@ant-design/icons-vue';
+import { classNames, cloneElement, omit, PropTypes } from '@antdv/utils';
+import { isPlainObject } from 'lodash-es';
+import { computed, defineComponent, shallowRef } from 'vue';
+import Button from '../../button';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import Input from './Input';
+import { inputProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -25,54 +25,54 @@ export default defineComponent({
     },
   },
   setup(props, { slots, attrs, expose, emit }) {
-    const inputRef = shallowRef()
-    const composedRef = shallowRef(false)
+    const inputRef = shallowRef();
+    const composedRef = shallowRef(false);
     const focus = () => {
-      inputRef.value?.focus()
-    }
+      inputRef.value?.focus();
+    };
     const blur = () => {
-      inputRef.value?.blur()
-    }
+      inputRef.value?.blur();
+    };
     expose({
       focus,
       blur,
-    })
+    });
 
     const onChange = (e: ChangeEvent) => {
-      emit('update:value', (e.target as HTMLInputElement).value)
+      emit('update:value', (e.target as HTMLInputElement).value);
       if (e && e.target && e.type === 'click')
-        emit('search', e.target.value, e)
+        emit('search', e.target.value, e);
 
-      emit('change', e)
-    }
+      emit('change', e);
+    };
 
     const onMousedown: MouseEventHandler = (e) => {
       if (document.activeElement === inputRef.value?.input)
-        e.preventDefault()
-    }
+        e.preventDefault();
+    };
 
     const onSearch = (e: MouseEvent | KeyboardEvent) => {
-      emit('search', inputRef.value?.input?.stateValue, e)
-    }
+      emit('search', inputRef.value?.input?.stateValue, e);
+    };
 
     const onPressEnter = (e: KeyboardEvent) => {
       if (composedRef.value || props.loading)
-        return
+        return;
 
-      onSearch(e)
-    }
+      onSearch(e);
+    };
 
     const handleOnCompositionStart: CompositionEventHandler = (e) => {
-      composedRef.value = true
-      emit('compositionstart', e)
-    }
+      composedRef.value = true;
+      emit('compositionstart', e);
+    };
 
     const handleOnCompositionEnd: CompositionEventHandler = (e) => {
-      composedRef.value = false
-      emit('compositionend', e)
-    }
-    const { prefixCls, getPrefixCls, direction, size } = useConfigInject('input-search', props)
-    const inputPrefixCls = computed(() => getPrefixCls('input', props.inputPrefixCls))
+      composedRef.value = false;
+      emit('compositionend', e);
+    };
+    const { prefixCls, getPrefixCls, direction, size } = useConfigInject('input-search', props);
+    const inputPrefixCls = computed(() => getPrefixCls('input', props.inputPrefixCls));
     return () => {
       const {
         disabled,
@@ -80,18 +80,18 @@ export default defineComponent({
         addonAfter = slots.addonAfter?.(),
         suffix = slots.suffix?.(),
         ...restProps
-      } = props
-      let { enterButton = slots.enterButton?.() ?? false } = props
-      enterButton = enterButton || enterButton === ''
-      const searchIcon = typeof enterButton === 'boolean' ? <SearchOutlined /> : null
-      const btnClassName = `${prefixCls.value}-button`
+      } = props;
+      let { enterButton = slots.enterButton?.() ?? false } = props;
+      enterButton = enterButton || enterButton === '';
+      const searchIcon = typeof enterButton === 'boolean' ? <SearchOutlined /> : null;
+      const btnClassName = `${prefixCls.value}-button`;
 
-      const enterButtonAsElement = Array.isArray(enterButton) ? enterButton[0] : enterButton
-      let button: any
+      const enterButtonAsElement = Array.isArray(enterButton) ? enterButton[0] : enterButton;
+      let button: any;
       const isAntdButton
         = enterButtonAsElement.type
         && isPlainObject(enterButtonAsElement.type)
-        && enterButtonAsElement.type.__ANT_BUTTON
+        && enterButtonAsElement.type.__ANT_BUTTON;
       if (isAntdButton || enterButtonAsElement.tagName === 'button') {
         button = cloneElement(
           enterButtonAsElement,
@@ -107,9 +107,9 @@ export default defineComponent({
               : {}),
           },
           false,
-        )
+        );
       } else {
-        const iconOnly = searchIcon && !enterButton
+        const iconOnly = searchIcon && !enterButton;
         button = (
           <Button
             class={btnClassName}
@@ -124,10 +124,10 @@ export default defineComponent({
           >
             {iconOnly ? null : searchIcon || enterButton}
           </Button>
-        )
+        );
       }
       if (addonAfter)
-        button = [button, addonAfter]
+        button = [button, addonAfter];
 
       const cls = classNames(
         prefixCls.value,
@@ -137,7 +137,7 @@ export default defineComponent({
           [`${prefixCls.value}-with-button`]: !!enterButton,
         },
         attrs.class,
-      )
+      );
       return (
         <Input
           ref={inputRef}
@@ -155,7 +155,7 @@ export default defineComponent({
           disabled={disabled}
           v-slots={slots}
         />
-      )
-    }
+      );
+    };
   },
-})
+});

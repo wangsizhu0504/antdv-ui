@@ -17,10 +17,10 @@ A borderless style of Collapse.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const activeKey = ref<any>(['1'])
-  const text = `A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.`
+  const activeKey = ref<any>(['1']);
+  const text = `A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.`;
 </script>
 
 <template>

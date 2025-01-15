@@ -84,15 +84,15 @@ $ yarn add ant-design-vue@4.x
 ## 示例
 
 ```jsx
-import { DatePicker } from '@antdv/ui'
+import { DatePicker } from '@antdv/ui';
 
-app.use(DatePicker)
+app.use(DatePicker);
 ```
 
 引入样式：
 
 ```jsx
-import 'ant-design-vue/dist/reset.css'
+import 'ant-design-vue/dist/reset.css';
 ```
 
 ### 按需加载
@@ -110,10 +110,10 @@ $ npm install unplugin-vue-components -D
 ```
 
 ```js
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
-import Components from 'unplugin-vue-components/vite'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import Components from 'unplugin-vue-components/vite';
 // vite.config.js
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
@@ -126,7 +126,7 @@ export default defineConfig({
       ],
     }),
   ],
-})
+});
 ```
 
 然后你可以在代码中直接引入 `ant-design-vue` 的组件，插件会自动将代码转化为 `import { Button } from '@antdv/ui'` 的形式。

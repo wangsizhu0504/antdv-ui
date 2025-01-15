@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'en',
@@ -278,6 +278,6 @@ const localeValues: Locale = {
     refresh: 'Refresh',
     scanned: 'Scanned',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

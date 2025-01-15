@@ -1,7 +1,7 @@
-import type { Breakpoint } from '@antdv/types'
-import type { DefaultRecordType } from '@antdv/vue-components/vc-table/src/interface'
-import type { CSSProperties } from 'vue'
-import type { SpinProps } from '../../spin'
+import type { Breakpoint } from '@antdv/types';
+import type { DefaultRecordType } from '@antdv/vue-components/vc-table/src/interface';
+import type { CSSProperties } from 'vue';
+import type { SpinProps } from '../../spin';
 import type {
   ChangeEventInfo,
   ContextSlots,
@@ -15,10 +15,10 @@ import type {
   TableColumnsType,
   TableColumnType,
   TablePaginationConfig,
-} from './interface'
-import { useBreakpoint } from '@antdv/hooks'
+} from './interface';
+import { useBreakpoint } from '@antdv/hooks';
 
-import { enUS as defaultLocale } from '@antdv/locale'
+import { enUS as defaultLocale } from '@antdv/locale';
 import {
   classNames,
   devWarning,
@@ -26,9 +26,9 @@ import {
   objectType,
   omit,
   scrollTo,
-} from '@antdv/utils'
-import { VcTable } from '@antdv/vue-components'
-import { INTERNAL_HOOKS } from '@antdv/vue-components/vc-table/src/Table'
+} from '@antdv/utils';
+import { VcTable } from '@antdv/vue-components';
+import { INTERNAL_HOOKS } from '@antdv/vue-components/vc-table/src/Table';
 import {
   computed,
   defineComponent,
@@ -38,28 +38,28 @@ import {
   toRef,
   watch,
   watchEffect,
-} from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { useLocaleReceiver } from '../../locale-provider/src/useLocaleReceiver'
-import Pagination from '../../pagination'
+} from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { useLocaleReceiver } from '../../locale-provider/src/useLocaleReceiver';
+import Pagination from '../../pagination';
 
-import Spin from '../../spin'
-import useStyle from '../style'
-import { useProvideSlots, useProvideTableContext } from './context'
-import renderExpandIcon from './ExpandIcon'
-import useColumns from './hooks/useColumns'
+import Spin from '../../spin';
+import useStyle from '../style';
+import { useProvideSlots, useProvideTableContext } from './context';
+import renderExpandIcon from './ExpandIcon';
+import useColumns from './hooks/useColumns';
 
-import useFilter, { getFilterData } from './hooks/useFilter'
+import useFilter, { getFilterData } from './hooks/useFilter';
 
-import useLazyKVMap from './hooks/useLazyKVMap'
-import usePagination, { DEFAULT_PAGE_SIZE, getPaginationParam } from './hooks/usePagination'
-import useSelection from './hooks/useSelection'
-import useSorter, { getSortData } from './hooks/useSorter'
+import useLazyKVMap from './hooks/useLazyKVMap';
+import usePagination, { DEFAULT_PAGE_SIZE, getPaginationParam } from './hooks/usePagination';
+import useSelection from './hooks/useSelection';
+import useSorter, { getSortData } from './hooks/useSorter';
 
-import useTitleColumns from './hooks/useTitleColumns'
-import { tableProps } from './props'
+import useTitleColumns from './hooks/useTitleColumns';
+import { tableProps } from './props';
 
-const EMPTY_LIST: any[] = []
+const EMPTY_LIST: any[] = [];
 
 export default defineComponent({
   name: 'InternalTable',
@@ -78,25 +78,25 @@ export default defineComponent({
       !(typeof props.rowKey === 'function' && props.rowKey.length > 1),
       'Table',
       '`index` parameter of `rowKey` function is deprecated. There is no guarantee that it will work as expected.',
-    )
+    );
 
-    useProvideSlots(computed(() => props.contextSlots))
+    useProvideSlots(computed(() => props.contextSlots));
     useProvideTableContext({
       onResizeColumn: (w, col) => {
-        emit('resizeColumn', w, col)
+        emit('resizeColumn', w, col);
       },
-    })
-    const screens = useBreakpoint()
+    });
+    const screens = useBreakpoint();
 
     const mergedColumns = computed(() => {
       const matched = new Set(
         Object.keys(screens.value).filter((m: Breakpoint) => screens.value[m]),
-      )
+      );
       return props.columns.filter(
         (c: TableColumnType<DefaultRecordType>) =>
           !c.responsive || c.responsive.some((r: Breakpoint) => matched.has(r)),
-      )
-    })
+      );
+    });
 
     const {
       size: mergedSize,
@@ -104,81 +104,81 @@ export default defineComponent({
       direction,
       prefixCls,
       configProvider,
-    } = useConfigInject('table', props)
+    } = useConfigInject('table', props);
 
     // Style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     const transformCellText = computed(
       () => props.transformCellText || configProvider.transformCellText?.value,
-    )
-    const [tableLocale] = useLocaleReceiver('Table', defaultLocale.Table, toRef(props, 'locale'))
-    const rawData = computed(() => props.dataSource || EMPTY_LIST)
+    );
+    const [tableLocale] = useLocaleReceiver('Table', defaultLocale.Table, toRef(props, 'locale'));
+    const rawData = computed(() => props.dataSource || EMPTY_LIST);
 
     const dropdownPrefixCls = computed(() =>
       configProvider.getPrefixCls('dropdown', props.dropdownPrefixCls),
-    )
+    );
 
-    const childrenColumnName = computed(() => props.childrenColumnName || 'children')
+    const childrenColumnName = computed(() => props.childrenColumnName || 'children');
 
     const expandType = computed<ExpandType>(() => {
       if (rawData.value.some(item => (item as any)?.[childrenColumnName.value]))
-        return 'nest'
+        return 'nest';
 
       if (props.expandedRowRender)
-        return 'row'
+        return 'row';
 
-      return null
-    })
+      return null;
+    });
 
     const internalRefs = reactive({
       body: null,
-    })
+    });
 
     const updateInternalRefs = (refs) => {
-      Object.assign(internalRefs, refs)
-    }
+      Object.assign(internalRefs, refs);
+    };
 
     // ============================ RowKey ============================
     const getRowKey = computed<GetRowKey<DefaultRecordType>>(() => {
       if (typeof props.rowKey === 'function')
-        return props.rowKey
+        return props.rowKey;
 
-      return record => (record as any)?.[props.rowKey as string]
-    })
+      return record => (record as any)?.[props.rowKey as string];
+    });
 
-    const [getRecordByKey] = useLazyKVMap(rawData, childrenColumnName, getRowKey)
+    const [getRecordByKey] = useLazyKVMap(rawData, childrenColumnName, getRowKey);
 
     // ============================ Events =============================
-    const changeEventInfo: Partial<ChangeEventInfo> = {}
+    const changeEventInfo: Partial<ChangeEventInfo> = {};
 
     const triggerOnChange = (
       info: Partial<ChangeEventInfo>,
       action: TableAction,
       reset = false,
     ) => {
-      const { pagination, scroll, onChange } = props
+      const { pagination, scroll, onChange } = props;
       const changeInfo = {
         ...changeEventInfo,
         ...info,
-      }
+      };
 
       if (reset) {
-        changeEventInfo.resetPagination!()
+        changeEventInfo.resetPagination!();
 
         // Reset event param
         if (changeInfo.pagination!.current)
-          changeInfo.pagination!.current = 1
+          changeInfo.pagination!.current = 1;
 
         // Trigger pagination events
         if (pagination && pagination.onChange)
-          pagination.onChange(1, changeInfo.pagination!.pageSize)
+          pagination.onChange(1, changeInfo.pagination!.pageSize);
       }
 
       if (scroll && scroll.scrollToFirstRowOnChange !== false && internalRefs.body) {
         scrollTo(0, {
           getContainer: () => internalRefs.body,
-        })
+        });
       }
 
       onChange?.(changeInfo.pagination!, changeInfo.filters!, changeInfo.sorter!, {
@@ -187,8 +187,8 @@ export default defineComponent({
           changeInfo.filterStates!,
         ),
         action,
-      })
-    }
+      });
+    };
 
     /**
      * Controlled state in `columns` is not a good idea that makes too many code (1000+ line?) to read
@@ -205,8 +205,8 @@ export default defineComponent({
         },
         'sort',
         false,
-      )
-    }
+      );
+    };
 
     const [transformSorterColumns, sortStates, sorterTitleProps, sorters] = useSorter({
       prefixCls,
@@ -215,10 +215,10 @@ export default defineComponent({
       sortDirections: computed(() => props.sortDirections || ['ascend', 'descend']),
       tableLocale,
       showSorterTooltip: toRef(props, 'showSorterTooltip'),
-    })
+    });
     const sortedData = computed(() =>
       getSortData(rawData.value, sortStates.value, childrenColumnName.value),
-    )
+    );
 
     // ============================ Filter ============================
     const onFilterChange = (filters: Record<string, FilterValue>, filterStates: FilterState[]) => {
@@ -229,8 +229,8 @@ export default defineComponent({
         },
         'filter',
         true,
-      )
-    }
+      );
+    };
 
     const [transformFilterColumns, filterStates, filters] = useFilter({
       prefixCls,
@@ -239,25 +239,25 @@ export default defineComponent({
       mergedColumns,
       onFilterChange,
       getPopupContainer: toRef(props, 'getPopupContainer'),
-    })
-    const mergedData = computed(() => getFilterData(sortedData.value, filterStates.value))
+    });
+    const mergedData = computed(() => getFilterData(sortedData.value, filterStates.value));
     // ============================ Column ============================
 
-    const [transformBasicColumns] = useColumns(toRef(props, 'contextSlots'))
+    const [transformBasicColumns] = useColumns(toRef(props, 'contextSlots'));
 
     const columnTitleProps = computed(() => {
-      const mergedFilters: Record<string, FilterValue> = {}
-      const filtersValue = filters.value
+      const mergedFilters: Record<string, FilterValue> = {};
+      const filtersValue = filters.value;
       Object.keys(filtersValue).forEach((filterKey) => {
         if (filtersValue[filterKey] !== null)
-          mergedFilters[filterKey] = filtersValue[filterKey]!
-      })
+          mergedFilters[filterKey] = filtersValue[filterKey]!;
+      });
       return {
         ...sorterTitleProps.value,
         filters: mergedFilters,
-      }
-    })
-    const [transformTitleColumns] = useTitleColumns(columnTitleProps)
+      };
+    });
+    const [transformTitleColumns] = useTitleColumns(columnTitleProps);
 
     // ========================== Pagination ==========================
     const onPaginationChange = (current: number, pageSize: number) => {
@@ -266,52 +266,52 @@ export default defineComponent({
           pagination: { ...changeEventInfo.pagination, current, pageSize },
         },
         'paginate',
-      )
-    }
+      );
+    };
 
     const [mergedPagination, resetPagination] = usePagination(
       computed(() => mergedData.value.length),
       toRef(props, 'pagination'),
       onPaginationChange,
-    )
+    );
 
     watchEffect(() => {
-      changeEventInfo.sorter = sorters.value
-      changeEventInfo.sorterStates = sortStates.value
+      changeEventInfo.sorter = sorters.value;
+      changeEventInfo.sorterStates = sortStates.value;
 
-      changeEventInfo.filters = filters.value
-      changeEventInfo.filterStates = filterStates.value
+      changeEventInfo.filters = filters.value;
+      changeEventInfo.filterStates = filterStates.value;
       changeEventInfo.pagination
         = props.pagination === false
           ? {}
-          : getPaginationParam(mergedPagination.value, props.pagination)
+          : getPaginationParam(mergedPagination.value, props.pagination);
 
-      changeEventInfo.resetPagination = resetPagination
-    })
+      changeEventInfo.resetPagination = resetPagination;
+    });
 
     // ============================= Data =============================
     const pageData = computed(() => {
       if (props.pagination === false || !mergedPagination.value.pageSize)
-        return mergedData.value
+        return mergedData.value;
 
-      const { current = 1, total, pageSize = DEFAULT_PAGE_SIZE } = mergedPagination.value
-      devWarning(current > 0, 'Table', '`current` should be positive number.')
+      const { current = 1, total, pageSize = DEFAULT_PAGE_SIZE } = mergedPagination.value;
+      devWarning(current > 0, 'Table', '`current` should be positive number.');
 
       // Dynamic table data
       if (mergedData.value.length < total!) {
         if (mergedData.value.length > pageSize)
-          return mergedData.value.slice((current - 1) * pageSize, current * pageSize)
+          return mergedData.value.slice((current - 1) * pageSize, current * pageSize);
 
-        return mergedData.value
+        return mergedData.value;
       }
 
-      return mergedData.value.slice((current - 1) * pageSize, current * pageSize)
-    })
+      return mergedData.value.slice((current - 1) * pageSize, current * pageSize);
+    });
 
     watchEffect(
       () => {
         nextTick(() => {
-          const { total, pageSize = DEFAULT_PAGE_SIZE } = mergedPagination.value
+          const { total, pageSize = DEFAULT_PAGE_SIZE } = mergedPagination.value;
           // Dynamic table data
           if (mergedData.value.length < total!) {
             if (mergedData.value.length > pageSize) {
@@ -319,32 +319,32 @@ export default defineComponent({
                 false,
                 'Table',
                 '`dataSource` length is less than `pagination.total` but large than `pagination.pageSize`. Please make sure your config correct data with async mode.',
-              )
+              );
             }
           }
-        })
+        });
       },
       { flush: 'post' },
-    )
+    );
 
     const expandIconColumnIndex = computed(() => {
-      if (props.showExpandColumn === false) return -1
+      if (props.showExpandColumn === false) return -1;
       // Adjust expand icon index, no overwrite expandIconColumnIndex if set.
       if (expandType.value === 'nest' && props.expandIconColumnIndex === undefined)
-        return props.rowSelection ? 1 : 0
+        return props.rowSelection ? 1 : 0;
       else if (props.expandIconColumnIndex! > 0 && props.rowSelection)
-        return props.expandIconColumnIndex - 1
+        return props.expandIconColumnIndex - 1;
 
-      return props.expandIconColumnIndex
-    })
-    const rowSelection = ref()
+      return props.expandIconColumnIndex;
+    });
+    const rowSelection = ref();
     watch(
       () => props.rowSelection,
       () => {
-        rowSelection.value = props.rowSelection ? { ...props.rowSelection } : props.rowSelection
+        rowSelection.value = props.rowSelection ? { ...props.rowSelection } : props.rowSelection;
       },
       { deep: true, immediate: true },
-    )
+    );
     // ========================== Selections ==========================
     const [transformSelectionColumns, selectedKeySet] = useSelection(rowSelection, {
       prefixCls,
@@ -356,15 +356,15 @@ export default defineComponent({
       childrenColumnName,
       locale: tableLocale,
       getPopupContainer: computed(() => props.getPopupContainer),
-    })
+    });
 
     const internalRowClassName = (record: any, index: number, indent: number) => {
-      let mergedRowClassName
-      const { rowClassName } = props
+      let mergedRowClassName;
+      const { rowClassName } = props;
       if (typeof rowClassName === 'function')
-        mergedRowClassName = classNames(rowClassName(record, index, indent))
+        mergedRowClassName = classNames(rowClassName(record, index, indent));
       else
-        mergedRowClassName = classNames(rowClassName)
+        mergedRowClassName = classNames(rowClassName);
 
       return classNames(
         {
@@ -373,25 +373,25 @@ export default defineComponent({
           ),
         },
         mergedRowClassName,
-      )
-    }
+      );
+    };
     expose({
       selectedKeySet,
-    })
+    });
 
     const indentSize = computed(() => {
       // Indent size
-      return typeof props.indentSize === 'number' ? props.indentSize : 15
-    })
+      return typeof props.indentSize === 'number' ? props.indentSize : 15;
+    });
 
     const transformColumns = (innerColumns: TableColumnsType<any>): TableColumnsType<any> => {
       const res = transformTitleColumns(
         transformSelectionColumns(
           transformFilterColumns(transformSorterColumns(transformBasicColumns(innerColumns))),
         ),
-      )
-      return res
-    }
+      );
+      return res;
+    };
 
     return () => {
       const {
@@ -399,17 +399,17 @@ export default defineComponent({
         pagination,
         loading,
         bordered,
-      } = props
+      } = props;
 
-      let topPaginationNode
-      let bottomPaginationNode
+      let topPaginationNode;
+      let bottomPaginationNode;
       if (pagination !== false && mergedPagination.value?.total) {
-        let paginationSize: TablePaginationConfig['size']
+        let paginationSize: TablePaginationConfig['size'];
         if (mergedPagination.value.size) {
-          paginationSize = mergedPagination.value.size
+          paginationSize = mergedPagination.value.size;
         } else {
           paginationSize
-            = mergedSize.value === 'small' || mergedSize.value === 'middle' ? 'small' : undefined
+            = mergedSize.value === 'small' || mergedSize.value === 'middle' ? 'small' : undefined;
         }
 
         const renderPagination = (position: string) => (
@@ -421,37 +421,37 @@ export default defineComponent({
             ]}
             size={paginationSize}
           />
-        )
-        const defaultPosition = direction.value === 'rtl' ? 'left' : 'right'
-        const { position } = mergedPagination.value
+        );
+        const defaultPosition = direction.value === 'rtl' ? 'left' : 'right';
+        const { position } = mergedPagination.value;
         if (position !== null && Array.isArray(position)) {
-          const topPos = position.find(p => p.includes('top'))
-          const bottomPos = position.find(p => p.includes('bottom'))
-          const isDisable = position.every(p => `${p}` === 'none')
+          const topPos = position.find(p => p.includes('top'));
+          const bottomPos = position.find(p => p.includes('bottom'));
+          const isDisable = position.every(p => `${p}` === 'none');
           if (!topPos && !bottomPos && !isDisable)
-            bottomPaginationNode = renderPagination(defaultPosition)
+            bottomPaginationNode = renderPagination(defaultPosition);
 
           if (topPos)
-            topPaginationNode = renderPagination(topPos!.toLowerCase().replace('top', ''))
+            topPaginationNode = renderPagination(topPos!.toLowerCase().replace('top', ''));
 
           if (bottomPos)
-            bottomPaginationNode = renderPagination(bottomPos!.toLowerCase().replace('bottom', ''))
+            bottomPaginationNode = renderPagination(bottomPos!.toLowerCase().replace('bottom', ''));
         } else {
-          bottomPaginationNode = renderPagination(defaultPosition)
+          bottomPaginationNode = renderPagination(defaultPosition);
         }
       }
 
       // >>>>>>>>> Spinning
-      let spinProps: SpinProps | undefined
+      let spinProps: SpinProps | undefined;
       if (typeof loading === 'boolean') {
         spinProps = {
           spinning: loading,
-        }
+        };
       } else if (typeof loading === 'object') {
         spinProps = {
           spinning: true,
           ...loading,
-        }
+        };
       }
 
       const wrapperClassNames = classNames(
@@ -461,8 +461,8 @@ export default defineComponent({
         },
         attrs.class,
         hashId.value,
-      )
-      const getTableProps = omit(props, ['columns'])
+      );
+      const getTableProps = omit(props, ['columns']);
       return wrapSSR(
         <div class={wrapperClassNames} style={attrs.style as CSSProperties}>
           <Spin spinning={false} {...spinProps}>
@@ -502,7 +502,7 @@ export default defineComponent({
             {bottomPaginationNode}
           </Spin>
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

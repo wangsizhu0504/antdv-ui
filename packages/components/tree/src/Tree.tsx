@@ -1,18 +1,18 @@
-import type { DraggableConfig } from '@antdv/vue-components/vc-tree/src/Tree'
-import type { ScrollTo } from '@antdv/vue-components/vc-virtual-list/src/List'
-import type { SlotsType } from 'vue'
+import type { DraggableConfig } from '@antdv/vue-components/vc-tree/src/Tree';
+import type { ScrollTo } from '@antdv/vue-components/vc-virtual-list/src/List';
+import type { SlotsType } from 'vue';
 
-import type { TreeProps } from './props'
-import type { SwitcherIconProps } from './utils/iconUtil'
-import { HolderOutlined } from '@ant-design/icons-vue'
-import { classNames, devWarning, filterEmpty, initDefaultProps, omit } from '@antdv/utils'
-import { VcTree } from '@antdv/vue-components'
-import { computed, defineComponent, ref, watchEffect } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import { treeProps } from './props'
-import dropIndicatorRender from './utils/dropIndicator'
-import renderSwitcherIcon from './utils/iconUtil'
+import type { TreeProps } from './props';
+import type { SwitcherIconProps } from './utils/iconUtil';
+import { HolderOutlined } from '@ant-design/icons-vue';
+import { classNames, devWarning, filterEmpty, initDefaultProps, omit } from '@antdv/utils';
+import { VcTree } from '@antdv/vue-components';
+import { computed, defineComponent, ref, watchEffect } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import { treeProps } from './props';
+import dropIndicatorRender from './utils/dropIndicator';
+import renderSwitcherIcon from './utils/iconUtil';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -37,20 +37,20 @@ export default defineComponent({
     devWarning(
       !(props.treeData === undefined && slots.default),
       '`children` of Tree is deprecated. Please use `treeData` instead.',
-    )
-    const { prefixCls, direction, virtual } = useConfigInject('tree', props)
+    );
+    const { prefixCls, direction, virtual } = useConfigInject('tree', props);
 
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
-    const treeRef = ref()
+    const treeRef = ref();
     const scrollTo: ScrollTo = (scroll) => {
-      treeRef.value?.scrollTo(scroll)
-    }
+      treeRef.value?.scrollTo(scroll);
+    };
     expose({
       treeRef,
       onNodeExpand: (...args) => {
-        treeRef.value?.onNodeExpand(...args)
+        treeRef.value?.onNodeExpand(...args);
       },
       scrollTo,
       selectedKeys: computed(() => treeRef.value?.selectedKeys),
@@ -59,28 +59,28 @@ export default defineComponent({
       loadedKeys: computed(() => treeRef.value?.loadedKeys),
       loadingKeys: computed(() => treeRef.value?.loadingKeys),
       expandedKeys: computed(() => treeRef.value?.expandedKeys),
-    })
+    });
 
     watchEffect(() => {
       devWarning(
         props.replaceFields === undefined,
         'Tree',
         '`replaceFields` is deprecated, please use fieldNames instead',
-      )
-    })
+      );
+    });
 
     const handleCheck: TreeProps['onCheck'] = (checkedObjOrKeys, eventObj) => {
-      emit('update:checkedKeys', checkedObjOrKeys)
-      emit('check', checkedObjOrKeys, eventObj)
-    }
+      emit('update:checkedKeys', checkedObjOrKeys);
+      emit('check', checkedObjOrKeys, eventObj);
+    };
     const handleExpand: TreeProps['onExpand'] = (expandedKeys, eventObj) => {
-      emit('update:expandedKeys', expandedKeys)
-      emit('expand', expandedKeys, eventObj)
-    }
+      emit('update:expandedKeys', expandedKeys);
+      emit('expand', expandedKeys, eventObj);
+    };
     const handleSelect: TreeProps['onSelect'] = (selectedKeys, eventObj) => {
-      emit('update:selectedKeys', selectedKeys)
-      emit('select', selectedKeys, eventObj)
-    }
+      emit('update:selectedKeys', selectedKeys);
+      emit('select', selectedKeys, eventObj);
+    };
     return () => {
       const {
         showIcon,
@@ -96,7 +96,7 @@ export default defineComponent({
         onDoubleclick,
         onDblclick,
         draggable,
-      } = props as TreeProps
+      } = props as TreeProps;
       const newProps = {
         ...attrs,
         ...omit(props, [
@@ -111,31 +111,31 @@ export default defineComponent({
         fieldNames,
         icon,
         itemHeight,
-      }
-      const children = slots.default ? filterEmpty(slots.default()) : undefined
+      };
+      const children = slots.default ? filterEmpty(slots.default()) : undefined;
       const draggableConfigFunc = () => {
         if (!draggable)
-          return false
+          return false;
 
-        let mergedDraggable: DraggableConfig = {}
+        let mergedDraggable: DraggableConfig = {};
         switch (typeof draggable) {
           case 'function':
-            mergedDraggable.nodeDraggable = draggable
-            break
+            mergedDraggable.nodeDraggable = draggable;
+            break;
           case 'object':
-            mergedDraggable = { ...(draggable as DraggableConfig) }
-            break
+            mergedDraggable = { ...(draggable as DraggableConfig) };
+            break;
           default:
-            break
+            break;
           // Do nothing
         }
 
         if (mergedDraggable.icon !== false)
-          mergedDraggable.icon = mergedDraggable.icon || <HolderOutlined />
+          mergedDraggable.icon = mergedDraggable.icon || <HolderOutlined />;
 
-        return mergedDraggable
-      }
-      const draggableConfig = draggableConfigFunc()
+        return mergedDraggable;
+      };
+      const draggableConfig = draggableConfigFunc();
       return wrapSSR(
         <VcTree
           {...newProps}
@@ -170,7 +170,7 @@ export default defineComponent({
           children={children}
         >
         </VcTree>,
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -17,9 +17,9 @@ Passing the `name` property to all `input[type="radio"]` that are in the same Ra
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<string>('1')
+  const value = ref<string>('1');
 </script>
 
 <template>

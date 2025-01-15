@@ -17,9 +17,9 @@ The default PageHeader is a transparent background. In some cases, PageHeader ne
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const ghost = ref<any>(false)
+  const ghost = ref<any>(false);
 </script>
 
 <template>

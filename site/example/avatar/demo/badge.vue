@@ -16,7 +16,7 @@ Usually used for reminders and notifications.
 </docs>
 
 <script lang="ts" setup>
-  import { UserOutlined } from '@ant-design/icons-vue'
+  import { UserOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

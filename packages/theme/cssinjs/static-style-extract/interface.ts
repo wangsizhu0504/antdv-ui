@@ -1,3 +1,3 @@
-import type { VueNode } from '@antdv/types'
+import type { VueNode } from '@antdv/types';
 
-export type CustomRender = (node: VueNode) => VueNode
+export type CustomRender = (node: VueNode) => VueNode;

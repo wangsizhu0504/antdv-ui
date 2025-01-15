@@ -5,13 +5,13 @@ import type {
   DefaultRecordType,
   GetComponentProps,
   StickyOffsets,
-} from '../interface'
-import { defineComponent } from 'vue'
-import Cell from '../Cell'
-import { useInjectTable } from '../context/TableContext'
-import { getCellFixedInfo } from '../utils/fixUtil'
-import { getColumnsKey } from '../utils/valueUtil'
-import DragHandleVue from './DragHandle'
+} from '../interface';
+import { defineComponent } from 'vue';
+import Cell from '../Cell';
+import { useInjectTable } from '../context/TableContext';
+import { getCellFixedInfo } from '../utils/fixUtil';
+import { getColumnsKey } from '../utils/valueUtil';
+import DragHandleVue from './DragHandle';
 
 export interface RowProps<RecordType = DefaultRecordType> {
   cells: ReadonlyArray<CellType<RecordType>>;
@@ -35,9 +35,9 @@ export default defineComponent<RowProps>({
     'customHeaderRow',
   ] as any,
   setup(props: RowProps) {
-    const tableContext = useInjectTable()
+    const tableContext = useInjectTable();
     return () => {
-      const { prefixCls, direction } = tableContext
+      const { prefixCls, direction } = tableContext;
       const {
         cells,
         stickyOffsets,
@@ -46,35 +46,35 @@ export default defineComponent<RowProps>({
         cellComponent: CellComponent,
         customHeaderRow,
         index,
-      } = props
+      } = props;
 
-      let rowProps
+      let rowProps;
       if (customHeaderRow) {
         rowProps = customHeaderRow(
           cells.map(cell => cell.column),
           index,
-        )
+        );
       }
 
-      const columnsKey = getColumnsKey(cells.map(cell => cell.column))
+      const columnsKey = getColumnsKey(cells.map(cell => cell.column));
 
       return (
         <RowComponent {...rowProps}>
           {cells.map((cell: CellType, cellIndex) => {
-            const { column } = cell
+            const { column } = cell;
             const fixedInfo = getCellFixedInfo(
               cell.colStart,
               cell.colEnd,
               flattenColumns,
               stickyOffsets,
               direction,
-            )
+            );
 
-            let additionalProps
+            let additionalProps;
             if (column && column.customHeaderCell)
-              additionalProps = cell.column.customHeaderCell(column)
+              additionalProps = cell.column.customHeaderCell(column);
 
-            const col: ColumnType<any> = column
+            const col: ColumnType<any> = column;
             return (
               <Cell
                 {...cell}
@@ -104,10 +104,10 @@ export default defineComponent<RowProps>({
                       : null,
                 }}
               />
-            )
+            );
           })}
         </RowComponent>
-      )
-    }
+      );
+    };
   },
-})
+});

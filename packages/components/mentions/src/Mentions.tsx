@@ -1,5 +1,5 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { MentionsOptionProps } from './interface'
+import type { CustomSlotsType } from '@antdv/types';
+import type { MentionsOptionProps } from './interface';
 import {
   classNames,
   devWarning,
@@ -8,18 +8,18 @@ import {
   getOptionProps,
   getStatusClassNames,
   omit,
-} from '@antdv/utils'
-import { VcMentions } from '@antdv/vue-components'
-import { computed, defineComponent, shallowRef, watch } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
-import { useProvideOverride } from '../../menu'
-import Spin from '../../spin'
-import useStyle from '../style'
-import { mentionsProps } from './props'
+} from '@antdv/utils';
+import { VcMentions } from '@antdv/vue-components';
+import { computed, defineComponent, shallowRef, watch } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext';
+import { useProvideOverride } from '../../menu';
+import Spin from '../../spin';
+import useStyle from '../style';
+import { mentionsProps } from './props';
 
 function loadingFilterOption() {
-  return true
+  return true;
 }
 
 export default defineComponent({
@@ -39,16 +39,16 @@ export default defineComponent({
         !flattenChildren(slots.default?.() || []).length,
         'Mentions',
         '`Mentions.Option` is deprecated. Please use `options` instead.',
-      )
+      );
     }
-    const { prefixCls, renderEmpty, direction } = useConfigInject('mentions', props)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
-    const focused = shallowRef(false)
-    const vcMentions = shallowRef(null)
-    const value = shallowRef(props.value ?? props.defaultValue ?? '')
-    const formItemContext = useInjectFormItemContext()
-    const formItemInputContext = FormItemInputContext.useInject()
-    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status))
+    const { prefixCls, renderEmpty, direction } = useConfigInject('mentions', props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
+    const focused = shallowRef(false);
+    const vcMentions = shallowRef(null);
+    const value = shallowRef(props.value ?? props.defaultValue ?? '');
+    const formItemContext = useInjectFormItemContext();
+    const formItemInputContext = FormItemInputContext.useInject();
+    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status));
     useProvideOverride({
       prefixCls: computed(() => `${prefixCls.value}-menu`),
       mode: computed(() => 'vertical'),
@@ -60,69 +60,69 @@ export default defineComponent({
           !mode || mode === 'vertical',
           'Mentions',
           `mode="${mode}" is not supported for Mentions's Menu.`,
-        )
+        );
       },
-    })
+    });
     watch(
       () => props.value,
       (val) => {
-        value.value = val
+        value.value = val;
       },
-    )
+    );
     const handleFocus = (e: FocusEvent) => {
-      focused.value = true
-      emit('focus', e)
-    }
+      focused.value = true;
+      emit('focus', e);
+    };
 
     const handleBlur = (e: FocusEvent) => {
-      focused.value = false
-      emit('blur', e)
-      formItemContext.onFieldBlur()
-    }
+      focused.value = false;
+      emit('blur', e);
+      formItemContext.onFieldBlur();
+    };
 
     const handleSelect = (...args: [MentionsOptionProps, string]) => {
-      emit('select', ...args)
-      focused.value = true
-    }
+      emit('select', ...args);
+      focused.value = true;
+    };
 
     const handleChange = (val: string) => {
       if (props.value === undefined)
-        value.value = val
+        value.value = val;
 
-      emit('update:value', val)
-      emit('change', val)
-      formItemContext.onFieldChange()
-    }
+      emit('update:value', val);
+      emit('change', val);
+      formItemContext.onFieldChange();
+    };
 
     const getNotFoundContent = () => {
-      const notFoundContent = props.notFoundContent
+      const notFoundContent = props.notFoundContent;
       if (notFoundContent !== undefined)
-        return notFoundContent
+        return notFoundContent;
 
       if (slots.notFoundContent)
-        return slots.notFoundContent()
+        return slots.notFoundContent();
 
-      return renderEmpty('Select')
-    }
+      return renderEmpty('Select');
+    };
 
     const getOptions = () => {
       return flattenChildren(slots.default?.() || []).map((item) => {
-        return { ...getOptionProps(item), label: (item.children as any)?.default?.() }
-      })
-    }
+        return { ...getOptionProps(item), label: (item.children as any)?.default?.() };
+      });
+    };
 
     const focus = () => {
-      (vcMentions.value as HTMLTextAreaElement).focus()
-    }
+      (vcMentions.value as HTMLTextAreaElement).focus();
+    };
 
     const blur = () => {
-      (vcMentions.value as HTMLTextAreaElement).blur()
-    }
+      (vcMentions.value as HTMLTextAreaElement).blur();
+    };
 
-    expose({ focus, blur })
+    expose({ focus, blur });
     const mentionsfilterOption = computed(() =>
       props.loading ? loadingFilterOption : props.filterOption,
-    )
+    );
     return () => {
       const {
         disabled,
@@ -130,10 +130,10 @@ export default defineComponent({
         rows = 1,
         id = formItemContext.id.value,
         ...restProps
-      } = props
-      const { hasFeedback, feedbackIcon } = formItemInputContext
-      const { class: className, ...otherAttrs } = attrs
-      const otherProps = omit(restProps, ['defaultValue', 'onUpdate:value', 'prefixCls'])
+      } = props;
+      const { hasFeedback, feedbackIcon } = formItemInputContext;
+      const { class: className, ...otherAttrs } = attrs;
+      const otherProps = omit(restProps, ['defaultValue', 'onUpdate:value', 'prefixCls']);
 
       const mergedClassName = classNames(
         {
@@ -144,7 +144,7 @@ export default defineComponent({
         getStatusClassNames(prefixCls.value, mergedStatus.value),
         !hasFeedback && className,
         hashId.value,
-      )
+      );
 
       const getMentionsProps = {
         prefixCls: prefixCls.value,
@@ -172,7 +172,7 @@ export default defineComponent({
         ref: vcMentions,
         value: value.value,
         id,
-      }
+      };
       const mentions = (
         <VcMentions
           {...getMentionsProps}
@@ -180,7 +180,7 @@ export default defineComponent({
           v-slots={{ notFoundContent: getNotFoundContent, option: slots.option }}
         >
         </VcMentions>
-      )
+      );
       if (hasFeedback) {
         return wrapSSR(
           <div
@@ -198,9 +198,9 @@ export default defineComponent({
             {mentions}
             <span class={`${prefixCls.value}-suffix`}>{feedbackIcon}</span>
           </div>,
-        )
+        );
       }
-      return wrapSSR(mentions)
-    }
+      return wrapSSR(mentions);
+    };
   },
-})
+});

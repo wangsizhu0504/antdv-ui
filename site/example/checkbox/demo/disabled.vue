@@ -17,12 +17,12 @@ Disabled checkbox
 </docs>
 
 <script lang="ts" setup>
-  import { reactive } from 'vue'
+  import { reactive } from 'vue';
 
   const state = reactive({
     checked1: false,
     checked2: true,
-  })
+  });
 </script>
 
 <template>

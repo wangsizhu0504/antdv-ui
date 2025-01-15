@@ -16,9 +16,9 @@ Use slot for custom action icons of files.
 </docs>
 
 <script lang="ts" setup>
-  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
-  import { StarOutlined, UploadOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { UploadChangeParam, UploadProps } from '@antdv/ui';
+  import { StarOutlined, UploadOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   const fileList = ref<UploadProps['fileList']>([
     {
@@ -41,15 +41,15 @@ Use slot for custom action icons of files.
       response: 'Server Error 500', // custom error message to show
       url: 'http://www.baidu.com/zzz.png',
     },
-  ])
+  ]);
 
   function handleChange({ file, fileList }: UploadChangeParam) {
     if (file.status !== 'uploading') {
-      console.log(file, fileList)
+      console.log(file, fileList);
     }
   }
   function handleClick(e: MouseEvent) {
-    console.log(e, 'custom removeIcon event')
+    console.log(e, 'custom removeIcon event');
   }
 </script>
 

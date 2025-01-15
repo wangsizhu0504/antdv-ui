@@ -1,9 +1,9 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent, resetIcon, textEllipsis } from '@antdv/theme'
-import { genCompactItemStyle } from '@antdv/theme/style/compact-item'
-import genDropdownStyle from './dropdown'
-import genMultipleStyle from './multiple'
-import genSingleStyle from './single'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent, resetIcon, textEllipsis } from '@antdv/theme';
+import { genCompactItemStyle } from '@antdv/theme/style/compact-item';
+import genDropdownStyle from './dropdown';
+import genMultipleStyle from './multiple';
+import genSingleStyle from './single';
 
 export interface ComponentToken {
   zIndexPopup: number
@@ -16,7 +16,7 @@ export interface SelectToken extends FullToken<'Select'> {
 
 // ============================= Selector =============================
 const genSelectorStyle: GenerateStyle<SelectToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     position: 'relative',
@@ -50,8 +50,8 @@ const genSelectorStyle: GenerateStyle<SelectToken, CSSObject> = (token) => {
         cursor: 'not-allowed',
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Status ==============================
 function genStatusStyle(rootSelectCls: string, token: {
@@ -62,7 +62,7 @@ function genStatusStyle(rootSelectCls: string, token: {
   controlOutlineWidth: number
   controlLineWidth: number
 }, overwriteDefaultBorder = false): CSSObject {
-  const { componentCls, borderHoverColor, outlineColor, antCls } = token
+  const { componentCls, borderHoverColor, outlineColor, antCls } = token;
 
   const overwriteStyle: CSSObject = overwriteDefaultBorder
     ? {
@@ -70,7 +70,7 @@ function genStatusStyle(rootSelectCls: string, token: {
           borderColor: borderHoverColor,
         },
       }
-    : {}
+    : {};
 
   return {
     [rootSelectCls]: {
@@ -91,13 +91,13 @@ function genStatusStyle(rootSelectCls: string, token: {
           },
         },
     },
-  }
+  };
 }
 
 // ============================== Styles ==============================
 // /* Reset search input style */
 const getSearchInputWithoutBorderStyle: GenerateStyle<SelectToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [`${componentCls}-selection-search-input`]: {
@@ -113,12 +113,12 @@ const getSearchInputWithoutBorderStyle: GenerateStyle<SelectToken, CSSObject> = 
         '-webkit-appearance': 'none',
       },
     },
-  }
-}
+  };
+};
 
 // =============================== Base ===============================
 const genBaseStyle: GenerateStyle<SelectToken> = (token) => {
-  const { componentCls, inputPaddingHorizontalBase, iconCls } = token
+  const { componentCls, inputPaddingHorizontalBase, iconCls } = token;
 
   return {
     [componentCls]: {
@@ -235,12 +235,12 @@ const genBaseStyle: GenerateStyle<SelectToken> = (token) => {
         insetInlineEnd: inputPaddingHorizontalBase + token.fontSize + token.paddingXXS,
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Styles ==============================
 const genSelectStyle: GenerateStyle<SelectToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return [
     {
@@ -316,8 +316,8 @@ const genSelectStyle: GenerateStyle<SelectToken> = (token) => {
       borderElCls: `${componentCls}-selector`,
       focusElCls: `${componentCls}-focused`,
     }),
-  ]
-}
+  ];
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
@@ -326,11 +326,11 @@ export default genComponentStyleHook(
     const selectToken: SelectToken = mergeToken<SelectToken>(token, {
       rootPrefixCls,
       inputPaddingHorizontalBase: token.paddingSM - 1,
-    })
+    });
 
-    return [genSelectStyle(selectToken)]
+    return [genSelectStyle(selectToken)];
   },
   token => ({
     zIndexPopup: token.zIndexPopupBase + 50,
   }),
-)
+);

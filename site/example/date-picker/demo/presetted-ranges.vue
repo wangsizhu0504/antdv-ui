@@ -17,24 +17,24 @@ We can set presetted ranges to RangePicker to improve user experience.
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import dayjs from 'dayjs'
-  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import dayjs from 'dayjs';
+  import { ref } from 'vue';
 
-  type RangeValue = [Dayjs, Dayjs]
+  type RangeValue = [Dayjs, Dayjs];
   function onChange(date: Dayjs) {
     if (date) {
-      console.log('Date: ', date)
+      console.log('Date: ', date);
     } else {
-      console.log('Clear')
+      console.log('Clear');
     }
   }
   function onRangeChange(dates: RangeValue, dateStrings: string[]) {
     if (dates) {
-      console.log('From: ', dates[0], ', to: ', dates[1])
-      console.log('From: ', dateStrings[0], ', to: ', dateStrings[1])
+      console.log('From: ', dates[0], ', to: ', dates[1]);
+      console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
     } else {
-      console.log('Clear')
+      console.log('Clear');
     }
   }
 
@@ -42,14 +42,14 @@ We can set presetted ranges to RangePicker to improve user experience.
     { label: 'Yesterday', value: dayjs().add(-1, 'd') },
     { label: 'Last Week', value: dayjs().add(-7, 'd') },
     { label: 'Last Month', value: dayjs().add(-1, 'month') },
-  ])
+  ]);
 
   const rangePresets = ref<any>([
     { label: 'Last 7 Days', value: [dayjs().add(-7, 'd'), dayjs()] },
     { label: 'Last 14 Days', value: [dayjs().add(-14, 'd'), dayjs()] },
     { label: 'Last 30 Days', value: [dayjs().add(-30, 'd'), dayjs()] },
     { label: 'Last 90 Days', value: [dayjs().add(-90, 'd'), dayjs()] },
-  ])
+  ]);
 </script>
 
 <template>

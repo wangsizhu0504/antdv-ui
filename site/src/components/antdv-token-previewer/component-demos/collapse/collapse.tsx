@@ -1,9 +1,9 @@
-import type { ComponentDemo } from '../../interface'
-import { Collapse } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Collapse } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
-const { Panel } = Collapse
-const text = '  A dog is a type of domesticated animal.  Known for its loyalty and faithfulness,  it can be found as a welcome guest in many households across the world.'
+const { Panel } = Collapse;
+const text = '  A dog is a type of domesticated animal.  Known for its loyalty and faithfulness,  it can be found as a welcome guest in many households across the world.';
 
 const Demo = defineComponent({
   setup() {
@@ -19,14 +19,14 @@ const Demo = defineComponent({
           <p>{text}</p>
         </Panel>
       </Collapse>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorTextSecondary', 'colorText', 'colorFillAlter', 'colorBgContainer'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

@@ -19,23 +19,23 @@ For example, you can use this pattern when you submit a form.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const modalText = ref<string>('Content of the modal')
-  const open = ref<boolean>(false)
-  const confirmLoading = ref<boolean>(false)
+  const modalText = ref<string>('Content of the modal');
+  const open = ref<boolean>(false);
+  const confirmLoading = ref<boolean>(false);
 
   function showModal() {
-    open.value = true
+    open.value = true;
   }
 
   function handleOk() {
-    modalText.value = 'The modal will be closed after two seconds'
-    confirmLoading.value = true
+    modalText.value = 'The modal will be closed after two seconds';
+    confirmLoading.value = true;
     setTimeout(() => {
-      open.value = false
-      confirmLoading.value = false
-    }, 2000)
+      open.value = false;
+      confirmLoading.value = false;
+    }, 2000);
   }
 </script>
 

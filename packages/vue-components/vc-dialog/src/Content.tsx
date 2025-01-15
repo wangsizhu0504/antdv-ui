@@ -1,12 +1,12 @@
-import type { MouseEventHandler } from '@antdv/types'
-import type { CSSProperties, PropType } from 'vue'
-import { computed, defineComponent, nextTick, ref, Transition } from 'vue'
-import { getTransitionProps } from '../../transition'
-import dialogPropTypes from './IDialogPropTypes'
-import { offset } from './util'
+import type { MouseEventHandler } from '@antdv/types';
+import type { CSSProperties, PropType } from 'vue';
+import { computed, defineComponent, nextTick, ref, Transition } from 'vue';
+import { getTransitionProps } from '../../transition';
+import dialogPropTypes from './IDialogPropTypes';
+import { offset } from './util';
 
-const sentinelStyle = { width: 0, height: 0, overflow: 'hidden', outline: 'none' }
-const entityStyle = { outline: 'none' }
+const sentinelStyle = { width: 0, height: 0, overflow: 'hidden', outline: 'none' };
+const entityStyle = { outline: 'none' };
 export interface ContentRef {
   focus: () => void;
   changeActive: (next: boolean) => void;
@@ -24,52 +24,52 @@ export default defineComponent({
     onMouseup: Function as PropType<MouseEventHandler>,
   },
   setup(props, { expose, slots, attrs }) {
-    const sentinelStartRef = ref<HTMLDivElement>()
-    const sentinelEndRef = ref<HTMLDivElement>()
-    const dialogRef = ref<HTMLDivElement>()
+    const sentinelStartRef = ref<HTMLDivElement>();
+    const sentinelEndRef = ref<HTMLDivElement>();
+    const dialogRef = ref<HTMLDivElement>();
     expose({
       focus: () => {
-        sentinelStartRef.value?.focus({ preventScroll: true })
+        sentinelStartRef.value?.focus({ preventScroll: true });
       },
       changeActive: (next) => {
-        const { activeElement } = document
+        const { activeElement } = document;
         if (next && activeElement === sentinelEndRef.value)
-          sentinelStartRef.value.focus({ preventScroll: true })
+          sentinelStartRef.value.focus({ preventScroll: true });
         else if (!next && activeElement === sentinelStartRef.value)
-          sentinelEndRef.value.focus({ preventScroll: true })
+          sentinelEndRef.value.focus({ preventScroll: true });
       },
-    })
-    const transformOrigin = ref<string>()
+    });
+    const transformOrigin = ref<string>();
     const contentStyleRef = computed(() => {
-      const { width, height } = props
-      const contentStyle: CSSProperties = {}
+      const { width, height } = props;
+      const contentStyle: CSSProperties = {};
       if (width !== undefined)
-        contentStyle.width = typeof width === 'number' ? `${width}px` : width
+        contentStyle.width = typeof width === 'number' ? `${width}px` : width;
 
       if (height !== undefined)
-        contentStyle.height = typeof height === 'number' ? `${height}px` : height
+        contentStyle.height = typeof height === 'number' ? `${height}px` : height;
 
       if (transformOrigin.value)
-        contentStyle.transformOrigin = transformOrigin.value
+        contentStyle.transformOrigin = transformOrigin.value;
 
-      return contentStyle
-    })
+      return contentStyle;
+    });
 
     const onPrepare = () => {
       nextTick(() => {
         if (dialogRef.value) {
-          const elementOffset = offset(dialogRef.value)
+          const elementOffset = offset(dialogRef.value);
           transformOrigin.value = props.mousePosition
             ? `${props.mousePosition.x - elementOffset.left}px ${
               props.mousePosition.y - elementOffset.top
             }px`
-            : ''
+            : '';
         }
-      })
-    }
+      });
+    };
     const onVisibleChanged = (visible: boolean) => {
-      props.onVisibleChanged(visible)
-    }
+      props.onVisibleChanged(visible);
+    };
     return () => {
       const {
         prefixCls,
@@ -87,12 +87,12 @@ export default defineComponent({
         modalRender = slots.modalRender,
         destroyOnClose,
         motionName,
-      } = props
-      let footerNode: any
+      } = props;
+      let footerNode: any;
       if (footer)
-        footerNode = <div class={`${prefixCls}-footer`}>{footer}</div>
+        footerNode = <div class={`${prefixCls}-footer`}>{footer}</div>;
 
-      let headerNode: any
+      let headerNode: any;
       if (title) {
         headerNode = (
           <div class={`${prefixCls}-header`}>
@@ -100,16 +100,16 @@ export default defineComponent({
               {title}
             </div>
           </div>
-        )
+        );
       }
 
-      let closer: any
+      let closer: any;
       if (closable) {
         closer = (
           <button type="button" onClick={onClose} aria-label="Close" class={`${prefixCls}-close`}>
             {closeIcon || <span class={`${prefixCls}-close-x`} />}
           </button>
-        )
+        );
       }
 
       const content = (
@@ -121,8 +121,8 @@ export default defineComponent({
           </div>
           {footerNode}
         </div>
-      )
-      const transitionProps = getTransitionProps(motionName)
+      );
+      const transitionProps = getTransitionProps(motionName);
       return (
         <Transition
           {...transitionProps}
@@ -151,7 +151,7 @@ export default defineComponent({
               )
             : null}
         </Transition>
-      )
-    }
+      );
+    };
   },
-})
+});

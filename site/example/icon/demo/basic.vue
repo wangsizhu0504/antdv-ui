@@ -17,7 +17,7 @@ Import icons from `@ant-design/icons-vue`, component name of icons with differen
 </docs>
 
 <script lang="ts" setup>
-  import { HomeOutlined, LoadingOutlined, SettingFilled, SmileOutlined, SyncOutlined } from '@ant-design/icons-vue'
+  import { HomeOutlined, LoadingOutlined, SettingFilled, SmileOutlined, SyncOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

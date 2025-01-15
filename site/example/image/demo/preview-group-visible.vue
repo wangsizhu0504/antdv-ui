@@ -17,9 +17,9 @@ Preview a collection from one image.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const visible = ref<any>(false)
+  const visible = ref<any>(false);
 </script>
 
 <template>

@@ -1,6 +1,6 @@
-import type { VueNode } from '@antdv/types'
-import type { Status, StepIconRender } from './interface'
-import type { VCStepProps } from './Step'
+import type { VueNode } from '@antdv/types';
+import type { Status, StepIconRender } from './interface';
+import type { VCStepProps } from './Step';
 import {
   classNames,
   cloneElement,
@@ -8,9 +8,9 @@ import {
   functionType,
   PropTypes,
   stringType,
-} from '@antdv/utils'
-import { defineComponent } from 'vue'
-import Step from './Step'
+} from '@antdv/utils';
+import { defineComponent } from 'vue';
+import Step from './Step';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -38,10 +38,10 @@ export default defineComponent({
   emits: ['change'],
   setup(props, { slots, emit }) {
     const onStepClick = (next: number) => {
-      const { current } = props
+      const { current } = props;
       if (current !== next)
-        emit('change', next)
-    }
+        emit('change', next);
+    };
     const renderStep = (item: VCStepProps, index: number, legacyRender?: any) => {
       const {
         prefixCls,
@@ -54,10 +54,10 @@ export default defineComponent({
         isInline,
         itemRender,
         progressDot = slots.progressDot,
-      } = props
-      const mergedProgressDot = isInline || progressDot
-      const mergedItem = { ...item, class: '' }
-      const stepNumber = initial + index
+      } = props;
+      const mergedProgressDot = isInline || progressDot;
+      const mergedItem = { ...item, class: '' };
+      const stepNumber = initial + index;
       const commonProps = {
         active: stepNumber === current,
         stepNumber: stepNumber + 1,
@@ -69,38 +69,38 @@ export default defineComponent({
         stepIcon,
         icons,
         onStepClick,
-      }
+      };
       // fix tail color
       if (status === 'error' && index === current - 1)
-        mergedItem.class = `${prefixCls}-next-error`
+        mergedItem.class = `${prefixCls}-next-error`;
 
       if (!mergedItem.status) {
         if (stepNumber === current)
-          mergedItem.status = status
+          mergedItem.status = status;
         else if (stepNumber < current)
-          mergedItem.status = 'finish'
+          mergedItem.status = 'finish';
         else
-          mergedItem.status = 'wait'
+          mergedItem.status = 'wait';
       }
 
       if (isInline) {
-        mergedItem.icon = undefined
-        mergedItem.subTitle = undefined
+        mergedItem.icon = undefined;
+        mergedItem.subTitle = undefined;
       }
       if (legacyRender)
-        return legacyRender({ ...mergedItem, ...commonProps })
+        return legacyRender({ ...mergedItem, ...commonProps });
 
       if (itemRender)
-        mergedItem.itemRender = stepItem => itemRender(mergedItem, stepItem)
+        mergedItem.itemRender = stepItem => itemRender(mergedItem, stepItem);
 
-      return <Step {...mergedItem} {...commonProps} __legacy={false} />
-    }
+      return <Step {...mergedItem} {...commonProps} __legacy={false} />;
+    };
     const renderStepWithNode = (node: any, index: number) => {
       return renderStep({ ...node.props }, index, (stepProps) => {
-        const stepNode = cloneElement(node, stepProps)
-        return stepNode
-      })
-    }
+        const stepNode = cloneElement(node, stepProps);
+        return stepNode;
+      });
+    };
     return () => {
       const {
         prefixCls,
@@ -118,27 +118,27 @@ export default defineComponent({
         isInline,
         itemRender,
         ...restProps
-      } = props
-      const isNav = type === 'navigation'
-      const mergedProgressDot = isInline || progressDot
-      const mergedDirection = isInline ? 'horizontal' : direction
-      const mergedSize = isInline ? undefined : size
+      } = props;
+      const isNav = type === 'navigation';
+      const mergedProgressDot = isInline || progressDot;
+      const mergedDirection = isInline ? 'horizontal' : direction;
+      const mergedSize = isInline ? undefined : size;
 
-      const adjustedLabelPlacement = mergedProgressDot ? 'vertical' : labelPlacement
+      const adjustedLabelPlacement = mergedProgressDot ? 'vertical' : labelPlacement;
       const classString = classNames(prefixCls, `${prefixCls}-${direction}`, {
         [`${prefixCls}-${mergedSize}`]: mergedSize,
         [`${prefixCls}-label-${adjustedLabelPlacement}`]: mergedDirection === 'horizontal',
         [`${prefixCls}-dot`]: !!mergedProgressDot,
         [`${prefixCls}-navigation`]: isNav,
         [`${prefixCls}-inline`]: isInline,
-      })
+      });
 
       return (
         <div class={classString} {...restProps}>
           {items.filter(item => item).map((item, index) => renderStep(item, index))}
           {filterEmpty(slots.default?.()).map(renderStepWithNode)}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -1,8 +1,8 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
-import { initFadeMotion } from '@antdv/theme/style/motion/fade'
-import { initMotion } from '@antdv/theme/style/motion/motion'
-import getOffset from '../src/util'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme';
+import { initFadeMotion } from '@antdv/theme/style/motion/fade';
+import { initMotion } from '@antdv/theme/style/motion/motion';
+import getOffset from '../src/util';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {
@@ -25,11 +25,11 @@ type FloatButtonToken = FullToken<'FloatButton'> & {
   // Position
   floatButtonInsetBlockEnd: number
   floatButtonInsetInlineEnd: number
-}
+};
 
 function initFloatButtonGroupMotion(token: FloatButtonToken) {
-  const { componentCls, floatButtonSize, motionDurationSlow, motionEaseInOutCirc } = token
-  const groupPrefixCls = `${componentCls}-group`
+  const { componentCls, floatButtonSize, motionDurationSlow, motionEaseInOutCirc } = token;
+  const groupPrefixCls = `${componentCls}-group`;
   const moveDownIn = new Keyframes('antFloatButtonMoveDownIn', {
     '0%': {
       transform: `translate3d(0, ${floatButtonSize}px, 0)`,
@@ -42,7 +42,7 @@ function initFloatButtonGroupMotion(token: FloatButtonToken) {
       transformOrigin: '0 0',
       opacity: 1,
     },
-  })
+  });
   const moveDownOut = new Keyframes('antFloatButtonMoveDownOut', {
     '0%': {
       transform: 'translate3d(0, 0, 0)',
@@ -55,7 +55,7 @@ function initFloatButtonGroupMotion(token: FloatButtonToken) {
       transformOrigin: '0 0',
       opacity: 0,
     },
-  })
+  });
 
   return [
     {
@@ -78,7 +78,7 @@ function initFloatButtonGroupMotion(token: FloatButtonToken) {
         },
       },
     },
-  ]
+  ];
 }
 
 // ============================== Group ==============================
@@ -92,8 +92,8 @@ const floatButtonGroupStyle: GenerateStyle<FloatButtonToken, CSSObject> = (token
     borderRadiusSM,
     badgeOffset,
     floatButtonBodyPadding,
-  } = token
-  const groupPrefixCls = `${componentCls}-group`
+  } = token;
+  const groupPrefixCls = `${componentCls}-group`;
   return {
     [groupPrefixCls]: {
       ...resetComponent(token),
@@ -197,8 +197,8 @@ const floatButtonGroupStyle: GenerateStyle<FloatButtonToken, CSSObject> = (token
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Shared ==============================
 const sharedFloatButtonStyle: GenerateStyle<FloatButtonToken, CSSObject> = (token) => {
@@ -212,7 +212,7 @@ const sharedFloatButtonStyle: GenerateStyle<FloatButtonToken, CSSObject> = (toke
     badgeOffset,
     dotOffsetInSquare,
     dotOffsetInCircle,
-  } = token
+  } = token;
   return {
     [componentCls]: {
       ...resetComponent(token),
@@ -350,8 +350,8 @@ const sharedFloatButtonStyle: GenerateStyle<FloatButtonToken, CSSObject> = (toke
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook<'FloatButton'>('FloatButton', (token) => {
@@ -366,7 +366,7 @@ export default genComponentStyleHook<'FloatButton'>('FloatButton', (token) => {
     controlItemBgHover,
     paddingXXS,
     borderRadiusLG,
-  } = token
+  } = token;
   const floatButtonToken = mergeToken<FloatButtonToken>(token, {
     floatButtonBackgroundColor: colorBgElevated,
     floatButtonColor: colorTextLightSolid,
@@ -383,11 +383,11 @@ export default genComponentStyleHook<'FloatButton'>('FloatButton', (token) => {
     badgeOffset: paddingXXS * 1.5,
     dotOffsetInCircle: getOffset(controlHeightLG / 2),
     dotOffsetInSquare: getOffset(borderRadiusLG),
-  })
+  });
   return [
     floatButtonGroupStyle(floatButtonToken),
     sharedFloatButtonStyle(floatButtonToken),
     initFadeMotion(token),
     initFloatButtonGroupMotion(floatButtonToken),
-  ]
-})
+  ];
+});

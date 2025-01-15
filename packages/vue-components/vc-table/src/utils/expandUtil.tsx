@@ -1,4 +1,4 @@
-import type { GetRowKey, Key, RenderExpandIconProps } from '../interface'
+import type { GetRowKey, Key, RenderExpandIconProps } from '../interface';
 
 export function renderExpandIcon<RecordType>({
   prefixCls,
@@ -7,15 +7,15 @@ export function renderExpandIcon<RecordType>({
   expanded,
   expandable,
 }: RenderExpandIconProps<RecordType>) {
-  const expandClassName = `${prefixCls}-row-expand-icon`
+  const expandClassName = `${prefixCls}-row-expand-icon`;
 
   if (!expandable)
-    return <span class={[expandClassName, `${prefixCls}-row-spaced`]} />
+    return <span class={[expandClassName, `${prefixCls}-row-spaced`]} />;
 
   const onClick = (event) => {
-    onExpand(record, event)
-    event.stopPropagation()
-  }
+    onExpand(record, event);
+    event.stopPropagation();
+  };
 
   return (
     <span
@@ -26,7 +26,7 @@ export function renderExpandIcon<RecordType>({
       }}
       onClick={onClick}
     />
-  )
+  );
 }
 
 export function findAllChildrenKeys<RecordType>(
@@ -34,17 +34,17 @@ export function findAllChildrenKeys<RecordType>(
   getRowKey: GetRowKey<RecordType>,
   childrenColumnName: string,
 ): Key[] {
-  const keys: Key[] = []
+  const keys: Key[] = [];
 
   function dig(list: readonly RecordType[]) {
     (list || []).forEach((item, index) => {
-      keys.push(getRowKey(item, index))
+      keys.push(getRowKey(item, index));
 
-      dig((item as any)[childrenColumnName])
-    })
+      dig((item as any)[childrenColumnName]);
+    });
   }
 
-  dig(data)
+  dig(data);
 
-  return keys
+  return keys;
 }

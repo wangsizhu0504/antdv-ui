@@ -1,50 +1,50 @@
-import type { Key } from '@antdv/types'
-import type { FieldNames, TreeSelectDataNode } from '../interface'
-import type { DefaultOptionType, InternalFieldName } from '../TreeSelect'
+import type { Key } from '@antdv/types';
+import type { FieldNames, TreeSelectDataNode } from '../interface';
+import type { DefaultOptionType, InternalFieldName } from '../TreeSelect';
 
 export function toArray<T>(value: T | T[]): T[] {
   if (Array.isArray(value))
-    return value
+    return value;
 
-  return value !== undefined ? [value] : []
+  return value !== undefined ? [value] : [];
 }
 
 export function fillFieldNames(fieldNames?: FieldNames) {
-  const { label, value, children } = fieldNames || {}
+  const { label, value, children } = fieldNames || {};
 
-  const mergedValue = value || 'value'
+  const mergedValue = value || 'value';
 
   return {
     _title: label ? [label] : ['title', 'label'],
     value: mergedValue,
     key: mergedValue,
     children: children || 'children',
-  }
+  };
 }
 
 export function isCheckDisabled(node: TreeSelectDataNode) {
-  return node.disabled || node.disableCheckbox || node.checkable === false
+  return node.disabled || node.disableCheckbox || node.checkable === false;
 }
 
 /** Loop fetch all the keys exist in the tree */
 export function getAllKeys(treeData: DefaultOptionType[], fieldNames: InternalFieldName) {
-  const keys: Key[] = []
+  const keys: Key[] = [];
 
   function dig(list: DefaultOptionType[]) {
     list.forEach((item) => {
-      keys.push(item[fieldNames.value])
+      keys.push(item[fieldNames.value]);
 
-      const children = item[fieldNames.children]
+      const children = item[fieldNames.children];
       if (children)
-        dig(children)
-    })
+        dig(children);
+    });
   }
 
-  dig(treeData)
+  dig(treeData);
 
-  return keys
+  return keys;
 }
 
 export function isNil(val: any) {
-  return val === null || val === undefined
+  return val === null || val === undefined;
 }

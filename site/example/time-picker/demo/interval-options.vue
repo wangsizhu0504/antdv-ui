@@ -17,9 +17,9 @@ Show stepped options by `hourStep` `minuteStep` `secondStep`.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<any>()
+  const value = ref<any>();
 </script>
 
 <template>

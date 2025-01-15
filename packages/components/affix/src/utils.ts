@@ -1,18 +1,18 @@
-import { addEventListenerWrap, supportsPassive } from '@antdv/utils'
+import { addEventListenerWrap, supportsPassive } from '@antdv/utils';
 
-export type BindElement = HTMLElement | Window | null | undefined
+export type BindElement = HTMLElement | Window | null | undefined;
 
 export function getTargetRect(target: BindElement): DOMRect {
   return target !== window
     ? (target as HTMLElement).getBoundingClientRect()
-    : ({ top: 0, bottom: window.innerHeight } as DOMRect)
+    : ({ top: 0, bottom: window.innerHeight } as DOMRect);
 }
 
 export function getFixedTop(placeholderRect: DOMRect, targetRect: DOMRect, offsetTop: number) {
   if (offsetTop !== undefined && targetRect.top > placeholderRect.top - offsetTop)
-    return `${offsetTop + targetRect.top}px`
+    return `${offsetTop + targetRect.top}px`;
 
-  return undefined
+  return undefined;
 }
 
 export function getFixedBottom(
@@ -21,10 +21,10 @@ export function getFixedBottom(
   offsetBottom: number,
 ) {
   if (offsetBottom !== undefined && targetRect.bottom < placeholderRect.bottom + offsetBottom) {
-    const targetBottomOffset = window.innerHeight - targetRect.bottom
-    return `${offsetBottom + targetBottomOffset}px`
+    const targetBottomOffset = window.innerHeight - targetRect.bottom;
+    return `${offsetBottom + targetBottomOffset}px`;
   }
-  return undefined
+  return undefined;
 }
 
 // ======================== Observer ========================
@@ -36,7 +36,7 @@ const TRIGGER_EVENTS = [
   'touchend',
   'pageshow',
   'load',
-]
+];
 
 interface ObserverEntity {
   target: HTMLElement | Window
@@ -44,62 +44,62 @@ interface ObserverEntity {
   eventHandlers: { [eventName: string]: any }
 }
 
-let observerEntities: ObserverEntity[] = []
+let observerEntities: ObserverEntity[] = [];
 
 export function getObserverEntities() {
   // Only used in test env. Can be removed if refactor.
-  return observerEntities
+  return observerEntities;
 }
 
 export function addObserveTarget<T>(target: HTMLElement | Window | null, affix: T): void {
-  if (!target) return
+  if (!target) return;
 
-  let entity = observerEntities.find(item => item.target === target)
+  let entity = observerEntities.find(item => item.target === target);
 
   if (entity) {
-    entity.affixList.push(affix)
+    entity.affixList.push(affix);
   } else {
     entity = {
       target,
       affixList: [affix],
       eventHandlers: {},
-    }
-    observerEntities.push(entity)
+    };
+    observerEntities.push(entity);
 
     // Add listener
     TRIGGER_EVENTS.forEach((eventName) => {
       entity!.eventHandlers[eventName] = addEventListenerWrap(target, eventName, () => {
         entity!.affixList.forEach(
           (targetAffix) => {
-            const { lazyUpdatePosition } = (targetAffix as any).exposed
-            lazyUpdatePosition()
+            const { lazyUpdatePosition } = (targetAffix as any).exposed;
+            lazyUpdatePosition();
           },
           (eventName === 'touchstart' || eventName === 'touchmove') && supportsPassive
             ? ({ passive: true } as EventListenerOptions)
             : false,
-        )
-      })
-    })
+        );
+      });
+    });
   }
 }
 
 export function removeObserveTarget<T>(affix: T): void {
   const observerEntity = observerEntities.find((oriObserverEntity) => {
-    const hasAffix = oriObserverEntity.affixList.includes(affix)
+    const hasAffix = oriObserverEntity.affixList.includes(affix);
     if (hasAffix)
-      oriObserverEntity.affixList = oriObserverEntity.affixList.filter(item => item !== affix)
+      oriObserverEntity.affixList = oriObserverEntity.affixList.filter(item => item !== affix);
 
-    return hasAffix
-  })
+    return hasAffix;
+  });
 
   if (observerEntity && observerEntity.affixList.length === 0) {
-    observerEntities = observerEntities.filter(item => item !== observerEntity)
+    observerEntities = observerEntities.filter(item => item !== observerEntity);
 
     // Remove listener
     TRIGGER_EVENTS.forEach((eventName) => {
-      const handler = observerEntity.eventHandlers[eventName]
+      const handler = observerEntity.eventHandlers[eventName];
       if (handler && handler.remove)
-        handler.remove()
-    })
+        handler.remove();
+    });
   }
 }

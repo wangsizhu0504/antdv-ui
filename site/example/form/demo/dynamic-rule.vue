@@ -17,43 +17,43 @@ Perform different check rules according to different situations.
 </docs>
 
 <script lang="ts" setup>
-  import type { FormInstance } from '@antdv/ui'
-  import { reactive, ref, watch } from 'vue'
+  import type { FormInstance } from '@antdv/ui';
+  import { reactive, ref, watch } from 'vue';
 
   interface FormState {
     username: string;
     nickname: string;
     checkNick: boolean;
   }
-  const formRef = ref<FormInstance>()
+  const formRef = ref<FormInstance>();
   const formState = reactive<FormState>({
     username: '',
     nickname: '',
     checkNick: false,
-  })
+  });
   watch(
     () => formState.checkNick,
     () => {
-      formRef.value.validateFields(['nickname'])
+      formRef.value.validateFields(['nickname']);
     },
     { flush: 'post' },
-  )
+  );
   async function onCheck() {
     try {
-      const values = await formRef.value.validateFields()
-      console.log('Success:', values)
+      const values = await formRef.value.validateFields();
+      console.log('Success:', values);
     } catch (errorInfo) {
-      console.log('Failed:', errorInfo)
+      console.log('Failed:', errorInfo);
     }
   }
   const formItemLayout = {
     labelCol: { span: 4 },
     wrapperCol: { span: 8 },
-  }
+  };
   const formTailLayout = {
     labelCol: { span: 4 },
     wrapperCol: { span: 8, offset: 4 },
-  }
+  };
 </script>
 
 <template>

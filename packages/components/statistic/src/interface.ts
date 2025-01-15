@@ -1,13 +1,13 @@
-import type { VNodeTypes } from 'vue'
+import type { VNodeTypes } from 'vue';
 
-export type valueType = number | string
-export type countdownValueType = number | string
+export type valueType = number | string;
+export type countdownValueType = number | string;
 
 export type Formatter =
   | false
   | 'number'
   | 'countdown'
-  | (({ value, config }: { value: valueType, config?: FormatConfig }) => VNodeTypes)
+  | (({ value, config }: { value: valueType, config?: FormatConfig }) => VNodeTypes);
 
 export interface FormatConfig {
   formatter?: Formatter

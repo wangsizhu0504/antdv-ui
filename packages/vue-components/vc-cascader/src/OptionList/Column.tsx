@@ -1,12 +1,12 @@
-import type { Key } from '@antdv/types'
-import type { DefaultOptionType, SingleValueType } from '../Cascader'
-import { cloneElement } from '@antdv/utils'
-import { useInjectCascader } from '../context'
-import { SEARCH_MARK } from '../hooks/useSearchOptions'
-import { isLeaf, toPathKey } from '../utils/commonUtil'
-import Checkbox from './Checkbox'
+import type { Key } from '@antdv/types';
+import type { DefaultOptionType, SingleValueType } from '../Cascader';
+import { cloneElement } from '@antdv/utils';
+import { useInjectCascader } from '../context';
+import { SEARCH_MARK } from '../hooks/useSearchOptions';
+import { isLeaf, toPathKey } from '../utils/commonUtil';
+import Checkbox from './Checkbox';
 
-export const FIX_LABEL = '__cascader_fix_label__'
+export const FIX_LABEL = '__cascader_fix_label__';
 export interface ColumnProps {
   prefixCls: string;
   multiple?: boolean;
@@ -38,8 +38,8 @@ export default function Column({
   loadingKeys,
   isSelectable,
 }: ColumnProps) {
-  const menuPrefixCls = `${prefixCls}-menu`
-  const menuItemPrefixCls = `${prefixCls}-menu-item`
+  const menuPrefixCls = `${prefixCls}-menu`;
+  const menuItemPrefixCls = `${prefixCls}-menu-item`;
 
   const {
     fieldNames,
@@ -49,53 +49,53 @@ export default function Column({
     loadingIcon: loadingIconRef,
     dropdownMenuColumnStyle,
     customSlots,
-  } = useInjectCascader()
-  const expandIcon = expandIconRef.value ?? customSlots.value.expandIcon?.()
-  const loadingIcon = loadingIconRef.value ?? customSlots.value.loadingIcon?.()
+  } = useInjectCascader();
+  const expandIcon = expandIconRef.value ?? customSlots.value.expandIcon?.();
+  const loadingIcon = loadingIconRef.value ?? customSlots.value.loadingIcon?.();
 
-  const hoverOpen = expandTrigger.value === 'hover'
+  const hoverOpen = expandTrigger.value === 'hover';
   // ============================ Render ============================
   return (
     <ul class={menuPrefixCls} role="menu">
       {options.map((option) => {
-        const { disabled } = option
-        const searchOptions = option[SEARCH_MARK]
-        const label = option[FIX_LABEL] ?? option[fieldNames.value.label]
-        const value = option[fieldNames.value.value]
+        const { disabled } = option;
+        const searchOptions = option[SEARCH_MARK];
+        const label = option[FIX_LABEL] ?? option[fieldNames.value.label];
+        const value = option[fieldNames.value.value];
 
-        const isMergedLeaf = isLeaf(option, fieldNames.value)
+        const isMergedLeaf = isLeaf(option, fieldNames.value);
 
         // Get real value of option. Search option is different way.
         const fullPath = searchOptions
           ? searchOptions.map(opt => opt[fieldNames.value.value])
-          : [...prevValuePath, value]
-        const fullPathKey = toPathKey(fullPath)
+          : [...prevValuePath, value];
+        const fullPathKey = toPathKey(fullPath);
 
-        const isLoading = loadingKeys.includes(fullPathKey)
+        const isLoading = loadingKeys.includes(fullPathKey);
 
         // >>>>> checked
-        const checked = checkedSet.has(fullPathKey)
+        const checked = checkedSet.has(fullPathKey);
 
         // >>>>> halfChecked
-        const halfChecked = halfCheckedSet.has(fullPathKey)
+        const halfChecked = halfCheckedSet.has(fullPathKey);
         // >>>>> Open
         const triggerOpenPath = () => {
           if (!disabled && (!hoverOpen || !isMergedLeaf))
-            onActive(fullPath)
-        }
+            onActive(fullPath);
+        };
 
         // >>>>> Selection
         const triggerSelect = () => {
           if (isSelectable(option))
-            onSelect(fullPath, isMergedLeaf)
-        }
+            onSelect(fullPath, isMergedLeaf);
+        };
 
         // >>>>> Title
-        let title: string
+        let title: string;
         if (typeof option.title === 'string')
-          title = option.title
+          title = option.title;
         else if (typeof label === 'string')
-          title = label
+          title = label;
 
         // >>>>> Render
         return (
@@ -116,21 +116,21 @@ export default function Column({
             aria-checked={checked}
             data-path-key={fullPathKey}
             onClick={() => {
-              triggerOpenPath()
+              triggerOpenPath();
               if (!multiple || isMergedLeaf)
-                triggerSelect()
+                triggerSelect();
             }}
             onDblclick={() => {
               if (changeOnSelect.value)
-                onToggleOpen(false)
+                onToggleOpen(false);
             }}
             onMouseenter={() => {
               if (hoverOpen)
-                triggerOpenPath()
+                triggerOpenPath();
             }}
             onMousedown={(e) => {
               // Prevent selector from blurring
-              e.preventDefault()
+              e.preventDefault();
             }}
           >
             {multiple && (
@@ -140,8 +140,8 @@ export default function Column({
                 halfChecked={halfChecked}
                 disabled={disabled}
                 onClick={(e: MouseEvent) => {
-                  e.stopPropagation()
-                  triggerSelect()
+                  e.stopPropagation();
+                  triggerSelect();
                 }}
               />
             )}
@@ -153,10 +153,10 @@ export default function Column({
               <div class={`${menuItemPrefixCls}-loading-icon`}>{cloneElement(loadingIcon)}</div>
             )}
           </li>
-        )
+        );
       })}
     </ul>
-  )
+  );
 }
 Column.props = [
   'prefixCls',
@@ -171,6 +171,6 @@ Column.props = [
   'halfCheckedSet',
   'loadingKeys',
   'isSelectable',
-]
-Column.displayName = 'Column'
-Column.inheritAttrs = false
+];
+Column.displayName = 'Column';
+Column.inheritAttrs = false;

@@ -19,9 +19,9 @@ Set the size to `large` and `middle` by setting size to large and middle respect
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const size = ref<any>('small' as const)
+  const size = ref<any>('small' as const);
 </script>
 
 <template>

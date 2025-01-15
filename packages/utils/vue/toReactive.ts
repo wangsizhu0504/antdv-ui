@@ -1,5 +1,5 @@
-import type { MaybeRef } from 'vue'
-import { isRef, reactive } from 'vue'
+import type { MaybeRef } from 'vue';
+import { isRef, reactive } from 'vue';
 
 /**
  * Converts ref to reactive.
@@ -8,35 +8,35 @@ import { isRef, reactive } from 'vue'
  * @param objectRef A ref of object
  */
 export function toReactive<T extends object>(objectRef: MaybeRef<T>): T {
-  if (!isRef(objectRef)) return reactive(objectRef) as T
+  if (!isRef(objectRef)) return reactive(objectRef) as T;
 
   const proxy = new Proxy(
     {},
     {
       get(_, p, receiver) {
-        return Reflect.get(objectRef.value, p, receiver)
+        return Reflect.get(objectRef.value, p, receiver);
       },
       set(_, p, value) {
-        (objectRef.value as any)[p] = value
-        return true
+        (objectRef.value as any)[p] = value;
+        return true;
       },
       deleteProperty(_, p) {
-        return Reflect.deleteProperty(objectRef.value, p)
+        return Reflect.deleteProperty(objectRef.value, p);
       },
       has(_, p) {
-        return Reflect.has(objectRef.value, p)
+        return Reflect.has(objectRef.value, p);
       },
       ownKeys() {
-        return Object.keys(objectRef.value)
+        return Object.keys(objectRef.value);
       },
       getOwnPropertyDescriptor() {
         return {
           enumerable: true,
           configurable: true,
-        }
+        };
       },
     },
-  )
+  );
 
-  return reactive(proxy) as T
+  return reactive(proxy) as T;
 }

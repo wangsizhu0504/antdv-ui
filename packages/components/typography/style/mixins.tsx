@@ -1,5 +1,5 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TypographyToken } from '.'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TypographyToken } from '.';
 
 /*
 .typography-title(@fontSize; @fontWeight; @lineHeight; @headingColor; @headingMarginBottom;) {
@@ -10,12 +10,12 @@ import type { TypographyToken } from '.'
   line-height: @lineHeight;
 }
 */
-import { gold } from '@ant-design/colors'
-import { operationUnit } from '@antdv/theme'
-import { initInputToken } from '../../input/style'
+import { gold } from '@ant-design/colors';
+import { operationUnit } from '@antdv/theme';
+import { initInputToken } from '../../input/style';
 
 function getTitleStyle(fontSize: number, lineHeight: number, color: string, token: TypographyToken) {
-  const { sizeMarginHeadingVerticalEnd, fontWeightStrong } = token
+  const { sizeMarginHeadingVerticalEnd, fontWeightStrong } = token;
 
   return {
     marginBottom: sizeMarginHeadingVerticalEnd,
@@ -23,13 +23,13 @@ function getTitleStyle(fontSize: number, lineHeight: number, color: string, toke
     fontWeight: fontWeightStrong,
     fontSize,
     lineHeight,
-  }
+  };
 }
 
 export const getTitleStyles: GenerateStyle<TypographyToken, CSSObject> = (token) => {
-  const headings = [1, 2, 3, 4, 5] as const
+  const headings = [1, 2, 3, 4, 5] as const;
 
-  const styles = {} as CSSObject
+  const styles = {} as CSSObject;
   headings.forEach((headingLevel) => {
     styles[
       `
@@ -43,13 +43,13 @@ export const getTitleStyles: GenerateStyle<TypographyToken, CSSObject> = (token)
       token[`lineHeightHeading${headingLevel}`],
       token.colorTextHeading,
       token,
-    )
-  })
-  return styles
-}
+    );
+  });
+  return styles;
+};
 
 export const getLinkStyles: GenerateStyle<TypographyToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     'a&, a': {
@@ -73,8 +73,8 @@ export const getLinkStyles: GenerateStyle<TypographyToken, CSSObject> = (token) 
         },
       },
     },
-  }
-}
+  };
+};
 
 export function getResetStyles(): CSSObject {
   return {
@@ -175,14 +175,14 @@ export function getResetStyles(): CSSObject {
       borderInlineStart: '4px solid rgba(100, 100, 100, 0.2)',
       opacity: 0.85,
     },
-  }
+  };
 }
 
 export const getEditableStyles: GenerateStyle<TypographyToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
-  const inputToken = initInputToken(token)
-  const inputShift = inputToken.inputPaddingVertical + 1
+  const inputToken = initInputToken(token);
+  const inputShift = inputToken.inputPaddingVertical + 1;
   return {
     '&-edit-content': {
       'position': 'relative',
@@ -212,8 +212,8 @@ export const getEditableStyles: GenerateStyle<TypographyToken, CSSObject> = (tok
         height: '1em',
       },
     },
-  }
-}
+  };
+};
 
 export const getCopiableStyles: GenerateStyle<TypographyToken, CSSObject> = token => ({
   '&-copy-success': {
@@ -224,7 +224,7 @@ export const getCopiableStyles: GenerateStyle<TypographyToken, CSSObject> = toke
       color: token.colorSuccess,
     },
   },
-})
+});
 
 export function getEllipsisStyles(): CSSObject {
   return {
@@ -256,5 +256,5 @@ export function getEllipsisStyles(): CSSObject {
       WebkitLineClamp: 3,
       WebkitBoxOrient: 'vertical',
     },
-  }
+  };
 }

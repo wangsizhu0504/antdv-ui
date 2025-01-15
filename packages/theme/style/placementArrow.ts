@@ -1,13 +1,13 @@
-import type { CSSInterpolation } from '../cssinjs'
-import type { AliasToken } from '../token'
-import type { TokenWithCommonCls } from '../token/util/genComponentStyleHook'
-import { roundedArrow } from './roundedArrow'
+import type { CSSInterpolation } from '../cssinjs';
+import type { AliasToken } from '../token';
+import type { TokenWithCommonCls } from '../token/util/genComponentStyleHook';
+import { roundedArrow } from './roundedArrow';
 
 function connectArrowCls(classList: string[], showArrowCls = '') {
-  return classList.map(cls => `${showArrowCls}${cls}`).join(',')
+  return classList.map(cls => `${showArrowCls}${cls}`).join(',');
 }
 
-export const MAX_VERTICAL_CONTENT_RADIUS = 8
+export const MAX_VERTICAL_CONTENT_RADIUS = 8;
 
 export function getArrowOffset(options: {
   sizePopupArrow: number
@@ -15,14 +15,14 @@ export function getArrowOffset(options: {
   borderRadiusOuter: number
   limitVerticalRadius?: boolean
 }) {
-  const maxVerticalContentRadius = MAX_VERTICAL_CONTENT_RADIUS
-  const { sizePopupArrow, contentRadius, borderRadiusOuter, limitVerticalRadius } = options
-  const arrowInnerOffset = sizePopupArrow / 2 - Math.ceil(borderRadiusOuter * (Math.sqrt(2) - 1))
-  const dropdownArrowOffset = (contentRadius > 12 ? contentRadius + 2 : 12) - arrowInnerOffset
+  const maxVerticalContentRadius = MAX_VERTICAL_CONTENT_RADIUS;
+  const { sizePopupArrow, contentRadius, borderRadiusOuter, limitVerticalRadius } = options;
+  const arrowInnerOffset = sizePopupArrow / 2 - Math.ceil(borderRadiusOuter * (Math.sqrt(2) - 1));
+  const dropdownArrowOffset = (contentRadius > 12 ? contentRadius + 2 : 12) - arrowInnerOffset;
   const dropdownArrowOffsetVertical = limitVerticalRadius
     ? maxVerticalContentRadius - arrowInnerOffset
-    : dropdownArrowOffset
-  return { dropdownArrowOffset, dropdownArrowOffsetVertical }
+    : dropdownArrowOffset;
+  return { dropdownArrowOffset, dropdownArrowOffsetVertical };
 }
 
 export default function getArrowStyle<Token extends TokenWithCommonCls<AliasToken>>(
@@ -41,22 +41,22 @@ export default function getArrowStyle<Token extends TokenWithCommonCls<AliasToke
     borderRadiusXS,
     borderRadiusOuter,
     boxShadowPopoverArrow,
-  } = token
+  } = token;
 
   const {
     colorBg,
     showArrowCls,
     contentRadius = token.borderRadiusLG,
     limitVerticalRadius,
-  } = options
+  } = options;
 
   const { dropdownArrowOffsetVertical, dropdownArrowOffset } = getArrowOffset({
     sizePopupArrow,
     contentRadius,
     borderRadiusOuter,
     limitVerticalRadius,
-  })
-  const dropdownArrowDistance = sizePopupArrow / 2 + marginXXS
+  });
+  const dropdownArrowDistance = sizePopupArrow / 2 + marginXXS;
 
   return {
     [componentCls]: {
@@ -253,5 +253,5 @@ export default function getArrowStyle<Token extends TokenWithCommonCls<AliasToke
         },
       },
     },
-  }
+  };
 }

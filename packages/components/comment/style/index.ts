@@ -1,5 +1,5 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken } from '@antdv/theme';
 
 export interface ComponentToken {}
 
@@ -16,7 +16,7 @@ type CommentToken = FullToken<'Comment'> & {
   commentActionsMarginBottom: string
   commentActionsMarginTop: number
   commentContentDetailPMarginBottom: string
-}
+};
 
 const genBaseStyle: GenerateStyle<CommentToken> = (token) => {
   const {
@@ -33,7 +33,7 @@ const genBaseStyle: GenerateStyle<CommentToken> = (token) => {
     commentActionsMarginBottom,
     commentActionsMarginTop,
     commentContentDetailPMarginBottom,
-  } = token
+  } = token;
 
   return {
     [componentCls]: {
@@ -137,8 +137,8 @@ const genBaseStyle: GenerateStyle<CommentToken> = (token) => {
         direction: 'rtl',
       },
     },
-  }
-}
+  };
+};
 
 export default genComponentStyleHook('Comment', (token) => {
   const commentToken = mergeToken<CommentToken>(token, {
@@ -154,7 +154,7 @@ export default genComponentStyleHook('Comment', (token) => {
     commentActionsMarginBottom: 'inherit',
     commentActionsMarginTop: token.marginSM,
     commentContentDetailPMarginBottom: 'inherit',
-  })
+  });
 
-  return [genBaseStyle(commentToken)]
-})
+  return [genBaseStyle(commentToken)];
+});

@@ -55,7 +55,7 @@ Ellipsis cell content via setting `column.ellipsis`.
       key: 'address 4',
       ellipsis: true,
     },
-  ]
+  ];
 
   const data = [
     {
@@ -79,7 +79,7 @@ Ellipsis cell content via setting `column.ellipsis`.
       address: 'Sidney No. 1 Lake Park, Sidney No. 1 Lake Park',
       tags: ['cool', 'teacher'],
     },
-  ]
+  ];
 </script>
 
 <template>

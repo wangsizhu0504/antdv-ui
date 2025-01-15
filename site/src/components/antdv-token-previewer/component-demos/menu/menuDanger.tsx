@@ -1,7 +1,7 @@
-import type { MenuProps } from '@antdv/ui'
-import type { ComponentDemo } from '../../interface'
+import type { MenuProps } from '@antdv/ui';
+import type { ComponentDemo } from '../../interface';
 
-import { Menu } from '@antdv/ui'
+import { Menu } from '@antdv/ui';
 
 const items: MenuProps['items'] = [
   {
@@ -20,20 +20,20 @@ const items: MenuProps['items'] = [
     disabled: true,
     label: '危险禁用',
   },
-]
+];
 
 function Demo() {
   const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e)
-  }
+    console.log('click ', e);
+  };
 
-  return <Menu onClick={onClick} style={{ width: '256px' }} selectedKeys={['1']} items={items} />
+  return <Menu onClick={onClick} style={{ width: '256px' }} selectedKeys={['1']} items={items} />;
 }
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorError', 'colorErrorHover', 'colorErrorOutline'],
   key: 'danger',
-}
+};
 
-export default componentDemo
+export default componentDemo;

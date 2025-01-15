@@ -1,10 +1,10 @@
-import type { TaskFunction } from 'gulp'
-import type { Module } from '..'
-import { copyFile, readdir } from 'node:fs/promises'
-import path from 'node:path'
-import { copy } from 'fs-extra'
-import { parallel } from 'gulp'
-import { buildConfig, withTaskName } from '..'
+import type { TaskFunction } from 'gulp';
+import type { Module } from '..';
+import { copyFile, readdir } from 'node:fs/promises';
+import path from 'node:path';
+import { copy } from 'fs-extra';
+import { parallel } from 'gulp';
+import { buildConfig, withTaskName } from '..';
 import {
   antdOutput,
   antdPackage,
@@ -12,19 +12,19 @@ import {
   projRoot,
   themeRoot,
   versionRoot,
-} from '../path'
+} from '../path';
 
 async function copyJSONFiles(sourceDir: string, destDir: string[]) {
-  const files = await readdir(sourceDir)
+  const files = await readdir(sourceDir);
 
   for (const file of files) {
-    const filePath = path.join(sourceDir, file)
+    const filePath = path.join(sourceDir, file);
 
     if (path.extname(filePath) === '.json' && file !== 'package.json') {
       await Promise.all(destDir.map((dir) => {
-        const destFilePath = path.join(dir, file)
-        return copyFile(filePath, destFilePath)
-      }))
+        const destFilePath = path.join(dir, file);
+        return copyFile(filePath, destFilePath);
+      }));
     }
   }
 }
@@ -57,15 +57,15 @@ export function copyFiles() {
       path.resolve(antdOutput, 'es/version'),
       path.resolve(antdOutput, 'lib/version'),
     ]),
-  ])
+  ]);
 }
 
 // 复制types文件
 export const copyTypesDefinitions: TaskFunction = (done) => {
-  const src = path.resolve(buildOutput, 'types', 'packages')
+  const src = path.resolve(buildOutput, 'types', 'packages');
   const copyTypes = (module: Module) =>
     withTaskName(`copyTypes:${module}`, () =>
-      copy(src, buildConfig[module].output.path, { overwrite: true }))
+      copy(src, buildConfig[module].output.path, { overwrite: true }));
 
-  return parallel(copyTypes('esm'), copyTypes('cjs'))(done)
-}
+  return parallel(copyTypes('esm'), copyTypes('cjs'))(done);
+};

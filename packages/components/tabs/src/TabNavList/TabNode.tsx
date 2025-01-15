@@ -1,7 +1,7 @@
-import type { CSSProperties } from 'vue'
-import { classNames, KeyCode } from '@antdv/utils'
-import { computed, defineComponent, ref } from 'vue'
-import { tabNodeProps } from '../props'
+import type { CSSProperties } from 'vue';
+import { classNames, KeyCode } from '@antdv/utils';
+import { computed, defineComponent, ref } from 'vue';
+import { tabNodeProps } from '../props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -9,31 +9,31 @@ export default defineComponent({
   props: tabNodeProps(),
   emits: ['click', 'resize', 'remove', 'focus'],
   setup(props, { expose, attrs }) {
-    const domRef = ref()
+    const domRef = ref();
     function onInternalClick(e: MouseEvent | KeyboardEvent) {
       if (props.tab?.disabled)
-        return
+        return;
 
-      props.onClick(e)
+      props.onClick(e);
     }
     expose({
       domRef,
-    })
+    });
     // onBeforeUnmount(() => {
     //   props.onRemove();
     // });
     function onRemoveTab(event: MouseEvent | KeyboardEvent) {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
       props.editable.onEdit('remove', {
         key: props.tab?.key,
         event,
-      })
+      });
     }
 
     const removable = computed(
       () => props.editable && props.closable !== false && !props.tab?.disabled,
-    )
+    );
     return () => {
       const {
         prefixCls,
@@ -44,8 +44,8 @@ export default defineComponent({
         removeAriaLabel,
         editable,
         onFocus,
-      } = props
-      const tabPrefix = `${prefixCls}-tab`
+      } = props;
+      const tabPrefix = `${prefixCls}-tab`;
       const node = (
         <div
           key={key}
@@ -68,13 +68,13 @@ export default defineComponent({
             aria-disabled={disabled}
             tabindex={disabled ? null : 0}
             onClick={(e) => {
-              e.stopPropagation()
-              onInternalClick(e)
+              e.stopPropagation();
+              onInternalClick(e);
             }}
             onKeydown={(e) => {
               if ([KeyCode.SPACE, KeyCode.ENTER].includes(e.which)) {
-                e.preventDefault()
-                onInternalClick(e)
+                e.preventDefault();
+                onInternalClick(e);
               }
             }}
             onFocus={onFocus}
@@ -90,16 +90,16 @@ export default defineComponent({
               tabindex={0}
               class={`${tabPrefix}-remove`}
               onClick={(e) => {
-                e.stopPropagation()
-                onRemoveTab(e)
+                e.stopPropagation();
+                onRemoveTab(e);
               }}
             >
               {closeIcon?.() || editable.removeIcon?.() || '×'}
             </button>
           )}
         </div>
-      )
-      return renderWrapper ? renderWrapper(node) : node
-    }
+      );
+      return renderWrapper ? renderWrapper(node) : node;
+    };
   },
-})
+});

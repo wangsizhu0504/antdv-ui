@@ -24,9 +24,9 @@ You can gain full control over filelist by configuring `fileList`. You can accom
 </docs>
 
 <script lang="ts" setup>
-  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
-  import { UploadOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { UploadChangeParam, UploadProps } from '@antdv/ui';
+  import { UploadOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   const fileList = ref<UploadProps['fileList']>([
     {
@@ -35,24 +35,24 @@ You can gain full control over filelist by configuring `fileList`. You can accom
       status: 'done',
       url: 'http://www.baidu.com/xxx.png',
     },
-  ])
+  ]);
   function handleChange(info: UploadChangeParam) {
-    let resFileList = [...info.fileList]
+    let resFileList = [...info.fileList];
 
     // 1. Limit the number of uploaded files
     //    Only to show two recent uploaded files, and old ones will be replaced by the new
-    resFileList = resFileList.slice(-2)
+    resFileList = resFileList.slice(-2);
 
     // 2. read from response and show file link
     resFileList = resFileList.map((file) => {
       if (file.response) {
         // Component will show file.url as link
-        file.url = file.response.url
+        file.url = file.response.url;
       }
-      return file
-    })
+      return file;
+    });
 
-    fileList.value = resFileList
+    fileList.value = resFileList;
   }
 </script>
 

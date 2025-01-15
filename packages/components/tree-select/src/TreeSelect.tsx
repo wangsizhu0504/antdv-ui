@@ -1,7 +1,7 @@
-import type { CustomSlotsType, Key } from '@antdv/types'
-import type { SelectCommonPlacement } from '@antdv/vue-components'
-import type { SwitcherIconProps } from '../../tree/src/utils/iconUtil'
-import type { TreeSelectProps } from './props'
+import type { CustomSlotsType, Key } from '@antdv/types';
+import type { SelectCommonPlacement } from '@antdv/vue-components';
+import type { SwitcherIconProps } from '../../tree/src/utils/iconUtil';
+import type { TreeSelectProps } from './props';
 import {
   classNames,
   devWarning,
@@ -11,28 +11,29 @@ import {
   initDefaultProps,
   omit,
   warning,
-} from '@antdv/utils'
-import { getTransitionDirection, VcTreeSelect } from '@antdv/vue-components'
-import { computed, defineComponent, ref } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
-
-import getIcons from '../../select/src/iconUtil'
-
-import useSelectStyle from '../../select/style'
-import renderSwitcherIcon from '../../tree/src/utils/iconUtil'
+} from '@antdv/utils';
+import { getTransitionDirection, VcTreeSelect } from '@antdv/vue-components';
+import { computed, defineComponent, ref } from 'vue';
 
 // CSSINJS
-import { useInjectDisabled } from '../../config-provider'
-import { useCompactItemContext } from '../../space/src/context'
-import useStyle from '../style'
-import { treeSelectProps } from './props'
+import { useInjectDisabled } from '../../config-provider';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+
+import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext';
+
+import getIcons from '../../select/src/iconUtil';
+import useSelectStyle from '../../select/style';
+
+import { useCompactItemContext } from '../../space/src/context';
+import renderSwitcherIcon from '../../tree/src/utils/iconUtil';
+import useStyle from '../style';
+import { treeSelectProps } from './props';
 
 function getTransitionName(rootPrefixCls: string, motion: string, transitionName?: string) {
   if (transitionName !== undefined)
-    return transitionName
+    return transitionName;
 
-  return `${rootPrefixCls}-${motion}`
+  return `${rootPrefixCls}-${motion}`;
 }
 
 export default defineComponent({
@@ -63,26 +64,26 @@ export default defineComponent({
     warning(
       !(props.treeData === undefined && slots.default),
       '`children` of TreeSelect is deprecated. Please use `treeData` instead.',
-    )
+    );
     devWarning(
       props.multiple !== false || !props.treeCheckable,
       'TreeSelect',
       '`multiple` will always be `true` when `treeCheckable` is true',
-    )
+    );
     devWarning(
       props.replaceFields === undefined,
       'TreeSelect',
       '`replaceFields` is deprecated, please use fieldNames instead',
-    )
+    );
     devWarning(
       !props.dropdownClassName,
       'TreeSelect',
       '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
-    )
+    );
 
-    const formItemContext = useInjectFormItemContext()
-    const formItemInputContext = FormItemInputContext.useInject()
-    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status))
+    const formItemContext = useInjectFormItemContext();
+    const formItemInputContext = FormItemInputContext.useInject();
+    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status));
     const {
       prefixCls,
       renderEmpty,
@@ -93,37 +94,37 @@ export default defineComponent({
       getPopupContainer,
       getPrefixCls,
       disabled,
-    } = useConfigInject('select', props)
-    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction)
-    const mergedSize = computed(() => compactSize.value || contextSize.value)
-    const contextDisabled = useInjectDisabled()
-    const mergedDisabled = computed(() => disabled.value ?? contextDisabled.value)
-    const rootPrefixCls = computed(() => getPrefixCls())
+    } = useConfigInject('select', props);
+    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
+    const mergedSize = computed(() => compactSize.value || contextSize.value);
+    const contextDisabled = useInjectDisabled();
+    const mergedDisabled = computed(() => disabled.value ?? contextDisabled.value);
+    const rootPrefixCls = computed(() => getPrefixCls());
     // ===================== Placement =====================
     const placement = computed(() => {
       if (props.placement !== undefined)
-        return props.placement
+        return props.placement;
 
       return direction.value === 'rtl'
         ? ('bottomRight' as SelectCommonPlacement)
-        : ('bottomLeft' as SelectCommonPlacement)
-    })
+        : ('bottomLeft' as SelectCommonPlacement);
+    });
     const transitionName = computed(() =>
       getTransitionName(
         rootPrefixCls.value,
         getTransitionDirection(placement.value),
         props.transitionName,
       ),
-    )
+    );
     const choiceTransitionName = computed(() =>
       getTransitionName(rootPrefixCls.value, '', props.choiceTransitionName),
-    )
-    const treePrefixCls = computed(() => getPrefixCls('select-tree', props.prefixCls))
-    const treeSelectPrefixCls = computed(() => getPrefixCls('tree-select', props.prefixCls))
+    );
+    const treePrefixCls = computed(() => getPrefixCls('select-tree', props.prefixCls));
+    const treeSelectPrefixCls = computed(() => getPrefixCls('tree-select', props.prefixCls));
 
     // style
-    const [wrapSelectSSR, hashId] = useSelectStyle(prefixCls)
-    const [wrapTreeSelectSSR] = useStyle(treeSelectPrefixCls, treePrefixCls)
+    const [wrapSelectSSR, hashId] = useSelectStyle(prefixCls);
+    const [wrapTreeSelectSSR] = useStyle(treeSelectPrefixCls, treePrefixCls);
 
     const mergedDropdownClassName = computed(() =>
       classNames(
@@ -134,41 +135,41 @@ export default defineComponent({
         },
         hashId.value,
       ),
-    )
+    );
 
-    const isMultiple = computed(() => !!(props.treeCheckable || props.multiple))
+    const isMultiple = computed(() => !!(props.treeCheckable || props.multiple));
     const mergedShowArrow = computed(() =>
       props.showArrow !== undefined ? props.showArrow : props.loading || !isMultiple.value,
-    )
+    );
 
-    const treeSelectRef = ref()
+    const treeSelectRef = ref();
     expose({
       focus() {
-        treeSelectRef.value.focus?.()
+        treeSelectRef.value.focus?.();
       },
 
       blur() {
-        treeSelectRef.value.blur?.()
+        treeSelectRef.value.blur?.();
       },
-    })
+    });
 
     const handleChange: TreeSelectProps['onChange'] = (...args: any[]) => {
-      emit('update:value', args[0])
-      emit('change', ...args)
-      formItemContext.onFieldChange()
-    }
+      emit('update:value', args[0]);
+      emit('change', ...args);
+      formItemContext.onFieldChange();
+    };
     const handleTreeExpand: TreeSelectProps['onTreeExpand'] = (keys: Key[]) => {
-      emit('update:treeExpandedKeys', keys)
-      emit('treeExpand', keys)
-    }
+      emit('update:treeExpandedKeys', keys);
+      emit('treeExpand', keys);
+    };
     const handleSearch: TreeSelectProps['onSearch'] = (value: string) => {
-      emit('update:searchValue', value)
-      emit('search', value)
-    }
+      emit('update:searchValue', value);
+      emit('search', value);
+    };
     const handleBlur = (e: FocusEvent) => {
-      emit('blur', e)
-      formItemContext.onFieldBlur()
-    }
+      emit('blur', e);
+      formItemContext.onFieldBlur();
+    };
     return () => {
       const {
         notFoundContent = slots.notFoundContent?.(),
@@ -184,8 +185,8 @@ export default defineComponent({
         fieldNames = props.replaceFields,
         id = formItemContext.id.value,
         placeholder = slots.placeholder?.(),
-      } = props
-      const { isFormItemInput, hasFeedback, feedbackIcon } = formItemInputContext
+      } = props;
+      const { isFormItemInput, hasFeedback, feedbackIcon } = formItemInputContext;
       // ===================== Icons =====================
       const { suffixIcon, removeIcon, clearIcon } = getIcons(
         {
@@ -197,14 +198,14 @@ export default defineComponent({
           prefixCls: prefixCls.value,
         },
         slots,
-      )
+      );
 
       // ===================== Empty =====================
-      let mergedNotFound
+      let mergedNotFound;
       if (notFoundContent !== undefined)
-        mergedNotFound = notFoundContent
+        mergedNotFound = notFoundContent;
       else
-        mergedNotFound = renderEmpty('Select')
+        mergedNotFound = renderEmpty('Select');
 
       // ==================== Render =====================
       const selectProps = omit(props as typeof props & { itemIcon: any, switcherIcon: any }, [
@@ -219,7 +220,7 @@ export default defineComponent({
         'onUpdate:value',
         'onUpdate:treeExpandedKeys',
         'onUpdate:searchValue',
-      ])
+      ]);
 
       const mergedClassName = classNames(
         !customizePrefixCls && treeSelectPrefixCls.value,
@@ -234,10 +235,10 @@ export default defineComponent({
         compactItemClassnames.value,
         attrs.class,
         hashId.value,
-      )
-      const otherProps: any = {}
+      );
+      const otherProps: any = {};
       if (props.treeData === undefined && slots.default)
-        otherProps.children = flattenChildren(slots.default())
+        otherProps.children = flattenChildren(slots.default());
 
       return wrapSelectSSR(
         wrapTreeSelectSSR(
@@ -266,7 +267,7 @@ export default defineComponent({
                 nodeProps,
                 slots.leafIcon,
                 treeLine,
-              )
+              );
             }}
             showTreeIcon={treeIcon as any}
             notFoundContent={mergedNotFound}
@@ -294,7 +295,7 @@ export default defineComponent({
             placeholder={placeholder}
           />,
         ),
-      )
-    }
+      );
+    };
   },
-})
+});

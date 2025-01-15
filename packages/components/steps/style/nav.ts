@@ -1,6 +1,6 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { StepsToken } from '.'
-import { textEllipsis } from '@antdv/theme'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { StepsToken } from '.';
+import { textEllipsis } from '@antdv/theme';
 
 const genStepsNavStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
   const {
@@ -9,7 +9,7 @@ const genStepsNavStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
     stepsNavArrowColor,
     stepsNavActiveColor,
     motionDurationSlow,
-  } = token
+  } = token;
 
   return {
     [`&${componentCls}-navigation`]: {
@@ -140,6 +140,6 @@ const genStepsNavStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
         visibility: 'hidden',
       },
     },
-  }
-}
-export default genStepsNavStyle
+  };
+};
+export default genStepsNavStyle;

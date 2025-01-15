@@ -17,11 +17,11 @@ You can make preview controlled.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const visible = ref<boolean>(false)
+  const visible = ref<boolean>(false);
   function setVisible(value): void {
-    visible.value = value
+    visible.value = value;
   }
 </script>
 

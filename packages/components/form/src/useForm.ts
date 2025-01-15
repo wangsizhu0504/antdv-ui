@@ -1,8 +1,8 @@
-import type { ValidateMessages } from '@antdv/locale'
-import type { ValidateStatus } from '@antdv/types'
-import type { Ref } from 'vue'
-import type { Callbacks, RuleError } from './interface'
-import { cloneDeep, debounce, intersection, isEqual, omit } from 'lodash-es'
+import type { ValidateMessages } from '@antdv/locale';
+import type { ValidateStatus } from '@antdv/types';
+import type { Ref } from 'vue';
+import type { Callbacks, RuleError } from './interface';
+import { cloneDeep, debounce, intersection, isEqual, omit } from 'lodash-es';
 import {
   nextTick,
   reactive,
@@ -11,10 +11,10 @@ import {
   toRaw,
   unref,
   watch,
-} from 'vue'
-import { allPromiseFinish } from './utils/asyncUtil'
-import { defaultValidateMessages } from './utils/messages'
-import { validateRules } from './utils/validateUtil'
+} from 'vue';
+import { allPromiseFinish } from './utils/asyncUtil';
+import { defaultValidateMessages } from './utils/messages';
+import { validateRules } from './utils/validateUtil';
 
 interface DebounceSettings {
   leading?: boolean
@@ -25,24 +25,24 @@ interface DebounceSettings {
 }
 
 function getIsRequired(rules: any[]) {
-  let isRequired = false
+  let isRequired = false;
   if (rules && rules.length) {
     rules.every((rule: { required: any }) => {
       if (rule.required) {
-        isRequired = true
-        return false
+        isRequired = true;
+        return false;
       }
-      return true
-    })
+      return true;
+    });
   }
-  return isRequired
+  return isRequired;
 }
 
 function toArray(value: string | string[]) {
   if (value === undefined || value === null)
-    return []
+    return [];
 
-  return Array.isArray(value) ? value : [value]
+  return Array.isArray(value) ? value : [value];
 }
 
 export interface Props {
@@ -55,7 +55,7 @@ export interface validateOptions {
   trigger?: 'change' | 'blur' | string | string[]
 }
 
-type namesType = string | string[]
+type namesType = string | string[];
 export interface ValidateInfo {
   autoLink?: boolean
   required?: boolean
@@ -68,22 +68,22 @@ export interface validateInfos {
 }
 
 function getPropByPath(obj: Props, path: string, strict: boolean) {
-  let tempObj = obj
-  path = path.replace(/\[(\w+)\]/g, '.$1')
-  path = path.replace(/^\./, '')
+  let tempObj = obj;
+  path = path.replace(/\[(\w+)\]/g, '.$1');
+  path = path.replace(/^\./, '');
 
-  const keyArr = path.split('.')
-  let i = 0
+  const keyArr = path.split('.');
+  let i = 0;
   for (let len = keyArr.length; i < len - 1; ++i) {
-    if (!tempObj && !strict) break
-    const key = keyArr[i]
+    if (!tempObj && !strict) break;
+    const key = keyArr[i];
     if (key in tempObj) {
-      tempObj = tempObj[key]
+      tempObj = tempObj[key];
     } else {
       if (strict)
-        throw new Error('please transfer a valid name path to validate!')
+        throw new Error('please transfer a valid name path to validate!');
 
-      break
+      break;
     }
   }
   return {
@@ -91,7 +91,7 @@ function getPropByPath(obj: Props, path: string, strict: boolean) {
     k: keyArr[i],
     v: tempObj ? tempObj[keyArr[i]] : null,
     isValid: tempObj && keyArr[i] in tempObj,
-  }
+  };
 }
 
 function useForm(
@@ -122,37 +122,37 @@ function useForm(
     mergeValidateInfo: (items: ValidateInfo | ValidateInfo[]) => ValidateInfo
     clearValidate: (names?: namesType) => void
   } {
-  const initialModel = cloneDeep(unref(modelRef))
-  const validateInfos = reactive<validateInfos>({})
+  const initialModel = cloneDeep(unref(modelRef));
+  const validateInfos = reactive<validateInfos>({});
 
-  const rulesKeys = shallowRef([])
+  const rulesKeys = shallowRef([]);
 
   const resetFields = (newValues: Props) => {
     Object.assign(unref(modelRef), {
       ...cloneDeep(initialModel),
       ...newValues,
-    })
+    });
     nextTick(() => {
       Object.keys(validateInfos).forEach((key) => {
         validateInfos[key] = {
           autoLink: false,
           required: getIsRequired(unref(rulesRef)[key]),
-        }
-      })
-    })
-  }
+        };
+      });
+    });
+  };
   const filterRules = (rules = [], trigger: string[]) => {
     if (!trigger.length) {
-      return rules
+      return rules;
     } else {
       return rules.filter((rule) => {
-        const triggerList = toArray(rule.trigger || 'change')
-        return intersection(triggerList, trigger).length
-      })
+        const triggerList = toArray(rule.trigger || 'change');
+        return intersection(triggerList, trigger).length;
+      });
     }
-  }
+  };
 
-  let lastValidatePromise = null
+  let lastValidatePromise = null;
 
   const validateField = (
     name: string,
@@ -169,41 +169,41 @@ function useForm(
         ...option,
       },
       !!option.validateFirst,
-    )
+    );
     if (!validateInfos[name])
-      return promise.catch((e: any) => e)
+      return promise.catch((e: any) => e);
 
-    validateInfos[name].validateStatus = 'validating'
+    validateInfos[name].validateStatus = 'validating';
     promise
       .catch((e: any) => e)
       .then((results: RuleError[] = []) => {
         if (validateInfos[name].validateStatus === 'validating') {
-          const res = results.filter(result => result && result.errors.length)
-          validateInfos[name].validateStatus = res.length ? 'error' : 'success'
-          validateInfos[name].help = res.length ? res.map(r => r.errors) : null
+          const res = results.filter(result => result && result.errors.length);
+          validateInfos[name].validateStatus = res.length ? 'error' : 'success';
+          validateInfos[name].help = res.length ? res.map(r => r.errors) : null;
           options?.onValidate?.(
             name,
             !res.length,
             res.length ? toRaw(validateInfos[name].help[0]) : null,
-          )
+          );
         }
-      })
-    return promise
-  }
+      });
+    return promise;
+  };
 
   const validateFields = (names: string[], option: validateOptions = {}, strict: boolean) => {
     // Collect result in promise list
     const promiseList: Array<Promise<{
       name: string
       errors: string[]
-    }>> = []
-    const values = {}
+    }>> = [];
+    const values = {};
     for (let i = 0; i < names.length; i++) {
-      const name = names[i]
-      const prop = getPropByPath(unref(modelRef), name, strict)
-      if (!prop.isValid) continue
-      values[name] = prop.v
-      const rules = filterRules(unref(rulesRef)[name], toArray(option && option.trigger))
+      const name = names[i];
+      const prop = getPropByPath(unref(modelRef), name, strict);
+      if (!prop.isValid) continue;
+      values[name] = prop.v;
+      const rules = filterRules(unref(rulesRef)[name], toArray(option && option.trigger));
       if (rules.length) {
         promiseList.push(
           validateField(name, prop.v, rules, option || {})
@@ -213,171 +213,171 @@ function useForm(
               warnings: [],
             }))
             .catch((ruleErrors: RuleError[]) => {
-              const mergedErrors: string[] = []
-              const mergedWarnings: string[] = []
+              const mergedErrors: string[] = [];
+              const mergedWarnings: string[] = [];
 
               ruleErrors.forEach(({ rule: { warningOnly }, errors }) => {
                 if (warningOnly)
-                  mergedWarnings.push(...errors)
+                  mergedWarnings.push(...errors);
                 else
-                  mergedErrors.push(...errors)
-              })
+                  mergedErrors.push(...errors);
+              });
 
               if (mergedErrors.length) {
                 return Promise.reject({
                   name,
                   errors: mergedErrors,
                   warnings: mergedWarnings,
-                })
+                });
               }
 
               return {
                 name,
                 errors: mergedErrors,
                 warnings: mergedWarnings,
-              }
+              };
             }),
-        )
+        );
       }
     }
 
-    const summaryPromise = allPromiseFinish(promiseList)
-    lastValidatePromise = summaryPromise
+    const summaryPromise = allPromiseFinish(promiseList);
+    lastValidatePromise = summaryPromise;
 
     const returnPromise = summaryPromise
       .then(() => {
         if (lastValidatePromise === summaryPromise)
-          return Promise.resolve(values)
+          return Promise.resolve(values);
 
-        return Promise.reject([])
+        return Promise.reject([]);
       })
       .catch((results: any[]) => {
         const errorList = results.filter(
           (result: { errors: string | any[] }) => result && result.errors.length,
-        )
+        );
         return errorList.length
           ? Promise.reject({
-            values,
-            errorFields: errorList,
-            outOfDate: lastValidatePromise !== summaryPromise,
-          })
-          : Promise.resolve(values)
-      })
+              values,
+              errorFields: errorList,
+              outOfDate: lastValidatePromise !== summaryPromise,
+            })
+          : Promise.resolve(values);
+      });
 
     // Do not throw in console
-    returnPromise.catch((e: any) => e)
+    returnPromise.catch((e: any) => e);
 
-    return returnPromise
-  }
+    return returnPromise;
+  };
 
   const validate = (names?: namesType, option?: validateOptions): Promise<any> => {
-    let keys = []
-    let strict = true
+    let keys = [];
+    let strict = true;
     if (!names) {
-      strict = false
-      keys = rulesKeys.value
+      strict = false;
+      keys = rulesKeys.value;
     } else if (Array.isArray(names)) {
-      keys = names
+      keys = names;
     } else {
-      keys = [names]
+      keys = [names];
     }
-    const promises = validateFields(keys, option || {}, strict)
+    const promises = validateFields(keys, option || {}, strict);
     // Do not throw in console
-    promises.catch((e: any) => e)
-    return promises
-  }
+    promises.catch((e: any) => e);
+    return promises;
+  };
 
   const clearValidate = (names?: namesType) => {
-    let keys = []
+    let keys = [];
     if (!names)
-      keys = rulesKeys.value
+      keys = rulesKeys.value;
     else if (Array.isArray(names))
-      keys = names
+      keys = names;
     else
-      keys = [names]
+      keys = [names];
 
     keys.forEach((key) => {
       validateInfos[key]
         && Object.assign(validateInfos[key], {
           validateStatus: '',
           help: null,
-        })
-    })
-  }
+        });
+    });
+  };
 
   const mergeValidateInfo = (items: ValidateInfo[] | ValidateInfo) => {
-    const info = { autoLink: false } as ValidateInfo
-    const help = []
-    const infos = Array.isArray(items) ? items : [items]
+    const info = { autoLink: false } as ValidateInfo;
+    const help = [];
+    const infos = Array.isArray(items) ? items : [items];
     for (let i = 0; i < infos.length; i++) {
-      const arg = infos[i] as ValidateInfo
+      const arg = infos[i] as ValidateInfo;
       if (arg?.validateStatus === 'error') {
-        info.validateStatus = 'error'
-        arg.help && help.push(arg.help)
+        info.validateStatus = 'error';
+        arg.help && help.push(arg.help);
       }
-      info.required = info.required || arg?.required
+      info.required = info.required || arg?.required;
     }
-    info.help = help
-    return info
-  }
-  let oldModel = initialModel
-  let isFirstTime = true
+    info.help = help;
+    return info;
+  };
+  let oldModel = initialModel;
+  let isFirstTime = true;
   const modelFn = (model: { [x: string]: any }) => {
-    const names = []
+    const names = [];
     rulesKeys.value.forEach((key) => {
-      const prop = getPropByPath(model, key, false)
-      const oldProp = getPropByPath(oldModel, key, false)
-      const isFirstValidation = isFirstTime && options?.immediate && prop.isValid
+      const prop = getPropByPath(model, key, false);
+      const oldProp = getPropByPath(oldModel, key, false);
+      const isFirstValidation = isFirstTime && options?.immediate && prop.isValid;
 
       if (isFirstValidation || !isEqual(prop.v, oldProp.v))
-        names.push(key)
-    })
-    validate(names, { trigger: 'change' })
-    isFirstTime = false
-    oldModel = cloneDeep(toRaw(model))
-  }
+        names.push(key);
+    });
+    validate(names, { trigger: 'change' });
+    isFirstTime = false;
+    oldModel = cloneDeep(toRaw(model));
+  };
 
-  const debounceOptions = options?.debounce
+  const debounceOptions = options?.debounce;
 
-  let first = true
+  let first = true;
   watch(
     rulesRef,
     () => {
-      rulesKeys.value = rulesRef ? Object.keys(unref(rulesRef)) : []
+      rulesKeys.value = rulesRef ? Object.keys(unref(rulesRef)) : [];
       if (!first && options && options.validateOnRuleChange)
-        validate()
+        validate();
 
-      first = false
+      first = false;
     },
     { deep: true, immediate: true },
-  )
+  );
 
   watch(
     rulesKeys,
     () => {
-      const newValidateInfos = {}
+      const newValidateInfos = {};
       rulesKeys.value.forEach((key) => {
         newValidateInfos[key] = Object.assign({}, validateInfos[key], {
           autoLink: false,
           required: getIsRequired(unref(rulesRef)[key]),
-        })
-        delete validateInfos[key]
-      })
+        });
+        delete validateInfos[key];
+      });
       for (const key in validateInfos) {
         if (Object.prototype.hasOwnProperty.call(validateInfos, key))
-          delete validateInfos[key]
+          delete validateInfos[key];
       }
-      Object.assign(validateInfos, newValidateInfos)
+      Object.assign(validateInfos, newValidateInfos);
     },
     { immediate: true },
-  )
+  );
   watch(
     modelRef,
     debounceOptions && debounceOptions.wait
       ? debounce(modelFn, debounceOptions.wait, omit(debounceOptions, ['wait']))
       : modelFn,
     { immediate: options && !!options.immediate, deep: true },
-  )
+  );
 
   return {
     modelRef,
@@ -389,7 +389,7 @@ function useForm(
     validateField,
     mergeValidateInfo,
     clearValidate,
-  }
+  };
 }
 
-export default useForm
+export default useForm;

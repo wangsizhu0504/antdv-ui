@@ -1,6 +1,6 @@
-import type { VueNode } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import { tourProps as VcTourProps, tourStepProps as VcTourStepProps } from '@antdv/vue-components'
+import type { VueNode } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import { tourProps as VcTourProps, tourStepProps as VcTourStepProps } from '@antdv/vue-components';
 
 export function tourProps() {
   return {
@@ -10,10 +10,10 @@ export function tourProps() {
     'current': { type: Number },
     'type': { type: String as PropType<'default' | 'primary'> }, // default类型，影响底色与文字颜色
     'onUpdate:current': Function as PropType<(val: number) => void>,
-  }
+  };
 }
 
-export type TourProps = Partial<ExtractPropTypes<ReturnType<typeof tourProps>>>
+export type TourProps = Partial<ExtractPropTypes<ReturnType<typeof tourProps>>>;
 
 export interface TourBtnProps {
   children?: () => VueNode
@@ -34,7 +34,7 @@ export function tourStepProps() {
     },
     current: { type: Number },
     type: { type: String as PropType<'default' | 'primary'> }, // default类型，影响底色与文字颜色
-  }
+  };
 }
 
-export type TourStepProps = Partial<ExtractPropTypes<ReturnType<typeof tourStepProps>>>
+export type TourStepProps = Partial<ExtractPropTypes<ReturnType<typeof tourStepProps>>>;

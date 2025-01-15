@@ -1,4 +1,4 @@
-import { PropTypes } from '@antdv/utils'
+import { PropTypes } from '@antdv/utils';
 import {
   defineComponent,
   nextTick,
@@ -7,8 +7,8 @@ import {
   onUpdated,
   Teleport,
   watch,
-} from 'vue'
-import { useInjectPortal } from '../../vc-trigger/src/context'
+} from 'vue';
+import { useInjectPortal } from '../../vc-trigger/src/context';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -19,51 +19,51 @@ export default defineComponent({
     didUpdate: Function,
   },
   setup(props, { slots }) {
-    let isSSR = true
+    let isSSR = true;
     // getContainer 不会改变，不用响应式
-    let container: HTMLElement
-    const { shouldRender } = useInjectPortal()
+    let container: HTMLElement;
+    const { shouldRender } = useInjectPortal();
 
     function setContainer() {
       if (shouldRender.value)
-        container = props.getContainer()
+        container = props.getContainer();
     }
 
     onBeforeMount(() => {
-      isSSR = false
+      isSSR = false;
       // drawer
-      setContainer()
-    })
+      setContainer();
+    });
     onMounted(() => {
-      if (container) return
+      if (container) return;
       // https://github.com/vueComponent/ant-design-vue/issues/6937
-      setContainer()
-    })
+      setContainer();
+    });
 
     const stopWatch = watch(shouldRender, () => {
       if (shouldRender.value && !container)
-        container = props.getContainer()
+        container = props.getContainer();
 
       if (container)
-        stopWatch()
-    })
+        stopWatch();
+    });
     onUpdated(() => {
       nextTick(() => {
         if (shouldRender.value)
-          props.didUpdate?.(props)
-      })
-    })
+          props.didUpdate?.(props);
+      });
+    });
     // onBeforeUnmount(() => {
     //   if (container && container.parentNode) {
     //     container.parentNode.removeChild(container);
     //   }
     // });
     return () => {
-      if (!shouldRender.value) return null
+      if (!shouldRender.value) return null;
       if (isSSR)
-        return slots.default?.()
+        return slots.default?.();
 
-      return container ? <Teleport to={container} v-slots={slots}></Teleport> : null
-    }
+      return container ? <Teleport to={container} v-slots={slots}></Teleport> : null;
+    };
   },
-})
+});

@@ -17,14 +17,14 @@ Making collapse's background to transparent.
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
+  import { ref, watch } from 'vue';
 
-  const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
-  const activeKey = ref<any>(['1'])
+  const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
+  const activeKey = ref<any>(['1']);
 
   watch(activeKey, (val) => {
-    console.log(val)
-  })
+    console.log(val);
+  });
 </script>
 
 <template>

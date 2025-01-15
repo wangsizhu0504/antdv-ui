@@ -1,9 +1,9 @@
 const autoAdjustOverflow = {
   adjustX: 1,
   adjustY: 1,
-}
+};
 
-const targetOffset = [0, 0]
+const targetOffset = [0, 0];
 
 export const placements = {
   left: {
@@ -78,4 +78,4 @@ export const placements = {
     offset: [-4, 0],
     targetOffset,
   },
-}
+};

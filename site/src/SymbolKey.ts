@@ -1,1 +1,1 @@
-export const GLOBAL_CONFIG = Symbol('globalConfig')
+export const GLOBAL_CONFIG = Symbol('globalConfig');

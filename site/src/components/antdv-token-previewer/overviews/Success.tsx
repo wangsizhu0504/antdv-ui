@@ -1,14 +1,14 @@
-import { Card, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import { Card, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
-import Alert from '../component-demos/alert/success'
-import Input from '../component-demos/input/success'
-import Message from '../component-demos/message/success'
-import Notification from '../component-demos/notification/success'
-import Progress from '../component-demos/progress/success'
-import Result from '../component-demos/result/success'
-import Tag from '../component-demos/tag/success'
-import Timeline from '../component-demos/timeline/success'
+import Alert from '../component-demos/alert/success';
+import Input from '../component-demos/input/success';
+import Message from '../component-demos/message/success';
+import Notification from '../component-demos/notification/success';
+import Progress from '../component-demos/progress/success';
+import Result from '../component-demos/result/success';
+import Tag from '../component-demos/tag/success';
+import Timeline from '../component-demos/timeline/success';
 
 export const Success = defineComponent({
   name: 'Success',
@@ -35,7 +35,7 @@ export const Success = defineComponent({
           </Space>
           {Result.demo}
         </Card>
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -1,5 +1,5 @@
-import type { AliasToken, GenerateStyle } from '@antdv/theme'
-import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook'
+import type { AliasToken, GenerateStyle } from '@antdv/theme';
+import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook';
 
 const genCollapseMotion: GenerateStyle<TokenWithCommonCls<AliasToken>> = token => ({
   [token.componentCls]: {
@@ -19,6 +19,6 @@ const genCollapseMotion: GenerateStyle<TokenWithCommonCls<AliasToken>> = token =
         opacity ${token.motionDurationMid} ${token.motionEaseInOut} !important`,
     },
   },
-})
+});
 
-export default genCollapseMotion
+export default genCollapseMotion;

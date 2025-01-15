@@ -11,29 +11,29 @@
  * Tips: Should add faq about `datetime` mode with `defaultValue`
  */
 
-import type { ChangeEvent, FocusEventHandler, MouseEventHandler, VueNode } from '@antdv/types'
-import type { CSSProperties, HTMLAttributes, Ref } from 'vue'
-import type { AlignType } from '../../vc-align/src/interface'
-import type { CustomFormat, PanelMode, PickerMode, PresetDate, RangeValue } from './interface'
-import type { ContextOperationRefProps } from './PanelContext'
-import type { SharedTimeProps } from './panels/TimePanel'
-import type { PickerPanelBaseProps, PickerPanelDateProps, PickerPanelTimeProps } from './PickerPanel'
-import { useMergedState } from '@antdv/hooks'
-import { classNames, warning } from '@antdv/utils'
-import { computed, defineComponent, ref, toRef, watch } from 'vue'
-import useHoverValue from './hooks/useHoverValue'
-import usePickerInput from './hooks/usePickerInput'
-import usePresets from './hooks/usePresets'
-import useTextValueMapping from './hooks/useTextValueMapping'
-import useValueTexts from './hooks/useValueTexts'
-import { useProvidePanel } from './PanelContext'
-import PickerPanel from './PickerPanel'
-import PickerTrigger from './PickerTrigger'
-import PresetPanel from './PresetPanel'
-import { formatValue, isEqual, parseValue } from './utils/dateUtil'
-import getDataOrAriaProps, { toArray } from './utils/miscUtil'
-import { elementsContains, getDefaultFormat, getInputSize } from './utils/uiUtil'
-import { legacyPropsWarning } from './utils/warnUtil'
+import type { ChangeEvent, FocusEventHandler, MouseEventHandler, VueNode } from '@antdv/types';
+import type { CSSProperties, HTMLAttributes, Ref } from 'vue';
+import type { AlignType } from '../../vc-align/src/interface';
+import type { CustomFormat, PanelMode, PickerMode, PresetDate, RangeValue } from './interface';
+import type { ContextOperationRefProps } from './PanelContext';
+import type { SharedTimeProps } from './panels/TimePanel';
+import type { PickerPanelBaseProps, PickerPanelDateProps, PickerPanelTimeProps } from './PickerPanel';
+import { useMergedState } from '@antdv/hooks';
+import { classNames, warning } from '@antdv/utils';
+import { computed, defineComponent, ref, toRef, watch } from 'vue';
+import useHoverValue from './hooks/useHoverValue';
+import usePickerInput from './hooks/usePickerInput';
+import usePresets from './hooks/usePresets';
+import useTextValueMapping from './hooks/useTextValueMapping';
+import useValueTexts from './hooks/useValueTexts';
+import { useProvidePanel } from './PanelContext';
+import PickerPanel from './PickerPanel';
+import PickerTrigger from './PickerTrigger';
+import PresetPanel from './PresetPanel';
+import { formatValue, isEqual, parseValue } from './utils/dateUtil';
+import getDataOrAriaProps, { toArray } from './utils/miscUtil';
+import { elementsContains, getDefaultFormat, getInputSize } from './utils/uiUtil';
+import { legacyPropsWarning } from './utils/warnUtil';
 
 export interface PickerRefConfig {
   focus: () => void;
@@ -99,13 +99,13 @@ export interface PickerSharedProps<DateType> {
 type OmitPanelProps<Props> = Omit<
   Props,
   'onChange' | 'hideHeader' | 'pickerValue' | 'onPickerValueChange'
->
+>;
 
 export type PickerBaseProps<DateType> = {} & PickerSharedProps<DateType> &
-  OmitPanelProps<PickerPanelBaseProps<DateType>>
+  OmitPanelProps<PickerPanelBaseProps<DateType>>;
 
 export type PickerDateProps<DateType> = {} & PickerSharedProps<DateType> &
-  OmitPanelProps<PickerPanelDateProps<DateType>>
+  OmitPanelProps<PickerPanelDateProps<DateType>>;
 
 export type PickerTimeProps<DateType> = {
   picker: 'time';
@@ -115,20 +115,20 @@ export type PickerTimeProps<DateType> = {
    */
   defaultOpenValue?: DateType;
 } & PickerSharedProps<DateType> &
-  Omit<OmitPanelProps<PickerPanelTimeProps<DateType>>, 'format'>
+  Omit<OmitPanelProps<PickerPanelTimeProps<DateType>>, 'format'>;
 
 export type PickerProps<DateType> =
   | PickerBaseProps<DateType>
   | PickerDateProps<DateType>
-  | PickerTimeProps<DateType>
+  | PickerTimeProps<DateType>;
 
 // TMP type to fit for ts 3.9.2
 type OmitType<DateType> = Omit<PickerBaseProps<DateType>, 'picker'> &
   Omit<PickerDateProps<DateType>, 'picker'> &
-  Omit<PickerTimeProps<DateType>, 'picker'>
+  Omit<PickerTimeProps<DateType>, 'picker'>;
 type MergedPickerProps<DateType> = {
   picker?: PickerMode;
-} & OmitType<DateType>
+} & OmitType<DateType>;
 
 function Picker<DateType>() {
   return defineComponent<MergedPickerProps<DateType>>({
@@ -193,39 +193,39 @@ function Picker<DateType>() {
       'hideDisabledOptions',
     ] as any,
     setup(props, { attrs, expose }) {
-      const inputRef = ref(null)
-      const presets = computed(() => props.presets)
-      const presetList = usePresets(presets)
-      const picker = computed(() => props.picker ?? 'date')
+      const inputRef = ref(null);
+      const presets = computed(() => props.presets);
+      const presetList = usePresets(presets);
+      const picker = computed(() => props.picker ?? 'date');
       const needConfirmButton = computed(
         () => (picker.value === 'date' && !!props.showTime) || picker.value === 'time',
-      )
+      );
       // ============================ Warning ============================
       if (process.env.NODE_ENV !== 'production')
-        legacyPropsWarning(props)
+        legacyPropsWarning(props);
 
       // ============================= State =============================
       const formatList = computed(() =>
         toArray(getDefaultFormat(props.format, picker.value, props.showTime, props.use12Hours)),
-      )
+      );
 
       // Panel ref
-      const panelDivRef = ref<HTMLDivElement>(null)
-      const inputDivRef = ref<HTMLDivElement>(null)
-      const containerRef = ref<HTMLDivElement>(null)
+      const panelDivRef = ref<HTMLDivElement>(null);
+      const inputDivRef = ref<HTMLDivElement>(null);
+      const containerRef = ref<HTMLDivElement>(null);
 
       // Real value
       const [mergedValue, setInnerValue] = useMergedState<DateType>(null, {
         value: toRef(props, 'value'),
         defaultValue: props.defaultValue,
-      })
-      const selectedValue = ref(mergedValue.value) as Ref<DateType>
+      });
+      const selectedValue = ref(mergedValue.value) as Ref<DateType>;
       const setSelectedValue = (val: DateType) => {
-        selectedValue.value = val
-      }
+        selectedValue.value = val;
+      };
 
       // Operation ref
-      const operationRef = ref<ContextOperationRefProps>(null)
+      const operationRef = ref<ContextOperationRefProps>(null);
 
       // Open
       const [mergedOpen, triggerInnerOpen] = useMergedState(false, {
@@ -234,19 +234,19 @@ function Picker<DateType>() {
         postState: postOpen => (props.disabled ? false : postOpen),
         onChange: (newOpen) => {
           if (props.onOpenChange)
-            props.onOpenChange(newOpen)
+            props.onOpenChange(newOpen);
 
           if (!newOpen && operationRef.value && operationRef.value.onClose)
-            operationRef.value.onClose()
+            operationRef.value.onClose();
         },
-      })
+      });
 
       // ============================= Text ==============================
       const [valueTexts, firstValueText] = useValueTexts(selectedValue, {
         formatList,
         generateConfig: toRef(props, 'generateConfig'),
         locale: toRef(props, 'locale'),
-      })
+      });
       const [text, triggerTextChange, resetText] = useTextValueMapping({
         valueTexts,
         onTextChange: (newText) => {
@@ -254,20 +254,20 @@ function Picker<DateType>() {
             locale: props.locale,
             formatList: formatList.value,
             generateConfig: props.generateConfig,
-          })
+          });
           if (inputDate && (!props.disabledDate || !props.disabledDate(inputDate)))
-            setSelectedValue(inputDate)
+            setSelectedValue(inputDate);
         },
-      })
+      });
 
       // ============================ Trigger ============================
       const triggerChange = (newValue: DateType | (() => DateType) | null) => {
-        const { onChange, generateConfig, locale } = props
+        const { onChange, generateConfig, locale } = props;
         if (typeof newValue === 'function')
-          newValue = (newValue as () => DateType)()
+          newValue = (newValue as () => DateType)();
 
-        setSelectedValue(newValue)
-        setInnerValue(newValue)
+        setSelectedValue(newValue);
+        setInnerValue(newValue);
 
         if (onChange && !isEqual(generateConfig, mergedValue.value, newValue)) {
           onChange(
@@ -275,21 +275,21 @@ function Picker<DateType>() {
             newValue
               ? formatValue(newValue, { generateConfig, locale, format: formatList.value[0] })
               : '',
-          )
+          );
         }
-      }
+      };
 
       const triggerOpen = (newOpen: boolean) => {
         if (props.disabled && newOpen)
-          return
+          return;
 
-        triggerInnerOpen(newOpen)
-      }
+        triggerInnerOpen(newOpen);
+      };
 
       const forwardKeydown = (e: KeyboardEvent) => {
         if (mergedOpen.value && operationRef.value && operationRef.value.onKeydown) {
           // Let popup panel handle keyboard
-          return operationRef.value.onKeydown(e)
+          return operationRef.value.onKeydown(e);
         }
 
         /* istanbul ignore next */
@@ -298,20 +298,20 @@ function Picker<DateType>() {
           warning(
             false,
             'Picker not correct forward Keydown operation. Please help to fire issue about this.',
-          )
-          return false
+          );
+          return false;
         }
-      }
+      };
 
       const onInternalMouseup: MouseEventHandler = (...args) => {
         if (props.onMouseup)
-          props.onMouseup(...args)
+          props.onMouseup(...args);
 
         if (inputRef.value) {
-          inputRef.value.focus()
-          triggerOpen(true)
+          inputRef.value.focus();
+          triggerOpen(true);
         }
-      }
+      };
 
       // ============================= Input =============================
       const [inputProps, { focused, typing }] = usePickerInput({
@@ -332,68 +332,68 @@ function Picker<DateType>() {
             // Normal disabled check
             || (props.disabledDate && props.disabledDate(selectedValue.value))
           ) {
-            return false
+            return false;
           }
 
-          triggerChange(selectedValue.value)
-          triggerOpen(false)
-          resetText()
-          return true
+          triggerChange(selectedValue.value);
+          triggerOpen(false);
+          resetText();
+          return true;
         },
         onCancel: () => {
-          triggerOpen(false)
-          setSelectedValue(mergedValue.value)
-          resetText()
+          triggerOpen(false);
+          setSelectedValue(mergedValue.value);
+          resetText();
         },
         onKeydown: (e, preventDefault) => {
-          props.onKeydown?.(e, preventDefault)
+          props.onKeydown?.(e, preventDefault);
         },
         onFocus: (e: FocusEvent) => {
-          props.onFocus?.(e)
+          props.onFocus?.(e);
         },
         onBlur: (e: FocusEvent) => {
-          props.onBlur?.(e)
+          props.onBlur?.(e);
         },
-      })
+      });
 
       // ============================= Sync ==============================
       // Close should sync back with text value
       watch([mergedOpen, valueTexts], () => {
         if (!mergedOpen.value) {
-          setSelectedValue(mergedValue.value)
+          setSelectedValue(mergedValue.value);
 
           if (!valueTexts.value.length || valueTexts.value[0] === '')
-            triggerTextChange('')
+            triggerTextChange('');
           else if (firstValueText.value !== text.value)
-            resetText()
+            resetText();
         }
-      })
+      });
 
       // Change picker should sync back with text value
       watch(picker, () => {
         if (!mergedOpen.value)
-          resetText()
-      })
+          resetText();
+      });
 
       // Sync innerValue with control mode
       watch(mergedValue, () => {
         // Sync select value
-        setSelectedValue(mergedValue.value)
-      })
+        setSelectedValue(mergedValue.value);
+      });
 
       const [hoverValue, onEnter, onLeave] = useHoverValue(text, {
         formatList,
         generateConfig: toRef(props, 'generateConfig'),
         locale: toRef(props, 'locale'),
-      })
+      });
 
       const onContextSelect = (date: DateType, type: 'key' | 'mouse' | 'submit') => {
         if (type === 'submit' || (type !== 'key' && !needConfirmButton.value)) {
           // triggerChange will also update selected values
-          triggerChange(date)
-          triggerOpen(false)
+          triggerChange(date);
+          triggerOpen(false);
         }
-      }
+      };
 
       useProvidePanel({
         operationRef,
@@ -403,18 +403,18 @@ function Picker<DateType>() {
         defaultOpenValue: toRef(props, 'defaultOpenValue'),
         onDateMouseenter: onEnter,
         onDateMouseleave: onLeave,
-      })
+      });
 
       expose({
         focus: () => {
           if (inputRef.value)
-            inputRef.value.focus()
+            inputRef.value.focus();
         },
         blur: () => {
           if (inputRef.value)
-            inputRef.value.blur()
+            inputRef.value.blur();
         },
-      })
+      });
 
       return () => {
         const {
@@ -446,7 +446,7 @@ function Picker<DateType>() {
           onSelect,
           direction,
           autocomplete = 'off',
-        } = props
+        } = props;
         // ============================= Panel =============================
         const panelProps = {
           // Remove `picker` & `format` here since TimePicker is little different with other panel
@@ -459,7 +459,7 @@ function Picker<DateType>() {
           pickerValue: undefined,
           onPickerValueChange: undefined,
           onChange: null,
-        }
+        };
 
         let panelNode: VueNode = (
           <div class={`${prefixCls}-panel-layout`}>
@@ -467,8 +467,8 @@ function Picker<DateType>() {
               prefixCls={prefixCls}
               presets={presetList.value}
               onClick={(nextValue) => {
-                triggerChange(nextValue)
-                triggerOpen(false)
+                triggerChange(nextValue);
+                triggerOpen(false);
               }}
             />
             <PickerPanel
@@ -478,58 +478,58 @@ function Picker<DateType>() {
               locale={locale}
               tabindex={-1}
               onSelect={(date) => {
-                onSelect?.(date)
-                setSelectedValue(date)
+                onSelect?.(date);
+                setSelectedValue(date);
               }}
               direction={direction}
               onPanelChange={(viewDate, mode) => {
-                const { onPanelChange } = props
-                onLeave(true)
-                onPanelChange?.(viewDate, mode)
+                const { onPanelChange } = props;
+                onLeave(true);
+                onPanelChange?.(viewDate, mode);
               }}
             />
           </div>
-        )
+        );
 
         if (panelRender)
-          panelNode = panelRender(panelNode)
+          panelNode = panelRender(panelNode);
 
         const panel = (
           <div
             class={`${prefixCls}-panel-container`}
             ref={panelDivRef}
             onMousedown={(e) => {
-              e.preventDefault()
+              e.preventDefault();
             }}
           >
             {panelNode}
           </div>
-        )
+        );
 
-        let suffixNode: VueNode
+        let suffixNode: VueNode;
         if (suffixIcon)
-          suffixNode = <span class={`${prefixCls}-suffix`}>{suffixIcon}</span>
+          suffixNode = <span class={`${prefixCls}-suffix`}>{suffixIcon}</span>;
 
-        let clearNode: VueNode
+        let clearNode: VueNode;
         if (allowClear && mergedValue.value && !disabled) {
           clearNode = (
             <span
               onMousedown={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
+                e.preventDefault();
+                e.stopPropagation();
               }}
               onMouseup={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                triggerChange(null)
-                triggerOpen(false)
+                e.preventDefault();
+                e.stopPropagation();
+                triggerChange(null);
+                triggerOpen(false);
               }}
               class={`${prefixCls}-clear`}
               role="button"
             >
               {clearIcon || <span class={`${prefixCls}-clear-btn`} />}
             </span>
-          )
+          );
         }
 
         const mergedInputProps: HTMLAttributes = {
@@ -539,7 +539,7 @@ function Picker<DateType>() {
           readonly: inputReadOnly || typeof formatList.value[0] === 'function' || !typing.value,
           value: hoverValue.value || text.value,
           onInput: (e: ChangeEvent) => {
-            triggerTextChange(e.target.value)
+            triggerTextChange(e.target.value);
           },
           autofocus,
           placeholder,
@@ -549,7 +549,7 @@ function Picker<DateType>() {
           size: getInputSize(picker, formatList.value[0], generateConfig),
           ...getDataOrAriaProps(props),
           autocomplete,
-        }
+        };
 
         const inputNode = props.inputRender
           ? (
@@ -557,19 +557,19 @@ function Picker<DateType>() {
             )
           : (
               <input {...mergedInputProps} />
-            )
+            );
 
         // ============================ Warning ============================
         if (process.env.NODE_ENV !== 'production') {
           warning(
             !defaultOpenValue,
             '`defaultOpenValue` may confuse user for the current value status. Please use `defaultValue` instead.',
-          )
+          );
         }
 
         // ============================ Return =============================
 
-        const popupPlacement = direction === 'rtl' ? 'bottomRight' : 'bottomLeft'
+        const popupPlacement = direction === 'rtl' ? 'bottomRight' : 'bottomLeft';
         return (
           <div
             ref={containerRef}
@@ -623,9 +623,9 @@ function Picker<DateType>() {
               </div>
             </PickerTrigger>
           </div>
-        )
-      }
+        );
+      };
     },
-  })
+  });
 }
-export default Picker<any>()
+export default Picker<any>();

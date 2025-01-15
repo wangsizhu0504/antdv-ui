@@ -1,8 +1,8 @@
-import type { CSSProperties } from 'vue'
-import type { AlignType } from '../../vc-align/src/interface'
-import { classNames } from '@antdv/utils'
-import Trigger from '../../vc-trigger/src/Trigger'
-import useMergeProps from './hooks/useMergeProps'
+import type { CSSProperties } from 'vue';
+import type { AlignType } from '../../vc-align/src/interface';
+import { classNames } from '@antdv/utils';
+import Trigger from '../../vc-trigger/src/Trigger';
+import useMergeProps from './hooks/useMergeProps';
 
 const BUILT_IN_PLACEMENTS = {
   bottomLeft: {
@@ -37,9 +37,9 @@ const BUILT_IN_PLACEMENTS = {
       adjustY: 1,
     },
   },
-}
+};
 
-type Placement = 'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight'
+type Placement = 'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight';
 
 export interface PickerTriggerProps {
   prefixCls: string;
@@ -66,15 +66,15 @@ function PickerTrigger(props: PickerTriggerProps, { slots }) {
     range,
     popupPlacement,
     direction,
-  } = useMergeProps(props)
-  const dropdownPrefixCls = `${prefixCls}-dropdown`
+  } = useMergeProps(props);
+  const dropdownPrefixCls = `${prefixCls}-dropdown`;
 
   const getPopupPlacement = () => {
     if (popupPlacement !== undefined)
-      return popupPlacement
+      return popupPlacement;
 
-    return direction === 'rtl' ? 'bottomRight' : 'bottomLeft'
-  }
+    return direction === 'rtl' ? 'bottomRight' : 'bottomLeft';
+  };
 
   return (
     <Trigger
@@ -98,7 +98,7 @@ function PickerTrigger(props: PickerTriggerProps, { slots }) {
       }}
     >
     </Trigger>
-  )
+  );
 }
 
-export default PickerTrigger
+export default PickerTrigger;

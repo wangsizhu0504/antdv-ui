@@ -1,30 +1,30 @@
-import type { MentionsConfig, MentionsEntity } from './interface'
+import type { MentionsConfig, MentionsEntity } from './interface';
 
 export function getMentions(value = '', config: MentionsConfig = {}): MentionsEntity[] {
-  const { prefix = '@', split = ' ' } = config
-  const prefixList: string[] = Array.isArray(prefix) ? prefix : [prefix]
+  const { prefix = '@', split = ' ' } = config;
+  const prefixList: string[] = Array.isArray(prefix) ? prefix : [prefix];
 
   return value
     .split(split)
     .map((str = ''): MentionsEntity | null => {
-      let hitPrefix: string | null = null
+      let hitPrefix: string | null = null;
 
       prefixList.some((prefixStr) => {
-        const startStr = str.slice(0, prefixStr.length)
+        const startStr = str.slice(0, prefixStr.length);
         if (startStr === prefixStr) {
-          hitPrefix = prefixStr
-          return true
+          hitPrefix = prefixStr;
+          return true;
         }
-        return false
-      })
+        return false;
+      });
 
       if (hitPrefix !== null) {
         return {
           prefix: hitPrefix,
           value: str.slice((hitPrefix as string).length),
-        }
+        };
       }
-      return null
+      return null;
     })
-    .filter((entity): entity is MentionsEntity => !!entity && !!entity.value)
+    .filter((entity): entity is MentionsEntity => !!entity && !!entity.value);
 }

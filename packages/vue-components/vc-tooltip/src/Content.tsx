@@ -1,14 +1,14 @@
-import type { ExtractPropTypes } from 'vue'
-import { PropTypes } from '@antdv/utils'
-import { defineComponent } from 'vue'
+import type { ExtractPropTypes } from 'vue';
+import { PropTypes } from '@antdv/utils';
+import { defineComponent } from 'vue';
 
 const tooltipContentProps = {
   prefixCls: String,
   id: String,
   overlayInnerStyle: PropTypes.any,
-}
+};
 
-export type TooltipContentProps = Partial<ExtractPropTypes<typeof tooltipContentProps>>
+export type TooltipContentProps = Partial<ExtractPropTypes<typeof tooltipContentProps>>;
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -24,6 +24,6 @@ export default defineComponent({
       >
         {slots.overlay?.()}
       </div>
-    )
+    );
   },
-})
+});

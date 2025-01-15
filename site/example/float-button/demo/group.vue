@@ -18,7 +18,7 @@ When multiple buttons are used together, `<FloatButton.Group />` is recommended.
 </docs>
 
 <script lang="ts" setup>
-  import { QuestionCircleOutlined, SyncOutlined } from '@ant-design/icons-vue'
+  import { QuestionCircleOutlined, SyncOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

@@ -1,7 +1,7 @@
-import type { SeedToken, SizeMapToken } from '../../interface'
+import type { SeedToken, SizeMapToken } from '../../interface';
 
 export default function genSizeMapToken(token: SeedToken): SizeMapToken {
-  const { sizeUnit, sizeStep } = token
+  const { sizeUnit, sizeStep } = token;
 
   return {
     sizeXXL: sizeUnit * (sizeStep + 8), // 48
@@ -13,5 +13,5 @@ export default function genSizeMapToken(token: SeedToken): SizeMapToken {
     sizeSM: sizeUnit * (sizeStep - 1), // 12
     sizeXS: sizeUnit * (sizeStep - 2), // 8
     sizeXXS: sizeUnit * (sizeStep - 3), // 4
-  }
+  };
 }

@@ -1,7 +1,7 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { CheckedType } from './interface'
-import { LoadingOutlined } from '@ant-design/icons-vue'
-import { devWarning, getPropsSlot, KeyCode, omit } from '@antdv/utils'
+import type { CustomSlotsType } from '@antdv/types';
+import type { CheckedType } from './interface';
+import { LoadingOutlined } from '@ant-design/icons-vue';
+import { devWarning, getPropsSlot, KeyCode, omit } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -10,13 +10,13 @@ import {
   onMounted,
   ref,
   watch,
-} from 'vue'
-import { useInjectDisabled } from '../../config-provider'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { useInjectFormItemContext } from '../../form/src/FormItemContext'
-import { Wave } from '../../wave'
-import useStyle from '../style'
-import { switchProps } from './props'
+} from 'vue';
+import { useInjectDisabled } from '../../config-provider';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { useInjectFormItemContext } from '../../form/src/FormItemContext';
+import { Wave } from '../../wave';
+import useStyle from '../style';
+import { switchProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -31,86 +31,86 @@ export default defineComponent({
   }>,
   // emits: ['update:checked', 'mouseup', 'change', 'click', 'keydown', 'blur'],
   setup(props, { attrs, slots, expose, emit }) {
-    const formItemContext = useInjectFormItemContext()
-    const disabledContext = useInjectDisabled()
-    const mergedDisabled = computed(() => props.disabled ?? disabledContext.value)
+    const formItemContext = useInjectFormItemContext();
+    const disabledContext = useInjectDisabled();
+    const mergedDisabled = computed(() => props.disabled ?? disabledContext.value);
 
     onBeforeMount(() => {
       devWarning(
         !('defaultChecked' in attrs),
         'Switch',
         '\'defaultChecked\' is deprecated, please use \'v-model:checked\'',
-      )
+      );
       devWarning(
         !('value' in attrs),
         'Switch',
         '`value` is not validate prop, do you mean `checked`?',
-      )
-    })
+      );
+    });
     const checked = ref<string | number | boolean>(
       props.checked !== undefined ? props.checked : (attrs.defaultChecked as boolean),
-    )
-    const checkedStatus = computed(() => checked.value === props.checkedValue)
+    );
+    const checkedStatus = computed(() => checked.value === props.checkedValue);
 
     watch(
       () => props.checked,
       () => {
-        checked.value = props.checked
+        checked.value = props.checked;
       },
-    )
+    );
 
-    const { prefixCls, direction, size } = useConfigInject('switch', props)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
-    const refSwitchNode = ref()
+    const { prefixCls, direction, size } = useConfigInject('switch', props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
+    const refSwitchNode = ref();
     const focus = () => {
-      refSwitchNode.value?.focus()
-    }
+      refSwitchNode.value?.focus();
+    };
     const blur = () => {
-      refSwitchNode.value?.blur()
-    }
+      refSwitchNode.value?.blur();
+    };
 
-    expose({ focus, blur })
+    expose({ focus, blur });
 
     onMounted(() => {
       nextTick(() => {
         if (props.autofocus && !mergedDisabled.value)
-          refSwitchNode.value.focus()
-      })
-    })
+          refSwitchNode.value.focus();
+      });
+    });
 
     const setChecked = (check: CheckedType, e: MouseEvent | KeyboardEvent) => {
       if (mergedDisabled.value)
-        return
+        return;
 
-      emit('update:checked', check)
-      emit('change', check, e)
-      formItemContext.onFieldChange()
-    }
+      emit('update:checked', check);
+      emit('change', check, e);
+      formItemContext.onFieldChange();
+    };
 
     const handleBlur = (e: FocusEvent) => {
-      emit('blur', e)
-    }
+      emit('blur', e);
+    };
 
     const handleClick = (e: MouseEvent) => {
-      focus()
-      const newChecked = checkedStatus.value ? props.unCheckedValue : props.checkedValue
-      setChecked(newChecked, e)
-      emit('click', newChecked, e)
-    }
+      focus();
+      const newChecked = checkedStatus.value ? props.unCheckedValue : props.checkedValue;
+      setChecked(newChecked, e);
+      emit('click', newChecked, e);
+    };
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === KeyCode.LEFT)
-        setChecked(props.unCheckedValue, e)
+        setChecked(props.unCheckedValue, e);
       else if (e.keyCode === KeyCode.RIGHT)
-        setChecked(props.checkedValue, e)
+        setChecked(props.checkedValue, e);
 
-      emit('keydown', e)
-    }
+      emit('keydown', e);
+    };
 
     const handleMouseUp = (e: MouseEvent) => {
-      refSwitchNode.value?.blur()
-      emit('mouseup', e)
-    }
+      refSwitchNode.value?.blur();
+      emit('mouseup', e);
+    };
 
     const classNames = computed(() => ({
       [`${prefixCls.value}-small`]: size.value === 'small',
@@ -120,7 +120,7 @@ export default defineComponent({
       [prefixCls.value]: true,
       [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
       [hashId.value]: true,
-    }))
+    }));
 
     return () =>
       wrapSSR(
@@ -164,6 +164,6 @@ export default defineComponent({
             </span>
           </button>
         </Wave>,
-      )
+      );
   },
-})
+});

@@ -17,10 +17,10 @@ Replace the title,key and children fields in treeNode with the corresponding fie
 </docs>
 
 <script lang="ts" setup>
-  import type { TreeSelectProps } from '@antdv/ui'
-  import { ref, watch } from 'vue'
+  import type { TreeSelectProps } from '@antdv/ui';
+  import { ref, watch } from 'vue';
 
-  const value = ref<string>()
+  const value = ref<string>();
   const treeData = ref<TreeSelectProps['treeData']>([
     {
       name: 'parent 1',
@@ -46,10 +46,10 @@ Replace the title,key and children fields in treeNode with the corresponding fie
         },
       ],
     },
-  ])
+  ]);
   watch(value, () => {
-    console.log(value.value)
-  })
+    console.log(value.value);
+  });
 </script>
 
 <template>

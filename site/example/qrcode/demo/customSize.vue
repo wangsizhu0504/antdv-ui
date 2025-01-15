@@ -15,20 +15,20 @@ Custom Size.
 </docs>
 
 <script lang="ts" setup>
-  import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const size = ref<any>(160)
+  const size = ref<any>(160);
   function decline() {
-    size.value = size.value - 10
+    size.value = size.value - 10;
     if (size.value < 48) {
-      size.value = 48
+      size.value = 48;
     }
   }
   function increase() {
-    size.value = size.value + 10
+    size.value = size.value + 10;
     if (size.value > 300) {
-      size.value = 300
+      size.value = 300;
     }
   }
 </script>

@@ -1,5 +1,5 @@
-import type { FocusEventHandler, Key, MouseEventHandler, SizeType } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+import type { FocusEventHandler, Key, MouseEventHandler, SizeType } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
 import type {
   AnimatedConfig,
   EditableConfig,
@@ -9,7 +9,7 @@ import type {
   TabPosition,
   TabsLocale,
   TabsType,
-} from './interface'
+} from './interface';
 
 import {
   booleanType,
@@ -18,14 +18,14 @@ import {
   PropTypes,
   someType,
   stringType,
-} from '@antdv/utils'
+} from '@antdv/utils';
 
 export function addButtonProps() {
   return {
     prefixCls: String,
     editable: { type: Object as PropType<EditableConfig> },
     locale: { type: Object as PropType<TabsLocale>, default: undefined as TabsLocale },
-  }
+  };
 }
 
 export function tabNavListProps() {
@@ -50,7 +50,7 @@ export function tabNavListProps() {
       type: Function as PropType<(activeKey: Key, e: MouseEvent | KeyboardEvent) => void>,
     },
     onTabScroll: { type: Function as PropType<OnTabScroll> },
-  }
+  };
 }
 
 export const operationNodeProps = {
@@ -71,7 +71,7 @@ export const operationNodeProps = {
   getPopupContainer: functionType<
     ((triggerNode?: HTMLElement | undefined) => HTMLElement) | undefined
   >(),
-}
+};
 
 export function tabNodeProps() {
   return {
@@ -91,7 +91,7 @@ export function tabNodeProps() {
     removeAriaLabel: { type: String },
     // onRemove: { type: Function as PropType<() => void> },
     onFocus: { type: Function as PropType<FocusEventHandler> },
-  }
+  };
 }
 
 export function tabPanelListProps() {
@@ -102,7 +102,7 @@ export function tabPanelListProps() {
     animated: { type: Object as PropType<AnimatedConfig>, default: undefined as AnimatedConfig },
     tabPosition: { type: String as PropType<TabPosition> },
     destroyInactiveTabPane: { type: Boolean },
-  }
+  };
 }
 
 export function tabPaneProps() {
@@ -120,7 +120,7 @@ export function tabPaneProps() {
     tabKey: { type: [String, Number] },
     id: { type: String },
   // closeIcon: PropTypes.any,
-  }
+  };
 }
 
 export function tabsProps() {
@@ -155,19 +155,19 @@ export function tabsProps() {
     'onPrevClick': functionType<MouseEventHandler>(),
     'onNextClick': functionType<MouseEventHandler>(),
     'tabBarExtraContent': PropTypes.any,
-  }
+  };
 }
 
-export type TabsProps = Partial<ExtractPropTypes<ReturnType<typeof tabsProps>>>
+export type TabsProps = Partial<ExtractPropTypes<ReturnType<typeof tabsProps>>>;
 
-export type TabPaneProps = Partial<ExtractPropTypes<ReturnType<typeof tabPaneProps>>>
+export type TabPaneProps = Partial<ExtractPropTypes<ReturnType<typeof tabPaneProps>>>;
 
-export type TabNodeProps = Partial<ExtractPropTypes<typeof tabNodeProps>>
+export type TabNodeProps = Partial<ExtractPropTypes<typeof tabNodeProps>>;
 
-export type TabPanelProps = Partial<ExtractPropTypes<ReturnType<typeof tabPanelListProps>>>
+export type TabPanelProps = Partial<ExtractPropTypes<ReturnType<typeof tabPanelListProps>>>;
 
-export type OperationNodeProps = Partial<ExtractPropTypes<typeof operationNodeProps>>
+export type OperationNodeProps = Partial<ExtractPropTypes<typeof operationNodeProps>>;
 
-export type TabNavListProps = Partial<ExtractPropTypes<ReturnType<typeof tabNavListProps>>>
+export type TabNavListProps = Partial<ExtractPropTypes<ReturnType<typeof tabNavListProps>>>;
 
-export type AddButtonProps = Partial<ExtractPropTypes<ReturnType<typeof addButtonProps>>>
+export type AddButtonProps = Partial<ExtractPropTypes<ReturnType<typeof addButtonProps>>>;

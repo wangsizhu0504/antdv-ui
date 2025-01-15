@@ -1,4 +1,4 @@
-import type { ComponentTokenMap } from '@antdv/theme/token/interface'
+import type { ComponentTokenMap } from '@antdv/theme/token/interface';
 
 export interface TokenMeta {
   type: string
@@ -15,7 +15,7 @@ export interface TokenMeta {
   source: 'seed' | 'map' | 'alias' | 'custom' | keyof ComponentTokenMap
 }
 
-export type TokenMetaMap = Record<string, TokenMeta>
+export type TokenMetaMap = Record<string, TokenMeta>;
 
 // 二级分类，如品牌色、中性色等
 export interface TokenGroup<T> {
@@ -58,4 +58,4 @@ export interface TokenCategory<T> {
   groups: Array<TokenGroup<T>>
 }
 
-export type TokenTree<T extends string = string> = Array<TokenCategory<T>>
+export type TokenTree<T extends string = string> = Array<TokenCategory<T>>;

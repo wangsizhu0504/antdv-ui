@@ -1,7 +1,7 @@
-import type { GenerateConfig } from '../generate'
-import type { NullableDateType, RangeValue } from '../interface'
-import { isInRange } from '../utils/dateUtil'
-import { getValue } from '../utils/miscUtil'
+import type { GenerateConfig } from '../generate';
+import type { NullableDateType, RangeValue } from '../interface';
+import { isInRange } from '../utils/dateUtil';
+import { getValue } from '../utils/miscUtil';
 
 export default function useCellClassName<DateType>({
   cellPrefixCls,
@@ -25,30 +25,30 @@ export default function useCellClassName<DateType>({
   value?: NullableDateType<DateType>;
 }) {
   function getClassName(currentDate: DateType) {
-    const prevDate = offsetCell(currentDate, -1)
-    const nextDate = offsetCell(currentDate, 1)
+    const prevDate = offsetCell(currentDate, -1);
+    const nextDate = offsetCell(currentDate, 1);
 
-    const rangeStart = getValue(rangedValue, 0)
-    const rangeEnd = getValue(rangedValue, 1)
+    const rangeStart = getValue(rangedValue, 0);
+    const rangeEnd = getValue(rangedValue, 1);
 
-    const hoverStart = getValue(hoverRangedValue, 0)
-    const hoverEnd = getValue(hoverRangedValue, 1)
+    const hoverStart = getValue(hoverRangedValue, 0);
+    const hoverEnd = getValue(hoverRangedValue, 1);
 
-    const isRangeHovered = isInRange(generateConfig, hoverStart, hoverEnd, currentDate)
+    const isRangeHovered = isInRange(generateConfig, hoverStart, hoverEnd, currentDate);
 
     function isRangeStart(date: DateType) {
-      return isSameCell(rangeStart, date)
+      return isSameCell(rangeStart, date);
     }
     function isRangeEnd(date: DateType) {
-      return isSameCell(rangeEnd, date)
+      return isSameCell(rangeEnd, date);
     }
-    const isHoverStart = isSameCell(hoverStart, currentDate)
-    const isHoverEnd = isSameCell(hoverEnd, currentDate)
+    const isHoverStart = isSameCell(hoverStart, currentDate);
+    const isHoverEnd = isSameCell(hoverEnd, currentDate);
 
     const isHoverEdgeStart
-      = (isRangeHovered || isHoverEnd) && (!isInView(prevDate) || isRangeEnd(prevDate))
+      = (isRangeHovered || isHoverEnd) && (!isInView(prevDate) || isRangeEnd(prevDate));
     const isHoverEdgeEnd
-      = (isRangeHovered || isHoverStart) && (!isInView(nextDate) || isRangeStart(nextDate))
+      = (isRangeHovered || isHoverStart) && (!isInView(nextDate) || isRangeStart(nextDate));
 
     return {
       // In view
@@ -90,8 +90,8 @@ export default function useCellClassName<DateType>({
       // Others
       [`${cellPrefixCls}-today`]: isSameCell(today, currentDate),
       [`${cellPrefixCls}-selected`]: isSameCell(value, currentDate),
-    }
+    };
   }
 
-  return getClassName
+  return getClassName;
 }

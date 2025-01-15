@@ -15,10 +15,10 @@ Custom Color.
 </docs>
 
 <script lang="ts" setup>
-  import { theme } from '@antdv/ui'
+  import { theme } from '@antdv/ui';
 
-  const { useToken } = theme
-  const { token } = useToken()
+  const { useToken } = theme;
+  const { token } = useToken();
 </script>
 
 <template>

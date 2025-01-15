@@ -1,5 +1,5 @@
-import type { CSSMotionProps, FocusEventHandler, Key, MouseEventHandler } from '@antdv/types'
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { CSSMotionProps, FocusEventHandler, Key, MouseEventHandler } from '@antdv/types';
+import type { ExtractPropTypes, PropType } from 'vue';
 import type {
   BuiltinPlacements,
   ItemType,
@@ -8,14 +8,14 @@ import type {
   MenuTheme,
   SelectEventHandler,
   TriggerSubMenuAction,
-} from './interface'
-import { objectType, PropTypes } from '@antdv/utils'
+} from './interface';
+import { objectType, PropTypes } from '@antdv/utils';
 
 export function menuDividerProps() {
   return {
     prefixCls: String,
     dashed: Boolean,
-  }
+  };
 }
 
 export function menuItemGroupProps() {
@@ -23,7 +23,7 @@ export function menuItemGroupProps() {
     title: PropTypes.any,
     // Internal user prop
     originItemValue: objectType<ItemType>(),
-  }
+  };
 }
 
 export function menuProps() {
@@ -68,7 +68,7 @@ export function menuProps() {
     'onUpdate:openKeys': Function as PropType<(keys: Key[]) => void>,
     'onUpdate:selectedKeys': Function as PropType<(keys: Key[]) => void>,
     'onUpdate:activeKey': Function as PropType<(key: Key) => void>,
-  }
+  };
 }
 
 export function menuItemProps() {
@@ -86,7 +86,7 @@ export function menuItemProps() {
     onFocus: Function as PropType<MouseEventHandler>,
     // Internal user prop
     originItemValue: objectType<ItemType>(),
-  }
+  };
 }
 
 export function subMenuProps() {
@@ -107,15 +107,15 @@ export function subMenuProps() {
 
     // Internal user prop
     originItemValue: objectType<ItemType>(),
-  }
+  };
 }
 
-export type SubMenuProps = Partial<ExtractPropTypes<ReturnType<typeof subMenuProps>>>
+export type SubMenuProps = Partial<ExtractPropTypes<ReturnType<typeof subMenuProps>>>;
 
-export type MenuItemProps = Partial<ExtractPropTypes<ReturnType<typeof menuItemProps>>>
+export type MenuItemProps = Partial<ExtractPropTypes<ReturnType<typeof menuItemProps>>>;
 
-export type MenuProps = Partial<ExtractPropTypes<ReturnType<typeof menuProps>>>
+export type MenuProps = Partial<ExtractPropTypes<ReturnType<typeof menuProps>>>;
 
-export type MenuDividerProps = Partial<ExtractPropTypes<ReturnType<typeof menuDividerProps>>>
+export type MenuDividerProps = Partial<ExtractPropTypes<ReturnType<typeof menuDividerProps>>>;
 
-export type MenuItemGroupProps = Partial<ExtractPropTypes<ReturnType<typeof menuItemGroupProps>>>
+export type MenuItemGroupProps = Partial<ExtractPropTypes<ReturnType<typeof menuItemGroupProps>>>;

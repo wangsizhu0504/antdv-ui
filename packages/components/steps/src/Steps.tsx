@@ -1,16 +1,16 @@
-import type { CustomSlotsType, VueNode } from '@antdv/types'
-import type { StepProps } from './props'
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue'
-import { useBreakpoint } from '@antdv/hooks'
-import { useToken } from '@antdv/theme'
-import { classNames, initDefaultProps, omit } from '@antdv/utils'
-import { VcSteps } from '@antdv/vue-components'
-import { computed, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import Progress from '../../progress'
-import Tooltip from '../../tooltip'
-import useStyle from '../style'
-import { stepsProps } from './props'
+import type { CustomSlotsType, VueNode } from '@antdv/types';
+import type { StepProps } from './props';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue';
+import { useBreakpoint } from '@antdv/hooks';
+import { useToken } from '@antdv/theme';
+import { classNames, initDefaultProps, omit } from '@antdv/utils';
+import { VcSteps } from '@antdv/vue-components';
+import { computed, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import Progress from '../../progress';
+import Tooltip from '../../tooltip';
+import useStyle from '../style';
+import { stepsProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -28,22 +28,22 @@ export default defineComponent({
 
   // emits: ['update:current', 'change'],
   setup(props, { attrs, slots, emit }) {
-    const { prefixCls, direction: rtlDirection, configProvider } = useConfigInject('steps', props)
+    const { prefixCls, direction: rtlDirection, configProvider } = useConfigInject('steps', props);
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
-    const [, token] = useToken()
+    const [wrapSSR, hashId] = useStyle(prefixCls);
+    const [, token] = useToken();
 
-    const screens = useBreakpoint()
+    const screens = useBreakpoint();
     const direction = computed(() =>
       props.responsive && screens.value.xs ? 'vertical' : props.direction,
-    )
-    const iconPrefix = computed(() => configProvider.getPrefixCls('', props.iconPrefix))
+    );
+    const iconPrefix = computed(() => configProvider.getPrefixCls('', props.iconPrefix));
     const handleChange = (current: number) => {
-      emit('update:current', current)
-      emit('change', current)
-    }
-    const isInline = computed(() => props.type === 'inline')
-    const mergedPercent = computed(() => (isInline.value ? undefined : props.percent))
+      emit('update:current', current);
+      emit('change', current);
+    };
+    const isInline = computed(() => props.type === 'inline');
+    const mergedPercent = computed(() => (isInline.value ? undefined : props.percent));
     const stepIconRender = ({
       node,
       status,
@@ -58,7 +58,7 @@ export default defineComponent({
         // currently it's hard-coded, since we can't easily read the actually width of icon
 
         const progressWidth
-          = props.size === 'small' ? token.value.controlHeight : token.value.controlHeightLG
+          = props.size === 'small' ? token.value.controlHeight : token.value.controlHeightLG;
 
         const iconWithProgress = (
           <div class={`${prefixCls.value}-progress-icon`}>
@@ -71,15 +71,15 @@ export default defineComponent({
             />
             {node}
           </div>
-        )
-        return iconWithProgress
+        );
+        return iconWithProgress;
       }
-      return node
-    }
+      return node;
+    };
     const icons = computed(() => ({
       finish: <CheckOutlined class={`${prefixCls.value}-finish-icon`} />,
       error: <CloseOutlined class={`${prefixCls.value}-error-icon`} />,
-    }))
+    }));
     return () => {
       const stepsClassName = classNames(
         {
@@ -88,8 +88,8 @@ export default defineComponent({
         },
         attrs.class,
         hashId.value,
-      )
-      const itemRender = (item: StepProps, stepItem: VueNode) => item.description ? <Tooltip title={item.description}>{stepItem}</Tooltip> : stepItem
+      );
+      const itemRender = (item: StepProps, stepItem: VueNode) => item.description ? <Tooltip title={item.description}>{stepItem}</Tooltip> : stepItem;
 
       return wrapSSR(
         <VcSteps
@@ -106,7 +106,7 @@ export default defineComponent({
           itemRender={isInline.value ? itemRender : undefined}
           v-slots={{ stepIcon: stepIconRender, ...slots }}
         />,
-      )
-    }
+      );
+    };
   },
-})
+});

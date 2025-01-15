@@ -1,10 +1,10 @@
-import type { ConfigurableWindow } from '../_configurable'
-import type { MaybeElementRef } from '../unref-element'
-import { watch } from 'vue'
-import { defaultWindow } from '../_configurable'
-import { tryOnScopeDispose } from '../try-on-scope-dispose'
-import { unrefElement } from '../unref-element'
-import { useSupported } from '../use-supported'
+import type { ConfigurableWindow } from '../_configurable';
+import type { MaybeElementRef } from '../unref-element';
+import { watch } from 'vue';
+import { defaultWindow } from '../_configurable';
+import { tryOnScopeDispose } from '../try-on-scope-dispose';
+import { unrefElement } from '../unref-element';
+import { useSupported } from '../use-supported';
 
 export interface UseMutationObserverOptions extends MutationObserverInit, ConfigurableWindow {}
 
@@ -22,41 +22,41 @@ export function useMutationObserver(
   callback: MutationCallback,
   options: UseMutationObserverOptions = {},
 ) {
-  const { window = defaultWindow, ...mutationOptions } = options
-  let observer: MutationObserver | undefined
-  const isSupported = useSupported(() => window && 'MutationObserver' in window)
+  const { window = defaultWindow, ...mutationOptions } = options;
+  let observer: MutationObserver | undefined;
+  const isSupported = useSupported(() => window && 'MutationObserver' in window);
 
   const cleanup = () => {
     if (observer) {
-      observer.disconnect()
-      observer = undefined
+      observer.disconnect();
+      observer = undefined;
     }
-  }
+  };
 
   const stopWatch = watch(
     () => unrefElement(target),
     (el) => {
-      cleanup()
+      cleanup();
 
       if (isSupported.value && window && el) {
-        observer = new MutationObserver(callback)
-        observer!.observe(el, mutationOptions)
+        observer = new MutationObserver(callback);
+        observer!.observe(el, mutationOptions);
       }
     },
     { immediate: true },
-  )
+  );
 
   const stop = () => {
-    cleanup()
-    stopWatch()
-  }
+    cleanup();
+    stopWatch();
+  };
 
-  tryOnScopeDispose(stop)
+  tryOnScopeDispose(stop);
 
   return {
     isSupported,
     stop,
-  }
+  };
 }
 
-export type UseMutationObserverReturn = ReturnType<typeof useMutationObserver>
+export type UseMutationObserverReturn = ReturnType<typeof useMutationObserver>;

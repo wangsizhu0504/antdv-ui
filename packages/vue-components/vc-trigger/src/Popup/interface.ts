@@ -1,5 +1,5 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { AlignType, MobileConfig, Point, StretchType } from '../interface'
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { AlignType, MobileConfig, Point, StretchType } from '../interface';
 
 export const innerProps = {
   visible: Boolean,
@@ -31,20 +31,20 @@ export const innerProps = {
   onMouseleave: { type: Function as PropType<(align: MouseEvent) => void> },
   onMousedown: { type: Function as PropType<(align: MouseEvent) => void> },
   onTouchstart: { type: Function as PropType<(align: MouseEvent) => void> },
-}
+};
 export type PopupInnerProps = Partial<ExtractPropTypes<typeof innerProps>> & {
   align?: AlignType;
-}
+};
 
 export const mobileProps = {
   ...innerProps,
   mobile: { type: Object as PropType<MobileConfig> },
-}
+};
 
 export type MobilePopupProps = Partial<ExtractPropTypes<typeof mobileProps>> & {
   align?: AlignType;
   mobile: MobileConfig;
-}
+};
 
 export const popupProps = {
   ...innerProps,
@@ -52,9 +52,9 @@ export const popupProps = {
   mobile: { type: Object as PropType<MobileConfig> },
   maskAnimation: String,
   maskTransitionName: String,
-}
+};
 
 export type PopupProps = Partial<ExtractPropTypes<typeof popupProps>> & {
   align?: AlignType;
   mobile: MobileConfig;
-}
+};

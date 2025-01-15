@@ -16,9 +16,9 @@ More pages.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const current = ref<any>(6)
+  const current = ref<any>(6);
 </script>
 
 <template>

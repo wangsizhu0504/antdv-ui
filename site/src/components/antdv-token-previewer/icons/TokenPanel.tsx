@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'vue'
-import { defineComponent } from 'vue'
+import type { CSSProperties } from 'vue';
+import { defineComponent } from 'vue';
 
 const TokenPanel = defineComponent({
   name: 'TokenPanel',
@@ -62,9 +62,9 @@ const TokenPanel = defineComponent({
             </g>
           </g>
         </svg>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default TokenPanel
+export default TokenPanel;

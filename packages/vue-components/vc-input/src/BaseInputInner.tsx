@@ -1,6 +1,6 @@
-import type { PropType } from 'vue'
-import { PropTypes } from '@antdv/utils'
-import { defineComponent, shallowRef } from 'vue'
+import type { PropType } from 'vue';
+import { PropTypes } from '@antdv/utils';
+import { defineComponent, shallowRef } from 'vue';
 
 export interface BaseInputInnerExpose {
   focus: () => void;
@@ -53,27 +53,27 @@ const BaseInputInner = defineComponent({
     'mousedown',
   ],
   setup(props, { expose }) {
-    const inputRef = shallowRef(null)
+    const inputRef = shallowRef(null);
 
     const focus = () => {
       if (inputRef.value)
-        inputRef.value.focus()
-    }
+        inputRef.value.focus();
+    };
     const blur = () => {
       if (inputRef.value)
-        inputRef.value.blur()
-    }
+        inputRef.value.blur();
+    };
     const setSelectionRange = (
       start: number,
       end: number,
       direction?: 'forward' | 'backward' | 'none',
     ) => {
-      inputRef.value?.setSelectionRange(start, end, direction)
-    }
+      inputRef.value?.setSelectionRange(start, end, direction);
+    };
 
     const select = () => {
-      inputRef.value?.select()
-    }
+      inputRef.value?.select();
+    };
     expose({
       focus,
       blur,
@@ -83,12 +83,12 @@ const BaseInputInner = defineComponent({
       getSelectionStart: () => inputRef.value?.selectionStart,
       getSelectionEnd: () => inputRef.value?.selectionEnd,
       getScrollTop: () => inputRef.value?.scrollTop,
-    })
+    });
     return () => {
-      const { tag: Tag, value, ...restProps } = props
-      return <Tag {...restProps} ref={inputRef} value={value} />
-    }
+      const { tag: Tag, value, ...restProps } = props;
+      return <Tag {...restProps} ref={inputRef} value={value} />;
+    };
   },
-})
+});
 
-export default BaseInputInner
+export default BaseInputInner;

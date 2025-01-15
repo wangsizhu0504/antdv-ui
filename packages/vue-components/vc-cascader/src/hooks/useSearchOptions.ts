@@ -1,14 +1,14 @@
-import type { Ref } from 'vue'
-import type { DefaultOptionType, InternalFieldNames, ShowSearchType } from '../Cascader'
-import { isNumber } from 'lodash-es'
-import { computed } from 'vue'
+import type { Ref } from 'vue';
+import type { DefaultOptionType, InternalFieldNames, ShowSearchType } from '../Cascader';
+import { isNumber } from 'lodash-es';
+import { computed } from 'vue';
 
-export const SEARCH_MARK = '__rc_cascader_search_mark__'
+export const SEARCH_MARK = '__rc_cascader_search_mark__';
 
-const defaultFilter: ShowSearchType['filter'] = (search, options, { label }) => options.some(opt => String(opt[label]).toLowerCase().includes(search.toLowerCase()))
+const defaultFilter: ShowSearchType['filter'] = (search, options, { label }) => options.some(opt => String(opt[label]).toLowerCase().includes(search.toLowerCase()));
 
 const defaultRender: ShowSearchType['render'] = ({ path, fieldNames }) =>
-  path.map(opt => opt[fieldNames.label]).join(' / ')
+  path.map(opt => opt[fieldNames.label]).join(' / ');
 
 export default (
   search: Ref<string>,
@@ -19,19 +19,19 @@ export default (
   changeOnSelect: Ref<boolean>,
 ) => {
   return computed(() => {
-    const { filter = defaultFilter, render = defaultRender, limit = 50, sort } = config.value
-    const filteredOptions: DefaultOptionType[] = []
+    const { filter = defaultFilter, render = defaultRender, limit = 50, sort } = config.value;
+    const filteredOptions: DefaultOptionType[] = [];
     if (!search.value)
-      return []
+      return [];
 
     function dig(list: DefaultOptionType[], pathOptions: DefaultOptionType[]) {
       list.forEach((option) => {
         // Perf saving when `sort` is disabled and `limit` is provided
         if (!sort && isNumber(limit) && limit > 0 && filteredOptions.length >= limit)
-          return
+          return;
 
-        const connectedPathOptions = [...pathOptions, option]
-        const children = option[fieldNames.value.children]
+        const connectedPathOptions = [...pathOptions, option];
+        const children = option[fieldNames.value.children];
 
         // If current option is filterable
         if (
@@ -51,24 +51,24 @@ export default (
                 fieldNames: fieldNames.value,
               }),
               [SEARCH_MARK]: connectedPathOptions,
-            })
+            });
           }
         }
 
         if (children)
-          dig(option[fieldNames.value.children] as DefaultOptionType[], connectedPathOptions)
-      })
+          dig(option[fieldNames.value.children] as DefaultOptionType[], connectedPathOptions);
+      });
     }
 
-    dig(options.value, [])
+    dig(options.value, []);
 
     // Do sort
     if (sort) {
       filteredOptions.sort((a, b) => {
-        return sort(a[SEARCH_MARK], b[SEARCH_MARK], search.value, fieldNames.value)
-      })
+        return sort(a[SEARCH_MARK], b[SEARCH_MARK], search.value, fieldNames.value);
+      });
     }
 
-    return isNumber(limit) && limit > 0 ? filteredOptions.slice(0, limit as number) : filteredOptions
-  })
-}
+    return isNumber(limit) && limit > 0 ? filteredOptions.slice(0, limit as number) : filteredOptions;
+  });
+};

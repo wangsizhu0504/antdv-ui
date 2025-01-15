@@ -1,15 +1,15 @@
-import type { LegacyButtonType } from './interface'
-import type { ButtonProps } from './props'
+import type { LegacyButtonType } from './interface';
+import type { ButtonProps } from './props';
 
 export function convertLegacyProps(type?: LegacyButtonType): ButtonProps {
   switch (type) {
     case 'danger':
-      return { danger: true }
+      return { danger: true };
     case 'warning':
-      return { warning: true }
+      return { warning: true };
     case 'success':
-      return { success: true }
+      return { success: true };
     default :
-      return { type }
+      return { type };
   }
 }

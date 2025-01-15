@@ -17,9 +17,9 @@ Use form in drawer with submit button.
 </docs>
 
 <script lang="ts" setup>
-  import type { Rule } from '@antdv/ui/es/form'
-  import { PlusOutlined } from '@ant-design/icons-vue'
-  import { reactive, ref } from 'vue'
+  import type { Rule } from '@antdv/ui/es/form';
+  import { PlusOutlined } from '@ant-design/icons-vue';
+  import { reactive, ref } from 'vue';
 
   const form = reactive({
     name: '',
@@ -29,7 +29,7 @@ Use form in drawer with submit button.
     approver: '',
     dateTime: null,
     description: '',
-  })
+  });
 
   const rules: Record<string, Rule[]> = {
     name: [{ required: true, message: 'Please enter user name' }],
@@ -39,16 +39,16 @@ Use form in drawer with submit button.
     approver: [{ required: true, message: 'Please choose the approver' }],
     dateTime: [{ required: true, message: 'Please choose the dateTime', type: 'object' }],
     description: [{ required: true, message: 'Please enter url description' }],
-  }
+  };
 
-  const open = ref<boolean>(false)
+  const open = ref<boolean>(false);
 
   function showDrawer() {
-    open.value = true
+    open.value = true;
   }
 
   function onClose() {
-    open.value = false
+    open.value = false;
   }
 </script>
 

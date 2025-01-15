@@ -1,13 +1,13 @@
-import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import type { CollapseType } from './interface'
-import { PropTypes, tuple } from '@antdv/utils'
+import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue';
+import type { CollapseType } from './interface';
+import { PropTypes, tuple } from '@antdv/utils';
 
 export function layoutProps() {
   return {
     prefixCls: String,
     hasSider: { type: Boolean, default: undefined },
     tagName: String,
-  }
+  };
 }
 export function siderProps() {
   return {
@@ -27,9 +27,9 @@ export function siderProps() {
     theme: PropTypes.oneOf(tuple('light', 'dark')).def('dark'),
     onBreakpoint: Function as PropType<(broken: boolean) => void>,
     onCollapse: Function as PropType<(collapsed: boolean, type: CollapseType) => void>,
-  }
+  };
 }
 
-export type SiderProps = Partial<ExtractPropTypes<ReturnType<typeof siderProps>>>
+export type SiderProps = Partial<ExtractPropTypes<ReturnType<typeof siderProps>>>;
 
-export type LayoutProps = Partial<ExtractPropTypes<ReturnType<typeof layoutProps>>> & HTMLAttributes
+export type LayoutProps = Partial<ExtractPropTypes<ReturnType<typeof layoutProps>>> & HTMLAttributes;

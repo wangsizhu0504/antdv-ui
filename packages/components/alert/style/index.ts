@@ -1,12 +1,12 @@
-import type { CSSInterpolation, CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSInterpolation, CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
 
 export interface ComponentToken {}
 
 type AlertToken = FullToken<'Alert'> & {
   alertIconSizeLG: number
   alertPaddingHorizontal: number
-}
+};
 
 function genAlertTypeStyle(
   bgColor: string,
@@ -21,7 +21,7 @@ function genAlertTypeStyle(
     [`${alertCls}-icon`]: {
       color: iconColor,
     },
-  }
+  };
 }
 
 export const genBaseStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSObject => {
@@ -41,7 +41,7 @@ export const genBaseStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSO
     alertPaddingHorizontal,
     paddingMD,
     paddingContentHorizontalLG,
-  } = token
+  } = token;
 
   return {
     [componentCls]: {
@@ -122,8 +122,8 @@ export const genBaseStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSO
       border: '0 !important',
       borderRadius: 0,
     },
-  }
-}
+  };
+};
 
 export const genTypeStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSObject => {
   const {
@@ -144,7 +144,7 @@ export const genTypeStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSO
     colorInfo,
     colorInfoBorder,
     colorInfoBg,
-  } = token
+  } = token;
 
   return {
     [componentCls]: {
@@ -171,8 +171,8 @@ export const genTypeStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSO
         },
       },
     },
-  }
-}
+  };
+};
 
 export const genActionStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSObject => {
   const {
@@ -183,7 +183,7 @@ export const genActionStyle: GenerateStyle<AlertToken> = (token: AlertToken): CS
     fontSizeIcon,
     colorIcon,
     colorIconHover,
-  } = token
+  } = token;
 
   return {
     [componentCls]: {
@@ -219,22 +219,22 @@ export const genActionStyle: GenerateStyle<AlertToken> = (token: AlertToken): CS
         },
       },
     },
-  }
-}
+  };
+};
 
 export const genAlertStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSInterpolation => [
   genBaseStyle(token),
   genTypeStyle(token),
   genActionStyle(token),
-]
+];
 
 export default genComponentStyleHook('Alert', (token) => {
-  const { fontSizeHeading3 } = token
+  const { fontSizeHeading3 } = token;
 
   const alertToken = mergeToken<AlertToken>(token, {
     alertIconSizeLG: fontSizeHeading3,
     alertPaddingHorizontal: 12, // Fixed value here.
-  })
+  });
 
-  return [genAlertStyle(alertToken)]
-})
+  return [genAlertStyle(alertToken)];
+});

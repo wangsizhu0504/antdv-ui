@@ -1,49 +1,49 @@
 <script lang="ts">
-  import { computed, defineComponent, inject, watch } from 'vue'
-  import { useRoute } from 'vue-router'
-  import useSiteToken from '../hooks/useSiteToken'
-  import { getLocalizedPathname } from '../utils/util'
+  import { computed, defineComponent, inject, watch } from 'vue';
+  import { useRoute } from 'vue-router';
+  import useSiteToken from '../hooks/useSiteToken';
+  import { getLocalizedPathname } from '../utils/util';
 
   export default defineComponent({
     name: 'Menu',
     props: ['menus', 'isZhCN', 'activeMenuItem'],
     setup(props) {
-      const siteToken = useSiteToken()
-      const route = useRoute()
+      const siteToken = useSiteToken();
+      const route = useRoute();
       const showOverview = computed(() => {
-        return route.path.indexOf('/components') === 0
-      })
-      const themeMode = inject('themeMode')
-      const isDark = computed<boolean>(() => (themeMode as any).theme.value === 'dark')
-      const colorBgContainer = computed(() => siteToken.value.token.colorBgContainer)
+        return route.path.indexOf('/components') === 0;
+      });
+      const themeMode = inject('themeMode');
+      const isDark = computed<boolean>(() => (themeMode as any).theme.value === 'dark');
+      const colorBgContainer = computed(() => siteToken.value.token.colorBgContainer);
       watch(
         [() => props.activeMenuItem, () => props.isZhCN, () => props.menus],
         () => {
           const menus = props.menus.reduce(
             (pre, current) => [...pre, current, ...(current.children || [])],
             [{ path: '/components/overview', title: '组件总览', enTitle: 'Components Overview' }],
-          )
-          const item = menus.find(m => m.path === props.activeMenuItem)
+          );
+          const item = menus.find(m => m.path === props.activeMenuItem);
           let title = props.isZhCN
             ? 'Ant Design Vue - 一套企业级 Vue 组件库'
-            : 'Ant Design Vue — An enterprise-class UI components based on Ant Design and Vue.js'
+            : 'Ant Design Vue — An enterprise-class UI components based on Ant Design and Vue.js';
           if (item && item.title) {
             title = props.isZhCN
               ? `${item.subtitle || ''} ${item.title} - @antdv/ui`
-              : `${item.enTitle || item.title} - @antdv/ui`
+              : `${item.enTitle || item.title} - @antdv/ui`;
           }
-          document.title = title.trim()
+          document.title = title.trim();
         },
         { immediate: true, flush: 'post' },
-      )
+      );
       return {
         getLocalizedPathname,
         showOverview,
         isDark,
         colorBgContainer,
-      }
+      };
     },
-  })
+  });
 </script>
 
 <template>

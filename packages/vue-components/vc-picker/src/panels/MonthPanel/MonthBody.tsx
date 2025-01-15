@@ -1,16 +1,16 @@
-import type { VueNode } from '@antdv/types'
-import type { GenerateConfig } from '../../generate'
-import type { Locale } from '../../interface'
-import useCellClassName from '../../hooks/useCellClassName'
-import useMergeProps from '../../hooks/useMergeProps'
-import { useInjectRange } from '../../RangeContext'
-import { formatValue, isSameMonth } from '../../utils/dateUtil'
-import PanelBody from '../PanelBody'
+import type { VueNode } from '@antdv/types';
+import type { GenerateConfig } from '../../generate';
+import type { Locale } from '../../interface';
+import useCellClassName from '../../hooks/useCellClassName';
+import useMergeProps from '../../hooks/useMergeProps';
+import { useInjectRange } from '../../RangeContext';
+import { formatValue, isSameMonth } from '../../utils/dateUtil';
+import PanelBody from '../PanelBody';
 
-export const MONTH_COL_COUNT = 3
-const MONTH_ROW_COUNT = 4
+export const MONTH_COL_COUNT = 3;
+const MONTH_ROW_COUNT = 4;
 
-export type MonthCellRender<DateType> = (obj: { current: DateType; locale: Locale }) => VueNode
+export type MonthCellRender<DateType> = (obj: { current: DateType; locale: Locale }) => VueNode;
 
 export interface MonthBodyProps<DateType> {
   prefixCls: string;
@@ -24,12 +24,12 @@ export interface MonthBodyProps<DateType> {
 }
 
 function MonthBody<DateType>(_props: MonthBodyProps<DateType>) {
-  const props = useMergeProps(_props)
-  const { prefixCls, locale, value, viewDate, generateConfig, monthCellRender } = props
+  const props = useMergeProps(_props);
+  const { prefixCls, locale, value, viewDate, generateConfig, monthCellRender } = props;
 
-  const { rangedValue, hoverRangedValue } = useInjectRange()
+  const { rangedValue, hoverRangedValue } = useInjectRange();
 
-  const cellPrefixCls = `${prefixCls}-cell`
+  const cellPrefixCls = `${prefixCls}-cell`;
 
   const getCellClassName = useCellClassName({
     cellPrefixCls,
@@ -40,19 +40,19 @@ function MonthBody<DateType>(_props: MonthBodyProps<DateType>) {
     isSameCell: (current, target) => isSameMonth(generateConfig, current, target),
     isInView: () => true,
     offsetCell: (date, offset) => generateConfig.addMonth(date, offset),
-  })
+  });
 
   const monthsLocale: string[]
     = locale.shortMonths
     || (generateConfig.locale.getShortMonths
       ? generateConfig.locale.getShortMonths(locale.locale)
-      : [])
+      : []);
 
-  const baseMonth = generateConfig.setMonth(viewDate, 0)
+  const baseMonth = generateConfig.setMonth(viewDate, 0);
 
   const getCellNode = monthCellRender
     ? (date: DateType) => monthCellRender({ current: date, locale })
-    : undefined
+    : undefined;
 
   return (
     <PanelBody
@@ -64,10 +64,10 @@ function MonthBody<DateType>(_props: MonthBodyProps<DateType>) {
       getCellText={date =>
         locale.monthFormat
           ? formatValue(date, {
-            locale,
-            format: locale.monthFormat,
-            generateConfig,
-          })
+              locale,
+              format: locale.monthFormat,
+              generateConfig,
+            })
           : monthsLocale[generateConfig.getMonth(date)]}
       getCellClassName={getCellClassName}
       getCellDate={generateConfig.addMonth}
@@ -78,10 +78,10 @@ function MonthBody<DateType>(_props: MonthBodyProps<DateType>) {
           generateConfig,
         })}
     />
-  )
+  );
 }
 
-MonthBody.displayName = 'MonthBody'
-MonthBody.inheritAttrs = false
+MonthBody.displayName = 'MonthBody';
+MonthBody.inheritAttrs = false;
 
-export default MonthBody
+export default MonthBody;

@@ -17,43 +17,43 @@ A complete multiple select sample with remote search, debounce fetch, ajax callb
 </docs>
 
 <script lang="ts" setup>
-  import { debounce } from 'lodash-es'
-  import { reactive, watch } from 'vue'
+  import { debounce } from 'lodash-es';
+  import { reactive, watch } from 'vue';
 
-  let lastFetchId = 0
+  let lastFetchId = 0;
 
   const state = reactive({
     data: [],
     value: [],
     fetching: false,
-  })
+  });
 
   const fetchUser = debounce((value) => {
-    console.log('fetching user', value)
-    lastFetchId += 1
-    const fetchId = lastFetchId
-    state.data = []
-    state.fetching = true
+    console.log('fetching user', value);
+    lastFetchId += 1;
+    const fetchId = lastFetchId;
+    state.data = [];
+    state.fetching = true;
     fetch('https://randomuser.me/api/?results=5')
       .then(response => response.json())
       .then((body) => {
         if (fetchId !== lastFetchId) {
           // for fetch callback order
-          return
+          return;
         }
         const data = body.results.map(user => ({
           label: `${user.name.first} ${user.name.last}`,
           value: user.login.username,
-        }))
-        state.data = data
-        state.fetching = false
-      })
-  }, 300)
+        }));
+        state.data = data;
+        state.fetching = false;
+      });
+  }, 300);
 
   watch(state.value, () => {
-    state.data = []
-    state.fetching = false
-  })
+    state.data = [];
+    state.fetching = false;
+  });
 </script>
 
 <template>

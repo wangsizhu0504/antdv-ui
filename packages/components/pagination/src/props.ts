@@ -1,6 +1,6 @@
-import type { ExtractPropTypes } from 'vue'
-import type { PaginationPosition } from './interface'
-import { arrayType, booleanType, functionType, someType, stringType } from '@antdv/utils'
+import type { ExtractPropTypes } from 'vue';
+import type { PaginationPosition } from './interface';
+import { arrayType, booleanType, functionType, someType, stringType } from '@antdv/utils';
 
 export function paginationProps() {
   return {
@@ -38,16 +38,16 @@ export function paginationProps() {
     'onShowSizeChange': functionType<(current: number, size: number) => void>(),
     'onUpdate:current': functionType<(current: number) => void>(),
     'onUpdate:pageSize': functionType<(size: number) => void>(),
-  }
+  };
 }
 
 export function paginationConfig() {
   return {
     ...paginationProps(),
     position: stringType<PaginationPosition>(),
-  }
+  };
 }
 
-export type PaginationConfig = Partial<ExtractPropTypes<ReturnType<typeof paginationConfig>>>
+export type PaginationConfig = Partial<ExtractPropTypes<ReturnType<typeof paginationConfig>>>;
 
-export type PaginationProps = Partial<ExtractPropTypes<ReturnType<typeof paginationProps>>>
+export type PaginationProps = Partial<ExtractPropTypes<ReturnType<typeof paginationProps>>>;

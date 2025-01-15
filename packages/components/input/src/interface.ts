@@ -1,4 +1,4 @@
-import type { VueNode } from '@antdv/types'
+import type { VueNode } from '@antdv/types';
 
 export interface NodeType {
   sizingStyle: string

@@ -431,14 +431,14 @@ export const KeyCode = {
    * whether text and modified key is entered at the same time.
    */
   isTextModifyingKeyEvent: function isTextModifyingKeyEvent(e: KeyboardEvent) {
-    const { keyCode } = e
+    const { keyCode } = e;
     if (
       (e.altKey && !e.ctrlKey)
       || e.metaKey
       // Function keys don't generate text
       || (keyCode >= KeyCode.F1 && keyCode <= KeyCode.F12)
     ) {
-      return false
+      return false;
     }
 
     // The following keys are quite harmless, even in combination with
@@ -467,9 +467,9 @@ export const KeyCode = {
       case KeyCode.UP:
       case KeyCode.WIN_KEY:
       case KeyCode.WIN_KEY_RIGHT:
-        return false
+        return false;
       default:
-        return true
+        return true;
     }
   },
 
@@ -478,17 +478,17 @@ export const KeyCode = {
    */
   isCharacterKey: function isCharacterKey(keyCode: number) {
     if (keyCode >= KeyCode.ZERO && keyCode <= KeyCode.NINE)
-      return true
+      return true;
 
     if (keyCode >= KeyCode.NUM_ZERO && keyCode <= KeyCode.NUM_MULTIPLY)
-      return true
+      return true;
 
     if (keyCode >= KeyCode.A && keyCode <= KeyCode.Z)
-      return true
+      return true;
 
     // Safari sends zero key code for non-latin characters.
     if (window.navigator.userAgent.includes('WebKit') && keyCode === 0)
-      return true
+      return true;
 
     switch (keyCode) {
       case KeyCode.SPACE:
@@ -508,9 +508,9 @@ export const KeyCode = {
       case KeyCode.OPEN_SQUARE_BRACKET:
       case KeyCode.BACKSLASH:
       case KeyCode.CLOSE_SQUARE_BRACKET:
-        return true
+        return true;
       default:
-        return false
+        return false;
     }
   },
-}
+};

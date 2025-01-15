@@ -1,6 +1,6 @@
-import { withInstall } from '@antdv/utils'
-import { SHOW_CHILD, SHOW_PARENT } from '@antdv/vue-components/vc-cascader/src/Cascader'
-import ACascader from './src/Cascader'
+import { withInstall } from '@antdv/utils';
+import { SHOW_CHILD, SHOW_PARENT } from '@antdv/vue-components/vc-cascader/src/Cascader';
+import ACascader from './src/Cascader';
 
 export const Cascader = withInstall<
   typeof ACascader & {
@@ -12,9 +12,9 @@ export const Cascader = withInstall<
     SHOW_CHILD,
     SHOW_PARENT,
   } as any),
-)
+);
 
-export * from './src/interface'
-export * from './src/props'
+export * from './src/interface';
+export * from './src/props';
 
-export default Cascader
+export default Cascader;

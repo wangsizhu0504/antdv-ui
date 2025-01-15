@@ -1,10 +1,10 @@
-import type { CSSProperties, PropType } from 'vue'
-import type { MutableTheme } from '../interface'
-import { theme as antdTheme, ConfigProvider, Segmented, Space } from '@antdv/ui'
-import { computed, defineComponent, ref, toRefs } from 'vue'
-import ComponentDemoGroup from '../component-panel/ComponentDemoGroup'
-import { useInjectLocaleContext } from '../locale'
-import { Error, Primary, Success, Warning } from '../overviews'
+import type { CSSProperties, PropType } from 'vue';
+import type { MutableTheme } from '../interface';
+import { theme as antdTheme, ConfigProvider, Segmented, Space } from '@antdv/ui';
+import { computed, defineComponent, ref, toRefs } from 'vue';
+import ComponentDemoGroup from '../component-panel/ComponentDemoGroup';
+import { useInjectLocaleContext } from '../locale';
+import { Error, Primary, Success, Warning } from '../overviews';
 
 export interface ComponentDemoProProps {
   selectedTokens?: string[]
@@ -28,13 +28,13 @@ const ComponentDemoPro = defineComponent({
   },
   setup(props, { attrs }) {
     const { selectedTokens, theme, components, activeComponents, componentDrawer, showAll }
-      = toRefs(props)
+      = toRefs(props);
 
-    const mode = ref<'overview' | 'component'>('overview')
+    const mode = ref<'overview' | 'component'>('overview');
 
-    const { token } = antdTheme.useToken()
+    const { token } = antdTheme.useToken();
 
-    const locale = useInjectLocaleContext()
+    const locale = useInjectLocaleContext();
 
     const overviewDemo = computed(() => {
       if (showAll.value) {
@@ -45,19 +45,19 @@ const ComponentDemoPro = defineComponent({
             <Error />
             <Warning />
           </Space>
-        )
+        );
       }
       if (selectedTokens.value?.includes('colorError'))
-        return <Error />
+        return <Error />;
 
       if (selectedTokens.value?.includes('colorSuccess'))
-        return <Success />
+        return <Success />;
 
       if (selectedTokens.value?.includes('colorWarning'))
-        return <Warning />
+        return <Warning />;
 
-      return <Primary />
-    })
+      return <Primary />;
+    });
 
     return () => {
       return (
@@ -124,10 +124,10 @@ const ComponentDemoPro = defineComponent({
             </ConfigProvider>
           </div>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 export default defineComponent({
   name: 'ComponentDemoProProvider',
@@ -145,6 +145,6 @@ export default defineComponent({
       <ConfigProvider theme={props.theme?.config}>
         <ComponentDemoPro {...props} {...attrs} />
       </ConfigProvider>
-    )
+    );
   },
-})
+});

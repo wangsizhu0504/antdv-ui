@@ -18,9 +18,9 @@ Fixed Header is generally used to fix the top navigation to facilitate page swit
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const selectedKeys = ref<string[]>(['2'])
+  const selectedKeys = ref<string[]>(['2']);
 </script>
 
 <template>

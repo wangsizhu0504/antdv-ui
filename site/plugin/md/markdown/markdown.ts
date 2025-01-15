@@ -1,20 +1,20 @@
-import type { Header } from '../../shared'
-import MarkdownIt from 'markdown-it'
-import anchor from 'markdown-it-anchor'
-import emoji from 'markdown-it-emoji'
-import toc from 'markdown-it-table-of-contents'
-import { parseHeader } from '../utils/parseHeader'
-import { componentPlugin } from './plugins/component'
-import { containerPlugin } from './plugins/containers'
-import { extractHeaderPlugin } from './plugins/header'
-import { highlight } from './plugins/highlight'
-import { highlightLinePlugin } from './plugins/highlightLines'
-import { hoistPlugin } from './plugins/hoist'
-import { lineNumberPlugin } from './plugins/lineNumbers'
-import { linkPlugin } from './plugins/link'
-import { preWrapperPlugin } from './plugins/preWrapper'
-import { slugify } from './plugins/slugify'
-import { snippetPlugin } from './plugins/snippet'
+import type { Header } from '../../shared';
+import MarkdownIt from 'markdown-it';
+import anchor from 'markdown-it-anchor';
+import emoji from 'markdown-it-emoji';
+import toc from 'markdown-it-table-of-contents';
+import { parseHeader } from '../utils/parseHeader';
+import { componentPlugin } from './plugins/component';
+import { containerPlugin } from './plugins/containers';
+import { extractHeaderPlugin } from './plugins/header';
+import { highlight } from './plugins/highlight';
+import { highlightLinePlugin } from './plugins/highlightLines';
+import { hoistPlugin } from './plugins/hoist';
+import { lineNumberPlugin } from './plugins/lineNumbers';
+import { linkPlugin } from './plugins/link';
+import { preWrapperPlugin } from './plugins/preWrapper';
+import { slugify } from './plugins/slugify';
+import { snippetPlugin } from './plugins/snippet';
 
 export interface MarkdownOptions extends MarkdownIt.Options {
   lineNumbers?: boolean
@@ -47,7 +47,7 @@ export function createMarkdownRenderer(options: MarkdownOptions = {}): MarkdownR
     linkify: true,
     highlight,
     ...options,
-  })
+  });
 
   // custom plugins
   md.use(componentPlugin)
@@ -83,26 +83,26 @@ export function createMarkdownRenderer(options: MarkdownOptions = {}): MarkdownR
       includeLevel: [2, 3],
       format: parseHeader,
       ...options.toc,
-    })
+    });
 
   // apply user config
   if (options.config)
-    options.config(md)
+    options.config(md);
 
   if (options.lineNumbers)
-    md.use(lineNumberPlugin)
+    md.use(lineNumberPlugin);
 
   // wrap render so that we can return both the html and extracted data.
-  const render = md.render
+  const render = md.render;
   const wrappedRender: MarkdownRenderer['render'] = (src) => {
-    (md as any).__data = {}
-    const html = render.call(md, src)
+    (md as any).__data = {};
+    const html = render.call(md, src);
     return {
       html,
       data: (md as any).__data,
-    }
+    };
   };
-  (md as any).render = wrappedRender
+  (md as any).render = wrappedRender;
 
-  return md as any
+  return md as any;
 }

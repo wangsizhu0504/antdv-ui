@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'ne-np',
@@ -182,6 +182,6 @@ const localeValues: Locale = {
   Empty: {
     description: 'डाटा छैन',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

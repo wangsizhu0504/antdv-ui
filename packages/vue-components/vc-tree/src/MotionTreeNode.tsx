@@ -1,5 +1,5 @@
-import type { PropType } from 'vue'
-import type { FlattenNode } from './interface'
+import type { PropType } from 'vue';
+import type { FlattenNode } from './interface';
 import {
   computed,
   defineComponent,
@@ -9,11 +9,11 @@ import {
   shallowRef,
   Transition,
   watch,
-} from 'vue'
-import { collapseMotion } from '../../transition'
-import { useInjectTreeContext } from './contextTypes'
-import { treeNodeProps } from './props'
-import TreeNode from './TreeNode'
+} from 'vue';
+import { collapseMotion } from '../../transition';
+import { useInjectTreeContext } from './contextTypes';
+import { treeNodeProps } from './props';
+import TreeNode from './TreeNode';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -30,47 +30,47 @@ export default defineComponent({
     // treeNodeRequiredProps: { type: Object as PropType<TreeNodeRequiredProps> },
   },
   setup(props, { attrs, slots }) {
-    const visible = shallowRef(true)
-    const context = useInjectTreeContext()
-    const motionedRef = shallowRef(false)
+    const visible = shallowRef(true);
+    const context = useInjectTreeContext();
+    const motionedRef = shallowRef(false);
     const transitionProps = computed(() => {
       if (props.motion)
-        return props.motion
+        return props.motion;
       else
-        return collapseMotion()
-    })
+        return collapseMotion();
+    });
     const onMotionEnd = (node?: HTMLDivElement, type?: 'appear' | 'leave') => {
       if (type === 'appear')
-        transitionProps.value?.onAfterEnter?.(node)
+        transitionProps.value?.onAfterEnter?.(node);
       else if (type === 'leave')
-        transitionProps.value?.onAfterLeave?.(node)
+        transitionProps.value?.onAfterLeave?.(node);
 
       if (!motionedRef.value)
-        props.onMotionEnd()
+        props.onMotionEnd();
 
-      motionedRef.value = true
-    }
+      motionedRef.value = true;
+    };
 
     watch(
       () => props.motionNodes,
       () => {
         if (props.motionNodes && props.motionType === 'hide' && visible.value) {
           nextTick(() => {
-            visible.value = false
-          })
+            visible.value = false;
+          });
         }
       },
       { immediate: true, flush: 'post' },
-    )
+    );
     onMounted(() => {
-      props.motionNodes && props.onMotionStart()
-    })
+      props.motionNodes && props.onMotionStart();
+    });
     onBeforeUnmount(() => {
-      props.motionNodes && onMotionEnd()
-    })
+      props.motionNodes && onMotionEnd();
+    });
 
     return () => {
-      const { motion, motionNodes, motionType, active, eventKey, ...otherProps } = props
+      const { motion, motionNodes, motionType, active, eventKey, ...otherProps } = props;
       if (motionNodes) {
         return (
           <Transition
@@ -87,8 +87,8 @@ export default defineComponent({
                   key,
                   isStart,
                   isEnd,
-                } = treeNode
-                delete restProps.children
+                } = treeNode;
+                delete restProps.children;
 
                 return (
                   <TreeNode
@@ -102,11 +102,11 @@ export default defineComponent({
                     isStart={isStart}
                     isEnd={isEnd}
                   />
-                )
+                );
               })}
             </div>
           </Transition>
-        )
+        );
       }
       return (
         <TreeNode
@@ -117,7 +117,7 @@ export default defineComponent({
           active={active}
           eventKey={eventKey}
         />
-      )
-    }
+      );
+    };
   },
-})
+});

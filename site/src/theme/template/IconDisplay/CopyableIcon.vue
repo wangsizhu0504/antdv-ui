@@ -1,16 +1,16 @@
 <script>
-  import * as AntdIcons from '@ant-design/icons-vue'
-  import { Badge } from '@antdv/ui'
-  import { defineComponent } from 'vue'
+  import * as AntdIcons from '@ant-design/icons-vue';
+  import { Badge } from '@antdv/ui';
+  import { defineComponent } from 'vue';
 
-  const allIcons = AntdIcons
+  const allIcons = AntdIcons;
 
   const kebabCase = function kebabCase(str) {
     return str
       .split(/(?=[A-Z])/)
       .join('-')
-      .toLowerCase()
-  }
+      .toLowerCase();
+  };
 
   export default defineComponent({
     components: {
@@ -18,22 +18,22 @@
     },
     props: ['name', 'type', 'isNew', 'theme', 'justCopied'],
     data() {
-      const kebabCasedName = kebabCase(this.name)
-      const kebabCasedType = kebabCase(this.type)
+      const kebabCasedName = kebabCase(this.name);
+      const kebabCasedType = kebabCase(this.type);
 
-      this.allIcons = allIcons
+      this.allIcons = allIcons;
 
       return {
         text: `<${kebabCasedName} />`,
         kebabCasedType,
-      }
+      };
     },
     methods: {
       onCopied() {
-        this.$emit('copied', this.type, this.text)
+        this.$emit('copied', this.type, this.text);
       },
     },
-  })
+  });
 </script>
 
 <template>

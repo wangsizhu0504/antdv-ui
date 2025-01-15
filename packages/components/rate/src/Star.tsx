@@ -1,5 +1,5 @@
-import { computed, defineComponent } from 'vue'
-import { starProps } from './props'
+import { computed, defineComponent } from 'vue';
+import { starProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -9,49 +9,49 @@ export default defineComponent({
   emits: ['hover', 'click'],
   setup(props, { emit }) {
     const onHover = (e: MouseEvent) => {
-      const { index } = props
-      emit('hover', e, index)
-    }
+      const { index } = props;
+      emit('hover', e, index);
+    };
     const onClick = (e: MouseEvent) => {
-      const { index } = props
-      emit('click', e, index)
-    }
+      const { index } = props;
+      emit('click', e, index);
+    };
     const onKeyDown = (e: KeyboardEvent) => {
-      const { index } = props
+      const { index } = props;
       if (e.keyCode === 13)
-        emit('click', e, index)
-    }
+        emit('click', e, index);
+    };
 
     const cls = computed(() => {
-      const { prefixCls, index, value, allowHalf, focused } = props
-      const starValue = index + 1
-      let className = prefixCls
+      const { prefixCls, index, value, allowHalf, focused } = props;
+      const starValue = index + 1;
+      let className = prefixCls;
       if (value === 0 && index === 0 && focused) {
-        className += ` ${prefixCls}-focused`
+        className += ` ${prefixCls}-focused`;
       } else if (allowHalf && value + 0.5 >= starValue && value < starValue) {
-        className += ` ${prefixCls}-half ${prefixCls}-active`
+        className += ` ${prefixCls}-half ${prefixCls}-active`;
         if (focused)
-          className += ` ${prefixCls}-focused`
+          className += ` ${prefixCls}-focused`;
       } else {
-        className += starValue <= value ? ` ${prefixCls}-full` : ` ${prefixCls}-zero`
+        className += starValue <= value ? ` ${prefixCls}-full` : ` ${prefixCls}-zero`;
         if (starValue === value && focused)
-          className += ` ${prefixCls}-focused`
+          className += ` ${prefixCls}-focused`;
       }
-      return className
-    })
+      return className;
+    });
 
     return () => {
-      const { disabled, prefixCls, characterRender, character, index, count, value } = props
+      const { disabled, prefixCls, characterRender, character, index, count, value } = props;
       const characterNode
         = typeof character === 'function'
           ? character({
-            disabled,
-            prefixCls,
-            index,
-            count,
-            value,
-          })
-          : character
+              disabled,
+              prefixCls,
+              index,
+              count,
+              value,
+            })
+          : character;
       let star = (
         <li class={cls.value}>
           <div
@@ -68,11 +68,11 @@ export default defineComponent({
             <div class={`${prefixCls}-second`}>{characterNode}</div>
           </div>
         </li>
-      )
+      );
       if (characterRender)
-        star = characterRender(star, props)
+        star = characterRender(star, props);
 
-      return star
-    }
+      return star;
+    };
   },
-})
+});

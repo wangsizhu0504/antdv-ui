@@ -17,13 +17,13 @@ Click the button to toggle between available and disabled states.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<number>(3)
-  const disabled = ref<boolean>(true)
+  const value = ref<number>(3);
+  const disabled = ref<boolean>(true);
 
   function toggle() {
-    disabled.value = !disabled.value
+    disabled.value = !disabled.value;
   }
 </script>
 

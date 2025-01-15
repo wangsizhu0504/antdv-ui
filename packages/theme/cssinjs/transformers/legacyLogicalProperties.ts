@@ -1,42 +1,42 @@
-import type { CSSObject } from '..'
-import type { Transformer } from './interface'
+import type { CSSObject } from '..';
+import type { Transformer } from './interface';
 
 function splitValues(value: string | number) {
   if (typeof value === 'number')
-    return [value]
+    return [value];
 
-  const splitStyle = String(value).split(/\s+/)
+  const splitStyle = String(value).split(/\s+/);
 
   // Combine styles split in brackets, like `calc(1px + 2px)`
-  let temp = ''
-  let brackets = 0
+  let temp = '';
+  let brackets = 0;
   return splitStyle.reduce<string[]>((list, item) => {
     if (item.includes('(')) {
-      temp += item
-      brackets += item.split('(').length - 1
+      temp += item;
+      brackets += item.split('(').length - 1;
     } else if (item.includes(')')) {
-      temp += ` ${item}`
-      brackets -= item.split(')').length - 1
+      temp += ` ${item}`;
+      brackets -= item.split(')').length - 1;
       if (brackets === 0) {
-        list.push(temp)
-        temp = ''
+        list.push(temp);
+        temp = '';
       }
     } else if (brackets > 0) {
-      temp += ` ${item}`
+      temp += ` ${item}`;
     } else {
-      list.push(item)
+      list.push(item);
     }
-    return list
-  }, [])
+    return list;
+  }, []);
 }
 
 type MatchValue = string[] & {
   notSplit?: boolean
-}
+};
 
 function noSplit(list: MatchValue): MatchValue {
-  list.notSplit = true
-  return list
+  list.notSplit = true;
+  return list;
 }
 
 const keyMap: Record<string, MatchValue> = {
@@ -102,10 +102,10 @@ const keyMap: Record<string, MatchValue> = {
   borderStartEndRadius: ['borderTopRightRadius'],
   borderEndStartRadius: ['borderBottomLeftRadius'],
   borderEndEndRadius: ['borderBottomRightRadius'],
-}
+};
 
 function skipCheck(value: string | number) {
-  return { _skip_check_: true, value }
+  return { _skip_check_: true, value };
 }
 
 /**
@@ -119,43 +119,43 @@ function skipCheck(value: string | number) {
  */
 const transform: Transformer = {
   visit: (cssObj) => {
-    const clone: CSSObject = {}
+    const clone: CSSObject = {};
 
     Object.keys(cssObj).forEach((key) => {
-      const value = cssObj[key]
-      const matchValue = keyMap[key]
+      const value = cssObj[key];
+      const matchValue = keyMap[key];
 
       if (matchValue && (typeof value === 'number' || typeof value === 'string')) {
-        const values = splitValues(value)
+        const values = splitValues(value);
 
         if (matchValue.length && matchValue.notSplit) {
           // not split means always give same value like border
           matchValue.forEach((matchKey) => {
-            clone[matchKey] = skipCheck(value)
-          })
+            clone[matchKey] = skipCheck(value);
+          });
         } else if (matchValue.length === 1) {
           // Handle like `marginBlockStart` => `marginTop`
-          clone[matchValue[0]] = skipCheck(value)
+          clone[matchValue[0]] = skipCheck(value);
         } else if (matchValue.length === 2) {
           // Handle like `marginBlock` => `marginTop` & `marginBottom`
           matchValue.forEach((matchKey, index) => {
-            clone[matchKey] = skipCheck(values[index] ?? values[0])
-          })
+            clone[matchKey] = skipCheck(values[index] ?? values[0]);
+          });
         } else if (matchValue.length === 4) {
           // Handle like `inset` => `top` & `right` & `bottom` & `left`
           matchValue.forEach((matchKey, index) => {
-            clone[matchKey] = skipCheck(values[index] ?? values[index - 2] ?? values[0])
-          })
+            clone[matchKey] = skipCheck(values[index] ?? values[index - 2] ?? values[0]);
+          });
         } else {
-          clone[key] = value
+          clone[key] = value;
         }
       } else {
-        clone[key] = value
+        clone[key] = value;
       }
-    })
+    });
 
-    return clone
+    return clone;
   },
-}
+};
 
-export default transform
+export default transform;

@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'vue'
-import { defineComponent } from 'vue'
+import type { CSSProperties } from 'vue';
+import { defineComponent } from 'vue';
 
 const Pick = defineComponent({
   name: 'Pick',
@@ -50,9 +50,9 @@ const Pick = defineComponent({
             </g>
           </g>
         </svg>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default Pick
+export default Pick;

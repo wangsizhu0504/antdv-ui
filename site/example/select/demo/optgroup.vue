@@ -17,12 +17,12 @@ Using `OptGroup` or `options.options` to group the options.
 </docs>
 
 <script lang="ts" setup>
-  import type { SelectProps } from '@antdv/ui'
-  import { UserOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { SelectProps } from '@antdv/ui';
+  import { UserOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   function handleChange(value: string) {
-    console.log(`selected ${value}`)
+    console.log(`selected ${value}`);
   }
 
   const options = ref<SelectProps['options']>([
@@ -48,9 +48,9 @@ Using `OptGroup` or `options.options` to group the options.
         },
       ],
     },
-  ])
+  ]);
 
-  const value = ref<any>(['lucy'])
+  const value = ref<any>(['lucy']);
 </script>
 
 <template>

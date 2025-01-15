@@ -1,8 +1,8 @@
-import type { FunctionalComponent } from 'vue'
-import type { CellProps } from './interface'
+import type { FunctionalComponent } from 'vue';
+import type { CellProps } from './interface';
 
 function notEmpty(val: any) {
-  return val !== undefined && val !== null
+  return val !== undefined && val !== null;
 }
 
 const Cell: FunctionalComponent<CellProps> = (props) => {
@@ -16,8 +16,8 @@ const Cell: FunctionalComponent<CellProps> = (props) => {
     label,
     content,
     colon,
-  } = props
-  const Component = component as any
+  } = props;
+  const Component = component as any;
   if (bordered) {
     return (
       <Component
@@ -32,7 +32,7 @@ const Cell: FunctionalComponent<CellProps> = (props) => {
         {notEmpty(label) && <span style={labelStyle}>{label}</span>}
         {notEmpty(content) && <span style={contentStyle}>{content}</span>}
       </Component>
-    )
+    );
   }
 
   return (
@@ -58,7 +58,7 @@ const Cell: FunctionalComponent<CellProps> = (props) => {
         )}
       </div>
     </Component>
-  )
-}
+  );
+};
 
-export default Cell
+export default Cell;

@@ -1,4 +1,4 @@
-import type { VueNode } from '@antdv/types'
+import type { VueNode } from '@antdv/types';
 
 export interface PaginationLocale {
   items_per_page?: string
@@ -33,7 +33,7 @@ export interface TableLocale {
   cancelSort?: string
 }
 
-type ValidateMessage = string | (() => string)
+type ValidateMessage = string | (() => string);
 export interface ValidateMessages {
   default?: ValidateMessage
   required?: ValidateMessage

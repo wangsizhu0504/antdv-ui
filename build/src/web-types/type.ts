@@ -1,4 +1,4 @@
-import type { PathLike } from 'node:fs'
+import type { PathLike } from 'node:fs';
 
 export interface VueSlot {
   name: string;
@@ -73,67 +73,67 @@ interface BaseDefinition {
 export type ObjectDefinition = {
   type: 'object'
   properties: Record<string, Definition>
-} & BaseDefinition
+} & BaseDefinition;
 
 type BooleanDefinition = {
   type: 'boolean'
   literal?: string
-} & BaseDefinition
+} & BaseDefinition;
 
 type StringDefinition = {
   type: 'string'
   literal?: string
-} & BaseDefinition
+} & BaseDefinition;
 
 type NumberDefinition = {
   type: 'number'
   literal?: string
-} & BaseDefinition
+} & BaseDefinition;
 
 type UnionDefinition = {
   type: 'anyOf'
   items: Definition[]
-} & BaseDefinition
+} & BaseDefinition;
 
 type IntersectionDefinition = {
   type: 'allOf'
   items: Definition[]
-} & BaseDefinition
+} & BaseDefinition;
 
 type ArrayDefinition = {
   type: 'array'
   items: Definition[]
   length?: number
-} & BaseDefinition
+} & BaseDefinition;
 
 type FunctionDefinition = {
   type: 'function'
   parameters: NamedDefinition[]
   returnType: Definition
-} & BaseDefinition
+} & BaseDefinition;
 
 type RefDefinition = {
   type: 'ref'
   ref: string
-} & BaseDefinition
+} & BaseDefinition;
 
 type ConstructorDefinition = {
   type: 'constructor'
-} & BaseDefinition
+} & BaseDefinition;
 
 type RecordDefinition = {
   type: 'record'
   key: Definition
   value: Definition
-} & BaseDefinition
+} & BaseDefinition;
 
 type InterfaceDefinition = {
   type: 'interface'
   name: string
   parameters: NamedDefinition[]
-} & BaseDefinition
+} & BaseDefinition;
 
-type NamedDefinition = Definition & { name: string }
+type NamedDefinition = Definition & { name: string };
 
 export type Definition =
   | ObjectDefinition
@@ -147,4 +147,4 @@ export type Definition =
   | RefDefinition
   | ConstructorDefinition
   | RecordDefinition
-  | InterfaceDefinition
+  | InterfaceDefinition;

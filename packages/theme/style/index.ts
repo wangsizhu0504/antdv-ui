@@ -1,14 +1,14 @@
-import type { CSSObject } from '../cssinjs'
-import type { DerivativeToken } from '../token'
+import type { CSSObject } from '../cssinjs';
+import type { DerivativeToken } from '../token';
 
-export { operationUnit } from './operationUnit'
-export { roundedArrow } from './roundedArrow'
+export { operationUnit } from './operationUnit';
+export { roundedArrow } from './roundedArrow';
 
 export const textEllipsis: CSSObject = {
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
-}
+};
 
 export function resetComponent(token: DerivativeToken): CSSObject {
   return {
@@ -22,7 +22,7 @@ export function resetComponent(token: DerivativeToken): CSSObject {
     listStyle: 'none',
     // font-feature-settings: @font-feature-settings-base;
     fontFamily: token.fontFamily,
-  }
+  };
 }
 
 export function resetIcon(): CSSObject {
@@ -47,7 +47,7 @@ export function resetIcon(): CSSObject {
     'svg': {
       display: 'inline-block',
     },
-  }
+  };
 }
 
 export function clearFix(): CSSObject {
@@ -64,7 +64,7 @@ export function clearFix(): CSSObject {
       clear: 'both',
       content: '""',
     },
-  }
+  };
 }
 
 export function genLinkStyle(token: DerivativeToken): CSSObject {
@@ -103,13 +103,13 @@ export function genLinkStyle(token: DerivativeToken): CSSObject {
         cursor: 'not-allowed',
       },
     },
-  }
+  };
 }
 
 export function genCommonStyle(token: DerivativeToken, componentPrefixCls: string): CSSObject {
-  const { fontFamily, fontSize } = token
+  const { fontFamily, fontSize } = token;
 
-  const rootPrefixSelector = `[class^="${componentPrefixCls}"], [class*=" ${componentPrefixCls}"]`
+  const rootPrefixSelector = `[class^="${componentPrefixCls}"], [class*=" ${componentPrefixCls}"]`;
 
   return {
     [rootPrefixSelector]: {
@@ -129,7 +129,7 @@ export function genCommonStyle(token: DerivativeToken, componentPrefixCls: strin
         },
       },
     },
-  }
+  };
 }
 
 export function genFocusOutline(token: DerivativeToken): CSSObject {
@@ -137,7 +137,7 @@ export function genFocusOutline(token: DerivativeToken): CSSObject {
     outline: `${token.lineWidthBold}px solid ${token.colorPrimaryBorder}`,
     outlineOffset: 1,
     transition: 'outline-offset 0s, outline 0s',
-  }
+  };
 }
 
 export function genFocusStyle(token: DerivativeToken): CSSObject {
@@ -145,5 +145,5 @@ export function genFocusStyle(token: DerivativeToken): CSSObject {
     '&:focus-visible': {
       ...genFocusOutline(token),
     },
-  }
+  };
 }

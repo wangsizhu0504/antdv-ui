@@ -1,7 +1,7 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
 
 // deps-lint-skip-all
-import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
+import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {
@@ -34,7 +34,7 @@ const genMessageStyle: GenerateStyle<MessageToken> = (token) => {
     zIndexPopup,
     // Custom token
     messageNoticeContentPadding,
-  } = token
+  } = token;
 
   const messageMoveIn = new Keyframes('MessageMoveIn', {
     '0%': {
@@ -48,7 +48,7 @@ const genMessageStyle: GenerateStyle<MessageToken> = (token) => {
       transform: 'translateY(0)',
       opacity: 1,
     },
-  })
+  });
 
   const messageMoveOut = new Keyframes('MessageMoveOut', {
     '0%': {
@@ -61,7 +61,7 @@ const genMessageStyle: GenerateStyle<MessageToken> = (token) => {
       padding: 0,
       opacity: 0,
     },
-  })
+  });
 
   return [
     // ============================ Holder ============================
@@ -157,8 +157,8 @@ const genMessageStyle: GenerateStyle<MessageToken> = (token) => {
         textAlign: 'start',
       },
     },
-  ]
-}
+  ];
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
@@ -169,11 +169,11 @@ export default genComponentStyleHook(
       messageNoticeContentPadding: `${
         (token.controlHeightLG - token.fontSize * token.lineHeight) / 2
       }px ${token.paddingSM}px`,
-    })
-    return [genMessageStyle(combinedToken)]
+    });
+    return [genMessageStyle(combinedToken)];
   },
   token => ({
     height: 150,
     zIndexPopup: token.zIndexPopupBase + 10,
   }),
-)
+);

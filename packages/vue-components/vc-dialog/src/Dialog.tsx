@@ -1,7 +1,7 @@
-import type { MouseEventHandler } from '@antdv/types'
-import type { ScrollLocker } from '@antdv/utils'
-import type { PropType } from 'vue'
-import type { ContentRef } from './Content'
+import type { MouseEventHandler } from '@antdv/types';
+import type { ScrollLocker } from '@antdv/utils';
+import type { PropType } from 'vue';
+import type { ContentRef } from './Content';
 import {
   classNames,
   contains,
@@ -9,12 +9,12 @@ import {
   KeyCode,
   omit,
   pickAttrs,
-} from '@antdv/utils'
-import { defineComponent, onBeforeUnmount, shallowRef, watch, watchEffect } from 'vue'
-import Content from './Content'
-import dialogPropTypes from './IDialogPropTypes'
-import Mask from './Mask'
-import { getMotionName, getUUID } from './util'
+} from '@antdv/utils';
+import { defineComponent, onBeforeUnmount, shallowRef, watch, watchEffect } from 'vue';
+import Content from './Content';
+import dialogPropTypes from './IDialogPropTypes';
+import Mask from './Mask';
+import { getMotionName, getUUID } from './util';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -39,98 +39,98 @@ export default defineComponent({
     },
   ),
   setup(props, { attrs, slots }) {
-    const lastOutSideActiveElementRef = shallowRef<HTMLElement>()
-    const wrapperRef = shallowRef<HTMLDivElement>()
-    const contentRef = shallowRef<ContentRef>()
-    const animatedVisible = shallowRef(props.visible)
-    const ariaIdRef = shallowRef<string>(`vcDialogTitle${getUUID()}`)
+    const lastOutSideActiveElementRef = shallowRef<HTMLElement>();
+    const wrapperRef = shallowRef<HTMLDivElement>();
+    const contentRef = shallowRef<ContentRef>();
+    const animatedVisible = shallowRef(props.visible);
+    const ariaIdRef = shallowRef<string>(`vcDialogTitle${getUUID()}`);
 
     // ========================= Events =========================
     const onDialogVisibleChanged = (newVisible: boolean) => {
       if (newVisible) {
         // Try to focus
         if (!contains(wrapperRef.value, document.activeElement as HTMLElement)) {
-          lastOutSideActiveElementRef.value = document.activeElement as HTMLElement
-          contentRef.value?.focus()
+          lastOutSideActiveElementRef.value = document.activeElement as HTMLElement;
+          contentRef.value?.focus();
         }
       } else {
-        const preAnimatedVisible = animatedVisible.value
+        const preAnimatedVisible = animatedVisible.value;
         // Clean up scroll bar & focus back
-        animatedVisible.value = false
+        animatedVisible.value = false;
         if (props.mask && lastOutSideActiveElementRef.value && props.focusTriggerAfterClose) {
           try {
-            lastOutSideActiveElementRef.value.focus({ preventScroll: true })
+            lastOutSideActiveElementRef.value.focus({ preventScroll: true });
           } catch (e) {
             // Do nothing
           }
-          lastOutSideActiveElementRef.value = null
+          lastOutSideActiveElementRef.value = null;
         }
 
         // Trigger afterClose only when change visible from true to false
         if (preAnimatedVisible)
-          props.afterClose?.()
+          props.afterClose?.();
       }
-    }
+    };
 
     const onInternalClose = (e: MouseEvent | KeyboardEvent) => {
-      props.onClose?.(e)
-    }
+      props.onClose?.(e);
+    };
 
     // >>> Content
-    const contentClickRef = shallowRef(false)
-    const contentTimeoutRef = shallowRef<any>()
+    const contentClickRef = shallowRef(false);
+    const contentTimeoutRef = shallowRef<any>();
 
     // We need record content click incase content popup out of dialog
     const onContentMouseDown: MouseEventHandler = () => {
-      clearTimeout(contentTimeoutRef.value)
-      contentClickRef.value = true
-    }
+      clearTimeout(contentTimeoutRef.value);
+      contentClickRef.value = true;
+    };
 
     const onContentMouseUp: MouseEventHandler = () => {
       contentTimeoutRef.value = setTimeout(() => {
-        contentClickRef.value = false
-      })
-    }
+        contentClickRef.value = false;
+      });
+    };
 
     const onWrapperClick = (e: MouseEvent) => {
-      if (!props.maskClosable) return null
+      if (!props.maskClosable) return null;
       if (contentClickRef.value)
-        contentClickRef.value = false
+        contentClickRef.value = false;
       else if (wrapperRef.value === e.target)
-        onInternalClose(e)
-    }
+        onInternalClose(e);
+    };
     const onWrapperKeyDown = (e: KeyboardEvent) => {
       if (props.keyboard && e.keyCode === KeyCode.ESC) {
-        e.stopPropagation()
-        onInternalClose(e)
-        return
+        e.stopPropagation();
+        onInternalClose(e);
+        return;
       }
 
       // keep focus inside dialog
       if (props.visible) {
         if (e.keyCode === KeyCode.TAB)
-          contentRef.value.changeActive(!e.shiftKey)
+          contentRef.value.changeActive(!e.shiftKey);
       }
-    }
+    };
 
     watch(
       () => props.visible,
       () => {
         if (props.visible)
-          animatedVisible.value = true
+          animatedVisible.value = true;
       },
       { flush: 'post' },
-    )
+    );
 
     onBeforeUnmount(() => {
-      clearTimeout(contentTimeoutRef.value)
-      props.scrollLocker?.unLock()
-    })
+      clearTimeout(contentTimeoutRef.value);
+      props.scrollLocker?.unLock();
+    });
     watchEffect(() => {
-      props.scrollLocker?.unLock()
+      props.scrollLocker?.unLock();
       if (animatedVisible.value)
-        props.scrollLocker?.lock()
-    })
+        props.scrollLocker?.lock();
+    });
 
     return () => {
       const {
@@ -150,8 +150,8 @@ export default defineComponent({
         animation,
         wrapProps,
         title = slots.title,
-      } = props
-      const { style, class: className } = attrs
+      } = props;
+      const { style, class: className } = attrs;
       return (
         <div class={[`${prefixCls}-root`, rootClassName]} {...pickAttrs(props, { data: true })}>
           <Mask
@@ -193,7 +193,7 @@ export default defineComponent({
             />
           </div>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

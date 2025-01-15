@@ -1,9 +1,9 @@
-import type { CSSProperties, StyleValue } from 'vue'
-import { useMutationObserver } from '@antdv/hooks'
+import type { CSSProperties, StyleValue } from 'vue';
+import { useMutationObserver } from '@antdv/hooks';
 
-import { useToken } from '@antdv/theme'
+import { useToken } from '@antdv/theme';
 
-import { initDefaultProps } from '@antdv/utils'
+import { initDefaultProps } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -11,16 +11,16 @@ import {
   onMounted,
   shallowRef,
   watch,
-} from 'vue'
-import { watermarkProps } from './props'
-import { getPixelRatio, getStyleStr, reRendering, rotateWatermark } from './utils'
+} from 'vue';
+import { watermarkProps } from './props';
+import { getPixelRatio, getStyleStr, reRendering, rotateWatermark } from './utils';
 
 /**
  * Base size of the canvas, 1 for parallel layout and 2 for alternate layout
  * Only alternate layout is currently supported
  */
-const BaseSize = 2
-const FontGap = 3
+const BaseSize = 2;
+const FontGap = 3;
 
 export default defineComponent({
   name: 'AWatermark',
@@ -32,21 +32,21 @@ export default defineComponent({
     gap: [100, 100],
   }),
   setup(props, { slots, attrs }) {
-    const [, token] = useToken()
-    const containerRef = shallowRef<HTMLDivElement>()
-    const watermarkRef = shallowRef<HTMLDivElement>()
-    const stopObservation = shallowRef(false)
-    const gapX = computed(() => props.gap?.[0] ?? 100)
-    const gapY = computed(() => props.gap?.[1] ?? 100)
-    const gapXCenter = computed(() => gapX.value / 2)
-    const gapYCenter = computed(() => gapY.value / 2)
-    const offsetLeft = computed(() => props.offset?.[0] ?? gapXCenter.value)
-    const offsetTop = computed(() => props.offset?.[1] ?? gapYCenter.value)
-    const fontSize = computed(() => props.font?.fontSize ?? token.value.fontSizeLG)
-    const fontWeight = computed(() => props.font?.fontWeight ?? 'normal')
-    const fontStyle = computed(() => props.font?.fontStyle ?? 'normal')
-    const fontFamily = computed(() => props.font?.fontFamily ?? 'sans-serif')
-    const color = computed(() => props.font?.color ?? token.value.colorFill)
+    const [, token] = useToken();
+    const containerRef = shallowRef<HTMLDivElement>();
+    const watermarkRef = shallowRef<HTMLDivElement>();
+    const stopObservation = shallowRef(false);
+    const gapX = computed(() => props.gap?.[0] ?? 100);
+    const gapY = computed(() => props.gap?.[1] ?? 100);
+    const gapXCenter = computed(() => gapX.value / 2);
+    const gapYCenter = computed(() => gapY.value / 2);
+    const offsetLeft = computed(() => props.offset?.[0] ?? gapXCenter.value);
+    const offsetTop = computed(() => props.offset?.[1] ?? gapYCenter.value);
+    const fontSize = computed(() => props.font?.fontSize ?? token.value.fontSizeLG);
+    const fontWeight = computed(() => props.font?.fontWeight ?? 'normal');
+    const fontStyle = computed(() => props.font?.fontStyle ?? 'normal');
+    const fontFamily = computed(() => props.font?.fontFamily ?? 'sans-serif');
+    const color = computed(() => props.font?.color ?? token.value.colorFill);
     const getMarkStyle = computed(() => {
       const markStyle: CSSProperties = {
         zIndex: props.zIndex ?? 9,
@@ -57,35 +57,35 @@ export default defineComponent({
         height: '100%',
         pointerEvents: 'none',
         backgroundRepeat: 'repeat',
-      }
+      };
 
       /** Calculate the style of the offset */
-      let positionLeft = offsetLeft.value - gapXCenter.value
-      let positionTop = offsetTop.value - gapYCenter.value
+      let positionLeft = offsetLeft.value - gapXCenter.value;
+      let positionTop = offsetTop.value - gapYCenter.value;
       if (positionLeft > 0) {
-        markStyle.left = `${positionLeft}px`
-        markStyle.width = `calc(100% - ${positionLeft}px)`
-        positionLeft = 0
+        markStyle.left = `${positionLeft}px`;
+        markStyle.width = `calc(100% - ${positionLeft}px)`;
+        positionLeft = 0;
       }
       if (positionTop > 0) {
-        markStyle.top = `${positionTop}px`
-        markStyle.height = `calc(100% - ${positionTop}px)`
-        positionTop = 0
+        markStyle.top = `${positionTop}px`;
+        markStyle.height = `calc(100% - ${positionTop}px)`;
+        positionTop = 0;
       }
-      markStyle.backgroundPosition = `${positionLeft}px ${positionTop}px`
+      markStyle.backgroundPosition = `${positionLeft}px ${positionTop}px`;
 
-      return markStyle
-    })
+      return markStyle;
+    });
     const destroyWatermark = () => {
       if (watermarkRef.value) {
-        watermarkRef.value.remove()
-        watermarkRef.value = undefined
+        watermarkRef.value.remove();
+        watermarkRef.value = undefined;
       }
-    }
+    };
 
     const appendWatermark = (base64Url: string, markWidth: number) => {
       if (containerRef.value && watermarkRef.value) {
-        stopObservation.value = true
+        stopObservation.value = true;
         watermarkRef.value.setAttribute(
           'style',
           getStyleStr({
@@ -93,34 +93,34 @@ export default defineComponent({
             backgroundImage: `url('${base64Url}')`,
             backgroundSize: `${(gapX.value + markWidth) * BaseSize}px`,
           }),
-        )
-        containerRef.value?.append(watermarkRef.value)
+        );
+        containerRef.value?.append(watermarkRef.value);
         // Delayed execution
         setTimeout(() => {
-          stopObservation.value = false
-        })
+          stopObservation.value = false;
+        });
       }
-    }
+    };
     /**
      * Get the width and height of the watermark. The default values are as follows
      * Image: [120, 64]; Content: It's calculated by content;
      */
     const getMarkSize = (ctx: CanvasRenderingContext2D) => {
-      let defaultWidth = 120
-      let defaultHeight = 64
-      const content = props.content
-      const image = props.image
-      const width = props.width
-      const height = props.height
+      let defaultWidth = 120;
+      let defaultHeight = 64;
+      const content = props.content;
+      const image = props.image;
+      const width = props.width;
+      const height = props.height;
       if (!image && ctx.measureText) {
-        ctx.font = `${Number(fontSize.value)}px ${fontFamily.value}`
-        const contents = Array.isArray(content) ? content : [content]
-        const widths = contents.map(item => ctx.measureText(item!).width)
-        defaultWidth = Math.ceil(Math.max(...widths))
-        defaultHeight = Number(fontSize.value) * contents.length + (contents.length - 1) * FontGap
+        ctx.font = `${Number(fontSize.value)}px ${fontFamily.value}`;
+        const contents = Array.isArray(content) ? content : [content];
+        const widths = contents.map(item => ctx.measureText(item!).width);
+        defaultWidth = Math.ceil(Math.max(...widths));
+        defaultHeight = Number(fontSize.value) * contents.length + (contents.length - 1) * FontGap;
       }
-      return [width ?? defaultWidth, height ?? defaultHeight] as const
-    }
+      return [width ?? defaultWidth, height ?? defaultHeight] as const;
+    };
     const fillTexts = (
       ctx: CanvasRenderingContext2D,
       drawX: number,
@@ -128,107 +128,107 @@ export default defineComponent({
       drawWidth: number,
       drawHeight: number,
     ) => {
-      const ratio = getPixelRatio()
-      const content = props.content
-      const mergedFontSize = Number(fontSize.value) * ratio
-      ctx.font = `${fontStyle.value} normal ${fontWeight.value} ${mergedFontSize}px/${drawHeight}px ${fontFamily.value}`
-      ctx.fillStyle = color.value
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'top'
-      ctx.translate(drawWidth / 2, 0)
-      const contents = Array.isArray(content) ? content : [content]
+      const ratio = getPixelRatio();
+      const content = props.content;
+      const mergedFontSize = Number(fontSize.value) * ratio;
+      ctx.font = `${fontStyle.value} normal ${fontWeight.value} ${mergedFontSize}px/${drawHeight}px ${fontFamily.value}`;
+      ctx.fillStyle = color.value;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.translate(drawWidth / 2, 0);
+      const contents = Array.isArray(content) ? content : [content];
       contents?.forEach((item, index) => {
-        ctx.fillText(item ?? '', drawX, drawY + index * (mergedFontSize + FontGap * ratio))
-      })
-    }
+        ctx.fillText(item ?? '', drawX, drawY + index * (mergedFontSize + FontGap * ratio));
+      });
+    };
     const renderWatermark = () => {
-      const canvas = document.createElement('canvas')
-      const ctx = canvas.getContext('2d')
-      const image = props.image
-      const rotate = props.rotate ?? -22
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const image = props.image;
+      const rotate = props.rotate ?? -22;
 
       if (ctx) {
         if (!watermarkRef.value)
-          watermarkRef.value = document.createElement('div')
+          watermarkRef.value = document.createElement('div');
 
-        const ratio = getPixelRatio()
-        const [markWidth, markHeight] = getMarkSize(ctx)
-        const canvasWidth = (gapX.value + markWidth) * ratio
-        const canvasHeight = (gapY.value + markHeight) * ratio
-        canvas.setAttribute('width', `${canvasWidth * BaseSize}px`)
-        canvas.setAttribute('height', `${canvasHeight * BaseSize}px`)
+        const ratio = getPixelRatio();
+        const [markWidth, markHeight] = getMarkSize(ctx);
+        const canvasWidth = (gapX.value + markWidth) * ratio;
+        const canvasHeight = (gapY.value + markHeight) * ratio;
+        canvas.setAttribute('width', `${canvasWidth * BaseSize}px`);
+        canvas.setAttribute('height', `${canvasHeight * BaseSize}px`);
 
-        const drawX = (gapX.value * ratio) / 2
-        const drawY = (gapY.value * ratio) / 2
-        const drawWidth = markWidth * ratio
-        const drawHeight = markHeight * ratio
-        const rotateX = (drawWidth + gapX.value * ratio) / 2
-        const rotateY = (drawHeight + gapY.value * ratio) / 2
+        const drawX = (gapX.value * ratio) / 2;
+        const drawY = (gapY.value * ratio) / 2;
+        const drawWidth = markWidth * ratio;
+        const drawHeight = markHeight * ratio;
+        const rotateX = (drawWidth + gapX.value * ratio) / 2;
+        const rotateY = (drawHeight + gapY.value * ratio) / 2;
         /** Alternate drawing parameters */
-        const alternateDrawX = drawX + canvasWidth
-        const alternateDrawY = drawY + canvasHeight
-        const alternateRotateX = rotateX + canvasWidth
-        const alternateRotateY = rotateY + canvasHeight
+        const alternateDrawX = drawX + canvasWidth;
+        const alternateDrawY = drawY + canvasHeight;
+        const alternateRotateX = rotateX + canvasWidth;
+        const alternateRotateY = rotateY + canvasHeight;
 
-        ctx.save()
-        rotateWatermark(ctx, rotateX, rotateY, rotate)
+        ctx.save();
+        rotateWatermark(ctx, rotateX, rotateY, rotate);
 
         if (image) {
-          const img = new Image()
+          const img = new Image();
           img.onload = () => {
-            ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight)
+            ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
             /** Draw interleaved pictures after rotation */
-            ctx.restore()
-            rotateWatermark(ctx, alternateRotateX, alternateRotateY, rotate)
-            ctx.drawImage(img, alternateDrawX, alternateDrawY, drawWidth, drawHeight)
-            appendWatermark(canvas.toDataURL(), markWidth)
-          }
-          img.crossOrigin = 'anonymous'
-          img.referrerPolicy = 'no-referrer'
-          img.src = image
+            ctx.restore();
+            rotateWatermark(ctx, alternateRotateX, alternateRotateY, rotate);
+            ctx.drawImage(img, alternateDrawX, alternateDrawY, drawWidth, drawHeight);
+            appendWatermark(canvas.toDataURL(), markWidth);
+          };
+          img.crossOrigin = 'anonymous';
+          img.referrerPolicy = 'no-referrer';
+          img.src = image;
         } else {
-          fillTexts(ctx, drawX, drawY, drawWidth, drawHeight)
+          fillTexts(ctx, drawX, drawY, drawWidth, drawHeight);
           /** Fill the interleaved text after rotation */
-          ctx.restore()
-          rotateWatermark(ctx, alternateRotateX, alternateRotateY, rotate)
-          fillTexts(ctx, alternateDrawX, alternateDrawY, drawWidth, drawHeight)
-          appendWatermark(canvas.toDataURL(), markWidth)
+          ctx.restore();
+          rotateWatermark(ctx, alternateRotateX, alternateRotateY, rotate);
+          fillTexts(ctx, alternateDrawX, alternateDrawY, drawWidth, drawHeight);
+          appendWatermark(canvas.toDataURL(), markWidth);
         }
       }
-    }
+    };
     onMounted(() => {
-      renderWatermark()
-    })
+      renderWatermark();
+    });
     watch(
       () => [props, token.value.colorFill, token.value.fontSizeLG],
       () => {
-        renderWatermark()
+        renderWatermark();
       },
       {
         deep: true,
         flush: 'post',
       },
-    )
+    );
     onBeforeUnmount(() => {
-      destroyWatermark()
-    })
+      destroyWatermark();
+    });
     const onMutate = (mutations: MutationRecord[]) => {
       if (stopObservation.value)
-        return
+        return;
 
       mutations.forEach((mutation) => {
         if (reRendering(mutation, watermarkRef.value)) {
-          destroyWatermark()
-          renderWatermark()
+          destroyWatermark();
+          renderWatermark();
         }
-      })
-    }
+      });
+    };
     useMutationObserver(containerRef, onMutate, {
       attributes: true,
       subtree: true,
       childList: true,
       attributeFilter: ['style', 'class'],
-    })
+    });
     return () => (
       <div
         {...attrs}
@@ -238,6 +238,6 @@ export default defineComponent({
       >
         {slots.default?.()}
       </div>
-    )
+    );
   },
-})
+});

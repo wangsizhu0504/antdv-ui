@@ -1,10 +1,10 @@
-import type { PropType } from 'vue'
-import type { Theme } from './interface'
-import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue'
-import { Button, Dropdown, Menu } from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, toRefs } from 'vue'
-import makeStyle from './utils/makeStyle'
+import type { PropType } from 'vue';
+import type { Theme } from './interface';
+import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue';
+import { Button, Dropdown, Menu } from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, toRefs } from 'vue';
+import makeStyle from './utils/makeStyle';
 
 interface ThemeItem extends Theme {
   icon?: any
@@ -124,7 +124,7 @@ const useStyle = makeStyle('ThemeSelect', token => ({
       },
     },
   },
-}))
+}));
 
 const ThemeSelect = defineComponent({
   name: 'ThemeSelect',
@@ -142,9 +142,9 @@ const ThemeSelect = defineComponent({
     showAddTheme: { type: Boolean },
   },
   setup(props, { attrs }) {
-    const { enabledThemes, shownThemes, themes, showAddTheme } = toRefs(props)
+    const { enabledThemes, shownThemes, themes, showAddTheme } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
+    const [wrapSSR, hashId] = useStyle();
 
     const dropdownItems = computed(() => [
       {
@@ -164,14 +164,14 @@ const ThemeSelect = defineComponent({
           onClick: () => {
             props.onShownThemeChange([...shownThemes.value, theme.key], theme.key, {
               type: 'select',
-            })
+            });
           },
         })),
-    ])
+    ]);
 
     const shownThemeEntities = computed(() =>
       themes.value.filter(theme => shownThemes.value.includes(theme.key)),
-    )
+    );
 
     return () => {
       return wrapSSR(
@@ -180,13 +180,13 @@ const ThemeSelect = defineComponent({
             <span
               onClick={() => {
                 if (theme.fixed)
-                  return
+                  return;
 
                 props.onEnabledThemeChange(
                   enabledThemes.value.includes(theme.key)
                     ? enabledThemes.value.filter(item => item !== theme.key)
                     : [...enabledThemes.value, theme.key],
-                )
+                );
               }}
               key={theme.key}
               class={classNames('previewer-theme-select-tag', {
@@ -198,15 +198,15 @@ const ThemeSelect = defineComponent({
                 <span
                   class="previewer-theme-select-tag-close-btn"
                   onClick={(e) => {
-                    e.stopPropagation()
+                    e.stopPropagation();
                     props.onEnabledThemeChange(
                       enabledThemes.value.filter(item => item !== theme.key),
-                    )
+                    );
                     props.onShownThemeChange(
                       shownThemes.value.filter(item => item !== theme.key),
                       theme.key,
                       { type: 'deselect' },
-                    )
+                    );
                   }}
                 >
                   <CloseOutlined />
@@ -232,9 +232,9 @@ const ThemeSelect = defineComponent({
             </Dropdown>
           )}
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default ThemeSelect
+export default ThemeSelect;

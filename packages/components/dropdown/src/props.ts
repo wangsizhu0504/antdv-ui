@@ -1,11 +1,11 @@
-import type { MouseEventHandler } from '@antdv/types'
+import type { MouseEventHandler } from '@antdv/types';
 
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
 
-import type { MenuProps } from '../../menu'
-import type { Align, DropdownArrowOptions, Trigger } from './interface'
-import { booleanType, eventType, objectType, PropTypes, someType } from '@antdv/utils'
-import { buttonProps } from '../../button'
+import type { MenuProps } from '../../menu';
+import type { Align, DropdownArrowOptions, Trigger } from './interface';
+import { booleanType, eventType, objectType, PropTypes, someType } from '@antdv/utils';
+import { buttonProps } from '../../button';
 
 export function dropdownProps() {
   return {
@@ -57,10 +57,10 @@ export function dropdownProps() {
     'onUpdate:open': {
       type: Function as PropType<(val: boolean) => void>,
     },
-  }
+  };
 }
 
-const buttonTypesProps = buttonProps()
+const buttonTypesProps = buttonProps();
 export function dropdownButtonProps() {
   return {
     ...dropdownProps(),
@@ -74,7 +74,7 @@ export function dropdownButtonProps() {
     title: String,
     loading: buttonTypesProps.loading,
     onClick: eventType<MouseEventHandler>(),
-  }
+  };
 }
 
 export function innerDropdownProps() {
@@ -101,9 +101,9 @@ export function innerDropdownProps() {
     defaultVisible: { type: Boolean, default: false },
     mouseEnterDelay: PropTypes.number.def(0.15),
     mouseLeaveDelay: PropTypes.number.def(0.1),
-  }
+  };
 }
 
-export type DropdownProps = Partial<ExtractPropTypes<ReturnType<typeof dropdownProps>>>
+export type DropdownProps = Partial<ExtractPropTypes<ReturnType<typeof dropdownProps>>>;
 
-export type DropdownButtonProps = Partial<ExtractPropTypes<ReturnType<typeof dropdownButtonProps>>>
+export type DropdownButtonProps = Partial<ExtractPropTypes<ReturnType<typeof dropdownButtonProps>>>;

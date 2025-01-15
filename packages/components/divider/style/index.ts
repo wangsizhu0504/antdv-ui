@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {
@@ -14,7 +14,7 @@ interface DividerToken extends FullToken<'Divider'> {
 
 // ============================== Shared ==============================
 const genSharedDividerStyle: GenerateStyle<DividerToken> = (token): CSSObject => {
-  const { componentCls, sizePaddingEdgeHorizontal, colorSplit, lineWidth } = token
+  const { componentCls, sizePaddingEdgeHorizontal, colorSplit, lineWidth } = token;
 
   return {
     [componentCls]: {
@@ -145,8 +145,8 @@ const genSharedDividerStyle: GenerateStyle<DividerToken> = (token): CSSObject =>
           },
         },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
@@ -156,10 +156,10 @@ export default genComponentStyleHook(
       dividerVerticalGutterMargin: token.marginXS,
       dividerHorizontalWithTextGutterMargin: token.margin,
       dividerHorizontalGutterMargin: token.marginLG,
-    })
-    return [genSharedDividerStyle(dividerToken)]
+    });
+    return [genSharedDividerStyle(dividerToken)];
   },
   {
     sizePaddingEdgeHorizontal: 0,
   },
-)
+);

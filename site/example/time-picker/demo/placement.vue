@@ -17,12 +17,12 @@ You can manually specify the position of the popup via `placement`.
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import { ref } from 'vue';
 
-  const placement = ref<any>('topLeft' as const)
-  const value1 = ref<Dayjs>()
-  const value2 = ref<[Dayjs, Dayjs]>()
+  const placement = ref<any>('topLeft' as const);
+  const value1 = ref<Dayjs>();
+  const value2 = ref<[Dayjs, Dayjs]>();
 </script>
 
 <template>

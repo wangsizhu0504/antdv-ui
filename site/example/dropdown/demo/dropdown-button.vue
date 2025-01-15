@@ -17,15 +17,15 @@ A button is on the left, and a related functional menu is on the right. You can 
 </docs>
 
 <script lang="ts" setup>
-  import type { MenuProps } from '@antdv/ui'
-  import { DownOutlined, UserOutlined } from '@ant-design/icons-vue'
+  import type { MenuProps } from '@antdv/ui';
+  import { DownOutlined, UserOutlined } from '@ant-design/icons-vue';
 
   function handleButtonClick(e: Event) {
-    console.log('click left button', e)
+    console.log('click left button', e);
   }
   const handleMenuClick: MenuProps['onClick'] = (e) => {
-    console.log('click', e)
-  }
+    console.log('click', e);
+  };
 </script>
 
 <template>

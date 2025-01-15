@@ -1,7 +1,7 @@
-import type { FullToken, GenerateStyle, PresetColorType } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, PresetColors, resetComponent } from '@antdv/theme'
-import { initZoomMotion } from '@antdv/theme/style/motion'
-import getArrowStyle from '@antdv/theme/style/placementArrow'
+import type { FullToken, GenerateStyle, PresetColorType } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, PresetColors, resetComponent } from '@antdv/theme';
+import { initZoomMotion } from '@antdv/theme/style/motion';
+import getArrowStyle from '@antdv/theme/style/placementArrow';
 
 export interface ComponentToken {
   zIndexPopup: number
@@ -12,7 +12,7 @@ export type PopoverToken = FullToken<'Popover'> & {
   popoverBg: string
   popoverColor: string
   popoverPadding: number | string
-}
+};
 
 const genBaseStyle: GenerateStyle<PopoverToken> = (token) => {
   const {
@@ -28,7 +28,7 @@ const genBaseStyle: GenerateStyle<PopoverToken> = (token) => {
     zIndexPopup,
     marginXS,
     colorBgElevated,
-  } = token
+  } = token;
 
   return [
     {
@@ -96,15 +96,15 @@ const genBaseStyle: GenerateStyle<PopoverToken> = (token) => {
         },
       },
     },
-  ]
-}
+  ];
+};
 
 const genColorStyle: GenerateStyle<PopoverToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [componentCls]: PresetColors.map((colorKey: keyof PresetColorType) => {
-      const lightColor = token[`${colorKey}-6`]
+      const lightColor = token[`${colorKey}-6`];
       return {
         [`&${componentCls}-${colorKey}`]: {
           '--antd-arrow-background-color': lightColor,
@@ -115,10 +115,10 @@ const genColorStyle: GenerateStyle<PopoverToken> = (token) => {
             background: 'transparent',
           },
         },
-      }
+      };
     }),
-  }
-}
+  };
+};
 
 const genWireframeStyle: GenerateStyle<PopoverToken> = (token) => {
   const {
@@ -131,12 +131,12 @@ const genWireframeStyle: GenerateStyle<PopoverToken> = (token) => {
     fontSize,
     lineHeight,
     padding,
-  } = token
+  } = token;
 
-  const titlePaddingBlockDist = controlHeight - Math.round(fontSize * lineHeight)
-  const popoverTitlePaddingBlockTop = titlePaddingBlockDist / 2
-  const popoverTitlePaddingBlockBottom = titlePaddingBlockDist / 2 - lineWidth
-  const popoverPaddingHorizontal = padding
+  const titlePaddingBlockDist = controlHeight - Math.round(fontSize * lineHeight);
+  const popoverTitlePaddingBlockTop = titlePaddingBlockDist / 2;
+  const popoverTitlePaddingBlockBottom = titlePaddingBlockDist / 2 - lineWidth;
+  const popoverPaddingHorizontal = padding;
 
   return {
     [componentCls]: {
@@ -154,19 +154,19 @@ const genWireframeStyle: GenerateStyle<PopoverToken> = (token) => {
         padding: `${paddingSM}px ${popoverPaddingHorizontal}px`,
       },
     },
-  }
-}
+  };
+};
 
 export default genComponentStyleHook(
   'Popover',
   (token) => {
-    const { colorBgElevated, colorText, wireframe } = token
+    const { colorBgElevated, colorText, wireframe } = token;
 
     const popoverToken = mergeToken<PopoverToken>(token, {
       popoverBg: colorBgElevated,
       popoverColor: colorText,
       popoverPadding: 12, // Fixed Value
-    })
+    });
 
     return [
       genBaseStyle(popoverToken),
@@ -174,10 +174,10 @@ export default genComponentStyleHook(
       wireframe && genWireframeStyle(popoverToken),
       initZoomMotion(popoverToken, 'zoom-big'),
       // initShakeMotion(popoverToken),
-    ]
+    ];
   },
   ({ zIndexPopupBase }) => ({
     zIndexPopup: zIndexPopupBase + 30,
     width: 177,
   }),
-)
+);

@@ -1,6 +1,6 @@
-import type { SizeType } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-import { anyType, booleanType, someType, stringType } from '@antdv/utils'
+import type { SizeType } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes } from 'vue';
+import { anyType, booleanType, someType, stringType } from '@antdv/utils';
 
 export function flexProps() {
   return {
@@ -12,7 +12,7 @@ export function flexProps() {
     flex: someType<CSSProperties['flex']>([Number, String]),
     gap: someType<CSSProperties['gap'] | SizeType>([Number, String]),
     component: anyType(),
-  }
+  };
 }
 
-export type FlexProps = Partial<ExtractPropTypes<ReturnType<typeof flexProps>> & HTMLElement>
+export type FlexProps = Partial<ExtractPropTypes<ReturnType<typeof flexProps>> & HTMLElement>;

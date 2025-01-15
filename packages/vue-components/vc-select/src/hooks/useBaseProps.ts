@@ -3,9 +3,9 @@
  * You can use this hooks to get them.
  */
 
-import type { InjectionKey } from 'vue'
-import type { BaseSelectProps } from '../BaseSelect'
-import { inject, provide } from 'vue'
+import type { InjectionKey } from 'vue';
+import type { BaseSelectProps } from '../BaseSelect';
+import { inject, provide } from 'vue';
 
 export interface BaseSelectContextProps extends BaseSelectProps {
   triggerOpen: boolean;
@@ -13,12 +13,12 @@ export interface BaseSelectContextProps extends BaseSelectProps {
   toggleOpen: (open?: boolean) => void;
 }
 
-const BaseSelectContextKey: InjectionKey<BaseSelectContextProps> = Symbol('BaseSelectContextKey')
+const BaseSelectContextKey: InjectionKey<BaseSelectContextProps> = Symbol('BaseSelectContextKey');
 
 export function useProvideBaseSelectProps(props: BaseSelectContextProps) {
-  return provide(BaseSelectContextKey, props)
+  return provide(BaseSelectContextKey, props);
 }
 
 export default function useBaseProps() {
-  return inject(BaseSelectContextKey, {} as BaseSelectContextProps)
+  return inject(BaseSelectContextKey, {} as BaseSelectContextProps);
 }

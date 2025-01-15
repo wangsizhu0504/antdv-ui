@@ -17,7 +17,7 @@ Components which support rtl direction are listed here, you can toggle the direc
 </docs>
 
 <script lang="ts" setup>
-  import type { CascaderProps, TreeProps, TreeSelectProps } from '@antdv/ui'
+  import type { CascaderProps, TreeProps, TreeSelectProps } from '@antdv/ui';
 
   import {
     DownloadOutlined,
@@ -27,8 +27,8 @@ Components which support rtl direction are listed here, you can toggle the direc
     RightOutlined,
     SearchOutlined as SearchIcon,
     SmileOutlined,
-  } from '@ant-design/icons-vue'
-  import { reactive, ref, watch } from 'vue'
+  } from '@ant-design/icons-vue';
+  import { reactive, ref, watch } from 'vue';
 
   const state = reactive({
     currentStep: 0,
@@ -38,10 +38,10 @@ Components which support rtl direction are listed here, you can toggle the direc
     showBadge: true,
     direction: 'ltr' as 'ltr' | 'rtl',
     popupPlacement: 'bottomLeft' as CascaderProps['placement'],
-  })
-  const expandedKeys = ref<string[]>(['0-0-0', '0-0-1'])
-  const selectedKeys = ref<string[]>(['0-0-0', '0-0-1'])
-  const checkedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+  });
+  const expandedKeys = ref<string[]>(['0-0-0', '0-0-1']);
+  const selectedKeys = ref<string[]>(['0-0-0', '0-0-1']);
+  const checkedKeys = ref<string[]>(['0-0-0', '0-0-1']);
 
   const treeData: TreeProps['treeData'] = [
     {
@@ -64,7 +64,7 @@ Components which support rtl direction are listed here, you can toggle the direc
         },
       ],
     },
-  ]
+  ];
 
   const treeSelectData = ref<TreeSelectProps['treeData']>([
     {
@@ -91,17 +91,17 @@ Components which support rtl direction are listed here, you can toggle the direc
         },
       ],
     },
-  ])
+  ]);
   watch(
     () => state.direction,
     (directionValue) => {
       if (directionValue === 'rtl') {
-        state.popupPlacement = 'bottomRight'
+        state.popupPlacement = 'bottomRight';
       } else {
-        state.popupPlacement = 'bottomLeft'
+        state.popupPlacement = 'bottomLeft';
       }
     },
-  )
+  );
   const cascaderOptions = [
     {
       value: 'tehran',
@@ -151,49 +151,49 @@ Components which support rtl direction are listed here, you can toggle the direc
         },
       ],
     },
-  ]
+  ];
 
   // ==== Cascader ====
   function cascaderFilter(inputValue, path) {
-    return path.some(option => option.label.toLowerCase().includes(inputValue.toLowerCase()))
+    return path.some(option => option.label.toLowerCase().includes(inputValue.toLowerCase()));
   }
 
   function onCascaderChange(value) {
-    console.log(value)
+    console.log(value);
   }
   // ==== End Cascader ====
 
   // ==== Modal ====
   function showModal() {
-    state.modalVisible = true
+    state.modalVisible = true;
   }
 
   // ==== End Modal ====
 
   function onStepsChange(currentStep) {
-    console.log('onChange:', currentStep)
-    state.currentStep = currentStep
+    console.log('onChange:', currentStep);
+    state.currentStep = currentStep;
   }
 
   // ==== Badge ====
 
   function increaseBadge() {
-    const badgeCount = state.badgeCount + 1
-    state.badgeCount = badgeCount
+    const badgeCount = state.badgeCount + 1;
+    state.badgeCount = badgeCount;
   }
 
   function declineBadge() {
-    let badgeCount = state.badgeCount - 1
+    let badgeCount = state.badgeCount - 1;
     if (badgeCount < 0) {
-      badgeCount = 0
+      badgeCount = 0;
     }
-    state.badgeCount = badgeCount
+    state.badgeCount = badgeCount;
   }
 
   function onChangeBadge(showBadge) {
-    state.showBadge = showBadge
+    state.showBadge = showBadge;
   }
-  const rateValue = ref<any>(2)
+  const rateValue = ref<any>(2);
 </script>
 
 <template>

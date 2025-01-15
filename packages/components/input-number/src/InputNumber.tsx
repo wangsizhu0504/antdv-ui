@@ -1,7 +1,7 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { HTMLAttributes } from 'vue'
-import type { InputNumberProps } from './props'
-import { DownOutlined, UpOutlined } from '@ant-design/icons-vue'
+import type { CustomSlotsType } from '@antdv/types';
+import type { HTMLAttributes } from 'vue';
+import type { InputNumberProps } from './props';
+import { DownOutlined, UpOutlined } from '@ant-design/icons-vue';
 import {
   classNames,
   cloneElement,
@@ -9,18 +9,18 @@ import {
   getStatusClassNames,
   isValidValue,
   omit,
-} from '@antdv/utils'
-import { computed, defineComponent, shallowRef, watch } from 'vue'
-import { useInjectDisabled } from '../../config-provider'
+} from '@antdv/utils';
+import { computed, defineComponent, shallowRef, watch } from 'vue';
+import { useInjectDisabled } from '../../config-provider';
 
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { FormItemInputContext, NoFormStatus, useInjectFormItemContext } from '../../form/src/FormItemContext'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { FormItemInputContext, NoFormStatus, useInjectFormItemContext } from '../../form/src/FormItemContext';
 
 // CSSINJS
-import { NoCompactStyle, useCompactItemContext } from '../../space'
-import useStyle from '../style'
-import VcInputNumber from './InputElement'
-import { inputNumberProps } from './props'
+import { NoCompactStyle, useCompactItemContext } from '../../space';
+import useStyle from '../style';
+import VcInputNumber from './InputElement';
+import { inputNumberProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -38,56 +38,56 @@ export default defineComponent({
   }>,
 
   setup(props, { emit, expose, attrs, slots }) {
-    const formItemContext = useInjectFormItemContext()
-    const formItemInputContext = FormItemInputContext.useInject()
-    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status))
-    const { prefixCls, size, direction, disabled } = useConfigInject('input-number', props)
-    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction)
-    const disabledContext = useInjectDisabled()
-    const mergedDisabled = computed(() => disabled.value ?? disabledContext.value)
+    const formItemContext = useInjectFormItemContext();
+    const formItemInputContext = FormItemInputContext.useInject();
+    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status));
+    const { prefixCls, size, direction, disabled } = useConfigInject('input-number', props);
+    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
+    const disabledContext = useInjectDisabled();
+    const mergedDisabled = computed(() => disabled.value ?? disabledContext.value);
     // Style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
-    const mergedSize = computed(() => compactSize.value || size.value)
-    const mergedValue = shallowRef(props.value ?? props.defaultValue)
-    const focused = shallowRef(false)
+    const mergedSize = computed(() => compactSize.value || size.value);
+    const mergedValue = shallowRef(props.value ?? props.defaultValue);
+    const focused = shallowRef(false);
     watch(
       () => props.value,
       () => {
-        mergedValue.value = props.value
+        mergedValue.value = props.value;
       },
-    )
-    const inputNumberRef = shallowRef(null)
+    );
+    const inputNumberRef = shallowRef(null);
     const focus = () => {
-      inputNumberRef.value?.focus()
-    }
+      inputNumberRef.value?.focus();
+    };
     const blur = () => {
-      inputNumberRef.value?.blur()
-    }
+      inputNumberRef.value?.blur();
+    };
     expose({
       focus,
       blur,
-    })
+    });
     const handleChange = (val: number) => {
       if (props.value === undefined)
-        mergedValue.value = val
+        mergedValue.value = val;
 
-      emit('update:value', val)
-      emit('change', val)
-      formItemContext.onFieldChange()
-    }
+      emit('update:value', val);
+      emit('change', val);
+      formItemContext.onFieldChange();
+    };
     const handleBlur = (e: FocusEvent) => {
-      focused.value = false
-      emit('blur', e)
-      formItemContext.onFieldBlur()
-    }
+      focused.value = false;
+      emit('blur', e);
+      formItemContext.onFieldBlur();
+    };
     const handleFocus = (e: FocusEvent) => {
-      focused.value = true
-      emit('focus', e)
-    }
+      focused.value = true;
+      emit('focus', e);
+    };
     return () => {
-      const { hasFeedback, isFormItemInput, feedbackIcon } = formItemInputContext
-      const id = props.id ?? formItemContext.id.value
+      const { hasFeedback, isFormItemInput, feedbackIcon } = formItemInputContext;
+      const id = props.id ?? formItemContext.id.value;
       const {
         class: className,
         bordered,
@@ -99,9 +99,9 @@ export default defineComponent({
         valueModifiers = {},
         ...others
       } = { ...attrs, ...props, id, disabled: mergedDisabled.value } as InputNumberProps &
-      HTMLAttributes
+      HTMLAttributes;
 
-      const preCls = prefixCls.value
+      const preCls = prefixCls.value;
 
       const inputNumberClass = classNames(
         {
@@ -116,7 +116,7 @@ export default defineComponent({
         className,
         compactItemClassnames.value,
         hashId.value,
-      )
+      );
 
       let element = (
         <VcInputNumber
@@ -139,9 +139,9 @@ export default defineComponent({
               : () => <DownOutlined class={`${preCls}-handler-down-inner`} />,
           }}
         />
-      )
-      const hasAddon = isValidValue(addonBefore) || isValidValue(addonAfter)
-      const hasPrefix = isValidValue(prefix)
+      );
+      const hasAddon = isValidValue(addonBefore) || isValidValue(addonAfter);
+      const hasPrefix = isValidValue(prefix);
       if (hasPrefix || hasFeedback) {
         const affixWrapperCls = classNames(
           `${preCls}-affix-wrapper`,
@@ -158,25 +158,25 @@ export default defineComponent({
             [`${className}`]: !hasAddon && className,
           },
           hashId.value,
-        )
+        );
         element = (
           <div class={affixWrapperCls} style={style} onClick={focus}>
             {hasPrefix && <span class={`${preCls}-prefix`}>{prefix}</span>}
             {element}
             {hasFeedback && <span class={`${preCls}-suffix`}>{feedbackIcon}</span>}
           </div>
-        )
+        );
       }
 
       if (hasAddon) {
-        const wrapperClassName = `${preCls}-group`
-        const addonClassName = `${wrapperClassName}-addon`
+        const wrapperClassName = `${preCls}-group`;
+        const addonClassName = `${wrapperClassName}-addon`;
         const addonBeforeNode = addonBefore
           ? (
               <div class={addonClassName}>{addonBefore}</div>
             )
-          : null
-        const addonAfterNode = addonAfter ? <div class={addonClassName}>{addonAfter}</div> : null
+          : null;
+        const addonAfterNode = addonAfter ? <div class={addonClassName}>{addonAfter}</div> : null;
 
         const mergedWrapperClassName = classNames(
           `${preCls}-wrapper`,
@@ -185,7 +185,7 @@ export default defineComponent({
             [`${wrapperClassName}-rtl`]: direction.value === 'rtl',
           },
           hashId.value,
-        )
+        );
 
         const mergedGroupClassName = classNames(
           `${preCls}-group-wrapper`,
@@ -197,7 +197,7 @@ export default defineComponent({
           getStatusClassNames(`${prefixCls}-group-wrapper`, mergedStatus.value, hasFeedback),
           className,
           hashId.value,
-        )
+        );
         element = (
           <div class={mergedGroupClassName} style={style}>
             <div class={mergedWrapperClassName}>
@@ -214,9 +214,9 @@ export default defineComponent({
               )}
             </div>
           </div>
-        )
+        );
       }
-      return wrapSSR(cloneElement(element, { style }))
-    }
+      return wrapSSR(cloneElement(element, { style }));
+    };
   },
-})
+});

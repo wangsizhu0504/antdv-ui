@@ -1,13 +1,13 @@
-import type { PropType } from 'vue'
-import type { HsvaColor } from '../../types'
+import type { PropType } from 'vue';
+import type { HsvaColor } from '../../types';
 
-import type { Interaction } from './Interactive'
-import { defineComponent, toRefs } from 'vue'
-import { clamp } from '../../utils/clamp'
-import { hsvaToHslString } from '../../utils/convert'
-import { round } from '../../utils/round'
-import { Interactive } from './Interactive'
-import { Pointer } from './Pointer'
+import type { Interaction } from './Interactive';
+import { defineComponent, toRefs } from 'vue';
+import { clamp } from '../../utils/clamp';
+import { hsvaToHslString } from '../../utils/convert';
+import { round } from '../../utils/round';
+import { Interactive } from './Interactive';
+import { Pointer } from './Pointer';
 
 export interface SaturationProps {
   hsva: HsvaColor
@@ -21,27 +21,27 @@ export const Saturation = defineComponent({
     onChange: { type: Function as PropType<(newColor: { s: number; v: number }) => void> },
   },
   setup(props, { attrs }) {
-    const { hsva } = toRefs(props)
+    const { hsva } = toRefs(props);
 
     const handleMove = (interaction: Interaction) => {
       props.onChange({
         s: interaction.left * 100,
         v: 100 - interaction.top * 100,
-      })
-    }
+      });
+    };
 
     const handleKey = (offset: Interaction) => {
       // Saturation and brightness always fit into [0, 100] range
       props.onChange({
         s: clamp(hsva.value.s + offset.left * 100, 0, 100),
         v: clamp(hsva.value.v - offset.top * 100, 0, 100),
-      })
-    }
+      });
+    };
 
     return () => {
       const containerStyle = {
         backgroundColor: hsvaToHslString({ h: hsva.value.h, s: 100, v: 100, a: 1 }),
-      }
+      };
 
       return (
         <div {...attrs} class="vue-colorful__saturation" style={containerStyle}>
@@ -61,7 +61,7 @@ export const Saturation = defineComponent({
             />
           </Interactive>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

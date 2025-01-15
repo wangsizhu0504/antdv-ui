@@ -1,7 +1,7 @@
-import type { ComponentPublicInstance, PropType, VNode } from 'vue'
-import type { Data, Key } from './global'
+import type { ComponentPublicInstance, PropType, VNode } from 'vue';
+import type { Data, Key } from './global';
 
-type DefaultFactory<T> = (props: Data) => T | null | undefined
+type DefaultFactory<T> = (props: Data) => T | null | undefined;
 
 export interface PropOptions<T = any, D = T> {
   type?: PropType<T> | true | null;
@@ -10,15 +10,15 @@ export interface PropOptions<T = any, D = T> {
   validator?: (value: unknown) => boolean;
 }
 
-declare type VNodeChildAtom = VNode | string | number | boolean | null | undefined | void
+declare type VNodeChildAtom = VNode | string | number | boolean | null | undefined | void;
 
-export type VueNode = VNodeChildAtom | VNodeChildAtom[] | VNode
+export type VueNode = VNodeChildAtom | VNodeChildAtom[] | VNode;
 
-export type VueInstance = ComponentPublicInstance
+export type VueInstance = ComponentPublicInstance;
 
 export interface RefObject extends Function {
   current?: any;
 }
 
-export type RefType = HTMLElement | ComponentPublicInstance
-export type RefsValue = Map<Key, RefType>
+export type RefType = HTMLElement | ComponentPublicInstance;
+export type RefsValue = Map<Key, RefType>;

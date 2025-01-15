@@ -1,8 +1,8 @@
-import { defineComponent, shallowRef, watch } from 'vue'
-import { popupProps } from './interface'
-import Mask from './Mask'
-import MobilePopupInner from './MobilePopupInner'
-import PopupInner from './PopupInner'
+import { defineComponent, shallowRef, watch } from 'vue';
+import { popupProps } from './interface';
+import Mask from './Mask';
+import MobilePopupInner from './MobilePopupInner';
+import PopupInner from './PopupInner';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -10,29 +10,29 @@ export default defineComponent({
   inheritAttrs: false,
   props: popupProps,
   setup(props, { attrs, slots, expose }) {
-    const innerVisible = shallowRef(false)
-    const inMobile = shallowRef(false)
-    const popupRef = shallowRef()
-    const rootRef = shallowRef<HTMLElement>()
+    const innerVisible = shallowRef(false);
+    const inMobile = shallowRef(false);
+    const popupRef = shallowRef();
+    const rootRef = shallowRef<HTMLElement>();
     watch(
       [() => props.visible, () => props.mobile],
       () => {
-        innerVisible.value = props.visible
+        innerVisible.value = props.visible;
         if (props.visible && props.mobile)
-          inMobile.value = true
+          inMobile.value = true;
       },
       { immediate: true, flush: 'post' },
-    )
+    );
     expose({
       forceAlign: () => {
-        popupRef.value?.forceAlign()
+        popupRef.value?.forceAlign();
       },
       getElement: () => {
-        return popupRef.value?.getElement()
+        return popupRef.value?.getElement();
       },
-    })
+    });
     return () => {
-      const cloneProps = { ...props, ...attrs, visible: innerVisible.value }
+      const cloneProps = { ...props, ...attrs, visible: innerVisible.value };
       const popupNode = inMobile.value
         ? (
             <MobilePopupInner
@@ -45,14 +45,14 @@ export default defineComponent({
           )
         : (
             <PopupInner {...cloneProps} ref={popupRef} v-slots={{ default: slots.default }} />
-          )
+          );
 
       return (
         <div ref={rootRef}>
           <Mask {...cloneProps} />
           {popupNode}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

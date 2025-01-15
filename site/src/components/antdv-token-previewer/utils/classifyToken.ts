@@ -1,8 +1,8 @@
-import type { GlobalToken } from '@antdv/theme/token/interface'
-import type { TokenValue } from '../interface'
+import type { GlobalToken } from '@antdv/theme/token/interface';
+import type { TokenValue } from '../interface';
 
 function defineTokenType<T extends string>(types: T[]) {
-  return types
+  return types;
 }
 
 export const TOKEN_SORTS = defineTokenType([
@@ -20,9 +20,9 @@ export const TOKEN_SORTS = defineTokenType([
   'motion',
   'control',
   'others',
-])
+]);
 
-export type TokenType = (typeof TOKEN_SORTS)[number]
+export type TokenType = (typeof TOKEN_SORTS)[number];
 
 export function getTypeOfToken(tokenName: string): TokenType {
   if (tokenName.startsWith('color')) {
@@ -33,54 +33,54 @@ export function getTypeOfToken(tokenName: string): TokenType {
       || tokenName.startsWith('colorPlaceholder')
       || tokenName.startsWith('colorIcon')
     ) {
-      return 'colorText'
+      return 'colorText';
     }
 
     if (tokenName.startsWith('colorBg') || tokenName.startsWith('colorPopupBg'))
-      return 'colorBg'
+      return 'colorBg';
 
     if (tokenName.startsWith('colorBorder') || tokenName.startsWith('colorSplit'))
-      return 'colorSplit'
+      return 'colorSplit';
 
     if (tokenName.startsWith('colorFill'))
-      return 'colorFill'
+      return 'colorFill';
 
-    return 'colorCommon'
+    return 'colorCommon';
   }
   if (tokenName.startsWith('font'))
-    return 'font'
+    return 'font';
 
   if (tokenName.startsWith('screen'))
-    return 'screen'
+    return 'screen';
 
   if (tokenName.startsWith('line'))
-    return 'line'
+    return 'line';
 
   if (tokenName.startsWith('motion'))
-    return 'motion'
+    return 'motion';
 
   if (tokenName.startsWith('borderRadius'))
-    return 'radius'
+    return 'radius';
 
   if (tokenName.startsWith('control'))
-    return 'control'
+    return 'control';
 
   if (tokenName.startsWith('margin') || tokenName.startsWith('padding'))
-    return 'space'
+    return 'space';
 
-  return 'others'
+  return 'others';
 }
 
 export function classifyToken(token: Record<string, TokenValue>): Record<string, string[]> {
-  const groupedToken: Record<string, string[]> = {}
+  const groupedToken: Record<string, string[]> = {};
   Object.keys(token || {})
     .sort((a, b) => a.localeCompare(b))
     .forEach((key) => {
-      const type = getTypeOfToken(key as keyof GlobalToken)
+      const type = getTypeOfToken(key as keyof GlobalToken);
       if (!groupedToken[type])
-        groupedToken[type] = []
+        groupedToken[type] = [];
 
-      groupedToken[type].push(key)
-    })
-  return groupedToken
+      groupedToken[type].push(key);
+    });
+  return groupedToken;
 }

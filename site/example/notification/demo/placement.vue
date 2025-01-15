@@ -17,7 +17,7 @@ A notification box can appear from the `topRight`, `bottomRight`, `bottomLeft` o
 </docs>
 
 <script lang="ts" setup>
-  import type { NotificationPlacement } from '@antdv/ui'
+  import type { NotificationPlacement } from '@antdv/ui';
   import {
     BorderBottomOutlined,
     BorderTopOutlined,
@@ -25,8 +25,8 @@ A notification box can appear from the `topRight`, `bottomRight`, `bottomLeft` o
     RadiusBottomrightOutlined,
     RadiusUpleftOutlined,
     RadiusUprightOutlined,
-  } from '@ant-design/icons-vue'
-  import { notification } from '@antdv/ui'
+  } from '@ant-design/icons-vue';
+  import { notification } from '@antdv/ui';
 
   function openNotification(placement: NotificationPlacement) {
     notification.open({
@@ -34,7 +34,7 @@ A notification box can appear from the `topRight`, `bottomRight`, `bottomLeft` o
       description:
         'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
       placement,
-    })
+    });
   }
 </script>
 

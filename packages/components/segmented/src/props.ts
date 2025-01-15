@@ -1,5 +1,5 @@
-import type { ExtractPropTypes, Ref } from 'vue'
-import type { SegmentedOptionType, segmentedSize, SegmentedValue } from './interface'
+import type { ExtractPropTypes, Ref } from 'vue';
+import type { SegmentedOptionType, segmentedSize, SegmentedValue } from './interface';
 import {
   anyType,
   arrayType,
@@ -7,7 +7,7 @@ import {
   functionType,
   someType,
   stringType,
-} from '@antdv/utils'
+} from '@antdv/utils';
 
 export function motionThumbProps() {
   return {
@@ -19,7 +19,7 @@ export function motionThumbProps() {
     onMotionEnd: anyType<VoidFunction>(),
     direction: anyType<'ltr' | 'rtl'>(),
     containerRef: anyType<Ref<HTMLDivElement>>(),
-  }
+  };
 }
 
 export function segmentedProps() {
@@ -33,7 +33,7 @@ export function segmentedProps() {
     'motionName': String,
     'onChange': functionType<(val: SegmentedValue) => void>(),
     'onUpdate:value': functionType<(val: SegmentedValue) => void>(),
-  }
+  };
 }
 
-export type SegmentedProps = Partial<ExtractPropTypes<ReturnType<typeof segmentedProps>>>
+export type SegmentedProps = Partial<ExtractPropTypes<ReturnType<typeof segmentedProps>>>;

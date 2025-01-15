@@ -1,13 +1,13 @@
-import type { FocusEventHandler, MouseEventHandler } from '@antdv/types'
-import type { ExtractPropTypes } from 'vue'
+import type { FocusEventHandler, MouseEventHandler } from '@antdv/types';
+import type { ExtractPropTypes } from 'vue';
 import type {
   RadioChangeEvent,
   RadioGroupButtonStyle,
   RadioGroupChildOption,
   RadioGroupOptionType,
   RadioGroupSize,
-} from './interface'
-import { arrayType, booleanType, functionType, PropTypes, stringType } from '@antdv/utils'
+} from './interface';
+import { arrayType, booleanType, functionType, PropTypes, stringType } from '@antdv/utils';
 
 export function radioGroupProps() {
   return {
@@ -22,7 +22,7 @@ export function radioGroupProps() {
     'optionType': stringType<RadioGroupOptionType>('default'),
     'onChange': functionType<(e: RadioChangeEvent) => void>(),
     'onUpdate:value': functionType<(val: any) => void>(),
-  }
+  };
 }
 
 export function radioProps() {
@@ -41,9 +41,9 @@ export function radioProps() {
     'onClick': functionType<MouseEventHandler>(),
     'onUpdate:checked': functionType<(checked: boolean) => void>(),
     'onUpdate:value': functionType<(checked: boolean) => void>(),
-  }
+  };
 }
 
-export type RadioProps = Partial<ExtractPropTypes<ReturnType<typeof radioProps>>>
+export type RadioProps = Partial<ExtractPropTypes<ReturnType<typeof radioProps>>>;
 
-export type RadioGroupProps = Partial<ExtractPropTypes<ReturnType<typeof radioGroupProps>>>
+export type RadioGroupProps = Partial<ExtractPropTypes<ReturnType<typeof radioGroupProps>>>;

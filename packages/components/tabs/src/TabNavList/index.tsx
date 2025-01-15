@@ -1,10 +1,10 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import type { ExtraContentProps, TabSizeMap } from '../interface'
-import { useRefs, useState } from '@antdv/hooks'
-import { classNames, raf, toPx } from '@antdv/utils'
-import { ResizeObserver } from '@antdv/vue-components'
-import { pick } from 'lodash-es'
+import type { CustomSlotsType } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import type { ExtraContentProps, TabSizeMap } from '../interface';
+import { useRefs, useState } from '@antdv/hooks';
+import { classNames, raf, toPx } from '@antdv/utils';
+import { ResizeObserver } from '@antdv/vue-components';
+import { pick } from 'lodash-es';
 
 import {
   computed,
@@ -13,30 +13,30 @@ import {
   shallowRef,
   watch,
   watchEffect,
-} from 'vue'
-import useOffsets from '../hooks/useOffsets'
-import { useRafState } from '../hooks/useRaf'
-import useSyncState from '../hooks/useSyncState'
-import useTouchMove from '../hooks/useTouchMove'
+} from 'vue';
+import useOffsets from '../hooks/useOffsets';
+import { useRafState } from '../hooks/useRaf';
+import useSyncState from '../hooks/useSyncState';
+import useTouchMove from '../hooks/useTouchMove';
 
-import { tabNavListProps } from '../props'
-import { useInjectTabs } from '../TabContext'
-import AddButton from './AddButton'
-import OperationNode from './OperationNode'
-import TabNode from './TabNode'
+import { tabNavListProps } from '../props';
+import { useInjectTabs } from '../TabContext';
+import AddButton from './AddButton';
+import OperationNode from './OperationNode';
+import TabNode from './TabNode';
 
-const DEFAULT_SIZE = { width: 0, height: 0, left: 0, top: 0, right: 0 }
+const DEFAULT_SIZE = { width: 0, height: 0, left: 0, top: 0, right: 0 };
 
 function getTabSize(tab: HTMLElement, containerRect: { x: number; y: number }) {
   // tabListRef
-  const { offsetWidth, offsetHeight, offsetTop, offsetLeft } = tab
-  const { width, height, x, y } = tab.getBoundingClientRect()
+  const { offsetWidth, offsetHeight, offsetTop, offsetLeft } = tab;
+  const { width, height, x, y } = tab.getBoundingClientRect();
 
   // Use getBoundingClientRect to avoid decimal inaccuracy
   if (Math.abs(width - offsetWidth) < 1)
-    return [width, height, x - containerRect.x, y - containerRect.y]
+    return [width, height, x - containerRect.x, y - containerRect.y];
 
-  return [offsetWidth, offsetHeight, offsetLeft, offsetTop]
+  return [offsetWidth, offsetHeight, offsetLeft, offsetTop];
 }
 
 export default defineComponent({
@@ -53,109 +53,109 @@ export default defineComponent({
   }>,
   emits: ['tabClick', 'tabScroll'],
   setup(props, { attrs, slots }) {
-    const { tabs, prefixCls } = useInjectTabs()
-    const tabsWrapperRef = shallowRef<HTMLDivElement>()
-    const tabListRef = shallowRef<HTMLDivElement>()
-    const operationsRef = shallowRef<{ $el: HTMLDivElement }>()
-    const innerAddButtonRef = shallowRef()
-    const [setRef, btnRefs] = useRefs()
+    const { tabs, prefixCls } = useInjectTabs();
+    const tabsWrapperRef = shallowRef<HTMLDivElement>();
+    const tabListRef = shallowRef<HTMLDivElement>();
+    const operationsRef = shallowRef<{ $el: HTMLDivElement }>();
+    const innerAddButtonRef = shallowRef();
+    const [setRef, btnRefs] = useRefs();
     const tabPositionTopOrBottom = computed(
       () => props.tabPosition === 'top' || props.tabPosition === 'bottom',
-    )
+    );
 
     const [transformLeft, setTransformLeft] = useSyncState(0, (next, prev) => {
       if (tabPositionTopOrBottom.value && props.onTabScroll)
-        props.onTabScroll({ direction: next > prev ? 'left' : 'right' })
-    })
+        props.onTabScroll({ direction: next > prev ? 'left' : 'right' });
+    });
     const [transformTop, setTransformTop] = useSyncState(0, (next, prev) => {
       if (!tabPositionTopOrBottom.value && props.onTabScroll)
-        props.onTabScroll({ direction: next > prev ? 'top' : 'bottom' })
-    })
+        props.onTabScroll({ direction: next > prev ? 'top' : 'bottom' });
+    });
 
-    const [wrapperScrollWidth, setWrapperScrollWidth] = useState<number>(0)
-    const [wrapperScrollHeight, setWrapperScrollHeight] = useState<number>(0)
-    const [wrapperWidth, setWrapperWidth] = useState<number>(null)
-    const [wrapperHeight, setWrapperHeight] = useState<number>(null)
-    const [addWidth, setAddWidth] = useState<number>(0)
-    const [addHeight, setAddHeight] = useState<number>(0)
+    const [wrapperScrollWidth, setWrapperScrollWidth] = useState<number>(0);
+    const [wrapperScrollHeight, setWrapperScrollHeight] = useState<number>(0);
+    const [wrapperWidth, setWrapperWidth] = useState<number>(null);
+    const [wrapperHeight, setWrapperHeight] = useState<number>(null);
+    const [addWidth, setAddWidth] = useState<number>(0);
+    const [addHeight, setAddHeight] = useState<number>(0);
 
-    const [tabSizes, setTabSizes] = useRafState<TabSizeMap>(new Map())
-    const tabOffsets = useOffsets(tabs, tabSizes)
+    const [tabSizes, setTabSizes] = useRafState<TabSizeMap>(new Map());
+    const tabOffsets = useOffsets(tabs, tabSizes);
     // ========================== Util =========================
-    const operationsHiddenClassName = computed(() => `${prefixCls.value}-nav-operations-hidden`)
+    const operationsHiddenClassName = computed(() => `${prefixCls.value}-nav-operations-hidden`);
 
-    const transformMin = shallowRef(0)
-    const transformMax = shallowRef(0)
+    const transformMin = shallowRef(0);
+    const transformMax = shallowRef(0);
 
     watchEffect(() => {
       if (!tabPositionTopOrBottom.value) {
-        transformMin.value = Math.min(0, wrapperHeight.value - wrapperScrollHeight.value)
-        transformMax.value = 0
+        transformMin.value = Math.min(0, wrapperHeight.value - wrapperScrollHeight.value);
+        transformMax.value = 0;
       } else if (props.rtl) {
-        transformMin.value = 0
-        transformMax.value = Math.max(0, wrapperScrollWidth.value - wrapperWidth.value)
+        transformMin.value = 0;
+        transformMax.value = Math.max(0, wrapperScrollWidth.value - wrapperWidth.value);
       } else {
-        transformMin.value = Math.min(0, wrapperWidth.value - wrapperScrollWidth.value)
-        transformMax.value = 0
+        transformMin.value = Math.min(0, wrapperWidth.value - wrapperScrollWidth.value);
+        transformMax.value = 0;
       }
-    })
+    });
 
     const alignInRange = (value: number): number => {
       if (value < transformMin.value)
-        return transformMin.value
+        return transformMin.value;
 
       if (value > transformMax.value)
-        return transformMax.value
+        return transformMax.value;
 
-      return value
-    }
+      return value;
+    };
 
     // ========================= Mobile ========================
-    const touchMovingRef = shallowRef<any>()
-    const [lockAnimation, setLockAnimation] = useState<number>()
+    const touchMovingRef = shallowRef<any>();
+    const [lockAnimation, setLockAnimation] = useState<number>();
 
     const doLockAnimation = () => {
-      setLockAnimation(Date.now())
-    }
+      setLockAnimation(Date.now());
+    };
 
     const clearTouchMoving = () => {
-      clearTimeout(touchMovingRef.value)
-    }
+      clearTimeout(touchMovingRef.value);
+    };
     const doMove = (setState: (fn: (val: number) => number) => void, offset: number) => {
       setState((value: number) => {
-        const newValue = alignInRange(value + offset)
+        const newValue = alignInRange(value + offset);
 
-        return newValue
-      })
-    }
+        return newValue;
+      });
+    };
     useTouchMove(tabsWrapperRef, (offsetX, offsetY) => {
       if (tabPositionTopOrBottom.value) {
         // Skip scroll if place is enough
         if (wrapperWidth.value >= wrapperScrollWidth.value)
-          return false
+          return false;
 
-        doMove(setTransformLeft, offsetX)
+        doMove(setTransformLeft, offsetX);
       } else {
         if (wrapperHeight.value >= wrapperScrollHeight.value)
-          return false
+          return false;
 
-        doMove(setTransformTop, offsetY)
+        doMove(setTransformTop, offsetY);
       }
 
-      clearTouchMoving()
-      doLockAnimation()
+      clearTouchMoving();
+      doLockAnimation();
 
-      return true
-    })
+      return true;
+    });
 
     watch(lockAnimation, () => {
-      clearTouchMoving()
+      clearTouchMoving();
       if (lockAnimation.value) {
         touchMovingRef.value = setTimeout(() => {
-          setLockAnimation(0)
-        }, 100)
+          setLockAnimation(0);
+        }, 100);
       }
-    })
+    });
 
     // ========================= Scroll ========================
     const scrollToTab = (key = props.activeKey) => {
@@ -165,207 +165,207 @@ export default defineComponent({
         left: 0,
         right: 0,
         top: 0,
-      }
+      };
 
       if (tabPositionTopOrBottom.value) {
         // ============ Align with top & bottom ============
-        let newTransform = transformLeft.value
+        let newTransform = transformLeft.value;
 
         // RTL
         if (props.rtl) {
           if (tabOffset.right < transformLeft.value)
-            newTransform = tabOffset.right
+            newTransform = tabOffset.right;
           else if (tabOffset.right + tabOffset.width > transformLeft.value + wrapperWidth.value)
-            newTransform = tabOffset.right + tabOffset.width - wrapperWidth.value
+            newTransform = tabOffset.right + tabOffset.width - wrapperWidth.value;
         } else if (tabOffset.left < -transformLeft.value) { // LTR
-          newTransform = -tabOffset.left
+          newTransform = -tabOffset.left;
         } else if (tabOffset.left + tabOffset.width > -transformLeft.value + wrapperWidth.value) {
-          newTransform = -(tabOffset.left + tabOffset.width - wrapperWidth.value)
+          newTransform = -(tabOffset.left + tabOffset.width - wrapperWidth.value);
         }
 
-        setTransformTop(0)
-        setTransformLeft(alignInRange(newTransform))
+        setTransformTop(0);
+        setTransformLeft(alignInRange(newTransform));
       } else {
         // ============ Align with left & right ============
-        let newTransform = transformTop.value
+        let newTransform = transformTop.value;
 
         if (tabOffset.top < -transformTop.value)
-          newTransform = -tabOffset.top
+          newTransform = -tabOffset.top;
         else if (tabOffset.top + tabOffset.height > -transformTop.value + wrapperHeight.value)
-          newTransform = -(tabOffset.top + tabOffset.height - wrapperHeight.value)
+          newTransform = -(tabOffset.top + tabOffset.height - wrapperHeight.value);
 
-        setTransformLeft(0)
-        setTransformTop(alignInRange(newTransform))
+        setTransformLeft(0);
+        setTransformTop(alignInRange(newTransform));
       }
-    }
+    };
 
-    const visibleStart = shallowRef(0)
-    const visibleEnd = shallowRef(0)
+    const visibleStart = shallowRef(0);
+    const visibleEnd = shallowRef(0);
 
     watchEffect(() => {
-      let unit: 'width' | 'height'
-      let position: 'left' | 'top' | 'right'
-      let transformSize: number
-      let basicSize: number
-      let tabContentSize: number
-      let addSize: number
-      const tabOffsetsValue = tabOffsets.value
+      let unit: 'width' | 'height';
+      let position: 'left' | 'top' | 'right';
+      let transformSize: number;
+      let basicSize: number;
+      let tabContentSize: number;
+      let addSize: number;
+      const tabOffsetsValue = tabOffsets.value;
       if (['top', 'bottom'].includes(props.tabPosition)) {
-        unit = 'width'
-        basicSize = wrapperWidth.value
-        tabContentSize = wrapperScrollWidth.value
-        addSize = addWidth.value
-        position = props.rtl ? 'right' : 'left'
-        transformSize = Math.abs(transformLeft.value)
+        unit = 'width';
+        basicSize = wrapperWidth.value;
+        tabContentSize = wrapperScrollWidth.value;
+        addSize = addWidth.value;
+        position = props.rtl ? 'right' : 'left';
+        transformSize = Math.abs(transformLeft.value);
       } else {
-        unit = 'height'
-        basicSize = wrapperHeight.value
-        tabContentSize = wrapperScrollWidth.value
-        addSize = addHeight.value
-        position = 'top'
-        transformSize = -transformTop.value
+        unit = 'height';
+        basicSize = wrapperHeight.value;
+        tabContentSize = wrapperScrollWidth.value;
+        addSize = addHeight.value;
+        position = 'top';
+        transformSize = -transformTop.value;
       }
-      let mergedBasicSize = basicSize
+      let mergedBasicSize = basicSize;
       if (tabContentSize + addSize > basicSize && tabContentSize < basicSize)
-        mergedBasicSize = basicSize - addSize
+        mergedBasicSize = basicSize - addSize;
 
-      const tabsVal = tabs.value
+      const tabsVal = tabs.value;
       if (!tabsVal.length)
-        return ([visibleStart.value, visibleEnd.value] = [0, 0])
+        return ([visibleStart.value, visibleEnd.value] = [0, 0]);
 
-      const len = tabsVal.length
-      let endIndex = len
+      const len = tabsVal.length;
+      let endIndex = len;
       for (let i = 0; i < len; i += 1) {
-        const offset = tabOffsetsValue.get(tabsVal[i].key) || DEFAULT_SIZE
+        const offset = tabOffsetsValue.get(tabsVal[i].key) || DEFAULT_SIZE;
         if (offset[position] + offset[unit] > transformSize + mergedBasicSize) {
-          endIndex = i - 1
-          break
+          endIndex = i - 1;
+          break;
         }
       }
-      let startIndex = 0
+      let startIndex = 0;
       for (let i = len - 1; i >= 0; i -= 1) {
-        const offset = tabOffsetsValue.get(tabsVal[i].key) || DEFAULT_SIZE
+        const offset = tabOffsetsValue.get(tabsVal[i].key) || DEFAULT_SIZE;
         if (offset[position] < transformSize) {
-          startIndex = i + 1
-          break
+          startIndex = i + 1;
+          break;
         }
       }
 
-      return ([visibleStart.value, visibleEnd.value] = [startIndex, endIndex])
-    })
+      return ([visibleStart.value, visibleEnd.value] = [startIndex, endIndex]);
+    });
 
     const updateTabSizes = () => {
       setTabSizes(() => {
-        const newSizes: TabSizeMap = new Map()
-        const listRect = tabListRef.value?.getBoundingClientRect()
+        const newSizes: TabSizeMap = new Map();
+        const listRect = tabListRef.value?.getBoundingClientRect();
         tabs.value.forEach(({ key }) => {
-          const btnRef = btnRefs.value.get(key)
-          const btnNode = (btnRef as any)?.$el || btnRef
+          const btnRef = btnRefs.value.get(key);
+          const btnNode = (btnRef as any)?.$el || btnRef;
           if (btnNode) {
-            const [width, height, left, top] = getTabSize(btnNode, listRect)
-            newSizes.set(key, { width, height, left, top })
+            const [width, height, left, top] = getTabSize(btnNode, listRect);
+            newSizes.set(key, { width, height, left, top });
           }
-        })
-        return newSizes
-      })
-    }
+        });
+        return newSizes;
+      });
+    };
 
     watch(
       () => tabs.value.map(tab => tab.key).join('%%'),
       () => {
-        updateTabSizes()
+        updateTabSizes();
       },
       { flush: 'post' },
-    )
+    );
 
     const onListHolderResize = () => {
       // Update wrapper records
-      const offsetWidth = tabsWrapperRef.value?.offsetWidth || 0
-      const offsetHeight = tabsWrapperRef.value?.offsetHeight || 0
-      const addDom = innerAddButtonRef.value?.$el || {}
-      const newAddWidth = addDom.offsetWidth || 0
-      const newAddHeight = addDom.offsetHeight || 0
-      setWrapperWidth(offsetWidth)
-      setWrapperHeight(offsetHeight)
-      setAddWidth(newAddWidth)
-      setAddHeight(newAddHeight)
+      const offsetWidth = tabsWrapperRef.value?.offsetWidth || 0;
+      const offsetHeight = tabsWrapperRef.value?.offsetHeight || 0;
+      const addDom = innerAddButtonRef.value?.$el || {};
+      const newAddWidth = addDom.offsetWidth || 0;
+      const newAddHeight = addDom.offsetHeight || 0;
+      setWrapperWidth(offsetWidth);
+      setWrapperHeight(offsetHeight);
+      setAddWidth(newAddWidth);
+      setAddHeight(newAddHeight);
 
-      const newWrapperScrollWidth = (tabListRef.value?.offsetWidth || 0) - newAddWidth
-      const newWrapperScrollHeight = (tabListRef.value?.offsetHeight || 0) - newAddHeight
+      const newWrapperScrollWidth = (tabListRef.value?.offsetWidth || 0) - newAddWidth;
+      const newWrapperScrollHeight = (tabListRef.value?.offsetHeight || 0) - newAddHeight;
 
-      setWrapperScrollWidth(newWrapperScrollWidth)
-      setWrapperScrollHeight(newWrapperScrollHeight)
+      setWrapperScrollWidth(newWrapperScrollWidth);
+      setWrapperScrollHeight(newWrapperScrollHeight);
 
       // Update buttons records
-      updateTabSizes()
-    }
+      updateTabSizes();
+    };
 
     // ======================== Dropdown =======================
     const hiddenTabs = computed(() => [
       ...tabs.value.slice(0, visibleStart.value),
       ...tabs.value.slice(visibleEnd.value + 1),
-    ])
+    ]);
 
     // =================== Link & Operations ===================
-    const [inkStyle, setInkStyle] = useState<CSSProperties>()
+    const [inkStyle, setInkStyle] = useState<CSSProperties>();
 
-    const activeTabOffset = computed(() => tabOffsets.value.get(props.activeKey))
+    const activeTabOffset = computed(() => tabOffsets.value.get(props.activeKey));
 
     // Delay set ink style to avoid remove tab blink
-    const inkBarRafRef = shallowRef<number>()
+    const inkBarRafRef = shallowRef<number>();
     const cleanInkBarRaf = () => {
-      raf.cancel(inkBarRafRef.value)
-    }
+      raf.cancel(inkBarRafRef.value);
+    };
 
     watch([activeTabOffset, tabPositionTopOrBottom, () => props.rtl], () => {
-      const newInkStyle: CSSProperties = {}
+      const newInkStyle: CSSProperties = {};
 
       if (activeTabOffset.value) {
         if (tabPositionTopOrBottom.value) {
           if (props.rtl)
-            newInkStyle.right = toPx(activeTabOffset.value.right)
+            newInkStyle.right = toPx(activeTabOffset.value.right);
           else
-            newInkStyle.left = toPx(activeTabOffset.value.left)
+            newInkStyle.left = toPx(activeTabOffset.value.left);
 
-          newInkStyle.width = toPx(activeTabOffset.value.width)
+          newInkStyle.width = toPx(activeTabOffset.value.width);
         } else {
-          newInkStyle.top = toPx(activeTabOffset.value.top)
-          newInkStyle.height = toPx(activeTabOffset.value.height)
+          newInkStyle.top = toPx(activeTabOffset.value.top);
+          newInkStyle.height = toPx(activeTabOffset.value.height);
         }
       }
 
-      cleanInkBarRaf()
+      cleanInkBarRaf();
       inkBarRafRef.value = raf(() => {
-        setInkStyle(newInkStyle)
-      })
-    })
+        setInkStyle(newInkStyle);
+      });
+    });
 
     watch(
       [() => props.activeKey, activeTabOffset, tabOffsets, tabPositionTopOrBottom],
       () => {
-        scrollToTab()
+        scrollToTab();
       },
       { flush: 'post' },
-    )
+    );
 
     watch(
       [() => props.rtl, () => props.tabBarGutter, () => props.activeKey, () => tabs.value],
       () => {
-        onListHolderResize()
+        onListHolderResize();
       },
       { flush: 'post' },
-    )
+    );
 
     const ExtraContent = ({ position, prefixCls, extra }: ExtraContentProps) => {
-      if (!extra) return null
-      const content = extra?.({ position })
-      return content ? <div class={`${prefixCls}-extra-content`}>{content}</div> : null
-    }
+      if (!extra) return null;
+      const content = extra?.({ position });
+      return content ? <div class={`${prefixCls}-extra-content`}>{content}</div> : null;
+    };
 
     onBeforeUnmount(() => {
-      clearTouchMoving()
-      cleanInkBarRaf()
-    })
+      clearTouchMoving();
+      cleanInkBarRaf();
+    });
 
     return () => {
       const {
@@ -378,41 +378,41 @@ export default defineComponent({
         tabPosition,
         tabBarGutter,
         onTabClick,
-      } = props
-      const { class: className, style } = attrs
-      const pre = prefixCls.value
+      } = props;
+      const { class: className, style } = attrs;
+      const pre = prefixCls.value;
       // ========================= Render ========================
-      const hasDropdown = !!hiddenTabs.value.length
-      const wrapPrefix = `${pre}-nav-wrap`
-      let pingLeft: boolean
-      let pingRight: boolean
-      let pingTop: boolean
-      let pingBottom: boolean
+      const hasDropdown = !!hiddenTabs.value.length;
+      const wrapPrefix = `${pre}-nav-wrap`;
+      let pingLeft: boolean;
+      let pingRight: boolean;
+      let pingTop: boolean;
+      let pingBottom: boolean;
 
       if (tabPositionTopOrBottom.value) {
         if (rtl) {
-          pingRight = transformLeft.value > 0
-          pingLeft = transformLeft.value + wrapperWidth.value < wrapperScrollWidth.value
+          pingRight = transformLeft.value > 0;
+          pingLeft = transformLeft.value + wrapperWidth.value < wrapperScrollWidth.value;
         } else {
-          pingLeft = transformLeft.value < 0
-          pingRight = -transformLeft.value + wrapperWidth.value < wrapperScrollWidth.value
+          pingLeft = transformLeft.value < 0;
+          pingRight = -transformLeft.value + wrapperWidth.value < wrapperScrollWidth.value;
         }
       } else {
-        pingTop = transformTop.value < 0
-        pingBottom = -transformTop.value + wrapperHeight.value < wrapperScrollHeight.value
+        pingTop = transformTop.value < 0;
+        pingBottom = -transformTop.value + wrapperHeight.value < wrapperScrollHeight.value;
       }
 
-      const tabNodeStyle: CSSProperties = {}
+      const tabNodeStyle: CSSProperties = {};
       if (tabPosition === 'top' || tabPosition === 'bottom') {
         tabNodeStyle[rtl ? 'marginRight' : 'marginLeft']
-          = typeof tabBarGutter === 'number' ? `${tabBarGutter}px` : tabBarGutter
+          = typeof tabBarGutter === 'number' ? `${tabBarGutter}px` : tabBarGutter;
       } else {
         tabNodeStyle.marginTop
-          = typeof tabBarGutter === 'number' ? `${tabBarGutter}px` : tabBarGutter
+          = typeof tabBarGutter === 'number' ? `${tabBarGutter}px` : tabBarGutter;
       }
 
       const tabNodes = tabs.value.map((tab, i) => {
-        const { key } = tab
+        const { key } = tab;
         return (
           <TabNode
             id={id}
@@ -427,25 +427,25 @@ export default defineComponent({
             removeAriaLabel={locale?.removeAriaLabel}
             ref={setRef(key)}
             onClick={(e) => {
-              onTabClick(key, e)
+              onTabClick(key, e);
             }}
             onFocus={() => {
-              scrollToTab(key)
-              doLockAnimation()
+              scrollToTab(key);
+              doLockAnimation();
               if (!tabsWrapperRef.value)
-                return
+                return;
 
               // Focus element will make scrollLeft change which we should reset back
               if (!rtl)
-                tabsWrapperRef.value.scrollLeft = 0
+                tabsWrapperRef.value.scrollLeft = 0;
 
-              tabsWrapperRef.value.scrollTop = 0
+              tabsWrapperRef.value.scrollTop = 0;
             }}
             v-slots={slots}
           >
           </TabNode>
-        )
-      })
+        );
+      });
       return (
         <div
           role="tablist"
@@ -453,7 +453,7 @@ export default defineComponent({
           style={style as CSSProperties}
           onKeydown={() => {
             // No need animation when use keyboard
-            doLockAnimation()
+            doLockAnimation();
           }}
         >
           <ExtraContent position="left" prefixCls={pre} extra={slots.leftExtra} />
@@ -512,7 +512,7 @@ export default defineComponent({
           <ExtraContent position="right" prefixCls={pre} extra={slots.rightExtra} />
           <ExtraContent position="right" prefixCls={pre} extra={slots.tabBarExtraContent} />
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

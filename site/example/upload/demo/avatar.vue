@@ -20,49 +20,49 @@ Click to upload user's avatar, and validate size and format of picture with `bef
 </docs>
 
 <script lang="ts" setup>
-  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
-  import { LoadingOutlined, PlusOutlined } from '@ant-design/icons-vue'
-  import { message } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { UploadChangeParam, UploadProps } from '@antdv/ui';
+  import { LoadingOutlined, PlusOutlined } from '@ant-design/icons-vue';
+  import { message } from '@antdv/ui';
+  import { ref } from 'vue';
 
   function getBase64(img: Blob, callback: (base64Url: string) => void) {
-    const reader = new FileReader()
-    reader.addEventListener('load', () => callback(reader.result as string))
-    reader.readAsDataURL(img)
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result as string));
+    reader.readAsDataURL(img);
   }
 
-  const fileList = ref<any>([])
-  const loading = ref<boolean>(false)
-  const imageUrl = ref<string>('')
+  const fileList = ref<any>([]);
+  const loading = ref<boolean>(false);
+  const imageUrl = ref<string>('');
 
   function handleChange(info: UploadChangeParam) {
     if (info.file.status === 'uploading') {
-      loading.value = true
-      return
+      loading.value = true;
+      return;
     }
     if (info.file.status === 'done') {
       // Get this url from response in real world.
       getBase64(info.file.originFileObj, (base64Url: string) => {
-        imageUrl.value = base64Url
-        loading.value = false
-      })
+        imageUrl.value = base64Url;
+        loading.value = false;
+      });
     }
     if (info.file.status === 'error') {
-      loading.value = false
-      message.error('upload error')
+      loading.value = false;
+      message.error('upload error');
     }
   }
 
   function beforeUpload(file: UploadProps['fileList'][number]) {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     if (!isJpgOrPng) {
-      message.error('You can only upload JPG file!')
+      message.error('You can only upload JPG file!');
     }
-    const isLt2M = file.size / 1024 / 1024 < 2
+    const isLt2M = file.size / 1024 / 1024 < 2;
     if (!isLt2M) {
-      message.error('Image must smaller than 2MB!')
+      message.error('Image must smaller than 2MB!');
     }
-    return isJpgOrPng && isLt2M
+    return isJpgOrPng && isLt2M;
   }
 </script>
 

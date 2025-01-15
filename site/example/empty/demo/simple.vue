@@ -17,9 +17,9 @@ You can choose another style of `image` by setting image to `Empty.PRESENTED_IMA
 </docs>
 
 <script lang="ts" setup>
-  import { Empty } from '@antdv/ui'
+  import { Empty } from '@antdv/ui';
 
-  const simpleImage = Empty.PRESENTED_IMAGE_SIMPLE
+  const simpleImage = Empty.PRESENTED_IMAGE_SIMPLE;
 </script>
 
 <template>

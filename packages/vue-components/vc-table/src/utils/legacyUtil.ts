@@ -1,20 +1,20 @@
-import type { ExpandableConfig, LegacyExpandableProps } from '../interface'
-import { warning } from '@antdv/utils'
+import type { ExpandableConfig, LegacyExpandableProps } from '../interface';
+import { warning } from '@antdv/utils';
 
-export const INTERNAL_COL_DEFINE = 'RC_TABLE_INTERNAL_COL_DEFINE'
+export const INTERNAL_COL_DEFINE = 'RC_TABLE_INTERNAL_COL_DEFINE';
 
 export function getExpandableProps<RecordType>(
   props: LegacyExpandableProps<RecordType> & {
     expandable?: ExpandableConfig<RecordType>;
   },
 ): ExpandableConfig<RecordType> {
-  const { expandable, ...legacyExpandableConfig } = props
-  let config: ExpandableConfig<RecordType>
+  const { expandable, ...legacyExpandableConfig } = props;
+  let config: ExpandableConfig<RecordType>;
   if (props.expandable !== undefined) {
     config = {
       ...legacyExpandableConfig,
       ...expandable,
-    }
+    };
   } else {
     if (
       process.env.NODE_ENV !== 'production'
@@ -33,15 +33,15 @@ export function getExpandableProps<RecordType>(
         'showExpandColumn',
       ].some(prop => prop in props)
     ) {
-      warning(false, 'expanded related props have been moved into `expandable`.')
+      warning(false, 'expanded related props have been moved into `expandable`.');
     }
 
-    config = legacyExpandableConfig
+    config = legacyExpandableConfig;
   }
   if (config.showExpandColumn === false)
-    config.expandIconColumnIndex = -1
+    config.expandIconColumnIndex = -1;
 
-  return config
+  return config;
 }
 
 /**
@@ -51,8 +51,8 @@ export function getExpandableProps<RecordType>(
 export function getDataAndAriaProps(props: object) {
   return Object.keys(props).reduce((memo, key) => {
     if (key.startsWith('data-') || key.startsWith('aria-'))
-      memo[key] = props[key]
+      memo[key] = props[key];
 
-    return memo
-  }, {})
+    return memo;
+  }, {});
 }

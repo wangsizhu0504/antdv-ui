@@ -1,5 +1,5 @@
-import type { ExtractPropTypes } from 'vue'
-import { PropTypes } from '@antdv/utils'
+import type { ExtractPropTypes } from 'vue';
+import { PropTypes } from '@antdv/utils';
 
 export function commentProps() {
   return {
@@ -14,7 +14,7 @@ export function commentProps() {
     prefixCls: String,
     /** A datetime element containing the time to be displayed */
     datetime: PropTypes.any,
-  }
+  };
 }
 
-export type CommentProps = Partial<ExtractPropTypes<ReturnType<typeof commentProps>>>
+export type CommentProps = Partial<ExtractPropTypes<ReturnType<typeof commentProps>>>;

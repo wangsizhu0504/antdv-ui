@@ -1,8 +1,8 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { DropdownToken } from '.'
+import type { GenerateStyle } from '@antdv/theme';
+import type { DropdownToken } from '.';
 
 const genButtonStyle: GenerateStyle<DropdownToken> = (token) => {
-  const { componentCls, antCls, paddingXS, opacityLoading } = token
+  const { componentCls, antCls, paddingXS, opacityLoading } = token;
 
   return {
     [`${componentCls}-button`]: {
@@ -20,7 +20,7 @@ const genButtonStyle: GenerateStyle<DropdownToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genButtonStyle
+export default genButtonStyle;

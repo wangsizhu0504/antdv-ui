@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import Basic from './basic.vue'
-  import Change from './change.vue'
-  import Colors from './colors.vue'
-  import Dot from './dot.vue'
-  import Link from './link.vue'
-  import NoWapper from './no-wrapper.vue'
-  import Overflow from './overflow.vue'
-  import Ribbon from './ribbon.vue'
-  import Status from './status.vue'
-  import Title from './title.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import Basic from './basic.vue';
+  import Change from './change.vue';
+  import Colors from './colors.vue';
+  import Dot from './dot.vue';
+  import Link from './link.vue';
+  import NoWapper from './no-wrapper.vue';
+  import Overflow from './overflow.vue';
+  import Ribbon from './ribbon.vue';
+  import Status from './status.vue';
+  import Title from './title.vue';
 
   export default defineComponent({
     CN,
@@ -28,7 +28,7 @@
       Link,
       Ribbon,
     },
-  })
+  });
 </script>
 
 <template>

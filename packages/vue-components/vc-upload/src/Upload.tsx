@@ -1,8 +1,8 @@
-import type { RcFile } from './interface'
-import { initDefaultProps } from '@antdv/utils'
-import { defineComponent, ref } from 'vue'
-import AjaxUpload from './AjaxUploader'
-import { uploadProps } from './interface'
+import type { RcFile } from './interface';
+import { initDefaultProps } from '@antdv/utils';
+import { defineComponent, ref } from 'vue';
+import AjaxUpload from './AjaxUploader';
+import { uploadProps } from './interface';
 
 function empty() {}
 
@@ -27,16 +27,16 @@ export default defineComponent({
     openFileDialogOnClick: true,
   }),
   setup(props, { slots, attrs, expose }) {
-    const uploader = ref()
+    const uploader = ref();
 
     const abort = (file: RcFile) => {
-      uploader.value?.abort(file)
-    }
+      uploader.value?.abort(file);
+    };
     expose({
       abort,
-    })
+    });
     return () => {
-      return <AjaxUpload {...props} {...attrs} v-slots={slots} ref={uploader} />
-    }
+      return <AjaxUpload {...props} {...attrs} v-slots={slots} ref={uploader} />;
+    };
   },
-})
+});

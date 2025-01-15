@@ -1,8 +1,8 @@
-import type { InputStatus, KeyboardEventHandler } from '@antdv/types'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { MentionsOptionProps } from './interface'
-import { PropTypes } from '@antdv/utils'
-import { mentionsProps as baseMentionsProps } from '@antdv/vue-components/vc-mentions/src/mentionsProps'
+import type { InputStatus, KeyboardEventHandler } from '@antdv/types';
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { MentionsOptionProps } from './interface';
+import { PropTypes } from '@antdv/utils';
+import { mentionsProps as baseMentionsProps } from '@antdv/vue-components/vc-mentions/src/mentionsProps';
 
 export function mentionsProps() {
   return {
@@ -30,7 +30,7 @@ export function mentionsProps() {
     'defaultValue': String,
     'id': String,
     'status': String as PropType<InputStatus>,
-  }
+  };
 }
 
-export type MentionsProps = Partial<ExtractPropTypes<ReturnType<typeof mentionsProps>>>
+export type MentionsProps = Partial<ExtractPropTypes<ReturnType<typeof mentionsProps>>>;

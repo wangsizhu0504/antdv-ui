@@ -1,6 +1,6 @@
-import type { Locale } from '@antdv/locale'
-import type { ExtractPropTypes, PropType, VNodeTypes } from 'vue'
-import type { LocaleComponentName } from './interface'
+import type { Locale } from '@antdv/locale';
+import type { ExtractPropTypes, PropType, VNodeTypes } from 'vue';
+import type { LocaleComponentName } from './interface';
 
 export function localReceiverProps() {
   return {
@@ -13,7 +13,7 @@ export function localReceiverProps() {
         (locale: any, localeCode?: string, fullLocale?: object) => VNodeTypes
       >,
     },
-  }
+  };
 }
 export function localeProviderProps() {
   return {
@@ -21,9 +21,9 @@ export function localeProviderProps() {
       type: Object as PropType<Locale>,
     },
     ANT_MARK__: String,
-  }
+  };
 }
 
-export type LocaleProviderProps = Partial<ExtractPropTypes<ReturnType<typeof localeProviderProps>>>
+export type LocaleProviderProps = Partial<ExtractPropTypes<ReturnType<typeof localeProviderProps>>>;
 
-export type LocalReceiverProps = Partial<ExtractPropTypes<ReturnType<typeof localReceiverProps>>>
+export type LocalReceiverProps = Partial<ExtractPropTypes<ReturnType<typeof localReceiverProps>>>;

@@ -1,12 +1,12 @@
-import type { ComponentDemo } from '../../interface'
-import { Menu, theme } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Menu, theme } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
-import items from './data'
+import { defineComponent } from 'vue';
+import items from './data';
 
 const Demo = defineComponent({
   setup() {
-    const { token } = theme.useToken()
+    const { token } = theme.useToken();
 
     return () => {
       return (
@@ -19,15 +19,15 @@ const Demo = defineComponent({
             items={items}
           />
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorSplit'],
   key: 'menuInLayout',
-}
+};
 
-export default componentDemo
+export default componentDemo;

@@ -17,45 +17,45 @@ Hide default plus icon, and bind event for customized trigger.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
   const panes = ref<Array<{ title: string; content: string; key: string; closable?: boolean }>>(
     new Array(2).fill(null).map((_, index) => {
-      const id = String(index + 1)
-      return { title: `Tab ${id}`, content: `Content of Tab Pane ${id}`, key: id }
+      const id = String(index + 1);
+      return { title: `Tab ${id}`, content: `Content of Tab Pane ${id}`, key: id };
     }),
-  )
-  const activeKey = ref<any>(panes.value[0].key)
-  const newTabIndex = ref<any>(0)
+  );
+  const activeKey = ref<any>(panes.value[0].key);
+  const newTabIndex = ref<any>(0);
 
   function add() {
-    activeKey.value = `newTab${newTabIndex.value++}`
+    activeKey.value = `newTab${newTabIndex.value++}`;
     panes.value.push({
       title: `New Tab ${activeKey.value}`,
       content: `Content of new Tab ${activeKey.value}`,
       key: activeKey.value,
-    })
+    });
   }
 
   function remove(targetKey: string) {
-    let lastIndex = 0
+    let lastIndex = 0;
     panes.value.forEach((pane, i) => {
       if (pane.key === targetKey) {
-        lastIndex = i - 1
+        lastIndex = i - 1;
       }
-    })
-    panes.value = panes.value.filter(pane => pane.key !== targetKey)
+    });
+    panes.value = panes.value.filter(pane => pane.key !== targetKey);
     if (panes.value.length && activeKey.value === targetKey) {
       if (lastIndex >= 0) {
-        activeKey.value = panes.value[lastIndex].key
+        activeKey.value = panes.value[lastIndex].key;
       } else {
-        activeKey.value = panes.value[0].key
+        activeKey.value = panes.value[0].key;
       }
     }
   }
 
   function onEdit(targetKey: string) {
-    remove(targetKey)
+    remove(targetKey);
   }
 </script>
 

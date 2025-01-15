@@ -1,6 +1,6 @@
-import type { ExtractPropTypes } from 'vue'
-import type { WatermarkFontType } from './interface'
-import { arrayType, objectType, someType } from '@antdv/utils'
+import type { ExtractPropTypes } from 'vue';
+import type { WatermarkFontType } from './interface';
+import { arrayType, objectType, someType } from '@antdv/utils';
 
 export function watermarkProps() {
   return {
@@ -14,6 +14,6 @@ export function watermarkProps() {
     rootClassName: String,
     gap: arrayType<[number, number]>(),
     offset: arrayType<[number, number]>(),
-  }
+  };
 }
-export type WatermarkProps = Partial<ExtractPropTypes<ReturnType<typeof watermarkProps>>>
+export type WatermarkProps = Partial<ExtractPropTypes<ReturnType<typeof watermarkProps>>>;

@@ -1,6 +1,6 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { SelectToken } from '.'
-import { resetComponent, textEllipsis } from '@antdv/theme'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { SelectToken } from '.';
+import { resetComponent, textEllipsis } from '@antdv/theme';
 import {
   initMoveMotion,
   initSlideMotion,
@@ -8,10 +8,10 @@ import {
   slideDownOut,
   slideUpIn,
   slideUpOut,
-} from '@antdv/theme/style/motion'
+} from '@antdv/theme/style/motion';
 
 const genItemStyle: GenerateStyle<SelectToken, CSSObject> = (token) => {
-  const { controlPaddingHorizontal } = token
+  const { controlPaddingHorizontal } = token;
 
   return {
     position: 'relative',
@@ -25,13 +25,13 @@ const genItemStyle: GenerateStyle<SelectToken, CSSObject> = (token) => {
     fontSize: token.fontSize,
     lineHeight: token.lineHeight,
     boxSizing: 'border-box',
-  }
-}
+  };
+};
 
 const genSingleStyle: GenerateStyle<SelectToken> = (token) => {
-  const { antCls, componentCls } = token
+  const { antCls, componentCls } = token;
 
-  const selectItemCls = `${componentCls}-item`
+  const selectItemCls = `${componentCls}-item`;
 
   return [
     {
@@ -159,7 +159,7 @@ const genSingleStyle: GenerateStyle<SelectToken> = (token) => {
     initSlideMotion(token, 'slide-down'),
     initMoveMotion(token, 'move-up'),
     initMoveMotion(token, 'move-down'),
-  ]
-}
+  ];
+};
 
-export default genSingleStyle
+export default genSingleStyle;

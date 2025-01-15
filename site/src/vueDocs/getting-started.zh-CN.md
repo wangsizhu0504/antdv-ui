@@ -49,14 +49,14 @@ $ npm i --save ant-design-vue@4.x
 **全局完整注册**
 
 ```jsx
-import Antd from '@antdv/ui'
-import { createApp } from 'vue'
-import App from './App'
-import 'ant-design-vue/dist/reset.css'
+import Antd from '@antdv/ui';
+import { createApp } from 'vue';
+import App from './App';
+import 'ant-design-vue/dist/reset.css';
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(Antd).mount('#app')
+app.use(Antd).mount('#app');
 ```
 
 以上代码便完成了 Antd 的全局注册。需要注意的是，样式文件需要单独引入。
@@ -64,16 +64,16 @@ app.use(Antd).mount('#app')
 **全局部分注册**
 
 ```jsx
-import { Button, message } from '@antdv/ui'
-import { createApp } from 'vue'
-import App from './App'
+import { Button, message } from '@antdv/ui';
+import { createApp } from 'vue';
+import App from './App';
 
-const app = createApp(App)
+const app = createApp(App);
 
 /* 会自动注册 Button 下的子组件, 例如 Button.Group */
-app.use(Button).mount('#app')
+app.use(Button).mount('#app');
 
-app.config.globalProperties.$message = message
+app.config.globalProperties.$message = message;
 ```
 
 **局部注册组件**

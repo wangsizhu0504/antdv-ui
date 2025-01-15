@@ -1,36 +1,36 @@
-import type { ConfigProviderProps } from './props'
+import type { ConfigProviderProps } from './props';
 
-import { reactive } from 'vue'
-import { defaultIconPrefixCls } from './context'
+import { reactive } from 'vue';
+import { defaultIconPrefixCls } from './context';
 
-export const defaultPrefixCls = 'ant'
+export const defaultPrefixCls = 'ant';
 
 export const globalConfigForApi: ConfigProviderProps & {
   getRootPrefixCls?: (rootPrefixCls?: string, customizePrefixCls?: string) => string
-} = reactive({})
+} = reactive({});
 
 export function getGlobalIconPrefixCls() {
-  return globalConfigForApi.iconPrefixCls || defaultIconPrefixCls
+  return globalConfigForApi.iconPrefixCls || defaultIconPrefixCls;
 }
 
 export function getGlobalPrefixCls() {
-  return globalConfigForApi.prefixCls || defaultPrefixCls
+  return globalConfigForApi.prefixCls || defaultPrefixCls;
 }
 
 export function globalConfig() {
   return {
     getPrefixCls: (suffixCls?: string, customizePrefixCls?: string) => {
-      if (customizePrefixCls) return customizePrefixCls
-      return suffixCls ? `${getGlobalPrefixCls()}-${suffixCls}` : getGlobalPrefixCls()
+      if (customizePrefixCls) return customizePrefixCls;
+      return suffixCls ? `${getGlobalPrefixCls()}-${suffixCls}` : getGlobalPrefixCls();
     },
     getIconPrefixCls: getGlobalIconPrefixCls,
     getRootPrefixCls: () => {
     // If Global prefixCls provided, use this
       if (globalConfigForApi.prefixCls)
-        return globalConfigForApi.prefixCls
+        return globalConfigForApi.prefixCls;
 
       // Fallback to default prefixCls
-      return getGlobalPrefixCls()
+      return getGlobalPrefixCls();
     },
-  }
+  };
 }

@@ -17,32 +17,32 @@ large count of items with pagination.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
   interface MockData {
     key: string;
     title: string;
     description: string;
   }
-  const mockData: MockData[] = []
+  const mockData: MockData[] = [];
   for (let i = 0; i < 200; i++) {
     mockData.push({
       key: i.toString(),
       title: `content${i + 1}`,
       description: `description of content${i + 1}`,
-    })
+    });
   }
 
-  const oriTargetKeys = mockData.filter(item => +item.key % 3 > 1).map(item => item.key)
+  const oriTargetKeys = mockData.filter(item => +item.key % 3 > 1).map(item => item.key);
 
-  const disabled = ref<boolean>(false)
+  const disabled = ref<boolean>(false);
 
-  const targetKeys = ref<string[]>(oriTargetKeys)
+  const targetKeys = ref<string[]>(oriTargetKeys);
 
   function handleChange(nextTargetKeys: string[], direction: string, moveKeys: string[]) {
-    console.log('targetKeys: ', nextTargetKeys)
-    console.log('direction: ', direction)
-    console.log('moveKeys: ', moveKeys)
+    console.log('targetKeys: ', nextTargetKeys);
+    console.log('direction: ', direction);
+    console.log('moveKeys: ', moveKeys);
   }
 </script>
 

@@ -7,12 +7,12 @@ import type {
   MouseEventHandler,
   SizeType,
   VueNode,
-} from '@antdv/types'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { InputFocusOptions } from './utils/commonUtils'
-import { PropTypes, stringType } from '@antdv/utils'
+} from '@antdv/types';
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { InputFocusOptions } from './utils/commonUtils';
+import { PropTypes, stringType } from '@antdv/utils';
 
-export const inputDefaultValue = Symbol('inputDefaultValue') as unknown as string
+export const inputDefaultValue = Symbol('inputDefaultValue') as unknown as string;
 export function commonInputProps() {
   return {
     addonBefore: PropTypes.any,
@@ -25,7 +25,7 @@ export function commonInputProps() {
     wrapperClassName: String,
     inputClassName: String,
     allowClear: { type: Boolean, default: undefined },
-  }
+  };
 }
 export function baseInputProps() {
   return {
@@ -46,7 +46,7 @@ export function baseInputProps() {
     readonly: { type: Boolean, default: undefined },
     handleReset: Function as PropType<MouseEventHandler>,
     hidden: { type: Boolean, default: undefined },
-  }
+  };
 }
 export function inputProps() {
   return {
@@ -103,9 +103,9 @@ export function inputProps() {
     'valueModifiers': Object,
     'hidden': { type: Boolean, default: undefined },
     'status': String as PropType<InputStatus>,
-  }
+  };
 }
-export type InputProps = Partial<ExtractPropTypes<ReturnType<typeof inputProps>>>
+export type InputProps = Partial<ExtractPropTypes<ReturnType<typeof inputProps>>>;
 
 export interface ShowCountProps {
   formatter: (args: { count: number; maxlength?: number; value?: string }) => VueNode;

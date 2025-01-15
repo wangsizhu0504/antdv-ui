@@ -17,10 +17,10 @@ Customize message display duration from default `3s` to `10s`.
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
+  import { message } from '@antdv/ui';
 
   function success() {
-    message.success('This is a prompt message for success, and it will disappear in 10 seconds', 10)
+    message.success('This is a prompt message for success, and it will disappear in 10 seconds', 10);
   }
 </script>
 

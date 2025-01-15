@@ -1,66 +1,66 @@
 import type {
   NotificationInstance as VCNotificationInstance,
-} from '@antdv/vue-components/vc-notification/src/Notification'
+} from '@antdv/vue-components/vc-notification/src/Notification';
 import type {
   IconType,
   NotificationApi,
   NotificationArgsProps,
   NotificationConfig,
   NotificationPlacement,
-} from './interface'
+} from './interface';
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
   CloseOutlined,
   ExclamationCircleOutlined,
   InfoCircleOutlined,
-} from '@ant-design/icons-vue'
-import { classNames, renderHelper } from '@antdv/utils'
-import VcNotification from '@antdv/vue-components/vc-notification/src/Notification'
-import { globalConfig } from '../../config-provider/src/config'
-import useStyle from '../style'
-import useNotification from './useNotification'
-import { getPlacementStyle } from './util'
+} from '@ant-design/icons-vue';
+import { classNames, renderHelper } from '@antdv/utils';
+import VcNotification from '@antdv/vue-components/vc-notification/src/Notification';
+import { globalConfig } from '../../config-provider/src/config';
+import useStyle from '../style';
+import useNotification from './useNotification';
+import { getPlacementStyle } from './util';
 
-const notificationInstance: { [key: string]: VCNotificationInstance } = {}
-let defaultDuration = 4.5
-let defaultTop = '24px'
-let defaultBottom = '24px'
-let defaultPrefixCls = ''
-let defaultPlacement: NotificationPlacement = 'topRight'
-let defaultGetContainer = () => document.body
-let defaultCloseIcon = null
-let rtl = false
-let maxCount: number
+const notificationInstance: { [key: string]: VCNotificationInstance } = {};
+let defaultDuration = 4.5;
+let defaultTop = '24px';
+let defaultBottom = '24px';
+let defaultPrefixCls = '';
+let defaultPlacement: NotificationPlacement = 'topRight';
+let defaultGetContainer = () => document.body;
+let defaultCloseIcon = null;
+let rtl = false;
+let maxCount: number;
 
 function setNotificationConfig(options: NotificationConfig) {
-  const { duration, placement, bottom, top, getContainer, closeIcon, prefixCls } = options
+  const { duration, placement, bottom, top, getContainer, closeIcon, prefixCls } = options;
   if (prefixCls !== undefined)
-    defaultPrefixCls = prefixCls
+    defaultPrefixCls = prefixCls;
 
   if (duration !== undefined)
-    defaultDuration = duration
+    defaultDuration = duration;
 
   if (placement !== undefined)
-    defaultPlacement = placement
+    defaultPlacement = placement;
 
   if (bottom !== undefined)
-    defaultBottom = typeof bottom === 'number' ? `${bottom}px` : bottom
+    defaultBottom = typeof bottom === 'number' ? `${bottom}px` : bottom;
 
   if (top !== undefined)
-    defaultTop = typeof top === 'number' ? `${top}px` : top
+    defaultTop = typeof top === 'number' ? `${top}px` : top;
 
   if (getContainer !== undefined)
-    defaultGetContainer = getContainer
+    defaultGetContainer = getContainer;
 
   if (closeIcon !== undefined)
-    defaultCloseIcon = closeIcon
+    defaultCloseIcon = closeIcon;
 
   if (options.rtl !== undefined)
-    rtl = options.rtl
+    rtl = options.rtl;
 
   if (options.maxCount !== undefined)
-    maxCount = options.maxCount
+    maxCount = options.maxCount;
 }
 
 function getNotificationInstance(
@@ -75,21 +75,21 @@ function getNotificationInstance(
   }: NotificationArgsProps,
   callback: (n: VCNotificationInstance) => void,
 ) {
-  const { getPrefixCls } = globalConfig()
-  const prefixCls = getPrefixCls('notification', customizePrefixCls || defaultPrefixCls)
-  const cacheKey = `${prefixCls}-${placement}-${rtl}`
-  const cacheInstance = notificationInstance[cacheKey]
+  const { getPrefixCls } = globalConfig();
+  const prefixCls = getPrefixCls('notification', customizePrefixCls || defaultPrefixCls);
+  const cacheKey = `${prefixCls}-${placement}-${rtl}`;
+  const cacheInstance = notificationInstance[cacheKey];
   if (cacheInstance) {
     Promise.resolve(cacheInstance).then((instance) => {
-      callback(instance)
-    })
+      callback(instance);
+    });
 
-    return
+    return;
   }
 
   const notificationClass = classNames(`${prefixCls}-${placement}`, {
     [`${prefixCls}-rtl`]: rtl === true,
-  })
+  });
   VcNotification.newInstance(
     {
       name: 'notification',
@@ -104,17 +104,17 @@ function getNotificationInstance(
           <span class={`${prefixCls}-close-x`}>
             {renderHelper(closeIcon, {}, <CloseOutlined class={`${prefixCls}-close-icon`} />)}
           </span>
-        )
-        return closeIconToRender
+        );
+        return closeIconToRender;
       },
       maxCount,
       hasTransitionName: true,
     },
     (notification: any) => {
-      notificationInstance[cacheKey] = notification
-      callback(notification)
+      notificationInstance[cacheKey] = notification;
+      callback(notification);
     },
-  )
+  );
 }
 
 const typeToIcon = {
@@ -123,21 +123,21 @@ const typeToIcon = {
   error: CloseCircleOutlined,
   warning: ExclamationCircleOutlined,
   warn: ExclamationCircleOutlined,
-}
+};
 
 function notice(args: NotificationArgsProps) {
-  const { icon, type, description, message, btn } = args
-  const duration = args.duration === undefined ? defaultDuration : args.duration
+  const { icon, type, description, message, btn } = args;
+  const duration = args.duration === undefined ? defaultDuration : args.duration;
   getNotificationInstance(args, (notification) => {
     notification.notice({
       content: ({ prefixCls: outerPrefixCls }) => {
-        const prefixCls = `${outerPrefixCls}-notice`
-        let iconNode = null
+        const prefixCls = `${outerPrefixCls}-notice`;
+        let iconNode = null;
         if (icon) {
-          iconNode = () => <span class={`${prefixCls}-icon`}>{renderHelper(icon)}</span>
+          iconNode = () => <span class={`${prefixCls}-icon`}>{renderHelper(icon)}</span>;
         } else if (type) {
-          const Icon = typeToIcon[type]
-          iconNode = () => <Icon class={`${prefixCls}-icon ${prefixCls}-icon-${type}`} />
+          const Icon = typeToIcon[type];
+          iconNode = () => <Icon class={`${prefixCls}-icon ${prefixCls}-icon-${type}`} />;
         }
         return (
           <div class={iconNode ? `${prefixCls}-with-icon` : ''}>
@@ -153,7 +153,7 @@ function notice(args: NotificationArgsProps) {
             <div class={`${prefixCls}-description`}>{renderHelper(description)}</div>
             {btn ? <span class={`${prefixCls}-btn`}>{renderHelper(btn)}</span> : null}
           </div>
-        )
+        );
       },
       duration,
       closable: true,
@@ -162,8 +162,8 @@ function notice(args: NotificationArgsProps) {
       key: args.key,
       style: args.style || {},
       class: args.class,
-    })
-  })
+    });
+  });
 }
 
 const api: any = {
@@ -171,35 +171,35 @@ const api: any = {
   close(key: string) {
     Object.keys(notificationInstance).forEach(cacheKey =>
       Promise.resolve(notificationInstance[cacheKey]).then((instance) => {
-        instance.removeNotice(key)
+        instance.removeNotice(key);
       }),
-    )
+    );
   },
   config: setNotificationConfig,
   destroy() {
     Object.keys(notificationInstance).forEach((cacheKey) => {
       Promise.resolve(notificationInstance[cacheKey]).then((instance) => {
-        instance.destroy()
-      })
-      delete notificationInstance[cacheKey] // lgtm[js/missing-await]
-    })
+        instance.destroy();
+      });
+      delete notificationInstance[cacheKey]; // lgtm[js/missing-await]
+    });
   },
-}
+};
 
-const iconTypes: IconType[] = ['success', 'info', 'warning', 'warn', 'error']
+const iconTypes: IconType[] = ['success', 'info', 'warning', 'warn', 'error'];
 iconTypes.forEach((type) => {
   api[type] = args =>
     api.open({
       ...args,
       type,
-    })
-})
+    });
+});
 
-api.useNotification = useNotification
+api.useNotification = useNotification;
 
 /** @private test Only function. Not work on production */
 export async function getInstance(cacheKey: string) {
-  return process.env.NODE_ENV === 'test' ? notificationInstance[cacheKey] : null
+  return process.env.NODE_ENV === 'test' ? notificationInstance[cacheKey] : null;
 }
 
-export default api as NotificationApi
+export default api as NotificationApi;

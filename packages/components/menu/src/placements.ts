@@ -1,7 +1,7 @@
 const autoAdjustOverflow = {
   adjustX: 1,
   adjustY: 1,
-}
+};
 
 export const placements = {
   topLeft: {
@@ -24,7 +24,7 @@ export const placements = {
     overflow: autoAdjustOverflow,
     offset: [4, 0],
   },
-}
+};
 
 export const placementsRtl = {
   topLeft: {
@@ -47,6 +47,6 @@ export const placementsRtl = {
     overflow: autoAdjustOverflow,
     offset: [4, 0],
   },
-}
+};
 
-export default placements
+export default placements;

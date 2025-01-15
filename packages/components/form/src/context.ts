@@ -1,12 +1,12 @@
-import type { ValidateMessages } from '@antdv/locale'
-import type { ValidateStatus } from '@antdv/types'
-import type { ComputedRef, InjectionKey } from 'vue'
-import type { ColProps } from '../../grid'
-import type { FieldExpose, FormLabelAlign, RequiredMark, Rule } from './interface'
-import { computed, inject, provide } from 'vue'
-import { defaultValidateMessages } from './utils/messages'
+import type { ValidateMessages } from '@antdv/locale';
+import type { ValidateStatus } from '@antdv/types';
+import type { ComputedRef, InjectionKey } from 'vue';
+import type { ColProps } from '../../grid';
+import type { FieldExpose, FormLabelAlign, RequiredMark, Rule } from './interface';
+import { computed, inject, provide } from 'vue';
+import { defaultValidateMessages } from './utils/messages';
 
-export const FormContextKey: InjectionKey<FormContextProps> = Symbol('formContextKey')
+export const FormContextKey: InjectionKey<FormContextProps> = Symbol('formContextKey');
 
 export interface FormContextProps {
   model?: ComputedRef<any>
@@ -32,7 +32,7 @@ export interface FormContextProps {
 }
 
 export function useProvideForm(state: FormContextProps) {
-  provide(FormContextKey, state)
+  provide(FormContextKey, state);
 }
 
 export function useInjectForm() {
@@ -53,7 +53,7 @@ export function useInjectForm() {
     validateTrigger: computed(() => undefined),
     onValidate: () => {},
     validateMessages: computed(() => defaultValidateMessages),
-  } as FormContextProps)
+  } as FormContextProps);
 }
 
 /** Used for ErrorList only */
@@ -64,14 +64,14 @@ export interface FormItemPrefixContextProps {
 
 export const FormItemPrefixContextKey: InjectionKey<FormItemPrefixContextProps> = Symbol(
   'formItemPrefixContextKey',
-)
+);
 
 export function useProvideFormItemPrefix(state: FormItemPrefixContextProps) {
-  provide(FormItemPrefixContextKey, state)
+  provide(FormItemPrefixContextKey, state);
 }
 
 export function useInjectFormItemPrefix() {
   return inject(FormItemPrefixContextKey, {
     prefixCls: computed(() => ''),
-  })
+  });
 }

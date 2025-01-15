@@ -17,14 +17,14 @@ In order to fit in more tabs, they can slide left and right (or up and down).
 </docs>
 
 <script lang="ts" setup>
-  import type { TabsProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { TabsProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const mode = ref<TabsProps['tabPosition']>('top')
-  const activeKey = ref<any>(1)
+  const mode = ref<TabsProps['tabPosition']>('top');
+  const activeKey = ref<any>(1);
   const callback: TabsProps['onTabScroll'] = (val) => {
-    console.log(val)
-  }
+    console.log(val);
+  };
 </script>
 
 <template>

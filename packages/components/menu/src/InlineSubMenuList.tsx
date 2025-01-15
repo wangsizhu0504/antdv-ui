@@ -1,7 +1,7 @@
-import type { MenuMode } from './interface'
-import { computed, defineComponent, ref, Transition, watch } from 'vue'
-import { MenuContextProvider, useInjectMenu } from './hooks/useMenuContext'
-import SubMenuList from './SubMenuList'
+import type { MenuMode } from './interface';
+import { computed, defineComponent, ref, Transition, watch } from 'vue';
+import { MenuContextProvider, useInjectMenu } from './hooks/useMenuContext';
+import SubMenuList from './SubMenuList';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -13,12 +13,12 @@ export default defineComponent({
     keyPath: Array,
   },
   setup(props, { slots }) {
-    const fixedMode = computed<MenuMode>(() => 'inline')
-    const { motion, mode, defaultMotions } = useInjectMenu()
-    const sameModeRef = computed(() => mode.value === fixedMode.value)
-    const destroy = ref(!sameModeRef.value)
+    const fixedMode = computed<MenuMode>(() => 'inline');
+    const { motion, mode, defaultMotions } = useInjectMenu();
+    const sameModeRef = computed(() => mode.value === fixedMode.value);
+    const destroy = ref(!sameModeRef.value);
 
-    const mergedOpen = computed(() => (sameModeRef.value ? props.open : false))
+    const mergedOpen = computed(() => (sameModeRef.value ? props.open : false));
 
     // ================================= Effect =================================
     // Reset destroy state when mode change back
@@ -26,19 +26,19 @@ export default defineComponent({
       mode,
       () => {
         if (sameModeRef.value)
-          destroy.value = false
+          destroy.value = false;
       },
       { flush: 'post' },
-    )
+    );
     const mergedMotion = computed(() => {
       const m
-        = motion.value || defaultMotions.value?.[fixedMode.value] || defaultMotions.value?.other
-      const res = typeof m === 'function' ? m() : m
-      return { ...res, appear: props.keyPath.length <= 1 }
-    })
+        = motion.value || defaultMotions.value?.[fixedMode.value] || defaultMotions.value?.other;
+      const res = typeof m === 'function' ? m() : m;
+      return { ...res, appear: props.keyPath.length <= 1 };
+    });
     return () => {
       if (destroy.value)
-        return null
+        return null;
 
       return (
         <MenuContextProvider mode={fixedMode.value}>
@@ -48,7 +48,7 @@ export default defineComponent({
             </SubMenuList>
           </Transition>
         </MenuContextProvider>
-      )
-    }
+      );
+    };
   },
-})
+});

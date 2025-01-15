@@ -25,9 +25,9 @@ If a `sortOrder` or `defaultSortOrder` is specified with the value `ascend` or `
 </docs>
 
 <script lang="ts" setup>
-  import type { TableColumnType, TableProps } from '@antdv/ui'
+  import type { TableColumnType, TableProps } from '@antdv/ui';
 
-  type TableDataType = {
+  interface TableDataType {
     key: string;
     name: string;
     age: number;
@@ -92,7 +92,7 @@ If a `sortOrder` or `defaultSortOrder` is specified with the value `ascend` or `
       sorter: (a: TableDataType, b: TableDataType) => a.address.length - b.address.length,
       sortDirections: ['descend', 'ascend'],
     },
-  ]
+  ];
 
   const data: TableDataType[] = [
     {
@@ -119,10 +119,10 @@ If a `sortOrder` or `defaultSortOrder` is specified with the value `ascend` or `
       age: 32,
       address: 'London No. 2 Lake Park',
     },
-  ]
+  ];
   const onChange: TableProps<TableDataType>['onChange'] = (pagination, filters, sorter) => {
-    console.log('params', pagination, filters, sorter)
-  }
+    console.log('params', pagination, filters, sorter);
+  };
 </script>
 
 <template>

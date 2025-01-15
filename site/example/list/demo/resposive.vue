@@ -39,7 +39,7 @@ Responsive grid list. The size property is as same as [Layout Grid](https://www.
     {
       title: 'Title 6',
     },
-  ]
+  ];
 </script>
 
 <template>

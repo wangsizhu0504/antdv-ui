@@ -1,9 +1,9 @@
-import type { FocusEventHandler } from '@antdv/types'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { CheckedType } from './interface'
-import { PropTypes, tuple } from '@antdv/utils'
+import type { FocusEventHandler } from '@antdv/types';
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { CheckedType } from './interface';
+import { PropTypes, tuple } from '@antdv/utils';
 
-export const SwitchSizes = tuple('small', 'default')
+export const SwitchSizes = tuple('small', 'default');
 
 export function switchProps() {
   return {
@@ -42,7 +42,7 @@ export function switchProps() {
     },
     'onBlur': Function as PropType<FocusEventHandler>,
     'onFocus': Function as PropType<FocusEventHandler>,
-  }
+  };
 }
 
-export type SwitchProps = Partial<ExtractPropTypes<ReturnType<typeof switchProps>>>
+export type SwitchProps = Partial<ExtractPropTypes<ReturnType<typeof switchProps>>>;

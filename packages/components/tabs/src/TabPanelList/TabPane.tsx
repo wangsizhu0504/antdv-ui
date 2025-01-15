@@ -1,7 +1,7 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import { computed, defineComponent, ref, watch } from 'vue'
-import { tabPaneProps } from '../props'
+import type { CustomSlotsType } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import { computed, defineComponent, ref, watch } from 'vue';
+import { tabPaneProps } from '../props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -15,17 +15,17 @@ export default defineComponent({
     default: any
   }>,
   setup(props, { attrs, slots }) {
-    const visited = ref(props.forceRender)
+    const visited = ref(props.forceRender);
     watch(
       [() => props.active, () => props.destroyInactiveTabPane],
       () => {
         if (props.active)
-          visited.value = true
+          visited.value = true;
         else if (props.destroyInactiveTabPane)
-          visited.value = false
+          visited.value = false;
       },
       { immediate: true },
-    )
+    );
     const mergedStyle = computed<CSSProperties>(() => {
       if (!props.active) {
         if (props.animated) {
@@ -33,16 +33,16 @@ export default defineComponent({
             visibility: 'hidden',
             height: 0,
             overflowY: 'hidden',
-          }
+          };
         } else {
-          return { display: 'none' }
+          return { display: 'none' };
         }
       }
-      return {}
-    })
+      return {};
+    });
 
     return () => {
-      const { prefixCls, forceRender, id, active, tabKey } = props
+      const { prefixCls, forceRender, id, active, tabKey } = props;
       return (
         <div
           id={id && `${id}-panel-${tabKey}`}
@@ -55,7 +55,7 @@ export default defineComponent({
         >
           {(active || visited.value || forceRender) && slots.default?.()}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -17,9 +17,9 @@ You can add extra actions to the right of Tabs.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const activeKey = ref<any>('1')
+  const activeKey = ref<any>('1');
 </script>
 
 <template>

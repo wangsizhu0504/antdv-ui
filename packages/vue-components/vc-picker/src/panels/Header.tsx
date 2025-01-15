@@ -1,11 +1,11 @@
-import type { VueNode } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import useMergeProps from '../hooks/useMergeProps'
-import { useInjectPanel } from '../PanelContext'
+import type { VueNode } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import useMergeProps from '../hooks/useMergeProps';
+import { useInjectPanel } from '../PanelContext';
 
 const HIDDEN_STYLE: CSSProperties = {
   visibility: 'hidden',
-}
+};
 
 export interface HeaderProps {
   prefixCls: string;
@@ -29,7 +29,7 @@ export interface HeaderProps {
 }
 
 function Header(_props: HeaderProps, { slots }) {
-  const props = useMergeProps(_props)
+  const props = useMergeProps(_props);
   const {
     prefixCls,
     prevIcon = '\u2039',
@@ -40,8 +40,8 @@ function Header(_props: HeaderProps, { slots }) {
     onSuperNext,
     onPrev,
     onNext,
-  } = props
-  const { hideNextBtn, hidePrevBtn } = useInjectPanel()
+  } = props;
+  const { hideNextBtn, hidePrevBtn } = useInjectPanel();
 
   return (
     <div class={prefixCls}>
@@ -91,10 +91,10 @@ function Header(_props: HeaderProps, { slots }) {
         </button>
       )}
     </div>
-  )
+  );
 }
 
-Header.displayName = 'Header'
-Header.inheritAttrs = false
+Header.displayName = 'Header';
+Header.inheritAttrs = false;
 
-export default Header
+export default Header;

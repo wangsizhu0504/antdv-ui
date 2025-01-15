@@ -17,9 +17,9 @@ We can use Checkbox and Grid Checkbox.group, to implement complex layout
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<any>([])
+  const value = ref<any>([]);
 </script>
 
 <template>

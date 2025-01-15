@@ -18,7 +18,7 @@ Basic usage.
 
 <script lang="ts" setup>
   function onChange(current: number) {
-    console.log(current)
+    console.log(current);
   }
 </script>
 

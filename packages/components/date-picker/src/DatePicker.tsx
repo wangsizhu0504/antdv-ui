@@ -1,13 +1,13 @@
-import type { Dayjs } from 'dayjs'
-import type { App } from 'vue'
-import dayjsGenerateConfig from '@antdv/vue-components/vc-picker/src/generate/dayjs'
-import generatePicker from './generatePicker'
+import type { Dayjs } from 'dayjs';
+import type { App } from 'vue';
+import dayjsGenerateConfig from '@antdv/vue-components/vc-picker/src/generate/dayjs';
+import generatePicker from './generatePicker';
 
 const { DatePicker, WeekPicker, MonthPicker, YearPicker, TimePicker, QuarterPicker, RangePicker }
-  = generatePicker<Dayjs>(dayjsGenerateConfig)
+  = generatePicker<Dayjs>(dayjsGenerateConfig);
 
 /* istanbul ignore next */
-export { MonthPicker, QuarterPicker, RangePicker, WeekPicker }
+export { MonthPicker, QuarterPicker, RangePicker, WeekPicker };
 
 export default Object.assign(DatePicker, {
   WeekPicker,
@@ -17,11 +17,11 @@ export default Object.assign(DatePicker, {
   TimePicker,
   QuarterPicker,
   install: (app: App) => {
-    app.component(DatePicker.name, DatePicker)
-    app.component(RangePicker.name, RangePicker)
-    app.component(MonthPicker.name, MonthPicker)
-    app.component(WeekPicker.name, WeekPicker)
-    app.component(QuarterPicker.name, QuarterPicker)
-    return app
+    app.component(DatePicker.name, DatePicker);
+    app.component(RangePicker.name, RangePicker);
+    app.component(MonthPicker.name, MonthPicker);
+    app.component(WeekPicker.name, WeekPicker);
+    app.component(QuarterPicker.name, QuarterPicker);
+    return app;
   },
-})
+});

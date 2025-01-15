@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent, resetIcon, textEllipsis } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent, resetIcon, textEllipsis } from '@antdv/theme';
 
 export interface ComponentToken {
   listWidth: number
@@ -17,10 +17,10 @@ interface TransferToken extends FullToken<'Transfer'> {
 const genTransferCustomizeStyle: GenerateStyle<TransferToken> = (
   token: TransferToken,
 ): CSSObject => {
-  const { antCls, componentCls, listHeight, controlHeightLG, marginXXS, margin } = token
+  const { antCls, componentCls, listHeight, controlHeightLG, marginXXS, margin } = token;
 
-  const tableCls = `${antCls}-table`
-  const inputCls = `${antCls}-input`
+  const tableCls = `${antCls}-table`;
+  const inputCls = `${antCls}-input`;
 
   return {
     [`${componentCls}-customize-list`]: {
@@ -52,11 +52,11 @@ const genTransferCustomizeStyle: GenerateStyle<TransferToken> = (
         backgroundColor: 'transparent',
       },
     },
-  }
-}
+  };
+};
 
 function genTransferStatusColor(token: TransferToken, color: string): CSSObject {
-  const { componentCls, colorBorder } = token
+  const { componentCls, colorBorder } = token;
   return {
     [`${componentCls}-list`]: {
       'borderColor': color,
@@ -65,11 +65,11 @@ function genTransferStatusColor(token: TransferToken, color: string): CSSObject 
         borderColor: colorBorder,
       },
     },
-  }
+  };
 }
 
 const genTransferStatusStyle: GenerateStyle<TransferToken> = (token: TransferToken): CSSObject => {
-  const { componentCls } = token
+  const { componentCls } = token;
   return {
     [`${componentCls}-status-error`]: {
       ...genTransferStatusColor(token, token.colorError),
@@ -77,8 +77,8 @@ const genTransferStatusStyle: GenerateStyle<TransferToken> = (token: TransferTok
     [`${componentCls}-status-warning`]: {
       ...genTransferStatusColor(token, token.colorWarning),
     },
-  }
-}
+  };
+};
 
 const genTransferListStyle: GenerateStyle<TransferToken> = (token: TransferToken): CSSObject => {
   const {
@@ -102,7 +102,7 @@ const genTransferListStyle: GenerateStyle<TransferToken> = (token: TransferToken
     lineType,
     iconCls,
     motionDurationSlow,
-  } = token
+  } = token;
 
   return {
     'display': 'flex',
@@ -272,8 +272,8 @@ const genTransferListStyle: GenerateStyle<TransferToken> = (token: TransferToken
     '&-checkbox': {
       lineHeight: 1,
     },
-  }
-}
+  };
+};
 
 const genTransferStyle: GenerateStyle<TransferToken> = (token: TransferToken): CSSObject => {
   const {
@@ -286,7 +286,7 @@ const genTransferStyle: GenerateStyle<TransferToken> = (token: TransferToken): C
     fontSizeIcon,
     fontSize,
     lineHeight,
-  } = token
+  } = token;
 
   return {
     [componentCls]: {
@@ -329,45 +329,45 @@ const genTransferStyle: GenerateStyle<TransferToken> = (token: TransferToken): C
         maxHeight: transferHeaderHeight / 2 - Math.round(fontSize * lineHeight),
       },
     },
-  }
-}
+  };
+};
 
 const genTransferRTLStyle: GenerateStyle<TransferToken> = (token: TransferToken): CSSObject => {
-  const { componentCls } = token
+  const { componentCls } = token;
   return {
     [`${componentCls}-rtl`]: {
       direction: 'rtl',
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
   'Transfer',
   (token) => {
-    const { fontSize, lineHeight, lineWidth, controlHeightLG, controlHeight } = token
+    const { fontSize, lineHeight, lineWidth, controlHeightLG, controlHeight } = token;
 
-    const fontHeight = Math.round(fontSize * lineHeight)
-    const transferHeaderHeight = controlHeightLG
-    const transferItemHeight = controlHeight
+    const fontHeight = Math.round(fontSize * lineHeight);
+    const transferHeaderHeight = controlHeightLG;
+    const transferItemHeight = controlHeight;
 
     const transferToken = mergeToken<TransferToken>(token, {
       transferItemHeight,
       transferHeaderHeight,
       transferHeaderVerticalPadding: Math.ceil((transferHeaderHeight - lineWidth - fontHeight) / 2),
       transferItemPaddingVertical: (transferItemHeight - fontHeight) / 2,
-    })
+    });
 
     return [
       genTransferStyle(transferToken),
       genTransferCustomizeStyle(transferToken),
       genTransferStatusStyle(transferToken),
       genTransferRTLStyle(transferToken),
-    ]
+    ];
   },
   {
     listWidth: 180,
     listHeight: 200,
     listWidthLG: 250,
   },
-)
+);

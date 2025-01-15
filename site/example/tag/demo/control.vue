@@ -17,41 +17,41 @@ Generating a set of Tags by array, you can add and remove dynamically.
 </docs>
 
 <script lang="ts" setup>
-  import { PlusOutlined } from '@ant-design/icons-vue'
-  import { nextTick, reactive, ref } from 'vue'
+  import { PlusOutlined } from '@ant-design/icons-vue';
+  import { nextTick, reactive, ref } from 'vue';
 
-  const inputRef = ref<any>()
+  const inputRef = ref<any>();
   const state = reactive({
     tags: ['Unremovable', 'Tag 2', 'Tag 3Tag 3Tag 3Tag 3Tag 3Tag 3Tag 3'],
     inputVisible: false,
     inputValue: '',
-  })
+  });
 
   function handleClose(removedTag: string) {
-    const tags = state.tags.filter(tag => tag !== removedTag)
-    console.log(tags)
-    state.tags = tags
+    const tags = state.tags.filter(tag => tag !== removedTag);
+    console.log(tags);
+    state.tags = tags;
   }
 
   function showInput() {
-    state.inputVisible = true
+    state.inputVisible = true;
     nextTick(() => {
-      inputRef.value.focus()
-    })
+      inputRef.value.focus();
+    });
   }
 
   function handleInputConfirm() {
-    const inputValue = state.inputValue
-    let tags = state.tags
+    const inputValue = state.inputValue;
+    let tags = state.tags;
     if (inputValue && !tags.includes(inputValue)) {
-      tags = [...tags, inputValue]
+      tags = [...tags, inputValue];
     }
-    console.log(tags)
+    console.log(tags);
     Object.assign(state, {
       tags,
       inputVisible: false,
       inputValue: '',
-    })
+    });
   }
 </script>
 

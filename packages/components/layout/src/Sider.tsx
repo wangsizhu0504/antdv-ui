@@ -1,7 +1,7 @@
-import type { CSSProperties } from 'vue'
-import type { CollapseType } from './interface'
-import { BarsOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
-import { classNames, initDefaultProps, isNumeric } from '@antdv/utils'
+import type { CSSProperties } from 'vue';
+import type { CollapseType } from './interface';
+import { BarsOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue';
+import { classNames, initDefaultProps, isNumeric } from '@antdv/utils';
 import {
   defineComponent,
   inject,
@@ -10,11 +10,11 @@ import {
   provide,
   shallowRef,
   watch,
-} from 'vue'
+} from 'vue';
 
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { SiderCollapsedKey, SiderHookProviderKey } from './injectionKey'
-import { siderProps } from './props'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { SiderCollapsedKey, SiderHookProviderKey } from './injectionKey';
+import { siderProps } from './props';
 
 const dimensionMaxMap = {
   xs: '479.98px',
@@ -24,15 +24,15 @@ const dimensionMaxMap = {
   xl: '1199.98px',
   xxl: '1599.98px',
   xxxl: '1999.98px',
-}
+};
 
 const generateId = (() => {
-  let i = 0
+  let i = 0;
   return (prefix = '') => {
-    i += 1
-    return `${prefix}${i}`
-  }
-})()
+    i += 1;
+    return `${prefix}${i}`;
+  };
+})();
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -47,89 +47,89 @@ export default defineComponent({
   }),
   emits: ['breakpoint', 'update:collapsed', 'collapse'],
   setup(props, { emit, attrs, slots }) {
-    const { prefixCls } = useConfigInject('layout-sider', props)
-    const siderHook = inject(SiderHookProviderKey, undefined)
+    const { prefixCls } = useConfigInject('layout-sider', props);
+    const siderHook = inject(SiderHookProviderKey, undefined);
     const collapsed = shallowRef(
       !!(props.collapsed !== undefined ? props.collapsed : props.defaultCollapsed),
-    )
-    const below = shallowRef(false)
+    );
+    const below = shallowRef(false);
 
     watch(
       () => props.collapsed,
       () => {
-        collapsed.value = !!props.collapsed
+        collapsed.value = !!props.collapsed;
       },
-    )
+    );
 
-    provide(SiderCollapsedKey, collapsed)
+    provide(SiderCollapsedKey, collapsed);
 
     const handleSetCollapsed = (value: boolean, type: CollapseType) => {
       if (props.collapsed === undefined)
-        collapsed.value = value
+        collapsed.value = value;
 
-      emit('update:collapsed', value)
-      emit('collapse', value, type)
-    }
+      emit('update:collapsed', value);
+      emit('collapse', value, type);
+    };
 
     // ========================= Responsive =========================
     const responsiveHandlerRef = shallowRef<(mql: MediaQueryListEvent | MediaQueryList) => void>(
       (mql: MediaQueryListEvent | MediaQueryList) => {
-        below.value = mql.matches
-        emit('breakpoint', mql.matches)
+        below.value = mql.matches;
+        emit('breakpoint', mql.matches);
 
         if (collapsed.value !== mql.matches)
-          handleSetCollapsed(mql.matches, 'responsive')
+          handleSetCollapsed(mql.matches, 'responsive');
       },
-    )
-    let mql: MediaQueryList
+    );
+    let mql: MediaQueryList;
     function responsiveHandler(mediaQueryList: MediaQueryListEvent | MediaQueryList) {
-      return responsiveHandlerRef.value!(mediaQueryList)
+      return responsiveHandlerRef.value!(mediaQueryList);
     }
-    const uniqueId = generateId('ant-sider-')
-    siderHook && siderHook.addSider(uniqueId)
+    const uniqueId = generateId('ant-sider-');
+    siderHook && siderHook.addSider(uniqueId);
 
     onMounted(() => {
       watch(
         () => props.breakpoint,
         () => {
           try {
-            mql?.removeEventListener('change', responsiveHandler)
+            mql?.removeEventListener('change', responsiveHandler);
           } catch (error) {
-            mql?.removeListener(responsiveHandler)
+            mql?.removeListener(responsiveHandler);
           }
           if (typeof window !== 'undefined') {
-            const { matchMedia } = window
+            const { matchMedia } = window;
             if (matchMedia! && props.breakpoint && props.breakpoint in dimensionMaxMap) {
-              mql = matchMedia(`(max-width: ${dimensionMaxMap[props.breakpoint]})`)
+              mql = matchMedia(`(max-width: ${dimensionMaxMap[props.breakpoint]})`);
               try {
-                mql.addEventListener('change', responsiveHandler)
+                mql.addEventListener('change', responsiveHandler);
               } catch (error) {
-                mql.addListener(responsiveHandler)
+                mql.addListener(responsiveHandler);
               }
-              responsiveHandler(mql)
+              responsiveHandler(mql);
             }
           }
         },
         {
           immediate: true,
         },
-      )
-    })
+      );
+    });
     onBeforeUnmount(() => {
       try {
-        mql?.removeEventListener('change', responsiveHandler)
+        mql?.removeEventListener('change', responsiveHandler);
       } catch (error) {
-        mql?.removeListener(responsiveHandler)
+        mql?.removeListener(responsiveHandler);
       }
-      siderHook && siderHook.removeSider(uniqueId)
-    })
+      siderHook && siderHook.removeSider(uniqueId);
+    });
 
     const toggle = () => {
-      handleSetCollapsed(!collapsed.value, 'clickTrigger')
-    }
+      handleSetCollapsed(!collapsed.value, 'clickTrigger');
+    };
 
     return () => {
-      const pre = prefixCls.value
+      const pre = prefixCls.value;
       const {
         collapsedWidth,
         width,
@@ -138,10 +138,10 @@ export default defineComponent({
         trigger = slots.trigger?.(),
         collapsible,
         theme,
-      } = props
-      const rawWidth = collapsed.value ? collapsedWidth : width
+      } = props;
+      const rawWidth = collapsed.value ? collapsedWidth : width;
       // use "px" as fallback unit for width
-      const siderWidth = isNumeric(rawWidth) ? `${rawWidth}px` : String(rawWidth)
+      const siderWidth = isNumeric(rawWidth) ? `${rawWidth}px` : String(rawWidth);
       // special trigger when collapsedWidth == 0
       const zeroWidthTrigger
         = Number.parseFloat(String(collapsedWidth || 0)) === 0
@@ -157,13 +157,13 @@ export default defineComponent({
                 {trigger || <BarsOutlined />}
               </span>
             )
-          : null
+          : null;
       const iconObj = {
         expanded: reverseArrow ? <RightOutlined /> : <LeftOutlined />,
         collapsed: reverseArrow ? <LeftOutlined /> : <RightOutlined />,
-      }
-      const status = collapsed.value ? 'collapsed' : 'expanded'
-      const defaultTrigger = iconObj[status]
+      };
+      const status = collapsed.value ? 'collapsed' : 'expanded';
+      const defaultTrigger = iconObj[status];
       const triggerDom
         = trigger !== null
           ? zeroWidthTrigger || (
@@ -171,7 +171,7 @@ export default defineComponent({
               {trigger || defaultTrigger}
             </div>
           )
-          : null
+          : null;
       const divStyle = [
         attrs.style as CSSProperties,
         {
@@ -180,7 +180,7 @@ export default defineComponent({
           minWidth: siderWidth, // https://github.com/ant-design/ant-design/issues/6349
           width: siderWidth,
         },
-      ]
+      ];
       const siderCls = classNames(
         pre,
         `${pre}-${theme}`,
@@ -191,13 +191,13 @@ export default defineComponent({
           [`${pre}-zero-width`]: Number.parseFloat(siderWidth) === 0,
         },
         attrs.class,
-      )
+      );
       return (
         <aside {...attrs} class={siderCls} style={divStyle}>
           <div class={`${pre}-children`}>{slots.default?.()}</div>
           {collapsible || (below.value && zeroWidthTrigger) ? triggerDom : null}
         </aside>
-      )
-    }
+      );
+    };
   },
-})
+});

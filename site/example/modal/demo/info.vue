@@ -17,8 +17,8 @@ In the various types of information modal dialog, only one button to close dialo
 </docs>
 
 <script lang="ts" setup>
-  import { Modal } from '@antdv/ui'
-  import { h } from 'vue'
+  import { Modal } from '@antdv/ui';
+  import { h } from 'vue';
 
   function info() {
     Modal.info({
@@ -28,9 +28,9 @@ In the various types of information modal dialog, only one button to close dialo
         h('p', 'some messages...some messages...'),
       ]),
       onOk() {
-        console.log('ok')
+        console.log('ok');
       },
-    })
+    });
   }
   function success() {
     Modal.success({
@@ -39,21 +39,21 @@ In the various types of information modal dialog, only one button to close dialo
         h('p', 'some messages...some messages...'),
         h('p', 'some messages...some messages...'),
       ]),
-    })
+    });
   }
 
   function error() {
     Modal.error({
       title: 'This is an error message',
       content: 'some messages...some messages...',
-    })
+    });
   }
 
   function warning() {
     Modal.warning({
       title: 'This is a warning message',
       content: 'some messages...some messages...',
-    })
+    });
   }
 </script>
 

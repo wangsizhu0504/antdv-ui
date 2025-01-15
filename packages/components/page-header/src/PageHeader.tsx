@@ -1,17 +1,17 @@
-import type { CustomSlotsType } from '@antdv/types'
-import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons-vue'
-import { useDestroyed } from '@antdv/hooks'
-import { classNames, filterEmpty, flattenChildren, isEmptyContent } from '@antdv/utils'
-import { ResizeObserver, TransButton } from '@antdv/vue-components'
-import { computed, defineComponent, shallowRef } from 'vue'
-import Avatar from '../../avatar'
-import Breadcrumb from '../../breadcrumb'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import type { CustomSlotsType } from '@antdv/types';
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons-vue';
+import { useDestroyed } from '@antdv/hooks';
+import { classNames, filterEmpty, flattenChildren, isEmptyContent } from '@antdv/utils';
+import { ResizeObserver, TransButton } from '@antdv/vue-components';
+import { computed, defineComponent, shallowRef } from 'vue';
+import Avatar from '../../avatar';
+import Breadcrumb from '../../breadcrumb';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
-import Space from '../../space'
-import useStyle from '../style'
-import { pageHeaderProps } from './props'
+import LocaleReceiver from '../../locale-provider/src/LocaleReceiver';
+import Space from '../../space';
+import useStyle from '../style';
+import { pageHeaderProps } from './props';
 
 // CSSINJS
 
@@ -33,30 +33,30 @@ export default defineComponent({
     default: any
   }>,
   setup(props, { emit, slots, attrs }) {
-    const { prefixCls, direction, pageHeader } = useConfigInject('page-header', props)
+    const { prefixCls, direction, pageHeader } = useConfigInject('page-header', props);
 
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
-    const compact = shallowRef(false)
-    const isDestroyed = useDestroyed()
+    const compact = shallowRef(false);
+    const isDestroyed = useDestroyed();
     const onResize = ({ width }: { width: number }) => {
       if (!isDestroyed.value)
-        compact.value = width < 768
-    }
-    const ghost = computed(() => props.ghost ?? pageHeader?.value?.ghost ?? true)
+        compact.value = width < 768;
+    };
+    const ghost = computed(() => props.ghost ?? pageHeader?.value?.ghost ?? true);
 
     const getBackIcon = () => {
       return (
         props.backIcon
         ?? slots.backIcon?.()
         ?? (direction.value === 'rtl' ? <ArrowRightOutlined /> : <ArrowLeftOutlined />)
-      )
-    }
+      );
+    };
 
     const renderBack = (backIcon: any) => {
       if (!backIcon || !props.onBack)
-        return null
+        return null;
 
       return (
         <LocaleReceiver
@@ -65,7 +65,7 @@ export default defineComponent({
             <div class={`${prefixCls.value}-back`}>
               <TransButton
                 onClick={(e) => {
-                  emit('back', e)
+                  emit('back', e);
                 }}
                 class={`${prefixCls.value}-back-button`}
                 aria-label={back}
@@ -76,28 +76,28 @@ export default defineComponent({
           )}
         >
         </LocaleReceiver>
-      )
-    }
+      );
+    };
 
     const renderBreadcrumb = () => {
-      return props.breadcrumb ? <Breadcrumb {...props.breadcrumb} /> : slots.breadcrumb?.()
-    }
+      return props.breadcrumb ? <Breadcrumb {...props.breadcrumb} /> : slots.breadcrumb?.();
+    };
 
     const renderTitle = () => {
-      const { avatar } = props
-      const title = props.title ?? slots.title?.()
-      const subTitle = props.subTitle ?? slots.subTitle?.()
-      const tags = props.tags ?? slots.tags?.()
-      const extra = props.extra ?? slots.extra?.()
-      const headingPrefixCls = `${prefixCls.value}-heading`
-      const hasHeading = title || subTitle || tags || extra
+      const { avatar } = props;
+      const title = props.title ?? slots.title?.();
+      const subTitle = props.subTitle ?? slots.subTitle?.();
+      const tags = props.tags ?? slots.tags?.();
+      const extra = props.extra ?? slots.extra?.();
+      const headingPrefixCls = `${prefixCls.value}-heading`;
+      const hasHeading = title || subTitle || tags || extra;
       // If there is nothing, return a null
       if (!hasHeading)
-        return null
+        return null;
 
-      const backIcon = getBackIcon()
-      const backIconDom = renderBack(backIcon)
-      const hasTitle = backIconDom || avatar || hasHeading
+      const backIcon = getBackIcon();
+      const backIconDom = renderBack(backIcon);
+      const hasTitle = backIconDom || avatar || hasHeading;
       return (
         <div class={headingPrefixCls}>
           {hasTitle && (
@@ -129,25 +129,25 @@ export default defineComponent({
             </span>
           )}
         </div>
-      )
-    }
+      );
+    };
 
     const renderFooter = () => {
-      const footer = props.footer ?? filterEmpty(slots.footer?.())
+      const footer = props.footer ?? filterEmpty(slots.footer?.());
       return isEmptyContent(footer)
         ? null
         : (
             <div class={`${prefixCls.value}-footer`}>{footer}</div>
-          )
-    }
+          );
+    };
 
     const renderChildren = (children: any) => {
-      return <div class={`${prefixCls.value}-content`}>{children}</div>
-    }
+      return <div class={`${prefixCls.value}-content`}>{children}</div>;
+    };
     return () => {
-      const hasBreadcrumb = props.breadcrumb?.routes || slots.breadcrumb
-      const hasFooter = props.footer || slots.footer
-      const children = flattenChildren(slots.default?.())
+      const hasBreadcrumb = props.breadcrumb?.routes || slots.breadcrumb;
+      const hasFooter = props.footer || slots.footer;
+      const children = flattenChildren(slots.default?.());
       const className = classNames(
         prefixCls.value,
         {
@@ -159,7 +159,7 @@ export default defineComponent({
         },
         attrs.class,
         hashId.value,
-      )
+      );
       return wrapSSR(
         <ResizeObserver onResize={onResize}>
           <div {...attrs} class={className}>
@@ -169,7 +169,7 @@ export default defineComponent({
             {renderFooter()}
           </div>
         </ResizeObserver>,
-      )
-    }
+      );
+    };
   },
-})
+});

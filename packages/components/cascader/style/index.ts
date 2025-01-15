@@ -1,7 +1,7 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, textEllipsis } from '@antdv/theme'
-import { genCompactItemStyle } from '@antdv/theme/style/compact-item'
-import { getStyle as getCheckboxStyle } from '../../checkbox/style'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, textEllipsis } from '@antdv/theme';
+import { genCompactItemStyle } from '@antdv/theme/style/compact-item';
+import { getStyle as getCheckboxStyle } from '../../checkbox/style';
 
 export interface ComponentToken {
   controlWidth: number
@@ -9,20 +9,20 @@ export interface ComponentToken {
   dropdownHeight: number
 }
 
-type CascaderToken = FullToken<'Cascader'>
+type CascaderToken = FullToken<'Cascader'>;
 
 // =============================== Base ===============================
 const genBaseStyle: GenerateStyle<CascaderToken> = (token) => {
-  const { prefixCls, componentCls, antCls } = token
-  const cascaderMenuItemCls = `${componentCls}-menu-item`
+  const { prefixCls, componentCls, antCls } = token;
+  const cascaderMenuItemCls = `${componentCls}-menu-item`;
   const iconCls = `
     &${cascaderMenuItemCls}-expand ${cascaderMenuItemCls}-expand-icon,
     ${cascaderMenuItemCls}-loading-icon
-  `
+  `;
 
   const itemPaddingVertical = Math.round(
     (token.controlHeight - token.fontSize * token.lineHeight) / 2,
-  )
+  );
 
   return [
     // =====================================================
@@ -153,12 +153,12 @@ const genBaseStyle: GenerateStyle<CascaderToken> = (token) => {
     // ==             Space Compact                       ==
     // =====================================================
     genCompactItemStyle(token),
-  ]
-}
+  ];
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Cascader', token => [genBaseStyle(token)], {
   controlWidth: 184,
   controlItemWidth: 111,
   dropdownHeight: 180,
-})
+});

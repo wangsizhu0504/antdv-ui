@@ -1,8 +1,8 @@
-import { withInstall } from '@antdv/utils'
-import AInputNumber from './src/InputNumber'
+import { withInstall } from '@antdv/utils';
+import AInputNumber from './src/InputNumber';
 
-export const InputNumber = withInstall(AInputNumber)
+export const InputNumber = withInstall(AInputNumber);
 
-export default InputNumber
+export default InputNumber;
 
-export * from './src/props'
+export * from './src/props';

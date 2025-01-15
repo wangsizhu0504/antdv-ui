@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import arrowVue from './arrow.vue'
-  import arrowCenterVue from './arrow-center.vue'
-  import Basic from './basic.vue'
-  import ContextMenu from './context-menu.vue'
-  import DropdownButton from './dropdown-button.vue'
-  import Event from './event.vue'
-  import Item from './item.vue'
-  import loadingVue from './loading.vue'
-  import OverlayVisible from './overlay-visible.vue'
-  import Placement from './placement.vue'
-  import SubMenu from './sub-menu.vue'
-  import Trigger from './trigger.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import arrowCenterVue from './arrow-center.vue';
+  import arrowVue from './arrow.vue';
+  import Basic from './basic.vue';
+  import ContextMenu from './context-menu.vue';
+  import DropdownButton from './dropdown-button.vue';
+  import Event from './event.vue';
+  import Item from './item.vue';
+  import loadingVue from './loading.vue';
+  import OverlayVisible from './overlay-visible.vue';
+  import Placement from './placement.vue';
+  import SubMenu from './sub-menu.vue';
+  import Trigger from './trigger.vue';
 
   export default defineComponent({
     CN,
@@ -32,7 +32,7 @@
       SubMenu,
       Trigger,
     },
-  })
+  });
 </script>
 
 <template>

@@ -1,11 +1,11 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { FormToken } from '.'
+import type { GenerateStyle } from '@antdv/theme';
+import type { FormToken } from '.';
 
 const genFormValidateMotionStyle: GenerateStyle<FormToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
-  const helpCls = `${componentCls}-show-help`
-  const helpItemCls = `${componentCls}-show-help-item`
+  const helpCls = `${componentCls}-show-help`;
+  const helpItemCls = `${componentCls}-show-help-item`;
 
   return {
     [helpCls]: {
@@ -50,7 +50,7 @@ const genFormValidateMotionStyle: GenerateStyle<FormToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genFormValidateMotionStyle
+export default genFormValidateMotionStyle;

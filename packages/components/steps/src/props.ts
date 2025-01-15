@@ -1,6 +1,6 @@
-import type { MouseEventHandler, VueNode } from '@antdv/types'
-import type { ExtractPropTypes } from 'vue'
-import type { ProgressDotRender, Status, StepIconRender } from './interface'
+import type { MouseEventHandler, VueNode } from '@antdv/types';
+import type { ExtractPropTypes } from 'vue';
+import type { ProgressDotRender, Status, StepIconRender } from './interface';
 import {
   anyType,
   arrayType,
@@ -10,7 +10,7 @@ import {
   someType,
   stringType,
   withUndefined,
-} from '@antdv/utils'
+} from '@antdv/utils';
 
 export function stepsProps() {
   return {
@@ -29,7 +29,7 @@ export function stepsProps() {
     'type': stringType<'default' | 'navigation' | 'inline'>(),
     'onChange': functionType<(current: number) => void>(),
     'onUpdate:current': functionType<(current: number) => void>(),
-  }
+  };
 }
 
 export function stepProps() {
@@ -41,7 +41,7 @@ export function stepProps() {
     title: anyType(),
     subTitle: anyType(),
     onClick: functionType<MouseEventHandler>(),
-  }
+  };
 }
 
 export function stepRenderProps() {
@@ -70,11 +70,11 @@ export function stepRenderProps() {
     stepIcon: functionType<StepIconRender>(),
     itemRender: functionType<(stepItem: VueNode) => VueNode>(),
     __legacy: booleanType(),
-  }
+  };
 }
 
-export type StepRenderProps = Partial<ExtractPropTypes<ReturnType<typeof stepRenderProps>>>
+export type StepRenderProps = Partial<ExtractPropTypes<ReturnType<typeof stepRenderProps>>>;
 
-export type StepsProps = Partial<ExtractPropTypes<ReturnType<typeof stepsProps>>>
+export type StepsProps = Partial<ExtractPropTypes<ReturnType<typeof stepsProps>>>;
 
-export type StepProps = Partial<ExtractPropTypes<ReturnType<typeof stepProps>>>
+export type StepProps = Partial<ExtractPropTypes<ReturnType<typeof stepProps>>>;

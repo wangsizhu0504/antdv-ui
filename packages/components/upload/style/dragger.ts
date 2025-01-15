@@ -1,8 +1,8 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { UploadToken } from '.'
+import type { GenerateStyle } from '@antdv/theme';
+import type { UploadToken } from '.';
 
 const genDraggerStyle: GenerateStyle<UploadToken> = (token) => {
-  const { componentCls, iconCls } = token
+  const { componentCls, iconCls } = token;
 
   return {
     [`${componentCls}-wrapper`]: {
@@ -70,7 +70,7 @@ const genDraggerStyle: GenerateStyle<UploadToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genDraggerStyle
+export default genDraggerStyle;

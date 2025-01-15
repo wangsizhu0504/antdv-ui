@@ -1,12 +1,12 @@
-import { withInstall } from '@antdv/utils'
-import dayjsGenerateConfig from '@antdv/vue-components/vc-picker/src/generate/dayjs'
+import { withInstall } from '@antdv/utils';
+import dayjsGenerateConfig from '@antdv/vue-components/vc-picker/src/generate/dayjs';
 
-import generateCalendar from './src/generateCalendar'
+import generateCalendar from './src/generateCalendar';
 
-const ACalendar = generateCalendar(dayjsGenerateConfig)
+const ACalendar = generateCalendar(dayjsGenerateConfig);
 
-export const Calendar = withInstall(ACalendar)
+export const Calendar = withInstall(ACalendar);
 
-export * from './src/interface'
+export * from './src/interface';
 
-export default Calendar
+export default Calendar;

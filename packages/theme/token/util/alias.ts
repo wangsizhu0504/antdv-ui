@@ -1,10 +1,10 @@
-import type { AliasToken, MapToken, OverrideToken, SeedToken } from '../interface'
-import { TinyColor } from '@ctrl/tinycolor'
-import seedToken from '../themes/seed'
-import getAlphaColor from './getAlphaColor'
+import type { AliasToken, MapToken, OverrideToken, SeedToken } from '../interface';
+import { TinyColor } from '@ctrl/tinycolor';
+import seedToken from '../themes/seed';
+import getAlphaColor from './getAlphaColor';
 
 /** Raw merge of `@ant-design/cssinjs` token. Which need additional process */
-type RawMergedToken = MapToken & OverrideToken & { override: Partial<AliasToken> }
+type RawMergedToken = MapToken & OverrideToken & { override: Partial<AliasToken> };
 
 /**
  * Seed (designer) > Derivative (designer) > Alias (developer).
@@ -12,25 +12,25 @@ type RawMergedToken = MapToken & OverrideToken & { override: Partial<AliasToken>
  * Merge seed & derivative & override token and generate alias token for developer.
  */
 export default function formatToken(derivativeToken: RawMergedToken): AliasToken {
-  const { override, ...restToken } = derivativeToken
-  const overrideTokens = { ...override }
+  const { override, ...restToken } = derivativeToken;
+  const overrideTokens = { ...override };
 
   Object.keys(seedToken).forEach((token) => {
-    delete overrideTokens[token as keyof SeedToken]
-  })
+    delete overrideTokens[token as keyof SeedToken];
+  });
 
   const mergedToken = {
     ...restToken,
     ...overrideTokens,
-  }
+  };
 
-  const screenXS = 480
-  const screenSM = 576
-  const screenMD = 768
-  const screenLG = 992
-  const screenXL = 1200
-  const screenXXL = 1600
-  const screenXXXL = 2000
+  const screenXS = 480;
+  const screenSM = 576;
+  const screenMD = 768;
+  const screenLG = 992;
+  const screenXL = 1200;
+  const screenXXL = 1600;
+  const screenXXXL = 2000;
 
   // Generate alias token
   const aliasToken: AliasToken = {
@@ -196,7 +196,7 @@ export default function formatToken(derivativeToken: RawMergedToken): AliasToken
 
     // Override AliasToken
     ...overrideTokens,
-  }
+  };
 
-  return aliasToken
+  return aliasToken;
 }

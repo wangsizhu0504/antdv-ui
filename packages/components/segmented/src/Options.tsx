@@ -1,7 +1,7 @@
-import type { ChangeEvent } from '@antdv/types'
-import type { FunctionalComponent } from 'vue'
-import type { SegmentedOptionType, SegmentedValue } from './interface'
-import { classNames } from '@antdv/utils'
+import type { ChangeEvent } from '@antdv/types';
+import type { FunctionalComponent } from 'vue';
+import type { SegmentedOptionType, SegmentedValue } from './interface';
+import { classNames } from '@antdv/utils';
 
 const SegmentedOption: FunctionalComponent<
   SegmentedOptionType & {
@@ -19,13 +19,13 @@ const SegmentedOption: FunctionalComponent<
     label = slots.label,
     checked,
     className,
-  } = props
+  } = props;
   const handleChange = (event: InputEvent) => {
     if (disabled)
-      return
+      return;
 
-    emit('change', event, value)
-  }
+    emit('change', event, value);
+  };
 
   return (
     <label
@@ -46,16 +46,16 @@ const SegmentedOption: FunctionalComponent<
       <div class={`${prefixCls}-item-label`} title={typeof title === 'string' ? title : ''}>
         {typeof label === 'function'
           ? label({
-            value,
-            disabled,
-            payload,
-            title,
-          })
+              value,
+              disabled,
+              payload,
+              title,
+            })
           : label ?? value}
       </div>
     </label>
-  )
-}
-SegmentedOption.inheritAttrs = false
+  );
+};
+SegmentedOption.inheritAttrs = false;
 
-export default SegmentedOption
+export default SegmentedOption;

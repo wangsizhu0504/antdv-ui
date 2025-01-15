@@ -1,6 +1,6 @@
-import type { AnimationType, TransitionNameType } from '../interface'
-import { Transition } from 'vue'
-import { getMotion } from '../utils/motionUtil'
+import type { AnimationType, TransitionNameType } from '../interface';
+import { Transition } from 'vue';
+import { getMotion } from '../utils/motionUtil';
 
 export interface MaskProps {
   prefixCls: string;
@@ -12,25 +12,25 @@ export interface MaskProps {
 }
 
 export default function Mask(props: MaskProps) {
-  const { prefixCls, visible, zIndex, mask, maskAnimation, maskTransitionName } = props
+  const { prefixCls, visible, zIndex, mask, maskAnimation, maskTransitionName } = props;
 
   if (!mask)
-    return null
+    return null;
 
-  let motion = {}
+  let motion = {};
 
   if (maskTransitionName || maskAnimation) {
     motion = getMotion({
       prefixCls,
       transitionName: maskTransitionName,
       animation: maskAnimation,
-    })
+    });
   }
 
   return (
     <Transition appear {...motion}>
       <div v-if={visible} style={{ zIndex }} class={`${prefixCls}-mask`} />
     </Transition>
-  )
+  );
 }
-Mask.displayName = 'Mask'
+Mask.displayName = 'Mask';

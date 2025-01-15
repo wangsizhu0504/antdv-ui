@@ -1,4 +1,4 @@
-import type { CustomSlotsType } from '@antdv/types'
+import type { CustomSlotsType } from '@antdv/types';
 
 import {
   classNames,
@@ -7,8 +7,8 @@ import {
   getPropsSlot,
   isValid,
   isValidElement,
-} from '@antdv/utils'
-import { VcOverflow } from '@antdv/vue-components/vc-overflow'
+} from '@antdv/utils';
+import { VcOverflow } from '@antdv/vue-components/vc-overflow';
 import {
   computed,
   defineComponent,
@@ -16,23 +16,23 @@ import {
   onBeforeUnmount,
   shallowRef,
   watch,
-} from 'vue'
+} from 'vue';
 
-import useDirectionStyle from './hooks/useDirectionStyle'
-import useProvideKeyPath, { useInjectKeyPath, useMeasure } from './hooks/useKeyPath'
+import useDirectionStyle from './hooks/useDirectionStyle';
+import useProvideKeyPath, { useInjectKeyPath, useMeasure } from './hooks/useKeyPath';
 import {
   MenuContextProvider,
   useInjectForceRender,
   useInjectMenu,
   useProvideFirstLevel,
   useProvideForceRender,
-} from './hooks/useMenuContext'
-import InlineSubMenuList from './InlineSubMenuList'
-import PopupTrigger from './PopupTrigger'
-import { subMenuProps } from './props'
-import SubMenuList from './SubMenuList'
+} from './hooks/useMenuContext';
+import InlineSubMenuList from './InlineSubMenuList';
+import PopupTrigger from './PopupTrigger';
+import { subMenuProps } from './props';
+import SubMenuList from './SubMenuList';
 
-let indexGuid = 0
+let indexGuid = 0;
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -46,40 +46,40 @@ export default defineComponent({
     default?: any
   }>,
   setup(props, { slots, attrs, emit }) {
-    useProvideFirstLevel(false)
-    const isMeasure = useMeasure()
-    const instance = getCurrentInstance()
+    useProvideFirstLevel(false);
+    const isMeasure = useMeasure();
+    const instance = getCurrentInstance();
     const vnodeKey
-      = typeof instance.vnode.key === 'symbol' ? String(instance.vnode.key) : instance.vnode.key
+      = typeof instance.vnode.key === 'symbol' ? String(instance.vnode.key) : instance.vnode.key;
     devWarning(
       typeof instance.vnode.key !== 'symbol',
       'SubMenu',
       `SubMenu \`:key="${String(vnodeKey)}"\` not support Symbol type`,
-    )
-    const key = isValid(vnodeKey) ? vnodeKey : `sub_menu_${++indexGuid}_$$_not_set_key`
+    );
+    const key = isValid(vnodeKey) ? vnodeKey : `sub_menu_${++indexGuid}_$$_not_set_key`;
     const eventKey
       = props.eventKey
-      ?? (isValid(vnodeKey) ? `sub_menu_${++indexGuid}_$$_${vnodeKey}` : (key as string))
-    const { parentEventKeys, parentInfo, parentKeys } = useInjectKeyPath()
-    const keysPath = computed(() => [...parentKeys.value, key])
-    const childrenEventKeys = shallowRef([])
+      ?? (isValid(vnodeKey) ? `sub_menu_${++indexGuid}_$$_${vnodeKey}` : (key as string));
+    const { parentEventKeys, parentInfo, parentKeys } = useInjectKeyPath();
+    const keysPath = computed(() => [...parentKeys.value, key]);
+    const childrenEventKeys = shallowRef([]);
     const menuInfo = {
       eventKey,
       key,
       parentEventKeys,
       childrenEventKeys,
       parentKeys,
-    }
-    parentInfo.childrenEventKeys?.value.push(eventKey)
+    };
+    parentInfo.childrenEventKeys?.value.push(eventKey);
     onBeforeUnmount(() => {
       if (parentInfo.childrenEventKeys) {
         parentInfo.childrenEventKeys.value = parentInfo.childrenEventKeys?.value.filter(
           k => k !== eventKey,
-        )
+        );
       }
-    })
+    });
 
-    useProvideKeyPath(eventKey, key, menuInfo)
+    useProvideKeyPath(eventKey, key, menuInfo);
 
     const {
       prefixCls,
@@ -96,95 +96,95 @@ export default defineComponent({
       selectedSubMenuKeys,
       expandIcon: menuExpandIcon,
       theme,
-    } = useInjectMenu()
+    } = useInjectMenu();
 
-    const hasKey = vnodeKey !== undefined && vnodeKey !== null
+    const hasKey = vnodeKey !== undefined && vnodeKey !== null;
     // If not set key, use forceRender = true for children
     // 如果没有 key，强制 render 子元素
-    const forceRender = !isMeasure && (useInjectForceRender() || !hasKey)
-    useProvideForceRender(forceRender)
+    const forceRender = !isMeasure && (useInjectForceRender() || !hasKey);
+    useProvideForceRender(forceRender);
 
     if ((isMeasure && hasKey) || (!isMeasure && !hasKey) || forceRender) {
-      registerMenuInfo(eventKey, menuInfo)
+      registerMenuInfo(eventKey, menuInfo);
 
       onBeforeUnmount(() => {
-        unRegisterMenuInfo(eventKey)
-      })
+        unRegisterMenuInfo(eventKey);
+      });
     }
 
-    const subMenuPrefixCls = computed(() => `${prefixCls.value}-submenu`)
-    const mergedDisabled = computed(() => contextDisabled.value || props.disabled)
-    const elementRef = shallowRef()
-    const popupRef = shallowRef()
+    const subMenuPrefixCls = computed(() => `${prefixCls.value}-submenu`);
+    const mergedDisabled = computed(() => contextDisabled.value || props.disabled);
+    const elementRef = shallowRef();
+    const popupRef = shallowRef();
 
     // // ================================ Icon ================================
     // const mergedItemIcon = itemIcon || contextItemIcon;
     // const mergedExpandIcon = expandIcon || contextExpandIcon;
 
     // ================================ Open ================================
-    const originOpen = computed(() => openKeys.value.includes(key))
-    const open = computed(() => !overflowDisabled.value && originOpen.value)
+    const originOpen = computed(() => openKeys.value.includes(key));
+    const open = computed(() => !overflowDisabled.value && originOpen.value);
 
     // =============================== Select ===============================
     const childrenSelected = computed(() => {
-      return selectedSubMenuKeys.value.includes(key)
-    })
+      return selectedSubMenuKeys.value.includes(key);
+    });
 
-    const isActive = shallowRef(false)
+    const isActive = shallowRef(false);
     watch(
       activeKeys,
       () => {
-        isActive.value = !!activeKeys.value.find(val => val === key)
+        isActive.value = !!activeKeys.value.find(val => val === key);
       },
       { immediate: true },
-    )
+    );
 
     // =============================== Events ===============================
     // >>>> Title click
     const onInternalTitleClick = (e: Event) => {
       // Skip if disabled
       if (mergedDisabled.value)
-        return
+        return;
 
-      emit('titleClick', e, key)
+      emit('titleClick', e, key);
 
       // Trigger open by click when mode is `inline`
       if (mode.value === 'inline')
-        onOpenChange(key, !originOpen.value)
-    }
+        onOpenChange(key, !originOpen.value);
+    };
 
     const onMouseEnter = (event: MouseEvent) => {
       if (!mergedDisabled.value) {
-        changeActiveKeys(keysPath.value)
-        emit('mouseenter', event)
+        changeActiveKeys(keysPath.value);
+        emit('mouseenter', event);
       }
-    }
+    };
     const onMouseLeave = (event: MouseEvent) => {
       if (!mergedDisabled.value) {
-        changeActiveKeys([])
-        emit('mouseleave', event)
+        changeActiveKeys([]);
+        emit('mouseleave', event);
       }
-    }
+    };
 
     // ========================== DirectionStyle ==========================
-    const directionStyle = useDirectionStyle(computed(() => keysPath.value.length))
+    const directionStyle = useDirectionStyle(computed(() => keysPath.value.length));
 
     // >>>>> Visible change
     const onPopupVisibleChange = (newVisible: boolean) => {
       if (mode.value !== 'inline')
-        onOpenChange(key, newVisible)
-    }
+        onOpenChange(key, newVisible);
+    };
 
     /**
      * Used for accessibility. Helper will focus element without key board.
      * We should manually trigger an active
      */
     const onInternalFocus = () => {
-      changeActiveKeys(keysPath.value)
-    }
+      changeActiveKeys(keysPath.value);
+    };
 
     // =============================== Render ===============================
-    const popupId = eventKey && `${eventKey}-popup`
+    const popupId = eventKey && `${eventKey}-popup`;
 
     const popupClassName = computed(() =>
       classNames(
@@ -192,7 +192,7 @@ export default defineComponent({
         `${prefixCls.value}-${props.theme || theme.value}`,
         props.popupClassName,
       ),
-    )
+    );
     const renderTitle = (title: any, icon: any) => {
       if (!icon) {
         return inlineCollapsed.value
@@ -204,11 +204,11 @@ export default defineComponent({
             )
           : (
               <span class={`${prefixCls.value}-title-content`}>{title}</span>
-            )
+            );
       }
       // inline-collapsed.md demo 依赖 span 来隐藏文字,有 icon 属性，则内部包裹一个 span
       // ref: https://github.com/ant-design/ant-design/pull/23456
-      const titleIsSpan = isValidElement(title) && title.type === 'span'
+      const titleIsSpan = isValidElement(title) && title.type === 'span';
       return (
         <>
           {cloneElement(
@@ -220,24 +220,24 @@ export default defineComponent({
           )}
           {titleIsSpan ? title : <span class={`${prefixCls.value}-title-content`}>{title}</span>}
         </>
-      )
-    }
+      );
+    };
 
     // Cache mode if it change to `inline` which do not have popup motion
     const triggerModeRef = computed(() => {
-      return mode.value !== 'inline' && keysPath.value.length > 1 ? 'vertical' : mode.value
-    })
+      return mode.value !== 'inline' && keysPath.value.length > 1 ? 'vertical' : mode.value;
+    });
 
-    const renderMode = computed(() => (mode.value === 'horizontal' ? 'vertical' : mode.value))
+    const renderMode = computed(() => (mode.value === 'horizontal' ? 'vertical' : mode.value));
 
     const subMenuTriggerModeRef = computed(() =>
       triggerModeRef.value === 'horizontal' ? 'vertical' : triggerModeRef.value,
-    )
+    );
     const baseTitleNode = () => {
-      const subMenuPrefixClsValue = subMenuPrefixCls.value
-      const icon = props.icon ?? slots.icon?.(props)
-      const expandIcon = props.expandIcon || slots.expandIcon || menuExpandIcon.value
-      const title = renderTitle(getPropsSlot(slots, props, 'title'), icon)
+      const subMenuPrefixClsValue = subMenuPrefixCls.value;
+      const icon = props.icon ?? slots.icon?.(props);
+      const expandIcon = props.expandIcon || slots.expandIcon || menuExpandIcon.value;
+      const title = renderTitle(getPropsSlot(slots, props, 'title'), icon);
       return (
         <div
           style={directionStyle.value}
@@ -264,19 +264,19 @@ export default defineComponent({
                 <i class={`${subMenuPrefixClsValue}-arrow`} />
               )}
         </div>
-      )
-    }
+      );
+    };
     return () => {
       if (isMeasure) {
         if (!hasKey)
-          return null
+          return null;
 
-        return slots.default?.()
+        return slots.default?.();
       }
-      const subMenuPrefixClsValue = subMenuPrefixCls.value
-      let titleNode = () => null
+      const subMenuPrefixClsValue = subMenuPrefixCls.value;
+      let titleNode = () => null;
       if (!overflowDisabled.value && mode.value !== 'inline') {
-        const popupOffset = mode.value === 'horizontal' ? [0, 8] : [10, 0]
+        const popupOffset = mode.value === 'horizontal' ? [0, 8] : [10, 0];
         titleNode = () => (
           <PopupTrigger
             mode={triggerModeRef.value}
@@ -301,11 +301,11 @@ export default defineComponent({
           >
             {baseTitleNode()}
           </PopupTrigger>
-        )
+        );
       } else {
         // 包裹一层，保持结构一致，防止动画丢失
         // https://github.com/vueComponent/ant-design-vue/issues/4325
-        titleNode = () => <PopupTrigger v-slots={{ default: baseTitleNode }}></PopupTrigger>
+        titleNode = () => <PopupTrigger v-slots={{ default: baseTitleNode }}></PopupTrigger>;
       }
       return (
         <MenuContextProvider mode={renderMode.value}>
@@ -344,13 +344,13 @@ export default defineComponent({
                       </InlineSubMenuList>
                     )}
                   </>
-                )
+                );
               },
             }}
           >
           </VcOverflow.Item>
         </MenuContextProvider>
-      )
-    }
+      );
+    };
   },
-})
+});

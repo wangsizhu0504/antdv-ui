@@ -1,25 +1,25 @@
-import type { DisabledTime, PanelRefProps } from '../../interface'
-import type { DatePanelProps } from '../DatePanel'
-import type { SharedTimeProps } from '../TimePanel'
-import { classNames, KeyCode } from '@antdv/utils'
-import { ref } from 'vue'
-import useMergeProps from '../../hooks/useMergeProps'
-import { tuple } from '../../utils/miscUtil'
-import { setDateTime as setTime } from '../../utils/timeUtil'
-import DatePanel from '../DatePanel'
-import TimePanel from '../TimePanel'
+import type { DisabledTime, PanelRefProps } from '../../interface';
+import type { DatePanelProps } from '../DatePanel';
+import type { SharedTimeProps } from '../TimePanel';
+import { classNames, KeyCode } from '@antdv/utils';
+import { ref } from 'vue';
+import useMergeProps from '../../hooks/useMergeProps';
+import { tuple } from '../../utils/miscUtil';
+import { setDateTime as setTime } from '../../utils/timeUtil';
+import DatePanel from '../DatePanel';
+import TimePanel from '../TimePanel';
 
 export type DatetimePanelProps<DateType> = {
   disabledTime?: DisabledTime<DateType>;
   showTime?: boolean | SharedTimeProps<DateType>;
   defaultValue?: DateType;
-} & Omit<DatePanelProps<DateType>, 'disabledHours' | 'disabledMinutes' | 'disabledSeconds'>
+} & Omit<DatePanelProps<DateType>, 'disabledHours' | 'disabledMinutes' | 'disabledSeconds'>;
 
-const ACTIVE_PANEL = tuple('date', 'time')
-type ActivePanelType = (typeof ACTIVE_PANEL)[number]
+const ACTIVE_PANEL = tuple('date', 'time');
+type ActivePanelType = (typeof ACTIVE_PANEL)[number];
 
 function DatetimePanel<DateType>(_props: DatetimePanelProps<DateType>) {
-  const props = useMergeProps(_props)
+  const props = useMergeProps(_props);
   const {
     prefixCls,
     operationRef,
@@ -29,94 +29,94 @@ function DatetimePanel<DateType>(_props: DatetimePanelProps<DateType>) {
     disabledTime,
     showTime,
     onSelect,
-  } = props
-  const panelPrefixCls = `${prefixCls}-datetime-panel`
-  const activePanel = ref<ActivePanelType | null>(null)
+  } = props;
+  const panelPrefixCls = `${prefixCls}-datetime-panel`;
+  const activePanel = ref<ActivePanelType | null>(null);
 
-  const dateOperationRef = ref<PanelRefProps>({})
-  const timeOperationRef = ref<PanelRefProps>({})
+  const dateOperationRef = ref<PanelRefProps>({});
+  const timeOperationRef = ref<PanelRefProps>({});
 
-  const timeProps = typeof showTime === 'object' ? { ...showTime } : {}
+  const timeProps = typeof showTime === 'object' ? { ...showTime } : {};
 
   // ======================= Keyboard =======================
   function getNextActive(offset: number) {
-    const activeIndex = ACTIVE_PANEL.indexOf(activePanel.value!) + offset
-    const nextActivePanel = ACTIVE_PANEL[activeIndex] || null
-    return nextActivePanel
+    const activeIndex = ACTIVE_PANEL.indexOf(activePanel.value!) + offset;
+    const nextActivePanel = ACTIVE_PANEL[activeIndex] || null;
+    return nextActivePanel;
   }
 
   const onBlur = (e?: FocusEvent) => {
     if (timeOperationRef.value.onBlur)
-      timeOperationRef.value.onBlur(e!)
+      timeOperationRef.value.onBlur(e!);
 
-    activePanel.value = null
-  }
+    activePanel.value = null;
+  };
 
   operationRef.value = {
     onKeydown: (event: KeyboardEvent) => {
       // Switch active panel
       if (event.which === KeyCode.TAB) {
-        const nextActivePanel = getNextActive(event.shiftKey ? -1 : 1)
-        activePanel.value = nextActivePanel
+        const nextActivePanel = getNextActive(event.shiftKey ? -1 : 1);
+        activePanel.value = nextActivePanel;
 
         if (nextActivePanel)
-          event.preventDefault()
+          event.preventDefault();
 
-        return true
+        return true;
       }
 
       // Operate on current active panel
       if (activePanel.value) {
-        const ref = activePanel.value === 'date' ? dateOperationRef : timeOperationRef
+        const ref = activePanel.value === 'date' ? dateOperationRef : timeOperationRef;
 
         if (ref.value && ref.value.onKeydown)
-          ref.value.onKeydown(event)
+          ref.value.onKeydown(event);
 
-        return true
+        return true;
       }
 
       // Switch first active panel if operate without panel
       if ([KeyCode.LEFT, KeyCode.RIGHT, KeyCode.UP, KeyCode.DOWN].includes(event.which)) {
-        activePanel.value = 'date'
-        return true
+        activePanel.value = 'date';
+        return true;
       }
 
-      return false
+      return false;
     },
     onBlur,
     onClose: onBlur,
-  }
+  };
 
   // ======================== Events ========================
   const onInternalSelect = (date: DateType, source: 'date' | 'time') => {
-    let selectedDate = date
+    let selectedDate = date;
 
     if (source === 'date' && !value && timeProps.defaultValue) {
       // Date with time defaultValue
       selectedDate = generateConfig.setHour(
         selectedDate,
         generateConfig.getHour(timeProps.defaultValue),
-      )
+      );
       selectedDate = generateConfig.setMinute(
         selectedDate,
         generateConfig.getMinute(timeProps.defaultValue),
-      )
+      );
       selectedDate = generateConfig.setSecond(
         selectedDate,
         generateConfig.getSecond(timeProps.defaultValue),
-      )
+      );
     } else if (source === 'time' && !value && defaultValue) {
-      selectedDate = generateConfig.setYear(selectedDate, generateConfig.getYear(defaultValue))
-      selectedDate = generateConfig.setMonth(selectedDate, generateConfig.getMonth(defaultValue))
-      selectedDate = generateConfig.setDate(selectedDate, generateConfig.getDate(defaultValue))
+      selectedDate = generateConfig.setYear(selectedDate, generateConfig.getYear(defaultValue));
+      selectedDate = generateConfig.setMonth(selectedDate, generateConfig.getMonth(defaultValue));
+      selectedDate = generateConfig.setDate(selectedDate, generateConfig.getDate(defaultValue));
     }
 
     if (onSelect)
-      onSelect(selectedDate, 'mouse')
-  }
+      onSelect(selectedDate, 'mouse');
+  };
 
   // ======================== Render ========================
-  const disabledTimes = disabledTime ? disabledTime(value || null) : {}
+  const disabledTimes = disabledTime ? disabledTime(value || null) : {};
 
   return (
     <div
@@ -136,7 +136,7 @@ function DatetimePanel<DateType>(_props: DatetimePanelProps<DateType>) {
               !value && typeof showTime === 'object' ? showTime.defaultValue : null,
             ),
             'date',
-          )
+          );
         }}
       />
       <TimePanel
@@ -149,14 +149,14 @@ function DatetimePanel<DateType>(_props: DatetimePanelProps<DateType>) {
         operationRef={timeOperationRef}
         active={activePanel.value === 'time'}
         onSelect={(date) => {
-          onInternalSelect(date, 'time')
+          onInternalSelect(date, 'time');
         }}
       />
     </div>
-  )
+  );
 }
 
-DatetimePanel.displayName = 'DatetimePanel'
-DatetimePanel.inheritAttrs = false
+DatetimePanel.displayName = 'DatetimePanel';
+DatetimePanel.inheritAttrs = false;
 
-export default DatetimePanel
+export default DatetimePanel;

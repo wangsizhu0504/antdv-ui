@@ -1,82 +1,82 @@
-import type { Ref } from 'vue'
-import { onBeforeUnmount, onMounted, watch } from 'vue'
+import type { Ref } from 'vue';
+import { onBeforeUnmount, onMounted, watch } from 'vue';
 
-const SMOOTH_PTG = 14 / 15
+const SMOOTH_PTG = 14 / 15;
 export default function useMobileTouchMove(
   inVirtual: Ref<boolean>,
   listRef: Ref<HTMLDivElement | undefined>,
   callback: (offsetY: number, smoothOffset?: boolean) => boolean,
 ) {
-  let touched = false
-  let touchY = 0
+  let touched = false;
+  let touchY = 0;
 
-  let element: HTMLElement | null = null
+  let element: HTMLElement | null = null;
 
   // Smooth scroll
-  let interval: any = null
+  let interval: any = null;
 
   const cleanUpEvents = () => {
     if (element) {
-      element.removeEventListener('touchmove', onTouchMove)
-      element.removeEventListener('touchend', onTouchEnd)
+      element.removeEventListener('touchmove', onTouchMove);
+      element.removeEventListener('touchend', onTouchEnd);
     }
-  }
+  };
 
   const onTouchMove = (e: TouchEvent) => {
     if (touched) {
-      const currentY = Math.ceil(e.touches[0].pageY)
-      let offsetY = touchY - currentY
-      touchY = currentY
+      const currentY = Math.ceil(e.touches[0].pageY);
+      let offsetY = touchY - currentY;
+      touchY = currentY;
 
       if (callback(offsetY))
-        e.preventDefault()
+        e.preventDefault();
 
       // Smooth interval
-      clearInterval(interval)
+      clearInterval(interval);
       interval = setInterval(() => {
-        offsetY *= SMOOTH_PTG
+        offsetY *= SMOOTH_PTG;
 
         if (!callback(offsetY, true) || Math.abs(offsetY) <= 0.1)
-          clearInterval(interval)
-      }, 16)
+          clearInterval(interval);
+      }, 16);
     }
-  }
+  };
 
   const onTouchEnd = () => {
-    touched = false
+    touched = false;
 
-    cleanUpEvents()
-  }
+    cleanUpEvents();
+  };
 
   const onTouchStart = (e: TouchEvent) => {
-    cleanUpEvents()
+    cleanUpEvents();
 
     if (e.touches.length === 1 && !touched) {
-      touched = true
-      touchY = Math.ceil(e.touches[0].pageY)
+      touched = true;
+      touchY = Math.ceil(e.touches[0].pageY);
 
-      element = e.target as HTMLElement
-      element!.addEventListener('touchmove', onTouchMove, { passive: false })
-      element!.addEventListener('touchend', onTouchEnd)
+      element = e.target as HTMLElement;
+      element!.addEventListener('touchmove', onTouchMove, { passive: false });
+      element!.addEventListener('touchend', onTouchEnd);
     }
-  }
-  const noop = () => {}
+  };
+  const noop = () => {};
 
   onMounted(() => {
-    document.addEventListener('touchmove', noop, { passive: false })
+    document.addEventListener('touchmove', noop, { passive: false });
     watch(
       inVirtual,
       (val) => {
-        listRef.value.removeEventListener('touchstart', onTouchStart)
-        cleanUpEvents()
-        clearInterval(interval)
+        listRef.value.removeEventListener('touchstart', onTouchStart);
+        cleanUpEvents();
+        clearInterval(interval);
         if (val)
-          listRef.value.addEventListener('touchstart', onTouchStart, { passive: false })
+          listRef.value.addEventListener('touchstart', onTouchStart, { passive: false });
       },
       { immediate: true },
-    )
-  })
+    );
+  });
   onBeforeUnmount(() => {
-    document.removeEventListener('touchmove', noop)
-  })
+    document.removeEventListener('touchmove', noop);
+  });
 }

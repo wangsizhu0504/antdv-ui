@@ -17,13 +17,13 @@ Disabled state of `Switch`.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const checked = ref<boolean>(true)
-  const disabled = ref<boolean>(true)
+  const checked = ref<boolean>(true);
+  const disabled = ref<boolean>(true);
 
   function onToggle() {
-    disabled.value = !disabled.value
+    disabled.value = !disabled.value;
   }
 </script>
 

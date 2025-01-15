@@ -1,8 +1,8 @@
-import type { TransferLocale } from '@antdv/locale'
-import type { CSSProperties, SlotsType } from 'vue'
-import type { RenderEmptyHandler } from '../../config-provider'
-import type { ListStyle, TransferDirection, TransferItem } from './interface'
-import { enUS as defaultLocale } from '@antdv/locale'
+import type { TransferLocale } from '@antdv/locale';
+import type { CSSProperties, SlotsType } from 'vue';
+import type { RenderEmptyHandler } from '../../config-provider';
+import type { ListStyle, TransferDirection, TransferItem } from './interface';
+import { enUS as defaultLocale } from '@antdv/locale';
 import {
   classNames,
   getMergedStatus,
@@ -10,7 +10,7 @@ import {
   getStatusClassNames,
   groupDisabledKeysMap,
   groupKeysMap,
-} from '@antdv/utils'
+} from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -18,16 +18,16 @@ import {
   toRaw,
   watch,
   watchEffect,
-} from 'vue'
+} from 'vue';
 
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
-import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
-import useStyle from '../style'
-import List from './list'
-import Operation from './operation'
-import { transferProps } from './props'
+import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext';
+import LocaleReceiver from '../../locale-provider/src/LocaleReceiver';
+import useStyle from '../style';
+import List from './list';
+import Operation from './operation';
+import { transferProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -47,195 +47,195 @@ export default defineComponent({
   }>,
   // emits: ['update:targetKeys', 'update:selectedKeys', 'change', 'search', 'scroll', 'selectChange'],
   setup(props, { emit, attrs, slots, expose }) {
-    const { configProvider, prefixCls, direction } = useConfigInject('transfer', props)
+    const { configProvider, prefixCls, direction } = useConfigInject('transfer', props);
 
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
-    const sourceSelectedKeys = ref([])
-    const targetSelectedKeys = ref([])
+    const sourceSelectedKeys = ref([]);
+    const targetSelectedKeys = ref([]);
 
-    const formItemContext = useInjectFormItemContext()
-    const formItemInputContext = FormItemInputContext.useInject()
-    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status))
+    const formItemContext = useInjectFormItemContext();
+    const formItemInputContext = FormItemInputContext.useInject();
+    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status));
     watch(
       () => props.selectedKeys,
       () => {
         sourceSelectedKeys.value
-          = props.selectedKeys?.filter(key => !props.targetKeys.includes(key)) || []
+          = props.selectedKeys?.filter(key => !props.targetKeys.includes(key)) || [];
         targetSelectedKeys.value
-          = props.selectedKeys?.filter(key => props.targetKeys.includes(key)) || []
+          = props.selectedKeys?.filter(key => props.targetKeys.includes(key)) || [];
       },
       { immediate: true },
-    )
+    );
 
     const getLocale = (transferLocale: TransferLocale, renderEmpty: RenderEmptyHandler) => {
       // Keep old locale props still working.
       const oldLocale: { notFoundContent?: any, searchPlaceholder?: string } = {
         notFoundContent: renderEmpty('Transfer'),
-      }
-      const notFoundContent = getPropsSlot(slots, props, 'notFoundContent')
+      };
+      const notFoundContent = getPropsSlot(slots, props, 'notFoundContent');
       if (notFoundContent)
-        oldLocale.notFoundContent = notFoundContent
+        oldLocale.notFoundContent = notFoundContent;
 
       if (props.searchPlaceholder !== undefined)
-        oldLocale.searchPlaceholder = props.searchPlaceholder
+        oldLocale.searchPlaceholder = props.searchPlaceholder;
 
-      return { ...transferLocale, ...oldLocale, ...props.locale }
-    }
+      return { ...transferLocale, ...oldLocale, ...props.locale };
+    };
     const handleSelectChange = (direction: TransferDirection, holder: string[]) => {
       if (direction === 'left') {
         if (!props.selectedKeys)
-          sourceSelectedKeys.value = holder
+          sourceSelectedKeys.value = holder;
 
-        emit('update:selectedKeys', [...holder, ...targetSelectedKeys.value])
-        emit('selectChange', holder, toRaw(targetSelectedKeys.value))
+        emit('update:selectedKeys', [...holder, ...targetSelectedKeys.value]);
+        emit('selectChange', holder, toRaw(targetSelectedKeys.value));
       } else {
         if (!props.selectedKeys)
-          targetSelectedKeys.value = holder
+          targetSelectedKeys.value = holder;
 
-        emit('update:selectedKeys', [...holder, ...sourceSelectedKeys.value])
-        emit('selectChange', toRaw(sourceSelectedKeys.value), holder)
+        emit('update:selectedKeys', [...holder, ...sourceSelectedKeys.value]);
+        emit('selectChange', toRaw(sourceSelectedKeys.value), holder);
       }
-    }
+    };
 
     const moveTo = (direction: TransferDirection) => {
-      const { targetKeys = [], dataSource = [] } = props
-      const moveKeys = direction === 'right' ? sourceSelectedKeys.value : targetSelectedKeys.value
-      const dataSourceDisabledKeysMap = groupDisabledKeysMap(dataSource)
+      const { targetKeys = [], dataSource = [] } = props;
+      const moveKeys = direction === 'right' ? sourceSelectedKeys.value : targetSelectedKeys.value;
+      const dataSourceDisabledKeysMap = groupDisabledKeysMap(dataSource);
       // filter the disabled options
-      const newMoveKeys = moveKeys.filter(key => !dataSourceDisabledKeysMap.has(key))
-      const newMoveKeysMap = groupKeysMap(newMoveKeys)
+      const newMoveKeys = moveKeys.filter(key => !dataSourceDisabledKeysMap.has(key));
+      const newMoveKeysMap = groupKeysMap(newMoveKeys);
 
       // move items to target box
       const newTargetKeys
         = direction === 'right'
           ? newMoveKeys.concat(targetKeys)
-          : targetKeys.filter(targetKey => !newMoveKeysMap.has(targetKey))
+          : targetKeys.filter(targetKey => !newMoveKeysMap.has(targetKey));
 
       // empty checked keys
-      const oppositeDirection = direction === 'right' ? 'left' : 'right'
-      direction === 'right' ? (sourceSelectedKeys.value = []) : (targetSelectedKeys.value = [])
-      emit('update:targetKeys', newTargetKeys)
-      handleSelectChange(oppositeDirection, [])
-      emit('change', newTargetKeys, direction, newMoveKeys)
-      formItemContext.onFieldChange()
-    }
+      const oppositeDirection = direction === 'right' ? 'left' : 'right';
+      direction === 'right' ? (sourceSelectedKeys.value = []) : (targetSelectedKeys.value = []);
+      emit('update:targetKeys', newTargetKeys);
+      handleSelectChange(oppositeDirection, []);
+      emit('change', newTargetKeys, direction, newMoveKeys);
+      formItemContext.onFieldChange();
+    };
 
     const moveToLeft = () => {
-      moveTo('left')
-    }
+      moveTo('left');
+    };
     const moveToRight = () => {
-      moveTo('right')
-    }
+      moveTo('right');
+    };
 
     const onItemSelectAll = (direction: TransferDirection, selectedKeys: string[]) => {
-      handleSelectChange(direction, selectedKeys)
-    }
+      handleSelectChange(direction, selectedKeys);
+    };
 
     const onLeftItemSelectAll = (selectedKeys: string[]) => {
-      return onItemSelectAll('left', selectedKeys)
-    }
+      return onItemSelectAll('left', selectedKeys);
+    };
 
     const onRightItemSelectAll = (selectedKeys: string[]) => {
-      return onItemSelectAll('right', selectedKeys)
-    }
+      return onItemSelectAll('right', selectedKeys);
+    };
     const handleFilter = (direction: TransferDirection, e) => {
-      const value = e.target.value
-      emit('search', direction, value)
-    }
+      const value = e.target.value;
+      emit('search', direction, value);
+    };
 
     const handleLeftFilter = (e: Event) => {
-      handleFilter('left', e)
-    }
+      handleFilter('left', e);
+    };
     const handleRightFilter = (e: Event) => {
-      handleFilter('right', e)
-    }
+      handleFilter('right', e);
+    };
 
     const handleClear = (direction: TransferDirection) => {
-      emit('search', direction, '')
-    }
+      emit('search', direction, '');
+    };
 
     const handleLeftClear = () => {
-      handleClear('left')
-    }
+      handleClear('left');
+    };
 
     const handleRightClear = () => {
-      handleClear('right')
-    }
+      handleClear('right');
+    };
 
     const onItemSelect = (direction: TransferDirection, selectedKey: string, checked: boolean) => {
       const holder
-        = direction === 'left' ? [...sourceSelectedKeys.value] : [...targetSelectedKeys.value]
-      const index = holder.indexOf(selectedKey)
+        = direction === 'left' ? [...sourceSelectedKeys.value] : [...targetSelectedKeys.value];
+      const index = holder.indexOf(selectedKey);
       if (index > -1)
-        holder.splice(index, 1)
+        holder.splice(index, 1);
 
       if (checked)
-        holder.push(selectedKey)
+        holder.push(selectedKey);
 
-      handleSelectChange(direction, holder)
-    }
+      handleSelectChange(direction, holder);
+    };
 
     const onLeftItemSelect = (selectedKey: string, checked: boolean) => {
-      return onItemSelect('left', selectedKey, checked)
-    }
+      return onItemSelect('left', selectedKey, checked);
+    };
     const onRightItemSelect = (selectedKey: string, checked: boolean) => {
-      return onItemSelect('right', selectedKey, checked)
-    }
+      return onItemSelect('right', selectedKey, checked);
+    };
     const onRightItemRemove = (targetedKeys: string[]) => {
-      const { targetKeys = [] } = props
-      const newTargetKeys = targetKeys.filter(key => !targetedKeys.includes(key))
-      emit('update:targetKeys', newTargetKeys)
-      emit('change', newTargetKeys, 'left', [...targetedKeys])
-    }
+      const { targetKeys = [] } = props;
+      const newTargetKeys = targetKeys.filter(key => !targetedKeys.includes(key));
+      emit('update:targetKeys', newTargetKeys);
+      emit('change', newTargetKeys, 'left', [...targetedKeys]);
+    };
 
     const handleScroll = (direction: TransferDirection, e: UIEvent) => {
-      emit('scroll', direction, e)
-    }
+      emit('scroll', direction, e);
+    };
 
     const handleLeftScroll = (e: UIEvent) => {
-      handleScroll('left', e)
-    }
+      handleScroll('left', e);
+    };
     const handleRightScroll = (e: UIEvent) => {
-      handleScroll('right', e)
-    }
+      handleScroll('right', e);
+    };
     const handleListStyle = (
       listStyle: ((style: ListStyle) => CSSProperties) | CSSProperties,
       direction: TransferDirection,
     ) => {
       if (typeof listStyle === 'function')
-        return listStyle({ direction })
+        return listStyle({ direction });
 
-      return listStyle
-    }
+      return listStyle;
+    };
 
-    const leftDataSource = ref([])
-    const rightDataSource = ref([])
+    const leftDataSource = ref([]);
+    const rightDataSource = ref([]);
 
     watchEffect(() => {
-      const { dataSource, rowKey, targetKeys = [] } = props
+      const { dataSource, rowKey, targetKeys = [] } = props;
 
-      const ld = []
-      const rd = new Array(targetKeys.length)
-      const targetKeysMap = groupKeysMap(targetKeys)
+      const ld = [];
+      const rd = new Array(targetKeys.length);
+      const targetKeysMap = groupKeysMap(targetKeys);
       dataSource.forEach((record) => {
         if (rowKey)
-          record.key = rowKey(record)
+          record.key = rowKey(record);
 
         // rightData should be ordered by targetKeys
         // leftData should be ordered by dataSource
         if (targetKeysMap.has(record.key))
-          rd[targetKeysMap.get(record.key)!] = record
+          rd[targetKeysMap.get(record.key)!] = record;
         else
-          ld.push(record)
-      })
+          ld.push(record);
+      });
 
-      leftDataSource.value = ld
-      rightDataSource.value = rd
-    })
+      leftDataSource.value = ld;
+      rightDataSource.value = rd;
+    });
 
-    expose({ handleSelectChange })
+    expose({ handleSelectChange });
 
     const renderTransfer = (transferLocale: TransferLocale) => {
       const {
@@ -250,18 +250,18 @@ export default defineComponent({
         oneWay,
         pagination,
         id = formItemContext.id.value,
-      } = props
-      const { class: className, style } = attrs
+      } = props;
+      const { class: className, style } = attrs;
 
-      const children = slots.children
-      const mergedPagination = !children && pagination
+      const children = slots.children;
+      const mergedPagination = !children && pagination;
 
-      const renderEmpty = configProvider.renderEmpty
-      const locale = getLocale(transferLocale, renderEmpty)
-      const { footer } = slots
-      const renderItem = props.render || slots.render
-      const leftActive = targetSelectedKeys.value.length > 0
-      const rightActive = sourceSelectedKeys.value.length > 0
+      const renderEmpty = configProvider.renderEmpty;
+      const locale = getLocale(transferLocale, renderEmpty);
+      const { footer } = slots;
+      const renderItem = props.render || slots.render;
+      const leftActive = targetSelectedKeys.value.length > 0;
+      const rightActive = sourceSelectedKeys.value.length > 0;
 
       const cls = classNames(
         prefixCls.value,
@@ -273,12 +273,12 @@ export default defineComponent({
         },
         getStatusClassNames(prefixCls.value, mergedStatus.value, formItemInputContext.hasFeedback),
         hashId.value,
-      )
-      const titles = props.titles
+      );
+      const titles = props.titles;
       const leftTitle
-        = (titles && titles[0]) ?? slots.leftTitle?.() ?? (locale.titles || ['', ''])[0]
+        = (titles && titles[0]) ?? slots.leftTitle?.() ?? (locale.titles || ['', ''])[0];
       const rightTitle
-        = (titles && titles[1]) ?? slots.rightTitle?.() ?? (locale.titles || ['', ''])[1]
+        = (titles && titles[1]) ?? slots.rightTitle?.() ?? (locale.titles || ['', ''])[1];
       return (
         <div {...attrs} class={cls} style={style as CSSProperties} id={id}>
           <List
@@ -344,8 +344,8 @@ export default defineComponent({
             v-slots={{ titleText: () => rightTitle, footer }}
           />
         </div>
-      )
-    }
+      );
+    };
     return () =>
       wrapSSR(
         <LocaleReceiver
@@ -353,6 +353,6 @@ export default defineComponent({
           defaultLocale={defaultLocale.Transfer}
           children={renderTransfer}
         />,
-      )
+      );
   },
-})
+});

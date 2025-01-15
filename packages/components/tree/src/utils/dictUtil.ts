@@ -1,5 +1,5 @@
-import type { Key } from '@antdv/types'
-import type { DataNode, FieldNames } from '@antdv/vue-components/vc-tree/src/interface'
+import type { Key } from '@antdv/types';
+import type { DataNode, FieldNames } from '@antdv/vue-components/vc-tree/src/interface';
 
 enum Record {
   None,
@@ -13,13 +13,13 @@ function traverseNodesKey(
   callback: (key: Key | number | null, node: DataNode) => boolean,
 ) {
   function processNode(dataNode: DataNode) {
-    const key = dataNode[fieldNames.key]
-    const children = dataNode[fieldNames.children]
+    const key = dataNode[fieldNames.key];
+    const children = dataNode[fieldNames.children];
     if (callback(key, dataNode) !== false)
-      traverseNodesKey(children || [], fieldNames, callback)
+      traverseNodesKey(children || [], fieldNames, callback);
   }
 
-  treeData.forEach(processNode)
+  treeData.forEach(processNode);
 }
 
 /** 计算选中范围，只考虑expanded情况以优化性能 */
@@ -40,42 +40,42 @@ export function calcRangeKeys({
   endKey?: Key
   fieldNames?: FieldNames
 }): Key[] {
-  const keys: Key[] = []
-  let record: Record = Record.None
+  const keys: Key[] = [];
+  let record: Record = Record.None;
 
   if (startKey && startKey === endKey)
-    return [startKey]
+    return [startKey];
 
   if (!startKey || !endKey)
-    return []
+    return [];
 
   function matchKey(key: Key) {
-    return key === startKey || key === endKey
+    return key === startKey || key === endKey;
   }
 
   traverseNodesKey(treeData, fieldNames, (key: Key) => {
     if (record === Record.End)
-      return false
+      return false;
 
     if (matchKey(key)) {
       // Match test
-      keys.push(key)
+      keys.push(key);
 
       if (record === Record.None) {
-        record = Record.Start
+        record = Record.Start;
       } else if (record === Record.Start) {
-        record = Record.End
-        return false
+        record = Record.End;
+        return false;
       }
     } else if (record === Record.Start) {
       // Append selection
-      keys.push(key)
+      keys.push(key);
     }
 
-    return expandedKeys.includes(key)
-  })
+    return expandedKeys.includes(key);
+  });
 
-  return keys
+  return keys;
 }
 
 export function convertDirectoryKeysToNodes(
@@ -83,16 +83,16 @@ export function convertDirectoryKeysToNodes(
   keys: Key[],
   fieldNames: FieldNames,
 ) {
-  const restKeys: Key[] = [...keys]
-  const nodes: DataNode[] = []
+  const restKeys: Key[] = [...keys];
+  const nodes: DataNode[] = [];
   traverseNodesKey(treeData, fieldNames, (key: Key, node: DataNode) => {
-    const index = restKeys.indexOf(key)
+    const index = restKeys.indexOf(key);
     if (index !== -1) {
-      nodes.push(node)
-      restKeys.splice(index, 1)
+      nodes.push(node);
+      restKeys.splice(index, 1);
     }
 
-    return !!restKeys.length
-  })
-  return nodes
+    return !!restKeys.length;
+  });
+  return nodes;
 }

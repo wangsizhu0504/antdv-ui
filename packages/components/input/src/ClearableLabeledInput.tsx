@@ -1,7 +1,7 @@
-import type { InputStatus, MouseEventHandler, SizeType, VueNode } from '@antdv/types'
-import type { CSSProperties, PropType, VNode } from 'vue'
-import type { Direction } from '../../config-provider'
-import { CloseCircleFilled } from '@ant-design/icons-vue'
+import type { InputStatus, MouseEventHandler, SizeType, VueNode } from '@antdv/types';
+import type { CSSProperties, PropType, VNode } from 'vue';
+import type { Direction } from '../../config-provider';
+import { CloseCircleFilled } from '@ant-design/icons-vue';
 import {
   anyType,
   classNames,
@@ -10,12 +10,12 @@ import {
   getStatusClassNames,
   PropTypes,
   tuple,
-} from '@antdv/utils'
-import { defineComponent } from 'vue'
-import { FormItemInputContext } from '../../form/src/FormItemContext'
-import { hasAddon } from './util'
+} from '@antdv/utils';
+import { defineComponent } from 'vue';
+import { FormItemInputContext } from '../../form/src/FormItemContext';
+import { hasAddon } from './util';
 
-const ClearableInputType = ['text', 'input'] as const
+const ClearableInputType = ['text', 'input'] as const;
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -45,12 +45,12 @@ export default defineComponent({
     hashId: String,
   },
   setup(props, { slots, attrs }) {
-    const statusContext = FormItemInputContext.useInject()
+    const statusContext = FormItemInputContext.useInject();
 
     const renderClearIcon = (prefixCls: string) => {
-      const { value, disabled, readonly, handleReset, suffix = slots.suffix } = props
-      const needClear = !disabled && !readonly && value
-      const className = `${prefixCls}-clear-icon`
+      const { value, disabled, readonly, handleReset, suffix = slots.suffix } = props;
+      const needClear = !disabled && !readonly && value;
+      const className = `${prefixCls}-clear-icon`;
       return (
         <CloseCircleFilled
           onClick={handleReset}
@@ -65,8 +65,8 @@ export default defineComponent({
           )}
           role="button"
         />
-      )
-    }
+      );
+    };
     const renderTextAreaWithClearIcon = (prefixCls: string, element: VNode) => {
       const {
         value,
@@ -78,15 +78,15 @@ export default defineComponent({
         addonAfter = slots.addonAfter,
         addonBefore = slots.addonBefore,
         hashId,
-      } = props
+      } = props;
 
-      const { status: contextStatus, hasFeedback } = statusContext
+      const { status: contextStatus, hasFeedback } = statusContext;
 
       if (!allowClear) {
         return cloneElement(element, {
           value,
           disabled: props.disabled,
-        })
+        });
       }
       const affixWrapperCls = classNames(
         `${prefixCls}-affix-wrapper`,
@@ -103,7 +103,7 @@ export default defineComponent({
           [`${attrs.class}`]: !hasAddon({ addonAfter, addonBefore }) && attrs.class,
         },
         hashId,
-      )
+      );
       return (
         <span class={affixWrapperCls} style={attrs.style as CSSProperties} hidden={hidden}>
           {cloneElement(element, {
@@ -113,15 +113,15 @@ export default defineComponent({
           })}
           {renderClearIcon(prefixCls)}
         </span>
-      )
-    }
+      );
+    };
 
     return () => {
-      const { prefixCls, inputType, element = slots.element?.() } = props
+      const { prefixCls, inputType, element = slots.element?.() } = props;
       if (inputType === ClearableInputType[0])
-        return renderTextAreaWithClearIcon(prefixCls, element as VNode)
+        return renderTextAreaWithClearIcon(prefixCls, element as VNode);
 
-      return null
-    }
+      return null;
+    };
   },
-})
+});

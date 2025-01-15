@@ -1,6 +1,6 @@
-import type { VueNode } from '@antdv/types'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { Direction } from '../../config-provider'
+import type { VueNode } from '@antdv/types';
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { Direction } from '../../config-provider';
 import type {
   GapPositionType,
   ProgressGradient,
@@ -10,7 +10,7 @@ import type {
   StrokeColorType,
   StrokeLinecapType,
   SuccessProps,
-} from './interface'
+} from './interface';
 import {
   anyType,
   booleanType,
@@ -18,7 +18,7 @@ import {
   objectType,
   someType,
   stringType,
-} from '@antdv/utils'
+} from '@antdv/utils';
 
 export function progressProps() {
   return {
@@ -43,7 +43,7 @@ export function progressProps() {
     successPercent: Number,
     title: String,
     progressStatus: stringType<ProgressStatusesType>(),
-  }
+  };
 }
 
 export interface CircleProps extends ProgressProps {
@@ -54,7 +54,7 @@ export function progressCircleProps() {
   return {
     ...progressProps(),
     strokeColor: anyType<string | ProgressGradient>(),
-  }
+  };
 }
 
 export function progressLineProps() {
@@ -62,7 +62,7 @@ export function progressLineProps() {
     ...progressProps(),
     strokeColor: anyType<string | ProgressGradient>(),
     direction: stringType<Direction>(),
-  }
+  };
 }
 
 export function progressStepsProps() {
@@ -71,7 +71,7 @@ export function progressStepsProps() {
     steps: Number,
     strokeColor: someType<string | string[]>(),
     trailColor: String,
-  }
+  };
 }
 
 export function internalCircleProps() {
@@ -94,15 +94,15 @@ export function internalCircleProps() {
     trailColor: String,
     trailWidth: Number,
     transition: String,
-  }
+  };
 }
 
-export type InternalCircleProps = Partial<ExtractPropTypes<ReturnType<typeof internalCircleProps>>>
+export type InternalCircleProps = Partial<ExtractPropTypes<ReturnType<typeof internalCircleProps>>>;
 
-export type ProgressStepsProps = Partial<ExtractPropTypes<ReturnType<typeof progressStepsProps>>>
+export type ProgressStepsProps = Partial<ExtractPropTypes<ReturnType<typeof progressStepsProps>>>;
 
-export type ProgressLineProps = Partial<ExtractPropTypes<ReturnType<typeof progressLineProps>>>
+export type ProgressLineProps = Partial<ExtractPropTypes<ReturnType<typeof progressLineProps>>>;
 
-export type ProgressCircleProps = Partial<ExtractPropTypes<ReturnType<typeof progressCircleProps>>>
+export type ProgressCircleProps = Partial<ExtractPropTypes<ReturnType<typeof progressCircleProps>>>;
 
-export type ProgressProps = Partial<ExtractPropTypes<ReturnType<typeof progressProps>>>
+export type ProgressProps = Partial<ExtractPropTypes<ReturnType<typeof progressProps>>>;

@@ -1,7 +1,7 @@
-import type { AliasToken, CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
-import { genCollapseMotion, zoomIn } from '@antdv/theme/style/motion'
-import genFormValidateMotionStyle from './explain'
+import type { AliasToken, CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
+import { genCollapseMotion, zoomIn } from '@antdv/theme/style/motion';
+import genFormValidateMotionStyle from './explain';
 
 export interface FormToken extends FullToken<'Form'> {
   formItemCls: string
@@ -66,11 +66,11 @@ function resetForm(token: AliasToken): CSSObject {
       fontSize: token.fontSize,
       lineHeight: token.lineHeight,
     },
-  }
+  };
 }
 
 function genFormSize(token: FormToken, height: number): CSSObject {
-  const { formItemCls } = token
+  const { formItemCls } = token;
 
   return {
     [formItemCls]: {
@@ -82,11 +82,11 @@ function genFormSize(token: FormToken, height: number): CSSObject {
         minHeight: height,
       },
     },
-  }
+  };
 }
 
 const genFormStyle: GenerateStyle<FormToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [token.componentCls]: {
@@ -109,11 +109,11 @@ const genFormStyle: GenerateStyle<FormToken> = (token) => {
         ...genFormSize(token, token.controlHeightLG),
       },
     },
-  }
-}
+  };
+};
 
 const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
-  const { formItemCls, iconCls, componentCls, rootPrefixCls } = token
+  const { formItemCls, iconCls, componentCls, rootPrefixCls } = token;
 
   return {
     [formItemCls]: {
@@ -318,11 +318,11 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genHorizontalStyle: GenerateStyle<FormToken> = (token) => {
-  const { componentCls, formItemCls, rootPrefixCls } = token
+  const { componentCls, formItemCls, rootPrefixCls } = token;
 
   return {
     [`${componentCls}-horizontal`]: {
@@ -342,11 +342,11 @@ const genHorizontalStyle: GenerateStyle<FormToken> = (token) => {
         minWidth: 'unset',
       },
     },
-  }
-}
+  };
+};
 
 const genInlineStyle: GenerateStyle<FormToken> = (token) => {
-  const { componentCls, formItemCls } = token
+  const { componentCls, formItemCls } = token;
 
   return {
     [`${componentCls}-inline`]: {
@@ -382,8 +382,8 @@ const genInlineStyle: GenerateStyle<FormToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 function makeVerticalLayoutLabel(token: FormToken): CSSObject {
   return {
@@ -399,11 +399,11 @@ function makeVerticalLayoutLabel(token: FormToken): CSSObject {
         display: 'none',
       },
     },
-  }
+  };
 }
 
 function makeVerticalLayout(token: FormToken): CSSObject {
-  const { componentCls, formItemCls } = token
+  const { componentCls, formItemCls } = token;
 
   return {
     [`${formItemCls} ${formItemCls}-label`]: makeVerticalLayoutLabel(token),
@@ -418,11 +418,11 @@ function makeVerticalLayout(token: FormToken): CSSObject {
         },
       },
     },
-  }
+  };
 }
 
 const genVerticalStyle: GenerateStyle<FormToken> = (token) => {
-  const { componentCls, formItemCls, rootPrefixCls } = token
+  const { componentCls, formItemCls, rootPrefixCls } = token;
 
   return {
     [`${componentCls}-vertical`]: {
@@ -471,15 +471,15 @@ const genVerticalStyle: GenerateStyle<FormToken> = (token) => {
         [`.${rootPrefixCls}-col-lg-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Form', (token, { rootPrefixCls }) => {
   const formToken = mergeToken<FormToken>(token, {
     formItemCls: `${token.componentCls}-item`,
     rootPrefixCls,
-  })
+  });
 
   return [
     genFormStyle(formToken),
@@ -490,5 +490,5 @@ export default genComponentStyleHook('Form', (token, { rootPrefixCls }) => {
     genVerticalStyle(formToken),
     genCollapseMotion(formToken),
     zoomIn,
-  ]
-})
+  ];
+});

@@ -1,6 +1,6 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { CardSize, CardTabListType, CardType } from './interface'
-import { PropTypes, vNodeType } from '@antdv/utils'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import type { CardSize, CardTabListType, CardType } from './interface';
+import { PropTypes, vNodeType } from '@antdv/utils';
 
 export function cardProps() {
   return {
@@ -25,14 +25,14 @@ export function cardProps() {
     onTabChange: {
       type: Function as PropType<(key: string) => void>,
     },
-  }
+  };
 }
 
 export function cardGridProps() {
   return {
     prefixCls: String,
     hoverable: { type: Boolean, default: true },
-  }
+  };
 }
 
 export function cardMetaProps() {
@@ -41,10 +41,10 @@ export function cardMetaProps() {
     title: vNodeType(),
     description: vNodeType(),
     avatar: vNodeType(),
-  }
+  };
 }
-export type CardMetaProps = Partial<ExtractPropTypes<ReturnType<typeof cardMetaProps>>>
+export type CardMetaProps = Partial<ExtractPropTypes<ReturnType<typeof cardMetaProps>>>;
 
-export type CardGridProps = Partial<ExtractPropTypes<ReturnType<typeof cardGridProps>>>
+export type CardGridProps = Partial<ExtractPropTypes<ReturnType<typeof cardGridProps>>>;
 
-export type CardProps = Partial<ExtractPropTypes<ReturnType<typeof cardProps>>>
+export type CardProps = Partial<ExtractPropTypes<ReturnType<typeof cardProps>>>;

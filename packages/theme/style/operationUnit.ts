@@ -1,5 +1,5 @@
-import type { CSSObject } from '../cssinjs'
-import type { DerivativeToken } from '../token'
+import type { CSSObject } from '../cssinjs';
+import type { DerivativeToken } from '../token';
 
 export function operationUnit(token: DerivativeToken): CSSObject {
   return {
@@ -18,5 +18,5 @@ export function operationUnit(token: DerivativeToken): CSSObject {
     '&:active': {
       color: token.colorLinkActive,
     },
-  }
+  };
 }

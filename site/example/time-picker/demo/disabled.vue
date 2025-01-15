@@ -17,7 +17,7 @@ A disabled state of the `TimePicker`.
 </docs>
 
 <script lang="ts" setup>
-  import dayjs from 'dayjs'
+  import dayjs from 'dayjs';
 </script>
 
 <template>

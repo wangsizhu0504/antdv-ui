@@ -1,11 +1,11 @@
-import type { VueNode } from '@antdv/types'
-import type { GenerateConfig } from '../generate'
-import type { PanelMode } from '../interface'
-import { classNames } from '@antdv/utils'
-import useMergeProps from '../hooks/useMergeProps'
-import { useInjectPanel } from '../PanelContext'
-import { getCellDateDisabled } from '../utils/dateUtil'
-import { getLastDay } from '../utils/timeUtil'
+import type { VueNode } from '@antdv/types';
+import type { GenerateConfig } from '../generate';
+import type { PanelMode } from '../interface';
+import { classNames } from '@antdv/utils';
+import useMergeProps from '../hooks/useMergeProps';
+import { useInjectPanel } from '../PanelContext';
+import { getCellDateDisabled } from '../utils/dateUtil';
+import { getLastDay } from '../utils/timeUtil';
 
 export interface PanelBodyProps<DateType> {
   prefixCls: string;
@@ -48,36 +48,36 @@ function PanelBody<DateType>(_props: PanelBodyProps<DateType>) {
     generateConfig,
     titleCell,
     headerCells,
-  } = useMergeProps(_props)
-  const { onDateMouseenter, onDateMouseleave, mode } = useInjectPanel()
+  } = useMergeProps(_props);
+  const { onDateMouseenter, onDateMouseleave, mode } = useInjectPanel();
 
-  const cellPrefixCls = `${prefixCls}-cell`
+  const cellPrefixCls = `${prefixCls}-cell`;
 
   // =============================== Body ===============================
-  const rows: VueNode[] = []
+  const rows: VueNode[] = [];
 
   for (let i = 0; i < rowNum; i += 1) {
-    const row: VueNode[] = []
-    let rowStartDate: DateType
+    const row: VueNode[] = [];
+    let rowStartDate: DateType;
 
     for (let j = 0; j < colNum; j += 1) {
-      const offset = i * colNum + j
-      const currentDate = getCellDate(baseDate, offset)
+      const offset = i * colNum + j;
+      const currentDate = getCellDate(baseDate, offset);
       const disabled = getCellDateDisabled({
         cellDate: currentDate,
         mode: mode.value,
         disabledDate,
         generateConfig,
-      })
+      });
 
       if (j === 0) {
-        rowStartDate = currentDate
+        rowStartDate = currentDate;
 
         if (prefixColumn)
-          row.push(prefixColumn(rowStartDate))
+          row.push(prefixColumn(rowStartDate));
       }
 
-      const title = titleCell && titleCell(currentDate)
+      const title = titleCell && titleCell(currentDate);
 
       row.push(
         <td
@@ -93,17 +93,17 @@ function PanelBody<DateType>(_props: PanelBodyProps<DateType>) {
             ...getCellClassName(currentDate),
           })}
           onClick={(e) => {
-            e.stopPropagation()
+            e.stopPropagation();
             if (!disabled)
-              onSelect(currentDate)
+              onSelect(currentDate);
           }}
           onMouseenter={() => {
             if (!disabled && onDateMouseenter)
-              onDateMouseenter(currentDate)
+              onDateMouseenter(currentDate);
           }}
           onMouseleave={() => {
             if (!disabled && onDateMouseleave)
-              onDateMouseleave(currentDate)
+              onDateMouseleave(currentDate);
           }}
         >
           {getCellNode
@@ -114,14 +114,14 @@ function PanelBody<DateType>(_props: PanelBodyProps<DateType>) {
                 <div class={`${cellPrefixCls}-inner`}>{getCellText(currentDate)}</div>
               )}
         </td>,
-      )
+      );
     }
 
     rows.push(
       <tr key={i} class={rowClassName && rowClassName(rowStartDate!)}>
         {row}
       </tr>,
-    )
+    );
   }
 
   return (
@@ -135,10 +135,10 @@ function PanelBody<DateType>(_props: PanelBodyProps<DateType>) {
         <tbody>{rows}</tbody>
       </table>
     </div>
-  )
+  );
 }
 
-PanelBody.displayName = 'PanelBody'
-PanelBody.inheritAttrs = false
+PanelBody.displayName = 'PanelBody';
+PanelBody.inheritAttrs = false;
 
-export default PanelBody
+export default PanelBody;

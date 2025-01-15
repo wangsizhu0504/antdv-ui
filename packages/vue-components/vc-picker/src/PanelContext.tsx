@@ -1,6 +1,6 @@
-import type { InjectionKey, Ref } from 'vue'
-import type { OnSelect, PanelMode } from './interface'
-import { inject, provide } from 'vue'
+import type { InjectionKey, Ref } from 'vue';
+import type { OnSelect, PanelMode } from './interface';
+import { inject, provide } from 'vue';
 
 export interface ContextOperationRefProps {
   onKeydown?: (e: KeyboardEvent) => boolean;
@@ -25,14 +25,14 @@ export interface PanelContextProps {
   defaultOpenValue?: Ref<any>;
 }
 
-const PanelContextKey: InjectionKey<PanelContextProps> = Symbol('PanelContextProps')
+const PanelContextKey: InjectionKey<PanelContextProps> = Symbol('PanelContextProps');
 
 export function useProvidePanel(props: PanelContextProps) {
-  provide(PanelContextKey, props)
+  provide(PanelContextKey, props);
 }
 
 export function useInjectPanel() {
-  return inject(PanelContextKey, {})
+  return inject(PanelContextKey, {});
 }
 
-export default PanelContextKey
+export default PanelContextKey;

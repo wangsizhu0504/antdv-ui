@@ -19,52 +19,52 @@ See more advanced usage at [async-validator](https://github.com/yiminghe/async-v
 </docs>
 
 <script lang="ts" setup>
-  import type { FormInstance } from '@antdv/ui'
-  import type { Rule } from '@antdv/ui/es/form'
-  import { reactive, ref } from 'vue'
+  import type { FormInstance } from '@antdv/ui';
+  import type { Rule } from '@antdv/ui/es/form';
+  import { reactive, ref } from 'vue';
 
   interface FormState {
     pass: string;
     checkPass: string;
     age: number | undefined;
   }
-  const formRef = ref<FormInstance>()
+  const formRef = ref<FormInstance>();
   const formState = reactive<FormState>({
     pass: '',
     checkPass: '',
     age: undefined,
-  })
+  });
   async function checkAge(_rule: Rule, value: number) {
     if (!value) {
-      return Promise.reject('Please input the age')
+      return Promise.reject('Please input the age');
     }
     if (!Number.isInteger(value)) {
-      return Promise.reject('Please input digits')
+      return Promise.reject('Please input digits');
     } else {
       if (value < 18) {
-        return Promise.reject('Age must be greater than 18')
+        return Promise.reject('Age must be greater than 18');
       } else {
-        return Promise.resolve()
+        return Promise.resolve();
       }
     }
   }
   async function validatePass(_rule: Rule, value: string) {
     if (value === '') {
-      return Promise.reject('Please input the password')
+      return Promise.reject('Please input the password');
     } else {
       if (formState.checkPass !== '') {
-        formRef.value.validateFields('checkPass')
+        formRef.value.validateFields('checkPass');
       }
-      return Promise.resolve()
+      return Promise.resolve();
     }
   }
   async function validatePass2(_rule: Rule, value: string) {
     if (value === '') {
-      return Promise.reject('Please input the password again')
+      return Promise.reject('Please input the password again');
     } else if (value !== formState.pass) {
-      return Promise.reject('Two inputs don\'t match!')
+      return Promise.reject('Two inputs don\'t match!');
     } else {
-      return Promise.resolve()
+      return Promise.resolve();
     }
   }
 
@@ -72,22 +72,22 @@ See more advanced usage at [async-validator](https://github.com/yiminghe/async-v
     pass: [{ required: true, validator: validatePass, trigger: 'change' }],
     checkPass: [{ validator: validatePass2, trigger: 'change' }],
     age: [{ validator: checkAge, trigger: 'change' }],
-  }
+  };
   const layout = {
     labelCol: { span: 4 },
     wrapperCol: { span: 14 },
-  }
+  };
   function handleFinish(values: FormState) {
-    console.log(values, formState)
+    console.log(values, formState);
   }
   function handleFinishFailed(errors) {
-    console.log(errors)
+    console.log(errors);
   }
   function resetForm() {
-    formRef.value.resetFields()
+    formRef.value.resetFields();
   }
   function handleValidate(...args) {
-    console.log(args)
+    console.log(args);
   }
 </script>
 

@@ -17,14 +17,14 @@ A notification box with a icon at the left side.
 </docs>
 
 <script lang="ts" setup>
-  import { notification } from '@antdv/ui'
+  import { notification } from '@antdv/ui';
 
   function openNotificationWithIcon(type: string) {
     notification[type]({
       message: 'Notification Title',
       description:
         'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-    })
+    });
   }
 </script>
 

@@ -1,1 +1,1 @@
-export * from '@antdv/locale'
+export * from '@antdv/locale';

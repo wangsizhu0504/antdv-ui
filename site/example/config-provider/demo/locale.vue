@@ -16,20 +16,21 @@ Components which need localization support are listed here, you can toggle the l
 </docs>
 
 <script lang="ts" setup>
-  import type { TourProps, UploadFile } from '@antdv/ui'
-  import { EllipsisOutlined } from '@ant-design/icons-vue'
-  import { Modal, theme } from '@antdv/ui'
-  import { ref, watch } from 'vue'
+  import type { TourProps, UploadFile } from '@antdv/ui';
+  import { EllipsisOutlined } from '@ant-design/icons-vue';
+  import { Modal, theme } from '@antdv/ui';
 
   // @ts-expect-error
-  import enUS from '@antdv/ui/es/locale/lang/en_US'
+  import enUS from '@antdv/ui/es/locale/lang/en_US';
 
   // @ts-expect-error
-  import zhCN from '@antdv/ui/es/locale/lang/zh_CN'
-  import dayjs from 'dayjs'
-  import 'dayjs/locale/zh-cn'
+  import zhCN from '@antdv/ui/es/locale/lang/zh_CN';
 
-  dayjs.locale('en')
+  import dayjs from 'dayjs';
+  import { ref, watch } from 'vue';
+  import 'dayjs/locale/zh-cn';
+
+  dayjs.locale('en');
 
   const columns = [
     {
@@ -46,32 +47,32 @@ Components which need localization support are listed here, you can toggle the l
       title: 'Age',
       dataIndex: 'age',
     },
-  ]
+  ];
 
-  const visible = ref<any>(false)
-  const locale = ref<any>(enUS.locale)
+  const visible = ref<any>(false);
+  const locale = ref<any>(enUS.locale);
   watch(locale, (val) => {
-    dayjs.locale(val)
-  })
+    dayjs.locale(val);
+  });
   function info() {
     Modal.info({
       title: 'some info',
       content: 'some info',
-    })
+    });
   }
   function confirm() {
     Modal.confirm({
       title: 'some info',
       content: 'some info',
-    })
+    });
   }
 
   const formModel = ref<any>({
     username: '',
     age: '100',
-  })
+  });
 
-  const { token } = theme.useToken()
+  const { token } = theme.useToken();
 
   const fileList: UploadFile[] = [
     {
@@ -92,13 +93,13 @@ Components which need localization support are listed here, you can toggle the l
       name: 'image.png',
       status: 'error',
     },
-  ]
+  ];
 
-  const ref1 = ref<any>(null)
-  const ref2 = ref<any>(null)
-  const ref3 = ref<any>(null)
-  const current = ref<any>(0)
-  const tourOpen = ref<any>(false)
+  const ref1 = ref<any>(null);
+  const ref2 = ref<any>(null);
+  const ref3 = ref<any>(null);
+  const current = ref<any>(0);
+  const tourOpen = ref<any>(false);
   const steps: TourProps['steps'] = [
     {
       title: 'Upload File',
@@ -115,7 +116,7 @@ Components which need localization support are listed here, you can toggle the l
       description: 'Click to see other actions.',
       target: () => ref3.value && ref3.value.$el,
     },
-  ]
+  ];
 </script>
 
 <template>

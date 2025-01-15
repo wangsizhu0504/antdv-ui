@@ -16,11 +16,11 @@ Basic slider. When `range` is `true`, display as dual thumb mode. When `disable`
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value1 = ref<number>(0)
-  const value2 = ref<[number, number]>([20, 50])
-  const disabled = ref<boolean>(false)
+  const value1 = ref<number>(0);
+  const value2 = ref<[number, number]>([20, 50]);
+  const disabled = ref<boolean>(false);
 </script>
 
 <template>

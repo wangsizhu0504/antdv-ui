@@ -16,9 +16,9 @@ Switch in different types of pickers by Select.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const type = ref<any>('time')
+  const type = ref<any>('time');
 </script>
 
 <template>

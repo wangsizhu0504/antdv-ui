@@ -1,8 +1,8 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { DrawerToken } from '.'
+import type { GenerateStyle } from '@antdv/theme';
+import type { DrawerToken } from '.';
 
 const genMotionStyle: GenerateStyle<DrawerToken> = (token: DrawerToken) => {
-  const { componentCls, motionDurationSlow } = token
+  const { componentCls, motionDurationSlow } = token;
 
   const sharedPanelMotion = {
     '&-enter, &-appear, &-leave': {
@@ -14,7 +14,7 @@ const genMotionStyle: GenerateStyle<DrawerToken> = (token: DrawerToken) => {
         transition: `all ${motionDurationSlow}`,
       },
     },
-  }
+  };
 
   return {
     [componentCls]: {
@@ -128,7 +128,7 @@ const genMotionStyle: GenerateStyle<DrawerToken> = (token: DrawerToken) => {
         ],
       },
     },
-  }
-}
+  };
+};
 
-export default genMotionStyle
+export default genMotionStyle;

@@ -1,8 +1,8 @@
-import type { CSSProperties } from 'vue'
-import { classNames } from '@antdv/utils'
-import { defineComponent, toRefs } from 'vue'
-import getColorBgImg from './utils/getColorBgImg'
-import makeStyle from './utils/makeStyle'
+import type { CSSProperties } from 'vue';
+import { classNames } from '@antdv/utils';
+import { defineComponent, toRefs } from 'vue';
+import getColorBgImg from './utils/getColorBgImg';
+import makeStyle from './utils/makeStyle';
 
 export interface ColorPreviewProps {
   color: string
@@ -31,7 +31,7 @@ const useStyle = makeStyle('ColorPreview', () => ({
       boxShadow: '0 2px 3px -1px rgba(0,0,0,0.20), inset 0 0 0 1px rgba(0,0,0,0.09)',
     },
   },
-}))
+}));
 
 const ColorPreview = defineComponent({
   name: 'ColorPreview',
@@ -41,9 +41,9 @@ const ColorPreview = defineComponent({
     dark: { type: Boolean },
   },
   setup(props, { attrs }) {
-    const { color, dark } = toRefs(props)
+    const { color, dark } = toRefs(props);
 
-    const [warpSSR, hashId] = useStyle()
+    const [warpSSR, hashId] = useStyle();
 
     return () => {
       return warpSSR(
@@ -71,9 +71,9 @@ const ColorPreview = defineComponent({
             }}
           />
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default ColorPreview
+export default ColorPreview;

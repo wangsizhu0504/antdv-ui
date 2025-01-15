@@ -17,23 +17,23 @@ Update message content with unique `key`，or use reactive data.
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
-  import { ref } from 'vue'
+  import { message } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const key = 'updatable'
+  const key = 'updatable';
   function openMessage() {
-    message.loading({ content: 'Loading...', key })
+    message.loading({ content: 'Loading...', key });
     setTimeout(() => {
-      message.success({ content: 'Loaded!', key, duration: 2 })
-    }, 1000)
+      message.success({ content: 'Loaded!', key, duration: 2 });
+    }, 1000);
   }
-  const content = ref<any>('Loading...')
+  const content = ref<any>('Loading...');
   function openMessage2() {
     // content must use function
-    message.loading({ content: () => content.value })
+    message.loading({ content: () => content.value });
     setTimeout(() => {
-      content.value = 'Loaded!'
-    }, 1000)
+      content.value = 'Loaded!';
+    }, 1000);
   }
 </script>
 

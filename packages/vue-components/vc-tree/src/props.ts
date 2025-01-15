@@ -1,6 +1,6 @@
-import type { EventHandler, Key } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { NodeDragEventParams, NodeMouseEventHandler, NodeMouseEventParams } from './contextTypes'
+import type { EventHandler, Key } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import type { NodeDragEventParams, NodeMouseEventHandler, NodeMouseEventParams } from './contextTypes';
 import type {
   BasicDataNode,
   DataNode,
@@ -8,9 +8,9 @@ import type {
   EventDataNode,
   FieldNames,
   FlattenNode,
-} from './interface'
-import type { DraggableConfig } from './Tree'
-import { PropTypes } from '@antdv/utils'
+} from './interface';
+import type { DraggableConfig } from './Tree';
+import { PropTypes } from '@antdv/utils';
 
 export interface CheckInfo {
   event: 'check';
@@ -57,9 +57,9 @@ export const treeNodeProps = {
   icon: PropTypes.any,
   switcherIcon: PropTypes.any,
   domRef: { type: Function as PropType<(arg: any) => void> },
-}
+};
 
-export type TreeNodeProps = Partial<ExtractPropTypes<typeof treeNodeProps>>
+export type TreeNodeProps = Partial<ExtractPropTypes<typeof treeNodeProps>>;
 
 export const nodeListProps = {
   prefixCls: { type: String as PropType<string> },
@@ -99,9 +99,9 @@ export const nodeListProps = {
 
   onListChangeStart: { type: Function as PropType<() => void> },
   onListChangeEnd: { type: Function as PropType<() => void> },
-}
+};
 
-export type NodeListProps = Partial<ExtractPropTypes<typeof nodeListProps>>
+export type NodeListProps = Partial<ExtractPropTypes<typeof nodeListProps>>;
 
 export interface AllowDropOptions<TreeDataType extends BasicDataNode = DataNode> {
   dragNode: EventDataNode;
@@ -110,10 +110,10 @@ export interface AllowDropOptions<TreeDataType extends BasicDataNode = DataNode>
 }
 export type AllowDrop<TreeDataType extends BasicDataNode = DataNode> = (
   options: AllowDropOptions<TreeDataType>,
-) => boolean
+) => boolean;
 
-export type DraggableFn = (node: DataNode) => boolean
-export type ExpandAction = false | 'click' | 'doubleclick' | 'dblclick'
+export type DraggableFn = (node: DataNode) => boolean;
+export type ExpandAction = false | 'click' | 'doubleclick' | 'dblclick';
 export function treeProps() {
   return {
     prefixCls: String,
@@ -254,7 +254,7 @@ export function treeProps() {
 
     rootClassName: String,
     rootStyle: Object as PropType<CSSProperties>,
-  }
+  };
 }
 
-export type TreeProps = Partial<ExtractPropTypes<ReturnType<typeof treeProps>>>
+export type TreeProps = Partial<ExtractPropTypes<ReturnType<typeof treeProps>>>;

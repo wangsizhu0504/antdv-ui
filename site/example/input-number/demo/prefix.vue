@@ -17,12 +17,12 @@ Add a prefix inside input.
 </docs>
 
 <script lang="ts" setup>
-  import { UserOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { UserOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const value1 = ref<number>(1)
-  const value2 = ref<number>(2)
-  const value3 = ref<number>(3)
+  const value1 = ref<number>(1);
+  const value2 = ref<number>(2);
+  const value3 = ref<number>(3);
 </script>
 
 <template>

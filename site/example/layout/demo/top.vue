@@ -21,9 +21,9 @@ Top-bottom structure is conform with the top-bottom viewing habit, it's a classi
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const selectedKeys = ref<string[]>(['2'])
+  const selectedKeys = ref<string[]>(['2']);
 </script>
 
 <template>

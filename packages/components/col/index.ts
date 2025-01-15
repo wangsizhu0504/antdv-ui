@@ -1,7 +1,7 @@
-import { Col } from '../grid'
+import { Col } from '../grid';
 
-export type { ColProps, ColSize } from '../grid'
+export type { ColProps, ColSize } from '../grid';
 
-export { Col }
+export { Col };
 
-export default Col
+export default Col;

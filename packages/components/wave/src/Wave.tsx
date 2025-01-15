@@ -1,4 +1,4 @@
-import { classNames, findDOMNode, isVisible } from '@antdv/utils'
+import { classNames, findDOMNode, isVisible } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -7,10 +7,10 @@ import {
   onBeforeUnmount,
   onMounted,
   watch,
-} from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import useWave from './useWave'
+} from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import useWave from './useWave';
 
 export interface WaveProps {
   disabled?: boolean
@@ -23,34 +23,34 @@ export default defineComponent({
     disabled: Boolean,
   },
   setup(props, { slots }) {
-    const instance = getCurrentInstance()
-    const { prefixCls, wave } = useConfigInject('wave', props)
+    const instance = getCurrentInstance();
+    const { prefixCls, wave } = useConfigInject('wave', props);
 
     // ============================== Style ===============================
-    const [, hashId] = useStyle(prefixCls)
+    const [, hashId] = useStyle(prefixCls);
 
     // =============================== Wave ===============================
     const showWave = useWave(
       computed(() => classNames(prefixCls.value, hashId.value)),
       wave,
-    )
-    let onClick: (e: MouseEvent) => void
+    );
+    let onClick: (e: MouseEvent) => void;
     const clear = () => {
-      const node = findDOMNode(instance) as HTMLElement
-      node.removeEventListener('click', onClick, true)
-    }
+      const node = findDOMNode(instance) as HTMLElement;
+      node.removeEventListener('click', onClick, true);
+    };
 
     onMounted(() => {
       watch(
         () => props.disabled,
         () => {
-          clear()
+          clear();
           nextTick(() => {
-            const node: HTMLElement = findDOMNode(instance)
-            node?.removeEventListener('click', onClick, true)
+            const node: HTMLElement = findDOMNode(instance);
+            node?.removeEventListener('click', onClick, true);
 
             if (!node || node.nodeType !== 1 || props.disabled)
-              return
+              return;
 
             // Click handler
             onClick = (e: MouseEvent) => {
@@ -65,30 +65,30 @@ export default defineComponent({
                 || node.className.includes('disabled')
                 || node.className.includes('-leave')
               ) {
-                return
+                return;
               }
 
-              showWave()
-            }
+              showWave();
+            };
 
             // Bind events
-            node.addEventListener('click', onClick, true)
-          })
+            node.addEventListener('click', onClick, true);
+          });
         },
         {
           immediate: true,
           flush: 'post',
         },
-      )
-    })
+      );
+    });
     onBeforeUnmount(() => {
-      clear()
-    })
+      clear();
+    });
 
     return () => {
       // ============================== Render ==============================
-      const children = slots.default?.()[0]
-      return children
-    }
+      const children = slots.default?.()[0];
+      return children;
+    };
   },
-})
+});

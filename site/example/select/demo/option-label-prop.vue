@@ -20,9 +20,9 @@ or use `tagRender` slot for custom rendering of tags.
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
+  import { ref, watch } from 'vue';
 
-  const value = ref<any>(['china'])
+  const value = ref<any>(['china']);
 
   const options = ref<any>([
     {
@@ -45,10 +45,10 @@ or use `tagRender` slot for custom rendering of tags.
       label: 'Korea (韩国)',
       icon: '🇨🇰',
     },
-  ])
+  ]);
   watch(value, (val) => {
-    console.log(`selected:`, val)
-  })
+    console.log(`selected:`, val);
+  });
 </script>
 
 <template>

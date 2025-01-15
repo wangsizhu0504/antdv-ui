@@ -18,7 +18,7 @@ The most basic usage.
 </docs>
 
 <script lang="ts" setup>
-  const handleClick = () => console.log('click')
+  const handleClick = () => console.log('click');
 </script>
 
 <template>

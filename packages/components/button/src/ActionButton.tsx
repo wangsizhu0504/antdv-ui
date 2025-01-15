@@ -1,11 +1,11 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { LegacyButtonType } from './interface'
-import type { ButtonProps } from './props'
-import { useDestroyed } from '@antdv/hooks'
-import { findDOMNode, objectType } from '@antdv/utils'
-import { defineComponent, onBeforeUnmount, onMounted, shallowRef } from 'vue'
-import Button from './Button'
-import { convertLegacyProps } from './utils'
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { LegacyButtonType } from './interface';
+import type { ButtonProps } from './props';
+import { useDestroyed } from '@antdv/hooks';
+import { findDOMNode, objectType } from '@antdv/utils';
+import { defineComponent, onBeforeUnmount, onMounted, shallowRef } from 'vue';
+import Button from './Button';
+import { convertLegacyProps } from './utils';
 
 const actionButtonProps = {
   type: {
@@ -18,12 +18,12 @@ const actionButtonProps = {
   buttonProps: objectType<ButtonProps>(),
   emitEvent: Boolean,
   quitOnNullishReturnValue: Boolean,
-}
+};
 
-export type ActionButtonProps = ExtractPropTypes<typeof actionButtonProps>
+export type ActionButtonProps = ExtractPropTypes<typeof actionButtonProps>;
 
 function isThenable<T>(thing?: PromiseLike<T>): boolean {
-  return !!(thing && thing.then)
+  return !!(thing && thing.then);
 }
 
 export default defineComponent({
@@ -31,80 +31,80 @@ export default defineComponent({
   name: 'ActionButton',
   props: actionButtonProps,
   setup(props, { slots }) {
-    const clickedRef = shallowRef<boolean>(false)
-    const buttonRef = shallowRef()
-    const loading = shallowRef(false)
-    let timeoutId: any
-    const isDestroyed = useDestroyed()
+    const clickedRef = shallowRef<boolean>(false);
+    const buttonRef = shallowRef();
+    const loading = shallowRef(false);
+    let timeoutId: any;
+    const isDestroyed = useDestroyed();
     onMounted(() => {
       if (props.autofocus)
-        timeoutId = setTimeout(() => findDOMNode(buttonRef.value)?.focus?.())
-    })
+        timeoutId = setTimeout(() => findDOMNode(buttonRef.value)?.focus?.());
+    });
     onBeforeUnmount(() => {
-      clearTimeout(timeoutId)
-    })
+      clearTimeout(timeoutId);
+    });
 
     const onInternalClose = (...args: any[]) => {
-      props.close?.(...args)
-    }
+      props.close?.(...args);
+    };
 
     const handlePromiseOnOk = (returnValueOfOnOk?: PromiseLike<any>) => {
       if (!isThenable(returnValueOfOnOk))
-        return
+        return;
 
-      loading.value = true
+      loading.value = true;
       returnValueOfOnOk!.then(
         (...args: any[]) => {
           if (!isDestroyed.value)
-            loading.value = false
+            loading.value = false;
 
-          onInternalClose(...args)
-          clickedRef.value = false
+          onInternalClose(...args);
+          clickedRef.value = false;
         },
         (e: Error) => {
           // See: https://github.com/ant-design/ant-design/issues/6183
           if (!isDestroyed.value)
-            loading.value = false
+            loading.value = false;
 
-          clickedRef.value = false
-          return Promise.reject(e)
+          clickedRef.value = false;
+          return Promise.reject(e);
         },
-      )
-    }
+      );
+    };
 
     const onClick = (e: MouseEvent) => {
-      const { actionFn } = props
+      const { actionFn } = props;
       if (clickedRef.value)
-        return
+        return;
 
-      clickedRef.value = true
+      clickedRef.value = true;
       if (!actionFn) {
-        onInternalClose()
-        return
+        onInternalClose();
+        return;
       }
-      let returnValueOfOnOk: PromiseLike<any>
+      let returnValueOfOnOk: PromiseLike<any>;
       if (props.emitEvent) {
-        returnValueOfOnOk = actionFn(e)
+        returnValueOfOnOk = actionFn(e);
         if (props.quitOnNullishReturnValue && !isThenable(returnValueOfOnOk)) {
-          clickedRef.value = false
-          onInternalClose(e)
-          return
+          clickedRef.value = false;
+          onInternalClose(e);
+          return;
         }
       } else if (actionFn.length) {
-        returnValueOfOnOk = actionFn(props.close)
+        returnValueOfOnOk = actionFn(props.close);
         // https://github.com/ant-design/ant-design/issues/23358
-        clickedRef.value = false
+        clickedRef.value = false;
       } else {
-        returnValueOfOnOk = actionFn()
+        returnValueOfOnOk = actionFn();
         if (!returnValueOfOnOk) {
-          onInternalClose()
-          return
+          onInternalClose();
+          return;
         }
       }
-      handlePromiseOnOk(returnValueOfOnOk)
-    }
+      handlePromiseOnOk(returnValueOfOnOk);
+    };
     return () => {
-      const { type, prefixCls, buttonProps } = props
+      const { type, prefixCls, buttonProps } = props;
       return (
         <Button
           {...convertLegacyProps(type)}
@@ -116,7 +116,7 @@ export default defineComponent({
           v-slots={slots}
         >
         </Button>
-      )
-    }
+      );
+    };
   },
-})
+});

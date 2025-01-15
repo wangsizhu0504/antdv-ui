@@ -27,10 +27,10 @@ When dealing with long content, a fixed sider can provide a better user experien
     UploadOutlined,
     UserOutlined,
     VideoCameraOutlined,
-  } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const selectedKeys = ref<string[]>(['4'])
+  const selectedKeys = ref<string[]>(['4']);
 </script>
 
 <template>

@@ -17,22 +17,22 @@ Communicated with other components
 </docs>
 
 <script lang="ts" setup>
-  import { computed, ref } from 'vue'
+  import { computed, ref } from 'vue';
 
-  const checked = ref<any>(false)
-  const disabled = ref<any>(false)
+  const checked = ref<any>(false);
+  const disabled = ref<any>(false);
 
   function toggleChecked() {
-    checked.value = !checked.value
+    checked.value = !checked.value;
   }
 
   function toggleDisable() {
-    disabled.value = !disabled.value
+    disabled.value = !disabled.value;
   }
 
   const label = computed(() => {
-    return `${checked.value ? 'Checked' : 'Unchecked'}-${disabled.value ? 'Disabled' : 'Enabled'}`
-  })
+    return `${checked.value ? 'Checked' : 'Unchecked'}-${disabled.value ? 'Disabled' : 'Enabled'}`;
+  });
 </script>
 
 <template>

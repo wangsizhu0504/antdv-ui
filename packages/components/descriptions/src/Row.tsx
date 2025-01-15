@@ -1,8 +1,8 @@
-import type { CSSProperties, FunctionalComponent, VNode } from 'vue'
-import type { CellConfig, DescRowProps } from './interface'
-import { getClass, getSlot, getStyle } from '@antdv/utils'
-import Cell from './Cell'
-import { useProviderContext } from './useContext'
+import type { CSSProperties, FunctionalComponent, VNode } from 'vue';
+import type { CellConfig, DescRowProps } from './interface';
+import { getClass, getSlot, getStyle } from '@antdv/utils';
+import Cell from './Cell';
+import { useProviderContext } from './useContext';
 
 const Row: FunctionalComponent<DescRowProps> = (props) => {
   const renderCells = (
@@ -18,18 +18,18 @@ const Row: FunctionalComponent<DescRowProps> = (props) => {
     }: CellConfig & { labelStyle?: CSSProperties, contentStyle?: CSSProperties },
   ) => {
     return items.map((item, index) => {
-      const itemProps = item.props || {}
+      const itemProps = item.props || {};
       const {
         prefixCls: itemPrefixCls = prefixCls,
         span = 1,
         labelStyle = itemProps['label-style'],
         contentStyle = itemProps['content-style'],
         label = (item.children as any)?.label?.(),
-      } = itemProps
-      const children = getSlot(item)
-      const className = getClass(item)
-      const style = getStyle(item)
-      const { key } = item
+      } = itemProps;
+      const children = getSlot(item);
+      const className = getClass(item);
+      const style = getStyle(item);
+      const { key } = item;
       if (typeof component === 'string') {
         return (
           <Cell
@@ -46,7 +46,7 @@ const Row: FunctionalComponent<DescRowProps> = (props) => {
             label={showLabel ? label : null}
             content={showContent ? children : null}
           />
-        )
+        );
       }
 
       return [
@@ -71,12 +71,12 @@ const Row: FunctionalComponent<DescRowProps> = (props) => {
           bordered={bordered}
           content={children}
         />,
-      ]
-    })
-  }
+      ];
+    });
+  };
 
-  const { prefixCls, vertical, row, index, bordered } = props
-  const { labelStyle, contentStyle } = useProviderContext()
+  const { prefixCls, vertical, row, index, bordered } = props;
+  const { labelStyle, contentStyle } = useProviderContext();
   if (vertical) {
     return (
       <>
@@ -99,7 +99,7 @@ const Row: FunctionalComponent<DescRowProps> = (props) => {
           })}
         </tr>
       </>
-    )
+    );
   }
 
   return (
@@ -113,7 +113,7 @@ const Row: FunctionalComponent<DescRowProps> = (props) => {
         contentStyle: contentStyle.value,
       })}
     </tr>
-  )
-}
+  );
+};
 
-export default Row
+export default Row;

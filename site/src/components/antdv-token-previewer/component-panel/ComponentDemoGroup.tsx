@@ -1,12 +1,12 @@
-import type { CSSProperties, PropType } from 'vue'
-import type { ComponentDemo, MutableTheme, TokenName } from '../interface'
-import { ConfigProvider, Tooltip } from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import { defineComponent, toRefs } from 'vue'
-import ComponentDemos from '../component-demos'
-import { useInjectLocaleContext } from '../locale'
-import makeStyle from '../utils/makeStyle'
-import ComponentCard, { getComponentDemoId } from './ComponentCard'
+import type { CSSProperties, PropType } from 'vue';
+import type { ComponentDemo, MutableTheme, TokenName } from '../interface';
+import { ConfigProvider, Tooltip } from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import { defineComponent, toRefs } from 'vue';
+import ComponentDemos from '../component-demos';
+import { useInjectLocaleContext } from '../locale';
+import makeStyle from '../utils/makeStyle';
+import ComponentCard, { getComponentDemoId } from './ComponentCard';
 
 const useStyle = makeStyle('ComponentDemoGroup', token => ({
   '.previewer-component-demo-group': {
@@ -26,7 +26,7 @@ const useStyle = makeStyle('ComponentDemoGroup', token => ({
       },
     },
   },
-}))
+}));
 
 const useDemoStyle = makeStyle('ComponentDemoBlock', token => ({
   '.previewer-component-demo-group-item': {
@@ -45,7 +45,7 @@ const useDemoStyle = makeStyle('ComponentDemoBlock', token => ({
       },
     },
   },
-}))
+}));
 
 export interface ComponentDemoBlockProps {
   component: string
@@ -73,10 +73,10 @@ export const ComponentDemoBlock = defineComponent({
     componentDrawer: { type: Boolean },
   },
   setup(props, { attrs }) {
-    const { component, size, disabled, demos, theme, componentDrawer } = toRefs(props)
+    const { component, size, disabled, demos, theme, componentDrawer } = toRefs(props);
 
-    const [, hashId] = useDemoStyle()
-    const locale = useInjectLocaleContext()
+    const [, hashId] = useDemoStyle();
+    const locale = useInjectLocaleContext();
 
     return () => {
       return (
@@ -91,31 +91,31 @@ export const ComponentDemoBlock = defineComponent({
             <ConfigProvider componentSize={size.value} componentDisabled={disabled.value}>
               {demos.value.some(item => item.active)
                 ? demos.value.map(demo => (
-                  <div key={demo.key} style={{ display: demo.active ? '' : 'none' }}>
-                    {demo.tokens && (
-                      <div class="previewer-component-demo-group-item-relative-token">
-                        <Tooltip title={demo.tokens.join(', ')}>
-                          <span>
-                            {locale.value.demo.relatedTokens}
-                            :
-                            {' '}
-                            {demo.tokens.slice(0, 2).join(', ')}
-                            {demo.tokens.length > 2 ? '...' : ''}
-                          </span>
-                        </Tooltip>
-                      </div>
-                    )}
-                    {demo.demo}
-                  </div>
-                ))
+                    <div key={demo.key} style={{ display: demo.active ? '' : 'none' }}>
+                      {demo.tokens && (
+                        <div class="previewer-component-demo-group-item-relative-token">
+                          <Tooltip title={demo.tokens.join(', ')}>
+                            <span>
+                              {locale.value.demo.relatedTokens}
+                              :
+                              {' '}
+                              {demo.tokens.slice(0, 2).join(', ')}
+                              {demo.tokens.length > 2 ? '...' : ''}
+                            </span>
+                          </Tooltip>
+                        </div>
+                      )}
+                      {demo.demo}
+                    </div>
+                  ))
                 : demos.value[0]?.demo}
             </ConfigProvider>
           </ComponentCard>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 export interface ComponentDemoGroupProps {
   themes: MutableTheme[]
@@ -153,9 +153,9 @@ const ComponentDemoGroup = defineComponent({
       selectedTokens,
       componentDrawer,
       hideTokens,
-    } = toRefs(props)
+    } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
+    const [wrapSSR, hashId] = useStyle();
 
     return () => {
       return wrapSSR(
@@ -163,9 +163,9 @@ const ComponentDemoGroup = defineComponent({
           {Object.entries((components as any).value)
             .reduce<string[]>((result, [, group]) => result.concat(group as any), [])
             .map((item) => {
-              const componentDemos = ComponentDemos[item]
+              const componentDemos = ComponentDemos[item];
               if (!componentDemos)
-                return null
+                return null;
 
               const demos: ComponentDemo[] = componentDemos.map((demo, index) => {
                 return {
@@ -174,8 +174,8 @@ const ComponentDemoGroup = defineComponent({
                   active:
                     ((!selectedTokens.value || selectedTokens.value.length === 0) && index === 0)
                     || selectedTokens.value?.some(token => demo.tokens?.includes(token as any)),
-                }
-              })
+                };
+              });
 
               return (
                 <div
@@ -221,12 +221,12 @@ const ComponentDemoGroup = defineComponent({
                         />
                       )}
                 </div>
-              )
+              );
             })}
         </>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default ComponentDemoGroup
+export default ComponentDemoGroup;

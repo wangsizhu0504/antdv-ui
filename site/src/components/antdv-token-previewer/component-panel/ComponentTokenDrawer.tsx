@@ -1,6 +1,6 @@
-import type { PropType } from 'vue'
-import type { AliasToken, ComponentDemo, MutableTheme, TokenName, TokenValue } from '../interface'
-import { BuildOutlined, CarOutlined } from '@ant-design/icons-vue'
+import type { PropType } from 'vue';
+import type { AliasToken, ComponentDemo, MutableTheme, TokenName, TokenValue } from '../interface';
+import { BuildOutlined, CarOutlined } from '@ant-design/icons-vue';
 import {
   theme as antdTheme,
   ConfigProvider,
@@ -8,18 +8,18 @@ import {
   Empty,
   Tag,
   Tooltip,
-} from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, toRefs } from 'vue'
-import ComponentDemos from '../component-demos'
-import { useInjectLocaleContext } from '../locale'
-import TokenCard from '../token-panel/token-card'
-import getDesignToken from '../utils/getDesignToken'
-import makeStyle from '../utils/makeStyle'
-import { getComponentToken } from '../utils/statistic'
-import ComponentCard from './ComponentCard'
+} from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, toRefs } from 'vue';
+import ComponentDemos from '../component-demos';
+import { useInjectLocaleContext } from '../locale';
+import TokenCard from '../token-panel/token-card';
+import getDesignToken from '../utils/getDesignToken';
+import makeStyle from '../utils/makeStyle';
+import { getComponentToken } from '../utils/statistic';
+import ComponentCard from './ComponentCard';
 
-const { defaultAlgorithm } = antdTheme
+const { defaultAlgorithm } = antdTheme;
 
 const useStyle = makeStyle('ComponentTokenDrawer', token => ({
   '.previewer-component-token-drawer': {
@@ -43,7 +43,7 @@ const useStyle = makeStyle('ComponentTokenDrawer', token => ({
       borderColor: token.colorInfoBg,
     },
   },
-}))
+}));
 
 export interface ComponentFullDemosProps {
   demos: ComponentDemo[]
@@ -59,7 +59,7 @@ const useComponentFullDemosStyle = makeStyle('ComponentFullDemos', token => ({
       marginBottom: 12,
     },
   },
-}))
+}));
 
 const ComponentFullDemos = defineComponent({
   name: 'ComponentFullDemos',
@@ -68,9 +68,9 @@ const ComponentFullDemos = defineComponent({
     demos: { type: Array as PropType<ComponentDemo[]> },
   },
   setup(props, { attrs }) {
-    const { demos } = toRefs(props)
-    const [, hashId] = useComponentFullDemosStyle()
-    const locale = useInjectLocaleContext()
+    const { demos } = toRefs(props);
+    const [, hashId] = useComponentFullDemosStyle();
+    const locale = useInjectLocaleContext();
 
     return () => {
       return (
@@ -96,10 +96,10 @@ const ComponentFullDemos = defineComponent({
             </ComponentCard>
           ))}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 export interface ComponentTokenDrawerProps {
   open?: boolean
@@ -120,22 +120,22 @@ const ComponentTokenDrawer = defineComponent({
     onTokenClick: { type: Function as PropType<(token: TokenName) => void> },
   },
   setup(props) {
-    const { open, component, theme } = toRefs(props)
+    const { open, component, theme } = toRefs(props);
 
-    const [, hashId] = useStyle()
+    const [, hashId] = useStyle();
 
     const componentToken = computed(
       () =>
         getComponentToken(component.value) || {
           global: [],
         },
-    )
+    );
 
-    const componentTokenData = computed(() => Object.keys(componentToken.value.component ?? {}))
+    const componentTokenData = computed(() => Object.keys(componentToken.value.component ?? {}));
 
     const aliasTokenData = computed(() => {
-      return componentToken.value.global.slice().sort()
-    })
+      return componentToken.value.global.slice().sort();
+    });
 
     const handleComponentTokenChange = (token: string, value: TokenValue) => {
       theme.value!.onThemeChange?.(
@@ -150,8 +150,8 @@ const ComponentTokenDrawer = defineComponent({
           },
         },
         ['components', component.value, token],
-      )
-    }
+      );
+    };
 
     return () => {
       return (
@@ -226,10 +226,10 @@ const ComponentTokenDrawer = defineComponent({
             </div>
           </div>
         </Drawer>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 export default defineComponent({
   name: 'ComponentTokenDrawerProvider',
@@ -250,6 +250,6 @@ export default defineComponent({
       >
         <ComponentTokenDrawer {...props} {...attrs} />
       </ConfigProvider>
-    )
+    );
   },
-})
+});

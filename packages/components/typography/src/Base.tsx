@@ -1,9 +1,9 @@
-import type { CSSProperties, HTMLAttributes, VNodeTypes } from 'vue'
-import type { BlockProps, CopyConfig, EditConfig, EllipsisConfig, Locale } from './interface'
-import { CheckOutlined, CopyOutlined, EditOutlined } from '@ant-design/icons-vue'
-import { useMergedState } from '@antdv/hooks'
-import { devWarning, findDOMNode, isStyleSupport, omit, raf } from '@antdv/utils'
-import { ResizeObserver, TransButton } from '@antdv/vue-components'
+import type { CSSProperties, HTMLAttributes, VNodeTypes } from 'vue';
+import type { BlockProps, CopyConfig, EditConfig, EllipsisConfig, Locale } from './interface';
+import { CheckOutlined, CopyOutlined, EditOutlined } from '@ant-design/icons-vue';
+import { useMergedState } from '@antdv/hooks';
+import { devWarning, findDOMNode, isStyleSupport, omit, raf } from '@antdv/utils';
+import { ResizeObserver, TransButton } from '@antdv/vue-components';
 import {
   computed,
   defineComponent,
@@ -15,22 +15,22 @@ import {
   toRaw,
   watch,
   watchEffect,
-} from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
+} from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import LocaleReceiver from '../../locale-provider/src/LocaleReceiver';
 
-import Tooltip from '../../tooltip'
-import copy from './copy'
-import Editable from './Editable'
+import Tooltip from '../../tooltip';
+import copy from './copy';
+import Editable from './Editable';
 
-import { baseProps } from './props'
-import Typography from './Typography'
-import measure from './util'
+import { baseProps } from './props';
+import Typography from './Typography';
+import measure from './util';
 
-const isLineClampSupport = isStyleSupport('webkitLineClamp')
-const isTextOverflowSupport = isStyleSupport('textOverflow')
+const isLineClampSupport = isStyleSupport('webkitLineClamp');
+const isTextOverflowSupport = isStyleSupport('textOverflow');
 
-const ELLIPSIS_STR = '...'
+const ELLIPSIS_STR = '...';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -39,7 +39,7 @@ export default defineComponent({
   props: baseProps(),
   // emits: ['update:content'],
   setup(props, { slots, attrs, emit }) {
-    const { prefixCls, direction } = useConfigInject('typography', props)
+    const { prefixCls, direction } = useConfigInject('typography', props);
 
     const state = reactive({
       copied: false,
@@ -59,39 +59,39 @@ export default defineComponent({
       prevProps: undefined,
 
       originContent: '',
-    })
+    });
 
-    const contentRef = ref()
-    const editIcon = ref()
+    const contentRef = ref();
+    const editIcon = ref();
     const ellipsis = computed((): EllipsisConfig => {
-      const ellipsis = props.ellipsis
-      if (!ellipsis) return {}
+      const ellipsis = props.ellipsis;
+      if (!ellipsis) return {};
 
       return {
         rows: 1,
         expandable: false,
         ...(typeof ellipsis === 'object' ? ellipsis : null),
-      }
-    })
+      };
+    });
     onMounted(() => {
-      state.clientRendered = true
-      syncEllipsis()
-    })
+      state.clientRendered = true;
+      syncEllipsis();
+    });
 
     onBeforeUnmount(() => {
-      clearTimeout(state.copyId)
-      raf.cancel(state.rafId)
-    })
+      clearTimeout(state.copyId);
+      raf.cancel(state.rafId);
+    });
 
     watch(
       [() => ellipsis.value.rows, () => props.content],
       () => {
         nextTick(() => {
-          resizeOnNextFrame()
-        })
+          resizeOnNextFrame();
+        });
       },
       { flush: 'post', deep: true },
-    )
+    );
 
     watchEffect(() => {
       if (props.content === undefined) {
@@ -99,128 +99,128 @@ export default defineComponent({
           !props.editable,
           'Typography',
           'When `editable` is enabled, please use `content` instead of children',
-        )
+        );
         devWarning(
           !props.ellipsis,
           'Typography',
           'When `ellipsis` is enabled, please use `content` instead of children',
-        )
+        );
       }
-    })
+    });
 
     function getChildrenText(): string {
       return (props.ellipsis || props.editable)
         ? props.content
-        : findDOMNode(contentRef.value)?.innerText
+        : findDOMNode(contentRef.value)?.innerText;
     }
 
     // =============== Expand ===============
     function onExpandClick(e: MouseEvent) {
-      const { onExpand } = ellipsis.value
-      state.expanded = true
-      onExpand?.(e)
+      const { onExpand } = ellipsis.value;
+      state.expanded = true;
+      onExpand?.(e);
     }
     // ================ Edit ================
     const editable = computed(() => {
-      const editable = props.editable
-      if (!editable) return { editing: false }
+      const editable = props.editable;
+      if (!editable) return { editing: false };
 
       return {
         ...(typeof editable === 'object' ? editable : null),
-      }
-    })
+      };
+    });
 
     function onEditClick(e: MouseEvent) {
-      e.preventDefault()
-      state.originContent = props.content
-      triggerEdit(true)
+      e.preventDefault();
+      state.originContent = props.content;
+      triggerEdit(true);
     }
 
     function onEditChange(value: string) {
-      onContentChange(value)
-      triggerEdit(false)
+      onContentChange(value);
+      triggerEdit(false);
     }
 
     function onContentChange(value: string) {
-      const { onChange } = editable.value
+      const { onChange } = editable.value;
       if (value !== props.content) {
-        emit('update:content', value)
-        onChange?.(value)
+        emit('update:content', value);
+        onChange?.(value);
       }
     }
 
     function onEditCancel() {
-      editable.value.onCancel?.()
-      triggerEdit(false)
+      editable.value.onCancel?.();
+      triggerEdit(false);
     }
 
     // ================ Copy ================
     function onCopyClick(e: MouseEvent) {
-      e.preventDefault()
-      e.stopPropagation()
-      const { copyable } = props
+      e.preventDefault();
+      e.stopPropagation();
+      const { copyable } = props;
 
       const copyConfig = {
         ...(typeof copyable === 'object' ? copyable : null),
-      }
+      };
 
       if (copyConfig.text === undefined)
-        copyConfig.text = getChildrenText()
+        copyConfig.text = getChildrenText();
 
-      copy(copyConfig.text || '')
+      copy(copyConfig.text || '');
 
-      state.copied = true
+      state.copied = true;
       nextTick(() => {
         if (copyConfig.onCopy)
-          copyConfig.onCopy(e)
+          copyConfig.onCopy(e);
 
         state.copyId = setTimeout(() => {
-          state.copied = false
-        }, 3000)
-      })
+          state.copied = false;
+        }, 3000);
+      });
     }
 
     const [editing, setEditing] = useMergedState(false, {
       value: computed(() => {
-        return editable.value.editing
+        return editable.value.editing;
       }),
-    })
+    });
 
     function triggerEdit(edit: boolean) {
-      const { onStart } = editable.value
+      const { onStart } = editable.value;
       if (edit && onStart)
-        onStart()
+        onStart();
 
-      setEditing(edit)
+      setEditing(edit);
     }
     watch(
       editing,
       (val) => {
         if (!val)
-          editIcon.value?.focus()
+          editIcon.value?.focus();
       },
       { flush: 'post' },
-    )
+    );
 
     // ============== Ellipsis ==============
     const canUseCSSEllipsis = computed(() => {
-      const { rows, expandable, suffix, onEllipsis, tooltip } = ellipsis.value
+      const { rows, expandable, suffix, onEllipsis, tooltip } = ellipsis.value;
 
-      if (suffix || tooltip) return false
+      if (suffix || tooltip) return false;
 
       // Can't use css ellipsis since we need to provide the place for button
       if (props.editable || props.copyable || expandable || onEllipsis)
-        return false
+        return false;
 
       if (rows === 1)
-        return isTextOverflowSupport
+        return isTextOverflowSupport;
 
-      return isLineClampSupport
-    })
+      return isLineClampSupport;
+    });
 
     const syncEllipsis = () => {
-      const { ellipsisText, isEllipsis } = state
-      const { rows, suffix, onEllipsis } = ellipsis.value
+      const { ellipsisText, isEllipsis } = state;
+      const { rows, suffix, onEllipsis } = ellipsis.value;
       if (
         !rows
         || rows < 0
@@ -228,11 +228,11 @@ export default defineComponent({
         || state.expanded
         || props.content === undefined
       ) {
-        return
+        return;
       }
 
       // Do not measure if css already support ellipsis
-      if (canUseCSSEllipsis.value) return
+      if (canUseCSSEllipsis.value) return;
 
       const {
         content,
@@ -244,60 +244,60 @@ export default defineComponent({
         props.content,
         renderOperations(true),
         ELLIPSIS_STR,
-      )
+      );
 
       if (ellipsisText !== text || state.isEllipsis !== ell) {
-        state.ellipsisText = text
-        state.ellipsisContent = content
-        state.isEllipsis = ell
+        state.ellipsisText = text;
+        state.ellipsisContent = content;
+        state.isEllipsis = ell;
         if (isEllipsis !== ell && onEllipsis)
-          onEllipsis(ell)
+          onEllipsis(ell);
       }
-    }
+    };
 
     function resizeOnNextFrame(sizeInfo?: { width: number; height: number }) {
       if (sizeInfo) {
-        const { width, height } = sizeInfo
-        if (!width || !height) return
+        const { width, height } = sizeInfo;
+        if (!width || !height) return;
       }
-      raf.cancel(state.rafId)
+      raf.cancel(state.rafId);
       state.rafId = raf(() => {
         // Do not bind `syncEllipsis`. It need for test usage on prototype
-        syncEllipsis()
-      })
+        syncEllipsis();
+      });
     }
 
     function wrapperDecorations(
       { mark, code, underline, delete: del, strong, keyboard }: BlockProps,
       content,
     ) {
-      let currentContent = content
+      let currentContent = content;
 
       function wrap(needed: boolean, Tag: string) {
-        if (!needed) return
+        if (!needed) return;
 
-        currentContent = <Tag>{currentContent}</Tag>
+        currentContent = <Tag>{currentContent}</Tag>;
       }
 
-      wrap(strong, 'strong')
-      wrap(underline, 'u')
-      wrap(del, 'del')
-      wrap(code, 'code')
-      wrap(mark, 'mark')
-      wrap(keyboard, 'kbd')
+      wrap(strong, 'strong');
+      wrap(underline, 'u');
+      wrap(del, 'del');
+      wrap(code, 'code');
+      wrap(mark, 'mark');
+      wrap(keyboard, 'kbd');
 
-      return currentContent
+      return currentContent;
     }
 
     function renderExpand(forceRender?: boolean) {
-      const { expandable, symbol } = ellipsis.value
+      const { expandable, symbol } = ellipsis.value;
 
-      if (!expandable) return null
+      if (!expandable) return null;
 
       // force render expand icon for measure usage or it will cause dead loop
-      if (!forceRender && (state.expanded || !state.isEllipsis)) return null
+      if (!forceRender && (state.expanded || !state.isEllipsis)) return null;
       const expandContent
-        = (slots.ellipsisSymbol ? slots.ellipsisSymbol() : symbol) || state.expandStr
+        = (slots.ellipsisSymbol ? slots.ellipsisSymbol() : symbol) || state.expandStr;
 
       return (
         <a
@@ -308,16 +308,16 @@ export default defineComponent({
         >
           {expandContent}
         </a>
-      )
+      );
     }
 
     function renderEdit() {
-      if (!props.editable) return
+      if (!props.editable) return;
 
-      const { tooltip, triggerType = ['icon'] } = props.editable as EditConfig
-      const icon = slots.editableIcon ? slots.editableIcon() : <EditOutlined role="button" />
-      const title = slots.editableTooltip ? slots.editableTooltip() : state.editStr
-      const ariaLabel = typeof title === 'string' ? title : ''
+      const { tooltip, triggerType = ['icon'] } = props.editable as EditConfig;
+      const icon = slots.editableIcon ? slots.editableIcon() : <EditOutlined role="button" />;
+      const title = slots.editableTooltip ? slots.editableTooltip() : state.editStr;
+      const ariaLabel = typeof title === 'string' ? title : '';
 
       return triggerType.includes('icon')
         ? (
@@ -332,22 +332,22 @@ export default defineComponent({
               </TransButton>
             </Tooltip>
           )
-        : null
+        : null;
     }
 
     function renderCopy() {
-      if (!props.copyable) return
+      if (!props.copyable) return;
 
-      const { tooltip } = props.copyable as CopyConfig
-      const defaultTitle = state.copied ? state.copiedStr : state.copyStr
+      const { tooltip } = props.copyable as CopyConfig;
+      const defaultTitle = state.copied ? state.copiedStr : state.copyStr;
       const title = slots.copyableTooltip
         ? slots.copyableTooltip({ copied: state.copied })
-        : defaultTitle
-      const ariaLabel = typeof title === 'string' ? title : ''
-      const defaultIcon = state.copied ? <CheckOutlined /> : <CopyOutlined />
+        : defaultTitle;
+      const ariaLabel = typeof title === 'string' ? title : '';
+      const defaultIcon = state.copied ? <CheckOutlined /> : <CopyOutlined />;
       const icon = slots.copyableIcon
         ? slots.copyableIcon({ copied: !!state.copied })
-        : defaultIcon
+        : defaultIcon;
 
       return (
         <Tooltip key="copy" title={tooltip === false ? '' : title}>
@@ -362,12 +362,12 @@ export default defineComponent({
             {icon}
           </TransButton>
         </Tooltip>
-      )
+      );
     }
 
     function renderEditInput() {
-      const { class: className, style } = attrs
-      const { maxlength, autoSize, onEnd } = editable.value
+      const { class: className, style } = attrs;
+      const { maxlength, autoSize, onEnd } = editable.value;
 
       return (
         <Editable
@@ -386,15 +386,15 @@ export default defineComponent({
           component={props.component}
           v-slots={{ enterIcon: slots.editableEnterIcon }}
         />
-      )
+      );
     }
 
     function renderOperations(forceRenderExpanded?: boolean) {
-      return [renderExpand(forceRenderExpanded), renderEdit(), renderCopy()].filter(node => node)
+      return [renderExpand(forceRenderExpanded), renderEdit(), renderCopy()].filter(node => node);
     }
 
     return () => {
-      const { triggerType = ['icon'] } = editable.value
+      const { triggerType = ['icon'] } = editable.value;
       const children
         = (props.ellipsis || props.editable)
           ? props.content !== undefined
@@ -402,10 +402,10 @@ export default defineComponent({
             : slots.default?.()
           : slots.default
             ? slots.default()
-            : props.content
+            : props.content;
 
       if (editing.value)
-        return renderEditInput()
+        return renderEditInput();
 
       return (
         <LocaleReceiver
@@ -421,15 +421,15 @@ export default defineComponent({
             } = {
               ...props,
               ...(attrs as HTMLAttributes),
-            }
-            const { rows, suffix, tooltip } = ellipsis.value
+            };
+            const { rows, suffix, tooltip } = ellipsis.value;
 
-            const { edit, copy: copyStr, copied, expand } = locale
+            const { edit, copy: copyStr, copied, expand } = locale;
 
-            state.editStr = edit
-            state.copyStr = copyStr
-            state.copiedStr = copied
-            state.expandStr = expand
+            state.editStr = edit;
+            state.copyStr = copyStr;
+            state.copiedStr = copied;
+            state.expandStr = expand;
 
             const textProps = omit(restProps, [
               'prefixCls',
@@ -443,24 +443,24 @@ export default defineComponent({
               'strong',
               'keyboard',
               'onUpdate:content',
-            ])
-            const cssEllipsis = canUseCSSEllipsis.value
-            const cssTextOverflow = rows === 1 && cssEllipsis
-            const cssLineClamp = rows && rows > 1 && cssEllipsis
+            ]);
+            const cssEllipsis = canUseCSSEllipsis.value;
+            const cssTextOverflow = rows === 1 && cssEllipsis;
+            const cssLineClamp = rows && rows > 1 && cssEllipsis;
 
-            let textNode = children as VNodeTypes
-            let ariaLabel: string | undefined
+            let textNode = children as VNodeTypes;
+            let ariaLabel: string | undefined;
 
             // Only use js ellipsis when css ellipsis not support
             if (rows && state.isEllipsis && !state.expanded && !cssEllipsis) {
-              const { title } = restProps
-              let restContent = title || ''
+              const { title } = restProps;
+              let restContent = title || '';
 
               if (!title && (typeof children === 'string' || typeof children === 'number'))
-                restContent = String(children)
+                restContent = String(children);
 
               // show rest content as title on symbol
-              restContent = restContent?.slice(String(state.ellipsisContent || '').length)
+              restContent = restContent?.slice(String(state.ellipsisContent || '').length);
               // We move full content to outer element to avoid repeat read the content by accessibility
               textNode = (
                 <>
@@ -470,21 +470,21 @@ export default defineComponent({
                   </span>
                   {suffix}
                 </>
-              )
+              );
             } else {
               textNode = (
                 <>
                   {children}
                   {suffix}
                 </>
-              )
+              );
             }
 
-            textNode = wrapperDecorations(props, textNode)
+            textNode = wrapperDecorations(props, textNode);
 
             const showTooltip
-              = tooltip && rows && state.isEllipsis && !state.expanded && !cssEllipsis
-            const title = slots.ellipsisTooltip ? slots.ellipsisTooltip() : tooltip
+              = tooltip && rows && state.isEllipsis && !state.expanded && !cssEllipsis;
+            const title = slots.ellipsisTooltip ? slots.ellipsisTooltip() : tooltip;
             return (
               <ResizeObserver onResize={resizeOnNextFrame} disabled={!rows}>
                 <Typography
@@ -521,10 +521,10 @@ export default defineComponent({
                   {renderOperations()}
                 </Typography>
               </ResizeObserver>
-            )
+            );
           }}
         />
-      )
-    }
+      );
+    };
   },
-})
+});

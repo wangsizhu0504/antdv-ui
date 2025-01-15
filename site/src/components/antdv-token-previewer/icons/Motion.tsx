@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'vue'
-import { defineComponent } from 'vue'
+import type { CSSProperties } from 'vue';
+import { defineComponent } from 'vue';
 
 const Motion = defineComponent({
   name: 'Motion',
@@ -48,9 +48,9 @@ const Motion = defineComponent({
             </g>
           </g>
         </svg>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default Motion
+export default Motion;

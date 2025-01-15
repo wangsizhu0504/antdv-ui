@@ -1,13 +1,13 @@
-import type { PropType } from 'vue'
-import type { Interaction } from './Interactive'
+import type { PropType } from 'vue';
+import type { Interaction } from './Interactive';
 
-import { defineComponent, toRefs } from 'vue'
-import { clamp } from '../../utils/clamp'
-import { hsvaToHslString } from '../../utils/convert'
-import { formatClassName } from '../../utils/format'
-import { round } from '../../utils/round'
-import { Interactive } from './Interactive'
-import { Pointer } from './Pointer'
+import { defineComponent, toRefs } from 'vue';
+import { clamp } from '../../utils/clamp';
+import { hsvaToHslString } from '../../utils/convert';
+import { formatClassName } from '../../utils/format';
+import { round } from '../../utils/round';
+import { Interactive } from './Interactive';
+import { Pointer } from './Pointer';
 
 export interface Props {
   className?: string
@@ -22,20 +22,20 @@ export const Hue = defineComponent({
     onChange: { type: Function as PropType<(newHue: { h: number }) => void> },
   },
   setup(props, { attrs }) {
-    const { hue } = toRefs(props)
+    const { hue } = toRefs(props);
 
     const handleMove = (interaction: Interaction) => {
-      props.onChange({ h: 360 * interaction.left })
-    }
+      props.onChange({ h: 360 * interaction.left });
+    };
 
     const handleKey = (offset: Interaction) => {
       // Hue measured in degrees of the color circle ranging from 0 to 360
       props.onChange({
         h: clamp(hue.value + offset.left * 360, 0, 360),
-      })
-    }
+      });
+    };
     return () => {
-      const nodeClassName = formatClassName(['vue-colorful__hue', attrs.class])
+      const nodeClassName = formatClassName(['vue-colorful__hue', attrs.class]);
 
       return (
         <div class={nodeClassName}>
@@ -54,7 +54,7 @@ export const Hue = defineComponent({
             />
           </Interactive>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -17,8 +17,8 @@ Use skeleton in list component.
 </docs>
 
 <script lang="ts" setup>
-  import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   interface DataItem {
     href: string;
@@ -27,7 +27,7 @@ Use skeleton in list component.
     description: string;
     content: string;
   }
-  const listData: DataItem[] = []
+  const listData: DataItem[] = [];
   for (let i = 0; i < 3; i++) {
     listData.push({
       href: 'https://www.antdv.com/',
@@ -37,19 +37,19 @@ Use skeleton in list component.
         'Ant Design, a design language for background applications, is refined by Ant UED Team.',
       content:
         'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-    })
+    });
   }
 
-  const loading = ref<boolean>(true)
+  const loading = ref<boolean>(true);
 
   const actions = [
     { icon: StarOutlined, text: '156' },
     { icon: LikeOutlined, text: '156' },
     { icon: MessageOutlined, text: '2' },
-  ]
+  ];
 
   function onChange(checked: boolean) {
-    loading.value = !checked
+    loading.value = !checked;
   }
 </script>
 

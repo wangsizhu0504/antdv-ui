@@ -1,12 +1,12 @@
-import type { DataIndex, Key } from '../interface'
+import type { DataIndex, Key } from '../interface';
 
-const INTERNAL_KEY_PREFIX = 'RC_TABLE_KEY'
+const INTERNAL_KEY_PREFIX = 'RC_TABLE_KEY';
 
 function toArray<T>(arr: T | readonly T[]): T[] {
   if (arr === undefined || arr === null)
-    return []
+    return [];
 
-  return (Array.isArray(arr) ? arr : [arr]) as T[]
+  return (Array.isArray(arr) ? arr : [arr]) as T[];
 }
 
 export function getPathValue<ValueType, ObjectType extends object>(
@@ -15,21 +15,21 @@ export function getPathValue<ValueType, ObjectType extends object>(
 ): ValueType {
   // Skip if path is empty
   if (!path && typeof path !== 'number')
-    return record as unknown as ValueType
+    return record as unknown as ValueType;
 
-  const pathList = toArray(path)
+  const pathList = toArray(path);
 
-  let current: ValueType | ObjectType = record
+  let current: ValueType | ObjectType = record;
 
   for (let i = 0; i < pathList.length; i += 1) {
     if (!current)
-      return null
+      return null;
 
-    const prop = pathList[i]
-    current = current[prop]
+    const prop = pathList[i];
+    current = current[prop];
   }
 
-  return current as ValueType
+  return current as ValueType;
 }
 
 interface GetColumnKeyColumn {
@@ -38,50 +38,50 @@ interface GetColumnKeyColumn {
 }
 
 export function getColumnsKey(columns: readonly GetColumnKeyColumn[]) {
-  const columnKeys: Key[] = []
-  const keys: Record<Key, boolean> = {}
+  const columnKeys: Key[] = [];
+  const keys: Record<Key, boolean> = {};
 
   columns.forEach((column) => {
-    const { key, dataIndex } = column || {}
+    const { key, dataIndex } = column || {};
 
-    let mergedKey = key || toArray(dataIndex).join('-') || INTERNAL_KEY_PREFIX
+    let mergedKey = key || toArray(dataIndex).join('-') || INTERNAL_KEY_PREFIX;
     while (keys[mergedKey])
-      mergedKey = `${mergedKey}_next`
+      mergedKey = `${mergedKey}_next`;
 
-    keys[mergedKey] = true
+    keys[mergedKey] = true;
 
-    columnKeys.push(mergedKey)
-  })
+    columnKeys.push(mergedKey);
+  });
 
-  return columnKeys
+  return columnKeys;
 }
 
 export function mergeObject<ReturnObject extends object>(
   ...objects: Array<Partial<ReturnObject>>
 ): ReturnObject {
-  const merged: Partial<ReturnObject> = {}
+  const merged: Partial<ReturnObject> = {};
 
   function fillProps(obj: object, clone: object) {
     if (clone) {
       Object.keys(clone).forEach((key) => {
-        const value = clone[key]
+        const value = clone[key];
         if (value && typeof value === 'object') {
-          obj[key] = obj[key] || {}
-          fillProps(obj[key], value)
+          obj[key] = obj[key] || {};
+          fillProps(obj[key], value);
         } else {
-          obj[key] = value
+          obj[key] = value;
         }
-      })
+      });
     }
   }
 
   objects.forEach((clone) => {
-    fillProps(merged, clone)
-  })
+    fillProps(merged, clone);
+  });
 
-  return merged as ReturnObject
+  return merged as ReturnObject;
 }
 
 export function validateValue<T>(val: T) {
-  return val !== null && val !== undefined
+  return val !== null && val !== undefined;
 }

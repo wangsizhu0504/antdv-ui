@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Alert, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Alert, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -15,14 +15,14 @@ const Demo = defineComponent({
           showIcon
         />
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorErrorBg', 'colorErrorBorder', 'colorError'],
   key: 'error',
-}
+};
 
-export default componentDemo
+export default componentDemo;

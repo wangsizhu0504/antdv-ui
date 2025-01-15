@@ -1,19 +1,19 @@
-import type { Plugin } from 'rollup'
-import path from 'node:path'
-import commonjs from '@rollup/plugin-commonjs'
-import { nodeResolve } from '@rollup/plugin-node-resolve'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import { glob } from 'glob'
-import { parallel } from 'gulp'
-import { rollup } from 'rollup'
-import esbuild, { minify as minifyPlugin } from 'rollup-plugin-esbuild'
-import { target } from '../build-info'
-import { PKG_BRAND_NAME, PKG_CAME_CASE_NAME } from '../constants'
-import { antdOutput, antdPackage, antdRoot, localeRoot } from '../path'
-import { formatBundleFilename, generateExternal, getPackageManifest, withTaskName, writeBundles } from '../utils'
+import type { Plugin } from 'rollup';
+import path from 'node:path';
+import commonjs from '@rollup/plugin-commonjs';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import { glob } from 'glob';
+import { parallel } from 'gulp';
+import { rollup } from 'rollup';
+import esbuild, { minify as minifyPlugin } from 'rollup-plugin-esbuild';
+import { target } from '../build-info';
+import { PKG_BRAND_NAME, PKG_CAME_CASE_NAME } from '../constants';
+import { antdOutput, antdPackage, antdRoot, localeRoot } from '../path';
+import { formatBundleFilename, generateExternal, getPackageManifest, withTaskName, writeBundles } from '../utils';
 
-const { version } = getPackageManifest(antdPackage)
-const banner = `/*! ${PKG_BRAND_NAME} v${version} */\n`
+const { version } = getPackageManifest(antdPackage);
+const banner = `/*! ${PKG_BRAND_NAME} v${version} */\n`;
 
 async function buildFullEntry(minify: boolean) {
   const plugins: Plugin[] = [
@@ -39,14 +39,14 @@ async function buildFullEntry(minify: boolean) {
       treeShaking: true,
       legalComments: 'eof',
     }),
-  ]
+  ];
   if (minify) {
     plugins.push(
       minifyPlugin({
         target,
         sourceMap: true,
       }),
-    )
+    );
   }
 
   const bundle = await rollup({
@@ -54,7 +54,7 @@ async function buildFullEntry(minify: boolean) {
     plugins,
     external: await generateExternal({ full: true }),
     treeshake: true,
-  })
+  });
   await writeBundles(bundle, [
     {
       format: 'umd',
@@ -82,16 +82,16 @@ async function buildFullEntry(minify: boolean) {
       sourcemap: minify,
       banner,
     },
-  ])
+  ]);
 }
 async function buildFullLocale(minify: boolean) {
   const files = await glob(`**/*.ts`, {
     cwd: path.resolve(localeRoot, 'lang'),
     absolute: true,
-  })
+  });
   return Promise.all(
     files.map(async (file) => {
-      const filename = path.basename(file, '.ts')
+      const filename = path.basename(file, '.ts');
 
       const bundle = await rollup({
         input: file,
@@ -102,7 +102,7 @@ async function buildFullLocale(minify: boolean) {
             target,
           }),
         ],
-      })
+      });
       await writeBundles(bundle, [
         {
           format: 'umd',
@@ -126,16 +126,16 @@ async function buildFullLocale(minify: boolean) {
           sourcemap: minify,
           banner,
         },
-      ])
+      ]);
     }),
-  )
+  );
 }
 
 export function buildFull(minify: boolean) {
   return async () =>
-    Promise.all([buildFullEntry(minify), buildFullLocale(minify)])
+    Promise.all([buildFullEntry(minify), buildFullLocale(minify)]);
 }
 export const buildFullBundle = parallel(
   withTaskName('buildFullMinified', buildFull(true)),
   withTaskName('buildFull', buildFull(false)),
-)
+);

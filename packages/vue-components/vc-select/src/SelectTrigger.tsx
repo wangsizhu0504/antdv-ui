@@ -1,14 +1,14 @@
-import type { VueNode } from '@antdv/types'
-import type { CSSProperties, PropType } from 'vue'
-import type { AlignType } from '../../vc-trigger/src/interface'
-import type { DropdownRender, Placement, RenderDOMFunc } from './BaseSelect'
-import { classNames, PropTypes } from '@antdv/utils'
-import { computed, defineComponent, ref } from 'vue'
-import Trigger from '../../vc-trigger/src/Trigger'
+import type { VueNode } from '@antdv/types';
+import type { CSSProperties, PropType } from 'vue';
+import type { AlignType } from '../../vc-trigger/src/interface';
+import type { DropdownRender, Placement, RenderDOMFunc } from './BaseSelect';
+import { classNames, PropTypes } from '@antdv/utils';
+import { computed, defineComponent, ref } from 'vue';
+import Trigger from '../../vc-trigger/src/Trigger';
 
 function getBuiltInPlacements(dropdownMatchSelectWidth: number | boolean) {
   // Enable horizontal overflow auto-adjustment when a custom dropdown width is provided
-  const adjustX = dropdownMatchSelectWidth === true ? 0 : 1
+  const adjustX = dropdownMatchSelectWidth === true ? 0 : 1;
   return {
     bottomLeft: {
       points: ['tl', 'bl'],
@@ -42,7 +42,7 @@ function getBuiltInPlacements(dropdownMatchSelectWidth: number | boolean) {
         adjustY: 1,
       },
     },
-  }
+  };
 }
 
 export interface RefTriggerProps {
@@ -103,17 +103,17 @@ const SelectTrigger = defineComponent<SelectTriggerProps, { popupRef: any }>({
   } as any,
   setup(props, { slots, attrs, expose }) {
     const builtInPlacements = computed(() => {
-      const { dropdownMatchSelectWidth } = props
-      return getBuiltInPlacements(dropdownMatchSelectWidth)
-    })
-    const popupRef = ref()
+      const { dropdownMatchSelectWidth } = props;
+      return getBuiltInPlacements(dropdownMatchSelectWidth);
+    });
+    const popupRef = ref();
     expose({
       getPopupElement: () => {
-        return popupRef.value
+        return popupRef.value;
       },
-    })
+    });
     return () => {
-      const { empty = false, ...restProps } = { ...props, ...attrs }
+      const { empty = false, ...restProps } = { ...props, ...attrs };
       const {
         visible,
         dropdownAlign,
@@ -134,21 +134,21 @@ const SelectTrigger = defineComponent<SelectTriggerProps, { popupRef: any }>({
         onPopupMouseEnter,
         onPopupFocusin,
         onPopupFocusout,
-      } = restProps as SelectTriggerProps
-      const dropdownPrefixCls = `${prefixCls}-dropdown`
+      } = restProps as SelectTriggerProps;
+      const dropdownPrefixCls = `${prefixCls}-dropdown`;
 
-      let popupNode = popupElement
+      let popupNode = popupElement;
       if (dropdownRender)
-        popupNode = dropdownRender({ menuNode: popupElement, props })
+        popupNode = dropdownRender({ menuNode: popupElement, props });
 
-      const mergedTransitionName = animation ? `${dropdownPrefixCls}-${animation}` : transitionName
+      const mergedTransitionName = animation ? `${dropdownPrefixCls}-${animation}` : transitionName;
 
-      const popupStyle = { minWidth: `${containerWidth}px`, ...dropdownStyle }
+      const popupStyle = { minWidth: `${containerWidth}px`, ...dropdownStyle };
 
       if (typeof dropdownMatchSelectWidth === 'number')
-        popupStyle.width = `${dropdownMatchSelectWidth}px`
+        popupStyle.width = `${dropdownMatchSelectWidth}px`;
       else if (dropdownMatchSelectWidth)
-        popupStyle.width = `${containerWidth}px`
+        popupStyle.width = `${containerWidth}px`;
 
       return (
         <Trigger
@@ -183,9 +183,9 @@ const SelectTrigger = defineComponent<SelectTriggerProps, { popupRef: any }>({
           }}
         >
         </Trigger>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default SelectTrigger
+export default SelectTrigger;

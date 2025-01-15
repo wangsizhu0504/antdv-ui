@@ -17,10 +17,10 @@ Use `label` show time alone.
 </docs>
 
 <script lang="ts" setup>
-  import type { TimelineProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { TimelineProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const mode = ref<TimelineProps['mode']>('left')
+  const mode = ref<TimelineProps['mode']>('left');
 </script>
 
 <template>

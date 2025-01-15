@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'kn',
@@ -136,6 +136,6 @@ const localeValues: Locale = {
     previewFile: 'ಫೈಲ್ ಮುನ್ನೋಟ',
     downloadFile: 'ಫೈಲ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

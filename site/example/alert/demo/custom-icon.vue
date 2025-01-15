@@ -17,7 +17,7 @@ Custom Icon make information more clear and more friendly.
 </docs>
 
 <script lang="ts" setup>
-  import { SmileOutlined } from '@ant-design/icons-vue'
+  import { SmileOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

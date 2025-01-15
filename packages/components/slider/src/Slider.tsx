@@ -1,13 +1,13 @@
-import type { SlotsType } from 'vue'
-import type { HandleGeneratorFn, HandleGeneratorInfo, SliderValue, Visibles } from './interface'
-import { classNames, devWarning } from '@antdv/utils'
-import { VcHandle, VcRange, VcSlider } from '@antdv/vue-components'
-import { computed, defineComponent, ref } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { useInjectFormItemContext } from '../../form/src/FormItemContext'
-import useStyle from '../style'
-import { sliderProps } from './props'
-import SliderTooltip from './SliderTooltip'
+import type { SlotsType } from 'vue';
+import type { HandleGeneratorFn, HandleGeneratorInfo, SliderValue, Visibles } from './interface';
+import { classNames, devWarning } from '@antdv/utils';
+import { VcHandle, VcRange, VcSlider } from '@antdv/vue-components';
+import { computed, defineComponent, ref } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { useInjectFormItemContext } from '../../form/src/FormItemContext';
+import useStyle from '../style';
+import { sliderProps } from './props';
+import SliderTooltip from './SliderTooltip';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -27,56 +27,56 @@ export default defineComponent({
           props.tooltipVisible === undefined,
           'Slider',
           `\`${deprecatedName}\` is deprecated, please use \`${newName}\` instead.`,
-        )
-      })
+        );
+      });
     }
     const { prefixCls, rootPrefixCls, direction, getPopupContainer, configProvider }
-      = useConfigInject('slider', props)
+      = useConfigInject('slider', props);
 
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
-    const formItemContext = useInjectFormItemContext()
-    const sliderRef = ref()
-    const visibles = ref<Visibles>({})
+    const formItemContext = useInjectFormItemContext();
+    const sliderRef = ref();
+    const visibles = ref<Visibles>({});
     const toggleTooltipOpen = (index: number, visible: boolean) => {
-      visibles.value[index] = visible
-    }
+      visibles.value[index] = visible;
+    };
     const tooltipPlacement = computed(() => {
       if (props.tooltipPlacement)
-        return props.tooltipPlacement
+        return props.tooltipPlacement;
 
       if (!props.vertical)
-        return 'top'
+        return 'top';
 
-      return direction.value === 'rtl' ? 'left' : 'right'
-    })
+      return direction.value === 'rtl' ? 'left' : 'right';
+    });
 
     const focus = () => {
-      sliderRef.value?.focus()
-    }
+      sliderRef.value?.focus();
+    };
     const blur = () => {
-      sliderRef.value?.blur()
-    }
+      sliderRef.value?.blur();
+    };
     const handleChange = (val: SliderValue) => {
-      emit('update:value', val)
-      emit('change', val)
-      formItemContext.onFieldChange()
-    }
+      emit('update:value', val);
+      emit('change', val);
+      formItemContext.onFieldChange();
+    };
     const handleBlur = (e: FocusEvent) => {
-      emit('blur', e)
-    }
+      emit('blur', e);
+    };
     expose({
       focus,
       blur,
-    })
+    });
     const handleWithTooltip: HandleGeneratorFn = ({
       tooltipPrefixCls,
       info: { value, dragging, index, ...restProps },
     }) => {
-      const { tipFormatter, tooltipOpen = props.tooltipVisible, getTooltipPopupContainer } = props
-      const isTipFormatter = tipFormatter ? (visibles.value[index] || dragging) : false
-      const open = tooltipOpen || (tooltipOpen === undefined && isTipFormatter)
+      const { tipFormatter, tooltipOpen = props.tooltipVisible, getTooltipPopupContainer } = props;
+      const isTipFormatter = tipFormatter ? (visibles.value[index] || dragging) : false;
+      const open = tooltipOpen || (tooltipOpen === undefined && isTipFormatter);
       return (
         <SliderTooltip
           prefixCls={tooltipPrefixCls}
@@ -95,32 +95,32 @@ export default defineComponent({
             onMouseleave={() => toggleTooltipOpen(index, false)}
           />
         </SliderTooltip>
-      )
-    }
+      );
+    };
     return () => {
       const {
         tooltipPrefixCls: customizeTooltipPrefixCls,
         range,
         id = formItemContext.id.value,
         ...restProps
-      } = props
-      const tooltipPrefixCls = configProvider.getPrefixCls('tooltip', customizeTooltipPrefixCls)
+      } = props;
+      const tooltipPrefixCls = configProvider.getPrefixCls('tooltip', customizeTooltipPrefixCls);
       const cls = classNames(
         attrs.class,
         {
           [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
         },
         hashId.value,
-      )
+      );
 
       // make reverse default on rtl direction
       if (direction.value === 'rtl' && !restProps.vertical)
-        restProps.reverse = !restProps.reverse
+        restProps.reverse = !restProps.reverse;
 
       // extrack draggableTrack from range={{ ... }}
-      let draggableTrack: boolean | undefined
+      let draggableTrack: boolean | undefined;
       if (typeof range === 'object')
-        draggableTrack = range.draggableTrack
+        draggableTrack = range.draggableTrack;
 
       if (range) {
         return wrapSSR(
@@ -142,7 +142,7 @@ export default defineComponent({
             onBlur={handleBlur}
             v-slots={{ mark: slots.mark }}
           />,
-        )
+        );
       }
       return wrapSSR(
         <VcSlider
@@ -163,7 +163,7 @@ export default defineComponent({
           onBlur={handleBlur}
           v-slots={{ mark: slots.mark }}
         />,
-      )
-    }
+      );
+    };
   },
-})
+});

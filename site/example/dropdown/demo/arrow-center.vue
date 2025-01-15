@@ -17,7 +17,7 @@ By specifying `arrow` prop with `{ pointAtCenter: true }`, the arrow will point 
 </docs>
 
 <script lang="ts" setup>
-  const placements = ['topLeft', 'top', 'topRight', 'bottomLeft', 'bottom', 'bottomRight'] as const
+  const placements = ['topLeft', 'top', 'topRight', 'bottomLeft', 'bottom', 'bottomRight'] as const;
 </script>
 
 <template>

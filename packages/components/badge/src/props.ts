@@ -1,7 +1,7 @@
-import type { PresetColorKey } from '@antdv/theme'
-import type { LiteralUnion, PresetColorType, PresetStatusColorType } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import { PropTypes } from '@antdv/utils'
+import type { PresetColorKey } from '@antdv/theme';
+import type { LiteralUnion, PresetColorType, PresetStatusColorType } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import { PropTypes } from '@antdv/utils';
 
 export function badgeProps() {
   return {
@@ -21,7 +21,7 @@ export function badgeProps() {
     offset: Array as unknown as PropType<[number | string, number | string]>,
     numberStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
     title: String,
-  }
+  };
 }
 
 export function ribbonProps() {
@@ -30,7 +30,7 @@ export function ribbonProps() {
     color: { type: String as PropType<LiteralUnion<PresetColorType>> },
     text: PropTypes.any,
     placement: { type: String as PropType<'start' | 'end'>, default: 'end' },
-  }
+  };
 }
 
 export function scrollNumberProps() {
@@ -40,20 +40,20 @@ export function scrollNumberProps() {
     component: String,
     title: PropTypes.any,
     show: Boolean,
-  }
+  };
 }
 export function singleNumberProps() {
   return {
     prefixCls: String,
     value: String,
     count: Number,
-  }
+  };
 }
 
-export type BadgeProps = Partial<ExtractPropTypes<ReturnType<typeof badgeProps>>>
+export type BadgeProps = Partial<ExtractPropTypes<ReturnType<typeof badgeProps>>>;
 
-export type RibbonProps = Partial<ExtractPropTypes<ReturnType<typeof ribbonProps>>>
+export type RibbonProps = Partial<ExtractPropTypes<ReturnType<typeof ribbonProps>>>;
 
-export type ScrollNumberProps = Partial<ExtractPropTypes<ReturnType<typeof scrollNumberProps>>>
+export type ScrollNumberProps = Partial<ExtractPropTypes<ReturnType<typeof scrollNumberProps>>>;
 
-export type SingleNumberProps = Partial<ExtractPropTypes<ReturnType<typeof singleNumberProps>>>
+export type SingleNumberProps = Partial<ExtractPropTypes<ReturnType<typeof singleNumberProps>>>;

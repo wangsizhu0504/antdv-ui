@@ -1,8 +1,8 @@
-import type { CustomizeComponent } from '../interface'
-import { defineComponent } from 'vue'
-import Cell from '../Cell'
-import { useInjectExpandedRow } from '../context/ExpandedRowContext'
-import { useInjectTable } from '../context/TableContext'
+import type { CustomizeComponent } from '../interface';
+import { defineComponent } from 'vue';
+import Cell from '../Cell';
+import { useInjectExpandedRow } from '../context/ExpandedRowContext';
+import { useInjectTable } from '../context/TableContext';
 
 export interface ExpandedRowProps {
   prefixCls: string;
@@ -18,11 +18,11 @@ export default defineComponent<ExpandedRowProps>({
   inheritAttrs: false,
   props: ['prefixCls', 'component', 'cellComponent', 'expanded', 'colSpan', 'isEmpty'] as any,
   setup(props, { slots, attrs }) {
-    const tableContext = useInjectTable()
-    const expandedRowContext = useInjectExpandedRow()
-    const { fixHeader, fixColumn, componentWidth, horizonScroll } = expandedRowContext
+    const tableContext = useInjectTable();
+    const expandedRowContext = useInjectExpandedRow();
+    const { fixHeader, fixColumn, componentWidth, horizonScroll } = expandedRowContext;
     return () => {
-      const { prefixCls, component: Component, cellComponent, expanded, colSpan, isEmpty } = props
+      const { prefixCls, component: Component, cellComponent, expanded, colSpan, isEmpty } = props;
 
       return (
         <Component
@@ -37,7 +37,7 @@ export default defineComponent<ExpandedRowProps>({
             colSpan={colSpan}
             v-slots={{
               default: () => {
-                let contentNode: any = slots.default?.()
+                let contentNode: any = slots.default?.();
 
                 if (isEmpty ? horizonScroll.value : fixColumn.value) {
                   contentNode = (
@@ -54,15 +54,15 @@ export default defineComponent<ExpandedRowProps>({
                     >
                       {contentNode}
                     </div>
-                  )
+                  );
                 }
-                return contentNode
+                return contentNode;
               },
             }}
           >
           </Cell>
         </Component>
-      )
-    }
+      );
+    };
   },
-})
+});

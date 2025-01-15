@@ -17,10 +17,10 @@ Input type of password.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value1 = ref<string>('')
-  const value2 = ref<string>('')
+  const value1 = ref<string>('');
+  const value2 = ref<string>('');
 </script>
 
 <template>

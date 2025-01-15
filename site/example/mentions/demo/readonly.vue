@@ -17,10 +17,10 @@ Configurate disabled and readonly.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value1 = ref<string>('')
-  const value2 = ref<string>('')
+  const value1 = ref<string>('');
+  const value2 = ref<string>('');
   const options = [
     {
       value: 'afc163',
@@ -34,7 +34,7 @@ Configurate disabled and readonly.
       value: 'yesmeck',
       label: 'yesmeck',
     },
-  ]
+  ];
 </script>
 
 <template>

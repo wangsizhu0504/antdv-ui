@@ -1,10 +1,10 @@
-import type { Key, VueNode } from '@antdv/types'
-import type { CSSProperties, HTMLAttributes, PropType } from 'vue'
-import { classNames, PropTypes } from '@antdv/utils'
-import { computed, defineComponent, onUnmounted, ref } from 'vue'
-import ResizeObserver from '../../vc-resize-observer/src/index'
+import type { Key, VueNode } from '@antdv/types';
+import type { CSSProperties, HTMLAttributes, PropType } from 'vue';
+import { classNames, PropTypes } from '@antdv/utils';
+import { computed, defineComponent, onUnmounted, ref } from 'vue';
+import ResizeObserver from '../../vc-resize-observer/src/index';
 
-const UNDEFINED = undefined
+const UNDEFINED = undefined;
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -22,19 +22,19 @@ export default defineComponent({
     invalidate: Boolean,
   },
   setup(props, { slots, expose }) {
-    const mergedHidden = computed(() => props.responsive && !props.display)
-    const itemNodeRef = ref()
+    const mergedHidden = computed(() => props.responsive && !props.display);
+    const itemNodeRef = ref();
 
-    expose({ itemNodeRef })
+    expose({ itemNodeRef });
 
     // ================================ Effect ================================
     function internalRegisterSize(width: number | null) {
-      props.registerSize(props.itemKey, width)
+      props.registerSize(props.itemKey, width);
     }
 
     onUnmounted(() => {
-      internalRegisterSize(null)
-    })
+      internalRegisterSize(null);
+    });
 
     return () => {
       const {
@@ -49,12 +49,12 @@ export default defineComponent({
         order,
         component: Component = 'div',
         ...restProps
-      } = props
-      const children = slots.default?.()
+      } = props;
+      const children = slots.default?.();
       // ================================ Render ================================
-      const childNode = renderItem && item !== UNDEFINED ? renderItem(item) : children
+      const childNode = renderItem && item !== UNDEFINED ? renderItem(item) : children;
 
-      let overflowStyle: CSSProperties | undefined
+      let overflowStyle: CSSProperties | undefined;
       if (!invalidate) {
         overflowStyle = {
           opacity: mergedHidden.value ? 0 : 1,
@@ -63,19 +63,19 @@ export default defineComponent({
           order: responsive ? order : UNDEFINED,
           pointerEvents: mergedHidden.value ? 'none' : UNDEFINED,
           position: mergedHidden.value ? 'absolute' : UNDEFINED,
-        }
+        };
       }
 
-      const overflowProps: HTMLAttributes = {}
+      const overflowProps: HTMLAttributes = {};
       if (mergedHidden.value)
-        overflowProps['aria-hidden'] = true
+        overflowProps['aria-hidden'] = true;
 
       // 使用 disabled  避免结构不一致 导致子组件 rerender
       return (
         <ResizeObserver
           disabled={!responsive}
           onResize={({ offsetWidth }) => {
-            internalRegisterSize(offsetWidth)
+            internalRegisterSize(offsetWidth);
           }}
           v-slots={{
             default: () => (
@@ -92,7 +92,7 @@ export default defineComponent({
           }}
         >
         </ResizeObserver>
-      )
-    }
+      );
+    };
   },
-})
+});

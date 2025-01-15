@@ -16,19 +16,19 @@ The count will be animated as it changes.
 </docs>
 
 <script lang="ts" setup>
-  import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const count = ref<number>(5)
-  const show = ref<boolean>(true)
+  const count = ref<number>(5);
+  const show = ref<boolean>(true);
   function decline() {
     if (count.value >= 1) {
-      count.value--
+      count.value--;
     }
   }
 
   function increase() {
-    count.value++
+    count.value++;
   }
 </script>
 

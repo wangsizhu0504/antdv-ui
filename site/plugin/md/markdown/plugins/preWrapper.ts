@@ -7,22 +7,22 @@
 //   3. <!--beforeend-->
 //   4. <!--afterend-->
 
-import type MarkdownIt from 'markdown-it'
-import type { MarkdownParsedData } from '../markdown'
+import type MarkdownIt from 'markdown-it';
+import type { MarkdownParsedData } from '../markdown';
 
 export function preWrapperPlugin(md: MarkdownIt) {
-  const fence = md.renderer.rules.fence!
+  const fence = md.renderer.rules.fence!;
   md.renderer.rules.fence = (...args) => {
-    const [tokens, idx] = args
-    const token = tokens[idx]
-    const data = (md as any).__data as MarkdownParsedData
+    const [tokens, idx] = args;
+    const token = tokens[idx];
+    const data = (md as any).__data as MarkdownParsedData;
     if (token.info?.trim() === 'vue')
-      data.vueCode = token.content
+      data.vueCode = token.content;
 
     const rawCode = fence(...args).replace(
       /<pre /g,
       `<pre class="language-${token.info?.trim()}" `,
-    )
-    return rawCode // `<div class="language-${token.info.trim()}">${rawCode}</div>`;
-  }
+    );
+    return rawCode; // `<div class="language-${token.info.trim()}">${rawCode}</div>`;
+  };
 }

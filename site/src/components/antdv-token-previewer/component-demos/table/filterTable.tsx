@@ -1,8 +1,8 @@
-import type { TableProps } from '@antdv/ui'
-import type { ComponentDemo } from '../../interface'
-import { Table } from '@antdv/ui'
+import type { TableProps } from '@antdv/ui';
+import type { ComponentDemo } from '../../interface';
+import { Table } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 interface TableData {
   name: string
@@ -65,7 +65,7 @@ const columns: TableProps<TableData>['columns'] = [
     ],
     onFilter: (value, record) => record.address.indexOf(String(value)) === 0,
   },
-]
+];
 const data = [
   {
     key: '1',
@@ -91,22 +91,22 @@ const data = [
     age: 32,
     address: 'London No. 2 Lake Park',
   },
-]
+];
 
 const onChange: TableProps<TableData>['onChange'] = (pagination, filters, sorter, extra) => {
-  console.log('params', pagination, filters, sorter, extra)
-}
+  console.log('params', pagination, filters, sorter, extra);
+};
 
 const Demo = defineComponent({
   setup() {
-    return () => <Table columns={columns} dataSource={data} onChange={onChange} />
+    return () => <Table columns={columns} dataSource={data} onChange={onChange} />;
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorFillSecondary', 'colorFillContentHover', 'colorFillContent', 'colorFillAlter'],
   key: 'filterTable',
-}
+};
 
-export default componentDemo
+export default componentDemo;

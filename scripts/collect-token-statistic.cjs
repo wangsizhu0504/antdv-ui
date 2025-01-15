@@ -1,20 +1,20 @@
-const path = require('node:path')
-const chalk = require('chalk')
-const fs = require('fs-extra')
-const glob = require('glob')
-const ProgressBar = require('progress')
+const path = require('node:path');
+const chalk = require('chalk');
+const fs = require('fs-extra');
+const glob = require('glob');
+const ProgressBar = require('progress');
 
-const { defineComponent, ref, createVNode, createSSRApp } = require('vue')
-const VueServerRenderer = require('vue/server-renderer')
-const { DesignTokenProvider } = require('../packages/theme/token/internal')
-const seedToken = require('../packages/theme/token/themes/seed')
-const { statistic } = require('../packages/theme/token/util/statistic')
+const { defineComponent, ref, createVNode, createSSRApp } = require('vue');
+const VueServerRenderer = require('vue/server-renderer');
+const { DesignTokenProvider } = require('../packages/theme/token/internal');
+const seedToken = require('../packages/theme/token/themes/seed');
+const { statistic } = require('../packages/theme/token/util/statistic');
 
-console.log(chalk.green('🔥 Collecting token statistics...'))
+console.log(chalk.green('🔥 Collecting token statistics...'));
 
-const EmptyElement = createVNode('div')
+const EmptyElement = createVNode('div');
 
-const excludeDirs = ['config-provider', 'locale-provider', 'style-provider', 'auto-complete', 'col', 'row', 'time-picker']
+const excludeDirs = ['config-provider', 'locale-provider', 'style-provider', 'auto-complete', 'col', 'row', 'time-picker'];
 const styleFiles = glob.sync(
   path.join(
     process.cwd(),
@@ -25,46 +25,46 @@ const styleFiles = glob.sync(
       path.join(process.cwd(), `packages/components/${dir}/**/*`),
     ),
   },
-)
+);
 const bar = new ProgressBar('🚀 Collecting by component: [:bar] :component (:current/:total)', {
   complete: '=',
   incomplete: ' ',
   total: styleFiles.length,
-})
+});
 
 styleFiles.forEach(async (file) => {
-  const pathArr = file.split('/')
-  const styleIndex = pathArr.lastIndexOf('style')
-  const componentName = pathArr[styleIndex - 1]
-  bar.tick(1, { component: componentName })
-  let useStyle = () => { }
+  const pathArr = file.split('/');
+  const styleIndex = pathArr.lastIndexOf('style');
+  const componentName = pathArr[styleIndex - 1];
+  bar.tick(1, { component: componentName });
+  let useStyle = () => { };
   if (file.includes('grid')) {
     // eslint-disable-next-line node/global-require
-    const { useColStyle, useRowStyle } = require(file)
+    const { useColStyle, useRowStyle } = require(file);
     useStyle = () => {
-      useRowStyle()
-      useColStyle()
-    }
+      useRowStyle();
+      useColStyle();
+    };
   } else {
     // eslint-disable-next-line node/global-require
-    useStyle = require(file).default
+    useStyle = require(file).default;
   }
 
   const Component = defineComponent({
     setup() {
-      if (!useStyle)console.log(useStyle, file)
+      if (!useStyle)console.log(useStyle, file);
       // @ts-expect-error
-      useStyle(ref('file'), ref())
-      return () => EmptyElement
+      useStyle(ref('file'), ref());
+      return () => EmptyElement;
     },
-  })
+  });
   VueServerRenderer.renderToString(
     createSSRApp({
       setup() {
-        return () => createVNode(Component)
+        return () => createVNode(Component);
       },
     }),
-  )
+  );
   // Render wireframe
   VueServerRenderer.renderToString(
     createSSRApp({
@@ -74,15 +74,15 @@ styleFiles.forEach(async (file) => {
             DesignTokenProvider,
             { value: { token: { ...seedToken, wireframe: true } } },
             () => createVNode(Component),
-          )
+          );
       },
     }),
-  )
+  );
 });
 
 (() => {
-  const tokenPath = `${process.cwd()}/packages/version/token.json`
-  if (statistic) fs.writeJsonSync(tokenPath, statistic, 'utf8')
+  const tokenPath = `${process.cwd()}/packages/version/token.json`;
+  if (statistic) fs.writeJsonSync(tokenPath, statistic, 'utf8');
 
-  console.log(chalk.green('✅  Collected token statistics successfully, check it in'), tokenPath)
-})()
+  console.log(chalk.green('✅  Collected token statistics successfully, check it in'), tokenPath);
+})();

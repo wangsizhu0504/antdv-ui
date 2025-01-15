@@ -17,9 +17,9 @@ Change the suggestions placement.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<string>('')
+  const value = ref<string>('');
   const options = [
     {
       value: 'afc163',
@@ -33,7 +33,7 @@ Change the suggestions placement.
       value: 'yesmeck',
       label: 'yesmeck',
     },
-  ]
+  ];
 </script>
 
 <template>

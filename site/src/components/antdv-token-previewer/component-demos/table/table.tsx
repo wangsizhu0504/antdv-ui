@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Space, Table, Tag } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Space, Table, Tag } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const columns = [
   {
@@ -19,7 +19,7 @@ const columns = [
     title: 'Action',
     key: 'action',
   },
-]
+];
 const data = [
   {
     key: '1',
@@ -42,7 +42,7 @@ const data = [
     address: 'Sidney No. 1 Lake Park',
     tags: ['cool', 'teacher'],
   },
-]
+];
 const Demo = defineComponent({
   setup() {
     return () => (
@@ -53,23 +53,23 @@ const Demo = defineComponent({
         v-slots={{
           bodyCell: ({ column, text, record }) => {
             if (column.key === 'name') {
-              return <a>{record.name}</a>
+              return <a>{record.name}</a>;
             } else if (column.key === 'tags') {
               return (
                 <span>
                   {record.tags.map((tag: string) => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green'
+                    let color = tag.length > 5 ? 'geekblue' : 'green';
                     if (tag === 'loser')
-                      color = 'volcano'
+                      color = 'volcano';
 
                     return (
                       <Tag color={color} key={tag}>
                         {tag.toUpperCase()}
                       </Tag>
-                    )
+                    );
                   })}
                 </span>
-              )
+              );
             } else if (column.key === 'action') {
               return (
                 <Space size="middle">
@@ -80,21 +80,21 @@ const Demo = defineComponent({
                   {' '}
                   <a>Delete</a>
                 </Space>
-              )
+              );
             } else {
-              return text
+              return text;
             }
           },
         }}
       />
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorPrimaryActive', 'colorBgContainer'],
   key: 'table',
-}
+};
 
-export default componentDemo
+export default componentDemo;

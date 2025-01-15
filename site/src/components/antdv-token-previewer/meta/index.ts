@@ -1,1 +1,1 @@
-export { default as tokenCategory } from './category'
+export { default as tokenCategory } from './category';

@@ -16,9 +16,9 @@ Multiple line ellipsis support. You can use `tooltip` to config ellipsis tooltip
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const ellipsis = ref<any>(true)
+  const ellipsis = ref<any>(true);
 </script>
 
 <template>

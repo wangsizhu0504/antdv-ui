@@ -1,4 +1,4 @@
-const typeTemplate = '\'${name}\' is not a valid ${type}'
+const typeTemplate = '\'${name}\' is not a valid ${type}';
 
 export const defaultValidateMessages = {
   default: 'Validation error on field \'${name}\'',
@@ -46,4 +46,4 @@ export const defaultValidateMessages = {
   pattern: {
     mismatch: '\'${name}\' does not match pattern ${pattern}',
   },
-}
+};

@@ -1,10 +1,10 @@
-import type { Key } from '@antdv/types'
-import type { DataNode, EventDataNode } from '@antdv/vue-components/vc-tree/src/interface'
-import type { CheckInfo, TreeNodeProps } from '@antdv/vue-components/vc-tree/src/props'
+import type { Key } from '@antdv/types';
+import type { DataNode, EventDataNode } from '@antdv/vue-components/vc-tree/src/interface';
+import type { CheckInfo, TreeNodeProps } from '@antdv/vue-components/vc-tree/src/props';
 
 // import type { DataNode, EventDataNode, TreeNodeProps } from '@antdv/vue-components'
 
-export type ExpandAction = false | 'click' | 'doubleclick' | 'dblclick'
+export type ExpandAction = false | 'click' | 'doubleclick' | 'dblclick';
 
 export interface AntdTreeNodeAttribute {
   eventKey: string
@@ -26,10 +26,10 @@ export interface AntdTreeNodeAttribute {
   disableCheckbox: boolean
 }
 
-export type AntTreeNodeProps = TreeNodeProps
-export type AntTreeCheckInfo = CheckInfo
+export type AntTreeNodeProps = TreeNodeProps;
+export type AntTreeCheckInfo = CheckInfo;
 // [Legacy] Compatible for v2
-export type TreeDataItem = DataNode
+export type TreeDataItem = DataNode;
 
 export interface AntTreeNodeBaseEvent {
   node: EventDataNode
@@ -70,4 +70,4 @@ export interface AntTreeNodeDropEvent {
   event: MouseEvent
 }
 
-export type { DataNode, EventDataNode } from '@antdv/vue-components/vc-tree/src/interface'
+export type { DataNode, EventDataNode } from '@antdv/vue-components/vc-tree/src/interface';

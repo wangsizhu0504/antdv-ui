@@ -146,4 +146,4 @@ export default {
   'app.floatButton.theme-editor': '主题编辑器',
   'app.floatButton.dark-theme': '暗黑主题',
   'app.floatButton.compact-theme': '紧凑主题',
-}
+};

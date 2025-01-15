@@ -1,28 +1,28 @@
-import type { ComponentDemo } from '../../interface'
-import { AutoComplete } from '@antdv/ui'
-import { defineComponent, ref } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { AutoComplete } from '@antdv/ui';
+import { defineComponent, ref } from 'vue';
 
 function mockVal(str: string, repeat = 1) {
   return {
     value: str.repeat(repeat),
-  }
+  };
 }
 
 const Demo = defineComponent({
   setup() {
-    const value = ref<any>('')
-    const options = ref<Array<{ value: string }>>([])
+    const value = ref<any>('');
+    const options = ref<Array<{ value: string }>>([]);
     const onSearch = (searchText: string) => {
       options.value = !searchText
         ? []
-        : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
-    }
+        : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
+    };
     const onSelect = (data: string) => {
-      console.log('onSelect', data)
-    }
+      console.log('onSelect', data);
+    };
     const onChange = (data: string) => {
-      value.value = data
-    }
+      value.value = data;
+    };
 
     return () => {
       return (
@@ -51,15 +51,15 @@ const Demo = defineComponent({
           />
           {' '}
         </>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: [],
   key: 'autoComplete',
-}
+};
 
-export default componentDemo
+export default componentDemo;

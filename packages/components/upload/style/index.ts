@@ -1,11 +1,11 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
-import { genCollapseMotion } from '@antdv/theme/style/motion'
-import genDraggerStyle from './dragger'
-import genListStyle from './list'
-import genMotionStyle from './motion'
-import { genPictureCardStyle, genPictureStyle } from './picture'
-import genRtlStyle from './rtl'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
+import { genCollapseMotion } from '@antdv/theme/style/motion';
+import genDraggerStyle from './dragger';
+import genListStyle from './list';
+import genMotionStyle from './motion';
+import { genPictureCardStyle, genPictureStyle } from './picture';
+import genRtlStyle from './rtl';
 
 export interface ComponentToken {}
 
@@ -16,7 +16,7 @@ export interface UploadToken extends FullToken<'Upload'> {
 }
 
 const genBaseStyle: GenerateStyle<UploadToken> = (token) => {
-  const { componentCls, colorTextDisabled } = token
+  const { componentCls, colorTextDisabled } = token;
 
   return {
     [`${componentCls}-wrapper`]: {
@@ -38,19 +38,19 @@ const genBaseStyle: GenerateStyle<UploadToken> = (token) => {
         cursor: 'not-allowed',
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Upload', (token) => {
-  const { fontSizeHeading3, fontSize, lineHeight, lineWidth, controlHeightLG } = token
-  const listItemHeightSM = Math.round(fontSize * lineHeight)
+  const { fontSizeHeading3, fontSize, lineHeight, lineWidth, controlHeightLG } = token;
+  const listItemHeightSM = Math.round(fontSize * lineHeight);
 
   const uploadToken = mergeToken<UploadToken>(token, {
     uploadThumbnailSize: fontSizeHeading3 * 2,
     uploadProgressOffset: listItemHeightSM / 2 + lineWidth,
     uploadPicCardSize: controlHeightLG * 2.55,
-  })
+  });
 
   return [
     genBaseStyle(uploadToken),
@@ -61,5 +61,5 @@ export default genComponentStyleHook('Upload', (token) => {
     genMotionStyle(uploadToken),
     genRtlStyle(uploadToken),
     genCollapseMotion(uploadToken),
-  ]
-})
+  ];
+});

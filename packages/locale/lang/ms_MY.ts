@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'ms-my',
@@ -144,6 +144,6 @@ const localeValues: Locale = {
     previewFile: 'Tengok fail',
     downloadFile: 'Muat turun fail',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

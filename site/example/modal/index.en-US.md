@@ -91,14 +91,14 @@ The items listed above are all functions, expecting a settings object as paramet
 All the `Modal.method`s will return a reference, and then we can update and close the modal dialog by the reference.
 
 ```jsx
-const modal = Modal.info()
+const modal = Modal.info();
 
 modal.update({
   title: 'Updated title',
   content: 'Updated content',
-})
+});
 
-modal.destroy()
+modal.destroy();
 ```
 
 - `Modal.destroyAll`

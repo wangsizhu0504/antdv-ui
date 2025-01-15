@@ -1,9 +1,9 @@
-import { withInstall } from '@antdv/utils'
-import AResult from './src/Result'
+import { withInstall } from '@antdv/utils';
+import AResult from './src/Result';
 
-export const Result = withInstall(AResult)
+export const Result = withInstall(AResult);
 
-export default Result
+export default Result;
 
-export * from './src/interface'
-export * from './src/props'
+export * from './src/interface';
+export * from './src/props';

@@ -8,7 +8,7 @@ export interface TooltipAlignConfig {
   useCssTransform?: boolean
 }
 
-export type TriggerType = 'hover' | 'focus' | 'click' | 'contextmenu'
+export type TriggerType = 'hover' | 'focus' | 'click' | 'contextmenu';
 export type TooltipPlacement =
   | 'top'
   | 'left'
@@ -21,4 +21,4 @@ export type TooltipPlacement =
   | 'leftTop'
   | 'leftBottom'
   | 'rightTop'
-  | 'rightBottom'
+  | 'rightBottom';

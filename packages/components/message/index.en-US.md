@@ -75,7 +75,7 @@ message.config({
   maxCount: 3,
   rtl: true,
   prefixCls: 'my-message',
-})
+});
 ```
 
 | Argument | Description | Type | Default | Version |

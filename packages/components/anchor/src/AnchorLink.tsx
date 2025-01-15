@@ -1,9 +1,9 @@
-import type { SlotsType } from 'vue'
-import { classNames } from '@antdv/utils'
-import { defineComponent, nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { useInjectAnchor } from './context'
-import { anchorLinkProps } from './props'
+import type { SlotsType } from 'vue';
+import { classNames } from '@antdv/utils';
+import { defineComponent, nextTick, onBeforeUnmount, onMounted, watch } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { useInjectAnchor } from './context';
+import { anchorLinkProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -16,55 +16,55 @@ export default defineComponent({
     customTitle: any
   }>,
   setup(props, { slots, attrs }) {
-    let mergedTitle = null
+    let mergedTitle = null;
     const {
       handleClick: contextHandleClick,
       scrollTo,
       unregisterLink,
       registerLink,
       activeLink,
-    } = useInjectAnchor()
-    const { prefixCls } = useConfigInject('anchor', props)
+    } = useInjectAnchor();
+    const { prefixCls } = useConfigInject('anchor', props);
 
     const handleClick = (e: Event) => {
-      const { href } = props
-      contextHandleClick(e, { title: mergedTitle, href })
-      scrollTo(href)
-    }
+      const { href } = props;
+      contextHandleClick(e, { title: mergedTitle, href });
+      scrollTo(href);
+    };
 
     watch(
       () => props.href,
       (val, oldVal) => {
         nextTick(() => {
-          unregisterLink(oldVal)
-          registerLink(val)
-        })
+          unregisterLink(oldVal);
+          registerLink(val);
+        });
       },
-    )
+    );
 
     onMounted(() => {
-      registerLink(props.href)
-    })
+      registerLink(props.href);
+    });
 
     onBeforeUnmount(() => {
-      unregisterLink(props.href)
-    })
+      unregisterLink(props.href);
+    });
 
     return () => {
-      const { href, target, title = slots.title, customTitleProps = {} } = props
-      const pre = prefixCls.value
-      mergedTitle = typeof title === 'function' ? title(customTitleProps) : title
-      const active = activeLink.value === href
+      const { href, target, title = slots.title, customTitleProps = {} } = props;
+      const pre = prefixCls.value;
+      mergedTitle = typeof title === 'function' ? title(customTitleProps) : title;
+      const active = activeLink.value === href;
       const wrapperClassName = classNames(
         `${pre}-link`,
         {
           [`${pre}-link-active`]: active,
         },
         attrs.class,
-      )
+      );
       const titleClassName = classNames(`${pre}-link-title`, {
         [`${pre}-link-title-active`]: active,
-      })
+      });
       return (
         <div {...attrs} class={wrapperClassName}>
           <a
@@ -78,7 +78,7 @@ export default defineComponent({
           </a>
           {slots.default?.()}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

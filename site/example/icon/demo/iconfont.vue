@@ -17,11 +17,11 @@ If you are using [iconfont.cn](http://iconfont.cn/), you can use the icons in yo
 </docs>
 
 <script lang="ts" setup>
-  import { createFromIconfontCN } from '@ant-design/icons-vue'
+  import { createFromIconfontCN } from '@ant-design/icons-vue';
 
   const IconFont = createFromIconfontCN({
     scriptUrl: '//at.alicdn.com/t/font_8d5l8fzk5b87iudi.js',
-  })
+  });
 </script>
 
 <template>

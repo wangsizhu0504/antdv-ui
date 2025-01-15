@@ -1,10 +1,10 @@
-import type { PropType } from 'vue'
-import { classNames, omit } from '@antdv/utils'
-import { computed, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import Element from './Element'
-import { skeletonElementProps } from './props'
+import type { PropType } from 'vue';
+import { classNames, omit } from '@antdv/utils';
+import { computed, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import Element from './Element';
+import { skeletonElementProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -15,8 +15,8 @@ export default defineComponent({
     block: Boolean,
   },
   setup(props) {
-    const { prefixCls } = useConfigInject('skeleton', props)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const { prefixCls } = useConfigInject('skeleton', props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
     const cls = computed(() =>
       classNames(
         prefixCls.value,
@@ -27,13 +27,13 @@ export default defineComponent({
         },
         hashId.value,
       ),
-    )
+    );
     return () => {
       return wrapSSR(
         <div class={cls.value}>
           <Element {...props} prefixCls={`${prefixCls.value}-input`} />
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

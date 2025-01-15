@@ -84,15 +84,15 @@ Like:
 ## Usage
 
 ```jsx
-import { DatePicker } from 'antdv'
+import { DatePicker } from 'antdv';
 
-app.use(DatePicker)
+app.use(DatePicker);
 ```
 
 And import stylesheets manually:
 
 ```jsx
-import 'ant-design-vue/dist/reset.css'
+import 'ant-design-vue/dist/reset.css';
 ```
 
 ### Use modularized ant-design-vue
@@ -110,10 +110,10 @@ $ npm install unplugin-vue-components -D
 ```
 
 ```js
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
-import Components from 'unplugin-vue-components/vite'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import Components from 'unplugin-vue-components/vite';
 // vite.config.js
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
@@ -126,7 +126,7 @@ export default defineConfig({
       ],
     }),
   ],
-})
+});
 ```
 
 You can then import 'antdv' components directly in your code, and the plugin will automatically convert your code to 'import {Button} from 'antdv''.

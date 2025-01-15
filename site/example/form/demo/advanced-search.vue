@@ -21,16 +21,16 @@ Because the width of label is not fixed, you may need to adjust it by customizin
 </docs>
 
 <script lang="ts" setup>
-  import type { FormInstance } from '@antdv/ui'
-  import { DownOutlined, UpOutlined } from '@ant-design/icons-vue'
-  import { reactive, ref } from 'vue'
+  import type { FormInstance } from '@antdv/ui';
+  import { DownOutlined, UpOutlined } from '@ant-design/icons-vue';
+  import { reactive, ref } from 'vue';
 
-  const expand = ref<any>(false)
-  const formRef = ref<FormInstance>()
-  const formState = reactive({})
+  const expand = ref<any>(false);
+  const formRef = ref<FormInstance>();
+  const formState = reactive({});
   function onFinish(values: any) {
-    console.log('Received values of form: ', values)
-    console.log('formState: ', formState)
+    console.log('Received values of form: ', values);
+    console.log('formState: ', formState);
   }
 </script>
 

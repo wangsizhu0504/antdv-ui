@@ -1,5 +1,5 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook } from '@antdv/theme';
 
 export interface ComponentToken {
   zIndexPopup: number
@@ -19,7 +19,7 @@ const genBaseStyle: GenerateStyle<PopconfirmToken> = (token) => {
     fontSize,
     fontWeightStrong,
     lineHeight,
-  } = token
+  } = token;
 
   return {
     [componentCls]: {
@@ -72,18 +72,18 @@ const genBaseStyle: GenerateStyle<PopconfirmToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
   'Popconfirm',
   token => genBaseStyle(token),
   (token) => {
-    const { zIndexPopupBase } = token
+    const { zIndexPopupBase } = token;
 
     return {
       zIndexPopup: zIndexPopupBase + 60,
-    }
+    };
   },
-)
+);

@@ -16,10 +16,10 @@ interface PageData {
   frontmatter: Record<string, any>;
 }
 declare module '*.md' {
-  import type { DefineComponent } from 'vue'
+  import type { DefineComponent } from 'vue';
 
-  const component: DefineComponent<any, any, any> & { readonly pageDate?: PageData }
-  export default component
+  const component: DefineComponent<any, any, any> & { readonly pageDate?: PageData };
+  export default component;
 }
 
 declare module '*.svg';

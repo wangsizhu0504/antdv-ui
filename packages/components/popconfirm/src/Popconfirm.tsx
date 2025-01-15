@@ -1,9 +1,9 @@
-import type { SlotsType } from 'vue'
-import type { ButtonProps } from '../../button'
-import type { PopconfirmProps } from './props'
-import { ExclamationCircleFilled } from '@ant-design/icons-vue'
-import { useMergedState } from '@antdv/hooks'
-import { enUS as defaultLocale } from '@antdv/locale'
+import type { SlotsType } from 'vue';
+import type { ButtonProps } from '../../button';
+import type { PopconfirmProps } from './props';
+import { ExclamationCircleFilled } from '@ant-design/icons-vue';
+import { useMergedState } from '@antdv/hooks';
+import { enUS as defaultLocale } from '@antdv/locale';
 import {
   classNames,
   cloneVNodes,
@@ -11,18 +11,18 @@ import {
   initDefaultProps,
   KeyCode,
   omit,
-} from '@antdv/utils'
-import { getTransitionName } from '@antdv/vue-components'
-import { computed, defineComponent, ref, toRef } from 'vue'
-import Button, { convertLegacyProps } from '../../button'
-import ActionButton from '../../button/src/ActionButton'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+} from '@antdv/utils';
+import { getTransitionName } from '@antdv/vue-components';
+import { computed, defineComponent, ref, toRef } from 'vue';
+import Button, { convertLegacyProps } from '../../button';
+import ActionButton from '../../button/src/ActionButton';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import { useLocaleReceiver } from '../../locale-provider'
-import Popover from '../../popover'
-import { tooltipDefaultProps } from '../../tooltip'
-import usePopconfirmStyle from '../style'
-import { popconfirmProps } from './props'
+import { useLocaleReceiver } from '../../locale-provider';
+import Popover from '../../popover';
+import { tooltipDefaultProps } from '../../tooltip';
+import usePopconfirmStyle from '../style';
+import { popconfirmProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -53,59 +53,59 @@ export default defineComponent({
   }>,
   // emits: ['update:open', 'visibleChange'],
   setup(props: PopconfirmProps, { slots, emit, expose, attrs }) {
-    const rootRef = ref()
+    const rootRef = ref();
     devWarning(
       props.visible === undefined,
       'Popconfirm',
       '`visible` will be removed in next major version, please use `open` instead.',
-    )
+    );
     expose({
       getPopupDomNode: () => {
-        return rootRef.value?.getPopupDomNode?.()
+        return rootRef.value?.getPopupDomNode?.();
       },
-    })
+    });
     const [open, setOpen] = useMergedState(false, {
       value: toRef(props, 'open'),
-    })
+    });
 
     const settingOpen = (value: boolean, e?: MouseEvent | KeyboardEvent) => {
       if (props.open === undefined)
-        setOpen(value)
+        setOpen(value);
 
-      emit('update:open', value)
-      emit('openChange', value, e)
-    }
+      emit('update:open', value);
+      emit('openChange', value, e);
+    };
 
     const close = (e: MouseEvent) => {
-      settingOpen(false, e)
-    }
+      settingOpen(false, e);
+    };
 
     const onConfirm = (e: MouseEvent) => {
-      return props.onConfirm?.(e)
-    }
+      return props.onConfirm?.(e);
+    };
 
     const onCancel = (e: MouseEvent) => {
-      settingOpen(false, e)
-      props.onCancel?.(e)
-    }
+      settingOpen(false, e);
+      props.onCancel?.(e);
+    };
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === KeyCode.ESC && open)
-        settingOpen(false, e)
-    }
+        settingOpen(false, e);
+    };
 
     const onOpenChange = (value: boolean) => {
-      const { disabled } = props
+      const { disabled } = props;
       if (disabled)
-        return
+        return;
 
-      settingOpen(value)
-    }
-    const { prefixCls: prefixClsConfirm, getPrefixCls } = useConfigInject('popconfirm', props)
-    const rootPrefixCls = computed(() => getPrefixCls())
-    const btnPrefixCls = computed(() => getPrefixCls('btn'))
-    const [wrapSSR] = usePopconfirmStyle(prefixClsConfirm)
-    const [popconfirmLocale] = useLocaleReceiver('Popconfirm', defaultLocale.Popconfirm)
+      settingOpen(value);
+    };
+    const { prefixCls: prefixClsConfirm, getPrefixCls } = useConfigInject('popconfirm', props);
+    const rootPrefixCls = computed(() => getPrefixCls());
+    const btnPrefixCls = computed(() => getPrefixCls('btn'));
+    const [wrapSSR] = usePopconfirmStyle(prefixClsConfirm);
+    const [popconfirmLocale] = useLocaleReceiver('Popconfirm', defaultLocale.Popconfirm);
     const renderOverlay = () => {
       const {
         okButtonProps,
@@ -117,19 +117,19 @@ export default defineComponent({
         okType,
         icon = slots.icon?.() || <ExclamationCircleFilled />,
         showCancel = true,
-      } = props
-      const { cancelButton, okButton } = slots
+      } = props;
+      const { cancelButton, okButton } = slots;
       const cancelProps: ButtonProps = {
         onClick: onCancel,
         size: 'small',
         ...cancelButtonProps,
-      }
+      };
       const okProps: ButtonProps = {
         onClick: onConfirm,
         ...convertLegacyProps(okType),
         size: 'small',
         ...okButtonProps,
-      }
+      };
       return (
         <div class={`${prefixClsConfirm.value}-inner-content`}>
           <div class={`${prefixClsConfirm.value}-message`}>
@@ -174,11 +174,11 @@ export default defineComponent({
                 )}
           </div>
         </div>
-      )
-    }
+      );
+    };
 
     return () => {
-      const { placement, overlayClassName, trigger = 'click', ...restProps } = props
+      const { placement, overlayClassName, trigger = 'click', ...restProps } = props;
       const otherProps = omit(restProps, [
         'title',
         'content',
@@ -188,8 +188,8 @@ export default defineComponent({
         'onConfirm',
         'onCancel',
         'prefixCls',
-      ])
-      const overlayClassNames = classNames(prefixClsConfirm.value, overlayClassName)
+      ]);
+      const overlayClassNames = classNames(prefixClsConfirm.value, overlayClassName);
       return wrapSSR(
         <Popover
           {...otherProps}
@@ -208,13 +208,13 @@ export default defineComponent({
             slots.default?.() || [],
             {
               onKeydown: (e: KeyboardEvent) => {
-                onKeyDown(e)
+                onKeyDown(e);
               },
             },
             false,
           )}
         </Popover>,
-      )
-    }
+      );
+    };
   },
-})
+});

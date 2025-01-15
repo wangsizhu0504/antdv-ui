@@ -1,8 +1,8 @@
-import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'
-import type { AffixEmits, AffixExpose } from './interface'
+import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue';
+import type { AffixEmits, AffixExpose } from './interface';
 
 function getDefaultTarget() {
-  return typeof window !== 'undefined' ? window : null
+  return typeof window !== 'undefined' ? window : null;
 }
 // Affix
 export function affixProps() {
@@ -22,9 +22,9 @@ export function affixProps() {
     /** 固定状态改变时触发的回调函数 */
     onChange: Function as PropType<AffixEmits['change']>,
     onTestUpdatePosition: Function as PropType<AffixEmits['testUpdatePosition']>,
-  }
+  };
 }
 
-export type AffixProps = Partial<ExtractPropTypes<ReturnType<typeof affixProps>>>
+export type AffixProps = Partial<ExtractPropTypes<ReturnType<typeof affixProps>>>;
 
-export type AffixInstance = ComponentPublicInstance<AffixProps, AffixExpose>
+export type AffixInstance = ComponentPublicInstance<AffixProps, AffixExpose>;

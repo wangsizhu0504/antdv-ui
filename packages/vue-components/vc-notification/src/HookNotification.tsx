@@ -1,22 +1,22 @@
-import type { CSSMotionProps, Key, VueNode } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import type { NoticeProps } from './Notice'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, ref, TransitionGroup, watch } from 'vue'
-import Portal from '../../portal/src/Portal'
-import { getTransitionGroupProps } from '../../transition'
-import Notice from './Notice'
+import type { CSSMotionProps, Key, VueNode } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import type { NoticeProps } from './Notice';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, ref, TransitionGroup, watch } from 'vue';
+import Portal from '../../portal/src/Portal';
+import { getTransitionGroupProps } from '../../transition';
+import Notice from './Notice';
 
-let seed = 0
-const now = Date.now()
+let seed = 0;
+const now = Date.now();
 
 export function getUuid() {
-  const id = seed
-  seed += 1
-  return `rcNotification_${now}_${id}`
+  const id = seed;
+  seed += 1;
+  return `rcNotification_${now}_${id}`;
 }
 
-export type Placement = 'top' | 'topLeft' | 'topRight' | 'bottom' | 'bottomLeft' | 'bottomRight'
+export type Placement = 'top' | 'topLeft' | 'topRight' | 'bottom' | 'bottomLeft' | 'bottomRight';
 
 export interface OpenConfig extends NoticeProps {
   key: Key;
@@ -25,7 +25,7 @@ export interface OpenConfig extends NoticeProps {
   duration?: number | null;
 }
 
-export type Placements = Partial<Record<Placement, OpenConfig[]>>
+export type Placements = Partial<Record<Placement, OpenConfig[]>>;
 
 export interface NoticeContent extends Omit<NoticeProps, 'prefixCls' | 'noticeKey' | 'onClose'> {
   prefixCls?: string;
@@ -38,11 +38,11 @@ export interface NoticeContent extends Omit<NoticeProps, 'prefixCls' | 'noticeKe
   placement?: Placement;
 }
 
-export type NoticeFunc = (noticeProps: NoticeContent) => void
+export type NoticeFunc = (noticeProps: NoticeContent) => void;
 export type HolderReadyCallback = (
   div: HTMLDivElement,
   noticeProps: NoticeProps & { key: Key },
-) => void
+) => void;
 
 export interface NotificationInstance {
   notice: NoticeFunc;
@@ -73,7 +73,7 @@ type NotificationState = Array<{
     userPassKey?: Key;
   };
   holderCallback?: HolderReadyCallback;
-}>
+}>;
 
 const Notification = defineComponent<HookNotificationProps>({
   name: 'HookNotification',
@@ -93,59 +93,59 @@ const Notification = defineComponent<HookNotificationProps>({
     'getContainer',
   ] as any,
   setup(props, { attrs, slots }) {
-    const hookRefs = new Map<Key, HTMLDivElement>()
-    const notices = computed(() => props.notices)
+    const hookRefs = new Map<Key, HTMLDivElement>();
+    const notices = computed(() => props.notices);
     const transitionProps = computed(() => {
-      let name = props.transitionName
+      let name = props.transitionName;
       if (!name && props.animation) {
         switch (typeof props.animation) {
           case 'string':
-            name = props.animation
-            break
+            name = props.animation;
+            break;
           case 'function':
-            name = props.animation().name
-            break
+            name = props.animation().name;
+            break;
           case 'object':
-            name = props.animation.name
-            break
+            name = props.animation.name;
+            break;
           default:
-            name = `${props.prefixCls}-fade`
-            break
+            name = `${props.prefixCls}-fade`;
+            break;
         }
       }
-      return getTransitionGroupProps(name)
-    })
+      return getTransitionGroupProps(name);
+    });
 
-    const remove = (key: Key) => props.remove(key)
-    const placements = ref({} as Record<Placement, NotificationState>)
+    const remove = (key: Key) => props.remove(key);
+    const placements = ref({} as Record<Placement, NotificationState>);
     watch(notices, () => {
-      const nextPlacements = {} as any
+      const nextPlacements = {} as any;
       // init placements with animation
       Object.keys(placements.value).forEach((placement) => {
-        nextPlacements[placement] = []
-      })
+        nextPlacements[placement] = [];
+      });
       props.notices.forEach((config) => {
-        const { placement = 'topRight' } = config.notice
+        const { placement = 'topRight' } = config.notice;
         if (placement) {
-          nextPlacements[placement] = nextPlacements[placement] || []
-          nextPlacements[placement].push(config)
+          nextPlacements[placement] = nextPlacements[placement] || [];
+          nextPlacements[placement].push(config);
         }
-      })
-      placements.value = nextPlacements
-    })
+      });
+      placements.value = nextPlacements;
+    });
 
-    const placementList = computed(() => Object.keys(placements.value) as Placement[])
+    const placementList = computed(() => Object.keys(placements.value) as Placement[]);
 
     return () => {
-      const { prefixCls, closeIcon = slots.closeIcon?.({ prefixCls }) } = props
+      const { prefixCls, closeIcon = slots.closeIcon?.({ prefixCls }) } = props;
       const noticeNodes = placementList.value.map((placement) => {
-        const noticesForPlacement = placements.value[placement]
-        const classes = props.getClassName?.(placement)
-        const styles = props.getStyles?.(placement)
+        const noticesForPlacement = placements.value[placement];
+        const classes = props.getClassName?.(placement);
+        const styles = props.getStyles?.(placement);
         const noticeNodesForPlacement = noticesForPlacement.map(({ notice, holderCallback }: any, index) => {
-          const updateMark = index === notices.value.length - 1 ? notice.updateMark : undefined
-          const { key, userPassKey } = notice
-          const { content } = notice
+          const updateMark = index === notices.value.length - 1 ? notice.updateMark : undefined;
+          const { key, userPassKey } = notice;
+          const { content } = notice;
           const noticeProps = {
             prefixCls,
             closeIcon: typeof closeIcon === 'function' ? closeIcon({ prefixCls }) : closeIcon,
@@ -155,11 +155,11 @@ const Notification = defineComponent<HookNotificationProps>({
             noticeKey: userPassKey || key,
             updateMark,
             onClose: (noticeKey: Key) => {
-              remove(noticeKey)
-              notice.onClose?.()
+              remove(noticeKey);
+              notice.onClose?.();
             },
             onClick: notice.onClick,
-          }
+          };
 
           if (holderCallback) {
             return (
@@ -168,39 +168,39 @@ const Notification = defineComponent<HookNotificationProps>({
                 class={`${prefixCls}-hook-holder`}
                 ref={(div: HTMLDivElement) => {
                   if (typeof key === 'undefined')
-                    return
+                    return;
 
                   if (div) {
-                    hookRefs.set(key, div)
-                    holderCallback(div, noticeProps)
+                    hookRefs.set(key, div);
+                    holderCallback(div, noticeProps);
                   } else {
-                    hookRefs.delete(key)
+                    hookRefs.delete(key);
                   }
                 }}
               />
-            )
+            );
           }
 
           return (
             <Notice {...noticeProps} class={classNames(noticeProps.class, props.hashId)}>
               {typeof content === 'function' ? content({ prefixCls }) : content}
             </Notice>
-          )
+          );
         },
-        )
+        );
         const className = {
           [prefixCls]: 1,
           [`${prefixCls}-${placement}`]: 1,
           [attrs.class as string]: !!attrs.class,
           [props.hashId]: true,
           [classes]: !!classes,
-        }
+        };
         function onAfterLeave() {
           if (noticesForPlacement.length > 0)
-            return
+            return;
 
-          Reflect.deleteProperty(placements.value, placement)
-          props.onAllRemoved?.()
+          Reflect.deleteProperty(placements.value, placement);
+          props.onAllRemoved?.();
         }
         return (
           <div
@@ -216,11 +216,11 @@ const Notification = defineComponent<HookNotificationProps>({
               {noticeNodesForPlacement}
             </TransitionGroup>
           </div>
-        )
-      })
-      return <Portal getContainer={props.getContainer}>{noticeNodes}</Portal>
-    }
+        );
+      });
+      return <Portal getContainer={props.getContainer}>{noticeNodes}</Portal>;
+    };
   },
-})
+});
 
-export default Notification
+export default Notification;

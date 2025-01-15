@@ -1,6 +1,6 @@
-import type { CSSProperties } from 'vue'
-import { defineComponent, ref } from 'vue'
-import { addButtonProps } from '../props'
+import type { CSSProperties } from 'vue';
+import { defineComponent, ref } from 'vue';
+import { addButtonProps } from '../props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -8,14 +8,14 @@ export default defineComponent({
   inheritAttrs: false,
   props: addButtonProps(),
   setup(props, { expose, attrs }) {
-    const domRef = ref()
+    const domRef = ref();
     expose({
       domRef,
-    })
+    });
     return () => {
-      const { prefixCls, editable, locale } = props
+      const { prefixCls, editable, locale } = props;
       if (!editable || editable.showAdd === false)
-        return null
+        return null;
 
       return (
         <button
@@ -27,12 +27,12 @@ export default defineComponent({
           onClick={(event) => {
             editable.onEdit('add', {
               event,
-            })
+            });
           }}
         >
           {editable.addIcon ? editable.addIcon() : '+'}
         </button>
-      )
-    }
+      );
+    };
   },
-})
+});

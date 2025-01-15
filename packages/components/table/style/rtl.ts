@@ -1,8 +1,8 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
 
 const genStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
   return {
     [`${componentCls}-wrapper-rtl`]: {
       direction: 'rtl',
@@ -32,7 +32,7 @@ const genStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genStyle
+export default genStyle;

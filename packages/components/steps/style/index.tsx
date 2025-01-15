@@ -1,14 +1,14 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
-import genStepsCustomIconStyle from './custom-icon'
-import genStepsInlineStyle from './inline'
-import genStepsLabelPlacementStyle from './label-placement'
-import genStepsNavStyle from './nav'
-import genStepsProgressStyle from './progress'
-import genStepsProgressDotStyle from './progress-dot'
-import genStepsRTLStyle from './rtl'
-import genStepsSmallStyle from './small'
-import genStepsVerticalStyle from './vertical'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
+import genStepsCustomIconStyle from './custom-icon';
+import genStepsInlineStyle from './inline';
+import genStepsLabelPlacementStyle from './label-placement';
+import genStepsNavStyle from './nav';
+import genStepsProgressStyle from './progress';
+import genStepsProgressDotStyle from './progress-dot';
+import genStepsRTLStyle from './rtl';
+import genStepsSmallStyle from './small';
+import genStepsVerticalStyle from './vertical';
 
 export interface ComponentToken {
   descriptionWidth: number
@@ -73,14 +73,14 @@ enum StepItemStatusEnum {
 }
 
 function genStepsItemStatusStyle(status: StepItemStatusEnum, token: StepsToken): CSSObject {
-  const prefix = `${token.componentCls}-item`
-  const iconColorKey: keyof StepsToken = `${status}IconColor`
-  const titleColorKey: keyof StepsToken = `${status}TitleColor`
-  const descriptionColorKey: keyof StepsToken = `${status}DescriptionColor`
-  const tailColorKey: keyof StepsToken = `${status}TailColor`
-  const iconBgColorKey: keyof StepsToken = `${status}IconBgColor`
-  const iconBorderColorKey: keyof StepsToken = `${status}IconBorderColor`
-  const dotColorKey: keyof StepsToken = `${status}DotColor`
+  const prefix = `${token.componentCls}-item`;
+  const iconColorKey: keyof StepsToken = `${status}IconColor`;
+  const titleColorKey: keyof StepsToken = `${status}TitleColor`;
+  const descriptionColorKey: keyof StepsToken = `${status}DescriptionColor`;
+  const tailColorKey: keyof StepsToken = `${status}TailColor`;
+  const iconBgColorKey: keyof StepsToken = `${status}IconBgColor`;
+  const iconBorderColorKey: keyof StepsToken = `${status}IconBorderColor`;
+  const dotColorKey: keyof StepsToken = `${status}DotColor`;
   return {
     [`${prefix}-${status} ${prefix}-icon`]: {
       backgroundColor: token[iconBgColorKey],
@@ -110,12 +110,12 @@ function genStepsItemStatusStyle(status: StepItemStatusEnum, token: StepsToken):
     [`${prefix}-${status} > ${prefix}-container > ${prefix}-tail::after`]: {
       backgroundColor: token[tailColorKey],
     },
-  }
+  };
 }
 
 const genStepsItemStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
-  const { componentCls, motionDurationSlow } = token
-  const stepsItemCls = `${componentCls}-item` // .ant-steps-item
+  const { componentCls, motionDurationSlow } = token;
+  const stepsItemCls = `${componentCls}-item`; // .ant-steps-item
 
   return {
     [stepsItemCls]: {
@@ -219,12 +219,12 @@ const genStepsItemStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
     [`${stepsItemCls}-disabled`]: {
       cursor: 'not-allowed',
     },
-  }
-}
+  };
+};
 
 // ============================= Clickable ===========================
 const genStepsClickableStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
-  const { componentCls, motionDurationSlow } = token
+  const { componentCls, motionDurationSlow } = token;
 
   return {
     [`& ${componentCls}-item`]: {
@@ -281,11 +281,11 @@ const genStepsClickableStyle: GenerateStyle<StepsToken, CSSObject> = (token) => 
         },
       },
     },
-  }
-}
+  };
+};
 
 const genStepsStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
-  const { componentCls } = token // .ant-steps
+  const { componentCls } = token; // .ant-steps
 
   return {
     [componentCls]: {
@@ -317,8 +317,8 @@ const genStepsStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
       // inline
       ...genStepsInlineStyle(token),
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
@@ -342,10 +342,10 @@ export default genComponentStyleHook(
       colorError,
       colorBgContainer,
       colorBorderSecondary,
-    } = token
+    } = token;
 
-    const stepsIconSize = token.controlHeight
-    const processTailColor = token.colorSplit
+    const stepsIconSize = token.controlHeight;
+    const processTailColor = token.colorSplit;
 
     const stepsToken = mergeToken<StepsToken>(token, {
       // Steps variable default.less
@@ -396,11 +396,11 @@ export default genComponentStyleHook(
       inlineDotSize: 6,
       inlineTitleColor: colorTextQuaternary,
       inlineTailColor: colorBorderSecondary,
-    })
+    });
 
-    return [genStepsStyle(stepsToken)]
+    return [genStepsStyle(stepsToken)];
   },
   {
     descriptionWidth: 140,
   },
-)
+);

@@ -17,12 +17,12 @@ Change the placement of the guide relative to the target, there are 12 placement
 </docs>
 
 <script lang="ts" setup>
-  import type { TourProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { TourProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const open = ref<boolean>(false)
+  const open = ref<boolean>(false);
 
-  const btnRef = ref<any>(null)
+  const btnRef = ref<any>(null);
 
   const steps: TourProps['steps'] = [
     {
@@ -42,10 +42,10 @@ Change the placement of the guide relative to the target, there are 12 placement
       placement: 'top',
       target: () => btnRef.value && btnRef.value.$el,
     },
-  ]
+  ];
 
   function handleOpen(val: boolean): void {
-    open.value = val
+    open.value = val;
   }
 </script>
 

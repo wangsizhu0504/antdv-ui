@@ -203,10 +203,10 @@ See more advanced usage at [async-validator](https://github.com/yiminghe/async-v
 The following versions need to be provided separately by `@@antdv/ui/use` library, it is not recommended to continue to use, you should upgrade to version 2.2+ as soon as possible
 
 ```ts
-import { Form } from '@antdv/ui'
-const useForm = Form.useForm
+import { Form } from '@antdv/ui';
+const useForm = Form.useForm;
 
-useForm(modelRef, ruleRef, [options])
+useForm(modelRef, ruleRef, [options]);
 ```
 
 Parameter Description:
@@ -248,5 +248,5 @@ function useForm(
     status: boolean,
     errorMsgs: string[] | null,
   ) => void;
-}
+};
 ```

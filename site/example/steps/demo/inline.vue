@@ -35,7 +35,7 @@ Inline type steps, suitable for displaying the process and current state of the 
       title: 'Ant Design Title 4',
       current: 1,
     },
-  ]
+  ];
 
   const items = [
     {
@@ -50,7 +50,7 @@ Inline type steps, suitable for displaying the process and current state of the 
       title: 'Step 3',
       description: 'This is a Step 3.',
     },
-  ]
+  ];
 </script>
 
 <template>

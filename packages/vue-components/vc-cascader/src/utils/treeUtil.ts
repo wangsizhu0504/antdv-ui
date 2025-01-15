@@ -1,23 +1,23 @@
-import type { Key } from '@antdv/types'
-import type { DefaultOptionType, InternalFieldNames, ShowCheckedStrategy, SingleValueType } from '../Cascader'
-import type { OptionsInfo } from '../hooks/useEntities'
-import { SHOW_CHILD } from './commonUtil'
+import type { Key } from '@antdv/types';
+import type { DefaultOptionType, InternalFieldNames, ShowCheckedStrategy, SingleValueType } from '../Cascader';
+import type { OptionsInfo } from '../hooks/useEntities';
+import { SHOW_CHILD } from './commonUtil';
 
 export function formatStrategyValues(
   pathKeys: Key[],
   keyPathEntities: OptionsInfo['pathKeyEntities'],
   showCheckedStrategy: ShowCheckedStrategy,
 ) {
-  const valueSet = new Set(pathKeys)
+  const valueSet = new Set(pathKeys);
 
   return pathKeys.filter((key) => {
-    const entity = keyPathEntities[key]
-    const parent = entity ? entity.parent : null
-    const children = entity ? entity.children : null
+    const entity = keyPathEntities[key];
+    const parent = entity ? entity.parent : null;
+    const children = entity ? entity.children : null;
     return showCheckedStrategy === SHOW_CHILD
       ? !(children && children.some(child => child.key && valueSet.has(child.key)))
-      : !(parent && !parent.node.disabled && valueSet.has(parent.key))
-  })
+      : !(parent && !parent.node.disabled && valueSet.has(parent.key));
+  });
 }
 
 export function toPathOptions(
@@ -27,29 +27,29 @@ export function toPathOptions(
   // Used for loadingKeys which saved loaded keys as string
   stringMode = false,
 ) {
-  let currentList = options
+  let currentList = options;
   const valueOptions: Array<{
     value: SingleValueType[number];
     index: number;
     option: DefaultOptionType;
-  }> = []
+  }> = [];
 
   for (let i = 0; i < valueCells.length; i += 1) {
-    const valueCell = valueCells[i]
+    const valueCell = valueCells[i];
     const foundIndex = currentList?.findIndex((option) => {
-      const val = option[fieldNames.value]
-      return stringMode ? String(val) === String(valueCell) : val === valueCell
-    })
-    const foundOption = foundIndex !== -1 ? currentList?.[foundIndex] : null
+      const val = option[fieldNames.value];
+      return stringMode ? String(val) === String(valueCell) : val === valueCell;
+    });
+    const foundOption = foundIndex !== -1 ? currentList?.[foundIndex] : null;
 
     valueOptions.push({
       value: foundOption?.[fieldNames.value] ?? valueCell,
       index: foundIndex,
       option: foundOption,
-    })
+    });
 
-    currentList = foundOption?.[fieldNames.children]
+    currentList = foundOption?.[fieldNames.children];
   }
 
-  return valueOptions
+  return valueOptions;
 }

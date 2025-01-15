@@ -1,6 +1,6 @@
-import type { CSSProperties } from 'vue'
-import { classNames, PropTypes } from '@antdv/utils'
-import { defineComponent } from 'vue'
+import type { CSSProperties } from 'vue';
+import { classNames, PropTypes } from '@antdv/utils';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -27,15 +27,15 @@ export default defineComponent({
   eimt: ['click', 'keypress'],
   setup(props, { emit, attrs }) {
     const handleClick = () => {
-      emit('click', props.page)
-    }
+      emit('click', props.page);
+    };
     const handleKeyPress = (event: KeyboardEvent) => {
-      emit('keypress', event, handleClick, props.page)
-    }
+      emit('keypress', event, handleClick, props.page);
+    };
     return () => {
-      const { showTitle, page, itemRender } = props
-      const { class: _cls, style } = attrs
-      const prefixCls = `${props.rootPrefixCls}-item`
+      const { showTitle, page, itemRender } = props;
+      const { class: _cls, style } = attrs;
+      const prefixCls = `${props.rootPrefixCls}-item`;
       const cls = classNames(
         prefixCls,
         `${prefixCls}-${props.page}`,
@@ -44,7 +44,7 @@ export default defineComponent({
           [`${prefixCls}-disabled`]: !props.page,
         },
         _cls,
-      )
+      );
 
       return (
         <li
@@ -61,7 +61,7 @@ export default defineComponent({
             originalElement: <a rel="nofollow">{page}</a>,
           })}
         </li>
-      )
-    }
+      );
+    };
   },
-})
+});

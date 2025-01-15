@@ -1,9 +1,9 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { NotificationToken } from '.'
-import { Keyframes } from '@antdv/theme'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { NotificationToken } from '.';
+import { Keyframes } from '@antdv/theme';
 
 const genNotificationPlacementStyle: GenerateStyle<NotificationToken, CSSObject> = (token) => {
-  const { componentCls, width, notificationMarginEdge } = token
+  const { componentCls, width, notificationMarginEdge } = token;
 
   const notificationTopFadeIn = new Keyframes('antNotificationTopFadeIn', {
     '0%': {
@@ -15,7 +15,7 @@ const genNotificationPlacementStyle: GenerateStyle<NotificationToken, CSSObject>
       marginTop: 0,
       opacity: 1,
     },
-  })
+  });
 
   const notificationBottomFadeIn = new Keyframes('antNotificationBottomFadeIn', {
     '0%': {
@@ -27,7 +27,7 @@ const genNotificationPlacementStyle: GenerateStyle<NotificationToken, CSSObject>
       marginBottom: 0,
       opacity: 1,
     },
-  })
+  });
 
   const notificationLeftFadeIn = new Keyframes('antNotificationLeftFadeIn', {
     '0%': {
@@ -45,7 +45,7 @@ const genNotificationPlacementStyle: GenerateStyle<NotificationToken, CSSObject>
       },
       opacity: 1,
     },
-  })
+  });
 
   return {
     [`&${componentCls}-top, &${componentCls}-bottom`]: {
@@ -75,6 +75,6 @@ const genNotificationPlacementStyle: GenerateStyle<NotificationToken, CSSObject>
           animationName: notificationLeftFadeIn,
         },
     },
-  }
-}
-export default genNotificationPlacementStyle
+  };
+};
+export default genNotificationPlacementStyle;

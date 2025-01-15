@@ -1,29 +1,29 @@
-import type { TransferItem } from './interface'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, ref, watch } from 'vue'
-import Pagination from '../../pagination'
-import ListItem from './ListItem'
-import { transferListBodyProps } from './props'
+import type { TransferItem } from './interface';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, ref, watch } from 'vue';
+import Pagination from '../../pagination';
+import ListItem from './ListItem';
+import { transferListBodyProps } from './props';
 
 function parsePagination(pagination) {
   if (!pagination)
-    return null
+    return null;
 
   const defaultPagination = {
     pageSize: 10,
     simple: true,
     showSizeChanger: false,
     showLessItems: false,
-  }
+  };
 
   if (typeof pagination === 'object') {
     return {
       ...defaultPagination,
       ...pagination,
-    }
+    };
   }
 
-  return defaultPagination
+  return defaultPagination;
 }
 
 export default defineComponent({
@@ -33,23 +33,23 @@ export default defineComponent({
   props: transferListBodyProps(),
   emits: ['itemSelect', 'itemRemove', 'scroll'],
   setup(props, { emit, expose }) {
-    const current = ref(1)
+    const current = ref(1);
 
     const handleItemSelect = (item: TransferItem) => {
-      const { selectedKeys } = props
-      const checked = selectedKeys.includes(item.key)
-      emit('itemSelect', item.key, !checked)
-    }
+      const { selectedKeys } = props;
+      const checked = selectedKeys.includes(item.key);
+      emit('itemSelect', item.key, !checked);
+    };
 
     const handleItemRemove = (item: TransferItem) => {
-      emit('itemRemove', [item.key])
-    }
+      emit('itemRemove', [item.key]);
+    };
 
     const handleScroll = (e: Event) => {
-      emit('scroll', e)
-    }
+      emit('scroll', e);
+    };
 
-    const mergedPagination = computed(() => parsePagination(props.pagination))
+    const mergedPagination = computed(() => parsePagination(props.pagination));
 
     watch(
       [mergedPagination, () => props.filteredRenderItems],
@@ -58,32 +58,32 @@ export default defineComponent({
           // Calculate the page number
           const maxPageCount = Math.ceil(
             props.filteredRenderItems.length / mergedPagination.value.pageSize,
-          )
-          current.value = Math.min(current.value, maxPageCount)
+          );
+          current.value = Math.min(current.value, maxPageCount);
         }
       },
       { immediate: true },
-    )
+    );
     const items = computed(() => {
-      const { filteredRenderItems } = props
+      const { filteredRenderItems } = props;
 
-      let displayItems = filteredRenderItems
+      let displayItems = filteredRenderItems;
 
       if (mergedPagination.value) {
         displayItems = filteredRenderItems.slice(
           (current.value - 1) * mergedPagination.value.pageSize,
           current.value * mergedPagination.value.pageSize,
-        )
+        );
       }
 
-      return displayItems
-    })
+      return displayItems;
+    });
 
     const onPageChange = (cur: number) => {
-      current.value = cur
-    }
+      current.value = cur;
+    };
 
-    expose({ items })
+    expose({ items });
 
     return () => {
       const {
@@ -92,9 +92,9 @@ export default defineComponent({
         selectedKeys,
         disabled: globalDisabled,
         showRemove,
-      } = props
+      } = props;
 
-      let paginationNode = null
+      let paginationNode = null;
 
       if (mergedPagination.value) {
         paginationNode = (
@@ -110,12 +110,12 @@ export default defineComponent({
             current={current.value}
             onChange={onPageChange}
           />
-        )
+        );
       }
 
       const itemsList = items.value.map(({ renderedEl, renderedText, item }: any) => {
-        const { disabled } = item
-        const checked = selectedKeys.includes(item.key)
+        const { disabled } = item;
+        const checked = selectedKeys.includes(item.key);
 
         return (
           <ListItem
@@ -130,8 +130,8 @@ export default defineComponent({
             onRemove={handleItemRemove}
             showRemove={showRemove}
           />
-        )
-      })
+        );
+      });
       return (
         <>
           <ul
@@ -144,7 +144,7 @@ export default defineComponent({
           </ul>
           {paginationNode}
         </>
-      )
-    }
+      );
+    };
   },
-})
+});

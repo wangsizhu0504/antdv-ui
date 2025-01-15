@@ -1,14 +1,14 @@
-import type { Key, VueNode } from '@antdv/types'
-import type { NotificationAPI } from '@antdv/vue-components/vc-notification/src/useNotification'
-import type { MessageArgsProps } from './props'
-import type useMessage from './useMessage'
+import type { Key, VueNode } from '@antdv/types';
+import type { NotificationAPI } from '@antdv/vue-components/vc-notification/src/useNotification';
+import type { MessageArgsProps } from './props';
+import type useMessage from './useMessage';
 
-export type NoticeType = 'info' | 'success' | 'error' | 'warning' | 'loading'
+export type NoticeType = 'info' | 'success' | 'error' | 'warning' | 'loading';
 
-export type ThenableArgument = (val: any) => void
-export type ConfigDuration = number
+export type ThenableArgument = (val: any) => void;
+export type ConfigDuration = number;
 
-export type ConfigOnClose = () => void
+export type ConfigOnClose = () => void;
 
 export interface ConfigOptions {
   top?: number | string
@@ -20,7 +20,7 @@ export interface ConfigOptions {
   rtl?: boolean
 }
 
-export type JointContent = VueNode | MessageArgsProps
+export type JointContent = VueNode | MessageArgsProps;
 
 export interface MessageType extends PromiseLike<boolean> {
   (): void
@@ -30,7 +30,7 @@ export type TypeOpen = (
   content: JointContent,
   duration?: ConfigDuration, // Also can use onClose directly
   onClose?: ConfigOnClose,
-) => MessageType
+) => MessageType;
 
 export interface MessageInstance {
   info: TypeOpen

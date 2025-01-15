@@ -17,14 +17,14 @@ Radio unavailable.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const disabled = ref<boolean>(true)
-  const checked1 = ref<boolean>(true)
-  const checked2 = ref<boolean>(false)
+  const disabled = ref<boolean>(true);
+  const checked1 = ref<boolean>(true);
+  const checked2 = ref<boolean>(false);
 
   function toggleDisabled() {
-    disabled.value = !disabled.value
+    disabled.value = !disabled.value;
   }
 </script>
 

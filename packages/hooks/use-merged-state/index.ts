@@ -1,5 +1,5 @@
-import type { Ref, UnwrapRef } from 'vue'
-import { ref, toRaw, unref, watch, watchEffect } from 'vue'
+import type { Ref, UnwrapRef } from 'vue';
+import { ref, toRaw, unref, watch, watchEffect } from 'vue';
 
 export function useMergedState<T, R = Ref<T>>(
   defaultStateValue: T | (() => T),
@@ -10,36 +10,36 @@ export function useMergedState<T, R = Ref<T>>(
     postState?: (val: T) => T;
   },
 ): [R, (val: T) => void] {
-  const { defaultValue, value = ref() } = option || {}
+  const { defaultValue, value = ref() } = option || {};
   let initValue: T
-    = typeof defaultStateValue === 'function' ? (defaultStateValue as any)() : defaultStateValue
+    = typeof defaultStateValue === 'function' ? (defaultStateValue as any)() : defaultStateValue;
   if (value.value !== undefined)
-    initValue = unref(value as any) as T
+    initValue = unref(value as any) as T;
 
   if (defaultValue !== undefined)
-    initValue = typeof defaultValue === 'function' ? (defaultValue as any)() : defaultValue
+    initValue = typeof defaultValue === 'function' ? (defaultValue as any)() : defaultValue;
 
-  const innerValue = ref(initValue) as Ref<T>
-  const mergedValue = ref(initValue) as Ref<T>
+  const innerValue = ref(initValue) as Ref<T>;
+  const mergedValue = ref(initValue) as Ref<T>;
   watchEffect(() => {
-    let val = value.value !== undefined ? value.value : innerValue.value
+    let val = value.value !== undefined ? value.value : innerValue.value;
     if (option?.postState)
-      val = option.postState(val as T)
+      val = option.postState(val as T);
 
-    mergedValue.value = val as T
-  })
+    mergedValue.value = val as T;
+  });
 
   function triggerChange(newValue: T) {
-    const preVal = mergedValue.value
-    innerValue.value = newValue
+    const preVal = mergedValue.value;
+    innerValue.value = newValue;
     if (toRaw(mergedValue.value) !== newValue && option?.onChange)
-      option.onChange(newValue, preVal)
+      option.onChange(newValue, preVal);
   }
 
   // Effect of reset value to `undefined`
   watch(value, () => {
-    innerValue.value = value.value as T
-  })
+    innerValue.value = value.value as T;
+  });
 
-  return [mergedValue as unknown as R, triggerChange]
+  return [mergedValue as unknown as R, triggerChange];
 }

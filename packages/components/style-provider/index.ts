@@ -1,5 +1,5 @@
-import { StyleProvider } from '@antdv/theme'
+import { StyleProvider } from '@antdv/theme';
 
-export { StyleProvider }
+export { StyleProvider };
 
-export default StyleProvider
+export default StyleProvider;

@@ -1,8 +1,8 @@
-import { useRefs } from '@antdv/hooks'
-import { initDefaultProps } from '@antdv/utils'
-import { computed, defineComponent } from 'vue'
-import { defaultProps, useTransitionDuration } from './common'
-import { propTypes } from './types'
+import { useRefs } from '@antdv/hooks';
+import { initDefaultProps } from '@antdv/utils';
+import { computed, defineComponent } from 'vue';
+import { defaultProps, useTransitionDuration } from './common';
+import { propTypes } from './types';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -10,24 +10,24 @@ export default defineComponent({
   props: initDefaultProps(propTypes, defaultProps),
   setup(props) {
     const percentList = computed(() => {
-      const { percent } = props
-      return Array.isArray(percent) ? percent : [percent]
-    })
+      const { percent } = props;
+      return Array.isArray(percent) ? percent : [percent];
+    });
     const percentListProps = computed(() => {
-      const { prefixCls, strokeLinecap, strokeWidth, transition } = props
-      let stackPtg = 0
+      const { prefixCls, strokeLinecap, strokeWidth, transition } = props;
+      let stackPtg = 0;
       return percentList.value.map((ptg, index) => {
-        let dashPercent = 1
+        let dashPercent = 1;
         switch (strokeLinecap) {
           case 'round':
-            dashPercent = 1 - strokeWidth / 100
-            break
+            dashPercent = 1 - strokeWidth / 100;
+            break;
           case 'square':
-            dashPercent = 1 - strokeWidth / 2 / 100
-            break
+            dashPercent = 1 - strokeWidth / 2 / 100;
+            break;
           default:
-            dashPercent = 1
-            break
+            dashPercent = 1;
+            break;
         }
         const pathStyle = {
           strokeDasharray: `${ptg * dashPercent}px, 100px`,
@@ -35,11 +35,11 @@ export default defineComponent({
           transition:
             transition
             || 'stroke-dashoffset 0.3s ease 0s, stroke-dasharray .3s ease 0s, stroke 0.3s linear',
-        }
+        };
         const color
-          = strokeColorList.value[index] || strokeColorList.value[strokeColorList.value.length - 1]
+          = strokeColorList.value[index] || strokeColorList.value[strokeColorList.value.length - 1];
 
-        stackPtg += ptg
+        stackPtg += ptg;
 
         const pathProps = {
           'key': index,
@@ -50,26 +50,26 @@ export default defineComponent({
           'fill-opacity': '0',
           'class': `${prefixCls}-line-path`,
           'style': pathStyle,
-        }
+        };
 
-        return pathProps
-      })
-    })
+        return pathProps;
+      });
+    });
     const strokeColorList = computed(() => {
-      const { strokeColor } = props
-      return Array.isArray(strokeColor) ? strokeColor : [strokeColor]
-    })
-    const [setRef, paths] = useRefs()
-    useTransitionDuration(paths)
-    const center = computed(() => props.strokeWidth / 2)
-    const right = computed(() => 100 - props.strokeWidth / 2)
+      const { strokeColor } = props;
+      return Array.isArray(strokeColor) ? strokeColor : [strokeColor];
+    });
+    const [setRef, paths] = useRefs();
+    useTransitionDuration(paths);
+    const center = computed(() => props.strokeWidth / 2);
+    const right = computed(() => 100 - props.strokeWidth / 2);
 
     const pathString = computed(
       () => `M ${props.strokeLinecap === 'round' ? center.value : 0},${center.value}
     L ${props.strokeLinecap === 'round' ? right.value : 100},${center.value}`,
-    )
+    );
 
-    const viewBoxString = computed(() => `0 0 100 ${props.strokeWidth}`)
+    const viewBoxString = computed(() => `0 0 100 ${props.strokeWidth}`);
 
     const pathFirst = computed(() => ({
       'd': pathString.value,
@@ -78,7 +78,7 @@ export default defineComponent({
       'stroke-width': props.trailWidth || props.strokeWidth,
       'fill-opacity': '0',
       'class': `${props.prefixCls}-line-trail`,
-    }))
+    }));
 
     return () => {
       const {
@@ -91,9 +91,9 @@ export default defineComponent({
         trailWidth,
         transition,
         ...restProps
-      } = props
+      } = props;
 
-      delete restProps.gapPosition
+      delete restProps.gapPosition;
 
       return (
         <svg
@@ -104,10 +104,10 @@ export default defineComponent({
         >
           <path {...pathFirst.value} />
           {percentListProps.value.map((pathProps, index) => {
-            return <path ref={setRef(index)} {...pathProps} />
+            return <path ref={setRef(index)} {...pathProps} />;
           })}
         </svg>
-      )
-    }
+      );
+    };
   },
-})
+});

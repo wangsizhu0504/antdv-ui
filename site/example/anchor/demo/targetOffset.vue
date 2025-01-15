@@ -16,12 +16,12 @@ Anchor target scroll to screen center.
 </docs>
 
 <script lang="ts" setup>
-  import { onMounted, ref } from 'vue'
+  import { onMounted, ref } from 'vue';
 
-  const targetOffset = ref<number | undefined>(undefined)
+  const targetOffset = ref<number | undefined>(undefined);
   onMounted(() => {
-    targetOffset.value = window.innerHeight / 2
-  })
+    targetOffset.value = window.innerHeight / 2;
+  });
 </script>
 
 <template>

@@ -21,46 +21,46 @@ When `RangePicker` does not satisfied your requirements, try to implement simila
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import { ref, watch } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import { ref, watch } from 'vue';
 
-  const startValue = ref<Dayjs>()
-  const endValue = ref<Dayjs>()
-  const endOpen = ref<boolean>(false)
+  const startValue = ref<Dayjs>();
+  const endValue = ref<Dayjs>();
+  const endOpen = ref<boolean>(false);
 
   function disabledStartDate(startValue: Dayjs) {
     if (!startValue || !endValue.value) {
-      return false
+      return false;
     }
 
-    return startValue.valueOf() > endValue.value.valueOf()
+    return startValue.valueOf() > endValue.value.valueOf();
   }
 
   function disabledEndDate(endValue: Dayjs) {
     if (!endValue || !startValue.value) {
-      return false
+      return false;
     }
 
-    return startValue.value.valueOf() >= endValue.valueOf()
+    return startValue.value.valueOf() >= endValue.valueOf();
   }
 
   function handleStartOpenChange(open: boolean) {
     if (!open) {
-      endOpen.value = true
+      endOpen.value = true;
     }
   }
 
   function handleEndOpenChange(open: boolean) {
-    endOpen.value = open
+    endOpen.value = open;
   }
 
   watch(startValue, () => {
-    console.log('startValue', startValue.value)
-  })
+    console.log('startValue', startValue.value);
+  });
 
   watch(endValue, () => {
-    console.log('endValue', endValue.value)
-  })
+    console.log('endValue', endValue.value);
+  });
 </script>
 
 <template>

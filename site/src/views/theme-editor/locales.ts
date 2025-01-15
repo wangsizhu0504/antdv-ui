@@ -21,4 +21,4 @@ export default {
     saveSuccessfully: 'Saved successfully',
     initialEditor: 'Initializing Editor...',
   },
-}
+};

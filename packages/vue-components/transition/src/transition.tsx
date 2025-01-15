@@ -1,15 +1,15 @@
-import type { BaseTransitionProps, CSSProperties, TransitionGroupProps, TransitionProps } from 'vue'
-import { tuple } from '@antdv/utils'
-import { TransitionGroup } from 'vue'
+import type { BaseTransitionProps, CSSProperties, TransitionGroupProps, TransitionProps } from 'vue';
+import { tuple } from '@antdv/utils';
+import { TransitionGroup } from 'vue';
 
-const SelectPlacements = tuple('bottomLeft', 'bottomRight', 'topLeft', 'topRight')
-export type SelectCommonPlacement = (typeof SelectPlacements)[number]
+const SelectPlacements = tuple('bottomLeft', 'bottomRight', 'topLeft', 'topRight');
+export type SelectCommonPlacement = (typeof SelectPlacements)[number];
 
 function getTransitionDirection(placement: SelectCommonPlacement | undefined) {
   if (placement !== undefined && (placement === 'topLeft' || placement === 'topRight'))
-    return `slide-down`
+    return `slide-down`;
 
-  return `slide-up`
+  return `slide-up`;
 }
 
 export function getTransitionProps(transitionName: string, opt: TransitionProps = {}) {
@@ -29,8 +29,8 @@ export function getTransitionProps(transitionName: string, opt: TransitionProps 
         leaveToClass: `${transitionName}-leave ${transitionName}-leave-active`,
         ...opt,
       }
-    : { css: false, ...opt }
-  return transitionProps
+    : { css: false, ...opt };
+  return transitionProps;
 }
 
 export function getTransitionGroupProps(transitionName: string, opt: TransitionProps = {}) {
@@ -48,17 +48,17 @@ export function getTransitionGroupProps(transitionName: string, opt: TransitionP
         leaveToClass: `${transitionName}-leave-active`,
         ...opt,
       }
-    : { css: false, ...opt }
-  return transitionProps
+    : { css: false, ...opt };
+  return transitionProps;
 }
 
 export declare type MotionEvent = (TransitionEvent | AnimationEvent) & {
   deadline?: boolean;
-}
+};
 
-export declare type MotionEventHandler = (element: Element, done?: () => void) => CSSProperties
+export declare type MotionEventHandler = (element: Element, done?: () => void) => CSSProperties;
 
-export declare type MotionEndEventHandler = (element: Element, done?: () => void) => boolean | void
+export declare type MotionEndEventHandler = (element: Element, done?: () => void) => boolean | void;
 
 export interface CSSMotionProps extends Partial<BaseTransitionProps<Element>> {
   name?: string;
@@ -67,9 +67,9 @@ export interface CSSMotionProps extends Partial<BaseTransitionProps<Element>> {
 
 function getTransitionName(rootPrefixCls: string, motion: string, transitionName?: string) {
   if (transitionName !== undefined)
-    return transitionName
+    return transitionName;
 
-  return `${rootPrefixCls}-${motion}`
+  return `${rootPrefixCls}-${motion}`;
 }
 
-export { getTransitionDirection, getTransitionName, TransitionGroup }
+export { getTransitionDirection, getTransitionName, TransitionGroup };

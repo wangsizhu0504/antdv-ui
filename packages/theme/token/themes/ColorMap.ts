@@ -1,4 +1,4 @@
-import type { ColorNeutralMapToken } from '../interface'
+import type { ColorNeutralMapToken } from '../interface';
 
 export interface ColorMap {
   1: string
@@ -13,8 +13,8 @@ export interface ColorMap {
   10: string
 }
 
-export type GenerateColorMap = (baseColor: string) => ColorMap
+export type GenerateColorMap = (baseColor: string) => ColorMap;
 export type GenerateNeutralColorMap = (
   bgBaseColor: string,
   textBaseColor: string,
-) => ColorNeutralMapToken
+) => ColorNeutralMapToken;

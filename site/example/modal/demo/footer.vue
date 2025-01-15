@@ -21,25 +21,25 @@ You could set `footer` to `null` if you don't need default footer buttons.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const loading = ref<boolean>(false)
-  const open = ref<boolean>(false)
+  const loading = ref<boolean>(false);
+  const open = ref<boolean>(false);
 
   function showModal() {
-    open.value = true
+    open.value = true;
   }
 
   function handleOk() {
-    loading.value = true
+    loading.value = true;
     setTimeout(() => {
-      loading.value = false
-      open.value = false
-    }, 2000)
+      loading.value = false;
+      open.value = false;
+    }, 2000);
   }
 
   function handleCancel() {
-    open.value = false
+    open.value = false;
   }
 </script>
 

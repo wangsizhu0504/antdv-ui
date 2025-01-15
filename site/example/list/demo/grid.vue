@@ -33,7 +33,7 @@ Creating a grid list by setting the `grid` property of List
     {
       title: 'Title 4',
     },
-  ]
+  ];
 </script>
 
 <template>

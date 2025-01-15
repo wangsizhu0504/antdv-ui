@@ -1,8 +1,8 @@
-import type { Key } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import type { PaginationConfig } from '../../pagination'
-import type { SpinProps } from '../../spin'
-import type { ListGridType, ListItemLayout, ListLocale, ListSize } from './interface'
+import type { Key } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue';
+import type { PaginationConfig } from '../../pagination';
+import type { SpinProps } from '../../spin';
+import type { ListGridType, ListItemLayout, ListLocale, ListSize } from './interface';
 import {
   arrayType,
   booleanType,
@@ -11,7 +11,7 @@ import {
   PropTypes,
   someType,
   vNodeType,
-} from '@antdv/utils'
+} from '@antdv/utils';
 
 export function listProps() {
   return {
@@ -31,7 +31,7 @@ export function listProps() {
     header: vNodeType(),
     footer: vNodeType(),
     locale: objectType<ListLocale>(),
-  }
+  };
 }
 
 export function listItemProps() {
@@ -41,7 +41,7 @@ export function listItemProps() {
     actions: PropTypes.array,
     grid: Object as PropType<ListGridType>,
     colStyle: { type: Object as PropType<CSSProperties>, default: () => ({}) },
-  }
+  };
 }
 
 export function listItemMetaProps() {
@@ -50,11 +50,11 @@ export function listItemMetaProps() {
     description: PropTypes.any,
     prefixCls: String,
     title: PropTypes.any,
-  }
+  };
 }
 
-export type ListItemMetaProps = Partial<ExtractPropTypes<ReturnType<typeof listItemMetaProps>>>
+export type ListItemMetaProps = Partial<ExtractPropTypes<ReturnType<typeof listItemMetaProps>>>;
 
-export type ListItemProps = Partial<ExtractPropTypes<ReturnType<typeof listItemProps>>>
+export type ListItemProps = Partial<ExtractPropTypes<ReturnType<typeof listItemProps>>>;
 
-export type ListProps = Partial<ExtractPropTypes<ReturnType<typeof listProps>>>
+export type ListProps = Partial<ExtractPropTypes<ReturnType<typeof listProps>>>;

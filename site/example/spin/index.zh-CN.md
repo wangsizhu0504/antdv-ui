@@ -29,8 +29,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*i43_ToFrL8YAAA
 - `Spin.setDefaultIndicator({indicator})` 同上 `indicator`，你可以自定义全局默认元素
 
   ```jsx
-  import { h } from 'vue'
+  import { h } from 'vue';
   Spin.setDefaultIndicator({
     indicator: h('i', { class: 'anticon anticon-loading anticon-spin ant-spin-dot' }),
-  })
+  });
   ```

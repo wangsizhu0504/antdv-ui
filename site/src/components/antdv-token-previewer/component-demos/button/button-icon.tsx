@@ -1,8 +1,8 @@
-import type { ComponentDemo } from '../../interface'
-import { SearchOutlined } from '@ant-design/icons-vue'
-import { Button, Space, Tooltip } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { SearchOutlined } from '@ant-design/icons-vue';
+import { Button, Space, Tooltip } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -19,14 +19,14 @@ const Demo = defineComponent({
           Search
         </Button>
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorPrimary'],
   key: 'button-icon',
-}
+};
 
-export default componentDemo
+export default componentDemo;

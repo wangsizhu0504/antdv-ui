@@ -17,7 +17,7 @@ Support 6 placements.
 </docs>
 
 <script lang="ts" setup>
-  import type { DropdownProps } from '@antdv/ui'
+  import type { DropdownProps } from '@antdv/ui';
 
   const placements = [
     'bottomLeft',
@@ -26,7 +26,7 @@ Support 6 placements.
     'topLeft',
     'top',
     'topRight',
-  ] as Array<DropdownProps['placement']>
+  ] as Array<DropdownProps['placement']>;
 </script>
 
 <template>

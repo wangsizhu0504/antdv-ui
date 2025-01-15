@@ -1,5 +1,5 @@
-import { UserOutlined } from '@ant-design/icons-vue'
-import { Avatar, Space } from '@antdv/ui'
+import { UserOutlined } from '@ant-design/icons-vue';
+import { Avatar, Space } from '@antdv/ui';
 
 export default () => (
   <Space direction="vertical">
@@ -16,4 +16,4 @@ export default () => (
       <Avatar shape="square" size="small" icon={<UserOutlined />} />
     </Space>
   </Space>
-)
+);

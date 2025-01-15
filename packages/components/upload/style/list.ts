@@ -1,13 +1,13 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { UploadToken } from '.'
-import { clearFix, textEllipsis } from '@antdv/theme'
+import type { GenerateStyle } from '@antdv/theme';
+import type { UploadToken } from '.';
+import { clearFix, textEllipsis } from '@antdv/theme';
 
 const genListStyle: GenerateStyle<UploadToken> = (token) => {
-  const { componentCls, antCls, iconCls, fontSize, lineHeight } = token
-  const itemCls = `${componentCls}-list-item`
-  const actionsCls = `${itemCls}-actions`
-  const actionCls = `${itemCls}-action`
-  const listItemHeightSM = Math.round(fontSize * lineHeight)
+  const { componentCls, antCls, iconCls, fontSize, lineHeight } = token;
+  const itemCls = `${componentCls}-list-item`;
+  const actionsCls = `${itemCls}-actions`;
+  const actionCls = `${itemCls}-action`;
+  const listItemHeightSM = Math.round(fontSize * lineHeight);
 
   return {
     [`${componentCls}-wrapper`]: {
@@ -123,7 +123,7 @@ const genListStyle: GenerateStyle<UploadToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genListStyle
+export default genListStyle;

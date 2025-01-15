@@ -1,24 +1,24 @@
-import type { CustomSlotsType, VueNode } from '@antdv/types'
-import type { Route } from './interface'
-import type { BreadcrumbItemProps } from './props'
-import { devWarning, flattenChildren, getPropsSlot } from '@antdv/utils'
-import { cloneVNode, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import Menu from '../../menu'
-import useStyle from '../style'
-import BreadcrumbItem from './BreadcrumbItem'
-import { breadcrumbProps } from './props'
+import type { CustomSlotsType, VueNode } from '@antdv/types';
+import type { Route } from './interface';
+import type { BreadcrumbItemProps } from './props';
+import { devWarning, flattenChildren, getPropsSlot } from '@antdv/utils';
+import { cloneVNode, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import Menu from '../../menu';
+import useStyle from '../style';
+import BreadcrumbItem from './BreadcrumbItem';
+import { breadcrumbProps } from './props';
 
 function getBreadcrumbName(route: Route, params: unknown) {
   if (!route.breadcrumbName)
-    return null
+    return null;
 
-  const paramsKeys = Object.keys(params).join('|')
+  const paramsKeys = Object.keys(params).join('|');
   const name = route.breadcrumbName.replace(
     new RegExp(`:(${paramsKeys})`, 'g'),
     (replacement, key) => params[key] || replacement,
-  )
-  return name
+  );
+  return name;
 }
 function defaultItemRender(opt: {
   route: Route
@@ -26,10 +26,10 @@ function defaultItemRender(opt: {
   routes: Route[]
   paths: string[]
 }): VueNode {
-  const { route, params, routes, paths } = opt
-  const isLastItem = routes.indexOf(route) === routes.length - 1
-  const name = getBreadcrumbName(route, params)
-  return isLastItem ? <span>{name}</span> : <a href={`#/${paths.join('/')}`}>{name}</a>
+  const { route, params, routes, paths } = opt;
+  const isLastItem = routes.indexOf(route) === routes.length - 1;
+  const name = getBreadcrumbName(route, params);
+  return isLastItem ? <span>{name}</span> : <a href={`#/${paths.join('/')}`}>{name}</a>;
 }
 
 export default defineComponent({
@@ -43,24 +43,24 @@ export default defineComponent({
     default: any
   }>,
   setup(props, { slots, attrs }) {
-    const { prefixCls, direction } = useConfigInject('breadcrumb', props)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const { prefixCls, direction } = useConfigInject('breadcrumb', props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
     const getPath = (path: string, params: unknown) => {
-      path = (path || '').replace(/^\//, '')
+      path = (path || '').replace(/^\//, '');
       Object.keys(params).forEach((key) => {
-        path = path.replace(`:${key}`, params[key])
-      })
-      return path
-    }
+        path = path.replace(`:${key}`, params[key]);
+      });
+      return path;
+    };
 
     const addChildPath = (paths: string[], childPath: string, params: unknown) => {
-      const originalPaths = [...paths]
-      const path = getPath(childPath || '', params)
+      const originalPaths = [...paths];
+      const path = getPath(childPath || '', params);
       if (path)
-        originalPaths.push(path)
+        originalPaths.push(path);
 
-      return originalPaths
-    }
+      return originalPaths;
+    };
 
     const genForRoutes = ({
       routes = [],
@@ -68,16 +68,16 @@ export default defineComponent({
       separator,
       itemRender = defaultItemRender,
     }: any) => {
-      const paths = []
+      const paths = [];
       return routes.map((route: Route) => {
-        const path = getPath(route.path, params)
+        const path = getPath(route.path, params);
 
         if (path)
-          paths.push(path)
+          paths.push(path);
 
-        const tempPaths = [...paths]
+        const tempPaths = [...paths];
         // generated overlay by route.children
-        let overlay = null
+        let overlay = null;
         if (route.children && route.children.length) {
           overlay = (
             <Menu
@@ -92,28 +92,28 @@ export default defineComponent({
               }))}
             >
             </Menu>
-          )
+          );
         }
-        const itemProps: BreadcrumbItemProps = { separator }
+        const itemProps: BreadcrumbItemProps = { separator };
         if (overlay)
-          itemProps.overlay = overlay
+          itemProps.overlay = overlay;
 
         return (
           <BreadcrumbItem {...itemProps} key={path || route.breadcrumbName}>
             {itemRender({ route, params, routes, paths: tempPaths })}
           </BreadcrumbItem>
-        )
-      })
-    }
+        );
+      });
+    };
     return () => {
-      let crumbs: VueNode[]
+      let crumbs: VueNode[];
 
-      const { routes, params = {} } = props
+      const { routes, params = {} } = props;
 
-      const children = flattenChildren(getPropsSlot(slots, props))
-      const separator = getPropsSlot(slots, props, 'separator') ?? '/'
+      const children = flattenChildren(getPropsSlot(slots, props));
+      const separator = getPropsSlot(slots, props, 'separator') ?? '/';
 
-      const itemRender = props.itemRender || slots.itemRender || defaultItemRender
+      const itemRender = props.itemRender || slots.itemRender || defaultItemRender;
       if (routes && routes.length > 0) {
         // generated by route
         crumbs = genForRoutes({
@@ -121,7 +121,7 @@ export default defineComponent({
           params,
           separator,
           itemRender,
-        })
+        });
       } else if (children.length) {
         crumbs = children.map((element, index) => {
           devWarning(
@@ -129,9 +129,9 @@ export default defineComponent({
               && (element.type.__ANT_BREADCRUMB_ITEM || element.type.__ANT_BREADCRUMB_SEPARATOR),
             'Breadcrumb',
             'Only accepts Breadcrumb.Item and Breadcrumb.Separator as it\'s children',
-          )
-          return cloneVNode(element, { separator, key: index })
-        })
+          );
+          return cloneVNode(element, { separator, key: index });
+        });
       }
 
       const breadcrumbClassName = {
@@ -139,13 +139,13 @@ export default defineComponent({
         [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
         [`${attrs.class}`]: !!attrs.class,
         [hashId.value]: true,
-      }
+      };
 
       return wrapSSR(
         <nav {...attrs} class={breadcrumbClassName}>
           <ol>{crumbs}</ol>
         </nav>,
-      )
-    }
+      );
+    };
   },
-})
+});

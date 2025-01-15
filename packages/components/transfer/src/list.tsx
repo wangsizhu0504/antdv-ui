@@ -1,28 +1,28 @@
-import type { CSSProperties, SlotsType, VNode, VNodeTypes } from 'vue'
-import type { RadioChangeEvent } from '../../radio'
-import type { TransferItem } from './interface'
-import { DownOutlined } from '@ant-design/icons-vue'
-import { classNames, filterEmpty, groupKeysMap, isValidElement, splitAttrs } from '@antdv/utils'
-import { computed, defineComponent, ref, watchEffect } from 'vue'
-import Checkbox from '../../checkbox'
-import Dropdown from '../../dropdown'
-import Menu from '../../menu'
-import ListBody from './ListBody'
-import { transferListProps } from './props'
-import Search from './search'
+import type { CSSProperties, SlotsType, VNode, VNodeTypes } from 'vue';
+import type { RadioChangeEvent } from '../../radio';
+import type { TransferItem } from './interface';
+import { DownOutlined } from '@ant-design/icons-vue';
+import { classNames, filterEmpty, groupKeysMap, isValidElement, splitAttrs } from '@antdv/utils';
+import { computed, defineComponent, ref, watchEffect } from 'vue';
+import Checkbox from '../../checkbox';
+import Dropdown from '../../dropdown';
+import Menu from '../../menu';
+import ListBody from './ListBody';
+import { transferListProps } from './props';
+import Search from './search';
 
-const defaultRender = () => null
+const defaultRender = () => null;
 
 function isRenderResultPlainObject(result: VNode) {
   return !!(
     result
     && !isValidElement(result)
     && Object.prototype.toString.call(result) === '[object Object]'
-  )
+  );
 }
 
 function getEnabledItemKeys<RecordType extends TransferItem>(items: RecordType[]) {
-  return items.filter(data => !data.disabled).map(data => data.key)
+  return items.filter(data => !data.disabled).map(data => data.key);
 }
 
 export default defineComponent({
@@ -37,87 +37,87 @@ export default defineComponent({
     default?: any
   }>,
   setup(props, { attrs, slots }) {
-    const filterValue = ref('')
-    const transferNode = ref()
-    const defaultListBodyRef = ref()
+    const filterValue = ref('');
+    const transferNode = ref();
+    const defaultListBodyRef = ref();
 
     const renderListBody = (renderList: any, props: any) => {
-      let bodyContent = renderList ? renderList(props) : null
-      const customize = !!bodyContent && filterEmpty(bodyContent).length > 0
+      let bodyContent = renderList ? renderList(props) : null;
+      const customize = !!bodyContent && filterEmpty(bodyContent).length > 0;
       if (!customize)
-        bodyContent = <ListBody {...props} ref={defaultListBodyRef} />
+        bodyContent = <ListBody {...props} ref={defaultListBodyRef} />;
 
       return {
         customize,
         bodyContent,
-      }
-    }
+      };
+    };
 
     const renderItemHtml = (item: TransferItem) => {
-      const { renderItem = defaultRender } = props
-      const renderResult = renderItem(item)
-      const isRenderResultPlain = isRenderResultPlainObject(renderResult)
+      const { renderItem = defaultRender } = props;
+      const renderResult = renderItem(item);
+      const isRenderResultPlain = isRenderResultPlainObject(renderResult);
       return {
         renderedText: isRenderResultPlain ? renderResult.value : renderResult,
         renderedEl: isRenderResultPlain ? renderResult.label : renderResult,
         item,
-      }
-    }
+      };
+    };
 
-    const filteredItems = ref([])
-    const filteredRenderItems = ref([])
+    const filteredItems = ref([]);
+    const filteredRenderItems = ref([]);
 
     const matchFilter = (text: string, item: TransferItem) => {
-      const { filterOption } = props
+      const { filterOption } = props;
       if (filterOption)
-        return filterOption(filterValue.value, item)
+        return filterOption(filterValue.value, item);
 
-      return text.includes(filterValue.value)
-    }
+      return text.includes(filterValue.value);
+    };
 
     watchEffect(() => {
-      const fItems = []
-      const fRenderItems = []
+      const fItems = [];
+      const fRenderItems = [];
 
       props.dataSource.forEach((item) => {
-        const renderedItem = renderItemHtml(item)
-        const { renderedText } = renderedItem
+        const renderedItem = renderItemHtml(item);
+        const { renderedText } = renderedItem;
 
         // Filter skip
         if (filterValue.value && filterValue.value.trim() && !matchFilter(renderedText, item))
-          return null
+          return null;
 
-        fItems.push(item)
-        fRenderItems.push(renderedItem)
-      })
-      filteredItems.value = fItems
-      filteredRenderItems.value = fRenderItems
-    })
+        fItems.push(item);
+        fRenderItems.push(renderedItem);
+      });
+      filteredItems.value = fItems;
+      filteredRenderItems.value = fRenderItems;
+    });
 
     const checkStatus = computed(() => {
-      const { checkedKeys } = props
+      const { checkedKeys } = props;
       if (checkedKeys.length === 0)
-        return 'none'
+        return 'none';
 
-      const checkedKeysMap = groupKeysMap(checkedKeys)
+      const checkedKeysMap = groupKeysMap(checkedKeys);
       if (filteredItems.value.every(item => checkedKeysMap.has(item.key) || !!item.disabled))
-        return 'all'
+        return 'all';
 
-      return 'part'
-    })
+      return 'part';
+    });
 
     const enabledItemKeys = computed(() => {
-      return getEnabledItemKeys(filteredItems.value)
-    })
+      return getEnabledItemKeys(filteredItems.value);
+    });
 
     const getNewSelectKeys = (keys, unCheckedKeys) => {
       return Array.from(new Set([...keys, ...props.checkedKeys])).filter(
         key => !unCheckedKeys.includes(key),
-      )
-    }
+      );
+    };
 
     const getCheckBox = ({ disabled, prefixCls }: { disabled?: boolean, prefixCls?: string }) => {
-      const checkedAll = checkStatus.value === 'all'
+      const checkedAll = checkStatus.value === 'all';
       const checkAllCheckbox = (
         <Checkbox
           disabled={props.dataSource?.length === 0 || disabled}
@@ -127,51 +127,51 @@ export default defineComponent({
           onChange={() => {
             // Only select enabled items
 
-            const keys = enabledItemKeys.value
+            const keys = enabledItemKeys.value;
             props.onItemSelectAll(
               getNewSelectKeys(!checkedAll ? keys : [], checkedAll ? props.checkedKeys : []),
-            )
+            );
           }}
         />
-      )
+      );
 
-      return checkAllCheckbox
-    }
+      return checkAllCheckbox;
+    };
 
     const handleFilter = (e: RadioChangeEvent) => {
       const {
         target: { value: filter },
-      } = e
-      filterValue.value = filter
-      props.handleFilter?.(e)
-    }
+      } = e;
+      filterValue.value = filter;
+      props.handleFilter?.(e);
+    };
     const handleClear = (e: Event) => {
-      filterValue.value = ''
-      props.handleClear?.(e)
-    }
+      filterValue.value = '';
+      props.handleClear?.(e);
+    };
 
     const getSelectAllLabel = (selectedCount: number, totalCount: number) => {
-      const { itemsUnit, itemUnit, selectAllLabel } = props
+      const { itemsUnit, itemUnit, selectAllLabel } = props;
       if (selectAllLabel) {
         return typeof selectAllLabel === 'function'
           ? selectAllLabel({ selectedCount, totalCount })
-          : selectAllLabel
+          : selectAllLabel;
       }
-      const unit = totalCount > 1 ? itemsUnit : itemUnit
+      const unit = totalCount > 1 ? itemsUnit : itemUnit;
       return (
         <>
           {(selectedCount > 0 ? `${selectedCount}/` : '') + totalCount}
           {' '}
           {unit}
         </>
-      )
-    }
+      );
+    };
 
     const notFoundContentEle = computed(() =>
       Array.isArray(props.notFoundContent)
         ? props.notFoundContent[props.direction === 'left' ? 0 : 1]
         : props.notFoundContent,
-    )
+    );
     const getListBody = (
       prefixCls: string,
       searchPlaceholder: string,
@@ -193,21 +193,21 @@ export default defineComponent({
               />
             </div>
           )
-        : null
+        : null;
 
-      let bodyNode: VNodeTypes
-      const { onEvents } = splitAttrs(attrs)
+      let bodyNode: VNodeTypes;
+      const { onEvents } = splitAttrs(attrs);
       const { bodyContent, customize } = renderListBody(renderList, {
         ...props,
         filteredItems: filteredItems.value,
         filteredRenderItems: filteredRenderItems.value,
         selectedKeys: checkedKeys,
         ...onEvents,
-      })
+      });
 
       // We should wrap customize list body in a classNamed div to use flex layout.
       if (customize) {
-        bodyNode = <div class={`${prefixCls}-body-customize-wrapper`}>{bodyContent}</div>
+        bodyNode = <div class={`${prefixCls}-body-customize-wrapper`}>{bodyContent}</div>;
       } else {
         bodyNode = filteredItems.value.length
           ? (
@@ -215,7 +215,7 @@ export default defineComponent({
             )
           : (
               <div class={`${prefixCls}-body-not-found`}>{notFoundContentEle.value}</div>
-            )
+            );
       }
 
       return (
@@ -228,8 +228,8 @@ export default defineComponent({
           {search}
           {bodyNode}
         </div>
-      )
-    }
+      );
+    };
 
     return () => {
       const {
@@ -249,15 +249,15 @@ export default defineComponent({
         showSelectAll = true,
         showRemove,
         pagination,
-      } = props
+      } = props;
 
       // Custom Layout
-      const footerDom = slots.footer?.({ ...props })
+      const footerDom = slots.footer?.({ ...props });
 
       const listCls = classNames(prefixCls, {
         [`${prefixCls}-with-pagination`]: !!pagination,
         [`${prefixCls}-with-footer`]: !!footerDom,
-      })
+      });
 
       // ================================= List Body =================================
 
@@ -268,13 +268,13 @@ export default defineComponent({
         renderList,
         showSearch,
         disabled,
-      )
+      );
 
-      const listFooter = footerDom ? <div class={`${prefixCls}-footer`}>{footerDom}</div> : null
+      const listFooter = footerDom ? <div class={`${prefixCls}-footer`}>{footerDom}</div> : null;
 
-      const checkAllCheckbox = !showRemove && !pagination && getCheckBox({ disabled, prefixCls })
+      const checkAllCheckbox = !showRemove && !pagination && getCheckBox({ disabled, prefixCls });
 
-      let menu = null
+      let menu = null;
       if (showRemove) {
         menu = (
           <Menu>
@@ -285,8 +285,8 @@ export default defineComponent({
                 onClick={() => {
                   const pageKeys = getEnabledItemKeys(
                     (defaultListBodyRef.value.items || []).map(entity => entity.item),
-                  )
-                  onItemRemove?.(pageKeys)
+                  );
+                  onItemRemove?.(pageKeys);
                 }}
               >
                 {removeCurrent}
@@ -297,21 +297,21 @@ export default defineComponent({
             <Menu.Item
               key="removeAll"
               onClick={() => {
-                onItemRemove?.(enabledItemKeys.value)
+                onItemRemove?.(enabledItemKeys.value);
               }}
             >
               {removeAll}
             </Menu.Item>
           </Menu>
-        )
+        );
       } else {
         menu = (
           <Menu>
             <Menu.Item
               key="selectAll"
               onClick={() => {
-                const keys = enabledItemKeys.value
-                onItemSelectAll(getNewSelectKeys(keys, []))
+                const keys = enabledItemKeys.value;
+                onItemSelectAll(getNewSelectKeys(keys, []));
               }}
             >
               {selectAll}
@@ -321,8 +321,8 @@ export default defineComponent({
                 onClick={() => {
                   const pageKeys = getEnabledItemKeys(
                     (defaultListBodyRef.value.items || []).map(entity => entity.item),
-                  )
-                  onItemSelectAll(getNewSelectKeys(pageKeys, []))
+                  );
+                  onItemSelectAll(getNewSelectKeys(pageKeys, []));
                 }}
               >
                 {selectCurrent}
@@ -331,39 +331,39 @@ export default defineComponent({
             <Menu.Item
               key="selectInvert"
               onClick={() => {
-                let availableKeys: string[]
+                let availableKeys: string[];
                 if (pagination) {
                   availableKeys = getEnabledItemKeys(
                     (defaultListBodyRef.value.items || []).map(entity => entity.item),
-                  )
+                  );
                 } else {
-                  availableKeys = enabledItemKeys.value
+                  availableKeys = enabledItemKeys.value;
                 }
 
-                const checkedKeySet = new Set(checkedKeys)
-                const newCheckedKeys: string[] = []
-                const newUnCheckedKeys: string[] = []
+                const checkedKeySet = new Set(checkedKeys);
+                const newCheckedKeys: string[] = [];
+                const newUnCheckedKeys: string[] = [];
 
                 availableKeys.forEach((key) => {
                   if (checkedKeySet.has(key))
-                    newUnCheckedKeys.push(key)
+                    newUnCheckedKeys.push(key);
                   else
-                    newCheckedKeys.push(key)
-                })
-                onItemSelectAll(getNewSelectKeys(newCheckedKeys, newUnCheckedKeys))
+                    newCheckedKeys.push(key);
+                });
+                onItemSelectAll(getNewSelectKeys(newCheckedKeys, newUnCheckedKeys));
               }}
             >
               {selectInvert}
             </Menu.Item>
           </Menu>
-        )
+        );
       }
 
       const dropdown = (
         <Dropdown class={`${prefixCls}-header-dropdown`} overlay={menu} disabled={disabled}>
           <DownOutlined />
         </Dropdown>
-      )
+      );
 
       return (
         <div class={listCls} style={attrs.style as CSSProperties}>
@@ -384,7 +384,7 @@ export default defineComponent({
           {listBody}
           {listFooter}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

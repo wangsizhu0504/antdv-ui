@@ -1,7 +1,7 @@
-import type { ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import type { ButtonProps, LegacyButtonType } from '../../button'
-import { anyType, objectType, stringType } from '@antdv/utils'
-import { abstractTooltipProps } from '../../tooltip'
+import type { ExtractPropTypes, HTMLAttributes, PropType } from 'vue';
+import type { ButtonProps, LegacyButtonType } from '../../button';
+import { anyType, objectType, stringType } from '@antdv/utils';
+import { abstractTooltipProps } from '../../tooltip';
 
 export function popconfirmProps() {
   return {
@@ -20,7 +20,7 @@ export function popconfirmProps() {
     showCancel: { type: Boolean, default: true },
     onConfirm: Function as PropType<(e: MouseEvent) => void>,
     onCancel: Function as PropType<(e: MouseEvent) => void>,
-  }
+  };
 }
 
-export type PopconfirmProps = Partial<ExtractPropTypes<ReturnType<typeof popconfirmProps>>>
+export type PopconfirmProps = Partial<ExtractPropTypes<ReturnType<typeof popconfirmProps>>>;

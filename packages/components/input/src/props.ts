@@ -6,12 +6,12 @@ import type {
   KeyboardEventHandler,
   MouseEventHandler,
   SizeType,
-} from '@antdv/types'
+} from '@antdv/types';
 
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { AutoSizeType, ShowCountProps } from './interface'
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { AutoSizeType, ShowCountProps } from './interface';
 
-import { eventType, omit, PropTypes, stringType } from '@antdv/utils'
+import { eventType, omit, PropTypes, stringType } from '@antdv/utils';
 
 export function baseInputProps() {
   return {
@@ -41,7 +41,7 @@ export function baseInputProps() {
     readonly: { type: Boolean, default: undefined },
     handleReset: Function as PropType<MouseEventHandler>,
     hidden: { type: Boolean, default: undefined },
-  }
+  };
 }
 
 export function internalInputProps() {
@@ -99,10 +99,10 @@ export function internalInputProps() {
     'valueModifiers': Object,
     'hidden': { type: Boolean, default: undefined },
     'status': String as PropType<InputStatus>,
-  }
+  };
 }
 
-export type InternalInputProps = Partial<ExtractPropTypes<ReturnType<typeof internalInputProps>>>
+export type InternalInputProps = Partial<ExtractPropTypes<ReturnType<typeof internalInputProps>>>;
 
 export function inputProps() {
   return omit(internalInputProps(), [
@@ -110,7 +110,7 @@ export function inputProps() {
     'groupClassName',
     'inputClassName',
     'affixWrapperClassName',
-  ])
+  ]);
 }
 
 export function textAreaProps() {
@@ -123,9 +123,9 @@ export function textAreaProps() {
     onCompositionstart: eventType<CompositionEventHandler>(),
     onCompositionend: eventType<CompositionEventHandler>(),
     valueModifiers: Object,
-  }
+  };
 }
 
-export type InputProps = Partial<ExtractPropTypes<ReturnType<typeof inputProps>>>
+export type InputProps = Partial<ExtractPropTypes<ReturnType<typeof inputProps>>>;
 
-export type TextAreaProps = Partial<ExtractPropTypes<ReturnType<typeof textAreaProps>>>
+export type TextAreaProps = Partial<ExtractPropTypes<ReturnType<typeof textAreaProps>>>;

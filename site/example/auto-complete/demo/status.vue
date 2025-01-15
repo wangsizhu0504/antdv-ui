@@ -18,7 +18,7 @@ Add status to AutoComplete with `status`, which could be `error` or `warning`.
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
+  import { ref, watch } from 'vue';
 
   interface MockVal {
     value: string;
@@ -26,26 +26,26 @@ Add status to AutoComplete with `status`, which could be `error` or `warning`.
   function mockVal(str: string, repeat = 1): MockVal {
     return {
       value: str.repeat(repeat),
-    }
+    };
   }
-  const value = ref<any>('')
-  const value1 = ref<any>('')
-  const options = ref<MockVal[]>([])
+  const value = ref<any>('');
+  const value1 = ref<any>('');
+  const options = ref<MockVal[]>([]);
   function onSearch(searchText: string) {
-    console.log('searchText')
+    console.log('searchText');
     options.value = !searchText
       ? []
-      : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
+      : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
   }
   function onSelect(value: string) {
-    console.log('onSelect', value)
+    console.log('onSelect', value);
   }
   function onClear() {
-    console.log('onClear')
+    console.log('onClear');
   }
   watch(value, () => {
-    console.log('value', value.value)
-  })
+    console.log('value', value.value);
+  });
 </script>
 
 <template>

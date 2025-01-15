@@ -1,4 +1,4 @@
-import type { CSSObject } from '..'
+import type { CSSObject } from '..';
 
 export interface Transformer {
   visit?: (cssObj: CSSObject) => CSSObject

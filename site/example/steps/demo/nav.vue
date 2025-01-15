@@ -16,14 +16,14 @@ Navigation steps.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const current = ref<number>(0)
+  const current = ref<number>(0);
 
   const stepStyle = {
     marginBottom: '60px',
     boxShadow: '0px -1px 0 0 #e8e8e8 inset',
-  }
+  };
 </script>
 
 <template>

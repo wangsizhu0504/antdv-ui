@@ -1,6 +1,6 @@
-import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface'
-import type { CommonProps, DatePickerProps, RangePickerTimeProps } from '../../date-picker'
-import type { CommonTimePickerProps } from './props'
+import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface';
+import type { CommonProps, DatePickerProps, RangePickerTimeProps } from '../../date-picker';
+import type { CommonTimePickerProps } from './props';
 
 export type TimeRangePickerProps<DateType> = Omit<
   RangePickerTimeProps<DateType>,
@@ -21,8 +21,8 @@ export type TimeRangePickerProps<DateType> = Omit<
     modes: [PanelMode, PanelMode],
   ) => void
   'onOk'?: (dates: RangeValue<DateType> | RangeValue<string>) => void
-}
+};
 
 export type TimePickerProps<DateType> = CommonProps<DateType> & DatePickerProps<DateType> & CommonTimePickerProps & {
   addon?: () => void
-}
+};

@@ -1,8 +1,8 @@
-import * as AntdIcons from '@ant-design/icons-vue'
+import * as AntdIcons from '@ant-design/icons-vue';
 
 const all = Object.keys(AntdIcons)
   .map(n => n.replace(/(Outlined|Filled|TwoTone)$/, ''))
-  .filter((n, i, arr) => arr.indexOf(n) === i)
+  .filter((n, i, arr) => arr.indexOf(n) === i);
 
 const direction = [
   'StepBackward',
@@ -68,7 +68,7 @@ const direction = [
   'RadiusUpright',
   'Fullscreen',
   'FullscreenExit',
-]
+];
 
 const suggestion = [
   'Question',
@@ -95,7 +95,7 @@ const suggestion = [
   'Warning',
   'IssuesClose',
   'Stop',
-]
+];
 
 const editor = [
   'Edit',
@@ -131,7 +131,7 @@ const editor = [
   'RadiusSetting',
   'ColumnWidth',
   'ColumnHeight',
-]
+];
 
 const data = [
   'AreaChart',
@@ -147,7 +147,7 @@ const data = [
   'BoxPlot',
   'Fund',
   'Sliders',
-]
+];
 
 const logo = [
   'Android',
@@ -200,11 +200,11 @@ const logo = [
   'Yahoo',
   'Reddit',
   'Sketch',
-]
+];
 
-const datum = [...direction, ...suggestion, ...editor, ...data, ...logo]
+const datum = [...direction, ...suggestion, ...editor, ...data, ...logo];
 
-const other = all.filter(n => !datum.includes(n))
+const other = all.filter(n => !datum.includes(n));
 
 export const categories = {
   direction,
@@ -213,6 +213,6 @@ export const categories = {
   data,
   logo,
   other,
-}
+};
 
-export default categories
+export default categories;

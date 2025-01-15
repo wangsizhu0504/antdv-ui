@@ -16,7 +16,7 @@ Avatar group display.
 </docs>
 
 <script lang="ts" setup>
-  import { AntDesignOutlined, UserOutlined } from '@ant-design/icons-vue'
+  import { AntDesignOutlined, UserOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

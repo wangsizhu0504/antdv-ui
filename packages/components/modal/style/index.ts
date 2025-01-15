@@ -1,8 +1,8 @@
-import type { AliasToken, FullToken, GenerateStyle } from '@antdv/theme'
-import type { TokenWithCommonCls } from '@antdv/theme/token/util/genComponentStyleHook'
-import type { CSSProperties } from 'vue'
-import { clearFix, genComponentStyleHook, genFocusStyle, mergeToken, resetComponent } from '@antdv/theme'
-import { initFadeMotion, initZoomMotion } from '@antdv/theme/style/motion'
+import type { AliasToken, FullToken, GenerateStyle } from '@antdv/theme';
+import type { TokenWithCommonCls } from '@antdv/theme/token/util/genComponentStyleHook';
+import type { CSSProperties } from 'vue';
+import { clearFix, genComponentStyleHook, genFocusStyle, mergeToken, resetComponent } from '@antdv/theme';
+import { initFadeMotion, initZoomMotion } from '@antdv/theme/style/motion';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {
@@ -42,11 +42,11 @@ function box(position: CSSProperties['position']): CSSProperties {
     insetInlineEnd: 0,
     bottom: 0,
     insetInlineStart: 0,
-  }
+  };
 }
 
 export const genModalMaskStyle: GenerateStyle<TokenWithCommonCls<AliasToken>> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return [
     {
@@ -82,11 +82,11 @@ export const genModalMaskStyle: GenerateStyle<TokenWithCommonCls<AliasToken>> = 
       },
     },
     { [`${componentCls}-root`]: initFadeMotion(token) },
-  ]
-}
+  ];
+};
 
 const genModalStyle: GenerateStyle<ModalToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return [
     // ======================== Root =========================
@@ -262,12 +262,12 @@ const genModalStyle: GenerateStyle<ModalToken> = (token) => {
         },
       },
     },
-  ]
-}
+  ];
+};
 
 const genModalConfirmStyle: GenerateStyle<ModalToken> = (token) => {
-  const { componentCls } = token
-  const confirmComponentCls = `${componentCls}-confirm`
+  const { componentCls } = token;
+  const confirmComponentCls = `${componentCls}-confirm`;
 
   return {
     [confirmComponentCls]: {
@@ -355,11 +355,11 @@ const genModalConfirmStyle: GenerateStyle<ModalToken> = (token) => {
     [`${componentCls}-zoom-leave ${componentCls}-btns`]: {
       pointerEvents: 'none',
     },
-  }
-}
+  };
+};
 
 const genRTLStyle: GenerateStyle<ModalToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
   return {
     [`${componentCls}-root`]: {
       [`${componentCls}-wrap-rtl`]: {
@@ -370,12 +370,12 @@ const genRTLStyle: GenerateStyle<ModalToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genWireframeStyle: GenerateStyle<ModalToken> = (token) => {
-  const { componentCls, antCls } = token
-  const confirmComponentCls = `${componentCls}-confirm`
+  const { componentCls, antCls } = token;
+  const confirmComponentCls = `${componentCls}-confirm`;
 
   return {
     [componentCls]: {
@@ -419,14 +419,14 @@ const genWireframeStyle: GenerateStyle<ModalToken> = (token) => {
         marginTop: token.marginLG,
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Modal', (token) => {
-  const headerPaddingVertical = token.padding
-  const headerFontSize = token.fontSizeHeading5
-  const headerLineHeight = token.lineHeightHeading5
+  const headerPaddingVertical = token.padding;
+  const headerFontSize = token.fontSizeHeading5;
+  const headerLineHeight = token.lineHeightHeading5;
 
   const modalToken = mergeToken<ModalToken>(token, {
     modalBodyPadding: token.paddingLG,
@@ -451,7 +451,7 @@ export default genComponentStyleHook('Modal', (token) => {
     modalIconHoverColor: token.colorIconHover,
     modalConfirmIconSize: token.fontSize * token.lineHeight,
     modalCloseBtnSize: token.controlHeightLG * 0.55,
-  })
+  });
   return [
     genModalStyle(modalToken),
     genModalConfirmStyle(modalToken),
@@ -459,5 +459,5 @@ export default genComponentStyleHook('Modal', (token) => {
     genModalMaskStyle(modalToken),
     token.wireframe && genWireframeStyle(modalToken),
     initZoomMotion(modalToken, 'zoom'),
-  ]
-})
+  ];
+});

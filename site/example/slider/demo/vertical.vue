@@ -16,11 +16,11 @@ The vertical Slider.
 </docs>
 
 <script lang="ts" setup>
-  import { createVNode, ref } from 'vue'
+  import { createVNode, ref } from 'vue';
 
-  const value1 = ref<number>(30)
-  const value2 = ref<[number, number]>([20, 50])
-  const value3 = ref<[number, number]>([26, 37])
+  const value1 = ref<number>(30);
+  const value2 = ref<[number, number]>([20, 50]);
+  const value3 = ref<[number, number]>([26, 37]);
   const marks = ref<Record<number, any>>({
     0: '0°C',
     26: '26°C',
@@ -31,7 +31,7 @@ The vertical Slider.
       },
       label: createVNode('strong', {}, '100°C'),
     },
-  })
+  });
 </script>
 
 <template>

@@ -16,7 +16,7 @@ Basic Form data control. Includes layout, initial values, validation and submit.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive } from 'vue'
+  import { reactive } from 'vue';
 
   interface FormState {
     username: string;
@@ -28,13 +28,13 @@ Basic Form data control. Includes layout, initial values, validation and submit.
     username: '',
     password: '',
     remember: true,
-  })
+  });
   function onFinish(values: any) {
-    console.log('Success:', values)
+    console.log('Success:', values);
   }
 
   function onFinishFailed(errorInfo: any) {
-    console.log('Failed:', errorInfo)
+    console.log('Failed:', errorInfo);
   }
 </script>
 

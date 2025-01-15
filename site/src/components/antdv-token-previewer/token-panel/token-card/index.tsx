@@ -1,7 +1,7 @@
-import type { ThemeConfig } from '@antdv/ui/es/config-provider'
-import type { PropType } from 'vue'
-import type { MutableTheme, TokenValue } from '../../interface'
-import type { TokenType } from '../../utils/classifyToken'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider';
+import type { PropType } from 'vue';
+import type { MutableTheme, TokenValue } from '../../interface';
+import type { TokenType } from '../../utils/classifyToken';
 import {
   AlignLeftOutlined,
   BgColorsOutlined,
@@ -16,17 +16,17 @@ import {
   HighlightOutlined,
   RadiusSettingOutlined,
   TabletOutlined,
-} from '@ant-design/icons-vue'
-import { Collapse, Space } from '@antdv/ui'
+} from '@ant-design/icons-vue';
+import { Collapse, Space } from '@antdv/ui';
 
-import { classNames, PropTypes } from '@antdv/utils'
-import { defineComponent, ref, toRefs } from 'vue'
-import { Motion, ShapeLine } from '../../icons'
-import makeStyle from '../../utils/makeStyle'
-import { getRelatedComponents } from '../../utils/statistic'
-import TokenItem from '../token-item'
+import { classNames, PropTypes } from '@antdv/utils';
+import { defineComponent, ref, toRefs } from 'vue';
+import { Motion, ShapeLine } from '../../icons';
+import makeStyle from '../../utils/makeStyle';
+import { getRelatedComponents } from '../../utils/statistic';
+import TokenItem from '../token-item';
 
-const { Panel } = Collapse
+const { Panel } = Collapse;
 
 export interface TokenCardProps {
   title: string
@@ -65,7 +65,7 @@ export const IconMap: Record<TokenType, any> = {
   radius: <RadiusSettingOutlined />,
   control: <ControlOutlined />,
   others: <FileUnknownOutlined />,
-}
+};
 export const TextMap: Record<TokenType, string> = {
   seed: 'Seed Token',
   colorCommon: 'Common Color 通用颜色',
@@ -81,7 +81,7 @@ export const TextMap: Record<TokenType, string> = {
   radius: 'Radius 圆角',
   control: 'Control 控件',
   others: 'Others 未分类',
-}
+};
 
 const useStyle = makeStyle('TokenCard', token => ({
   '.token-card': {
@@ -106,7 +106,7 @@ const useStyle = makeStyle('TokenCard', token => ({
       background: 'white',
       borderRadius: token.borderRadiusLG,
     },
-}))
+}));
 
 export default defineComponent({
   name: 'TokenCard',
@@ -148,16 +148,16 @@ export default defineComponent({
       themes,
       enableTokenSelect,
       hideUsageCount,
-    } = toRefs(props)
+    } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
+    const [wrapSSR, hashId] = useStyle();
 
-    const activeKeys = ref<any>(defaultOpen.value ? ['1'] : [])
+    const activeKeys = ref<any>(defaultOpen.value ? ['1'] : []);
 
     return () => {
-      const icon = slots.icon ? slots.icon() : props.icon
+      const icon = slots.icon ? slots.icon() : props.icon;
 
-      const placeholder = slots.placeholder ? slots.placeholder() : props.placeholder
+      const placeholder = slots.placeholder ? slots.placeholder() : props.placeholder;
 
       return wrapSSR(
         <div {...attrs} class={classNames('token-card', hashId.value)}>
@@ -176,7 +176,7 @@ export default defineComponent({
             v-model={[activeKeys.value, 'activeKey']}
             onChange={() => {
               // onOpenChange?.(keys.length > 0);
-              props.onOpenChange?.(activeKeys.value.length > 0)
+              props.onOpenChange?.(activeKeys.value.length > 0);
             }}
           >
             <Panel
@@ -214,13 +214,13 @@ export default defineComponent({
                       hideUsageCount={hideUsageCount.value}
                       fallback={props.fallback}
                     />
-                  )
+                  );
                 })}
               {tokenArr.value?.length === 0 && placeholder}
             </Panel>
           </Collapse>
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

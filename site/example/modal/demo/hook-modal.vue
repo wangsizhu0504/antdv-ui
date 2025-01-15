@@ -17,24 +17,24 @@ Use `Modal.useModal` to get `contextHolder` with context accessible issue.
 </docs>
 
 <script lang="ts" setup>
-  import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-  import { Modal } from '@antdv/ui'
-  import { h } from 'vue'
+  import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+  import { Modal } from '@antdv/ui';
+  import { h } from 'vue';
 
-  const [modal, contextHolder] = Modal.useModal()
+  const [modal, contextHolder] = Modal.useModal();
   function showConfirm() {
     modal.confirm({
       title: 'Do you Want to delete these items?',
       icon: h(ExclamationCircleOutlined),
       content: h('div', { style: 'color:red;' }, 'Some descriptions'),
       onOk() {
-        console.log('OK')
+        console.log('OK');
       },
       onCancel() {
-        console.log('Cancel')
+        console.log('Cancel');
       },
       class: 'test',
-    })
+    });
   }
   function showDeleteConfirm() {
     modal.confirm({
@@ -45,12 +45,12 @@ Use `Modal.useModal` to get `contextHolder` with context accessible issue.
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        console.log('OK')
+        console.log('OK');
       },
       onCancel() {
-        console.log('Cancel')
+        console.log('Cancel');
       },
-    })
+    });
   }
   function showPropsConfirm() {
     modal.confirm({
@@ -64,12 +64,12 @@ Use `Modal.useModal` to get `contextHolder` with context accessible issue.
       },
       cancelText: 'No',
       onOk() {
-        console.log('OK')
+        console.log('OK');
       },
       onCancel() {
-        console.log('Cancel')
+        console.log('Cancel');
       },
-    })
+    });
   }
 
   function showPromiseConfirm() {
@@ -80,14 +80,14 @@ Use `Modal.useModal` to get `contextHolder` with context accessible issue.
       async onOk() {
         try {
           return await new Promise((resolve, reject) => {
-            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-          })
+            setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+          });
         } catch {
-          return console.log('Oops errors!')
+          return console.log('Oops errors!');
         }
       },
       onCancel() {},
-    })
+    });
   }
 </script>
 

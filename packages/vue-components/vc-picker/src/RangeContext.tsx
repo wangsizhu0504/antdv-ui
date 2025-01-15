@@ -1,5 +1,5 @@
-import type { InjectionKey, PropType, Ref } from 'vue'
-import type { NullableDateType, RangeValue } from './interface'
+import type { InjectionKey, PropType, Ref } from 'vue';
+import type { NullableDateType, RangeValue } from './interface';
 import {
   defineComponent,
   inject,
@@ -7,7 +7,7 @@ import {
   ref,
   toRef,
   watch,
-} from 'vue'
+} from 'vue';
 
 export interface RangeContextProps {
   /**
@@ -31,10 +31,10 @@ interface RangeContextProviderValue {
   panelPosition?: 'left' | 'right' | false;
 }
 
-const RangeContextKey: InjectionKey<RangeContextProps> = Symbol('RangeContextProps')
+const RangeContextKey: InjectionKey<RangeContextProps> = Symbol('RangeContextProps');
 
 export function useProvideRange(props: RangeContextProps) {
-  provide(RangeContextKey, props)
+  provide(RangeContextKey, props);
 }
 
 export function useInjectRange() {
@@ -43,7 +43,7 @@ export function useInjectRange() {
     hoverRangedValue: ref(),
     inRange: ref(),
     panelPosition: ref(),
-  })
+  });
 }
 
 export const RangeContextProvider = defineComponent({
@@ -62,20 +62,20 @@ export const RangeContextProvider = defineComponent({
       hoverRangedValue: ref(props.value.hoverRangedValue),
       inRange: ref(props.value.inRange),
       panelPosition: ref(props.value.panelPosition),
-    }
-    useProvideRange(value)
-    toRef
+    };
+    useProvideRange(value);
+    toRef;
     watch(
       () => props.value,
       () => {
         Object.keys(props.value).forEach((key) => {
           if (value[key])
-            value[key].value = props.value[key]
-        })
+            value[key].value = props.value[key];
+        });
       },
-    )
-    return () => slots.default?.()
+    );
+    return () => slots.default?.();
   },
-})
+});
 
-export default RangeContextKey
+export default RangeContextKey;

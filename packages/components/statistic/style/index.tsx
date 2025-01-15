@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
 
 interface StatisticToken extends FullToken<'Statistic'> {
   statisticTitleFontSize: number
@@ -17,7 +17,7 @@ const genStatisticStyle: GenerateStyle<StatisticToken> = (token: StatisticToken)
     colorTextHeading,
     statisticContentFontSize,
     statisticFontFamily,
-  } = token
+  } = token;
 
   return {
     [`${componentCls}`]: {
@@ -51,17 +51,17 @@ const genStatisticStyle: GenerateStyle<StatisticToken> = (token: StatisticToken)
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Statistic', (token) => {
-  const { fontSizeHeading3, fontSize, fontFamily } = token
+  const { fontSizeHeading3, fontSize, fontFamily } = token;
 
   const statisticToken = mergeToken<StatisticToken>(token, {
     statisticTitleFontSize: fontSize,
     statisticContentFontSize: fontSizeHeading3,
     statisticFontFamily: fontFamily,
-  })
-  return [genStatisticStyle(statisticToken)]
-})
+  });
+  return [genStatisticStyle(statisticToken)];
+});

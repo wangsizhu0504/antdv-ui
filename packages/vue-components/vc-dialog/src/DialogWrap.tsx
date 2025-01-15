@@ -1,12 +1,12 @@
-import type { IDialogChildProps } from './IDialogPropTypes'
-import { initDefaultProps } from '@antdv/utils'
-import { defineComponent, ref, watch } from 'vue'
-import Portal from '../../portal/src/PortalWrapper'
-import { useProvidePortal } from '../../vc-trigger/src/context'
-import Dialog from './Dialog'
-import getDialogPropTypes from './IDialogPropTypes'
+import type { IDialogChildProps } from './IDialogPropTypes';
+import { initDefaultProps } from '@antdv/utils';
+import { defineComponent, ref, watch } from 'vue';
+import Portal from '../../portal/src/PortalWrapper';
+import { useProvidePortal } from '../../vc-trigger/src/context';
+import Dialog from './Dialog';
+import getDialogPropTypes from './IDialogPropTypes';
 
-const IDialogPropTypes = getDialogPropTypes()
+const IDialogPropTypes = getDialogPropTypes();
 const DialogWrap = defineComponent({
   compatConfig: { MODE: 3 },
   name: 'DialogWrap',
@@ -15,24 +15,24 @@ const DialogWrap = defineComponent({
     visible: false,
   }),
   setup(props, { attrs, slots }) {
-    const animatedVisible = ref(props.visible)
-    useProvidePortal({}, { inTriggerContext: false })
+    const animatedVisible = ref(props.visible);
+    useProvidePortal({}, { inTriggerContext: false });
     watch(
       () => props.visible,
       () => {
         if (props.visible)
-          animatedVisible.value = true
+          animatedVisible.value = true;
       },
       { flush: 'post' },
-    )
+    );
     return () => {
-      const { visible, getContainer, forceRender, destroyOnClose = false, afterClose } = props
+      const { visible, getContainer, forceRender, destroyOnClose = false, afterClose } = props;
       let dialogProps = {
         ...props,
         ...attrs,
         ref: '_component',
         key: 'dialog',
-      } as IDialogChildProps
+      } as IDialogChildProps;
       // 渲染在当前 dom 里；
       if (getContainer === false) {
         return (
@@ -42,12 +42,12 @@ const DialogWrap = defineComponent({
             v-slots={slots}
           >
           </Dialog>
-        )
+        );
       }
 
       // Destroy on close will remove wrapped div
       if (!forceRender && destroyOnClose && !animatedVisible.value)
-        return null
+        return null;
 
       return (
         <Portal
@@ -61,17 +61,17 @@ const DialogWrap = defineComponent({
                 ...dialogProps,
                 ...childProps,
                 afterClose: () => {
-                  afterClose?.()
-                  animatedVisible.value = false
+                  afterClose?.();
+                  animatedVisible.value = false;
                 },
-              }
-              return <Dialog {...dialogProps} v-slots={slots}></Dialog>
+              };
+              return <Dialog {...dialogProps} v-slots={slots}></Dialog>;
             },
           }}
         />
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default DialogWrap
+export default DialogWrap;

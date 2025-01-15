@@ -17,9 +17,9 @@ There are 12 `placement` options available.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const buttonWidth = ref<number>(70)
+  const buttonWidth = ref<number>(70);
 </script>
 
 <template>

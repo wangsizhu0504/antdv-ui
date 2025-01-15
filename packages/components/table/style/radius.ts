@@ -1,8 +1,8 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
 
 const genRadiusStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
-  const { componentCls, tableRadius } = token
+  const { componentCls, tableRadius } = token;
   return {
     [`${componentCls}-wrapper`]: {
       [componentCls]: {
@@ -50,7 +50,7 @@ const genRadiusStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genRadiusStyle
+export default genRadiusStyle;

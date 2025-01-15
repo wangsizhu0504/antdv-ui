@@ -1,23 +1,23 @@
-import type { DerivativeFunc } from '@antdv/cssinjs'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider'
-import type { Ref } from 'vue'
-import type { MutableTheme, Theme } from '../interface'
-import { theme as antTheme } from '@antdv/ui'
-import { computed, ref, watchEffect } from 'vue'
-import deepUpdateObj from '../utils/deepUpdateObj'
-import getDesignToken from '../utils/getDesignToken'
-import getValueByPath from '../utils/getValueByPath'
+import type { DerivativeFunc } from '@antdv/cssinjs';
+import type { ThemeConfig } from '@antdv/ui/es/config-provider';
+import type { Ref } from 'vue';
+import type { MutableTheme, Theme } from '../interface';
+import { theme as antTheme } from '@antdv/ui';
+import { computed, ref, watchEffect } from 'vue';
+import deepUpdateObj from '../utils/deepUpdateObj';
+import getDesignToken from '../utils/getDesignToken';
+import getValueByPath from '../utils/getValueByPath';
 
-const { darkAlgorithm: defaultDark, compactAlgorithm, defaultAlgorithm } = antTheme
+const { darkAlgorithm: defaultDark, compactAlgorithm, defaultAlgorithm } = antTheme;
 
-export type ThemeCode = 'light' | 'dark' | 'compact'
+export type ThemeCode = 'light' | 'dark' | 'compact';
 export const themeMap: Record<ThemeCode, DerivativeFunc<any, any>> = {
   dark: defaultDark,
   compact: compactAlgorithm,
   light: defaultAlgorithm,
-}
+};
 
-export type SetThemeState = (theme: Theme, modifiedPath: string[], updated?: boolean) => void
+export type SetThemeState = (theme: Theme, modifiedPath: string[], updated?: boolean) => void;
 
 export type UseControlledTheme = (options: {
   theme?: Ref<Theme>
@@ -29,52 +29,52 @@ export type UseControlledTheme = (options: {
   infoFollowPrimary: Ref<boolean>
   onInfoFollowPrimaryChange: (value: boolean) => void
   updateRef: () => void
-}
+};
 
 const useControlledTheme: UseControlledTheme = ({ theme: customTheme, defaultTheme, onChange }) => {
-  const theme = ref<Theme>(customTheme?.value ?? defaultTheme)
-  const infoFollowPrimary = ref<boolean>(false)
-  const themeRef = ref<Theme>(theme.value)
-  const renderHolder = ref<any>(0)
+  const theme = ref<Theme>(customTheme?.value ?? defaultTheme);
+  const infoFollowPrimary = ref<boolean>(false);
+  const themeRef = ref<Theme>(theme.value);
+  const renderHolder = ref<any>(0);
 
-  const forceUpdate = () => (renderHolder.value = renderHolder.value + 1)
+  const forceUpdate = () => (renderHolder.value = renderHolder.value + 1);
 
   const getNewTheme = (newTheme: Theme, force?: boolean): Theme => {
-    const newToken = { ...newTheme.config.token }
+    const newToken = { ...newTheme.config.token };
     if (infoFollowPrimary.value || force)
-      newToken.colorInfo = getDesignToken(newTheme.config).colorPrimary
+      newToken.colorInfo = getDesignToken(newTheme.config).colorPrimary;
 
-    return { ...newTheme, config: { ...newTheme.config, token: newToken } }
-  }
+    return { ...newTheme, config: { ...newTheme.config, token: newToken } };
+  };
 
   const handleSetTheme: SetThemeState = (newTheme) => {
     if (customTheme?.value)
-      onChange?.(getNewTheme(newTheme))
+      onChange?.(getNewTheme(newTheme));
     else
-      theme.value = getNewTheme(newTheme)
-  }
+      theme.value = getNewTheme(newTheme);
+  };
 
   const handleResetTheme = (path: string[]) => {
-    let newConfig = { ...theme.value.config }
-    newConfig = deepUpdateObj(newConfig, path, getValueByPath(themeRef.value?.config, path))
-    handleSetTheme({ ...theme.value, config: newConfig }, path)
-  }
+    let newConfig = { ...theme.value.config };
+    newConfig = deepUpdateObj(newConfig, path, getValueByPath(themeRef.value?.config, path));
+    handleSetTheme({ ...theme.value, config: newConfig }, path);
+  };
 
   const getCanReset = (origin: ThemeConfig, current: ThemeConfig) => (path: string[]) => {
-    return getValueByPath(origin, path) !== getValueByPath(current, path)
-  }
+    return getValueByPath(origin, path) !== getValueByPath(current, path);
+  };
 
   // Controlled theme change
   watchEffect(() => {
     if (customTheme?.value)
-      theme.value = customTheme.value
-  })
+      theme.value = customTheme.value;
+  });
 
   const handleInfoFollowPrimaryChange = (value: boolean) => {
-    infoFollowPrimary.value = value
+    infoFollowPrimary.value = value;
     if (value)
-      theme.value = getNewTheme(theme.value, true)
-  }
+      theme.value = getNewTheme(theme.value, true);
+  };
 
   return {
     theme: computed(() => ({
@@ -86,10 +86,10 @@ const useControlledTheme: UseControlledTheme = ({ theme: customTheme, defaultThe
     infoFollowPrimary,
     onInfoFollowPrimaryChange: handleInfoFollowPrimaryChange,
     updateRef: () => {
-      themeRef.value = theme.value
-      forceUpdate()
+      themeRef.value = theme.value;
+      forceUpdate();
     },
-  }
-}
+  };
+};
 
-export default useControlledTheme
+export default useControlledTheme;

@@ -17,10 +17,10 @@ Solid radio button style.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value1 = ref<string>('a')
-  const value2 = ref<string>('c')
+  const value1 = ref<string>('a');
+  const value2 = ref<string>('c');
 </script>
 
 <template>

@@ -17,7 +17,7 @@ Transfer with a search box.
 </docs>
 
 <script lang="ts" setup>
-  import { onMounted, ref } from 'vue'
+  import { onMounted, ref } from 'vue';
 
   interface MockData {
     key: string;
@@ -25,39 +25,39 @@ Transfer with a search box.
     description: string;
     chosen: boolean;
   }
-  const mockData = ref<MockData[]>([])
+  const mockData = ref<MockData[]>([]);
 
-  const targetKeys = ref<string[]>([])
+  const targetKeys = ref<string[]>([]);
   onMounted(() => {
-    getMock()
-  })
+    getMock();
+  });
   function getMock() {
-    const keys = []
-    const mData = []
+    const keys = [];
+    const mData = [];
     for (let i = 0; i < 20; i++) {
       const data = {
         key: i.toString(),
         title: `content${i + 1}`,
         description: `description of content${i + 1}`,
         chosen: Math.random() * 2 > 1,
-      }
+      };
       if (data.chosen) {
-        keys.push(data.key)
+        keys.push(data.key);
       }
-      mData.push(data)
+      mData.push(data);
     }
-    mockData.value = mData
-    targetKeys.value = keys
+    mockData.value = mData;
+    targetKeys.value = keys;
   }
   function filterOption(inputValue: string, option: MockData) {
-    return option.description.includes(inputValue)
+    return option.description.includes(inputValue);
   }
   function handleChange(keys: string[], direction: string, moveKeys: string[]) {
-    console.log(keys, direction, moveKeys)
+    console.log(keys, direction, moveKeys);
   }
 
   function handleSearch(dir: string, value: string) {
-    console.log('search:', dir, value)
+    console.log('search:', dir, value);
   }
 </script>
 

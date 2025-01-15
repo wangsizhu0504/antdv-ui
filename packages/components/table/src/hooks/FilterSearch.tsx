@@ -1,10 +1,10 @@
-import type { TableLocale } from '@antdv/locale'
-import type { FilterSearchType } from '../interface'
-import { SearchOutlined } from '@ant-design/icons-vue'
-import { functionType, objectType, someType, stringType } from '@antdv/utils'
-import { defineComponent } from 'vue'
+import type { TableLocale } from '@antdv/locale';
+import type { FilterSearchType } from '../interface';
+import { SearchOutlined } from '@ant-design/icons-vue';
+import { functionType, objectType, someType, stringType } from '@antdv/utils';
+import { defineComponent } from 'vue';
 
-import Input from '../../../input'
+import Input from '../../../input';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -19,9 +19,9 @@ export default defineComponent({
   },
   setup(props) {
     return () => {
-      const { value, onChange, filterSearch, tablePrefixCls, locale } = props
+      const { value, onChange, filterSearch, tablePrefixCls, locale } = props;
       if (!filterSearch)
-        return null
+        return null;
 
       return (
         <div class={`${tablePrefixCls}-filter-dropdown-search`}>
@@ -35,7 +35,7 @@ export default defineComponent({
             class={`${tablePrefixCls}-filter-dropdown-search-input`}
           />
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

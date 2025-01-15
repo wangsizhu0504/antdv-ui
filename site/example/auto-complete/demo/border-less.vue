@@ -16,7 +16,7 @@ border less.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
   interface MockVal {
     value: string;
@@ -25,18 +25,18 @@ border less.
   function mockVal(str: string, repeat = 1): MockVal {
     return {
       value: str.repeat(repeat),
-    }
+    };
   }
-  const value = ref<any>('')
-  const options = ref<MockVal[]>([])
+  const value = ref<any>('');
+  const options = ref<MockVal[]>([]);
   function onSearch(searchText: string) {
-    console.log('searchText')
+    console.log('searchText');
     options.value = !searchText
       ? []
-      : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
+      : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
   }
   function onSelect(value: string) {
-    console.log('onSelect', value)
+    console.log('onSelect', value);
   }
 </script>
 

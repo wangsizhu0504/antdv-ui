@@ -12,7 +12,7 @@ export const PresetColors = [
   'geekblue',
   'lime',
   'gold',
-] as const
+] as const;
 
 export const PresetStatusColorTypes = [
   'success',
@@ -20,4 +20,4 @@ export const PresetStatusColorTypes = [
   'error',
   'default',
   'warning',
-] as const
+] as const;

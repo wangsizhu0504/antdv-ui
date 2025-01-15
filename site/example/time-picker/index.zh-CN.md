@@ -51,7 +51,7 @@ type DisabledTime = (now: Dayjs) => {
   disabledHours?: () => number[];
   disabledMinutes?: (selectedHour: number) => number[];
   disabledSeconds?: (selectedHour: number, selectedMinute: number) => number[];
-}
+};
 ```
 
 ### 事件
@@ -87,7 +87,7 @@ type RangeDisabledTime = (
   disabledHours?: () => number[];
   disabledMinutes?: (selectedHour: number) => number[];
   disabledSeconds?: (selectedHour: number, selectedMinute: number) => number[];
-}
+};
 ```
 
 ## FAQ

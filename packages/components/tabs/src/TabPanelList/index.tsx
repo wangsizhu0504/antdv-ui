@@ -1,7 +1,7 @@
-import { cloneElement } from '@antdv/utils'
-import { defineComponent } from 'vue'
-import { tabPanelListProps } from '../props'
-import { useInjectTabs } from '../TabContext'
+import { cloneElement } from '@antdv/utils';
+import { defineComponent } from 'vue';
+import { tabPanelListProps } from '../props';
+import { useInjectTabs } from '../TabContext';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -9,12 +9,12 @@ export default defineComponent({
   inheritAttrs: false,
   props: tabPanelListProps(),
   setup(props) {
-    const { tabs, prefixCls } = useInjectTabs()
+    const { tabs, prefixCls } = useInjectTabs();
     return () => {
-      const { id, activeKey, animated, tabPosition, rtl, destroyInactiveTabPane } = props
-      const tabPaneAnimated = animated.tabPane
-      const pre = prefixCls.value
-      const activeIndex = tabs.value.findIndex(tab => tab.key === activeKey)
+      const { id, activeKey, animated, tabPosition, rtl, destroyInactiveTabPane } = props;
+      const tabPaneAnimated = animated.tabPane;
+      const pre = prefixCls.value;
+      const activeIndex = tabs.value.findIndex(tab => tab.key === activeKey);
       return (
         <div class={`${pre}-content-holder`}>
           <div
@@ -40,11 +40,11 @@ export default defineComponent({
                 animated: tabPaneAnimated,
                 active: tab.key === activeKey,
                 destroyInactiveTabPane,
-              })
+              });
             })}
           </div>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

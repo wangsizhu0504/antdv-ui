@@ -136,11 +136,11 @@ Ant Design Vue 设计规范和技术上支持灵活的样式定制，以满足�
 当你需要非 Vue 生命周期消费 Token 变量时，可以通过静态方法将其导出：
 
 ```jsx
-import { theme } from '@antdv/ui'
+import { theme } from '@antdv/ui';
 
-const { defaultAlgorithm, defaultSeed } = theme
+const { defaultAlgorithm, defaultSeed } = theme;
 
-const mapToken = defaultAlgorithm(defaultSeed)
+const mapToken = defaultAlgorithm(defaultSeed);
 ```
 
 如果需要将其应用到静态样式编译框架，如 less 可以通过 less-loader 注入：
@@ -175,7 +175,7 @@ const theme = {
   token: {
     colorPrimary: '#1890ff',
   },
-}
+};
 ```
 
 ### 梯度变量（Map Token）
@@ -187,7 +187,7 @@ const theme = {
   token: {
     colorPrimaryBg: '#e6f7ff',
   },
-}
+};
 ```
 
 ### 别名变量（Alias Token）
@@ -199,7 +199,7 @@ const theme = {
   token: {
     colorLink: '#1890ff',
   },
-}
+};
 ```
 
 ### 基本算法（algorithm)

@@ -1,5 +1,5 @@
-import type { InjectionKey, Ref } from 'vue'
-import { inject, provide } from 'vue'
+import type { InjectionKey, Ref } from 'vue';
+import { inject, provide } from 'vue';
 
 export interface ExpandedRowProps {
   componentWidth: Ref<number>;
@@ -7,12 +7,12 @@ export interface ExpandedRowProps {
   fixColumn: Ref<boolean>;
   horizonScroll: Ref<boolean>;
 }
-export const ExpandedRowContextKey: InjectionKey<ExpandedRowProps> = Symbol('ExpandedRowProps')
+export const ExpandedRowContextKey: InjectionKey<ExpandedRowProps> = Symbol('ExpandedRowProps');
 
 export function useProvideExpandedRow(props: ExpandedRowProps) {
-  provide(ExpandedRowContextKey, props)
+  provide(ExpandedRowContextKey, props);
 }
 
 export function useInjectExpandedRow() {
-  return inject(ExpandedRowContextKey, {} as ExpandedRowProps)
+  return inject(ExpandedRowContextKey, {} as ExpandedRowProps);
 }

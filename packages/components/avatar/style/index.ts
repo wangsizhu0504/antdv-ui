@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
 
 export interface ComponentToken {
   /**
@@ -53,7 +53,7 @@ type AvatarToken = FullToken<'Avatar'> & {
   avatarBg: string
   avatarColor: string
   avatarBgColor: string
-}
+};
 
 const genBaseStyle: GenerateStyle<AvatarToken> = (token) => {
   const {
@@ -73,7 +73,7 @@ const genBaseStyle: GenerateStyle<AvatarToken> = (token) => {
     borderRadiusSM,
     lineWidth,
     lineType,
-  } = token
+  } = token;
 
   // Avatar size style
   const avatarSizeStyle = (size: number, fontSize: number, radius: number): CSSObject => ({
@@ -101,7 +101,7 @@ const genBaseStyle: GenerateStyle<AvatarToken> = (token) => {
         margin: 0,
       },
     },
-  })
+  });
 
   return {
     [componentCls]: {
@@ -141,11 +141,11 @@ const genBaseStyle: GenerateStyle<AvatarToken> = (token) => {
         objectFit: 'cover',
       },
     },
-  }
-}
+  };
+};
 
 const genGroupStyle: GenerateStyle<AvatarToken> = (token) => {
-  const { componentCls, groupBorderColor, groupOverlapping, groupSpace } = token
+  const { componentCls, groupBorderColor, groupOverlapping, groupSpace } = token;
 
   return {
     [`${componentCls}-group`]: {
@@ -164,18 +164,18 @@ const genGroupStyle: GenerateStyle<AvatarToken> = (token) => {
         marginInlineStart: groupSpace,
       },
     },
-  }
-}
+  };
+};
 
 export default genComponentStyleHook(
   'Avatar',
   (token) => {
-    const { colorTextLightSolid, colorTextPlaceholder } = token
+    const { colorTextLightSolid, colorTextPlaceholder } = token;
     const avatarToken = mergeToken<AvatarToken>(token, {
       avatarBg: colorTextPlaceholder,
       avatarColor: colorTextLightSolid,
-    })
-    return [genBaseStyle(avatarToken), genGroupStyle(avatarToken)]
+    });
+    return [genBaseStyle(avatarToken), genGroupStyle(avatarToken)];
   },
   (token) => {
     const {
@@ -191,7 +191,7 @@ export default genComponentStyleHook(
       marginXS,
       marginXXS,
       colorBorderBg,
-    } = token
+    } = token;
     return {
       containerSize: controlHeight,
       containerSizeLG: controlHeightLG,
@@ -204,6 +204,6 @@ export default genComponentStyleHook(
       groupSpace: marginXXS,
       groupOverlapping: -marginXS,
       groupBorderColor: colorBorderBg,
-    }
+    };
   },
-)
+);

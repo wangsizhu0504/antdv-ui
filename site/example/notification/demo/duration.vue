@@ -19,7 +19,7 @@ the notification box will never close automatically.
 </docs>
 
 <script lang="ts" setup>
-  import { notification } from '@antdv/ui'
+  import { notification } from '@antdv/ui';
 
   function openNotification() {
     notification.open({
@@ -27,7 +27,7 @@ the notification box will never close automatically.
       description:
         'I will never close automatically. I will be close automatically. I will never close automatically.',
       duration: 0,
-    })
+    });
   }
 </script>
 

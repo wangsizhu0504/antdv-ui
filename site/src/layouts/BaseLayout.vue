@@ -1,12 +1,12 @@
 <script setup lang="ts">
-  import HeaderCom from './header/index.vue'
+  import HeaderCom from './header/index.vue';
 
   defineOptions({
     name: 'BaseLayout',
-  })
+  });
   defineProps<{
     name: string
-  }>()
+  }>();
 </script>
 
 <template>

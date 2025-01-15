@@ -1,8 +1,8 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { StepsToken } from '.'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { StepsToken } from '.';
 
 const genStepsRTLStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [`&${componentCls}-rtl`]: {
@@ -41,6 +41,6 @@ const genStepsRTLStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
           },
       },
     },
-  }
-}
-export default genStepsRTLStyle
+  };
+};
+export default genStepsRTLStyle;

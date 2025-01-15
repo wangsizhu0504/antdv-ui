@@ -22,7 +22,7 @@ You can use `filterMode` to change default filter interface, options: `menu`(def
 </docs>
 
 <script lang="ts" setup>
-  import type { TableProps } from '@antdv/ui'
+  import type { TableProps } from '@antdv/ui';
 
   const columns: TableProps['columns'] = [
     {
@@ -89,7 +89,7 @@ You can use `filterMode` to change default filter interface, options: `menu`(def
       filterSearch: true,
       width: '40%',
     },
-  ]
+  ];
 
   const data = [
     {
@@ -116,10 +116,10 @@ You can use `filterMode` to change default filter interface, options: `menu`(def
       age: 32,
       address: 'London No. 2 Lake Park',
     },
-  ]
+  ];
 
   function onChange(pagination, filters, sorter, extra) {
-    console.log('params', pagination, filters, sorter, extra)
+    console.log('params', pagination, filters, sorter, extra);
   }
 </script>
 

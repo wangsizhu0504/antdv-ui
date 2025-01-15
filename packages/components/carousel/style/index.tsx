@@ -1,5 +1,5 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
 
 export interface ComponentToken {
   dotWidth: number
@@ -14,10 +14,10 @@ interface CarouselToken extends FullToken<'Carousel'> {
 }
 
 const genCarouselStyle: GenerateStyle<CarouselToken> = (token) => {
-  const { componentCls, antCls, carouselArrowSize, carouselDotOffset, marginXXS } = token
-  const arrowOffset = -carouselArrowSize * 1.25
+  const { componentCls, antCls, carouselArrowSize, carouselDotOffset, marginXXS } = token;
+  const arrowOffset = -carouselArrowSize * 1.25;
 
-  const carouselDotMargin = marginXXS
+  const carouselDotMargin = marginXXS;
 
   return {
     [componentCls]: {
@@ -246,16 +246,16 @@ const genCarouselStyle: GenerateStyle<CarouselToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genCarouselVerticalStyle: GenerateStyle<CarouselToken> = (token) => {
-  const { componentCls, carouselDotOffset, marginXXS } = token
+  const { componentCls, carouselDotOffset, marginXXS } = token;
 
   const reverseSizeOfDot = {
     width: token.dotHeight,
     height: token.dotWidth,
-  }
+  };
 
   return {
     [`${componentCls}-vertical`]: {
@@ -294,11 +294,11 @@ const genCarouselVerticalStyle: GenerateStyle<CarouselToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genCarouselRtlStyle: GenerateStyle<CarouselToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return [
     {
@@ -322,28 +322,28 @@ const genCarouselRtlStyle: GenerateStyle<CarouselToken> = (token) => {
         },
       },
     },
-  ]
-}
+  ];
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
   'Carousel',
   (token) => {
-    const { controlHeightLG, controlHeightSM } = token
+    const { controlHeightLG, controlHeightSM } = token;
     const carouselToken = mergeToken<CarouselToken>(token, {
       carouselArrowSize: controlHeightLG / 2,
       carouselDotOffset: controlHeightSM / 2,
-    })
+    });
 
     return [
       genCarouselStyle(carouselToken),
       genCarouselVerticalStyle(carouselToken),
       genCarouselRtlStyle(carouselToken),
-    ]
+    ];
   },
   {
     dotWidth: 16,
     dotHeight: 3,
     dotWidthActive: 24,
   },
-)
+);

@@ -1,3 +1,3 @@
-import type { SizeType } from '@antdv/types'
+import type { SizeType } from '@antdv/types';
 
-export type SpaceSize = SizeType | number
+export type SpaceSize = SizeType | number;

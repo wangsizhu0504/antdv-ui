@@ -1,6 +1,6 @@
-import type { PropType } from 'vue'
-import { InputNumber, Slider } from '@antdv/ui'
-import { defineComponent, toRefs } from 'vue'
+import type { PropType } from 'vue';
+import { InputNumber, Slider } from '@antdv/ui';
+import { defineComponent, toRefs } from 'vue';
 
 export interface InputNumberPlusProps {
   value?: number
@@ -18,7 +18,7 @@ const InputNumberPlus = defineComponent({
     max: { type: Number },
   },
   setup(props) {
-    const { value, min, max } = toRefs(props)
+    const { value, min, max } = toRefs(props);
     return () => {
       return (
         <div style={{ display: 'flex', width: '200px' }}>
@@ -37,9 +37,9 @@ const InputNumberPlus = defineComponent({
             style={{ flex: 1 }}
           />
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default InputNumberPlus
+export default InputNumberPlus;

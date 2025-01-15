@@ -30,7 +30,7 @@ Add border, title and footer for table.
       title: 'Address',
       dataIndex: 'address',
     },
-  ]
+  ];
 
   const data = [
     {
@@ -51,7 +51,7 @@ Add border, title and footer for table.
       money: '￥120,000.00',
       address: 'Sidney No. 1 Lake Park',
     },
-  ]
+  ];
 </script>
 
 <template>

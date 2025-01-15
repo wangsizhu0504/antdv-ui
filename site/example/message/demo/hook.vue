@@ -17,12 +17,12 @@ Use `message.useMessage` to get `contextHolder` with context accessible issue. P
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
+  import { message } from '@antdv/ui';
 
-  const [messageApi, contextHolder] = message.useMessage()
+  const [messageApi, contextHolder] = message.useMessage();
 
   function info() {
-    messageApi.info('Hello, Ant Design Vue!')
+    messageApi.info('Hello, Ant Design Vue!');
   }
 </script>
 

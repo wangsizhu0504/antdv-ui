@@ -1,14 +1,14 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { StepsToken } from '.'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { StepsToken } from '.';
 
 const genStepsInlineStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
-  const { componentCls, inlineDotSize, inlineTitleColor, inlineTailColor } = token
-  const containerPaddingTop = token.paddingXS + token.lineWidth
+  const { componentCls, inlineDotSize, inlineTitleColor, inlineTailColor } = token;
+  const containerPaddingTop = token.paddingXS + token.lineWidth;
   const titleStyle = {
     [`${componentCls}-item-container ${componentCls}-item-content ${componentCls}-item-title`]: {
       color: inlineTitleColor,
     },
-  }
+  };
 
   return {
     [`&${componentCls}-inline`]: {
@@ -117,7 +117,7 @@ const genStepsInlineStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
           },
       },
     },
-  }
-}
+  };
+};
 
-export default genStepsInlineStyle
+export default genStepsInlineStyle;

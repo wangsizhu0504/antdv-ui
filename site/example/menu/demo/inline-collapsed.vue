@@ -29,15 +29,15 @@ Here is [a complete demo](/components/layout/#components-layout-demo-side) with 
     MenuFoldOutlined,
     MenuUnfoldOutlined,
     PieChartOutlined,
-  } from '@ant-design/icons-vue'
-  import { h, reactive, watch } from 'vue'
+  } from '@ant-design/icons-vue';
+  import { h, reactive, watch } from 'vue';
 
   const state = reactive({
     collapsed: false,
     selectedKeys: ['1'],
     openKeys: ['sub1'],
     preOpenKeys: ['sub1'],
-  })
+  });
   const items = reactive([
     {
       key: '1',
@@ -120,16 +120,16 @@ Here is [a complete demo](/components/layout/#components-layout-demo-side) with 
         },
       ],
     },
-  ])
+  ]);
   watch(
     () => state.openKeys,
     (_val, oldVal) => {
-      state.preOpenKeys = oldVal
+      state.preOpenKeys = oldVal;
     },
-  )
+  );
   function toggleCollapsed() {
-    state.collapsed = !state.collapsed
-    state.openKeys = state.collapsed ? [] : state.preOpenKeys
+    state.collapsed = !state.collapsed;
+    state.openKeys = state.collapsed ? [] : state.preOpenKeys;
   }
 </script>
 

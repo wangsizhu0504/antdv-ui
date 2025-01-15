@@ -1,35 +1,35 @@
-import type { VueNode } from '@antdv/types'
-import type { TourStepProps } from './props'
-import { classNames, getPlacements } from '@antdv/utils'
-import { VcTour } from '@antdv/vue-components'
-import { computed, defineComponent, toRefs } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
+import type { VueNode } from '@antdv/types';
+import type { TourStepProps } from './props';
+import { classNames, getPlacements } from '@antdv/utils';
+import { VcTour } from '@antdv/vue-components';
+import { computed, defineComponent, toRefs } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
 
-import TourPanel from './PanelRender'
+import TourPanel from './PanelRender';
 
-import { tourProps } from './props'
-import useMergedType from './useMergedType'
+import { tourProps } from './props';
+import useMergedType from './useMergedType';
 
 export default defineComponent({
   name: 'ATour',
   inheritAttrs: false,
   props: tourProps(),
   setup(props, { attrs, emit, slots }) {
-    const { current, type, steps, defaultCurrent } = toRefs(props)
-    const { prefixCls, direction } = useConfigInject('tour', props)
+    const { current, type, steps, defaultCurrent } = toRefs(props);
+    const { prefixCls, direction } = useConfigInject('tour', props);
 
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     const { currentMergedType, updateInnerCurrent } = useMergedType({
       defaultType: type,
       steps,
       current,
       defaultCurrent,
-    })
+    });
     return () => {
-      const { steps, current, type, rootClassName, ...restProps } = props
+      const { steps, current, type, rootClassName, ...restProps } = props;
 
       const customClassName = classNames(
         {
@@ -38,7 +38,7 @@ export default defineComponent({
         },
         hashId.value,
         rootClassName,
-      )
+      );
 
       const mergedRenderPanel = (stepProps: TourStepProps, stepCurrent: number): VueNode => {
         return (
@@ -51,21 +51,21 @@ export default defineComponent({
             }}
           >
           </TourPanel>
-        )
-      }
+        );
+      };
 
       const onStepChange = (stepCurrent: number) => {
-        updateInnerCurrent(stepCurrent)
-        emit('update:current', stepCurrent)
-        emit('change', stepCurrent)
-      }
+        updateInnerCurrent(stepCurrent);
+        emit('update:current', stepCurrent);
+        emit('change', stepCurrent);
+      };
 
       const builtinPlacements = computed(() =>
         getPlacements({
           arrowPointAtCenter: true,
           autoAdjustOverflow: true,
         }),
-      )
+      );
 
       return wrapSSR(
         <VcTour
@@ -81,7 +81,7 @@ export default defineComponent({
           steps={steps}
           builtinPlacements={builtinPlacements.value as any}
         />,
-      )
-    }
+      );
+    };
   },
-})
+});

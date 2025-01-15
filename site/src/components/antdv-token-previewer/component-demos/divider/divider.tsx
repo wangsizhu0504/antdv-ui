@@ -1,7 +1,7 @@
-import type { ComponentDemo } from '../../interface'
-import { Divider } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Divider } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -31,14 +31,14 @@ const Demo = defineComponent({
           ista probare, quae sunt a te dicta? Refert tamen, quo modo.
         </p>
       </>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorSplit', 'colorText'],
   key: 'divider',
-}
+};
 
-export default componentDemo
+export default componentDemo;

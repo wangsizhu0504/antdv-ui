@@ -1,15 +1,15 @@
-import type { CustomSlotsType, Key } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import { EllipsisOutlined } from '@ant-design/icons-vue'
-import { useState } from '@antdv/hooks'
-import { classNames, KeyCode } from '@antdv/utils'
-import { VcDropdown } from '@antdv/vue-components'
-import { computed, defineComponent, onMounted, watch } from 'vue'
-import Menu, { MenuItem } from '../../../menu'
+import type { CustomSlotsType, Key } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import { EllipsisOutlined } from '@ant-design/icons-vue';
+import { useState } from '@antdv/hooks';
+import { classNames, KeyCode } from '@antdv/utils';
+import { VcDropdown } from '@antdv/vue-components';
+import { computed, defineComponent, onMounted, watch } from 'vue';
+import Menu, { MenuItem } from '../../../menu';
 
-import { useProvideOverride } from '../../../menu/src/OverrideContext'
-import { operationNodeProps } from '../props'
-import AddButton from './AddButton'
+import { useProvideOverride } from '../../../menu/src/OverrideContext';
+import { operationNodeProps } from '../props';
+import AddButton from './AddButton';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -23,84 +23,84 @@ export default defineComponent({
   }>,
   setup(props, { attrs, slots }) {
     // ======================== Dropdown ========================
-    const [open, setOpen] = useState(false)
-    const [selectedKey, setSelectedKey] = useState<Key>(null)
+    const [open, setOpen] = useState(false);
+    const [selectedKey, setSelectedKey] = useState<Key>(null);
     const selectOffset = (offset: -1 | 1) => {
-      const enabledTabs = props.tabs.filter(tab => !tab.disabled)
-      let selectedIndex = enabledTabs.findIndex(tab => tab.key === selectedKey.value) || 0
-      const len = enabledTabs.length
+      const enabledTabs = props.tabs.filter(tab => !tab.disabled);
+      let selectedIndex = enabledTabs.findIndex(tab => tab.key === selectedKey.value) || 0;
+      const len = enabledTabs.length;
 
       for (let i = 0; i < len; i += 1) {
-        selectedIndex = (selectedIndex + offset + len) % len
-        const tab = enabledTabs[selectedIndex]
+        selectedIndex = (selectedIndex + offset + len) % len;
+        const tab = enabledTabs[selectedIndex];
         if (!tab.disabled) {
-          setSelectedKey(tab.key)
-          return
+          setSelectedKey(tab.key);
+          return;
         }
       }
-    }
+    };
 
     const onKeyDown = (e: KeyboardEvent) => {
-      const { which } = e
+      const { which } = e;
 
       if (!open.value) {
         if ([KeyCode.DOWN, KeyCode.SPACE, KeyCode.ENTER].includes(which)) {
-          setOpen(true)
-          e.preventDefault()
+          setOpen(true);
+          e.preventDefault();
         }
-        return
+        return;
       }
 
       switch (which) {
         case KeyCode.UP:
-          selectOffset(-1)
-          e.preventDefault()
-          break
+          selectOffset(-1);
+          e.preventDefault();
+          break;
         case KeyCode.DOWN:
-          selectOffset(1)
-          e.preventDefault()
-          break
+          selectOffset(1);
+          e.preventDefault();
+          break;
         case KeyCode.ESC:
-          setOpen(false)
-          break
+          setOpen(false);
+          break;
         case KeyCode.SPACE:
         case KeyCode.ENTER:
-          if (selectedKey.value !== null) props.onTabClick(selectedKey.value, e)
-          break
+          if (selectedKey.value !== null) props.onTabClick(selectedKey.value, e);
+          break;
       }
-    }
-    const popupId = computed(() => `${props.id}-more-popup`)
+    };
+    const popupId = computed(() => `${props.id}-more-popup`);
 
     const selectedItemId = computed(() =>
       selectedKey.value !== null ? `${popupId.value}-${selectedKey.value}` : null,
-    )
+    );
 
     const onRemoveTab = (event: MouseEvent | KeyboardEvent, key: Key) => {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
       props.editable.onEdit('remove', {
         key,
         event,
-      })
-    }
+      });
+    };
 
     onMounted(() => {
       watch(
         selectedKey,
         () => {
-          const ele = document.getElementById(selectedItemId.value)
+          const ele = document.getElementById(selectedItemId.value);
           if (ele && ele.scrollIntoView)
-            ele.scrollIntoView(false)
+            ele.scrollIntoView(false);
         },
         { flush: 'post', immediate: true },
-      )
-    })
+      );
+    });
 
     watch(open, () => {
       if (!open.value)
-        setSelectedKey(null)
-    })
-    useProvideOverride({})
+        setSelectedKey(null);
+    });
+    useProvideOverride({});
     return () => {
       const {
         prefixCls,
@@ -115,26 +115,26 @@ export default defineComponent({
         rtl,
         onTabClick,
         popupClassName,
-      } = props
+      } = props;
 
-      if (!tabs.length) return null
-      const dropdownPrefix = `${prefixCls}-dropdown`
+      if (!tabs.length) return null;
+      const dropdownPrefix = `${prefixCls}-dropdown`;
 
-      const dropdownAriaLabel = locale?.dropdownAriaLabel
+      const dropdownAriaLabel = locale?.dropdownAriaLabel;
 
       // ========================= Render =========================
       const moreStyle: CSSProperties = {
         [rtl ? 'marginRight' : 'marginLeft']: tabBarGutter,
-      }
+      };
       if (!tabs.length) {
-        moreStyle.visibility = 'hidden'
-        moreStyle.order = 1
+        moreStyle.visibility = 'hidden';
+        moreStyle.order = 1;
       }
 
       const overlayClassName = classNames({
         [`${dropdownPrefix}-rtl`]: rtl,
         [`${popupClassName}`]: true,
-      })
+      });
       const moreNode = mobile
         ? null
         : (
@@ -152,8 +152,8 @@ export default defineComponent({
                 overlay: () => (
                   <Menu
                     onClick={({ key, domEvent }) => {
-                      onTabClick(key, domEvent)
-                      setOpen(false)
+                      onTabClick(key, domEvent);
+                      setOpen(false);
                     }}
                     id={popupId.value}
                     tabindex={-1}
@@ -165,7 +165,7 @@ export default defineComponent({
                     }
                   >
                     {tabs.map((tab) => {
-                      const removable = editable && tab.closable !== false && !tab.disabled
+                      const removable = editable && tab.closable !== false && !tab.disabled;
                       return (
                         <MenuItem
                           key={tab.key}
@@ -182,15 +182,15 @@ export default defineComponent({
                               tabindex={0}
                               class={`${dropdownPrefix}-menu-item-remove`}
                               onClick={(e) => {
-                                e.stopPropagation()
-                                onRemoveTab(e, tab.key)
+                                e.stopPropagation();
+                                onRemoveTab(e, tab.key);
                               }}
                             >
                               {tab.closeIcon?.() || editable.removeIcon?.() || '×'}
                             </button>
                           )}
                         </MenuItem>
-                      )
+                      );
                     })}
                   </Menu>
                 ),
@@ -213,7 +213,7 @@ export default defineComponent({
               }}
             >
             </VcDropdown>
-          )
+          );
 
       return (
         <div
@@ -223,7 +223,7 @@ export default defineComponent({
           {moreNode}
           <AddButton prefixCls={prefixCls} locale={locale} editable={editable} />
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

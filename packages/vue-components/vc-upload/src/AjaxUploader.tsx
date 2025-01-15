@@ -1,13 +1,13 @@
-import type { ChangeEvent } from '@antdv/types'
-import type { BeforeUploadFileType, RcFile, UploadProgressEvent, UploadRequestError } from './interface'
-import { pickAttrs } from '@antdv/utils'
-import { partition } from 'lodash-es'
-import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
-import attrAccept from './attr-accept'
-import { uploadProps } from './interface'
-import defaultRequest from './request'
-import traverseFileTree from './traverseFileTree'
-import getUid from './uid'
+import type { ChangeEvent } from '@antdv/types';
+import type { BeforeUploadFileType, RcFile, UploadProgressEvent, UploadRequestError } from './interface';
+import { pickAttrs } from '@antdv/utils';
+import { partition } from 'lodash-es';
+import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
+import attrAccept from './attr-accept';
+import { uploadProps } from './interface';
+import defaultRequest from './request';
+import traverseFileTree from './traverseFileTree';
+import getUid from './uid';
 
 interface ParsedFileInfo {
   origin: RcFile;
@@ -21,26 +21,26 @@ export default defineComponent({
   inheritAttrs: false,
   props: uploadProps(),
   setup(props, { slots, attrs, expose }) {
-    const uid = ref(getUid())
-    const reqs: any = {}
+    const uid = ref(getUid());
+    const reqs: any = {};
 
-    const fileInput = ref<HTMLInputElement>()
+    const fileInput = ref<HTMLInputElement>();
 
-    let isMounted = false
+    let isMounted = false;
 
     /**
      * Process file before upload. When all the file is ready, we start upload.
      */
     const processFile = async (file: RcFile, fileList: RcFile[]): Promise<ParsedFileInfo> => {
-      const { beforeUpload } = props
+      const { beforeUpload } = props;
 
-      let transformedFile: BeforeUploadFileType | void = file
+      let transformedFile: BeforeUploadFileType | void = file;
       if (beforeUpload) {
         try {
-          transformedFile = await beforeUpload(file, fileList)
+          transformedFile = await beforeUpload(file, fileList);
         } catch (e) {
           // Rejection will also trade as false
-          transformedFile = false
+          transformedFile = false;
         }
         if (transformedFile === false) {
           return {
@@ -48,25 +48,25 @@ export default defineComponent({
             parsedFile: null,
             action: null,
             data: null,
-          }
+          };
         }
       }
 
       // Get latest action
-      const { action } = props
-      let mergedAction: string
+      const { action } = props;
+      let mergedAction: string;
       if (typeof action === 'function')
-        mergedAction = await action(file)
+        mergedAction = await action(file);
       else
-        mergedAction = action
+        mergedAction = action;
 
       // Get latest data
-      const { data } = props
-      let mergedData: Record<string, unknown>
+      const { data } = props;
+      let mergedData: Record<string, unknown>;
       if (typeof data === 'function')
-        mergedData = await data(file)
+        mergedData = await data(file);
       else
-        mergedData = data
+        mergedData = data;
 
       const parsedData
         // string type is from legacy `transformFile`.
@@ -74,33 +74,33 @@ export default defineComponent({
         = (typeof transformedFile === 'object' || typeof transformedFile === 'string')
         && transformedFile
           ? transformedFile
-          : file
+          : file;
 
-      let parsedFile: File
+      let parsedFile: File;
       if (parsedData instanceof File)
-        parsedFile = parsedData
+        parsedFile = parsedData;
       else
-        parsedFile = new File([parsedData], file.name, { type: file.type })
+        parsedFile = new File([parsedData], file.name, { type: file.type });
 
-      const mergedParsedFile: RcFile = parsedFile as RcFile
-      mergedParsedFile.uid = file.uid
+      const mergedParsedFile: RcFile = parsedFile as RcFile;
+      mergedParsedFile.uid = file.uid;
 
       return {
         origin: file,
         data: mergedData,
         parsedFile: mergedParsedFile,
         action: mergedAction,
-      }
-    }
+      };
+    };
 
     const post = ({ data, origin, action, parsedFile }: ParsedFileInfo) => {
       if (!isMounted)
-        return
+        return;
 
-      const { onStart, customRequest, name, headers, withCredentials, method } = props
+      const { onStart, customRequest, name, headers, withCredentials, method } = props;
 
-      const { uid } = origin
-      const request = customRequest || defaultRequest
+      const { uid } = origin;
+      const request = customRequest || defaultRequest;
 
       const requestOption = {
         action,
@@ -111,140 +111,140 @@ export default defineComponent({
         withCredentials,
         method: method || 'post',
         onProgress: (e: UploadProgressEvent) => {
-          const { onProgress } = props
-          onProgress?.(e, parsedFile)
+          const { onProgress } = props;
+          onProgress?.(e, parsedFile);
         },
         onSuccess: (ret: any, xhr: XMLHttpRequest) => {
-          const { onSuccess } = props
-          onSuccess?.(ret, parsedFile, xhr)
+          const { onSuccess } = props;
+          onSuccess?.(ret, parsedFile, xhr);
 
-          delete reqs[uid]
+          delete reqs[uid];
         },
         onError: (err: UploadRequestError, ret: any) => {
-          const { onError } = props
-          onError?.(err, ret, parsedFile)
+          const { onError } = props;
+          onError?.(err, ret, parsedFile);
 
-          delete reqs[uid]
+          delete reqs[uid];
         },
-      }
+      };
 
-      onStart(origin)
-      reqs[uid] = request(requestOption)
-    }
+      onStart(origin);
+      reqs[uid] = request(requestOption);
+    };
 
     const reset = () => {
-      uid.value = getUid()
-    }
+      uid.value = getUid();
+    };
 
     const abort = (file?: any) => {
       if (file) {
-        const uid = file.uid ? file.uid : file
+        const uid = file.uid ? file.uid : file;
         if (reqs[uid] && reqs[uid].abort)
-          reqs[uid].abort()
+          reqs[uid].abort();
 
-        delete reqs[uid]
+        delete reqs[uid];
       } else {
         Object.keys(reqs).forEach((uid) => {
           if (reqs[uid] && reqs[uid].abort)
-            reqs[uid].abort()
+            reqs[uid].abort();
 
-          delete reqs[uid]
-        })
+          delete reqs[uid];
+        });
       }
-    }
+    };
 
     onMounted(() => {
-      isMounted = true
-    })
+      isMounted = true;
+    });
 
     onBeforeUnmount(() => {
-      isMounted = false
-      abort()
-    })
+      isMounted = false;
+      abort();
+    });
     const uploadFiles = (files: File[]) => {
-      const originFiles = [...files] as RcFile[]
+      const originFiles = [...files] as RcFile[];
       const postFiles = originFiles.map((file: RcFile & { uid?: string }) => {
-        file.uid = getUid()
-        return processFile(file, originFiles)
-      })
+        file.uid = getUid();
+        return processFile(file, originFiles);
+      });
 
       // Batch upload files
       Promise.all(postFiles).then((fileList) => {
-        const { onBatchStart } = props
+        const { onBatchStart } = props;
 
-        onBatchStart?.(fileList.map(({ origin, parsedFile }) => ({ file: origin, parsedFile })))
+        onBatchStart?.(fileList.map(({ origin, parsedFile }) => ({ file: origin, parsedFile })));
 
         fileList
           .filter(file => file.parsedFile !== null)
           .forEach((file) => {
-            post(file)
-          })
-      })
-    }
+            post(file);
+          });
+      });
+    };
 
     const onChange = (e: ChangeEvent) => {
-      const { accept, directory } = props
-      const { files } = e.target as any
+      const { accept, directory } = props;
+      const { files } = e.target as any;
       const acceptedFiles = [...files].filter(
         (file: RcFile) => !directory || attrAccept(file, accept),
-      )
-      uploadFiles(acceptedFiles)
-      reset()
-    }
+      );
+      uploadFiles(acceptedFiles);
+      reset();
+    };
 
     const onClick = (e: MouseEvent | KeyboardEvent) => {
-      const el = fileInput.value
+      const el = fileInput.value;
       if (!el)
-        return
+        return;
 
-      const { onClick } = props
+      const { onClick } = props;
       // TODO
       // if (children && (children as any).type === 'button') {
       //   const parent = el.parentNode as HTMLInputElement;
       //   parent.focus();
       //   parent.querySelector('button').blur();
       // }
-      el.click()
+      el.click();
       if (onClick)
-        onClick(e)
-    }
+        onClick(e);
+    };
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Enter')
-        onClick(e)
-    }
+        onClick(e);
+    };
 
     const onFileDrop = (e: DragEvent) => {
-      const { multiple } = props
+      const { multiple } = props;
 
-      e.preventDefault()
+      e.preventDefault();
 
       if (e.type === 'dragover')
-        return
+        return;
 
       if (props.directory) {
         traverseFileTree(
           Array.prototype.slice.call(e.dataTransfer.items),
           uploadFiles,
           (_file: RcFile) => attrAccept(_file, props.accept),
-        )
+        );
       } else {
         const files: [RcFile[], RcFile[]] = partition(
           Array.prototype.slice.call(e.dataTransfer.files),
           (file: RcFile) => attrAccept(file, props.accept),
-        )
-        let successFiles = files[0]
-        const errorFiles = files[1]
+        );
+        let successFiles = files[0];
+        const errorFiles = files[1];
         if (multiple === false)
-          successFiles = successFiles.slice(0, 1)
+          successFiles = successFiles.slice(0, 1);
 
-        uploadFiles(successFiles)
-        if (errorFiles.length && props.onReject) props.onReject(errorFiles)
+        uploadFiles(successFiles);
+        if (errorFiles.length && props.onReject) props.onReject(errorFiles);
       }
-    }
+    };
     expose({
       abort,
-    })
+    });
     return () => {
       const {
         componentTag: Tag,
@@ -259,16 +259,16 @@ export default defineComponent({
         onMouseenter,
         onMouseleave,
         ...otherProps
-      } = props
+      } = props;
       const cls = {
         [prefixCls]: true,
         [`${prefixCls}-disabled`]: disabled,
         [attrs.class as string]: !!attrs.class,
-      }
+      };
       // because input don't have directory/webkitdirectory type declaration
       const dirProps: any = directory
         ? { directory: 'directory', webkitdirectory: 'webkitdirectory' }
-        : {}
+        : {};
       const events = disabled
         ? {}
         : {
@@ -279,7 +279,7 @@ export default defineComponent({
             onDrop: onFileDrop,
             onDragover: onFileDrop,
             tabindex: '0',
-          }
+          };
       return (
         <Tag {...events} class={cls} role="button" style={attrs.style}>
           <input
@@ -299,7 +299,7 @@ export default defineComponent({
           />
           {slots.default?.()}
         </Tag>
-      )
-    }
+      );
+    };
   },
-})
+});

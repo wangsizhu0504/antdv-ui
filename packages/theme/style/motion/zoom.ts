@@ -1,7 +1,7 @@
-import type { AliasToken, CSSInterpolation } from '@antdv/theme'
-import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook'
-import { Keyframes } from '@antdv/theme'
-import { initMotion } from './motion'
+import type { AliasToken, CSSInterpolation } from '@antdv/theme';
+import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook';
+import { Keyframes } from '@antdv/theme';
+import { initMotion } from './motion';
 
 export const zoomIn = new Keyframes('antZoomIn', {
   '0%': {
@@ -13,7 +13,7 @@ export const zoomIn = new Keyframes('antZoomIn', {
     transform: 'scale(1)',
     opacity: 1,
   },
-})
+});
 
 export const zoomOut = new Keyframes('antZoomOut', {
   '0%': {
@@ -24,7 +24,7 @@ export const zoomOut = new Keyframes('antZoomOut', {
     transform: 'scale(0.2)',
     opacity: 0,
   },
-})
+});
 
 export const zoomBigIn = new Keyframes('antZoomBigIn', {
   '0%': {
@@ -36,7 +36,7 @@ export const zoomBigIn = new Keyframes('antZoomBigIn', {
     transform: 'scale(1)',
     opacity: 1,
   },
-})
+});
 
 export const zoomBigOut = new Keyframes('antZoomBigOut', {
   '0%': {
@@ -47,7 +47,7 @@ export const zoomBigOut = new Keyframes('antZoomBigOut', {
     transform: 'scale(0.8)',
     opacity: 0,
   },
-})
+});
 
 export const zoomUpIn = new Keyframes('antZoomUpIn', {
   '0%': {
@@ -60,7 +60,7 @@ export const zoomUpIn = new Keyframes('antZoomUpIn', {
     transform: 'scale(1)',
     transformOrigin: '50% 0%',
   },
-})
+});
 
 export const zoomUpOut = new Keyframes('antZoomUpOut', {
   '0%': {
@@ -73,7 +73,7 @@ export const zoomUpOut = new Keyframes('antZoomUpOut', {
     transformOrigin: '50% 0%',
     opacity: 0,
   },
-})
+});
 
 export const zoomLeftIn = new Keyframes('antZoomLeftIn', {
   '0%': {
@@ -86,7 +86,7 @@ export const zoomLeftIn = new Keyframes('antZoomLeftIn', {
     transform: 'scale(1)',
     transformOrigin: '0% 50%',
   },
-})
+});
 
 export const zoomLeftOut = new Keyframes('antZoomLeftOut', {
   '0%': {
@@ -99,7 +99,7 @@ export const zoomLeftOut = new Keyframes('antZoomLeftOut', {
     transformOrigin: '0% 50%',
     opacity: 0,
   },
-})
+});
 
 export const zoomRightIn = new Keyframes('antZoomRightIn', {
   '0%': {
@@ -112,7 +112,7 @@ export const zoomRightIn = new Keyframes('antZoomRightIn', {
     transform: 'scale(1)',
     transformOrigin: '100% 50%',
   },
-})
+});
 
 export const zoomRightOut = new Keyframes('antZoomRightOut', {
   '0%': {
@@ -125,7 +125,7 @@ export const zoomRightOut = new Keyframes('antZoomRightOut', {
     transformOrigin: '100% 50%',
     opacity: 0,
   },
-})
+});
 
 export const zoomDownIn = new Keyframes('antZoomDownIn', {
   '0%': {
@@ -138,7 +138,7 @@ export const zoomDownIn = new Keyframes('antZoomDownIn', {
     transform: 'scale(1)',
     transformOrigin: '50% 100%',
   },
-})
+});
 
 export const zoomDownOut = new Keyframes('antZoomDownOut', {
   '0%': {
@@ -151,7 +151,7 @@ export const zoomDownOut = new Keyframes('antZoomDownOut', {
     transformOrigin: '50% 100%',
     opacity: 0,
   },
-})
+});
 
 type ZoomMotionTypes =
   | 'zoom'
@@ -160,7 +160,7 @@ type ZoomMotionTypes =
   | 'zoom-left'
   | 'zoom-right'
   | 'zoom-up'
-  | 'zoom-down'
+  | 'zoom-down';
 const zoomMotion: Record<ZoomMotionTypes, { inKeyframes: Keyframes, outKeyframes: Keyframes }> = {
   'zoom': {
     inKeyframes: zoomIn,
@@ -190,12 +190,12 @@ const zoomMotion: Record<ZoomMotionTypes, { inKeyframes: Keyframes, outKeyframes
     inKeyframes: zoomDownIn,
     outKeyframes: zoomDownOut,
   },
-}
+};
 
 export function initZoomMotion(token: TokenWithCommonCls<AliasToken>, motionName: ZoomMotionTypes): CSSInterpolation {
-  const { antCls } = token
-  const motionCls = `${antCls}-${motionName}`
-  const { inKeyframes, outKeyframes } = zoomMotion[motionName]
+  const { antCls } = token;
+  const motionCls = `${antCls}-${motionName}`;
+  const { inKeyframes, outKeyframes } = zoomMotion[motionName];
 
   return [
     initMotion(
@@ -222,5 +222,5 @@ export function initZoomMotion(token: TokenWithCommonCls<AliasToken>, motionName
         animationTimingFunction: token.motionEaseInOutCirc,
       },
     },
-  ]
+  ];
 }

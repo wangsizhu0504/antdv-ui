@@ -1,5 +1,5 @@
-declare const __webpack_nonce__: string | undefined
-let nonce: string | undefined
+declare const __webpack_nonce__: string | undefined;
+let nonce: string | undefined;
 
 /**
  * Returns a nonce hash included by Webpack or the one defined manually by developer.
@@ -7,9 +7,9 @@ let nonce: string | undefined
  * https://webpack.js.org/guides/csp/
  */
 export function getNonce(): string | undefined {
-  if (nonce) return nonce
-  if (typeof __webpack_nonce__ !== 'undefined') return __webpack_nonce__
-  return undefined
+  if (nonce) return nonce;
+  if (typeof __webpack_nonce__ !== 'undefined') return __webpack_nonce__;
+  return undefined;
 }
 
 /**
@@ -17,5 +17,5 @@ export function getNonce(): string | undefined {
  * This function has to be invoked before any picker is rendered if you aren't using Webpack for CSP.
  */
 export function setNonce(hash: string): void {
-  nonce = hash
+  nonce = hash;
 }

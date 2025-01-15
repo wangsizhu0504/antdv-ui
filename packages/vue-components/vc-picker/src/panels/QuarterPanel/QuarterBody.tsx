@@ -1,13 +1,13 @@
-import type { GenerateConfig } from '../../generate'
-import type { Locale } from '../../interface'
-import useCellClassName from '../../hooks/useCellClassName'
-import useMergeProps from '../../hooks/useMergeProps'
-import { useInjectRange } from '../../RangeContext'
-import { formatValue, isSameQuarter } from '../../utils/dateUtil'
-import PanelBody from '../PanelBody'
+import type { GenerateConfig } from '../../generate';
+import type { Locale } from '../../interface';
+import useCellClassName from '../../hooks/useCellClassName';
+import useMergeProps from '../../hooks/useMergeProps';
+import { useInjectRange } from '../../RangeContext';
+import { formatValue, isSameQuarter } from '../../utils/dateUtil';
+import PanelBody from '../PanelBody';
 
-export const QUARTER_COL_COUNT = 4
-const QUARTER_ROW_COUNT = 1
+export const QUARTER_COL_COUNT = 4;
+const QUARTER_ROW_COUNT = 1;
 
 export interface QuarterBodyProps<DateType> {
   prefixCls: string;
@@ -20,12 +20,12 @@ export interface QuarterBodyProps<DateType> {
 }
 
 function QuarterBody<DateType>(_props: QuarterBodyProps<DateType>) {
-  const props = useMergeProps(_props)
-  const { prefixCls, locale, value, viewDate, generateConfig } = props
+  const props = useMergeProps(_props);
+  const { prefixCls, locale, value, viewDate, generateConfig } = props;
 
-  const { rangedValue, hoverRangedValue } = useInjectRange()
+  const { rangedValue, hoverRangedValue } = useInjectRange();
 
-  const cellPrefixCls = `${prefixCls}-cell`
+  const cellPrefixCls = `${prefixCls}-cell`;
 
   const getCellClassName = useCellClassName({
     cellPrefixCls,
@@ -36,9 +36,9 @@ function QuarterBody<DateType>(_props: QuarterBodyProps<DateType>) {
     isSameCell: (current, target) => isSameQuarter(generateConfig, current, target),
     isInView: () => true,
     offsetCell: (date, offset) => generateConfig.addMonth(date, offset * 3),
-  })
+  });
 
-  const baseQuarter = generateConfig.setDate(generateConfig.setMonth(viewDate, 0), 1)
+  const baseQuarter = generateConfig.setDate(generateConfig.setMonth(viewDate, 0), 1);
 
   return (
     <PanelBody
@@ -61,9 +61,9 @@ function QuarterBody<DateType>(_props: QuarterBodyProps<DateType>) {
           generateConfig,
         })}
     />
-  )
+  );
 }
 
-QuarterBody.displayName = 'QuarterBody'
-QuarterBody.inheritAttrs = false
-export default QuarterBody
+QuarterBody.displayName = 'QuarterBody';
+QuarterBody.inheritAttrs = false;
+export default QuarterBody;

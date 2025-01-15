@@ -1,8 +1,8 @@
-import type { CSSProperties, PropType, TransitionProps } from 'vue'
-import { arrayType, functionType, objectType, PropTypes } from '@antdv/utils'
+import type { CSSProperties, PropType, TransitionProps } from 'vue';
+import { arrayType, functionType, objectType, PropTypes } from '@antdv/utils';
 
-export type IPlacement = 'left' | 'top' | 'right' | 'bottom'
-type ILevelMove = number | [number, number]
+export type IPlacement = 'left' | 'top' | 'right' | 'bottom';
+type ILevelMove = number | [number, number];
 function props() {
   return {
     prefixCls: String,
@@ -36,7 +36,7 @@ function props() {
     // Motion
     motion: functionType<(placement: IPlacement) => TransitionProps>(),
     maskMotion: objectType<TransitionProps>(),
-  }
+  };
 }
 
 function drawerProps() {
@@ -49,7 +49,7 @@ function drawerProps() {
       PropTypes.object,
       PropTypes.looseBool,
     ]),
-  }
+  };
 }
 
 function drawerChildProps() {
@@ -59,6 +59,6 @@ function drawerChildProps() {
     getOpenCount: Function as PropType<() => number>,
     scrollLocker: PropTypes.any,
     inline: Boolean,
-  }
+  };
 }
-export { drawerChildProps, drawerProps }
+export { drawerChildProps, drawerProps };

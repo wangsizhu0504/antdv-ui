@@ -1,6 +1,6 @@
-import type { CSSInterpolation, CSSObject } from '../cssinjs'
-import type { DerivativeToken, FullToken } from '../token'
-import type { OverrideComponent } from '../token/util/genComponentStyleHook'
+import type { CSSInterpolation, CSSObject } from '../cssinjs';
+import type { DerivativeToken, FullToken } from '../token';
+import type { OverrideComponent } from '../token/util/genComponentStyleHook';
 
 function compactItemVerticalBorder(token: DerivativeToken, parentCls: string): CSSObject {
   return {
@@ -18,7 +18,7 @@ function compactItemVerticalBorder(token: DerivativeToken, parentCls: string): C
         zIndex: 0,
       },
     },
-  }
+  };
 }
 
 function compactItemBorderVerticalRadius(prefixCls: string, parentCls: string): CSSObject {
@@ -40,18 +40,18 @@ function compactItemBorderVerticalRadius(prefixCls: string, parentCls: string): 
         borderStartEndRadius: 0,
       },
     },
-  }
+  };
 }
 
 export function genCompactItemVerticalStyle<T extends OverrideComponent>(
   token: FullToken<T>,
 ): CSSInterpolation {
-  const compactCls = `${token.componentCls}-compact-vertical`
+  const compactCls = `${token.componentCls}-compact-vertical`;
 
   return {
     [compactCls]: {
       ...compactItemVerticalBorder(token, compactCls),
       ...compactItemBorderVerticalRadius(token.componentCls, compactCls),
     },
-  }
+  };
 }

@@ -1,4 +1,4 @@
-import { onBeforeUnmount } from 'vue'
+import { onBeforeUnmount } from 'vue';
 
 /**
  * Locker return cached mark.
@@ -7,22 +7,22 @@ import { onBeforeUnmount } from 'vue'
  * And after time duration, it will back to `null` automatically.
  */
 export default function useLock(duration = 250): [() => boolean | null, (lock: boolean) => void] {
-  let lock: boolean | null = null
-  let timeout: any
+  let lock: boolean | null = null;
+  let timeout: any;
 
   onBeforeUnmount(() => {
-    clearTimeout(timeout)
-  })
+    clearTimeout(timeout);
+  });
 
   function doLock(locked: boolean) {
     if (locked || lock === null)
-      lock = locked
+      lock = locked;
 
-    clearTimeout(timeout)
+    clearTimeout(timeout);
     timeout = setTimeout(() => {
-      lock = null
-    }, duration)
+      lock = null;
+    }, duration);
   }
 
-  return [() => lock, doLock]
+  return [() => lock, doLock];
 }

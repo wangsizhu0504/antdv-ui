@@ -20,21 +20,21 @@ Set a number and automatically fold after exceeding.
 </docs>
 
 <script lang="ts" setup>
-  import type { SelectProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { SelectProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const options = ref<SelectProps['options']>([])
+  const options = ref<SelectProps['options']>([]);
 
   for (let i = 10; i < 36; i++) {
-    const value = i.toString(36) + i
+    const value = i.toString(36) + i;
     options.value.push({
       label: `Long Label: ${value}`,
       value,
-    })
+    });
   }
-  const maxTagCount = ref<any>(2)
-  const maxTagTextLength = ref<any>(10)
-  const value = ref<any>(['a10', 'c12', 'h17', 'j19', 'k20'])
+  const maxTagCount = ref<any>(2);
+  const maxTagTextLength = ref<any>(10);
+  const value = ref<any>(['a10', 'c12', 'h17', 'j19', 'k20']);
 </script>
 
 <template>

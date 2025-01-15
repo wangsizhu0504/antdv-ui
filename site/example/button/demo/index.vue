@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import Basic from './basic.vue'
-  import Block from './block.vue'
-  import Danger from './danger.vue'
-  import Disabled from './disabled.vue'
-  import Ghost from './ghost.vue'
-  import Icon from './icon.vue'
-  import Loading from './loading.vue'
-  import Multiple from './multiple.vue'
-  import Size from './size.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import Basic from './basic.vue';
+  import Block from './block.vue';
+  import Danger from './danger.vue';
+  import Disabled from './disabled.vue';
+  import Ghost from './ghost.vue';
+  import Icon from './icon.vue';
+  import Loading from './loading.vue';
+  import Multiple from './multiple.vue';
+  import Size from './size.vue';
 
   export default defineComponent({
     CN,
@@ -27,9 +27,9 @@
       Danger,
     },
     setup() {
-      return {}
+      return {};
     },
-  })
+  });
 </script>
 
 <template>

@@ -1,26 +1,26 @@
-import type { CSSProperties } from 'vue'
-import { useToken } from '@antdv/theme'
-import { TinyColor } from '@ctrl/tinycolor'
-import { computed, defineComponent } from 'vue'
+import type { CSSProperties } from 'vue';
+import { useToken } from '@antdv/theme';
+import { TinyColor } from '@ctrl/tinycolor';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'DefaultEmptyImg',
   PRESENTED_IMAGE_DEFAULT: true,
   setup() {
-    const [, token] = useToken()
+    const [, token] = useToken();
 
     const themeStyle = computed<CSSProperties>(() => {
-      const bgColor = new TinyColor(token.value.colorBgBase)
+      const bgColor = new TinyColor(token.value.colorBgBase);
 
       // Dark Theme need more dark of this
       if (bgColor.toHsl().l < 0.5) {
         return {
           opacity: 0.65,
-        }
+        };
       }
-      return {}
-    })
+      return {};
+    });
 
     return () => (
       <svg
@@ -68,6 +68,6 @@ export default defineComponent({
           </g>
         </g>
       </svg>
-    )
+    );
   },
-})
+});

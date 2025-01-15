@@ -10,42 +10,42 @@ E.prototype = {
     (e[name] || (e[name] = [])).push({
       fn: callback,
       ctx,
-    })
+    });
 
-    return this
+    return this;
   },
 
   once(name, callback, ctx) {
-    const self = this
+    const self = this;
     function listener() {
-      self.off(name, listener)
-      callback.apply(ctx, arguments)
+      self.off(name, listener);
+      callback.apply(ctx, arguments);
     }
 
-    listener._ = callback
-    return this.on(name, listener, ctx)
+    listener._ = callback;
+    return this.on(name, listener, ctx);
   },
 
   emit(name) {
-    const data = [].slice.call(arguments, 1)
-    const evtArr = ((this.e || (this.e = {}))[name] || []).slice()
-    let i = 0
-    const len = evtArr.length
+    const data = [].slice.call(arguments, 1);
+    const evtArr = ((this.e || (this.e = {}))[name] || []).slice();
+    let i = 0;
+    const len = evtArr.length;
 
     for (i; i < len; i++)
-      evtArr[i].fn.apply(evtArr[i].ctx, data)
+      evtArr[i].fn.apply(evtArr[i].ctx, data);
 
-    return this
+    return this;
   },
 
   off(name, callback) {
-    const e = this.e || (this.e = {})
-    const evts = e[name]
-    const liveEvents = []
+    const e = this.e || (this.e = {});
+    const evts = e[name];
+    const liveEvents = [];
 
     if (evts && callback) {
       for (let i = 0, len = evts.length; i < len; i++) {
-        if (evts[i].fn !== callback && evts[i].fn._ !== callback) liveEvents.push(evts[i])
+        if (evts[i].fn !== callback && evts[i].fn._ !== callback) liveEvents.push(evts[i]);
       }
     }
 
@@ -53,10 +53,10 @@ E.prototype = {
     // Suggested by https://github.com/lazd
     // Ref: https://github.com/scottcorgan/tiny-emitter/commit/c6ebfaa9bc973b33d110a84a307742b7cf94c953#commitcomment-5024910
 
-    liveEvents.length ? (e[name] = liveEvents) : delete e[name]
+    liveEvents.length ? (e[name] = liveEvents) : delete e[name];
 
-    return this
+    return this;
   },
-}
+};
 
-export default E
+export default E;

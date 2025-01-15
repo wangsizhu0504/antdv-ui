@@ -1,7 +1,7 @@
-import type { ComponentDemo } from '../../interface'
-import { HomeOutlined, LoadingOutlined, SettingFilled, SmileOutlined, SyncOutlined } from '@ant-design/icons-vue'
-import { Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { HomeOutlined, LoadingOutlined, SettingFilled, SmileOutlined, SyncOutlined } from '@ant-design/icons-vue';
+import { Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -18,13 +18,13 @@ const Demo = defineComponent({
         {' '}
         <LoadingOutlined />
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

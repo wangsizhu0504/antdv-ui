@@ -1,31 +1,31 @@
-import type { ComponentDemo } from '../../interface'
-import { Button, Checkbox, Form, FormItem, Input } from '@antdv/ui'
-import { defineComponent, reactive, ref, toRaw } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Button, Checkbox, Form, FormItem, Input } from '@antdv/ui';
+import { defineComponent, reactive, ref, toRaw } from 'vue';
 
 const Demo = defineComponent({
   setup() {
     return () => {
-      const onFinish = () => {}
-      const onFinishFailed = () => {}
-      const formRef = ref<any>()
+      const onFinish = () => {};
+      const onFinishFailed = () => {};
+      const formRef = ref<any>();
       const formData = reactive({
         username: '',
         password: '',
-      })
+      });
 
       const onSubmit = () => {
         formRef.value
           .validate()
           .then(() => {
-            console.log('values', formData, toRaw(formData))
+            console.log('values', formData, toRaw(formData));
           })
           .catch((error) => {
-            console.log('error', error)
-          })
-      }
+            console.log('error', error);
+          });
+      };
       const resetForm = () => {
-        formRef.value.resetFields()
-      }
+        formRef.value.resetFields();
+      };
 
       return (
         <Form
@@ -62,15 +62,15 @@ const Demo = defineComponent({
             </Button>
           </FormItem>
         </Form>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorError', 'controlOutline', 'colorErrorBorder', 'colorErrorHover'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

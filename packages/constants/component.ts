@@ -1,1 +1,1 @@
-export const ANT_MARK = 'internalMark'
+export const ANT_MARK = 'internalMark';

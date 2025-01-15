@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Button, Popover } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Button, Popover } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -10,7 +10,7 @@ const Demo = defineComponent({
         {' '}
         <p>Content</p>
       </div>
-    )
+    );
 
     return () => {
       return (
@@ -19,15 +19,15 @@ const Demo = defineComponent({
             <Button type="primary">Hover me</Button>
           </Popover>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorBgElevated'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

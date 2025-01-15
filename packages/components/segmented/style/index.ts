@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent, textEllipsis } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent, textEllipsis } from '@antdv/theme';
 
 export interface ComponentToken {}
 
@@ -21,25 +21,25 @@ function getItemDisabledStyle(cls: string, token: SegmentedToken): CSSObject {
       color: token.colorTextDisabled,
       cursor: 'not-allowed',
     },
-  }
+  };
 }
 
 function getItemSelectedStyle(token: SegmentedToken): CSSObject {
   return {
     backgroundColor: token.bgColorSelected,
     boxShadow: token.boxShadow,
-  }
+  };
 }
 
 const segmentedTextEllipsisCss: CSSObject = {
   overflow: 'hidden',
   // handle text ellipsis
   ...textEllipsis,
-}
+};
 
 // ============================== Styles ==============================
 const genSegmentedStyle: GenerateStyle<SegmentedToken> = (token: SegmentedToken) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [componentCls]: {
@@ -185,8 +185,8 @@ const genSegmentedStyle: GenerateStyle<SegmentedToken> = (token: SegmentedToken)
         willChange: 'transform, width',
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Segmented', (token) => {
@@ -198,7 +198,7 @@ export default genComponentStyleHook('Segmented', (token) => {
     colorFillSecondary,
     colorBgLayout,
     colorBgElevated,
-  } = token
+  } = token;
 
   const segmentedToken = mergeToken<SegmentedToken>(token, {
     segmentedPaddingHorizontal: token.controlPaddingHorizontal - lineWidth,
@@ -209,6 +209,6 @@ export default genComponentStyleHook('Segmented', (token) => {
     bgColor: colorBgLayout,
     bgColorHover: colorFillSecondary,
     bgColorSelected: colorBgElevated,
-  })
-  return [genSegmentedStyle(segmentedToken)]
-})
+  });
+  return [genSegmentedStyle(segmentedToken)];
+});

@@ -1,21 +1,22 @@
-import type { ThemeConfig } from '@antdv/ui/es/config-provider'
-import type { CSSProperties, PropType } from 'vue'
-import type { MutableTheme, TokenValue } from '../../interface'
-
+// eslint-disable-next-line ts/ban-ts-comment
 // @ts-nocheck
-import { CaretRightOutlined } from '@ant-design/icons-vue'
-import { Collapse, Space } from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, ref, toRefs, watch } from 'vue'
-import ColorPreview from '../../ColorPreview'
-import { Pick } from '../../icons'
-import TokenInput from '../../TokenInput'
-import getValueByPath from '../../utils/getValueByPath'
-import isColor from '../../utils/isColor'
-import makeStyle from '../../utils/makeStyle'
-import { getRelatedComponents } from '../../utils/statistic'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider';
+import type { CSSProperties, PropType } from 'vue';
+import type { MutableTheme, TokenValue } from '../../interface';
 
-const { Panel } = Collapse
+import { CaretRightOutlined } from '@ant-design/icons-vue';
+import { Collapse, Space } from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, ref, toRefs, watch } from 'vue';
+import ColorPreview from '../../ColorPreview';
+import { Pick } from '../../icons';
+import TokenInput from '../../TokenInput';
+import getValueByPath from '../../utils/getValueByPath';
+import isColor from '../../utils/isColor';
+import makeStyle from '../../utils/makeStyle';
+import { getRelatedComponents } from '../../utils/statistic';
+
+const { Panel } = Collapse;
 
 export interface TokenItemProps {
   tokenName: string
@@ -40,7 +41,7 @@ const AdditionInfo = defineComponent({
     dark: { type: Boolean },
   },
   setup(props, { attrs }) {
-    const { info, visible, dark } = toRefs(props)
+    const { info, visible, dark } = toRefs(props);
 
     return () => {
       if (typeof info.value === 'string' && isColor(info.value)) {
@@ -50,7 +51,7 @@ const AdditionInfo = defineComponent({
             color={String(info.value)}
             style={{ display: visible.value ? 'block' : 'none', ...(attrs.style as CSSProperties) }}
           />
-        )
+        );
       }
       // @ts-expect-error
       if (info.value.toString().length < 6 && String(info.value) !== '') {
@@ -70,13 +71,13 @@ const AdditionInfo = defineComponent({
           >
             {info.value}
           </div>
-        )
+        );
       }
 
-      return null
-    }
+      return null;
+    };
   },
-})
+});
 
 function ShowUsageButton({
   selected,
@@ -98,7 +99,7 @@ function ShowUsageButton({
         }}
       />
     </span>
-  )
+  );
 }
 
 const useStyle = makeStyle('TokenItem', token => ({
@@ -175,9 +176,9 @@ const useStyle = makeStyle('TokenItem', token => ({
       },
     },
   },
-}))
+}));
 
-export const getTokenItemId = (token: string) => `previewer-token-panel-item-${token}`
+export const getTokenItemId = (token: string) => `previewer-token-panel-item-${token}`;
 
 export default defineComponent({
   name: 'TokenItem',
@@ -207,25 +208,25 @@ export default defineComponent({
       themes,
       enableTokenSelect,
       hideUsageCount,
-    } = toRefs(props)
+    } = toRefs(props);
 
-    const infoVisible = ref<any>(false)
-    const [wrapSSR, hashId] = useStyle()
+    const infoVisible = ref<any>(false);
+    const [wrapSSR, hashId] = useStyle();
 
     watch(
       active,
       (val) => {
         if (val)
-          infoVisible.value = true
+          infoVisible.value = true;
       },
       { immediate: true },
-    )
+    );
 
     const handleTokenChange = (theme: MutableTheme, value: TokenValue) => {
-      props.onTokenChange?.(theme, tokenName.value!, value)
-    }
+      props.onTokenChange?.(theme, tokenName.value!, value);
+    };
 
-    const count = computed(() => getRelatedComponents(tokenName.value!).length)
+    const count = computed(() => getRelatedComponents(tokenName.value!).length);
 
     return () => {
       return wrapSSR(
@@ -304,7 +305,7 @@ export default defineComponent({
                               zIndex: 10 - index,
                             }}
                           />
-                        )
+                        );
                       })}
                     </div>
                   )}
@@ -316,7 +317,7 @@ export default defineComponent({
                       <ShowUsageButton
                         selected={!!selectedTokens.value?.includes(tokenName.value)}
                         toggleSelected={() => {
-                          props.onTokenSelect?.(tokenName.value)
+                          props.onTokenSelect?.(tokenName.value);
                         }}
                       />
                     )
@@ -345,13 +346,13 @@ export default defineComponent({
                         }
                       />
                     </div>
-                  )
+                  );
                 })}
               </Space>
             </Panel>
           </Collapse>
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

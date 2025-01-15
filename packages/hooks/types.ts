@@ -1,9 +1,9 @@
-import type { ComputedRef, Ref, WatchOptions, WatchSource } from 'vue'
+import type { ComputedRef, Ref, WatchOptions, WatchSource } from 'vue';
 
 /**
  * Any function
  */
-export type Fn = () => void
+export type Fn = () => void;
 
 /**
  * A ref that allow to set null or undefined
@@ -11,12 +11,12 @@ export type Fn = () => void
 export type RemovableRef<T> = Omit<Ref<T>, 'value'> & {
   get value(): T;
   set value(value: T | null | undefined);
-}
+};
 
 /**
  * @deprecated Use `RemovableRef`
  */
-export type RemoveableRef<T> = RemovableRef<T>
+export type RemoveableRef<T> = RemovableRef<T>;
 
 /**
  * Maybe it's a ref, or a plain value
@@ -25,7 +25,7 @@ export type RemoveableRef<T> = RemovableRef<T>
  * type MaybeRef<T> = T | Ref<T>
  * ```
  */
-export type MaybeRef<T> = T | Ref<T>
+export type MaybeRef<T> = T | Ref<T>;
 
 /**
  * Maybe it's a ref, or a plain value, or a getter function
@@ -34,7 +34,7 @@ export type MaybeRef<T> = T | Ref<T>
  * type MaybeComputedRef<T> = (() => T) | T | Ref<T> | ComputedRef<T>
  * ```
  */
-export type MaybeComputedRef<T> = MaybeReadonlyRef<T> | MaybeRef<T>
+export type MaybeComputedRef<T> = MaybeReadonlyRef<T> | MaybeRef<T>;
 
 /**
  * Maybe it's a computed ref, or a getter function
@@ -43,7 +43,7 @@ export type MaybeComputedRef<T> = MaybeReadonlyRef<T> | MaybeRef<T>
  * type MaybeReadonlyRef<T> = (() => T) | ComputedRef<T>
  * ```
  */
-export type MaybeReadonlyRef<T> = (() => T) | ComputedRef<T>
+export type MaybeReadonlyRef<T> = (() => T) | ComputedRef<T>;
 
 /**
  * Make all the nested attributes of an object or array to MaybeRef<T>
@@ -58,18 +58,18 @@ export type DeepMaybeRef<T> = T extends Ref<infer V>
   ? MaybeRef<V>
   : T extends any[] | object
     ? { [K in keyof T]: DeepMaybeRef<T[K]> }
-    : MaybeRef<T>
+    : MaybeRef<T>;
 
 /**
  * Infers the element type of an array
  */
-export type ElementOf<T> = T extends Array<infer E> ? E : never
+export type ElementOf<T> = T extends Array<infer E> ? E : never;
 
-export type ShallowUnwrapRef<T> = T extends Ref<infer P> ? P : T
+export type ShallowUnwrapRef<T> = T extends Ref<infer P> ? P : T;
 
-export type Awaitable<T> = Promise<T> | T
+export type Awaitable<T> = Promise<T> | T;
 
-export type ArgumentsType<T> = T extends (...args: infer U) => any ? U : never
+export type ArgumentsType<T> = T extends (...args: infer U) => any ? U : never;
 
 export interface Pausable {
   /**
@@ -108,7 +108,7 @@ export interface Stoppable {
 /**
  * @deprecated Use `Stoppable`
  */
-export type Stopable = Stoppable
+export type Stopable = Stoppable;
 
 export interface ConfigurableFlush {
   /**
@@ -132,11 +132,11 @@ export interface ConfigurableFlushSync {
 // Internal Types
 export type MapSources<T> = {
   [K in keyof T]: T[K] extends WatchSource<infer V> ? V : never;
-}
+};
 export type MapOldSources<T, Immediate> = {
   [K in keyof T]: T[K] extends WatchSource<infer V>
     ? Immediate extends true
       ? V | undefined
       : V
     : never;
-}
+};

@@ -1,23 +1,23 @@
-import type { CSSObject } from '@antdv/theme'
+import type { CSSObject } from '@antdv/theme';
 
 export function roundedArrow(width: number, innerRadius: number, outerRadius: number, bgColor: string, boxShadow: string): CSSObject {
-  const unitWidth = width / 2
+  const unitWidth = width / 2;
 
-  const ax = 0
-  const ay = unitWidth
-  const bx = (outerRadius * 1) / Math.sqrt(2)
-  const by = unitWidth - outerRadius * (1 - 1 / Math.sqrt(2))
-  const cx = unitWidth - innerRadius * (1 / Math.sqrt(2))
-  const cy = outerRadius * (Math.sqrt(2) - 1) + innerRadius * (1 / Math.sqrt(2))
-  const dx = 2 * unitWidth - cx
-  const dy = cy
-  const ex = 2 * unitWidth - bx
-  const ey = by
-  const fx = 2 * unitWidth - ax
-  const fy = ay
+  const ax = 0;
+  const ay = unitWidth;
+  const bx = (outerRadius * 1) / Math.sqrt(2);
+  const by = unitWidth - outerRadius * (1 - 1 / Math.sqrt(2));
+  const cx = unitWidth - innerRadius * (1 / Math.sqrt(2));
+  const cy = outerRadius * (Math.sqrt(2) - 1) + innerRadius * (1 / Math.sqrt(2));
+  const dx = 2 * unitWidth - cx;
+  const dy = cy;
+  const ex = 2 * unitWidth - bx;
+  const ey = by;
+  const fx = 2 * unitWidth - ax;
+  const fy = ay;
 
-  const shadowWidth = unitWidth * Math.sqrt(2) + outerRadius * (Math.sqrt(2) - 2)
-  const polygonOffset = outerRadius * (Math.sqrt(2) - 1)
+  const shadowWidth = unitWidth * Math.sqrt(2) + outerRadius * (Math.sqrt(2) - 2);
+  const polygonOffset = outerRadius * (Math.sqrt(2) - 1);
 
   return {
     'borderRadius': { _skip_check_: true, value: `0 0 ${innerRadius}px` },
@@ -62,5 +62,5 @@ export function roundedArrow(width: number, innerRadius: number, outerRadius: nu
       } as any,
       content: '""',
     },
-  }
+  };
 }

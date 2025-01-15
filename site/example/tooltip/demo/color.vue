@@ -31,8 +31,8 @@ We preset a series of colorful Tooltip styles for use in different situations.
     'volcano',
     'gold',
     'lime',
-  ]
-  const customColors = ['#f50', '#2db7f5', '#87d068', '#108ee9']
+  ];
+  const customColors = ['#f50', '#2db7f5', '#87d068', '#108ee9'];
 </script>
 
 <template>

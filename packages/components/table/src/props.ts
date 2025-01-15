@@ -1,8 +1,8 @@
-import type { TableLocale } from '@antdv/locale'
-import type { SizeType } from '@antdv/types'
-import type { TableProps as VcTableProps } from '@antdv/vue-components/vc-table/src/Table'
-import type { SpinProps } from '../../spin'
-import type { TooltipProps } from '../../tooltip'
+import type { TableLocale } from '@antdv/locale';
+import type { SizeType } from '@antdv/types';
+import type { TableProps as VcTableProps } from '@antdv/vue-components/vc-table/src/Table';
+import type { SpinProps } from '../../spin';
+import type { TooltipProps } from '../../tooltip';
 import type {
   FilterValue,
   GetPopupContainer,
@@ -14,7 +14,7 @@ import type {
   TablePaginationConfig,
   TableProps,
   TableRowSelection,
-} from './interface'
+} from './interface';
 import {
   arrayType,
   booleanType,
@@ -22,7 +22,7 @@ import {
   objectType,
   someType,
   stringType,
-} from '@antdv/utils'
+} from '@antdv/utils';
 
 export function tableProps() {
   return {
@@ -87,5 +87,5 @@ export function tableProps() {
     'sortDirections': arrayType<SortOrder[]>(),
     'showSorterTooltip': someType<boolean | TooltipProps>([Boolean, Object], true),
     'transformCellText': functionType<TableProps['transformCellText']>(),
-  }
+  };
 }

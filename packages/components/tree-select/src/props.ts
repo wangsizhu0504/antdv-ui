@@ -1,8 +1,8 @@
-import type { InputStatus, Key, SizeType } from '@antdv/types'
-import type { SelectCommonPlacement } from '@antdv/vue-components'
-import type { BaseOptionType, DefaultOptionType, FieldNames } from '@antdv/vue-components/vc-tree-select/src/TreeSelect'
-import type { ExtractPropTypes } from 'vue'
-import type { TreeProps } from '../../tree'
+import type { InputStatus, Key, SizeType } from '@antdv/types';
+import type { SelectCommonPlacement } from '@antdv/vue-components';
+import type { BaseOptionType, DefaultOptionType, FieldNames } from '@antdv/vue-components/vc-tree-select/src/TreeSelect';
+import type { ExtractPropTypes } from 'vue';
+import type { TreeProps } from '../../tree';
 import {
   booleanType,
   functionType,
@@ -11,9 +11,9 @@ import {
   PropTypes,
   someType,
   stringType,
-} from '@antdv/utils'
+} from '@antdv/utils';
 
-import { treeSelectProps as vcTreeSelectProps } from '@antdv/vue-components/vc-tree-select/src/TreeSelect'
+import { treeSelectProps as vcTreeSelectProps } from '@antdv/vue-components/vc-tree-select/src/TreeSelect';
 
 export function treeSelectProps<
   ValueType = any,
@@ -41,6 +41,6 @@ export function treeSelectProps<
     'onUpdate:value': functionType<(value: any) => void>(),
     'onUpdate:treeExpandedKeys': functionType<(keys: Key[]) => void>(),
     'onUpdate:searchValue': functionType<(value: string) => void>(),
-  }
+  };
 }
-export type TreeSelectProps = Partial<ExtractPropTypes<ReturnType<typeof treeSelectProps>>>
+export type TreeSelectProps = Partial<ExtractPropTypes<ReturnType<typeof treeSelectProps>>>;

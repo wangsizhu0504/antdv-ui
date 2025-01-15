@@ -17,13 +17,13 @@ Example of creating a search box by grouping a standard input with a search butt
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<string>('')
+  const value = ref<string>('');
 
   function onSearch(searchValue: string) {
-    console.log('use value', searchValue)
-    console.log('or use this.value', value.value)
+    console.log('use value', searchValue);
+    console.log('or use this.value', value.value);
   }
 </script>
 

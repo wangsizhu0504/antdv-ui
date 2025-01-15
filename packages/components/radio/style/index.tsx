@@ -1,5 +1,5 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, genFocusOutline, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, genFocusOutline, Keyframes, mergeToken, resetComponent } from '@antdv/theme';
 
 // ============================== Tokens ==============================
 export interface ComponentToken {}
@@ -31,12 +31,12 @@ interface RadioToken extends FullToken<'Radio'> {
 const antRadioEffect = new Keyframes('antRadioEffect', {
   '0%': { transform: 'scale(1)', opacity: 0.5 },
   '100%': { transform: 'scale(1.6)', opacity: 0 },
-})
+});
 
 // styles from RadioGroup only
 const getGroupRadioStyle: GenerateStyle<RadioToken> = (token) => {
-  const { componentCls, antCls } = token
-  const groupPrefixCls = `${componentCls}-group`
+  const { componentCls, antCls } = token;
+  const groupPrefixCls = `${componentCls}-group`;
 
   return {
     [groupPrefixCls]: {
@@ -57,8 +57,8 @@ const getGroupRadioStyle: GenerateStyle<RadioToken> = (token) => {
         borderInlineStart: 'none',
       },
     },
-  }
-}
+  };
+};
 
 // Styles from radio-wrapper
 const getRadioBasicStyle: GenerateStyle<RadioToken> = (token) => {
@@ -83,8 +83,8 @@ const getRadioBasicStyle: GenerateStyle<RadioToken> = (token) => {
     radioDotDisabledSize,
     wireframe,
     colorWhite,
-  } = token
-  const radioInnerPrefixCls = `${componentCls}-inner`
+  } = token;
+  const radioInnerPrefixCls = `${componentCls}-inner`;
 
   return {
     [`${componentCls}-wrapper`]: {
@@ -249,8 +249,8 @@ const getRadioBasicStyle: GenerateStyle<RadioToken> = (token) => {
         paddingInlineEnd: paddingXS,
       },
     },
-  }
-}
+  };
+};
 
 // Styles from radio-button
 const getRadioButtonStyle: GenerateStyle<RadioToken> = (token) => {
@@ -282,7 +282,7 @@ const getRadioButtonStyle: GenerateStyle<RadioToken> = (token) => {
     colorBgContainerDisabled,
     radioDisabledButtonCheckedColor,
     radioDisabledButtonCheckedBg,
-  } = token
+  } = token;
   return {
     [`${componentCls}-button-wrapper`]: {
       'position': 'relative',
@@ -474,8 +474,8 @@ const getRadioButtonStyle: GenerateStyle<RadioToken> = (token) => {
         boxShadow: 'none',
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Radio', (token) => {
@@ -495,25 +495,25 @@ export default genComponentStyleHook('Radio', (token) => {
     controlOutlineWidth,
     colorTextLightSolid,
     wireframe,
-  } = token
+  } = token;
 
   // Radio
-  const radioFocusShadow = `0 0 0 ${controlOutlineWidth}px ${controlOutline}`
-  const radioButtonFocusShadow = radioFocusShadow
+  const radioFocusShadow = `0 0 0 ${controlOutlineWidth}px ${controlOutline}`;
+  const radioButtonFocusShadow = radioFocusShadow;
 
-  const radioSize = fontSizeLG
-  const dotPadding = 4 // Fixed value
-  const radioDotDisabledSize = radioSize - dotPadding * 2
-  const radioDotSize = wireframe ? radioDotDisabledSize : radioSize - (dotPadding + lineWidth) * 2
-  const radioCheckedColor = colorPrimary
+  const radioSize = fontSizeLG;
+  const dotPadding = 4; // Fixed value
+  const radioDotDisabledSize = radioSize - dotPadding * 2;
+  const radioDotSize = wireframe ? radioDotDisabledSize : radioSize - (dotPadding + lineWidth) * 2;
+  const radioCheckedColor = colorPrimary;
 
   // Radio buttons
-  const radioButtonColor = colorText
-  const radioButtonHoverColor = colorPrimaryHover
-  const radioButtonActiveColor = colorPrimaryActive
-  const radioButtonPaddingHorizontal = padding - lineWidth
-  const radioDisabledButtonCheckedColor = colorTextDisabled
-  const radioWrapperMarginRight = marginXS
+  const radioButtonColor = colorText;
+  const radioButtonHoverColor = colorPrimaryHover;
+  const radioButtonActiveColor = colorPrimaryActive;
+  const radioButtonPaddingHorizontal = padding - lineWidth;
+  const radioDisabledButtonCheckedColor = colorTextDisabled;
+  const radioWrapperMarginRight = marginXS;
 
   const radioToken = mergeToken<RadioToken>(token, {
     radioFocusShadow,
@@ -533,11 +533,11 @@ export default genComponentStyleHook('Radio', (token) => {
     radioDisabledButtonCheckedBg: controlItemBgActiveDisabled,
     radioDisabledButtonCheckedColor,
     radioWrapperMarginRight,
-  })
+  });
 
   return [
     getGroupRadioStyle(radioToken),
     getRadioBasicStyle(radioToken),
     getRadioButtonStyle(radioToken),
-  ]
-})
+  ];
+});

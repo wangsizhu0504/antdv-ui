@@ -6,8 +6,8 @@ interface IndentProps {
 }
 
 function Indent({ prefixCls, level, isStart, isEnd }: IndentProps) {
-  const baseClassName = `${prefixCls}-indent-unit`
-  const list = []
+  const baseClassName = `${prefixCls}-indent-unit`;
+  const list = [];
   for (let i = 0; i < level; i += 1) {
     list.push(
       <span
@@ -18,14 +18,14 @@ function Indent({ prefixCls, level, isStart, isEnd }: IndentProps) {
           [`${baseClassName}-end`]: isEnd[i],
         }}
       />,
-    )
+    );
   }
 
   return (
     <span aria-hidden="true" class={`${prefixCls}-indent`}>
       {list}
     </span>
-  )
+  );
 }
 
-export default Indent
+export default Indent;

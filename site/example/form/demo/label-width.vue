@@ -16,8 +16,8 @@ Set label width by labelCol.style
 </docs>
 
 <script lang="ts" setup>
-  import type { UnwrapRef } from 'vue'
-  import { reactive, toRaw } from 'vue'
+  import type { UnwrapRef } from 'vue';
+  import { reactive, toRaw } from 'vue';
 
   interface FormState {
     name: string;
@@ -32,12 +32,12 @@ Set label width by labelCol.style
     type: [],
     resource: '',
     desc: '',
-  })
+  });
   function onSubmit() {
-    console.log('submit!', toRaw(formState))
+    console.log('submit!', toRaw(formState));
   }
-  const labelCol = { style: { width: '150px' } }
-  const wrapperCol = { span: 14 }
+  const labelCol = { style: { width: '150px' } };
+  const wrapperCol = { span: 14 };
 </script>
 
 <template>

@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme';
 
 export interface ComponentToken {
   contentHeight: number
@@ -14,11 +14,11 @@ interface SpinToken extends FullToken<'Spin'> {
 
 const antSpinMove = new Keyframes('antSpinMove', {
   to: { opacity: 1 },
-})
+});
 
 const antRotate = new Keyframes('antRotate', {
   to: { transform: 'rotate(405deg)' },
-})
+});
 
 const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => ({
   [`${token.componentCls}`]: {
@@ -218,7 +218,7 @@ const genSpinStyle: GenerateStyle<SpinToken> = (token: SpinToken): CSSObject => 
       display: 'block',
     },
   },
-})
+});
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
@@ -229,10 +229,10 @@ export default genComponentStyleHook(
       spinDotSize: token.controlHeightLG / 2,
       spinDotSizeSM: token.controlHeightLG * 0.35,
       spinDotSizeLG: token.controlHeight,
-    })
-    return [genSpinStyle(spinToken)]
+    });
+    return [genSpinStyle(spinToken)];
   },
   {
     contentHeight: 400,
   },
-)
+);

@@ -1,7 +1,7 @@
-import type { CSSInterpolation, CSSObject, DerivativeToken } from '@antdv/theme'
-import { genComponentStyleHook, genFocusOutline, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
-import { genCollapseMotion } from '@antdv/theme/style/motion'
-import { getStyle as getCheckboxStyle } from '../../checkbox/style'
+import type { CSSInterpolation, CSSObject, DerivativeToken } from '@antdv/theme';
+import { genComponentStyleHook, genFocusOutline, Keyframes, mergeToken, resetComponent } from '@antdv/theme';
+import { genCollapseMotion } from '@antdv/theme/style/motion';
+import { getStyle as getCheckboxStyle } from '../../checkbox/style';
 
 // ============================ Keyframes =============================
 const treeNodeFX = new Keyframes('ant-tree-node-fx-do-not-use', {
@@ -11,7 +11,7 @@ const treeNodeFX = new Keyframes('ant-tree-node-fx-do-not-use', {
   '100%': {
     opacity: 1,
   },
-})
+});
 
 // ============================== Switch ==============================
 function getSwitchStyle(prefixCls: string, token: DerivativeToken): CSSObject {
@@ -25,7 +25,7 @@ function getSwitchStyle(prefixCls: string, token: DerivativeToken): CSSObject {
         transition: `transform ${token.motionDurationSlow}`,
       },
     },
-  }
+  };
 }
 
 // =============================== Drop ===============================
@@ -52,7 +52,7 @@ function getDropIndicatorStyle(prefixCls: string, token: DerivativeToken) {
         content: '""',
       },
     },
-  }
+  };
 }
 
 // =============================== Base ===============================
@@ -61,13 +61,13 @@ type TreeToken = DerivativeToken & {
   treeNodeCls: string
   treeNodePadding: number
   treeTitleHeight: number
-}
+};
 
 export function genBaseStyle(prefixCls: string, token: TreeToken): CSSObject {
-  const { treeCls, treeNodeCls, treeNodePadding, treeTitleHeight } = token
+  const { treeCls, treeNodeCls, treeNodePadding, treeTitleHeight } = token;
 
-  const treeCheckBoxMarginVertical = (treeTitleHeight - token.fontSizeLG) / 2
-  const treeCheckBoxMarginHorizontal = token.paddingXS
+  const treeCheckBoxMarginVertical = (treeTitleHeight - token.fontSizeLG) / 2;
+  const treeCheckBoxMarginHorizontal = token.paddingXS;
 
   return {
     [treeCls]: {
@@ -370,12 +370,12 @@ export function genBaseStyle(prefixCls: string, token: TreeToken): CSSObject {
         },
       },
     },
-  }
+  };
 }
 
 // ============================ Directory =============================
 export function genDirectoryStyle(token: TreeToken): CSSObject {
-  const { treeCls, treeNodeCls, treeNodePadding } = token
+  const { treeCls, treeNodeCls, treeNodePadding } = token;
 
   return {
     [`${treeCls}${treeCls}-directory`]: {
@@ -448,30 +448,30 @@ export function genDirectoryStyle(token: TreeToken): CSSObject {
         },
       },
     },
-  }
+  };
 }
 
 // ============================== Merged ==============================
 export function genTreeStyle(prefixCls: string, token: DerivativeToken): CSSInterpolation {
-  const treeCls = `.${prefixCls}`
-  const treeNodeCls = `${treeCls}-treenode`
+  const treeCls = `.${prefixCls}`;
+  const treeNodeCls = `${treeCls}-treenode`;
 
-  const treeNodePadding = token.paddingXS / 2
-  const treeTitleHeight = token.controlHeightSM
+  const treeNodePadding = token.paddingXS / 2;
+  const treeTitleHeight = token.controlHeightSM;
 
   const treeToken = mergeToken<TreeToken>(token, {
     treeCls,
     treeNodeCls,
     treeNodePadding,
     treeTitleHeight,
-  })
+  });
 
   return [
     // Basic
     genBaseStyle(prefixCls, treeToken),
     // Directory
     genDirectoryStyle(treeToken),
-  ]
+  ];
 }
 
 // ============================== Export ==============================
@@ -481,4 +481,4 @@ export default genComponentStyleHook('Tree', (token, { prefixCls }) => [
   },
   genTreeStyle(prefixCls, token),
   genCollapseMotion(token),
-])
+]);

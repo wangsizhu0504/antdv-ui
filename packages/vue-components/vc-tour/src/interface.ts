@@ -1,7 +1,7 @@
-import type { VueNode } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-import type { PlacementType } from './placements'
-import { functionType, objectType, someType, stringType } from '@antdv/utils'
+import type { VueNode } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes } from 'vue';
+import type { PlacementType } from './placements';
+import { functionType, objectType, someType, stringType } from '@antdv/utils';
 
 export function tourStepInfo() {
   return {
@@ -18,10 +18,10 @@ export function tourStepInfo() {
     className: { type: String },
     style: objectType<CSSProperties>(),
     scrollIntoViewOptions: someType<boolean | ScrollIntoViewOptions>([Boolean, Object]),
-  }
+  };
 }
 
-export type TourStepInfo = Partial<ExtractPropTypes<ReturnType<typeof tourStepInfo>>>
+export type TourStepInfo = Partial<ExtractPropTypes<ReturnType<typeof tourStepInfo>>>;
 
 export function tourStepProps() {
   return {
@@ -34,7 +34,7 @@ export function tourStepProps() {
     renderPanel: functionType<(step: any, current: number) => VueNode>(),
     onPrev: functionType<(e: MouseEvent) => void>(),
     onNext: functionType<(e: MouseEvent) => void>(),
-  }
+  };
 }
 
-export type TourStepProps = Partial<ExtractPropTypes<ReturnType<typeof tourStepProps>>>
+export type TourStepProps = Partial<ExtractPropTypes<ReturnType<typeof tourStepProps>>>;

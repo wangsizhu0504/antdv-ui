@@ -1,8 +1,8 @@
-import type { VueNode } from '@antdv/types'
-import type { InjectionKey, Ref } from 'vue'
-import type { CheckboxProps } from './props'
+import type { VueNode } from '@antdv/types';
+import type { InjectionKey, Ref } from 'vue';
+import type { CheckboxProps } from './props';
 
-export type CheckboxValueType = string | number | boolean
+export type CheckboxValueType = string | number | boolean;
 export interface CheckboxOptionType {
   label?: VueNode
   value: CheckboxValueType
@@ -30,4 +30,4 @@ export interface CheckboxGroupContext {
   disabled: Ref<boolean>
   mergedValue: Ref<CheckboxValueType[]>
 }
-export const CheckboxGroupContextKey: InjectionKey<CheckboxGroupContext> = Symbol('CheckboxGroupContext')
+export const CheckboxGroupContextKey: InjectionKey<CheckboxGroupContext> = Symbol('CheckboxGroupContext');

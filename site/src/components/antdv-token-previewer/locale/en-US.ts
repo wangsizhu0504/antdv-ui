@@ -1,4 +1,4 @@
-import type { Locale } from './interface'
+import type { Locale } from './interface';
 
 const locale: Locale = {
   _lang: 'en-US',
@@ -15,6 +15,6 @@ const locale: Locale = {
     components: 'Components',
     relatedTokens: 'Related Tokens',
   },
-}
+};
 
-export default locale
+export default locale;

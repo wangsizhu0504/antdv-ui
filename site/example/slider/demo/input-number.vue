@@ -16,10 +16,10 @@ Synchronize with [InputNumber](/components/input-number/) component.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const inputValue = ref<number>(0)
-  const inputValue1 = ref<number>(1)
+  const inputValue = ref<number>(0);
+  const inputValue1 = ref<number>(1);
 </script>
 
 <template>

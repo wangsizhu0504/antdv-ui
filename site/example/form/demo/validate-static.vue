@@ -24,7 +24,7 @@ We provide properties like `validateStatus` `help` `hasFeedback` to customize yo
 </docs>
 
 <script lang="ts" setup>
-  import { SmileOutlined } from '@ant-design/icons-vue'
+  import { SmileOutlined } from '@ant-design/icons-vue';
 
   const formItemLayout = {
     labelCol: {
@@ -35,7 +35,7 @@ We provide properties like `validateStatus` `help` `hasFeedback` to customize yo
       xs: { span: 24 },
       sm: { span: 14 },
     },
-  }
+  };
 </script>
 
 <template>

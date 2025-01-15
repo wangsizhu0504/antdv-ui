@@ -50,7 +50,7 @@ Using template style API.
       address: 'Sidney No. 1 Lake Park',
       tags: ['cool', 'teacher'],
     },
-  ]
+  ];
 </script>
 
 <template>

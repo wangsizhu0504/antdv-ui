@@ -1,5 +1,5 @@
-import type { MouseEventHandler } from '@antdv/types'
-import { useInjectCascader } from '../context'
+import type { MouseEventHandler } from '@antdv/types';
+import { useInjectCascader } from '../context';
 
 export interface CheckboxProps {
   prefixCls: string;
@@ -16,15 +16,15 @@ export default function Checkbox({
   disabled,
   onClick,
 }: CheckboxProps) {
-  const { customSlots, checkable } = useInjectCascader()
+  const { customSlots, checkable } = useInjectCascader();
 
-  const mergedCheckable = checkable.value !== false ? customSlots.value.checkable : checkable.value
+  const mergedCheckable = checkable.value !== false ? customSlots.value.checkable : checkable.value;
   const customCheckbox
     = typeof mergedCheckable === 'function'
       ? mergedCheckable()
       : typeof mergedCheckable === 'boolean'
         ? null
-        : mergedCheckable
+        : mergedCheckable;
   return (
     <span
       class={{
@@ -37,8 +37,8 @@ export default function Checkbox({
     >
       {customCheckbox}
     </span>
-  )
+  );
 }
-Checkbox.props = ['prefixCls', 'checked', 'halfChecked', 'disabled', 'onClick']
-Checkbox.displayName = 'Checkbox'
-Checkbox.inheritAttrs = false
+Checkbox.props = ['prefixCls', 'checked', 'halfChecked', 'disabled', 'onClick'];
+Checkbox.displayName = 'Checkbox';
+Checkbox.inheritAttrs = false;

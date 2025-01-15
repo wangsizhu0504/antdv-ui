@@ -1,6 +1,6 @@
-import type { TableLocale } from '@antdv/locale'
-import type { Ref } from 'vue'
-import type { TooltipProps } from '../../../tooltip'
+import type { TableLocale } from '@antdv/locale';
+import type { Ref } from 'vue';
+import type { TooltipProps } from '../../../tooltip';
 import type {
   ColumnTitleProps,
   CompareFn,
@@ -11,42 +11,42 @@ import type {
   TableColumnsType,
   TableColumnType,
   TransformColumns,
-} from '../interface'
-import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons-vue'
-import { useState } from '@antdv/hooks'
-import { classNames, KeyCode } from '@antdv/utils'
-import { computed } from 'vue'
+} from '../interface';
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons-vue';
+import { useState } from '@antdv/hooks';
+import { classNames, KeyCode } from '@antdv/utils';
+import { computed } from 'vue';
 
-import Tooltip from '../../../tooltip'
-import { getColumnKey, getColumnPos, renderColumnTitle } from '../util'
+import Tooltip from '../../../tooltip';
+import { getColumnKey, getColumnPos, renderColumnTitle } from '../util';
 
-const ASCEND = 'ascend'
-const DESCEND = 'descend'
+const ASCEND = 'ascend';
+const DESCEND = 'descend';
 
 function getMultiplePriority<RecordType>(column: TableColumnType<RecordType>): number | false {
   if (typeof column.sorter === 'object' && typeof column.sorter.multiple === 'number')
-    return column.sorter.multiple
+    return column.sorter.multiple;
 
-  return false
+  return false;
 }
 
 function getSortFunction<RecordType>(
   sorter: TableColumnType<RecordType>['sorter'],
 ): CompareFn<RecordType> | false {
   if (typeof sorter === 'function')
-    return sorter
+    return sorter;
 
   if (sorter && typeof sorter === 'object' && sorter.compare)
-    return sorter.compare
+    return sorter.compare;
 
-  return false
+  return false;
 }
 
 function nextSortDirection(sortDirections: SortOrder[], current: SortOrder | null) {
   if (!current)
-    return sortDirections[0]
+    return sortDirections[0];
 
-  return sortDirections[sortDirections.indexOf(current) + 1]
+  return sortDirections[sortDirections.indexOf(current) + 1];
 }
 
 function collectSortStates<RecordType>(
@@ -54,7 +54,7 @@ function collectSortStates<RecordType>(
   init: boolean,
   pos?: string,
 ): Array<SortState<RecordType>> {
-  let sortStates: Array<SortState<RecordType>> = []
+  let sortStates: Array<SortState<RecordType>> = [];
 
   function pushState(column: TableColumnsType<RecordType>[number], columnPos: string) {
     sortStates.push({
@@ -62,25 +62,25 @@ function collectSortStates<RecordType>(
       key: getColumnKey(column, columnPos),
       multiplePriority: getMultiplePriority(column),
       sortOrder: column.sortOrder!,
-    })
+    });
   }
 
   (columns || []).forEach((column, index) => {
-    const columnPos = getColumnPos(index, pos)
+    const columnPos = getColumnPos(index, pos);
 
     if ((column as TableColumnGroupType<RecordType>).children) {
       if ('sortOrder' in column) {
         // Controlled
-        pushState(column, columnPos)
+        pushState(column, columnPos);
       }
       sortStates = [
         ...sortStates,
         ...collectSortStates((column as TableColumnGroupType<RecordType>).children, init, columnPos),
-      ]
+      ];
     } else if (column.sorter) {
       if ('sortOrder' in column) {
         // Controlled
-        pushState(column, columnPos)
+        pushState(column, columnPos);
       } else if (init && column.defaultSortOrder) {
         // Default sorter
         sortStates.push({
@@ -88,12 +88,12 @@ function collectSortStates<RecordType>(
           key: getColumnKey(column, columnPos),
           multiplePriority: getMultiplePriority(column),
           sortOrder: column.defaultSortOrder!,
-        })
+        });
       }
     }
-  })
+  });
 
-  return sortStates
+  return sortStates;
 }
 
 function injectSorter<RecordType>(
@@ -107,19 +107,19 @@ function injectSorter<RecordType>(
   pos?: string,
 ): TableColumnsType<RecordType> {
   return (columns || []).map((column, index) => {
-    const columnPos = getColumnPos(index, pos)
-    let newColumn: TableColumnsType<RecordType>[number] = column
+    const columnPos = getColumnPos(index, pos);
+    let newColumn: TableColumnsType<RecordType>[number] = column;
 
     if (newColumn.sorter) {
-      const sortDirections: SortOrder[] = newColumn.sortDirections || defaultSortDirections
+      const sortDirections: SortOrder[] = newColumn.sortDirections || defaultSortDirections;
       const showSorterTooltip
         = newColumn.showSorterTooltip === undefined
           ? tableShowSorterTooltip
-          : newColumn.showSorterTooltip
-      const columnKey = getColumnKey(newColumn, columnPos)
-      const sorterState = sorterStates.find(({ key }) => key === columnKey)
-      const sorterOrder = sorterState ? sorterState.sortOrder : null
-      const nextSortOrder = nextSortDirection(sortDirections, sorterOrder)
+          : newColumn.showSorterTooltip;
+      const columnKey = getColumnKey(newColumn, columnPos);
+      const sorterState = sorterStates.find(({ key }) => key === columnKey);
+      const sorterOrder = sorterState ? sorterState.sortOrder : null;
+      const nextSortOrder = nextSortDirection(sortDirections, sorterOrder);
       const upNode = sortDirections.includes(ASCEND) && (
         <CaretUpOutlined
           class={classNames(`${prefixCls}-column-sorter-up`, {
@@ -127,7 +127,7 @@ function injectSorter<RecordType>(
           })}
           role="presentation"
         />
-      )
+      );
       const downNode = sortDirections.includes(DESCEND) && (
         <CaretDownOutlined
           role="presentation"
@@ -135,16 +135,16 @@ function injectSorter<RecordType>(
             active: sorterOrder === DESCEND,
           })}
         />
-      )
-      const { cancelSort, triggerAsc, triggerDesc } = tableLocale || {}
-      let sortTip: string | undefined = cancelSort
+      );
+      const { cancelSort, triggerAsc, triggerDesc } = tableLocale || {};
+      let sortTip: string | undefined = cancelSort;
       if (nextSortOrder === DESCEND)
-        sortTip = triggerDesc
+        sortTip = triggerDesc;
       else if (nextSortOrder === ASCEND)
-        sortTip = triggerAsc
+        sortTip = triggerAsc;
 
       const tooltipProps: TooltipProps
-        = typeof showSorterTooltip === 'object' ? showSorterTooltip : { title: sortTip }
+        = typeof showSorterTooltip === 'object' ? showSorterTooltip : { title: sortTip };
       newColumn = {
         ...newColumn,
         className: classNames(newColumn.className, { [`${prefixCls}-column-sort`]: sorterOrder }),
@@ -165,30 +165,30 @@ function injectSorter<RecordType>(
                 </span>
               </span>
             </div>
-          )
+          );
           return showSorterTooltip
             ? (
                 <Tooltip {...tooltipProps}>{renderSortTitle}</Tooltip>
               )
             : (
                 renderSortTitle
-              )
+              );
         },
         customHeaderCell: (col) => {
-          const cell = (column.customHeaderCell && column.customHeaderCell(col)) || {}
-          const originOnClick = cell.onClick
-          const originOKeyDown = cell.onKeydown
+          const cell = (column.customHeaderCell && column.customHeaderCell(col)) || {};
+          const originOnClick = cell.onClick;
+          const originOKeyDown = cell.onKeydown;
           cell.onClick = (event: MouseEvent) => {
             triggerSorter({
               column,
               key: columnKey,
               sortOrder: nextSortOrder,
               multiplePriority: getMultiplePriority(column),
-            })
+            });
 
             if (originOnClick)
-              originOnClick(event)
-          }
+              originOnClick(event);
+          };
           cell.onKeydown = (event: KeyboardEvent) => {
             if (event.keyCode === KeyCode.ENTER) {
               triggerSorter({
@@ -196,20 +196,20 @@ function injectSorter<RecordType>(
                 key: columnKey,
                 sortOrder: nextSortOrder,
                 multiplePriority: getMultiplePriority(column),
-              })
-              originOKeyDown?.(event)
+              });
+              originOKeyDown?.(event);
             }
-          }
+          };
 
           // Inform the screen-reader so it can tell the visually impaired user which column is sorted
           if (sorterOrder)
-            cell['aria-sort'] = sorterOrder === 'ascend' ? 'ascending' : 'descending'
+            cell['aria-sort'] = sorterOrder === 'ascend' ? 'ascending' : 'descending';
 
-          cell.class = classNames(cell.class, `${prefixCls}-column-has-sorters`)
-          cell.tabindex = 0
-          return cell
+          cell.class = classNames(cell.class, `${prefixCls}-column-has-sorters`);
+          cell.tabindex = 0;
+          return cell;
         },
-      }
+      };
     }
 
     if ('children' in newColumn) {
@@ -225,22 +225,22 @@ function injectSorter<RecordType>(
           tableShowSorterTooltip,
           columnPos,
         ),
-      }
+      };
     }
 
-    return newColumn
-  })
+    return newColumn;
+  });
 }
 
 function stateToInfo<RecordType>(sorterStates: SortState<RecordType>) {
-  const { column, sortOrder } = sorterStates
-  return { column, order: sortOrder, field: column.dataIndex, columnKey: column.key }
+  const { column, sortOrder } = sorterStates;
+  return { column, order: sortOrder, field: column.dataIndex, columnKey: column.key };
 }
 
 function generateSorterInfo<RecordType>(
   sorterStates: Array<SortState<RecordType>>,
 ): SorterResult<RecordType> | Array<SorterResult<RecordType>> {
-  const list = sorterStates.filter(({ sortOrder }) => sortOrder).map(stateToInfo)
+  const list = sorterStates.filter(({ sortOrder }) => sortOrder).map(stateToInfo);
 
   // =========== Legacy compatible support ===========
   // https://github.com/ant-design/ant-design/pull/19226
@@ -248,13 +248,13 @@ function generateSorterInfo<RecordType>(
     return {
       ...stateToInfo(sorterStates[sorterStates.length - 1]),
       column: undefined,
-    }
+    };
   }
 
   if (list.length <= 1)
-    return list[0] || {}
+    return list[0] || {};
 
-  return list
+  return list;
 }
 
 export function getSortData<RecordType>(
@@ -264,49 +264,49 @@ export function getSortData<RecordType>(
 ): RecordType[] {
   const innerSorterStates = sortStates
     .slice()
-    .sort((a, b) => (b.multiplePriority as number) - (a.multiplePriority as number))
+    .sort((a, b) => (b.multiplePriority as number) - (a.multiplePriority as number));
 
-  const cloneData = data.slice()
+  const cloneData = data.slice();
 
   const runningSorters = innerSorterStates.filter(
     ({ column: { sorter }, sortOrder }) => getSortFunction(sorter) && sortOrder,
-  )
+  );
 
   // Skip if no sorter needed
   if (!runningSorters.length)
-    return cloneData
+    return cloneData;
 
   return cloneData
     .sort((record1, record2) => {
       for (let i = 0; i < runningSorters.length; i += 1) {
-        const sorterState = runningSorters[i]
+        const sorterState = runningSorters[i];
         const {
           column: { sorter },
           sortOrder,
-        } = sorterState
+        } = sorterState;
 
-        const compareFn = getSortFunction(sorter)
+        const compareFn = getSortFunction(sorter);
 
         if (compareFn && sortOrder) {
-          const compareResult = compareFn(record1, record2, sortOrder)
+          const compareResult = compareFn(record1, record2, sortOrder);
 
           if (compareResult !== 0)
-            return sortOrder === ASCEND ? compareResult : -compareResult
+            return sortOrder === ASCEND ? compareResult : -compareResult;
         }
       }
 
-      return 0
+      return 0;
     })
     .map<RecordType>((record) => {
-      const subRecords = (record as any)[childrenColumnName]
+      const subRecords = (record as any)[childrenColumnName];
       if (subRecords) {
         return {
           ...record,
           [childrenColumnName]: getSortData(subRecords, sortStates, childrenColumnName),
-        }
+        };
       }
-      return record
-    })
+      return record;
+    });
 }
 
 interface SorterConfig<RecordType> {
@@ -336,84 +336,84 @@ export default function useFilterSorter<RecordType>({
   ] {
   const [sortStates, setSortStates] = useState<Array<SortState<RecordType>>>(
     collectSortStates(mergedColumns.value, true),
-  )
+  );
 
   const mergedSorterStates = computed(() => {
-    let validate = true
-    const collectedStates = collectSortStates(mergedColumns.value, false)
+    let validate = true;
+    const collectedStates = collectSortStates(mergedColumns.value, false);
 
     // Return if not controlled
     if (!collectedStates.length)
-      return sortStates.value
+      return sortStates.value;
 
-    const validateStates: Array<SortState<RecordType>> = []
+    const validateStates: Array<SortState<RecordType>> = [];
 
     function patchStates(state: SortState<RecordType>) {
       if (validate) {
-        validateStates.push(state)
+        validateStates.push(state);
       } else {
         validateStates.push({
           ...state,
           sortOrder: null,
-        })
+        });
       }
     }
 
-    let multipleMode: boolean | null = null
+    let multipleMode: boolean | null = null;
     collectedStates.forEach((state) => {
       if (multipleMode === null) {
-        patchStates(state)
+        patchStates(state);
 
         if (state.sortOrder) {
           if (state.multiplePriority === false)
-            validate = false
+            validate = false;
           else
-            multipleMode = true
+            multipleMode = true;
         }
       } else if (multipleMode && state.multiplePriority !== false) {
-        patchStates(state)
+        patchStates(state);
       } else {
-        validate = false
-        patchStates(state)
+        validate = false;
+        patchStates(state);
       }
-    })
+    });
 
-    return validateStates
-  })
+    return validateStates;
+  });
 
   // Get render columns title required props
   const columnTitleSorterProps = computed<ColumnTitleProps<RecordType>>(() => {
     const sortColumns = mergedSorterStates.value.map(({ column, sortOrder }) => ({
       column,
       order: sortOrder,
-    }))
+    }));
 
     return {
       sortColumns,
       // Legacy
       sortColumn: sortColumns[0] && sortColumns[0].column,
       sortOrder: (sortColumns[0] && sortColumns[0].order) as SortOrder,
-    }
-  })
+    };
+  });
 
   function triggerSorter(sortState: SortState<RecordType>) {
-    let newSorterStates
+    let newSorterStates;
 
     if (
       sortState.multiplePriority === false
       || !mergedSorterStates.value.length
       || mergedSorterStates.value[0].multiplePriority === false
     ) {
-      newSorterStates = [sortState]
+      newSorterStates = [sortState];
     } else {
       newSorterStates = [
         ...mergedSorterStates.value.filter(({ key }) => key !== sortState.key),
         sortState,
-      ]
+      ];
     }
 
-    setSortStates(newSorterStates)
-    onSorterChange(generateSorterInfo(newSorterStates), newSorterStates)
+    setSortStates(newSorterStates);
+    onSorterChange(generateSorterInfo(newSorterStates), newSorterStates);
   }
 
   const transformColumns = (innerColumns: TableColumnsType<RecordType>) =>
@@ -425,9 +425,9 @@ export default function useFilterSorter<RecordType>({
       sortDirections.value,
       tableLocale.value,
       showSorterTooltip.value,
-    )
+    );
 
-  const sorters = computed(() => generateSorterInfo(mergedSorterStates.value))
+  const sorters = computed(() => generateSorterInfo(mergedSorterStates.value));
 
-  return [transformColumns, mergedSorterStates, columnTitleSorterProps, sorters]
+  return [transformColumns, mergedSorterStates, columnTitleSorterProps, sorters];
 }

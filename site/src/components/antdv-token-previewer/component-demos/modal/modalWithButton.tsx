@@ -1,19 +1,19 @@
-import type { ComponentDemo } from '../../interface'
-import { Button, Modal } from '@antdv/ui'
-import { defineComponent, ref } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Button, Modal } from '@antdv/ui';
+import { defineComponent, ref } from 'vue';
 
 const Demo = defineComponent({
   setup() {
-    const isModalVisible = ref<any>(false)
+    const isModalVisible = ref<any>(false);
     const showModal = () => {
-      isModalVisible.value = true
-    }
+      isModalVisible.value = true;
+    };
     const handleOk = () => {
-      isModalVisible.value = false
-    }
+      isModalVisible.value = false;
+    };
     const handleCancel = () => {
-      isModalVisible.value = false
-    }
+      isModalVisible.value = false;
+    };
 
     return () => {
       return (
@@ -34,14 +34,14 @@ const Demo = defineComponent({
             <p>Some contents...</p>
           </Modal>
         </>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorBgMask'],
   key: 'modalWithButton',
-}
-export default componentDemo
+};
+export default componentDemo;

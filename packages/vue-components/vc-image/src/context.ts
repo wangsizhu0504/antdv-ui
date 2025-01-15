@@ -1,11 +1,11 @@
-import type { GroupConsumerValue } from './interface'
-import { computed, inject, provide, ref, shallowRef } from 'vue'
+import type { GroupConsumerValue } from './interface';
+import { computed, inject, provide, ref, shallowRef } from 'vue';
 
-const previewGroupContext = Symbol('previewGroupContext')
+const previewGroupContext = Symbol('previewGroupContext');
 
 export const imageContext = {
   provide: (val: GroupConsumerValue) => {
-    provide(previewGroupContext, val)
+    provide(previewGroupContext, val);
   },
   inject: () => {
     return inject<GroupConsumerValue>(previewGroupContext, {
@@ -18,6 +18,6 @@ export const imageContext = {
       setMousePosition: () => {},
       registerImage: null,
       rootClassName: '',
-    })
+    });
   },
-}
+};

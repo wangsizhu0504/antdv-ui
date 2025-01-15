@@ -24,8 +24,8 @@ Control filters and sorters by `filteredValue` and `sortOrder`.
 </docs>
 
 <script lang="ts" setup>
-  import type { TableColumnType, TableProps } from '@antdv/ui'
-  import { computed, ref } from 'vue'
+  import type { TableColumnType, TableProps } from '@antdv/ui';
+  import { computed, ref } from 'vue';
 
   interface DataItem {
     key: string;
@@ -59,14 +59,14 @@ Control filters and sorters by `filteredValue` and `sortOrder`.
       age: 32,
       address: 'London No. 2 Lake Park',
     },
-  ]
+  ];
 
-  const filteredInfo = ref<any>()
-  const sortedInfo = ref<any>()
+  const filteredInfo = ref<any>();
+  const sortedInfo = ref<any>();
 
   const columns = computed<TableColumnType[]>(() => {
-    const filtered = filteredInfo.value || {}
-    const sorted = sortedInfo.value || {}
+    const filtered = filteredInfo.value || {};
+    const sorted = sortedInfo.value || {};
     return [
       {
         title: 'Name',
@@ -103,26 +103,26 @@ Control filters and sorters by `filteredValue` and `sortOrder`.
         sortOrder: sorted.columnKey === 'address' && sorted.order,
         ellipsis: true,
       },
-    ]
-  })
+    ];
+  });
 
   const handleChange: TableProps['onChange'] = (pagination, filters, sorter) => {
-    console.log('Various parameters', pagination, filters, sorter)
-    filteredInfo.value = filters
-    sortedInfo.value = sorter
-  }
+    console.log('Various parameters', pagination, filters, sorter);
+    filteredInfo.value = filters;
+    sortedInfo.value = sorter;
+  };
   function clearFilters() {
-    filteredInfo.value = null
+    filteredInfo.value = null;
   }
   function clearAll() {
-    filteredInfo.value = null
-    sortedInfo.value = null
+    filteredInfo.value = null;
+    sortedInfo.value = null;
   }
   function setAgeSort() {
     sortedInfo.value = {
       order: 'descend',
       columnKey: 'age',
-    }
+    };
   }
 </script>
 

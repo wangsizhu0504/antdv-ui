@@ -1,11 +1,11 @@
-import type { ChangeEvent, FocusEventHandler } from '@antdv/types'
+import type { ChangeEvent, FocusEventHandler } from '@antdv/types';
 
 // base 0.0.1-alpha.7
-import type { ComponentPublicInstance } from 'vue'
-import type { InputProps } from './inputProps'
-import type { InputFocusOptions } from './utils/commonUtils'
-import { classNames } from '@antdv/utils'
-import { omit } from 'lodash-es'
+import type { ComponentPublicInstance } from 'vue';
+import type { InputProps } from './inputProps';
+import type { InputFocusOptions } from './utils/commonUtils';
+import { classNames } from '@antdv/utils';
+import { omit } from 'lodash-es';
 import {
   computed,
   defineComponent,
@@ -13,54 +13,54 @@ import {
   onMounted,
   shallowRef,
   watch,
-} from 'vue'
-import BaseInput from './BaseInput'
-import BaseInputCore, { type BaseInputExpose } from './BaseInputCore'
-import { inputProps } from './inputProps'
-import { fixControlledValue, hasAddon, hasPrefixSuffix, resolveOnChange, triggerFocus } from './utils/commonUtils'
+} from 'vue';
+import BaseInput from './BaseInput';
+import BaseInputCore, { type BaseInputExpose } from './BaseInputCore';
+import { inputProps } from './inputProps';
+import { fixControlledValue, hasAddon, hasPrefixSuffix, resolveOnChange, triggerFocus } from './utils/commonUtils';
 
 export default defineComponent({
   name: 'VCInput',
   inheritAttrs: false,
   props: inputProps(),
   setup(props, { slots, attrs, expose, emit }) {
-    const stateValue = shallowRef(props.value === undefined ? props.defaultValue : props.value)
-    const focused = shallowRef(false)
-    const inputRef = shallowRef<BaseInputExpose>()
-    const rootRef = shallowRef<ComponentPublicInstance>()
+    const stateValue = shallowRef(props.value === undefined ? props.defaultValue : props.value);
+    const focused = shallowRef(false);
+    const inputRef = shallowRef<BaseInputExpose>();
+    const rootRef = shallowRef<ComponentPublicInstance>();
     watch(
       () => props.value,
       () => {
-        stateValue.value = props.value
+        stateValue.value = props.value;
       },
-    )
+    );
     watch(
       () => props.disabled,
       () => {
         if (props.disabled)
-          focused.value = false
+          focused.value = false;
       },
-    )
+    );
     const focus = (option?: InputFocusOptions) => {
       if (inputRef.value)
-        triggerFocus(inputRef.value.input, option)
-    }
+        triggerFocus(inputRef.value.input, option);
+    };
 
     const blur = () => {
-      inputRef.value.input?.blur()
-    }
+      inputRef.value.input?.blur();
+    };
 
     const setSelectionRange = (
       start: number,
       end: number,
       direction?: 'forward' | 'backward' | 'none',
     ) => {
-      inputRef.value.input?.setSelectionRange(start, end, direction)
-    }
+      inputRef.value.input?.setSelectionRange(start, end, direction);
+    };
 
     const select = () => {
-      inputRef.value.input?.select()
-    }
+      inputRef.value.input?.select();
+    };
 
     expose({
       focus,
@@ -69,57 +69,57 @@ export default defineComponent({
       stateValue,
       setSelectionRange,
       select,
-    })
+    });
     const triggerChange = (e: Event) => {
-      emit('change', e)
-    }
+      emit('change', e);
+    };
     const setValue = (value: string | number, callback?: Function) => {
       if (stateValue.value === value)
-        return
+        return;
 
       if (props.value === undefined) {
-        stateValue.value = value
+        stateValue.value = value;
       } else {
         nextTick(() => {
           if (inputRef.value.input.value !== stateValue.value)
-            rootRef.value?.$forceUpdate()
-        })
+            rootRef.value?.$forceUpdate();
+        });
       }
       nextTick(() => {
-        callback && callback()
-      })
-    }
+        callback && callback();
+      });
+    };
     const handleChange = (e: ChangeEvent) => {
-      const { value } = e.target as any
-      if (stateValue.value === value) return
-      const newVal = e.target.value
-      resolveOnChange(inputRef.value.input as HTMLInputElement, e, triggerChange)
-      setValue(newVal)
-    }
+      const { value } = e.target as any;
+      if (stateValue.value === value) return;
+      const newVal = e.target.value;
+      resolveOnChange(inputRef.value.input as HTMLInputElement, e, triggerChange);
+      setValue(newVal);
+    };
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === 13)
-        emit('pressEnter', e)
+        emit('pressEnter', e);
 
-      emit('keydown', e)
-    }
+      emit('keydown', e);
+    };
 
     const handleFocus: FocusEventHandler = (e) => {
-      focused.value = true
-      emit('focus', e)
-    }
+      focused.value = true;
+      emit('focus', e);
+    };
 
     const handleBlur: FocusEventHandler = (e) => {
-      focused.value = false
-      emit('blur', e)
-    }
+      focused.value = false;
+      emit('blur', e);
+    };
 
     const handleReset = (e: MouseEvent) => {
-      resolveOnChange(inputRef.value.input as HTMLInputElement, e, triggerChange)
+      resolveOnChange(inputRef.value.input as HTMLInputElement, e, triggerChange);
       setValue('', () => {
-        focus()
-      })
-    }
+        focus();
+      });
+    };
 
     const getInputElement = () => {
       const {
@@ -135,7 +135,7 @@ export default defineComponent({
         suffix = slots.suffix?.(),
         allowClear,
         type = 'text',
-      } = props
+      } = props;
       const otherProps = omit(props as InputProps & { placeholder: string }, [
         'prefixCls',
         'onPressEnter',
@@ -158,7 +158,7 @@ export default defineComponent({
         'groupClassName',
         'inputClassName',
         'wrapperClassName',
-      ])
+      ]);
       const getInputProps = {
         ...otherProps,
         ...attrs,
@@ -183,27 +183,27 @@ export default defineComponent({
         size: htmlSize,
         type,
         lazy: props.lazy,
-      }
+      };
       if (valueModifiers.lazy)
-        delete getInputProps.onInput
+        delete getInputProps.onInput;
 
       if (!getInputProps.autofocus)
-        delete getInputProps.autofocus
+        delete getInputProps.autofocus;
 
-      const inputNode = <BaseInputCore {...omit(getInputProps, ['size'])} />
-      return inputNode
-    }
+      const inputNode = <BaseInputCore {...omit(getInputProps, ['size'])} />;
+      return inputNode;
+    };
     const getSuffix = () => {
-      const { maxlength, suffix = slots.suffix?.(), showCount, prefixCls } = props
+      const { maxlength, suffix = slots.suffix?.(), showCount, prefixCls } = props;
       // Max length value
-      const hasMaxLength = Number(maxlength) > 0
+      const hasMaxLength = Number(maxlength) > 0;
 
       if (suffix || showCount) {
-        const valueLength = [...fixControlledValue(stateValue.value)].length
+        const valueLength = [...fixControlledValue(stateValue.value)].length;
         const dataCount
           = typeof showCount === 'object'
             ? showCount.formatter({ count: valueLength, maxlength })
-            : `${valueLength}${hasMaxLength ? ` / ${maxlength}` : ''}`
+            : `${valueLength}${hasMaxLength ? ` / ${maxlength}` : ''}`;
 
         return (
           <>
@@ -218,18 +218,18 @@ export default defineComponent({
             )}
             {suffix}
           </>
-        )
+        );
       }
-      return null
-    }
+      return null;
+    };
     onMounted(() => {
       if (process.env.NODE_ENV === 'test') {
         if (props.autofocus)
-          focus()
+          focus();
       }
-    })
+    });
     return () => {
-      const { prefixCls, disabled, ...rest } = props
+      const { prefixCls, disabled, ...rest } = props;
       return (
         <BaseInput
           {...rest}
@@ -245,7 +245,7 @@ export default defineComponent({
           disabled={disabled}
           v-slots={slots}
         />
-      )
-    }
+      );
+    };
   },
-})
+});

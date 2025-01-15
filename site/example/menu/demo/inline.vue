@@ -17,13 +17,13 @@ Vertical menu with inline submenus.
 </docs>
 
 <script lang="ts" setup>
-  import type { ItemType, MenuProps } from '@antdv/ui'
-  import type { VueElement } from 'vue'
-  import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
-  import { h, reactive, ref, watch } from 'vue'
+  import type { ItemType, MenuProps } from '@antdv/ui';
+  import type { VueElement } from 'vue';
+  import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue';
+  import { h, reactive, ref, watch } from 'vue';
 
-  const selectedKeys = ref<string[]>(['1'])
-  const openKeys = ref<string[]>(['sub1'])
+  const selectedKeys = ref<string[]>(['1']);
+  const openKeys = ref<string[]>(['sub1']);
 
   function getItem(
     label: VueElement | string,
@@ -38,7 +38,7 @@ Vertical menu with inline submenus.
       children,
       label,
       type,
-    } as ItemType
+    } as ItemType;
   }
 
   const items: ItemType[] = reactive([
@@ -63,15 +63,15 @@ Vertical menu with inline submenus.
     ]),
 
     getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
-  ])
+  ]);
 
   const handleClick: MenuProps['onClick'] = (e) => {
-    console.log('click', e)
-  }
+    console.log('click', e);
+  };
 
   watch(openKeys, (val) => {
-    console.log('openKeys', val)
-  })
+    console.log('openKeys', val);
+  });
 </script>
 
 <template>

@@ -1,11 +1,11 @@
-import type { ModuleFormat } from 'rollup'
-import path from 'node:path'
-import { PKG_NAME } from './constants'
+import type { ModuleFormat } from 'rollup';
+import path from 'node:path';
+import { PKG_NAME } from './constants';
 
-import { antdOutput } from './path'
+import { antdOutput } from './path';
 
-export const modules = ['esm', 'cjs'] as const
-export type Module = typeof modules[number]
+export const modules = ['esm', 'cjs'] as const;
+export type Module = typeof modules[number];
 export interface BuildInfo {
   module: 'ESNext' | 'CommonJS'
   format: ModuleFormat
@@ -45,12 +45,12 @@ export const buildConfig: Record<Module, BuildInfo> = {
       path: `${PKG_NAME}/lib`,
     },
   },
-}
+};
 export const buildConfigEntries = Object.entries(
   buildConfig,
-) as BuildConfigEntries
+) as BuildConfigEntries;
 
-export type BuildConfig = typeof buildConfig
-export type BuildConfigEntries = Array<[Module, BuildInfo]>
+export type BuildConfig = typeof buildConfig;
+export type BuildConfigEntries = Array<[Module, BuildInfo]>;
 
-export const target = 'es2018'
+export const target = 'es2018';

@@ -1,11 +1,11 @@
-import type { ThemeConfig } from '@antdv/components/config-provider'
-import type { PropType } from 'vue'
-import type { ThemeCode } from '../hooks/useControlledTheme'
-import type { MutableTheme, SelectedToken } from '../interface'
-import type { TokenCategory, TokenGroup } from '../meta/interface'
-import { CaretRightOutlined, ExpandOutlined, QuestionCircleOutlined } from '@ant-design/icons-vue'
+import type { ThemeConfig } from '@antdv/components/config-provider';
+import type { PropType } from 'vue';
+import type { ThemeCode } from '../hooks/useControlledTheme';
+import type { MutableTheme, SelectedToken } from '../interface';
+import type { TokenCategory, TokenGroup } from '../meta/interface';
+import { CaretRightOutlined, ExpandOutlined, QuestionCircleOutlined } from '@ant-design/icons-vue';
 
-import seed from '@antdv/theme/token/themes/seed'
+import seed from '@antdv/theme/token/themes/seed';
 import {
   Button,
   Checkbox,
@@ -15,11 +15,11 @@ import {
   Switch,
   Tooltip,
   Typography,
-} from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import tokenMeta from '@antdv/version/token-meta.json'
+} from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import tokenMeta from '@antdv/version/token-meta.json';
 
-import { debounce } from 'lodash'
+import { debounce } from 'lodash-es';
 import {
   computed,
   defineComponent,
@@ -27,20 +27,20 @@ import {
   toRefs,
   watch,
   watchEffect,
-} from 'vue'
-import ColorPanel from '../ColorPanel'
+} from 'vue';
+import ColorPanel from '../ColorPanel';
 
-import { themeMap } from '../hooks/useControlledTheme'
-import { CompactTheme, DarkTheme, Light, Pick } from '../icons'
-import IconSwitch from '../IconSwitch'
-import { useInjectLocaleContext } from '../locale'
-import getDesignToken from '../utils/getDesignToken'
-import makeStyle from '../utils/makeStyle'
-import InputNumberPlus from './InputNumberPlus'
-import TokenDetail from './TokenDetail'
-import TokenPreview from './TokenPreview'
+import { themeMap } from '../hooks/useControlledTheme';
+import { CompactTheme, DarkTheme, Light, Pick } from '../icons';
+import IconSwitch from '../IconSwitch';
+import { useInjectLocaleContext } from '../locale';
+import getDesignToken from '../utils/getDesignToken';
+import makeStyle from '../utils/makeStyle';
+import InputNumberPlus from './InputNumberPlus';
+import TokenDetail from './TokenDetail';
+import TokenPreview from './TokenPreview';
 
-const { Panel } = Collapse
+const { Panel } = Collapse;
 
 const useStyle = makeStyle('ColorTokenContent', token => ({
   '.token-panel-pro-color': {
@@ -247,7 +247,7 @@ const useStyle = makeStyle('ColorTokenContent', token => ({
       },
     },
   },
-}))
+}));
 
 export interface SeedTokenProps {
   theme: MutableTheme
@@ -256,7 +256,7 @@ export interface SeedTokenProps {
 }
 
 function getSeedValue(config: ThemeConfig, token: string) {
-  return config.token?.[token] || seed[token] || getDesignToken(config)[token]
+  return config.token?.[token] || seed[token] || getDesignToken(config)[token];
 }
 
 const seedRange: Record<string, { min: number; max: number }> = {
@@ -276,7 +276,7 @@ const seedRange: Record<string, { min: number; max: number }> = {
     min: 0,
     max: 16,
   },
-}
+};
 
 const SeedTokenPreview = defineComponent({
   name: 'SeedTokenPreview',
@@ -286,12 +286,12 @@ const SeedTokenPreview = defineComponent({
     disabled: { type: Boolean },
   },
   setup(props) {
-    const { theme, tokenName, disabled } = toRefs(props) as any
+    const { theme, tokenName, disabled } = toRefs(props) as any;
 
-    const tokenPath = computed(() => ['token', tokenName.value])
-    const tokenValue = ref<any>(getSeedValue(theme.value.config, tokenName.value))
+    const tokenPath = computed(() => ['token', tokenName.value]);
+    const tokenValue = ref<any>(getSeedValue(theme.value.config, tokenName.value));
 
-    const locale = useInjectLocaleContext()
+    const locale = useInjectLocaleContext();
 
     const debouncedOnChange = debounce((newValue: number | string) => {
       theme.value.onThemeChange?.(
@@ -303,19 +303,19 @@ const SeedTokenPreview = defineComponent({
           },
         },
         ['token', tokenName.value],
-      )
-    }, 500)
+      );
+    }, 500);
 
     const handleChange = (value: any) => {
-      tokenValue.value = value
-      debouncedOnChange(value)
-    }
+      tokenValue.value = value;
+      debouncedOnChange(value);
+    };
 
     watchEffect(() => {
-      tokenValue.value = getSeedValue(theme.value.config, tokenName.value)
-    })
+      tokenValue.value = getSeedValue(theme.value.config, tokenName.value);
+    });
 
-    const showReset = computed(() => theme.value.getCanReset?.(tokenPath.value))
+    const showReset = computed(() => theme.value.getCanReset?.(tokenPath.value));
 
     return () => {
       return (
@@ -380,10 +380,10 @@ const SeedTokenPreview = defineComponent({
             <Switch checked={tokenValue.value} onChange={handleChange} />
           )}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 export interface MapTokenCollapseContentProps {
   mapTokens?: string[]
@@ -405,9 +405,9 @@ const MapTokenCollapseContent = defineComponent({
     type: { type: String },
   },
   setup(props) {
-    const { mapTokens, theme, selectedTokens, type } = toRefs(props) as any
+    const { mapTokens, theme, selectedTokens, type } = toRefs(props) as any;
 
-    const locale = useInjectLocaleContext()
+    const locale = useInjectLocaleContext();
 
     return () => {
       return (
@@ -454,8 +454,8 @@ const MapTokenCollapseContent = defineComponent({
                   <div
                     style={{ flex: 'none', margin: '4px' }}
                     onClick={(e) => {
-                      e.stopPropagation()
-                      props.onTokenSelect?.(mapToken, 'map')
+                      e.stopPropagation();
+                      props.onTokenSelect?.(mapToken, 'map');
                     }}
                   >
                     <Pick
@@ -479,10 +479,10 @@ const MapTokenCollapseContent = defineComponent({
             </Panel>
           ))}
         </Collapse>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 export interface MapTokenCollapseProps {
   theme: MutableTheme
@@ -504,20 +504,20 @@ const MapTokenCollapse = defineComponent({
     groupFn: { type: Function as PropType<(token: string) => string> },
   },
   setup(props) {
-    const { theme, selectedTokens, groupFn, group } = toRefs(props) as any
+    const { theme, selectedTokens, groupFn, group } = toRefs(props) as any;
 
-    const locale = useInjectLocaleContext()
+    const locale = useInjectLocaleContext();
 
     const groupedTokens = computed(() => {
-      const grouped: Record<string, string[]> = {}
+      const grouped: Record<string, string[]> = {};
       if (groupFn.value) {
         group.value.mapToken?.forEach((token) => {
-          const key = groupFn.value(token) ?? 'light'
-          grouped[key] = [...(grouped[key] ?? []), token]
-        })
+          const key = groupFn.value(token) ?? 'light';
+          grouped[key] = [...(grouped[key] ?? []), token];
+        });
       }
-      return grouped
-    })
+      return grouped;
+    });
 
     return () => {
       if (groupFn.value) {
@@ -542,7 +542,7 @@ const MapTokenCollapse = defineComponent({
               </Panel>
             ))}
           </Collapse>
-        )
+        );
       }
 
       if (group.value.groups) {
@@ -567,7 +567,7 @@ const MapTokenCollapse = defineComponent({
               </Panel>
             ))}
           </Collapse>
-        )
+        );
       }
 
       return (
@@ -578,25 +578,25 @@ const MapTokenCollapse = defineComponent({
           onTokenSelect={props.onTokenSelect}
           type={group.value.type}
         />
-      )
-    }
+      );
+    };
   },
-})
+});
 
 function groupMapToken(token: string): string {
   if (token.startsWith('colorFill'))
-    return 'fill'
+    return 'fill';
 
   if (token.startsWith('colorBorder') || token.startsWith('colorSplit'))
-    return 'border'
+    return 'border';
 
   if (token.startsWith('colorBg'))
-    return 'background'
+    return 'background';
 
   if (token.startsWith('colorText'))
-    return 'text'
+    return 'text';
 
-  return ''
+  return '';
 }
 
 export interface ColorTokenContentProps {
@@ -631,54 +631,54 @@ const TokenContent = defineComponent({
   },
   emits: ['update:activeGroup'],
   setup(props, { attrs, emit }) {
-    const { category, theme, selectedTokens, infoFollowPrimary, activeGroup } = toRefs(props)
+    const { category, theme, selectedTokens, infoFollowPrimary, activeGroup } = toRefs(props);
 
-    const curActiveGroup = ref<any>('')
+    const curActiveGroup = ref<any>('');
 
     watch(
       activeGroup,
       (val) => {
-        curActiveGroup.value = val
+        curActiveGroup.value = val;
       },
       { immediate: true },
-    )
+    );
 
     watch(curActiveGroup, (val) => {
-      props.onActiveGroupChange?.(val)
-      emit('update:activeGroup', val)
-    })
+      props.onActiveGroupChange?.(val);
+      emit('update:activeGroup', val);
+    });
 
-    const [wrapSSR, hashId] = useStyle()
+    const [wrapSSR, hashId] = useStyle();
 
-    const grouped = ref<boolean>(true)
-    const locale = useInjectLocaleContext()
+    const grouped = ref<boolean>(true);
+    const locale = useInjectLocaleContext();
 
     const switchAlgorithm = (themeStr: 'dark' | 'compact') => () => {
-      let newAlgorithm = theme.value.config.algorithm
+      let newAlgorithm = theme.value.config.algorithm;
       if (!newAlgorithm) {
-        newAlgorithm = themeMap[themeStr]
+        newAlgorithm = themeMap[themeStr];
       } else if (Array.isArray(newAlgorithm)) {
         newAlgorithm = newAlgorithm.includes(themeMap[themeStr])
           ? newAlgorithm.filter(item => item !== themeMap[themeStr])
-          : [...newAlgorithm, themeMap[themeStr]]
+          : [...newAlgorithm, themeMap[themeStr]];
       } else {
         newAlgorithm
-          = newAlgorithm === themeMap[themeStr] ? undefined : [newAlgorithm, themeMap[themeStr]]
+          = newAlgorithm === themeMap[themeStr] ? undefined : [newAlgorithm, themeMap[themeStr]];
       }
       theme.value.onThemeChange?.({ ...theme.value.config, algorithm: newAlgorithm }, [
         'config',
         'algorithm',
-      ])
-    }
+      ]);
+    };
 
     const isLeftChecked = (str: ThemeCode) => {
       if (!theme.value.config.algorithm)
-        return true
+        return true;
 
       return Array.isArray(theme.value.config.algorithm)
         ? !theme.value.config.algorithm.includes(themeMap[str])
-        : theme.value.config.algorithm !== themeMap[str]
-    }
+        : theme.value.config.algorithm !== themeMap[str];
+    };
 
     return () => {
       return wrapSSR(
@@ -847,7 +847,7 @@ const TokenContent = defineComponent({
                             type="primary"
                             style={{ borderRadius: '4px', marginBottom: '12px' }}
                             onClick={() => {
-                              curActiveGroup.value = category.value.groups[index + 1]?.key
+                              curActiveGroup.value = category.value.groups[index + 1]?.key;
                             }}
                           >
                             {locale.value.next}
@@ -855,15 +855,15 @@ const TokenContent = defineComponent({
                         )}
                       </div>
                     </Panel>
-                  )
+                  );
                 })}
               </Collapse>
             </ConfigProvider>
           </div>
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default TokenContent
+export default TokenContent;

@@ -17,10 +17,10 @@ Specifies a delay for loading state. If `spinning` ends during delay, loading st
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const spinning = ref<boolean>(false)
-  const delayTime = 500
+  const spinning = ref<boolean>(false);
+  const delayTime = 500;
 </script>
 
 <template>

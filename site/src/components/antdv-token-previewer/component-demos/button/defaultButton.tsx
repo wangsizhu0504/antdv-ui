@@ -1,13 +1,13 @@
-import type { ComponentDemo } from '../../interface'
+import type { ComponentDemo } from '../../interface';
 
-import { Button } from '@antdv/ui'
+import { Button } from '@antdv/ui';
 
-const Demo = () => <Button>default</Button>
+const Demo = () => <Button>default</Button>;
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorBgContainer'],
   key: 'defaultButton',
-}
+};
 
-export default componentDemo
+export default componentDemo;

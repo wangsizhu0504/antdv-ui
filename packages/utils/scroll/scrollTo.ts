@@ -1,15 +1,15 @@
-import { isWindow } from '../is'
-import { raf } from '../vue/raf'
+import { isWindow } from '../is';
+import { raf } from '../vue/raf';
 
-import { getScroll } from './getScroll'
+import { getScroll } from './getScroll';
 
 export function easeInOutCubic(t: number, b: number, c: number, d: number) {
-  const cc = c - b
-  t /= d / 2
+  const cc = c - b;
+  t /= d / 2;
   if (t < 1)
-    return (cc / 2) * t * t * t + b
+    return (cc / 2) * t * t * t + b;
 
-  return (cc / 2) * ((t -= 2) * t * t + 2) + b
+  return (cc / 2) * ((t -= 2) * t * t + 2) + b;
 }
 
 interface ScrollToOptions {
@@ -22,26 +22,26 @@ interface ScrollToOptions {
 }
 
 export function scrollTo(y: number, options: ScrollToOptions = {}) {
-  const { getContainer = () => window, callback, duration = 450 } = options
-  const container = getContainer()
-  const scrollTop = getScroll(container, true)
-  const startTime = Date.now()
+  const { getContainer = () => window, callback, duration = 450 } = options;
+  const container = getContainer();
+  const scrollTop = getScroll(container, true);
+  const startTime = Date.now();
 
   const frameFunc = () => {
-    const timestamp = Date.now()
-    const time = timestamp - startTime
-    const nextScrollTop = easeInOutCubic(time > duration ? duration : time, scrollTop, y, duration)
+    const timestamp = Date.now();
+    const time = timestamp - startTime;
+    const nextScrollTop = easeInOutCubic(time > duration ? duration : time, scrollTop, y, duration);
     if (isWindow(container))
-      (container as Window).scrollTo(window.scrollX, nextScrollTop)
+      (container as Window).scrollTo(window.scrollX, nextScrollTop);
     else if (container instanceof Document)
-      (container as Document).documentElement.scrollTop = nextScrollTop
+      (container as Document).documentElement.scrollTop = nextScrollTop;
     else
-      (container as HTMLElement).scrollTop = nextScrollTop
+      (container as HTMLElement).scrollTop = nextScrollTop;
 
     if (time < duration)
-      raf(frameFunc)
+      raf(frameFunc);
     else if (typeof callback === 'function')
-      callback()
-  }
-  raf(frameFunc)
+      callback();
+  };
+  raf(frameFunc);
 }

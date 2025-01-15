@@ -1,9 +1,9 @@
-import type { VueNode } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-import type { Gap } from './hooks/useTarget'
-import type { TourStepInfo, TourStepProps } from './interface'
-import type { PlacementType } from './placements'
-import { useMergedState } from '@antdv/hooks'
+import type { VueNode } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes } from 'vue';
+import type { Gap } from './hooks/useTarget';
+import type { TourStepInfo, TourStepProps } from './interface';
+import type { PlacementType } from './placements';
+import { useMergedState } from '@antdv/hooks';
 import {
   arrayType,
   booleanType,
@@ -13,7 +13,7 @@ import {
   objectType,
   someType,
   stringType,
-} from '@antdv/utils'
+} from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -22,24 +22,24 @@ import {
   toRefs,
   watch,
   watchEffect,
-} from 'vue'
-import Portal from '../../portal/src/PortalWrapper'
-import { triggerProps } from '../../vc-trigger/src/interface'
-import Trigger from '../../vc-trigger/src/Trigger'
-import useTarget from './hooks/useTarget'
-import Mask from './Mask'
-import { getPlacements } from './placements'
-import TourStep from './TourStep'
+} from 'vue';
+import Portal from '../../portal/src/PortalWrapper';
+import { triggerProps } from '../../vc-trigger/src/interface';
+import Trigger from '../../vc-trigger/src/Trigger';
+import useTarget from './hooks/useTarget';
+import Mask from './Mask';
+import { getPlacements } from './placements';
+import TourStep from './TourStep';
 
 const CENTER_PLACEHOLDER: CSSProperties = {
   left: '50%',
   top: '50%',
   width: '1px',
   height: '1px',
-}
+};
 
 export function tourProps() {
-  const { builtinPlacements, popupAlign } = triggerProps()
+  const { builtinPlacements, popupAlign } = triggerProps();
   return {
     builtinPlacements,
     popupAlign,
@@ -60,10 +60,10 @@ export function tourProps() {
     animated: someType<boolean | { placeholder: boolean }>([Boolean, Object]),
     scrollIntoViewOptions: someType<boolean | ScrollIntoViewOptions>([Boolean, Object], true),
     zIndex: { type: Number, default: 1001 },
-  }
+  };
 }
 
-export type TourProps = Partial<ExtractPropTypes<ReturnType<typeof tourProps>>>
+export type TourProps = Partial<ExtractPropTypes<ReturnType<typeof tourProps>>>;
 
 const Tour = defineComponent({
   name: 'Tour',
@@ -71,14 +71,14 @@ const Tour = defineComponent({
   props: initDefaultProps(tourProps(), {}),
   setup(props) {
     const { defaultCurrent, placement, mask, scrollIntoViewOptions, open, gap, arrow }
-      = toRefs(props)
+      = toRefs(props);
 
-    const triggerRef = ref()
+    const triggerRef = ref();
 
     const [mergedCurrent, setMergedCurrent] = useMergedState(0, {
       value: computed(() => props.current),
       defaultValue: defaultCurrent.value,
-    })
+    });
 
     const [mergedOpen, setMergedOpen] = useMergedState(undefined, {
       value: computed(() => props.open),
@@ -86,29 +86,29 @@ const Tour = defineComponent({
         mergedCurrent.value < 0 || mergedCurrent.value >= props.steps.length
           ? false
           : origin ?? true,
-    })
+    });
 
-    const openRef = shallowRef(mergedOpen.value)
+    const openRef = shallowRef(mergedOpen.value);
     watchEffect(() => {
       if (mergedOpen.value && !openRef.value)
-        setMergedCurrent(0)
+        setMergedCurrent(0);
 
-      openRef.value = mergedOpen.value
-    })
+      openRef.value = mergedOpen.value;
+    });
 
-    const curStep = computed(() => (props.steps[mergedCurrent.value] || {}) as TourStepInfo)
+    const curStep = computed(() => (props.steps[mergedCurrent.value] || {}) as TourStepInfo);
 
-    const mergedPlacement = computed(() => curStep.value.placement ?? placement.value)
-    const mergedMask = computed(() => mergedOpen.value && (curStep.value.mask ?? mask.value))
+    const mergedPlacement = computed(() => curStep.value.placement ?? placement.value);
+    const mergedMask = computed(() => mergedOpen.value && (curStep.value.mask ?? mask.value));
     const mergedScrollIntoViewOptions = computed(
       () => curStep.value.scrollIntoViewOptions ?? scrollIntoViewOptions.value,
-    )
+    );
     const [posInfo, targetElement] = useTarget(
       computed(() => curStep.value.target),
       open,
       gap,
       mergedScrollIntoViewOptions,
-    )
+    );
 
     // ========================= arrow =========================
     const mergedArrow = computed(() =>
@@ -117,23 +117,23 @@ const Tour = defineComponent({
           ? arrow.value
           : curStep.value.arrow
         : false,
-    )
+    );
     const arrowPointAtCenter = computed(() =>
       typeof mergedArrow.value === 'object' ? mergedArrow.value.pointAtCenter : false,
-    )
+    );
 
     watch(arrowPointAtCenter, () => {
-      triggerRef.value?.forcePopupAlign()
-    })
+      triggerRef.value?.forcePopupAlign();
+    });
     watch(mergedCurrent, () => {
-      triggerRef.value?.forcePopupAlign()
-    })
+      triggerRef.value?.forcePopupAlign();
+    });
 
     // ========================= Change =========================
     const onInternalChange = (nextCurrent: number) => {
-      setMergedCurrent(nextCurrent)
-      props.onChange?.(nextCurrent)
-    }
+      setMergedCurrent(nextCurrent);
+      props.onChange?.(nextCurrent);
+    };
 
     return () => {
       const {
@@ -146,26 +146,26 @@ const Tour = defineComponent({
         animated,
         zIndex,
         ...restProps
-      } = props
+      } = props;
 
       // ========================= Render =========================
       // Skip if not init yet
       if (targetElement.value === undefined)
-        return null
+        return null;
 
       const handleClose = () => {
-        setMergedOpen(false)
-        onClose?.(mergedCurrent.value)
-      }
+        setMergedOpen(false);
+        onClose?.(mergedCurrent.value);
+      };
 
       const mergedShowMask
-        = typeof mergedMask.value === 'boolean' ? mergedMask.value : !!mergedMask.value
-      const mergedMaskStyle = typeof mergedMask.value === 'boolean' ? undefined : mergedMask.value
+        = typeof mergedMask.value === 'boolean' ? mergedMask.value : !!mergedMask.value;
+      const mergedMaskStyle = typeof mergedMask.value === 'boolean' ? undefined : mergedMask.value;
 
       // when targetElement is not exist, use body as triggerDOMNode
       const getTriggerDOMNode = () => {
-        return targetElement.value || document.body
-      }
+        return targetElement.value || document.body;
+      };
 
       const getPopupElement = () => (
         <TourStep
@@ -175,32 +175,32 @@ const Tour = defineComponent({
           total={steps.length}
           renderPanel={renderPanel}
           onPrev={() => {
-            onInternalChange(mergedCurrent.value - 1)
+            onInternalChange(mergedCurrent.value - 1);
           }}
           onNext={() => {
-            onInternalChange(mergedCurrent.value + 1)
+            onInternalChange(mergedCurrent.value + 1);
           }}
           onClose={handleClose}
           current={mergedCurrent.value}
           onFinish={() => {
-            handleClose()
-            onFinish?.()
+            handleClose();
+            onFinish?.();
           }}
           {...curStep.value}
         />
-      )
+      );
       const posInfoStyle = computed(() => {
-        const info = posInfo.value || CENTER_PLACEHOLDER
+        const info = posInfo.value || CENTER_PLACEHOLDER;
         // 如果info[key] 是number，添加 px
-        const style: CSSProperties = {}
+        const style: CSSProperties = {};
         Object.keys(info).forEach((key) => {
           if (typeof info[key] === 'number')
-            style[key] = `${info[key]}px`
+            style[key] = `${info[key]}px`;
           else
-            style[key] = info[key]
-        })
-        return style
-      })
+            style[key] = info[key];
+        });
+        return style;
+      });
       return mergedOpen.value
         ? (
             <>
@@ -259,9 +259,9 @@ const Tour = defineComponent({
               </Trigger>
             </>
           )
-        : null
-    }
+        : null;
+    };
   },
-})
+});
 
-export default Tour
+export default Tour;

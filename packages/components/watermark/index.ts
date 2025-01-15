@@ -1,9 +1,9 @@
-import { withInstall } from '@antdv/utils'
-import AWatermark from './src/Watermark'
+import { withInstall } from '@antdv/utils';
+import AWatermark from './src/Watermark';
 
-export const Watermark = withInstall(AWatermark)
+export const Watermark = withInstall(AWatermark);
 
-export default Watermark
+export default Watermark;
 
-export * from './src/interface'
-export * from './src/props'
+export * from './src/interface';
+export * from './src/props';

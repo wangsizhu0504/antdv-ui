@@ -1,4 +1,4 @@
-import type { InjectionKey } from 'vue'
+import type { InjectionKey } from 'vue';
 import type {
   ColumnsType,
   ColumnType,
@@ -9,8 +9,8 @@ import type {
   RowClassName,
   TableLayout,
   TriggerEventHandler,
-} from '../interface'
-import { inject, provide } from 'vue'
+} from '../interface';
+import { inject, provide } from 'vue';
 
 export interface BodyContextProps<RecordType = DefaultRecordType> {
   rowClassName: string | RowClassName<RecordType>;
@@ -29,12 +29,12 @@ export interface BodyContextProps<RecordType = DefaultRecordType> {
   onTriggerExpand: TriggerEventHandler<RecordType>;
   expandIconColumnIndex: number;
 }
-export const BodyContextKey: InjectionKey<BodyContextProps> = Symbol('BodyContextProps')
+export const BodyContextKey: InjectionKey<BodyContextProps> = Symbol('BodyContextProps');
 
 export function useProvideBody(props: BodyContextProps) {
-  provide(BodyContextKey, props)
+  provide(BodyContextKey, props);
 }
 
 export function useInjectBody() {
-  return inject(BodyContextKey, {} as BodyContextProps)
+  return inject(BodyContextKey, {} as BodyContextProps);
 }

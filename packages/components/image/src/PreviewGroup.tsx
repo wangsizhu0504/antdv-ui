@@ -7,12 +7,12 @@ import {
   SwapOutlined,
   ZoomInOutlined,
   ZoomOutOutlined,
-} from '@ant-design/icons-vue'
-import { getTransitionName, VcPreviewGroup } from '@antdv/vue-components'
-import { computed, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import { previewGroupProps } from './props'
+} from '@ant-design/icons-vue';
+import { getTransitionName, VcPreviewGroup } from '@antdv/vue-components';
+import { computed, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import { previewGroupProps } from './props';
 
 export const icons = {
   rotateLeft: <RotateLeftOutlined />,
@@ -24,7 +24,7 @@ export const icons = {
   right: <RightOutlined />,
   flipX: <SwapOutlined />,
   flipY: <SwapOutlined rotate={90} />,
-}
+};
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -32,15 +32,15 @@ export default defineComponent({
   inheritAttrs: false,
   props: previewGroupProps(),
   setup(props, { attrs, slots }) {
-    const { prefixCls, rootPrefixCls } = useConfigInject('image', props)
-    const previewPrefixCls = computed(() => `${prefixCls.value}-preview`)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const { prefixCls, rootPrefixCls } = useConfigInject('image', props);
+    const previewPrefixCls = computed(() => `${prefixCls.value}-preview`);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
     const mergedPreview = computed(() => {
-      const { preview } = props
+      const { preview } = props;
       if (preview === false)
-        return preview
+        return preview;
 
-      const _preview = typeof preview === 'object' ? preview : {}
+      const _preview = typeof preview === 'object' ? preview : {};
 
       return {
         ..._preview,
@@ -51,8 +51,8 @@ export default defineComponent({
           'fade',
           _preview.maskTransitionName,
         ),
-      }
-    })
+      };
+    });
     return () => {
       return wrapSSR(
         <VcPreviewGroup
@@ -63,7 +63,7 @@ export default defineComponent({
           v-slots={slots}
         >
         </VcPreviewGroup>,
-      )
-    }
+      );
+    };
   },
-})
+});

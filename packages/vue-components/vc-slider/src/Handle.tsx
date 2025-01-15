@@ -1,6 +1,6 @@
-import type { CSSProperties, PropType } from 'vue'
-import { addEventListenerWrap, classNames, PropTypes } from '@antdv/utils'
-import { computed, defineComponent, onBeforeUnmount, onMounted, shallowRef } from 'vue'
+import type { CSSProperties, PropType } from 'vue';
+import { addEventListenerWrap, classNames, PropTypes } from '@antdv/utils';
+import { computed, defineComponent, onBeforeUnmount, onMounted, shallowRef } from 'vue';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -24,52 +24,52 @@ export default defineComponent({
     onMousedown: { type: Function as PropType<(payload: MouseEvent) => void> },
   },
   setup(props, { attrs, emit, expose }) {
-    const clickFocused = shallowRef(false)
-    const handle = shallowRef()
+    const clickFocused = shallowRef(false);
+    const handle = shallowRef();
     const handleMouseUp = () => {
       if (document.activeElement === handle.value)
-        clickFocused.value = true
-    }
+        clickFocused.value = true;
+    };
     const handleBlur = (e: FocusEvent) => {
-      clickFocused.value = false
-      emit('blur', e)
-    }
+      clickFocused.value = false;
+      emit('blur', e);
+    };
     const handleKeyDown = () => {
-      clickFocused.value = false
-    }
+      clickFocused.value = false;
+    };
     const focus = () => {
-      handle.value?.focus()
-    }
+      handle.value?.focus();
+    };
     const blur = () => {
-      handle.value?.blur()
-    }
+      handle.value?.blur();
+    };
     const clickFocus = () => {
-      clickFocused.value = true
-      focus()
-    }
+      clickFocused.value = true;
+      focus();
+    };
 
     // when click can not focus in vue, use mousedown trigger focus
     const handleMousedown = (e: MouseEvent) => {
-      e.preventDefault()
-      focus()
-      emit('mousedown', e)
-    }
+      e.preventDefault();
+      focus();
+      emit('mousedown', e);
+    };
     expose({
       focus,
       blur,
       clickFocus,
       ref: handle,
-    })
-    let onMouseUpListener = null
+    });
+    let onMouseUpListener = null;
     onMounted(() => {
-      onMouseUpListener = addEventListenerWrap(document, 'mouseup', handleMouseUp)
-    })
+      onMouseUpListener = addEventListenerWrap(document, 'mouseup', handleMouseUp);
+    });
     onBeforeUnmount(() => {
-      onMouseUpListener?.remove()
-    })
+      onMouseUpListener?.remove();
+    });
 
     const positionStyle = computed(() => {
-      const { vertical, offset, reverse } = props
+      const { vertical, offset, reverse } = props;
       return vertical
         ? {
             [reverse ? 'top' : 'bottom']: `${offset}%`,
@@ -80,8 +80,8 @@ export default defineComponent({
             [reverse ? 'right' : 'left']: `${offset}%`,
             [reverse ? 'left' : 'right']: 'auto',
             transform: `translateX(${reverse ? '+' : '-'}50%)`,
-          }
-    })
+          };
+    });
     return () => {
       const {
         prefixCls,
@@ -95,25 +95,25 @@ export default defineComponent({
         ariaValueTextFormatter,
         onMouseenter,
         onMouseleave,
-      } = props
+      } = props;
       const className = classNames(attrs.class, {
         [`${prefixCls}-handle-click-focused`]: clickFocused.value,
-      })
+      });
 
       const ariaProps = {
         'aria-valuemin': min,
         'aria-valuemax': max,
         'aria-valuenow': value,
         'aria-disabled': !!disabled,
-      }
-      const elStyle = [attrs.style as CSSProperties, positionStyle.value]
-      let mergedTabIndex = tabindex || 0
+      };
+      const elStyle = [attrs.style as CSSProperties, positionStyle.value];
+      let mergedTabIndex = tabindex || 0;
       if (disabled || tabindex === null)
-        mergedTabIndex = null
+        mergedTabIndex = null;
 
-      let ariaValueText
+      let ariaValueText;
       if (ariaValueTextFormatter)
-        ariaValueText = ariaValueTextFormatter(value)
+        ariaValueText = ariaValueTextFormatter(value);
 
       const handleProps = {
         ...attrs,
@@ -128,7 +128,7 @@ export default defineComponent({
         onMouseleave,
         ref: handle,
         style: elStyle,
-      }
+      };
       return (
         <div
           {...handleProps}
@@ -136,7 +136,7 @@ export default defineComponent({
           aria-labelledby={ariaLabelledBy}
           aria-valuetext={ariaValueText}
         />
-      )
-    }
+      );
+    };
   },
-})
+});

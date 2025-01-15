@@ -1,6 +1,6 @@
-import type { ChangeEventHandler } from '@antdv/types'
-import { EnterOutlined } from '@ant-design/icons-vue'
-import { classNames, KeyCode } from '@antdv/utils'
+import type { ChangeEventHandler } from '@antdv/types';
+import { EnterOutlined } from '@ant-design/icons-vue';
+import { classNames, KeyCode } from '@antdv/utils';
 import {
   defineComponent,
   onMounted,
@@ -8,11 +8,11 @@ import {
   ref,
   toRefs,
   watch,
-} from 'vue'
-import { Textarea } from '../../input'
+} from 'vue';
+import { Textarea } from '../../input';
 
-import useStyle from '../style'
-import { editableProps } from './props'
+import useStyle from '../style';
+import { editableProps } from './props';
 
 // CSSINJS
 
@@ -23,62 +23,62 @@ export default defineComponent({
   props: editableProps(),
   // emits: ['save', 'cancel', 'end', 'change'],
   setup(props, { emit, slots, attrs }) {
-    const { prefixCls } = toRefs(props)
+    const { prefixCls } = toRefs(props);
     const state = reactive({
       current: props.value || '',
       lastKeyCode: undefined,
       inComposition: false,
       cancelFlag: false,
-    })
+    });
     watch(
       () => props.value,
       (current) => {
-        state.current = current
+        state.current = current;
       },
-    )
+    );
 
-    const textArea = ref()
+    const textArea = ref();
 
     onMounted(() => {
       if (textArea.value) {
-        const resizableTextArea = textArea.value?.resizableTextArea
-        const innerTextArea = resizableTextArea?.textArea
-        innerTextArea.focus()
-        const { length } = innerTextArea.value
-        innerTextArea.setSelectionRange(length, length)
+        const resizableTextArea = textArea.value?.resizableTextArea;
+        const innerTextArea = resizableTextArea?.textArea;
+        innerTextArea.focus();
+        const { length } = innerTextArea.value;
+        innerTextArea.setSelectionRange(length, length);
       }
-    })
+    });
 
     function saveTextAreaRef(node: any) {
-      textArea.value = node
+      textArea.value = node;
     }
 
     function onChange({ target: { value } }) {
-      state.current = value.replace(/[\r\n]/g, '')
-      emit('change', state.current)
+      state.current = value.replace(/[\r\n]/g, '');
+      emit('change', state.current);
     }
 
     function onCompositionStart() {
-      state.inComposition = true
+      state.inComposition = true;
     }
 
     function onCompositionEnd() {
-      state.inComposition = false
+      state.inComposition = false;
     }
 
     function onKeyDown(e: KeyboardEvent) {
-      const { keyCode } = e
+      const { keyCode } = e;
       if (keyCode === KeyCode.ENTER)
-        e.preventDefault()
+        e.preventDefault();
 
       // We don't record keyCode when IME is using
-      if (state.inComposition) return
+      if (state.inComposition) return;
 
-      state.lastKeyCode = keyCode
+      state.lastKeyCode = keyCode;
     }
 
     function onKeyUp(e: KeyboardEvent) {
-      const { keyCode, ctrlKey, altKey, metaKey, shiftKey } = e
+      const { keyCode, ctrlKey, altKey, metaKey, shiftKey } = e;
 
       // Check if it's a real key
       if (
@@ -90,25 +90,25 @@ export default defineComponent({
         && !shiftKey
       ) {
         if (keyCode === KeyCode.ENTER) {
-          confirmChange()
-          emit('end')
+          confirmChange();
+          emit('end');
         } else if (keyCode === KeyCode.ESC) {
-          state.current = props.originContent
-          emit('cancel')
+          state.current = props.originContent;
+          emit('cancel');
         }
       }
     }
 
     function onBlur() {
-      confirmChange()
+      confirmChange();
     }
 
     function confirmChange() {
-      emit('save', state.current.trim())
+      emit('save', state.current.trim());
     }
 
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     return () => {
       const textAreaClassName = classNames(
@@ -120,7 +120,7 @@ export default defineComponent({
         },
         attrs.class,
         hashId.value,
-      )
+      );
 
       return wrapSSR(
         <div {...attrs} class={textAreaClassName}>
@@ -145,7 +145,7 @@ export default defineComponent({
                 <EnterOutlined class={`${props.prefixCls}-edit-content-confirm`} />
               )}
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

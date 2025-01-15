@@ -1,17 +1,17 @@
-import { Card, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import { Card, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
-import Alert from '../component-demos/alert/error'
-import Badge from '../component-demos/badge/badge'
-import Button from '../component-demos/button/dangerButton'
-import Dropdown from '../component-demos/dropdown/dropdownError'
-import Menu from '../component-demos/menu/menuDanger'
-import Message from '../component-demos/message/error'
-import Notification from '../component-demos/notification/error'
-import Progress from '../component-demos/progress/danger'
-import Tag from '../component-demos/tag/error'
-import Timeline from '../component-demos/timeline/danger'
-import Upload from '../component-demos/upload/danger'
+import Alert from '../component-demos/alert/error';
+import Badge from '../component-demos/badge/badge';
+import Button from '../component-demos/button/dangerButton';
+import Dropdown from '../component-demos/dropdown/dropdownError';
+import Menu from '../component-demos/menu/menuDanger';
+import Message from '../component-demos/message/error';
+import Notification from '../component-demos/notification/error';
+import Progress from '../component-demos/progress/danger';
+import Tag from '../component-demos/tag/error';
+import Timeline from '../component-demos/timeline/danger';
+import Upload from '../component-demos/upload/danger';
 
 export const Error = defineComponent({
   name: 'Error',
@@ -43,7 +43,7 @@ export const Error = defineComponent({
             {Dropdown.demo}
           </Space>
         </Card>
-      )
-    }
+      );
+    };
   },
-})
+});

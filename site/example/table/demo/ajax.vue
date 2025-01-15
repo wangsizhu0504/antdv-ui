@@ -24,10 +24,10 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
 </docs>
 
 <script lang="ts" setup>
-  import type { TableProps } from '@antdv/ui'
-  import axios from 'axios'
-  import { computed } from 'vue'
-  import { usePagination } from 'vue-request'
+  import type { TableProps } from '@antdv/ui';
+  import axios from 'axios';
+  import { computed } from 'vue';
+  import { usePagination } from 'vue-request';
 
   const columns = [
     {
@@ -49,16 +49,16 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
       title: 'Email',
       dataIndex: 'email',
     },
-  ]
+  ];
 
-  type APIParams = {
+  interface APIParams {
     results: number;
     page?: number;
     sortField?: string;
     sortOrder?: number;
     [key: string]: any;
   }
-  type APIResult = {
+  interface APIResult {
     results: Array<{
       gender: 'female' | 'male';
       name: string;
@@ -67,7 +67,7 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
   }
 
   function queryData(params: APIParams) {
-    return axios.get<APIResult>('https://randomuser.me/api?noinfo', { params })
+    return axios.get<APIResult>('https://randomuser.me/api?noinfo', { params });
   }
 
   const {
@@ -81,14 +81,14 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
       currentKey: 'page',
       pageSizeKey: 'results',
     },
-  })
-  const list = computed(() => dataSource.value?.data?.results || [])
-  console.log('dataSource', dataSource)
+  });
+  const list = computed(() => dataSource.value?.data?.results || []);
+  console.log('dataSource', dataSource);
   const pagination = computed(() => ({
     total: 200,
     current: current.value,
     pageSize: pageSize.value,
-  }))
+  }));
 
   const handleTableChange: TableProps['onChange'] = (
     pag: { pageSize: number; current: number },
@@ -101,8 +101,8 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
       sortField: sorter.field,
       sortOrder: sorter.order,
       ...filters,
-    })
-  }
+    });
+  };
 </script>
 
 <template>

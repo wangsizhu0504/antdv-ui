@@ -17,8 +17,8 @@ Implement a customized column search example via `customFilterDropdown`.
 </docs>
 
 <script lang="ts" setup>
-  import { SearchOutlined } from '@ant-design/icons-vue'
-  import { reactive, ref } from 'vue'
+  import { SearchOutlined } from '@ant-design/icons-vue';
+  import { reactive, ref } from 'vue';
 
   const data = [
     {
@@ -45,14 +45,14 @@ Implement a customized column search example via `customFilterDropdown`.
       age: 32,
       address: 'London No. 2 Lake Park',
     },
-  ]
+  ];
 
   const state = reactive({
     searchText: '',
     searchedColumn: '',
-  })
+  });
 
-  const searchInput = ref<any>()
+  const searchInput = ref<any>();
 
   const columns = [
     {
@@ -64,8 +64,8 @@ Implement a customized column search example via `customFilterDropdown`.
       onFilterDropdownOpenChange: (visible) => {
         if (visible) {
           setTimeout(() => {
-            searchInput.value.focus()
-          }, 100)
+            searchInput.value.focus();
+          }, 100);
         }
       },
     },
@@ -84,22 +84,22 @@ Implement a customized column search example via `customFilterDropdown`.
       onFilterDropdownOpenChange: (visible) => {
         if (visible) {
           setTimeout(() => {
-            searchInput.value.focus()
-          }, 100)
+            searchInput.value.focus();
+          }, 100);
         }
       },
     },
-  ]
+  ];
 
   function handleSearch(selectedKeys, confirm, dataIndex) {
-    confirm()
-    state.searchText = selectedKeys[0]
-    state.searchedColumn = dataIndex
+    confirm();
+    state.searchText = selectedKeys[0];
+    state.searchedColumn = dataIndex;
   }
 
   function handleReset(clearFilters) {
-    clearFilters({ confirm: true })
-    state.searchText = ''
+    clearFilters({ confirm: true });
+    state.searchText = '';
   }
 </script>
 

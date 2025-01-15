@@ -1,28 +1,28 @@
-import type { CSSInterpolation, CSSObject } from '@antdv/theme'
-import type { SelectToken } from '.'
-import { mergeToken, resetIcon } from '@antdv/theme'
+import type { CSSInterpolation, CSSObject } from '@antdv/theme';
+import type { SelectToken } from '.';
+import { mergeToken, resetIcon } from '@antdv/theme';
 
-const FIXED_ITEM_MARGIN = 2
+const FIXED_ITEM_MARGIN = 2;
 
 function getSelectItemStyle({
   controlHeightSM,
   controlHeight,
   lineWidth: borderWidth,
 }: SelectToken) {
-  const selectItemDist = (controlHeight - controlHeightSM) / 2 - borderWidth
-  const selectItemMargin = Math.ceil(selectItemDist / 2)
-  return [selectItemDist, selectItemMargin]
+  const selectItemDist = (controlHeight - controlHeightSM) / 2 - borderWidth;
+  const selectItemMargin = Math.ceil(selectItemDist / 2);
+  return [selectItemDist, selectItemMargin];
 }
 
 function genSizeStyle(token: SelectToken, suffix?: string): CSSObject {
-  const { componentCls, iconCls } = token
+  const { componentCls, iconCls } = token;
 
-  const selectOverflowPrefixCls = `${componentCls}-selection-overflow`
+  const selectOverflowPrefixCls = `${componentCls}-selection-overflow`;
 
-  const selectItemHeight = token.controlHeightSM
-  const [selectItemDist] = getSelectItemStyle(token)
+  const selectItemHeight = token.controlHeightSM;
+  const [selectItemDist] = getSelectItemStyle(token);
 
-  const suffixCls = suffix ? `${componentCls}-${suffix}` : ''
+  const suffixCls = suffix ? `${componentCls}-${suffix}` : '';
 
   return {
     [`${componentCls}-multiple${suffixCls}`]: {
@@ -187,19 +187,19 @@ function genSizeStyle(token: SelectToken, suffix?: string): CSSObject {
         transition: `all ${token.motionDurationSlow}`,
       },
     },
-  }
+  };
 }
 
 export default function genMultipleStyle(token: SelectToken): CSSInterpolation {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   const smallToken = mergeToken<SelectToken>(token, {
     controlHeight: token.controlHeightSM,
     controlHeightSM: token.controlHeightXS,
     borderRadius: token.borderRadiusSM,
     borderRadiusSM: token.borderRadiusXS,
-  })
-  const [, smSelectItemMargin] = getSelectItemStyle(token)
+  });
+  const [, smSelectItemMargin] = getSelectItemStyle(token);
 
   return [
     genSizeStyle(token),
@@ -234,5 +234,5 @@ export default function genMultipleStyle(token: SelectToken): CSSInterpolation {
       }),
       'lg',
     ),
-  ]
+  ];
 }

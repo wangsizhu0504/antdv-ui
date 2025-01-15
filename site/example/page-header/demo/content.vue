@@ -17,7 +17,7 @@ Show all props provided by PageHeader.
 </docs>
 
 <script lang="ts" setup>
-  import { EllipsisOutlined } from '@ant-design/icons-vue'
+  import { EllipsisOutlined } from '@ant-design/icons-vue';
 
   const routes = [
     {
@@ -32,7 +32,7 @@ Show all props provided by PageHeader.
       path: 'second',
       breadcrumbName: 'Third-level Menu',
     },
-  ]
+  ];
 
   interface IconLink {
     src: string;
@@ -51,7 +51,7 @@ Show all props provided by PageHeader.
       src: 'https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg',
       text: 'Product Doc',
     },
-  ]
+  ];
 </script>
 
 <template>

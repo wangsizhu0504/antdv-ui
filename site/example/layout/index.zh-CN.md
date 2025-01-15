@@ -69,7 +69,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HdS6Q5vUCDcAAA
     <Sider>right sidebar</Sider>
   </Layout>
   <Footer>footer</Footer>
-</Layout>
+</Layout>;
 ```
 
 ### Layout

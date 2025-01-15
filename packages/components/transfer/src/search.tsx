@@ -1,9 +1,9 @@
-import type { ChangeEvent } from '@antdv/types'
-import { SearchOutlined } from '@ant-design/icons-vue'
-import { initDefaultProps } from '@antdv/utils'
-import { defineComponent } from 'vue'
-import Input from '../../input'
-import { transferSearchProps } from './props'
+import type { ChangeEvent } from '@antdv/types';
+import { SearchOutlined } from '@ant-design/icons-vue';
+import { initDefaultProps } from '@antdv/utils';
+import { defineComponent } from 'vue';
+import Input from '../../input';
+import { transferSearchProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -15,13 +15,13 @@ export default defineComponent({
   emits: ['change'],
   setup(props, { emit }) {
     const handleChange = (e: ChangeEvent) => {
-      emit('change', e)
+      emit('change', e);
       if (e.target.value === '')
-        props.handleClear?.()
-    }
+        props.handleClear?.();
+    };
 
     return () => {
-      const { placeholder, value, prefixCls, disabled } = props
+      const { placeholder, value, prefixCls, disabled } = props;
       return (
         <Input
           placeholder={placeholder}
@@ -32,7 +32,7 @@ export default defineComponent({
           allowClear
           v-slots={{ prefix: () => <SearchOutlined /> }}
         />
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -17,25 +17,25 @@ Customize Trigger Token by `prefix` props. Default to `@`, `Array<string>` also 
 </docs>
 
 <script lang="ts" setup>
-  import { computed, ref } from 'vue'
+  import { computed, ref } from 'vue';
 
   const MOCK_DATA: Record<string, string[]> = {
     '@': ['afc163', 'zombiej', 'yesmeck'],
     '#': ['1.0', '2.0', '3.0'],
-  }
-  const prefix = ref<string>('@')
-  const value = ref<string>('')
+  };
+  const prefix = ref<string>('@');
+  const value = ref<string>('');
   const options = computed(() => {
     return (MOCK_DATA[prefix.value] || []).map(value => ({
       key: value,
       value,
       label: value,
-    }))
-  })
+    }));
+  });
 
   function onSearch(_: string, val: string) {
-    console.log(_, val)
-    prefix.value = val
+    console.log(_, val);
+    prefix.value = val;
   }
 </script>
 

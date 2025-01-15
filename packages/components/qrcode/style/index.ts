@@ -1,5 +1,5 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
 
 export interface ComponentToken {}
 
@@ -9,7 +9,7 @@ interface QRCodeToken extends FullToken<'QRCode'> {
 }
 
 const genQRCodeStyle: GenerateStyle<QRCodeToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
   return {
     [componentCls]: {
       ...resetComponent(token),
@@ -51,8 +51,8 @@ const genQRCodeStyle: GenerateStyle<QRCodeToken> = (token) => {
     [`${componentCls}-borderless`]: {
       borderColor: 'transparent',
     },
-  }
-}
+  };
+};
 
 export default genComponentStyleHook<'QRCode'>('QRCode', token =>
   genQRCodeStyle(
@@ -60,4 +60,4 @@ export default genComponentStyleHook<'QRCode'>('QRCode', token =>
       QRCodeTextColor: 'rgba(0, 0, 0, 0.88)',
       QRCodeMaskBackgroundColor: 'rgba(255, 255, 255, 0.96)',
     }),
-  ))
+  ));

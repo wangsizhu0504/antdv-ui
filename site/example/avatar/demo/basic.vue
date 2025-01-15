@@ -16,7 +16,7 @@ Three sizes and two shapes are available.
 </docs>
 
 <script lang="ts" setup>
-  import { UserOutlined } from '@ant-design/icons-vue'
+  import { UserOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

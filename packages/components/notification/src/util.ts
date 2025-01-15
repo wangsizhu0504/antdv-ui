@@ -1,15 +1,15 @@
-import type { CSSMotionProps } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import type { NotificationPlacement } from './interface'
+import type { CSSMotionProps } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import type { NotificationPlacement } from './interface';
 
 export function getPlacementStyle(
   placement: NotificationPlacement,
   top: number | string,
   bottom: number | string,
 ) {
-  let style: CSSProperties
-  top = typeof top === 'number' ? `${top}px` : top
-  bottom = typeof bottom === 'number' ? `${bottom}px` : bottom
+  let style: CSSProperties;
+  top = typeof top === 'number' ? `${top}px` : top;
+  bottom = typeof bottom === 'number' ? `${bottom}px` : bottom;
   switch (placement) {
     case 'top':
       style = {
@@ -18,24 +18,24 @@ export function getPlacementStyle(
         right: 'auto',
         top,
         bottom: 'auto',
-      }
-      break
+      };
+      break;
 
     case 'topLeft':
       style = {
         left: 0,
         top,
         bottom: 'auto',
-      }
-      break
+      };
+      break;
 
     case 'topRight':
       style = {
         right: 0,
         top,
         bottom: 'auto',
-      }
-      break
+      };
+      break;
 
     case 'bottom':
       style = {
@@ -44,30 +44,30 @@ export function getPlacementStyle(
         right: 'auto',
         top: 'auto',
         bottom,
-      }
-      break
+      };
+      break;
 
     case 'bottomLeft':
       style = {
         left: 0,
         top: 'auto',
         bottom,
-      }
-      break
+      };
+      break;
 
     default:
       style = {
         right: 0,
         top: 'auto',
         bottom,
-      }
-      break
+      };
+      break;
   }
-  return style
+  return style;
 }
 
 export function getMotion(prefixCls: string): CSSMotionProps {
   return {
     name: `${prefixCls}-fade`,
-  }
+  };
 }

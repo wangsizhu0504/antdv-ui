@@ -1,8 +1,8 @@
-import type { GenerateConfig } from '../../generate'
-import useMergeProps from '../../hooks/useMergeProps'
-import { useInjectPanel } from '../../PanelContext'
-import Header from '../Header'
-import { YEAR_DECADE_COUNT } from './constant'
+import type { GenerateConfig } from '../../generate';
+import useMergeProps from '../../hooks/useMergeProps';
+import { useInjectPanel } from '../../PanelContext';
+import Header from '../Header';
+import { YEAR_DECADE_COUNT } from './constant';
 
 export interface YearHeaderProps<DateType> {
   prefixCls: string;
@@ -16,17 +16,17 @@ export interface YearHeaderProps<DateType> {
 }
 
 function YearHeader<DateType>(_props: YearHeaderProps<DateType>) {
-  const props = useMergeProps(_props)
-  const { prefixCls, generateConfig, viewDate, onPrevDecade, onNextDecade, onDecadeClick } = props
-  const { hideHeader } = useInjectPanel()
+  const props = useMergeProps(_props);
+  const { prefixCls, generateConfig, viewDate, onPrevDecade, onNextDecade, onDecadeClick } = props;
+  const { hideHeader } = useInjectPanel();
   if (hideHeader.value)
-    return null
+    return null;
 
-  const headerPrefixCls = `${prefixCls}-header`
+  const headerPrefixCls = `${prefixCls}-header`;
 
-  const yearNumber = generateConfig.getYear(viewDate)
-  const startYear = Math.floor(yearNumber / YEAR_DECADE_COUNT) * YEAR_DECADE_COUNT
-  const endYear = startYear + YEAR_DECADE_COUNT - 1
+  const yearNumber = generateConfig.getYear(viewDate);
+  const startYear = Math.floor(yearNumber / YEAR_DECADE_COUNT) * YEAR_DECADE_COUNT;
+  const endYear = startYear + YEAR_DECADE_COUNT - 1;
 
   return (
     <Header
@@ -41,10 +41,10 @@ function YearHeader<DateType>(_props: YearHeaderProps<DateType>) {
         {endYear}
       </button>
     </Header>
-  )
+  );
 }
 
-YearHeader.displayName = 'YearHeader'
-YearHeader.inheritAttrs = false
+YearHeader.displayName = 'YearHeader';
+YearHeader.inheritAttrs = false;
 
-export default YearHeader
+export default YearHeader;

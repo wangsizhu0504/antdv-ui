@@ -16,10 +16,10 @@ Just add the `rules` attribute for `Form` component, pass validation rules, and 
 </docs>
 
 <script lang="ts" setup>
-  import type { Rule } from '@antdv/ui/es/form'
-  import type { Dayjs } from 'dayjs'
-  import type { UnwrapRef } from 'vue'
-  import { reactive, ref, toRaw } from 'vue'
+  import type { Rule } from '@antdv/ui/es/form';
+  import type { Dayjs } from 'dayjs';
+  import type { UnwrapRef } from 'vue';
+  import { reactive, ref, toRaw } from 'vue';
 
   interface FormState {
     name: string;
@@ -30,9 +30,9 @@ Just add the `rules` attribute for `Form` component, pass validation rules, and 
     resource: string;
     desc: string;
   }
-  const formRef = ref<any>()
-  const labelCol = { span: 5 }
-  const wrapperCol = { span: 13 }
+  const formRef = ref<any>();
+  const labelCol = { span: 5 };
+  const wrapperCol = { span: 13 };
   const formState: UnwrapRef<FormState> = reactive({
     name: '',
     region: undefined,
@@ -41,7 +41,7 @@ Just add the `rules` attribute for `Form` component, pass validation rules, and 
     type: [],
     resource: '',
     desc: '',
-  })
+  });
   const rules: Record<string, Rule[]> = {
     name: [
       { required: true, message: 'Please input Activity name', trigger: 'change' },
@@ -59,19 +59,19 @@ Just add the `rules` attribute for `Form` component, pass validation rules, and 
     ],
     resource: [{ required: true, message: 'Please select activity resource', trigger: 'change' }],
     desc: [{ required: true, message: 'Please input activity form', trigger: 'blur' }],
-  }
+  };
   function onSubmit() {
     formRef.value
       .validate()
       .then(() => {
-        console.log('values', formState, toRaw(formState))
+        console.log('values', formState, toRaw(formState));
       })
       .catch((error) => {
-        console.log('error', error)
-      })
+        console.log('error', error);
+      });
   }
   function resetForm() {
-    formRef.value.resetFields()
+    formRef.value.resetFields();
   }
 </script>
 

@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue';
 
 export function dividerProps() {
   return {
@@ -20,6 +20,6 @@ export function dividerProps() {
       default: false,
     },
     orientationMargin: [String, Number],
-  }
+  };
 }
-export type DividerProps = Partial<ExtractPropTypes<ReturnType<typeof dividerProps>>>
+export type DividerProps = Partial<ExtractPropTypes<ReturnType<typeof dividerProps>>>;

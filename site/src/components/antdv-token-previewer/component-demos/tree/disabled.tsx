@@ -1,5 +1,5 @@
-import type { ComponentDemo } from '../../interface'
-import { Tree } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Tree } from '@antdv/ui';
 
 const treeData = [
   {
@@ -27,7 +27,7 @@ const treeData = [
       },
     ],
   },
-]
+];
 function Demo() {
   return (
     <Tree
@@ -38,13 +38,13 @@ function Demo() {
       checkedKeys={['0-0-0', '0-0-1']}
       treeData={treeData}
     />
-  )
+  );
 }
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorTextDisabled', 'colorBgContainerDisabled'],
   key: 'disabled',
-}
+};
 
-export default componentDemo
+export default componentDemo;

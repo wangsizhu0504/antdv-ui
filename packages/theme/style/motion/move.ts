@@ -1,8 +1,8 @@
-import type { CSSInterpolation } from '../../cssinjs'
-import type { AliasToken } from '../../token'
-import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook'
-import { Keyframes } from '../../cssinjs'
-import { initMotion } from './motion'
+import type { CSSInterpolation } from '../../cssinjs';
+import type { AliasToken } from '../../token';
+import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook';
+import { Keyframes } from '../../cssinjs';
+import { initMotion } from './motion';
 
 export const moveDownIn = new Keyframes('antMoveDownIn', {
   '0%': {
@@ -16,7 +16,7 @@ export const moveDownIn = new Keyframes('antMoveDownIn', {
     transformOrigin: '0 0',
     opacity: 1,
   },
-})
+});
 
 export const moveDownOut = new Keyframes('antMoveDownOut', {
   '0%': {
@@ -30,7 +30,7 @@ export const moveDownOut = new Keyframes('antMoveDownOut', {
     transformOrigin: '0 0',
     opacity: 0,
   },
-})
+});
 
 export const moveLeftIn = new Keyframes('antMoveLeftIn', {
   '0%': {
@@ -44,7 +44,7 @@ export const moveLeftIn = new Keyframes('antMoveLeftIn', {
     transformOrigin: '0 0',
     opacity: 1,
   },
-})
+});
 
 export const moveLeftOut = new Keyframes('antMoveLeftOut', {
   '0%': {
@@ -58,7 +58,7 @@ export const moveLeftOut = new Keyframes('antMoveLeftOut', {
     transformOrigin: '0 0',
     opacity: 0,
   },
-})
+});
 
 export const moveRightIn = new Keyframes('antMoveRightIn', {
   '0%': {
@@ -72,7 +72,7 @@ export const moveRightIn = new Keyframes('antMoveRightIn', {
     transformOrigin: '0 0',
     opacity: 1,
   },
-})
+});
 
 export const moveRightOut = new Keyframes('antMoveRightOut', {
   '0%': {
@@ -86,7 +86,7 @@ export const moveRightOut = new Keyframes('antMoveRightOut', {
     transformOrigin: '0 0',
     opacity: 0,
   },
-})
+});
 
 export const moveUpIn = new Keyframes('antMoveUpIn', {
   '0%': {
@@ -100,7 +100,7 @@ export const moveUpIn = new Keyframes('antMoveUpIn', {
     transformOrigin: '0 0',
     opacity: 1,
   },
-})
+});
 
 export const moveUpOut = new Keyframes('antMoveUpOut', {
   '0%': {
@@ -114,9 +114,9 @@ export const moveUpOut = new Keyframes('antMoveUpOut', {
     transformOrigin: '0 0',
     opacity: 0,
   },
-})
+});
 
-type MoveMotionTypes = 'move-up' | 'move-down' | 'move-left' | 'move-right'
+type MoveMotionTypes = 'move-up' | 'move-down' | 'move-left' | 'move-right';
 const moveMotion: Record<MoveMotionTypes, { inKeyframes: Keyframes, outKeyframes: Keyframes }> = {
   'move-up': {
     inKeyframes: moveUpIn,
@@ -134,12 +134,12 @@ const moveMotion: Record<MoveMotionTypes, { inKeyframes: Keyframes, outKeyframes
     inKeyframes: moveRightIn,
     outKeyframes: moveRightOut,
   },
-}
+};
 
 export function initMoveMotion(token: TokenWithCommonCls<AliasToken>, motionName: MoveMotionTypes): CSSInterpolation {
-  const { antCls } = token
-  const motionCls = `${antCls}-${motionName}`
-  const { inKeyframes, outKeyframes } = moveMotion[motionName]
+  const { antCls } = token;
+  const motionCls = `${antCls}-${motionName}`;
+  const { inKeyframes, outKeyframes } = moveMotion[motionName];
 
   return [
     initMotion(motionCls, inKeyframes, outKeyframes, token.motionDurationMid),
@@ -156,5 +156,5 @@ export function initMoveMotion(token: TokenWithCommonCls<AliasToken>, motionName
         animationTimingFunction: token.motionEaseInOutCirc,
       },
     },
-  ]
+  ];
 }

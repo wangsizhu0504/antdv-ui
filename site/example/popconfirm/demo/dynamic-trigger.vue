@@ -17,33 +17,33 @@ Make it pop up under some conditions.
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
-  import { ref } from 'vue'
+  import { message } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const visible = ref<boolean>(false)
-  const condition = ref<boolean>(true)
+  const visible = ref<boolean>(false);
+  const condition = ref<boolean>(true);
 
   function confirm() {
-    visible.value = false
-    message.success('Next step.')
+    visible.value = false;
+    message.success('Next step.');
   }
 
   function cancel() {
-    visible.value = false
-    message.error('Click on cancel.')
+    visible.value = false;
+    message.error('Click on cancel.');
   }
 
   function handleVisibleChange(bool: boolean) {
     if (!bool) {
-      visible.value = false
-      return
+      visible.value = false;
+      return;
     }
     // Determining condition before show the popconfirm.
-    console.log(condition.value)
+    console.log(condition.value);
     if (condition.value) {
-      confirm() // next step
+      confirm(); // next step
     } else {
-      visible.value = true
+      visible.value = true;
     }
   }
 </script>

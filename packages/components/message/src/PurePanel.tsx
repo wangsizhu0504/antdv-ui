@@ -1,16 +1,16 @@
-import type { MessagePureContentProps, MessagePurePanelProps } from './props'
+import type { MessagePureContentProps, MessagePurePanelProps } from './props';
 import {
   CheckCircleFilled,
   CloseCircleFilled,
   ExclamationCircleFilled,
   InfoCircleFilled,
   LoadingOutlined,
-} from '@ant-design/icons-vue'
-import { classNames } from '@antdv/utils'
-import VcNotice from '@antdv/vue-components/vc-notification/src/Notice'
-import { computed, defineComponent } from 'vue'
-import { useConfigContextInject } from '../../config-provider/src/context'
-import useStyle from '../style'
+} from '@ant-design/icons-vue';
+import { classNames } from '@antdv/utils';
+import VcNotice from '@antdv/vue-components/vc-notification/src/Notice';
+import { computed, defineComponent } from 'vue';
+import { useConfigContextInject } from '../../config-provider/src/context';
+import useStyle from '../style';
 
 export const TypeIcon = {
   info: <InfoCircleFilled />,
@@ -18,7 +18,7 @@ export const TypeIcon = {
   error: <CloseCircleFilled />,
   warning: <ExclamationCircleFilled />,
   loading: <LoadingOutlined />,
-}
+};
 
 export const PureContent = defineComponent<MessagePureContentProps>({
   name: 'PureContent',
@@ -33,9 +33,9 @@ export const PureContent = defineComponent<MessagePureContentProps>({
         {props.icon || TypeIcon[props.type!]}
         <span>{slots.default?.()}</span>
       </div>
-    )
+    );
   },
-})
+});
 
 /** @private Internal Component. Do not use in your production. */
 
@@ -44,9 +44,9 @@ export default defineComponent<MessagePurePanelProps>({
   inheritAttrs: false,
   props: ['prefixCls', 'class', 'type', 'icon', 'content'] as any,
   setup(props, { slots, attrs }) {
-    const { getPrefixCls } = useConfigContextInject()
-    const prefixCls = computed(() => props.prefixCls || getPrefixCls('message'))
-    const [, hashId] = useStyle(prefixCls)
+    const { getPrefixCls } = useConfigContextInject();
+    const prefixCls = computed(() => props.prefixCls || getPrefixCls('message'));
+    const [, hashId] = useStyle(prefixCls);
     return (
       <VcNotice
         {...attrs}
@@ -59,6 +59,6 @@ export default defineComponent<MessagePurePanelProps>({
           {slots.default?.()}
         </PureContent>
       </VcNotice>
-    )
+    );
   },
-})
+});

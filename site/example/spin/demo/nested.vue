@@ -17,9 +17,9 @@ Embedding content into `Spin` will alter it into loading state.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const spinning = ref<boolean>(false)
+  const spinning = ref<boolean>(false);
 </script>
 
 <template>

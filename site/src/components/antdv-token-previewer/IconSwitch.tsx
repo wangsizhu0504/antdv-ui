@@ -1,10 +1,10 @@
-import type { PropType } from 'vue'
-import { classNames } from '@antdv/utils'
-import { defineComponent, toRefs } from 'vue'
-import makeStyle from './utils/makeStyle'
+import type { PropType } from 'vue';
+import { classNames } from '@antdv/utils';
+import { defineComponent, toRefs } from 'vue';
+import makeStyle from './utils/makeStyle';
 
 const useStyle = makeStyle('IconSwitch', () => {
-  const activeBackground = '#314659'
+  const activeBackground = '#314659';
   return {
     '.theme-editor-icon-switch': {
       'display': 'inline-block',
@@ -61,8 +61,8 @@ const useStyle = makeStyle('IconSwitch', () => {
         },
       },
     },
-  }
-})
+  };
+});
 
 export interface IconSwitchProps {
   leftChecked?: boolean
@@ -75,8 +75,8 @@ const IconSwitch = defineComponent({
     onChange: { type: Function as PropType<(leftChecked: boolean) => void> },
   },
   setup(props, { attrs, slots }) {
-    const { leftChecked } = toRefs(props)
-    const [wrapSSR, hashId] = useStyle()
+    const { leftChecked } = toRefs(props);
+    const [wrapSSR, hashId] = useStyle();
 
     return () => {
       return wrapSSR(
@@ -84,7 +84,7 @@ const IconSwitch = defineComponent({
           <div
             class={classNames('holder', leftChecked.value && 'leftChecked')}
             onClick={() => {
-              props.onChange(!leftChecked.value)
+              props.onChange(!leftChecked.value);
             }}
           >
             <span class={classNames('icon', leftChecked.value && 'active')}>
@@ -95,8 +95,8 @@ const IconSwitch = defineComponent({
             </span>
           </div>
         </div>,
-      )
-    }
+      );
+    };
   },
-})
-export default IconSwitch
+});
+export default IconSwitch;

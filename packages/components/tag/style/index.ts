@@ -1,8 +1,8 @@
-import type { CSSObject, FullToken } from '@antdv/theme'
-import type { CSSProperties } from 'vue'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
-import { genPresetColor } from '@antdv/theme/style/presetColor'
-import { capitalize } from '@antdv/utils'
+import type { CSSObject, FullToken } from '@antdv/theme';
+import type { CSSProperties } from 'vue';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
+import { genPresetColor } from '@antdv/theme/style/presetColor';
+import { capitalize } from '@antdv/utils';
 
 export interface ComponentToken {}
 
@@ -18,10 +18,10 @@ interface TagToken extends FullToken<'Tag'> {
 
 // ============================== Styles ==============================
 
-type CssVariableType = 'Success' | 'Info' | 'Error' | 'Warning'
+type CssVariableType = 'Success' | 'Info' | 'Error' | 'Warning';
 
 function genTagStatusStyle(token: TagToken, status: 'success' | 'processing' | 'error' | 'warning', cssVariableType: CssVariableType): CSSObject {
-  const capitalizedCssVariableType = capitalize(cssVariableType)
+  const capitalizedCssVariableType = capitalize(cssVariableType);
   return {
     [`${token.componentCls}-${status}`]: {
       color: token[`color${cssVariableType}`],
@@ -31,7 +31,7 @@ function genTagStatusStyle(token: TagToken, status: 'success' | 'processing' | '
         borderColor: 'transparent',
       },
     },
-  }
+  };
 }
 
 function genPresetStyle(token: TagToken) {
@@ -51,13 +51,13 @@ function genPresetStyle(token: TagToken) {
         borderColor: 'transparent',
       },
     },
-  }))
+  }));
 }
 
 function genBaseStyle(token: TagToken): CSSObject {
-  const { paddingXXS, lineWidth, tagPaddingHorizontal, componentCls } = token
-  const paddingInline = tagPaddingHorizontal - lineWidth
-  const iconMarginInline = paddingXXS - lineWidth
+  const { paddingXXS, lineWidth, tagPaddingHorizontal, componentCls } = token;
+  const paddingInline = tagPaddingHorizontal - lineWidth;
+  const iconMarginInline = paddingXXS - lineWidth;
 
   return {
     // Result
@@ -145,18 +145,18 @@ function genBaseStyle(token: TagToken): CSSObject {
         background: token.tagBorderlessBg,
       },
     },
-  }
+  };
 }
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Tag', (token) => {
-  const { fontSize, lineHeight, lineWidth, fontSizeIcon } = token
-  const tagHeight = Math.round(fontSize * lineHeight)
+  const { fontSize, lineHeight, lineWidth, fontSizeIcon } = token;
+  const tagHeight = Math.round(fontSize * lineHeight);
 
-  const tagFontSize = token.fontSizeSM
-  const tagLineHeight = tagHeight - lineWidth * 2
-  const tagDefaultBg = token.colorFillAlter
-  const tagDefaultColor = token.colorText
+  const tagFontSize = token.fontSizeSM;
+  const tagLineHeight = tagHeight - lineWidth * 2;
+  const tagDefaultBg = token.colorFillAlter;
+  const tagDefaultColor = token.colorText;
 
   const tagToken = mergeToken<TagToken>(token, {
     tagFontSize,
@@ -166,7 +166,7 @@ export default genComponentStyleHook('Tag', (token) => {
     tagIconSize: fontSizeIcon - 2 * lineWidth, // Tag icon is much more smaller
     tagPaddingHorizontal: 8, // Fixed padding.
     tagBorderlessBg: token.colorFillTertiary,
-  })
+  });
 
   return [
     genBaseStyle(tagToken),
@@ -175,5 +175,5 @@ export default genComponentStyleHook('Tag', (token) => {
     genTagStatusStyle(tagToken, 'processing', 'Info'),
     genTagStatusStyle(tagToken, 'error', 'Error'),
     genTagStatusStyle(tagToken, 'warning', 'Warning'),
-  ]
-})
+  ];
+});

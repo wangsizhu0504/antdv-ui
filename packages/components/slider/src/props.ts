@@ -1,12 +1,12 @@
-import type { FocusEventHandler } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-import type { TooltipPlacement } from '../../tooltip'
-import type { SliderMarks, SliderRange, Value } from './interface'
-import { booleanType, functionType, objectType, someType, stringType } from '@antdv/utils'
+import type { FocusEventHandler } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes } from 'vue';
+import type { TooltipPlacement } from '../../tooltip';
+import type { SliderMarks, SliderRange, Value } from './interface';
+import { booleanType, functionType, objectType, someType, stringType } from '@antdv/utils';
 
 // CSSINJS
 
-const defaultTipFormatter = (value: number) => (typeof value === 'number' ? value.toString() : '')
+const defaultTipFormatter = (value: number) => (typeof value === 'number' ? value.toString() : '');
 export function sliderProps() {
   return {
     'id': String,
@@ -41,7 +41,7 @@ export function sliderProps() {
     'onFocus': functionType<FocusEventHandler>(),
     'onBlur': functionType<FocusEventHandler>(),
     'onUpdate:value': functionType<(value: Value) => void>(),
-  }
+  };
 }
 
-export type SliderProps = Partial<ExtractPropTypes<ReturnType<typeof sliderProps>>>
+export type SliderProps = Partial<ExtractPropTypes<ReturnType<typeof sliderProps>>>;

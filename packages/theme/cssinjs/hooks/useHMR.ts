@@ -1,14 +1,14 @@
 function useProdHMR() {
-  return false
+  return false;
 }
 
-let webpackHMR = false
+let webpackHMR = false;
 
 function useDevHMR() {
-  return webpackHMR
+  return webpackHMR;
 }
 
-export default process.env.NODE_ENV === 'production' ? useProdHMR : useDevHMR
+export default process.env.NODE_ENV === 'production' ? useProdHMR : useDevHMR;
 
 // Webpack `module.hot.accept` do not support any deps update trigger
 // We have to hack handler to force mark as HRM
@@ -19,16 +19,16 @@ if (
   && (module as any).hot
   && typeof window !== 'undefined'
 ) {
-  const win = window as any
+  const win = window as any;
   if (typeof win.webpackHotUpdate === 'function') {
-    const originWebpackHotUpdate = win.webpackHotUpdate
+    const originWebpackHotUpdate = win.webpackHotUpdate;
 
     win.webpackHotUpdate = (...args: any[]) => {
-      webpackHMR = true
+      webpackHMR = true;
       setTimeout(() => {
-        webpackHMR = false
-      }, 0)
-      return originWebpackHotUpdate(...args)
-    }
+        webpackHMR = false;
+      }, 0);
+      return originWebpackHotUpdate(...args);
+    };
   }
 }

@@ -1,22 +1,22 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import type { SpaceSize } from './interface'
-import { useFlexGapSupport } from '@antdv/hooks'
-import { classNames, filterEmpty } from '@antdv/utils'
+import type { CustomSlotsType } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import type { SpaceSize } from './interface';
+import { useFlexGapSupport } from '@antdv/hooks';
+import { classNames, filterEmpty } from '@antdv/utils';
 
-import { computed, defineComponent, Fragment, ref, watch } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import { spaceProps } from './props'
+import { computed, defineComponent, Fragment, ref, watch } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import { spaceProps } from './props';
 
 const spaceSize = {
   small: 8,
   middle: 16,
   large: 24,
-}
+};
 
 function getNumberSize(size: SpaceSize) {
-  return typeof size === 'string' ? spaceSize[size] : size || 0
+  return typeof size === 'string' ? spaceSize[size] : size || 0;
 }
 
 export default defineComponent({
@@ -29,12 +29,12 @@ export default defineComponent({
     default?: any
   }>,
   setup(props, { slots, attrs }) {
-    const { prefixCls, space, direction: directionConfig } = useConfigInject('space', props)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
-    const supportFlexGap = useFlexGapSupport()
-    const size = computed(() => props.size ?? space?.value?.size ?? 'small')
-    const horizontalSize = ref<number>()
-    const verticalSize = ref<number>()
+    const { prefixCls, space, direction: directionConfig } = useConfigInject('space', props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
+    const supportFlexGap = useFlexGapSupport();
+    const size = computed(() => props.size ?? space?.value?.size ?? 'small');
+    const horizontalSize = ref<number>();
+    const verticalSize = ref<number>();
     watch(
       size,
       () => {
@@ -43,48 +43,48 @@ export default defineComponent({
             SpaceSize,
             SpaceSize,
           ]
-        ).map(item => getNumberSize(item))
+        ).map(item => getNumberSize(item));
       },
       { immediate: true },
-    )
+    );
 
     const mergedAlign = computed(() =>
       props.align === undefined && props.direction === 'horizontal' ? 'center' : props.align,
-    )
+    );
     const cn = computed(() => {
       return classNames(prefixCls.value, hashId.value, `${prefixCls.value}-${props.direction}`, {
         [`${prefixCls.value}-rtl`]: directionConfig.value === 'rtl',
         [`${prefixCls.value}-align-${mergedAlign.value}`]: mergedAlign.value,
-      })
-    })
+      });
+    });
 
     const marginDirection = computed(() =>
       directionConfig.value === 'rtl' ? 'marginLeft' : 'marginRight',
-    )
+    );
     const style = computed(() => {
-      const gapStyle: CSSProperties = {}
+      const gapStyle: CSSProperties = {};
       if (supportFlexGap.value) {
-        gapStyle.columnGap = `${horizontalSize.value}px`
-        gapStyle.rowGap = `${verticalSize.value}px`
+        gapStyle.columnGap = `${horizontalSize.value}px`;
+        gapStyle.rowGap = `${verticalSize.value}px`;
       }
       return {
         ...gapStyle,
         ...(props.wrap && { flexWrap: 'wrap', marginBottom: `${-verticalSize.value}px` }),
-      } as CSSProperties
-    })
+      } as CSSProperties;
+    });
     return () => {
-      const { wrap, direction = 'horizontal' } = props
-      const children = slots.default?.()
-      const items = filterEmpty(children)
-      const len = items.length
+      const { wrap, direction = 'horizontal' } = props;
+      const children = slots.default?.();
+      const items = filterEmpty(children);
+      const len = items.length;
 
       if (len === 0)
-        return null
+        return null;
 
-      const split = slots.split?.()
-      const itemClassName = `${prefixCls.value}-item`
-      const horizontalSizeVal = horizontalSize.value
-      const latestIndex = len - 1
+      const split = slots.split?.();
+      const itemClassName = `${prefixCls.value}-item`;
+      const horizontalSizeVal = horizontalSize.value;
+      const latestIndex = len - 1;
       return (
         <div
           {...attrs}
@@ -92,22 +92,22 @@ export default defineComponent({
           style={[style.value, attrs.style as CSSProperties]}
         >
           {items.map((child, index) => {
-            let originIndex = children.indexOf(child)
+            let originIndex = children.indexOf(child);
             if (originIndex === -1)
-              originIndex = `$$space-${index}`
+              originIndex = `$$space-${index}`;
 
-            let itemStyle: CSSProperties = {}
+            let itemStyle: CSSProperties = {};
             if (!supportFlexGap.value) {
               if (direction === 'vertical') {
                 if (index < latestIndex)
-                  itemStyle = { marginBottom: `${horizontalSizeVal / (split ? 2 : 1)}px` }
+                  itemStyle = { marginBottom: `${horizontalSizeVal / (split ? 2 : 1)}px` };
               } else {
                 itemStyle = {
                   ...(index < latestIndex && {
                     [marginDirection.value]: `${horizontalSizeVal / (split ? 2 : 1)}px`,
                   }),
                   ...(wrap && { paddingBottom: `${verticalSize.value}px` }),
-                }
+                };
               }
             }
 
@@ -122,10 +122,10 @@ export default defineComponent({
                   </span>
                 )}
               </Fragment>,
-            )
+            );
           })}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

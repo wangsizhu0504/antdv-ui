@@ -1,5 +1,5 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { MenuToken } from '.'
+import type { GenerateStyle } from '@antdv/theme';
+import type { MenuToken } from '.';
 
 const getHorizontalStyle: GenerateStyle<MenuToken> = (token) => {
   const {
@@ -10,7 +10,7 @@ const getHorizontalStyle: GenerateStyle<MenuToken> = (token) => {
     lineWidth,
     lineType,
     menuItemPaddingInline,
-  } = token
+  } = token;
 
   return {
     [`${componentCls}-horizontal`]: {
@@ -51,7 +51,7 @@ const getHorizontalStyle: GenerateStyle<MenuToken> = (token) => {
         display: 'none',
       },
     },
-  }
-}
+  };
+};
 
-export default getHorizontalStyle
+export default getHorizontalStyle;

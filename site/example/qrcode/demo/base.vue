@@ -15,9 +15,9 @@ Basic Usage.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const text = ref<any>('https://www.antdv.com/')
+  const text = ref<any>('https://www.antdv.com/');
 </script>
 
 <template>

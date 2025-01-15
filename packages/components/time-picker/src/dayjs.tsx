@@ -1,10 +1,10 @@
-import type { Dayjs } from 'dayjs'
-import type { App } from 'vue'
-import type { PickerTimeProps, RangePickerTimeProps } from '../../date-picker'
-import dayjsGenerateConfig from '@antdv/vue-components/vc-picker/src/generate/dayjs'
-import createTimePicker from './TimePicker'
+import type { Dayjs } from 'dayjs';
+import type { App } from 'vue';
+import type { PickerTimeProps, RangePickerTimeProps } from '../../date-picker';
+import dayjsGenerateConfig from '@antdv/vue-components/vc-picker/src/generate/dayjs';
+import createTimePicker from './TimePicker';
 
-const { TimePicker, TimeRangePicker } = createTimePicker<Dayjs>(dayjsGenerateConfig)
+const { TimePicker, TimeRangePicker } = createTimePicker<Dayjs>(dayjsGenerateConfig);
 
 export interface TimeRangePickerProps extends Omit<RangePickerTimeProps<Dayjs>, 'picker'> {
   popupClassName?: string
@@ -16,13 +16,13 @@ export interface TimePickerProps extends Omit<PickerTimeProps<Dayjs>, 'picker'> 
 }
 
 /* istanbul ignore next */
-export { TimePicker, TimeRangePicker }
+export { TimePicker, TimeRangePicker };
 export default Object.assign(TimePicker, {
   TimePicker,
   TimeRangePicker,
   install: (app: App) => {
-    app.component(TimePicker.name, TimePicker)
-    app.component(TimeRangePicker.name, TimeRangePicker)
-    return app
+    app.component(TimePicker.name, TimePicker);
+    app.component(TimeRangePicker.name, TimeRangePicker);
+    return app;
   },
-})
+});

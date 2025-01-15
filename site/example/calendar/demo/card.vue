@@ -16,12 +16,12 @@ Nested inside a container element for rendering in limited space.
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import { ref } from 'vue';
 
-  const value = ref<Dayjs>()
+  const value = ref<Dayjs>();
   function onPanelChange(value: Dayjs, mode: string) {
-    console.log(value, mode)
+    console.log(value, mode);
   }
 </script>
 

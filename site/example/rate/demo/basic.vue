@@ -17,9 +17,9 @@ The simplest usage.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<number>(2)
+  const value = ref<number>(2);
 </script>
 
 <template>

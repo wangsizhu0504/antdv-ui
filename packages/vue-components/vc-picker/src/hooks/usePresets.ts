@@ -1,8 +1,8 @@
-import type { ComputedRef } from 'vue'
-import type { PresetDate } from '../interface'
+import type { ComputedRef } from 'vue';
+import type { PresetDate } from '../interface';
 
-import { warning } from '@antdv/utils'
-import { computed } from 'vue'
+import { warning } from '@antdv/utils';
+import { computed } from 'vue';
 
 export default function usePresets<T>(
   presets?: ComputedRef<Array<PresetDate<T>>>,
@@ -10,21 +10,21 @@ export default function usePresets<T>(
 ): ComputedRef<Array<PresetDate<T>>> {
   return computed(() => {
     if (presets?.value)
-      return presets.value
+      return presets.value;
 
     if (legacyRanges?.value) {
-      warning(false, '`ranges` is deprecated. Please use `presets` instead.')
+      warning(false, '`ranges` is deprecated. Please use `presets` instead.');
 
-      const rangeLabels = Object.keys(legacyRanges.value)
+      const rangeLabels = Object.keys(legacyRanges.value);
       return rangeLabels.map((label) => {
-        const range = legacyRanges.value[label]
-        const newValues = typeof range === 'function' ? (range as any)() : range
+        const range = legacyRanges.value[label];
+        const newValues = typeof range === 'function' ? (range as any)() : range;
         return {
           label,
           value: newValues,
-        }
-      })
+        };
+      });
     }
-    return [] as unknown as Array<PresetDate<T>>
-  })
+    return [] as unknown as Array<PresetDate<T>>;
+  });
 }

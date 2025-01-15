@@ -17,10 +17,10 @@ Table with editable cells.
 </docs>
 
 <script lang="ts" setup>
-  import type { Ref, UnwrapRef } from 'vue'
-  import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue'
-  import { cloneDeep } from 'lodash-es'
-  import { computed, reactive, ref } from 'vue'
+  import type { Ref, UnwrapRef } from 'vue';
+  import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue';
+  import { cloneDeep } from 'lodash-es';
+  import { computed, reactive, ref } from 'vue';
 
   interface DataItem {
     key: string;
@@ -47,7 +47,7 @@ Table with editable cells.
       title: 'operation',
       dataIndex: 'operation',
     },
-  ]
+  ];
   const dataSource: Ref<DataItem[]> = ref<any>([
     {
       key: '0',
@@ -61,20 +61,20 @@ Table with editable cells.
       age: 32,
       address: 'London, Park Lane no. 1',
     },
-  ])
-  const count = computed(() => dataSource.value.length + 1)
-  const editableData: UnwrapRef<Record<string, DataItem>> = reactive({})
+  ]);
+  const count = computed(() => dataSource.value.length + 1);
+  const editableData: UnwrapRef<Record<string, DataItem>> = reactive({});
 
   function edit(key: string) {
-    editableData[key] = cloneDeep(dataSource.value.filter(item => key === item.key)[0])
+    editableData[key] = cloneDeep(dataSource.value.filter(item => key === item.key)[0]);
   }
   function save(key: string) {
-    Object.assign(dataSource.value.filter(item => key === item.key)[0], editableData[key])
-    delete editableData[key]
+    Object.assign(dataSource.value.filter(item => key === item.key)[0], editableData[key]);
+    delete editableData[key];
   }
 
   function onDelete(key: string) {
-    dataSource.value = dataSource.value.filter(item => item.key !== key)
+    dataSource.value = dataSource.value.filter(item => item.key !== key);
   }
   function handleAdd() {
     const newData = {
@@ -82,8 +82,8 @@ Table with editable cells.
       name: `Edward King ${count.value}`,
       age: 32,
       address: `London, Park Lane no. ${count.value}`,
-    }
-    dataSource.value.push(newData)
+    };
+    dataSource.value.push(newData);
   }
 </script>
 

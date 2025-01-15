@@ -1,6 +1,6 @@
-import type { Ref } from 'vue'
-import type { GetRowKey, Key } from '../interface'
-import { computed } from 'vue'
+import type { Ref } from 'vue';
+import type { GetRowKey, Key } from '../interface';
+import { computed } from 'vue';
 
 // recursion (flat tree structure)
 function flatRecord<T>(
@@ -11,17 +11,17 @@ function flatRecord<T>(
   getRowKey: GetRowKey<T>,
   index: number,
 ) {
-  const arr = []
+  const arr = [];
 
   arr.push({
     record,
     indent,
     index,
-  })
+  });
 
-  const key = getRowKey(record)
+  const key = getRowKey(record);
 
-  const expanded = expandedKeys?.has(key)
+  const expanded = expandedKeys?.has(key);
 
   if (record && Array.isArray(record[childrenColumnName]) && expanded) {
     // expanded state, flat record
@@ -33,13 +33,13 @@ function flatRecord<T>(
         expandedKeys,
         getRowKey,
         i,
-      )
+      );
 
-      arr.push(...tempArr)
+      arr.push(...tempArr);
     }
   }
 
-  return arr
+  return arr;
 }
 
 /**
@@ -60,22 +60,22 @@ export default function useFlattenRecords<T = unknown>(
   getRowKey: Ref<GetRowKey<T>>,
 ) {
   const arr: Ref<Array<{ record: T; indent: number; index: number }>> = computed(() => {
-    const childrenColumnName = childrenColumnNameRef.value
-    const expandedKeys = expandedKeysRef.value
-    const data = dataRef.value
+    const childrenColumnName = childrenColumnNameRef.value;
+    const expandedKeys = expandedKeysRef.value;
+    const data = dataRef.value;
     if (expandedKeys?.size) {
-      const temp: Array<{ record: T; indent: number; index: number }> = []
+      const temp: Array<{ record: T; indent: number; index: number }> = [];
 
       // collect flattened record
       for (let i = 0; i < data?.length; i += 1) {
-        const record = data[i]
+        const record = data[i];
 
         temp.push(
           ...flatRecord<T>(record, 0, childrenColumnName, expandedKeys, getRowKey.value, i),
-        )
+        );
       }
 
-      return temp
+      return temp;
     }
 
     return data?.map((item, index) => {
@@ -83,9 +83,9 @@ export default function useFlattenRecords<T = unknown>(
         record: item,
         indent: 0,
         index,
-      }
-    })
-  })
+      };
+    });
+  });
 
-  return arr
+  return arr;
 }

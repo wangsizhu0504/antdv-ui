@@ -1,12 +1,12 @@
-import type { MouseEventHandler } from '@antdv/types'
-import type { CustomizeComponent, GetComponentProps, GetRowKey, Key } from '../interface'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
-import Cell from '../Cell'
-import { useInjectBody } from '../context/BodyContext'
-import { useInjectTable } from '../context/TableContext'
-import { getColumnsKey } from '../utils/valueUtil'
-import ExpandedRow from './ExpandedRow'
+import type { MouseEventHandler } from '@antdv/types';
+import type { CustomizeComponent, GetComponentProps, GetRowKey, Key } from '../interface';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, shallowRef, watchEffect } from 'vue';
+import Cell from '../Cell';
+import { useInjectBody } from '../context/BodyContext';
+import { useInjectTable } from '../context/TableContext';
+import { getColumnsKey } from '../utils/valueUtil';
+import ExpandedRow from './ExpandedRow';
 
 export interface BodyRowProps<RecordType> {
   record: RecordType;
@@ -43,60 +43,60 @@ export default defineComponent<BodyRowProps<unknown>>({
     'childrenColumnName',
   ] as any,
   setup(props, { attrs }) {
-    const tableContext = useInjectTable()
-    const bodyContext = useInjectBody()
-    const expandRended = shallowRef(false)
+    const tableContext = useInjectTable();
+    const bodyContext = useInjectBody();
+    const expandRended = shallowRef(false);
 
-    const expanded = computed(() => props.expandedKeys && props.expandedKeys.has(props.recordKey))
+    const expanded = computed(() => props.expandedKeys && props.expandedKeys.has(props.recordKey));
 
     watchEffect(() => {
       if (expanded.value)
-        expandRended.value = true
-    })
+        expandRended.value = true;
+    });
 
     const rowSupportExpand = computed(
       () =>
         bodyContext.expandableType === 'row'
         && (!props.rowExpandable || props.rowExpandable(props.record)),
-    )
+    );
     // Only when row is not expandable and `children` exist in record
-    const nestExpandable = computed(() => bodyContext.expandableType === 'nest')
+    const nestExpandable = computed(() => bodyContext.expandableType === 'nest');
     const hasNestChildren = computed(
       () => props.childrenColumnName && props.record && props.record[props.childrenColumnName],
-    )
-    const mergedExpandable = computed(() => rowSupportExpand.value || nestExpandable.value)
+    );
+    const mergedExpandable = computed(() => rowSupportExpand.value || nestExpandable.value);
 
     const onInternalTriggerExpand = (record, event) => {
-      bodyContext.onTriggerExpand(record, event)
-    }
+      bodyContext.onTriggerExpand(record, event);
+    };
 
     // =========================== onRow ===========================
     const additionalProps = computed<Record<string, any>>(
       () => props.customRow?.(props.record, props.index) || {},
-    )
+    );
 
     const onClick: MouseEventHandler = (event, ...args) => {
       if (bodyContext.expandRowByClick && mergedExpandable.value)
-        onInternalTriggerExpand(props.record, event)
+        onInternalTriggerExpand(props.record, event);
 
-      additionalProps.value?.onClick?.(event, ...args)
-    }
+      additionalProps.value?.onClick?.(event, ...args);
+    };
 
     const computeRowClassName = computed(() => {
-      const { record, index, indent } = props
-      const { rowClassName } = bodyContext
+      const { record, index, indent } = props;
+      const { rowClassName } = bodyContext;
       if (typeof rowClassName === 'string')
-        return rowClassName
+        return rowClassName;
       else if (typeof rowClassName === 'function')
-        return rowClassName(record, index, indent)
+        return rowClassName(record, index, indent);
 
-      return ''
-    })
+      return '';
+    });
 
-    const columnsKey = computed(() => getColumnsKey(bodyContext.flattenColumns))
+    const columnsKey = computed(() => getColumnsKey(bodyContext.flattenColumns));
 
     return () => {
-      const { class: className, style } = attrs as any
+      const { class: className, style } = attrs as any;
       const {
         record,
         index,
@@ -104,8 +104,8 @@ export default defineComponent<BodyRowProps<unknown>>({
         indent = 0,
         rowComponent: RowComponent,
         cellComponent,
-      } = props
-      const { prefixCls, fixedInfoList, transformCellText } = tableContext
+      } = props;
+      const { prefixCls, fixedInfoList, transformCellText } = tableContext;
       const {
         flattenColumns,
         expandedRowClassName,
@@ -113,7 +113,7 @@ export default defineComponent<BodyRowProps<unknown>>({
         expandIcon,
         expandedRowRender,
         expandIconColumnIndex,
-      } = bodyContext
+      } = bodyContext;
       const baseRowNode = (
         <RowComponent
           {...additionalProps.value}
@@ -129,14 +129,14 @@ export default defineComponent<BodyRowProps<unknown>>({
           onClick={onClick}
         >
           {flattenColumns.map((column, colIndex) => {
-            const { customRender, dataIndex, className: columnClassName } = column
+            const { customRender, dataIndex, className: columnClassName } = column;
 
-            const key = columnsKey[colIndex]
-            const fixedInfo = fixedInfoList[colIndex]
+            const key = columnsKey[colIndex];
+            const fixedInfo = fixedInfoList[colIndex];
 
-            let additionalCellProps
+            let additionalCellProps;
             if (column.customCell)
-              additionalCellProps = column.customCell(record, index, column)
+              additionalCellProps = column.customCell(record, index, column);
 
             // not use slot to fix https://github.com/vueComponent/ant-design-vue/issues/5295
             const appendNode
@@ -156,7 +156,7 @@ export default defineComponent<BodyRowProps<unknown>>({
                       })}
                     </>
                   )
-                : null
+                : null;
             return (
               <Cell
                 cellType="body"
@@ -177,22 +177,22 @@ export default defineComponent<BodyRowProps<unknown>>({
                 transformCellText={transformCellText}
                 appendNode={appendNode}
               />
-            )
+            );
           })}
         </RowComponent>
-      )
+      );
 
       // ======================== Expand Row =========================
-      let expandRowNode
+      let expandRowNode;
       if (rowSupportExpand.value && (expandRended.value || expanded.value)) {
         const expandContent = expandedRowRender({
           record,
           index,
           indent: indent + 1,
           expanded: expanded.value,
-        })
+        });
         const computedExpandedRowClassName
-          = expandedRowClassName && expandedRowClassName(record, index, indent)
+          = expandedRowClassName && expandedRowClassName(record, index, indent);
         expandRowNode = (
           <ExpandedRow
             expanded={expanded.value}
@@ -209,7 +209,7 @@ export default defineComponent<BodyRowProps<unknown>>({
           >
             {expandContent}
           </ExpandedRow>
-        )
+        );
       }
 
       return (
@@ -217,7 +217,7 @@ export default defineComponent<BodyRowProps<unknown>>({
           {baseRowNode}
           {expandRowNode}
         </>
-      )
-    }
+      );
+    };
   },
-})
+});

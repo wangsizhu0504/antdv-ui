@@ -1,19 +1,19 @@
-import type { Key } from '@antdv/types'
-import type { ColumnTitle, ColumnTitleProps, TableColumnsType, TableColumnType } from './interface'
-import { camelize, flattenChildren } from '@antdv/utils'
+import type { Key } from '@antdv/types';
+import type { ColumnTitle, ColumnTitleProps, TableColumnsType, TableColumnType } from './interface';
+import { camelize, flattenChildren } from '@antdv/utils';
 
 export function getColumnKey<RecordType>(column: TableColumnType<RecordType>, defaultKey: string): Key {
   if ('key' in column && column.key !== undefined && column.key !== null)
-    return column.key
+    return column.key;
 
   if (column.dataIndex)
-    return (Array.isArray(column.dataIndex) ? column.dataIndex.join('.') : column.dataIndex) as Key
+    return (Array.isArray(column.dataIndex) ? column.dataIndex.join('.') : column.dataIndex) as Key;
 
-  return defaultKey
+  return defaultKey;
 }
 
 export function getColumnPos(index: number, pos?: string) {
-  return pos ? `${pos}-${index}` : `${index}`
+  return pos ? `${pos}-${index}` : `${index}`;
 }
 
 export function renderColumnTitle<RecordType>(
@@ -21,41 +21,41 @@ export function renderColumnTitle<RecordType>(
   props: ColumnTitleProps<RecordType>,
 ) {
   if (typeof title === 'function')
-    return title(props)
+    return title(props);
 
-  return title
+  return title;
 }
 
 export function convertChildrenToColumns<RecordType>(
   elements: any[] = [],
 ): TableColumnsType<RecordType> {
-  const flattenElements = flattenChildren(elements)
-  const columns = []
+  const flattenElements = flattenChildren(elements);
+  const columns = [];
   flattenElements.forEach((element) => {
     if (!element)
-      return
+      return;
 
-    const key = element.key
-    const style = element.props?.style || {}
-    const cls = element.props?.class || ''
-    const props = element.props || {}
+    const key = element.key;
+    const style = element.props?.style || {};
+    const cls = element.props?.class || '';
+    const props = element.props || {};
     for (const [k, v] of Object.entries(props))
-      props[camelize(k)] = v
+      props[camelize(k)] = v;
 
-    const { default: children, ...restSlots } = element.children || {}
-    const column = { ...restSlots, ...props, style, class: cls }
+    const { default: children, ...restSlots } = element.children || {};
+    const column = { ...restSlots, ...props, style, class: cls };
     if (key)
-      column.key = key
+      column.key = key;
 
     if (element.type?.__ANT_TABLE_COLUMN_GROUP) {
       column.children = convertChildrenToColumns(
         typeof children === 'function' ? children() : children,
-      )
+      );
     } else {
-      const customRender = element.children?.default
-      column.customRender = column.customRender || customRender
+      const customRender = element.children?.default;
+      column.customRender = column.customRender || customRender;
     }
-    columns.push(column)
-  })
-  return columns
+    columns.push(column);
+  });
+  return columns;
 }

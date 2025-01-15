@@ -1,5 +1,5 @@
-import type { ComputedRef, InjectionKey, Ref } from 'vue'
-import { computed, inject, provide } from 'vue'
+import type { ComputedRef, InjectionKey, Ref } from 'vue';
+import { computed, inject, provide } from 'vue';
 
 export interface RowContext {
   gutter: ComputedRef<[number, number]>
@@ -7,10 +7,10 @@ export interface RowContext {
   supportFlexGap: Ref<boolean>
 }
 
-export const RowContextKey: InjectionKey<RowContext> = Symbol('rowContextKey')
+export const RowContextKey: InjectionKey<RowContext> = Symbol('rowContextKey');
 
 function useProvideRow(state: RowContext) {
-  provide(RowContextKey, state)
+  provide(RowContextKey, state);
 }
 
 function useInjectRow() {
@@ -18,8 +18,8 @@ function useInjectRow() {
     gutter: computed(() => undefined),
     wrap: computed(() => undefined),
     supportFlexGap: computed(() => undefined),
-  })
+  });
 }
 
-export { useInjectRow, useProvideRow }
-export default useProvideRow
+export { useInjectRow, useProvideRow };
+export default useProvideRow;

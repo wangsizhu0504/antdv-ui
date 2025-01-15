@@ -16,10 +16,10 @@ By using `status` of `Steps`, you can specify the state for current step.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const current = ref<number>(1)
-  const description = 'This is a description.'
+  const current = ref<number>(1);
+  const description = 'This is a description.';
 </script>
 
 <template>

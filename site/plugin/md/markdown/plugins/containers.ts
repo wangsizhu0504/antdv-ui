@@ -1,7 +1,7 @@
-import type MarkdownIt from 'markdown-it'
-import type Token from 'markdown-it/lib/token'
+import type MarkdownIt from 'markdown-it';
+import type Token from 'markdown-it/lib/token';
 
-import container from 'markdown-it-container'
+import container from 'markdown-it-container';
 
 export function containerPlugin(md: MarkdownIt) {
   md.use(...createContainer('tip', 'TIP'))
@@ -11,7 +11,7 @@ export function containerPlugin(md: MarkdownIt) {
     .use(container, 'v-pre', {
       render: (tokens: Token[], idx: number) =>
         tokens[idx].nesting === 1 ? '<div v-pre>\n' : '</div>\n',
-    })
+    });
 }
 
 type ContainerArgs = [
@@ -20,7 +20,7 @@ type ContainerArgs = [
   {
     render: (tokens: Token[], idx: number) => string
   },
-]
+];
 
 function createContainer(klass: string, defaultTitle: string): ContainerArgs {
   return [
@@ -28,16 +28,16 @@ function createContainer(klass: string, defaultTitle: string): ContainerArgs {
     klass,
     {
       render(tokens, idx) {
-        const token = tokens[idx]
-        const info = token.info?.trim().slice(klass.length)?.trim()
+        const token = tokens[idx];
+        const info = token.info?.trim().slice(klass.length)?.trim();
         if (token.nesting === 1) {
           return `<div class="${klass} custom-block"><p class="custom-block-title">${
             info || defaultTitle
-          }</p>\n`
+          }</p>\n`;
         } else {
-          return '</div>\n'
+          return '</div>\n';
         }
       },
     },
-  ]
+  ];
 }

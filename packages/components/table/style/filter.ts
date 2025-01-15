@@ -1,6 +1,6 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
-import { resetComponent } from '@antdv/theme'
+import type { GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
+import { resetComponent } from '@antdv/theme';
 
 const genFilterStyle: GenerateStyle<TableToken> = (token) => {
   const {
@@ -29,11 +29,11 @@ const genFilterStyle: GenerateStyle<TableToken> = (token) => {
     controlItemBgHover,
     controlItemBgActive,
     boxShadowSecondary,
-  } = token
-  const dropdownPrefixCls = `${antCls}-dropdown`
-  const tableFilterDropdownPrefixCls = `${componentCls}-filter-dropdown`
-  const treePrefixCls = `${antCls}-tree`
-  const tableBorder = `${lineWidth}px ${lineType} ${tableBorderColor}`
+  } = token;
+  const dropdownPrefixCls = `${antCls}-dropdown`;
+  const tableFilterDropdownPrefixCls = `${componentCls}-filter-dropdown`;
+  const treePrefixCls = `${antCls}-tree`;
+  const tableBorder = `${lineWidth}px ${lineType} ${tableBorderColor}`;
 
   return [
     {
@@ -166,7 +166,7 @@ const genFilterStyle: GenerateStyle<TableToken> = (token) => {
           },
         },
     },
-  ]
-}
+  ];
+};
 
-export default genFilterStyle
+export default genFilterStyle;

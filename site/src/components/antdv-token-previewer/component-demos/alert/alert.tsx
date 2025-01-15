@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Alert, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Alert, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -11,14 +11,14 @@ const Demo = defineComponent({
         <Alert message="Warning" type="warning" showIcon closable />
         <Alert message="Error" type="error" showIcon />
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorIconHover', 'colorIcon', 'colorText'],
   key: 'alert',
-}
+};
 
-export default componentDemo
+export default componentDemo;

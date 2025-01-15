@@ -16,7 +16,7 @@ Responsive columns.
 </docs>
 
 <script lang="ts" setup>
-  import type { ColumnsType } from '@antdv/ui/es/table/interface'
+  import type { ColumnsType } from '@antdv/ui/es/table/interface';
 
   const columns: ColumnsType = [
     {
@@ -36,7 +36,7 @@ Responsive columns.
       key: 'address',
       responsive: ['lg'],
     },
-  ]
+  ];
 
   const data = [
     {
@@ -45,7 +45,7 @@ Responsive columns.
       age: 32,
       address: 'New York No. 1 Lake Park',
     },
-  ]
+  ];
 </script>
 
 <template>

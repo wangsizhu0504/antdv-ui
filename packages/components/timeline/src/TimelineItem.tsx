@@ -1,9 +1,9 @@
-import type { SlotsType } from 'vue'
-import { initDefaultProps } from '@antdv/utils'
-import { computed, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import type { SlotsType } from 'vue';
+import { initDefaultProps } from '@antdv/utils';
+import { computed, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import { timelineItemProps } from './props'
+import { timelineItemProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -18,21 +18,21 @@ export default defineComponent({
     default?: any
   }>,
   setup(props, { slots }) {
-    const { prefixCls } = useConfigInject('timeline', props)
+    const { prefixCls } = useConfigInject('timeline', props);
     const itemClassName = computed(() => ({
       [`${prefixCls.value}-item`]: true,
       [`${prefixCls.value}-item-pending`]: props.pending,
-    }))
+    }));
 
     const customColor = computed(() =>
       /blue|red|green|gray/.test(props.color || '') ? undefined : (props.color || 'blue'),
-    )
+    );
     const dotClassName = computed(() => ({
       [`${prefixCls.value}-item-head`]: true,
       [`${prefixCls.value}-item-head-${props.color || 'blue'}`]: !customColor.value,
-    }))
+    }));
     return () => {
-      const { label = slots.label?.(), dot = slots.dot?.() } = props
+      const { label = slots.label?.(), dot = slots.dot?.() } = props;
       return (
         <li class={itemClassName.value}>
           {label && <div class={`${prefixCls.value}-item-label`}>{label}</div>}
@@ -45,7 +45,7 @@ export default defineComponent({
           </div>
           <div class={`${prefixCls.value}-item-content`}>{slots.default?.()}</div>
         </li>
-      )
-    }
+      );
+    };
   },
-})
+});

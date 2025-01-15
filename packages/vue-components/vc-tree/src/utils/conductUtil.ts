@@ -1,6 +1,6 @@
-import type { Key } from '@antdv/types'
-import type { BasicDataNode, DataEntity, DataNode, GetCheckDisabled } from '../interface'
-import { note } from '@antdv/utils'
+import type { Key } from '@antdv/types';
+import type { BasicDataNode, DataEntity, DataNode, GetCheckDisabled } from '../interface';
+import { note } from '@antdv/utils';
 
 interface ConductReturnType {
   checkedKeys: Key[];
@@ -8,17 +8,17 @@ interface ConductReturnType {
 }
 
 function removeFromCheckedKeys(halfCheckedKeys: Set<Key>, checkedKeys: Set<Key>) {
-  const filteredKeys = new Set<Key>()
+  const filteredKeys = new Set<Key>();
   halfCheckedKeys.forEach((key) => {
     if (!checkedKeys.has(key))
-      filteredKeys.add(key)
-  })
-  return filteredKeys
+      filteredKeys.add(key);
+  });
+  return filteredKeys;
 }
 
 export function isCheckDisabled<TreeDataType>(node: TreeDataType) {
-  const { disabled, disableCheckbox, checkable } = (node || {}) as DataNode
-  return !!(disabled || disableCheckbox) || checkable === false
+  const { disabled, disableCheckbox, checkable } = (node || {}) as DataNode;
+  return !!(disabled || disableCheckbox) || checkable === false;
 }
 
 // Fill miss keys
@@ -28,70 +28,70 @@ function fillConductCheck<TreeDataType extends BasicDataNode = DataNode>(
   maxLevel: number,
   syntheticGetCheckDisabled: GetCheckDisabled<TreeDataType>,
 ): ConductReturnType {
-  const checkedKeys = new Set<Key>(keys)
-  const halfCheckedKeys = new Set<Key>()
+  const checkedKeys = new Set<Key>(keys);
+  const halfCheckedKeys = new Set<Key>();
 
   // Add checked keys top to bottom
   for (let level = 0; level <= maxLevel; level += 1) {
-    const entities = levelEntities.get(level) || new Set()
+    const entities = levelEntities.get(level) || new Set();
     entities.forEach((entity) => {
-      const { key, node, children = [] } = entity
+      const { key, node, children = [] } = entity;
 
       if (checkedKeys.has(key) && !syntheticGetCheckDisabled(node)) {
         children
           .filter(childEntity => !syntheticGetCheckDisabled(childEntity.node))
           .forEach((childEntity) => {
-            checkedKeys.add(childEntity.key)
-          })
+            checkedKeys.add(childEntity.key);
+          });
       }
-    })
+    });
   }
 
   // Add checked keys from bottom to top
-  const visitedKeys = new Set<Key>()
+  const visitedKeys = new Set<Key>();
   for (let level = maxLevel; level >= 0; level -= 1) {
-    const entities = levelEntities.get(level) || new Set()
+    const entities = levelEntities.get(level) || new Set();
     entities.forEach((entity) => {
-      const { parent, node } = entity
+      const { parent, node } = entity;
 
       // Skip if no need to check
       if (syntheticGetCheckDisabled(node) || !entity.parent || visitedKeys.has(entity.parent.key))
-        return
+        return;
 
       // Skip if parent is disabled
       if (syntheticGetCheckDisabled(entity.parent.node)) {
-        visitedKeys.add(parent.key)
-        return
+        visitedKeys.add(parent.key);
+        return;
       }
 
-      let allChecked = true
+      let allChecked = true;
       let partialChecked = false;
 
       (parent.children || [])
         .filter(childEntity => !syntheticGetCheckDisabled(childEntity.node))
         .forEach(({ key }) => {
-          const checked = checkedKeys.has(key)
+          const checked = checkedKeys.has(key);
           if (allChecked && !checked)
-            allChecked = false
+            allChecked = false;
 
           if (!partialChecked && (checked || halfCheckedKeys.has(key)))
-            partialChecked = true
-        })
+            partialChecked = true;
+        });
 
       if (allChecked)
-        checkedKeys.add(parent.key)
+        checkedKeys.add(parent.key);
 
       if (partialChecked)
-        halfCheckedKeys.add(parent.key)
+        halfCheckedKeys.add(parent.key);
 
-      visitedKeys.add(parent.key)
-    })
+      visitedKeys.add(parent.key);
+    });
   }
 
   return {
     checkedKeys: Array.from(checkedKeys),
     halfCheckedKeys: Array.from(removeFromCheckedKeys(halfCheckedKeys, checkedKeys)),
-  }
+  };
 }
 
 // Remove useless key
@@ -102,72 +102,72 @@ function cleanConductCheck<TreeDataType extends BasicDataNode = DataNode>(
   maxLevel: number,
   syntheticGetCheckDisabled: GetCheckDisabled<TreeDataType>,
 ): ConductReturnType {
-  const checkedKeys = new Set<Key>(keys)
-  let halfCheckedKeys = new Set<Key>(halfKeys)
+  const checkedKeys = new Set<Key>(keys);
+  let halfCheckedKeys = new Set<Key>(halfKeys);
 
   // Remove checked keys from top to bottom
   for (let level = 0; level <= maxLevel; level += 1) {
-    const entities = levelEntities.get(level) || new Set()
+    const entities = levelEntities.get(level) || new Set();
     entities.forEach((entity) => {
-      const { key, node, children = [] } = entity
+      const { key, node, children = [] } = entity;
 
       if (!checkedKeys.has(key) && !halfCheckedKeys.has(key) && !syntheticGetCheckDisabled(node)) {
         children
           .filter(childEntity => !syntheticGetCheckDisabled(childEntity.node))
           .forEach((childEntity) => {
-            checkedKeys.delete(childEntity.key)
-          })
+            checkedKeys.delete(childEntity.key);
+          });
       }
-    })
+    });
   }
 
   // Remove checked keys form bottom to top
-  halfCheckedKeys = new Set<Key>()
-  const visitedKeys = new Set<Key>()
+  halfCheckedKeys = new Set<Key>();
+  const visitedKeys = new Set<Key>();
   for (let level = maxLevel; level >= 0; level -= 1) {
-    const entities = levelEntities.get(level) || new Set()
+    const entities = levelEntities.get(level) || new Set();
 
     entities.forEach((entity) => {
-      const { parent, node } = entity
+      const { parent, node } = entity;
 
       // Skip if no need to check
       if (syntheticGetCheckDisabled(node) || !entity.parent || visitedKeys.has(entity.parent.key))
-        return
+        return;
 
       // Skip if parent is disabled
       if (syntheticGetCheckDisabled(entity.parent.node)) {
-        visitedKeys.add(parent.key)
-        return
+        visitedKeys.add(parent.key);
+        return;
       }
 
-      let allChecked = true
+      let allChecked = true;
       let partialChecked = false;
 
       (parent.children || [])
         .filter(childEntity => !syntheticGetCheckDisabled(childEntity.node))
         .forEach(({ key }) => {
-          const checked = checkedKeys.has(key)
+          const checked = checkedKeys.has(key);
           if (allChecked && !checked)
-            allChecked = false
+            allChecked = false;
 
           if (!partialChecked && (checked || halfCheckedKeys.has(key)))
-            partialChecked = true
-        })
+            partialChecked = true;
+        });
 
       if (!allChecked)
-        checkedKeys.delete(parent.key)
+        checkedKeys.delete(parent.key);
 
       if (partialChecked)
-        halfCheckedKeys.add(parent.key)
+        halfCheckedKeys.add(parent.key);
 
-      visitedKeys.add(parent.key)
-    })
+      visitedKeys.add(parent.key);
+    });
   }
 
   return {
     checkedKeys: Array.from(checkedKeys),
     halfCheckedKeys: Array.from(removeFromCheckedKeys(halfCheckedKeys, checkedKeys)),
-  }
+  };
 }
 
 /**
@@ -184,24 +184,24 @@ export function conductCheck<TreeDataType extends BasicDataNode = DataNode>(
   levelEntities: Map<number, Set<DataEntity<TreeDataType>>>,
   getCheckDisabled?: GetCheckDisabled<TreeDataType>,
 ): ConductReturnType {
-  const warningMissKeys: Key[] = []
+  const warningMissKeys: Key[] = [];
 
-  let syntheticGetCheckDisabled: GetCheckDisabled<TreeDataType>
+  let syntheticGetCheckDisabled: GetCheckDisabled<TreeDataType>;
   if (getCheckDisabled)
-    syntheticGetCheckDisabled = getCheckDisabled
+    syntheticGetCheckDisabled = getCheckDisabled;
   else
-    syntheticGetCheckDisabled = isCheckDisabled
+    syntheticGetCheckDisabled = isCheckDisabled;
 
   // We only handle exist keys
   const keys = new Set<Key>(
     keyList.filter((key) => {
-      const hasEntity = !!keyEntities[key]
+      const hasEntity = !!keyEntities[key];
       if (!hasEntity)
-        warningMissKeys.push(key)
+        warningMissKeys.push(key);
 
-      return hasEntity
+      return hasEntity;
     }),
-  )
+  );
 
   note(
     !warningMissKeys.length,
@@ -209,16 +209,16 @@ export function conductCheck<TreeDataType extends BasicDataNode = DataNode>(
       .slice(0, 100)
       .map(key => `'${key}'`)
       .join(', ')}`,
-  )
+  );
 
-  let result: ConductReturnType
+  let result: ConductReturnType;
   if (checked === true) {
     result = fillConductCheck<TreeDataType>(
       keys,
       levelEntities,
       maxLevel,
       syntheticGetCheckDisabled,
-    )
+    );
   } else {
     result = cleanConductCheck(
       keys,
@@ -226,8 +226,8 @@ export function conductCheck<TreeDataType extends BasicDataNode = DataNode>(
       levelEntities,
       maxLevel,
       syntheticGetCheckDisabled,
-    )
+    );
   }
 
-  return result
+  return result;
 }

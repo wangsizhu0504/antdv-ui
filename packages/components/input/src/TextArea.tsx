@@ -1,7 +1,7 @@
-import type { FocusEventHandler, VueNode } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import type { InputFocusOptions } from './interface'
-import { classNames, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils'
+import type { FocusEventHandler, VueNode } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import type { InputFocusOptions } from './interface';
+import { classNames, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -10,21 +10,22 @@ import {
   shallowRef,
   watch,
   watchEffect,
-} from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-
-import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
+} from 'vue';
 
 // CSSINJS
-import { useInjectDisabled } from '../../config-provider'
-import useStyle from '../style'
-import ClearableLabeledInput from './ClearableLabeledInput'
-import { textAreaProps } from './props'
-import ResizableTextArea from './ResizableTextArea'
-import { fixControlledValue, resolveOnChange, triggerFocus } from './util'
+import { useInjectDisabled } from '../../config-provider';
+
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+
+import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext';
+import useStyle from '../style';
+import ClearableLabeledInput from './ClearableLabeledInput';
+import { textAreaProps } from './props';
+import ResizableTextArea from './ResizableTextArea';
+import { fixControlledValue, resolveOnChange, triggerFocus } from './util';
 
 function fixEmojiLength(value: string, maxLength: number) {
-  return [...(value || '')].slice(0, maxLength).join('')
+  return [...(value || '')].slice(0, maxLength).join('');
 }
 
 function setTriggerValue(
@@ -33,18 +34,18 @@ function setTriggerValue(
   triggerValue: string,
   maxLength: number,
 ) {
-  let newTriggerValue = triggerValue
+  let newTriggerValue = triggerValue;
   if (isCursorInEnd) {
     // 光标在尾部，直接截断
-    newTriggerValue = fixEmojiLength(triggerValue, maxLength)
+    newTriggerValue = fixEmojiLength(triggerValue, maxLength);
   } else if (
     [...(preValue || '')].length < triggerValue.length
     && [...(triggerValue || '')].length > maxLength
   ) {
     // 光标在中间，如果最后的值超过最大值，则采用原先的值
-    newTriggerValue = preValue
+    newTriggerValue = preValue;
   }
-  return newTriggerValue
+  return newTriggerValue;
 }
 
 export default defineComponent({
@@ -53,141 +54,141 @@ export default defineComponent({
   inheritAttrs: false,
   props: textAreaProps(),
   setup(props, { attrs, expose, emit }) {
-    const formItemContext = useInjectFormItemContext()
-    const formItemInputContext = FormItemInputContext.useInject()
-    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status))
-    const stateValue = shallowRef(props.value ?? props.defaultValue)
-    const resizableTextArea = shallowRef()
-    const mergedValue = shallowRef('')
-    const { prefixCls, size, direction } = useConfigInject('input', props)
+    const formItemContext = useInjectFormItemContext();
+    const formItemInputContext = FormItemInputContext.useInject();
+    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status));
+    const stateValue = shallowRef(props.value ?? props.defaultValue);
+    const resizableTextArea = shallowRef();
+    const mergedValue = shallowRef('');
+    const { prefixCls, size, direction } = useConfigInject('input', props);
 
     // Style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
-    const disabled = useInjectDisabled()
+    const [wrapSSR, hashId] = useStyle(prefixCls);
+    const disabled = useInjectDisabled();
     const showCount = computed(() => {
-      return (props.showCount as any) === '' || props.showCount || false
-    })
+      return (props.showCount as any) === '' || props.showCount || false;
+    });
     // Max length value
-    const hasMaxLength = computed(() => Number(props.maxlength) > 0)
-    const compositing = shallowRef(false)
+    const hasMaxLength = computed(() => Number(props.maxlength) > 0);
+    const compositing = shallowRef(false);
 
-    const oldCompositionValueRef = shallowRef<string>()
-    const oldSelectionStartRef = shallowRef<number>(0)
+    const oldCompositionValueRef = shallowRef<string>();
+    const oldSelectionStartRef = shallowRef<number>(0);
     const onInternalCompositionStart = (e: CompositionEvent) => {
-      compositing.value = true
+      compositing.value = true;
       // 拼音输入前保存一份旧值
-      oldCompositionValueRef.value = mergedValue.value as string
+      oldCompositionValueRef.value = mergedValue.value as string;
       // 保存旧的光标位置
-      oldSelectionStartRef.value = (e.currentTarget as any).selectionStart
-      emit('compositionstart', e)
-    }
+      oldSelectionStartRef.value = (e.currentTarget as any).selectionStart;
+      emit('compositionstart', e);
+    };
 
     const setValue = (value: string | number, callback?: Function) => {
       if (stateValue.value === value)
-        return
+        return;
 
       if (props.value === undefined) {
-        stateValue.value = value
+        stateValue.value = value;
       } else {
         nextTick(() => {
           if (resizableTextArea.value.textArea.value !== mergedValue.value)
-            resizableTextArea.value?.instance.update?.()
-        })
+            resizableTextArea.value?.instance.update?.();
+        });
       }
       nextTick(() => {
-        callback && callback()
-      })
-    }
+        callback && callback();
+      });
+    };
 
     const triggerChange = (e: Event) => {
-      emit('update:value', (e.target as HTMLInputElement).value)
-      emit('change', e)
-      emit('input', e)
-      formItemContext.onFieldChange()
-    }
+      emit('update:value', (e.target as HTMLInputElement).value);
+      emit('change', e);
+      emit('input', e);
+      formItemContext.onFieldChange();
+    };
 
     const onInternalCompositionEnd = (e: CompositionEvent) => {
-      compositing.value = false
-      let triggerValue = (e.currentTarget as any).value
+      compositing.value = false;
+      let triggerValue = (e.currentTarget as any).value;
       if (hasMaxLength.value) {
         const isCursorInEnd
           = oldSelectionStartRef.value >= props.maxlength + 1
-          || oldSelectionStartRef.value === oldCompositionValueRef.value?.length
+          || oldSelectionStartRef.value === oldCompositionValueRef.value?.length;
         triggerValue = setTriggerValue(
           isCursorInEnd,
           oldCompositionValueRef.value as string,
           triggerValue,
           props.maxlength,
-        )
+        );
       }
       // Patch composition onChange when value changed
       if (triggerValue !== mergedValue.value) {
-        setValue(triggerValue)
-        resolveOnChange(e.currentTarget as any, e, triggerChange, triggerValue)
+        setValue(triggerValue);
+        resolveOnChange(e.currentTarget as any, e, triggerChange, triggerValue);
       }
 
-      emit('compositionend', e)
-    }
-    const instance = getCurrentInstance()
+      emit('compositionend', e);
+    };
+    const instance = getCurrentInstance();
     watch(
       () => props.value,
       () => {
         if ('value' in instance.vnode.props || {})
-          stateValue.value = props.value ?? ''
+          stateValue.value = props.value ?? '';
       },
-    )
+    );
 
     const focus = (option?: InputFocusOptions) => {
-      triggerFocus(resizableTextArea.value?.textArea, option)
-    }
+      triggerFocus(resizableTextArea.value?.textArea, option);
+    };
 
     const blur = () => {
-      resizableTextArea.value?.textArea?.blur()
-    }
+      resizableTextArea.value?.textArea?.blur();
+    };
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === 13)
-        emit('pressEnter', e)
+        emit('pressEnter', e);
 
-      emit('keydown', e)
-    }
+      emit('keydown', e);
+    };
 
     const onBlur: FocusEventHandler = (e) => {
-      props?.onBlur?.(e)
-      formItemContext.onFieldBlur()
-    }
+      props?.onBlur?.(e);
+      formItemContext.onFieldBlur();
+    };
 
     const handleReset = (e: MouseEvent) => {
-      resolveOnChange(resizableTextArea.value.textArea, e, triggerChange)
+      resolveOnChange(resizableTextArea.value.textArea, e, triggerChange);
       setValue('', () => {
-        focus()
-      })
-    }
+        focus();
+      });
+    };
 
     const handleChange = (e: Event) => {
-      let triggerValue = (e.target as any).value
-      if (stateValue.value === triggerValue) return
+      let triggerValue = (e.target as any).value;
+      if (stateValue.value === triggerValue) return;
 
       if (hasMaxLength.value) {
         // 1. 复制粘贴超过maxlength的情况 2.未超过maxlength的情况
-        const target = e.target as any
+        const target = e.target as any;
         const isCursorInEnd
           = target.selectionStart >= props.maxlength! + 1
           || target.selectionStart === triggerValue.length
-          || !target.selectionStart
+          || !target.selectionStart;
         triggerValue = setTriggerValue(
           isCursorInEnd,
           mergedValue.value as string,
           triggerValue,
           props.maxlength!,
-        )
+        );
       }
-      resolveOnChange(e.currentTarget as any, e, triggerChange, triggerValue)
-      setValue(triggerValue)
-    }
+      resolveOnChange(e.currentTarget as any, e, triggerChange, triggerValue);
+      setValue(triggerValue);
+    };
     const renderTextArea = () => {
-      const { class: customClass } = attrs
-      const { bordered = true } = props
+      const { class: customClass } = attrs;
+      const { bordered = true } = props;
       const resizeProps = {
         ...omit(props, ['allowClear']),
         ...attrs,
@@ -210,9 +211,9 @@ export default defineComponent({
         onKeydown: handleKeyDown,
         onCompositionstart: onInternalCompositionStart,
         onCompositionend: onInternalCompositionEnd,
-      }
+      };
       if (props.valueModifiers?.lazy)
-        delete resizeProps.onInput
+        delete resizeProps.onInput;
 
       return (
         <ResizableTextArea
@@ -222,30 +223,30 @@ export default defineComponent({
           maxlength={props.maxlength}
           lazy={props.lazy}
         />
-      )
-    }
+      );
+    };
 
     expose({
       focus,
       blur,
       resizableTextArea,
-    })
+    });
 
     watchEffect(() => {
-      let val = fixControlledValue(stateValue.value) as string
+      let val = fixControlledValue(stateValue.value) as string;
       if (
         !compositing.value
         && hasMaxLength.value
         && (props.value === null || props.value === undefined)
       ) {
         // fix #27612 将value转为数组进行截取，解决 '😂'.length === 2 等emoji表情导致的截取乱码的问题
-        val = fixEmojiLength(val, props.maxlength)
+        val = fixEmojiLength(val, props.maxlength);
       }
-      mergedValue.value = val
-    })
+      mergedValue.value = val;
+    });
     return () => {
-      const { maxlength, bordered = true, hidden } = props
-      const { style, class: customClass } = attrs
+      const { maxlength, bordered = true, hidden } = props;
+      const { style, class: customClass } = attrs;
 
       const inputProps: any = {
         ...props,
@@ -258,7 +259,7 @@ export default defineComponent({
         style: showCount.value ? undefined : style,
         hashId: hashId.value,
         disabled: props.disabled ?? disabled.value,
-      }
+      };
 
       let textareaNode = (
         <ClearableLabeledInput
@@ -267,19 +268,19 @@ export default defineComponent({
           v-slots={{ element: renderTextArea }}
           status={props.status}
         />
-      )
+      );
 
       if (showCount.value || formItemInputContext.hasFeedback) {
-        const valueLength = [...mergedValue.value].length
-        let dataCount: VueNode = ''
+        const valueLength = [...mergedValue.value].length;
+        let dataCount: VueNode = '';
         if (typeof showCount.value === 'object') {
           dataCount = showCount.value.formatter({
             value: mergedValue.value,
             count: valueLength,
             maxlength,
-          })
+          });
         } else {
-          dataCount = `${valueLength}${hasMaxLength.value ? ` / ${maxlength}` : ''}`
+          dataCount = `${valueLength}${hasMaxLength.value ? ` / ${maxlength}` : ''}`;
         }
         textareaNode = (
           <div
@@ -305,9 +306,9 @@ export default defineComponent({
               </span>
             )}
           </div>
-        )
+        );
       }
-      return wrapSSR(textareaNode)
-    }
+      return wrapSSR(textareaNode);
+    };
   },
-})
+});

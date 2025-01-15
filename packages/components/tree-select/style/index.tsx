@@ -1,8 +1,8 @@
-import type { AliasToken, FullToken, GenerateStyle } from '@antdv/theme'
-import type { Ref } from 'vue'
-import { genComponentStyleHook, mergeToken } from '@antdv/theme'
-import { getStyle as getCheckboxStyle } from '../../checkbox/style'
-import { genTreeStyle } from '../../tree/style'
+import type { AliasToken, FullToken, GenerateStyle } from '@antdv/theme';
+import type { Ref } from 'vue';
+import { genComponentStyleHook, mergeToken } from '@antdv/theme';
+import { getStyle as getCheckboxStyle } from '../../checkbox/style';
+import { genTreeStyle } from '../../tree/style';
 
 interface TreeSelectToken extends FullToken<'TreeSelect'> {
   treePrefixCls: string
@@ -10,8 +10,8 @@ interface TreeSelectToken extends FullToken<'TreeSelect'> {
 
 // =============================== Base ===============================
 const genBaseStyle: GenerateStyle<TreeSelectToken> = (token) => {
-  const { componentCls, treePrefixCls, colorBgElevated } = token
-  const treeCls = `.${treePrefixCls}`
+  const { componentCls, treePrefixCls, colorBgElevated } = token;
+  const treeCls = `.${treePrefixCls}`;
 
   return [
     // ======================================================
@@ -60,15 +60,15 @@ const genBaseStyle: GenerateStyle<TreeSelectToken> = (token) => {
         },
       ],
     },
-  ]
-}
+  ];
+};
 
 // ============================== Export ==============================
 export default function useTreeSelectStyle(prefixCls: Ref<string>, treePrefixCls: Ref<string>) {
   return genComponentStyleHook('TreeSelect', (token) => {
     const treeSelectToken = mergeToken<TreeSelectToken>(token, {
       treePrefixCls: treePrefixCls.value,
-    })
-    return [genBaseStyle(treeSelectToken)]
-  })(prefixCls)
+    });
+    return [genBaseStyle(treeSelectToken)];
+  })(prefixCls);
 }

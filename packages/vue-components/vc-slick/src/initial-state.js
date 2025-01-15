@@ -22,6 +22,6 @@ const initialState = {
   trackStyle: {},
   trackWidth: 0,
   targetSlide: 0,
-}
+};
 
-export default initialState
+export default initialState;

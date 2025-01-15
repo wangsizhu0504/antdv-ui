@@ -1,4 +1,4 @@
-import { classNames, KeyCode, omit } from '@antdv/utils'
+import { classNames, KeyCode, omit } from '@antdv/utils';
 import {
   defineComponent,
   nextTick,
@@ -7,11 +7,11 @@ import {
   shallowRef,
   Transition,
   watch,
-} from 'vue'
-import { drawerChildProps } from './props'
-import { dataToArray, windowIsUndefined } from './utils'
+} from 'vue';
+import { drawerChildProps } from './props';
+import { dataToArray, windowIsUndefined } from './utils';
 
-const currentDrawer: Record<string, boolean> = {}
+const currentDrawer: Record<string, boolean> = {};
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -20,27 +20,27 @@ export default defineComponent({
   props: drawerChildProps(),
   emits: ['close', 'handleClick', 'change'],
   setup(props, { emit, slots }) {
-    const contentWrapper = shallowRef<HTMLElement>()
-    const dom = shallowRef<HTMLElement>()
-    const maskDom = shallowRef<HTMLElement>()
-    const handlerDom = shallowRef<HTMLElement>()
-    const contentDom = shallowRef<HTMLElement>()
-    let levelDom = []
+    const contentWrapper = shallowRef<HTMLElement>();
+    const dom = shallowRef<HTMLElement>();
+    const maskDom = shallowRef<HTMLElement>();
+    const handlerDom = shallowRef<HTMLElement>();
+    const contentDom = shallowRef<HTMLElement>();
+    let levelDom = [];
     const drawerId = `drawer_id_${Number(
       (Date.now() + Math.random())
         .toString()
         .replace('.', Math.round(Math.random() * 9).toString()),
-    ).toString(16)}`
+    ).toString(16)}`;
 
     const getLevelDom = ({ level, getContainer }) => {
       if (windowIsUndefined)
-        return
+        return;
 
-      const container = getContainer?.()
-      const parent = container ? (container.parentNode as HTMLElement) : null
-      levelDom = []
+      const container = getContainer?.();
+      const parent = container ? (container.parentNode as HTMLElement) : null;
+      levelDom = [];
       if (level === 'all') {
-        const children: HTMLElement[] = parent ? Array.prototype.slice.call(parent.children) : []
+        const children: HTMLElement[] = parent ? Array.prototype.slice.call(parent.children) : [];
         children.forEach((child: HTMLElement) => {
           if (
             child.nodeName !== 'SCRIPT'
@@ -48,112 +48,112 @@ export default defineComponent({
             && child.nodeName !== 'LINK'
             && child !== container
           ) {
-            levelDom.push(child)
+            levelDom.push(child);
           }
-        })
+        });
       } else if (level) {
         dataToArray(level).forEach((key) => {
           document.querySelectorAll(key).forEach((item) => {
-            levelDom.push(item)
-          })
-        })
+            levelDom.push(item);
+          });
+        });
       }
-    }
+    };
     const domFocus = () => {
-      dom.value?.focus?.()
-    }
+      dom.value?.focus?.();
+    };
     onMounted(() => {
       nextTick(() => {
-        const { open, getContainer, showMask, autofocus } = props
-        const container = getContainer?.()
-        getLevelDom(props)
+        const { open, getContainer, showMask, autofocus } = props;
+        const container = getContainer?.();
+        getLevelDom(props);
         if (open) {
           if (container && container.parentNode === document.body)
-            currentDrawer[drawerId] = open
+            currentDrawer[drawerId] = open;
 
           nextTick(() => {
             if (autofocus)
-              domFocus()
-          })
+              domFocus();
+          });
           if (showMask)
-            props.scrollLocker?.lock()
+            props.scrollLocker?.lock();
         }
-      })
-    })
+      });
+    });
     watch(
       () => props.level,
       () => {
-        getLevelDom(props)
+        getLevelDom(props);
       },
       { flush: 'post' },
-    )
+    );
     watch(
       () => props.open,
       () => {
-        const { open, getContainer, scrollLocker, showMask, autofocus } = props
-        const container = getContainer?.()
+        const { open, getContainer, scrollLocker, showMask, autofocus } = props;
+        const container = getContainer?.();
         if (container && container.parentNode === document.body)
-          currentDrawer[drawerId] = !!open
+          currentDrawer[drawerId] = !!open;
 
         if (open) {
           if (autofocus)
-            domFocus()
+            domFocus();
 
           if (showMask)
-            scrollLocker?.lock()
+            scrollLocker?.lock();
         } else {
-          scrollLocker?.unLock()
+          scrollLocker?.unLock();
         }
       },
       { flush: 'post' },
-    )
+    );
 
     onUnmounted(() => {
-      const { open } = props
-      delete currentDrawer[drawerId]
+      const { open } = props;
+      delete currentDrawer[drawerId];
       if (open)
-        document.body.style.touchAction = ''
+        document.body.style.touchAction = '';
 
-      props.scrollLocker?.unLock()
-    })
+      props.scrollLocker?.unLock();
+    });
 
     watch(
       () => props.placement,
       (val) => {
         if (val) {
           // test 的 bug, 有动画过场，删除 dom
-          contentDom.value = null
+          contentDom.value = null;
         }
       },
-    )
+    );
 
     const onClose = (e: Event) => {
-      emit('close', e)
-    }
+      emit('close', e);
+    };
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === KeyCode.ESC) {
-        e.stopPropagation()
-        onClose(e)
+        e.stopPropagation();
+        onClose(e);
       }
-    }
+    };
 
     const onAfterVisibleChange = () => {
-      const { open, afterVisibleChange } = props
+      const { open, afterVisibleChange } = props;
       if (afterVisibleChange)
-        afterVisibleChange(!!open)
-    }
+        afterVisibleChange(!!open);
+    };
 
     const onHandleClick = (e) => {
-      emit('handleClick', e)
-    }
+      emit('handleClick', e);
+    };
 
-    const canOpen = shallowRef(false)
+    const canOpen = shallowRef(false);
     watch(dom, () => {
       nextTick(() => {
-        canOpen.value = true
-      })
-    })
+        canOpen.value = true;
+      });
+    });
 
     return () => {
       const {
@@ -173,18 +173,18 @@ export default defineComponent({
         motion,
         inline,
         ...otherProps
-      } = props
+      } = props;
       // 首次渲染都将是关闭状态。
-      const open = $open && canOpen.value
+      const open = $open && canOpen.value;
       const wrapperClassName = classNames(prefixCls, {
         [`${prefixCls}-${placement}`]: true,
         [`${prefixCls}-open`]: open,
         [`${prefixCls}-inline`]: inline,
         'no-mask': !showMask,
         [rootClassName]: true,
-      })
+      });
 
-      const motionProps = typeof motion === 'function' ? motion(placement) : motion
+      const motionProps = typeof motion === 'function' ? motion(placement) : motion;
       return (
         <div
           {...omit(otherProps, ['autofocus'])}
@@ -229,7 +229,7 @@ export default defineComponent({
             </div>
           </Transition>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

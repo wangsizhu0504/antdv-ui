@@ -150,4 +150,4 @@ export default {
   'app.floatButton.theme-editor': 'Theme Editor',
   'app.floatButton.dark-theme': 'Dark Theme',
   'app.floatButton.compact-theme': 'Compact theme',
-}
+};

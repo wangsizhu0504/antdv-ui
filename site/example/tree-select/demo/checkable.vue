@@ -17,11 +17,11 @@ Multiple and checkable.
 </docs>
 
 <script lang="ts" setup>
-  import type { TreeSelectProps } from '@antdv/ui'
-  import { TreeSelect } from '@antdv/ui'
-  import { ref, watch } from 'vue'
+  import type { TreeSelectProps } from '@antdv/ui';
+  import { TreeSelect } from '@antdv/ui';
+  import { ref, watch } from 'vue';
 
-  const SHOW_PARENT = TreeSelect.SHOW_PARENT
+  const SHOW_PARENT = TreeSelect.SHOW_PARENT;
 
   const treeData: TreeSelectProps['treeData'] = [
     {
@@ -54,13 +54,13 @@ Multiple and checkable.
         },
       ],
     },
-  ]
+  ];
 
-  const value = ref<string[]>(['0-0-0'])
+  const value = ref<string[]>(['0-0-0']);
 
   watch(value, () => {
-    console.log(value.value)
-  })
+    console.log(value.value);
+  });
 </script>
 
 <template>

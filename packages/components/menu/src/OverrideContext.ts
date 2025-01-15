@@ -1,6 +1,6 @@
-import type { ComputedRef, InjectionKey } from 'vue'
-import type { MenuProps } from './props'
-import { computed, inject, provide } from 'vue'
+import type { ComputedRef, InjectionKey } from 'vue';
+import type { MenuProps } from './props';
+import { computed, inject, provide } from 'vue';
 
 // Used for Dropdown only
 export interface OverrideContextProps {
@@ -11,13 +11,13 @@ export interface OverrideContextProps {
   onClick?: () => void
   expandIcon?: ComputedRef<any>
 }
-export const OverrideContextKey: InjectionKey<OverrideContextProps> = Symbol('OverrideContextKey')
+export const OverrideContextKey: InjectionKey<OverrideContextProps> = Symbol('OverrideContextKey');
 export function useInjectOverride() {
-  return inject(OverrideContextKey, undefined)
+  return inject(OverrideContextKey, undefined);
 }
 
 export function useProvideOverride(props: OverrideContextProps) {
-  const { prefixCls, mode, selectable, validator, onClick, expandIcon } = useInjectOverride() || {}
+  const { prefixCls, mode, selectable, validator, onClick, expandIcon } = useInjectOverride() || {};
   provide(OverrideContextKey, {
     prefixCls: computed(() => (props.prefixCls?.value ?? prefixCls?.value) as string),
     mode: computed(() => props.mode?.value ?? mode?.value),
@@ -25,5 +25,5 @@ export function useProvideOverride(props: OverrideContextProps) {
     validator: props.validator ?? validator,
     onClick: props.onClick ?? onClick,
     expandIcon: props.expandIcon ?? expandIcon?.value,
-  })
+  });
 }

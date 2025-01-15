@@ -1,5 +1,5 @@
-import type { VueNode } from '@antdv/ui/es/_utils/types'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider'
+import type { VueNode } from '@antdv/ui/es/_utils/types';
+import type { ThemeConfig } from '@antdv/ui/es/config-provider';
 
 export interface Theme {
   name: string
@@ -7,9 +7,9 @@ export interface Theme {
   config: ThemeConfig
 }
 
-export type AliasToken = Exclude<ThemeConfig['token'], undefined>
-export type TokenValue = string | number | string[] | number[] | boolean
-export type TokenName = keyof AliasToken
+export type AliasToken = Exclude<ThemeConfig['token'], undefined>;
+export type TokenValue = string | number | string[] | number[] | boolean;
+export type TokenName = keyof AliasToken;
 
 // 修改线  以上都是改过的
 export interface ComponentDemo {

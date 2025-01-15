@@ -17,27 +17,27 @@ This component can be rendered by using `dateCellRender` and `monthCellRender` w
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import { ref } from 'vue';
 
-  const value = ref<Dayjs>()
+  const value = ref<Dayjs>();
 
   function getListData(value: Dayjs) {
-    let listData
+    let listData;
     switch (value.date()) {
       case 8:
         listData = [
           { type: 'warning', content: 'This is warning event.' },
           { type: 'success', content: 'This is usual event.' },
-        ]
-        break
+        ];
+        break;
       case 10:
         listData = [
           { type: 'warning', content: 'This is warning event.' },
           { type: 'success', content: 'This is usual event.' },
           { type: 'error', content: 'This is error event.' },
-        ]
-        break
+        ];
+        break;
       case 15:
         listData = [
           { type: 'warning', content: 'This is warning event' },
@@ -46,16 +46,16 @@ This component can be rendered by using `dateCellRender` and `monthCellRender` w
           { type: 'error', content: 'This is error event 2.' },
           { type: 'error', content: 'This is error event 3.' },
           { type: 'error', content: 'This is error event 4.' },
-        ]
-        break
+        ];
+        break;
       default:
     }
-    return listData || []
+    return listData || [];
   }
 
   function getMonthData(value: Dayjs) {
     if (value.month() === 8) {
-      return 1394
+      return 1394;
     }
   }
 </script>

@@ -77,12 +77,12 @@ Besides, to unify the API, `dataSource` is replaced with `options`. You can migr
 #### v2
 
 ```ts
-dataSource = ['light', 'bamboo']
+dataSource = ['light', 'bamboo'];
 // or
 dataSource = [
   { value: 'light', text: 'Light' },
   { value: 'bamboo', text: 'Bamboo' },
-]
+];
 ```
 
 #### v3
@@ -91,5 +91,5 @@ dataSource = [
 options = [
   { value: 'light', label: 'Light' },
   { value: 'bamboo', label: 'Bamboo' },
-]
+];
 ```

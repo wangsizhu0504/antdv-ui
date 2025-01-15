@@ -1,4 +1,4 @@
-import kriszu from '@kriszu/eslint-config'
+import kriszu from '@kriszu/eslint-config';
 
 export default kriszu({
   vue: true,
@@ -22,6 +22,7 @@ export default kriszu({
     'ts/member-ordering': 'off',
     'ts/unified-signatures': 'off',
     'ts/consistent-indexed-object-style': 'off',
+    'vue/no-console': 'off',
     'vue/require-toggle-inside-transition': 'off',
     'vue/custom-event-name-casing': 'off',
     'prefer-promise-reject-errors': 'off',
@@ -44,4 +45,4 @@ export default kriszu({
     'no-prototype-builtins': 'off',
     'unused-imports/no-unused-vars': 'off',
   },
-})
+});

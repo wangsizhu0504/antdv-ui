@@ -1,6 +1,6 @@
-import type { FunctionalComponent } from 'vue'
+import type { FunctionalComponent } from 'vue';
 
-import type { DefaultOptionType } from './Select'
+import type { DefaultOptionType } from './Select';
 
 export interface OptionProps extends Omit<DefaultOptionType, 'label'> {
   /** Save for customize data */
@@ -12,7 +12,7 @@ export interface OptionFC extends FunctionalComponent<OptionProps> {
   isSelectOption: boolean;
 }
 
-const Option: OptionFC = () => null
-Option.isSelectOption = true
-Option.displayName = 'ASelectOption'
-export default Option
+const Option: OptionFC = () => null;
+Option.isSelectOption = true;
+Option.displayName = 'ASelectOption';
+export default Option;

@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'hu',
@@ -125,6 +125,6 @@ const localeValues: Locale = {
   Empty: {
     description: 'Nincs adat',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

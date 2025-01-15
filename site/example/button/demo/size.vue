@@ -20,11 +20,11 @@ If a large or small button is desired, set the `size` property to either `large`
 </docs>
 
 <script lang="ts" setup>
-  import type { SizeType } from '@antdv/ui'
-  import { DownloadOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { SizeType } from '@antdv/ui';
+  import { DownloadOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const size = ref<SizeType>('large')
+  const size = ref<SizeType>('large');
 </script>
 
 <template>

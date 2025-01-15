@@ -1,8 +1,8 @@
-import type { CSSProperties, PropType } from 'vue'
-import { classNames, cloneElement, PropTypes, skipFlattenKey } from '@antdv/utils'
-import { computed, defineComponent, Fragment, ref, watch } from 'vue'
-import Trigger from '../../vc-trigger/src/Trigger'
-import placements from './placements'
+import type { CSSProperties, PropType } from 'vue';
+import { classNames, cloneElement, PropTypes, skipFlattenKey } from '@antdv/utils';
+import { computed, defineComponent, Fragment, ref, watch } from 'vue';
+import Trigger from '../../vc-trigger/src/Trigger';
+import placements from './placements';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -32,70 +32,70 @@ export default defineComponent({
   },
   emits: ['visibleChange', 'overlayClick'],
   setup(props, { slots, emit, expose }) {
-    const triggerVisible = ref(!!props.visible)
+    const triggerVisible = ref(!!props.visible);
     watch(
       () => props.visible,
       (val) => {
         if (val !== undefined)
-          triggerVisible.value = val
+          triggerVisible.value = val;
       },
-    )
-    const triggerRef = ref()
+    );
+    const triggerRef = ref();
 
     expose({
       triggerRef,
-    })
+    });
 
     const onClick = (e: MouseEvent) => {
       if (props.visible === undefined)
-        triggerVisible.value = false
+        triggerVisible.value = false;
 
-      emit('overlayClick', e)
-    }
+      emit('overlayClick', e);
+    };
 
     const onVisibleChange = (visible: boolean) => {
       if (props.visible === undefined)
-        triggerVisible.value = visible
+        triggerVisible.value = visible;
 
-      emit('visibleChange', visible)
-    }
+      emit('visibleChange', visible);
+    };
 
     const getMenuElement = () => {
-      const overlayElement = slots.overlay?.()
+      const overlayElement = slots.overlay?.();
       const extraOverlayProps = {
         prefixCls: `${props.prefixCls}-menu`,
         onClick,
-      }
+      };
       return (
         <Fragment key={skipFlattenKey}>
           {props.arrow && <div class={`${props.prefixCls}-arrow`} />}
           {cloneElement(overlayElement, extraOverlayProps, false)}
         </Fragment>
-      )
-    }
+      );
+    };
 
     const minOverlayWidthMatchTrigger = computed(() => {
-      const { minOverlayWidthMatchTrigger: matchTrigger = !props.alignPoint } = props
-      return matchTrigger
-    })
+      const { minOverlayWidthMatchTrigger: matchTrigger = !props.alignPoint } = props;
+      return matchTrigger;
+    });
 
     const renderChildren = () => {
-      const children = slots.default?.()
+      const children = slots.default?.();
       return triggerVisible.value && children
         ? cloneElement(
-          children[0],
-          { class: props.openClassName || `${props.prefixCls}-open` },
-          false,
-        )
-        : children
-    }
+            children[0],
+            { class: props.openClassName || `${props.prefixCls}-open` },
+            false,
+          )
+        : children;
+    };
 
     const triggerHideAction = computed(() => {
       if (!props.hideAction && props.trigger.includes('contextmenu'))
-        return ['click']
+        return ['click'];
 
-      return props.hideAction
-    })
+      return props.hideAction;
+    });
     return () => {
       const {
         prefixCls,
@@ -110,7 +110,7 @@ export default defineComponent({
         animation,
         overlayClassName,
         ...otherProps
-      } = props
+      } = props;
       return (
         <Trigger
           {...otherProps}
@@ -135,7 +135,7 @@ export default defineComponent({
           v-slots={{ popup: getMenuElement, default: renderChildren }}
         >
         </Trigger>
-      )
-    }
+      );
+    };
   },
-})
+});

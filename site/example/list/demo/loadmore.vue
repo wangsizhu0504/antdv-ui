@@ -17,44 +17,44 @@ Load more list with `loadMore` slot.
 </docs>
 
 <script lang="ts" setup>
-  import { nextTick, onMounted, ref } from 'vue'
+  import { nextTick, onMounted, ref } from 'vue';
 
-  const count = 3
-  const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`
+  const count = 3;
+  const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 
-  const initLoading = ref<any>(true)
-  const loading = ref<any>(false)
-  const data = ref<any>([])
-  const list = ref<any>([])
+  const initLoading = ref<any>(true);
+  const loading = ref<any>(false);
+  const data = ref<any>([]);
+  const list = ref<any>([]);
   onMounted(() => {
     fetch(fakeDataUrl)
       .then(res => res.json())
       .then((res) => {
-        initLoading.value = false
-        data.value = res.results
-        list.value = res.results
-      })
-  })
+        initLoading.value = false;
+        data.value = res.results;
+        list.value = res.results;
+      });
+  });
 
   function onLoadMore() {
-    loading.value = true
+    loading.value = true;
     list.value = data.value.concat(
       [...new Array(count)].map(() => ({ loading: true, name: {}, picture: {} })),
-    )
+    );
     fetch(fakeDataUrl)
       .then(res => res.json())
       .then((res) => {
-        const newData = data.value.concat(res.results)
-        loading.value = false
-        data.value = newData
-        list.value = newData
+        const newData = data.value.concat(res.results);
+        loading.value = false;
+        data.value = newData;
+        list.value = newData;
         nextTick(() => {
           // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
           // In real scene, you can using public method of react-virtualized:
           // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
-          window.dispatchEvent(new Event('resize'))
-        })
-      })
+          window.dispatchEvent(new Event('resize'));
+        });
+      });
   }
 </script>
 

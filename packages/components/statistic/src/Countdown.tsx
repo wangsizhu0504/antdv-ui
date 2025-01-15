@@ -1,14 +1,14 @@
-import type { countdownValueType, FormatConfig, valueType } from './interface'
-import { initDefaultProps, omit } from '@antdv/utils'
-import { defineComponent, onBeforeUnmount, onMounted, onUpdated, ref } from 'vue'
-import { countdownProps } from './props'
-import Statistic from './Statistic'
-import { formatCountdown as formatCD } from './utils'
+import type { countdownValueType, FormatConfig, valueType } from './interface';
+import { initDefaultProps, omit } from '@antdv/utils';
+import { defineComponent, onBeforeUnmount, onMounted, onUpdated, ref } from 'vue';
+import { countdownProps } from './props';
+import Statistic from './Statistic';
+import { formatCountdown as formatCD } from './utils';
 
-const REFRESH_INTERVAL = 1000 / 30
+const REFRESH_INTERVAL = 1000 / 30;
 
 function getTime(value?: countdownValueType) {
-  return new Date(value as any).getTime()
+  return new Date(value as any).getTime();
 }
 
 export default defineComponent({
@@ -19,59 +19,59 @@ export default defineComponent({
   }),
   // emits: ['finish', 'change'],
   setup(props, { emit, slots }) {
-    const countdownId = ref<any>()
-    const statistic = ref()
+    const countdownId = ref<any>();
+    const statistic = ref();
 
     const startTimer = () => {
-      if (countdownId.value) return
-      const timestamp = getTime(props.value)
+      if (countdownId.value) return;
+      const timestamp = getTime(props.value);
       countdownId.value = setInterval(() => {
-        statistic.value.$forceUpdate()
+        statistic.value.$forceUpdate();
         if (timestamp > Date.now())
-          emit('change', timestamp - Date.now())
+          emit('change', timestamp - Date.now());
 
-        syncTimer()
-      }, REFRESH_INTERVAL)
-    }
+        syncTimer();
+      }, REFRESH_INTERVAL);
+    };
 
     const stopTimer = () => {
-      const { value } = props
+      const { value } = props;
       if (countdownId.value) {
-        clearInterval(countdownId.value)
-        countdownId.value = undefined
+        clearInterval(countdownId.value);
+        countdownId.value = undefined;
 
-        const timestamp = getTime(value)
+        const timestamp = getTime(value);
         if (timestamp < Date.now())
-          emit('finish')
+          emit('finish');
       }
-    }
+    };
 
     const syncTimer = () => {
-      const { value } = props
-      const timestamp = getTime(value)
+      const { value } = props;
+      const timestamp = getTime(value);
       if (timestamp >= Date.now())
-        startTimer()
+        startTimer();
       else
-        stopTimer()
-    }
+        stopTimer();
+    };
 
     const formatCountdown = ({ value, config }: { value: valueType, config: FormatConfig }) => {
-      const { format } = props
-      return formatCD(value, { ...config, format })
-    }
+      const { format } = props;
+      return formatCD(value, { ...config, format });
+    };
 
-    const valueRenderHtml = (node: any) => node
+    const valueRenderHtml = (node: any) => node;
     onMounted(() => {
-      syncTimer()
-    })
+      syncTimer();
+    });
     onUpdated(() => {
-      syncTimer()
-    })
+      syncTimer();
+    });
     onBeforeUnmount(() => {
-      stopTimer()
-    })
+      stopTimer();
+    });
     return () => {
-      const value = props.value as valueType
+      const value = props.value as valueType;
       return (
         <Statistic
           ref={statistic}
@@ -83,7 +83,7 @@ export default defineComponent({
           }}
           v-slots={slots}
         />
-      )
-    }
+      );
+    };
   },
-})
+});

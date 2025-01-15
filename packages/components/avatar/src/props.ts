@@ -1,6 +1,6 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { AvatarSize } from './interface'
-import { PropTypes } from '@antdv/utils'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import type { AvatarSize } from './interface';
+import { PropTypes } from '@antdv/utils';
 
 export function avatarProps() {
   return {
@@ -21,7 +21,7 @@ export function avatarProps() {
     loadError: {
       type: Function as PropType<() => boolean>,
     },
-  }
+  };
 }
 
 export function groupProps() {
@@ -40,9 +40,9 @@ export function groupProps() {
       default: 'default' as AvatarSize,
     },
     shape: { type: String as PropType<'circle' | 'square'>, default: 'circle' },
-  }
+  };
 }
 
-export type AvatarGroupProps = Partial<ExtractPropTypes<ReturnType<typeof groupProps>>>
+export type AvatarGroupProps = Partial<ExtractPropTypes<ReturnType<typeof groupProps>>>;
 
-export type AvatarProps = Partial<ExtractPropTypes<ReturnType<typeof avatarProps>>>
+export type AvatarProps = Partial<ExtractPropTypes<ReturnType<typeof avatarProps>>>;

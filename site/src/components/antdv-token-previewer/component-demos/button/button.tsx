@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Button, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Button, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -15,9 +15,9 @@ const Demo = defineComponent({
         <Button ghost>Ghost Button</Button>
         <Button type="link">Link Button</Button>
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
@@ -30,6 +30,6 @@ const componentDemo: ComponentDemo = {
     'controlTmpOutline',
   ],
   key: 'button',
-}
+};
 
-export default componentDemo
+export default componentDemo;

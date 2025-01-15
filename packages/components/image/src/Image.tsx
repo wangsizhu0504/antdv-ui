@@ -1,28 +1,28 @@
-import { EyeOutlined } from '@ant-design/icons-vue'
-import { enUS as defaultLocale } from '@antdv/locale'
-import { classNames } from '@antdv/utils'
-import { getTransitionName, imageProps, VcImage } from '@antdv/vue-components'
-import { computed, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import { icons } from './PreviewGroup'
+import { EyeOutlined } from '@ant-design/icons-vue';
+import { enUS as defaultLocale } from '@antdv/locale';
+import { classNames } from '@antdv/utils';
+import { getTransitionName, imageProps, VcImage } from '@antdv/vue-components';
+import { computed, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import { icons } from './PreviewGroup';
 
 export default defineComponent({
   name: 'AImage',
   inheritAttrs: false,
   props: imageProps(),
   setup(props, { slots, attrs }) {
-    const { prefixCls, rootPrefixCls, configProvider } = useConfigInject('image', props)
+    const { prefixCls, rootPrefixCls, configProvider } = useConfigInject('image', props);
     // Style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     const mergedPreview = computed(() => {
-      const { preview } = props
+      const { preview } = props;
 
       if (preview === false)
-        return preview
+        return preview;
 
-      const _preview = typeof preview === 'object' ? preview : {}
+      const _preview = typeof preview === 'object' ? preview : {};
 
       return {
         icons,
@@ -33,18 +33,18 @@ export default defineComponent({
           'fade',
           _preview.maskTransitionName,
         ),
-      }
-    })
+      };
+    });
 
     return () => {
-      const imageLocale = configProvider.locale?.value?.Image || defaultLocale.Image
+      const imageLocale = configProvider.locale?.value?.Image || defaultLocale.Image;
       const defaultPreviewMask = () => (
         <div class={`${prefixCls.value}-mask-info`}>
           <EyeOutlined />
           {imageLocale?.preview}
         </div>
-      )
-      const { previewMask = slots.previewMask || defaultPreviewMask } = props
+      );
+      const { previewMask = slots.previewMask || defaultPreviewMask } = props;
       return wrapSSR(
         <VcImage
           {...{ ...attrs, ...props, prefixCls: prefixCls.value }}
@@ -56,7 +56,7 @@ export default defineComponent({
           }}
         >
         </VcImage>,
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -2,16 +2,16 @@
  * Handle virtual list of the TreeNodes.
  */
 
-import type { DataEntity, DataNode, FlattenNode, ScrollTo } from './interface'
-import type { NodeListProps } from './props'
-import { omit } from '@antdv/utils'
-import { computed, defineComponent, ref, shallowRef, watch } from 'vue'
-import VirtualList from '../../vc-virtual-list/src/List'
-import { useInjectKeysState, useInjectTreeContext } from './contextTypes'
-import MotionTreeNode from './MotionTreeNode'
-import { nodeListProps } from './props'
-import { findExpandedKeys, getExpandRange } from './utils/diffUtil'
-import { getKey } from './utils/treeUtil'
+import type { DataEntity, DataNode, FlattenNode, ScrollTo } from './interface';
+import type { NodeListProps } from './props';
+import { omit } from '@antdv/utils';
+import { computed, defineComponent, ref, shallowRef, watch } from 'vue';
+import VirtualList from '../../vc-virtual-list/src/List';
+import { useInjectKeysState, useInjectTreeContext } from './contextTypes';
+import MotionTreeNode from './MotionTreeNode';
+import { nodeListProps } from './props';
+import { findExpandedKeys, getExpandRange } from './utils/diffUtil';
+import { getKey } from './utils/treeUtil';
 
 const HIDDEN_STYLE = {
   width: 0,
@@ -22,15 +22,15 @@ const HIDDEN_STYLE = {
   border: 0,
   padding: 0,
   margin: 0,
-}
+};
 
 function noop() {}
 
-export const MOTION_KEY = `RC_TREE_MOTION_${Math.random()}`
+export const MOTION_KEY = `RC_TREE_MOTION_${Math.random()}`;
 
 const MotionNode: DataNode = {
   key: MOTION_KEY,
-}
+};
 
 export const MotionEntity: DataEntity = {
   key: MOTION_KEY,
@@ -39,7 +39,7 @@ export const MotionEntity: DataEntity = {
   pos: '0',
   node: MotionNode,
   nodes: [MotionNode],
-}
+};
 
 const MotionFlattenData: FlattenNode = {
   parent: null,
@@ -51,7 +51,7 @@ const MotionFlattenData: FlattenNode = {
   /** Hold empty list here since we do not use it */
   isStart: [],
   isEnd: [],
-}
+};
 
 export interface NodeListRef {
   scrollTo: ScrollTo;
@@ -68,26 +68,26 @@ export function getMinimumRangeTransitionRange(
   itemHeight: number,
 ) {
   if (virtual === false || !height)
-    return list
+    return list;
 
-  return list.slice(0, Math.ceil(height / itemHeight) + 1)
+  return list.slice(0, Math.ceil(height / itemHeight) + 1);
 }
 
 function itemKey(item: FlattenNode) {
-  const { key, pos } = item
-  return getKey(key, pos)
+  const { key, pos } = item;
+  return getKey(key, pos);
 }
 
 function getAccessibilityPath(item: FlattenNode): string {
-  let path = String(item.key)
-  let current = item
+  let path = String(item.key);
+  let current = item;
 
   while (current.parent) {
-    current = current.parent
-    path = `${current.key} > ${path}`
+    current = current.parent;
+    path = `${current.key} > ${path}`;
   }
 
-  return path
+  return path;
 }
 
 export default defineComponent({
@@ -97,87 +97,87 @@ export default defineComponent({
   props: nodeListProps,
   setup(props, { expose, attrs }) {
     // =============================== Ref ================================
-    const listRef = ref()
-    const indentMeasurerRef = ref()
-    const { expandedKeys, flattenNodes } = useInjectKeysState()
+    const listRef = ref();
+    const indentMeasurerRef = ref();
+    const { expandedKeys, flattenNodes } = useInjectKeysState();
     expose({
       scrollTo: (scroll) => {
-        listRef.value.scrollTo(scroll)
+        listRef.value.scrollTo(scroll);
       },
       getIndentWidth: () => indentMeasurerRef.value.offsetWidth,
-    })
+    });
     // ============================== Motion ==============================
-    const transitionData = shallowRef<FlattenNode[]>(flattenNodes.value)
-    const transitionRange = shallowRef([])
-    const motionType = ref<'show' | 'hide' | null>(null)
+    const transitionData = shallowRef<FlattenNode[]>(flattenNodes.value);
+    const transitionRange = shallowRef([]);
+    const motionType = ref<'show' | 'hide' | null>(null);
 
     function onMotionEnd() {
-      transitionData.value = flattenNodes.value
-      transitionRange.value = []
-      motionType.value = null
+      transitionData.value = flattenNodes.value;
+      transitionRange.value = [];
+      motionType.value = null;
 
-      props.onListChangeEnd()
+      props.onListChangeEnd();
     }
 
-    const context = useInjectTreeContext()
+    const context = useInjectTreeContext();
     watch(
       [() => expandedKeys.value.slice(), flattenNodes],
       ([expandedKeys, data], [prevExpandedKeys, prevData]) => {
-        const diffExpanded = findExpandedKeys(prevExpandedKeys, expandedKeys)
+        const diffExpanded = findExpandedKeys(prevExpandedKeys, expandedKeys);
         if (diffExpanded.key !== null) {
-          const { virtual, height, itemHeight } = props
+          const { virtual, height, itemHeight } = props;
           if (diffExpanded.add) {
-            const keyIndex = prevData.findIndex(({ key }) => key === diffExpanded.key)
+            const keyIndex = prevData.findIndex(({ key }) => key === diffExpanded.key);
             const rangeNodes = getMinimumRangeTransitionRange(
               getExpandRange(prevData, data, diffExpanded.key),
               virtual,
               height,
               itemHeight,
-            )
+            );
 
-            const newTransitionData: FlattenNode[] = prevData.slice()
-            newTransitionData.splice(keyIndex + 1, 0, MotionFlattenData)
+            const newTransitionData: FlattenNode[] = prevData.slice();
+            newTransitionData.splice(keyIndex + 1, 0, MotionFlattenData);
 
-            transitionData.value = newTransitionData
-            transitionRange.value = rangeNodes
-            motionType.value = 'show'
+            transitionData.value = newTransitionData;
+            transitionRange.value = rangeNodes;
+            motionType.value = 'show';
           } else {
-            const keyIndex = data.findIndex(({ key }) => key === diffExpanded.key)
+            const keyIndex = data.findIndex(({ key }) => key === diffExpanded.key);
 
             const rangeNodes = getMinimumRangeTransitionRange(
               getExpandRange(data, prevData, diffExpanded.key),
               virtual,
               height,
               itemHeight,
-            )
+            );
 
-            const newTransitionData: FlattenNode[] = data.slice()
-            newTransitionData.splice(keyIndex + 1, 0, MotionFlattenData)
+            const newTransitionData: FlattenNode[] = data.slice();
+            newTransitionData.splice(keyIndex + 1, 0, MotionFlattenData);
 
-            transitionData.value = newTransitionData
-            transitionRange.value = rangeNodes
-            motionType.value = 'hide'
+            transitionData.value = newTransitionData;
+            transitionRange.value = rangeNodes;
+            motionType.value = 'hide';
           }
         } else if (prevData !== data) {
-          transitionData.value = data
+          transitionData.value = data;
         }
       },
-    )
+    );
     // We should clean up motion if is changed by dragging
     watch(
       () => context.value.dragging,
       (dragging) => {
         if (!dragging)
-          onMotionEnd()
+          onMotionEnd();
       },
-    )
+    );
 
     const mergedData = computed(() =>
       props.motion === undefined ? transitionData.value : flattenNodes.value,
-    )
+    );
     const onActiveChange = () => {
-      props.onActiveChange(null)
-    }
+      props.onActiveChange(null);
+    };
     return () => {
       const {
         prefixCls,
@@ -204,7 +204,7 @@ export default defineComponent({
         onListChangeEnd,
 
         ...domProps
-      } = { ...props, ...attrs } as NodeListProps
+      } = { ...props, ...attrs } as NodeListProps;
       return (
         <>
           {focused && activeItem && (
@@ -254,12 +254,12 @@ export default defineComponent({
             prefixCls={`${prefixCls}-list`}
             ref={listRef}
             onVisibleChange={(originList, fullList) => {
-              const originSet = new Set(originList)
-              const restList = fullList.filter(item => !originSet.has(item))
+              const originSet = new Set(originList);
+              const restList = fullList.filter(item => !originSet.has(item));
 
               // Motion node is not render. Skip motion
               if (restList.some(item => itemKey(item) === MOTION_KEY))
-                onMotionEnd()
+                onMotionEnd();
             }}
             v-slots={{
               default: (treeNode: FlattenNode) => {
@@ -270,10 +270,10 @@ export default defineComponent({
                   key,
                   isStart,
                   isEnd,
-                } = treeNode
-                const mergedKey = getKey(key, pos)
-                delete restProps.key
-                delete restProps.children
+                } = treeNode;
+                const mergedKey = getKey(key, pos);
+                delete restProps.key;
+                delete restProps.children;
                 return (
                   <MotionTreeNode
                     {...restProps}
@@ -290,13 +290,13 @@ export default defineComponent({
                     onMotionEnd={onMotionEnd}
                     onMousemove={onActiveChange}
                   />
-                )
+                );
               },
             }}
           >
           </VirtualList>
         </>
-      )
-    }
+      );
+    };
   },
-})
+});

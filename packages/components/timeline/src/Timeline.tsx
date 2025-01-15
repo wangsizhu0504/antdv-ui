@@ -1,12 +1,12 @@
-import type { SlotsType } from 'vue'
-import { LoadingOutlined } from '@ant-design/icons-vue'
-import { classNames, filterEmpty, initDefaultProps } from '@antdv/utils'
-import { cloneVNode, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import type { SlotsType } from 'vue';
+import { LoadingOutlined } from '@ant-design/icons-vue';
+import { classNames, filterEmpty, initDefaultProps } from '@antdv/utils';
+import { cloneVNode, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import useStyle from '../style'
-import { timelineProps } from './props'
-import TimelineItem from './TimelineItem'
+import useStyle from '../style';
+import { timelineProps } from './props';
+import TimelineItem from './TimelineItem';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -22,23 +22,23 @@ export default defineComponent({
     default?: any
   }>,
   setup(props, { slots, attrs }) {
-    const { prefixCls, direction } = useConfigInject('timeline', props)
+    const { prefixCls, direction } = useConfigInject('timeline', props);
 
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     const getPositionCls = (ele, idx: number) => {
-      const eleProps = ele.props || {}
+      const eleProps = ele.props || {};
       if (props.mode === 'alternate') {
-        if (eleProps.position === 'right') return `${prefixCls.value}-item-right`
-        if (eleProps.position === 'left') return `${prefixCls.value}-item-left`
-        return idx % 2 === 0 ? `${prefixCls.value}-item-left` : `${prefixCls.value}-item-right`
+        if (eleProps.position === 'right') return `${prefixCls.value}-item-right`;
+        if (eleProps.position === 'left') return `${prefixCls.value}-item-left`;
+        return idx % 2 === 0 ? `${prefixCls.value}-item-left` : `${prefixCls.value}-item-right`;
       }
-      if (props.mode === 'left') return `${prefixCls.value}-item-left`
-      if (props.mode === 'right') return `${prefixCls.value}-item-right`
-      if (eleProps.position === 'right') return `${prefixCls.value}-item-right`
-      return ''
-    }
+      if (props.mode === 'left') return `${prefixCls.value}-item-left`;
+      if (props.mode === 'right') return `${prefixCls.value}-item-right`;
+      if (eleProps.position === 'right') return `${prefixCls.value}-item-right`;
+      return '';
+    };
 
     return () => {
       const {
@@ -46,9 +46,9 @@ export default defineComponent({
         pendingDot = slots.pendingDot?.(),
         reverse,
         mode,
-      } = props
-      const pendingNode = typeof pending === 'boolean' ? null : pending
-      const children = filterEmpty(slots.default?.())
+      } = props;
+      const pendingNode = typeof pending === 'boolean' ? null : pending;
+      const children = filterEmpty(slots.default?.());
 
       const pendingItem = pending
         ? (
@@ -56,28 +56,28 @@ export default defineComponent({
               {pendingNode}
             </TimelineItem>
           )
-        : null
+        : null;
 
       if (pendingItem)
-        children.push(pendingItem)
+        children.push(pendingItem);
 
-      const timeLineItems = reverse ? children.reverse() : children
+      const timeLineItems = reverse ? children.reverse() : children;
 
-      const itemsCount = timeLineItems.length
-      const lastCls = `${prefixCls.value}-item-last`
+      const itemsCount = timeLineItems.length;
+      const lastCls = `${prefixCls.value}-item-last`;
       const items = timeLineItems.map((ele, idx) => {
-        const pendingClass = idx === itemsCount - 2 ? lastCls : ''
-        const readyClass = idx === itemsCount - 1 ? lastCls : ''
+        const pendingClass = idx === itemsCount - 2 ? lastCls : '';
+        const readyClass = idx === itemsCount - 1 ? lastCls : '';
         return cloneVNode(ele, {
           class: classNames([
             (!reverse && !!pending) ? pendingClass : readyClass,
             getPositionCls(ele, idx),
           ]),
-        })
-      })
+        });
+      });
       const hasLabelItem = timeLineItems.some(
         item => !!(item.props?.label || item.children?.label),
-      )
+      );
       const classString = classNames(
         prefixCls.value,
         {
@@ -89,12 +89,12 @@ export default defineComponent({
         },
         attrs.class,
         hashId.value,
-      )
+      );
       return wrapSSR(
         <ul {...attrs} class={classString}>
           {items}
         </ul>,
-      )
-    }
+      );
+    };
   },
-})
+});

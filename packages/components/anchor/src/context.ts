@@ -1,6 +1,6 @@
-import type { ComputedRef, InjectionKey, Ref } from 'vue'
-import type { AnchorDirection } from './interface'
-import { computed, inject, provide } from 'vue'
+import type { ComputedRef, InjectionKey, Ref } from 'vue';
+import type { AnchorDirection } from './interface';
+import { computed, inject, provide } from 'vue';
 
 export interface AnchorContext {
   registerLink: (link: string) => void
@@ -13,10 +13,10 @@ export interface AnchorContext {
 
 function noop(..._any: any[]): any {}
 
-export const AnchorContextKey: InjectionKey<AnchorContext> = Symbol('anchorContextKey')
+export const AnchorContextKey: InjectionKey<AnchorContext> = Symbol('anchorContextKey');
 
 function useProvideAnchor(state: AnchorContext) {
-  provide(AnchorContextKey, state)
+  provide(AnchorContextKey, state);
 }
 
 function useInjectAnchor() {
@@ -27,8 +27,8 @@ function useInjectAnchor() {
     activeLink: computed(() => ''),
     handleClick: noop,
     direction: computed(() => 'vertical'),
-  } as AnchorContext)
+  } as AnchorContext);
 }
 
-export { useInjectAnchor, useProvideAnchor }
-export default useProvideAnchor
+export { useInjectAnchor, useProvideAnchor };
+export default useProvideAnchor;

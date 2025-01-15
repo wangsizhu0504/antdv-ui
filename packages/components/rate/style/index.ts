@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
 
 export interface ComponentToken {}
 
@@ -11,7 +11,7 @@ interface RateToken extends FullToken<'Rate'> {
 }
 
 const genRateStarStyle: GenerateStyle<RateToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [`${componentCls}-star`]: {
@@ -69,19 +69,19 @@ const genRateStarStyle: GenerateStyle<RateToken, CSSObject> = (token) => {
         color: 'inherit',
       },
     },
-  }
-}
+  };
+};
 
 function genRateRtlStyle(token: RateToken): CSSObject {
   return {
     [`&-rtl${token.componentCls}`]: {
       direction: 'rtl',
     },
-  }
+  };
 }
 
 const genRateStyle: GenerateStyle<RateToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [componentCls]: {
@@ -118,18 +118,18 @@ const genRateStyle: GenerateStyle<RateToken> = (token) => {
       // rtl styles
       ...genRateRtlStyle(token),
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Rate', (token) => {
-  const { colorFillContent } = token
+  const { colorFillContent } = token;
 
   const rateToken = mergeToken<RateToken>(token, {
     rateStarColor: token['yellow-6'],
     rateStarSize: token.controlHeightLG * 0.5,
     rateStarHoverScale: 'scale(1.1)',
     defaultColor: colorFillContent,
-  })
-  return [genRateStyle(rateToken)]
-})
+  });
+  return [genRateStyle(rateToken)];
+});

@@ -1,12 +1,12 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook } from '@antdv/theme';
 
 export interface ComponentToken {}
 
-export type WaveToken = FullToken<'Wave'>
+export type WaveToken = FullToken<'Wave'>;
 
 const genWaveStyle: GenerateStyle<WaveToken> = (token) => {
-  const { componentCls, colorPrimary } = token
+  const { componentCls, colorPrimary } = token;
   return {
     [componentCls]: {
       'position': 'absolute',
@@ -31,7 +31,7 @@ const genWaveStyle: GenerateStyle<WaveToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genComponentStyleHook('Wave', token => [genWaveStyle(token)])
+export default genComponentStyleHook('Wave', token => [genWaveStyle(token)]);

@@ -17,7 +17,7 @@ Listening for anchor link change.
 
 <script lang="ts" setup>
   function onChange(link: string) {
-    console.log('Anchor:OnChange', link)
+    console.log('Anchor:OnChange', link);
   }
 </script>
 

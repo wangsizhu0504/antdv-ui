@@ -1,10 +1,10 @@
-import type { InputStatus, KeyboardEventHandler, SizeType } from '@antdv/types'
-
-import { booleanType, functionType, PropTypes, someType, stringType } from '@antdv/utils'
+import type { InputStatus, KeyboardEventHandler, SizeType } from '@antdv/types';
 
 // CSSINJS
-import type { ExtractPropTypes } from 'vue'
-import type { ValueType } from './interface'
+import type { ExtractPropTypes } from 'vue';
+
+import type { ValueType } from './interface';
+import { booleanType, functionType, PropTypes, someType, stringType } from '@antdv/utils';
 
 export function inputElementProps() {
   return {
@@ -45,7 +45,7 @@ export function inputElementProps() {
     functionType<(value: ValueType, info: { offset: ValueType, type: 'up' | 'down' }) => void>(),
     onBlur: functionType<(e: FocusEvent) => void>(),
     onFocus: functionType<(e: FocusEvent) => void>(),
-  }
+  };
 }
 
 export function inputNumberProps() {
@@ -63,7 +63,7 @@ export function inputNumberProps() {
     'onUpdate:value': functionType<(value: ValueType) => void>(),
     'valueModifiers': Object,
     'status': stringType<InputStatus>(),
-  }
+  };
 }
 
-export type InputNumberProps = Partial<ExtractPropTypes<ReturnType<typeof inputNumberProps>>>
+export type InputNumberProps = Partial<ExtractPropTypes<ReturnType<typeof inputNumberProps>>>;

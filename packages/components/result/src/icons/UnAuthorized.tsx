@@ -274,7 +274,7 @@ function Unauthorized() {
         />
       </g>
     </svg>
-  )
+  );
 }
 
-export default Unauthorized
+export default Unauthorized;

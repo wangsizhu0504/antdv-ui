@@ -17,21 +17,21 @@ Render addon contents to timepicker panel's bottom.
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import { ref } from 'vue';
 
-  const open = ref<any>(false)
-  const open2 = ref<any>(false)
-  const value = ref<Dayjs>()
+  const open = ref<any>(false);
+  const open2 = ref<any>(false);
+  const value = ref<Dayjs>();
 
   function handleOpenChange(openStatus: boolean) {
-    console.log('open', openStatus)
-    open.value = openStatus
+    console.log('open', openStatus);
+    open.value = openStatus;
   }
 
   function handleClose() {
-    open.value = false
-    open2.value = false
+    open.value = false;
+    open2.value = false;
   }
 </script>
 

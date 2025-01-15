@@ -1,14 +1,14 @@
-import type { GenerateConfig } from '../../generate'
-import type { Locale, NullableDateType } from '../../interface'
-import useCellClassName from '../../hooks/useCellClassName'
-import useMergeProps from '../../hooks/useMergeProps'
-import { useInjectRange } from '../../RangeContext'
-import { formatValue, isSameYear } from '../../utils/dateUtil'
-import PanelBody from '../PanelBody'
-import { YEAR_DECADE_COUNT } from './constant'
+import type { GenerateConfig } from '../../generate';
+import type { Locale, NullableDateType } from '../../interface';
+import useCellClassName from '../../hooks/useCellClassName';
+import useMergeProps from '../../hooks/useMergeProps';
+import { useInjectRange } from '../../RangeContext';
+import { formatValue, isSameYear } from '../../utils/dateUtil';
+import PanelBody from '../PanelBody';
+import { YEAR_DECADE_COUNT } from './constant';
 
-export const YEAR_COL_COUNT = 3
-const YEAR_ROW_COUNT = 4
+export const YEAR_COL_COUNT = 3;
+const YEAR_ROW_COUNT = 4;
 
 export interface YearBodyProps<DateType> {
   prefixCls: string;
@@ -21,25 +21,25 @@ export interface YearBodyProps<DateType> {
 }
 
 function YearBody<DateType>(_props: YearBodyProps<DateType>) {
-  const props = useMergeProps(_props)
-  const { prefixCls, value, viewDate, locale, generateConfig } = props
-  const { rangedValue, hoverRangedValue } = useInjectRange()
+  const props = useMergeProps(_props);
+  const { prefixCls, value, viewDate, locale, generateConfig } = props;
+  const { rangedValue, hoverRangedValue } = useInjectRange();
 
-  const yearPrefixCls = `${prefixCls}-cell`
+  const yearPrefixCls = `${prefixCls}-cell`;
 
   // =============================== Year ===============================
-  const yearNumber = generateConfig.getYear(viewDate)
-  const startYear = Math.floor(yearNumber / YEAR_DECADE_COUNT) * YEAR_DECADE_COUNT
-  const endYear = startYear + YEAR_DECADE_COUNT - 1
+  const yearNumber = generateConfig.getYear(viewDate);
+  const startYear = Math.floor(yearNumber / YEAR_DECADE_COUNT) * YEAR_DECADE_COUNT;
+  const endYear = startYear + YEAR_DECADE_COUNT - 1;
   const baseYear = generateConfig.setYear(
     viewDate,
     startYear - Math.ceil((YEAR_COL_COUNT * YEAR_ROW_COUNT - YEAR_DECADE_COUNT) / 2),
-  )
+  );
 
   const isInView = (date: DateType) => {
-    const currentYearNumber = generateConfig.getYear(date)
-    return startYear <= currentYearNumber && currentYearNumber <= endYear
-  }
+    const currentYearNumber = generateConfig.getYear(date);
+    return startYear <= currentYearNumber && currentYearNumber <= endYear;
+  };
 
   const getCellClassName = useCellClassName<DateType>({
     cellPrefixCls: yearPrefixCls,
@@ -50,7 +50,7 @@ function YearBody<DateType>(_props: YearBodyProps<DateType>) {
     isSameCell: (current, target) => isSameYear(generateConfig, current, target),
     isInView,
     offsetCell: (date, offset) => generateConfig.addYear(date, offset),
-  })
+  });
 
   return (
     <PanelBody
@@ -68,10 +68,10 @@ function YearBody<DateType>(_props: YearBodyProps<DateType>) {
           generateConfig,
         })}
     />
-  )
+  );
 }
 
-YearBody.displayName = 'YearBody'
-YearBody.inheritAttrs = false
+YearBody.displayName = 'YearBody';
+YearBody.inheritAttrs = false;
 
-export default YearBody
+export default YearBody;

@@ -17,9 +17,9 @@ Set a `target` for 'Affix', which is listen to scroll event of target element (d
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const containerRef = ref<any>()
+  const containerRef = ref<any>();
 </script>
 
 <template>

@@ -1,11 +1,11 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { HTMLAttributes } from 'vue'
-import type { ColProps } from '../../grid'
-import { classNames, filterEmpty } from '@antdv/utils'
-import { computed, defineComponent } from 'vue'
-import { Col } from '../../grid'
-import { useInjectForm, useProvideForm, useProvideFormItemPrefix } from './context'
-import ErrorList from './ErrorList'
+import type { CustomSlotsType } from '@antdv/types';
+import type { HTMLAttributes } from 'vue';
+import type { ColProps } from '../../grid';
+import { classNames, filterEmpty } from '@antdv/utils';
+import { computed, defineComponent } from 'vue';
+import { Col } from '../../grid';
+import { useInjectForm, useProvideForm, useProvideFormItemPrefix } from './context';
+import ErrorList from './ErrorList';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -30,18 +30,18 @@ export default defineComponent({
     'onErrorVisibleChanged',
   ],
   setup(props, { slots }) {
-    const formContext = useInjectForm()
-    const { wrapperCol: contextWrapperCol } = formContext
+    const formContext = useInjectForm();
+    const { wrapperCol: contextWrapperCol } = formContext;
 
     // Pass to sub FormItem should not with col info
-    const subFormContext = { ...formContext }
-    delete subFormContext.labelCol
-    delete subFormContext.wrapperCol
-    useProvideForm(subFormContext)
+    const subFormContext = { ...formContext };
+    delete subFormContext.labelCol;
+    delete subFormContext.wrapperCol;
+    useProvideForm(subFormContext);
     useProvideFormItemPrefix({
       prefixCls: computed(() => props.prefixCls),
       status: computed(() => props.status),
-    })
+    });
 
     return () => {
       const {
@@ -54,13 +54,13 @@ export default defineComponent({
         // hasFeedback,
         // status,
         extra = slots.extra?.(),
-      } = props
-      const baseClassName = `${prefixCls}-item`
+      } = props;
+      const baseClassName = `${prefixCls}-item`;
 
       const mergedWrapperCol: ColProps & HTMLAttributes
-        = wrapperCol || contextWrapperCol?.value || {}
+        = wrapperCol || contextWrapperCol?.value || {};
 
-      const className = classNames(`${baseClassName}-control`, mergedWrapperCol.class)
+      const className = classNames(`${baseClassName}-control`, mergedWrapperCol.class);
 
       // Should provides additional icon if `hasFeedback`
       // const IconNode = status && iconMap[status];
@@ -93,7 +93,7 @@ export default defineComponent({
           }}
         >
         </Col>
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -17,16 +17,16 @@ The default is to close the menu when you click on menu items, this feature can 
 </docs>
 
 <script lang="ts" setup>
-  import type { MenuProps } from '@antdv/ui'
-  import { DownOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { MenuProps } from '@antdv/ui';
+  import { DownOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const visible = ref<any>(false)
+  const visible = ref<any>(false);
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     if (e.key === '3') {
-      visible.value = false
+      visible.value = false;
     }
-  }
+  };
 </script>
 
 <template>

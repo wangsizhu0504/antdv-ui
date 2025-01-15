@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
-import type { HeaderProps } from '../Header/Header'
-import type { ColumnsType, ColumnType, DefaultRecordType } from '../interface'
-import { addEventListenerWrap, classNames } from '@antdv/utils'
+import type { Ref } from 'vue';
+import type { HeaderProps } from '../Header/Header';
+import type { ColumnsType, ColumnType, DefaultRecordType } from '../interface';
+import { addEventListenerWrap, classNames } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -11,24 +11,24 @@ import {
   ref,
   toRef,
   watchEffect,
-} from 'vue'
-import ColGroup from '../ColGroup'
-import { useInjectTable } from '../context/TableContext'
+} from 'vue';
+import ColGroup from '../ColGroup';
+import { useInjectTable } from '../context/TableContext';
 
 function useColumnWidth(colWidthsRef: Ref<readonly number[]>, columCountRef: Ref<number>) {
   return computed(() => {
-    const cloneColumns: number[] = []
-    const colWidths = colWidthsRef.value
-    const columCount = columCountRef.value
+    const cloneColumns: number[] = [];
+    const colWidths = colWidthsRef.value;
+    const columCount = columCountRef.value;
     for (let i = 0; i < columCount; i += 1) {
-      const val = colWidths[i]
+      const val = colWidths[i];
       if (val !== undefined)
-        cloneColumns[i] = val
+        cloneColumns[i] = val;
       else
-        return null
+        return null;
     }
-    return cloneColumns
-  })
+    return cloneColumns;
+  });
 }
 
 export interface FixedHeaderProps<RecordType> extends HeaderProps<RecordType> {
@@ -64,62 +64,62 @@ export default defineComponent<FixedHeaderProps<DefaultRecordType>>({
   ] as any,
   emits: ['scroll'],
   setup(props, { attrs, slots, emit }) {
-    const tableContext = useInjectTable()
+    const tableContext = useInjectTable();
     const combinationScrollBarSize = computed(() =>
       tableContext.isSticky && !props.fixHeader ? 0 : tableContext.scrollbarSize,
-    )
-    const scrollRef = ref()
+    );
+    const scrollRef = ref();
     const onWheel = (e: WheelEvent) => {
-      const { currentTarget, deltaX } = e
+      const { currentTarget, deltaX } = e;
       if (deltaX) {
-        emit('scroll', { currentTarget, scrollLeft: (currentTarget as any).scrollLeft + deltaX })
-        e.preventDefault()
+        emit('scroll', { currentTarget, scrollLeft: (currentTarget as any).scrollLeft + deltaX });
+        e.preventDefault();
       }
-    }
-    const wheelEvent = ref()
+    };
+    const wheelEvent = ref();
     onMounted(() => {
       nextTick(() => {
-        wheelEvent.value = addEventListenerWrap(scrollRef.value, 'wheel', onWheel)
-      })
-    })
+        wheelEvent.value = addEventListenerWrap(scrollRef.value, 'wheel', onWheel);
+      });
+    });
     onBeforeUnmount(() => {
-      wheelEvent.value?.remove()
-    })
+      wheelEvent.value?.remove();
+    });
 
     // Check if all flattenColumns has width
     const allFlattenColumnsWithWidth = computed(() =>
       props.flattenColumns.every(
         column => column.width && column.width !== 0 && column.width !== '0px',
       ),
-    )
+    );
 
-    const columnsWithScrollbar = ref<ColumnsType<unknown>>([])
-    const flattenColumnsWithScrollbar = ref<ColumnsType<unknown>>([])
+    const columnsWithScrollbar = ref<ColumnsType<unknown>>([]);
+    const flattenColumnsWithScrollbar = ref<ColumnsType<unknown>>([]);
 
     watchEffect(() => {
       // Add scrollbar column
-      const lastColumn = props.flattenColumns[props.flattenColumns.length - 1]
+      const lastColumn = props.flattenColumns[props.flattenColumns.length - 1];
       const ScrollBarColumn: ColumnType<unknown> & { scrollbar: true } = {
         fixed: lastColumn ? lastColumn.fixed : null,
         scrollbar: true,
         customHeaderCell: () => ({
           class: `${tableContext.prefixCls}-cell-scrollbar`,
         }),
-      }
+      };
 
       columnsWithScrollbar.value = combinationScrollBarSize.value
         ? [...props.columns, ScrollBarColumn]
-        : props.columns
+        : props.columns;
 
       flattenColumnsWithScrollbar.value = combinationScrollBarSize.value
         ? [...props.flattenColumns, ScrollBarColumn]
-        : props.flattenColumns
-    })
+        : props.flattenColumns;
+    });
 
     // Calculate the sticky offsets
     const headerStickyOffsets = computed(() => {
-      const { stickyOffsets, direction } = props
-      const { right, left } = stickyOffsets
+      const { stickyOffsets, direction } = props;
+      const { right, left } = stickyOffsets;
       return {
         ...stickyOffsets,
         left:
@@ -131,10 +131,10 @@ export default defineComponent<FixedHeaderProps<DefaultRecordType>>({
             ? right
             : [...right.map(width => width + combinationScrollBarSize.value), 0],
         isSticky: tableContext.isSticky,
-      }
-    })
+      };
+    });
 
-    const mergedColumnWidth = useColumnWidth(toRef(props, 'colWidths'), toRef(props, 'columCount'))
+    const mergedColumnWidth = useColumnWidth(toRef(props, 'colWidths'), toRef(props, 'columCount'));
 
     return () => {
       const {
@@ -144,8 +144,8 @@ export default defineComponent<FixedHeaderProps<DefaultRecordType>>({
         stickyBottomOffset,
         stickyClassName,
         maxContentScroll,
-      } = props
-      const { isSticky } = tableContext
+      } = props;
+      const { isSticky } = tableContext;
       return (
         <div
           style={{
@@ -182,7 +182,7 @@ export default defineComponent<FixedHeaderProps<DefaultRecordType>>({
             })}
           </table>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

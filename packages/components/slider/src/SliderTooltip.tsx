@@ -1,6 +1,6 @@
-import { raf } from '@antdv/utils'
-import { defineComponent, onActivated, onBeforeUnmount, ref, watch } from 'vue'
-import { Tooltip, tooltipProps } from '../../tooltip'
+import { raf } from '@antdv/utils';
+import { defineComponent, onActivated, onBeforeUnmount, ref, watch } from 'vue';
+import { Tooltip, tooltipProps } from '../../tooltip';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -8,41 +8,41 @@ export default defineComponent({
   inheritAttrs: false,
   props: tooltipProps(),
   setup(props, { attrs, slots }) {
-    const innerRef = ref<any>(null)
+    const innerRef = ref<any>(null);
 
-    const rafRef = ref<number>(null)
+    const rafRef = ref<number>(null);
 
     function cancelKeepAlign() {
-      raf.cancel(rafRef.value!)
-      rafRef.value = null
+      raf.cancel(rafRef.value!);
+      rafRef.value = null;
     }
 
     function keepAlign() {
       rafRef.value = raf(() => {
-        innerRef.value?.forcePopupAlign()
-        rafRef.value = null
-      })
+        innerRef.value?.forcePopupAlign();
+        rafRef.value = null;
+      });
     }
     const align = () => {
-      cancelKeepAlign()
+      cancelKeepAlign();
       if (props.open)
-        keepAlign()
-    }
+        keepAlign();
+    };
     watch(
       [() => props.open, () => props.title],
       () => {
-        align()
+        align();
       },
       { flush: 'post', immediate: true },
-    )
+    );
     onActivated(() => {
-      align()
-    })
+      align();
+    });
     onBeforeUnmount(() => {
-      cancelKeepAlign()
-    })
+      cancelKeepAlign();
+    });
     return () => {
-      return <Tooltip ref={innerRef} {...props} {...attrs} v-slots={slots} />
-    }
+      return <Tooltip ref={innerRef} {...props} {...attrs} v-slots={slots} />;
+    };
   },
-})
+});

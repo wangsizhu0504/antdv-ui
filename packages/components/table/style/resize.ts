@@ -1,10 +1,10 @@
 // 此样式是vue版本独有样式，react版本没有拖拽改变列宽度功能
-import type { CSSObject } from '@antdv/theme'
-import type { GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
+import type { CSSObject } from '@antdv/theme';
+import type { GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
 
 const genResizeStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [`${componentCls}-wrapper ${componentCls}-resize-handle`]: {
@@ -46,7 +46,7 @@ const genResizeStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         opacity: 0,
       },
     },
-  }
-}
+  };
+};
 
-export default genResizeStyle
+export default genResizeStyle;

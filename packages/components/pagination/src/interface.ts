@@ -1,1 +1,1 @@
-export type PaginationPosition = 'top' | 'bottom' | 'both'
+export type PaginationPosition = 'top' | 'bottom' | 'both';

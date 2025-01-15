@@ -1,9 +1,9 @@
-import type { Breakpoint, CustomSlotsType, Key } from '@antdv/types'
-import type { PaginationConfig } from '../../pagination'
+import type { Breakpoint, CustomSlotsType, Key } from '@antdv/types';
+import type { PaginationConfig } from '../../pagination';
 
-import { responsiveArray } from '@antdv/constants'
-import { useBreakpoint } from '@antdv/hooks'
-import { classNames, eagerComputed, flattenChildren, initDefaultProps } from '@antdv/utils'
+import { responsiveArray } from '@antdv/constants';
+import { useBreakpoint } from '@antdv/hooks';
+import { classNames, eagerComputed, flattenChildren, initDefaultProps } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -11,16 +11,16 @@ import {
   ref,
   toRef,
   watch,
-} from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { Row } from '../../grid'
+} from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { Row } from '../../grid';
 
-import Pagination from '../../pagination'
-import Spin from '../../spin'
-import useStyle from '../style'
-import { ListContextKey } from './contextKey'
-import Item from './Item'
-import { listProps } from './props'
+import Pagination from '../../pagination';
+import Spin from '../../spin';
+import useStyle from '../style';
+import { ListContextKey } from './contextKey';
+import Item from './Item';
+import { listProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -46,68 +46,68 @@ export default defineComponent({
     provide(ListContextKey, {
       grid: toRef(props, 'grid'),
       itemLayout: toRef(props, 'itemLayout'),
-    })
+    });
     const defaultPaginationProps = {
       current: 1,
       total: 0,
-    }
-    const { prefixCls, direction, renderEmpty } = useConfigInject('list', props)
+    };
+    const { prefixCls, direction, renderEmpty } = useConfigInject('list', props);
 
     // Style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     const paginationObj = computed(() =>
       props.pagination && typeof props.pagination === 'object' ? props.pagination : {},
-    )
-    const paginationCurrent = ref(paginationObj.value.defaultCurrent ?? 1)
-    const paginationSize = ref(paginationObj.value.defaultPageSize ?? 10)
+    );
+    const paginationCurrent = ref(paginationObj.value.defaultCurrent ?? 1);
+    const paginationSize = ref(paginationObj.value.defaultPageSize ?? 10);
     watch(paginationObj, () => {
       if ('current' in paginationObj.value)
-        paginationCurrent.value = paginationObj.value.current
+        paginationCurrent.value = paginationObj.value.current;
 
       if ('pageSize' in paginationObj.value)
-        paginationSize.value = paginationObj.value.pageSize
-    })
+        paginationSize.value = paginationObj.value.pageSize;
+    });
 
-    const listItemsKeys: Key[] = []
+    const listItemsKeys: Key[] = [];
 
     const triggerPaginationEvent = (eventName: string) => (page: number, pageSize: number) => {
-      paginationCurrent.value = page
-      paginationSize.value = pageSize
+      paginationCurrent.value = page;
+      paginationSize.value = pageSize;
       if (paginationObj.value[eventName])
-        paginationObj.value[eventName](page, pageSize)
-    }
+        paginationObj.value[eventName](page, pageSize);
+    };
 
-    const onPaginationChange = triggerPaginationEvent('onChange')
+    const onPaginationChange = triggerPaginationEvent('onChange');
 
-    const onPaginationShowSizeChange = triggerPaginationEvent('onShowSizeChange')
+    const onPaginationShowSizeChange = triggerPaginationEvent('onShowSizeChange');
 
     const loadingProp = computed(() => {
       if (typeof props.loading === 'boolean') {
         return {
           spinning: props.loading,
-        }
+        };
       } else {
-        return props.loading
+        return props.loading;
       }
-    })
+    });
 
-    const isLoading = computed(() => loadingProp.value && loadingProp.value.spinning)
+    const isLoading = computed(() => loadingProp.value && loadingProp.value.spinning);
 
     const sizeCls = computed(() => {
-      let size = ''
+      let size = '';
       switch (props.size) {
         case 'large':
-          size = 'lg'
-          break
+          size = 'lg';
+          break;
         case 'small':
-          size = 'sm'
-          break
+          size = 'sm';
+          break;
         default:
-          break
+          break;
       }
-      return size
-    })
+      return size;
+    });
 
     const classObj = computed(() => ({
       [`${prefixCls.value}`]: true,
@@ -118,7 +118,7 @@ export default defineComponent({
       [`${prefixCls.value}-loading`]: isLoading.value,
       [`${prefixCls.value}-grid`]: !!props.grid,
       [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
-    }))
+    }));
 
     const paginationProps = computed(() => {
       const pp = {
@@ -127,17 +127,17 @@ export default defineComponent({
         current: paginationCurrent.value,
         pageSize: paginationSize.value,
         ...((props.pagination as PaginationConfig) || {}),
-      }
+      };
 
-      const largestPage = Math.ceil(pp.total / pp.pageSize)
+      const largestPage = Math.ceil(pp.total / pp.pageSize);
       if (pp.current > largestPage)
-        pp.current = largestPage
+        pp.current = largestPage;
 
-      return pp
-    })
+      return pp;
+    });
 
     const splitDataSource = computed(() => {
-      let dd = [...props.dataSource]
+      let dd = [...props.dataSource];
       if (props.pagination) {
         if (
           props.dataSource.length
@@ -146,67 +146,67 @@ export default defineComponent({
           dd = [...props.dataSource].splice(
             (paginationProps.value.current - 1) * paginationProps.value.pageSize,
             paginationProps.value.pageSize,
-          )
+          );
         }
       }
-      return dd
-    })
+      return dd;
+    });
 
-    const screens = useBreakpoint()
+    const screens = useBreakpoint();
 
     const currentBreakpoint = eagerComputed(() => {
       for (let i = 0; i < responsiveArray.length; i += 1) {
-        const breakpoint: Breakpoint = responsiveArray[i]
+        const breakpoint: Breakpoint = responsiveArray[i];
         if (screens.value[breakpoint])
-          return breakpoint
+          return breakpoint;
       }
-      return undefined
-    })
+      return undefined;
+    });
 
     const colStyle = computed(() => {
       if (!props.grid)
-        return undefined
+        return undefined;
 
       const columnCount
         = currentBreakpoint.value && props.grid[currentBreakpoint.value]
           ? props.grid[currentBreakpoint.value]
-          : props.grid.column
+          : props.grid.column;
       if (columnCount) {
         return {
           width: `${100 / columnCount}%`,
           maxWidth: `${100 / columnCount}%`,
-        }
+        };
       }
-      return undefined
-    })
+      return undefined;
+    });
 
     const renderInnerItem = (item: any, index: number) => {
-      const renderItem = props.renderItem ?? slots.renderItem
-      if (!renderItem) return null
+      const renderItem = props.renderItem ?? slots.renderItem;
+      if (!renderItem) return null;
 
-      let key
-      const rowKeyType = typeof props.rowKey
+      let key;
+      const rowKeyType = typeof props.rowKey;
       if (rowKeyType === 'function')
-        key = (props.rowKey as any)(item)
+        key = (props.rowKey as any)(item);
       else if (rowKeyType === 'string' || rowKeyType === 'number')
-        key = item[props.rowKey as any]
+        key = item[props.rowKey as any];
       else
-        key = item.key
+        key = item.key;
 
       if (!key)
-        key = `list-item-${index}`
+        key = `list-item-${index}`;
 
-      listItemsKeys[index] = key
+      listItemsKeys[index] = key;
 
-      return renderItem({ item, index })
-    }
+      return renderItem({ item, index });
+    };
 
     return () => {
-      const loadMore = props.loadMore ?? slots.loadMore?.()
-      const footer = props.footer ?? slots.footer?.()
-      const header = props.header ?? slots.header?.()
-      const children = flattenChildren(slots.default?.())
-      const isSomethingAfterLastItem = !!(loadMore || props.pagination || footer)
+      const loadMore = props.loadMore ?? slots.loadMore?.();
+      const footer = props.footer ?? slots.footer?.();
+      const header = props.header ?? slots.header?.();
+      const children = flattenChildren(slots.default?.());
+      const isSomethingAfterLastItem = !!(loadMore || props.pagination || footer);
       const classString = classNames(
         {
           ...classObj.value,
@@ -214,7 +214,7 @@ export default defineComponent({
         },
         attrs.class,
         hashId.value,
-      )
+      );
       const paginationContent = props.pagination
         ? (
             <div class={`${prefixCls.value}-pagination`}>
@@ -225,36 +225,36 @@ export default defineComponent({
               />
             </div>
           )
-        : null
+        : null;
 
-      let childrenContent = isLoading.value && <div style={{ minHeight: '53px' }} />
+      let childrenContent = isLoading.value && <div style={{ minHeight: '53px' }} />;
       if (splitDataSource.value.length > 0) {
-        listItemsKeys.length = 0
+        listItemsKeys.length = 0;
         const items = splitDataSource.value.map((item: any, index: number) => renderInnerItem(item, index),
-        )
+        );
         const childrenList = items.map((child: any, index) => {
           return (
             <div key={listItemsKeys[index]} style={colStyle.value}>
               {child}
             </div>
-          )
-        })
+          );
+        });
         childrenContent = props.grid
           ? (
               <Row gutter={props.grid.gutter}>{childrenList}</Row>
             )
           : (
               <ul class={`${prefixCls.value}-items`}>{items}</ul>
-            )
+            );
       } else if (!children.length && !isLoading.value) {
         childrenContent = (
           <div class={`${prefixCls.value}-empty-text`}>
             {props.locale?.emptyText || renderEmpty('List')}
           </div>
-        )
+        );
       }
 
-      const paginationPosition = paginationProps.value.position || 'bottom'
+      const paginationPosition = paginationProps.value.position || 'bottom';
       return wrapSSR(
         <div {...attrs} class={classString}>
           {(paginationPosition === 'top' || paginationPosition === 'both') && paginationContent}
@@ -268,7 +268,7 @@ export default defineComponent({
             || ((paginationPosition === 'bottom' || paginationPosition === 'both')
               && paginationContent)}
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

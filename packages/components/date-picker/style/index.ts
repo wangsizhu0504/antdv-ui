@@ -1,8 +1,8 @@
-import type { CSSObject, FullToken, GenerateStyle, GlobalToken } from '@antdv/theme'
-import type { TokenWithCommonCls } from '@antdv/theme/token/util/genComponentStyleHook'
-import type { InputToken } from '../../input/style'
-import { genComponentStyleHook, mergeToken, resetComponent, roundedArrow, textEllipsis } from '@antdv/theme'
-import { genCompactItemStyle } from '@antdv/theme/style/compact-item'
+import type { CSSObject, FullToken, GenerateStyle, GlobalToken } from '@antdv/theme';
+import type { TokenWithCommonCls } from '@antdv/theme/token/util/genComponentStyleHook';
+import type { InputToken } from '../../input/style';
+import { genComponentStyleHook, mergeToken, resetComponent, roundedArrow, textEllipsis } from '@antdv/theme';
+import { genCompactItemStyle } from '@antdv/theme/style/compact-item';
 import {
   initMoveMotion,
   initSlideMotion,
@@ -10,9 +10,9 @@ import {
   slideDownOut,
   slideUpIn,
   slideUpOut,
-} from '@antdv/theme/style/motion'
-import { TinyColor } from '@ctrl/tinycolor'
-import { genActiveStyle, genBasicInputStyle, genHoverStyle, initInputToken } from '../../input/style'
+} from '@antdv/theme/style/motion';
+import { TinyColor } from '@ctrl/tinycolor';
+import { genActiveStyle, genBasicInputStyle, genHoverStyle, initInputToken } from '../../input/style';
 
 export interface ComponentToken {
   presetsWidth: number
@@ -40,20 +40,20 @@ export interface PickerPanelToken {
   pickerControlIconBorderWidth: number
 }
 
-type PickerToken = InputToken<FullToken<'DatePicker'>> & PickerPanelToken
+type PickerToken = InputToken<FullToken<'DatePicker'>> & PickerPanelToken;
 
-type SharedPickerToken = Omit<PickerToken, 'zIndexPopup' | 'presetsWidth' | 'presetsMaxWidth'>
+type SharedPickerToken = Omit<PickerToken, 'zIndexPopup' | 'presetsWidth' | 'presetsMaxWidth'>;
 
 function genPikerPadding(token: PickerToken, inputHeight: number, fontSize: number, paddingHorizontal: number): CSSObject {
-  const { lineHeight } = token
+  const { lineHeight } = token;
 
-  const fontHeight = Math.floor(fontSize * lineHeight) + 2
-  const paddingTop = Math.max((inputHeight - fontHeight) / 2, 0)
-  const paddingBottom = Math.max(inputHeight - fontHeight - paddingTop, 0)
+  const fontHeight = Math.floor(fontSize * lineHeight) + 2;
+  const paddingTop = Math.max((inputHeight - fontHeight) / 2, 0);
+  const paddingBottom = Math.max(inputHeight - fontHeight - paddingTop, 0);
 
   return {
     padding: `${paddingTop}px ${paddingHorizontal}px ${paddingBottom}px`,
-  }
+  };
 }
 
 function genPickerCellInnerStyle(token: SharedPickerToken): CSSObject {
@@ -78,7 +78,7 @@ function genPickerCellInnerStyle(token: SharedPickerToken): CSSObject {
     pickerPanelCellWidth,
     colorTextDisabled,
     colorBgContainerDisabled,
-  } = token
+  } = token;
 
   return {
     '&::before': {
@@ -267,7 +267,7 @@ function genPickerCellInnerStyle(token: SharedPickerToken): CSSObject {
     [`&-disabled${pickerCellCls}-today ${pickerCellInnerCls}::before`]: {
       borderColor: colorTextDisabled,
     },
-  }
+  };
 }
 
 export function genPanelStyle(token: SharedPickerToken): CSSObject {
@@ -315,12 +315,12 @@ export function genPanelStyle(token: SharedPickerToken): CSSObject {
     pickerTimePanelCellHeight,
     controlItemBgActive,
     marginXXS,
-  } = token
+  } = token;
 
-  const pickerPanelWidth = pickerPanelCellWidth * 7 + paddingSM * 2 + 4
+  const pickerPanelWidth = pickerPanelCellWidth * 7 + paddingSM * 2 + 4;
 
   const hoverCellFixedDistance
-    = (pickerPanelWidth - paddingXS * 2) / 3 - pickerYearMonthCellWidth - paddingSM
+    = (pickerPanelWidth - paddingXS * 2) / 3 - pickerYearMonthCellWidth - paddingSM;
 
   return {
     [componentCls]: {
@@ -843,7 +843,7 @@ export function genPanelStyle(token: SharedPickerToken): CSSObject {
         height: pickerTimePanelColumnHeight - pickerTimePanelCellHeight + paddingXXS * 2,
       },
     },
-  }
+  };
 }
 
 const genPickerStatusStyle: GenerateStyle<PickerToken> = (token) => {
@@ -854,7 +854,7 @@ const genPickerStatusStyle: GenerateStyle<PickerToken> = (token) => {
     colorErrorOutline,
     colorWarning,
     colorWarningOutline,
-  } = token
+  } = token;
 
   return {
     [componentCls]: {
@@ -900,8 +900,8 @@ const genPickerStatusStyle: GenerateStyle<PickerToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genPickerStyle: GenerateStyle<PickerToken> = (token) => {
   const {
@@ -948,7 +948,7 @@ const genPickerStyle: GenerateStyle<PickerToken> = (token) => {
     controlItemBgHover,
     presetsWidth,
     presetsMaxWidth,
-  } = token
+  } = token;
 
   return [
     {
@@ -1381,12 +1381,12 @@ const genPickerStyle: GenerateStyle<PickerToken> = (token) => {
     initSlideMotion(token, 'slide-down'),
     initMoveMotion(token, 'move-up'),
     initMoveMotion(token, 'move-down'),
-  ]
-}
+  ];
+};
 
 export function initPickerPanelToken(token: TokenWithCommonCls<GlobalToken>): PickerPanelToken {
-  const pickerTimePanelCellHeight = 28
-  const { componentCls, controlHeightLG, controlHeightSM, colorPrimary, paddingXXS } = token
+  const pickerTimePanelCellHeight = 28;
+  const { componentCls, controlHeightLG, controlHeightSM, colorPrimary, paddingXXS } = token;
 
   return {
     pickerCellCls: `${componentCls}-cell`,
@@ -1406,7 +1406,7 @@ export function initPickerPanelToken(token: TokenWithCommonCls<GlobalToken>): Pi
     pickerCellBorderGap: 2, // Magic for gap between cells
     pickerControlIconSize: 7,
     pickerControlIconBorderWidth: 1.5,
-  }
+  };
 }
 
 // ============================== Export ==============================
@@ -1416,7 +1416,7 @@ export default genComponentStyleHook(
     const pickerToken = mergeToken<PickerToken>(
       initInputToken<FullToken<'DatePicker'>>(token),
       initPickerPanelToken(token),
-    )
+    );
 
     return [
       genPickerStyle(pickerToken),
@@ -1427,11 +1427,11 @@ export default genComponentStyleHook(
       genCompactItemStyle(token, {
         focusElCls: `${token.componentCls}-focused`,
       }),
-    ]
+    ];
   },
   token => ({
     presetsWidth: 120,
     presetsMaxWidth: 200,
     zIndexPopup: token.zIndexPopupBase + 50,
   }),
-)
+);

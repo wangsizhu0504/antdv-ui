@@ -1,9 +1,9 @@
-import type { EventHandler } from '@antdv/types'
-import type { BaseInputExpose } from '@antdv/vue-components/vc-input/src/BaseInputCore'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-import type { OptionProps } from './Option'
-import { classNames, initDefaultProps, KeyCode, omit } from '@antdv/utils'
-import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
+import type { EventHandler } from '@antdv/types';
+import type { BaseInputExpose } from '@antdv/vue-components/vc-input/src/BaseInputCore';
+import type { CSSProperties, ExtractPropTypes } from 'vue';
+import type { OptionProps } from './Option';
+import { classNames, initDefaultProps, KeyCode, omit } from '@antdv/utils';
+import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore';
 import {
   computed,
   defineComponent,
@@ -14,13 +14,13 @@ import {
   ref,
   toRef,
   watchEffect,
-} from 'vue'
-import KeywordTrigger from './KeywordTrigger'
-import MentionsContextKey from './MentionsContext'
-import { defaultProps, vcMentionsProps } from './mentionsProps'
-import { getBeforeSelectionText, getLastMeasureIndex, replaceWithMeasure, setInputSelection } from './util'
+} from 'vue';
+import KeywordTrigger from './KeywordTrigger';
+import MentionsContextKey from './MentionsContext';
+import { defaultProps, vcMentionsProps } from './mentionsProps';
+import { getBeforeSelectionText, getLastMeasureIndex, replaceWithMeasure, setInputSelection } from './util';
 
-export type MentionsProps = Partial<ExtractPropTypes<typeof vcMentionsProps>>
+export type MentionsProps = Partial<ExtractPropTypes<typeof vcMentionsProps>>;
 
 function noop() {}
 
@@ -31,9 +31,9 @@ export default defineComponent({
   props: initDefaultProps(vcMentionsProps, defaultProps),
   emits: ['change', 'select', 'search', 'focus', 'blur', 'pressenter'],
   setup(props, { emit, attrs, expose, slots }) {
-    const measure = ref(null)
-    const textarea = ref<BaseInputExpose>(null)
-    const focusId = ref()
+    const measure = ref(null);
+    const textarea = ref<BaseInputExpose>(null);
+    const focusId = ref();
     const state = reactive({
       value: props.value || '',
       measuring: false,
@@ -42,19 +42,19 @@ export default defineComponent({
       measurePrefix: '',
       activeIndex: 0,
       isFocus: false,
-    })
+    });
 
     watchEffect(() => {
-      state.value = props.value
-    })
+      state.value = props.value;
+    });
 
     const triggerChange = (val: string) => {
-      emit('change', val)
-    }
+      emit('change', val);
+    };
 
     const onChange: EventHandler = ({ target: { value } }) => {
-      triggerChange(value)
-    }
+      triggerChange(value);
+    };
 
     const startMeasure = (measureText: string, measurePrefix: string, measureLocation: number) => {
       Object.assign(state, {
@@ -63,66 +63,66 @@ export default defineComponent({
         measurePrefix,
         measureLocation,
         activeIndex: 0,
-      })
-    }
+      });
+    };
     const stopMeasure = (callback?: () => void) => {
       Object.assign(state, {
         measuring: false,
         measureLocation: 0,
         measureText: null,
-      })
-      callback?.()
-    }
+      });
+      callback?.();
+    };
 
     const onKeyDown = (event: KeyboardEvent) => {
-      const { which } = event
+      const { which } = event;
       // Skip if not measuring
       if (!state.measuring)
-        return
+        return;
 
       if (which === KeyCode.UP || which === KeyCode.DOWN) {
         // Control arrow function
-        const optionLen = options.value.length
-        const offset = which === KeyCode.UP ? -1 : 1
-        const newActiveIndex = (state.activeIndex + offset + optionLen) % optionLen
-        state.activeIndex = newActiveIndex
-        event.preventDefault()
+        const optionLen = options.value.length;
+        const offset = which === KeyCode.UP ? -1 : 1;
+        const newActiveIndex = (state.activeIndex + offset + optionLen) % optionLen;
+        state.activeIndex = newActiveIndex;
+        event.preventDefault();
       } else if (which === KeyCode.ESC) {
-        stopMeasure()
+        stopMeasure();
       } else if (which === KeyCode.ENTER) {
         // Measure hit
-        event.preventDefault()
+        event.preventDefault();
         if (!options.value.length) {
-          stopMeasure()
-          return
+          stopMeasure();
+          return;
         }
-        const option = options.value[state.activeIndex]
-        selectOption(option)
+        const option = options.value[state.activeIndex];
+        selectOption(option);
       }
-    }
+    };
 
     const onKeyUp = (event: KeyboardEvent) => {
-      const { key, which } = event
-      const { measureText: prevMeasureText, measuring } = state
-      const { prefix, validateSearch } = props
-      const target = event.target as HTMLTextAreaElement
+      const { key, which } = event;
+      const { measureText: prevMeasureText, measuring } = state;
+      const { prefix, validateSearch } = props;
+      const target = event.target as HTMLTextAreaElement;
       if ((target as any).composing)
-        return
+        return;
 
-      const selectionStartText = getBeforeSelectionText(target)
+      const selectionStartText = getBeforeSelectionText(target);
       const { location: measureIndex, prefix: measurePrefix } = getLastMeasureIndex(
         selectionStartText,
         prefix,
-      )
+      );
 
       // Skip if match the white key list
       if ([KeyCode.ESC, KeyCode.UP, KeyCode.DOWN, KeyCode.ENTER].includes(which))
-        return
+        return;
 
       if (measureIndex !== -1) {
-        const measureText = selectionStartText.slice(measureIndex + measurePrefix.length)
-        const validateMeasure = validateSearch(measureText, props)
-        const matchOption = !!getOptions(measureText).length
+        const measureText = selectionStartText.slice(measureIndex + measurePrefix.length);
+        const validateMeasure = validateSearch(measureText, props);
+        const matchOption = !!getOptions(measureText).length;
 
         if (validateMeasure) {
           if (
@@ -131,11 +131,11 @@ export default defineComponent({
             || measuring
             || (measureText !== prevMeasureText && matchOption)
           ) {
-            startMeasure(measureText, measurePrefix, measureIndex)
+            startMeasure(measureText, measurePrefix, measureIndex);
           }
         } else if (measuring) {
           // Stop if measureText is invalidate
-          stopMeasure()
+          stopMeasure();
         }
 
         /**
@@ -143,82 +143,82 @@ export default defineComponent({
          * If met `space` means user finished searching.
          */
         if (validateMeasure)
-          emit('search', measureText, measurePrefix)
+          emit('search', measureText, measurePrefix);
       } else if (measuring) {
-        stopMeasure()
+        stopMeasure();
       }
-    }
+    };
     const onPressEnter = (event) => {
       if (!state.measuring)
-        emit('pressenter', event)
-    }
+        emit('pressenter', event);
+    };
 
     const onInputFocus = (event: Event) => {
-      onFocus(event)
-    }
+      onFocus(event);
+    };
     const onInputBlur = (event: Event) => {
-      onBlur(event)
-    }
+      onBlur(event);
+    };
     const onFocus = (event: Event) => {
-      clearTimeout(focusId.value)
-      const { isFocus } = state
+      clearTimeout(focusId.value);
+      const { isFocus } = state;
       if (!isFocus && event)
-        emit('focus', event)
+        emit('focus', event);
 
-      state.isFocus = true
-    }
+      state.isFocus = true;
+    };
     const onBlur = (event: Event) => {
       focusId.value = setTimeout(() => {
-        state.isFocus = false
-        stopMeasure()
-        emit('blur', event)
-      }, 100)
-    }
+        state.isFocus = false;
+        stopMeasure();
+        emit('blur', event);
+      }, 100);
+    };
     const selectOption = (option: OptionProps) => {
-      const { split } = props
-      const { value: mentionValue = '' } = option
+      const { split } = props;
+      const { value: mentionValue = '' } = option;
       const { text, selectionLocation } = replaceWithMeasure(state.value, {
         measureLocation: state.measureLocation,
         targetText: mentionValue,
         prefix: state.measurePrefix,
         selectionStart: textarea.value.getSelectionStart(),
         split,
-      })
-      triggerChange(text)
+      });
+      triggerChange(text);
       stopMeasure(() => {
         // We need restore the selection position
-        setInputSelection(textarea.value.input as HTMLTextAreaElement, selectionLocation)
-      })
+        setInputSelection(textarea.value.input as HTMLTextAreaElement, selectionLocation);
+      });
 
-      emit('select', option, state.measurePrefix)
-    }
+      emit('select', option, state.measurePrefix);
+    };
     const setActiveIndex = (activeIndex: number) => {
-      state.activeIndex = activeIndex
-    }
+      state.activeIndex = activeIndex;
+    };
 
     const getOptions = (measureText?: string) => {
-      const targetMeasureText = measureText || state.measureText || ''
-      const { filterOption } = props
+      const targetMeasureText = measureText || state.measureText || '';
+      const { filterOption } = props;
       const list = props.options.filter((option: OptionProps) => {
         /** Return all result if `filterOption` is false. */
         if (!!filterOption === false)
-          return true
+          return true;
 
-        return (filterOption as Function)(targetMeasureText, option)
-      })
-      return list
-    }
+        return (filterOption as Function)(targetMeasureText, option);
+      });
+      return list;
+    };
     const options = computed(() => {
-      return getOptions()
-    })
+      return getOptions();
+    });
 
     const focus = () => {
-      textarea.value.focus()
-    }
+      textarea.value.focus();
+    };
     const blur = () => {
-      textarea.value.blur()
-    }
-    expose({ blur, focus })
+      textarea.value.blur();
+    };
+    expose({ blur, focus });
     provide(MentionsContextKey, {
       activeIndex: toRef(state, 'activeIndex'),
       setActiveIndex,
@@ -226,19 +226,19 @@ export default defineComponent({
       onFocus,
       onBlur,
       loading: toRef(props, 'loading'),
-    })
+    });
     onUpdated(() => {
       nextTick(() => {
         if (state.measuring)
-          measure.value.scrollTop = textarea.value.getScrollTop()
-      })
-    })
+          measure.value.scrollTop = textarea.value.getScrollTop();
+      });
+    });
     return () => {
-      const { measureLocation, measurePrefix, measuring } = state
+      const { measureLocation, measurePrefix, measuring } = state;
       const { prefixCls, placement, transitionName, getPopupContainer, direction, ...restProps }
-        = props
+        = props;
 
-      const { class: className, style, ...otherAttrs } = attrs
+      const { class: className, style, ...otherAttrs } = attrs;
 
       const inputProps = omit(restProps, [
         'value',
@@ -248,7 +248,7 @@ export default defineComponent({
         'filterOption',
         'options',
         'loading',
-      ])
+      ]);
 
       const textareaProps = {
         ...inputProps,
@@ -262,7 +262,7 @@ export default defineComponent({
         onKeyup: onKeyUp,
         onFocus: onInputFocus,
         onPressenter: onPressEnter,
-      }
+      };
       return (
         <div class={classNames(prefixCls, className)} style={style as CSSProperties}>
           <BaseInputCore {...textareaProps} ref={textarea} tag="textarea"></BaseInputCore>
@@ -286,7 +286,7 @@ export default defineComponent({
             </div>
           )}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

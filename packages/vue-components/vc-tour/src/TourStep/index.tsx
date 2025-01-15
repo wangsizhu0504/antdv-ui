@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { tourStepProps } from '../interface'
-import DefaultPanel from './DefaultPanel'
+import { defineComponent } from 'vue';
+import { tourStepProps } from '../interface';
+import DefaultPanel from './DefaultPanel';
 
 const TourStep = defineComponent({
   name: 'TourStep',
@@ -8,7 +8,7 @@ const TourStep = defineComponent({
   props: tourStepProps(),
   setup(props, { attrs }) {
     return () => {
-      const { current, renderPanel } = props
+      const { current, renderPanel } = props;
 
       return (
         <>
@@ -20,9 +20,9 @@ const TourStep = defineComponent({
                 <DefaultPanel {...attrs} {...props} />
               )}
         </>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default TourStep
+export default TourStep;

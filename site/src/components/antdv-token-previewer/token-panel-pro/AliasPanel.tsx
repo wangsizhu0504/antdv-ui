@@ -1,17 +1,17 @@
-import type { PropType, Ref } from 'vue'
-import type { AliasToken, MutableTheme, SelectedToken } from '../interface'
-import { CaretRightOutlined, QuestionCircleOutlined, RightOutlined, ShrinkOutlined } from '@ant-design/icons-vue'
-import { useMergedState } from '@antdv/hooks'
-import { Button, Collapse, Empty, Tooltip } from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, toRefs } from 'vue'
-import { Pick } from '../icons'
-import { mapRelatedAlias, seedRelatedAlias } from '../meta/TokenRelation'
-import makeStyle from '../utils/makeStyle'
-import { getRelatedComponents } from '../utils/statistic'
-import TokenDetail from './TokenDetail'
+import type { PropType, Ref } from 'vue';
+import type { AliasToken, MutableTheme, SelectedToken } from '../interface';
+import { CaretRightOutlined, QuestionCircleOutlined, RightOutlined, ShrinkOutlined } from '@ant-design/icons-vue';
+import { useMergedState } from '@antdv/hooks';
+import { Button, Collapse, Empty, Tooltip } from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, toRefs } from 'vue';
+import { Pick } from '../icons';
+import { mapRelatedAlias, seedRelatedAlias } from '../meta/TokenRelation';
+import makeStyle from '../utils/makeStyle';
+import { getRelatedComponents } from '../utils/statistic';
+import TokenDetail from './TokenDetail';
 
-const { Panel } = Collapse
+const { Panel } = Collapse;
 
 const useStyle = makeStyle('TokenPanelProAlias', token => ({
   '.token-panel-pro-color-alias': {
@@ -104,7 +104,7 @@ const useStyle = makeStyle('TokenPanelProAlias', token => ({
       },
     },
   },
-}))
+}));
 
 export interface AliasPanelProps {
   theme: MutableTheme
@@ -131,29 +131,29 @@ const AliasPanel = defineComponent({
     description: { type: String },
   },
   setup(props, { attrs }) {
-    const { activeSeeds, theme, selectedTokens, open: customOpen, description } = toRefs(props)
+    const { activeSeeds, theme, selectedTokens, open: customOpen, description } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
+    const [wrapSSR, hashId] = useStyle();
 
     const [open, setOpen] = useMergedState(customOpen.value ?? true, {
       value: customOpen,
       onChange: props.onOpenChange,
-    })
+    });
 
     const shownAlias = computed(() =>
       (selectedTokens as Ref<SelectedToken>).value?.map?.length
         ? Array.from(
-          new Set(
-            (selectedTokens as Ref<SelectedToken>).value?.map.reduce<string[]>((result, map) => {
-              return result.concat(...((mapRelatedAlias as any)[map] ?? []))
-            }, []),
-          ),
-        )
+            new Set(
+              (selectedTokens as Ref<SelectedToken>).value?.map.reduce<string[]>((result, map) => {
+                return result.concat(...((mapRelatedAlias as any)[map] ?? []));
+              }, []),
+            ),
+          )
         : activeSeeds.value?.reduce<Array<keyof AliasToken>>(
           (result, item) => result.concat((seedRelatedAlias as any)[item] ?? []),
           [],
         ),
-    )
+    );
 
     return () => {
       return wrapSSR(
@@ -208,8 +208,8 @@ const AliasPanel = defineComponent({
                                 <div
                                   style={{ padding: '4px', marginLeft: 'auto' }}
                                   onClick={(e) => {
-                                    e.stopPropagation()
-                                    props.onTokenSelect?.(aliasToken, 'alias')
+                                    e.stopPropagation();
+                                    props.onTokenSelect?.(aliasToken, 'alias');
                                   }}
                                 >
                                   <Pick
@@ -247,9 +247,9 @@ const AliasPanel = defineComponent({
                 </div>
               )}
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default AliasPanel
+export default AliasPanel;

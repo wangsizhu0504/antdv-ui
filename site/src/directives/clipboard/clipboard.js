@@ -1,6 +1,6 @@
-import ClipboardAction from './clipboard-action'
-import listen from './listen'
-import Emitter from './tiny-emitter'
+import ClipboardAction from './clipboard-action';
+import listen from './listen';
+import Emitter from './tiny-emitter';
 
 /**
  * Base class which takes one or more elements, adds event listeners to them,
@@ -12,10 +12,10 @@ class Clipboard extends Emitter {
    * @param {object} options
    */
   constructor(trigger, options) {
-    super()
+    super();
 
-    this.resolveOptions(options)
-    this.listenClick(trigger)
+    this.resolveOptions(options);
+    this.listenClick(trigger);
   }
 
   /**
@@ -24,10 +24,10 @@ class Clipboard extends Emitter {
    * @param {object} options
    */
   resolveOptions(options = {}) {
-    this.action = typeof options.action === 'function' ? options.action : this.defaultAction
-    this.target = typeof options.target === 'function' ? options.target : this.defaultTarget
-    this.text = typeof options.text === 'function' ? options.text : this.defaultText
-    this.container = typeof options.container === 'object' ? options.container : document.body
+    this.action = typeof options.action === 'function' ? options.action : this.defaultAction;
+    this.target = typeof options.target === 'function' ? options.target : this.defaultTarget;
+    this.text = typeof options.text === 'function' ? options.text : this.defaultText;
+    this.container = typeof options.container === 'object' ? options.container : document.body;
   }
 
   /**
@@ -35,7 +35,7 @@ class Clipboard extends Emitter {
    * @param {string | HTMLElement | HTMLCollection | NodeList} trigger
    */
   listenClick(trigger) {
-    this.listener = listen(trigger, 'click', e => this.onClick(e))
+    this.listener = listen(trigger, 'click', e => this.onClick(e));
   }
 
   /**
@@ -43,10 +43,10 @@ class Clipboard extends Emitter {
    * @param {Event} e
    */
   onClick(e) {
-    const trigger = e.delegateTarget || e.currentTarget
+    const trigger = e.delegateTarget || e.currentTarget;
 
     if (this.clipboardAction)
-      this.clipboardAction = null
+      this.clipboardAction = null;
 
     this.clipboardAction = new ClipboardAction({
       action: this.action(trigger),
@@ -55,7 +55,7 @@ class Clipboard extends Emitter {
       container: this.container,
       trigger,
       emitter: this,
-    })
+    });
   }
 
   /**
@@ -63,7 +63,7 @@ class Clipboard extends Emitter {
    * @param {Element} trigger
    */
   defaultAction(trigger) {
-    return getAttributeValue('action', trigger)
+    return getAttributeValue('action', trigger);
   }
 
   /**
@@ -71,10 +71,10 @@ class Clipboard extends Emitter {
    * @param {Element} trigger
    */
   defaultTarget(trigger) {
-    const selector = getAttributeValue('target', trigger)
+    const selector = getAttributeValue('target', trigger);
 
     if (selector)
-      return document.querySelector(selector)
+      return document.querySelector(selector);
   }
 
   /**
@@ -83,14 +83,14 @@ class Clipboard extends Emitter {
    * @param {string} [action]
    */
   static isSupported(action = ['copy', 'cut']) {
-    const actions = typeof action === 'string' ? [action] : action
-    let support = !!document.queryCommandSupported
+    const actions = typeof action === 'string' ? [action] : action;
+    let support = !!document.queryCommandSupported;
 
     actions.forEach((action) => {
-      support = support && !!document.queryCommandSupported(action)
-    })
+      support = support && !!document.queryCommandSupported(action);
+    });
 
-    return support
+    return support;
   }
 
   /**
@@ -98,18 +98,18 @@ class Clipboard extends Emitter {
    * @param {Element} trigger
    */
   defaultText(trigger) {
-    return getAttributeValue('text', trigger)
+    return getAttributeValue('text', trigger);
   }
 
   /**
    * Destroy lifecycle.
    */
   destroy() {
-    this.listener.destroy()
+    this.listener.destroy();
 
     if (this.clipboardAction) {
-      this.clipboardAction.destroy()
-      this.clipboardAction = null
+      this.clipboardAction.destroy();
+      this.clipboardAction = null;
     }
   }
 }
@@ -120,12 +120,12 @@ class Clipboard extends Emitter {
  * @param {Element} element
  */
 function getAttributeValue(suffix, element) {
-  const attribute = `data-clipboard-${suffix}`
+  const attribute = `data-clipboard-${suffix}`;
 
   if (!element.hasAttribute(attribute))
-    return
+    return;
 
-  return element.getAttribute(attribute)
+  return element.getAttribute(attribute);
 }
 
-export default Clipboard
+export default Clipboard;

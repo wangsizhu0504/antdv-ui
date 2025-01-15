@@ -18,7 +18,7 @@ Callback with affixed state.
 
 <script lang="ts" setup>
   function change(affixed: boolean) {
-    console.log(affixed)
+    console.log(affixed);
   }
 </script>
 

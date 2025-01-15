@@ -1,7 +1,7 @@
-import type { ComponentDemo } from '../../interface'
-import { Result } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Result } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -12,14 +12,14 @@ const Demo = defineComponent({
         subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
         style={{ padding: 24 }}
       />
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorSuccess'],
   key: 'result',
-}
+};
 
-export default componentDemo
+export default componentDemo;

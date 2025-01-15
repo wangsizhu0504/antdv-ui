@@ -1,6 +1,6 @@
-import type qrcodegen from './qrcodegen'
+import type qrcodegen from './qrcodegen';
 
-export type Modules = ReturnType<qrcodegen.QrCode['getModules']>
+export type Modules = ReturnType<qrcodegen.QrCode['getModules']>;
 export interface Excavation {
   x: number
   y: number

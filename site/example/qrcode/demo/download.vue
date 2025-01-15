@@ -15,17 +15,17 @@ A way to download QRCode.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const qrcodeCanvasRef = ref<any>()
+  const qrcodeCanvasRef = ref<any>();
   async function dowloadChange() {
-    const url = await qrcodeCanvasRef.value.toDataURL()
-    const a = document.createElement('a')
-    a.download = 'QRCode.png'
-    a.href = url
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
+    const url = await qrcodeCanvasRef.value.toDataURL();
+    const a = document.createElement('a');
+    a.download = 'QRCode.png';
+    a.href = url;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }
 </script>
 

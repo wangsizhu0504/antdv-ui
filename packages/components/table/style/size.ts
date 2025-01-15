@@ -1,8 +1,8 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
 
 const genSizeStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
   const getSizeStyle = (
     size: 'small' | 'middle',
     paddingVertical: number,
@@ -45,7 +45,7 @@ const genSizeStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         paddingInlineStart: `${paddingHorizontal / 4}px`,
       },
     },
-  })
+  });
   return {
     [`${componentCls}-wrapper`]: {
       ...getSizeStyle(
@@ -61,7 +61,7 @@ const genSizeStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         token.tableFontSizeSmall,
       ),
     },
-  }
-}
+  };
+};
 
-export default genSizeStyle
+export default genSizeStyle;

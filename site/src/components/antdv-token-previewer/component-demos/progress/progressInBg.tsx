@@ -1,11 +1,11 @@
-import type { ComponentDemo } from '../../interface'
-import { Progress, theme } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Progress, theme } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
-    const { token } = theme.useToken()
+    const { token } = theme.useToken();
 
     return () => {
       return (
@@ -17,14 +17,14 @@ const Demo = defineComponent({
           <Progress percent={50} showInfo={false} />
           <Progress steps={8} />
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorFillSecondary', 'colorText', 'colorBgContainer'],
   key: 'layout',
-}
+};
 
-export default componentDemo
+export default componentDemo;

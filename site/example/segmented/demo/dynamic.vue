@@ -15,15 +15,15 @@ Load dynamically.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, ref } from 'vue'
+  import { reactive, ref } from 'vue';
 
-  const data = reactive(['Daily', 'Weekly', 'Monthly'])
-  const isDisabled = ref<any>(false)
+  const data = reactive(['Daily', 'Weekly', 'Monthly']);
+  const isDisabled = ref<any>(false);
   function loadMore() {
-    data.push(...['Quarterly', 'Yearly'])
-    isDisabled.value = true
+    data.push(...['Quarterly', 'Yearly']);
+    isDisabled.value = true;
   }
-  const value = ref<any>(data[0])
+  const value = ref<any>(data[0]);
 </script>
 
 <template>

@@ -1,5 +1,5 @@
-import type { CustomSlotsType } from '@antdv/types'
-import { RightOutlined } from '@ant-design/icons-vue'
+import type { CustomSlotsType } from '@antdv/types';
+import { RightOutlined } from '@ant-design/icons-vue';
 import {
   classNames,
   cloneElement,
@@ -8,13 +8,13 @@ import {
   initDefaultProps,
   isValidElement,
   omit,
-} from '@antdv/utils'
-import { VcDropdown } from '@antdv/vue-components'
-import { computed, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { useProvideOverride } from '../../menu/src/OverrideContext'
-import useStyle from '../style'
-import { dropdownProps } from './props'
+} from '@antdv/utils';
+import { VcDropdown } from '@antdv/vue-components';
+import { computed, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { useProvideOverride } from '../../menu/src/OverrideContext';
+import useStyle from '../style';
+import { dropdownProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -35,8 +35,8 @@ export default defineComponent({
     const { prefixCls, rootPrefixCls, direction, getPopupContainer } = useConfigInject(
       'dropdown',
       props,
-    )
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    );
+    const [wrapSSR, hashId] = useStyle(prefixCls);
     // Warning for deprecated usage
     if (process.env.NODE_ENV !== 'production') {
       [
@@ -48,20 +48,20 @@ export default defineComponent({
           props[deprecatedName] === undefined,
           'Dropdown',
           `\`${deprecatedName}\` is deprecated which will be removed in next major version, please use \`${newName}\` instead.`,
-        )
-      })
+        );
+      });
     }
 
     const transitionName = computed(() => {
-      const { placement = '' } = props
+      const { placement = '' } = props;
       if (props.transitionName !== undefined)
-        return props.transitionName
+        return props.transitionName;
 
       if (placement.includes('top'))
-        return `${rootPrefixCls.value}-slide-down`
+        return `${rootPrefixCls.value}-slide-down`;
 
-      return `${rootPrefixCls.value}-slide-up`
-    })
+      return `${rootPrefixCls.value}-slide-up`;
+    });
     useProvideOverride({
       prefixCls: computed(() => `${prefixCls.value}-menu`),
       expandIcon: computed(() => {
@@ -69,7 +69,7 @@ export default defineComponent({
           <span class={`${prefixCls.value}-menu-submenu-arrow`}>
             <RightOutlined class={`${prefixCls.value}-menu-submenu-arrow-icon`} />
           </span>
-        )
+        );
       }),
       mode: computed(() => 'vertical'),
       selectable: computed(() => false),
@@ -80,28 +80,28 @@ export default defineComponent({
           !mode || mode === 'vertical',
           'Dropdown',
           `mode="${mode}" is not supported for Dropdown's Menu.`,
-        )
+        );
       },
-    })
+    });
     const renderOverlay = () => {
       // rc-dropdown already can process the function of overlay, but we have check logic here.
       // So we need render the element to check and pass back to rc-dropdown.
-      const overlay = props.overlay || slots.overlay?.()
-      const overlayNode = Array.isArray(overlay) ? overlay[0] : overlay
+      const overlay = props.overlay || slots.overlay?.();
+      const overlayNode = Array.isArray(overlay) ? overlay[0] : overlay;
 
-      if (!overlayNode) return null
-      const overlayProps = overlayNode.props || {}
+      if (!overlayNode) return null;
+      const overlayProps = overlayNode.props || {};
 
       // Warning if use other mode
       devWarning(
         !overlayProps.mode || overlayProps.mode === 'vertical',
         'Dropdown',
         `mode="${overlayProps.mode}" is not supported for Dropdown's Menu.`,
-      )
+      );
 
       // menu cannot be selectable in dropdown defaultly
       const { selectable = false, expandIcon = (overlayNode.children as any)?.expandIcon?.() }
-        = overlayProps
+        = overlayProps;
 
       const overlayNodeExpandIcon
         = (typeof expandIcon !== 'undefined' && isValidElement(expandIcon))
@@ -112,49 +112,49 @@ export default defineComponent({
               <span class={`${prefixCls.value}-menu-submenu-arrow`}>
                 <RightOutlined class={`${prefixCls.value}-menu-submenu-arrow-icon`} />
               </span>
-            )
+            );
 
       const fixedModeOverlay = isValidElement(overlayNode)
         ? cloneElement(overlayNode, {
-          mode: 'vertical',
-          selectable,
-          expandIcon: () => overlayNodeExpandIcon,
-        })
-        : overlayNode
+            mode: 'vertical',
+            selectable,
+            expandIcon: () => overlayNodeExpandIcon,
+          })
+        : overlayNode;
 
-      return fixedModeOverlay
-    }
+      return fixedModeOverlay;
+    };
 
     const placement = computed(() => {
       if (!props.placement)
-        return direction.value === 'rtl' ? 'bottomRight' : 'bottomLeft'
+        return direction.value === 'rtl' ? 'bottomRight' : 'bottomLeft';
 
       if (props.placement.includes('Center')) {
-        const newPlacement = props.placement.slice(0, props.placement.indexOf('Center'))
+        const newPlacement = props.placement.slice(0, props.placement.indexOf('Center'));
         devWarning(
           !props.placement.includes('Center'),
           'Dropdown',
           `You are using '${props.placement}' placement in Dropdown, which is deprecated. Try to use '${newPlacement}' instead.`,
-        )
-        return newPlacement
+        );
+        return newPlacement;
       }
-      return props.placement
-    })
+      return props.placement;
+    });
 
     const mergedVisible = computed(() => {
-      return typeof props.visible === 'boolean' ? props.visible : props.open
-    })
+      return typeof props.visible === 'boolean' ? props.visible : props.open;
+    });
 
     const handleVisibleChange = (val: boolean) => {
-      emit('update:visible', val)
-      emit('visibleChange', val)
-      emit('update:open', val)
-      emit('openChange', val)
-    }
+      emit('update:visible', val);
+      emit('visibleChange', val);
+      emit('update:open', val);
+      emit('openChange', val);
+    };
 
     return () => {
-      const { arrow, trigger, disabled, overlayClassName } = props
-      const child = slots.default?.()[0]
+      const { arrow, trigger, disabled, overlayClassName } = props;
+      const child = slots.default?.()[0];
       const dropdownTrigger = cloneElement(
         child,
         Object.assign(
@@ -169,21 +169,21 @@ export default defineComponent({
           },
           disabled ? { disabled } : {},
         ),
-      )
+      );
 
       const overlayClassNameCustomized = classNames(overlayClassName, hashId.value, {
         [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
-      })
+      });
 
-      const triggerActions = disabled ? [] : trigger
-      let alignPoint: boolean
+      const triggerActions = disabled ? [] : trigger;
+      let alignPoint: boolean;
       if (triggerActions && triggerActions.includes('contextmenu'))
-        alignPoint = true
+        alignPoint = true;
 
       const builtinPlacements = getPlacements({
         arrowPointAtCenter: typeof arrow === 'object' && arrow.pointAtCenter,
         autoAdjustOverflow: true,
-      })
+      });
       const getDropdownProps = omit(
         {
           ...props,
@@ -201,12 +201,12 @@ export default defineComponent({
           placement: placement.value,
         },
         ['overlay', 'onUpdate:visible'],
-      )
+      );
       return wrapSSR(
         <VcDropdown {...getDropdownProps} v-slots={{ overlay: renderOverlay }}>
           {dropdownTrigger}
         </VcDropdown>,
-      )
-    }
+      );
+    };
   },
-})
+});

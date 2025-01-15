@@ -17,7 +17,7 @@ The most basic dropdown menu.
 </docs>
 
 <script lang="ts" setup>
-  import { DownOutlined } from '@ant-design/icons-vue'
+  import { DownOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

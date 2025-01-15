@@ -16,9 +16,9 @@ When `tooltipOpen` is `true`, ToolTip will show always, or ToolTip will not show
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<number>(30)
+  const value = ref<number>(30);
 </script>
 
 <template>

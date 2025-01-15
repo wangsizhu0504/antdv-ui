@@ -19,9 +19,9 @@ Search and select options directly.
 </docs>
 
 <script lang="ts" setup>
-  import type { CascaderProps } from '@antdv/ui'
-  import type { ShowSearchType } from '@antdv/ui/es/cascader'
-  import { ref } from 'vue'
+  import type { CascaderProps } from '@antdv/ui';
+  import type { ShowSearchType } from '@antdv/ui/es/cascader';
+  import { ref } from 'vue';
 
   const options: CascaderProps['options'] = [
     {
@@ -61,12 +61,12 @@ Search and select options directly.
         },
       ],
     },
-  ]
+  ];
   const filter: ShowSearchType['filter'] = (inputValue, path) => {
-    return path.some(option => option.label.toLowerCase().includes(inputValue.toLowerCase()))
-  }
+    return path.some(option => option.label.toLowerCase().includes(inputValue.toLowerCase()));
+  };
 
-  const value = ref<string[]>([])
+  const value = ref<string[]>([]);
 </script>
 
 <template>

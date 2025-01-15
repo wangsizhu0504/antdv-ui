@@ -17,12 +17,12 @@ Basic Usage
 </docs>
 
 <script lang="ts" setup>
-  import type { SelectProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { SelectProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const value1 = ref<any>('lucy')
-  const value2 = ref<any>('lucy')
-  const value3 = ref<any>('lucy')
+  const value1 = ref<any>('lucy');
+  const value2 = ref<any>('lucy');
+  const value3 = ref<any>('lucy');
   const options1 = ref<SelectProps['options']>([
     {
       value: 'jack',
@@ -41,25 +41,25 @@ Basic Usage
       value: 'yiminghe',
       label: 'Yiminghe',
     },
-  ])
+  ]);
   const options2 = ref<SelectProps['options']>([
     {
       value: 'lucy',
       label: 'Lucy',
     },
-  ])
+  ]);
   const options3 = ref<SelectProps['options']>([
     {
       value: 'lucy',
       label: 'Lucy',
     },
-  ])
+  ]);
   function focus() {
-    console.log('focus')
+    console.log('focus');
   }
 
   function handleChange(value: string) {
-    console.log(`selected ${value}`)
+    console.log(`selected ${value}`);
   }
 </script>
 

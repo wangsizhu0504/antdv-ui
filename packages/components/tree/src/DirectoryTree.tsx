@@ -1,21 +1,12 @@
-import type { Key } from '@antdv/types'
-import type { DataNode, EventDataNode, ScrollTo } from '@antdv/vue-components/vc-tree/src/interface'
-import type { SlotsType } from 'vue'
-import type { AntdTreeNodeAttribute } from './interface'
-import type { TreeProps } from './props'
-import { FileOutlined, FolderOpenOutlined, FolderOutlined } from '@ant-design/icons-vue'
+import type { Key } from '@antdv/types';
+import type { DataNode, EventDataNode, ScrollTo } from '@antdv/vue-components/vc-tree/src/interface';
+import type { SlotsType } from 'vue';
+import type { AntdTreeNodeAttribute } from './interface';
+import type { TreeProps } from './props';
+import { FileOutlined, FolderOpenOutlined, FolderOutlined } from '@ant-design/icons-vue';
 
-import { classNames, filterEmpty, initDefaultProps } from '@antdv/utils'
-import { conductExpandParent } from '@antdv/vue-components/vc-tree/src/util'
-import { debounce } from 'lodash-es'
-import {
-  computed,
-  defineComponent,
-  nextTick,
-  onUpdated,
-  ref,
-  watch,
-} from 'vue'
+import { classNames, filterEmpty, initDefaultProps } from '@antdv/utils';
+import { conductExpandParent } from '@antdv/vue-components/vc-tree/src/util';
 
 // import { conductExpandParent, convertDataToEntities, convertTreeToData, fillFieldNames } from '@antdv/vue-components'
 // import type { DataNode, EventDataNode, ScrollTo } from '@antdv/vue-components'
@@ -23,19 +14,29 @@ import {
   convertDataToEntities,
   convertTreeToData,
   fillFieldNames,
-} from '@antdv/vue-components/vc-tree/src/utils/treeUtil'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { directoryTreeProps } from './props'
-import Tree from './Tree'
+} from '@antdv/vue-components/vc-tree/src/utils/treeUtil';
+import { debounce } from 'lodash-es';
 
-import { calcRangeKeys, convertDirectoryKeysToNodes } from './utils/dictUtil'
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onUpdated,
+  ref,
+  watch,
+} from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { directoryTreeProps } from './props';
+import Tree from './Tree';
+
+import { calcRangeKeys, convertDirectoryKeysToNodes } from './utils/dictUtil';
 
 function getIcon(props: AntdTreeNodeAttribute) {
-  const { isLeaf, expanded } = props
+  const { isLeaf, expanded } = props;
   if (isLeaf)
-    return <FileOutlined />
+    return <FileOutlined />;
 
-  return expanded ? <FolderOpenOutlined /> : <FolderOutlined />
+  return expanded ? <FolderOpenOutlined /> : <FolderOutlined />;
 }
 
 export default defineComponent({
@@ -69,29 +70,29 @@ export default defineComponent({
     // convertTreeToData 兼容 a-tree-node 历史写法，未来a-tree-node移除后，删除相关代码，不要再render中调用 treeData，否则死循环
     const treeData = ref<DataNode[]>(
       props.treeData || convertTreeToData(filterEmpty(slots.default?.())),
-    )
+    );
 
     watch(
       () => props.treeData,
       () => {
-        treeData.value = props.treeData
+        treeData.value = props.treeData;
       },
-    )
+    );
     onUpdated(() => {
       nextTick(() => {
         if (props.treeData === undefined && slots.default)
-          treeData.value = convertTreeToData(filterEmpty(slots.default?.()))
-      })
-    })
+          treeData.value = convertTreeToData(filterEmpty(slots.default?.()));
+      });
+    });
     // Shift click usage
-    const lastSelectedKey = ref<Key>()
+    const lastSelectedKey = ref<Key>();
 
-    const cachedSelectedKeys = ref<Key[]>()
-    const fieldNames = computed(() => fillFieldNames(props.fieldNames))
-    const treeRef = ref()
+    const cachedSelectedKeys = ref<Key[]>();
+    const fieldNames = computed(() => fillFieldNames(props.fieldNames));
+    const treeRef = ref();
     const scrollTo: ScrollTo = (scroll) => {
-      treeRef.value?.scrollTo(scroll)
-    }
+      treeRef.value?.scrollTo(scroll);
+    };
     expose({
       scrollTo,
       selectedKeys: computed(() => treeRef.value?.selectedKeys),
@@ -100,63 +101,63 @@ export default defineComponent({
       loadedKeys: computed(() => treeRef.value?.loadedKeys),
       loadingKeys: computed(() => treeRef.value?.loadingKeys),
       expandedKeys: computed(() => treeRef.value?.expandedKeys),
-    })
+    });
     const getInitExpandedKeys = () => {
       const { keyEntities } = convertDataToEntities(treeData.value, {
         fieldNames: fieldNames.value,
-      })
+      });
 
-      let initExpandedKeys: any
+      let initExpandedKeys: any;
 
       // Expanded keys
       if (props.defaultExpandAll) {
-        initExpandedKeys = Object.keys(keyEntities)
+        initExpandedKeys = Object.keys(keyEntities);
       } else if (props.defaultExpandParent) {
         initExpandedKeys = conductExpandParent(
           props.expandedKeys || props.defaultExpandedKeys || [],
           keyEntities,
-        )
+        );
       } else {
-        initExpandedKeys = props.expandedKeys || props.defaultExpandedKeys
+        initExpandedKeys = props.expandedKeys || props.defaultExpandedKeys;
       }
-      return initExpandedKeys
-    }
+      return initExpandedKeys;
+    };
 
-    const selectedKeys = ref(props.selectedKeys || props.defaultSelectedKeys || [])
+    const selectedKeys = ref(props.selectedKeys || props.defaultSelectedKeys || []);
 
-    const expandedKeys = ref<Key[]>(getInitExpandedKeys())
+    const expandedKeys = ref<Key[]>(getInitExpandedKeys());
 
     watch(
       () => props.selectedKeys,
       () => {
         if (props.selectedKeys !== undefined)
-          selectedKeys.value = props.selectedKeys
+          selectedKeys.value = props.selectedKeys;
       },
       { immediate: true },
-    )
+    );
 
     watch(
       () => props.expandedKeys,
       () => {
         if (props.expandedKeys !== undefined)
-          expandedKeys.value = props.expandedKeys
+          expandedKeys.value = props.expandedKeys;
       },
       { immediate: true },
-    )
+    );
 
     const expandFolderNode = (event: MouseEvent, node: any) => {
-      const { isLeaf } = node
+      const { isLeaf } = node;
 
       if (isLeaf || event.shiftKey || event.metaKey || event.ctrlKey)
-        return
+        return;
 
       // Call internal rc-tree expand function
       // https://github.com/ant-design/ant-design/issues/12567
-      treeRef.value!.onNodeExpand(event as any, node)
-    }
+      treeRef.value!.onNodeExpand(event as any, node);
+    };
     const onDebounceExpand = debounce(expandFolderNode, 200, {
       leading: true,
-    })
+    });
     const onExpand = (
       keys: Key[],
       info: {
@@ -166,32 +167,32 @@ export default defineComponent({
       },
     ) => {
       if (props.expandedKeys === undefined)
-        expandedKeys.value = keys
+        expandedKeys.value = keys;
 
       // Call origin function
-      emit('update:expandedKeys', keys)
-      emit('expand', keys, info)
-    }
+      emit('update:expandedKeys', keys);
+      emit('expand', keys, info);
+    };
 
     const onClick = (event: MouseEvent, node: EventDataNode) => {
-      const { expandAction } = props
+      const { expandAction } = props;
 
       // Expand the tree
       if (expandAction === 'click')
-        onDebounceExpand(event, node)
+        onDebounceExpand(event, node);
 
-      emit('click', event, node)
-    }
+      emit('click', event, node);
+    };
 
     const onDoubleClick = (event: MouseEvent, node: EventDataNode) => {
-      const { expandAction } = props
+      const { expandAction } = props;
       // Expand the tree
       if (expandAction === 'dblclick' || expandAction === 'doubleclick')
-        onDebounceExpand(event, node)
+        onDebounceExpand(event, node);
 
-      emit('doubleclick', event, node)
-      emit('dblclick', event, node)
-    }
+      emit('doubleclick', event, node);
+      emit('dblclick', event, node);
+    };
     const onSelect = (
       keys: Key[],
       event: {
@@ -202,33 +203,33 @@ export default defineComponent({
         nativeEvent: MouseEvent
       },
     ) => {
-      const { multiple } = props
-      const { node, nativeEvent } = event
-      const key = node[fieldNames.value.key]
+      const { multiple } = props;
+      const { node, nativeEvent } = event;
+      const key = node[fieldNames.value.key];
       // const newState: DirectoryTreeState = {};
 
       // We need wrap this event since some value is not same
       const newEvent: any = {
         ...event,
         selected: true, // Directory selected always true
-      }
+      };
 
       // Windows / Mac single pick
-      const ctrlPick: boolean = nativeEvent?.ctrlKey || nativeEvent?.metaKey
-      const shiftPick: boolean = nativeEvent?.shiftKey
+      const ctrlPick: boolean = nativeEvent?.ctrlKey || nativeEvent?.metaKey;
+      const shiftPick: boolean = nativeEvent?.shiftKey;
 
       // Generate new selected keys
-      let newSelectedKeys: Key[]
+      let newSelectedKeys: Key[];
       if (multiple && ctrlPick) {
         // Control click
-        newSelectedKeys = keys
-        lastSelectedKey.value = key
-        cachedSelectedKeys.value = newSelectedKeys
+        newSelectedKeys = keys;
+        lastSelectedKey.value = key;
+        cachedSelectedKeys.value = newSelectedKeys;
         newEvent.selectedNodes = convertDirectoryKeysToNodes(
           treeData.value,
           newSelectedKeys,
           fieldNames.value,
-        )
+        );
       } else if (multiple && shiftPick) {
         // Shift click
         newSelectedKeys = Array.from(
@@ -242,36 +243,36 @@ export default defineComponent({
               fieldNames: fieldNames.value,
             }),
           ]),
-        )
+        );
         newEvent.selectedNodes = convertDirectoryKeysToNodes(
           treeData.value,
           newSelectedKeys,
           fieldNames.value,
-        )
+        );
       } else {
         // Single click
-        newSelectedKeys = [key]
-        lastSelectedKey.value = key
-        cachedSelectedKeys.value = newSelectedKeys
+        newSelectedKeys = [key];
+        lastSelectedKey.value = key;
+        cachedSelectedKeys.value = newSelectedKeys;
         newEvent.selectedNodes = convertDirectoryKeysToNodes(
           treeData.value,
           newSelectedKeys,
           fieldNames.value,
-        )
+        );
       }
 
-      emit('update:selectedKeys', newSelectedKeys)
-      emit('select', newSelectedKeys, newEvent)
+      emit('update:selectedKeys', newSelectedKeys);
+      emit('select', newSelectedKeys, newEvent);
       if (props.selectedKeys === undefined)
-        selectedKeys.value = newSelectedKeys
-    }
+        selectedKeys.value = newSelectedKeys;
+    };
 
     const onCheck: TreeProps['onCheck'] = (checkedObjOrKeys, eventObj) => {
-      emit('update:checkedKeys', checkedObjOrKeys)
-      emit('check', checkedObjOrKeys, eventObj)
-    }
+      emit('update:checkedKeys', checkedObjOrKeys);
+      emit('check', checkedObjOrKeys, eventObj);
+    };
 
-    const { prefixCls, direction } = useConfigInject('tree', props)
+    const { prefixCls, direction } = useConfigInject('tree', props);
 
     return () => {
       const connectClassName = classNames(
@@ -280,8 +281,8 @@ export default defineComponent({
           [`${prefixCls.value}-directory-rtl`]: direction.value === 'rtl',
         },
         attrs.class,
-      )
-      const { icon = slots.icon, blockNode = true, ...otherProps } = props
+      );
+      const { icon = slots.icon, blockNode = true, ...otherProps } = props;
       return (
         <Tree
           {...attrs}
@@ -300,7 +301,7 @@ export default defineComponent({
           onCheck={onCheck}
           v-slots={slots}
         />
-      )
-    }
+      );
+    };
   },
-})
+});

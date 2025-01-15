@@ -1,6 +1,6 @@
-import type { InjectionKey } from 'vue'
-import type { SiderCollapsed, SiderHookProvider } from './interface'
+import type { InjectionKey } from 'vue';
+import type { SiderCollapsed, SiderHookProvider } from './interface';
 
-export const SiderCollapsedKey: InjectionKey<SiderCollapsed> = Symbol('siderCollapsed')
+export const SiderCollapsedKey: InjectionKey<SiderCollapsed> = Symbol('siderCollapsed');
 
-export const SiderHookProviderKey: InjectionKey<SiderHookProvider> = Symbol('siderHookProvider')
+export const SiderHookProviderKey: InjectionKey<SiderHookProvider> = Symbol('siderHookProvider');

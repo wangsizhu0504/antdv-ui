@@ -1,13 +1,13 @@
-import { message } from '@antdv/ui'
-import { defineComponent } from 'vue'
-import CopyableIcon from './CopyableIcon.vue'
+import { message } from '@antdv/ui';
+import { defineComponent } from 'vue';
+import CopyableIcon from './CopyableIcon.vue';
 
 const Category = defineComponent({
   props: ['icons', 'title', 'newIcons', 'theme'],
   data() {
     return {
       justCopied: null,
-    }
+    };
   },
   methods: {
     onCopied(type, text) {
@@ -17,15 +17,15 @@ const Category = defineComponent({
           {' '}
           copied 🎉
         </span>,
-      )
-      this.justCopied = type
+      );
+      this.justCopied = type;
       setTimeout(() => {
-        this.justCopied = null
-      }, 2000)
+        this.justCopied = null;
+      }, 2000);
     },
   },
   render() {
-    const { icons, title, theme, newIcons } = this.$props
+    const { icons, title, theme, newIcons } = this.$props;
     const items = icons.map((name) => {
       return (
         <CopyableIcon
@@ -37,8 +37,8 @@ const Category = defineComponent({
           justCopied={this.justCopied}
           onCopied={this.onCopied}
         />
-      )
-    })
+      );
+    });
     return (
       <div>
         <h3 style="margin: 1.6em 0 .6em;">
@@ -46,8 +46,8 @@ const Category = defineComponent({
         </h3>
         <ul class="anticons-list">{items}</ul>
       </div>
-    )
+    );
   },
-})
+});
 
-export default Category
+export default Category;

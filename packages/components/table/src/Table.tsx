@@ -1,12 +1,12 @@
-import type { RenderExpandIconProps } from '@antdv/vue-components/vc-table/src/interface'
-import type { SlotsType } from 'vue'
-import type { TableColumnType } from './interface'
-import { initDefaultProps } from '@antdv/utils'
-import { defineComponent, ref } from 'vue'
+import type { RenderExpandIconProps } from '@antdv/vue-components/vc-table/src/interface';
+import type { SlotsType } from 'vue';
+import type { TableColumnType } from './interface';
+import { initDefaultProps } from '@antdv/utils';
+import { defineComponent, ref } from 'vue';
 
-import InternalTable from './InternalTable'
-import { tableProps } from './props'
-import { convertChildrenToColumns } from './util'
+import InternalTable from './InternalTable';
+import { tableProps } from './props';
+import { convertChildrenToColumns } from './util';
 
 // CSSINJS
 
@@ -37,12 +37,12 @@ export default defineComponent({
     default: any
   }>,
   setup(props, { attrs, slots, expose }) {
-    const table = ref()
+    const table = ref();
     expose({
       table,
-    })
+    });
     return () => {
-      const columns = props.columns || convertChildrenToColumns(slots.default?.())
+      const columns = props.columns || convertChildrenToColumns(slots.default?.());
       return (
         <InternalTable
           ref={table}
@@ -53,7 +53,7 @@ export default defineComponent({
           contextSlots={{ ...slots }} // use new object, 否则slot热更新失效，原因需进一步探究
           v-slots={slots}
         />
-      )
-    }
+      );
+    };
   },
-})
+});

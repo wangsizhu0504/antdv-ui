@@ -17,9 +17,9 @@ Show warning style when `value` is out of range by control.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<number>(99)
+  const value = ref<number>(99);
 </script>
 
 <template>

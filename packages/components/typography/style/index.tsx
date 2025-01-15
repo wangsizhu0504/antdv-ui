@@ -1,5 +1,5 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, operationUnit } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, operationUnit } from '@antdv/theme';
 import {
   getCopiableStyles,
   getEditableStyles,
@@ -7,7 +7,7 @@ import {
   getLinkStyles,
   getResetStyles,
   getTitleStyles,
-} from './mixins'
+} from './mixins';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {
@@ -15,10 +15,10 @@ export interface ComponentToken {
   sizeMarginHeadingVerticalEnd: number | string
 }
 
-export type TypographyToken = FullToken<'Typography'>
+export type TypographyToken = FullToken<'Typography'>;
 
 const genTypographyStyle: GenerateStyle<TypographyToken> = (token) => {
-  const { componentCls, sizeMarginHeadingVerticalStart } = token
+  const { componentCls, sizeMarginHeadingVerticalStart } = token;
 
   return {
     [componentCls]: {
@@ -117,11 +117,11 @@ const genTypographyStyle: GenerateStyle<TypographyToken> = (token) => {
         direction: 'rtl',
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Typography', token => [genTypographyStyle(token)], {
   sizeMarginHeadingVerticalStart: '1.2em',
   sizeMarginHeadingVerticalEnd: '0.5em',
-})
+});

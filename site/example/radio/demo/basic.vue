@@ -17,9 +17,9 @@ The simplest usage.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const checked = ref<boolean>(false)
+  const checked = ref<boolean>(false);
 </script>
 
 <template>

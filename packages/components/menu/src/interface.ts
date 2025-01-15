@@ -1,7 +1,7 @@
-import type { Key } from '@antdv/types'
-import type { CSSProperties } from 'vue'
+import type { Key } from '@antdv/types';
+import type { CSSProperties } from 'vue';
 
-import type { MenuItemProps } from './props'
+import type { MenuItemProps } from './props';
 
 // ========================= Options =========================
 interface ItemSharedProps {
@@ -68,16 +68,16 @@ export interface MenuDividerType extends ItemSharedProps {
   type: 'divider'
 }
 
-export type ItemType = SubMenuType | MenuItemType | MenuItemGroupType | MenuDividerType | null
+export type ItemType = SubMenuType | MenuItemType | MenuItemGroupType | MenuDividerType | null;
 
-export type MenuTheme = 'light' | 'dark'
+export type MenuTheme = 'light' | 'dark';
 
 // ========================== Basic ==========================
-export type MenuMode = 'horizontal' | 'vertical' | 'inline'
+export type MenuMode = 'horizontal' | 'vertical' | 'inline';
 
-export type BuiltinPlacements = Record<string, any>
+export type BuiltinPlacements = Record<string, any>;
 
-export type TriggerSubMenuAction = 'click' | 'hover'
+export type TriggerSubMenuAction = 'click' | 'hover';
 
 export interface RenderIconInfo {
   isSelected?: boolean
@@ -86,7 +86,7 @@ export interface RenderIconInfo {
   disabled?: boolean
 }
 
-export type RenderIconType = (props: RenderIconInfo) => any
+export type RenderIconType = (props: RenderIconInfo) => any;
 
 export interface MenuInfo {
   key: Key
@@ -103,14 +103,14 @@ export interface MenuTitleInfo {
 }
 
 // ========================== Hover ==========================
-export type MenuHoverEventHandler = (info: { key: Key, domEvent: MouseEvent }) => void
+export type MenuHoverEventHandler = (info: { key: Key, domEvent: MouseEvent }) => void;
 
 // ======================== Selection ========================
 export interface MenuSelectInfo extends MenuInfo {
   selectedKeys: Key[]
 }
 
-export type SelectEventHandler = (info: MenuSelectInfo) => void
+export type SelectEventHandler = (info: MenuSelectInfo) => void;
 
 // ========================== Click ==========================
-export type MenuClickEventHandler = (info: MenuInfo) => void
+export type MenuClickEventHandler = (info: MenuInfo) => void;

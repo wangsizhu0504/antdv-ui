@@ -17,14 +17,14 @@ With text and icon.
 </docs>
 
 <script lang="ts" setup>
-  import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue'
-  import { reactive } from 'vue'
+  import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue';
+  import { reactive } from 'vue';
 
   const state = reactive({
     checked1: true,
     checked2: false,
     checked3: false,
-  })
+  });
 </script>
 
 <template>

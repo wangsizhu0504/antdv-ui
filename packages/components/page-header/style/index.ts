@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, operationUnit, resetComponent, textEllipsis } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, operationUnit, resetComponent, textEllipsis } from '@antdv/theme';
 
 interface PageHeaderToken extends FullToken<'PageHeader'> {
   pageHeaderPadding: number
@@ -14,7 +14,7 @@ interface PageHeaderToken extends FullToken<'PageHeader'> {
 }
 
 const genPageHeaderStyle: GenerateStyle<PageHeaderToken, CSSObject> = (token) => {
-  const { componentCls, antCls } = token
+  const { componentCls, antCls } = token;
 
   return {
     [componentCls]: {
@@ -132,8 +132,8 @@ const genPageHeaderStyle: GenerateStyle<PageHeaderToken, CSSObject> = (token) =>
         direction: 'rtl',
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('PageHeader', (token) => {
@@ -147,7 +147,7 @@ export default genComponentStyleHook('PageHeader', (token) => {
     pageHeaderHeadingTitle: token.fontSizeHeading4,
     pageHeaderHeadingSubTitle: token.fontSize,
     pageHeaderTabFontSize: token.fontSizeLG,
-  })
+  });
 
-  return [genPageHeaderStyle(PageHeaderToken)]
-})
+  return [genPageHeaderStyle(PageHeaderToken)];
+});

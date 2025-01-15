@@ -1,6 +1,6 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent } from '@antdv/theme'
-import { TinyColor } from '@ctrl/tinycolor'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent } from '@antdv/theme';
+import { TinyColor } from '@ctrl/tinycolor';
 
 interface SwitchToken extends FullToken<'Switch'> {
   switchMinWidth: number
@@ -25,8 +25,8 @@ interface SwitchToken extends FullToken<'Switch'> {
 }
 
 const genSwitchSmallStyle: GenerateStyle<SwitchToken, CSSObject> = (token) => {
-  const { componentCls } = token
-  const switchInnerCls = `${componentCls}-inner`
+  const { componentCls } = token;
+  const switchInnerCls = `${componentCls}-inner`;
 
   return {
     [componentCls]: {
@@ -105,11 +105,11 @@ const genSwitchSmallStyle: GenerateStyle<SwitchToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genSwitchLoadingStyle: GenerateStyle<SwitchToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [componentCls]: {
@@ -124,12 +124,12 @@ const genSwitchLoadingStyle: GenerateStyle<SwitchToken, CSSObject> = (token) => 
         color: token.switchColor,
       },
     },
-  }
-}
+  };
+};
 
 const genSwitchHandleStyle: GenerateStyle<SwitchToken, CSSObject> = (token) => {
-  const { componentCls } = token
-  const switchHandleCls = `${componentCls}-handle`
+  const { componentCls } = token;
+  const switchHandleCls = `${componentCls}-handle`;
 
   return {
     [componentCls]: {
@@ -171,12 +171,12 @@ const genSwitchHandleStyle: GenerateStyle<SwitchToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genSwitchInnerStyle: GenerateStyle<SwitchToken, CSSObject> = (token) => {
-  const { componentCls } = token
-  const switchInnerCls = `${componentCls}-inner`
+  const { componentCls } = token;
+  const switchInnerCls = `${componentCls}-inner`;
 
   return {
     [componentCls]: {
@@ -247,11 +247,11 @@ const genSwitchInnerStyle: GenerateStyle<SwitchToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 function genSwitchStyle(token: SwitchToken): CSSObject {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [componentCls]: {
@@ -300,16 +300,16 @@ function genSwitchStyle(token: SwitchToken): CSSObject {
         direction: 'rtl',
       },
     },
-  }
+  };
 }
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Switch', (token) => {
-  const switchHeight = token.fontSize * token.lineHeight
-  const switchHeightSM = token.controlHeight / 2
-  const switchPadding = 2 // This is magic
-  const switchPinSize = switchHeight - switchPadding * 2
-  const switchPinSizeSM = switchHeightSM - switchPadding * 2
+  const switchHeight = token.fontSize * token.lineHeight;
+  const switchHeightSM = token.controlHeight / 2;
+  const switchPadding = 2; // This is magic
+  const switchPinSize = switchHeight - switchPadding * 2;
+  const switchPinSizeSM = switchHeightSM - switchPadding * 2;
 
   const switchToken = mergeToken<SwitchToken>(token, {
     switchMinWidth: switchPinSize * 2 + switchPadding * 4,
@@ -331,7 +331,7 @@ export default genComponentStyleHook('Switch', (token) => {
     switchLoadingIconSize: token.fontSizeIcon * 0.75,
     switchLoadingIconColor: `rgba(0, 0, 0, ${token.opacityLoading})`,
     switchHandleActiveInset: '-30%',
-  })
+  });
 
   return [
     genSwitchStyle(switchToken),
@@ -347,5 +347,5 @@ export default genComponentStyleHook('Switch', (token) => {
 
     // small style
     genSwitchSmallStyle(switchToken),
-  ]
-})
+  ];
+});

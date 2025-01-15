@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'tr',
@@ -254,6 +254,6 @@ const localeValues: Locale = {
   Image: {
     preview: 'Önizleme',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

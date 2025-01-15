@@ -1,13 +1,13 @@
 <script>
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import Basic from './basic.vue'
-  import Character from './character.vue'
-  import Clear from './clear.vue'
-  import Disabled from './disabled.vue'
-  import Half from './half.vue'
-  import Text from './text.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import Basic from './basic.vue';
+  import Character from './character.vue';
+  import Clear from './clear.vue';
+  import Disabled from './disabled.vue';
+  import Half from './half.vue';
+  import Text from './text.vue';
 
   export default defineComponent({
     CN,
@@ -20,7 +20,7 @@
       Clear,
       Character,
     },
-  })
+  });
 </script>
 
 <template>

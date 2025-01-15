@@ -1,6 +1,6 @@
-import type { ExtractPropTypes } from 'vue'
-import type { CarouselEffect, DotPosition, LazyLoadTypes, SwipeDirection } from './interface'
-import { booleanType, functionType, PropTypes, stringType } from '@antdv/utils'
+import type { ExtractPropTypes } from 'vue';
+import type { CarouselEffect, DotPosition, LazyLoadTypes, SwipeDirection } from './interface';
+import { booleanType, functionType, PropTypes, stringType } from '@antdv/utils';
 
 // Carousel
 export function carouselProps() {
@@ -48,6 +48,6 @@ export function carouselProps() {
     responsive: Array,
     dotPosition: stringType<DotPosition>(),
     verticalSwiping: booleanType(false),
-  }
+  };
 }
-export type CarouselProps = Partial<ExtractPropTypes<ReturnType<typeof carouselProps>>>
+export type CarouselProps = Partial<ExtractPropTypes<ReturnType<typeof carouselProps>>>;

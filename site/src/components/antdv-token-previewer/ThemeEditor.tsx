@@ -1,32 +1,32 @@
-import type { DerivativeFunc } from '@antdv/cssinjs'
-import type { PropType } from 'vue'
-import type { SelectedToken, Theme } from './interface'
-import type { Locale } from './locale'
-import type { TokenPanelProProps } from './token-panel-pro'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, ref, toRefs } from 'vue'
-import { antdComponents } from './component-panel'
-import useControlledTheme from './hooks/useControlledTheme'
-import { useProvideLocaleContext, zhCN } from './locale'
-import { mapRelatedAlias, seedRelatedAlias, seedRelatedMap } from './meta/TokenRelation'
+import type { DerivativeFunc } from '@antdv/cssinjs';
+import type { PropType } from 'vue';
+import type { SelectedToken, Theme } from './interface';
+import type { Locale } from './locale';
+import type { TokenPanelProProps } from './token-panel-pro';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, ref, toRefs } from 'vue';
+import { antdComponents } from './component-panel';
+import useControlledTheme from './hooks/useControlledTheme';
+import { useProvideLocaleContext, zhCN } from './locale';
+import { mapRelatedAlias, seedRelatedAlias, seedRelatedMap } from './meta/TokenRelation';
 
-import TokenPanelPro from './token-panel-pro'
-import ComponentDemoPro from './token-panel-pro/ComponentDemoPro'
-import makeStyle from './utils/makeStyle'
-import { getRelatedComponents } from './utils/statistic'
+import TokenPanelPro from './token-panel-pro';
+import ComponentDemoPro from './token-panel-pro/ComponentDemoPro';
+import makeStyle from './utils/makeStyle';
+import { getRelatedComponents } from './utils/statistic';
 
 const useStyle = makeStyle('ThemeEditor', token => ({
   '.antd-theme-editor': {
     backgroundColor: token.colorBgLayout,
     display: 'flex',
   },
-}))
+}));
 
 const defaultTheme: Theme = {
   name: '默认主题',
   key: 'default',
   config: {},
-}
+};
 
 export interface ThemeEditorProps {
   /**
@@ -51,45 +51,45 @@ const ThemeEditor = defineComponent({
     locale: { type: Object as PropType<Locale>, default: zhCN },
   },
   setup(props, { attrs, expose }) {
-    const { theme: customTheme, darkAlgorithm, locale } = toRefs(props)
+    const { theme: customTheme, darkAlgorithm, locale } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
+    const [wrapSSR, hashId] = useStyle();
 
     const selectedTokens = ref<SelectedToken>({
       seed: ['colorPrimary'],
-    })
+    });
 
-    const aliasOpen = ref<boolean>(false)
+    const aliasOpen = ref<boolean>(false);
 
     const { theme, infoFollowPrimary, onInfoFollowPrimaryChange, updateRef } = useControlledTheme({
       theme: customTheme,
       defaultTheme,
       onChange: props.onThemeChange,
       darkAlgorithm,
-    })
+    });
 
     const handleTokenSelect: TokenPanelProProps['onTokenSelect'] = (token, type) => {
-      const tokens = typeof token === 'string' ? (token ? [token] : []) : token
+      const tokens = typeof token === 'string' ? (token ? [token] : []) : token;
       if (type === 'seed') {
         return {
           seed: tokens,
-        }
+        };
       }
 
-      let newSelectedTokens = { ...selectedTokens.value }
+      let newSelectedTokens = { ...selectedTokens.value };
       tokens.forEach((newToken) => {
         newSelectedTokens = {
           ...selectedTokens.value,
           [type]: selectedTokens.value[type]?.includes(newToken)
             ? selectedTokens.value[type]?.filter(t => t !== newToken)
             : [...(selectedTokens.value[type] ?? []), newToken],
-        }
-      })
+        };
+      });
       if (type === 'map')
-        delete newSelectedTokens.alias
+        delete newSelectedTokens.alias;
 
-      selectedTokens.value = newSelectedTokens
-    }
+      selectedTokens.value = newSelectedTokens;
+    };
 
     const computedSelectedTokens = computed(() => {
       if (
@@ -101,31 +101,31 @@ const ThemeEditor = defineComponent({
           ...selectedTokens.value.seed,
           ...((seedRelatedMap as any)[selectedTokens.value.seed[0]] ?? []),
           ...((seedRelatedAlias as any)[selectedTokens.value.seed[0]] ?? []),
-        ]
+        ];
       }
       if (selectedTokens.value.map?.length && !selectedTokens.value.alias?.length) {
         return [
           ...selectedTokens.value.map,
           ...selectedTokens.value.map.reduce((result, item) => {
-            return result.concat((mapRelatedAlias as any)[item])
+            return result.concat((mapRelatedAlias as any)[item]);
           }, []),
-        ]
+        ];
       }
       if (selectedTokens.value.alias?.length)
-        return [...selectedTokens.value.alias]
+        return [...selectedTokens.value.alias];
 
-      return []
-    })
+      return [];
+    });
 
     const relatedComponents = computed(() => {
-      return computedSelectedTokens.value ? getRelatedComponents(computedSelectedTokens.value) : []
-    })
+      return computedSelectedTokens.value ? getRelatedComponents(computedSelectedTokens.value) : [];
+    });
 
     expose({
       updateRef,
-    })
+    });
 
-    useProvideLocaleContext(locale)
+    useProvideLocaleContext(locale);
 
     return () => {
       return wrapSSR(
@@ -160,9 +160,9 @@ const ThemeEditor = defineComponent({
             componentDrawer
           />
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default ThemeEditor
+export default ThemeEditor;

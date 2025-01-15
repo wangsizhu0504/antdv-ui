@@ -1,1 +1,1 @@
-export const RadioGroupSizeTypes = ['large', 'default', 'small'] as const
+export const RadioGroupSizeTypes = ['large', 'default', 'small'] as const;

@@ -27,7 +27,7 @@ Customizing the header and footer of list by setting `header` and `footer` prope
     'Australian walks 100km after outback crash.',
     'Man charged over missing wedding girl.',
     'Los Angeles battles huge wildfires.',
-  ]
+  ];
 </script>
 
 <template>

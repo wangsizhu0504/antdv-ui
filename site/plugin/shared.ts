@@ -21,7 +21,7 @@ export interface SiteData<ThemeConfig = any> {
 
 export type HeadConfig =
   | [string, Record<string, string>]
-  | [string, Record<string, string>, string]
+  | [string, Record<string, string>, string];
 
 export interface PageData {
   relativePath: string

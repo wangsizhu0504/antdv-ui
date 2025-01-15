@@ -1,16 +1,16 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { HTMLAttributes } from 'vue'
-import type { DropdownButtonProps } from './props'
-import { EllipsisOutlined } from '@ant-design/icons-vue'
-import { classNames, initDefaultProps } from '@antdv/utils'
-import { computed, defineComponent } from 'vue'
-import Button from '../../button'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import Dropdown from './Dropdown'
-import { dropdownButtonProps } from './props'
+import type { CustomSlotsType } from '@antdv/types';
+import type { HTMLAttributes } from 'vue';
+import type { DropdownButtonProps } from './props';
+import { EllipsisOutlined } from '@ant-design/icons-vue';
+import { classNames, initDefaultProps } from '@antdv/utils';
+import { computed, defineComponent } from 'vue';
+import Button from '../../button';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import Dropdown from './Dropdown';
+import { dropdownButtonProps } from './props';
 
-const ButtonGroup = Button.Group
+const ButtonGroup = Button.Group;
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -32,15 +32,15 @@ export default defineComponent({
   }>,
   setup(props, { slots, attrs, emit }) {
     const handleVisibleChange = (val: boolean) => {
-      emit('update:visible', val)
-      emit('visibleChange', val)
-      emit('update:open', val)
-      emit('openChange', val)
-    }
+      emit('update:visible', val);
+      emit('visibleChange', val);
+      emit('update:open', val);
+      emit('openChange', val);
+    };
 
-    const { prefixCls, direction, getPopupContainer } = useConfigInject('dropdown', props)
-    const buttonPrefixCls = computed(() => `${prefixCls.value}-button`)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const { prefixCls, direction, getPopupContainer } = useConfigInject('dropdown', props);
+    const buttonPrefixCls = computed(() => `${prefixCls.value}-button`);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
     return () => {
       const {
         type = 'default',
@@ -67,7 +67,7 @@ export default defineComponent({
         onClick,
         'onUpdate:open': _updateVisible,
         ...restProps
-      } = { ...props, ...attrs } as DropdownButtonProps & HTMLAttributes
+      } = { ...props, ...attrs } as DropdownButtonProps & HTMLAttributes;
 
       const dropdownProps = {
         align,
@@ -82,7 +82,7 @@ export default defineComponent({
         overlayClassName,
         overlayStyle,
         destroyPopupOnHide,
-      }
+      };
 
       const leftButton = (
         <Button
@@ -97,9 +97,9 @@ export default defineComponent({
           v-slots={{ default: slots.default }}
         >
         </Button>
-      )
+      );
 
-      const rightButton = <Button danger={danger} type={type} icon={icon} />
+      const rightButton = <Button danger={danger} type={type} icon={icon} />;
 
       return wrapSSR(
         <ButtonGroup
@@ -111,7 +111,7 @@ export default defineComponent({
             {slots.rightButton ? slots.rightButton({ button: rightButton }) : rightButton}
           </Dropdown>
         </ButtonGroup>,
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -1,8 +1,8 @@
-import type { ComponentDemo } from '../../interface'
-import { UploadOutlined } from '@ant-design/icons-vue'
-import { Button, Popconfirm, Space, Upload } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { UploadOutlined } from '@ant-design/icons-vue';
+import { Button, Popconfirm, Space, Upload } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -21,13 +21,13 @@ const Demo = defineComponent({
           <Button>Confirm</Button>
         </Popconfirm>
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

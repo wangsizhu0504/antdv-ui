@@ -1,14 +1,14 @@
-import type { InverseColor, PresetStatusColorType } from '@antdv/types'
-import { PresetColors } from '@antdv/constants'
+import type { InverseColor, PresetStatusColorType } from '@antdv/types';
+import { PresetColors } from '@antdv/constants';
 
-const inverseColors = PresetColors.map<InverseColor>(color => `${color}-inverse`)
+const inverseColors = PresetColors.map<InverseColor>(color => `${color}-inverse`);
 const presetStatusColorTypes = [
   'success',
   'processing',
   'error',
   'default',
   'warning',
-] as const
+] as const;
 /**
  * determine if the color keyword belongs to the `Ant Design` {@link PresetColors}.
  * @param color color to be judged
@@ -16,11 +16,11 @@ const presetStatusColorTypes = [
  */
 export function isPresetColor(color?: any, includeInverse = true) {
   if (includeInverse)
-    return [...inverseColors, ...PresetColors].includes(color)
+    return [...inverseColors, ...PresetColors].includes(color);
 
-  return PresetColors.includes(color)
+  return PresetColors.includes(color);
 }
 
 export function isPresetStatusColor(color?: any): color is PresetStatusColorType {
-  return presetStatusColorTypes.includes(color)
+  return presetStatusColorTypes.includes(color);
 }

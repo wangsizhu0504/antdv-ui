@@ -1,5 +1,5 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
 
 const genFixedStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
   const {
@@ -10,9 +10,9 @@ const genFixedStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
     zIndexTableFixed,
     tableBg,
     zIndexTableSticky,
-  } = token
+  } = token;
 
-  const shadowColor = colorSplit
+  const shadowColor = colorSplit;
 
   // Follow style is magic of shadow which should not follow token:
   return {
@@ -125,7 +125,7 @@ const genFixedStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genFixedStyle
+export default genFixedStyle;

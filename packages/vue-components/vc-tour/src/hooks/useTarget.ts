@@ -1,8 +1,8 @@
-import type { Ref } from 'vue'
-import type { TourStepInfo } from '../interface'
-import { useState } from '@antdv/hooks'
-import { computed, onBeforeUnmount, onMounted, watch, watchEffect } from 'vue'
-import { isInViewPort } from '../util'
+import type { Ref } from 'vue';
+import type { TourStepInfo } from '../interface';
+import { useState } from '@antdv/hooks';
+import { computed, onBeforeUnmount, onMounted, watch, watchEffect } from 'vue';
+import { isInViewPort } from '../util';
 
 export interface Gap {
   offset?: number;
@@ -26,63 +26,63 @@ export default function useTarget(
   // ========================= Target =========================
   // We trade `undefined` as not get target by function yet.
   // `null` as empty target.
-  const [targetElement, setTargetElement] = useState<null | HTMLElement | undefined>(undefined)
+  const [targetElement, setTargetElement] = useState<null | HTMLElement | undefined>(undefined);
 
   watchEffect(
     () => {
       const nextElement
-        = typeof target.value === 'function' ? (target.value as any)() : target.value
+        = typeof target.value === 'function' ? (target.value as any)() : target.value;
 
-      setTargetElement(nextElement || null)
+      setTargetElement(nextElement || null);
     },
     { flush: 'post' },
-  )
+  );
 
   // ========================= Align ==========================
-  const [posInfo, setPosInfo] = useState<PosInfo>(null)
+  const [posInfo, setPosInfo] = useState<PosInfo>(null);
 
   const updatePos = () => {
     if (!open.value) {
-      setPosInfo(null)
-      return
+      setPosInfo(null);
+      return;
     }
     if (targetElement.value) {
       // Exist target element. We should scroll and get target position
       if (!isInViewPort(targetElement.value) && open.value)
-        targetElement.value.scrollIntoView(scrollIntoViewOptions.value)
+        targetElement.value.scrollIntoView(scrollIntoViewOptions.value);
 
-      const { left, top, width, height } = targetElement.value.getBoundingClientRect()
-      const nextPosInfo: PosInfo = { left, top, width, height, radius: 0 }
+      const { left, top, width, height } = targetElement.value.getBoundingClientRect();
+      const nextPosInfo: PosInfo = { left, top, width, height, radius: 0 };
       if (JSON.stringify(posInfo.value) !== JSON.stringify(nextPosInfo))
-        setPosInfo(nextPosInfo)
+        setPosInfo(nextPosInfo);
     } else {
       // Not exist target which means we just show in center
-      setPosInfo(null)
+      setPosInfo(null);
     }
-  }
+  };
 
   onMounted(() => {
     watch(
       [open, targetElement],
       () => {
-        updatePos()
+        updatePos();
       },
       { flush: 'post', immediate: true },
-    )
+    );
     // update when window resize
-    window.addEventListener('resize', updatePos)
-  })
+    window.addEventListener('resize', updatePos);
+  });
   onBeforeUnmount(() => {
-    window.removeEventListener('resize', updatePos)
-  })
+    window.removeEventListener('resize', updatePos);
+  });
 
   // ======================== PosInfo =========================
   const mergedPosInfo = computed(() => {
     if (!posInfo.value)
-      return posInfo.value
+      return posInfo.value;
 
-    const gapOffset = gap.value?.offset || 6
-    const gapRadius = gap.value?.radius || 2
+    const gapOffset = gap.value?.offset || 6;
+    const gapRadius = gap.value?.radius || 2;
 
     return {
       left: posInfo.value.left - gapOffset,
@@ -90,8 +90,8 @@ export default function useTarget(
       width: posInfo.value.width + gapOffset * 2,
       height: posInfo.value.height + gapOffset * 2,
       radius: gapRadius,
-    }
-  })
+    };
+  });
 
-  return [mergedPosInfo, targetElement]
+  return [mergedPosInfo, targetElement];
 }

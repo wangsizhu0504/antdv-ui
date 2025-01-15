@@ -1,9 +1,9 @@
-import { withInstall } from '@antdv/utils'
-import ACarousel from './src/Carousel'
+import { withInstall } from '@antdv/utils';
+import ACarousel from './src/Carousel';
 
-export const Carousel = withInstall(ACarousel)
+export const Carousel = withInstall(ACarousel);
 
-export default Carousel
+export default Carousel;
 
-export * from './src/interface'
-export * from './src/props'
+export * from './src/interface';
+export * from './src/props';

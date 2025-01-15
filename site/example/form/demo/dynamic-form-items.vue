@@ -17,23 +17,23 @@ Bind nested fields by array name.
 </docs>
 
 <script lang="ts" setup>
-  import type { FormInstance } from '@antdv/ui'
-  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue'
-  import { reactive, ref } from 'vue'
+  import type { FormInstance } from '@antdv/ui';
+  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue';
+  import { reactive, ref } from 'vue';
 
   interface User {
     first: string;
     last: string;
     id: number;
   }
-  const formRef = ref<FormInstance>()
+  const formRef = ref<FormInstance>();
   const dynamicValidateForm = reactive<{ users: User[] }>({
     users: [],
-  })
+  });
   function removeUser(item: User) {
-    const index = dynamicValidateForm.users.indexOf(item)
+    const index = dynamicValidateForm.users.indexOf(item);
     if (index !== -1) {
-      dynamicValidateForm.users.splice(index, 1)
+      dynamicValidateForm.users.splice(index, 1);
     }
   }
   function addUser() {
@@ -41,11 +41,11 @@ Bind nested fields by array name.
       first: '',
       last: '',
       id: Date.now(),
-    })
+    });
   }
   function onFinish(values) {
-    console.log('Received values of form:', values)
-    console.log('dynamicValidateForm.users:', dynamicValidateForm.users)
+    console.log('Received values of form:', values);
+    console.log('dynamicValidateForm.users:', dynamicValidateForm.users);
   }
 </script>
 

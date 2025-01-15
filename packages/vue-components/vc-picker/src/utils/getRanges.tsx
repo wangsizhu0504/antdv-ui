@@ -1,5 +1,5 @@
-import type { VueNode } from '@antdv/types'
-import type { Components, Locale } from '../interface'
+import type { VueNode } from '@antdv/types';
+import type { Components, Locale } from '../interface';
 
 export interface RangesProps {
   prefixCls: string;
@@ -22,11 +22,11 @@ export default function getRanges({
   showNow,
   locale,
 }: RangesProps) {
-  let presetNode: VueNode
-  let okNode: VueNode
+  let presetNode: VueNode;
+  let okNode: VueNode;
 
   if (needConfirmButton) {
-    const Button = (components.button || 'button') as any
+    const Button = (components.button || 'button') as any;
 
     if (onNow && showNow !== false) {
       presetNode = (
@@ -35,7 +35,7 @@ export default function getRanges({
             {locale.now}
           </a>
         </li>
-      )
+      );
     }
 
     okNode = needConfirmButton && (
@@ -43,23 +43,23 @@ export default function getRanges({
         <Button
           disabled={okDisabled}
           onClick={(e) => {
-            e.stopPropagation()
-            onOk && onOk()
+            e.stopPropagation();
+            onOk && onOk();
           }}
         >
           {locale.ok}
         </Button>
       </li>
-    )
+    );
   }
 
   if (!presetNode && !okNode)
-    return null
+    return null;
 
   return (
     <ul class={`${prefixCls}-ranges`}>
       {presetNode}
       {okNode}
     </ul>
-  )
+  );
 }

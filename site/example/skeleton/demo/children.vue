@@ -17,15 +17,15 @@ Skeleton contains sub component.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const loading = ref<boolean>(false)
+  const loading = ref<boolean>(false);
 
   function showSkeleton() {
-    loading.value = true
+    loading.value = true;
     setTimeout(() => {
-      loading.value = false
-    }, 3000)
+      loading.value = false;
+    }, 3000);
   }
 </script>
 

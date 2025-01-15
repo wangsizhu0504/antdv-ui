@@ -16,9 +16,9 @@ If uploaded file is a picture, the thumbnail can be shown.
 </docs>
 
 <script lang="ts" setup>
-  import type { UploadProps } from '@antdv/ui'
-  import { UploadOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { UploadProps } from '@antdv/ui';
+  import { UploadOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   const fileList = ref<UploadProps['fileList']>([
     {
@@ -35,7 +35,7 @@ If uploaded file is a picture, the thumbnail can be shown.
       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
       thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     },
-  ])
+  ]);
   const fileList1 = ref<UploadProps['fileList']>([
     {
       uid: '-1',
@@ -51,7 +51,7 @@ If uploaded file is a picture, the thumbnail can be shown.
       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
       thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     },
-  ])
+  ]);
 </script>
 
 <template>

@@ -15,4 +15,4 @@ export interface MentionsEntity {
   value: string;
 }
 
-export type MentionPlacement = 'top' | 'bottom'
+export type MentionPlacement = 'top' | 'bottom';

@@ -1,11 +1,11 @@
-import type { Key } from '@antdv/types'
+import type { Key } from '@antdv/types';
 
-import type { FieldNames } from '@antdv/vue-components/vc-tree/src/interface'
-import type { DraggableFn } from '@antdv/vue-components/vc-tree/src/props'
-import type { DraggableConfig } from '@antdv/vue-components/vc-tree/src/Tree'
-import type { ExtractPropTypes } from 'vue'
+import type { FieldNames } from '@antdv/vue-components/vc-tree/src/interface';
+import type { DraggableFn } from '@antdv/vue-components/vc-tree/src/props';
+import type { DraggableConfig } from '@antdv/vue-components/vc-tree/src/Tree';
+import type { ExtractPropTypes } from 'vue';
 
-import type { AntdTreeNodeAttribute, ExpandAction } from './interface'
+import type { AntdTreeNodeAttribute, ExpandAction } from './interface';
 import {
   arrayType,
   booleanType,
@@ -13,11 +13,11 @@ import {
   objectType,
   PropTypes,
   someType,
-} from '@antdv/utils'
-import { treeProps as VcTreeProps } from '@antdv/vue-components/vc-tree/src/props'
+} from '@antdv/utils';
+import { treeProps as VcTreeProps } from '@antdv/vue-components/vc-tree/src/props';
 
 export function treeProps() {
-  const baseTreeProps = VcTreeProps()
+  const baseTreeProps = VcTreeProps();
   return {
     ...baseTreeProps,
     'showLine': someType<boolean | { showLeafIcon: boolean }>([Boolean, Object]),
@@ -67,15 +67,15 @@ export function treeProps() {
     'onUpdate:selectedKeys': functionType<(keys: Key[]) => void>(),
     'onUpdate:checkedKeys': functionType<(keys: Key[]) => void>(),
     'onUpdate:expandedKeys': functionType<(keys: Key[]) => void>(),
-  }
+  };
 }
 export function directoryTreeProps() {
   return {
     ...treeProps(),
     expandAction: someType<ExpandAction>([Boolean, String]),
-  }
+  };
 }
 
-export type TreeProps = Partial<ExtractPropTypes<ReturnType<typeof treeProps>>>
+export type TreeProps = Partial<ExtractPropTypes<ReturnType<typeof treeProps>>>;
 
-export type DirectoryTreeProps = Partial<ExtractPropTypes<ReturnType<typeof directoryTreeProps>>>
+export type DirectoryTreeProps = Partial<ExtractPropTypes<ReturnType<typeof directoryTreeProps>>>;

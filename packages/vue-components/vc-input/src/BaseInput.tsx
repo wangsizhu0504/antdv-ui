@@ -1,22 +1,22 @@
-import type { MouseEventHandler } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import { classNames, cloneElement } from '@antdv/utils'
-import { defineComponent, ref } from 'vue'
-import { baseInputProps } from './inputProps'
-import { hasAddon, hasPrefixSuffix } from './utils/commonUtils'
+import type { MouseEventHandler } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import { classNames, cloneElement } from '@antdv/utils';
+import { defineComponent, ref } from 'vue';
+import { baseInputProps } from './inputProps';
+import { hasAddon, hasPrefixSuffix } from './utils/commonUtils';
 
 export default defineComponent({
   name: 'BaseInput',
   inheritAttrs: false,
   props: baseInputProps(),
   setup(props, { slots, attrs }) {
-    const containerRef = ref()
+    const containerRef = ref();
     const onInputMouseDown: MouseEventHandler = (e) => {
       if (containerRef.value?.contains(e.target as Element)) {
-        const { triggerFocus } = props
-        triggerFocus?.()
+        const { triggerFocus } = props;
+        triggerFocus?.();
       }
-    }
+    };
     const getClearIcon = () => {
       const {
         allowClear,
@@ -26,13 +26,13 @@ export default defineComponent({
         handleReset,
         suffix = slots.suffix,
         prefixCls,
-      } = props
+      } = props;
       if (!allowClear)
-        return null
+        return null;
 
-      const needClear = !disabled && !readonly && value
-      const className = `${prefixCls}-clear-icon`
-      const iconNode = slots.clearIcon?.() || '*'
+      const needClear = !disabled && !readonly && value;
+      const className = `${prefixCls}-clear-icon`;
+      const iconNode = slots.clearIcon?.() || '*';
       return (
         <span
           onClick={handleReset}
@@ -50,8 +50,8 @@ export default defineComponent({
         >
           {iconNode}
         </span>
-      )
-    }
+      );
+    };
 
     return () => {
       const {
@@ -71,14 +71,14 @@ export default defineComponent({
         affixWrapperClassName,
         wrapperClassName,
         groupClassName,
-      } = props
+      } = props;
       let element = cloneElement(inputElement, {
         value,
         hidden,
-      })
+      });
       // ================== Prefix & Suffix ================== //
       if (hasPrefixSuffix({ prefix, suffix, allowClear })) {
-        const affixWrapperPrefixCls = `${prefixCls}-affix-wrapper`
+        const affixWrapperPrefixCls = `${prefixCls}-affix-wrapper`;
         const affixWrapperCls = classNames(
           affixWrapperPrefixCls,
           {
@@ -89,14 +89,14 @@ export default defineComponent({
           },
           !hasAddon({ addonAfter, addonBefore }) && attrs.class,
           affixWrapperClassName,
-        )
+        );
 
         const suffixNode = (suffix || allowClear) && (
           <span class={`${prefixCls}-suffix`}>
             {getClearIcon()}
             {suffix}
           </span>
-        )
+        );
 
         element = (
           <span
@@ -114,24 +114,24 @@ export default defineComponent({
             })}
             {suffixNode}
           </span>
-        )
+        );
       }
       // ================== Addon ================== //
       if (hasAddon({ addonAfter, addonBefore })) {
-        const wrapperCls = `${prefixCls}-group`
-        const addonCls = `${wrapperCls}-addon`
+        const wrapperCls = `${prefixCls}-group`;
+        const addonCls = `${wrapperCls}-addon`;
 
         const mergedWrapperClassName = classNames(
           `${prefixCls}-wrapper`,
           wrapperCls,
           wrapperClassName,
-        )
+        );
 
         const mergedGroupClassName = classNames(
           `${prefixCls}-group-wrapper`,
           attrs.class,
           groupClassName,
-        )
+        );
 
         // Need another wrapper for changing display:table to display:inline-block
         // and put style prop in wrapper
@@ -143,9 +143,9 @@ export default defineComponent({
               {addonAfter && <span class={addonCls}>{addonAfter}</span>}
             </span>
           </span>
-        )
+        );
       }
-      return element
-    }
+      return element;
+    };
   },
-})
+});

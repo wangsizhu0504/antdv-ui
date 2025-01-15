@@ -1,7 +1,7 @@
 // based on rc-checkbox 2.3.2
-import type { HTMLAttributes } from 'vue'
-import { classNames, initDefaultProps, PropTypes } from '@antdv/utils'
-import { defineComponent, ref, watch } from 'vue'
+import type { HTMLAttributes } from 'vue';
+import { classNames, initDefaultProps, PropTypes } from '@antdv/utils';
+import { defineComponent, ref, watch } from 'vue';
 
 export const checkboxProps = {
   prefixCls: String,
@@ -16,7 +16,7 @@ export const checkboxProps = {
   autofocus: Boolean,
   value: PropTypes.any,
   required: Boolean,
-}
+};
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'Checkbox',
@@ -28,59 +28,59 @@ export default defineComponent({
   }),
   emits: ['click', 'change'],
   setup(props, { attrs, emit, expose }) {
-    const checked = ref(props.checked === undefined ? props.defaultChecked : props.checked)
-    const inputRef = ref<HTMLInputElement>()
+    const checked = ref(props.checked === undefined ? props.defaultChecked : props.checked);
+    const inputRef = ref<HTMLInputElement>();
     watch(
       () => props.checked,
       () => {
-        checked.value = props.checked
+        checked.value = props.checked;
       },
-    )
+    );
     expose({
       focus() {
-        inputRef.value?.focus()
+        inputRef.value?.focus();
       },
 
       blur() {
-        inputRef.value?.blur()
+        inputRef.value?.blur();
       },
-    })
-    const eventShiftKey = ref()
+    });
+    const eventShiftKey = ref();
     const handleChange = (e) => {
       if (props.disabled)
-        return
+        return;
 
       if (props.checked === undefined)
-        checked.value = e.target.checked
+        checked.value = e.target.checked;
 
-      e.shiftKey = eventShiftKey.value
+      e.shiftKey = eventShiftKey.value;
       const eventObj = {
         target: {
           ...props,
           checked: e.target.checked,
         },
         stopPropagation() {
-          e.stopPropagation()
+          e.stopPropagation();
         },
         preventDefault() {
-          e.preventDefault()
+          e.preventDefault();
         },
         nativeEvent: e,
-      }
+      };
 
       // fix https://github.com/vueComponent/ant-design-vue/issues/3047
       // 受控模式下维持现有状态
       if (props.checked !== undefined)
-        inputRef.value.checked = !!props.checked
+        inputRef.value.checked = !!props.checked;
 
-      emit('change', eventObj)
-      eventShiftKey.value = false
-    }
+      emit('change', eventObj);
+      eventShiftKey.value = false;
+    };
     const onClick = (e: MouseEvent) => {
-      emit('click', e)
+      emit('click', e);
       // onChange没能获取到shiftKey，使用onClick hack
-      eventShiftKey.value = e.shiftKey
-    }
+      eventShiftKey.value = e.shiftKey;
+    };
     return () => {
       const {
         prefixCls,
@@ -94,7 +94,7 @@ export default defineComponent({
         value,
         required,
         ...others
-      } = props
+      } = props;
       const {
         class: className,
         onFocus,
@@ -102,19 +102,19 @@ export default defineComponent({
         onKeydown,
         onKeypress,
         onKeyup,
-      } = attrs as HTMLAttributes
-      const othersAndAttrs = { ...others, ...attrs }
+      } = attrs as HTMLAttributes;
+      const othersAndAttrs = { ...others, ...attrs };
       const globalProps = Object.keys(othersAndAttrs).reduce((prev, key) => {
         if (key.startsWith('data-') || key.startsWith('aria-') || key === 'role')
-          prev[key] = othersAndAttrs[key]
+          prev[key] = othersAndAttrs[key];
 
-        return prev
-      }, {})
+        return prev;
+      }, {});
 
       const classString = classNames(prefixCls, className, {
         [`${prefixCls}-checked`]: checked.value,
         [`${prefixCls}-disabled`]: disabled,
-      })
+      });
       const inputProps = {
         name,
         id,
@@ -135,14 +135,14 @@ export default defineComponent({
         onKeypress,
         onKeyup,
         required,
-      }
+      };
 
       return (
         <span class={classString}>
           <input ref={inputRef} {...inputProps} />
           <span class={`${prefixCls}-inner`} />
         </span>
-      )
-    }
+      );
+    };
   },
-})
+});

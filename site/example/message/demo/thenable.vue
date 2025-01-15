@@ -17,7 +17,7 @@ title:
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
+  import { message } from '@antdv/ui';
 
   function success() {
     message
@@ -27,7 +27,7 @@ title:
 
         () => {},
       )
-      .then(() => message.info('Loading finished is finished', 2.5))
+      .then(() => message.info('Loading finished is finished', 2.5));
   }
 </script>
 

@@ -1,4 +1,4 @@
-import type { CountdownFormatConfig, valueType } from './interface'
+import type { CountdownFormatConfig, valueType } from './interface';
 
 // Countdown
 const timeUnits: Array<[string, number]> = [
@@ -9,40 +9,40 @@ const timeUnits: Array<[string, number]> = [
   ['m', 1000 * 60], // minutes
   ['s', 1000], // seconds
   ['S', 1], // million seconds
-]
+];
 
 export function formatTimeStr(duration: number, format: string) {
-  let leftDuration: number = duration
+  let leftDuration: number = duration;
 
-  const escapeRegex = /\[[^\]]*]/g
-  const keepList: string[] = (format.match(escapeRegex) || []).map(str => str.slice(1, -1))
-  const templateText = format.replace(escapeRegex, '[]')
+  const escapeRegex = /\[[^\]]*]/g;
+  const keepList: string[] = (format.match(escapeRegex) || []).map(str => str.slice(1, -1));
+  const templateText = format.replace(escapeRegex, '[]');
 
   const replacedText = timeUnits.reduce((current, [name, unit]) => {
     if (current.includes(name)) {
-      const value = Math.floor(leftDuration / unit)
-      leftDuration -= value * unit
+      const value = Math.floor(leftDuration / unit);
+      leftDuration -= value * unit;
       return current.replace(new RegExp(`${name}+`, 'g'), (match: string) => {
-        const len = match.length
-        return value.toString().padStart(len, '0')
-      })
+        const len = match.length;
+        return value.toString().padStart(len, '0');
+      });
     }
-    return current
-  }, templateText)
+    return current;
+  }, templateText);
 
-  let index = 0
+  let index = 0;
   return replacedText.replace(escapeRegex, () => {
-    const match = keepList[index]
-    index += 1
-    return match
-  })
+    const match = keepList[index];
+    index += 1;
+    return match;
+  });
 }
 
 export function formatCountdown(value: valueType, config: CountdownFormatConfig) {
-  const { format = '' } = config
-  const target = new Date(value).getTime()
-  const current = Date.now()
-  const diff = Math.max(target - current, 0)
+  const { format = '' } = config;
+  const target = new Date(value).getTime();
+  const current = Date.now();
+  const diff = Math.max(target - current, 0);
 
-  return formatTimeStr(diff, format)
+  return formatTimeStr(diff, format);
 }

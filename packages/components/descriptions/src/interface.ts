@@ -1,4 +1,4 @@
-import type { CSSProperties, HTMLAttributes, VNodeTypes } from 'vue'
+import type { CSSProperties, HTMLAttributes, VNodeTypes } from 'vue';
 
 export interface CellProps extends HTMLAttributes {
   itemPrefixCls: string

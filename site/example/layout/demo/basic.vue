@@ -17,7 +17,7 @@ Classic page layouts.
 </docs>
 
 <script lang="ts" setup>
-  import type { CSSProperties } from 'vue'
+  import type { CSSProperties } from 'vue';
 
   const headerStyle: CSSProperties = {
     textAlign: 'center',
@@ -26,7 +26,7 @@ Classic page layouts.
     paddingInline: 50,
     lineHeight: '64px',
     backgroundColor: '#7dbcea',
-  }
+  };
 
   const contentStyle: CSSProperties = {
     textAlign: 'center',
@@ -34,20 +34,20 @@ Classic page layouts.
     lineHeight: '120px',
     color: '#fff',
     backgroundColor: '#108ee9',
-  }
+  };
 
   const siderStyle: CSSProperties = {
     textAlign: 'center',
     lineHeight: '120px',
     color: '#fff',
     backgroundColor: '#3ba0e9',
-  }
+  };
 
   const footerStyle: CSSProperties = {
     textAlign: 'center',
     color: '#fff',
     backgroundColor: '#7dbcea',
-  }
+  };
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 // based on rc-resize-observer 1.0.0
-import type { PropType } from 'vue'
-import { findDOMNode } from '@antdv/utils'
-import ResizeObserver from 'resize-observer-polyfill'
+import type { PropType } from 'vue';
+import { findDOMNode } from '@antdv/utils';
+import ResizeObserver from 'resize-observer-polyfill';
 import {
   defineComponent,
   getCurrentInstance,
@@ -10,7 +10,7 @@ import {
   onUpdated,
   reactive,
   watch,
-} from 'vue'
+} from 'vue';
 
 interface ResizeObserverState {
   height: number;
@@ -43,32 +43,32 @@ export default defineComponent({
       height: 0,
       offsetHeight: 0,
       offsetWidth: 0,
-    })
-    let currentElement: Element | null = null
-    let resizeObserver: ResizeObserver | null = null
+    });
+    let currentElement: Element | null = null;
+    let resizeObserver: ResizeObserver | null = null;
 
     const destroyObserver = () => {
       if (resizeObserver) {
-        resizeObserver.disconnect()
-        resizeObserver = null
+        resizeObserver.disconnect();
+        resizeObserver = null;
       }
-    }
+    };
 
     const onResize: ResizeObserverCallback = (entries: ResizeObserverEntry[]) => {
-      const { onResize } = props
+      const { onResize } = props;
 
-      const target = entries[0].target as HTMLElement
+      const target = entries[0].target as HTMLElement;
 
-      const { width, height } = target.getBoundingClientRect()
-      const { offsetWidth, offsetHeight } = target
+      const { width, height } = target.getBoundingClientRect();
+      const { offsetWidth, offsetHeight } = target;
 
       /**
        * Resize observer trigger when content size changed.
        * In most case we just care about element size,
        * let's use `boundary` instead of `contentRect` here to avoid shaking.
        */
-      const fixedWidth = Math.floor(width)
-      const fixedHeight = Math.floor(height)
+      const fixedWidth = Math.floor(width);
+      const fixedHeight = Math.floor(height);
 
       if (
         state.width !== fixedWidth
@@ -76,9 +76,9 @@ export default defineComponent({
         || state.offsetWidth !== offsetWidth
         || state.offsetHeight !== offsetHeight
       ) {
-        const size = { width: fixedWidth, height: fixedHeight, offsetWidth, offsetHeight }
+        const size = { width: fixedWidth, height: fixedHeight, offsetWidth, offsetHeight };
 
-        Object.assign(state, size)
+        Object.assign(state, size);
         if (onResize) {
           // defer the callback but not defer to next frame
           Promise.resolve().then(() => {
@@ -89,51 +89,51 @@ export default defineComponent({
                 offsetHeight,
               },
               target,
-            )
-          })
+            );
+          });
         }
       }
-    }
-    const instance = getCurrentInstance()
+    };
+    const instance = getCurrentInstance();
     const registerObserver = () => {
-      const { disabled } = props
+      const { disabled } = props;
 
       // Unregister if disabled
       if (disabled) {
-        destroyObserver()
-        return
+        destroyObserver();
+        return;
       }
       // Unregister if element changed
-      const element = findDOMNode(instance) as Element
-      const elementChanged = element !== currentElement
+      const element = findDOMNode(instance) as Element;
+      const elementChanged = element !== currentElement;
       if (elementChanged) {
-        destroyObserver()
-        currentElement = element
+        destroyObserver();
+        currentElement = element;
       }
 
       if (!resizeObserver && element) {
-        resizeObserver = new ResizeObserver(onResize)
-        resizeObserver.observe(element)
+        resizeObserver = new ResizeObserver(onResize);
+        resizeObserver.observe(element);
       }
-    }
+    };
     onMounted(() => {
-      registerObserver()
-    })
+      registerObserver();
+    });
     onUpdated(() => {
-      registerObserver()
-    })
+      registerObserver();
+    });
     onUnmounted(() => {
-      destroyObserver()
-    })
+      destroyObserver();
+    });
     watch(
       () => props.disabled,
       () => {
-        registerObserver()
+        registerObserver();
       },
       { flush: 'post' },
-    )
+    );
     return () => {
-      return slots.default?.()[0]
-    }
+      return slots.default?.()[0];
+    };
   },
-})
+});

@@ -1,9 +1,9 @@
-import type { AdjustOverflow, LiteralUnion, PresetColorType } from '@antdv/types'
-import type { AlignType, BuildInPlacements } from '@antdv/vue-components/vc-trigger/src/interface'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { TooltipPlacement, TriggerType } from './interface'
+import type { AdjustOverflow, LiteralUnion, PresetColorType } from '@antdv/types';
+import type { AlignType, BuildInPlacements } from '@antdv/vue-components/vc-trigger/src/interface';
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import type { TooltipPlacement, TriggerType } from './interface';
 
-import { objectType, PropTypes } from '@antdv/utils'
+import { objectType, PropTypes } from '@antdv/utils';
 
 export function abstractTooltipProps() {
   return {
@@ -42,13 +42,13 @@ export function abstractTooltipProps() {
     'onUpdate:visible': Function as PropType<(vis: boolean) => void>,
     'onOpenChange': Function as PropType<(vis: boolean) => void>,
     'onUpdate:open': Function as PropType<(vis: boolean) => void>,
-  }
+  };
 }
 export function tooltipProps() {
   return {
     ...abstractTooltipProps(),
     title: PropTypes.any,
-  }
+  };
 }
 
 export function tooltipDefaultProps() {
@@ -60,7 +60,7 @@ export function tooltipDefaultProps() {
     mouseLeaveDelay: 0.1,
     arrowPointAtCenter: false,
     autoAdjustOverflow: true,
-  }
+  };
 }
 
-export type TooltipProps = Partial<ExtractPropTypes<ReturnType<typeof tooltipProps>>>
+export type TooltipProps = Partial<ExtractPropTypes<ReturnType<typeof tooltipProps>>>;

@@ -5,11 +5,11 @@ import type {
   FocusEventHandler,
   KeyboardEventHandler,
   MouseEventHandler,
-} from '@antdv/types'
-import type { ExtractPropTypes, PropType, VNode } from 'vue'
-import { classNames, cloneElement, PropTypes } from '@antdv/utils'
-import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
-import { defineComponent, inject } from 'vue'
+} from '@antdv/types';
+import type { ExtractPropTypes, PropType, VNode } from 'vue';
+import { classNames, cloneElement, PropTypes } from '@antdv/utils';
+import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore';
+import { defineComponent, inject } from 'vue';
 
 export const inputProps = {
   inputRef: PropTypes.any,
@@ -34,9 +34,9 @@ export const inputProps = {
   onCompositionend: { type: Function as PropType<CompositionEventHandler> },
   onFocus: { type: Function as PropType<FocusEventHandler> },
   onBlur: { type: Function as PropType<FocusEventHandler> },
-}
+};
 
-export type InputProps = Partial<ExtractPropTypes<typeof inputProps>>
+export type InputProps = Partial<ExtractPropTypes<typeof inputProps>>;
 
 const Input = defineComponent({
   compatConfig: { MODE: 3 },
@@ -44,8 +44,8 @@ const Input = defineComponent({
   inheritAttrs: false,
   props: inputProps,
   setup(props) {
-    let blurTimeout = null
-    const VCSelectContainerEvent = inject('VCSelectContainerEvent') as any
+    let blurTimeout = null;
+    const VCSelectContainerEvent = inject('VCSelectContainerEvent') as any;
 
     return () => {
       const {
@@ -70,11 +70,11 @@ const Input = defineComponent({
         open,
         inputRef,
         attrs,
-      } = props
+      } = props;
 
-      let inputNode: any = inputElement || <BaseInputCore></BaseInputCore>
+      let inputNode: any = inputElement || <BaseInputCore></BaseInputCore>;
 
-      const getInputProps = inputNode.props || {}
+      const getInputProps = inputNode.props || {};
       const {
         onKeydown: onOriginKeyDown,
         onInput: onOriginInput,
@@ -84,7 +84,7 @@ const Input = defineComponent({
         onCompositionstart: onOriginCompositionStart,
         onCompositionend: onOriginCompositionEnd,
         style,
-      } = getInputProps
+      } = getInputProps;
       inputNode = cloneElement(
         inputNode,
         Object.assign(
@@ -113,53 +113,53 @@ const Input = defineComponent({
             'unselectable': !editable ? 'on' : null,
             'style': { ...style, opacity: editable ? null : 0 },
             'onKeydown': (event: KeyboardEvent) => {
-              onKeydown(event)
+              onKeydown(event);
               if (onOriginKeyDown)
-                onOriginKeyDown(event)
+                onOriginKeyDown(event);
             },
             'onMousedown': (event: MouseEvent) => {
-              onMousedown(event)
+              onMousedown(event);
               if (onOriginMouseDown)
-                onOriginMouseDown(event)
+                onOriginMouseDown(event);
             },
             'onInput': (event: Event) => {
-              onChange(event)
+              onChange(event);
               if (onOriginInput)
-                onOriginInput(event)
+                onOriginInput(event);
             },
             onCompositionstart(event: CompositionEvent) {
-              onCompositionstart(event)
+              onCompositionstart(event);
               if (onOriginCompositionStart)
-                onOriginCompositionStart(event)
+                onOriginCompositionStart(event);
             },
             onCompositionend(event: CompositionEvent) {
-              onCompositionend(event)
+              onCompositionend(event);
               if (onOriginCompositionEnd)
-                onOriginCompositionEnd(event)
+                onOriginCompositionEnd(event);
             },
             onPaste,
             'onFocus': (...args: any[]) => {
-              clearTimeout(blurTimeout)
-              onOriginFocus && onOriginFocus(args[0])
-              onFocus && onFocus(args[0])
-              VCSelectContainerEvent?.focus(args[0])
+              clearTimeout(blurTimeout);
+              onOriginFocus && onOriginFocus(args[0]);
+              onFocus && onFocus(args[0]);
+              VCSelectContainerEvent?.focus(args[0]);
             },
             'onBlur': (...args: any[]) => {
               blurTimeout = setTimeout(() => {
-                onOriginBlur && onOriginBlur(args[0])
-                onBlur && onBlur(args[0])
-                VCSelectContainerEvent?.blur(args[0])
-              }, 100)
+                onOriginBlur && onOriginBlur(args[0]);
+                onBlur && onBlur(args[0]);
+                VCSelectContainerEvent?.blur(args[0]);
+              }, 100);
             },
           },
           inputNode.type === 'textarea' ? {} : { type: 'search' },
         ),
         true,
         true,
-      ) as VNode
-      return inputNode
-    }
+      ) as VNode;
+      return inputNode;
+    };
   },
-})
+});
 
-export default Input
+export default Input;

@@ -1,13 +1,13 @@
-import type { enUS, PickerLocale } from '@antdv/locale'
-import type { VueNode } from '@antdv/types'
+import type { enUS, PickerLocale } from '@antdv/locale';
+import type { VueNode } from '@antdv/types';
 
-import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate';
 import type {
   PickerPanelBaseProps as RCPickerPanelBaseProps,
   PickerPanelDateProps as RCPickerPanelDateProps,
   PickerPanelTimeProps as RCPickerPanelTimeProps,
-} from '@antdv/vue-components/vc-picker/src/PickerPanel'
-import type { Ref } from 'vue'
+} from '@antdv/vue-components/vc-picker/src/PickerPanel';
+import type { Ref } from 'vue';
 
 export interface CalendarSelectInfo {
   source: 'year' | 'month' | 'date' | 'customize'
@@ -45,26 +45,26 @@ export type InjectDefaultProps<Props> = Omit<
 > & {
   locale?: typeof enUS.DatePicker
   size?: 'large' | 'default' | 'small'
-}
+};
 // Picker Props
-export type PickerPanelBaseProps<DateType> = InjectDefaultProps<RCPickerPanelBaseProps<DateType>>
-export type PickerPanelDateProps<DateType> = InjectDefaultProps<RCPickerPanelDateProps<DateType>>
-export type PickerPanelTimeProps<DateType> = InjectDefaultProps<RCPickerPanelTimeProps<DateType>>
+export type PickerPanelBaseProps<DateType> = InjectDefaultProps<RCPickerPanelBaseProps<DateType>>;
+export type PickerPanelDateProps<DateType> = InjectDefaultProps<RCPickerPanelDateProps<DateType>>;
+export type PickerPanelTimeProps<DateType> = InjectDefaultProps<RCPickerPanelTimeProps<DateType>>;
 
 export type CalendarPickerProps<DateType> =
   | PickerPanelBaseProps<DateType>
   | PickerPanelDateProps<DateType>
-  | PickerPanelTimeProps<DateType>
+  | PickerPanelTimeProps<DateType>;
 
-export type CalendarMode = 'year' | 'month'
+export type CalendarMode = 'year' | 'month';
 export type HeaderRender<DateType> = (config: {
   value: DateType
   type: CalendarMode
   onChange: (date: DateType) => void
   onTypeChange: (type: CalendarMode) => void
-}) => VueNode
+}) => VueNode;
 
-export type CustomRenderType<DateType> = (config: { current: DateType }) => VueNode
+export type CustomRenderType<DateType> = (config: { current: DateType }) => VueNode;
 
 export interface SharedProps<DateType> {
   prefixCls: string

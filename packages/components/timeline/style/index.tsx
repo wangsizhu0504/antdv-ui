@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
 
 export interface ComponentToken {}
 
@@ -13,7 +13,7 @@ interface TimelineToken extends FullToken<'Timeline'> {
 }
 
 const genTimelineStyle: GenerateStyle<TimelineToken, CSSObject> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [componentCls]: {
@@ -217,8 +217,8 @@ const genTimelineStyle: GenerateStyle<TimelineToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Timeline', (token) => {
@@ -229,7 +229,7 @@ export default genComponentStyleHook('Timeline', (token) => {
     timeLinePaddingInlineEnd: 2,
     timeLineItemTailWidth: token.lineWidthBold,
     timeLineHeadBorderWidth: token.wireframe ? token.lineWidthBold : token.lineWidth * 3,
-  })
+  });
 
-  return [genTimelineStyle(timeLineToken)]
-})
+  return [genTimelineStyle(timeLineToken)];
+});

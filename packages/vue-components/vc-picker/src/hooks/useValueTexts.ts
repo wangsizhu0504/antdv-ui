@@ -1,10 +1,10 @@
-import type { ComputedRef, Ref } from 'vue'
-import type { GenerateConfig } from '../generate'
-import type { CustomFormat, Locale } from '../interface'
-import { useMemo } from '@antdv/hooks'
-import { shallowEqual } from '@antdv/utils'
-import { computed } from 'vue'
-import { formatValue } from '../utils/dateUtil'
+import type { ComputedRef, Ref } from 'vue';
+import type { GenerateConfig } from '../generate';
+import type { CustomFormat, Locale } from '../interface';
+import { useMemo } from '@antdv/hooks';
+import { shallowEqual } from '@antdv/utils';
+import { computed } from 'vue';
+import { formatValue } from '../utils/dateUtil';
 
 export interface ValueTextConfig<DateType> {
   formatList: ComputedRef<Array<string | CustomFormat<DateType>>>;
@@ -19,31 +19,31 @@ export default function useValueTexts<DateType>(
   const texts = useMemo<[string[], string]>(
     () => {
       if (!value.value)
-        return [[''], '']
+        return [[''], ''];
 
       // We will convert data format back to first format
-      let firstValueText = ''
-      const fullValueTexts: string[] = []
+      let firstValueText = '';
+      const fullValueTexts: string[] = [];
 
       for (let i = 0; i < formatList.value.length; i += 1) {
-        const format = formatList.value[i]
+        const format = formatList.value[i];
         const formatStr = formatValue(value.value, {
           generateConfig: generateConfig.value,
           locale: locale.value,
           format,
-        })
-        fullValueTexts.push(formatStr)
+        });
+        fullValueTexts.push(formatStr);
 
         if (i === 0)
-          firstValueText = formatStr
+          firstValueText = formatStr;
       }
 
-      return [fullValueTexts, firstValueText]
+      return [fullValueTexts, firstValueText];
     },
     [value, formatList],
     (next, prev) => prev[0] !== next[0] || !shallowEqual(prev[1], next[1]),
-  )
-  const fullValueTexts = computed(() => texts.value[0])
-  const firstValueText = computed(() => texts.value[1])
-  return [fullValueTexts, firstValueText]
+  );
+  const fullValueTexts = computed(() => texts.value[0]);
+  const firstValueText = computed(() => texts.value[1]);
+  return [fullValueTexts, firstValueText];
 }

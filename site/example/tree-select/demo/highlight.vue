@@ -17,10 +17,10 @@ Search Value Hightlight
 </docs>
 
 <script lang="ts" setup>
-  import type { TreeSelectProps } from '@antdv/ui'
-  import { ref, watch } from 'vue'
+  import type { TreeSelectProps } from '@antdv/ui';
+  import { ref, watch } from 'vue';
 
-  const value = ref<string>()
+  const value = ref<string>();
   const treeData = ref<TreeSelectProps['treeData']>([
     {
       label: 'parent 1',
@@ -56,11 +56,11 @@ Search Value Hightlight
         },
       ],
     },
-  ])
+  ]);
   watch(value, () => {
-    console.log(value.value)
-  })
-  const searchValue = ref<any>('')
+    console.log(value.value);
+  });
+  const searchValue = ref<any>('');
 </script>
 
 <template>

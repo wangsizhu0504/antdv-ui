@@ -1,13 +1,13 @@
-import type { CSSMotionProps, Key, VueNode } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import type { HolderReadyCallback, NoticeContent } from './HookNotification'
-import type { NotificationInstance, OpenConfig, Placement } from './Notification'
-import { shallowRef, watch } from 'vue'
-import HookNotification, { getUuid } from './HookNotification'
+import type { CSSMotionProps, Key, VueNode } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import type { HolderReadyCallback, NoticeContent } from './HookNotification';
+import type { NotificationInstance, OpenConfig, Placement } from './Notification';
+import { shallowRef, watch } from 'vue';
+import HookNotification, { getUuid } from './HookNotification';
 
-const defaultGetContainer = () => document.body
+const defaultGetContainer = () => document.body;
 
-type OptionalConfig = Partial<OpenConfig>
+type OptionalConfig = Partial<OpenConfig>;
 
 export interface NotificationConfig {
   prefixCls?: string;
@@ -47,25 +47,25 @@ interface DestroyTask {
   type: 'destroy';
 }
 
-type Task = OpenTask | CloseTask | DestroyTask
+type Task = OpenTask | CloseTask | DestroyTask;
 
-let uniqueKey = 0
+let uniqueKey = 0;
 
 function mergeConfig<T>(...objList: Array<Partial<T>>): T {
-  const clone: T = {} as T
+  const clone: T = {} as T;
 
   objList.forEach((obj) => {
     if (obj) {
       Object.keys(obj).forEach((key) => {
-        const val = obj[key]
+        const val = obj[key];
 
         if (val !== undefined)
-          clone[key] = val
-      })
+          clone[key] = val;
+      });
     }
-  })
+  });
 
-  return clone
+  return clone;
 }
 
 export default function useNotification(rootConfig: NotificationConfig = {}) {
@@ -78,41 +78,41 @@ export default function useNotification(rootConfig: NotificationConfig = {}) {
     getStyles,
     onAllRemoved,
     ...shareConfig
-  } = rootConfig
+  } = rootConfig;
 
-  const notices = shallowRef([])
-  const notificationsRef = shallowRef<NotificationInstance>()
+  const notices = shallowRef([]);
+  const notificationsRef = shallowRef<NotificationInstance>();
   const add = (originNotice: NoticeContent, holderCallback?: HolderReadyCallback) => {
-    const key = originNotice.key || getUuid()
+    const key = originNotice.key || getUuid();
     const notice: NoticeContent & { key: Key; userPassKey?: Key } = {
       ...originNotice,
       key,
-    }
-    const noticeIndex = notices.value.map(v => v.notice.key).indexOf(key)
-    const updatedNotices = notices.value.concat()
+    };
+    const noticeIndex = notices.value.map(v => v.notice.key).indexOf(key);
+    const updatedNotices = notices.value.concat();
     if (noticeIndex !== -1) {
-      updatedNotices.splice(noticeIndex, 1, { notice, holderCallback } as any)
+      updatedNotices.splice(noticeIndex, 1, { notice, holderCallback } as any);
     } else {
       if (maxCount && notices.value.length >= maxCount) {
-        notice.key = updatedNotices[0].notice.key as Key
-        notice.updateMark = getUuid()
-        notice.userPassKey = key
-        updatedNotices.shift()
+        notice.key = updatedNotices[0].notice.key as Key;
+        notice.updateMark = getUuid();
+        notice.userPassKey = key;
+        updatedNotices.shift();
       }
-      updatedNotices.push({ notice, holderCallback } as any)
+      updatedNotices.push({ notice, holderCallback } as any);
     }
-    notices.value = updatedNotices
-  }
+    notices.value = updatedNotices;
+  };
   const removeNotice = (removeKey: Key) => {
     notices.value = notices.value.filter(({ notice: { key, userPassKey } }) => {
-      const mergedKey = userPassKey || key
-      return mergedKey !== removeKey
-    })
-  }
+      const mergedKey = userPassKey || key;
+      return mergedKey !== removeKey;
+    });
+  };
 
   const destroy = () => {
-    notices.value = []
-  }
+    notices.value = [];
+  };
 
   const contextHolder = () => (
     <HookNotification
@@ -129,29 +129,29 @@ export default function useNotification(rootConfig: NotificationConfig = {}) {
       getContainer={getContainer}
     >
     </HookNotification>
-  )
+  );
 
-  const taskQueue = shallowRef([] as Task[])
+  const taskQueue = shallowRef([] as Task[]);
   // ========================= Refs =========================
   const api = {
     open: (config: OpenConfig) => {
-      const mergedConfig = mergeConfig(shareConfig, config)
+      const mergedConfig = mergeConfig(shareConfig, config);
       // @ts-expect-error
       if (mergedConfig.key === null || mergedConfig.key === undefined) {
         // @ts-expect-error
-        mergedConfig.key = `vc-notification-${uniqueKey}`
-        uniqueKey += 1
+        mergedConfig.key = `vc-notification-${uniqueKey}`;
+        uniqueKey += 1;
       }
 
-      taskQueue.value = [...taskQueue.value, { type: 'open', config: mergedConfig as any }]
+      taskQueue.value = [...taskQueue.value, { type: 'open', config: mergedConfig as any }];
     },
     close: (key) => {
-      taskQueue.value = [...taskQueue.value, { type: 'close', key }]
+      taskQueue.value = [...taskQueue.value, { type: 'close', key }];
     },
     destroy: () => {
-      taskQueue.value = [...taskQueue.value, { type: 'destroy' }]
+      taskQueue.value = [...taskQueue.value, { type: 'destroy' }];
     },
-  }
+  };
 
   // ======================== Effect ========================
   watch(taskQueue, () => {
@@ -161,21 +161,21 @@ export default function useNotification(rootConfig: NotificationConfig = {}) {
         switch (task.type) {
           case 'open':
             // @ts-expect-error
-            add(task.config)
-            break
+            add(task.config);
+            break;
 
           case 'close':
-            removeNotice(task.key)
-            break
+            removeNotice(task.key);
+            break;
           case 'destroy':
-            destroy()
-            break
+            destroy();
+            break;
         }
-      })
-      taskQueue.value = []
+      });
+      taskQueue.value = [];
     }
-  })
+  });
 
   // ======================== Return ========================
-  return [api, contextHolder] as const
+  return [api, contextHolder] as const;
 }

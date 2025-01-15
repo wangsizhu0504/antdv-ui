@@ -1,7 +1,7 @@
-import type { AliasToken, CSSInterpolation } from '@antdv/theme'
-import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook'
-import { Keyframes } from '@antdv/theme'
-import { initMotion } from './motion'
+import type { AliasToken, CSSInterpolation } from '@antdv/theme';
+import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook';
+import { Keyframes } from '@antdv/theme';
+import { initMotion } from './motion';
 
 export const slideUpIn = new Keyframes('antSlideUpIn', {
   '0%': {
@@ -15,7 +15,7 @@ export const slideUpIn = new Keyframes('antSlideUpIn', {
     transformOrigin: '0% 0%',
     opacity: 1,
   },
-})
+});
 
 export const slideUpOut = new Keyframes('antSlideUpOut', {
   '0%': {
@@ -29,7 +29,7 @@ export const slideUpOut = new Keyframes('antSlideUpOut', {
     transformOrigin: '0% 0%',
     opacity: 0,
   },
-})
+});
 
 export const slideDownIn = new Keyframes('antSlideDownIn', {
   '0%': {
@@ -43,7 +43,7 @@ export const slideDownIn = new Keyframes('antSlideDownIn', {
     transformOrigin: '100% 100%',
     opacity: 1,
   },
-})
+});
 
 export const slideDownOut = new Keyframes('antSlideDownOut', {
   '0%': {
@@ -57,7 +57,7 @@ export const slideDownOut = new Keyframes('antSlideDownOut', {
     transformOrigin: '100% 100%',
     opacity: 0,
   },
-})
+});
 
 export const slideLeftIn = new Keyframes('antSlideLeftIn', {
   '0%': {
@@ -71,7 +71,7 @@ export const slideLeftIn = new Keyframes('antSlideLeftIn', {
     transformOrigin: '0% 0%',
     opacity: 1,
   },
-})
+});
 
 export const slideLeftOut = new Keyframes('antSlideLeftOut', {
   '0%': {
@@ -85,7 +85,7 @@ export const slideLeftOut = new Keyframes('antSlideLeftOut', {
     transformOrigin: '0% 0%',
     opacity: 0,
   },
-})
+});
 
 export const slideRightIn = new Keyframes('antSlideRightIn', {
   '0%': {
@@ -99,7 +99,7 @@ export const slideRightIn = new Keyframes('antSlideRightIn', {
     transformOrigin: '100% 0%',
     opacity: 1,
   },
-})
+});
 
 export const slideRightOut = new Keyframes('antSlideRightOut', {
   '0%': {
@@ -113,9 +113,9 @@ export const slideRightOut = new Keyframes('antSlideRightOut', {
     transformOrigin: '100% 0%',
     opacity: 0,
   },
-})
+});
 
-type SlideMotionTypes = 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right'
+type SlideMotionTypes = 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right';
 const slideMotion: Record<SlideMotionTypes, { inKeyframes: Keyframes, outKeyframes: Keyframes }> = {
   'slide-up': {
     inKeyframes: slideUpIn,
@@ -133,12 +133,12 @@ const slideMotion: Record<SlideMotionTypes, { inKeyframes: Keyframes, outKeyfram
     inKeyframes: slideRightIn,
     outKeyframes: slideRightOut,
   },
-}
+};
 
 export function initSlideMotion(token: TokenWithCommonCls<AliasToken>, motionName: SlideMotionTypes): CSSInterpolation {
-  const { antCls } = token
-  const motionCls = `${antCls}-${motionName}`
-  const { inKeyframes, outKeyframes } = slideMotion[motionName]
+  const { antCls } = token;
+  const motionCls = `${antCls}-${motionName}`;
+  const { inKeyframes, outKeyframes } = slideMotion[motionName];
 
   return [
     initMotion(motionCls, inKeyframes, outKeyframes, token.motionDurationMid),
@@ -158,5 +158,5 @@ export function initSlideMotion(token: TokenWithCommonCls<AliasToken>, motionNam
         animationTimingFunction: token.motionEaseInQuint,
       },
     },
-  ]
+  ];
 }

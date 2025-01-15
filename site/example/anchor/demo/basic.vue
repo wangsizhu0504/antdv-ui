@@ -16,7 +16,7 @@ The simplest usage.
 </docs>
 
 <script lang="ts" setup>
-  import { h } from 'vue'
+  import { h } from 'vue';
 </script>
 
 <template>

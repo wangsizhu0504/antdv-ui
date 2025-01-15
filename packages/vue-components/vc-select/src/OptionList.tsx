@@ -1,7 +1,7 @@
-import type { EventHandler } from '@antdv/types'
-import type { ScrollConfig } from '../../vc-virtual-list/src/List'
-import type { RawValueType } from './Select'
-import { useMemo } from '@antdv/hooks'
+import type { EventHandler } from '@antdv/types';
+import type { ScrollConfig } from '../../vc-virtual-list/src/List';
+import type { RawValueType } from './Select';
+import { useMemo } from '@antdv/hooks';
 import {
   classNames,
   createRef,
@@ -9,7 +9,7 @@ import {
   KeyCode,
   omit,
   pickAttrs,
-} from '@antdv/utils'
+} from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -17,13 +17,13 @@ import {
   reactive,
   toRaw,
   watch,
-} from 'vue'
+} from 'vue';
 
-import List from '../../vc-virtual-list/src/List'
-import useBaseProps from './hooks/useBaseProps'
-import useSelectProps from './SelectContext'
-import TransBtn from './TransBtn'
-import { isPlatformMac } from './utils/platformUtil'
+import List from '../../vc-virtual-list/src/List';
+import useBaseProps from './hooks/useBaseProps';
+import useSelectProps from './SelectContext';
+import TransBtn from './TransBtn';
+import { isPlatformMac } from './utils/platformUtil';
 
 export interface RefOptionListProps {
   onKeydown: (e?: KeyboardEvent) => void;
@@ -31,11 +31,11 @@ export interface RefOptionListProps {
   scrollTo?: (index: number | ScrollConfig) => void;
 }
 function isTitleType(content: any) {
-  return typeof content === 'string' || typeof content === 'number'
+  return typeof content === 'string' || typeof content === 'number';
 }
 
 // export interface OptionListProps<OptionsType extends object[]> {
-export type OptionListProps = Record<string, never>
+export type OptionListProps = Record<string, never>;
 
 /**
  * Using virtual list of option display.
@@ -46,120 +46,120 @@ const OptionList = defineComponent({
   name: 'OptionList',
   inheritAttrs: false,
   setup(_, { expose, slots }) {
-    const baseProps = useBaseProps()
-    const props = useSelectProps()
-    const itemPrefixCls = computed(() => `${baseProps.prefixCls}-item`)
+    const baseProps = useBaseProps();
+    const props = useSelectProps();
+    const itemPrefixCls = computed(() => `${baseProps.prefixCls}-item`);
 
     const memoFlattenOptions = useMemo(
       () => props.flattenOptions,
       [() => baseProps.open, () => props.flattenOptions],
       next => next[0],
-    )
+    );
 
     // =========================== List ===========================
-    const listRef = createRef()
+    const listRef = createRef();
 
     const onListMouseDown: EventHandler = (event) => {
-      event.preventDefault()
-    }
+      event.preventDefault();
+    };
 
     const scrollIntoView = (args: number | ScrollConfig) => {
       if (listRef.current)
-        listRef.current.scrollTo(typeof args === 'number' ? { index: args } : args)
-    }
+        listRef.current.scrollTo(typeof args === 'number' ? { index: args } : args);
+    };
 
     // ========================== Active ==========================
     const getEnabledActiveIndex = (index: number, offset = 1) => {
-      const len = memoFlattenOptions.value.length
+      const len = memoFlattenOptions.value.length;
 
       for (let i = 0; i < len; i += 1) {
-        const current = (index + i * offset + len) % len
+        const current = (index + i * offset + len) % len;
 
-        const { group, data } = memoFlattenOptions.value[current]
+        const { group, data } = memoFlattenOptions.value[current];
         if (!group && !data.disabled)
-          return current
+          return current;
       }
 
-      return -1
-    }
+      return -1;
+    };
     const state = reactive({
       activeIndex: getEnabledActiveIndex(0),
-    })
+    });
 
     const setActive = (index: number, fromKeyboard = false) => {
-      state.activeIndex = index
-      const info = { source: fromKeyboard ? ('keyboard' as const) : ('mouse' as const) }
+      state.activeIndex = index;
+      const info = { source: fromKeyboard ? ('keyboard' as const) : ('mouse' as const) };
 
       // Trigger active event
-      const flattenItem = memoFlattenOptions.value[index]
+      const flattenItem = memoFlattenOptions.value[index];
       if (!flattenItem) {
-        props.onActiveValue(null, -1, info)
-        return
+        props.onActiveValue(null, -1, info);
+        return;
       }
 
-      props.onActiveValue(flattenItem.value, index, info)
-    }
+      props.onActiveValue(flattenItem.value, index, info);
+    };
 
     // Auto active first item when list length or searchValue changed
 
     watch(
       [() => memoFlattenOptions.value.length, () => baseProps.searchValue],
       () => {
-        setActive(props.defaultActiveFirstOption !== false ? getEnabledActiveIndex(0) : -1)
+        setActive(props.defaultActiveFirstOption !== false ? getEnabledActiveIndex(0) : -1);
       },
       { immediate: true },
-    )
+    );
 
     // https://github.com/ant-design/ant-design/issues/34975
     const isSelected = (value: RawValueType) =>
-      props.rawValues.has(value) && baseProps.mode !== 'combobox'
+      props.rawValues.has(value) && baseProps.mode !== 'combobox';
 
     // Auto scroll to item position in single mode
     watch(
       [() => baseProps.open, () => baseProps.searchValue],
       () => {
         if (!baseProps.multiple && baseProps.open && props.rawValues.size === 1) {
-          const value = Array.from(props.rawValues)[0]
+          const value = Array.from(props.rawValues)[0];
           const index = toRaw(memoFlattenOptions.value).findIndex(
             ({ data }) => data[props.fieldNames.value] === value,
-          )
+          );
           if (index !== -1) {
-            setActive(index)
+            setActive(index);
             nextTick(() => {
-              scrollIntoView(index)
-            })
+              scrollIntoView(index);
+            });
           }
         }
         // Force trigger scrollbar visible when open
         if (baseProps.open) {
           nextTick(() => {
-            listRef.current?.scrollTo(undefined)
-          })
+            listRef.current?.scrollTo(undefined);
+          });
         }
       },
       { immediate: true, flush: 'post' },
-    )
+    );
 
     // ========================== Values ==========================
     const onSelectValue = (value?: RawValueType) => {
       if (value !== undefined)
-        props.onSelect(value, { selected: !props.rawValues.has(value) })
+        props.onSelect(value, { selected: !props.rawValues.has(value) });
 
       // Single mode should always close by select
       if (!baseProps.multiple)
-        baseProps.toggleOpen(false)
-    }
+        baseProps.toggleOpen(false);
+    };
     const getLabel = (item: Record<string, any>) =>
-      typeof item.label === 'function' ? item.label() : item.label
+      typeof item.label === 'function' ? item.label() : item.label;
     function renderItem(index: number) {
-      const item = memoFlattenOptions.value[index]
-      if (!item) return null
+      const item = memoFlattenOptions.value[index];
+      if (!item) return null;
 
-      const itemData = item.data || {}
-      const { value } = itemData
-      const { group } = item
-      const attrs = pickAttrs(itemData, true)
-      const mergedLabel = getLabel(item)
+      const itemData = item.data || {};
+      const { value } = itemData;
+      const { group } = item;
+      const attrs = pickAttrs(itemData, true);
+      const mergedLabel = getLabel(item);
       return item
         ? (
             <div
@@ -173,70 +173,70 @@ const OptionList = defineComponent({
               {value}
             </div>
           )
-        : null
+        : null;
     }
     const onKeydown = (event: KeyboardEvent) => {
-      const { which, ctrlKey } = event
+      const { which, ctrlKey } = event;
       switch (which) {
         // >>> Arrow keys & ctrl + n/p on Mac
         case KeyCode.N:
         case KeyCode.P:
         case KeyCode.UP:
         case KeyCode.DOWN: {
-          let offset = 0
+          let offset = 0;
           if (which === KeyCode.UP) {
-            offset = -1
+            offset = -1;
           } else if (which === KeyCode.DOWN) {
-            offset = 1
+            offset = 1;
           } else if (isPlatformMac() && ctrlKey) {
             if (which === KeyCode.N)
-              offset = 1
+              offset = 1;
             else if (which === KeyCode.P)
-              offset = -1
+              offset = -1;
           }
 
           if (offset !== 0) {
-            const nextActiveIndex = getEnabledActiveIndex(state.activeIndex + offset, offset)
-            scrollIntoView(nextActiveIndex)
-            setActive(nextActiveIndex, true)
+            const nextActiveIndex = getEnabledActiveIndex(state.activeIndex + offset, offset);
+            scrollIntoView(nextActiveIndex);
+            setActive(nextActiveIndex, true);
           }
 
-          break
+          break;
         }
 
         // >>> Select
         case KeyCode.ENTER: {
           // value
-          const item = memoFlattenOptions.value[state.activeIndex]
+          const item = memoFlattenOptions.value[state.activeIndex];
           if (item && !item.data.disabled)
-            onSelectValue(item.value)
+            onSelectValue(item.value);
           else
-            onSelectValue(undefined)
+            onSelectValue(undefined);
 
           if (baseProps.open)
-            event.preventDefault()
+            event.preventDefault();
 
-          break
+          break;
         }
 
         // >>> Close
         case KeyCode.ESC: {
-          baseProps.toggleOpen(false)
+          baseProps.toggleOpen(false);
           if (baseProps.open)
-            event.stopPropagation()
+            event.stopPropagation();
         }
       }
-    }
-    const onKeyup = () => {}
+    };
+    const onKeyup = () => {};
 
     const scrollTo = (index: number) => {
-      scrollIntoView(index)
-    }
+      scrollIntoView(index);
+    };
     expose({
       onKeydown,
       onKeyup,
       scrollTo,
-    })
+    });
     return () => {
       // const {
       //   renderItem,
@@ -248,12 +248,12 @@ const OptionList = defineComponent({
       //   memoFlattenOptions,
       //   $slots,
       // } = this as any;
-      const { id, notFoundContent, onPopupScroll } = baseProps
-      const { menuItemSelectedIcon, fieldNames, virtual, listHeight, listItemHeight } = props
+      const { id, notFoundContent, onPopupScroll } = baseProps;
+      const { menuItemSelectedIcon, fieldNames, virtual, listHeight, listItemHeight } = props;
 
-      const renderOption = slots.option
-      const { activeIndex } = state
-      const omitFieldNameList = Object.keys(fieldNames).map(key => fieldNames[key])
+      const renderOption = slots.option;
+      const { activeIndex } = state;
+      const omitFieldNameList = Object.keys(fieldNames).map(key => fieldNames[key]);
       // ========================== Render ==========================
       if (memoFlattenOptions.value.length === 0) {
         return (
@@ -265,7 +265,7 @@ const OptionList = defineComponent({
           >
             {notFoundContent}
           </div>
-        )
+        );
       }
       return (
         <>
@@ -286,12 +286,12 @@ const OptionList = defineComponent({
             virtual={virtual}
             v-slots={{
               default: (item, itemIndex) => {
-                const { group, groupOption, data, value } = item
-                const { key } = data
-                const label = typeof item.label === 'function' ? item.label() : item.label
+                const { group, groupOption, data, value } = item;
+                const { key } = data;
+                const label = typeof item.label === 'function' ? item.label() : item.label;
                 // Group
                 if (group) {
-                  const groupTitle = data.title ?? (isTitleType(label) && label)
+                  const groupTitle = data.title ?? (isTitleType(label) && label);
                   return (
                     <div
                       class={classNames(itemPrefixCls.value, `${itemPrefixCls.value}-group`)}
@@ -299,7 +299,7 @@ const OptionList = defineComponent({
                     >
                       {renderOption ? renderOption(data) : label !== undefined ? label : key}
                     </div>
-                  )
+                  );
                 }
 
                 const {
@@ -310,12 +310,12 @@ const OptionList = defineComponent({
                   class: cls,
                   className,
                   ...otherProps
-                } = data
-                const passedProps = omit(otherProps, omitFieldNameList)
+                } = data;
+                const passedProps = omit(otherProps, omitFieldNameList);
                 // Option
-                const selected = isSelected(value)
+                const selected = isSelected(value);
 
-                const optionPrefixCls = `${itemPrefixCls.value}-option`
+                const optionPrefixCls = `${itemPrefixCls.value}-option`;
                 const optionClassName = classNames(
                   itemPrefixCls.value,
                   optionPrefixCls,
@@ -327,20 +327,20 @@ const OptionList = defineComponent({
                     [`${optionPrefixCls}-disabled`]: disabled,
                     [`${optionPrefixCls}-selected`]: selected,
                   },
-                )
+                );
 
-                const mergedLabel = getLabel(item)
+                const mergedLabel = getLabel(item);
 
                 const iconVisible
-                  = !menuItemSelectedIcon || typeof menuItemSelectedIcon === 'function' || selected
+                  = !menuItemSelectedIcon || typeof menuItemSelectedIcon === 'function' || selected;
 
                 // https://github.com/ant-design/ant-design/issues/34145
                 const content
-                  = typeof mergedLabel === 'number' ? mergedLabel : mergedLabel || value
+                  = typeof mergedLabel === 'number' ? mergedLabel : mergedLabel || value;
                 // https://github.com/ant-design/ant-design/issues/26717
-                let optionTitle = isTitleType(content) ? content.toString() : undefined
+                let optionTitle = isTitleType(content) ? content.toString() : undefined;
                 if (title !== undefined)
-                  optionTitle = title
+                  optionTitle = title;
 
                 return (
                   <div
@@ -350,19 +350,19 @@ const OptionList = defineComponent({
                     title={optionTitle}
                     onMousemove={(e) => {
                       if (otherProps.onMousemove)
-                        otherProps.onMousemove(e)
+                        otherProps.onMousemove(e);
 
                       if (activeIndex === itemIndex || disabled)
-                        return
+                        return;
 
-                      setActive(itemIndex)
+                      setActive(itemIndex);
                     }}
                     onClick={(e) => {
                       if (!disabled)
-                        onSelectValue(value)
+                        onSelectValue(value);
 
                       if (otherProps.onClick)
-                        otherProps.onClick(e)
+                        otherProps.onClick(e);
                     }}
                     style={style}
                   >
@@ -380,15 +380,15 @@ const OptionList = defineComponent({
                       </TransBtn>
                     )}
                   </div>
-                )
+                );
               },
             }}
           >
           </List>
         </>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default OptionList
+export default OptionList;

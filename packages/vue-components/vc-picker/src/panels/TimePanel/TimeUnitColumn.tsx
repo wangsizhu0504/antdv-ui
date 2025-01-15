@@ -1,4 +1,4 @@
-import { classNames } from '@antdv/utils'
+import { classNames } from '@antdv/utils';
 import {
   defineComponent,
   nextTick,
@@ -6,9 +6,9 @@ import {
   ref,
   shallowRef,
   watch,
-} from 'vue'
-import { useInjectPanel } from '../../PanelContext'
-import { scrollTo, waitElementReady } from '../../utils/uiUtil'
+} from 'vue';
+import { useInjectPanel } from '../../PanelContext';
+import { scrollTo, waitElementReady } from '../../utils/uiUtil';
 
 export interface Unit {
   label: any;
@@ -29,44 +29,44 @@ export default defineComponent({
   name: 'TimeUnitColumn',
   props: ['prefixCls', 'units', 'onSelect', 'value', 'active', 'hideDisabledOptions'],
   setup(props) {
-    const { open } = useInjectPanel()
+    const { open } = useInjectPanel();
 
-    const ulRef = shallowRef<HTMLElement>(null)
-    const liRefs = ref(new Map<number, HTMLElement | null>())
-    const scrollRef = ref<Function>()
+    const ulRef = shallowRef<HTMLElement>(null);
+    const liRefs = ref(new Map<number, HTMLElement | null>());
+    const scrollRef = ref<Function>();
 
     watch(
       () => props.value,
       () => {
-        const li = liRefs.value.get(props.value!)
+        const li = liRefs.value.get(props.value!);
         if (li && open.value !== false)
-          scrollTo(ulRef.value, li.offsetTop, 120)
+          scrollTo(ulRef.value, li.offsetTop, 120);
       },
-    )
+    );
     onBeforeUnmount(() => {
-      scrollRef.value?.()
-    })
+      scrollRef.value?.();
+    });
 
     watch(
       open,
       () => {
-        scrollRef.value?.()
+        scrollRef.value?.();
         nextTick(() => {
           if (open.value) {
-            const li = liRefs.value.get(props.value!)
+            const li = liRefs.value.get(props.value!);
             if (li) {
               scrollRef.value = waitElementReady(li as any, () => {
-                scrollTo(ulRef.value!, li.offsetTop, 0)
-              })
+                scrollTo(ulRef.value!, li.offsetTop, 0);
+              });
             }
           }
-        })
+        });
       },
       { immediate: true, flush: 'post' },
-    )
+    );
     return () => {
-      const { prefixCls, units, onSelect, value, active, hideDisabledOptions } = props
-      const cellPrefixCls = `${prefixCls}-cell`
+      const { prefixCls, units, onSelect, value, active, hideDisabledOptions } = props;
+      const cellPrefixCls = `${prefixCls}-cell`;
       return (
         <ul
           class={classNames(`${prefixCls}-column`, {
@@ -77,13 +77,13 @@ export default defineComponent({
         >
           {units!.map((unit) => {
             if (hideDisabledOptions && unit.disabled)
-              return null
+              return null;
 
             return (
               <li
                 key={unit.value}
                 ref={(element) => {
-                  liRefs.value.set(unit.value, element as HTMLElement)
+                  liRefs.value.set(unit.value, element as HTMLElement);
                 }}
                 class={classNames(cellPrefixCls, {
                   [`${cellPrefixCls}-disabled`]: unit.disabled,
@@ -91,17 +91,17 @@ export default defineComponent({
                 })}
                 onClick={() => {
                   if (unit.disabled)
-                    return
+                    return;
 
-                  onSelect!(unit.value)
+                  onSelect!(unit.value);
                 }}
               >
                 <div class={`${cellPrefixCls}-inner`}>{unit.label}</div>
               </li>
-            )
+            );
           })}
         </ul>
-      )
-    }
+      );
+    };
   },
-})
+});

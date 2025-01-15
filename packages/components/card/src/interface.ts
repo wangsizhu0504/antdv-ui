@@ -6,5 +6,5 @@ export interface CardTabListType {
   disabled?: boolean
 }
 
-export type CardType = 'inner'
-export type CardSize = 'default' | 'small'
+export type CardType = 'inner';
+export type CardSize = 'default' | 'small';

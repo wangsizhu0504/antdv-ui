@@ -1,7 +1,7 @@
-import type { MouseEventHandler } from '@antdv/types'
-import type { ExtractPropTypes } from 'vue'
-import type { CheckboxChangeEvent, CheckboxOptionType, CheckboxValueType } from './interface'
-import { arrayType, booleanType, functionType, PropTypes, stringType } from '@antdv/utils'
+import type { MouseEventHandler } from '@antdv/types';
+import type { ExtractPropTypes } from 'vue';
+import type { CheckboxChangeEvent, CheckboxOptionType, CheckboxValueType } from './interface';
+import { arrayType, booleanType, functionType, PropTypes, stringType } from '@antdv/utils';
 
 export function abstractCheckboxGroupProps() {
   return {
@@ -12,7 +12,7 @@ export function abstractCheckboxGroupProps() {
     ),
     disabled: Boolean,
     id: String,
-  }
+  };
 }
 
 export function abstractCheckboxProps() {
@@ -32,7 +32,7 @@ export function abstractCheckboxProps() {
     'onUpdate:checked': functionType<(checked: boolean) => void>(),
     'onClick': functionType<MouseEventHandler>(),
     'skipGroup': booleanType(false),
-  }
+  };
 }
 
 export function checkboxGroupProps() {
@@ -42,13 +42,13 @@ export function checkboxGroupProps() {
     'value': arrayType<CheckboxValueType[]>(),
     'onChange': functionType<(checkedValue: CheckboxValueType[]) => void>(),
     'onUpdate:value': functionType<(checkedValue: CheckboxValueType[]) => void>(),
-  }
+  };
 }
 export function checkboxProps() {
   return {
     ...abstractCheckboxProps(),
     indeterminate: booleanType(false),
-  }
+  };
 }
 
 export function checkboxRenderProps() {
@@ -65,11 +65,11 @@ export function checkboxRenderProps() {
     autofocus: Boolean,
     value: PropTypes.any,
     required: Boolean,
-  }
+  };
 }
 
-export type CheckboxProps = Partial<ExtractPropTypes<ReturnType<typeof checkboxProps>>>
+export type CheckboxProps = Partial<ExtractPropTypes<ReturnType<typeof checkboxProps>>>;
 
-export type CheckboxRenderProps = Partial<ExtractPropTypes<ReturnType<typeof checkboxRenderProps>>>
+export type CheckboxRenderProps = Partial<ExtractPropTypes<ReturnType<typeof checkboxRenderProps>>>;
 
-export type CheckboxGroupProps = Partial<ExtractPropTypes<ReturnType<typeof checkboxGroupProps>>>
+export type CheckboxGroupProps = Partial<ExtractPropTypes<ReturnType<typeof checkboxGroupProps>>>;

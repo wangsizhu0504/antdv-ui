@@ -1,12 +1,12 @@
-import type { TransferLocale } from '@antdv/locale'
-import { DeleteOutlined } from '@ant-design/icons-vue'
-import { enUS as defaultLocale } from '@antdv/locale'
-import { classNames } from '@antdv/utils'
-import { TransButton } from '@antdv/vue-components'
-import { defineComponent } from 'vue'
-import Checkbox from '../../checkbox'
-import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
-import { transferListItemProps } from './props'
+import type { TransferLocale } from '@antdv/locale';
+import { DeleteOutlined } from '@ant-design/icons-vue';
+import { enUS as defaultLocale } from '@antdv/locale';
+import { classNames } from '@antdv/utils';
+import { TransButton } from '@antdv/vue-components';
+import { defineComponent } from 'vue';
+import Checkbox from '../../checkbox';
+import LocaleReceiver from '../../locale-provider/src/LocaleReceiver';
+import { transferListItemProps } from './props';
 
 function noop() {}
 
@@ -18,20 +18,20 @@ export default defineComponent({
   emits: ['click', 'remove'],
   setup(props, { emit }) {
     return () => {
-      const { renderedText, renderedEl, item, checked, disabled, prefixCls, showRemove } = props
+      const { renderedText, renderedEl, item, checked, disabled, prefixCls, showRemove } = props;
       const className = classNames({
         [`${prefixCls}-content-item`]: true,
         [`${prefixCls}-content-item-disabled`]: disabled || item.disabled,
-      })
+      });
 
-      let title: string
+      let title: string;
       if (typeof renderedText === 'string' || typeof renderedText === 'number')
-        title = String(renderedText)
+        title = String(renderedText);
 
       return (
         <LocaleReceiver componentName="Transfer" defaultLocale={defaultLocale.Transfer}>
           {(transferLocale: TransferLocale) => {
-            const labelNode = <span class={`${prefixCls}-content-item-text`}>{renderedEl}</span>
+            const labelNode = <span class={`${prefixCls}-content-item-text`}>{renderedEl}</span>;
             if (showRemove) {
               return (
                 <li class={className} title={title}>
@@ -41,13 +41,13 @@ export default defineComponent({
                     class={`${prefixCls}-content-item-remove`}
                     aria-label={transferLocale.remove}
                     onClick={() => {
-                      emit('remove', item)
+                      emit('remove', item);
                     }}
                   >
                     <DeleteOutlined />
                   </TransButton>
                 </li>
-              )
+              );
             }
 
             return (
@@ -67,10 +67,10 @@ export default defineComponent({
                 />
                 {labelNode}
               </li>
-            )
+            );
           }}
         </LocaleReceiver>
-      )
-    }
+      );
+    };
   },
-})
+});

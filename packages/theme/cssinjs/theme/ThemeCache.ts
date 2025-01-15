@@ -1,5 +1,5 @@
-import type { DerivativeFunc } from './interface'
-import type Theme from './Theme'
+import type { DerivativeFunc } from './interface';
+import type Theme from './Theme';
 
 // ================================== Cache ==================================
 type ThemeCacheMap = Map<
@@ -8,62 +8,62 @@ type ThemeCacheMap = Map<
     map?: ThemeCacheMap
     value?: [Theme<any, any>, number]
   }
->
+>;
 
-type DerivativeOptions = Array<DerivativeFunc<any, any>>
+type DerivativeOptions = Array<DerivativeFunc<any, any>>;
 
 export function sameDerivativeOption(left: DerivativeOptions, right: DerivativeOptions) {
   if (left.length !== right.length)
-    return false
+    return false;
 
   for (let i = 0; i < left.length; i++) {
     if (left[i] !== right[i])
-      return false
+      return false;
   }
-  return true
+  return true;
 }
 
 export default class ThemeCache {
-  public static MAX_CACHE_SIZE = 20
-  public static MAX_CACHE_OFFSET = 5
+  public static MAX_CACHE_SIZE = 20;
+  public static MAX_CACHE_OFFSET = 5;
 
-  private readonly cache: ThemeCacheMap
-  private keys: DerivativeOptions[]
-  private cacheCallTimes: number
+  private readonly cache: ThemeCacheMap;
+  private keys: DerivativeOptions[];
+  private cacheCallTimes: number;
 
   constructor() {
-    this.cache = new Map()
-    this.keys = []
-    this.cacheCallTimes = 0
+    this.cache = new Map();
+    this.keys = [];
+    this.cacheCallTimes = 0;
   }
 
   public size(): number {
-    return this.keys.length
+    return this.keys.length;
   }
 
   private internalGet(
     derivativeOption: DerivativeOptions,
     updateCallTimes = false,
   ): [Theme<any, any>, number] | undefined {
-    let cache: ReturnType<ThemeCacheMap['get']> = { map: this.cache }
+    let cache: ReturnType<ThemeCacheMap['get']> = { map: this.cache };
     derivativeOption.forEach((derivative) => {
       if (!cache)
-        cache = undefined
+        cache = undefined;
       else
-        cache = cache?.map?.get(derivative)
-    })
+        cache = cache?.map?.get(derivative);
+    });
     if (cache?.value && updateCallTimes)
-      cache.value[1] = this.cacheCallTimes++
+      cache.value[1] = this.cacheCallTimes++;
 
-    return cache?.value
+    return cache?.value;
   }
 
   public get(derivativeOption: DerivativeOptions): Theme<any, any> | undefined {
-    return this.internalGet(derivativeOption, true)?.[0]
+    return this.internalGet(derivativeOption, true)?.[0];
   }
 
   public has(derivativeOption: DerivativeOptions): boolean {
-    return !!this.internalGet(derivativeOption)
+    return !!this.internalGet(derivativeOption);
   }
 
   public set(derivativeOption: DerivativeOptions, value: Theme<any, any>): void {
@@ -71,60 +71,60 @@ export default class ThemeCache {
     if (!this.has(derivativeOption)) {
       if (this.size() + 1 > ThemeCache.MAX_CACHE_SIZE + ThemeCache.MAX_CACHE_OFFSET) {
         const [targetKey] = this.keys.reduce<[DerivativeOptions, number]>((result: any, key) => {
-          const [, callTimes] = result
+          const [, callTimes] = result;
           if (this.internalGet(key)![1] < callTimes)
-            return [key, this.internalGet(key)![1]]
+            return [key, this.internalGet(key)![1]];
 
-          return result
-        }, [this.keys[0], this.cacheCallTimes])
-        this.delete(targetKey)
+          return result;
+        }, [this.keys[0], this.cacheCallTimes]);
+        this.delete(targetKey);
       }
 
-      this.keys.push(derivativeOption)
+      this.keys.push(derivativeOption);
     }
 
-    let cache = this.cache
+    let cache = this.cache;
     derivativeOption.forEach((derivative, index) => {
       if (index === derivativeOption.length - 1) {
-        cache.set(derivative, { value: [value, this.cacheCallTimes++] })
+        cache.set(derivative, { value: [value, this.cacheCallTimes++] });
       } else {
-        const cacheValue = cache.get(derivative)
+        const cacheValue = cache.get(derivative);
         if (!cacheValue)
-          cache.set(derivative, { map: new Map() })
+          cache.set(derivative, { map: new Map() });
         else if (!cacheValue.map)
-          cacheValue.map = new Map()
+          cacheValue.map = new Map();
 
-        cache = cache.get(derivative)!.map!
+        cache = cache.get(derivative)!.map!;
       }
-    })
+    });
   }
 
   private deleteByPath(
     currentCache: ThemeCacheMap,
     derivatives: Array<DerivativeFunc<any, any>>,
   ): Theme<any, any> | undefined {
-    const cache = currentCache.get(derivatives[0])!
+    const cache = currentCache.get(derivatives[0])!;
     if (derivatives.length === 1) {
       if (!cache.map)
-        currentCache.delete(derivatives[0])
+        currentCache.delete(derivatives[0]);
       else
-        currentCache.set(derivatives[0], { map: cache.map })
+        currentCache.set(derivatives[0], { map: cache.map });
 
-      return cache.value?.[0]
+      return cache.value?.[0];
     }
-    const result = this.deleteByPath(cache.map!, derivatives.slice(1))
+    const result = this.deleteByPath(cache.map!, derivatives.slice(1));
     if ((!cache.map || cache.map.size === 0) && !cache.value)
-      currentCache.delete(derivatives[0])
+      currentCache.delete(derivatives[0]);
 
-    return result
+    return result;
   }
 
   public delete(derivativeOption: DerivativeOptions): Theme<any, any> | undefined {
     // If cache exists
     if (this.has(derivativeOption)) {
-      this.keys = this.keys.filter(item => !sameDerivativeOption(item, derivativeOption))
-      return this.deleteByPath(this.cache, derivativeOption)
+      this.keys = this.keys.filter(item => !sameDerivativeOption(item, derivativeOption));
+      return this.deleteByPath(this.cache, derivativeOption);
     }
-    return undefined
+    return undefined;
   }
 }

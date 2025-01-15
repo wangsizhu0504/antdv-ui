@@ -18,12 +18,12 @@ When the timeline is incomplete and ongoing, put a ghost node at last. Set `pend
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const reverse = ref<boolean>(false)
+  const reverse = ref<boolean>(false);
 
   function handleClick() {
-    reverse.value = !reverse.value
+    reverse.value = !reverse.value;
   }
 </script>
 

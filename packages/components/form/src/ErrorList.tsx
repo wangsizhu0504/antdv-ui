@@ -1,5 +1,5 @@
-import type { VueNode } from '@antdv/types'
-import { collapseMotion, getTransitionGroupProps, getTransitionProps } from '@antdv/vue-components'
+import type { VueNode } from '@antdv/types';
+import { collapseMotion, getTransitionGroupProps, getTransitionProps } from '@antdv/vue-components';
 import {
   computed,
   defineComponent,
@@ -7,10 +7,10 @@ import {
   Transition,
   TransitionGroup,
   watch,
-} from 'vue'
+} from 'vue';
 
-import useStyle from '../style'
-import { useInjectFormItemPrefix } from './context'
+import useStyle from '../style';
+import { useInjectFormItemPrefix } from './context';
 
 export interface ErrorListProps {
   errors?: VueNode[]
@@ -25,19 +25,19 @@ export default defineComponent({
   inheritAttrs: false,
   props: ['errors', 'help', 'onErrorVisibleChanged', 'helpStatus', 'warnings'],
   setup(props, { attrs }) {
-    const { prefixCls, status } = useInjectFormItemPrefix()
-    const baseClassName = computed(() => `${prefixCls.value}-item-explain`)
-    const visible = computed(() => !!(props.errors && props.errors.length))
-    const innerStatus = ref(status.value)
-    const [, hashId] = useStyle(prefixCls)
+    const { prefixCls, status } = useInjectFormItemPrefix();
+    const baseClassName = computed(() => `${prefixCls.value}-item-explain`);
+    const visible = computed(() => !!(props.errors && props.errors.length));
+    const innerStatus = ref(status.value);
+    const [, hashId] = useStyle(prefixCls);
     // Memo status in same visible
     watch([visible, status], () => {
       if (visible.value)
-        innerStatus.value = status.value
-    })
+        innerStatus.value = status.value;
+    });
 
     return () => {
-      const colMItem = collapseMotion(`${prefixCls.value}-show-help-item`)
+      const colMItem = collapseMotion(`${prefixCls.value}-show-help-item`);
       const transitionGroupProps = getTransitionGroupProps(
         `${prefixCls.value}-show-help-item`,
         colMItem,
@@ -48,7 +48,7 @@ export default defineComponent({
         baseClassName.value,
         attrs.class,
         `${prefixCls.value}-show-help`,
-      ]
+      ];
       return (
         <Transition
           {...getTransitionProps(`${prefixCls.value}-show-help`)}
@@ -64,11 +64,11 @@ export default defineComponent({
                 >
                   {error}
                 </div>
-              )
+              );
             })}
           </TransitionGroup>
         </Transition>
-      )
-    }
+      );
+    };
   },
-})
+});

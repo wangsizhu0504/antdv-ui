@@ -57,40 +57,40 @@
 
 export function getOuterWidth(el: HTMLElement) {
   if (el === document.body)
-    return document.documentElement.clientWidth
+    return document.documentElement.clientWidth;
 
-  return el.offsetWidth
+  return el.offsetWidth;
 }
 
 export function getOuterHeight(el: HTMLElement) {
   if (el === document.body)
-    return window.innerHeight || document.documentElement.clientHeight
+    return window.innerHeight || document.documentElement.clientHeight;
 
-  return el.offsetHeight
+  return el.offsetHeight;
 }
 
 export function getDocSize() {
-  const width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth)
-  const height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)
+  const width = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
+  const height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
 
   return {
     width,
     height,
-  }
+  };
 }
 
 export function getClientSize() {
-  const width = document.documentElement.clientWidth
-  const height = window.innerHeight || document.documentElement.clientHeight
+  const width = document.documentElement.clientWidth;
+  const height = window.innerHeight || document.documentElement.clientHeight;
   return {
     width,
     height,
-  }
+  };
 }
 
 export function getOffset(node: any) {
-  const box = node.getBoundingClientRect()
-  const docElem = document.documentElement
+  const box = node.getBoundingClientRect();
+  const docElem = document.documentElement;
 
   // < ie8 不支持 win.pageXOffset, 则使用 docElem.scrollLeft
   return {
@@ -102,23 +102,23 @@ export function getOffset(node: any) {
       box.top
       + (window.scrollX || docElem.scrollTop)
       - (docElem.clientTop || document.body.clientTop || 0),
-  }
+  };
 }
 export function styleToString(style: CSSStyleDeclaration) {
   // There are some different behavior between Firefox & Chrome.
   // We have to handle this ourself.
-  const styleNames = Array.prototype.slice.apply(style)
-  return styleNames.map(name => `${name}: ${style.getPropertyValue(name)};`).join('')
+  const styleNames = Array.prototype.slice.apply(style);
+  return styleNames.map(name => `${name}: ${style.getPropertyValue(name)};`).join('');
 }
 
 export function styleObjectToString(style: Record<string, string>) {
   return Object.keys(style).reduce((acc, name) => {
-    const styleValue = style[name]
+    const styleValue = style[name];
     if (typeof styleValue === 'undefined' || styleValue === null) {
-      return acc
+      return acc;
     }
 
-    acc += `${name}: ${style[name]};`
-    return acc
-  }, '')
+    acc += `${name}: ${style[name]};`;
+    return acc;
+  }, '');
 }

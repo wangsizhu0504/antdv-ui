@@ -1,9 +1,9 @@
-import type { BadgeProps } from '../../badge'
+import type { BadgeProps } from '../../badge';
 
-export type FloatButtonType = 'default' | 'primary'
+export type FloatButtonType = 'default' | 'primary';
 
-export type FloatButtonShape = 'circle' | 'square'
+export type FloatButtonShape = 'circle' | 'square';
 
-export type FloatButtonGroupTrigger = 'click' | 'hover'
+export type FloatButtonGroupTrigger = 'click' | 'hover';
 
-export type FloatButtonBadgeProps = Omit<BadgeProps, 'status' | 'text' | 'title' | 'children'>
+export type FloatButtonBadgeProps = Omit<BadgeProps, 'status' | 'text' | 'title' | 'children'>;

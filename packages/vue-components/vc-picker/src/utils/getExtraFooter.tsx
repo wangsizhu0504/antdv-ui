@@ -1,4 +1,4 @@
-import type { PanelMode } from '../interface'
+import type { PanelMode } from '../interface';
 
 export default function getExtraFooter(
   prefixCls: string,
@@ -6,7 +6,7 @@ export default function getExtraFooter(
   renderExtraFooter?: (mode: PanelMode) => any,
 ) {
   if (!renderExtraFooter)
-    return null
+    return null;
 
-  return <div class={`${prefixCls}-footer-extra`}>{renderExtraFooter(mode)}</div>
+  return <div class={`${prefixCls}-footer-extra`}>{renderExtraFooter(mode)}</div>;
 }

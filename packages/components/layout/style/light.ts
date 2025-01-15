@@ -1,8 +1,8 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { LayoutToken } from '.'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { LayoutToken } from '.';
 
 const genLayoutLightStyle: GenerateStyle<LayoutToken, CSSObject> = (token) => {
-  const { componentCls, colorBgContainer, colorBgBody, colorText } = token
+  const { componentCls, colorBgContainer, colorBgBody, colorText } = token;
 
   return {
     [`${componentCls}-sider-light`]: {
@@ -20,7 +20,7 @@ const genLayoutLightStyle: GenerateStyle<LayoutToken, CSSObject> = (token) => {
         borderInlineStart: 0,
       },
     },
-  }
-}
+  };
+};
 
-export default genLayoutLightStyle
+export default genLayoutLightStyle;

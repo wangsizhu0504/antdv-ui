@@ -1,8 +1,8 @@
-import type { CSSProperties } from '@antdv/theme'
-import type { Key, VueNode } from '@antdv/types'
+import type { CSSProperties } from '@antdv/theme';
+import type { Key, VueNode } from '@antdv/types';
 
-export type AnchorDirection = 'vertical' | 'horizontal'
-export type AnchorContainer = HTMLElement | Window
+export type AnchorDirection = 'vertical' | 'horizontal';
+export type AnchorContainer = HTMLElement | Window;
 
 export interface AnchorState {
   scrollContainer: HTMLElement | Window | null

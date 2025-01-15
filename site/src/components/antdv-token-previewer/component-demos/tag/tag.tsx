@@ -1,11 +1,11 @@
-import type { ComponentDemo } from '../../interface'
-import { Divider, Space, Tag, theme } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Divider, Space, Tag, theme } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
-    const { token } = theme.useToken()
+    const { token } = theme.useToken();
 
     return () => {
       return (
@@ -38,10 +38,10 @@ const Demo = defineComponent({
             <Tag color="purple">purple</Tag>
           </div>
         </Space>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
@@ -100,6 +100,6 @@ const componentDemo: ComponentDemo = {
     'red-7',
   ],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

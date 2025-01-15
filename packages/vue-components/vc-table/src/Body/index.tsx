@@ -1,16 +1,16 @@
-import type { GetComponentProps, GetRowKey, Key } from '../interface'
+import type { GetComponentProps, GetRowKey, Key } from '../interface';
 
 // base rc-table@7.17.2
-import { defineComponent, shallowRef, toRef } from 'vue'
-import { useInjectBody } from '../context/BodyContext'
-import { useProvideHover } from '../context/HoverContext'
-import { useInjectResize } from '../context/ResizeContext'
-import { useInjectTable } from '../context/TableContext'
-import useFlattenRecords from '../hooks/useFlattenRecords'
-import { getColumnsKey } from '../utils/valueUtil'
-import BodyRow from './BodyRow'
-import ExpandedRow from './ExpandedRow'
-import MeasureCell from './MeasureCell'
+import { defineComponent, shallowRef, toRef } from 'vue';
+import { useInjectBody } from '../context/BodyContext';
+import { useProvideHover } from '../context/HoverContext';
+import { useInjectResize } from '../context/ResizeContext';
+import { useInjectTable } from '../context/TableContext';
+import useFlattenRecords from '../hooks/useFlattenRecords';
+import { getColumnsKey } from '../utils/valueUtil';
+import BodyRow from './BodyRow';
+import ExpandedRow from './ExpandedRow';
+import MeasureCell from './MeasureCell';
 
 export interface BodyProps<RecordType> {
   data: RecordType[];
@@ -34,30 +34,30 @@ export default defineComponent<BodyProps<any>>({
     'childrenColumnName',
   ] as any,
   setup(props, { slots }) {
-    const resizeContext = useInjectResize()
-    const tableContext = useInjectTable()
-    const bodyContext = useInjectBody()
+    const resizeContext = useInjectResize();
+    const tableContext = useInjectTable();
+    const bodyContext = useInjectBody();
 
     const flattenData = useFlattenRecords(
       toRef(props, 'data'),
       toRef(props, 'childrenColumnName'),
       toRef(props, 'expandedKeys'),
       toRef(props, 'getRowKey'),
-    )
-    const startRow = shallowRef(-1)
-    const endRow = shallowRef(-1)
-    let timeoutId: any
+    );
+    const startRow = shallowRef(-1);
+    const endRow = shallowRef(-1);
+    let timeoutId: any;
     useProvideHover({
       startRow,
       endRow,
       onHover: (start, end) => {
-        clearTimeout(timeoutId)
+        clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {
-          startRow.value = start
-          endRow.value = end
-        }, 100)
+          startRow.value = start;
+          endRow.value = end;
+        }, 100);
       },
-    })
+    });
     return () => {
       const {
         data,
@@ -67,20 +67,20 @@ export default defineComponent<BodyProps<any>>({
         customRow,
         rowExpandable,
         childrenColumnName,
-      } = props
-      const { onColumnResize } = resizeContext
-      const { prefixCls, getComponent } = tableContext
-      const { flattenColumns } = bodyContext
-      const WrapperComponent = getComponent(['body', 'wrapper'], 'tbody')
-      const trComponent = getComponent(['body', 'row'], 'tr')
-      const tdComponent = getComponent(['body', 'cell'], 'td')
+      } = props;
+      const { onColumnResize } = resizeContext;
+      const { prefixCls, getComponent } = tableContext;
+      const { flattenColumns } = bodyContext;
+      const WrapperComponent = getComponent(['body', 'wrapper'], 'tbody');
+      const trComponent = getComponent(['body', 'row'], 'tr');
+      const tdComponent = getComponent(['body', 'cell'], 'td');
 
-      let rows
+      let rows;
       if (data.length) {
         rows = flattenData.value.map((item, idx) => {
-          const { record, indent, index: renderIndex } = item
+          const { record, indent, index: renderIndex } = item;
 
-          const key = getRowKey(record, idx)
+          const key = getRowKey(record, idx);
 
           return (
             <BodyRow
@@ -99,8 +99,8 @@ export default defineComponent<BodyProps<any>>({
               childrenColumnName={childrenColumnName}
               indent={indent}
             />
-          )
-        })
+          );
+        });
       } else {
         rows = (
           <ExpandedRow
@@ -114,10 +114,10 @@ export default defineComponent<BodyProps<any>>({
           >
             {slots.emptyNode?.()}
           </ExpandedRow>
-        )
+        );
       }
 
-      const columnsKey = getColumnsKey(flattenColumns)
+      const columnsKey = getColumnsKey(flattenColumns);
 
       return (
         <WrapperComponent class={`${prefixCls}-tbody`}>
@@ -140,7 +140,7 @@ export default defineComponent<BodyProps<any>>({
 
           {rows}
         </WrapperComponent>
-      )
-    }
+      );
+    };
   },
-})
+});

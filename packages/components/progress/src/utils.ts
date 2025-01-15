@@ -1,11 +1,11 @@
-import type { CSSProperties } from 'vue'
-import type { Direction } from '../../config-provider'
+import type { CSSProperties } from 'vue';
+import type { Direction } from '../../config-provider';
 
-import type { ProgressGradient, StringGradients } from './interface'
-import type { CircleProps, ProgressProps } from './props'
-import { presetPrimaryColors } from '@ant-design/colors'
+import type { ProgressGradient, StringGradients } from './interface';
+import type { CircleProps, ProgressProps } from './props';
+import { presetPrimaryColors } from '@ant-design/colors';
 
-import { devWarning } from '@antdv/utils'
+import { devWarning } from '@antdv/utils';
 
 /**
  * {
@@ -17,18 +17,18 @@ import { devWarning } from '@antdv/utils'
  * }
  */
 export function sortGradient(gradients: StringGradients) {
-  let tempArr = []
+  let tempArr = [];
   Object.keys(gradients).forEach((key) => {
-    const formattedKey = Number.parseFloat(key.replace(/%/g, ''))
+    const formattedKey = Number.parseFloat(key.replace(/%/g, ''));
     if (!Number.isNaN(formattedKey)) {
       tempArr.push({
         key: formattedKey,
         value: gradients[key],
-      })
+      });
     }
-  })
-  tempArr = tempArr.sort((a, b) => a.key - b.key)
-  return tempArr.map(({ key, value }) => `${value} ${key}%`).join(', ')
+  });
+  tempArr = tempArr.sort((a, b) => a.key - b.key);
+  return tempArr.map(({ key, value }) => `${value} ${key}%`).join(', ');
 }
 
 /**
@@ -50,98 +50,98 @@ export function handleGradient(strokeColor: ProgressGradient, directionConfig?: 
     to = presetPrimaryColors.blue,
     direction = directionConfig === 'rtl' ? 'to left' : 'to right',
     ...rest
-  } = strokeColor
+  } = strokeColor;
   if (Object.keys(rest).length !== 0) {
-    const sortedGradients = sortGradient(rest as StringGradients)
-    return { backgroundImage: `linear-gradient(${direction}, ${sortedGradients})` }
+    const sortedGradients = sortGradient(rest as StringGradients);
+    return { backgroundImage: `linear-gradient(${direction}, ${sortedGradients})` };
   }
-  return { backgroundImage: `linear-gradient(${direction}, ${from}, ${to})` }
+  return { backgroundImage: `linear-gradient(${direction}, ${from}, ${to})` };
 }
 
 export function validProgress(progress: number | undefined) {
   if (!progress || progress < 0)
-    return 0
+    return 0;
 
   if (progress > 100)
-    return 100
+    return 100;
 
-  return progress
+  return progress;
 }
 
 export function getSuccessPercent({ success, successPercent }: ProgressProps) {
-  let percent = successPercent
+  let percent = successPercent;
   /** @deprecated Use `percent` instead */
   if (success && 'progress' in success) {
     devWarning(
       false,
       'Progress',
       '`success.progress` is deprecated. Please use `success.percent` instead.',
-    )
-    percent = success.progress
+    );
+    percent = success.progress;
   }
   if (success && 'percent' in success)
-    percent = success.percent
+    percent = success.percent;
 
-  return percent
+  return percent;
 }
 
 export function getPercentage({ percent, success, successPercent }: ProgressProps) {
-  const realSuccessPercent = validProgress(getSuccessPercent({ success, successPercent }))
-  return [realSuccessPercent, validProgress(validProgress(percent) - realSuccessPercent)]
+  const realSuccessPercent = validProgress(getSuccessPercent({ success, successPercent }));
+  return [realSuccessPercent, validProgress(validProgress(percent) - realSuccessPercent)];
 }
 
 export function getStrokeColor({
   success = {},
   strokeColor,
 }: Partial<CircleProps>): Array<string | Record<string, string>> {
-  const { strokeColor: successColor } = success
+  const { strokeColor: successColor } = success;
   // @ts-expect-error
-  return [successColor || presetPrimaryColors.green, strokeColor || null!]
+  return [successColor || presetPrimaryColors.green, strokeColor || null!];
 }
 
 export function getSize(size: ProgressProps['size'], type: ProgressProps['type'] | 'step', extra?: {
   steps?: number
   strokeWidth?: number
 }): { width: number, height: number } {
-  let width = -1
-  let height = -1
+  let width = -1;
+  let height = -1;
   if (type === 'step') {
-    const steps = extra!.steps!
-    const strokeWidth = extra!.strokeWidth!
+    const steps = extra!.steps!;
+    const strokeWidth = extra!.strokeWidth!;
     if (typeof size === 'string' || typeof size === 'undefined') {
-      width = size === 'small' ? 2 : 14
-      height = strokeWidth ?? 8
+      width = size === 'small' ? 2 : 14;
+      height = strokeWidth ?? 8;
     } else if (typeof size === 'number') {
-      [width, height] = [size, size]
+      [width, height] = [size, size];
     } else {
-      [width = 14, height = 8] = size
+      [width = 14, height = 8] = size;
     }
-    width *= steps
+    width *= steps;
   } else if (type === 'line') {
-    const strokeWidth = extra?.strokeWidth
+    const strokeWidth = extra?.strokeWidth;
     if (typeof size === 'string' || typeof size === 'undefined')
-      height = strokeWidth || (size === 'small' ? 6 : 8)
+      height = strokeWidth || (size === 'small' ? 6 : 8);
     else if (typeof size === 'number')
-      [width, height] = [size, size]
+      [width, height] = [size, size];
     else
-      [width = -1, height = 8] = size
+      [width = -1, height = 8] = size;
   } else if (type === 'circle' || type === 'dashboard') {
     if (typeof size === 'string' || typeof size === 'undefined') {
-      [width, height] = size === 'small' ? [60, 60] : [120, 120]
+      [width, height] = size === 'small' ? [60, 60] : [120, 120];
     } else if (typeof size === 'number') {
-      [width, height] = [size, size]
+      [width, height] = [size, size];
     } else {
       if (process.env.NODE_ENV !== 'production') {
         devWarning(
           false,
           'Progress',
           'Type "circle" and "dashboard" do not accept array as `size`, please use number or preset size instead.',
-        )
+        );
       }
 
-      width = size[0] ?? size[1] ?? 120
-      height = size[0] ?? size[1] ?? 120
+      width = size[0] ?? size[1] ?? 120;
+      height = size[0] ?? size[1] ?? 120;
     }
   }
-  return { width, height }
+  return { width, height };
 }

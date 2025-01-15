@@ -1,70 +1,70 @@
-import type { VueNode } from '@antdv/types'
-import type { ButtonProps } from '../../button'
+import type { VueNode } from '@antdv/types';
+import type { ButtonProps } from '../../button';
 
-import type { TourBtnProps } from './props'
-import { CloseOutlined } from '@ant-design/icons-vue'
-import { enUS as defaultLocale } from '@antdv/locale'
-import { classNames, isFunction } from '@antdv/utils'
-import { computed, defineComponent, toRefs } from 'vue'
+import type { TourBtnProps } from './props';
+import { CloseOutlined } from '@ant-design/icons-vue';
+import { enUS as defaultLocale } from '@antdv/locale';
+import { classNames, isFunction } from '@antdv/utils';
+import { computed, defineComponent, toRefs } from 'vue';
 
-import Button from '../../button'
-import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
-import { tourStepProps } from './props'
+import Button from '../../button';
+import LocaleReceiver from '../../locale-provider/src/LocaleReceiver';
+import { tourStepProps } from './props';
 
 export default defineComponent({
   name: 'ATourPanel',
   inheritAttrs: false,
   props: tourStepProps(),
   setup(props, { attrs, slots }) {
-    const { current, total } = toRefs(props)
+    const { current, total } = toRefs(props);
 
-    const isLastStep = computed(() => current.value === total.value - 1)
+    const isLastStep = computed(() => current.value === total.value - 1);
 
     const prevBtnClick = (e) => {
-      const prevButtonProps = props.prevButtonProps as TourBtnProps
-      props.onPrev?.(e)
+      const prevButtonProps = props.prevButtonProps as TourBtnProps;
+      props.onPrev?.(e);
       if (typeof prevButtonProps?.onClick === 'function')
-        prevButtonProps?.onClick()
-    }
+        prevButtonProps?.onClick();
+    };
 
     const nextBtnClick = (e) => {
-      const nextButtonProps = props.nextButtonProps as TourBtnProps
+      const nextButtonProps = props.nextButtonProps as TourBtnProps;
       if (isLastStep.value)
-        props.onFinish?.(e)
+        props.onFinish?.(e);
       else
-        props.onNext?.(e)
+        props.onNext?.(e);
 
       if (typeof nextButtonProps?.onClick === 'function')
-        nextButtonProps?.onClick()
-    }
+        nextButtonProps?.onClick();
+    };
 
     return () => {
-      const { prefixCls, title, onClose, cover, description, type: stepType, arrow } = props
+      const { prefixCls, title, onClose, cover, description, type: stepType, arrow } = props;
 
-      const prevButtonProps = props.prevButtonProps as TourBtnProps
-      const nextButtonProps = props.nextButtonProps as TourBtnProps
+      const prevButtonProps = props.prevButtonProps as TourBtnProps;
+      const nextButtonProps = props.nextButtonProps as TourBtnProps;
 
-      let headerNode: VueNode
+      let headerNode: VueNode;
       if (title) {
         headerNode = (
           <div class={`${prefixCls}-header`}>
             <div class={`${prefixCls}-title`}>{title}</div>
           </div>
-        )
+        );
       }
 
-      let descriptionNode: VueNode
+      let descriptionNode: VueNode;
       if (description)
-        descriptionNode = <div class={`${prefixCls}-description`}>{description}</div>
+        descriptionNode = <div class={`${prefixCls}-description`}>{description}</div>;
 
-      let coverNode: VueNode
+      let coverNode: VueNode;
       if (cover)
-        coverNode = <div class={`${prefixCls}-cover`}>{cover}</div>
+        coverNode = <div class={`${prefixCls}-cover`}>{cover}</div>;
 
-      let mergeIndicatorNode: VueNode
+      let mergeIndicatorNode: VueNode;
 
       if (slots.indicatorsRender) {
-        mergeIndicatorNode = slots.indicatorsRender({ current: current.value, total })
+        mergeIndicatorNode = slots.indicatorsRender({ current: current.value, total });
       } else {
         mergeIndicatorNode = [...Array.from({ length: total.value }).keys()].map(
           (stepItem, index) => {
@@ -76,16 +76,16 @@ export default defineComponent({
                   `${prefixCls}-indicator`,
                 )}
               />
-            )
+            );
           },
-        )
+        );
       }
 
-      const mainBtnType = stepType === 'primary' ? 'default' : 'primary'
+      const mainBtnType = stepType === 'primary' ? 'default' : 'primary';
       const secondaryBtnProps: ButtonProps = {
         type: 'default',
         ghost: stepType === 'primary',
-      }
+      };
 
       return (
         <LocaleReceiver componentName="Tour" defaultLocale={defaultLocale.Tour}>
@@ -143,7 +143,7 @@ export default defineComponent({
             </div>
           )}
         </LocaleReceiver>
-      )
-    }
+      );
+    };
   },
-})
+});

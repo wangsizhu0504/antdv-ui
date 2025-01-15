@@ -17,16 +17,16 @@ Messages of success, error and warning types.
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
+  import { message } from '@antdv/ui';
 
   function success() {
-    message.success('This is a success message')
+    message.success('This is a success message');
   }
   function error() {
-    message.error('This is an error message')
+    message.error('This is an error message');
   }
   function warning() {
-    message.warning('This is a warning message')
+    message.warning('This is a warning message');
   }
 </script>
 

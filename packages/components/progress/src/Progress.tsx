@@ -1,15 +1,15 @@
-import type { CustomSlotsType, VueNode } from '@antdv/types'
-import { CheckCircleFilled, CheckOutlined, CloseCircleFilled, CloseOutlined } from '@ant-design/icons-vue'
-import { progressStatuses } from '@antdv/constants'
-import { devWarning, initDefaultProps } from '@antdv/utils'
-import { computed, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import Circle from './Circle'
-import Line from './Line'
-import { progressProps } from './props'
-import Steps from './Steps'
-import { getSize, getSuccessPercent, validProgress } from './utils'
+import type { CustomSlotsType, VueNode } from '@antdv/types';
+import { CheckCircleFilled, CheckOutlined, CloseCircleFilled, CloseOutlined } from '@ant-design/icons-vue';
+import { progressStatuses } from '@antdv/constants';
+import { devWarning, initDefaultProps } from '@antdv/utils';
+import { computed, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import Circle from './Circle';
+import Line from './Line';
+import { progressProps } from './props';
+import Steps from './Steps';
+import { getSize, getSuccessPercent, validProgress } from './utils';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -29,40 +29,40 @@ export default defineComponent({
     format?: any
   }>,
   setup(props, { slots, attrs }) {
-    const { prefixCls, direction } = useConfigInject('progress', props)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const { prefixCls, direction } = useConfigInject('progress', props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
     if (process.env.NODE_ENV !== 'production') {
       devWarning(
         'successPercent' in props,
         'Progress',
         '`successPercent` is deprecated. Please use `success.percent` instead.',
-      )
+      );
 
-      devWarning('width' in props, 'Progress', '`width` is deprecated. Please use `size` instead.')
+      devWarning('width' in props, 'Progress', '`width` is deprecated. Please use `size` instead.');
     }
     const strokeColorNotArray = computed(() =>
       Array.isArray(props.strokeColor) ? props.strokeColor[0] : props.strokeColor,
-    )
+    );
     const percentNumber = computed(() => {
-      const { percent = 0 } = props
-      const successPercent = getSuccessPercent(props)
+      const { percent = 0 } = props;
+      const successPercent = getSuccessPercent(props);
       return Number.parseInt(
         successPercent !== undefined ? successPercent.toString() : percent.toString(),
         10,
-      )
-    })
+      );
+    });
 
     const progressStatus = computed(() => {
-      const { status } = props
+      const { status } = props;
       if (!progressStatuses.includes(status) && percentNumber.value >= 100)
-        return 'success'
+        return 'success';
 
-      return status || 'normal'
-    })
+      return status || 'normal';
+    });
 
     const classString = computed(() => {
-      const { type, showInfo, size } = props
-      const pre = prefixCls.value
+      const { type, showInfo, size } = props;
+      const pre = prefixCls.value;
       return {
         [pre]: true,
         [`${pre}-inline-circle`]: type === 'circle' && getSize(size, 'circle').width <= 20,
@@ -72,35 +72,35 @@ export default defineComponent({
         [`${pre}-${size}`]: size,
         [`${pre}-rtl`]: direction.value === 'rtl',
         [hashId.value]: true,
-      }
-    })
+      };
+    });
 
     const strokeColorNotGradient = computed(() =>
       typeof props.strokeColor === 'string' || Array.isArray(props.strokeColor)
         ? props.strokeColor
         : undefined,
-    )
+    );
 
     const renderProcessInfo = () => {
-      const { showInfo, format, type, percent, title } = props
-      const successPercent = getSuccessPercent(props)
-      if (!showInfo) return null
+      const { showInfo, format, type, percent, title } = props;
+      const successPercent = getSuccessPercent(props);
+      if (!showInfo) return null;
 
-      let text: VueNode
-      const textFormatter = format || slots?.format || ((val: number) => `${val}%`)
-      const isLineType = type === 'line'
+      let text: VueNode;
+      const textFormatter = format || slots?.format || ((val: number) => `${val}%`);
+      const isLineType = type === 'line';
       if (
         format
         || slots?.format
         || (progressStatus.value !== 'exception' && progressStatus.value !== 'success')
       ) {
-        text = textFormatter(validProgress(percent), validProgress(successPercent))
+        text = textFormatter(validProgress(percent), validProgress(successPercent));
       }
       else if (progressStatus.value === 'exception') {
-        text = isLineType ? <CloseCircleFilled /> : <CloseOutlined />
+        text = isLineType ? <CloseCircleFilled /> : <CloseOutlined />;
       }
       else if (progressStatus.value === 'success') {
-        text = isLineType ? <CheckCircleFilled /> : <CheckOutlined />
+        text = isLineType ? <CheckCircleFilled /> : <CheckOutlined />;
       }
 
       return (
@@ -110,14 +110,14 @@ export default defineComponent({
         >
           {text}
         </span>
-      )
-    }
+      );
+    };
 
     return () => {
-      const { type, steps, title } = props
-      const { class: cls, ...restAttrs } = attrs
-      const progressInfo = renderProcessInfo()
-      let progress: VueNode
+      const { type, steps, title } = props;
+      const { class: cls, ...restAttrs } = attrs;
+      const progressInfo = renderProcessInfo();
+      let progress: VueNode;
       // Render progress shape
       if (type === 'line') {
         progress = steps
@@ -140,7 +140,7 @@ export default defineComponent({
               >
                 {progressInfo}
               </Line>
-            )
+            );
       } else if (type === 'circle' || type === 'dashboard') {
         progress = (
           <Circle
@@ -151,13 +151,13 @@ export default defineComponent({
           >
             {progressInfo}
           </Circle>
-        )
+        );
       }
       return wrapSSR(
         <div role="progressbar" {...restAttrs} class={[classString.value, cls]} title={title}>
           {progress}
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

@@ -17,7 +17,7 @@ Use `tipFormatter` to format content of `Tooltip`. If `tipFormatter` is null, hi
 
 <script lang="ts" setup>
   function formatter(value: number) {
-    return `${value}%`
+    return `${value}%`;
   }
 </script>
 

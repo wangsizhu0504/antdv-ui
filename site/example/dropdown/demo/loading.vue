@@ -17,23 +17,23 @@ A loading indicator can be added to a button by setting the `loading` property o
 </docs>
 
 <script lang="ts" setup>
-  import type { Ref } from 'vue'
-  import { DownOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { Ref } from 'vue';
+  import { DownOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const loading1 = ref<any>(false)
-  const loading2 = ref<any>(false)
+  const loading1 = ref<any>(false);
+  const loading2 = ref<any>(false);
   function enterLoading(loading: Ref<boolean>) {
-    loading.value = true
+    loading.value = true;
     setTimeout(() => {
-      loading.value = false
-    }, 6000)
+      loading.value = false;
+    }, 6000);
   }
   function enterLoading1() {
-    enterLoading(loading1)
+    enterLoading(loading1);
   }
   function enterLoading2() {
-    enterLoading(loading2)
+    enterLoading(loading2);
   }
 </script>
 

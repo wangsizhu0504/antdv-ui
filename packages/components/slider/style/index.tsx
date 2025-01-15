@@ -1,7 +1,7 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import type { CSSProperties } from 'vue'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
-import { TinyColor } from '@ctrl/tinycolor'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import type { CSSProperties } from 'vue';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
+import { TinyColor } from '@ctrl/tinycolor';
 
 // Direction naming standard:
 // Horizontal base:
@@ -28,7 +28,7 @@ interface SliderToken extends FullToken<'Slider'> {
 // =============================== Base ===============================
 const genBaseStyle: GenerateStyle<SliderToken> = (token) => {
   const { componentCls, controlSize, dotSize, marginFull, marginPart, colorFillContentHover }
-    = token
+    = token;
 
   return {
     [componentCls]: {
@@ -226,18 +226,18 @@ const genBaseStyle: GenerateStyle<SliderToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================ Horizontal ============================
 function genDirectionStyle(token: SliderToken, horizontal: boolean): CSSObject {
-  const { componentCls, railSize, handleSize, dotSize } = token
+  const { componentCls, railSize, handleSize, dotSize } = token;
 
-  const railPadding: keyof CSSProperties = horizontal ? 'paddingBlock' : 'paddingInline'
-  const full: keyof CSSProperties = horizontal ? 'width' : 'height'
-  const part: keyof CSSProperties = horizontal ? 'height' : 'width'
-  const handlePos: keyof CSSProperties = horizontal ? 'insetBlockStart' : 'insetInlineStart'
-  const markInset: keyof CSSProperties = horizontal ? 'top' : 'insetInlineStart'
+  const railPadding: keyof CSSProperties = horizontal ? 'paddingBlock' : 'paddingInline';
+  const full: keyof CSSProperties = horizontal ? 'width' : 'height';
+  const part: keyof CSSProperties = horizontal ? 'height' : 'width';
+  const handlePos: keyof CSSProperties = horizontal ? 'insetBlockStart' : 'insetInlineStart';
+  const markInset: keyof CSSProperties = horizontal ? 'top' : 'insetInlineStart';
 
   return {
     [railPadding]: railSize,
@@ -277,11 +277,11 @@ function genDirectionStyle(token: SliderToken, horizontal: boolean): CSSObject {
       position: 'absolute',
       [handlePos]: (railSize - dotSize) / 2,
     },
-  }
+  };
 }
 // ============================ Horizontal ============================
 const genHorizontalStyle: GenerateStyle<SliderToken> = (token) => {
-  const { componentCls, marginPartWithMark } = token
+  const { componentCls, marginPartWithMark } = token;
 
   return {
     [`${componentCls}-horizontal`]: {
@@ -291,20 +291,20 @@ const genHorizontalStyle: GenerateStyle<SliderToken> = (token) => {
         marginBottom: marginPartWithMark,
       },
     },
-  }
-}
+  };
+};
 
 // ============================= Vertical =============================
 const genVerticalStyle: GenerateStyle<SliderToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [`${componentCls}-vertical`]: {
       ...genDirectionStyle(token, false),
       height: '100%',
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
@@ -314,20 +314,20 @@ export default genComponentStyleHook(
       marginPart: (token.controlHeight - token.controlSize) / 2,
       marginFull: token.controlSize / 2,
       marginPartWithMark: token.controlHeightLG - token.controlSize,
-    })
+    });
     return [
       genBaseStyle(sliderToken),
       genHorizontalStyle(sliderToken),
       genVerticalStyle(sliderToken),
-    ]
+    ];
   },
   (token) => {
     // Handle line width is always width-er 1px
-    const increaseHandleWidth = 1
-    const controlSize = token.controlHeightLG / 4
-    const controlSizeHover = token.controlHeightSM / 2
-    const handleLineWidth = token.lineWidth + increaseHandleWidth
-    const handleLineWidthHover = token.lineWidth + increaseHandleWidth * 3
+    const increaseHandleWidth = 1;
+    const controlSize = token.controlHeightLG / 4;
+    const controlSizeHover = token.controlHeightSM / 2;
+    const handleLineWidth = token.lineWidth + increaseHandleWidth;
+    const handleLineWidthHover = token.lineWidth + increaseHandleWidth * 3;
     return {
       controlSize,
       railSize: 4,
@@ -336,6 +336,6 @@ export default genComponentStyleHook(
       dotSize: 8,
       handleLineWidth,
       handleLineWidthHover,
-    }
+    };
   },
-)
+);

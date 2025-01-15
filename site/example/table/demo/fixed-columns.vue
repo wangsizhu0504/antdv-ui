@@ -25,7 +25,7 @@ To fix some columns and scroll inside other columns, and you must set `scroll.x`
 </docs>
 
 <script lang="ts" setup>
-  import type { TableColumnsType } from '@antdv/ui'
+  import type { TableColumnsType } from '@antdv/ui';
 
   const columns: TableColumnsType = [
     { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
@@ -44,7 +44,7 @@ To fix some columns and scroll inside other columns, and you must set `scroll.x`
       fixed: 'right',
       width: 100,
     },
-  ]
+  ];
 
   interface DataItem {
     key: string;
@@ -66,7 +66,7 @@ To fix some columns and scroll inside other columns, and you must set `scroll.x`
       age: 40,
       address: 'London Park',
     },
-  ]
+  ];
 </script>
 
 <template>

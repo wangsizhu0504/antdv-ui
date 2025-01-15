@@ -17,15 +17,15 @@ Customize the suffix icon through `suffixIcon`
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import { SmileOutlined } from '@ant-design/icons-vue'
+  import type { Dayjs } from 'dayjs';
+  import { SmileOutlined } from '@ant-design/icons-vue';
 
   function onChange(date: Dayjs | string, dateString: string) {
-    console.log(date, dateString)
+    console.log(date, dateString);
   }
 
   function onRangeChange(date: [Dayjs, Dayjs], dateString: [string, string]) {
-    console.log(date, dateString)
+    console.log(date, dateString);
   }
 </script>
 

@@ -17,8 +17,8 @@ Custom Field Names
 </docs>
 
 <script lang="ts" setup>
-  import type { CascaderProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { CascaderProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
   const options: CascaderProps['options'] = [
     {
@@ -53,8 +53,8 @@ Custom Field Names
         },
       ],
     },
-  ]
-  const value = ref<string[]>([])
+  ];
+  const value = ref<string[]>([]);
 </script>
 
 <template>

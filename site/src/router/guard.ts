@@ -1,18 +1,18 @@
-import type { Router } from 'vue-router'
-import NProgress from 'nprogress'
+import type { Router } from 'vue-router';
+import NProgress from 'nprogress';
 
 export function registerRouterGuard(router: Router) {
   router.beforeEach((to, from, next) => {
     if (to.path !== from.path)
-      NProgress.start()
+      NProgress.start();
 
-    next()
-  })
+    next();
+  });
 
   router.afterEach((to, from) => {
     if (to.path !== from.path) {
-      NProgress.done()
-      document.documentElement.scrollTop = 0
+      NProgress.done();
+      document.documentElement.scrollTop = 0;
     }
-  })
+  });
 }

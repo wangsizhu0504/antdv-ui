@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Button, Col, Row, Statistic } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Button, Col, Row, Statistic } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -19,14 +19,14 @@ const Demo = defineComponent({
           <Statistic title="Active Users" value={112893} loading />
         </Col>
       </Row>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorPrimary'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

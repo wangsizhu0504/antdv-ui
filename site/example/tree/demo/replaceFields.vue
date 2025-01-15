@@ -17,18 +17,18 @@ Replace the title,key and children fields in treeNode with the corresponding fie
 </docs>
 
 <script lang="ts" setup>
-  import type { TreeProps } from '@antdv/ui'
-  import type { Ref } from 'vue'
-  import { ref, watch } from 'vue'
+  import type { TreeProps } from '@antdv/ui';
+  import type { Ref } from 'vue';
+  import { ref, watch } from 'vue';
 
-  const expandedKeys = ref<string[]>(['0-0-0', '0-0-1'])
-  const selectedKeys = ref<string[]>(['0-0-0', '0-0-1'])
-  const checkedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+  const expandedKeys = ref<string[]>(['0-0-0', '0-0-1']);
+  const selectedKeys = ref<string[]>(['0-0-0', '0-0-1']);
+  const checkedKeys = ref<string[]>(['0-0-0', '0-0-1']);
 
   const fieldNames: TreeProps['fieldNames'] = {
     children: 'child',
     title: 'name',
-  }
+  };
 
   const treeData: Ref<TreeProps['treeData']> = ref<any>([
     {
@@ -51,16 +51,16 @@ Replace the title,key and children fields in treeNode with the corresponding fie
         },
       ],
     },
-  ])
+  ]);
   watch(expandedKeys, () => {
-    console.log('expandedKeys', expandedKeys)
-  })
+    console.log('expandedKeys', expandedKeys);
+  });
   watch(selectedKeys, () => {
-    console.log('selectedKeys', selectedKeys)
-  })
+    console.log('selectedKeys', selectedKeys);
+  });
   watch(checkedKeys, () => {
-    console.log('checkedKeys', checkedKeys)
-  })
+    console.log('checkedKeys', checkedKeys);
+  });
 </script>
 
 <template>

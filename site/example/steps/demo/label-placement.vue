@@ -17,7 +17,7 @@ Set labelPlacement to `vertical`.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
   const items = ref<any>([
     {
@@ -32,7 +32,7 @@ Set labelPlacement to `vertical`.
       title: 'Waiting',
       description: 'This is a description.',
     },
-  ])
+  ]);
 </script>
 
 <template>

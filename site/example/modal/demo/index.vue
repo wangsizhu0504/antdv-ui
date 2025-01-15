@@ -1,22 +1,22 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import Async from './async.vue'
-  import Basic from './basic.vue'
-  import ButtonProps from './button-props.vue'
-  import Confirm from './confirm.vue'
-  import ConfirmPromise from './confirm-promise.vue'
-  import ConfirmRouter from './confirm-router.vue'
-  import Footer from './footer.vue'
-  import Fullscreen from './fullscreen.vue'
-  import HookModal from './hook-modal.vue'
-  import Info from './info.vue'
-  import Locale from './locale.vue'
-  import Manual from './manual.vue'
-  import modalRenderVue from './modal-render.vue'
-  import Position from './position.vue'
-  import Width from './width.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import Async from './async.vue';
+  import Basic from './basic.vue';
+  import ButtonProps from './button-props.vue';
+  import ConfirmPromise from './confirm-promise.vue';
+  import ConfirmRouter from './confirm-router.vue';
+  import Confirm from './confirm.vue';
+  import Footer from './footer.vue';
+  import Fullscreen from './fullscreen.vue';
+  import HookModal from './hook-modal.vue';
+  import Info from './info.vue';
+  import Locale from './locale.vue';
+  import Manual from './manual.vue';
+  import modalRenderVue from './modal-render.vue';
+  import Position from './position.vue';
+  import Width from './width.vue';
 
   export default defineComponent({
     CN,
@@ -39,9 +39,9 @@
       HookModal,
     },
     setup() {
-      return {}
+      return {};
     },
-  })
+  });
 </script>
 
 <template>

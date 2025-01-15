@@ -1,7 +1,7 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
-import getArrowStyle, { MAX_VERTICAL_CONTENT_RADIUS } from '@antdv/theme/style/placementArrow'
-import { TinyColor } from '@ctrl/tinycolor'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
+import getArrowStyle, { MAX_VERTICAL_CONTENT_RADIUS } from '@antdv/theme/style/placementArrow';
+import { TinyColor } from '@ctrl/tinycolor';
 
 export interface ComponentToken {}
 
@@ -40,7 +40,7 @@ const genBaseStyle: GenerateStyle<TourToken> = (token) => {
     tourCloseSize,
     motionDurationSlow,
     antCls,
-  } = token
+  } = token;
 
   return [
     {
@@ -232,18 +232,18 @@ const genBaseStyle: GenerateStyle<TourToken> = (token) => {
       contentRadius: tourBorderRadius,
       limitVerticalRadius: true,
     }),
-  ]
-}
+  ];
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Tour', (token) => {
-  const { borderRadiusLG, fontSize, lineHeight } = token
+  const { borderRadiusLG, fontSize, lineHeight } = token;
   const TourToken = mergeToken<TourToken>(token, {
     tourZIndexPopup: token.zIndexPopupBase + 70,
     indicatorWidth: 6,
     indicatorHeight: 6,
     tourBorderRadius: borderRadiusLG,
     tourCloseSize: fontSize * lineHeight,
-  })
-  return [genBaseStyle(TourToken)]
-})
+  });
+  return [genBaseStyle(TourToken)];
+});

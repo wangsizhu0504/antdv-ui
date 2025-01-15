@@ -1,4 +1,4 @@
-import type { PresetColorType, SeedToken } from '..'
+import type { PresetColorType, SeedToken } from '..';
 
 export const defaultPresetColors: PresetColorType = {
   blue: '#1677ff',
@@ -14,7 +14,7 @@ export const defaultPresetColors: PresetColorType = {
   geekblue: '#2F54EB',
   gold: '#FAAD14',
   lime: '#A0D911',
-}
+};
 
 const seedToken: SeedToken = {
   // preset color palettes
@@ -72,5 +72,5 @@ const seedToken: SeedToken = {
 
   // Wireframe
   wireframe: false,
-}
-export default seedToken
+};
+export default seedToken;

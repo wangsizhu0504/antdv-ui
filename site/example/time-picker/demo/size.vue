@@ -17,12 +17,12 @@ The input box comes in three sizes. large is used in the form, while the medium 
 </docs>
 
 <script lang="ts" setup>
-  import dayjs from 'dayjs'
-  import { ref } from 'vue'
+  import dayjs from 'dayjs';
+  import { ref } from 'vue';
 
-  const value1 = ref<any>(dayjs('12:08:23', 'HH:mm'))
-  const value2 = ref<any>(dayjs('12:08:23', 'HH:mm'))
-  const value3 = ref<any>(dayjs('12:08:23', 'HH:mm'))
+  const value1 = ref<any>(dayjs('12:08:23', 'HH:mm'));
+  const value2 = ref<any>(dayjs('12:08:23', 'HH:mm'));
+  const value3 = ref<any>(dayjs('12:08:23', 'HH:mm'));
 </script>
 
 <template>

@@ -1,16 +1,16 @@
-import type { CustomSlotsType } from '@antdv/types'
-import { classNames, functionType, isMobile } from '@antdv/utils'
-import { defineComponent, onBeforeUnmount, ref } from 'vue'
+import type { CustomSlotsType } from '@antdv/types';
+import { classNames, functionType, isMobile } from '@antdv/utils';
+import { defineComponent, onBeforeUnmount, ref } from 'vue';
 
 /**
  * When click and hold on a button - the speed of auto changing the value.
  */
-const STEP_INTERVAL = 200
+const STEP_INTERVAL = 200;
 
 /**
  * When click and hold on a button - the delay before auto changing the value.
  */
-const STEP_DELAY = 600
+const STEP_DELAY = 600;
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -28,60 +28,60 @@ export default defineComponent({
     default?: any
   }>,
   setup(props, { slots, emit }) {
-    const stepTimeoutRef = ref()
+    const stepTimeoutRef = ref();
 
     // We will interval update step when hold mouse down
     const onStepMouseDown = (e: MouseEvent, up: boolean) => {
-      e.preventDefault()
+      e.preventDefault();
 
-      emit('step', up)
+      emit('step', up);
 
       // Loop step for interval
       function loopStep() {
-        emit('step', up)
+        emit('step', up);
 
-        stepTimeoutRef.value = setTimeout(loopStep, STEP_INTERVAL)
+        stepTimeoutRef.value = setTimeout(loopStep, STEP_INTERVAL);
       }
 
       // First time press will wait some time to trigger loop step update
-      stepTimeoutRef.value = setTimeout(loopStep, STEP_DELAY)
-    }
+      stepTimeoutRef.value = setTimeout(loopStep, STEP_DELAY);
+    };
 
     const onStopStep = () => {
-      clearTimeout(stepTimeoutRef.value)
-    }
+      clearTimeout(stepTimeoutRef.value);
+    };
 
     onBeforeUnmount(() => {
-      onStopStep()
-    })
+      onStopStep();
+    });
 
     return () => {
       if (isMobile())
-        return null
+        return null;
 
-      const { prefixCls, upDisabled, downDisabled } = props
-      const handlerClassName = `${prefixCls}-handler`
+      const { prefixCls, upDisabled, downDisabled } = props;
+      const handlerClassName = `${prefixCls}-handler`;
 
       const upClassName = classNames(handlerClassName, `${handlerClassName}-up`, {
         [`${handlerClassName}-up-disabled`]: upDisabled,
-      })
+      });
       const downClassName = classNames(handlerClassName, `${handlerClassName}-down`, {
         [`${handlerClassName}-down-disabled`]: downDisabled,
-      })
+      });
 
       const sharedHandlerProps = {
         unselectable: 'on' as const,
         role: 'button',
         onMouseup: onStopStep,
         onMouseleave: onStopStep,
-      }
-      const { upNode, downNode } = slots
+      };
+      const { upNode, downNode } = slots;
       return (
         <div class={`${handlerClassName}-wrap`}>
           <span
             {...sharedHandlerProps}
             onMousedown={(e) => {
-              onStepMouseDown(e, true)
+              onStepMouseDown(e, true);
             }}
             aria-label="Increase Value"
             aria-disabled={upDisabled}
@@ -92,7 +92,7 @@ export default defineComponent({
           <span
             {...sharedHandlerProps}
             onMousedown={(e) => {
-              onStepMouseDown(e, false)
+              onStepMouseDown(e, false);
             }}
             aria-label="Decrease Value"
             aria-disabled={downDisabled}
@@ -101,7 +101,7 @@ export default defineComponent({
             {downNode?.() || <span unselectable="on" class={`${prefixCls}-handler-down-inner`} />}
           </span>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

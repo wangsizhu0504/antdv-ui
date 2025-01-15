@@ -1,14 +1,14 @@
-import type { SlotsType, VNodeTypes } from 'vue'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
+import type { SlotsType, VNodeTypes } from 'vue';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
 
-import { ExceptionMap, IconMap } from './constant'
-import { resultProps } from './props'
+import { ExceptionMap, IconMap } from './constant';
+import { resultProps } from './props';
 
 // ExceptionImageMap keys
-const ExceptionStatus = Object.keys(ExceptionMap)
+const ExceptionStatus = Object.keys(ExceptionMap);
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -26,38 +26,38 @@ export default defineComponent({
     default?: any
   }>,
   setup(props, { slots, attrs }) {
-    const { prefixCls, direction } = useConfigInject('result', props)
+    const { prefixCls, direction } = useConfigInject('result', props);
 
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     const className = computed(() =>
       classNames(prefixCls.value, hashId.value, `${prefixCls.value}-${props.status}`, {
         [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
       }),
-    )
+    );
 
     const renderIcon = (prefixCls: string, { status, icon }) => {
       if (ExceptionStatus.includes(`${status}`)) {
-        const SVGComponent = ExceptionMap[status]
+        const SVGComponent = ExceptionMap[status];
         return (
           <div class={`${prefixCls}-icon ${prefixCls}-image`}>
             <SVGComponent />
           </div>
-        )
+        );
       }
-      const IconComponent = IconMap[status]
-      const iconNode = icon || <IconComponent />
-      return <div class={`${prefixCls}-icon`}>{iconNode}</div>
-    }
+      const IconComponent = IconMap[status];
+      const iconNode = icon || <IconComponent />;
+      return <div class={`${prefixCls}-icon`}>{iconNode}</div>;
+    };
 
-    const renderExtra = (prefixCls: string, extra: VNodeTypes) => extra && <div class={`${prefixCls}-extra`}>{extra}</div>
+    const renderExtra = (prefixCls: string, extra: VNodeTypes) => extra && <div class={`${prefixCls}-extra`}>{extra}</div>;
 
     return () => {
-      const title = props.title ?? slots.title?.()
-      const subTitle = props.subTitle ?? slots.subTitle?.()
-      const icon = props.icon ?? slots.icon?.()
-      const extra = props.extra ?? slots.extra?.()
-      const pre = prefixCls.value
+      const title = props.title ?? slots.title?.();
+      const subTitle = props.subTitle ?? slots.subTitle?.();
+      const icon = props.icon ?? slots.icon?.();
+      const extra = props.extra ?? slots.extra?.();
+      const pre = prefixCls.value;
       return wrapSSR(
         <div {...attrs} class={[className.value, attrs.class]}>
           {renderIcon(pre, { status: props.status, icon })}
@@ -66,7 +66,7 @@ export default defineComponent({
           {renderExtra(pre, extra)}
           {slots.default && <div class={`${pre}-content`}>{slots.default()}</div>}
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

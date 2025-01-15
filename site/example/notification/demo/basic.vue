@@ -17,7 +17,7 @@ The simplest usage that close the notification box after 4.5s.
 </docs>
 
 <script lang="ts" setup>
-  import { notification } from '@antdv/ui'
+  import { notification } from '@antdv/ui';
 
   function openNotification() {
     notification.open({
@@ -25,9 +25,9 @@ The simplest usage that close the notification box after 4.5s.
       description:
         'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
       onClick: () => {
-        console.log('Notification Clicked!')
+        console.log('Notification Clicked!');
       },
-    })
+    });
   }
 </script>
 

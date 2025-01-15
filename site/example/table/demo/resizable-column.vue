@@ -18,9 +18,9 @@ set resizable for drag column
 </docs>
 
 <script lang="ts" setup>
-  import type { TableColumnsType } from '@antdv/ui'
-  import { DownOutlined, SmileOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { TableColumnsType } from '@antdv/ui';
+  import { DownOutlined, SmileOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   const data = [
     {
@@ -44,7 +44,7 @@ set resizable for drag column
       address: 'Sidney No. 1 Lake Park',
       tags: ['cool', 'teacher'],
     },
-  ]
+  ];
 
   const columns = ref<TableColumnsType>([
     {
@@ -76,9 +76,9 @@ set resizable for drag column
       title: 'Action',
       key: 'action',
     },
-  ])
+  ]);
   function handleResizeColumn(w, col) {
-    col.width = w
+    col.width = w;
   }
 </script>
 

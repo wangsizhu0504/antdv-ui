@@ -1,6 +1,6 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { MenuToken } from '.'
-import { textEllipsis } from '@antdv/theme'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { MenuToken } from '.';
+import { textEllipsis } from '@antdv/theme';
 
 const getVerticalInlineStyle: GenerateStyle<MenuToken, CSSObject> = (token) => {
   const {
@@ -11,9 +11,9 @@ const getVerticalInlineStyle: GenerateStyle<MenuToken, CSSObject> = (token) => {
     menuArrowSize,
     marginXS,
     marginXXS,
-  } = token
+  } = token;
 
-  const paddingWithArrow = padding + menuArrowSize + marginXS
+  const paddingWithArrow = padding + menuArrowSize + marginXS;
 
   return {
     [`${componentCls}-item`]: {
@@ -47,8 +47,8 @@ const getVerticalInlineStyle: GenerateStyle<MenuToken, CSSObject> = (token) => {
             ${componentCls}-submenu-title`]: {
       paddingInlineEnd: paddingWithArrow,
     },
-  }
-}
+  };
+};
 
 const getVerticalStyle: GenerateStyle<MenuToken> = (token) => {
   const {
@@ -66,14 +66,14 @@ const getVerticalStyle: GenerateStyle<MenuToken> = (token) => {
     motionDurationSlow,
     paddingXS,
     boxShadowSecondary,
-  } = token
+  } = token;
 
   const inlineItemStyle: CSSObject = {
     height: menuItemHeight,
     lineHeight: `${menuItemHeight}px`,
     listStylePosition: 'inside',
     listStyleType: 'disc',
-  }
+  };
 
   return [
     {
@@ -224,7 +224,7 @@ const getVerticalStyle: GenerateStyle<MenuToken> = (token) => {
         },
       },
     },
-  ]
-}
+  ];
+};
 
-export default getVerticalStyle
+export default getVerticalStyle;

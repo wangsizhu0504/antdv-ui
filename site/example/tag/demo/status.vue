@@ -24,7 +24,7 @@ We preset five different colors, you can set color property such as `success`,`p
     ExclamationCircleOutlined,
     MinusCircleOutlined,
     SyncOutlined,
-  } from '@ant-design/icons-vue'
+  } from '@ant-design/icons-vue';
 </script>
 
 <template>

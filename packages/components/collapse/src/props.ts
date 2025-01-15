@@ -1,7 +1,7 @@
-import type { Key } from '@antdv/types'
-import type { ExtractPropTypes } from 'vue'
-import type { ActiveKeyType, CollapsibleType, PanelProps } from './interface'
-import { booleanType, functionType, PropTypes, someType, stringType } from '@antdv/utils'
+import type { Key } from '@antdv/types';
+import type { ExtractPropTypes } from 'vue';
+import type { ActiveKeyType, CollapsibleType, PanelProps } from './interface';
+import { booleanType, functionType, PropTypes, someType, stringType } from '@antdv/utils';
 
 export function collapseProps() {
   return {
@@ -18,7 +18,7 @@ export function collapseProps() {
     'ghost': booleanType(),
     'onChange': functionType<(key: Key | Key[]) => void>(),
     'onUpdate:activeKey': functionType<(key: Key | Key[]) => void>(),
-  }
+  };
 }
 
 export function collapsePanelProps() {
@@ -40,9 +40,9 @@ export function collapsePanelProps() {
     collapsible: stringType<CollapsibleType>(),
     role: String,
     onItemClick: functionType<(panelKey: Key) => void>(),
-  }
+  };
 }
 
-export type CollapseProps = Partial<ExtractPropTypes<ReturnType<typeof collapseProps>>>
+export type CollapseProps = Partial<ExtractPropTypes<ReturnType<typeof collapseProps>>>;
 
-export type CollapsePanelProps = Partial<ExtractPropTypes<ReturnType<typeof collapsePanelProps>>>
+export type CollapsePanelProps = Partial<ExtractPropTypes<ReturnType<typeof collapsePanelProps>>>;

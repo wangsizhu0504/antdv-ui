@@ -1,20 +1,20 @@
-import type { Locale, ValidateMessages } from '@antdv/locale'
-import type { AliasToken, DerivativeFunc, SeedToken } from '@antdv/theme'
-import type { MapToken, OverrideToken } from '@antdv/theme/token/interface'
-import type { SizeType, VueNode } from '@antdv/types'
-import type { ComputedRef, MaybeRef, Ref } from 'vue'
+import type { Locale, ValidateMessages } from '@antdv/locale';
+import type { AliasToken, DerivativeFunc, SeedToken } from '@antdv/theme';
+import type { MapToken, OverrideToken } from '@antdv/theme/token/interface';
+import type { SizeType, VueNode } from '@antdv/types';
+import type { ComputedRef, MaybeRef, Ref } from 'vue';
 
-import type { RequiredMark } from '../../form'
-import type { TransformCellTextProps } from '../../table'
-import type { ConfigProviderProps } from './props'
-import type renderEmpty from './renderEmpty'
+import type { RequiredMark } from '../../form';
+import type { TransformCellTextProps } from '../../table';
+import type { ConfigProviderProps } from './props';
+import type renderEmpty from './renderEmpty';
 
-export type DisabledType = boolean | undefined
+export type DisabledType = boolean | undefined;
 export interface GlobalFormCOntextProps {
   validateMessages?: Ref<ValidateMessages>
 }
 
-export type DirectionType = 'ltr' | 'rtl' | undefined
+export type DirectionType = 'ltr' | 'rtl' | undefined;
 
 export interface CSPConfig {
   nonce?: string
@@ -29,9 +29,9 @@ export interface ThemeColor {
   warningColor?: string
 }
 
-export type Direction = 'ltr' | 'rtl'
-export type MappingAlgorithm = DerivativeFunc<SeedToken, MapToken>
-export type RenderEmptyHandler = typeof renderEmpty
+export type Direction = 'ltr' | 'rtl';
+export type MappingAlgorithm = DerivativeFunc<SeedToken, MapToken>;
+export type RenderEmptyHandler = typeof renderEmpty;
 
 export interface RenderEmptyProps {
   componentName?: string

@@ -1,7 +1,7 @@
-import { classNames, PropTypes } from '@antdv/utils'
-import { defineComponent } from 'vue'
-import { OverflowContextProvider, useInjectOverflowContext } from './context'
-import Item from './Item'
+import { classNames, PropTypes } from '@antdv/utils';
+import { defineComponent } from 'vue';
+import { OverflowContextProvider, useInjectOverflowContext } from './context';
+import Item from './Item';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -20,21 +20,21 @@ export default defineComponent({
     tabindex: Number,
   },
   setup(props, { slots, attrs }) {
-    const context = useInjectOverflowContext()
+    const context = useInjectOverflowContext();
 
     return () => {
       // Render directly when context not provided
       if (!context.value) {
-        const { component: Component = 'div', ...restProps } = props
+        const { component: Component = 'div', ...restProps } = props;
         return (
           <Component {...restProps} {...attrs}>
             {slots.default?.()}
           </Component>
-        )
+        );
       }
 
-      const { className: contextClassName, ...restContext } = context.value
-      const { class: className, ...restProps } = attrs
+      const { className: contextClassName, ...restContext } = context.value;
+      const { class: className, ...restProps } = attrs;
       // Do not pass context to sub item to avoid multiple measure
       return (
         <OverflowContextProvider value={null}>
@@ -47,7 +47,7 @@ export default defineComponent({
           >
           </Item>
         </OverflowContextProvider>
-      )
-    }
+      );
+    };
   },
-})
+});

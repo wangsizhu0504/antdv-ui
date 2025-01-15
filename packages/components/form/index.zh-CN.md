@@ -202,10 +202,10 @@ Form.Item 会对唯一子元素进行劫持，并监听 `blur` 和 `change` 事�
 2.2 以下版本需要需要 @ant-design-vue/use 库单独提供，不建议继续使用，你应该尽快升级到 2.2+ 版本
 
 ```ts
-import { Form } from 'ant-design-vue'
-const useForm = Form.useForm
+import { Form } from 'ant-design-vue';
+const useForm = Form.useForm;
 
-useForm(modelRef, ruleRef, [options])
+useForm(modelRef, ruleRef, [options]);
 ```
 
 参数说明：
@@ -247,5 +247,5 @@ function useForm(
     status: boolean,
     errorMsgs: string[] | null,
   ) => void;
-}
+};
 ```

@@ -1,8 +1,8 @@
-import type { PropType } from 'vue'
-import type { OptionProps } from './Option'
-import { computed, defineComponent } from 'vue'
-import Trigger from '../../vc-trigger/src/Trigger'
-import DropdownMenu from './DropdownMenu'
+import type { PropType } from 'vue';
+import type { OptionProps } from './Option';
+import { computed, defineComponent } from 'vue';
+import Trigger from '../../vc-trigger/src/Trigger';
+import DropdownMenu from './DropdownMenu';
 
 const BUILT_IN_PLACEMENTS = {
   bottomRight: {
@@ -37,7 +37,7 @@ const BUILT_IN_PLACEMENTS = {
       adjustY: 1,
     },
   },
-}
+};
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -58,31 +58,31 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     const getDropdownPrefix = () => {
-      return `${props.prefixCls}-dropdown`
-    }
+      return `${props.prefixCls}-dropdown`;
+    };
     const getDropdownElement = () => {
-      const { options } = props
+      const { options } = props;
       return (
         <DropdownMenu
           prefixCls={getDropdownPrefix()}
           options={options}
           v-slots={{ notFoundContent: slots.notFoundContent, option: slots.option }}
         />
-      )
-    }
+      );
+    };
 
     const popupPlacement = computed(() => {
-      const { placement, direction } = props
-      let popupPlacement = 'topRight'
+      const { placement, direction } = props;
+      let popupPlacement = 'topRight';
       if (direction === 'rtl')
-        popupPlacement = placement === 'top' ? 'topLeft' : 'bottomLeft'
+        popupPlacement = placement === 'top' ? 'topLeft' : 'bottomLeft';
       else
-        popupPlacement = placement === 'top' ? 'topRight' : 'bottomRight'
+        popupPlacement = placement === 'top' ? 'topRight' : 'bottomRight';
 
-      return popupPlacement
-    })
+      return popupPlacement;
+    });
     return () => {
-      const { visible, transitionName, getPopupContainer } = props
+      const { visible, transitionName, getPopupContainer } = props;
       return (
         <Trigger
           prefixCls={getDropdownPrefix()}
@@ -96,7 +96,7 @@ export default defineComponent({
           v-slots={{ default: slots.default }}
         >
         </Trigger>
-      )
-    }
+      );
+    };
   },
-})
+});

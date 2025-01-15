@@ -1,4 +1,4 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {
@@ -10,7 +10,7 @@ interface SpaceToken extends FullToken<'Space'> {
 }
 
 const genSpaceCompactStyle: GenerateStyle<SpaceToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
   return {
     [componentCls]: {
@@ -23,8 +23,8 @@ const genSpaceCompactStyle: GenerateStyle<SpaceToken> = (token) => {
         flexDirection: 'column',
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
-export default genSpaceCompactStyle
+export default genSpaceCompactStyle;

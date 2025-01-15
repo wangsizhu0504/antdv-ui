@@ -1,7 +1,7 @@
-import type { AliasToken, CSSInterpolation } from '@antdv/theme'
-import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook'
-import { Keyframes } from '@antdv/theme'
-import { initMotion } from './motion'
+import type { AliasToken, CSSInterpolation } from '@antdv/theme';
+import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook';
+import { Keyframes } from '@antdv/theme';
+import { initMotion } from './motion';
 
 export const shakeIn = new Keyframes('antShakeIn', {
   '0%': {
@@ -24,7 +24,7 @@ export const shakeIn = new Keyframes('antShakeIn', {
     rotate: '0',
     scale: 1,
   },
-})
+});
 export const shakeOut = new Keyframes('antShakeOut', {
   '0%': {
     scale: 1,
@@ -41,11 +41,11 @@ export const shakeOut = new Keyframes('antShakeOut', {
   '100%': {
     scale: 0,
   },
-})
+});
 
 export function initShakeMotion(token: TokenWithCommonCls<AliasToken>): CSSInterpolation {
-  const { antCls } = token
-  const motionCls = `${antCls}-shake`
+  const { antCls } = token;
+  const motionCls = `${antCls}-shake`;
 
   return [
     initMotion(motionCls, shakeIn, shakeOut, '0.4s'),
@@ -62,5 +62,5 @@ export function initShakeMotion(token: TokenWithCommonCls<AliasToken>): CSSInter
         animationTimingFunction: token.motionEaseInOutCirc,
       },
     },
-  ]
+  ];
 }

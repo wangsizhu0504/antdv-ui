@@ -1,10 +1,10 @@
-import type { ConfigurableWindow } from '../_configurable'
-import type { MaybeComputedElementRef } from '../unref-element'
-import { watch } from 'vue'
-import { defaultWindow } from '../_configurable'
-import { tryOnScopeDispose } from '../try-on-scope-dispose'
-import { unrefElement } from '../unref-element'
-import { useSupported } from '../use-supported'
+import type { ConfigurableWindow } from '../_configurable';
+import type { MaybeComputedElementRef } from '../unref-element';
+import { watch } from 'vue';
+import { defaultWindow } from '../_configurable';
+import { tryOnScopeDispose } from '../try-on-scope-dispose';
+import { unrefElement } from '../unref-element';
+import { useSupported } from '../use-supported';
 
 export interface ResizeObserverSize {
   readonly inlineSize: number;
@@ -22,7 +22,7 @@ export interface ResizeObserverEntry {
 export type ResizeObserverCallback = (
   entries: readonly ResizeObserverEntry[],
   observer: ResizeObserver,
-) => void
+) => void;
 
 export interface UseResizeObserverOptions extends ConfigurableWindow {
   /**
@@ -35,10 +35,10 @@ export interface UseResizeObserverOptions extends ConfigurableWindow {
 }
 
 declare class ResizeObserver {
-  constructor(callback: ResizeObserverCallback)
-  disconnect(): void
-  observe(target: Element, options?: UseResizeObserverOptions): void
-  unobserve(target: Element): void
+  constructor(callback: ResizeObserverCallback);
+  disconnect(): void;
+  observe(target: Element, options?: UseResizeObserverOptions): void;
+  unobserve(target: Element): void;
 }
 
 /**
@@ -54,41 +54,41 @@ export function useResizeObserver(
   callback: ResizeObserverCallback,
   options: UseResizeObserverOptions = {},
 ) {
-  const { window = defaultWindow, ...observerOptions } = options
-  let observer: ResizeObserver | undefined
-  const isSupported = useSupported(() => window && 'ResizeObserver' in window)
+  const { window = defaultWindow, ...observerOptions } = options;
+  let observer: ResizeObserver | undefined;
+  const isSupported = useSupported(() => window && 'ResizeObserver' in window);
 
   const cleanup = () => {
     if (observer) {
-      observer.disconnect()
-      observer = undefined
+      observer.disconnect();
+      observer = undefined;
     }
-  }
+  };
 
   const stopWatch = watch(
     () => unrefElement(target),
     (el) => {
-      cleanup()
+      cleanup();
 
       if (isSupported.value && window && el) {
-        observer = new ResizeObserver(callback)
-        observer!.observe(el, observerOptions)
+        observer = new ResizeObserver(callback);
+        observer!.observe(el, observerOptions);
       }
     },
     { immediate: true, flush: 'post' },
-  )
+  );
 
   const stop = () => {
-    cleanup()
-    stopWatch()
-  }
+    cleanup();
+    stopWatch();
+  };
 
-  tryOnScopeDispose(stop)
+  tryOnScopeDispose(stop);
 
   return {
     isSupported,
     stop,
-  }
+  };
 }
 
-export type UseResizeObserverReturn = ReturnType<typeof useResizeObserver>
+export type UseResizeObserverReturn = ReturnType<typeof useResizeObserver>;

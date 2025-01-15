@@ -1,8 +1,8 @@
-import type { ComponentDemo } from '../../interface'
-import { Tabs } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Tabs } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
-const { TabPane } = Tabs
+const { TabPane } = Tabs;
 
 const Demo = defineComponent({
   setup() {
@@ -18,14 +18,14 @@ const Demo = defineComponent({
           Content of Tab Pane 3
         </TabPane>
       </Tabs>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorFillAlter'],
   key: 'cardTabs',
-}
+};
 
-export default componentDemo
+export default componentDemo;

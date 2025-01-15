@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'it',
@@ -140,6 +140,6 @@ const localeValues: Locale = {
     copied: 'copia effettuata',
     expand: 'espandi',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

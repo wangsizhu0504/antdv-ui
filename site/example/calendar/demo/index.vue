@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import Basic from './basic.vue'
-  import Card from './card.vue'
-  import CustomizeHeader from './customize-header.vue'
-  import NoticeCalendar from './notice-calendar.vue'
-  import Select from './select.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import Basic from './basic.vue';
+  import Card from './card.vue';
+  import CustomizeHeader from './customize-header.vue';
+  import NoticeCalendar from './notice-calendar.vue';
+  import Select from './select.vue';
 
   export default defineComponent({
     CN,
@@ -18,7 +18,7 @@
       Select,
       CustomizeHeader,
     },
-  })
+  });
 </script>
 
 <template>

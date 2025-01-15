@@ -1,13 +1,13 @@
-import type { Key, VueNode } from '@antdv/types'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { BaseSelectProps, BaseSelectRef, DisplayValueType } from '../../vc-select/src/BaseSelect'
-import type { SelectProps } from '../../vc-select/src/Select'
-import type { ExpandAction } from '../../vc-tree/src/props'
-import type { LegacyContextProps } from './LegacyContext'
-import type { TreeSelectContextProps } from './TreeSelectContext'
-import type { CheckedStrategy } from './utils/strategyUtil'
-import { useMergedState } from '@antdv/hooks'
-import { initDefaultProps, omit, PropTypes, toReactive, warning } from '@antdv/utils'
+import type { Key, VueNode } from '@antdv/types';
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { BaseSelectProps, BaseSelectRef, DisplayValueType } from '../../vc-select/src/BaseSelect';
+import type { SelectProps } from '../../vc-select/src/Select';
+import type { ExpandAction } from '../../vc-tree/src/props';
+import type { LegacyContextProps } from './LegacyContext';
+import type { TreeSelectContextProps } from './TreeSelectContext';
+import type { CheckedStrategy } from './utils/strategyUtil';
+import { useMergedState } from '@antdv/hooks';
+import { initDefaultProps, omit, PropTypes, toReactive, warning } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -17,27 +17,27 @@ import {
   toRef,
   toRefs,
   watchEffect,
-} from 'vue'
-import BaseSelect, { baseSelectPropsWithoutPrivate } from '../../vc-select/src/BaseSelect'
-import useId from '../../vc-select/src/hooks/useId'
-import useMaxLevel from '../../vc-tree/src/useMaxLevel'
-import { conductCheck } from '../../vc-tree/src/utils/conductUtil'
-import useCache from './hooks/useCache'
-import useCheckedKeys from './hooks/useCheckedKeys'
-import useDataEntities from './hooks/useDataEntities'
-import useFilterTreeData from './hooks/useFilterTreeData'
-import useTreeData from './hooks/useTreeData'
-import { useProvideLegacySelectContext } from './LegacyContext'
-import OptionList from './OptionList'
-import { useProvideSelectContext } from './TreeSelectContext'
-import { fillAdditionalInfo, fillLegacyProps } from './utils/legacyUtil'
-import { formatStrategyValues, SHOW_CHILD } from './utils/strategyUtil'
-import { fillFieldNames, isNil, toArray } from './utils/valueUtil'
-import warningProps from './utils/warningPropsUtil'
+} from 'vue';
+import BaseSelect, { baseSelectPropsWithoutPrivate } from '../../vc-select/src/BaseSelect';
+import useId from '../../vc-select/src/hooks/useId';
+import useMaxLevel from '../../vc-tree/src/useMaxLevel';
+import { conductCheck } from '../../vc-tree/src/utils/conductUtil';
+import useCache from './hooks/useCache';
+import useCheckedKeys from './hooks/useCheckedKeys';
+import useDataEntities from './hooks/useDataEntities';
+import useFilterTreeData from './hooks/useFilterTreeData';
+import useTreeData from './hooks/useTreeData';
+import { useProvideLegacySelectContext } from './LegacyContext';
+import OptionList from './OptionList';
+import { useProvideSelectContext } from './TreeSelectContext';
+import { fillAdditionalInfo, fillLegacyProps } from './utils/legacyUtil';
+import { formatStrategyValues, SHOW_CHILD } from './utils/strategyUtil';
+import { fillFieldNames, isNil, toArray } from './utils/valueUtil';
+import warningProps from './utils/warningPropsUtil';
 
-export type OnInternalSelect = (value: RawValueType, info: { selected: boolean }) => void
+export type OnInternalSelect = (value: RawValueType, info: { selected: boolean }) => void;
 
-export type RawValueType = string | number
+export type RawValueType = string | number;
 
 export interface LabeledValueType {
   key?: Key;
@@ -47,9 +47,9 @@ export interface LabeledValueType {
   halfChecked?: boolean;
 }
 
-export type SelectSource = 'option' | 'selection' | 'input' | 'clear'
+export type SelectSource = 'option' | 'selection' | 'input' | 'clear';
 
-export type DraftValueType = RawValueType | LabeledValueType | Array<RawValueType | LabeledValueType>
+export type DraftValueType = RawValueType | LabeledValueType | Array<RawValueType | LabeledValueType>;
 
 /** @deprecated This is only used for legacy compatible. Not works on new code. */
 export interface LegacyCheckedNode {
@@ -199,13 +199,13 @@ export function treeSelectProps<
 
     dropdownPopupAlign: PropTypes.any,
     customSlots: Object,
-  }
+  };
 }
 
-export type TreeSelectProps = Partial<ExtractPropTypes<ReturnType<typeof treeSelectProps>>>
+export type TreeSelectProps = Partial<ExtractPropTypes<ReturnType<typeof treeSelectProps>>>;
 
 function isRawValue(value: RawValueType | LabeledValueType): value is RawValueType {
-  return !value || typeof value !== 'object'
+  return !value || typeof value !== 'object';
 }
 
 export default defineComponent({
@@ -221,21 +221,21 @@ export default defineComponent({
     prefixCls: 'vc-tree-select',
   }),
   setup(props, { attrs, expose, slots }) {
-    const mergedId = useId(toRef(props, 'id'))
-    const treeConduction = computed(() => props.treeCheckable && !props.treeCheckStrictly)
-    const mergedCheckable = computed(() => props.treeCheckable || props.treeCheckStrictly)
-    const mergedLabelInValue = computed(() => props.treeCheckStrictly || props.labelInValue)
-    const mergedMultiple = computed(() => mergedCheckable.value || props.multiple)
+    const mergedId = useId(toRef(props, 'id'));
+    const treeConduction = computed(() => props.treeCheckable && !props.treeCheckStrictly);
+    const mergedCheckable = computed(() => props.treeCheckable || props.treeCheckStrictly);
+    const mergedLabelInValue = computed(() => props.treeCheckStrictly || props.labelInValue);
+    const mergedMultiple = computed(() => mergedCheckable.value || props.multiple);
 
     // ========================== Warning ===========================
     if (process.env.NODE_ENV !== 'production') {
       watchEffect(() => {
-        warningProps(props)
-      })
+        warningProps(props);
+      });
     }
 
     // ========================= FieldNames =========================
-    const mergedFieldNames = computed<InternalFieldName>(() => fillFieldNames(props.fieldNames))
+    const mergedFieldNames = computed<InternalFieldName>(() => fillFieldNames(props.fieldNames));
 
     // =========================== Search ===========================
     const [mergedSearchValue, setSearchValue] = useMergedState('', {
@@ -243,12 +243,12 @@ export default defineComponent({
         props.searchValue !== undefined ? props.searchValue : props.inputValue,
       ),
       postState: search => search || '',
-    })
+    });
 
     const onInternalSearch: BaseSelectProps['onSearch'] = (searchText) => {
-      setSearchValue(searchText)
-      props.onSearch?.(searchText)
-    }
+      setSearchValue(searchText);
+      props.onSearch?.(searchText);
+    };
 
     // ============================ Data ============================
     // `useTreeData` only do convert of `children` or `simpleMode`.
@@ -258,77 +258,77 @@ export default defineComponent({
       toRef(props, 'treeData'),
       toRef(props, 'children'),
       toRef(props, 'treeDataSimpleMode'),
-    )
+    );
 
-    const { keyEntities, valueEntities } = useDataEntities(mergedTreeData, mergedFieldNames)
+    const { keyEntities, valueEntities } = useDataEntities(mergedTreeData, mergedFieldNames);
 
     /** Get `missingRawValues` which not exist in the tree yet */
     const splitRawValues = (newRawValues: RawValueType[]) => {
-      const missingRawValues = []
-      const existRawValues = []
+      const missingRawValues = [];
+      const existRawValues = [];
 
       // Keep missing value in the cache
       newRawValues.forEach((val) => {
         if (valueEntities.value.has(val))
-          existRawValues.push(val)
+          existRawValues.push(val);
         else
-          missingRawValues.push(val)
-      })
+          missingRawValues.push(val);
+      });
 
-      return { missingRawValues, existRawValues }
-    }
+      return { missingRawValues, existRawValues };
+    };
 
     // Filtered Tree
     const filteredTreeData = useFilterTreeData(mergedTreeData, mergedSearchValue, {
       fieldNames: mergedFieldNames,
       treeNodeFilterProp: toRef(props, 'treeNodeFilterProp'),
       filterTreeNode: toRef(props, 'filterTreeNode'),
-    })
+    });
 
     // =========================== Label ============================
     const getLabel = (item: DefaultOptionType) => {
       if (item) {
         if (props.treeNodeLabelProp)
-          return item[props.treeNodeLabelProp]
+          return item[props.treeNodeLabelProp];
 
         // Loop from fieldNames
-        const { _title: titleList } = mergedFieldNames.value
+        const { _title: titleList } = mergedFieldNames.value;
 
         for (let i = 0; i < titleList.length; i += 1) {
-          const title = item[titleList[i]]
+          const title = item[titleList[i]];
           if (title !== undefined)
-            return title
+            return title;
         }
       }
-    }
+    };
 
     // ========================= Wrap Value =========================
     const toLabeledValues = (draftValues: DraftValueType) => {
-      const values = toArray(draftValues)
+      const values = toArray(draftValues);
 
       return values.map((val) => {
         if (isRawValue(val))
-          return { value: val }
+          return { value: val };
 
-        return val
-      })
-    }
+        return val;
+      });
+    };
 
     const convert2LabelValues = (draftValues: DraftValueType) => {
-      const values = toLabeledValues(draftValues)
+      const values = toLabeledValues(draftValues);
 
       return values.map((item) => {
-        let { label: rawLabel } = item
-        const { value: rawValue, halfChecked: rawHalfChecked } = item
+        let { label: rawLabel } = item;
+        const { value: rawValue, halfChecked: rawHalfChecked } = item;
 
-        let rawDisabled: boolean | undefined
+        let rawDisabled: boolean | undefined;
 
-        const entity = valueEntities.value.get(rawValue)
+        const entity = valueEntities.value.get(rawValue);
 
         // Fill missing label & status
         if (entity) {
-          rawLabel = rawLabel ?? getLabel(entity.node)
-          rawDisabled = entity.node.disabled
+          rawLabel = rawLabel ?? getLabel(entity.node);
+          rawDisabled = entity.node.disabled;
         }
 
         return {
@@ -336,38 +336,38 @@ export default defineComponent({
           value: rawValue,
           halfChecked: rawHalfChecked,
           disabled: rawDisabled,
-        }
-      })
-    }
+        };
+      });
+    };
 
     // =========================== Values ===========================
     const [internalValue, setInternalValue] = useMergedState(props.defaultValue, {
       value: toRef(props, 'value'),
-    })
+    });
 
-    const rawMixedLabeledValues = computed(() => toLabeledValues(internalValue.value))
+    const rawMixedLabeledValues = computed(() => toLabeledValues(internalValue.value));
 
     // Split value into full check and half check
-    const rawLabeledValues = shallowRef([])
-    const rawHalfLabeledValues = shallowRef([])
+    const rawLabeledValues = shallowRef([]);
+    const rawHalfLabeledValues = shallowRef([]);
     watchEffect(() => {
-      const fullCheckValues: LabeledValueType[] = []
-      const halfCheckValues: LabeledValueType[] = []
+      const fullCheckValues: LabeledValueType[] = [];
+      const halfCheckValues: LabeledValueType[] = [];
 
       rawMixedLabeledValues.value.forEach((item) => {
         if (item.halfChecked)
-          halfCheckValues.push(item)
+          halfCheckValues.push(item);
         else
-          fullCheckValues.push(item)
-      })
+          fullCheckValues.push(item);
+      });
 
-      rawLabeledValues.value = fullCheckValues
-      rawHalfLabeledValues.value = halfCheckValues
-    })
+      rawLabeledValues.value = fullCheckValues;
+      rawHalfLabeledValues.value = halfCheckValues;
+    });
 
     // const [mergedValues] = useCache(rawLabeledValues);
-    const rawValues = computed(() => rawLabeledValues.value.map(item => item.value))
-    const { maxLevel, levelEntities } = useMaxLevel(keyEntities)
+    const rawValues = computed(() => rawLabeledValues.value.map(item => item.value));
+    const { maxLevel, levelEntities } = useMaxLevel(keyEntities);
     // Convert value to key. Will fill missed keys for conduct check.
     const [rawCheckedValues, rawHalfCheckedValues] = useCheckedKeys(
       rawLabeledValues,
@@ -376,7 +376,7 @@ export default defineComponent({
       keyEntities,
       maxLevel,
       levelEntities,
-    )
+    );
 
     // Convert rawCheckedKeys to check strategy related values
     const displayValues = computed(() => {
@@ -386,34 +386,34 @@ export default defineComponent({
         props.showCheckedStrategy,
         keyEntities.value,
         mergedFieldNames.value,
-      )
+      );
 
       // Convert to value and filled with label
       const values = displayKeys.map(
         key => keyEntities.value[key]?.node?.[mergedFieldNames.value.value] ?? key,
-      )
+      );
       // Back fill with origin label
       const labeledValues = values.map((val) => {
-        const targetItem = rawLabeledValues.value.find(item => item.value === val)
+        const targetItem = rawLabeledValues.value.find(item => item.value === val);
         return {
           value: val,
           label: targetItem?.label,
-        }
-      })
-      const rawDisplayValues = convert2LabelValues(labeledValues)
+        };
+      });
+      const rawDisplayValues = convert2LabelValues(labeledValues);
 
-      const firstVal = rawDisplayValues[0]
+      const firstVal = rawDisplayValues[0];
 
       if (!mergedMultiple.value && firstVal && isNil(firstVal.value) && isNil(firstVal.label))
-        return []
+        return [];
 
       return rawDisplayValues.map(item => ({
         ...item,
         label: item.label ?? item.value,
-      }))
-    })
+      }));
+    });
 
-    const [cachedDisplayValues] = useCache(displayValues)
+    const [cachedDisplayValues] = useCache(displayValues);
 
     // =========================== Change ===========================
     const triggerChange = (
@@ -421,58 +421,58 @@ export default defineComponent({
       extra: { triggerValue?: RawValueType; selected?: boolean },
       source: SelectSource,
     ) => {
-      const labeledValues = convert2LabelValues(newRawValues)
-      setInternalValue(labeledValues)
+      const labeledValues = convert2LabelValues(newRawValues);
+      setInternalValue(labeledValues);
 
       // Clean up if needed
       if (props.autoClearSearchValue)
-        setSearchValue('')
+        setSearchValue('');
 
       // Generate rest parameters is costly, so only do it when necessary
       if (props.onChange) {
-        let eventValues: RawValueType[] = newRawValues
+        let eventValues: RawValueType[] = newRawValues;
         if (treeConduction.value) {
           const formattedKeyList = formatStrategyValues(
             newRawValues,
             props.showCheckedStrategy,
             keyEntities.value,
             mergedFieldNames.value,
-          )
+          );
           eventValues = formattedKeyList.map((key) => {
-            const entity = valueEntities.value.get(key)
-            return entity ? entity.node[mergedFieldNames.value.value] : key
-          })
+            const entity = valueEntities.value.get(key);
+            return entity ? entity.node[mergedFieldNames.value.value] : key;
+          });
         }
 
         const { triggerValue, selected } = extra || {
           triggerValue: undefined,
           selected: undefined,
-        }
+        };
 
-        let returnRawValues: Array<LabeledValueType | RawValueType> = eventValues
+        let returnRawValues: Array<LabeledValueType | RawValueType> = eventValues;
 
         // We need fill half check back
         if (props.treeCheckStrictly) {
           const halfValues = rawHalfLabeledValues.value.filter(
             item => !eventValues.includes(item.value),
-          )
+          );
 
-          returnRawValues = [...returnRawValues, ...halfValues]
+          returnRawValues = [...returnRawValues, ...halfValues];
         }
 
-        const returnLabeledValues = convert2LabelValues(returnRawValues)
+        const returnLabeledValues = convert2LabelValues(returnRawValues);
         const additionalInfo = {
           // [Legacy] Always return as array contains label & value
           preValue: rawLabeledValues.value,
           triggerValue,
-        } as ChangeEventExtra
+        } as ChangeEventExtra;
 
         // [Legacy] Fill legacy data if user query.
         // This is expansive that we only fill when user query
         // https://github.com/react-component/tree-select/blob/fe33eb7c27830c9ac70cd1fdb1ebbe7bc679c16a/src/Select.jsx
-        let showPosition = true
+        let showPosition = true;
         if (props.treeCheckStrictly || (source === 'selection' && !selected))
-          showPosition = false
+          showPosition = false;
 
         fillAdditionalInfo(
           additionalInfo,
@@ -481,24 +481,24 @@ export default defineComponent({
           mergedTreeData.value,
           showPosition,
           mergedFieldNames.value,
-        )
+        );
 
         if (mergedCheckable.value)
-          additionalInfo.checked = selected
+          additionalInfo.checked = selected;
         else
-          additionalInfo.selected = selected
+          additionalInfo.selected = selected;
 
         const returnValues = mergedLabelInValue.value
           ? returnLabeledValues
-          : returnLabeledValues.map(item => item.value)
+          : returnLabeledValues.map(item => item.value);
 
         props.onChange(
           mergedMultiple.value ? returnValues : returnValues[0],
           mergedLabelInValue.value ? null : returnLabeledValues.map(item => item.label),
           additionalInfo,
-        )
+        );
       }
-    }
+    };
 
     // ========================== Options ===========================
     /** Trigger by option list */
@@ -506,29 +506,29 @@ export default defineComponent({
       selectedKey: Key,
       { selected, source }: { selected: boolean; source: SelectSource },
     ) => {
-      const keyEntitiesValue = toRaw(keyEntities.value)
-      const valueEntitiesValue = toRaw(valueEntities.value)
-      const entity = keyEntitiesValue[selectedKey]
-      const node = entity?.node
-      const selectedValue = node?.[mergedFieldNames.value.value] ?? selectedKey
+      const keyEntitiesValue = toRaw(keyEntities.value);
+      const valueEntitiesValue = toRaw(valueEntities.value);
+      const entity = keyEntitiesValue[selectedKey];
+      const node = entity?.node;
+      const selectedValue = node?.[mergedFieldNames.value.value] ?? selectedKey;
 
       // Never be falsy but keep it safe
       if (!mergedMultiple.value) {
         // Single mode always set value
-        triggerChange([selectedValue], { selected: true, triggerValue: selectedValue }, 'option')
+        triggerChange([selectedValue], { selected: true, triggerValue: selectedValue }, 'option');
       } else {
         let newRawValues = selected
           ? [...rawValues.value, selectedValue]
-          : rawCheckedValues.value.filter(v => v !== selectedValue)
+          : rawCheckedValues.value.filter(v => v !== selectedValue);
 
         // Add keys if tree conduction
         if (treeConduction.value) {
           // Should keep missing values
-          const { missingRawValues, existRawValues } = splitRawValues(newRawValues)
-          const keyList = existRawValues.map(val => valueEntitiesValue.get(val).key)
+          const { missingRawValues, existRawValues } = splitRawValues(newRawValues);
+          const keyList = existRawValues.map(val => valueEntitiesValue.get(val).key);
 
           // Conduction by selected or not
-          let checkedKeys: Key[]
+          let checkedKeys: Key[];
           if (selected) {
             ({ checkedKeys } = conductCheck(
               keyList,
@@ -536,7 +536,7 @@ export default defineComponent({
               keyEntitiesValue,
               maxLevel.value,
               levelEntities.value,
-            ))
+            ));
           } else {
             ({ checkedKeys } = conductCheck(
               keyList,
@@ -544,54 +544,54 @@ export default defineComponent({
               keyEntitiesValue,
               maxLevel.value,
               levelEntities.value,
-            ))
+            ));
           }
 
           // Fill back of keys
           newRawValues = [
             ...missingRawValues,
             ...checkedKeys.map(key => keyEntitiesValue[key].node[mergedFieldNames.value.value]),
-          ]
+          ];
         }
-        triggerChange(newRawValues, { selected, triggerValue: selectedValue }, source || 'option')
+        triggerChange(newRawValues, { selected, triggerValue: selectedValue }, source || 'option');
       }
 
       // Trigger select event
       if (selected || !mergedMultiple.value)
-        props.onSelect?.(selectedValue, fillLegacyProps(node))
+        props.onSelect?.(selectedValue, fillLegacyProps(node));
       else
-        props.onDeselect?.(selectedValue, fillLegacyProps(node))
-    }
+        props.onDeselect?.(selectedValue, fillLegacyProps(node));
+    };
 
     // ========================== Dropdown ==========================
     const onInternalDropdownVisibleChange = (open: boolean) => {
       if (props.onDropdownVisibleChange) {
-        const legacyParam = {}
+        const legacyParam = {};
 
         Object.defineProperty(legacyParam, 'documentClickClose', {
           get() {
-            warning(false, 'Second param of `onDropdownVisibleChange` has been removed.')
-            return false
+            warning(false, 'Second param of `onDropdownVisibleChange` has been removed.');
+            return false;
           },
         });
 
-        (props.onDropdownVisibleChange as any)(open, legacyParam)
+        (props.onDropdownVisibleChange as any)(open, legacyParam);
       }
-    }
+    };
 
     // ====================== Display Change ========================
     const onDisplayValuesChange: BaseSelectProps['onDisplayValuesChange'] = (newValues, info) => {
-      const newRawValues = newValues.map(item => item.value)
+      const newRawValues = newValues.map(item => item.value);
 
       if (info.type === 'clear') {
-        triggerChange(newRawValues, {}, 'selection')
-        return
+        triggerChange(newRawValues, {}, 'selection');
+        return;
       }
 
       // TreeSelect only have multiple mode which means display change only has remove
       if (info.values.length)
-        onOptionSelect(info.values[0].value, { selected: false, source: 'selection' })
-    }
+        onOptionSelect(info.values[0].value, { selected: false, source: 'selection' });
+    };
     const {
       treeNodeFilterProp,
 
@@ -621,7 +621,7 @@ export default defineComponent({
 
       dropdownMatchSelectWidth,
       treeExpandAction,
-    } = toRefs(props)
+    } = toRefs(props);
     useProvideLegacySelectContext(
       toReactive({
         checkable: mergedCheckable,
@@ -644,7 +644,7 @@ export default defineComponent({
         keyEntities,
         customSlots,
       } as unknown as LegacyContextProps),
-    )
+    );
     useProvideSelectContext(
       toReactive({
         virtual,
@@ -656,19 +656,19 @@ export default defineComponent({
         dropdownMatchSelectWidth,
         treeExpandAction,
       } as unknown as TreeSelectContextProps),
-    )
-    const selectRef = ref<BaseSelectRef>()
+    );
+    const selectRef = ref<BaseSelectRef>();
     expose({
       focus() {
-        selectRef.value?.focus()
+        selectRef.value?.focus();
       },
       blur() {
-        selectRef.value?.blur()
+        selectRef.value?.blur();
       },
       scrollTo(arg) {
-        selectRef.value?.scrollTo(arg)
+        selectRef.value?.scrollTo(arg);
       },
-    } as BaseSelectRef)
+    } as BaseSelectRef);
     return () => {
       const restProps = omit(props, [
         'id',
@@ -729,7 +729,7 @@ export default defineComponent({
         'showTreeIcon',
         'switcherIcon',
         'treeMotion',
-      ])
+      ]);
       return (
         <BaseSelect
           v-slots={slots}
@@ -753,7 +753,7 @@ export default defineComponent({
           tagRender={props.tagRender || slots.tagRender}
           dropdownMatchSelectWidth={props.dropdownMatchSelectWidth ?? true}
         />
-      )
-    }
+      );
+    };
   },
-})
+});

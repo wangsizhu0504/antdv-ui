@@ -1,5 +1,5 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { BaseSelectRef, SelectCommonPlacement } from '@antdv/vue-components'
+import type { CustomSlotsType } from '@antdv/types';
+import type { BaseSelectRef, SelectCommonPlacement } from '@antdv/vue-components';
 import {
   classNames,
   devWarning,
@@ -7,21 +7,21 @@ import {
   getStatusClassNames,
   initDefaultProps,
   omit,
-} from '@antdv/utils'
-import { getTransitionDirection, getTransitionName, VcOptGroup, VcOption, VcSelect } from '@antdv/vue-components'
-import { computed, defineComponent, ref } from 'vue'
-import { useInjectDisabled } from '../../config-provider'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { DefaultRenderEmpty } from '../../config-provider/src/renderEmpty'
+} from '@antdv/utils';
+import { getTransitionDirection, getTransitionName, VcOptGroup, VcOption, VcSelect } from '@antdv/vue-components';
+import { computed, defineComponent, ref } from 'vue';
+import { useInjectDisabled } from '../../config-provider';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { DefaultRenderEmpty } from '../../config-provider/src/renderEmpty';
 
-import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
+import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext';
 
-import { useCompactItemContext } from '../../space'
-import useStyle from '../style'
-import getIcons from './iconUtil'
-import { type SelectProps, selectProps } from './props'
+import { useCompactItemContext } from '../../space';
+import useStyle from '../style';
+import getIcons from './iconUtil';
+import { type SelectProps, selectProps } from './props';
 
-const SECRET_COMBOBOX_MODE_DO_NOT_USE = 'SECRET_COMBOBOX_MODE_DO_NOT_USE'
+const SECRET_COMBOBOX_MODE_DO_NOT_USE = 'SECRET_COMBOBOX_MODE_DO_NOT_USE';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -49,40 +49,40 @@ export default defineComponent({
     default: any
   }>,
   setup(props, { attrs, emit, slots, expose }) {
-    const selectRef = ref<BaseSelectRef>()
-    const formItemContext = useInjectFormItemContext()
-    const formItemInputContext = FormItemInputContext.useInject()
-    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status))
+    const selectRef = ref<BaseSelectRef>();
+    const formItemContext = useInjectFormItemContext();
+    const formItemInputContext = FormItemInputContext.useInject();
+    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status));
     const focus = () => {
-      selectRef.value?.focus()
-    }
+      selectRef.value?.focus();
+    };
 
     const blur = () => {
-      selectRef.value?.blur()
-    }
+      selectRef.value?.blur();
+    };
 
     const scrollTo: BaseSelectRef['scrollTo'] = (arg) => {
-      selectRef.value?.scrollTo(arg)
-    }
+      selectRef.value?.scrollTo(arg);
+    };
 
     const getMode = computed(() => {
-      const { mode } = props
+      const { mode } = props;
 
       if ((mode as any) === 'combobox')
-        return undefined
+        return undefined;
 
       if (mode === SECRET_COMBOBOX_MODE_DO_NOT_USE)
-        return 'combobox'
+        return 'combobox';
 
-      return mode
-    })
+      return mode;
+    });
 
     if (process.env.NODE_ENV !== 'production') {
       devWarning(
         !props.dropdownClassName,
         'Select',
         '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
-      )
+      );
     }
     const {
       prefixCls,
@@ -93,31 +93,31 @@ export default defineComponent({
       getPopupContainer,
       disabled,
       select,
-    } = useConfigInject('select', props)
-    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction)
-    const mergedSize = computed(() => compactSize.value || contextSize.value)
-    const contextDisabled = useInjectDisabled()
-    const mergedDisabled = computed(() => disabled.value ?? contextDisabled.value)
+    } = useConfigInject('select', props);
+    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
+    const mergedSize = computed(() => compactSize.value || contextSize.value);
+    const contextDisabled = useInjectDisabled();
+    const mergedDisabled = computed(() => disabled.value ?? contextDisabled.value);
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
-    const rootPrefixCls = computed(() => getPrefixCls())
+    const rootPrefixCls = computed(() => getPrefixCls());
     // ===================== Placement =====================
     const placement = computed(() => {
       if (props.placement !== undefined)
-        return props.placement
+        return props.placement;
 
       return direction.value === 'rtl'
         ? ('bottomRight' as SelectCommonPlacement)
-        : ('bottomLeft' as SelectCommonPlacement)
-    })
+        : ('bottomLeft' as SelectCommonPlacement);
+    });
     const transitionName = computed(() =>
       getTransitionName(
         rootPrefixCls.value,
         getTransitionDirection(placement.value),
         props.transitionName,
       ),
-    )
+    );
     const mergedClassName = computed(() =>
       classNames(
         {
@@ -131,27 +131,27 @@ export default defineComponent({
         compactItemClassnames.value,
         hashId.value,
       ),
-    )
+    );
     const triggerChange: SelectProps['onChange'] = (...args) => {
-      emit('update:value', args[0])
-      emit('change', ...args)
-      formItemContext.onFieldChange()
-    }
+      emit('update:value', args[0]);
+      emit('change', ...args);
+      formItemContext.onFieldChange();
+    };
     const handleBlur: SelectProps['onBlur'] = (e) => {
-      emit('blur', e)
-      formItemContext.onFieldBlur()
-    }
+      emit('blur', e);
+      formItemContext.onFieldBlur();
+    };
     expose({
       blur,
       focus,
       scrollTo,
-    })
-    const isMultiple = computed(() => getMode.value === 'multiple' || getMode.value === 'tags')
+    });
+    const isMultiple = computed(() => getMode.value === 'multiple' || getMode.value === 'tags');
     const mergedShowArrow = computed(() =>
       props.showArrow !== undefined
         ? props.showArrow
         : props.loading || !(isMultiple.value || getMode.value === 'combobox'),
-    )
+    );
 
     return () => {
       const {
@@ -165,19 +165,19 @@ export default defineComponent({
         id = formItemContext.id.value,
         placeholder = slots.placeholder?.(),
         showArrow,
-      } = props
-      const { hasFeedback, feedbackIcon } = formItemInputContext
+      } = props;
+      const { hasFeedback, feedbackIcon } = formItemInputContext;
 
       // ===================== Empty =====================
-      let mergedNotFound: any
+      let mergedNotFound: any;
       if (notFoundContent !== undefined)
-        mergedNotFound = notFoundContent
+        mergedNotFound = notFoundContent;
       else if (slots.notFoundContent)
-        mergedNotFound = slots.notFoundContent()
+        mergedNotFound = slots.notFoundContent();
       else if (getMode.value === 'combobox')
-        mergedNotFound = null
+        mergedNotFound = null;
       else
-        mergedNotFound = renderEmpty?.('Select') || <DefaultRenderEmpty componentName="Select" />
+        mergedNotFound = renderEmpty?.('Select') || <DefaultRenderEmpty componentName="Select" />;
 
       // ===================== Icons =====================
       const { suffixIcon, itemIcon, removeIcon, clearIcon } = getIcons(
@@ -190,7 +190,7 @@ export default defineComponent({
           showArrow: mergedShowArrow.value,
         },
         slots,
-      )
+      );
 
       const selectProps = omit(props, [
         'prefixCls',
@@ -201,7 +201,7 @@ export default defineComponent({
         'size',
         'bordered',
         'status',
-      ])
+      ]);
 
       const rcSelectRtlDropdownClassName = classNames(
         popupClassName || dropdownClassName,
@@ -209,7 +209,7 @@ export default defineComponent({
           [`${prefixCls.value}-dropdown-${direction.value}`]: direction.value === 'rtl',
         },
         hashId.value,
-      )
+      );
 
       return wrapSSR(
         <VcSelect
@@ -247,7 +247,7 @@ export default defineComponent({
           disabled={mergedDisabled.value}
         >
         </VcSelect>,
-      )
-    }
+      );
+    };
   },
-})
+});

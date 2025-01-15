@@ -22,9 +22,9 @@ Adjust popup placement automatically when popup is invisible.
     position: 'relative',
     padding: '24px',
     border: '1px solid #e9e9e9',
-  }
+  };
   function getPopupContainer(trigger: HTMLElement) {
-    return trigger.parentElement
+    return trigger.parentElement;
   }
 </script>
 

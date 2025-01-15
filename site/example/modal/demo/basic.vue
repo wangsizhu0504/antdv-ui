@@ -17,17 +17,17 @@ Basic modal.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const open = ref<boolean>(false)
+  const open = ref<boolean>(false);
 
   function showModal() {
-    open.value = true
+    open.value = true;
   }
 
   function handleOk(e: MouseEvent) {
-    console.log(e)
-    open.value = false
+    console.log(e);
+    open.value = false;
   }
 </script>
 

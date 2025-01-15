@@ -1,34 +1,34 @@
-import type { Dayjs } from 'dayjs'
-import type { GenerateConfig } from '.'
-import { noteOnce } from '@antdv/utils'
-import dayjs from 'dayjs'
-import advancedFormat from 'dayjs/plugin/advancedFormat'
-import customParseFormat from 'dayjs/plugin/customParseFormat'
-import localeData from 'dayjs/plugin/localeData'
-import quarterOfYear from 'dayjs/plugin/quarterOfYear'
-import weekday from 'dayjs/plugin/weekday'
-import weekOfYear from 'dayjs/plugin/weekOfYear'
-import weekYear from 'dayjs/plugin/weekYear'
+import type { Dayjs } from 'dayjs';
+import type { GenerateConfig } from '.';
+import { noteOnce } from '@antdv/utils';
+import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import localeData from 'dayjs/plugin/localeData';
+import quarterOfYear from 'dayjs/plugin/quarterOfYear';
+import weekday from 'dayjs/plugin/weekday';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
+import weekYear from 'dayjs/plugin/weekYear';
 
-dayjs.extend(customParseFormat)
-dayjs.extend(advancedFormat)
-dayjs.extend(weekday)
-dayjs.extend(localeData)
-dayjs.extend(weekOfYear)
-dayjs.extend(weekYear)
-dayjs.extend(quarterOfYear)
+dayjs.extend(customParseFormat);
+dayjs.extend(advancedFormat);
+dayjs.extend(weekday);
+dayjs.extend(localeData);
+dayjs.extend(weekOfYear);
+dayjs.extend(weekYear);
+dayjs.extend(quarterOfYear);
 
 dayjs.extend((_o, c) => {
   // todo support Wo (ISO week)
-  const proto = c.prototype
-  const oldFormat = proto.format
+  const proto = c.prototype;
+  const oldFormat = proto.format;
   proto.format = function f(formatStr: string) {
-    const str = (formatStr || '').replace('Wo', 'wo')
-    return oldFormat.bind(this)(str)
-  }
-})
+    const str = (formatStr || '').replace('Wo', 'wo');
+    return oldFormat.bind(this)(str);
+  };
+});
 
-type IlocaleMapObject = Record<string, string>
+type IlocaleMapObject = Record<string, string>;
 const localeMap: IlocaleMapObject = {
   // ar_EG:
   // az_AZ:
@@ -95,67 +95,67 @@ const localeMap: IlocaleMapObject = {
   zh_CN: 'zh-cn',
   zh_HK: 'zh-hk',
   zh_TW: 'zh-tw',
-}
+};
 
 function parseLocale(locale: string) {
-  const mapLocale = localeMap[locale]
-  return mapLocale || locale.split('_')[0]
+  const mapLocale = localeMap[locale];
+  return mapLocale || locale.split('_')[0];
 }
 
 function parseNoMatchNotice() {
   /* istanbul ignore next */
-  noteOnce(false, 'Not match any format. Please help to fire a issue about this.')
+  noteOnce(false, 'Not match any format. Please help to fire a issue about this.');
 }
 
-const advancedFormatRegex = /\[([^\]]+)]|Q|wo|ww|w|WW|W|zzz|z|gggg|GGGG|k{1,2}|S/g
+const advancedFormatRegex = /\[([^\]]+)]|Q|wo|ww|w|WW|W|zzz|z|gggg|GGGG|k{1,2}|S/g;
 
 function findTargetStr(val: string, index: number, segmentation: string) {
-  const items = [...new Set(val.split(segmentation))]
-  let idx = 0
+  const items = [...new Set(val.split(segmentation))];
+  let idx = 0;
   for (let i = 0; i < items.length; i++) {
-    const item = items[i]
-    idx += item.length
+    const item = items[i];
+    idx += item.length;
     if (idx > index)
-      return item
+      return item;
 
-    idx += segmentation.length
+    idx += segmentation.length;
   }
 }
 
 function toDateWithValueFormat(val: string | Dayjs, valueFormat: string) {
-  if (!val) return null
+  if (!val) return null;
   if (dayjs.isDayjs(val))
-    return val
+    return val;
 
-  const matchs = valueFormat.matchAll(advancedFormatRegex)
-  let baseDate = dayjs(val, valueFormat)
+  const matchs = valueFormat.matchAll(advancedFormatRegex);
+  let baseDate = dayjs(val, valueFormat);
   if (matchs === null)
-    return baseDate
+    return baseDate;
 
   for (const match of matchs) {
-    const origin = match[0]
-    const index = match.index
+    const origin = match[0];
+    const index = match.index;
 
     if (origin === 'Q') {
-      const segmentation = val.slice(index - 1, index)
-      const quarterStr = findTargetStr(val, index, segmentation).match(/\d+/)[0]
-      baseDate = baseDate.quarter(Number.parseInt(quarterStr))
+      const segmentation = val.slice(index - 1, index);
+      const quarterStr = findTargetStr(val, index, segmentation).match(/\d+/)[0];
+      baseDate = baseDate.quarter(Number.parseInt(quarterStr));
     }
 
     if (origin.toLowerCase() === 'wo') {
-      const segmentation = val.slice(index - 1, index)
-      const weekStr = findTargetStr(val, index, segmentation).match(/\d+/)[0]
-      baseDate = baseDate.week(Number.parseInt(weekStr))
+      const segmentation = val.slice(index - 1, index);
+      const weekStr = findTargetStr(val, index, segmentation).match(/\d+/)[0];
+      baseDate = baseDate.week(Number.parseInt(weekStr));
     }
 
     if (origin.toLowerCase() === 'ww')
-      baseDate = baseDate.week(Number.parseInt(val.slice(index, index + origin.length)))
+      baseDate = baseDate.week(Number.parseInt(val.slice(index, index + origin.length)));
 
     if (origin.toLowerCase() === 'w')
-      baseDate = baseDate.week(Number.parseInt(val.slice(index, index + origin.length + 1)))
+      baseDate = baseDate.week(Number.parseInt(val.slice(index, index + origin.length + 1)));
   }
 
-  return baseDate
+  return baseDate;
 }
 
 const generateConfig: GenerateConfig<Dayjs> = {
@@ -164,8 +164,8 @@ const generateConfig: GenerateConfig<Dayjs> = {
   getFixedDate: string => dayjs(string, ['YYYY-M-DD', 'YYYY-MM-DD']),
   getEndDate: date => date.endOf('month'),
   getWeekDay: (date) => {
-    const clone = date.locale('en')
-    return clone.weekday() + clone.localeData().firstDayOfWeek()
+    const clone = date.locale('en');
+    return clone.weekday() + clone.localeData().firstDayOfWeek();
   },
   getYear: date => date.year(),
   getMonth: date => date.month(),
@@ -197,47 +197,47 @@ const generateConfig: GenerateConfig<Dayjs> = {
     getShortMonths: locale => dayjs().locale(parseLocale(locale)).localeData().monthsShort(),
     format: (locale, date, format) => date.locale(parseLocale(locale)).format(format),
     parse: (locale, text, formats) => {
-      const localeStr = parseLocale(locale)
+      const localeStr = parseLocale(locale);
       for (let i = 0; i < formats.length; i += 1) {
-        const format = formats[i]
-        const formatText = text
+        const format = formats[i];
+        const formatText = text;
         if (format.includes('wo') || format.includes('Wo')) {
           // parse Wo
-          const year = formatText.split('-')[0]
-          const weekStr = formatText.split('-')[1]
-          const firstWeek = dayjs(year, 'YYYY').startOf('year').locale(localeStr)
+          const year = formatText.split('-')[0];
+          const weekStr = formatText.split('-')[1];
+          const firstWeek = dayjs(year, 'YYYY').startOf('year').locale(localeStr);
           for (let j = 0; j <= 52; j += 1) {
-            const nextWeek = firstWeek.add(j, 'week')
+            const nextWeek = firstWeek.add(j, 'week');
             if (nextWeek.format('Wo') === weekStr)
-              return nextWeek
+              return nextWeek;
           }
-          parseNoMatchNotice()
-          return null
+          parseNoMatchNotice();
+          return null;
         }
-        const date = dayjs(formatText, format, true).locale(localeStr)
+        const date = dayjs(formatText, format, true).locale(localeStr);
         if (date.isValid())
-          return date
+          return date;
       }
 
       if (!text)
-        parseNoMatchNotice()
+        parseNoMatchNotice();
 
-      return null
+      return null;
     },
   },
 
   toDate: (value, valueFormat) => {
     if (Array.isArray(value))
-      return value.map((val: any) => toDateWithValueFormat(val, valueFormat)) as Dayjs[]
+      return value.map((val: any) => toDateWithValueFormat(val, valueFormat)) as Dayjs[];
     else
-      return toDateWithValueFormat(value, valueFormat) as Dayjs
+      return toDateWithValueFormat(value, valueFormat) as Dayjs;
   },
   toString: (value, valueFormat) => {
     if (Array.isArray(value))
-      return value.map((val: any) => (dayjs.isDayjs(val) ? val.format(valueFormat) : val))
+      return value.map((val: any) => (dayjs.isDayjs(val) ? val.format(valueFormat) : val));
     else
-      return dayjs.isDayjs(value) ? value.format(valueFormat) : value
+      return dayjs.isDayjs(value) ? value.format(valueFormat) : value;
   },
-}
+};
 
-export default generateConfig
+export default generateConfig;

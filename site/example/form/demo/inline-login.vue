@@ -17,8 +17,8 @@ Inline login form is often used in navigation bar.
 </docs>
 
 <script lang="ts" setup>
-  import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
-  import { computed, reactive } from 'vue'
+  import { LockOutlined, UserOutlined } from '@ant-design/icons-vue';
+  import { computed, reactive } from 'vue';
 
   interface FormState {
     username: string;
@@ -27,17 +27,17 @@ Inline login form is often used in navigation bar.
   const formState = reactive<FormState>({
     username: '',
     password: '',
-  })
+  });
   function onFinish(values: any) {
-    console.log('Success:', values)
+    console.log('Success:', values);
   }
 
   function onFinishFailed(errorInfo: any) {
-    console.log('Failed:', errorInfo)
+    console.log('Failed:', errorInfo);
   }
   const disabled = computed(() => {
-    return !(formState.username && formState.password)
-  })
+    return !(formState.username && formState.password);
+  });
 </script>
 
 <template>

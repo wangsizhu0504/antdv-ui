@@ -1,7 +1,7 @@
-import { mkdir } from 'node:fs/promises'
-import { parallel, series } from 'gulp'
-import { run, runTask, withTaskName } from './src'
-import { antdOutput } from './src/path'
+import { mkdir } from 'node:fs/promises';
+import { parallel, series } from 'gulp';
+import { run, runTask, withTaskName } from './src';
+import { antdOutput } from './src/path';
 
 export default series(
   withTaskName('clean', () => run('pnpm run clean')),
@@ -18,6 +18,6 @@ export default series(
     runTask('copyTypesDefinitions'),
     runTask('copyFiles'),
   ),
-)
+);
 
-export * from './src'
+export * from './src';

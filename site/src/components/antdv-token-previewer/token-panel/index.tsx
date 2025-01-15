@@ -1,18 +1,18 @@
-import type { PropType } from 'vue'
-import type { AliasToken, MutableTheme, TokenValue } from '../interface'
-import type { TokenType } from '../utils/classifyToken'
-import { CheckOutlined } from '@ant-design/icons-vue'
-import { theme as antdTheme, Dropdown, Input, Menu, Switch } from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, ref, toRefs, watchEffect } from 'vue'
-import { SearchDropdown } from '../icons'
-import { classifyToken, getTypeOfToken, TOKEN_SORTS } from '../utils/classifyToken'
-import getDesignToken from '../utils/getDesignToken'
-import makeStyle from '../utils/makeStyle'
-import TokenCard, { IconMap, TextMap } from './token-card'
-import { getTokenItemId } from './token-item'
+import type { PropType } from 'vue';
+import type { AliasToken, MutableTheme, TokenValue } from '../interface';
+import type { TokenType } from '../utils/classifyToken';
+import { CheckOutlined } from '@ant-design/icons-vue';
+import { theme as antdTheme, Dropdown, Input, Menu, Switch } from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, ref, toRefs, watchEffect } from 'vue';
+import { SearchDropdown } from '../icons';
+import { classifyToken, getTypeOfToken, TOKEN_SORTS } from '../utils/classifyToken';
+import getDesignToken from '../utils/getDesignToken';
+import makeStyle from '../utils/makeStyle';
+import TokenCard, { IconMap, TextMap } from './token-card';
+import { getTokenItemId } from './token-item';
 
-const { useToken } = antdTheme
+const { useToken } = antdTheme;
 
 const useStyle = makeStyle('AliasTokenPreview', token => ({
   '.preview-panel-wrapper': {
@@ -100,7 +100,7 @@ const useStyle = makeStyle('AliasTokenPreview', token => ({
       },
     },
   },
-}))
+}));
 
 export interface TokenPreviewProps {
   themes: MutableTheme[]
@@ -125,55 +125,55 @@ export default defineComponent({
     enableTokenSelect: { type: Boolean },
   },
   setup(props, { attrs, expose }) {
-    const { filterTypes, themes, selectedTokens, enableTokenSelect } = toRefs(props)
+    const { filterTypes, themes, selectedTokens, enableTokenSelect } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
-    const { token } = useToken()
+    const [wrapSSR, hashId] = useStyle();
+    const { token } = useToken();
 
-    const search = ref<string>('')
-    const showAll = ref<boolean>(false)
-    const showTokenListShadowTop = ref<boolean>(false)
-    const cardWrapperRef = ref<HTMLDivElement>()
-    const activeCards = ref<TokenType[]>([])
-    const activeToken = ref<string | undefined>()
+    const search = ref<string>('');
+    const showAll = ref<boolean>(false);
+    const showTokenListShadowTop = ref<boolean>(false);
+    const cardWrapperRef = ref<HTMLDivElement>();
+    const activeCards = ref<TokenType[]>([]);
+    const activeToken = ref<string | undefined>();
 
-    const mergedFilterTypes = ref<TokenType[]>(filterTypes.value || [])
+    const mergedFilterTypes = ref<TokenType[]>(filterTypes.value || []);
 
     // TODO: Split AliasToken and SeedToken
-    const groupedToken = computed(() => classifyToken(token.value as any))
+    const groupedToken = computed(() => classifyToken(token.value as any));
 
     watchEffect(() => {
       const handleTokenListScroll = () => {
-        showTokenListShadowTop.value = (cardWrapperRef.value?.scrollTop ?? 0) > 0
-      }
-      cardWrapperRef.value?.addEventListener('scroll', handleTokenListScroll)
-      const wrapper = cardWrapperRef.value
+        showTokenListShadowTop.value = (cardWrapperRef.value?.scrollTop ?? 0) > 0;
+      };
+      cardWrapperRef.value?.addEventListener('scroll', handleTokenListScroll);
+      const wrapper = cardWrapperRef.value;
       return () => {
-        wrapper?.removeEventListener('scroll', handleTokenListScroll)
-      }
-    })
+        wrapper?.removeEventListener('scroll', handleTokenListScroll);
+      };
+    });
 
     expose({
       scrollToToken: (tokenName) => {
-        const type = getTypeOfToken(tokenName)
+        const type = getTypeOfToken(tokenName);
         if (!activeCards.value.includes(type))
-          activeCards.value = [...activeCards.value, type]
+          activeCards.value = [...activeCards.value, type];
 
-        activeToken.value = tokenName
+        activeToken.value = tokenName;
         setTimeout(() => {
           const node = cardWrapperRef.value?.querySelector<HTMLElement>(
             `#${getTokenItemId(tokenName)}`,
-          )
+          );
           if (!node)
-            return
+            return;
 
           node?.scrollIntoView({
             block: 'center',
             inline: 'nearest',
-          })
-        }, 100)
+          });
+        }, 100);
       },
-    })
+    });
 
     const handleAliasTokenChange = (theme: MutableTheme, tokenName: string, value: TokenValue) => {
       theme.onThemeChange?.(
@@ -185,8 +185,8 @@ export default defineComponent({
           },
         },
         ['token', tokenName],
-      )
-    }
+      );
+    };
 
     return () => {
       return wrapSSR(
@@ -207,7 +207,7 @@ export default defineComponent({
               <Input
                 allowClear
                 onChange={(e) => {
-                  search.value = e.target.value!
+                  search.value = e.target.value!;
                 }}
                 bordered={false}
                 addonBefore={(
@@ -241,9 +241,9 @@ export default defineComponent({
                                 onClick: () => {
                                   const newTypes = mergedFilterTypes.value.includes(type)
                                     ? mergedFilterTypes.value.filter(item => type !== item)
-                                    : [...mergedFilterTypes.value, type]
-                                  mergedFilterTypes.value = newTypes
-                                  props.onFilterTypesChange?.(newTypes)
+                                    : [...mergedFilterTypes.value, type];
+                                  mergedFilterTypes.value = newTypes;
+                                  props.onFilterTypesChange?.(newTypes);
                                 },
                               })),
                             ]}
@@ -304,7 +304,7 @@ export default defineComponent({
                       onOpenChange={(open) => {
                         activeCards.value = open
                           ? [...activeCards.value, key]
-                          : activeCards.value.filter(item => item !== key)
+                          : activeCards.value.filter(item => item !== key);
                       }}
                       onTokenChange={handleAliasTokenChange}
                       activeToken={activeToken.value}
@@ -321,7 +321,7 @@ export default defineComponent({
             </div>
           </div>
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

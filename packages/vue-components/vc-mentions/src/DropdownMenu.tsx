@@ -1,9 +1,9 @@
-import type { PropType } from 'vue'
-import type { OptionProps } from './Option'
-import Menu, { Item as MenuItem } from '@antdv/components/menu'
-import Spin from '@antdv/components/spin'
-import { defineComponent, inject, onBeforeUnmount, shallowRef } from 'vue'
-import MentionsContextKey from './MentionsContext'
+import type { PropType } from 'vue';
+import type { OptionProps } from './Option';
+import Menu, { Item as MenuItem } from '@antdv/components/menu';
+import Spin from '@antdv/components/spin';
+import { defineComponent, inject, onBeforeUnmount, shallowRef } from 'vue';
+import MentionsContextKey from './MentionsContext';
 
 function noop() {}
 export default defineComponent({
@@ -26,47 +26,47 @@ export default defineComponent({
     } = inject(MentionsContextKey, {
       activeIndex: shallowRef(),
       loading: shallowRef(false),
-    })
-    let timeoutId: any
+    });
+    let timeoutId: any;
     const onMousedown = (e: MouseEvent) => {
-      clearTimeout(timeoutId)
+      clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        onFocus(e)
-      })
-    }
+        onFocus(e);
+      });
+    };
     onBeforeUnmount(() => {
-      clearTimeout(timeoutId)
-    })
+      clearTimeout(timeoutId);
+    });
     return () => {
-      const { prefixCls, options } = props
-      const activeOption = options[activeIndex.value] || {}
+      const { prefixCls, options } = props;
+      const activeOption = options[activeIndex.value] || {};
 
       return (
         <Menu
           prefixCls={`${prefixCls}-menu`}
           activeKey={activeOption.value}
           onSelect={({ key }) => {
-            const option = options.find(({ value }) => value === key)
-            selectOption(option)
+            const option = options.find(({ value }) => value === key);
+            selectOption(option);
           }}
           onMousedown={onMousedown}
         >
           {!loading.value
             && options.map((option, index) => {
-              const { value, disabled, label = option.value, class: className, style } = option
+              const { value, disabled, label = option.value, class: className, style } = option;
               return (
                 <MenuItem
                   key={value}
                   disabled={disabled}
                   onMouseenter={() => {
-                    setActiveIndex(index)
+                    setActiveIndex(index);
                   }}
                   class={className}
                   style={style}
                 >
                   {slots.option?.(option) ?? (typeof label === 'function' ? label(option) : label)}
                 </MenuItem>
-              )
+              );
             })}
           {!loading.value && options.length === 0
             ? (
@@ -81,7 +81,7 @@ export default defineComponent({
             </MenuItem>
           )}
         </Menu>
-      )
-    }
+      );
+    };
   },
-})
+});

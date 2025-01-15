@@ -1,8 +1,8 @@
-import type { CSSMotionProps, Key } from '@antdv/types'
+import type { CSSMotionProps, Key } from '@antdv/types';
 
-import type { ComputedRef, InjectionKey, PropType, Ref } from 'vue'
-import type { BuiltinPlacements, MenuClickEventHandler, MenuMode, MenuTheme, TriggerSubMenuAction } from '../interface'
-import { defineComponent, inject, provide, toRef } from 'vue'
+import type { ComputedRef, InjectionKey, PropType, Ref } from 'vue';
+import type { BuiltinPlacements, MenuClickEventHandler, MenuMode, MenuTheme, TriggerSubMenuAction } from '../interface';
+import { defineComponent, inject, provide, toRef } from 'vue';
 
 export interface StoreMenuInfo {
   eventKey: string
@@ -71,33 +71,33 @@ export interface MenuContextProps {
   getPopupContainer: ComputedRef<(node: HTMLElement) => HTMLElement>
 }
 
-const MenuContextKey: InjectionKey<MenuContextProps> = Symbol('menuContextKey')
+const MenuContextKey: InjectionKey<MenuContextProps> = Symbol('menuContextKey');
 
 function useProvideMenu(props: MenuContextProps) {
-  provide(MenuContextKey, props)
+  provide(MenuContextKey, props);
 }
 
 function useInjectMenu() {
-  return inject(MenuContextKey)
+  return inject(MenuContextKey);
 }
 
-const ForceRenderKey: InjectionKey<boolean> = Symbol('ForceRenderKey')
+const ForceRenderKey: InjectionKey<boolean> = Symbol('ForceRenderKey');
 
 export function useProvideForceRender(forceRender: boolean) {
-  provide(ForceRenderKey, forceRender)
+  provide(ForceRenderKey, forceRender);
 }
 
 export function useInjectForceRender() {
-  return inject(ForceRenderKey, false)
+  return inject(ForceRenderKey, false);
 }
 
-const MenuFirstLevelContextKey: InjectionKey<boolean> = Symbol('menuFirstLevelContextKey')
+const MenuFirstLevelContextKey: InjectionKey<boolean> = Symbol('menuFirstLevelContextKey');
 function useProvideFirstLevel(firstLevel: boolean) {
-  provide(MenuFirstLevelContextKey, firstLevel)
+  provide(MenuFirstLevelContextKey, firstLevel);
 }
 
 function useInjectFirstLevel() {
-  return inject(MenuFirstLevelContextKey, true)
+  return inject(MenuFirstLevelContextKey, true);
 }
 
 const MenuContextProvider = defineComponent({
@@ -109,20 +109,20 @@ const MenuContextProvider = defineComponent({
     overflowDisabled: { type: Boolean, default: undefined },
   },
   setup(props, { slots }) {
-    const menuContext = useInjectMenu()
-    const newContext = { ...menuContext }
+    const menuContext = useInjectMenu();
+    const newContext = { ...menuContext };
     // 确保传入的属性不会动态增删
     // 不需要 watch 变化
     if (props.mode !== undefined)
-      newContext.mode = toRef(props, 'mode')
+      newContext.mode = toRef(props, 'mode');
 
     if (props.overflowDisabled !== undefined)
-      newContext.overflowDisabled = toRef(props, 'overflowDisabled')
+      newContext.overflowDisabled = toRef(props, 'overflowDisabled');
 
-    useProvideMenu(newContext)
-    return () => slots.default?.()
+    useProvideMenu(newContext);
+    return () => slots.default?.();
   },
-})
+});
 
 export {
   MenuContextKey,
@@ -132,6 +132,6 @@ export {
   useInjectMenu,
   useProvideFirstLevel,
   useProvideMenu,
-}
+};
 
-export default useProvideMenu
+export default useProvideMenu;

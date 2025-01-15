@@ -15,29 +15,29 @@
  * - onFilterDropdownOpenChange
  */
 
-import type { CSSProperties, Ref, TdHTMLAttributes } from 'vue'
+import type { CSSProperties, Ref, TdHTMLAttributes } from 'vue';
 
-export type Key = number | string
+export type Key = number | string;
 
-export type FixedType = 'left' | 'right' | boolean
+export type FixedType = 'left' | 'right' | boolean;
 
-export type DefaultRecordType = any
+export type DefaultRecordType = any;
 
-export type TableLayout = 'auto' | 'fixed'
+export type TableLayout = 'auto' | 'fixed';
 
 // ==================== Row =====================
 export type RowClassName<RecordType> = (
   record: RecordType,
   index: number,
   indent: number,
-) => string
+) => string;
 
 export type TransformCellText<RecordType> = (opt: {
   text: any;
   column: ColumnType<RecordType>;
   record: any;
   index: number;
-}) => any
+}) => any;
 
 // =================== Column ===================
 export interface CellType<RecordType = DefaultRecordType> {
@@ -60,9 +60,9 @@ export interface RenderedCell<RecordType> {
   children?: any;
 }
 
-export type DataIndex = string | number | ReadonlyArray<string | number>
+export type DataIndex = string | number | ReadonlyArray<string | number>;
 
-export type CellEllipsisType = { showTitle?: boolean } | boolean
+export type CellEllipsisType = { showTitle?: boolean } | boolean;
 
 interface ColumnSharedType<RecordType> {
   title?: any;
@@ -96,7 +96,7 @@ export interface ColumnGroupType<RecordType> extends ColumnSharedType<RecordType
   children: ColumnsType<RecordType>;
 }
 
-export type AlignType = 'left' | 'center' | 'right'
+export type AlignType = 'left' | 'center' | 'right';
 
 export interface ColumnType<RecordType> extends ColumnSharedType<RecordType> {
   colSpan?: number;
@@ -120,9 +120,9 @@ export interface ColumnType<RecordType> extends ColumnSharedType<RecordType> {
 }
 
 export type ColumnsType<RecordType = unknown> = ReadonlyArray< | ColumnGroupType<RecordType>
-  | ColumnType<RecordType>>
+  | ColumnType<RecordType>>;
 
-export type GetRowKey<RecordType> = (record: RecordType, index?: number) => Key
+export type GetRowKey<RecordType> = (record: RecordType, index?: number) => Key;
 
 // ================= Fix Column =================
 export interface StickyOffsets {
@@ -133,17 +133,17 @@ export interface StickyOffsets {
 export type AdditionalProps = TdHTMLAttributes & {
   colSpan?: number;
   rowSpan?: number;
-}
+};
 // ================= Customized =================
 export type GetComponentProps<DataType> = (
   data: DataType,
   index?: number,
   column?: ColumnType<any>,
-) => AdditionalProps
+) => AdditionalProps;
 
 // type Component<P> = DefineComponent<P> | FunctionalComponent<P> | string;
 
-export type CustomizeComponent = any
+export type CustomizeComponent = any;
 
 export type CustomizeScrollBody<RecordType> = (
   data: readonly RecordType[],
@@ -152,7 +152,7 @@ export type CustomizeScrollBody<RecordType> = (
     ref: Ref<{ scrollLeft: number }>;
     onScroll: (info: { currentTarget?: HTMLElement; scrollLeft?: number }) => void;
   },
-) => any
+) => any;
 
 export interface TableComponents<RecordType> {
   table?: CustomizeComponent;
@@ -173,10 +173,10 @@ export interface TableComponents<RecordType> {
 export type GetComponent = (
   path: readonly string[],
   defaultComponent?: CustomizeComponent,
-) => CustomizeComponent
+) => CustomizeComponent;
 
 // =================== Expand ===================
-export type ExpandableType = false | 'row' | 'nest'
+export type ExpandableType = false | 'row' | 'nest';
 
 export interface LegacyExpandableProps<RecordType> {
   expandedRowKeys?: Key[];
@@ -213,7 +213,7 @@ export type ExpandedRowRender<ValueType> = (opt: {
   index: number;
   indent: number;
   expanded: boolean;
-}) => any
+}) => any;
 
 export interface RenderExpandIconProps<RecordType> {
   prefixCls: string;
@@ -223,7 +223,7 @@ export interface RenderExpandIconProps<RecordType> {
   onExpand: TriggerEventHandler<RecordType>;
 }
 
-export type RenderExpandIcon<RecordType> = (props: RenderExpandIconProps<RecordType>) => any
+export type RenderExpandIcon<RecordType> = (props: RenderExpandIconProps<RecordType>) => any;
 
 export interface ExpandableConfig<RecordType> {
   expandedRowKeys?: readonly Key[];
@@ -246,10 +246,10 @@ export interface ExpandableConfig<RecordType> {
 }
 
 // =================== Render ===================
-export type PanelRender<RecordType> = (data: readonly RecordType[]) => any
+export type PanelRender<RecordType> = (data: readonly RecordType[]) => any;
 
 // =================== Events ===================
-export type TriggerEventHandler<RecordType> = (record: RecordType, event: MouseEvent) => void
+export type TriggerEventHandler<RecordType> = (record: RecordType, event: MouseEvent) => void;
 
 // =================== Sticky ===================
 export interface TableSticky {

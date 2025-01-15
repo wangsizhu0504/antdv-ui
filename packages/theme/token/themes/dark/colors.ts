@@ -1,9 +1,9 @@
-import type { GenerateColorMap, GenerateNeutralColorMap } from '../ColorMap'
-import { generate } from '@ant-design/colors'
-import { getAlphaColor, getSolidColor } from './colorAlgorithm'
+import type { GenerateColorMap, GenerateNeutralColorMap } from '../ColorMap';
+import { generate } from '@ant-design/colors';
+import { getAlphaColor, getSolidColor } from './colorAlgorithm';
 
 export const generateColorPalettes: GenerateColorMap = (baseColor: string) => {
-  const colors = generate(baseColor, { theme: 'dark' })
+  const colors = generate(baseColor, { theme: 'dark' });
   return {
     1: colors[0],
     2: colors[1],
@@ -18,15 +18,15 @@ export const generateColorPalettes: GenerateColorMap = (baseColor: string) => {
     // 8: colors[9],
     // 9: colors[8],
     // 10: colors[7],
-  }
-}
+  };
+};
 
 export const generateNeutralColorPalettes: GenerateNeutralColorMap = (
   bgBaseColor: string,
   textBaseColor: string,
 ) => {
-  const colorBgBase = bgBaseColor || '#000'
-  const colorTextBase = textBaseColor || '#fff'
+  const colorBgBase = bgBaseColor || '#000';
+  const colorTextBase = textBaseColor || '#fff';
 
   return {
     colorBgBase,
@@ -49,5 +49,5 @@ export const generateNeutralColorPalettes: GenerateNeutralColorMap = (
 
     colorBorder: getSolidColor(colorBgBase, 26),
     colorBorderSecondary: getSolidColor(colorBgBase, 19),
-  }
-}
+  };
+};

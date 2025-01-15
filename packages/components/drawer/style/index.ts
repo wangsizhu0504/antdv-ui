@@ -1,6 +1,6 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken } from '@antdv/theme'
-import genMotionStyle from './motion'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken } from '@antdv/theme';
+import genMotionStyle from './motion';
 
 export interface ComponentToken {
   zIndexPopup: number
@@ -34,9 +34,9 @@ const genDrawerStyle: GenerateStyle<DrawerToken> = (token: DrawerToken) => {
     fontWeightStrong,
     drawerFooterPaddingVertical,
     drawerFooterPaddingHorizontal,
-  } = token
+  } = token;
 
-  const wrapperCls = `${componentCls}-content-wrapper`
+  const wrapperCls = `${componentCls}-content-wrapper`;
 
   return {
     [componentCls]: {
@@ -210,8 +210,8 @@ const genDrawerStyle: GenerateStyle<DrawerToken> = (token: DrawerToken) => {
         direction: 'rtl',
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
@@ -220,11 +220,11 @@ export default genComponentStyleHook(
     const drawerToken = mergeToken<DrawerToken>(token, {
       drawerFooterPaddingVertical: token.paddingXS,
       drawerFooterPaddingHorizontal: token.padding,
-    })
+    });
 
-    return [genDrawerStyle(drawerToken), genMotionStyle(drawerToken)]
+    return [genDrawerStyle(drawerToken), genMotionStyle(drawerToken)];
   },
   token => ({
     zIndexPopup: token.zIndexPopupBase,
   }),
-)
+);

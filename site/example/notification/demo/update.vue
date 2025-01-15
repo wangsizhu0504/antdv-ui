@@ -17,36 +17,36 @@ Update content with unique key, or use reactive data.
 </docs>
 
 <script lang="ts" setup>
-  import { notification } from '@antdv/ui'
-  import { ref } from 'vue'
+  import { notification } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const key = 'updatable'
+  const key = 'updatable';
   function openNotification() {
     notification.open({
       key,
       message: 'Notification Title',
       description: 'description.',
-    })
+    });
     setTimeout(() => {
       notification.open({
         key,
         message: 'New Title',
         description: 'New description.',
-      })
-    }, 1000)
+      });
+    }, 1000);
   }
-  const message = ref<any>('Notification Title')
-  const description = ref<any>('description')
+  const message = ref<any>('Notification Title');
+  const description = ref<any>('description');
   function openNotification2() {
     // content must use function
     notification.open({
       message: () => message.value,
       description: () => description.value,
-    })
+    });
     setTimeout(() => {
-      message.value = 'New Title'
-      description.value = 'New description.'
-    }, 1000)
+      message.value = 'New Title';
+      description.value = 'New description.';
+    }, 1000);
   }
 </script>
 

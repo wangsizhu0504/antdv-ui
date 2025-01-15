@@ -99,7 +99,7 @@ const groupItem = {
   type: 'group', // Must have
   label: 'My Group',
   children: [],
-}
+};
 ```
 
 | Param    | Description            | Type                              | Default value | Version |
@@ -114,7 +114,7 @@ Divider line in between menu items, only used in vertical popup Menu or Dropdown
 ```ts
 const dividerItem = {
   type: 'divider', // Must have
-}
+};
 ```
 
 | Param  | Description            | Type    | Default value | Version |

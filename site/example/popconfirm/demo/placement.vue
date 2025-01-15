@@ -17,14 +17,14 @@ There are 12 `placement` options available. Use `arrowPointAtCenter` if you want
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
+  import { message } from '@antdv/ui';
 
-  const buttonWidth = 70
+  const buttonWidth = 70;
 
-  const text = 'Are you sure to delete this task?'
+  const text = 'Are you sure to delete this task?';
 
   function confirm() {
-    message.info('Clicked on Yes.')
+    message.info('Clicked on Yes.');
   }
 </script>
 

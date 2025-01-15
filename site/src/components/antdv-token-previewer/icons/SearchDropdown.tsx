@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'vue'
-import { defineComponent } from 'vue'
+import type { CSSProperties } from 'vue';
+import { defineComponent } from 'vue';
 
 const SearchDropdown = defineComponent({
   name: 'SearchDropdown',
@@ -59,9 +59,9 @@ const SearchDropdown = defineComponent({
             </g>
           </g>
         </svg>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default SearchDropdown
+export default SearchDropdown;

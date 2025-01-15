@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'vue'
+import type { CSSProperties } from 'vue';
 import {
   CheckCircleFilled,
   CheckCircleOutlined,
@@ -9,27 +9,27 @@ import {
   ExclamationCircleOutlined,
   InfoCircleFilled,
   InfoCircleOutlined,
-} from '@ant-design/icons-vue'
-import { classNames, cloneElement, isValidElement } from '@antdv/utils'
-import { getTransitionProps } from '@antdv/vue-components'
-import { computed, defineComponent, shallowRef, Transition } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import { alertProps } from './props'
+} from '@ant-design/icons-vue';
+import { classNames, cloneElement, isValidElement } from '@antdv/utils';
+import { getTransitionProps } from '@antdv/vue-components';
+import { computed, defineComponent, shallowRef, Transition } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import { alertProps } from './props';
 
 const iconMapFilled = {
   success: CheckCircleFilled,
   info: InfoCircleFilled,
   error: CloseCircleFilled,
   warning: ExclamationCircleFilled,
-}
+};
 
 const iconMapOutlined = {
   success: CheckCircleOutlined,
   info: InfoCircleOutlined,
   error: CloseCircleOutlined,
   warning: ExclamationCircleOutlined,
-}
+};
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -37,62 +37,62 @@ export default defineComponent({
   inheritAttrs: false,
   props: alertProps(),
   setup(props, { slots, emit, attrs, expose }) {
-    const { prefixCls, direction } = useConfigInject('alert', props)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
-    const closing = shallowRef(false)
-    const closed = shallowRef(false)
-    const alertNode = shallowRef()
+    const { prefixCls, direction } = useConfigInject('alert', props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
+    const closing = shallowRef(false);
+    const closed = shallowRef(false);
+    const alertNode = shallowRef();
 
     const handleClose = (e: MouseEvent) => {
-      e.preventDefault()
+      e.preventDefault();
 
-      const dom = alertNode.value
+      const dom = alertNode.value;
 
-      dom.style.height = `${dom.offsetHeight}px`
+      dom.style.height = `${dom.offsetHeight}px`;
       // Magic code
       // 重复一次后才能正确设置 height
-      dom.style.height = `${dom.offsetHeight}px`
+      dom.style.height = `${dom.offsetHeight}px`;
 
-      closing.value = true
-      emit('close', e)
-    }
+      closing.value = true;
+      emit('close', e);
+    };
 
     const animationEnd = () => {
-      closing.value = false
-      closed.value = true
-      props.afterClose?.()
-    }
+      closing.value = false;
+      closed.value = true;
+      props.afterClose?.();
+    };
     const mergedType = computed(() => {
-      const { type } = props
+      const { type } = props;
       if (type !== undefined)
-        return type
+        return type;
 
       // banner 模式默认为警告
-      return props.banner ? 'warning' : 'info'
-    })
-    expose({ animationEnd })
-    const motionStyle = shallowRef<CSSProperties>({})
+      return props.banner ? 'warning' : 'info';
+    });
+    expose({ animationEnd });
+    const motionStyle = shallowRef<CSSProperties>({});
     return () => {
-      const { banner, closeIcon: customCloseIcon = slots.closeIcon?.() } = props
+      const { banner, closeIcon: customCloseIcon = slots.closeIcon?.() } = props;
 
-      let { closable, showIcon } = props
+      let { closable, showIcon } = props;
 
-      const closeText = props.closeText ?? slots.closeText?.()
-      const description = props.description ?? slots.description?.()
-      const message = props.message ?? slots.message?.()
-      const icon = props.icon ?? slots.icon?.()
-      const action = slots.action?.()
+      const closeText = props.closeText ?? slots.closeText?.();
+      const description = props.description ?? slots.description?.();
+      const message = props.message ?? slots.message?.();
+      const icon = props.icon ?? slots.icon?.();
+      const action = slots.action?.();
 
       // banner模式默认有 Icon
-      showIcon = banner && showIcon === undefined ? true : showIcon
+      showIcon = banner && showIcon === undefined ? true : showIcon;
 
-      const IconType = (description ? iconMapOutlined : iconMapFilled)[mergedType.value] || null
+      const IconType = (description ? iconMapOutlined : iconMapFilled)[mergedType.value] || null;
 
       // closeable when closeText is assigned
       if (closeText)
-        closable = true
+        closable = true;
 
-      const prefixClsValue = prefixCls.value
+      const prefixClsValue = prefixCls.value;
       const alertCls = classNames(prefixClsValue, {
         [`${prefixClsValue}-${mergedType.value}`]: true,
         [`${prefixClsValue}-closing`]: closing.value,
@@ -102,7 +102,7 @@ export default defineComponent({
         [`${prefixClsValue}-closable`]: closable,
         [`${prefixClsValue}-rtl`]: direction.value === 'rtl',
         [hashId.value]: true,
-      })
+      });
 
       const closeIcon = closable
         ? (
@@ -125,7 +125,7 @@ export default defineComponent({
                     )}
             </button>
           )
-        : null
+        : null;
 
       const iconNode = (icon
         && (isValidElement(icon)
@@ -136,19 +136,19 @@ export default defineComponent({
             )
           : (
               <span class={`${prefixClsValue}-icon`}>{icon}</span>
-            ))) || <IconType class={`${prefixClsValue}-icon`} />
+            ))) || <IconType class={`${prefixClsValue}-icon`} />;
 
       const transitionProps = getTransitionProps(`${prefixClsValue}-motion`, {
         appear: false,
         css: true,
         onAfterLeave: animationEnd,
         onBeforeLeave: (node: HTMLDivElement) => {
-          node.style.maxHeight = `${node.offsetHeight}px`
+          node.style.maxHeight = `${node.offsetHeight}px`;
         },
         onLeave: (node: HTMLDivElement) => {
-          node.style.maxHeight = '0px'
+          node.style.maxHeight = '0px';
         },
-      })
+      });
       return wrapSSR(
         closed.value
           ? null
@@ -177,7 +177,7 @@ export default defineComponent({
                 </div>
               </Transition>
             ),
-      )
-    }
+      );
+    };
   },
-})
+});

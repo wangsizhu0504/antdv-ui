@@ -1,1 +1,1 @@
-export const floatButtonPrefixCls = 'float-btn'
+export const floatButtonPrefixCls = 'float-btn';

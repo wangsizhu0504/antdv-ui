@@ -17,12 +17,12 @@ Allows for custom rendering of tags.
 </docs>
 
 <script lang="ts" setup>
-  import type { TreeSelectProps } from '@antdv/ui'
-  import { TreeSelect } from '@antdv/ui'
-  import { ref, watch } from 'vue'
+  import type { TreeSelectProps } from '@antdv/ui';
+  import { TreeSelect } from '@antdv/ui';
+  import { ref, watch } from 'vue';
 
-  const SHOW_ALL = TreeSelect.SHOW_ALL
-  const value = ref<string[]>(['parent 1', 'parent 1-0', 'leaf1'])
+  const SHOW_ALL = TreeSelect.SHOW_ALL;
+  const value = ref<string[]>(['parent 1', 'parent 1-0', 'leaf1']);
   const treeData = ref<TreeSelectProps['treeData']>([
     {
       label: 'parent 1',
@@ -65,10 +65,10 @@ Allows for custom rendering of tags.
         },
       ],
     },
-  ])
+  ]);
   watch(value, () => {
-    console.log('select', value.value)
-  })
+    console.log('select', value.value);
+  });
 </script>
 
 <template>

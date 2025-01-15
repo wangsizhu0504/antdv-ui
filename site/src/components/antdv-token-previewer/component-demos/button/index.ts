@@ -1,9 +1,9 @@
-import type { ComponentDemo } from '../../interface'
-import Default from './button'
-import ButtonIconDemo from './button-icon'
-import DangerButton from './dangerButton'
-import DefaultButton from './defaultButton'
-import disabled from './disabled'
+import type { ComponentDemo } from '../../interface';
+import Default from './button';
+import ButtonIconDemo from './button-icon';
+import DangerButton from './dangerButton';
+import DefaultButton from './defaultButton';
+import disabled from './disabled';
 
 const previewerDemo: ComponentDemo[] = [
   Default,
@@ -11,6 +11,6 @@ const previewerDemo: ComponentDemo[] = [
   DangerButton,
   DefaultButton,
   disabled,
-]
+];
 
-export default previewerDemo
+export default previewerDemo;

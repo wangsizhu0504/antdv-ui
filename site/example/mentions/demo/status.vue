@@ -17,14 +17,14 @@ Add status to Mentions with `status`, which could be `error` or `warning`。
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
+  import { ref, watch } from 'vue';
 
-  const value = ref<string>('@afc163')
+  const value = ref<string>('@afc163');
   watch(value, () => {
-    console.log('value', value)
-  })
+    console.log('value', value);
+  });
   function onSelect(option: { value: string }) {
-    console.log('select', option)
+    console.log('select', option);
   }
 
   const options = [
@@ -40,7 +40,7 @@ Add status to Mentions with `status`, which could be `error` or `warning`。
       value: 'yesmeck',
       label: 'yesmeck',
     },
-  ]
+  ];
 </script>
 
 <template>

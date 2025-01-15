@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme';
 
 export interface ComponentToken {}
 
@@ -26,10 +26,10 @@ const antProgressActive = new Keyframes('antProgressActive', {
     transform: 'translateX(0) scaleX(1)',
     opacity: 0,
   },
-})
+});
 
 const genBaseStyle: GenerateStyle<ProgressToken> = (token) => {
-  const { componentCls: progressCls, iconCls: iconPrefixCls } = token
+  const { componentCls: progressCls, iconCls: iconPrefixCls } = token;
 
   return {
     [progressCls]: {
@@ -152,11 +152,11 @@ const genBaseStyle: GenerateStyle<ProgressToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genCircleStyle: GenerateStyle<ProgressToken> = (token) => {
-  const { componentCls: progressCls, iconCls: iconPrefixCls } = token
+  const { componentCls: progressCls, iconCls: iconPrefixCls } = token;
 
   return {
     [progressCls]: {
@@ -206,11 +206,11 @@ const genCircleStyle: GenerateStyle<ProgressToken> = (token) => {
         verticalAlign: 'bottom',
       },
     },
-  }
-}
+  };
+};
 
 const genStepStyle: GenerateStyle<ProgressToken> = (token: ProgressToken): CSSObject => {
-  const { componentCls: progressCls } = token
+  const { componentCls: progressCls } = token;
 
   return {
     [progressCls]: {
@@ -234,11 +234,11 @@ const genStepStyle: GenerateStyle<ProgressToken> = (token: ProgressToken): CSSOb
         },
       },
     },
-  }
-}
+  };
+};
 
 const genSmallLine: GenerateStyle<ProgressToken> = (token: ProgressToken): CSSObject => {
-  const { componentCls: progressCls, iconCls: iconPrefixCls } = token
+  const { componentCls: progressCls, iconCls: iconPrefixCls } = token;
 
   return {
     [progressCls]: {
@@ -247,11 +247,11 @@ const genSmallLine: GenerateStyle<ProgressToken> = (token: ProgressToken): CSSOb
           fontSize: token.fontSizeSM,
         },
     },
-  }
-}
+  };
+};
 
 export default genComponentStyleHook('Progress', (token) => {
-  const progressStepMarginInlineEnd = token.marginXXS / 2
+  const progressStepMarginInlineEnd = token.marginXXS / 2;
 
   const progressToken = mergeToken<ProgressToken>(token, {
     progressLineRadius: 100, // magic for capsule shape, should be a very large number
@@ -261,11 +261,11 @@ export default genComponentStyleHook('Progress', (token) => {
     progressStepMarginInlineEnd,
     progressStepMinWidth: progressStepMarginInlineEnd,
     progressActiveMotionDuration: '2.4s',
-  })
+  });
   return [
     genBaseStyle(progressToken),
     genCircleStyle(progressToken),
     genStepStyle(progressToken),
     genSmallLine(progressToken),
-  ]
-})
+  ];
+});

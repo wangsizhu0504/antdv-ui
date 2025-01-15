@@ -17,10 +17,10 @@ use `upIcon` `downIcon` custom icon
 </docs>
 
 <script lang="ts" setup>
-  import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const value = ref<number>(3)
+  const value = ref<number>(3);
 </script>
 
 <template>

@@ -1,8 +1,8 @@
-import { initDefaultProps } from '@antdv/utils'
-import { PortalWrapper } from '@antdv/vue-components'
-import { defineComponent, ref } from 'vue'
-import Child from './DrawerChild'
-import { drawerWrapperProps } from './props'
+import { initDefaultProps } from '@antdv/utils';
+import { PortalWrapper } from '@antdv/vue-components';
+import { defineComponent, ref } from 'vue';
+import Child from './DrawerChild';
+import { drawerWrapperProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -26,15 +26,15 @@ export default defineComponent({
   }),
   emits: ['handleClick', 'close'],
   setup(props, { emit, slots }) {
-    const dom = ref<HTMLElement>(null)
+    const dom = ref<HTMLElement>(null);
 
     const onHandleClick = (e: MouseEvent | KeyboardEvent) => {
-      emit('handleClick', e)
-    }
+      emit('handleClick', e);
+    };
 
     const onClose = (e: MouseEvent | KeyboardEvent) => {
-      emit('close', e)
-    }
+      emit('close', e);
+    };
 
     return () => {
       const {
@@ -44,9 +44,9 @@ export default defineComponent({
         rootStyle,
         forceRender,
         ...otherProps
-      } = props
+      } = props;
 
-      let portal = null
+      let portal = null;
       if (!getContainer) {
         return (
           <Child
@@ -60,11 +60,11 @@ export default defineComponent({
             inline={true}
           >
           </Child>
-        )
+        );
       }
 
       // 如果有 handler 为内置强制渲染；
-      const $forceRender = !!slots.handler || forceRender
+      const $forceRender = !!slots.handler || forceRender;
       if ($forceRender || props.open || dom.value) {
         portal = (
           <PortalWrapper
@@ -93,9 +93,9 @@ export default defineComponent({
             }}
           >
           </PortalWrapper>
-        )
+        );
       }
-      return portal
-    }
+      return portal;
+    };
   },
-})
+});

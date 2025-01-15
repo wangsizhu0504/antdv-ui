@@ -15,12 +15,12 @@ There are three sizes of an a-segmented: `large` (40px), `default` (32px) and `s
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, ref } from 'vue'
+  import { reactive, ref } from 'vue';
 
-  const data = reactive(['Daily', 'Weekly', 'Monthly', 'Quarterly', 'Yearly'])
-  const value = ref<any>(data[0])
-  const value2 = ref<any>(data[0])
-  const value3 = ref<any>(data[0])
+  const data = reactive(['Daily', 'Weekly', 'Monthly', 'Quarterly', 'Yearly']);
+  const value = ref<any>(data[0]);
+  const value2 = ref<any>(data[0]);
+  const value3 = ref<any>(data[0]);
 </script>
 
 <template>

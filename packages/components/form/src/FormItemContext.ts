@@ -1,7 +1,7 @@
-import type { ValidateStatus } from '@antdv/types'
-import type { ComputedRef, ConcreteComponent, InjectionKey } from 'vue'
-import { createContext } from '@antdv/hooks'
-import { devWarning } from '@antdv/utils'
+import type { ValidateStatus } from '@antdv/types';
+import type { ComputedRef, ConcreteComponent, InjectionKey } from 'vue';
+import { createContext } from '@antdv/hooks';
+import { devWarning } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -11,7 +11,7 @@ import {
   provide,
   ref,
   watch,
-} from 'vue'
+} from 'vue';
 
 export interface FormItemContext {
   id: ComputedRef<string>
@@ -25,21 +25,21 @@ interface InternalFormItemContext {
   removeFormItemField: (key: symbol) => void
 }
 
-const ContextKey: InjectionKey<FormItemContext> = Symbol('ContextProps')
+const ContextKey: InjectionKey<FormItemContext> = Symbol('ContextProps');
 
-const InternalContextKey: InjectionKey<InternalFormItemContext> = Symbol('InternalContextProps')
+const InternalContextKey: InjectionKey<InternalFormItemContext> = Symbol('InternalContextProps');
 
 export function useProvideFormItemContext(props: FormItemContext, useValidation: ComputedRef<boolean> = computed(() => true)) {
-  const formItemFields = ref(new Map<symbol, ConcreteComponent>())
+  const formItemFields = ref(new Map<symbol, ConcreteComponent>());
   const addFormItemField = (key: symbol, type: ConcreteComponent) => {
-    formItemFields.value.set(key, type)
-    formItemFields.value = new Map(formItemFields.value)
-  }
+    formItemFields.value.set(key, type);
+    formItemFields.value = new Map(formItemFields.value);
+  };
   const removeFormItemField = (key: symbol) => {
-    formItemFields.value.delete(key)
-    formItemFields.value = new Map(formItemFields.value)
-  }
-  const instance = getCurrentInstance()
+    formItemFields.value.delete(key);
+    formItemFields.value = new Map(formItemFields.value);
+  };
+  const instance = getCurrentInstance();
   watch([useValidation, formItemFields], () => {
     if (process.env.NODE_ENV !== 'production') {
       if (useValidation.value && formItemFields.value.size > 1) {
@@ -52,20 +52,20 @@ export function useProvideFormItemContext(props: FormItemContext, useValidation:
             .map(v => `\`${v.name}\``)
             .join(', ')} ${formItemFields.value.size} field items.
         You can set not need to be collected fields into \`a-form-item-rest\``,
-        )
-        let cur = instance
+        );
+        let cur = instance;
         while (cur.parent) {
-          console.warn('at', cur.type)
-          cur = cur.parent
+          console.warn('at', cur.type);
+          cur = cur.parent;
         }
       }
     }
-  })
-  provide(ContextKey, props)
+  });
+  provide(ContextKey, props);
   provide(InternalContextKey, {
     addFormItemField,
     removeFormItemField,
-  })
+  });
 }
 
 const defaultContext: FormItemContext = {
@@ -73,36 +73,36 @@ const defaultContext: FormItemContext = {
   onFieldBlur: () => {},
   onFieldChange: () => {},
   clearValidate: () => {},
-}
+};
 const defaultInternalContext: InternalFormItemContext = {
   addFormItemField: () => {},
   removeFormItemField: () => {},
-}
+};
 export function useInjectFormItemContext() {
-  const internalContext = inject(InternalContextKey, defaultInternalContext)
-  const formItemFieldKey = Symbol('FormItemFieldKey')
-  const instance = getCurrentInstance()
-  internalContext.addFormItemField(formItemFieldKey, instance.type)
+  const internalContext = inject(InternalContextKey, defaultInternalContext);
+  const formItemFieldKey = Symbol('FormItemFieldKey');
+  const instance = getCurrentInstance();
+  internalContext.addFormItemField(formItemFieldKey, instance.type);
   onBeforeUnmount(() => {
-    internalContext.removeFormItemField(formItemFieldKey)
-  })
+    internalContext.removeFormItemField(formItemFieldKey);
+  });
   // We should prevent the passing of context for children
-  provide(InternalContextKey, defaultInternalContext)
-  provide(ContextKey, defaultContext)
-  return inject(ContextKey, defaultContext)
+  provide(InternalContextKey, defaultInternalContext);
+  provide(ContextKey, defaultContext);
+  return inject(ContextKey, defaultContext);
 }
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AFormItemRest',
   setup(_, { slots }) {
-    provide(InternalContextKey, defaultInternalContext)
-    provide(ContextKey, defaultContext)
+    provide(InternalContextKey, defaultInternalContext);
+    provide(ContextKey, defaultContext);
     return () => {
-      return slots.default?.()
-    }
+      return slots.default?.();
+    };
   },
-})
+});
 
 export interface FormItemStatusContextProps {
   isFormItemInput?: boolean
@@ -111,14 +111,14 @@ export interface FormItemStatusContextProps {
   feedbackIcon?: any
 }
 
-export const FormItemInputContext = createContext<FormItemStatusContextProps>({})
+export const FormItemInputContext = createContext<FormItemStatusContextProps>({});
 
 export const NoFormStatus = defineComponent({
   name: 'NoFormStatus',
   setup(_, { slots }) {
-    FormItemInputContext.useProvide({})
+    FormItemInputContext.useProvide({});
     return () => {
-      return slots.default?.()
-    }
+      return slots.default?.();
+    };
   },
-})
+});

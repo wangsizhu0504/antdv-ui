@@ -17,15 +17,15 @@ Config component default size.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  type SizeType = 'small' | 'middle' | 'large'
+  type SizeType = 'small' | 'middle' | 'large';
 
-  const componentSize = ref<SizeType>('small')
+  const componentSize = ref<SizeType>('small');
   const columns = [
     { title: 'Name', dataIndex: 'name' },
     { title: 'Age', dataIndex: 'age' },
-  ]
+  ];
   const dataSource = [
     {
       key: '1',
@@ -42,7 +42,7 @@ Config component default size.
       name: 'Joe Black',
       age: 32,
     },
-  ]
+  ];
 </script>
 
 <template>

@@ -17,12 +17,12 @@ Submenus open as pop-ups.
 </docs>
 
 <script lang="ts" setup>
-  import type { MenuProps } from '@antdv/ui'
-  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
-  import { h, ref } from 'vue'
+  import type { MenuProps } from '@antdv/ui';
+  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue';
+  import { h, ref } from 'vue';
 
-  const selectedKeys = ref<any>([])
-  const openKeys = ref<any>([])
+  const selectedKeys = ref<any>([]);
+  const openKeys = ref<any>([]);
   const items = ref<any>([
     {
       key: '1',
@@ -99,10 +99,10 @@ Submenus open as pop-ups.
         },
       ],
     },
-  ])
+  ]);
   const handleClick: MenuProps['onClick'] = (menuInfo) => {
-    console.log('click ', menuInfo)
-  }
+    console.log('click ', menuInfo);
+  };
 </script>
 
 <template>

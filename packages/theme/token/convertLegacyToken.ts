@@ -1,8 +1,8 @@
-import type { MapToken } from './interface'
-import formatToken from './util/alias'
+import type { MapToken } from './interface';
+import formatToken from './util/alias';
 
 export default function convertLegacyToken(mapToken: MapToken) {
-  const token = formatToken(mapToken as any)
+  const token = formatToken(mapToken as any);
 
   const raw = {
     'theme': 'default',
@@ -1074,31 +1074,31 @@ export default function convertLegacyToken(mapToken: MapToken) {
     'segmented-selected-bg': '@white',
     'segmented-label-color': 'fade(@black, 65%)',
     'segmented-label-hover-color': '#262626',
-  } as const
+  } as const;
 
   // Fill colors. e.g. '@red-1', '@yellow-6'
   Object.keys(token).forEach((key: any) => {
     if (key !== key.toLowerCase())
-      return
+      return;
 
-    const value = token[key]
+    const value = token[key];
     if (typeof value === 'string')
-      raw[key] = value
-  })
+      raw[key] = value;
+  });
 
   // Convert to string
-  const returnData: Record<keyof typeof raw, string> = {} as any
+  const returnData: Record<keyof typeof raw, string> = {} as any;
 
   Object.keys(raw).forEach((key) => {
-    const value = raw[key]
+    const value = raw[key];
 
     if (typeof value === 'function')
-      returnData[key] = value(raw)
+      returnData[key] = value(raw);
     else if (typeof value === 'number' && !key.includes('line-height'))
-      returnData[key] = `${value}px`
+      returnData[key] = `${value}px`;
     else
-      returnData[key] = `${value}`
-  })
+      returnData[key] = `${value}`;
+  });
 
-  return returnData
+  return returnData;
 }

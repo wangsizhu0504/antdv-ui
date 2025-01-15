@@ -17,20 +17,20 @@ Open a new drawer on top of an existing drawer to handle multi branch tasks.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const open = ref<boolean>(false)
+  const open = ref<boolean>(false);
 
-  const childrenDrawer = ref<boolean>(false)
+  const childrenDrawer = ref<boolean>(false);
 
   function showDrawer() {
-    open.value = true
+    open.value = true;
   }
   function onClose() {
-    open.value = false
+    open.value = false;
   }
   function showChildrenDrawer() {
-    childrenDrawer.value = true
+    childrenDrawer.value = true;
   }
 </script>
 

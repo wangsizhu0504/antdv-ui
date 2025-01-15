@@ -1,6 +1,6 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent, resetIcon } from '@antdv/theme'
-import { genCollapseMotion } from '@antdv/theme/style/motion'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent, resetIcon } from '@antdv/theme';
+import { genCollapseMotion } from '@antdv/theme/style/motion';
 
 export interface ComponentToken {}
 
@@ -10,7 +10,7 @@ type CollapseToken = FullToken<'Collapse'> & {
   collapseHeaderPadding: string
   collapsePanelBorderRadius: number
   collapseContentPaddingHorizontal: number
-}
+};
 
 export const genBaseStyle: GenerateStyle<CollapseToken> = (token) => {
   const {
@@ -34,9 +34,9 @@ export const genBaseStyle: GenerateStyle<CollapseToken> = (token) => {
     paddingSM,
     motionDurationSlow,
     fontSizeIcon,
-  } = token
+  } = token;
 
-  const borderBase = `${lineWidth}px ${lineType} ${colorBorder}`
+  const borderBase = `${lineWidth}px ${lineType} ${colorBorder}`;
 
   return {
     [componentCls]: {
@@ -172,13 +172,13 @@ export const genBaseStyle: GenerateStyle<CollapseToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genArrowStyle: GenerateStyle<CollapseToken> = (token) => {
-  const { componentCls } = token
+  const { componentCls } = token;
 
-  const fixedSelector = `> ${componentCls}-item > ${componentCls}-header ${componentCls}-arrow svg`
+  const fixedSelector = `> ${componentCls}-item > ${componentCls}-header ${componentCls}-arrow svg`;
 
   return {
     [`${componentCls}-rtl`]: {
@@ -186,8 +186,8 @@ const genArrowStyle: GenerateStyle<CollapseToken> = (token) => {
         transform: 'rotate(180deg)',
       },
     },
-  }
-}
+  };
+};
 
 const genBorderlessStyle: GenerateStyle<CollapseToken> = (token) => {
   const {
@@ -196,7 +196,7 @@ const genBorderlessStyle: GenerateStyle<CollapseToken> = (token) => {
     paddingXXS,
 
     colorBorder,
-  } = token
+  } = token;
 
   return {
     [`${componentCls}-borderless`]: {
@@ -227,11 +227,11 @@ const genBorderlessStyle: GenerateStyle<CollapseToken> = (token) => {
         paddingTop: paddingXXS,
       },
     },
-  }
-}
+  };
+};
 
 const genGhostStyle: GenerateStyle<CollapseToken> = (token) => {
-  const { componentCls, paddingSM } = token
+  const { componentCls, paddingSM } = token;
 
   return {
     [`${componentCls}-ghost`]: {
@@ -248,8 +248,8 @@ const genGhostStyle: GenerateStyle<CollapseToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 export default genComponentStyleHook('Collapse', (token) => {
   const collapseToken = mergeToken<CollapseToken>(token, {
@@ -258,7 +258,7 @@ export default genComponentStyleHook('Collapse', (token) => {
     collapseHeaderPadding: `${token.paddingSM}px ${token.padding}px`,
     collapsePanelBorderRadius: token.borderRadiusLG,
     collapseContentPaddingHorizontal: 16, // Fixed value
-  })
+  });
 
   return [
     genBaseStyle(collapseToken),
@@ -266,5 +266,5 @@ export default genComponentStyleHook('Collapse', (token) => {
     genGhostStyle(collapseToken),
     genArrowStyle(collapseToken),
     genCollapseMotion(collapseToken),
-  ]
-})
+  ];
+});

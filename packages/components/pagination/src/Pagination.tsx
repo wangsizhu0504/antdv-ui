@@ -1,14 +1,14 @@
-import { DoubleLeftOutlined, DoubleRightOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
-import { useBreakpoint } from '@antdv/hooks'
-import { enUS } from '@antdv/locale'
-import { classNames } from '@antdv/utils'
-import { VcPagination } from '@antdv/vue-components'
-import { computed, defineComponent, toRef } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { useLocaleReceiver } from '../../locale-provider'
-import useStyle from '../style'
-import { paginationProps } from './props'
-import { MiddleSelect, MiniSelect } from './Select'
+import { DoubleLeftOutlined, DoubleRightOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue';
+import { useBreakpoint } from '@antdv/hooks';
+import { enUS } from '@antdv/locale';
+import { classNames } from '@antdv/utils';
+import { VcPagination } from '@antdv/vue-components';
+import { computed, defineComponent, toRef } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { useLocaleReceiver } from '../../locale-provider';
+import useStyle from '../style';
+import { paginationProps } from './props';
+import { MiddleSelect, MiniSelect } from './Select';
 
 // CSSINJS
 
@@ -19,28 +19,28 @@ export default defineComponent({
   props: paginationProps(),
   // emits: ['change', 'showSizeChange', 'update:current', 'update:pageSize'],
   setup(props, { slots, attrs }) {
-    const { prefixCls, configProvider, direction, size } = useConfigInject('pagination', props)
+    const { prefixCls, configProvider, direction, size } = useConfigInject('pagination', props);
 
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     const selectPrefixCls = computed(() =>
       configProvider.getPrefixCls('select', props.selectPrefixCls),
-    )
-    const breakpoint = useBreakpoint()
-    const [locale] = useLocaleReceiver('Pagination', enUS.Pagination, toRef(props, 'locale'))
+    );
+    const breakpoint = useBreakpoint();
+    const [locale] = useLocaleReceiver('Pagination', enUS.Pagination, toRef(props, 'locale'));
     const getIconsProps = (pre: string) => {
-      const ellipsis = <span class={`${pre}-item-ellipsis`}>•••</span>
+      const ellipsis = <span class={`${pre}-item-ellipsis`}>•••</span>;
       const prevIcon = (
         <button class={`${pre}-item-link`} type="button" tabindex={-1}>
           {direction.value === 'rtl' ? <RightOutlined /> : <LeftOutlined />}
         </button>
-      )
+      );
       const nextIcon = (
         <button class={`${pre}-item-link`} type="button" tabindex={-1}>
           {direction.value === 'rtl' ? <LeftOutlined /> : <RightOutlined />}
         </button>
-      )
+      );
       const jumpPrevIcon = (
         <a rel="nofollow" class={`${pre}-item-link`}>
           <div class={`${pre}-item-container`}>
@@ -54,7 +54,7 @@ export default defineComponent({
             {ellipsis}
           </div>
         </a>
-      )
+      );
       const jumpNextIcon = (
         <a rel="nofollow" class={`${pre}-item-link`}>
           <div class={`${pre}-item-container`}>
@@ -68,9 +68,9 @@ export default defineComponent({
             {ellipsis}
           </div>
         </a>
-      )
-      return { prevIcon, nextIcon, jumpPrevIcon, jumpNextIcon }
-    }
+      );
+      return { prevIcon, nextIcon, jumpPrevIcon, jumpNextIcon };
+    };
 
     return () => {
       const {
@@ -79,9 +79,9 @@ export default defineComponent({
         selectComponentClass,
         responsive,
         ...restProps
-      } = props
+      } = props;
 
-      const isSmall = size.value === 'small' || !!(breakpoint.value?.xs && !size.value && responsive)
+      const isSmall = size.value === 'small' || !!(breakpoint.value?.xs && !size.value && responsive);
 
       const paginationProps = {
         ...restProps,
@@ -101,9 +101,9 @@ export default defineComponent({
           hashId.value,
         ),
         itemRender,
-      }
+      };
 
-      return wrapSSR(<VcPagination {...paginationProps} />)
-    }
+      return wrapSSR(<VcPagination {...paginationProps} />);
+    };
   },
-})
+});

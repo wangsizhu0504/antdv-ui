@@ -1,9 +1,9 @@
-import type { CSSProperties } from 'vue'
-import type { ComponentDemo } from '../../interface'
+import type { CSSProperties } from 'vue';
+import type { ComponentDemo } from '../../interface';
 
-import { Carousel } from '@antdv/ui'
+import { Carousel } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 const contentStyle = {
   height: '160px',
@@ -11,7 +11,7 @@ const contentStyle = {
   lineHeight: '160px',
   textAlign: 'center',
   background: '#364d79',
-}
+};
 const Demo = defineComponent({
   setup() {
     return () => (
@@ -29,14 +29,14 @@ const Demo = defineComponent({
           <h3 style={contentStyle as CSSProperties}>4</h3>
         </div>
       </Carousel>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorText', 'colorBgContainer'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

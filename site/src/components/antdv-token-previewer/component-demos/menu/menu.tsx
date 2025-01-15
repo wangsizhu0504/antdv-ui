@@ -1,19 +1,19 @@
-import type { MenuProps } from '@antdv/ui'
-import type { ComponentDemo } from '../../interface'
-import { Menu } from '@antdv/ui'
+import type { MenuProps } from '@antdv/ui';
+import type { ComponentDemo } from '../../interface';
+import { Menu } from '@antdv/ui';
 
-import { defineComponent, ref } from 'vue'
-import items from './data'
+import { defineComponent, ref } from 'vue';
+import items from './data';
 
 const Demo = defineComponent({
   setup() {
     return () => {
       const onClick: MenuProps['onClick'] = (e) => {
-        console.log('click ', e)
-      }
+        console.log('click ', e);
+      };
 
-      const selectedKeys = ref<any>(['1'])
-      const openKeys = ref<any>(['sub1', 'sub2'])
+      const selectedKeys = ref<any>(['1']);
+      const openKeys = ref<any>(['sub1', 'sub2']);
 
       return (
         <div>
@@ -30,15 +30,15 @@ const Demo = defineComponent({
             items={items}
           />
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorPrimary', 'colorBgContainer', 'colorFillAlter', 'colorSplit', 'colorPrimaryHover'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

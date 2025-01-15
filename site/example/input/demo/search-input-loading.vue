@@ -17,9 +17,9 @@ Search loading when onSearch.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<string>('')
+  const value = ref<string>('');
 </script>
 
 <template>

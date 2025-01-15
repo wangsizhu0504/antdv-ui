@@ -1,9 +1,9 @@
-import type { CSSProperties, PropType } from 'vue'
-import { getPropsSlot, PropTypes } from '@antdv/utils'
-import { defineComponent, shallowRef, watchEffect } from 'vue'
-import Trigger from '../../vc-trigger/src/Trigger'
-import Content from './Content'
-import { placements } from './placements'
+import type { CSSProperties, PropType } from 'vue';
+import { getPropsSlot, PropTypes } from '@antdv/utils';
+import { defineComponent, shallowRef, watchEffect } from 'vue';
+import Trigger from '../../vc-trigger/src/Trigger';
+import Content from './Content';
+import { placements } from './placements';
 
 function noop() {}
 export default defineComponent({
@@ -39,10 +39,10 @@ export default defineComponent({
     arrow: { type: Boolean, default: true },
   },
   setup(props, { slots, attrs, expose }) {
-    const triggerDOM = shallowRef()
+    const triggerDOM = shallowRef();
 
     const getPopupElement = () => {
-      const { prefixCls, tipId, overlayInnerStyle } = props
+      const { prefixCls, tipId, overlayInnerStyle } = props;
       return [
         props.arrow
           ? (
@@ -58,31 +58,31 @@ export default defineComponent({
           overlayInnerStyle={overlayInnerStyle}
           v-slots={{ overlay: slots.overlay }}
         />,
-      ]
-    }
+      ];
+    };
 
     const getPopupDomNode = () => {
-      return triggerDOM.value.getPopupDomNode()
-    }
+      return triggerDOM.value.getPopupDomNode();
+    };
 
     expose({
       getPopupDomNode,
       triggerDOM,
       forcePopupAlign: () => triggerDOM.value?.forcePopupAlign(),
-    })
+    });
 
-    const destroyTooltip = shallowRef(false)
-    const autoDestroy = shallowRef(false)
+    const destroyTooltip = shallowRef(false);
+    const autoDestroy = shallowRef(false);
     watchEffect(() => {
-      const { destroyTooltipOnHide } = props
+      const { destroyTooltipOnHide } = props;
       if (typeof destroyTooltipOnHide === 'boolean') {
-        destroyTooltip.value = destroyTooltipOnHide
+        destroyTooltip.value = destroyTooltipOnHide;
       } else if (destroyTooltipOnHide && typeof destroyTooltipOnHide === 'object') {
-        const { keepParent } = destroyTooltipOnHide
-        destroyTooltip.value = keepParent === true
-        autoDestroy.value = keepParent === false
+        const { keepParent } = destroyTooltipOnHide;
+        destroyTooltip.value = keepParent === true;
+        autoDestroy.value = keepParent === false;
       }
-    })
+    });
 
     return () => {
       const {
@@ -100,10 +100,10 @@ export default defineComponent({
         destroyTooltipOnHide,
         defaultVisible,
         ...restProps
-      } = props
-      const extraProps = { ...restProps }
+      } = props;
+      const extraProps = { ...restProps };
       if (props.visible !== undefined)
-        extraProps.popupVisible = props.visible
+        extraProps.popupVisible = props.visible;
 
       const triggerProps = {
         popupClassName: overlayClassName,
@@ -128,8 +128,8 @@ export default defineComponent({
         ref: triggerDOM,
         arrow: !!props.arrow,
         popup: getPopupElement(),
-      }
-      return <Trigger {...triggerProps} v-slots={{ default: slots.default }}></Trigger>
-    }
+      };
+      return <Trigger {...triggerProps} v-slots={{ default: slots.default }}></Trigger>;
+    };
   },
-})
+});

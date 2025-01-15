@@ -1,12 +1,12 @@
-import type { ComponentDemo } from '../../interface'
-import { TimePicker } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { TimePicker } from '@antdv/ui';
 
-const Demo = () => <TimePicker />
+const Demo = () => <TimePicker />;
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorPrimary'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

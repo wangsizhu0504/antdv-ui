@@ -17,7 +17,7 @@ Custom display the context menu
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
+  import { ref, watch } from 'vue';
 
   const treeData = [
     {
@@ -44,15 +44,15 @@ Custom display the context menu
         },
       ],
     },
-  ]
+  ];
   function onContextMenuClick(treeKey: string, menuKey: string | number) {
-    console.log(`treeKey: ${treeKey}, menuKey: ${menuKey}`)
+    console.log(`treeKey: ${treeKey}, menuKey: ${menuKey}`);
   }
-  const expandedKeys = ref<string[]>(['0-0-0', '0-0-1'])
+  const expandedKeys = ref<string[]>(['0-0-0', '0-0-1']);
 
   watch(expandedKeys, () => {
-    console.log('expandedKeys', expandedKeys)
-  })
+    console.log('expandedKeys', expandedKeys);
+  });
 </script>
 
 <template>

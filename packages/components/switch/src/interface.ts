@@ -1,1 +1,1 @@
-export type CheckedType = boolean | string | number
+export type CheckedType = boolean | string | number;

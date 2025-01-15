@@ -1,8 +1,8 @@
-import type { CSSProperties } from 'vue'
-import type { MobilePopupProps } from './interface'
-import { classNames, flattenChildren } from '@antdv/utils'
-import { defineComponent, ref, Transition } from 'vue'
-import { mobileProps } from './interface'
+import type { CSSProperties } from 'vue';
+import type { MobilePopupProps } from './interface';
+import { classNames, flattenChildren } from '@antdv/utils';
+import { defineComponent, ref, Transition } from 'vue';
+import { mobileProps } from './interface';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -11,12 +11,12 @@ export default defineComponent({
   props: mobileProps,
   emits: ['mouseenter', 'mouseleave', 'mousedown', 'touchstart', 'align'],
   setup(props, { expose, slots }) {
-    const elementRef = ref<HTMLDivElement>()
+    const elementRef = ref<HTMLDivElement>();
 
     expose({
       forceAlign: () => {},
       getElement: () => elementRef.value,
-    })
+    });
 
     return () => {
       const {
@@ -24,24 +24,24 @@ export default defineComponent({
         visible,
         prefixCls,
         mobile: { popupClassName, popupStyle, popupMotion = {}, popupRender } = {},
-      } = props as MobilePopupProps
+      } = props as MobilePopupProps;
       // ======================== Render ========================
       const mergedStyle: CSSProperties = {
         zIndex,
         ...popupStyle,
-      }
+      };
 
-      let childNode: any = flattenChildren(slots.default?.())
+      let childNode: any = flattenChildren(slots.default?.());
 
       // Wrapper when multiple children
       if (childNode.length > 1)
-        childNode = <div class={`${prefixCls}-content`}>{childNode}</div>
+        childNode = <div class={`${prefixCls}-content`}>{childNode}</div>;
 
       // Mobile support additional render
       if (popupRender)
-        childNode = popupRender(childNode)
+        childNode = popupRender(childNode);
 
-      const mergedClassName = classNames(prefixCls, popupClassName)
+      const mergedClassName = classNames(prefixCls, popupClassName);
       return (
         <Transition ref={elementRef} {...popupMotion}>
           {visible
@@ -52,7 +52,7 @@ export default defineComponent({
               )
             : null}
         </Transition>
-      )
-    }
+      );
+    };
   },
-})
+});

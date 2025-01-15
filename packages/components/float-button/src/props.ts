@@ -1,7 +1,7 @@
-import type { MouseEventHandler } from '@antdv/types'
-import type { ExtractPropTypes } from 'vue'
-import type { FloatButtonBadgeProps, FloatButtonGroupTrigger, FloatButtonShape, FloatButtonType } from './interface'
-import { booleanType, functionType, objectType, PropTypes, stringType } from '@antdv/utils'
+import type { MouseEventHandler } from '@antdv/types';
+import type { ExtractPropTypes } from 'vue';
+import type { FloatButtonBadgeProps, FloatButtonGroupTrigger, FloatButtonShape, FloatButtonType } from './interface';
+import { booleanType, functionType, objectType, PropTypes, stringType } from '@antdv/utils';
 
 export function floatButtonProps() {
   return {
@@ -14,12 +14,12 @@ export function floatButtonProps() {
     target: String,
     badge: objectType<FloatButtonBadgeProps>(),
     onClick: functionType<MouseEventHandler>(),
-  }
+  };
 }
 export function floatButtonContentProps() {
   return {
     prefixCls: stringType<FloatButtonProps['prefixCls']>(),
-  }
+  };
 }
 
 export function floatButtonGroupProps() {
@@ -33,7 +33,7 @@ export function floatButtonGroupProps() {
     // 展开收起的回调
     'onOpenChange': functionType<(open: boolean) => void>(),
     'onUpdate:open': functionType<(open: boolean) => void>(),
-  }
+  };
 }
 
 export function backTopProps() {
@@ -44,13 +44,13 @@ export function backTopProps() {
     target: functionType<() => HTMLElement | Window | Document>(),
     visibilityHeight: Number,
     onClick: functionType<MouseEventHandler>(),
-  }
+  };
 }
 
-export type BackTopProps = Partial<ExtractPropTypes<ReturnType<typeof backTopProps>>>
+export type BackTopProps = Partial<ExtractPropTypes<ReturnType<typeof backTopProps>>>;
 
-export type FloatButtonGroupProps = Partial<ExtractPropTypes<ReturnType<typeof floatButtonGroupProps>>>
+export type FloatButtonGroupProps = Partial<ExtractPropTypes<ReturnType<typeof floatButtonGroupProps>>>;
 
-export type FloatButtonContentProps = Partial<ExtractPropTypes<ReturnType<typeof floatButtonContentProps>>>
+export type FloatButtonContentProps = Partial<ExtractPropTypes<ReturnType<typeof floatButtonContentProps>>>;
 
-export type FloatButtonProps = Partial<ExtractPropTypes<ReturnType<typeof floatButtonProps>>>
+export type FloatButtonProps = Partial<ExtractPropTypes<ReturnType<typeof floatButtonProps>>>;

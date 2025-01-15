@@ -1,7 +1,7 @@
-import type { InjectionKey } from 'vue'
-import type { GetComponent, TransformCellText } from '../interface'
-import type { FixedInfo } from '../utils/fixUtil'
-import { inject, provide } from 'vue'
+import type { InjectionKey } from 'vue';
+import type { GetComponent, TransformCellText } from '../interface';
+import type { FixedInfo } from '../utils/fixUtil';
+import { inject, provide } from 'vue';
 
 export interface TableContextProps {
   // Table context
@@ -22,12 +22,12 @@ export interface TableContextProps {
   transformCellText: TransformCellText<unknown>;
 }
 
-export const TableContextKey: InjectionKey<TableContextProps> = Symbol('TableContextProps')
+export const TableContextKey: InjectionKey<TableContextProps> = Symbol('TableContextProps');
 
 export function useProvideTable(props: TableContextProps) {
-  provide(TableContextKey, props)
+  provide(TableContextKey, props);
 }
 
 export function useInjectTable() {
-  return inject(TableContextKey, {} as TableContextProps)
+  return inject(TableContextKey, {} as TableContextProps);
 }

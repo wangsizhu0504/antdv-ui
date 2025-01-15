@@ -17,15 +17,15 @@ Custom indicator.
 </docs>
 
 <script lang="ts" setup>
-  import type { TourProps } from '@antdv/ui'
-  import { EllipsisOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { TourProps } from '@antdv/ui';
+  import { EllipsisOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const open = ref<boolean>(false)
+  const open = ref<boolean>(false);
 
-  const ref1 = ref<any>(null)
-  const ref2 = ref<any>(null)
-  const ref3 = ref<any>(null)
+  const ref1 = ref<any>(null);
+  const ref2 = ref<any>(null);
+  const ref3 = ref<any>(null);
 
   const steps: TourProps['steps'] = [
     {
@@ -43,10 +43,10 @@ Custom indicator.
       description: 'Click to see other actions.',
       target: () => ref3.value && ref3.value.$el,
     },
-  ]
+  ];
 
   function handleOpen(val: boolean): void {
-    open.value = val
+    open.value = val;
   }
 </script>
 

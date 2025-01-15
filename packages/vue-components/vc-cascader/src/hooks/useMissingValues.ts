@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
-import type { DefaultOptionType, InternalFieldNames, SingleValueType } from '../Cascader'
-import { computed } from 'vue'
-import { toPathOptions } from '../utils/treeUtil'
+import type { Ref } from 'vue';
+import type { DefaultOptionType, InternalFieldNames, SingleValueType } from '../Cascader';
+import { computed } from 'vue';
+import { toPathOptions } from '../utils/treeUtil';
 
 export default (
   options: Ref<DefaultOptionType[]>,
@@ -9,17 +9,17 @@ export default (
   rawValues: Ref<SingleValueType[]>,
 ) => {
   return computed(() => {
-    const missingValues: SingleValueType[] = []
-    const existsValues: SingleValueType[] = []
+    const missingValues: SingleValueType[] = [];
+    const existsValues: SingleValueType[] = [];
 
     rawValues.value.forEach((valueCell) => {
-      const pathOptions = toPathOptions(valueCell, options.value, fieldNames.value)
+      const pathOptions = toPathOptions(valueCell, options.value, fieldNames.value);
       if (pathOptions.every(opt => opt.option))
-        existsValues.push(valueCell)
+        existsValues.push(valueCell);
       else
-        missingValues.push(valueCell)
-    })
+        missingValues.push(valueCell);
+    });
 
-    return [existsValues, missingValues]
-  })
-}
+    return [existsValues, missingValues];
+  });
+};

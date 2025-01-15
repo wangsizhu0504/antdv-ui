@@ -1,6 +1,6 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
-import genNotificationPlacementStyle from './placement'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme';
+import genNotificationPlacementStyle from './placement';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {
@@ -42,9 +42,9 @@ const genNotificationStyle: GenerateStyle<NotificationToken> = (token) => {
     lineHeight,
     width,
     notificationIconSize,
-  } = token
+  } = token;
 
-  const noticeCls = `${componentCls}-notice`
+  const noticeCls = `${componentCls}-notice`;
 
   const notificationFadeIn = new Keyframes('antNotificationFadeIn', {
     '0%': {
@@ -62,7 +62,7 @@ const genNotificationStyle: GenerateStyle<NotificationToken> = (token) => {
       },
       opacity: 1,
     },
-  })
+  });
 
   const notificationFadeOut = new Keyframes('antNotificationFadeOut', {
     '0%': {
@@ -78,7 +78,7 @@ const genNotificationStyle: GenerateStyle<NotificationToken> = (token) => {
       paddingBottom: 0,
       opacity: 0,
     },
-  })
+  });
 
   return [
     // ============================ Holder ============================
@@ -252,15 +252,15 @@ const genNotificationStyle: GenerateStyle<NotificationToken> = (token) => {
         margin: 0,
       },
     },
-  ]
-}
+  ];
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
   'Notification',
   (token) => {
-    const notificationPaddingVertical = token.paddingMD
-    const notificationPaddingHorizontal = token.paddingLG
+    const notificationPaddingVertical = token.paddingMD;
+    const notificationPaddingHorizontal = token.paddingLG;
 
     const notificationToken = mergeToken<NotificationToken>(token, {
       // default.less variables
@@ -274,12 +274,12 @@ export default genComponentStyleHook(
       animationMaxHeight: 150,
       notificationIconSize: token.fontSizeLG * token.lineHeightLG,
       notificationCloseButtonSize: token.controlHeightLG * 0.55,
-    })
+    });
 
-    return [genNotificationStyle(notificationToken)]
+    return [genNotificationStyle(notificationToken)];
   },
   token => ({
     zIndexPopup: token.zIndexPopupBase + 50,
     width: 384,
   }),
-)
+);

@@ -17,24 +17,24 @@ Use `notification.useNotification` to get `contextHolder` with context accessibl
 </docs>
 
 <script lang="ts" setup>
-  import type { NotificationPlacement } from '@antdv/ui'
+  import type { NotificationPlacement } from '@antdv/ui';
   import {
     RadiusBottomleftOutlined,
     RadiusBottomrightOutlined,
     RadiusUpleftOutlined,
     RadiusUprightOutlined,
-  } from '@ant-design/icons-vue'
-  import { notification } from '@antdv/ui'
+  } from '@ant-design/icons-vue';
+  import { notification } from '@antdv/ui';
 
-  const [api, contextHolder] = notification.useNotification()
-  const open = (placement: NotificationPlacement) => openNotification(placement)
+  const [api, contextHolder] = notification.useNotification();
+  const open = (placement: NotificationPlacement) => openNotification(placement);
   function openNotification(placement: NotificationPlacement) {
     api.info({
       message: `Notification ${placement}`,
       description:
         'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
       placement,
-    })
+    });
   }
 </script>
 

@@ -17,8 +17,8 @@ Customize the dropdown menu via `dropdownRender`.
 </docs>
 
 <script lang="ts" setup>
-  import { PlusOutlined } from '@ant-design/icons-vue'
-  import { defineComponent, ref } from 'vue'
+  import { PlusOutlined } from '@ant-design/icons-vue';
+  import { defineComponent, ref } from 'vue';
 
   const VNodes = defineComponent({
     props: {
@@ -28,17 +28,17 @@ Customize the dropdown menu via `dropdownRender`.
       },
     },
     render() {
-      return this.vnodes
+      return this.vnodes;
     },
-  })
+  });
 
-  let index = 0
-  const items = ref<any>(['jack', 'lucy'])
-  const value = ref<any>('lucy')
+  let index = 0;
+  const items = ref<any>(['jack', 'lucy']);
+  const value = ref<any>('lucy');
 
   function addItem() {
-    console.log('addItem')
-    items.value.push(`New item ${(index += 1)}`)
+    console.log('addItem');
+    items.value.push(`New item ${(index += 1)}`);
   }
 </script>
 

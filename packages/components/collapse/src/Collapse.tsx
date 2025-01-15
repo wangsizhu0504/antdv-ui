@@ -1,8 +1,8 @@
-import type { CustomSlotsType, Key } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import type { CollapsibleType } from './interface'
-import type { CollapsePanelProps } from './props'
-import { RightOutlined } from '@ant-design/icons-vue'
+import type { CustomSlotsType, Key } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import type { CollapsibleType } from './interface';
+import type { CollapsePanelProps } from './props';
+import { RightOutlined } from '@ant-design/icons-vue';
 import {
   classNames,
   cloneElement,
@@ -12,13 +12,13 @@ import {
   initDefaultProps,
   isEmptyElement,
   isValidElement,
-} from '@antdv/utils'
-import { collapseMotion } from '@antdv/vue-components'
-import { computed, defineComponent, ref, watch } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+} from '@antdv/utils';
+import { collapseMotion } from '@antdv/vue-components';
+import { computed, defineComponent, ref, watch } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import useStyle from '../style'
-import { collapseProps } from './props'
+import useStyle from '../style';
+import { collapseProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -36,74 +36,74 @@ export default defineComponent({
   }>,
   setup(props, { attrs, slots, emit }) {
     function getActiveKeysArray(activeKey: Key | Key[]) {
-      let currentActiveKey = activeKey
+      let currentActiveKey = activeKey;
       if (!Array.isArray(currentActiveKey)) {
-        const activeKeyType = typeof currentActiveKey
+        const activeKeyType = typeof currentActiveKey;
         currentActiveKey
-          = activeKeyType === 'number' || activeKeyType === 'string' ? [currentActiveKey] : []
+          = activeKeyType === 'number' || activeKeyType === 'string' ? [currentActiveKey] : [];
       }
-      return currentActiveKey.map(key => String(key))
+      return currentActiveKey.map(key => String(key));
     }
 
     const stateActiveKey = ref<Key[]>(
       getActiveKeysArray(firstNotUndefined([props.activeKey, props.defaultActiveKey])),
-    )
+    );
 
     watch(
       () => props.activeKey,
       () => {
-        stateActiveKey.value = getActiveKeysArray(props.activeKey)
+        stateActiveKey.value = getActiveKeysArray(props.activeKey);
       },
       { deep: true },
-    )
-    const { prefixCls, direction, rootPrefixCls } = useConfigInject('collapse', props)
+    );
+    const { prefixCls, direction, rootPrefixCls } = useConfigInject('collapse', props);
 
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     const iconPosition = computed(() => {
-      const { expandIconPosition } = props
+      const { expandIconPosition } = props;
       if (expandIconPosition !== undefined)
-        return expandIconPosition
+        return expandIconPosition;
 
-      return direction.value === 'rtl' ? 'end' : 'start'
-    })
+      return direction.value === 'rtl' ? 'end' : 'start';
+    });
 
     const setActiveKey = (activeKey: Key[]) => {
       if (props.activeKey === undefined)
-        stateActiveKey.value = activeKey
+        stateActiveKey.value = activeKey;
 
-      const newKey = props.accordion ? activeKey[0] : activeKey
-      emit('update:activeKey', newKey)
-      emit('change', newKey)
-    }
+      const newKey = props.accordion ? activeKey[0] : activeKey;
+      emit('update:activeKey', newKey);
+      emit('change', newKey);
+    };
 
     const onClickItem = (key: Key) => {
-      let activeKey = stateActiveKey.value
+      let activeKey = stateActiveKey.value;
       if (props.accordion) {
-        activeKey = activeKey[0] === key ? [] : [key]
+        activeKey = activeKey[0] === key ? [] : [key];
       } else {
-        activeKey = [...activeKey]
-        const index = activeKey.indexOf(key)
-        const isActive = index > -1
+        activeKey = [...activeKey];
+        const index = activeKey.indexOf(key);
+        const isActive = index > -1;
         if (isActive) {
           // remove active state
-          activeKey.splice(index, 1)
+          activeKey.splice(index, 1);
         } else {
-          activeKey.push(key)
+          activeKey.push(key);
         }
       }
-      setActiveKey(activeKey)
-    }
+      setActiveKey(activeKey);
+    };
     const renderExpandIcon = (panelProps: CollapsePanelProps) => {
-      const { expandIcon = slots.expandIcon } = props
+      const { expandIcon = slots.expandIcon } = props;
       const icon = expandIcon
         ? (
             expandIcon(panelProps)
           )
         : (
             <RightOutlined rotate={panelProps.isActive ? 90 : undefined} />
-          )
+          );
 
       return (
         <div
@@ -113,42 +113,42 @@ export default defineComponent({
         >
           {isValidElement(Array.isArray(expandIcon) ? icon[0] : icon)
             ? cloneElement(
-              icon,
-              {
-                class: `${prefixCls.value}-arrow`,
-              },
-              false,
-            )
+                icon,
+                {
+                  class: `${prefixCls.value}-arrow`,
+                },
+                false,
+              )
             : icon}
         </div>
-      )
-    }
+      );
+    };
 
     const getNewChild = (child, index) => {
-      if (isEmptyElement(child)) return
-      const activeKey = stateActiveKey.value
-      const { accordion, destroyInactivePanel, collapsible, openAnimation } = props
-      const animation = openAnimation || collapseMotion(`${rootPrefixCls.value}-motion-collapse`)
+      if (isEmptyElement(child)) return;
+      const activeKey = stateActiveKey.value;
+      const { accordion, destroyInactivePanel, collapsible, openAnimation } = props;
+      const animation = openAnimation || collapseMotion(`${rootPrefixCls.value}-motion-collapse`);
 
       // If there is no key provide, use the panel order as default key
-      const key = String(child.key ?? index)
+      const key = String(child.key ?? index);
       const {
         header = child.children?.header?.(),
         headerClass,
         collapsible: childCollapsible,
         disabled,
-      } = child.props || {}
-      let isActive = false
+      } = child.props || {};
+      let isActive = false;
 
       if (accordion)
-        isActive = activeKey[0] === key
+        isActive = activeKey[0] === key;
       else
-        isActive = activeKey.includes(key)
+        isActive = activeKey.includes(key);
 
-      let mergeCollapsible: CollapsibleType = childCollapsible ?? collapsible
+      let mergeCollapsible: CollapsibleType = childCollapsible ?? collapsible;
       // legacy 2.x
       if (disabled || disabled === '')
-        mergeCollapsible = 'disabled'
+        mergeCollapsible = 'disabled';
 
       const newProps = {
         key,
@@ -163,17 +163,17 @@ export default defineComponent({
         onItemClick: mergeCollapsible === 'disabled' ? null : onClickItem,
         expandIcon: renderExpandIcon,
         collapsible: mergeCollapsible,
-      }
+      };
 
-      return cloneElement(child, newProps)
-    }
+      return cloneElement(child, newProps);
+    };
 
     const getItems = () => {
-      return flattenChildren(slots.default?.()).map(getNewChild)
-    }
+      return flattenChildren(slots.default?.()).map(getNewChild);
+    };
 
     return () => {
-      const { accordion, bordered, ghost } = props
+      const { accordion, bordered, ghost } = props;
       const collapseClassName = classNames(
         prefixCls.value,
         {
@@ -184,7 +184,7 @@ export default defineComponent({
           [attrs.class as string]: !!attrs.class,
         },
         hashId.value,
-      )
+      );
       return wrapSSR(
         <div
           class={collapseClassName}
@@ -194,7 +194,7 @@ export default defineComponent({
         >
           {getItems()}
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

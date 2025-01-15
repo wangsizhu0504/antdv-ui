@@ -16,18 +16,18 @@ use [`Form.useForm`](#useform) provides form validation logic and status.
 </docs>
 
 <script lang="ts" setup>
-  import { Form } from '@antdv/ui'
-  import { reactive, toRaw } from 'vue'
+  import { Form } from '@antdv/ui';
+  import { reactive, toRaw } from 'vue';
 
-  const useForm = Form.useForm
+  const useForm = Form.useForm;
 
-  const labelCol = { span: 4 }
-  const wrapperCol = { span: 14 }
+  const labelCol = { span: 4 };
+  const wrapperCol = { span: 14 };
   const modelRef = reactive({
     name: '',
     region: undefined,
     type: [],
-  })
+  });
   const rulesRef = reactive({
     name: [
       {
@@ -48,18 +48,18 @@ use [`Form.useForm`](#useform) provides form validation logic and status.
         type: 'array',
       },
     ],
-  })
+  });
   const { resetFields, validate, validateInfos } = useForm(modelRef, rulesRef, {
     onValidate: (...args) => console.log(...args),
-  })
+  });
   function onSubmit() {
     validate()
       .then(() => {
-        console.log(toRaw(modelRef))
+        console.log(toRaw(modelRef));
       })
       .catch((err) => {
-        console.log('error', err)
-      })
+        console.log('error', err);
+      });
   }
 </script>
 

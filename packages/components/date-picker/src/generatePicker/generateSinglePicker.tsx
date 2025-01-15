@@ -1,23 +1,23 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
-import type { PanelMode, PickerMode } from '@antdv/vue-components/vc-picker/src/interface'
-import type { CommonProps, DatePickerProps } from './props'
-import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled } from '@ant-design/icons-vue'
-import { enUS } from '@antdv/locale'
-import { classNames, devWarning, getMergedStatus, getStatusClassNames } from '@antdv/utils'
-import { VcPicker } from '@antdv/vue-components'
-import { computed, defineComponent, ref } from 'vue'
-import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
-import { FormItemInputContext, useInjectFormItemContext } from '../../../form/src/FormItemContext'
-import { useLocaleReceiver } from '../../../locale-provider'
+import type { CustomSlotsType } from '@antdv/types';
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate';
+import type { PanelMode, PickerMode } from '@antdv/vue-components/vc-picker/src/interface';
+import type { CommonProps, DatePickerProps } from './props';
+import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled } from '@ant-design/icons-vue';
+import { enUS } from '@antdv/locale';
+import { classNames, devWarning, getMergedStatus, getStatusClassNames } from '@antdv/utils';
+import { VcPicker } from '@antdv/vue-components';
+import { computed, defineComponent, ref } from 'vue';
+import useConfigInject from '../../../config-provider/src/hooks/useConfigInject';
+import { FormItemInputContext, useInjectFormItemContext } from '../../../form/src/FormItemContext';
+import { useLocaleReceiver } from '../../../locale-provider';
 
-import { useCompactItemContext } from '../../../space'
+import { useCompactItemContext } from '../../../space';
 
-import useStyle from '../../style'
-import { getPlaceholder, transPlacement2DropdownAlign } from '../util'
-import { commonProps, datePickerProps } from './props'
+import useStyle from '../../style';
+import { getPlaceholder, transPlacement2DropdownAlign } from '../util';
+import { commonProps, datePickerProps } from './props';
 
-import { Components, getTimeProps } from './util'
+import { Components, getTimeProps } from './util';
 
 // CSSINJS
 
@@ -30,7 +30,7 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
       ...commonProps<DateType>(),
       ...datePickerProps<DateType>(),
       ...extraProps,
-    }
+    };
     return defineComponent({
       compatConfig: { MODE: 3 },
       name: displayName,
@@ -53,115 +53,115 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
         // 兼容 vue 3.2.7
         const props = _props as unknown as CommonProps<DateType> &
         DatePickerProps<DateType> &
-        ExtraProps
-        const formItemContext = useInjectFormItemContext()
-        const formItemInputContext = FormItemInputContext.useInject()
+        ExtraProps;
+        const formItemContext = useInjectFormItemContext();
+        const formItemInputContext = FormItemInputContext.useInject();
         // =================== Warning =====================
         if (process.env.NODE_ENV !== 'production') {
           devWarning(
             picker !== 'quarter',
             displayName || 'DatePicker',
             `DatePicker.${displayName} is legacy usage. Please use DatePicker[picker='${picker}'] directly.`,
-          )
+          );
 
           devWarning(
             !props.dropdownClassName,
             displayName || 'DatePicker',
             '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
-          )
+          );
           devWarning(
             !(props.monthCellContentRender || slots.monthCellContentRender),
             displayName || 'DatePicker',
             '`monthCellContentRender` is deprecated. Please use `monthCellRender"` instead.',
-          )
+          );
 
           devWarning(
             !attrs.getCalendarContainer,
             displayName || 'DatePicker',
             '`getCalendarContainer` is deprecated. Please use `getPopupContainer"` instead.',
-          )
+          );
         }
 
         const { prefixCls, direction, getPopupContainer, size, rootPrefixCls, disabled }
-          = useConfigInject('picker', props)
-        const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction)
-        const mergedSize = computed(() => compactSize.value || size.value)
+          = useConfigInject('picker', props);
+        const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
+        const mergedSize = computed(() => compactSize.value || size.value);
         // style
-        const [wrapSSR, hashId] = useStyle(prefixCls)
+        const [wrapSSR, hashId] = useStyle(prefixCls);
 
-        const pickerRef = ref()
+        const pickerRef = ref();
         expose({
           focus: () => {
-            pickerRef.value?.focus()
+            pickerRef.value?.focus();
           },
           blur: () => {
-            pickerRef.value?.blur()
+            pickerRef.value?.blur();
           },
-        })
+        });
         const maybeToString = (date: DateType) => {
-          return props.valueFormat ? generateConfig.toString(date, props.valueFormat) : date
-        }
+          return props.valueFormat ? generateConfig.toString(date, props.valueFormat) : date;
+        };
         const onChange = (date: DateType, dateString: string) => {
-          const value = maybeToString(date)
-          emit('update:value', value)
-          emit('change', value, dateString)
-          formItemContext.onFieldChange()
-        }
+          const value = maybeToString(date);
+          emit('update:value', value);
+          emit('change', value, dateString);
+          formItemContext.onFieldChange();
+        };
         const onOpenChange = (open: boolean) => {
-          emit('update:open', open)
-          emit('openChange', open)
-        }
+          emit('update:open', open);
+          emit('openChange', open);
+        };
         const onFocus = (e: FocusEvent) => {
-          emit('focus', e)
-        }
+          emit('focus', e);
+        };
         const onBlur = (e: FocusEvent) => {
-          emit('blur', e)
-          formItemContext.onFieldBlur()
-        }
+          emit('blur', e);
+          formItemContext.onFieldBlur();
+        };
         const onPanelChange = (date: DateType, mode: PanelMode | null) => {
-          const value = maybeToString(date)
-          emit('panelChange', value, mode)
-        }
+          const value = maybeToString(date);
+          emit('panelChange', value, mode);
+        };
         const onOk = (date: DateType) => {
-          const value = maybeToString(date)
-          emit('ok', value)
-        }
+          const value = maybeToString(date);
+          emit('ok', value);
+        };
 
-        const [contextLocale] = useLocaleReceiver('DatePicker', enUS.DatePicker)
+        const [contextLocale] = useLocaleReceiver('DatePicker', enUS.DatePicker);
 
         const value = computed(() => {
           if (props.value) {
             return props.valueFormat
               ? generateConfig.toDate(props.value as string | DateType, props.valueFormat)
-              : props.value
+              : props.value;
           }
-          return (props.value === '' ? undefined : props.value) as DateType
-        })
+          return (props.value === '' ? undefined : props.value) as DateType;
+        });
         const defaultValue = computed(() => {
           if (props.defaultValue) {
             return props.valueFormat
               ? generateConfig.toDate(props.defaultValue as string | DateType, props.valueFormat)
-              : props.defaultValue
+              : props.defaultValue;
           }
-          return (props.defaultValue === '' ? undefined : props.defaultValue) as DateType
-        })
+          return (props.defaultValue === '' ? undefined : props.defaultValue) as DateType;
+        });
         const defaultPickerValue = computed(() => {
           if (props.defaultPickerValue) {
             return props.valueFormat
               ? generateConfig.toDate(
-                props.defaultPickerValue as string | DateType,
-                props.valueFormat,
-              )
-              : props.defaultPickerValue
+                  props.defaultPickerValue as string | DateType,
+                  props.valueFormat,
+                )
+              : props.defaultPickerValue;
           }
           return (
             props.defaultPickerValue === '' ? undefined : props.defaultPickerValue
-          ) as DateType
-        })
+          ) as DateType;
+        });
 
         return () => {
-          const locale = { ...contextLocale.value, ...props.locale }
-          const p = { ...props, ...attrs }
+          const locale = { ...contextLocale.value, ...props.locale };
+          const p = { ...props, ...attrs };
           const {
             bordered = true,
             placeholder,
@@ -177,36 +177,36 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
             clearIcon = slots.clearIcon?.(),
             id = formItemContext.id.value,
             ...restProps
-          } = p
-          const showTime = (p.showTime as string) === '' ? true : p.showTime
-          const { format } = p as any
+          } = p;
+          const showTime = (p.showTime as string) === '' ? true : p.showTime;
+          const { format } = p as any;
 
-          let additionalOverrideProps: any = {}
+          let additionalOverrideProps: any = {};
           if (picker)
-            additionalOverrideProps.picker = picker
+            additionalOverrideProps.picker = picker;
 
-          const mergedPicker = picker || p.picker || 'date'
+          const mergedPicker = picker || p.picker || 'date';
 
           additionalOverrideProps = {
             ...additionalOverrideProps,
             ...(showTime
               ? getTimeProps({
-                format,
-                picker: mergedPicker,
-                ...(typeof showTime === 'object' ? showTime : {}),
-              })
+                  format,
+                  picker: mergedPicker,
+                  ...(typeof showTime === 'object' ? showTime : {}),
+                })
               : {}),
             ...(mergedPicker === 'time'
               ? getTimeProps({ format, ...restProps, picker: mergedPicker })
               : {}),
-          }
-          const pre = prefixCls.value
+          };
+          const pre = prefixCls.value;
           const suffixNode = (
             <>
               {suffixIcon || (picker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />)}
               {formItemInputContext.hasFeedback && formItemInputContext.feedbackIcon}
             </>
-          )
+          );
           return wrapSSR(
             <VcPicker
               monthCellRender={monthCellRender}
@@ -264,18 +264,18 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
               onPanelChange={onPanelChange}
               onOk={onOk}
             />,
-          )
-        }
+          );
+        };
       },
-    })
+    });
   }
 
-  const DatePicker = getPicker(undefined, 'ADatePicker')
-  const WeekPicker = getPicker('week', 'AWeekPicker')
-  const MonthPicker = getPicker('month', 'AMonthPicker')
-  const YearPicker = getPicker('year', 'AYearPicker')
-  const TimePicker = getPicker('time', 'TimePicker') // 给独立组件 TimePicker 使用，此处名称不用更改
-  const QuarterPicker = getPicker('quarter', 'AQuarterPicker')
+  const DatePicker = getPicker(undefined, 'ADatePicker');
+  const WeekPicker = getPicker('week', 'AWeekPicker');
+  const MonthPicker = getPicker('month', 'AMonthPicker');
+  const YearPicker = getPicker('year', 'AYearPicker');
+  const TimePicker = getPicker('time', 'TimePicker'); // 给独立组件 TimePicker 使用，此处名称不用更改
+  const QuarterPicker = getPicker('quarter', 'AQuarterPicker');
 
   return {
     DatePicker,
@@ -284,5 +284,5 @@ export default function generateSinglePicker<DateType, ExtraProps = {}>(
     YearPicker,
     TimePicker,
     QuarterPicker,
-  }
+  };
 }

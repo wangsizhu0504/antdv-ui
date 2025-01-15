@@ -1,6 +1,6 @@
-import type { ComputedRef, ImgHTMLAttributes, Ref } from 'vue'
-import type { IDialogChildProps } from '../../vc-dialog/src/IDialogPropTypes'
-import type { PreviewProps } from './Preview'
+import type { ComputedRef, ImgHTMLAttributes, Ref } from 'vue';
+import type { IDialogChildProps } from '../../vc-dialog/src/IDialogPropTypes';
+import type { PreviewProps } from './Preview';
 
 export interface PreviewGroupPreview
   extends Omit<ImagePreviewType, 'icons' | 'mask' | 'maskClassName'> {
@@ -40,7 +40,7 @@ export interface GroupConsumerValue extends GroupConsumerProps {
   rootClassName?: string;
 }
 
-export type GetContainer = string | HTMLElement | (() => HTMLElement)
+export type GetContainer = string | HTMLElement | (() => HTMLElement);
 
 export type ImagePreviewType = Omit<
   IDialogChildProps,
@@ -52,6 +52,6 @@ export type ImagePreviewType = Omit<
   getContainer?: GetContainer | false;
   maskClassName?: string;
   icons?: PreviewProps['icons'];
-}
+};
 
-export type ImageStatus = 'normal' | 'error' | 'loading'
+export type ImageStatus = 'normal' | 'error' | 'loading';

@@ -3,11 +3,11 @@
  * You can use this hooks to get them.
  */
 
-import type { InjectionKey } from 'vue'
-import type { RawValueType, RenderNode } from './BaseSelect'
-import type { FlattenOptionData } from './interface'
-import type { BaseOptionType, FieldNames, OnActiveValue, OnInternalSelect } from './Select'
-import { inject, provide } from 'vue'
+import type { InjectionKey } from 'vue';
+import type { RawValueType, RenderNode } from './BaseSelect';
+import type { FlattenOptionData } from './interface';
+import type { BaseOptionType, FieldNames, OnActiveValue, OnInternalSelect } from './Select';
+import { inject, provide } from 'vue';
 
 // Use any here since we do not get the type during compilation
 export interface SelectContextProps {
@@ -25,12 +25,12 @@ export interface SelectContextProps {
   childrenAsData?: boolean;
 }
 
-const SelectContextKey: InjectionKey<SelectContextProps> = Symbol('SelectContextKey')
+const SelectContextKey: InjectionKey<SelectContextProps> = Symbol('SelectContextKey');
 
 export function useProvideSelectProps(props: SelectContextProps) {
-  return provide(SelectContextKey, props)
+  return provide(SelectContextKey, props);
 }
 
 export default function useSelectProps() {
-  return inject(SelectContextKey, {} as SelectContextProps)
+  return inject(SelectContextKey, {} as SelectContextProps);
 }

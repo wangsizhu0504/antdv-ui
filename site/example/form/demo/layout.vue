@@ -16,8 +16,8 @@ There are three layout for form: `horizontal`, `vertical`, `inline`.
 </docs>
 
 <script lang="ts" setup>
-  import type { UnwrapRef } from 'vue'
-  import { computed, reactive } from 'vue'
+  import type { UnwrapRef } from 'vue';
+  import { computed, reactive } from 'vue';
 
   interface FormState {
     layout: 'horizontal' | 'vertical' | 'inline';
@@ -28,24 +28,24 @@ There are three layout for form: `horizontal`, `vertical`, `inline`.
     layout: 'horizontal',
     fieldA: '',
     fieldB: '',
-  })
+  });
   const formItemLayout = computed(() => {
-    const { layout } = formState
+    const { layout } = formState;
     return layout === 'horizontal'
       ? {
         labelCol: { span: 4 },
         wrapperCol: { span: 14 },
       }
-      : {}
-  })
+      : {};
+  });
   const buttonItemLayout = computed(() => {
-    const { layout } = formState
+    const { layout } = formState;
     return layout === 'horizontal'
       ? {
         wrapperCol: { span: 14, offset: 4 },
       }
-      : {}
-  })
+      : {};
+  });
 </script>
 
 <template>

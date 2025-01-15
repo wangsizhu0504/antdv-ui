@@ -1,28 +1,28 @@
-import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
-import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface'
-import type { RangePickerSharedProps } from '@antdv/vue-components/vc-picker/src/RangePicker'
-import type { SlotsType } from 'vue'
-import type { RangePickerProps } from './interface'
-import type { CommonProps } from './props'
-import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled, SwapRightOutlined } from '@ant-design/icons-vue'
-import { enUS } from '@antdv/locale'
-import { classNames, devWarning, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils'
-import { VcRangePicker } from '@antdv/vue-components'
-import { computed, defineComponent, ref } from 'vue'
-import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate';
+import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface';
+import type { RangePickerSharedProps } from '@antdv/vue-components/vc-picker/src/RangePicker';
+import type { SlotsType } from 'vue';
+import type { RangePickerProps } from './interface';
+import type { CommonProps } from './props';
+import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled, SwapRightOutlined } from '@ant-design/icons-vue';
+import { enUS } from '@antdv/locale';
+import { classNames, devWarning, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils';
+import { VcRangePicker } from '@antdv/vue-components';
+import { computed, defineComponent, ref } from 'vue';
+import useConfigInject from '../../../config-provider/src/hooks/useConfigInject';
 
-import { FormItemInputContext, useInjectFormItemContext } from '../../../form/src/FormItemContext'
+import { FormItemInputContext, useInjectFormItemContext } from '../../../form/src/FormItemContext';
 
-import { useLocaleReceiver } from '../../../locale-provider'
-
-import useStyle from '../../style'
-
-import { getRangePlaceholder, transPlacement2DropdownAlign } from '../util'
+import { useLocaleReceiver } from '../../../locale-provider';
 
 // CSSINJS
-import { useCompactItemContext } from '../../../space'
-import { commonProps, rangePickerProps } from './props'
-import { Components, getTimeProps } from './util'
+import { useCompactItemContext } from '../../../space';
+
+import useStyle from '../../style';
+
+import { getRangePlaceholder, transPlacement2DropdownAlign } from '../util';
+import { commonProps, rangePickerProps } from './props';
+import { Components, getTimeProps } from './util';
 
 export default function generateRangePicker<DateType, ExtraProps = {}>(
   generateConfig: GenerateConfig<DateType>,
@@ -50,9 +50,9 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
       clearIcon?: any
     }>,
     setup(_props, { expose, slots, attrs, emit }) {
-      const props = _props as unknown as CommonProps<DateType> & RangePickerProps<DateType>
-      const formItemContext = useInjectFormItemContext()
-      const formItemInputContext = FormItemInputContext.useInject()
+      const props = _props as unknown as CommonProps<DateType> & RangePickerProps<DateType>;
+      const formItemContext = useInjectFormItemContext();
+      const formItemInputContext = FormItemInputContext.useInject();
 
       // =================== Warning =====================
       if (process.env.NODE_ENV !== 'production') {
@@ -60,94 +60,94 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           !props.dropdownClassName,
           'RangePicker',
           '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
-        )
+        );
         devWarning(
           !attrs.getCalendarContainer,
           'DatePicker',
           '`getCalendarContainer` is deprecated. Please use `getPopupContainer"` instead.',
-        )
+        );
       }
 
       const { prefixCls, direction, getPopupContainer, size, rootPrefixCls, disabled }
-        = useConfigInject('picker', props)
-      const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction)
-      const mergedSize = computed(() => compactSize.value || size.value)
+        = useConfigInject('picker', props);
+      const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
+      const mergedSize = computed(() => compactSize.value || size.value);
       // style
-      const [wrapSSR, hashId] = useStyle(prefixCls)
-      const pickerRef = ref()
+      const [wrapSSR, hashId] = useStyle(prefixCls);
+      const pickerRef = ref();
       expose({
         focus: () => {
-          pickerRef.value?.focus()
+          pickerRef.value?.focus();
         },
         blur: () => {
-          pickerRef.value?.blur()
+          pickerRef.value?.blur();
         },
-      })
+      });
       const maybeToStrings = (dates: DateType[]) => {
-        return props.valueFormat ? generateConfig.toString(dates, props.valueFormat) : dates
-      }
+        return props.valueFormat ? generateConfig.toString(dates, props.valueFormat) : dates;
+      };
       const onChange = (dates: RangeValue<DateType>, dateStrings: [string, string]) => {
-        const values = maybeToStrings(dates)
-        emit('update:value', values)
-        emit('change', values, dateStrings)
-        formItemContext.onFieldChange()
-      }
+        const values = maybeToStrings(dates);
+        emit('update:value', values);
+        emit('change', values, dateStrings);
+        formItemContext.onFieldChange();
+      };
       const onOpenChange = (open: boolean) => {
-        emit('update:open', open)
-        emit('openChange', open)
-      }
+        emit('update:open', open);
+        emit('openChange', open);
+      };
       const onFocus = (e: FocusEvent) => {
-        emit('focus', e)
-      }
+        emit('focus', e);
+      };
       const onBlur = (e: FocusEvent) => {
-        emit('blur', e)
-        formItemContext.onFieldBlur()
-      }
+        emit('blur', e);
+        formItemContext.onFieldBlur();
+      };
       const onPanelChange = (dates: RangeValue<DateType>, modes: [PanelMode, PanelMode]) => {
-        const values = maybeToStrings(dates)
-        emit('panelChange', values, modes)
-      }
+        const values = maybeToStrings(dates);
+        emit('panelChange', values, modes);
+      };
       const onOk = (dates: DateType[]) => {
-        const value = maybeToStrings(dates)
-        emit('ok', value)
-      }
+        const value = maybeToStrings(dates);
+        emit('ok', value);
+      };
       const onCalendarChange: RangePickerSharedProps<DateType>['onCalendarChange'] = (
         dates: [DateType, DateType],
         dateStrings: [string, string],
         info,
       ) => {
-        const values = maybeToStrings(dates)
-        emit('calendarChange', values, dateStrings, info)
-      }
-      const [contextLocale] = useLocaleReceiver('DatePicker', enUS.DatePicker)
+        const values = maybeToStrings(dates);
+        emit('calendarChange', values, dateStrings, info);
+      };
+      const [contextLocale] = useLocaleReceiver('DatePicker', enUS.DatePicker);
 
       const value = computed(() => {
         if (props.value) {
           return props.valueFormat
             ? generateConfig.toDate(props.value, props.valueFormat)
-            : props.value
+            : props.value;
         }
-        return props.value
-      })
+        return props.value;
+      });
       const defaultValue = computed(() => {
         if (props.defaultValue) {
           return props.valueFormat
             ? generateConfig.toDate(props.defaultValue, props.valueFormat)
-            : props.defaultValue
+            : props.defaultValue;
         }
-        return props.defaultValue
-      })
+        return props.defaultValue;
+      });
       const defaultPickerValue = computed(() => {
         if (props.defaultPickerValue) {
           return props.valueFormat
             ? generateConfig.toDate(props.defaultPickerValue, props.valueFormat)
-            : props.defaultPickerValue
+            : props.defaultPickerValue;
         }
-        return props.defaultPickerValue
-      })
+        return props.defaultPickerValue;
+      });
       return () => {
-        const locale = { ...contextLocale.value, ...props.locale }
-        const p = { ...props, ...attrs }
+        const locale = { ...contextLocale.value, ...props.locale };
+        const p = { ...props, ...attrs };
         const {
           bordered = true,
           placeholder,
@@ -161,26 +161,26 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
           clearIcon = slots.clearIcon?.(),
           id = formItemContext.id.value,
           ...restProps
-        } = p
-        delete restProps['onUpdate:value']
-        delete restProps['onUpdate:open']
-        const { format, showTime } = p as any
+        } = p;
+        delete restProps['onUpdate:value'];
+        delete restProps['onUpdate:open'];
+        const { format, showTime } = p as any;
 
-        let additionalOverrideProps: any = {}
+        let additionalOverrideProps: any = {};
         additionalOverrideProps = {
           ...additionalOverrideProps,
           ...(showTime ? getTimeProps({ format, picker, ...showTime }) : {}),
           ...(picker === 'time'
             ? getTimeProps({ format, ...omit(restProps, ['disabledTime']), picker })
             : {}),
-        }
-        const pre = prefixCls.value
+        };
+        const pre = prefixCls.value;
         const suffixNode = (
           <>
             {suffixIcon || (picker === 'time' ? <ClockCircleOutlined /> : <CalendarOutlined />)}
             {formItemInputContext.hasFeedback && formItemInputContext.feedbackIcon}
           </>
-        )
+        );
         return wrapSSR(
           <VcRangePicker
             dateRender={dateRender}
@@ -240,10 +240,10 @@ export default function generateRangePicker<DateType, ExtraProps = {}>(
             onOk={onOk}
             onCalendarChange={onCalendarChange}
           />,
-        )
-      }
+        );
+      };
     },
-  })
+  });
 
-  return RangePicker
+  return RangePicker;
 }

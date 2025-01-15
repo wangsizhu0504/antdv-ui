@@ -9,7 +9,7 @@ mediagroup method min minlength multiple muted name novalidate nonce open
 optimum pattern placeholder poster preload radiogroup readonly rel required
 reversed role rowspan rows sandbox scope scoped scrolling seamless selected
 shape size sizes span spellcheck src srcdoc srclang srcset start step style
-summary tabindex target title type usemap value width wmode wrap`
+summary tabindex target title type usemap value width wmode wrap`;
 
 const eventsName = `onCopy onCut onPaste onCompositionend onCompositionstart onCompositionupdate onKeydown
     onKeypress onKeyup onFocus onBlur onChange onInput onSubmit onClick onContextmenu onDoubleclick onDblclick
@@ -17,15 +17,15 @@ const eventsName = `onCopy onCut onPaste onCompositionend onCompositionstart onC
     onMouseenter onMouseleave onMousemove onMouseout onMouseover onMouseup onSelect onTouchcancel
     onTouchend onTouchmove onTouchstart onTouchstartPassive onTouchmovePassive onScroll onWheel onAbort onCanplay onCanplaythrough
     onDurationchange onEmptied onEncrypted onEnded onError onLoadeddata onLoadedmetadata
-    onLoadstart onPause onPlay onPlaying onProgress onRatechange onSeeked onSeeking onStalled onSuspend onTimeupdate onVolumechange onWaiting onLoad onError`
+    onLoadstart onPause onPlay onPlaying onProgress onRatechange onSeeked onSeeking onStalled onSuspend onTimeupdate onVolumechange onWaiting onLoad onError`;
 
-const propList = `${attributes} ${eventsName}`.split(/[\s\n]+/)
+const propList = `${attributes} ${eventsName}`.split(/[\s\n]+/);
 
-const ariaPrefix = 'aria-'
-const dataPrefix = 'data-'
+const ariaPrefix = 'aria-';
+const dataPrefix = 'data-';
 
 function match(key: string, prefix: string) {
-  return key.indexOf(prefix) === 0
+  return key.indexOf(prefix) === 0;
 }
 
 export interface PickConfig {
@@ -40,24 +40,24 @@ export interface PickConfig {
  * @param ariaOnly boolean | { aria?: boolean; data?: boolean; attr?: boolean; } filter config
  */
 export function pickAttrs(props: object, ariaOnly: boolean | PickConfig = false) {
-  let mergedConfig
+  let mergedConfig;
   if (ariaOnly === false) {
     mergedConfig = {
       aria: true,
       data: true,
       attr: true,
-    }
+    };
   } else if (ariaOnly === true) {
     mergedConfig = {
       aria: true,
-    }
+    };
   } else {
     mergedConfig = {
       ...ariaOnly,
-    }
+    };
   }
 
-  const attrs = {}
+  const attrs = {};
   Object.keys(props).forEach((key) => {
     if (
       // Aria
@@ -67,8 +67,8 @@ export function pickAttrs(props: object, ariaOnly: boolean | PickConfig = false)
       // Attr
       || (mergedConfig.attr && (propList.includes(key) || propList.includes(key.toLowerCase())))
     ) {
-      attrs[key] = props[key]
+      attrs[key] = props[key];
     }
-  })
-  return attrs
+  });
+  return attrs;
 }

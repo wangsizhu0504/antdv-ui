@@ -1,28 +1,28 @@
-import type { Ref } from 'vue'
+import type { Ref } from 'vue';
 
-import type { PaginationProps } from '../../../pagination'
-import type { TablePaginationConfig } from '../interface'
-import { useState } from '@antdv/hooks'
-import { computed } from 'vue'
+import type { PaginationProps } from '../../../pagination';
+import type { TablePaginationConfig } from '../interface';
+import { useState } from '@antdv/hooks';
+import { computed } from 'vue';
 
-export const DEFAULT_PAGE_SIZE = 10
-type RecordType = Record<string, any>
+export const DEFAULT_PAGE_SIZE = 10;
+type RecordType = Record<string, any>;
 
 export function extendsObject<T extends RecordType>(...list: T[]) {
-  const result: RecordType = { ...list[0] }
+  const result: RecordType = { ...list[0] };
 
   for (let i = 1; i < list.length; i++) {
-    const obj = list[i]
+    const obj = list[i];
     if (obj) {
       Object.keys(obj).forEach((key) => {
-        const val = obj[key]
+        const val = obj[key];
         if (val !== undefined)
-          result[key] = val
-      })
+          result[key] = val;
+      });
     }
   }
 
-  return result
+  return result;
 }
 
 export function getPaginationParam(
@@ -32,17 +32,17 @@ export function getPaginationParam(
   const param: any = {
     current: mergedPagination.current,
     pageSize: mergedPagination.pageSize,
-  }
-  const paginationObj = (pagination && typeof pagination === 'object') ? pagination : {}
+  };
+  const paginationObj = (pagination && typeof pagination === 'object') ? pagination : {};
 
   Object.keys(paginationObj).forEach((pageProp) => {
-    const value = (mergedPagination as any)[pageProp]
+    const value = (mergedPagination as any)[pageProp];
 
     if (typeof value !== 'function')
-      param[pageProp] = value
-  })
+      param[pageProp] = value;
+  });
 
-  return param
+  return param;
 }
 
 export default function usePagination(
@@ -52,8 +52,8 @@ export default function usePagination(
 ): [Ref<TablePaginationConfig>, () => void] {
   const pagination = computed(() =>
     (paginationRef.value && typeof paginationRef.value === 'object') ? paginationRef.value : {},
-  )
-  const paginationTotal = computed(() => pagination.value.total || 0)
+  );
+  const paginationTotal = computed(() => pagination.value.total || 0);
   const [innerPagination, setInnerPagination] = useState<{
     current?: number
     pageSize?: number
@@ -61,7 +61,7 @@ export default function usePagination(
     current: 'defaultCurrent' in pagination.value ? pagination.value.defaultCurrent : 1,
     pageSize:
       'defaultPageSize' in pagination.value ? pagination.value.defaultPageSize : DEFAULT_PAGE_SIZE,
-  }))
+  }));
 
   // ============ Basic Pagination Config ============
   const mergedPagination = computed(() => {
@@ -71,38 +71,38 @@ export default function usePagination(
       {
         total: paginationTotal.value > 0 ? paginationTotal.value : totalRef.value,
       },
-    )
+    );
     // Reset `current` if data length or pageSize changed
-    const maxPage = Math.ceil((paginationTotal.value || totalRef.value) / mP.pageSize!)
+    const maxPage = Math.ceil((paginationTotal.value || totalRef.value) / mP.pageSize!);
     if (mP.current! > maxPage) {
       // Prevent a maximum page count of 0
-      mP.current = maxPage || 1
+      mP.current = maxPage || 1;
     }
-    return mP
-  })
+    return mP;
+  });
 
   const refreshPagination = (current?: number, pageSize?: number) => {
-    if (paginationRef.value === false) return
+    if (paginationRef.value === false) return;
     setInnerPagination({
       current: current ?? 1,
       pageSize: pageSize || mergedPagination.value.pageSize,
-    })
-  }
+    });
+  };
 
   const onInternalChange: PaginationProps['onChange'] = (current, pageSize) => {
     if (paginationRef.value)
-      pagination.value.onChange?.(current, pageSize)
+      pagination.value.onChange?.(current, pageSize);
 
-    refreshPagination(current, pageSize)
-    onChange(current, pageSize || mergedPagination.value.pageSize)
-  }
+    refreshPagination(current, pageSize);
+    onChange(current, pageSize || mergedPagination.value.pageSize);
+  };
 
   return [
     computed(() => {
       return paginationRef.value === false
         ? {}
-        : { ...mergedPagination.value, onChange: onInternalChange }
+        : { ...mergedPagination.value, onChange: onInternalChange };
     }),
     refreshPagination,
-  ]
+  ];
 }

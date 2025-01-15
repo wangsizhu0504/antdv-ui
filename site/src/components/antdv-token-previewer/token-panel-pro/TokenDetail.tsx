@@ -1,17 +1,17 @@
-import type { PropType } from 'vue'
-import type { MutableTheme, TokenValue } from '../interface'
-import { Tooltip } from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import tokenMeta from '@antdv/version/token-meta.json'
-import { computed, defineComponent, toRefs } from 'vue'
-import { useInjectLocaleContext } from '../locale'
-import { mapRelatedAlias } from '../meta/TokenRelation'
-import TokenInput from '../TokenInput'
-import deepUpdateObj from '../utils/deepUpdateObj'
-import getDesignToken from '../utils/getDesignToken'
-import getValueByPath from '../utils/getValueByPath'
-import makeStyle from '../utils/makeStyle'
-import { getRelatedComponents } from '../utils/statistic'
+import type { PropType } from 'vue';
+import type { MutableTheme, TokenValue } from '../interface';
+import { Tooltip } from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import tokenMeta from '@antdv/version/token-meta.json';
+import { computed, defineComponent, toRefs } from 'vue';
+import { useInjectLocaleContext } from '../locale';
+import { mapRelatedAlias } from '../meta/TokenRelation';
+import TokenInput from '../TokenInput';
+import deepUpdateObj from '../utils/deepUpdateObj';
+import getDesignToken from '../utils/getDesignToken';
+import getValueByPath from '../utils/getValueByPath';
+import makeStyle from '../utils/makeStyle';
+import { getRelatedComponents } from '../utils/statistic';
 
 const useStyle = makeStyle('TokenDetail', token => ({
   '.token-panel-token-detail': {
@@ -48,7 +48,7 @@ const useStyle = makeStyle('TokenDetail', token => ({
       },
     },
   },
-}))
+}));
 
 export interface TokenDetailProps {
   themes: MutableTheme[]
@@ -65,25 +65,25 @@ const TokenDetail = defineComponent({
     tokenName: { type: String },
   },
   setup(props, { attrs }) {
-    const { themes, path, tokenName } = toRefs(props)
+    const { themes, path, tokenName } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
-    const tokenPath = computed(() => [...path.value, tokenName.value])
-    const locale = useInjectLocaleContext()
+    const [wrapSSR, hashId] = useStyle();
+    const tokenPath = computed(() => [...path.value, tokenName.value]);
+    const locale = useInjectLocaleContext();
 
     const handleTokenChange = (theme: MutableTheme) => (value: TokenValue) => {
       theme.onThemeChange?.(deepUpdateObj(theme.config, [...path.value, tokenName.value], value), [
         ...path.value,
         tokenName.value,
-      ])
-    }
+      ]);
+    };
 
     const relatedComponents = computed(() => {
       return getRelatedComponents([
         tokenName.value,
         ...((mapRelatedAlias as any)[tokenName.value] ?? []),
-      ])
-    })
+      ]);
+    });
 
     return () => {
       return wrapSSR(
@@ -125,13 +125,13 @@ const TokenDetail = defineComponent({
                     }
                   />
                 </div>
-              )
+              );
             })}
           </div>
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default TokenDetail
+export default TokenDetail;

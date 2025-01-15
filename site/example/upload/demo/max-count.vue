@@ -16,12 +16,12 @@ Limit files with `maxCount`. Will replace current one when `maxCount` is `1`.
 </docs>
 
 <script lang="ts" setup>
-  import type { UploadProps } from '@antdv/ui'
-  import { UploadOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { UploadProps } from '@antdv/ui';
+  import { UploadOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const fileList = ref<UploadProps['fileList']>([])
-  const fileList2 = ref<UploadProps['fileList']>([])
+  const fileList = ref<UploadProps['fileList']>([]);
+  const fileList2 = ref<UploadProps['fileList']>([]);
 </script>
 
 <template>

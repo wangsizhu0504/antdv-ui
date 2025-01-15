@@ -1,8 +1,8 @@
-import type { CSSProperties, PropType } from 'vue'
-import { Segmented, Tag } from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import { defineComponent, ref, toRefs } from 'vue'
-import makeStyle from './utils/makeStyle'
+import type { CSSProperties, PropType } from 'vue';
+import { Segmented, Tag } from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import { defineComponent, ref, toRefs } from 'vue';
+import makeStyle from './utils/makeStyle';
 
 const useStyle = makeStyle('FilterPanel', token => ({
   '.previewer-filter-panel': {
@@ -48,9 +48,9 @@ const useStyle = makeStyle('FilterPanel', token => ({
       },
     },
   },
-}))
+}));
 
-export type FilterMode = 'highlight' | 'filter'
+export type FilterMode = 'highlight' | 'filter';
 
 export interface FilterPanelProps {
   filterMode?: FilterMode
@@ -73,15 +73,15 @@ const FilterPanel = defineComponent({
     onTokenClick: { type: Function as PropType<(token: string) => void> },
   },
   setup(props, { attrs }) {
-    const { filterMode: customFilterMode, selectedTokens } = toRefs(props)
+    const { filterMode: customFilterMode, selectedTokens } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
+    const [wrapSSR, hashId] = useStyle();
 
-    const filterMode = ref<FilterMode>(customFilterMode.value || 'filter')
+    const filterMode = ref<FilterMode>(customFilterMode.value || 'filter');
 
     return () => {
       if (selectedTokens.value?.length === 0)
-        return null
+        return null;
 
       return wrapSSR(
         <div {...attrs} class={classNames('previewer-filter-panel', hashId.value, attrs.class)}>
@@ -94,8 +94,8 @@ const FilterPanel = defineComponent({
                   size="small"
                   value={filterMode.value}
                   onChange={(value) => {
-                    props.onFilterModeChange?.(value as any)
-                    filterMode.value = value as any
+                    props.onFilterModeChange?.(value as any);
+                    filterMode.value = value as any;
                   }}
                   options={[
                     { label: '过滤', value: 'filter' },
@@ -123,9 +123,9 @@ const FilterPanel = defineComponent({
             </>
           )}
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default FilterPanel
+export default FilterPanel;

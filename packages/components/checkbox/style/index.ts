@@ -1,5 +1,5 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, genFocusOutline, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, genFocusOutline, Keyframes, mergeToken, resetComponent } from '@antdv/theme';
 
 export interface ComponentToken {}
 
@@ -19,12 +19,12 @@ const antCheckboxEffect = new Keyframes('antCheckboxEffect', {
     transform: 'scale(1.6)',
     opacity: 0,
   },
-})
+});
 
 // ============================== Styles ==============================
 export const genCheckboxStyle: GenerateStyle<CheckboxToken> = (token) => {
-  const { checkboxCls } = token
-  const wrapperCls = `${checkboxCls}-wrapper`
+  const { checkboxCls } = token;
+  const wrapperCls = `${checkboxCls}-wrapper`;
 
   return [
     // ===================== Basic =====================
@@ -283,19 +283,19 @@ export const genCheckboxStyle: GenerateStyle<CheckboxToken> = (token) => {
         },
       },
     },
-  ]
-}
+  ];
+};
 
 // ============================== Export ==============================
 export function getStyle(prefixCls: string, token: FullToken<'Checkbox'>) {
   const checkboxToken: CheckboxToken = mergeToken<CheckboxToken>(token, {
     checkboxCls: `.${prefixCls}`,
     checkboxSize: token.controlInteractiveSize,
-  })
+  });
 
-  return [genCheckboxStyle(checkboxToken)]
+  return [genCheckboxStyle(checkboxToken)];
 }
 
 export default genComponentStyleHook('Checkbox', (token, { prefixCls }) => [
   getStyle(prefixCls, token),
-])
+]);

@@ -1,5 +1,5 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
 
 const genSelectionStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
   const {
@@ -10,7 +10,7 @@ const genSelectionStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
     paddingXS,
     tableHeaderIconColor,
     tableHeaderIconColorHover,
-  } = token
+  } = token;
   return {
     [`${componentCls}-wrapper`]: {
       // ========================== Selections ==========================
@@ -69,7 +69,7 @@ const genSelectionStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genSelectionStyle
+export default genSelectionStyle;

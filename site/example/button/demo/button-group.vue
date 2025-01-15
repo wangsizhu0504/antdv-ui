@@ -17,7 +17,7 @@ Debug usage
 </docs>
 
 <script lang="ts" setup>
-  import { CloudDownloadOutlined, CloudOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
+  import { CloudDownloadOutlined, CloudOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

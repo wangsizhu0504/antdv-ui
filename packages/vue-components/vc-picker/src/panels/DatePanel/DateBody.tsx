@@ -1,13 +1,13 @@
-import type { VueNode } from '@antdv/types'
-import type { GenerateConfig } from '../../generate'
-import type { Locale } from '../../interface'
-import useCellClassName from '../../hooks/useCellClassName'
-import useMergeProps from '../../hooks/useMergeProps'
-import { useInjectRange } from '../../RangeContext'
-import { formatValue, getWeekStartDate, isSameDate, isSameMonth, WEEK_DAY_COUNT } from '../../utils/dateUtil'
-import PanelBody from '../PanelBody'
+import type { VueNode } from '@antdv/types';
+import type { GenerateConfig } from '../../generate';
+import type { Locale } from '../../interface';
+import useCellClassName from '../../hooks/useCellClassName';
+import useMergeProps from '../../hooks/useMergeProps';
+import { useInjectRange } from '../../RangeContext';
+import { formatValue, getWeekStartDate, isSameDate, isSameMonth, WEEK_DAY_COUNT } from '../../utils/dateUtil';
+import PanelBody from '../PanelBody';
 
-export type DateRender<DateType> = (props: { current: DateType; today: DateType }) => VueNode
+export type DateRender<DateType> = (props: { current: DateType; today: DateType }) => VueNode;
 
 export interface DateBodyPassProps<DateType> {
   dateRender?: DateRender<DateType>;
@@ -26,33 +26,33 @@ export type DateBodyProps<DateType> = {
   locale: Locale;
   rowCount: number;
   onSelect: (value: DateType) => void;
-} & DateBodyPassProps<DateType>
+} & DateBodyPassProps<DateType>;
 
 function DateBody<DateType>(_props: DateBodyProps<DateType>) {
-  const props = useMergeProps(_props)
+  const props = useMergeProps(_props);
   const { prefixCls, generateConfig, prefixColumn, locale, rowCount, viewDate, value, dateRender }
-    = props
+    = props;
 
-  const { rangedValue, hoverRangedValue } = useInjectRange()
+  const { rangedValue, hoverRangedValue } = useInjectRange();
 
-  const baseDate = getWeekStartDate(locale.locale, generateConfig, viewDate)
-  const cellPrefixCls = `${prefixCls}-cell`
-  const weekFirstDay = generateConfig.locale.getWeekFirstDay(locale.locale)
-  const today = generateConfig.getNow()
+  const baseDate = getWeekStartDate(locale.locale, generateConfig, viewDate);
+  const cellPrefixCls = `${prefixCls}-cell`;
+  const weekFirstDay = generateConfig.locale.getWeekFirstDay(locale.locale);
+  const today = generateConfig.getNow();
 
   // ============================== Header ==============================
-  const headerCells: VueNode[] = []
+  const headerCells: VueNode[] = [];
   const weekDaysLocale: string[]
     = locale.shortWeekDays
     || (generateConfig.locale.getShortWeekDays
       ? generateConfig.locale.getShortWeekDays(locale.locale)
-      : [])
+      : []);
 
   if (prefixColumn)
-    headerCells.push(<th key="empty" aria-label="empty cell" />)
+    headerCells.push(<th key="empty" aria-label="empty cell" />);
 
   for (let i = 0; i < WEEK_DAY_COUNT; i += 1)
-    headerCells.push(<th key={i}>{weekDaysLocale[(i + weekFirstDay) % WEEK_DAY_COUNT]}</th>)
+    headerCells.push(<th key={i}>{weekDaysLocale[(i + weekFirstDay) % WEEK_DAY_COUNT]}</th>);
 
   // =============================== Body ===============================
   const getCellClassName = useCellClassName({
@@ -65,11 +65,11 @@ function DateBody<DateType>(_props: DateBodyProps<DateType>) {
     isSameCell: (current, target) => isSameDate(generateConfig, current, target),
     isInView: date => isSameMonth(generateConfig, date, viewDate),
     offsetCell: (date, offset) => generateConfig.addDate(date, offset),
-  })
+  });
 
   const getCellNode = dateRender
     ? (date: DateType) => dateRender({ current: date, today })
-    : undefined
+    : undefined;
 
   return (
     <PanelBody
@@ -89,11 +89,11 @@ function DateBody<DateType>(_props: DateBodyProps<DateType>) {
         })}
       headerCells={headerCells}
     />
-  )
+  );
 }
 
-DateBody.displayName = 'DateBody'
-DateBody.inheritAttrs = false
+DateBody.displayName = 'DateBody';
+DateBody.inheritAttrs = false;
 DateBody.props = [
   'prefixCls',
   'generateConfig',
@@ -107,5 +107,5 @@ DateBody.props = [
   // Used for week panel
   'prefixColumn?',
   'rowClassName?',
-]
-export default DateBody
+];
+export default DateBody;

@@ -1,7 +1,7 @@
-import type { VueNode } from '@antdv/types'
-import type { CSSProperties, InjectionKey, Ref } from 'vue'
-import type { BaseCascaderProps, DefaultOptionType, InternalFieldNames, SingleValueType } from './Cascader'
-import { inject, provide } from 'vue'
+import type { VueNode } from '@antdv/types';
+import type { CSSProperties, InjectionKey, Ref } from 'vue';
+import type { BaseCascaderProps, DefaultOptionType, InternalFieldNames, SingleValueType } from './Cascader';
+import { inject, provide } from 'vue';
 
 export interface CascaderContextProps {
   options: Ref<BaseCascaderProps['options']>;
@@ -21,11 +21,11 @@ export interface CascaderContextProps {
   customSlots: Ref<Record<string, Function>>;
 }
 
-const CascaderContextKey: InjectionKey<CascaderContextProps> = Symbol('CascaderContextKey')
+const CascaderContextKey: InjectionKey<CascaderContextProps> = Symbol('CascaderContextKey');
 export function useProvideCascader(props: CascaderContextProps) {
-  provide(CascaderContextKey, props)
+  provide(CascaderContextKey, props);
 }
 
 export function useInjectCascader() {
-  return inject(CascaderContextKey)
+  return inject(CascaderContextKey);
 }

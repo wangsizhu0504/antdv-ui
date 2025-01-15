@@ -1,8 +1,8 @@
-import type { FocusEventHandler, KeyboardEventHandler } from '@antdv/types'
+import type { FocusEventHandler, KeyboardEventHandler } from '@antdv/types';
 
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { Direction } from '../../config-provider'
-import { PropTypes } from '@antdv/utils'
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { Direction } from '../../config-provider';
+import { PropTypes } from '@antdv/utils';
 
 export function rateProps() {
   return {
@@ -24,7 +24,7 @@ export function rateProps() {
     'onFocus': Function as PropType<FocusEventHandler>,
     'onBlur': Function as PropType<FocusEventHandler>,
     'onKeydown': Function as PropType<KeyboardEventHandler>,
-  }
+  };
 }
 
 export function starProps() {
@@ -40,9 +40,9 @@ export function starProps() {
     count: Number,
     onClick: Function,
     onHover: Function,
-  }
+  };
 }
 
-export type StarProps = Partial<ExtractPropTypes<ReturnType<typeof starProps>>>
+export type StarProps = Partial<ExtractPropTypes<ReturnType<typeof starProps>>>;
 
-export type RateProps = Partial<ExtractPropTypes<ReturnType<typeof rateProps>>>
+export type RateProps = Partial<ExtractPropTypes<ReturnType<typeof rateProps>>>;

@@ -1,1 +1,1 @@
-export type SpinSize = 'small' | 'default' | 'large'
+export type SpinSize = 'small' | 'default' | 'large';

@@ -1,5 +1,5 @@
-import type { Key } from '@antdv/types'
-import type { NotificationInstance } from '@antdv/vue-components/vc-notification/src/Notification'
+import type { Key } from '@antdv/types';
+import type { NotificationInstance } from '@antdv/vue-components/vc-notification/src/Notification';
 import type {
   ConfigDuration,
   ConfigOnClose,
@@ -9,67 +9,67 @@ import type {
   MessageType,
   NoticeType,
   ThenableArgument,
-} from './interface'
-import type { MessageArgsProps } from './props'
+} from './interface';
+import type { MessageArgsProps } from './props';
 import {
   CheckCircleFilled,
   CloseCircleFilled,
   ExclamationCircleFilled,
   InfoCircleFilled,
   LoadingOutlined,
-} from '@ant-design/icons-vue'
+} from '@ant-design/icons-vue';
 
-import { classNames } from '@antdv/utils'
-import VcNotification from '@antdv/vue-components/vc-notification/src/Notification'
-import useStyle from '../style'
+import { classNames } from '@antdv/utils';
+import VcNotification from '@antdv/vue-components/vc-notification/src/Notification';
+import useStyle from '../style';
 
-let defaultDuration = 3
-let defaultTop: string
-let messageInstance: NotificationInstance
-let key = 1
-let localPrefixCls = ''
-let transitionName = 'move-up'
-let hasTransitionName = false
-let getContainer = () => document.body
-let maxCount: number
-let rtl = false
+let defaultDuration = 3;
+let defaultTop: string;
+let messageInstance: NotificationInstance;
+let key = 1;
+let localPrefixCls = '';
+let transitionName = 'move-up';
+let hasTransitionName = false;
+let getContainer = () => document.body;
+let maxCount: number;
+let rtl = false;
 
 export function getKeyThenIncreaseKey() {
-  return key++
+  return key++;
 }
 
 function setMessageConfig(options: ConfigOptions & { top: string }) {
   if (options.top !== undefined) {
-    defaultTop = options.top
-    messageInstance = null // delete messageInstance for new defaultTop
+    defaultTop = options.top;
+    messageInstance = null; // delete messageInstance for new defaultTop
   }
   if (options.duration !== undefined)
-    defaultDuration = options.duration
+    defaultDuration = options.duration;
 
   if (options.prefixCls !== undefined)
-    localPrefixCls = options.prefixCls
+    localPrefixCls = options.prefixCls;
 
   if (options.getContainer !== undefined) {
-    getContainer = options.getContainer
-    messageInstance = null // delete messageInstance for new getContainer
+    getContainer = options.getContainer;
+    messageInstance = null; // delete messageInstance for new getContainer
   }
   if (options.transitionName !== undefined) {
-    transitionName = options.transitionName
-    messageInstance = null // delete messageInstance for new transitionName
-    hasTransitionName = true
+    transitionName = options.transitionName;
+    messageInstance = null; // delete messageInstance for new transitionName
+    hasTransitionName = true;
   }
   if (options.maxCount !== undefined) {
-    maxCount = options.maxCount
-    messageInstance = null
+    maxCount = options.maxCount;
+    messageInstance = null;
   }
   if (options.rtl !== undefined)
-    rtl = options.rtl
+    rtl = options.rtl;
 }
 
 function getMessageInstance(args: MessageArgsProps, callback: (i: NotificationInstance) => void) {
   if (messageInstance) {
-    callback(messageInstance)
-    return
+    callback(messageInstance);
+    return;
   }
 
   VcNotification.newInstance(
@@ -87,13 +87,13 @@ function getMessageInstance(args: MessageArgsProps, callback: (i: NotificationIn
     },
     (instance: any) => {
       if (messageInstance) {
-        callback(messageInstance)
-        return
+        callback(messageInstance);
+        return;
       }
-      messageInstance = instance
-      callback(instance)
+      messageInstance = instance;
+      callback(instance);
     },
-  )
+  );
 }
 
 const typeToIcon = {
@@ -103,21 +103,21 @@ const typeToIcon = {
   warning: ExclamationCircleFilled,
   warn: ExclamationCircleFilled,
   loading: LoadingOutlined,
-}
+};
 
-export const typeList = Object.keys(typeToIcon) as NoticeType[]
+export const typeList = Object.keys(typeToIcon) as NoticeType[];
 
 function notice(args: MessageArgsProps): MessageType {
-  const duration = args.duration !== undefined ? args.duration : defaultDuration
+  const duration = args.duration !== undefined ? args.duration : defaultDuration;
 
-  const target = args.key || getKeyThenIncreaseKey()
+  const target = args.key || getKeyThenIncreaseKey();
   const closePromise = new Promise((resolve) => {
     const callback = () => {
       if (typeof args.onClose === 'function')
-        args.onClose()
+        args.onClose();
 
-      return resolve(true)
-    }
+      return resolve(true);
+    };
     getMessageInstance(args, (instance) => {
       instance.notice({
         key: target,
@@ -125,38 +125,38 @@ function notice(args: MessageArgsProps): MessageType {
         style: args.style || {},
         class: args.class,
         content: ({ prefixCls }) => {
-          const Icon = typeToIcon[args.type]
-          const iconNode = Icon ? <Icon /> : ''
+          const Icon = typeToIcon[args.type];
+          const iconNode = Icon ? <Icon /> : '';
           const messageClass = classNames(`${prefixCls}-custom-content`, {
             [`${prefixCls}-${args.type}`]: args.type,
             [`${prefixCls}-rtl`]: rtl === true,
-          })
+          });
           return (
             <div class={messageClass}>
               {typeof args.icon === 'function' ? args.icon() : args.icon || iconNode}
               <span>{typeof args.content === 'function' ? args.content() : args.content}</span>
             </div>
-          )
+          );
         },
         onClose: callback,
         onClick: args.onClick,
-      })
-    })
-  })
+      });
+    });
+  });
   const result: any = () => {
     if (messageInstance)
-      messageInstance.removeNotice(target)
-  }
-  result.then = (filled: ThenableArgument, rejected: ThenableArgument) => closePromise.then(filled, rejected)
-  result.promise = closePromise
-  return result
+      messageInstance.removeNotice(target);
+  };
+  result.then = (filled: ThenableArgument, rejected: ThenableArgument) => closePromise.then(filled, rejected);
+  result.promise = closePromise;
+  return result;
 }
 
 function isArgsProps(content: JointContent): content is MessageArgsProps {
   return (
     Object.prototype.toString.call(content) === '[object Object]'
     && !!(content as MessageArgsProps).content
-  )
+  );
 }
 
 const api: any = {
@@ -165,16 +165,16 @@ const api: any = {
   destroy(messageKey?: Key) {
     if (messageInstance) {
       if (messageKey) {
-        const { removeNotice } = messageInstance
-        removeNotice(messageKey)
+        const { removeNotice } = messageInstance;
+        removeNotice(messageKey);
       } else {
-        const { destroy } = messageInstance
-        destroy()
-        messageInstance = null
+        const { destroy } = messageInstance;
+        destroy();
+        messageInstance = null;
       }
     }
   },
-}
+};
 
 export function attachTypeApi(originalApi: MessageApi, type: NoticeType) {
   originalApi[type] = (
@@ -183,20 +183,20 @@ export function attachTypeApi(originalApi: MessageApi, type: NoticeType) {
     onClose?: ConfigOnClose,
   ) => {
     if (isArgsProps(content))
-      return originalApi.open({ ...content, type })
+      return originalApi.open({ ...content, type });
 
     if (typeof duration === 'function') {
-      onClose = duration
-      duration = undefined
+      onClose = duration;
+      duration = undefined;
     }
 
-    return originalApi.open({ content, duration, type, onClose })
-  }
+    return originalApi.open({ content, duration, type, onClose });
+  };
 }
 
-typeList.forEach(type => attachTypeApi(api, type))
+typeList.forEach(type => attachTypeApi(api, type));
 
 /** @private test Only function. Not work on production */
-export const getInstance = () => (process.env.NODE_ENV === 'test' ? messageInstance : null)
+export const getInstance = () => (process.env.NODE_ENV === 'test' ? messageInstance : null);
 
-export default api as MessageApi
+export default api as MessageApi;

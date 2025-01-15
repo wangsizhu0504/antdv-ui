@@ -19,7 +19,7 @@ You can control the indent width by setting `indentSize`.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
   const columns = [
     {
@@ -39,7 +39,7 @@ You can control the indent width by setting `indentSize`.
       width: '30%',
       key: 'address',
     },
-  ]
+  ];
 
   interface DataItem {
     key: number;
@@ -112,20 +112,20 @@ You can control the indent width by setting `indentSize`.
       age: 32,
       address: 'Sidney No. 1 Lake Park',
     },
-  ]
+  ];
 
   const rowSelection = ref<any>({
     checkStrictly: false,
     onChange: (selectedRowKeys: Array<string | number>, selectedRows: DataItem[]) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
     },
     onSelect: (record: DataItem, selected: boolean, selectedRows: DataItem[]) => {
-      console.log(record, selected, selectedRows)
+      console.log(record, selected, selectedRows);
     },
     onSelectAll: (selected: boolean, selectedRows: DataItem[], changeRows: DataItem[]) => {
-      console.log(selected, selectedRows, changeRows)
+      console.log(selected, selectedRows, changeRows);
     },
-  })
+  });
 </script>
 
 <template>

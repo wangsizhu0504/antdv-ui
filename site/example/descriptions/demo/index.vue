@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import Basic from './basic.vue'
-  import Border from './border.vue'
-  import Responsive from './responsive.vue'
-  import Size from './size.vue'
-  import Vertical from './vertical.vue'
-  import VerticalBorder from './vertical-border.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import Basic from './basic.vue';
+  import Border from './border.vue';
+  import Responsive from './responsive.vue';
+  import Size from './size.vue';
+  import VerticalBorder from './vertical-border.vue';
+  import Vertical from './vertical.vue';
 
   export default defineComponent({
     category: 'Components',
@@ -26,7 +26,7 @@
       Vertical,
       VerticalBorder,
     },
-  })
+  });
 </script>
 
 <template>

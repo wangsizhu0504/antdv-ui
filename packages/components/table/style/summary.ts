@@ -1,9 +1,9 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
 
 const genSummaryStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
-  const { componentCls, lineWidth, tableBorderColor } = token
-  const tableBorder = `${lineWidth}px ${token.lineType} ${tableBorderColor}`
+  const { componentCls, lineWidth, tableBorderColor } = token;
+  const tableBorder = `${lineWidth}px ${token.lineType} ${tableBorderColor}`;
   return {
     [`${componentCls}-wrapper`]: {
       [`${componentCls}-summary`]: {
@@ -22,7 +22,7 @@ const genSummaryStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         boxShadow: `0 -${lineWidth}px 0 ${tableBorderColor}`,
       },
     },
-  }
-}
+  };
+};
 
-export default genSummaryStyle
+export default genSummaryStyle;

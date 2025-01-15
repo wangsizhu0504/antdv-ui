@@ -17,15 +17,15 @@ Input type of password.
 </docs>
 
 <script lang="ts" setup>
-  import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const value = ref<string>('')
-  const value2 = ref<string>('')
-  const value3 = ref<string>('')
-  const value4 = ref<string>('')
+  const value = ref<string>('');
+  const value2 = ref<string>('');
+  const value3 = ref<string>('');
+  const value4 = ref<string>('');
 
-  const visible = ref<boolean>(true)
+  const visible = ref<boolean>(true);
 </script>
 
 <template>

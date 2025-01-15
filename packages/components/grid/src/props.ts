@@ -1,8 +1,8 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { ColSize, Gutter, ResponsiveAligns, ResponsiveJustify } from './interface'
-import { someType } from '@antdv/utils'
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { ColSize, Gutter, ResponsiveAligns, ResponsiveJustify } from './interface';
+import { someType } from '@antdv/utils';
 
-export const RowAligns = ['top', 'middle', 'bottom', 'stretch'] as const
+export const RowAligns = ['top', 'middle', 'bottom', 'stretch'] as const;
 export const RowJustify = [
   'start',
   'end',
@@ -10,7 +10,7 @@ export const RowJustify = [
   'space-around',
   'space-between',
   'space-evenly',
-] as const
+] as const;
 
 export function colProps() {
   return {
@@ -45,7 +45,7 @@ export function colProps() {
     },
     prefixCls: String,
     flex: [String, Number],
-  }
+  };
 }
 export function rowProps() {
   return {
@@ -54,9 +54,9 @@ export function rowProps() {
     prefixCls: String,
     gutter: someType<Gutter | [Gutter, Gutter]>([Number, Array, Object], 0),
     wrap: { type: Boolean, default: undefined },
-  }
+  };
 }
 
-export type RowProps = Partial<ExtractPropTypes<ReturnType<typeof rowProps>>>
+export type RowProps = Partial<ExtractPropTypes<ReturnType<typeof rowProps>>>;
 
-export type ColProps = Partial<ExtractPropTypes<ReturnType<typeof colProps>>>
+export type ColProps = Partial<ExtractPropTypes<ReturnType<typeof colProps>>>;

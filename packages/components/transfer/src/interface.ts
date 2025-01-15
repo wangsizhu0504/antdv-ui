@@ -1,4 +1,4 @@
-import type { VueNode } from '@antdv/types'
+import type { VueNode } from '@antdv/types';
 
 export type PaginationType =
   | boolean
@@ -7,16 +7,16 @@ export type PaginationType =
     simple?: boolean
     showSizeChanger?: boolean
     showLessItems?: boolean
-  }
+  };
 
-export type TransferDirection = 'left' | 'right'
+export type TransferDirection = 'left' | 'right';
 
 export interface RenderResultObject {
   label: VueNode
   value: string
 }
 
-export type RenderResult = VueNode | RenderResultObject | string | null
+export type RenderResult = VueNode | RenderResultObject | string | null;
 
 export interface TransferItem {
   key?: string
@@ -26,11 +26,11 @@ export interface TransferItem {
   [name: string]: any
 }
 
-export type KeyWise<T> = T & { key: string }
+export type KeyWise<T> = T & { key: string };
 
-export type KeyWiseTransferItem = KeyWise<TransferItem>
+export type KeyWiseTransferItem = KeyWise<TransferItem>;
 
-export type TransferRender<RecordType> = (item: RecordType) => RenderResult
+export type TransferRender<RecordType> = (item: RecordType) => RenderResult;
 
 export interface ListStyle {
   direction: TransferDirection
@@ -38,4 +38,4 @@ export interface ListStyle {
 
 export type SelectAllLabel =
   | VueNode
-  | ((info: { selectedCount: number, totalCount: number }) => VueNode)
+  | ((info: { selectedCount: number, totalCount: number }) => VueNode);

@@ -16,7 +16,7 @@ Image, Icon and letter are supported, and the latter two kinds avatar can have c
 </docs>
 
 <script lang="ts" setup>
-  import { UserOutlined } from '@ant-design/icons-vue'
+  import { UserOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

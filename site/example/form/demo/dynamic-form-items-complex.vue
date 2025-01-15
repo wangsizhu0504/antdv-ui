@@ -17,9 +17,9 @@ This example demonstrates the case that a form contains multiple form controls.
 </docs>
 
 <script lang="ts" setup>
-  import type { FormInstance } from '@antdv/ui'
-  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue'
-  import { reactive, ref, watch } from 'vue'
+  import type { FormInstance } from '@antdv/ui';
+  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue';
+  import { reactive, ref, watch } from 'vue';
 
   interface Sights {
     value: string;
@@ -29,28 +29,28 @@ This example demonstrates the case that a form contains multiple form controls.
   const areas = [
     { label: 'Beijing', value: 'Beijing' },
     { label: 'Shanghai', value: 'Shanghai' },
-  ]
+  ];
 
   const sights = {
     Beijing: ['Tiananmen', 'Great Wall'],
     Shanghai: ['Oriental Pearl', 'The Bund'],
-  }
+  };
 
-  const formRef = ref<FormInstance>()
+  const formRef = ref<FormInstance>();
   const dynamicValidateForm = reactive<{ sights: Sights[]; area: string }>({
     sights: [],
     area: undefined,
-  })
+  });
   watch(
     () => dynamicValidateForm.area,
     () => {
-      dynamicValidateForm.sights = []
+      dynamicValidateForm.sights = [];
     },
-  )
+  );
   function removeSight(item: Sights) {
-    const index = dynamicValidateForm.sights.indexOf(item)
+    const index = dynamicValidateForm.sights.indexOf(item);
     if (index !== -1) {
-      dynamicValidateForm.sights.splice(index, 1)
+      dynamicValidateForm.sights.splice(index, 1);
     }
   }
   function addSight() {
@@ -58,11 +58,11 @@ This example demonstrates the case that a form contains multiple form controls.
       value: undefined,
       price: undefined,
       id: Date.now(),
-    })
+    });
   }
   function onFinish(values) {
-    console.log('Received values of form:', values)
-    console.log('dynamicValidateForm:', dynamicValidateForm)
+    console.log('Received values of form:', values);
+    console.log('dynamicValidateForm:', dynamicValidateForm);
   }
 </script>
 

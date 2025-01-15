@@ -1,8 +1,8 @@
-import type { ValidateMessages } from '@antdv/locale'
-import type { SizeType } from '@antdv/types'
-import type { Options } from 'scroll-into-view-if-needed'
-import type { ComponentPublicInstance, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import type { ColProps } from '../../grid'
+import type { ValidateMessages } from '@antdv/locale';
+import type { SizeType } from '@antdv/types';
+import type { Options } from 'scroll-into-view-if-needed';
+import type { ComponentPublicInstance, ExtractPropTypes, HTMLAttributes, PropType } from 'vue';
+import type { ColProps } from '../../grid';
 import type {
   Callbacks,
   FormExpose,
@@ -10,7 +10,7 @@ import type {
   FormLabelAlign,
   RequiredMark,
   Rule,
-} from './interface'
+} from './interface';
 import {
   anyType,
   booleanType,
@@ -20,7 +20,7 @@ import {
   someType,
   stringType,
   tuple,
-} from '@antdv/utils'
+} from '@antdv/utils';
 
 export function formProps() {
   return {
@@ -50,7 +50,7 @@ export function formProps() {
     onFinish: functionType<Callbacks['onFinish']>(),
     onFinishFailed: functionType<Callbacks['onFinishFailed']>(),
     onValidate: functionType<Callbacks['onValidate']>(),
-  }
+  };
 }
 export function formItemProps() {
   return {
@@ -76,13 +76,13 @@ export function formItemProps() {
     hidden: Boolean,
     noStyle: Boolean,
     tooltip: String,
-  }
+  };
 }
 
-export type FormItemProps = Partial<ExtractPropTypes<ReturnType<typeof formItemProps>>>
+export type FormItemProps = Partial<ExtractPropTypes<ReturnType<typeof formItemProps>>>;
 
-export type FormProps = Partial<ExtractPropTypes<ReturnType<typeof formProps>>>
+export type FormProps = Partial<ExtractPropTypes<ReturnType<typeof formProps>>>;
 
-export type FormInstance = ComponentPublicInstance<FormProps, FormExpose>
+export type FormInstance = ComponentPublicInstance<FormProps, FormExpose>;
 
-export type FormItemInstance = ComponentPublicInstance<FormItemProps, FormItemExpose>
+export type FormItemInstance = ComponentPublicInstance<FormItemProps, FormItemExpose>;

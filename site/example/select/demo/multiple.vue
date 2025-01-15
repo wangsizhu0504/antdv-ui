@@ -17,12 +17,12 @@ Multiple selection, selecting from existing items (scroll the menu).
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
   function handleChange(value: string[]) {
-    console.log(`selected ${value}`)
+    console.log(`selected ${value}`);
   }
-  const value = ref<any>(['a1', 'b2'])
+  const value = ref<any>(['a1', 'b2']);
 </script>
 
 <template>

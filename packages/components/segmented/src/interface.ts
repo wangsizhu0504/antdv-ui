@@ -1,7 +1,7 @@
-import type { VueNode } from '@antdv/types'
+import type { VueNode } from '@antdv/types';
 
-export type SegmentedValue = string | number
-export type segmentedSize = 'large' | 'small'
+export type SegmentedValue = string | number;
+export type segmentedSize = 'large' | 'small';
 export interface SegmentedBaseOption {
   value: string | number
   disabled?: boolean
@@ -20,7 +20,7 @@ export type ThumbRect = {
   left: number
   right: number
   width: number
-} | null
+} | null;
 
 export interface MotionThumbInterface {
   value: SegmentedValue

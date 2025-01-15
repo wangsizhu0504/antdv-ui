@@ -1,13 +1,13 @@
-import type { PropType } from 'vue'
-import type { FilterMode } from '../FilterPanel'
-import { SearchOutlined } from '@ant-design/icons-vue'
-import { Badge, Input, Tree } from '@antdv/ui'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, ref, toRefs, watch } from 'vue'
-import makeStyle from '../utils/makeStyle'
-import { getRelatedComponents } from '../utils/statistic'
+import type { PropType } from 'vue';
+import type { FilterMode } from '../FilterPanel';
+import { SearchOutlined } from '@ant-design/icons-vue';
+import { Badge, Input, Tree } from '@antdv/ui';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, ref, toRefs, watch } from 'vue';
+import makeStyle from '../utils/makeStyle';
+import { getRelatedComponents } from '../utils/statistic';
 
-const { DirectoryTree } = Tree
+const { DirectoryTree } = Tree;
 
 const useStyle = makeStyle('ComponentTree', token => ({
   '.component-tree-wrapper': {
@@ -61,7 +61,7 @@ const useStyle = makeStyle('ComponentTree', token => ({
       },
     },
   },
-}))
+}));
 
 export interface ComponentTreeProps {
   onSelect?: (component: string) => void
@@ -71,7 +71,7 @@ export interface ComponentTreeProps {
   activeComponent?: string
 }
 
-const getTreeItemId = (component: string) => `component-tree-item-${component}`
+const getTreeItemId = (component: string) => `component-tree-item-${component}`;
 
 const ComponentTree = defineComponent({
   name: 'ComponentTree',
@@ -84,22 +84,22 @@ const ComponentTree = defineComponent({
     activeComponent: { type: String },
   },
   setup(props, { attrs }) {
-    const { components, selectedTokens, filterMode, activeComponent } = toRefs(props)
+    const { components, selectedTokens, filterMode, activeComponent } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
-    const treeRef = ref<HTMLDivElement>()
-    const search = ref<string>('')
+    const [wrapSSR, hashId] = useStyle();
+    const treeRef = ref<HTMLDivElement>();
+    const search = ref<string>('');
 
     const relatedComponents = computed(() => {
-      return selectedTokens.value ? getRelatedComponents(selectedTokens.value) : []
-    })
+      return selectedTokens.value ? getRelatedComponents(selectedTokens.value) : [];
+    });
 
     watch(activeComponent, (val) => {
       treeRef.value?.querySelector<HTMLElement>(`#${getTreeItemId(val || '')}`)?.scrollIntoView({
         block: 'nearest',
         inline: 'nearest',
-      })
-    })
+      });
+    });
 
     const treeData = computed(() =>
       Object.entries((components as any).value)
@@ -148,7 +148,7 @@ const ComponentTree = defineComponent({
               key: item,
             })),
         })),
-    )
+    );
 
     const watcher = (filterMode) => {
       if (filterMode === 'highlight') {
@@ -157,17 +157,17 @@ const ComponentTree = defineComponent({
             block: 'start',
             inline: 'nearest',
             behavior: 'smooth',
-          })
-        }, 100)
+          });
+        }, 100);
       }
-    }
+    };
     watch(selectedTokens, () => {
-      watcher(filterMode.value)
-    })
+      watcher(filterMode.value);
+    });
 
     watch(filterMode, (val) => {
-      watcher(val)
-    })
+      watcher(val);
+    });
 
     return () => {
       return wrapSSR(
@@ -193,9 +193,9 @@ const ComponentTree = defineComponent({
             />
           </div>
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default ComponentTree
+export default ComponentTree;

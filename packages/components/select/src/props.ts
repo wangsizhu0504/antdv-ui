@@ -1,7 +1,7 @@
-import type { InputStatus, SelectValue, SizeType } from '@antdv/types'
+import type { InputStatus, SelectValue, SizeType } from '@antdv/types';
 
-import type { SelectCommonPlacement } from '@antdv/vue-components'
-import type { ExtractPropTypes } from 'vue'
+import type { SelectCommonPlacement } from '@antdv/vue-components';
+import type { ExtractPropTypes } from 'vue';
 import {
   booleanType,
   functionType,
@@ -9,8 +9,8 @@ import {
   PropTypes,
   someType,
   stringType,
-} from '@antdv/utils'
-import { vcSelectProps } from '@antdv/vue-components'
+} from '@antdv/utils';
+import { vcSelectProps } from '@antdv/vue-components';
 
 export function selectProps() {
   return {
@@ -37,7 +37,7 @@ export function selectProps() {
     'placement': stringType<SelectCommonPlacement>(),
     'status': stringType<InputStatus>(),
     'onUpdate:value': functionType<(val: SelectValue) => void>(),
-  }
+  };
 }
 
-export type SelectProps = Partial<ExtractPropTypes<ReturnType<typeof selectProps>>>
+export type SelectProps = Partial<ExtractPropTypes<ReturnType<typeof selectProps>>>;

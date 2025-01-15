@@ -1,7 +1,7 @@
-import type { EventHandler } from '@antdv/types'
-import { KeyCode, PropTypes } from '@antdv/utils'
-import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
-import { computed, defineComponent, ref } from 'vue'
+import type { EventHandler } from '@antdv/types';
+import { KeyCode, PropTypes } from '@antdv/utils';
+import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore';
+import { computed, defineComponent, ref } from 'vue';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -20,62 +20,62 @@ export default defineComponent({
     goButton: PropTypes.any,
   },
   setup(props) {
-    const goInputText = ref('')
+    const goInputText = ref('');
     const validValue = computed(() => {
       return !goInputText.value || Number.isNaN(goInputText.value as any)
         ? undefined
-        : Number(goInputText.value)
-    })
+        : Number(goInputText.value);
+    });
 
     const defaultBuildOptionText = (opt) => {
-      return `${opt.value} ${props.locale.items_per_page}`
-    }
+      return `${opt.value} ${props.locale.items_per_page}`;
+    };
     const handleChange: EventHandler = (e) => {
-      const { value } = e.target
-      if (goInputText.value === value) return
-      goInputText.value = value
-    }
+      const { value } = e.target;
+      if (goInputText.value === value) return;
+      goInputText.value = value;
+    };
     const handleBlur: EventHandler = (e) => {
-      const { goButton, quickGo, rootPrefixCls } = props
+      const { goButton, quickGo, rootPrefixCls } = props;
 
       if (goButton || goInputText.value === '')
-        return
+        return;
 
       if (
         e.relatedTarget
         && (e.relatedTarget.className.includes(`${rootPrefixCls}-item-link`)
           || e.relatedTarget.className.includes(`${rootPrefixCls}-item`))
       ) {
-        goInputText.value = ''
+        goInputText.value = '';
       } else {
-        quickGo(validValue.value)
-        goInputText.value = ''
+        quickGo(validValue.value);
+        goInputText.value = '';
       }
-    }
+    };
     const go: EventHandler = (e) => {
       if (goInputText.value === '')
-        return
+        return;
 
       if (e.keyCode === KeyCode.ENTER || e.type === 'click') {
         // https://github.com/vueComponent/ant-design-vue/issues/1316
-        props.quickGo(validValue.value)
+        props.quickGo(validValue.value);
 
-        goInputText.value = ''
+        goInputText.value = '';
       }
-    }
+    };
 
     const pageSizeOptions = computed(() => {
-      const { pageSize, pageSizeOptions } = props
+      const { pageSize, pageSizeOptions } = props;
       if (pageSizeOptions.some(option => option.toString() === pageSize.toString()))
-        return pageSizeOptions
+        return pageSizeOptions;
 
       return pageSizeOptions.concat([pageSize.toString()]).sort((a, b) => {
-        const numberA = Number.isNaN(Number(a)) ? 0 : Number(a)
+        const numberA = Number.isNaN(Number(a)) ? 0 : Number(a);
 
-        const numberB = Number.isNaN(Number(b)) ? 0 : Number(b)
-        return numberA - numberB
-      })
-    })
+        const numberB = Number.isNaN(Number(b)) ? 0 : Number(b);
+        return numberA - numberB;
+      });
+    });
 
     return () => {
       const {
@@ -88,24 +88,24 @@ export default defineComponent({
         selectPrefixCls,
         pageSize,
         disabled,
-      } = props
-      const prefixCls = `${rootPrefixCls}-options`
-      let changeSelect = null
-      let goInput = null
-      let gotoButton = null
+      } = props;
+      const prefixCls = `${rootPrefixCls}-options`;
+      let changeSelect = null;
+      let goInput = null;
+      let gotoButton = null;
 
       if (!changeSize && !quickGo)
-        return null
+        return null;
 
       if (changeSize && Select) {
-        const buildOptionText = props.buildOptionText || defaultBuildOptionText
+        const buildOptionText = props.buildOptionText || defaultBuildOptionText;
         const options = pageSizeOptions.value.map((opt, i) => {
           return (
             <Select.Option key={i} value={opt}>
               {buildOptionText({ value: opt })}
             </Select.Option>
-          )
-        })
+          );
+        });
 
         changeSelect = (
           <Select
@@ -120,7 +120,7 @@ export default defineComponent({
           >
             {options}
           </Select>
-        )
+        );
       }
 
       if (quickGo) {
@@ -142,7 +142,7 @@ export default defineComponent({
                   <span onClick={go} onKeyup={go}>
                     {goButton}
                   </span>
-                )
+                );
         }
         goInput = (
           <div class={`${prefixCls}-quick-jumper`}>
@@ -160,7 +160,7 @@ export default defineComponent({
             {locale.page}
             {gotoButton}
           </div>
-        )
+        );
       }
 
       return (
@@ -168,7 +168,7 @@ export default defineComponent({
           {changeSelect}
           {goInput}
         </li>
-      )
-    }
+      );
+    };
   },
-})
+});

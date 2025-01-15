@@ -1,16 +1,16 @@
-import type { ValidateStatus, VueNode } from '@antdv/types'
-import type { ComputedRef, HTMLAttributes, Ref } from 'vue'
-import type { ColProps } from '../../grid'
+import type { ValidateStatus, VueNode } from '@antdv/types';
+import type { ComputedRef, HTMLAttributes, Ref } from 'vue';
+import type { ColProps } from '../../grid';
 
-export type RequiredMark = boolean | 'optional'
-export type FormLayout = 'horizontal' | 'inline' | 'vertical'
+export type RequiredMark = boolean | 'optional';
+export type FormLayout = 'horizontal' | 'inline' | 'vertical';
 
-export type FormLabelAlign = 'left' | 'right'
+export type FormLabelAlign = 'left' | 'right';
 
-export type InternalNamePath = Array<string | number>
-export type NamePath = string | number | InternalNamePath
+export type InternalNamePath = Array<string | number>;
+export type NamePath = string | number | InternalNamePath;
 
-export type StoreValue = any
+export type StoreValue = any;
 export interface Store {
   [name: string]: StoreValue
 }
@@ -46,13 +46,13 @@ export type RuleType =
   | 'date'
   | 'url'
   | 'hex'
-  | 'email'
+  | 'email';
 
 export type Validator = (
   rule: RuleObject,
   value: StoreValue,
   callback: (error?: string) => void,
-) => Promise<void> | void
+) => Promise<void> | void;
 
 export interface ValidatorRule {
   warningOnly?: boolean
@@ -89,16 +89,16 @@ interface BaseRule {
   trigger?: 'blur' | 'change' | Array<'change' | 'blur'>
 }
 
-type AggregationRule = BaseRule & Partial<ValidatorRule>
+type AggregationRule = BaseRule & Partial<ValidatorRule>;
 
 interface ArrayRule extends Omit<AggregationRule, 'type'> {
   type: 'array'
   defaultField?: RuleObject
 }
 
-export type RuleObject = AggregationRule | ArrayRule
+export type RuleObject = AggregationRule | ArrayRule;
 
-export type Rule = RuleObject
+export type Rule = RuleObject;
 
 export interface ValidateErrorEntity<Values = any> {
   values: Values
@@ -124,8 +124,8 @@ export interface ValidateOptions {
 export type InternalValidateFields = (
   nameList?: NamePath[],
   options?: ValidateOptions,
-) => Promise<Store>
-export type ValidateFields = (nameList?: NamePath[]) => Promise<Store>
+) => Promise<Store>;
+export type ValidateFields = (nameList?: NamePath[]) => Promise<Store>;
 
 // >>>>>> Info
 interface ValueUpdateInfo {
@@ -161,11 +161,11 @@ export type NotifyInfo =
   | ValidateFinishInfo
   | ResetInfo
   | SetFieldInfo
-  | DependenciesUpdateInfo
+  | DependenciesUpdateInfo;
 
 export type ValuedNotifyInfo = NotifyInfo & {
   store: Store
-}
+};
 
 export interface Callbacks<Values = any> {
   onValuesChange?: (changedValues: any, values: Values) => void
@@ -179,9 +179,9 @@ export interface Callbacks<Values = any> {
   ) => void
 }
 
-export type EventArgs = any[]
+export type EventArgs = any[];
 
-type ValidateMessage = string | (() => string)
+type ValidateMessage = string | (() => string);
 export interface ValidateMessages {
   default?: ValidateMessage
   required?: ValidateMessage

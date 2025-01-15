@@ -1,24 +1,24 @@
-import type { ChangeEvent, CustomSlotsType } from '@antdv/types'
-import type { SegmentedBaseOption, SegmentedOptionType, SegmentedValue } from './interface'
-import { classNames, initDefaultProps } from '@antdv/utils'
-import { computed, defineComponent, shallowRef } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import MotionThumb from './MotionThumb'
-import SegmentedOption from './Options'
-import { segmentedProps } from './props'
+import type { ChangeEvent, CustomSlotsType } from '@antdv/types';
+import type { SegmentedBaseOption, SegmentedOptionType, SegmentedValue } from './interface';
+import { classNames, initDefaultProps } from '@antdv/utils';
+import { computed, defineComponent, shallowRef } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import useStyle from '../style';
+import MotionThumb from './MotionThumb';
+import SegmentedOption from './Options';
+import { segmentedProps } from './props';
 
 function normalizeOptions(options: Array<SegmentedOptionType | string | number>) {
   return options.map((option) => {
     if (typeof option === 'object' && option !== null)
-      return option
+      return option;
 
     return {
       label: option?.toString(),
       title: option?.toString(),
       value: option as unknown as SegmentedBaseOption['value'],
-    }
-  })
+    };
+  });
 }
 
 export default defineComponent({
@@ -32,21 +32,21 @@ export default defineComponent({
     label: SegmentedBaseOption
   }>,
   setup(props, { emit, slots, attrs }) {
-    const { prefixCls, direction, size } = useConfigInject('segmented', props)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
-    const rootRef = shallowRef<HTMLDivElement>()
-    const thumbShow = shallowRef(false)
+    const { prefixCls, direction, size } = useConfigInject('segmented', props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
+    const rootRef = shallowRef<HTMLDivElement>();
+    const thumbShow = shallowRef(false);
 
-    const segmentedOptions = computed(() => normalizeOptions(props.options))
+    const segmentedOptions = computed(() => normalizeOptions(props.options));
     const handleChange = (_event: ChangeEvent, val: SegmentedValue) => {
       if (props.disabled)
-        return
+        return;
 
-      emit('update:value', val)
-      emit('change', val)
-    }
+      emit('update:value', val);
+      emit('change', val);
+    };
     return () => {
-      const pre = prefixCls.value
+      const pre = prefixCls.value;
       return wrapSSR(
         <div
           {...attrs}
@@ -73,10 +73,10 @@ export default defineComponent({
               direction={direction.value}
               getValueIndex={val => segmentedOptions.value.findIndex(n => n.value === val)}
               onMotionStart={() => {
-                thumbShow.value = true
+                thumbShow.value = true;
               }}
               onMotionEnd={() => {
-                thumbShow.value = false
+                thumbShow.value = false;
               }}
             />
             {segmentedOptions.value.map(segmentedOption => (
@@ -96,7 +96,7 @@ export default defineComponent({
             ))}
           </div>
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

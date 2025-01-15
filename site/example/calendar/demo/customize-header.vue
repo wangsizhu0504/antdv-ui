@@ -17,31 +17,31 @@ Customize Calendar header content.
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import { ref } from 'vue';
 
-  const value = ref<Dayjs>()
+  const value = ref<Dayjs>();
 
   function onPanelChange(value: Dayjs, mode: string) {
-    console.log(value, mode)
+    console.log(value, mode);
   }
 
   function getMonths(value: Dayjs) {
-    const localeData = value.localeData()
-    const months = []
+    const localeData = value.localeData();
+    const months = [];
     for (let i = 0; i < 12; i++) {
-      months.push(localeData.monthsShort(value.month(i)))
+      months.push(localeData.monthsShort(value.month(i)));
     }
-    return months
+    return months;
   }
 
   function getYears(value: Dayjs) {
-    const year = value.year()
-    const years = []
+    const year = value.year();
+    const years = [];
     for (let i = year - 10; i < year + 10; i += 1) {
-      years.push(i)
+      years.push(i);
     }
-    return years
+    return years;
   }
 </script>
 

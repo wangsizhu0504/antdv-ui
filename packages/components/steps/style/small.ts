@@ -1,5 +1,5 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { StepsToken } from '.'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { StepsToken } from '.';
 
 const genStepsSmallStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
   const {
@@ -9,7 +9,7 @@ const genStepsSmallStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
     fontSizeSM,
     fontSize,
     colorTextDescription,
-  } = token
+  } = token;
 
   return {
     [`&${componentCls}-small`]: {
@@ -62,6 +62,6 @@ const genStepsSmallStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
-export default genStepsSmallStyle
+  };
+};
+export default genStepsSmallStyle;

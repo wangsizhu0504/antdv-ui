@@ -1,17 +1,17 @@
-import type { Key, MouseEventHandler, VueNode } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import { classNames, PropTypes } from '@antdv/utils'
-import { computed, defineComponent, shallowRef, watch } from 'vue'
-import ResizeObserver from '../../vc-resize-observer/src/index'
-import { OverflowContextProvider } from './context'
-import Item from './Item'
-import RawItem from './RawItem'
+import type { Key, MouseEventHandler, VueNode } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue';
+import { classNames, PropTypes } from '@antdv/utils';
+import { computed, defineComponent, shallowRef, watch } from 'vue';
+import ResizeObserver from '../../vc-resize-observer/src/index';
+import { OverflowContextProvider } from './context';
+import Item from './Item';
+import RawItem from './RawItem';
 
-const RESPONSIVE = 'responsive' as const
-const INVALIDATE = 'invalidate' as const
+const RESPONSIVE = 'responsive' as const;
+const INVALIDATE = 'invalidate' as const;
 
 function defaultRenderRest<ItemType>(omittedItems: ItemType[]) {
-  return `+ ${omittedItems.length} ...`
+  return `+ ${omittedItems.length} ...`;
 }
 
 function overflowProps() {
@@ -38,44 +38,44 @@ function overflowProps() {
     ssr: String as PropType<'full'>,
     onMousedown: Function as PropType<MouseEventHandler>,
     role: String,
-  }
+  };
 }
-type InterOverflowProps = Partial<ExtractPropTypes<ReturnType<typeof overflowProps>>>
-export type OverflowProps = HTMLAttributes & InterOverflowProps
+type InterOverflowProps = Partial<ExtractPropTypes<ReturnType<typeof overflowProps>>>;
+export type OverflowProps = HTMLAttributes & InterOverflowProps;
 const Overflow = defineComponent({
   name: 'Overflow',
   inheritAttrs: false,
   props: overflowProps(),
   emits: ['visibleChange'],
   setup(props, { attrs, emit, slots }) {
-    const fullySSR = computed(() => props.ssr === 'full')
+    const fullySSR = computed(() => props.ssr === 'full');
 
-    const containerWidth = shallowRef<number>(null)
-    const mergedContainerWidth = computed(() => containerWidth.value || 0)
-    const itemWidths = shallowRef<Map<Key, number>>(new Map<Key, number>())
-    const prevRestWidth = shallowRef(0)
-    const restWidth = shallowRef(0)
-    const suffixWidth = shallowRef(0)
-    const suffixFixedStart = shallowRef<number>(null)
-    const displayCount = shallowRef<number>(null)
+    const containerWidth = shallowRef<number>(null);
+    const mergedContainerWidth = computed(() => containerWidth.value || 0);
+    const itemWidths = shallowRef<Map<Key, number>>(new Map<Key, number>());
+    const prevRestWidth = shallowRef(0);
+    const restWidth = shallowRef(0);
+    const suffixWidth = shallowRef(0);
+    const suffixFixedStart = shallowRef<number>(null);
+    const displayCount = shallowRef<number>(null);
 
     const mergedDisplayCount = computed(() => {
       if (displayCount.value === null && fullySSR.value)
-        return Number.MAX_SAFE_INTEGER
+        return Number.MAX_SAFE_INTEGER;
 
-      return displayCount.value || 0
-    })
+      return displayCount.value || 0;
+    });
 
-    const restReady = shallowRef(false)
+    const restReady = shallowRef(false);
 
-    const itemPrefixCls = computed(() => `${props.prefixCls}-item`)
+    const itemPrefixCls = computed(() => `${props.prefixCls}-item`);
 
     // Always use the max width to avoid blink
-    const mergedRestWidth = computed(() => Math.max(prevRestWidth.value, restWidth.value))
+    const mergedRestWidth = computed(() => Math.max(prevRestWidth.value, restWidth.value));
 
     // ================================= Data =================================
-    const isResponsive = computed(() => !!(props.data.length && props.maxCount === RESPONSIVE))
-    const invalidate = computed(() => props.maxCount === INVALIDATE)
+    const isResponsive = computed(() => !!(props.data.length && props.maxCount === RESPONSIVE));
+    const invalidate = computed(() => props.maxCount === INVALIDATE);
 
     /**
      * When is `responsive`, we will always render rest node to get the real width of it for calculation
@@ -84,110 +84,110 @@ const Overflow = defineComponent({
       () =>
         isResponsive.value
         || (typeof props.maxCount === 'number' && props.data.length > props.maxCount),
-    )
+    );
 
     const mergedData = computed(() => {
-      let items = props.data
+      let items = props.data;
 
       if (isResponsive.value) {
         if (containerWidth.value === null && fullySSR.value) {
-          items = props.data
+          items = props.data;
         } else {
           items = props.data.slice(
             0,
             Math.min(props.data.length, mergedContainerWidth.value / props.itemWidth),
-          )
+          );
         }
       } else if (typeof props.maxCount === 'number') {
-        items = props.data.slice(0, props.maxCount)
+        items = props.data.slice(0, props.maxCount);
       }
 
-      return items
-    })
+      return items;
+    });
 
     const omittedItems = computed(() => {
       if (isResponsive.value)
-        return props.data.slice(mergedDisplayCount.value + 1)
+        return props.data.slice(mergedDisplayCount.value + 1);
 
-      return props.data.slice(mergedData.value.length)
-    })
+      return props.data.slice(mergedData.value.length);
+    });
 
     // ================================= Item =================================
     const getKey = (item: any, index: number) => {
       if (typeof props.itemKey === 'function')
-        return props.itemKey(item)
+        return props.itemKey(item);
 
-      return (props.itemKey && (item as any)?.[props.itemKey]) ?? index
-    }
+      return (props.itemKey && (item as any)?.[props.itemKey]) ?? index;
+    };
 
-    const mergedRenderItem = computed(() => props.renderItem || ((item: any) => item))
+    const mergedRenderItem = computed(() => props.renderItem || ((item: any) => item));
 
     const updateDisplayCount = (count: number, notReady?: boolean) => {
-      displayCount.value = count
+      displayCount.value = count;
       if (!notReady) {
-        restReady.value = count < props.data.length - 1
+        restReady.value = count < props.data.length - 1;
 
-        emit('visibleChange', count)
+        emit('visibleChange', count);
       }
-    }
+    };
 
     // ================================= Size =================================
     const onOverflowResize = (_: object, element: HTMLElement) => {
-      containerWidth.value = element.clientWidth
-    }
+      containerWidth.value = element.clientWidth;
+    };
 
     const registerSize = (key: Key, width: number | null) => {
-      const clone = new Map(itemWidths.value)
+      const clone = new Map(itemWidths.value);
 
       if (width === null)
-        clone.delete(key)
+        clone.delete(key);
       else
-        clone.set(key, width)
+        clone.set(key, width);
 
-      itemWidths.value = clone
-    }
+      itemWidths.value = clone;
+    };
 
     const registerOverflowSize = (_: Key, width: number | null) => {
-      prevRestWidth.value = restWidth.value
-      restWidth.value = width!
-    }
+      prevRestWidth.value = restWidth.value;
+      restWidth.value = width!;
+    };
 
     const registerSuffixSize = (_: Key, width: number | null) => {
-      suffixWidth.value = width!
-    }
+      suffixWidth.value = width!;
+    };
 
     // ================================ Effect ================================
     const getItemWidth = (index: number) => {
-      return itemWidths.value.get(getKey(mergedData.value[index], index))
-    }
+      return itemWidths.value.get(getKey(mergedData.value[index], index));
+    };
 
     watch(
       [mergedContainerWidth, itemWidths, restWidth, suffixWidth, () => props.itemKey, mergedData],
       () => {
         if (mergedContainerWidth.value && mergedRestWidth.value && mergedData.value) {
-          let totalWidth = suffixWidth.value
+          let totalWidth = suffixWidth.value;
 
-          const len = mergedData.value.length
-          const lastIndex = len - 1
+          const len = mergedData.value.length;
+          const lastIndex = len - 1;
 
           // When data count change to 0, reset this since not loop will reach
           if (!len) {
-            updateDisplayCount(0)
-            suffixFixedStart.value = null
-            return
+            updateDisplayCount(0);
+            suffixFixedStart.value = null;
+            return;
           }
 
           for (let i = 0; i < len; i += 1) {
-            const currentItemWidth = getItemWidth(i)
+            const currentItemWidth = getItemWidth(i);
 
             // Break since data not ready
             if (currentItemWidth === undefined) {
-              updateDisplayCount(i - 1, true)
-              break
+              updateDisplayCount(i - 1, true);
+              break;
             }
 
             // Find best match
-            totalWidth += currentItemWidth
+            totalWidth += currentItemWidth;
 
             if (
               // Only one means `totalWidth` is the final width
@@ -197,27 +197,27 @@ const Overflow = defineComponent({
                 && totalWidth + getItemWidth(lastIndex)! <= mergedContainerWidth.value)
             ) {
               // Additional check if match the end
-              updateDisplayCount(lastIndex)
-              suffixFixedStart.value = null
-              break
+              updateDisplayCount(lastIndex);
+              suffixFixedStart.value = null;
+              break;
             } else if (totalWidth + mergedRestWidth.value > mergedContainerWidth.value) {
               // Can not hold all the content to show rest
-              updateDisplayCount(i - 1)
+              updateDisplayCount(i - 1);
               suffixFixedStart.value
-                = totalWidth - currentItemWidth - suffixWidth.value + restWidth.value
-              break
+                = totalWidth - currentItemWidth - suffixWidth.value + restWidth.value;
+              break;
             }
           }
 
           if (props.suffix && getItemWidth(0) + suffixWidth.value > mergedContainerWidth.value)
-            suffixFixedStart.value = null
+            suffixFixedStart.value = null;
         }
       },
-    )
+    );
 
     return () => {
       // ================================ Render ================================
-      const displayRest = restReady.value && !!omittedItems.value.length
+      const displayRest = restReady.value && !!omittedItems.value.length;
       const {
         itemComponent,
         renderRawItem,
@@ -228,15 +228,15 @@ const Overflow = defineComponent({
         component: Component = 'div' as any,
         id,
         onMousedown,
-      } = props
-      const { class: className, style, ...restAttrs } = attrs
-      let suffixStyle: CSSProperties = {}
+      } = props;
+      const { class: className, style, ...restAttrs } = attrs;
+      let suffixStyle: CSSProperties = {};
       if (suffixFixedStart.value !== null && isResponsive.value) {
         suffixStyle = {
           position: 'absolute',
           left: `${suffixFixedStart.value}px`,
           top: 0,
-        }
+        };
       }
 
       const itemSharedProps = {
@@ -244,12 +244,12 @@ const Overflow = defineComponent({
         responsive: isResponsive.value,
         component: itemComponent,
         invalidate: invalidate.value,
-      }
+      };
 
       // >>>>> Choice render fun by `renderRawItem`
       const internalRenderItemNode = renderRawItem
         ? (item: any, index: number) => {
-            const key = getKey(item, index)
+            const key = getKey(item, index);
 
             return (
               <OverflowContextProvider
@@ -265,10 +265,10 @@ const Overflow = defineComponent({
               >
                 {renderRawItem(item, index)}
               </OverflowContextProvider>
-            )
+            );
           }
         : (item: any, index: number) => {
-            const key = getKey(item, index)
+            const key = getKey(item, index);
 
             return (
               <Item
@@ -281,20 +281,20 @@ const Overflow = defineComponent({
                 registerSize={registerSize}
                 display={index <= mergedDisplayCount.value}
               />
-            )
-          }
+            );
+          };
 
       // >>>>> Rest node
-      let restNode = () => null
+      let restNode = () => null;
       const restContextProps = {
         order: displayRest ? mergedDisplayCount.value : Number.MAX_SAFE_INTEGER,
         className: `${itemPrefixCls.value} ${itemPrefixCls.value}-rest`,
         registerSize: registerOverflowSize,
         display: displayRest,
-      }
+      };
 
       if (!renderRawRest) {
-        const mergedRenderRest = renderRest || defaultRenderRest
+        const mergedRenderRest = renderRest || defaultRenderRest;
 
         restNode = () => (
           <Item
@@ -309,7 +309,7 @@ const Overflow = defineComponent({
             }}
           >
           </Item>
-        )
+        );
       } else if (renderRawRest) {
         restNode = () => (
           <OverflowContextProvider
@@ -320,7 +320,7 @@ const Overflow = defineComponent({
           >
             {renderRawRest(omittedItems.value)}
           </OverflowContextProvider>
-        )
+        );
       }
 
       const overflowNode = () => (
@@ -352,7 +352,7 @@ const Overflow = defineComponent({
           )}
           {slots.default?.()}
         </Component>
-      )
+      );
       // 使用 disabled  避免结构不一致 导致子组件 rerender
       return (
         <ResizeObserver
@@ -361,17 +361,17 @@ const Overflow = defineComponent({
           v-slots={{ default: overflowNode }}
         >
         </ResizeObserver>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-Overflow.Item = RawItem
-Overflow.RESPONSIVE = RESPONSIVE
-Overflow.INVALIDATE = INVALIDATE
+Overflow.Item = RawItem;
+Overflow.RESPONSIVE = RESPONSIVE;
+Overflow.INVALIDATE = INVALIDATE;
 
 export default Overflow as typeof Overflow & {
   readonly Item: typeof RawItem;
   readonly RESPONSIVE: typeof RESPONSIVE;
   readonly INVALIDATE: typeof INVALIDATE;
-}
+};

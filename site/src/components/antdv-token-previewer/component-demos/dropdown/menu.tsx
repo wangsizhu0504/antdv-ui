@@ -1,5 +1,5 @@
-import { DownOutlined } from '@ant-design/icons-vue'
-import { Menu } from '@antdv/ui'
+import { DownOutlined } from '@ant-design/icons-vue';
+import { Menu } from '@antdv/ui';
 
 const menu = (
   <Menu>
@@ -20,6 +20,6 @@ const menu = (
     </Menu.Item>
     <Menu.Item danger>a danger item</Menu.Item>
   </Menu>
-)
+);
 
-export default menu
+export default menu;

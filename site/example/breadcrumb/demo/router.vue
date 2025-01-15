@@ -17,7 +17,7 @@ Used together with `vue-router`
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
   interface Route {
     path: string;
@@ -27,7 +27,7 @@ Used together with `vue-router`
       breadcrumbName: string;
     }>;
   }
-  const basePath = '/components/breadcrumb'
+  const basePath = '/components/breadcrumb';
   const routes = ref<Route[]>([
     {
       path: 'index',
@@ -55,7 +55,7 @@ Used together with `vue-router`
       path: 'second',
       breadcrumbName: 'second',
     },
-  ])
+  ]);
 </script>
 
 <template>

@@ -17,8 +17,8 @@ For long table，need to scroll to view the header and scroll bar，then you can
 </docs>
 
 <script lang="ts" setup>
-  import type { TableColumnsType } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { TableColumnsType } from '@antdv/ui';
+  import { ref } from 'vue';
 
   const columns = ref<TableColumnsType>([
     {
@@ -84,18 +84,18 @@ For long table，need to scroll to view the header and scroll bar，then you can
       fixed: 'right',
       width: 100,
     },
-  ])
+  ]);
 
-  const data = []
+  const data = [];
   for (let i = 0; i < 100; i++) {
     data.push({
       key: i,
       name: `Edrward ${i}`,
       age: 32,
       address: `London Park no. ${i}`,
-    })
+    });
   }
-  const fixedTop = ref<any>(false)
+  const fixedTop = ref<any>(false);
 </script>
 
 <template>

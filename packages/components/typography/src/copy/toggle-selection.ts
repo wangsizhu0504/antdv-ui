@@ -1,40 +1,40 @@
 // copy from https://github.com/sudodoki/toggle-selection
 // refactor to esm
 function deselectCurrent(): (() => void) {
-  const selection = document.getSelection()
+  const selection = document.getSelection();
   if (!selection.rangeCount)
-    return function () {}
+    return function () {};
 
-  let active = document.activeElement as any
+  let active = document.activeElement as any;
 
-  const ranges = []
+  const ranges = [];
   for (let i = 0; i < selection.rangeCount; i++)
-    ranges.push(selection.getRangeAt(i))
+    ranges.push(selection.getRangeAt(i));
 
   switch (
     active.tagName.toUpperCase() // .toUpperCase handles XHTML
   ) {
     case 'INPUT':
     case 'TEXTAREA':
-      active.blur()
-      break
+      active.blur();
+      break;
 
     default:
-      active = null
-      break
+      active = null;
+      break;
   }
 
-  selection.removeAllRanges()
+  selection.removeAllRanges();
   return function () {
-    selection.type === 'Caret' && selection.removeAllRanges()
+    selection.type === 'Caret' && selection.removeAllRanges();
 
     if (!selection.rangeCount) {
       ranges.forEach((range) => {
-        selection.addRange(range)
-      })
+        selection.addRange(range);
+      });
     }
 
-    active && active.focus()
-  }
+    active && active.focus();
+  };
 }
-export default deselectCurrent
+export default deselectCurrent;

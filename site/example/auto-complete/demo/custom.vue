@@ -16,20 +16,20 @@ Customize Input Component.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<any>('')
-  const options = ref<Array<{ value: string }>>([])
+  const value = ref<any>('');
+  const options = ref<Array<{ value: string }>>([]);
   function onSelect(value: string) {
-    console.log('onSelect', value)
+    console.log('onSelect', value);
   }
   function handleSearch(value: string) {
     options.value = !value
       ? []
-      : [{ value }, { value: value + value }, { value: value + value + value }]
+      : [{ value }, { value: value + value }, { value: value + value + value }];
   }
   function handleKeyPress(ev: KeyboardEvent) {
-    console.log('handleKeyPress', ev)
+    console.log('handleKeyPress', ev);
   }
 </script>
 

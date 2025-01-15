@@ -47,14 +47,14 @@ If you use Vue's default template syntax, you need to register components before
 **Global Registration All Components**
 
 ```jsx
-import Antd from '@antdv/ui'
-import { createApp } from 'vue'
-import App from './App'
-import 'ant-design-vue/dist/reset.css'
+import Antd from '@antdv/ui';
+import { createApp } from 'vue';
+import App from './App';
+import 'ant-design-vue/dist/reset.css';
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(Antd).mount('#app')
+app.use(Antd).mount('#app');
 ```
 
 The above imports Antd entirely. Note that CSS file needs to be imported separately.
@@ -62,16 +62,16 @@ The above imports Antd entirely. Note that CSS file needs to be imported separat
 **Global Registration Some Components**
 
 ```jsx
-import { Button, message } from '@antdv/ui'
-import { createApp } from 'vue'
-import App from './App'
+import { Button, message } from '@antdv/ui';
+import { createApp } from 'vue';
+import App from './App';
 
-const app = createApp(App)
+const app = createApp(App);
 
 /* Automatically register components under Button, such as Button.Group */
-app.use(Button).mount('#app')
+app.use(Button).mount('#app');
 
-app.config.globalProperties.$message = message
+app.config.globalProperties.$message = message;
 ```
 
 **Local Registration**

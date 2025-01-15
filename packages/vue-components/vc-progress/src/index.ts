@@ -1,12 +1,12 @@
-import type { ProgressProps } from './types'
-import Circle from './Circle'
-import Line from './Line'
+import type { ProgressProps } from './types';
+import Circle from './Circle';
+import Line from './Line';
 
-export { Circle, Line }
+export { Circle, Line };
 
-export type { ProgressProps }
+export type { ProgressProps };
 
 export default {
   Line,
   Circle,
-}
+};

@@ -1,10 +1,10 @@
-import type { NodeMouseEventHandler } from '@antdv/vue-components'
-import type { ExtractPropTypes, PropType } from 'vue'
-import { PropTypes, tuple } from '@antdv/utils'
+import type { NodeMouseEventHandler } from '@antdv/vue-components';
+import type { ExtractPropTypes, PropType } from 'vue';
+import { PropTypes, tuple } from '@antdv/utils';
 
-const AlertTypes = tuple('success', 'info', 'warning', 'error')
+const AlertTypes = tuple('success', 'info', 'warning', 'error');
 
-export type AlertType = (typeof AlertTypes)[number]
+export type AlertType = (typeof AlertTypes)[number];
 
 export function alertProps() {
   return {
@@ -29,7 +29,7 @@ export function alertProps() {
     icon: PropTypes.any,
     closeIcon: PropTypes.any,
     onClose: Function as PropType<NodeMouseEventHandler>,
-  }
+  };
 }
 
-export type AlertProps = Partial<ExtractPropTypes<ReturnType<typeof alertProps>>>
+export type AlertProps = Partial<ExtractPropTypes<ReturnType<typeof alertProps>>>;

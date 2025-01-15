@@ -17,8 +17,8 @@ The `style` and `class` are available to customize Notification.
 </docs>
 
 <script>
-  import { notification } from '@antdv/ui'
-  import { defineComponent } from 'vue'
+  import { notification } from '@antdv/ui';
+  import { defineComponent } from 'vue';
 
   export default defineComponent({
     setup() {
@@ -32,13 +32,13 @@ The `style` and `class` are available to customize Notification.
             marginLeft: `${335 - 600}px`,
           },
           class: 'notification-custom-class',
-        })
-      }
+        });
+      };
       return {
         openNotification,
-      }
+      };
     },
-  })
+  });
 </script>
 
 <template>

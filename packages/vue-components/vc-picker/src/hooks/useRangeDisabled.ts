@@ -1,9 +1,9 @@
-import type { ComputedRef, Ref } from 'vue'
-import type { GenerateConfig } from '../generate'
-import type { Locale, PickerMode, RangeValue } from '../interface'
-import { computed } from 'vue'
-import { getQuarter, isSameDate } from '../utils/dateUtil'
-import { getValue } from '../utils/miscUtil'
+import type { ComputedRef, Ref } from 'vue';
+import type { GenerateConfig } from '../generate';
+import type { Locale, PickerMode, RangeValue } from '../interface';
+import { computed } from 'vue';
+import { getQuarter, isSameDate } from '../utils/dateUtil';
+import { getValue } from '../utils/miscUtil';
 
 export default function useRangeDisabled<DateType>(
   {
@@ -25,88 +25,88 @@ export default function useRangeDisabled<DateType>(
     [x: number]: boolean;
   }>,
 ) {
-  const startDate = computed(() => getValue(selectedValue.value, 0))
-  const endDate = computed(() => getValue(selectedValue.value, 1))
+  const startDate = computed(() => getValue(selectedValue.value, 0));
+  const endDate = computed(() => getValue(selectedValue.value, 1));
 
   function weekFirstDate(date: DateType) {
-    return generateConfig.value.locale.getWeekFirstDate(locale.value.locale, date)
+    return generateConfig.value.locale.getWeekFirstDate(locale.value.locale, date);
   }
 
   function monthNumber(date: DateType) {
-    const year = generateConfig.value.getYear(date)
-    const month = generateConfig.value.getMonth(date)
-    return year * 100 + month
+    const year = generateConfig.value.getYear(date);
+    const month = generateConfig.value.getMonth(date);
+    return year * 100 + month;
   }
 
   function quarterNumber(date: DateType) {
-    const year = generateConfig.value.getYear(date)
-    const quarter = getQuarter(generateConfig.value, date)
-    return year * 10 + quarter
+    const year = generateConfig.value.getYear(date);
+    const quarter = getQuarter(generateConfig.value, date);
+    return year * 10 + quarter;
   }
 
   const disabledStartDate = (date: DateType) => {
     if (disabledDate && disabledDate?.value?.(date))
-      return true
+      return true;
 
     // Disabled range
     if (disabled[1] && endDate) {
       return (
         !isSameDate(generateConfig.value, date, endDate.value)
         && generateConfig.value.isAfter(date, endDate.value)
-      )
+      );
     }
 
     // Disabled part
     if (openRecordsRef.value[1] && endDate.value) {
       switch (picker.value) {
         case 'quarter':
-          return quarterNumber(date) > quarterNumber(endDate.value)
+          return quarterNumber(date) > quarterNumber(endDate.value);
         case 'month':
-          return monthNumber(date) > monthNumber(endDate.value)
+          return monthNumber(date) > monthNumber(endDate.value);
         case 'week':
-          return weekFirstDate(date) > weekFirstDate(endDate.value)
+          return weekFirstDate(date) > weekFirstDate(endDate.value);
         default:
           return (
             !isSameDate(generateConfig.value, date, endDate.value)
             && generateConfig.value.isAfter(date, endDate.value)
-          )
+          );
       }
     }
 
-    return false
-  }
+    return false;
+  };
 
   const disabledEndDate = (date: DateType) => {
     if (disabledDate.value?.(date))
-      return true
+      return true;
 
     // Disabled range
     if (disabled[0] && startDate) {
       return (
         !isSameDate(generateConfig.value, date, endDate.value)
         && generateConfig.value.isAfter(startDate.value, date)
-      )
+      );
     }
 
     // Disabled part
     if (openRecordsRef.value[0] && startDate.value) {
       switch (picker.value) {
         case 'quarter':
-          return quarterNumber(date) < quarterNumber(startDate.value)
+          return quarterNumber(date) < quarterNumber(startDate.value);
         case 'month':
-          return monthNumber(date) < monthNumber(startDate.value)
+          return monthNumber(date) < monthNumber(startDate.value);
         case 'week':
-          return weekFirstDate(date) < weekFirstDate(startDate.value)
+          return weekFirstDate(date) < weekFirstDate(startDate.value);
         default:
           return (
             !isSameDate(generateConfig.value, date, startDate.value)
             && generateConfig.value.isAfter(startDate.value, date)
-          )
+          );
       }
     }
 
-    return false
-  }
+    return false;
+  };
 
-  return [disabledStartDate, disabledEndDate]
+  return [disabledStartDate, disabledEndDate];
 }

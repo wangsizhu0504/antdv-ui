@@ -1,9 +1,9 @@
-import type { CustomSlotsType } from '@antdv/types'
-import { getPropsSlot } from '@antdv/utils'
-import { computed, defineComponent } from 'vue'
-import { useMeasure } from './hooks/useKeyPath'
-import { useInjectMenu } from './hooks/useMenuContext'
-import { menuItemGroupProps } from './props'
+import type { CustomSlotsType } from '@antdv/types';
+import { getPropsSlot } from '@antdv/utils';
+import { computed, defineComponent } from 'vue';
+import { useMeasure } from './hooks/useKeyPath';
+import { useInjectMenu } from './hooks/useMenuContext';
+import { menuItemGroupProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -15,11 +15,11 @@ export default defineComponent({
     default?: any
   }>,
   setup(props, { slots, attrs }) {
-    const { prefixCls } = useInjectMenu()
-    const groupPrefixCls = computed(() => `${prefixCls.value}-item-group`)
-    const isMeasure = useMeasure()
+    const { prefixCls } = useInjectMenu();
+    const groupPrefixCls = computed(() => `${prefixCls.value}-item-group`);
+    const isMeasure = useMeasure();
     return () => {
-      if (isMeasure) return slots.default?.()
+      if (isMeasure) return slots.default?.();
       return (
         <li {...attrs} onClick={e => e.stopPropagation()} class={groupPrefixCls.value}>
           <div
@@ -30,7 +30,7 @@ export default defineComponent({
           </div>
           <ul class={`${groupPrefixCls.value}-list`}>{slots.default?.()}</ul>
         </li>
-      )
-    }
+      );
+    };
   },
-})
+});

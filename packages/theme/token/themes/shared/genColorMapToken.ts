@@ -1,6 +1,6 @@
-import type { ColorMapToken, SeedToken } from '../../interface'
-import type { GenerateColorMap, GenerateNeutralColorMap } from '../ColorMap'
-import { TinyColor } from '@ctrl/tinycolor'
+import type { ColorMapToken, SeedToken } from '../../interface';
+import type { GenerateColorMap, GenerateNeutralColorMap } from '../ColorMap';
+import { TinyColor } from '@ctrl/tinycolor';
 
 interface PaletteGenerators {
   generateColorPalettes: GenerateColorMap
@@ -19,14 +19,14 @@ export default function genColorMapToken(
     colorPrimary: colorPrimaryBase,
     colorBgBase,
     colorTextBase,
-  } = seed
+  } = seed;
 
-  const primaryColors = generateColorPalettes(colorPrimaryBase)
-  const successColors = generateColorPalettes(colorSuccessBase)
-  const warningColors = generateColorPalettes(colorWarningBase)
-  const errorColors = generateColorPalettes(colorErrorBase)
-  const infoColors = generateColorPalettes(colorInfoBase)
-  const neutralColors = generateNeutralColorPalettes(colorBgBase, colorTextBase)
+  const primaryColors = generateColorPalettes(colorPrimaryBase);
+  const successColors = generateColorPalettes(colorSuccessBase);
+  const warningColors = generateColorPalettes(colorWarningBase);
+  const errorColors = generateColorPalettes(colorErrorBase);
+  const infoColors = generateColorPalettes(colorInfoBase);
+  const neutralColors = generateNeutralColorPalettes(colorBgBase, colorTextBase);
 
   return {
     ...neutralColors,
@@ -88,5 +88,5 @@ export default function genColorMapToken(
 
     colorBgMask: new TinyColor('#000').setAlpha(0.45).toRgbString(),
     colorWhite: '#fff',
-  }
+  };
 }

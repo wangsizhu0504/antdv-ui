@@ -1,5 +1,5 @@
-import { optionOptions, optionProps } from '@antdv/vue-components/vc-mentions/src/Option'
-import { defineComponent } from 'vue'
+import { optionOptions, optionProps } from '@antdv/vue-components/vc-mentions/src/Option';
+import { defineComponent } from 'vue';
 
 /* istanbul ignore next */
 export default defineComponent({
@@ -7,4 +7,4 @@ export default defineComponent({
   ...optionOptions,
   name: 'AMentionsOption',
   props: optionProps,
-})
+});

@@ -17,10 +17,10 @@ Displaying a series of comments using the `antd` List Component.
 </docs>
 
 <script lang="ts" setup>
-  import dayjs from 'dayjs'
-  import relativeTime from 'dayjs/plugin/relativeTime'
+  import dayjs from 'dayjs';
+  import relativeTime from 'dayjs/plugin/relativeTime';
 
-  dayjs.extend(relativeTime)
+  dayjs.extend(relativeTime);
 
   const data = [
     {
@@ -39,7 +39,7 @@ Displaying a series of comments using the `antd` List Component.
         'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
       datetime: dayjs().subtract(2, 'days'),
     },
-  ]
+  ];
 </script>
 
 <template>

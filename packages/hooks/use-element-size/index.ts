@@ -1,8 +1,8 @@
-import type { MaybeComputedElementRef } from '../unref-element'
-import type { UseResizeObserverOptions } from '../use-resize-observer'
-import { shallowRef, watch } from 'vue'
-import { unrefElement } from '../unref-element'
-import { useResizeObserver } from '../use-resize-observer'
+import type { MaybeComputedElementRef } from '../unref-element';
+import type { UseResizeObserverOptions } from '../use-resize-observer';
+import { shallowRef, watch } from 'vue';
+import { unrefElement } from '../unref-element';
+import { useResizeObserver } from '../use-resize-observer';
 
 export interface ElementSize {
   width: number;
@@ -22,9 +22,9 @@ export function useElementSize(
   initialSize: ElementSize = { width: 0, height: 0 },
   options: UseResizeObserverOptions = {},
 ) {
-  const { box = 'content-box' } = options
-  const width = shallowRef(initialSize.width)
-  const height = shallowRef(initialSize.height)
+  const { box = 'content-box' } = options;
+  const width = shallowRef(initialSize.width);
+  const height = shallowRef(initialSize.height);
 
   useResizeObserver(
     target,
@@ -34,32 +34,32 @@ export function useElementSize(
           ? entry.borderBoxSize
           : box === 'content-box'
             ? entry.contentBoxSize
-            : entry.devicePixelContentBoxSize
+            : entry.devicePixelContentBoxSize;
 
       if (boxSize) {
-        width.value = boxSize.reduce((acc, { inlineSize }) => acc + inlineSize, 0)
-        height.value = boxSize.reduce((acc, { blockSize }) => acc + blockSize, 0)
+        width.value = boxSize.reduce((acc, { inlineSize }) => acc + inlineSize, 0);
+        height.value = boxSize.reduce((acc, { blockSize }) => acc + blockSize, 0);
       } else {
         // fallback
-        width.value = entry.contentRect.width
-        height.value = entry.contentRect.height
+        width.value = entry.contentRect.width;
+        height.value = entry.contentRect.height;
       }
     },
     options,
-  )
+  );
 
   watch(
     () => unrefElement(target),
     (ele) => {
-      width.value = ele ? initialSize.width : 0
-      height.value = ele ? initialSize.height : 0
+      width.value = ele ? initialSize.width : 0;
+      height.value = ele ? initialSize.height : 0;
     },
-  )
+  );
 
   return {
     width,
     height,
-  }
+  };
 }
 
-export type UseElementSizeReturn = ReturnType<typeof useElementSize>
+export type UseElementSizeReturn = ReturnType<typeof useElementSize>;

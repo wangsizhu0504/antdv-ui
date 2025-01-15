@@ -1,9 +1,9 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
 
 const genSorterStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
   const { componentCls, marginXXS, fontSizeIcon, tableHeaderIconColor, tableHeaderIconColorHover }
-    = token
+    = token;
   return {
     [`${componentCls}-wrapper`]: {
       [`${componentCls}-thead th${componentCls}-column-has-sorters`]: {
@@ -94,7 +94,7 @@ const genSorterStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         color: tableHeaderIconColorHover,
       },
     },
-  }
-}
+  };
+};
 
-export default genSorterStyle
+export default genSorterStyle;

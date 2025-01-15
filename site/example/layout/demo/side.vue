@@ -21,11 +21,11 @@ The level of the aside navigation is scalable. The first, second, and third leve
 </docs>
 
 <script lang="ts" setup>
-  import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const collapsed = ref<boolean>(false)
-  const selectedKeys = ref<string[]>(['1'])
+  const collapsed = ref<boolean>(false);
+  const selectedKeys = ref<string[]>(['1']);
 </script>
 
 <template>

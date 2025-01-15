@@ -1,27 +1,27 @@
-import type { VueNode } from '@antdv/types'
-import type { ChangeEventExtra, LegacyCheckedNode, RawValueType, TreeSelectDataNode } from '../interface'
-import type { DefaultOptionType, FieldNames } from '../TreeSelect'
-import { camelize, filterEmpty, warning } from '@antdv/utils'
-import TreeNode from '../TreeNode'
+import type { VueNode } from '@antdv/types';
+import type { ChangeEventExtra, LegacyCheckedNode, RawValueType, TreeSelectDataNode } from '../interface';
+import type { DefaultOptionType, FieldNames } from '../TreeSelect';
+import { camelize, filterEmpty, warning } from '@antdv/utils';
+import TreeNode from '../TreeNode';
 
 function isTreeSelectNode(node: any) {
-  return node && node.type && (node.type as any).isTreeSelectNode
+  return node && node.type && (node.type as any).isTreeSelectNode;
 }
 export function convertChildrenToData(rootNodes: VueNode[]): TreeSelectDataNode[] {
   function dig(treeNodes: any[] = []): TreeSelectDataNode[] {
     return filterEmpty(treeNodes).map((treeNode) => {
       // Filter invalidate node
       if (!isTreeSelectNode(treeNode)) {
-        warning(!treeNode, 'TreeSelect/TreeSelectNode can only accept TreeSelectNode as children.')
-        return null
+        warning(!treeNode, 'TreeSelect/TreeSelectNode can only accept TreeSelectNode as children.');
+        return null;
       }
-      const slots = (treeNode.children as any) || {}
-      const key = treeNode.key as string | number
-      const props: any = {}
+      const slots = (treeNode.children as any) || {};
+      const key = treeNode.key as string | number;
+      const props: any = {};
       for (const [k, v] of Object.entries(treeNode.props))
-        props[camelize(k)] = v
+        props[camelize(k)] = v;
 
-      const { isLeaf, checkable, selectable, disabled, disableCheckbox } = props
+      const { isLeaf, checkable, selectable, disabled, disableCheckbox } = props;
       // 默认值为 undefined
       const newProps = {
         isLeaf: isLeaf || isLeaf === '' || undefined,
@@ -29,14 +29,14 @@ export function convertChildrenToData(rootNodes: VueNode[]): TreeSelectDataNode[
         selectable: selectable || selectable === '' || undefined,
         disabled: disabled || disabled === '' || undefined,
         disableCheckbox: disableCheckbox || disableCheckbox === '' || undefined,
-      }
-      const slotsProps = { ...props, ...newProps }
+      };
+      const slotsProps = { ...props, ...newProps };
       const {
         title = slots.title?.(slotsProps),
         switcherIcon = slots.switcherIcon?.(slotsProps),
         ...rest
-      } = props
-      const children = slots.default?.()
+      } = props;
+      const children = slots.default?.();
       const dataNode: TreeSelectDataNode = {
         ...rest,
         title,
@@ -44,25 +44,25 @@ export function convertChildrenToData(rootNodes: VueNode[]): TreeSelectDataNode[
         key,
         isLeaf,
         ...newProps,
-      }
+      };
 
-      const parsedChildren = dig(children)
+      const parsedChildren = dig(children);
       if (parsedChildren.length)
-        dataNode.children = parsedChildren
+        dataNode.children = parsedChildren;
 
-      return dataNode
-    })
+      return dataNode;
+    });
   }
 
-  return dig(rootNodes as any[])
+  return dig(rootNodes as any[]);
 }
 
 export function fillLegacyProps(dataNode: TreeSelectDataNode): any {
   // Skip if not dataNode exist
   if (!dataNode)
-    return dataNode
+    return dataNode;
 
-  const cloneNode = { ...dataNode }
+  const cloneNode = { ...dataNode };
 
   if (!('props' in cloneNode)) {
     Object.defineProperty(cloneNode, 'props', {
@@ -70,13 +70,13 @@ export function fillLegacyProps(dataNode: TreeSelectDataNode): any {
         warning(
           false,
           'New `vc-tree-select` not support return node instance as argument anymore. Please consider to remove `props` access.',
-        )
-        return cloneNode
+        );
+        return cloneNode;
       },
-    })
+    });
   }
 
-  return cloneNode
+  return cloneNode;
 }
 
 export function fillAdditionalInfo(
@@ -87,48 +87,48 @@ export function fillAdditionalInfo(
   showPosition: boolean,
   fieldNames: FieldNames,
 ) {
-  let triggerNode = null
-  let nodeList: LegacyCheckedNode[] = null
+  let triggerNode = null;
+  let nodeList: LegacyCheckedNode[] = null;
 
   function generateMap() {
     function dig(list: DefaultOptionType[], level = '0', parentIncluded = false) {
       return list
         .map((option, index) => {
-          const pos = `${level}-${index}`
-          const value = option[fieldNames.value]
-          const included = checkedValues.includes(value)
-          const children = dig(option[fieldNames.children] || [], pos, included)
+          const pos = `${level}-${index}`;
+          const value = option[fieldNames.value];
+          const included = checkedValues.includes(value);
+          const children = dig(option[fieldNames.children] || [], pos, included);
           const node = (
             <TreeNode {...(option as Required<DefaultOptionType>)}>
               {children.map(child => child.node)}
             </TreeNode>
-          )
+          );
 
           // Link with trigger node
           if (triggerValue === value)
-            triggerNode = node
+            triggerNode = node;
 
           if (included) {
             const checkedNode: LegacyCheckedNode = {
               pos,
               node,
               children,
-            }
+            };
 
             if (!parentIncluded)
-              nodeList.push(checkedNode)
+              nodeList.push(checkedNode);
 
-            return checkedNode
+            return checkedNode;
           }
-          return null
+          return null;
         })
-        .filter(node => node)
+        .filter(node => node);
     }
 
     if (!nodeList) {
-      nodeList = []
+      nodeList = [];
 
-      dig(treeData)
+      dig(treeData);
 
       // Sort to keep the checked node length
       nodeList.sort(
@@ -144,31 +144,31 @@ export function fillAdditionalInfo(
             },
           },
         ) => {
-          const index1 = checkedValues.indexOf(val1)
-          const index2 = checkedValues.indexOf(val2)
-          return index1 - index2
+          const index1 = checkedValues.indexOf(val1);
+          const index2 = checkedValues.indexOf(val2);
+          return index1 - index2;
         },
-      )
+      );
     }
   }
 
   Object.defineProperty(extra, 'triggerNode', {
     get() {
-      warning(false, '`triggerNode` is deprecated. Please consider decoupling data with node.')
-      generateMap()
+      warning(false, '`triggerNode` is deprecated. Please consider decoupling data with node.');
+      generateMap();
 
-      return triggerNode
+      return triggerNode;
     },
-  })
+  });
   Object.defineProperty(extra, 'allCheckedNodes', {
     get() {
-      warning(false, '`allCheckedNodes` is deprecated. Please consider decoupling data with node.')
-      generateMap()
+      warning(false, '`allCheckedNodes` is deprecated. Please consider decoupling data with node.');
+      generateMap();
 
       if (showPosition)
-        return nodeList
+        return nodeList;
 
-      return nodeList.map(({ node }) => node)
+      return nodeList.map(({ node }) => node);
     },
-  })
+  });
 }

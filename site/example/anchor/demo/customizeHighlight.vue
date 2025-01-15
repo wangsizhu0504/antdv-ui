@@ -17,7 +17,7 @@ Customize the anchor highlight.
 
 <script lang="ts" setup>
   function getCurrentAnchor() {
-    return '#site-example-anchor-demo-static'
+    return '#site-example-anchor-demo-static';
   }
 </script>
 

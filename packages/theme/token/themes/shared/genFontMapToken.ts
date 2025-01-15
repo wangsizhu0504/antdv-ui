@@ -1,10 +1,10 @@
-import type { FontMapToken } from '../../interface'
-import genFontSizes from './genFontSizes'
+import type { FontMapToken } from '../../interface';
+import genFontSizes from './genFontSizes';
 
 function genFontMapToken(fontSize: number): FontMapToken {
-  const fontSizePairs = genFontSizes(fontSize)
-  const fontSizes = fontSizePairs.map(pair => pair.size)
-  const lineHeights = fontSizePairs.map(pair => pair.lineHeight)
+  const fontSizePairs = genFontSizes(fontSize);
+  const fontSizes = fontSizePairs.map(pair => pair.size);
+  const lineHeights = fontSizePairs.map(pair => pair.lineHeight);
 
   return {
     fontSizeSM: fontSizes[0],
@@ -27,7 +27,7 @@ function genFontMapToken(fontSize: number): FontMapToken {
     lineHeightHeading3: lineHeights[4],
     lineHeightHeading4: lineHeights[3],
     lineHeightHeading5: lineHeights[2],
-  }
+  };
 }
 
-export default genFontMapToken
+export default genFontMapToken;

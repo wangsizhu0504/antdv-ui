@@ -1,11 +1,11 @@
-import type { Locale, ValidateMessages } from '@antdv/locale'
-import type { SizeType } from '@antdv/types'
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { Locale, ValidateMessages } from '@antdv/locale';
+import type { SizeType } from '@antdv/types';
+import type { ExtractPropTypes, PropType } from 'vue';
 
-import type { RequiredMark } from '../../form'
-import type { TransformCellTextProps } from '../../table'
-import type { CSPConfig, RenderEmptyHandler, ThemeConfig } from './interface'
-import { objectType } from '@antdv/utils'
+import type { RequiredMark } from '../../form';
+import type { TransformCellTextProps } from '../../table';
+import type { CSPConfig, RenderEmptyHandler, ThemeConfig } from './interface';
+import { objectType } from '@antdv/utils';
 
 export function configProviderProps() {
   return {
@@ -57,7 +57,7 @@ export function configProviderProps() {
     wave: objectType<{
       disabled?: boolean
     }>(),
-  }
+  };
 }
 
-export type ConfigProviderProps = Partial<ExtractPropTypes<ReturnType<typeof configProviderProps>>>
+export type ConfigProviderProps = Partial<ExtractPropTypes<ReturnType<typeof configProviderProps>>>;

@@ -1,12 +1,12 @@
-import type { ComponentDemo } from '../../interface'
-import { Select } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Select } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
-import options from './data'
+import options from './data';
 
 function handleChange(value: any) {
-  console.log(`selected ${value}`)
+  console.log(`selected ${value}`);
 }
 
 const Demo = defineComponent({
@@ -24,20 +24,20 @@ const Demo = defineComponent({
         value={['a10', 'c12', 'e14']}
         getPopupContainer={(node) => {
           if (node)
-            return node.parentNode as HTMLElement
+            return node.parentNode as HTMLElement;
 
-          return document.body
+          return document.body;
         }}
         onChange={handleChange}
       />
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorPrimary', 'colorFillSecondary'],
   key: 'selectTag',
-}
+};
 
-export default componentDemo
+export default componentDemo;

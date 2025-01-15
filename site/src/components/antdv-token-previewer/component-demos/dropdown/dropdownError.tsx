@@ -1,8 +1,8 @@
-import type { ComponentDemo } from '../../interface'
-import { DownOutlined } from '@ant-design/icons-vue'
-import { Dropdown, Typography } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { DownOutlined } from '@ant-design/icons-vue';
+import { Dropdown, Typography } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -37,14 +37,14 @@ const Demo = defineComponent({
           </Typography.Text>
         </Dropdown>
       </div>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorError', 'colorErrorHover', 'colorBgElevated'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

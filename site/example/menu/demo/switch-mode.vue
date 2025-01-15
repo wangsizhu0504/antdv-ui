@@ -17,16 +17,16 @@ Show the dynamic switching mode (between `inline` and `vertical`).
 </docs>
 
 <script lang="ts" setup>
-  import type { ItemType, MenuMode, MenuTheme } from '@antdv/ui'
-  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
-  import { h, reactive } from 'vue'
+  import type { ItemType, MenuMode, MenuTheme } from '@antdv/ui';
+  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue';
+  import { h, reactive } from 'vue';
 
   const state = reactive({
     mode: 'inline' as MenuMode,
     theme: 'light' as MenuTheme,
     selectedKeys: ['1'],
     openKeys: ['sub1'],
-  })
+  });
 
   function getItem(
     label: string,
@@ -41,7 +41,7 @@ Show the dynamic switching mode (between `inline` and `vertical`).
       children,
       label,
       type,
-    } as ItemType
+    } as ItemType;
   }
 
   const items: ItemType[] = reactive([
@@ -58,14 +58,14 @@ Show the dynamic switching mode (between `inline` and `vertical`).
       getItem('Option 9', '9'),
       getItem('Option 10', '10'),
     ]),
-  ])
+  ]);
 
   function changeMode(checked: boolean) {
-    state.mode = checked ? 'vertical' : 'inline'
+    state.mode = checked ? 'vertical' : 'inline';
   }
 
   function changeTheme(checked: boolean) {
-    state.theme = checked ? 'dark' : 'light'
+    state.theme = checked ? 'dark' : 'light';
   }
 </script>
 

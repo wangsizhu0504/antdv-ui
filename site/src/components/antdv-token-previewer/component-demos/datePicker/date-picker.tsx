@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { DatePicker, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { DatePicker, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -11,9 +11,9 @@ const Demo = defineComponent({
         <DatePicker picker="quarter" />
         <DatePicker picker="year" />
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
@@ -26,6 +26,6 @@ const componentDemo: ComponentDemo = {
     'colorBgContainer',
   ],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

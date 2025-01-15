@@ -16,9 +16,9 @@ Use `fileList` for uploaded files when page init.
 </docs>
 
 <script lang="ts" setup>
-  import type { UploadProps } from '@antdv/ui'
-  import { UploadOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { UploadProps } from '@antdv/ui';
+  import { UploadOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   const fileList = ref<UploadProps['fileList']>([
     {
@@ -41,7 +41,7 @@ Use `fileList` for uploaded files when page init.
       response: 'Server Error 500', // custom error message to show
       url: 'http://www.baidu.com/zzz.png',
     },
-  ])
+  ]);
 </script>
 
 <template>

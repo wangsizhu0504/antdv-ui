@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-  import type { TreeSelectProps } from '@antdv/ui'
-  import { ref, watch } from 'vue'
+  import type { TreeSelectProps } from '@antdv/ui';
+  import { ref, watch } from 'vue';
 
-  const value = ref<string>()
+  const value = ref<string>();
   const treeData = ref<TreeSelectProps['treeData']>([
     {
       label: 'root 1',
@@ -38,10 +38,10 @@
         },
       ],
     },
-  ])
+  ]);
   watch(value, () => {
-    console.log(value.value)
-  })
+    console.log(value.value);
+  });
 </script>
 
 <template>

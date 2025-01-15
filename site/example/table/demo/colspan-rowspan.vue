@@ -19,13 +19,13 @@ Table cell supports `colSpan` and `rowSpan` that set in render return object. Wh
 </docs>
 
 <script lang="ts" setup>
-  import type { TableColumnType } from '@antdv/ui'
+  import type { TableColumnType } from '@antdv/ui';
 
   // In the fifth row, other columns are merged into first column
   // by setting it's colSpan to be 0
   function sharedOnCell(_, index) {
     if (index === 4) {
-      return { colSpan: 0 }
+      return { colSpan: 0 };
     }
   }
 
@@ -70,7 +70,7 @@ Table cell supports `colSpan` and `rowSpan` that set in render return object. Wh
       phone: 18900010002,
       address: 'Dublin No. 2 Lake Park',
     },
-  ]
+  ];
 
   const columns: TableColumnType[] = [
     {
@@ -91,14 +91,14 @@ Table cell supports `colSpan` and `rowSpan` that set in render return object. Wh
       dataIndex: 'tel',
       customCell: (_, index) => {
         if (index === 2) {
-          return { rowSpan: 2 }
+          return { rowSpan: 2 };
         }
         // These two are merged into above cell
         if (index === 3) {
-          return { rowSpan: 0 }
+          return { rowSpan: 0 };
         }
         if (index === 4) {
-          return { colSpan: 0 }
+          return { colSpan: 0 };
         }
       },
     },
@@ -113,7 +113,7 @@ Table cell supports `colSpan` and `rowSpan` that set in render return object. Wh
       dataIndex: 'address',
       customCell: sharedOnCell,
     },
-  ]
+  ];
 </script>
 
 <template>

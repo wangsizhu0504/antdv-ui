@@ -1,9 +1,9 @@
-import type { FullToken, GenerateStyle, UseComponentStyleResult } from '@antdv/theme'
-import type { Ref } from 'vue'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
-import { initZoomMotion } from '@antdv/theme/style/motion'
-import getArrowStyle, { MAX_VERTICAL_CONTENT_RADIUS } from '@antdv/theme/style/placementArrow'
-import { genPresetColor } from '@antdv/theme/style/presetColor'
+import type { FullToken, GenerateStyle, UseComponentStyleResult } from '@antdv/theme';
+import type { Ref } from 'vue';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
+import { initZoomMotion } from '@antdv/theme/style/motion';
+import getArrowStyle, { MAX_VERTICAL_CONTENT_RADIUS } from '@antdv/theme/style/placementArrow';
+import { genPresetColor } from '@antdv/theme/style/presetColor';
 
 export interface ComponentToken {
   zIndexPopup: number
@@ -32,7 +32,7 @@ const genTooltipStyle: GenerateStyle<TooltipToken> = (token) => {
     paddingSM,
     paddingXS,
     tooltipRadiusOuter,
-  } = token
+  } = token;
 
   return [
     {
@@ -121,8 +121,8 @@ const genTooltipStyle: GenerateStyle<TooltipToken> = (token) => {
         maxWidth: 'none',
       },
     },
-  ]
-}
+  ];
+};
 
 // ============================== Export ==============================
 export default (prefixCls: Ref<string>, injectStyle: Ref<boolean>): UseComponentStyleResult => {
@@ -131,9 +131,9 @@ export default (prefixCls: Ref<string>, injectStyle: Ref<boolean>): UseComponent
     (token) => {
       // Popover use Tooltip as internal component. We do not need to handle this.
       if (injectStyle?.value === false)
-        return []
+        return [];
 
-      const { borderRadius, colorTextLightSolid, colorBgDefault, borderRadiusOuter } = token
+      const { borderRadius, colorTextLightSolid, colorBgDefault, borderRadiusOuter } = token;
 
       const TooltipToken = mergeToken<TooltipToken>(token, {
         // default variables
@@ -142,19 +142,19 @@ export default (prefixCls: Ref<string>, injectStyle: Ref<boolean>): UseComponent
         tooltipBorderRadius: borderRadius,
         tooltipBg: colorBgDefault,
         tooltipRadiusOuter: borderRadiusOuter > 4 ? 4 : borderRadiusOuter,
-      })
+      });
 
       return [
         genTooltipStyle(TooltipToken),
         // initShakeMotion(token),
         initZoomMotion(token, 'zoom-big-fast'),
-      ]
+      ];
     },
     ({ zIndexPopupBase, colorBgSpotlight }) => ({
       zIndexPopup: zIndexPopupBase + 70,
       colorBgDefault: colorBgSpotlight,
     }),
-  )
+  );
 
-  return useOriginHook(prefixCls)
-}
+  return useOriginHook(prefixCls);
+};

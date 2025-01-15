@@ -1,9 +1,9 @@
-import { withInstall } from '@antdv/utils'
-import ASlider from './src/Slider'
+import { withInstall } from '@antdv/utils';
+import ASlider from './src/Slider';
 
-export const Slider = withInstall(ASlider)
+export const Slider = withInstall(ASlider);
 
-export default Slider
+export default Slider;
 
-export * from './src/interface'
-export * from './src/props'
+export * from './src/interface';
+export * from './src/props';

@@ -1,14 +1,14 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import { CloseOutlined } from '@ant-design/icons-vue'
-import { classNames, devWarning, isPresetColor, isPresetStatusColor } from '@antdv/utils'
-import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { Wave } from '../../wave'
+import type { CustomSlotsType } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import { CloseOutlined } from '@ant-design/icons-vue';
+import { classNames, devWarning, isPresetColor, isPresetStatusColor } from '@antdv/utils';
+import { computed, defineComponent, shallowRef, watchEffect } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { Wave } from '../../wave';
 
-import useStyle from '../style'
-import CheckableTag from './CheckableTag'
-import { tagProps } from './props'
+import useStyle from '../style';
+import CheckableTag from './CheckableTag';
+import { tagProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -23,11 +23,11 @@ export default defineComponent({
     default: any
   }>,
   setup(props, { slots, emit, attrs }) {
-    const { prefixCls, direction } = useConfigInject('tag', props)
+    const { prefixCls, direction } = useConfigInject('tag', props);
 
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
-    const visible = shallowRef(true)
+    const visible = shallowRef(true);
 
     // Warning for deprecated usage
     if (process.env.NODE_ENV !== 'production') {
@@ -35,25 +35,25 @@ export default defineComponent({
         props.visible === undefined,
         'Tag',
         '`visible` is deprecated, please use `<Tag v-show="visible" />` instead.',
-      )
+      );
     }
 
     watchEffect(() => {
       if (props.visible !== undefined)
-        visible.value = props.visible!
-    })
+        visible.value = props.visible!;
+    });
 
     const handleCloseClick = (e: MouseEvent) => {
-      e.stopPropagation()
-      emit('update:visible', false)
-      emit('close', e)
+      e.stopPropagation();
+      emit('update:visible', false);
+      emit('close', e);
 
       if (e.defaultPrevented)
-        return
+        return;
 
       if (props.visible === undefined)
-        visible.value = false
-    }
+        visible.value = false;
+    };
 
     // const isPresetColor = computed(() => {
     //   const { color } = props;
@@ -65,7 +65,7 @@ export default defineComponent({
 
     const isInternalColor = computed(
       () => isPresetColor(props.color) || isPresetStatusColor(props.color),
-    )
+    );
 
     const tagClassName = computed(() =>
       classNames(prefixCls.value, hashId.value, {
@@ -75,17 +75,17 @@ export default defineComponent({
         [`${prefixCls.value}-rtl`]: direction.value === 'rtl',
         [`${prefixCls.value}-borderless`]: !props.bordered,
       }),
-    )
+    );
     const handleClick = (e: MouseEvent) => {
-      emit('click', e)
-    }
+      emit('click', e);
+    };
     return () => {
       const {
         icon = slots.icon?.(),
         color,
         closeIcon = slots.closeIcon?.(),
         closable = false,
-      } = props
+      } = props;
 
       const renderCloseIcon = () => {
         if (closable) {
@@ -97,17 +97,17 @@ export default defineComponent({
               )
             : (
                 <CloseOutlined class={`${prefixCls.value}-close-icon`} onClick={handleCloseClick} />
-              )
+              );
         }
-        return null
-      }
+        return null;
+      };
 
       const tagStyle = {
         backgroundColor: color && !isInternalColor.value ? color : undefined,
-      }
+      };
 
-      const iconNode = icon || null
-      const children = slots.default?.()
+      const iconNode = icon || null;
+      const children = slots.default?.();
       const kids = iconNode
         ? (
             <>
@@ -117,9 +117,9 @@ export default defineComponent({
           )
         : (
             children
-          )
+          );
 
-      const isNeedWave = props.onClick !== undefined
+      const isNeedWave = props.onClick !== undefined;
       const tagNode = (
         <span
           {...attrs}
@@ -130,9 +130,9 @@ export default defineComponent({
           {kids}
           {renderCloseIcon()}
         </span>
-      )
+      );
 
-      return wrapSSR(isNeedWave ? <Wave>{tagNode}</Wave> : tagNode)
-    }
+      return wrapSSR(isNeedWave ? <Wave>{tagNode}</Wave> : tagNode);
+    };
   },
-})
+});

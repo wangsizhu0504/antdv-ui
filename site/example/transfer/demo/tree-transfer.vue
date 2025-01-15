@@ -17,8 +17,8 @@ Customize render list with Tree component.
 </docs>
 
 <script lang="ts" setup>
-  import type { TransferProps, TreeProps } from '@antdv/ui'
-  import { computed, ref } from 'vue'
+  import type { TransferProps, TreeProps } from '@antdv/ui';
+  import { computed, ref } from 'vue';
 
   const tData: TransferProps['dataSource'] = [
     { key: '0-0', title: '0-0' },
@@ -31,19 +31,19 @@ Customize render list with Tree component.
       ],
     },
     { key: '0-2', title: '0-3' },
-  ]
+  ];
 
-  const transferDataSource: TransferProps['dataSource'] = []
+  const transferDataSource: TransferProps['dataSource'] = [];
   function flatten(list: TransferProps['dataSource'] = []) {
     list.forEach((item) => {
-      transferDataSource.push(item)
-      flatten(item.children)
-    })
+      transferDataSource.push(item);
+      flatten(item.children);
+    });
   }
-  flatten(JSON.parse(JSON.stringify(tData)))
+  flatten(JSON.parse(JSON.stringify(tData)));
 
   function isChecked(selectedKeys: Array<string | number>, eventKey: string | number) {
-    return selectedKeys.includes(eventKey)
+    return selectedKeys.includes(eventKey);
   }
 
   function handleTreeData(treeNodes: TransferProps['dataSource'], targetKeys: string[] = []) {
@@ -51,19 +51,19 @@ Customize render list with Tree component.
       ...props,
       disabled: targetKeys.includes(props.key as string),
       children: handleTreeData(children ?? [], targetKeys),
-    }))
+    }));
   }
-  const targetKeys = ref<string[]>([])
+  const targetKeys = ref<string[]>([]);
 
-  const dataSource = ref<any>(transferDataSource)
+  const dataSource = ref<any>(transferDataSource);
 
   const treeData = computed(() => {
-    return handleTreeData(tData, targetKeys.value)
-  })
+    return handleTreeData(tData, targetKeys.value);
+  });
 
   function onChecked(e: Parameters<TreeProps['onCheck']>[1] | Parameters<TreeProps['onSelect']>[1], checkedKeys: string[], onItemSelect: (n: any, c: boolean) => void) {
-    const { eventKey } = e.node
-    onItemSelect(eventKey, !isChecked(checkedKeys, eventKey))
+    const { eventKey } = e.node;
+    onItemSelect(eventKey, !isChecked(checkedKeys, eventKey));
   }
 </script>
 

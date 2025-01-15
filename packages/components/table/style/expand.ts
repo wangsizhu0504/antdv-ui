@@ -1,6 +1,6 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
-import { operationUnit } from '@antdv/theme'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
+import { operationUnit } from '@antdv/theme';
 
 const genExpandStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
   const {
@@ -22,12 +22,12 @@ const genExpandStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
     tablePaddingHorizontal,
     tableExpandedRowBg,
     paddingXXS,
-  } = token
-  const halfInnerSize = checkboxSize / 2 - lineWidth
+  } = token;
+  const halfInnerSize = checkboxSize / 2 - lineWidth;
   // must be odd number, unless it cannot align center
-  const expandIconSize = halfInnerSize * 2 + lineWidth * 3
-  const tableBorder = `${lineWidth}px ${lineType} ${tableBorderColor}`
-  const expandIconLineOffset = paddingXXS - lineWidth
+  const expandIconSize = halfInnerSize * 2 + lineWidth * 3;
+  const tableBorder = `${lineWidth}px ${lineType} ${tableBorderColor}`;
+  const expandIconLineOffset = paddingXXS - lineWidth;
 
   return {
     [`${componentCls}-wrapper`]: {
@@ -145,7 +145,7 @@ const genExpandStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         padding: `${tablePaddingVertical}px ${tablePaddingHorizontal}px`,
       },
     },
-  }
-}
+  };
+};
 
-export default genExpandStyle
+export default genExpandStyle;

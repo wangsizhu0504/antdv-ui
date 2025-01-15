@@ -1,8 +1,8 @@
-import { withInstall } from '@antdv/utils'
-import ADivider from './src/Divider'
+import { withInstall } from '@antdv/utils';
+import ADivider from './src/Divider';
 
-export const Divider = withInstall(ADivider)
+export const Divider = withInstall(ADivider);
 
-export default Divider
+export default Divider;
 
-export * from './src/props'
+export * from './src/props';

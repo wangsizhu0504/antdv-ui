@@ -17,7 +17,7 @@ Set `icon` props to customize the icon.
 </docs>
 
 <script lang="ts" setup>
-  import { QuestionCircleOutlined } from '@ant-design/icons-vue'
+  import { QuestionCircleOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

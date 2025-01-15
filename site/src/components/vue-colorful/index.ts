@@ -1,2 +1,2 @@
-export { HexColorPicker } from './components/HexColorPicker'
-export { RgbaColorPicker } from './components/RgbaColorPicker'
+export { HexColorPicker } from './components/HexColorPicker';
+export { RgbaColorPicker } from './components/RgbaColorPicker';

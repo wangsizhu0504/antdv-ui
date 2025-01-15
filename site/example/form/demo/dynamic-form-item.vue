@@ -16,15 +16,15 @@ Add or remove form items dynamically.
 </docs>
 
 <script lang="ts" setup>
-  import type { FormInstance } from '@antdv/ui'
-  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue'
-  import { reactive, ref } from 'vue'
+  import type { FormInstance } from '@antdv/ui';
+  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue';
+  import { reactive, ref } from 'vue';
 
   interface Domain {
     value: string;
     key: number;
   }
-  const formRef = ref<FormInstance>()
+  const formRef = ref<FormInstance>();
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -34,40 +34,40 @@ Add or remove form items dynamically.
       xs: { span: 24 },
       sm: { span: 20 },
     },
-  }
+  };
   const formItemLayoutWithOutLabel = {
     wrapperCol: {
       xs: { span: 24, offset: 0 },
       sm: { span: 20, offset: 4 },
     },
-  }
+  };
   const dynamicValidateForm = reactive<{ domains: Domain[] }>({
     domains: [],
-  })
+  });
   function submitForm() {
     formRef.value
       .validate()
       .then(() => {
-        console.log('values', dynamicValidateForm.domains)
+        console.log('values', dynamicValidateForm.domains);
       })
       .catch((error) => {
-        console.log('error', error)
-      })
+        console.log('error', error);
+      });
   }
   function resetForm() {
-    formRef.value.resetFields()
+    formRef.value.resetFields();
   }
   function removeDomain(item: Domain) {
-    const index = dynamicValidateForm.domains.indexOf(item)
+    const index = dynamicValidateForm.domains.indexOf(item);
     if (index !== -1) {
-      dynamicValidateForm.domains.splice(index, 1)
+      dynamicValidateForm.domains.splice(index, 1);
     }
   }
   function addDomain() {
     dynamicValidateForm.domains.push({
       value: '',
       key: Date.now(),
-    })
+    });
   }
 </script>
 

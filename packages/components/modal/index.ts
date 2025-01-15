@@ -1,43 +1,43 @@
-import type { App, Plugin } from 'vue'
-import type { ModalFunc, ModalFuncProps } from './src/interface'
-import confirm, { withConfirm, withError, withInfo, withSuccess, withWarn } from './src/confirm'
-import destroyFns from './src/destroyFns'
-import AModal from './src/Modal'
+import type { App, Plugin } from 'vue';
+import type { ModalFunc, ModalFuncProps } from './src/interface';
+import confirm, { withConfirm, withError, withInfo, withSuccess, withWarn } from './src/confirm';
+import destroyFns from './src/destroyFns';
+import AModal from './src/Modal';
 
-import useModal from './src/useModal'
+import useModal from './src/useModal';
 
 function modalWarn(props: ModalFuncProps) {
-  return confirm(withWarn(props))
+  return confirm(withWarn(props));
 }
 
 export const Modal = Object.assign(AModal, {
   useModal,
   info: function infoFn(props: ModalFuncProps) {
-    return confirm(withInfo(props))
+    return confirm(withInfo(props));
   },
   success: function successFn(props: ModalFuncProps) {
-    return confirm(withSuccess(props))
+    return confirm(withSuccess(props));
   },
   error: function errorFn(props: ModalFuncProps) {
-    return confirm(withError(props))
+    return confirm(withError(props));
   },
   warning: modalWarn,
   warn: modalWarn,
   confirm: function confirmFn(props: ModalFuncProps) {
-    return confirm(withConfirm(props))
+    return confirm(withConfirm(props));
   },
   destroyAll: function destroyAllFn() {
     while (destroyFns.length) {
-      const close = destroyFns.pop()
+      const close = destroyFns.pop();
       if (close)
-        close()
+        close();
     }
   },
   install(app: App) {
-    app.component(AModal.name, AModal)
-    return app
+    app.component(AModal.name, AModal);
+    return app;
   },
-})
+});
 
 export default Modal as typeof Modal & Plugin & {
   readonly info: ModalFunc
@@ -55,9 +55,9 @@ export default Modal as typeof Modal & Plugin & {
   readonly destroyAll: () => void
 
   readonly useModal: typeof useModal
-}
+};
 
-export * from './src/interface'
-export * from './src/props'
+export * from './src/interface';
+export * from './src/props';
 
-export { useModal }
+export { useModal };

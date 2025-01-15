@@ -1,7 +1,7 @@
-import type { ComponentDemo } from '../../interface'
-import { Button, Modal } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Button, Modal } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -15,18 +15,18 @@ const Demo = defineComponent({
           </div>
         ),
         onOk() {
-          console.log('i am ok')
+          console.log('i am ok');
         },
-      })
-    }
+      });
+    };
 
-    return () => <Button onClick={info}>info</Button>
+    return () => <Button onClick={info}>info</Button>;
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorInfo'],
   key: 'info',
-}
-export default componentDemo
+};
+export default componentDemo;

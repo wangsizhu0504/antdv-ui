@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'mk',
@@ -139,6 +139,6 @@ const localeValues: Locale = {
   PageHeader: {
     back: 'Назад',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

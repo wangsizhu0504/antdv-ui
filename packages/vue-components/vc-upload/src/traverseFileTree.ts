@@ -1,4 +1,4 @@
-import type { RcFile } from './interface'
+import type { RcFile } from './interface';
 
 interface InternalDataTransferItem extends DataTransferItem {
   isFile: boolean;
@@ -11,30 +11,30 @@ interface InternalDataTransferItem extends DataTransferItem {
 }
 
 function loopFiles(item: InternalDataTransferItem, callback) {
-  const dirReader = item.createReader()
-  let fileList = []
+  const dirReader = item.createReader();
+  let fileList = [];
 
   function sequence() {
     dirReader.readEntries((entries: InternalDataTransferItem[]) => {
-      const entryList = Array.prototype.slice.apply(entries)
-      fileList = fileList.concat(entryList)
+      const entryList = Array.prototype.slice.apply(entries);
+      fileList = fileList.concat(entryList);
 
       // Check if all the file has been viewed
-      const isFinished = !entryList.length
+      const isFinished = !entryList.length;
 
       if (isFinished)
-        callback(fileList)
+        callback(fileList);
       else
-        sequence()
-    })
+        sequence();
+    });
   }
 
-  sequence()
+  sequence();
 }
 
 function traverseFileTree(files: InternalDataTransferItem[], callback, isAccepted) {
   const _traverseFileTree = (item: InternalDataTransferItem, path?: string) => {
-    item.path = path || ''
+    item.path = path || '';
     if (item.isFile) {
       item.file((file) => {
         if (isAccepted(file)) {
@@ -46,27 +46,27 @@ function traverseFileTree(files: InternalDataTransferItem[], callback, isAccepte
               },
             });
 
-            (file as any).webkitRelativePath = item.fullPath.replace(/^\//, '')
+            (file as any).webkitRelativePath = item.fullPath.replace(/^\//, '');
             Object.defineProperties(file, {
               webkitRelativePath: {
                 writable: false,
               },
-            })
+            });
           }
-          callback([file])
+          callback([file]);
         }
-      })
+      });
     } else if (item.isDirectory) {
       loopFiles(item, (entries: InternalDataTransferItem[]) => {
         entries.forEach((entryItem) => {
-          _traverseFileTree(entryItem, `${path}${item.name}/`)
-        })
-      })
+          _traverseFileTree(entryItem, `${path}${item.name}/`);
+        });
+      });
     }
-  }
+  };
   files.forEach((file) => {
-    _traverseFileTree(file.webkitGetAsEntry() as any)
-  })
+    _traverseFileTree(file.webkitGetAsEntry() as any);
+  });
 }
 
-export default traverseFileTree
+export default traverseFileTree;

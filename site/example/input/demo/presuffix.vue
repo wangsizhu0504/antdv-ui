@@ -17,10 +17,10 @@ Add prefix or suffix icons inside input.
 </docs>
 
 <script lang="ts" setup>
-  import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { InfoCircleOutlined, UserOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const userName = ref<string>('')
+  const userName = ref<string>('');
 </script>
 
 <template>

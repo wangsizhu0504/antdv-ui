@@ -17,7 +17,7 @@ Preview the watermark effect by configuring custom parameters.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive } from 'vue'
+  import { reactive } from 'vue';
 
   const model = reactive({
     content: 'Ant Design Vue',
@@ -28,7 +28,7 @@ Preview the watermark effect by configuring custom parameters.
     rotate: -22,
     gap: [100, 100] as [number, number],
     offset: [],
-  })
+  });
 </script>
 
 <template>

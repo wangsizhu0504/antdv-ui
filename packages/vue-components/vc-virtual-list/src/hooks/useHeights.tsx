@@ -1,9 +1,9 @@
-import type { Ref, ShallowRef, VNodeProps } from 'vue'
-import type { GetKey } from '../interface'
-import { raf } from '@antdv/utils'
-import { onUnmounted, ref, watch } from 'vue'
+import type { Ref, ShallowRef, VNodeProps } from 'vue';
+import type { GetKey } from '../interface';
+import { raf } from '@antdv/utils';
+import { onUnmounted, ref, watch } from 'vue';
 
-export type CacheMap = Map<any, number>
+export type CacheMap = Map<any, number>;
 
 export default function useHeights<T>(
   mergedData: ShallowRef<any[]>,
@@ -11,55 +11,55 @@ export default function useHeights<T>(
   onItemAdd?: ((item: T) => void) | null,
   onItemRemove?: ((item: T) => void) | null,
 ): [(item: T, instance: HTMLElement) => void, () => void, CacheMap, Ref<symbol>] {
-  const instance = new Map<VNodeProps['key'], HTMLElement>()
-  const heights = new Map()
-  const updatedMark = ref(Symbol('update'))
+  const instance = new Map<VNodeProps['key'], HTMLElement>();
+  const heights = new Map();
+  const updatedMark = ref(Symbol('update'));
   watch(mergedData, () => {
-    updatedMark.value = Symbol('update')
-  })
-  let collectRaf: number
+    updatedMark.value = Symbol('update');
+  });
+  let collectRaf: number;
 
   function cancelRaf() {
-    raf.cancel(collectRaf)
+    raf.cancel(collectRaf);
   }
   function collectHeight() {
-    cancelRaf()
+    cancelRaf();
     collectRaf = raf(() => {
       instance.forEach((element, key) => {
         if (element && element.offsetParent) {
-          const { offsetHeight } = element
+          const { offsetHeight } = element;
           if (heights.get(key) !== offsetHeight) {
             // changed = true;
-            updatedMark.value = Symbol('update')
-            heights.set(key, element.offsetHeight)
+            updatedMark.value = Symbol('update');
+            heights.set(key, element.offsetHeight);
           }
         }
-      })
-    })
+      });
+    });
   }
 
   function setInstance(item: T, ins: HTMLElement) {
-    const key = getKey(item)
-    const origin = instance.get(key)
+    const key = getKey(item);
+    const origin = instance.get(key);
 
     if (ins) {
-      instance.set(key, (ins as any).$el || ins)
-      collectHeight()
+      instance.set(key, (ins as any).$el || ins);
+      collectHeight();
     } else {
-      instance.delete(key)
+      instance.delete(key);
     }
 
     // Instance changed
     if (!origin !== !ins) {
       if (ins)
-        onItemAdd?.(item)
+        onItemAdd?.(item);
       else
-        onItemRemove?.(item)
+        onItemRemove?.(item);
     }
   }
   onUnmounted(() => {
-    cancelRaf()
-  })
+    cancelRaf();
+  });
 
-  return [setInstance, collectHeight, heights, updatedMark]
+  return [setInstance, collectHeight, heights, updatedMark];
 }

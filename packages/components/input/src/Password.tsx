@@ -1,17 +1,17 @@
-import type { PropType } from 'vue'
-import type { InputProps } from './props'
-import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons-vue'
-import { classNames, cloneElement, isValidElement, omit } from '@antdv/utils'
-import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import Input from './Input'
-import { inputProps } from './props'
+import type { PropType } from 'vue';
+import type { InputProps } from './props';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons-vue';
+import { classNames, cloneElement, isValidElement, omit } from '@antdv/utils';
+import { computed, defineComponent, shallowRef, watchEffect } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import Input from './Input';
+import { inputProps } from './props';
 
 const ActionMap = {
   click: 'onClick',
   hover: 'onMouseover',
-}
-const defaultIconRender = (visible: boolean) => visible ? <EyeOutlined /> : <EyeInvisibleOutlined />
+};
+const defaultIconRender = (visible: boolean) => visible ? <EyeOutlined /> : <EyeInvisibleOutlined />;
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -28,34 +28,34 @@ export default defineComponent({
     'iconRender': Function,
   },
   setup(props, { slots, attrs, expose, emit }) {
-    const visible = shallowRef(false)
+    const visible = shallowRef(false);
     const onVisibleChange = () => {
-      const { disabled } = props
+      const { disabled } = props;
       if (disabled)
-        return
+        return;
 
-      visible.value = !visible.value
-      emit('update:visible', visible.value)
-    }
+      visible.value = !visible.value;
+      emit('update:visible', visible.value);
+    };
     watchEffect(() => {
       if (props.visible !== undefined)
-        visible.value = !!props.visible
-    })
-    const inputRef = shallowRef()
+        visible.value = !!props.visible;
+    });
+    const inputRef = shallowRef();
     const focus = () => {
-      inputRef.value?.focus()
-    }
+      inputRef.value?.focus();
+    };
     const blur = () => {
-      inputRef.value?.blur()
-    }
+      inputRef.value?.blur();
+    };
     expose({
       focus,
       blur,
-    })
+    });
     const getIcon = (prefixCls: string) => {
-      const { action, iconRender = slots.iconRender || defaultIconRender } = props
-      const iconTrigger = ActionMap[action] || ''
-      const icon = iconRender(visible.value)
+      const { action, iconRender = slots.iconRender || defaultIconRender } = props;
+      const iconTrigger = ActionMap[action] || '';
+      const icon = iconRender(visible.value);
       const iconProps = {
         [iconTrigger]: onVisibleChange,
         class: `${prefixCls}-icon`,
@@ -63,25 +63,25 @@ export default defineComponent({
         onMousedown: (e: MouseEvent) => {
           // Prevent focused state lost
           // https://github.com/ant-design/ant-design/issues/15173
-          e.preventDefault()
+          e.preventDefault();
         },
         onMouseup: (e: MouseEvent) => {
           // Prevent caret position change
           // https://github.com/ant-design/ant-design/issues/23524
-          e.preventDefault()
+          e.preventDefault();
         },
-      }
-      return cloneElement(isValidElement(icon) ? icon : <span>{icon}</span>, iconProps)
-    }
-    const { prefixCls, getPrefixCls } = useConfigInject('input-password', props)
-    const inputPrefixCls = computed(() => getPrefixCls('input', props.inputPrefixCls))
+      };
+      return cloneElement(isValidElement(icon) ? icon : <span>{icon}</span>, iconProps);
+    };
+    const { prefixCls, getPrefixCls } = useConfigInject('input-password', props);
+    const inputPrefixCls = computed(() => getPrefixCls('input', props.inputPrefixCls));
     const renderPassword = () => {
-      const { size, visibilityToggle, ...restProps } = props
+      const { size, visibilityToggle, ...restProps } = props;
 
-      const suffixIcon = visibilityToggle && getIcon(prefixCls.value)
+      const suffixIcon = visibilityToggle && getIcon(prefixCls.value);
       const inputClassName = classNames(prefixCls.value, attrs.class, {
         [`${prefixCls.value}-${size}`]: !!size,
-      })
+      });
 
       const omittedProps = {
         ...omit(restProps, ['suffix', 'iconRender', 'action']),
@@ -90,15 +90,15 @@ export default defineComponent({
         class: inputClassName,
         prefixCls: inputPrefixCls.value,
         suffix: suffixIcon,
-      } as InputProps
+      } as InputProps;
 
       if (size)
-        omittedProps.size = size
+        omittedProps.size = size;
 
-      return <Input ref={inputRef} {...omittedProps} v-slots={slots} />
-    }
+      return <Input ref={inputRef} {...omittedProps} v-slots={slots} />;
+    };
     return () => {
-      return renderPassword()
-    }
+      return renderPassword();
+    };
   },
-})
+});

@@ -1,11 +1,11 @@
 // eslint-disable-next-line ts/ban-ts-comment
 // @ts-nocheck
-import type { App } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import type { App } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
 
-import Iframe from '../layouts/Iframe.vue'
-import Layout from '../layouts/index.vue'
-import demoRoutes from './demoRoutes'
+import Iframe from '../layouts/Iframe.vue';
+import Layout from '../layouts/index.vue';
+import demoRoutes from './demoRoutes';
 
 // import otherRoutes from './otherRoutes';
 const routes = [
@@ -36,8 +36,8 @@ const routes = [
           cover: 'https://gw.alipayobjects.com/zos/alicdn/hzEndUVEx/Layout.svg',
         },
         props: (route) => {
-          const hash = route.hash.replace('#', '')
-          return { iframeName: hash }
+          const hash = route.hash.replace('#', '');
+          return { iframeName: hash };
         },
         component: () => import('../../example/layout/demo/index.vue'),
       },
@@ -53,8 +53,8 @@ const routes = [
             'https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*HS-wTIIwu0kAAAAAAAAAAAAADrJ8AQ/original',
         },
         props: (route) => {
-          const hash = route.hash.replace('#', '')
-          return { iframeName: hash }
+          const hash = route.hash.replace('#', '');
+          return { iframeName: hash };
         },
         component: () => import('../../example/float-button/demo/index.vue'),
       },
@@ -156,7 +156,7 @@ const routes = [
     component: () => import('../views/theme-editor/index.vue'),
   },
   { path: '/:lang(.*)', redirect: '/components/overview' },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(),
@@ -165,11 +165,11 @@ const router = createRouter({
   strict: true,
   scrollBehavior: (to) => {
     if (to.hash)
-      return { el: to.hash, top: 80, behavior: 'auto' }
+      return { el: to.hash, top: 80, behavior: 'auto' };
   },
-})
+});
 
 export function registerRouter(app: App) {
-  app.use(router)
-  return router
+  app.use(router);
+  return router;
 }

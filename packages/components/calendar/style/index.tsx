@@ -1,9 +1,9 @@
-import type { CSSObject, FullToken } from '@antdv/theme'
-import type { PickerPanelToken } from '../../date-picker/style'
-import type { InputToken } from '../../input/style'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
-import { genPanelStyle, initPickerPanelToken } from '../../date-picker/style'
-import { initInputToken } from '../../input/style'
+import type { CSSObject, FullToken } from '@antdv/theme';
+import type { PickerPanelToken } from '../../date-picker/style';
+import type { InputToken } from '../../input/style';
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
+import { genPanelStyle, initPickerPanelToken } from '../../date-picker/style';
+import { initInputToken } from '../../input/style';
 
 export interface ComponentToken {
   yearControlWidth: number
@@ -23,7 +23,7 @@ interface CalendarToken extends InputToken<FullToken<'Calendar'>>, PickerPanelTo
 
 export function genCalendarStyles(token: CalendarToken): CSSObject {
   const { calendarCls, componentCls, calendarFullBg, calendarFullPanelBg, calendarItemActiveBg }
-    = token
+    = token;
   return {
     [calendarCls]: {
       ...genPanelStyle(token),
@@ -183,13 +183,13 @@ export function genCalendarStyles(token: CalendarToken): CSSObject {
         },
       },
     },
-  }
+  };
 }
 
 export default genComponentStyleHook(
   'Calendar',
   (token) => {
-    const calendarCls = `${token.componentCls}-calendar`
+    const calendarCls = `${token.componentCls}-calendar`;
     const calendarToken = mergeToken<CalendarToken>(
       initInputToken<FullToken<'Calendar'>>(token),
       initPickerPanelToken(token),
@@ -204,13 +204,13 @@ export default genComponentStyleHook(
         dateContentHeight:
           (token.fontSizeSM * token.lineHeightSM + token.marginXS) * 3 + token.lineWidth * 2,
       },
-    )
+    );
 
-    return [genCalendarStyles(calendarToken)]
+    return [genCalendarStyles(calendarToken)];
   },
   {
     yearControlWidth: 80,
     monthControlWidth: 70,
     miniContentHeight: 256,
   },
-)
+);

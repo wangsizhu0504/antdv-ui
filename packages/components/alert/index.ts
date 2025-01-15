@@ -1,8 +1,8 @@
-import { withInstall } from '@antdv/utils'
-import AAlert from './src/Alert'
+import { withInstall } from '@antdv/utils';
+import AAlert from './src/Alert';
 
-export * from './src/props'
+export * from './src/props';
 
-export const Alert = withInstall(AAlert)
+export const Alert = withInstall(AAlert);
 
-export default Alert
+export default Alert;

@@ -1,6 +1,6 @@
-import type { CSSObject, FullToken, GenerateStyle, GlobalToken } from '@antdv/theme'
-import { clearFix, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
-import { genCompactItemStyle } from '@antdv/theme/style/compact-item'
+import type { CSSObject, FullToken, GenerateStyle, GlobalToken } from '@antdv/theme';
+import { clearFix, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
+import { genCompactItemStyle } from '@antdv/theme/style/compact-item';
 
 export type InputToken<T extends GlobalToken = FullToken<'Input'>> = T & {
   inputAffixPadding: number
@@ -12,7 +12,7 @@ export type InputToken<T extends GlobalToken = FullToken<'Input'>> = T & {
   inputPaddingHorizontalSM: number
   inputBorderHoverColor: string
   inputBorderActiveColor: string
-}
+};
 
 export function genPlaceholderStyle(color: string): CSSObject {
   return {
@@ -27,14 +27,14 @@ export function genPlaceholderStyle(color: string): CSSObject {
     '&:placeholder-shown': {
       textOverflow: 'ellipsis',
     },
-  }
+  };
 }
 
 export function genHoverStyle(token: InputToken): CSSObject {
   return {
     borderColor: token.inputBorderHoverColor,
     borderInlineEndWidth: token.lineWidth,
-  }
+  };
 }
 
 export function genActiveStyle(token: InputToken) {
@@ -43,7 +43,7 @@ export function genActiveStyle(token: InputToken) {
     boxShadow: `0 0 0 ${token.controlOutlineWidth}px ${token.controlOutline}`,
     borderInlineEndWidth: token.lineWidth,
     outline: 0,
-  }
+  };
 }
 
 export function genDisabledStyle(token: InputToken): CSSObject {
@@ -58,7 +58,7 @@ export function genDisabledStyle(token: InputToken): CSSObject {
     '&:hover': {
       ...genHoverStyle(mergeToken<InputToken>(token, { inputBorderHoverColor: token.colorBorder })),
     },
-  }
+  };
 }
 
 function genInputLargeStyle(token: InputToken): CSSObject {
@@ -68,21 +68,21 @@ function genInputLargeStyle(token: InputToken): CSSObject {
     lineHeightLG,
     borderRadiusLG,
     inputPaddingHorizontalLG,
-  } = token
+  } = token;
 
   return {
     padding: `${inputPaddingVerticalLG}px ${inputPaddingHorizontalLG}px`,
     fontSize: fontSizeLG,
     lineHeight: lineHeightLG,
     borderRadius: borderRadiusLG,
-  }
+  };
 }
 
 export function genInputSmallStyle(token: InputToken): CSSObject {
   return {
     padding: `${token.inputPaddingVerticalSM}px ${token.controlPaddingHorizontalSM - 1}px`,
     borderRadius: token.borderRadiusSM,
-  }
+  };
 }
 
 export function genStatusStyle(token: InputToken, parentCls: string): CSSObject {
@@ -94,7 +94,7 @@ export function genStatusStyle(token: InputToken, parentCls: string): CSSObject 
     colorWarningOutline,
     colorErrorBorderHover,
     colorWarningBorderHover,
-  } = token
+  } = token;
 
   return {
     [`&-status-error:not(${parentCls}-disabled):not(${parentCls}-borderless)${parentCls}`]: {
@@ -139,7 +139,7 @@ export function genStatusStyle(token: InputToken, parentCls: string): CSSObject 
         color: colorWarning,
       },
     },
-  }
+  };
 }
 
 export function genBasicInputStyle(token: InputToken): CSSObject {
@@ -208,11 +208,11 @@ export function genBasicInputStyle(token: InputToken): CSSObject {
     '&-textarea-rtl': {
       direction: 'rtl',
     },
-  }
+  };
 }
 
 export function genInputGroupStyle(token: InputToken): CSSObject {
-  const { componentCls, antCls } = token
+  const { componentCls, antCls } = token;
 
   return {
     'position': 'relative',
@@ -539,14 +539,14 @@ export function genInputGroupStyle(token: InputToken): CSSObject {
         },
       },
     },
-  }
+  };
 }
 
 const genInputStyle: GenerateStyle<InputToken> = (token: InputToken) => {
-  const { componentCls, controlHeightSM, lineWidth } = token
+  const { componentCls, controlHeightSM, lineWidth } = token;
 
-  const FIXED_CHROME_COLOR_HEIGHT = 16
-  const colorSmallPadding = (controlHeightSM - lineWidth * 2 - FIXED_CHROME_COLOR_HEIGHT) / 2
+  const FIXED_CHROME_COLOR_HEIGHT = 16;
+  const colorSmallPadding = (controlHeightSM - lineWidth * 2 - FIXED_CHROME_COLOR_HEIGHT) / 2;
 
   return {
     [componentCls]: {
@@ -567,11 +567,11 @@ const genInputStyle: GenerateStyle<InputToken> = (token: InputToken) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 function genAllowClearStyle(token: InputToken): CSSObject {
-  const { componentCls } = token
+  const { componentCls } = token;
   return {
     // ========================= Input =========================
     [`${componentCls}-clear-icon`]: {
@@ -613,7 +613,7 @@ function genAllowClearStyle(token: InputToken): CSSObject {
         zIndex: 1,
       },
     },
-  }
+  };
 }
 
 const genAffixStyle: GenerateStyle<InputToken> = (token: InputToken) => {
@@ -625,7 +625,7 @@ const genAffixStyle: GenerateStyle<InputToken> = (token: InputToken) => {
     colorIcon,
     colorIconHover,
     iconCls,
-  } = token
+  } = token;
 
   return {
     [`${componentCls}-affix-wrapper`]: {
@@ -712,11 +712,11 @@ const genAffixStyle: GenerateStyle<InputToken> = (token: InputToken) => {
       // status
       ...genStatusStyle(token, `${componentCls}-affix-wrapper`),
     },
-  }
-}
+  };
+};
 
 const genGroupStyle: GenerateStyle<InputToken> = (token: InputToken) => {
-  const { componentCls, colorError, colorSuccess, borderRadiusLG, borderRadiusSM } = token
+  const { componentCls, colorError, colorSuccess, borderRadiusLG, borderRadiusSM } = token;
 
   return {
     [`${componentCls}-group`]: {
@@ -765,12 +765,12 @@ const genGroupStyle: GenerateStyle<InputToken> = (token: InputToken) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 const genSearchInputStyle: GenerateStyle<InputToken> = (token: InputToken) => {
-  const { componentCls, antCls } = token
-  const searchPrefixCls = `${componentCls}-search`
+  const { componentCls, antCls } = token;
+  const searchPrefixCls = `${componentCls}-search`;
   return {
     [searchPrefixCls]: {
       [`${componentCls}`]: {
@@ -879,8 +879,8 @@ const genSearchInputStyle: GenerateStyle<InputToken> = (token: InputToken) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 export function initInputToken<T extends GlobalToken = GlobalToken>(token: T): InputToken<T> {
   // @ts-expect-error
@@ -904,12 +904,12 @@ export function initInputToken<T extends GlobalToken = GlobalToken>(token: T): I
     inputPaddingHorizontalLG: token.controlPaddingHorizontal - token.lineWidth,
     inputBorderHoverColor: token.colorPrimaryHover,
     inputBorderActiveColor: token.colorPrimaryHover,
-  })
+  });
 }
 
 const genTextAreaStyle: GenerateStyle<InputToken> = (token) => {
-  const { componentCls, inputPaddingHorizontal, paddingLG } = token
-  const textareaPrefixCls = `${componentCls}-textarea`
+  const { componentCls, inputPaddingHorizontal, paddingLG } = token;
+  const textareaPrefixCls = `${componentCls}-textarea`;
 
   return {
     [textareaPrefixCls]: {
@@ -958,12 +958,12 @@ const genTextAreaStyle: GenerateStyle<InputToken> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Input', (token) => {
-  const inputToken = initInputToken<FullToken<'Input'>>(token)
+  const inputToken = initInputToken<FullToken<'Input'>>(token);
 
   return [
     genInputStyle(inputToken),
@@ -975,5 +975,5 @@ export default genComponentStyleHook('Input', (token) => {
     // ==             Space Compact                       ==
     // =====================================================
     genCompactItemStyle(inputToken),
-  ]
-})
+  ];
+});

@@ -1,6 +1,6 @@
-import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
-import type { countdownValueType, Formatter, valueType } from './interface'
-import { anyType, booleanType, functionType, someType, vNodeType } from '@antdv/utils'
+import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue';
+import type { countdownValueType, Formatter, valueType } from './interface';
+import { anyType, booleanType, functionType, someType, vNodeType } from '@antdv/utils';
 
 export function statisticProps() {
   return {
@@ -17,7 +17,7 @@ export function statisticProps() {
     suffix: vNodeType(),
     title: vNodeType(),
     loading: booleanType(),
-  }
+  };
 }
 
 export function countdownProps() {
@@ -27,9 +27,9 @@ export function countdownProps() {
     format: String,
     onFinish: Function as PropType<() => void>,
     onChange: Function as PropType<(value?: countdownValueType) => void>,
-  }
+  };
 }
 
-export type StatisticProps = Partial<ExtractPropTypes<ReturnType<typeof statisticProps>>>
+export type StatisticProps = Partial<ExtractPropTypes<ReturnType<typeof statisticProps>>>;
 
-export type CountdownProps = Partial<ExtractPropTypes<ReturnType<typeof countdownProps>>>
+export type CountdownProps = Partial<ExtractPropTypes<ReturnType<typeof countdownProps>>>;

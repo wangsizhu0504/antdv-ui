@@ -195,12 +195,12 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*3OpRQKcygo8AAA
 #### formatType
 
 ```typescript
-import type { Dayjs } from 'dayjs'
+import type { Dayjs } from 'dayjs';
 
-type Generic = string
-type GenericFn = (value: Dayjs) => string
+type Generic = string;
+type GenericFn = (value: Dayjs) => string;
 
-export type FormatType = Generic | GenericFn | Array<Generic | GenericFn>
+export type FormatType = Generic | GenericFn | Array<Generic | GenericFn>;
 ```
 
 ## FAQ
@@ -218,12 +218,12 @@ DatePicker 默认 `locale` 为 `en`。你可以通过 DatePicker 的 `locale` �
 请使用正确的[语言包](/docs/vue/i18n-cn)（[#5605](https://github.com/ant-design/ant-design/issues/5605)），或者修改 dayjs 的 `locale` 配置：<https://codesandbox.io/s/dayjs-day-of-week-x9tuj2?file=/demo.tsx>
 
 ```js
-import dayjs from 'dayjs'
-import updateLocale from 'dayjs/plugin/updateLocale'
-import 'dayjs/locale/zh-cn'
+import dayjs from 'dayjs';
+import updateLocale from 'dayjs/plugin/updateLocale';
+import 'dayjs/locale/zh-cn';
 
-dayjs.extend(updateLocale)
+dayjs.extend(updateLocale);
 dayjs.updateLocale('zh-cn', {
   weekStart: 0,
-})
+});
 ```

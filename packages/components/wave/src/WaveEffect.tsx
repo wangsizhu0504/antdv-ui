@@ -1,6 +1,6 @@
-import type { CSSProperties } from 'vue'
-import { useState } from '@antdv/hooks'
-import { objectType, raf } from '@antdv/utils'
+import type { CSSProperties } from 'vue';
+import { useState } from '@antdv/hooks';
+import { objectType, raf } from '@antdv/utils';
 import {
   defineComponent,
   onBeforeUnmount,
@@ -8,11 +8,11 @@ import {
   render,
   shallowRef,
   Transition,
-} from 'vue'
-import { getTargetWaveColor } from './util'
+} from 'vue';
+import { getTargetWaveColor } from './util';
 
 function validateNum(value: number) {
-  return Number.isNaN(value) ? 0 : value
+  return Number.isNaN(value) ? 0 : value;
 }
 
 export interface WaveEffectProps {
@@ -26,31 +26,31 @@ const WaveEffect = defineComponent({
     className: String,
   },
   setup(props) {
-    const divRef = shallowRef<HTMLDivElement | null>(null)
+    const divRef = shallowRef<HTMLDivElement | null>(null);
 
-    const [color, setWaveColor] = useState<string | null>(null)
-    const [borderRadius, setBorderRadius] = useState<number[]>([])
-    const [left, setLeft] = useState(0)
-    const [top, setTop] = useState(0)
-    const [width, setWidth] = useState(0)
-    const [height, setHeight] = useState(0)
-    const [enabled, setEnabled] = useState(false)
+    const [color, setWaveColor] = useState<string | null>(null);
+    const [borderRadius, setBorderRadius] = useState<number[]>([]);
+    const [left, setLeft] = useState(0);
+    const [top, setTop] = useState(0);
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);
+    const [enabled, setEnabled] = useState(false);
 
     function syncPos() {
-      const { target } = props
-      const nodeStyle = getComputedStyle(target)
+      const { target } = props;
+      const nodeStyle = getComputedStyle(target);
 
       // Get wave color from target
-      setWaveColor(getTargetWaveColor(target))
+      setWaveColor(getTargetWaveColor(target));
 
-      const isStatic = nodeStyle.position === 'static'
+      const isStatic = nodeStyle.position === 'static';
 
       // Rect
-      const { borderLeftWidth, borderTopWidth } = nodeStyle
-      setLeft(isStatic ? target.offsetLeft : validateNum(-Number.parseFloat(borderLeftWidth)))
-      setTop(isStatic ? target.offsetTop : validateNum(-Number.parseFloat(borderTopWidth)))
-      setWidth(target.offsetWidth)
-      setHeight(target.offsetHeight)
+      const { borderLeftWidth, borderTopWidth } = nodeStyle;
+      setLeft(isStatic ? target.offsetLeft : validateNum(-Number.parseFloat(borderLeftWidth)));
+      setTop(isStatic ? target.offsetTop : validateNum(-Number.parseFloat(borderTopWidth)));
+      setWidth(target.offsetWidth);
+      setHeight(target.offsetHeight);
 
       // Get border radius
       const {
@@ -58,7 +58,7 @@ const WaveEffect = defineComponent({
         borderTopRightRadius,
         borderBottomLeftRadius,
         borderBottomRightRadius,
-      } = nodeStyle
+      } = nodeStyle;
 
       setBorderRadius(
         [
@@ -67,59 +67,59 @@ const WaveEffect = defineComponent({
           borderBottomRightRadius,
           borderBottomLeftRadius,
         ].map(radius => validateNum(Number.parseFloat(radius))),
-      )
+      );
     }
     // Add resize observer to follow size
-    let resizeObserver: ResizeObserver
-    let rafId: number
-    let timeoutId: any
+    let resizeObserver: ResizeObserver;
+    let rafId: number;
+    let timeoutId: any;
     const clear = () => {
-      clearTimeout(timeoutId)
-      raf.cancel(rafId)
-      resizeObserver?.disconnect()
-    }
+      clearTimeout(timeoutId);
+      raf.cancel(rafId);
+      resizeObserver?.disconnect();
+    };
     const removeDom = () => {
-      const holder = divRef.value?.parentElement
+      const holder = divRef.value?.parentElement;
       if (holder) {
-        render(null, holder)
+        render(null, holder);
         if (holder.parentElement)
-          holder.parentElement.removeChild(holder)
+          holder.parentElement.removeChild(holder);
       }
-    }
+    };
 
     onMounted(() => {
-      clear()
+      clear();
       timeoutId = setTimeout(() => {
-        removeDom()
-      }, 5000)
-      const { target } = props
+        removeDom();
+      }, 5000);
+      const { target } = props;
       if (target) {
         // We need delay to check position here
         // since UI may change after click
         rafId = raf(() => {
-          syncPos()
+          syncPos();
 
-          setEnabled(true)
-        })
+          setEnabled(true);
+        });
 
         if (typeof ResizeObserver !== 'undefined') {
-          resizeObserver = new ResizeObserver(syncPos)
+          resizeObserver = new ResizeObserver(syncPos);
 
-          resizeObserver.observe(target)
+          resizeObserver.observe(target);
         }
       }
-    })
+    });
     onBeforeUnmount(() => {
-      clear()
-    })
+      clear();
+    });
 
     const onTransitionend = (e: TransitionEvent) => {
       if (e.propertyName === 'opacity')
-        removeDom()
-    }
+        removeDom();
+    };
     return () => {
       if (!enabled.value)
-        return null
+        return null;
 
       const waveStyle = {
         left: `${left.value}px`,
@@ -129,10 +129,10 @@ const WaveEffect = defineComponent({
         borderRadius: borderRadius.value.map(radius => `${radius}px`).join(' '),
       } as CSSProperties & {
         [name: string]: number | string
-      }
+      };
 
       if (color)
-        waveStyle['--wave-color'] = color.value as string
+        waveStyle['--wave-color'] = color.value as string;
 
       return (
         <Transition
@@ -149,26 +149,26 @@ const WaveEffect = defineComponent({
             onTransitionend={onTransitionend}
           />
         </Transition>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 function showWaveEffect(node: HTMLElement, className: string) {
   // Create holder
-  const holder = document.createElement('div')
-  holder.style.position = 'absolute'
-  holder.style.left = '0px'
-  holder.style.top = '0px'
-  node?.insertBefore(holder, node?.firstChild)
+  const holder = document.createElement('div');
+  holder.style.position = 'absolute';
+  holder.style.left = '0px';
+  holder.style.top = '0px';
+  node?.insertBefore(holder, node?.firstChild);
 
-  render(<WaveEffect target={node} className={className} />, holder)
+  render(<WaveEffect target={node} className={className} />, holder);
   return () => {
-    render(null, holder)
+    render(null, holder);
     if (holder.parentElement) {
-      holder.parentElement.removeChild(holder)
+      holder.parentElement.removeChild(holder);
     }
-  }
+  };
 }
 
-export default showWaveEffect
+export default showWaveEffect;

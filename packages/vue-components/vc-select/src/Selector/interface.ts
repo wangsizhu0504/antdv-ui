@@ -1,6 +1,6 @@
-import type { EventHandler, RefObject, VueNode } from '@antdv/types'
+import type { EventHandler, RefObject, VueNode } from '@antdv/types';
 
-import type { DisplayValueType, Mode } from '../BaseSelect'
+import type { DisplayValueType, Mode } from '../BaseSelect';
 
 export interface InnerSelectorProps {
   prefixCls: string;

@@ -17,9 +17,9 @@ A group of radio components.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<number>(1)
+  const value = ref<number>(1);
 </script>
 
 <template>

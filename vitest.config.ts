@@ -1,6 +1,6 @@
-import Vue from '@vitejs/plugin-vue'
-import VueJsx from '@vitejs/plugin-vue-jsx'
-import { defineConfig } from 'vitest/config'
+import Vue from '@vitejs/plugin-vue';
+import VueJsx from '@vitejs/plugin-vue-jsx';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [
@@ -15,4 +15,4 @@ export default defineConfig({
     environment: 'jsdom',
     // setupFiles: ['./vitest.setup.ts'],
   },
-})
+});

@@ -22,7 +22,7 @@ When there's too much information to show and the table can't display all at onc
     { title: 'Age', dataIndex: 'age', key: 'age' },
     { title: 'Address', dataIndex: 'address', key: 'address' },
     { title: 'Action', key: 'action' },
-  ]
+  ];
 
   const data = [
     {
@@ -46,7 +46,7 @@ When there's too much information to show and the table can't display all at onc
       address: 'Sidney No. 1 Lake Park',
       description: 'My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.',
     },
-  ]
+  ];
 </script>
 
 <template>

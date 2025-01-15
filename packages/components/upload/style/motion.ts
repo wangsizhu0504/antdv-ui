@@ -1,6 +1,6 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { UploadToken } from '.'
-import { Keyframes } from '@antdv/theme'
+import type { GenerateStyle } from '@antdv/theme';
+import type { UploadToken } from '.';
+import { Keyframes } from '@antdv/theme';
 
 const uploadAnimateInlineIn = new Keyframes('uploadAnimateInlineIn', {
   from: {
@@ -10,7 +10,7 @@ const uploadAnimateInlineIn = new Keyframes('uploadAnimateInlineIn', {
     padding: 0,
     opacity: 0,
   },
-})
+});
 
 const uploadAnimateInlineOut = new Keyframes('uploadAnimateInlineOut', {
   to: {
@@ -20,11 +20,11 @@ const uploadAnimateInlineOut = new Keyframes('uploadAnimateInlineOut', {
     padding: 0,
     opacity: 0,
   },
-})
+});
 // =========================== Motion ===========================
 const genMotionStyle: GenerateStyle<UploadToken> = (token) => {
-  const { componentCls } = token
-  const inlineCls = `${componentCls}-animate-inline`
+  const { componentCls } = token;
+  const inlineCls = `${componentCls}-animate-inline`;
 
   return [
     {
@@ -46,7 +46,7 @@ const genMotionStyle: GenerateStyle<UploadToken> = (token) => {
     },
     uploadAnimateInlineIn,
     uploadAnimateInlineOut,
-  ]
-}
+  ];
+};
 
-export default genMotionStyle
+export default genMotionStyle;

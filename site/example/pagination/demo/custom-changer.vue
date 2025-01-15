@@ -16,15 +16,15 @@ Customize dropdown options such as adding all options
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const pageSizeOptions = ref<string[]>(['10', '20', '30', '40', '50'])
-  const current = ref<any>(1)
-  const pageSizeRef = ref<any>(10)
-  const total = ref<any>(50)
+  const pageSizeOptions = ref<string[]>(['10', '20', '30', '40', '50']);
+  const current = ref<any>(1);
+  const pageSizeRef = ref<any>(10);
+  const total = ref<any>(50);
   function onShowSizeChange(current: number, pageSize: number) {
-    console.log(current, pageSize)
-    pageSizeRef.value = pageSize
+    console.log(current, pageSize);
+    pageSizeRef.value = pageSize;
   }
 </script>
 

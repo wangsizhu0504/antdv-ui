@@ -17,8 +17,8 @@ More content can be hosted
 </docs>
 
 <script lang="ts" setup>
-  import { HomeOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { HomeOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
   const tabList = [
     {
@@ -29,11 +29,11 @@ More content can be hosted
       key: 'tab2',
       tab: 'tab2',
     },
-  ]
+  ];
   const contentList = {
     tab1: 'content1',
     tab2: 'content2',
-  }
+  };
   const tabListNoTitle = [
     {
       key: 'article',
@@ -47,16 +47,16 @@ More content can be hosted
       key: 'project',
       tab: 'project',
     },
-  ]
-  const key = ref<any>('tab1')
-  const noTitleKey = ref<any>('app')
+  ];
+  const key = ref<any>('tab1');
+  const noTitleKey = ref<any>('app');
 
   function onTabChange(value: string, type: string) {
-    console.log(value, type)
+    console.log(value, type);
     if (type === 'key') {
-      key.value = value
+      key.value = value;
     } else if (type === 'noTitleKey') {
-      noTitleKey.value = value
+      noTitleKey.value = value;
     }
   }
 </script>

@@ -1,9 +1,9 @@
-import type { Key, VueNode } from '@antdv/types'
-import type { NodeDragEventHandler, NodeMouseEventHandler } from './contextTypes'
-import type { DragNodeEvent, EventDataNode, FlattenNode, ScrollTo } from './interface'
-import type { CheckInfo, DraggableFn } from './props'
-import type { TreeNodeRequiredProps } from './utils/treeUtil'
-import { classNames, initDefaultProps, KeyCode, pickAttrs, warning } from '@antdv/utils'
+import type { Key, VueNode } from '@antdv/types';
+import type { NodeDragEventHandler, NodeMouseEventHandler } from './contextTypes';
+import type { DragNodeEvent, EventDataNode, FlattenNode, ScrollTo } from './interface';
+import type { CheckInfo, DraggableFn } from './props';
+import type { TreeNodeRequiredProps } from './utils/treeUtil';
+import { classNames, initDefaultProps, KeyCode, pickAttrs, warning } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -14,12 +14,12 @@ import {
   toRaw,
   watch,
   watchEffect,
-} from 'vue'
-import { TreeContext, useProvideKeysState } from './contextTypes'
-import DropIndicator from './DropIndicator'
-import NodeList, { MOTION_KEY, MotionEntity } from './NodeList'
-import { treeProps } from './props'
-import useMaxLevel from './useMaxLevel'
+} from 'vue';
+import { TreeContext, useProvideKeysState } from './contextTypes';
+import DropIndicator from './DropIndicator';
+import NodeList, { MOTION_KEY, MotionEntity } from './NodeList';
+import { treeProps } from './props';
+import useMaxLevel from './useMaxLevel';
 import {
   arrAdd,
   arrDel,
@@ -29,8 +29,8 @@ import {
   getDragChildrenKeys,
   parseCheckedKeys,
   posToArr,
-} from './util'
-import { conductCheck } from './utils/conductUtil'
+} from './util';
+import { conductCheck } from './utils/conductUtil';
 import {
   convertDataToEntities,
   convertNodePropsToEventData,
@@ -38,9 +38,9 @@ import {
   fillFieldNames,
   flattenTreeData,
   getTreeNodeProps,
-} from './utils/treeUtil'
+} from './utils/treeUtil';
 
-const MAX_RETRY_TIMES = 10
+const MAX_RETRY_TIMES = 10;
 
 export interface DraggableConfig {
   icon?: boolean | (() => VueNode) | VueNode;
@@ -73,16 +73,16 @@ export default defineComponent({
   }),
 
   setup(props, { attrs, slots, expose }) {
-    const destroyed = shallowRef(false)
-    let delayedDragEnterLogic: Record<Key, number> = {}
-    const indent = shallowRef()
-    const selectedKeys = shallowRef<Key[]>([])
-    const checkedKeys = shallowRef<Key[]>([])
-    const halfCheckedKeys = shallowRef<Key[]>([])
-    const loadedKeys = shallowRef<Key[]>([])
-    const loadingKeys = shallowRef<Key[]>([])
-    const expandedKeys = shallowRef<Key[]>([])
-    const loadingRetryTimes: Record<Key, number> = {}
+    const destroyed = shallowRef(false);
+    let delayedDragEnterLogic: Record<Key, number> = {};
+    const indent = shallowRef();
+    const selectedKeys = shallowRef<Key[]>([]);
+    const checkedKeys = shallowRef<Key[]>([]);
+    const halfCheckedKeys = shallowRef<Key[]>([]);
+    const loadedKeys = shallowRef<Key[]>([]);
+    const loadingKeys = shallowRef<Key[]>([]);
+    const expandedKeys = shallowRef<Key[]>([]);
+    const loadingRetryTimes: Record<Key, number> = {};
     const dragState = reactive({
       draggingNodeKey: null,
       dragChildrenKeys: [],
@@ -100,37 +100,37 @@ export default defineComponent({
       // if mouse is on the bottom of top dom node or no the top of the bottom dom node
       // abstract-drag-over-node is the top node
       dragOverNodeKey: null,
-    })
-    const treeData = shallowRef([])
+    });
+    const treeData = shallowRef([]);
     watch(
       [() => props.treeData, () => props.children],
       () => {
         treeData.value
           = props.treeData !== undefined
             ? props.treeData.slice()
-            : convertTreeToData(toRaw(props.children))
+            : convertTreeToData(toRaw(props.children));
       },
       {
         immediate: true,
         deep: true,
       },
-    )
-    const keyEntities = shallowRef({})
+    );
+    const keyEntities = shallowRef({});
 
-    const focused = shallowRef(false)
-    const activeKey = shallowRef<Key>(null)
+    const focused = shallowRef(false);
+    const activeKey = shallowRef<Key>(null);
 
-    const listChanging = shallowRef(false)
+    const listChanging = shallowRef(false);
 
-    const fieldNames = computed(() => fillFieldNames(props.fieldNames))
+    const fieldNames = computed(() => fillFieldNames(props.fieldNames));
 
-    const listRef = shallowRef()
+    const listRef = shallowRef();
 
-    let dragStartMousePosition = null
+    let dragStartMousePosition = null;
 
-    let dragNode: DragNodeEvent = null
+    let dragNode: DragNodeEvent = null;
 
-    let currentMouseOverDroppableNodeKey = null
+    let currentMouseOverDroppableNodeKey = null;
 
     const treeNodeRequiredProps = computed<TreeNodeRequiredProps>(() => {
       return {
@@ -143,44 +143,44 @@ export default defineComponent({
         dragOverNodeKey: dragState.dragOverNodeKey,
         dropPosition: dragState.dropPosition,
         keyEntities: keyEntities.value,
-      }
-    })
+      };
+    });
     const expandedKeysSet = computed(() => {
-      return new Set(expandedKeys.value)
-    })
+      return new Set(expandedKeys.value);
+    });
     const selectedKeysSet = computed(() => {
-      return new Set(selectedKeys.value)
-    })
+      return new Set(selectedKeys.value);
+    });
     const loadedKeysSet = computed(() => {
-      return new Set(loadedKeys.value)
-    })
+      return new Set(loadedKeys.value);
+    });
     const loadingKeysSet = computed(() => {
-      return new Set(loadingKeys.value)
-    })
+      return new Set(loadingKeys.value);
+    });
     const checkedKeysSet = computed(() => {
-      return new Set(checkedKeys.value)
-    })
+      return new Set(checkedKeys.value);
+    });
     const halfCheckedKeysSet = computed(() => {
-      return new Set(halfCheckedKeys.value)
-    })
+      return new Set(halfCheckedKeys.value);
+    });
 
     watchEffect(() => {
       if (treeData.value) {
         const entitiesMap = convertDataToEntities(treeData.value, {
           fieldNames: fieldNames.value,
-        })
+        });
         keyEntities.value = {
           [MOTION_KEY]: MotionEntity,
           ...entitiesMap.keyEntities,
-        }
+        };
       }
-    })
-    let init = false // 处理 defaultXxxx api, 仅仅首次有效
+    });
+    let init = false; // 处理 defaultXxxx api, 仅仅首次有效
 
     watch(
       [() => props.expandedKeys, () => props.autoExpandParent, keyEntities],
       ([_newKeys, newAutoExpandParent], [_oldKeys, oldAutoExpandParent]) => {
-        let keys = expandedKeys.value
+        let keys = expandedKeys.value;
         // ================ expandedKeys =================
         if (
           props.expandedKeys !== undefined
@@ -189,61 +189,61 @@ export default defineComponent({
           keys
             = props.autoExpandParent || (!init && props.defaultExpandParent)
               ? conductExpandParent(props.expandedKeys, keyEntities.value)
-              : props.expandedKeys
+              : props.expandedKeys;
         } else if (!init && props.defaultExpandAll) {
-          const cloneKeyEntities = { ...keyEntities.value }
-          delete cloneKeyEntities[MOTION_KEY]
-          keys = Object.keys(cloneKeyEntities).map(key => cloneKeyEntities[key].key)
+          const cloneKeyEntities = { ...keyEntities.value };
+          delete cloneKeyEntities[MOTION_KEY];
+          keys = Object.keys(cloneKeyEntities).map(key => cloneKeyEntities[key].key);
         } else if (!init && props.defaultExpandedKeys) {
           keys
             = props.autoExpandParent || props.defaultExpandParent
               ? conductExpandParent(props.defaultExpandedKeys, keyEntities.value)
-              : props.defaultExpandedKeys
+              : props.defaultExpandedKeys;
         }
 
         if (keys)
-          expandedKeys.value = keys
+          expandedKeys.value = keys;
 
-        init = true
+        init = true;
       },
       { immediate: true },
-    )
+    );
 
     // ================ flattenNodes =================
-    const flattenNodes = shallowRef([])
+    const flattenNodes = shallowRef([]);
     watchEffect(() => {
-      flattenNodes.value = flattenTreeData(treeData.value, expandedKeys.value, fieldNames.value)
-    })
+      flattenNodes.value = flattenTreeData(treeData.value, expandedKeys.value, fieldNames.value);
+    });
     // ================ selectedKeys =================
     watchEffect(() => {
       if (props.selectable) {
         if (props.selectedKeys !== undefined)
-          selectedKeys.value = calcSelectedKeys(props.selectedKeys, props)
+          selectedKeys.value = calcSelectedKeys(props.selectedKeys, props);
         else if (!init && props.defaultSelectedKeys)
-          selectedKeys.value = calcSelectedKeys(props.defaultSelectedKeys, props)
+          selectedKeys.value = calcSelectedKeys(props.defaultSelectedKeys, props);
       }
-    })
-    const { maxLevel, levelEntities } = useMaxLevel(keyEntities)
+    });
+    const { maxLevel, levelEntities } = useMaxLevel(keyEntities);
     // ================= checkedKeys =================
     watchEffect(() => {
       if (props.checkable) {
-        let checkedKeyEntity
+        let checkedKeyEntity;
 
         if (props.checkedKeys !== undefined) {
-          checkedKeyEntity = parseCheckedKeys(props.checkedKeys) || {}
+          checkedKeyEntity = parseCheckedKeys(props.checkedKeys) || {};
         } else if (!init && props.defaultCheckedKeys) {
-          checkedKeyEntity = parseCheckedKeys(props.defaultCheckedKeys) || {}
+          checkedKeyEntity = parseCheckedKeys(props.defaultCheckedKeys) || {};
         } else if (treeData.value) {
           // If `treeData` changed, we also need check it
           checkedKeyEntity = parseCheckedKeys(props.checkedKeys) || {
             checkedKeys: checkedKeys.value,
             halfCheckedKeys: halfCheckedKeys.value,
-          }
+          };
         }
 
         if (checkedKeyEntity) {
           let { checkedKeys: newCheckedKeys = [], halfCheckedKeys: newHalfCheckedKeys = [] }
-            = checkedKeyEntity
+            = checkedKeyEntity;
 
           if (!props.checkStrictly) {
             const conductKeys = conductCheck(
@@ -253,20 +253,20 @@ export default defineComponent({
               maxLevel.value,
               levelEntities.value,
             );
-            ({ checkedKeys: newCheckedKeys, halfCheckedKeys: newHalfCheckedKeys } = conductKeys)
+            ({ checkedKeys: newCheckedKeys, halfCheckedKeys: newHalfCheckedKeys } = conductKeys);
           }
 
-          checkedKeys.value = newCheckedKeys
-          halfCheckedKeys.value = newHalfCheckedKeys
+          checkedKeys.value = newCheckedKeys;
+          halfCheckedKeys.value = newHalfCheckedKeys;
         }
       }
-    })
+    });
 
     // ================= loadedKeys ==================
     watchEffect(() => {
       if (props.loadedKeys)
-        loadedKeys.value = props.loadedKeys
-    })
+        loadedKeys.value = props.loadedKeys;
+    });
 
     const resetDragState = () => {
       Object.assign(dragState, {
@@ -277,35 +277,35 @@ export default defineComponent({
         dropContainerKey: null,
         dropTargetPos: null,
         dropAllowed: false,
-      })
-    }
+      });
+    };
     const scrollTo: ScrollTo = (scroll) => {
-      listRef.value.scrollTo(scroll)
-    }
+      listRef.value.scrollTo(scroll);
+    };
     watch(
       () => props.activeKey,
       () => {
         if (props.activeKey !== undefined)
-          activeKey.value = props.activeKey
+          activeKey.value = props.activeKey;
       },
       { immediate: true },
-    )
+    );
     watch(
       activeKey,
       (val) => {
         nextTick(() => {
           if (val !== null)
-            scrollTo({ key: val })
-        })
+            scrollTo({ key: val });
+        });
       },
       { immediate: true, flush: 'post' },
-    )
+    );
     // =========================== Expanded ===========================
     /** Set uncontrolled `expandedKeys`. This will also auto update `flattenNodes`. */
     const setExpandedKeys = (keys: Key[]) => {
       if (props.expandedKeys === undefined)
-        expandedKeys.value = keys
-    }
+        expandedKeys.value = keys;
+    };
 
     const cleanDragState = () => {
       if (dragState.draggingNodeKey !== null) {
@@ -317,52 +317,52 @@ export default defineComponent({
           dropLevelOffset: null,
           dropAllowed: true,
           dragOverNodeKey: null,
-        })
+        });
       }
-      dragStartMousePosition = null
-      currentMouseOverDroppableNodeKey = null
-    }
+      dragStartMousePosition = null;
+      currentMouseOverDroppableNodeKey = null;
+    };
     // if onNodeDragEnd is called, onWindowDragEnd won't be called since stopPropagation() is called
     const onNodeDragEnd: NodeDragEventHandler = (event, node) => {
-      const { onDragend } = props
+      const { onDragend } = props;
 
-      dragState.dragOverNodeKey = null
+      dragState.dragOverNodeKey = null;
 
-      cleanDragState()
+      cleanDragState();
 
-      onDragend?.({ event, node: node.eventData })
+      onDragend?.({ event, node: node.eventData });
 
-      dragNode = null
-    }
+      dragNode = null;
+    };
 
     // since stopPropagation() is called in treeNode
     // if onWindowDrag is called, whice means state is keeped, drag state should be cleared
     const onWindowDragEnd = (event) => {
-      onNodeDragEnd(event, null, true)
-      window.removeEventListener('dragend', onWindowDragEnd)
-    }
+      onNodeDragEnd(event, null, true);
+      window.removeEventListener('dragend', onWindowDragEnd);
+    };
 
     const onNodeDragStart: NodeDragEventHandler = (event, node) => {
-      const { onDragstart } = props
-      const { eventKey, eventData } = node
-      dragNode = node
+      const { onDragstart } = props;
+      const { eventKey, eventData } = node;
+      dragNode = node;
       dragStartMousePosition = {
         x: event.clientX,
         y: event.clientY,
-      }
+      };
 
-      const newExpandedKeys = arrDel(expandedKeys.value, eventKey)
+      const newExpandedKeys = arrDel(expandedKeys.value, eventKey);
 
-      dragState.draggingNodeKey = eventKey
-      dragState.dragChildrenKeys = getDragChildrenKeys(eventKey, keyEntities.value)
-      indent.value = listRef.value.getIndentWidth()
+      dragState.draggingNodeKey = eventKey;
+      dragState.dragChildrenKeys = getDragChildrenKeys(eventKey, keyEntities.value);
+      indent.value = listRef.value.getIndentWidth();
 
-      setExpandedKeys(newExpandedKeys)
-      window.addEventListener('dragend', onWindowDragEnd)
+      setExpandedKeys(newExpandedKeys);
+      window.addEventListener('dragend', onWindowDragEnd);
 
       if (onDragstart)
-        onDragstart({ event, node: eventData })
-    }
+        onDragstart({ event, node: eventData });
+    };
 
     /**
      * [Legacy] Select handler is smaller than node,
@@ -372,15 +372,15 @@ export default defineComponent({
      * But let's just keep it to avoid event trigger logic change.
      */
     const onNodeDragEnter = (event: DragEvent, node: DragNodeEvent) => {
-      const { onDragenter, onExpand, allowDrop, direction } = props
-      const { pos, eventKey } = node
+      const { onDragenter, onExpand, allowDrop, direction } = props;
+      const { pos, eventKey } = node;
       // record the key of node which is latest entered, used in dragleave event.
       if (currentMouseOverDroppableNodeKey !== eventKey)
-        currentMouseOverDroppableNodeKey = eventKey
+        currentMouseOverDroppableNodeKey = eventKey;
 
       if (!dragNode) {
-        resetDragState()
-        return
+        resetDragState();
+        return;
       }
       const {
         dropPosition,
@@ -401,7 +401,7 @@ export default defineComponent({
         keyEntities.value,
         expandedKeysSet.value,
         direction,
-      )
+      );
 
       if (
         // don't allow drop inside its children
@@ -409,17 +409,17 @@ export default defineComponent({
         // don't allow drop when drop is not allowed caculated by calcDropPosition
         || !dropAllowed
       ) {
-        resetDragState()
-        return
+        resetDragState();
+        return;
       }
 
       // Side effect for delay drag
       if (!delayedDragEnterLogic)
-        delayedDragEnterLogic = {}
+        delayedDragEnterLogic = {};
 
       Object.keys(delayedDragEnterLogic).forEach((key) => {
-        clearTimeout(delayedDragEnterLogic[key])
-      })
+        clearTimeout(delayedDragEnterLogic[key]);
+      });
 
       if (dragNode.eventKey !== node.eventKey) {
         // hoist expand logic here
@@ -427,30 +427,30 @@ export default defineComponent({
         // it will be blocked by abstract dragover node check
         //   => if you dragenter from top, you mouse will still be consider as in the top node
         delayedDragEnterLogic[pos] = window.setTimeout(() => {
-          if (dragState.draggingNodeKey === null) return
+          if (dragState.draggingNodeKey === null) return;
 
-          let newExpandedKeys = expandedKeys.value.slice()
-          const entity = keyEntities.value[node.eventKey]
+          let newExpandedKeys = expandedKeys.value.slice();
+          const entity = keyEntities.value[node.eventKey];
 
           if (entity && (entity.children || []).length)
-            newExpandedKeys = arrAdd(expandedKeys.value, node.eventKey)
+            newExpandedKeys = arrAdd(expandedKeys.value, node.eventKey);
 
-          setExpandedKeys(newExpandedKeys)
+          setExpandedKeys(newExpandedKeys);
 
           if (onExpand) {
             onExpand(newExpandedKeys, {
               node: node.eventData,
               expanded: true,
               nativeEvent: event,
-            })
+            });
           }
-        }, 800)
+        }, 800);
       }
 
       // Skip if drag node is self
       if (dragNode.eventKey === dropTargetKey && dropLevelOffset === 0) {
-        resetDragState()
-        return
+        resetDragState();
+        return;
       }
 
       // Update drag over node and drag state
@@ -462,22 +462,22 @@ export default defineComponent({
         dropContainerKey,
         dropTargetPos,
         dropAllowed,
-      })
+      });
 
       if (onDragenter) {
         onDragenter({
           event,
           node: node.eventData,
           expandedKeys: expandedKeys.value,
-        })
+        });
       }
-    }
+    };
 
     const onNodeDragOver = (event: DragEvent, node: DragNodeEvent) => {
-      const { onDragover, allowDrop, direction } = props
+      const { onDragover, allowDrop, direction } = props;
 
       if (!dragNode)
-        return
+        return;
 
       const {
         dropPosition,
@@ -498,12 +498,12 @@ export default defineComponent({
         keyEntities.value,
         expandedKeysSet.value,
         direction,
-      )
+      );
 
       if (dragState.dragChildrenKeys.includes(dropTargetKey) || !dropAllowed) {
         // don't allow drop inside its children
         // don't allow drop when drop is not allowed caculated by calcDropPosition
-        return
+        return;
       }
 
       // Update drag position
@@ -520,7 +520,7 @@ export default defineComponent({
             && dragState.dragOverNodeKey === null
           )
         ) {
-          resetDragState()
+          resetDragState();
         }
       } else if (
         !(
@@ -541,12 +541,12 @@ export default defineComponent({
           dropTargetPos,
           dropAllowed,
           dragOverNodeKey,
-        })
+        });
       }
 
       if (onDragover)
-        onDragover({ event, node: node.eventData })
-    }
+        onDragover({ event, node: node.eventData });
+    };
 
     const onNodeDragLeave: NodeDragEventHandler = (event, node) => {
       // if it is outside the droppable area
@@ -555,39 +555,39 @@ export default defineComponent({
         currentMouseOverDroppableNodeKey === node.eventKey
         && !(event.currentTarget as any).contains(event.relatedTarget as Node)
       ) {
-        resetDragState()
-        currentMouseOverDroppableNodeKey = null
+        resetDragState();
+        currentMouseOverDroppableNodeKey = null;
       }
 
-      const { onDragleave } = props
+      const { onDragleave } = props;
 
       if (onDragleave)
-        onDragleave({ event, node: node.eventData })
-    }
+        onDragleave({ event, node: node.eventData });
+    };
     const onNodeDrop = (event: DragEvent, _node, outsideTree = false) => {
       const { dragChildrenKeys, dropPosition, dropTargetKey, dropTargetPos, dropAllowed }
-        = dragState
-      if (!dropAllowed) return
+        = dragState;
+      if (!dropAllowed) return;
 
-      const { onDrop } = props
+      const { onDrop } = props;
 
-      dragState.dragOverNodeKey = null
-      cleanDragState()
+      dragState.dragOverNodeKey = null;
+      cleanDragState();
 
-      if (dropTargetKey === null) return
+      if (dropTargetKey === null) return;
       const abstractDropNodeProps = {
         ...getTreeNodeProps(dropTargetKey, toRaw(treeNodeRequiredProps.value)),
         active: activeItem.value?.key === dropTargetKey,
         data: keyEntities.value[dropTargetKey].node,
-      }
-      const dropToChild = dragChildrenKeys.includes(dropTargetKey)
+      };
+      const dropToChild = dragChildrenKeys.includes(dropTargetKey);
 
       warning(
         !dropToChild,
         'Can not drop to dragNode\'s children node. Maybe this is a bug of ant-design-vue. Please report an issue.',
-      )
+      );
 
-      const posArr = posToArr(dropTargetPos)
+      const posArr = posToArr(dropTargetPos);
 
       const dropResult = {
         event,
@@ -596,72 +596,72 @@ export default defineComponent({
         dragNodesKeys: [dragNode.eventKey].concat(dragChildrenKeys),
         dropToGap: dropPosition !== 0,
         dropPosition: dropPosition + Number(posArr[posArr.length - 1]),
-      }
+      };
 
       if (!outsideTree)
-        onDrop?.(dropResult)
+        onDrop?.(dropResult);
 
-      dragNode = null
-    }
+      dragNode = null;
+    };
     const triggerExpandActionExpand: NodeMouseEventHandler = (e, treeNode) => {
-      const { expanded, key } = treeNode
+      const { expanded, key } = treeNode;
 
-      const node = flattenNodes.value.filter(nodeItem => nodeItem.key === key)[0]
+      const node = flattenNodes.value.filter(nodeItem => nodeItem.key === key)[0];
       const eventNode = convertNodePropsToEventData({
         ...getTreeNodeProps(key, treeNodeRequiredProps.value),
         data: node.data,
-      })
-      setExpandedKeys(expanded ? arrDel(expandedKeys.value, key) : arrAdd(expandedKeys.value, key))
+      });
+      setExpandedKeys(expanded ? arrDel(expandedKeys.value, key) : arrAdd(expandedKeys.value, key));
 
-      onNodeExpand(e, eventNode)
-    }
+      onNodeExpand(e, eventNode);
+    };
 
     const onNodeClick: NodeMouseEventHandler = (e, treeNode) => {
-      const { onClick, expandAction } = props
+      const { onClick, expandAction } = props;
       if (expandAction === 'click')
-        triggerExpandActionExpand(e, treeNode)
+        triggerExpandActionExpand(e, treeNode);
 
       if (onClick)
-        onClick(e, treeNode)
-    }
+        onClick(e, treeNode);
+    };
 
     const onNodeDoubleClick: NodeMouseEventHandler = (e, treeNode) => {
-      const { onDblclick, expandAction } = props
+      const { onDblclick, expandAction } = props;
       if (expandAction === 'doubleclick' || expandAction === 'dblclick')
-        triggerExpandActionExpand(e, treeNode)
+        triggerExpandActionExpand(e, treeNode);
 
       if (onDblclick)
-        onDblclick(e, treeNode)
-    }
+        onDblclick(e, treeNode);
+    };
 
     const onNodeSelect: NodeMouseEventHandler = (e, treeNode) => {
-      let newSelectedKeys = selectedKeys.value
-      const { onSelect, multiple } = props
-      const { selected } = treeNode
-      const key = treeNode[fieldNames.value.key]
-      const targetSelected = !selected
+      let newSelectedKeys = selectedKeys.value;
+      const { onSelect, multiple } = props;
+      const { selected } = treeNode;
+      const key = treeNode[fieldNames.value.key];
+      const targetSelected = !selected;
 
       // Update selected keys
       if (!targetSelected)
-        newSelectedKeys = arrDel(newSelectedKeys, key)
+        newSelectedKeys = arrDel(newSelectedKeys, key);
       else if (!multiple)
-        newSelectedKeys = [key]
+        newSelectedKeys = [key];
       else
-        newSelectedKeys = arrAdd(newSelectedKeys, key)
+        newSelectedKeys = arrAdd(newSelectedKeys, key);
 
       // [Legacy] Not found related usage in doc or upper libs
-      const keyEntitiesValue = keyEntities.value
+      const keyEntitiesValue = keyEntities.value;
       const selectedNodes = newSelectedKeys
         .map((selectedKey) => {
-          const entity = keyEntitiesValue[selectedKey]
-          if (!entity) return null
+          const entity = keyEntitiesValue[selectedKey];
+          if (!entity) return null;
 
-          return entity.node
+          return entity.node;
         })
-        .filter(node => node)
+        .filter(node => node);
 
       if (props.selectedKeys === undefined)
-        selectedKeys.value = newSelectedKeys
+        selectedKeys.value = newSelectedKeys;
 
       if (onSelect) {
         onSelect(newSelectedKeys, {
@@ -670,37 +670,37 @@ export default defineComponent({
           node: treeNode,
           selectedNodes,
           nativeEvent: e,
-        })
+        });
       }
-    }
+    };
 
     const onNodeCheck = (e: MouseEvent, treeNode: EventDataNode, checked: boolean) => {
-      const { checkStrictly, onCheck } = props
-      const key = treeNode[fieldNames.value.key]
+      const { checkStrictly, onCheck } = props;
+      const key = treeNode[fieldNames.value.key];
 
       // Prepare trigger arguments
-      let checkedObj
+      let checkedObj;
       const eventObj: Partial<CheckInfo> = {
         event: 'check',
         node: treeNode,
         checked,
         nativeEvent: e,
-      }
-      const keyEntitiesValue = keyEntities.value
+      };
+      const keyEntitiesValue = keyEntities.value;
       if (checkStrictly) {
         const newCheckedKeys = checked
           ? arrAdd(checkedKeys.value, key)
-          : arrDel(checkedKeys.value, key)
-        const newHalfCheckedKeys = arrDel(halfCheckedKeys.value, key)
-        checkedObj = { checked: newCheckedKeys, halfChecked: newHalfCheckedKeys }
+          : arrDel(checkedKeys.value, key);
+        const newHalfCheckedKeys = arrDel(halfCheckedKeys.value, key);
+        checkedObj = { checked: newCheckedKeys, halfChecked: newHalfCheckedKeys };
 
         eventObj.checkedNodes = newCheckedKeys
           .map(checkedKey => keyEntitiesValue[checkedKey])
           .filter(entity => entity)
-          .map(entity => entity.node)
+          .map(entity => entity.node);
 
         if (props.checkedKeys === undefined)
-          checkedKeys.value = newCheckedKeys
+          checkedKeys.value = newCheckedKeys;
       } else {
         // Always fill first
         let { checkedKeys: newCheckedKeys, halfCheckedKeys: newHalfCheckedKeys } = conductCheck(
@@ -709,11 +709,11 @@ export default defineComponent({
           keyEntitiesValue,
           maxLevel.value,
           levelEntities.value,
-        )
+        );
 
         // If remove, we do it again to correction
         if (!checked) {
-          const keySet = new Set(newCheckedKeys)
+          const keySet = new Set(newCheckedKeys);
           keySet.delete(key);
           ({ checkedKeys: newCheckedKeys, halfCheckedKeys: newHalfCheckedKeys } = conductCheck(
             Array.from(keySet),
@@ -721,48 +721,48 @@ export default defineComponent({
             keyEntitiesValue,
             maxLevel.value,
             levelEntities.value,
-          ))
+          ));
         }
 
-        checkedObj = newCheckedKeys
+        checkedObj = newCheckedKeys;
 
         // [Legacy] This is used for vc-tree-select`
-        eventObj.checkedNodes = []
-        eventObj.checkedNodesPositions = []
-        eventObj.halfCheckedKeys = newHalfCheckedKeys
+        eventObj.checkedNodes = [];
+        eventObj.checkedNodesPositions = [];
+        eventObj.halfCheckedKeys = newHalfCheckedKeys;
         newCheckedKeys.forEach((checkedKey) => {
-          const entity = keyEntitiesValue[checkedKey]
-          if (!entity) return
+          const entity = keyEntitiesValue[checkedKey];
+          if (!entity) return;
 
-          const { node, pos } = entity
-          eventObj.checkedNodes.push(node)
-          eventObj.checkedNodesPositions.push({ node, pos })
-        })
+          const { node, pos } = entity;
+          eventObj.checkedNodes.push(node);
+          eventObj.checkedNodesPositions.push({ node, pos });
+        });
         if (props.checkedKeys === undefined) {
-          checkedKeys.value = newCheckedKeys
-          halfCheckedKeys.value = newHalfCheckedKeys
+          checkedKeys.value = newCheckedKeys;
+          halfCheckedKeys.value = newHalfCheckedKeys;
         }
       }
 
       if (onCheck)
-        onCheck(checkedObj, eventObj as CheckInfo)
-    }
+        onCheck(checkedObj, eventObj as CheckInfo);
+    };
 
     const onNodeLoad = (treeNode: EventDataNode) => {
-      const key = treeNode[fieldNames.value.key]
+      const key = treeNode[fieldNames.value.key];
       const loadPromise = new Promise<void>((resolve, reject) => {
         // We need to get the latest state of loading/loaded keys
-        const { loadData, onLoad } = props
+        const { loadData, onLoad } = props;
 
         if (!loadData || loadedKeysSet.value.has(key) || loadingKeysSet.value.has(key))
-          return null
+          return null;
 
         // Process load data
-        const promise = loadData(treeNode)
+        const promise = loadData(treeNode);
         promise
           .then(() => {
-            const newLoadedKeys = arrAdd(loadedKeys.value, key)
-            const newLoadingKeys = arrDel(loadingKeys.value, key)
+            const newLoadedKeys = arrAdd(loadedKeys.value, key);
+            const newLoadingKeys = arrDel(loadingKeys.value, key);
 
             // onLoad should trigger before internal setState to avoid `loadData` trigger twice.
             // https://github.com/ant-design/ant-design/issues/12464
@@ -770,109 +770,109 @@ export default defineComponent({
               onLoad(newLoadedKeys, {
                 event: 'load',
                 node: treeNode,
-              })
+              });
             }
 
             if (props.loadedKeys === undefined)
-              loadedKeys.value = newLoadedKeys
+              loadedKeys.value = newLoadedKeys;
 
-            loadingKeys.value = newLoadingKeys
-            resolve()
+            loadingKeys.value = newLoadingKeys;
+            resolve();
           })
           .catch((e) => {
-            const newLoadingKeys = arrDel(loadingKeys.value, key)
-            loadingKeys.value = newLoadingKeys
+            const newLoadingKeys = arrDel(loadingKeys.value, key);
+            loadingKeys.value = newLoadingKeys;
 
             // If exceed max retry times, we give up retry
-            loadingRetryTimes[key] = (loadingRetryTimes[key] || 0) + 1
+            loadingRetryTimes[key] = (loadingRetryTimes[key] || 0) + 1;
             if (loadingRetryTimes[key] >= MAX_RETRY_TIMES) {
-              warning(false, 'Retry for `loadData` many times but still failed. No more retry.')
-              const newLoadedKeys = arrAdd(loadedKeys.value, key)
+              warning(false, 'Retry for `loadData` many times but still failed. No more retry.');
+              const newLoadedKeys = arrAdd(loadedKeys.value, key);
               if (props.loadedKeys === undefined)
-                loadedKeys.value = newLoadedKeys
+                loadedKeys.value = newLoadedKeys;
 
-              resolve()
+              resolve();
             }
 
-            reject(e)
-          })
+            reject(e);
+          });
 
-        loadingKeys.value = arrAdd(loadingKeys.value, key)
-      })
+        loadingKeys.value = arrAdd(loadingKeys.value, key);
+      });
       // Not care warning if we ignore this
-      loadPromise.catch(() => {})
+      loadPromise.catch(() => {});
 
-      return loadPromise
-    }
+      return loadPromise;
+    };
     const onNodeMouseEnter: NodeMouseEventHandler = (event, node) => {
-      const { onMouseenter } = props
+      const { onMouseenter } = props;
       if (onMouseenter)
-        onMouseenter({ event, node })
-    }
+        onMouseenter({ event, node });
+    };
 
     const onNodeMouseLeave: NodeMouseEventHandler = (event, node) => {
-      const { onMouseleave } = props
+      const { onMouseleave } = props;
       if (onMouseleave)
-        onMouseleave({ event, node })
-    }
+        onMouseleave({ event, node });
+    };
 
     const onNodeContextMenu: NodeMouseEventHandler = (event, node) => {
-      const { onRightClick } = props
+      const { onRightClick } = props;
       if (onRightClick) {
-        event.preventDefault()
-        onRightClick({ event, node })
+        event.preventDefault();
+        onRightClick({ event, node });
       }
-    }
+    };
 
     const onFocus = (e: FocusEvent) => {
-      focused.value = true
-      props.onFocus?.(e)
-    }
+      focused.value = true;
+      props.onFocus?.(e);
+    };
 
     const onBlur = (e: FocusEvent) => {
-      focused.value = false
-      onActiveChange(null)
+      focused.value = false;
+      onActiveChange(null);
 
-      props.onBlur?.(e)
-    }
+      props.onBlur?.(e);
+    };
 
     const onNodeExpand = (e: MouseEvent, treeNode: EventDataNode) => {
-      let newExpandedKeys = expandedKeys.value
-      const { onExpand, loadData } = props
-      const { expanded } = treeNode
-      const key = treeNode[fieldNames.value.key]
+      let newExpandedKeys = expandedKeys.value;
+      const { onExpand, loadData } = props;
+      const { expanded } = treeNode;
+      const key = treeNode[fieldNames.value.key];
 
       // Do nothing when motion is in progress
       if (listChanging.value)
-        return
+        return;
 
       // Update selected keys
-      const index = newExpandedKeys.indexOf(key)
-      const targetExpanded = !expanded
+      const index = newExpandedKeys.indexOf(key);
+      const targetExpanded = !expanded;
 
       warning(
         (expanded && index !== -1) || (!expanded && index === -1),
         'Expand state not sync with index check',
-      )
+      );
 
       if (targetExpanded)
-        newExpandedKeys = arrAdd(newExpandedKeys, key)
+        newExpandedKeys = arrAdd(newExpandedKeys, key);
       else
-        newExpandedKeys = arrDel(newExpandedKeys, key)
+        newExpandedKeys = arrDel(newExpandedKeys, key);
 
-      setExpandedKeys(newExpandedKeys)
+      setExpandedKeys(newExpandedKeys);
 
       if (onExpand) {
         onExpand(newExpandedKeys, {
           node: treeNode,
           expanded: targetExpanded,
           nativeEvent: e,
-        })
+        });
       }
 
       // Async Load data
       if (targetExpanded && loadData) {
-        const loadPromise = onNodeLoad(treeNode)
+        const loadPromise = onNodeLoad(treeNode);
         if (loadPromise) {
           loadPromise
             .then(() => {
@@ -885,115 +885,115 @@ export default defineComponent({
               // flattenNodes.value = newFlattenTreeData;
             })
             .catch((e) => {
-              const expandedKeysToRestore = arrDel(expandedKeys.value, key)
-              setExpandedKeys(expandedKeysToRestore)
-              Promise.reject(e)
-            })
+              const expandedKeysToRestore = arrDel(expandedKeys.value, key);
+              setExpandedKeys(expandedKeysToRestore);
+              Promise.reject(e);
+            });
         }
       }
-    }
+    };
 
     const onListChangeStart = () => {
-      listChanging.value = true
-    }
+      listChanging.value = true;
+    };
 
     const onListChangeEnd = () => {
       setTimeout(() => {
-        listChanging.value = false
-      })
-    }
+        listChanging.value = false;
+      });
+    };
 
     // =========================== Keyboard ===========================
     const onActiveChange = (newActiveKey: Key) => {
-      const { onActiveChange } = props
+      const { onActiveChange } = props;
 
       if (activeKey.value === newActiveKey)
-        return
+        return;
 
       if (props.activeKey !== undefined)
-        activeKey.value = newActiveKey
+        activeKey.value = newActiveKey;
 
       if (newActiveKey !== null)
-        scrollTo({ key: newActiveKey })
+        scrollTo({ key: newActiveKey });
 
       if (onActiveChange)
-        onActiveChange(newActiveKey)
-    }
+        onActiveChange(newActiveKey);
+    };
 
     const activeItem = computed<FlattenNode>(() => {
       if (activeKey.value === null)
-        return null
+        return null;
 
-      return flattenNodes.value.find(({ key }) => key === activeKey.value) || null
-    })
+      return flattenNodes.value.find(({ key }) => key === activeKey.value) || null;
+    });
 
     const offsetActiveKey = (offset: number) => {
-      let index = flattenNodes.value.findIndex(({ key }) => key === activeKey.value)
+      let index = flattenNodes.value.findIndex(({ key }) => key === activeKey.value);
       // Align with index
       if (index === -1 && offset < 0)
-        index = flattenNodes.value.length
+        index = flattenNodes.value.length;
 
-      index = (index + offset + flattenNodes.value.length) % flattenNodes.value.length
+      index = (index + offset + flattenNodes.value.length) % flattenNodes.value.length;
 
-      const item = flattenNodes.value[index]
+      const item = flattenNodes.value[index];
       if (item) {
-        const { key } = item
-        onActiveChange(key)
+        const { key } = item;
+        onActiveChange(key);
       } else {
-        onActiveChange(null)
+        onActiveChange(null);
       }
-    }
+    };
     const activeItemEventNode = computed(() => {
       return convertNodePropsToEventData({
         ...getTreeNodeProps(activeKey.value, treeNodeRequiredProps.value),
         data: activeItem.value.data,
         active: true,
-      })
-    })
+      });
+    });
     const onKeydown = (event) => {
-      const { checkable, selectable } = props
+      const { checkable, selectable } = props;
 
       // >>>>>>>>>> Direction
       switch (event.which) {
         case KeyCode.UP: {
-          offsetActiveKey(-1)
-          event.preventDefault()
-          break
+          offsetActiveKey(-1);
+          event.preventDefault();
+          break;
         }
         case KeyCode.DOWN: {
-          offsetActiveKey(1)
-          event.preventDefault()
-          break
+          offsetActiveKey(1);
+          event.preventDefault();
+          break;
         }
       }
 
       // >>>>>>>>>> Expand & Selection
-      const item = activeItem.value
+      const item = activeItem.value;
       if (item && item.data) {
-        const expandable = item.data.isLeaf === false || !!(item.data.children || []).length
-        const eventNode = activeItemEventNode.value
+        const expandable = item.data.isLeaf === false || !!(item.data.children || []).length;
+        const eventNode = activeItemEventNode.value;
 
         switch (event.which) {
           // >>> Expand
           case KeyCode.LEFT: {
             // Collapse if possible
             if (expandable && expandedKeysSet.value.has(activeKey.value))
-              onNodeExpand({} as MouseEvent, eventNode)
+              onNodeExpand({} as MouseEvent, eventNode);
             else if (item.parent)
-              onActiveChange(item.parent.key)
+              onActiveChange(item.parent.key);
 
-            event.preventDefault()
-            break
+            event.preventDefault();
+            break;
           }
           case KeyCode.RIGHT: {
             // Expand if possible
             if (expandable && !expandedKeysSet.value.has(activeKey.value))
-              onNodeExpand({} as MouseEvent, eventNode)
+              onNodeExpand({} as MouseEvent, eventNode);
             else if (item.children && item.children.length)
-              onActiveChange(item.children[0].key)
+              onActiveChange(item.children[0].key);
 
-            event.preventDefault()
-            break
+            event.preventDefault();
+            break;
           }
 
           // Selection
@@ -1005,7 +1005,7 @@ export default defineComponent({
               && eventNode.checkable !== false
               && !eventNode.disableCheckbox
             ) {
-              onNodeCheck({} as MouseEvent, eventNode, !checkedKeysSet.value.has(activeKey.value))
+              onNodeCheck({} as MouseEvent, eventNode, !checkedKeysSet.value.has(activeKey.value));
             }
             else if (
               !checkable
@@ -1013,16 +1013,16 @@ export default defineComponent({
               && !eventNode.disabled
               && eventNode.selectable !== false
             ) {
-              onNodeSelect({} as MouseEvent, eventNode)
+              onNodeSelect({} as MouseEvent, eventNode);
             }
 
-            break
+            break;
           }
         }
       }
 
-      props.onKeydown?.(event)
-    }
+      props.onKeydown?.(event);
+    };
     expose({
       onNodeExpand,
       scrollTo,
@@ -1033,11 +1033,11 @@ export default defineComponent({
       loadedKeys: computed(() => loadedKeys.value),
       loadingKeys: computed(() => loadingKeys.value),
       expandedKeys: computed(() => expandedKeys.value),
-    })
+    });
     onUnmounted(() => {
-      window.removeEventListener('dragend', onWindowDragEnd)
-      destroyed.value = true
-    })
+      window.removeEventListener('dragend', onWindowDragEnd);
+      destroyed.value = true;
+    });
     useProvideKeysState({
       expandedKeys,
       selectedKeys,
@@ -1052,7 +1052,7 @@ export default defineComponent({
       checkedKeysSet,
       halfCheckedKeysSet,
       flattenNodes,
-    })
+    });
     return () => {
       const {
         // focused,
@@ -1066,7 +1066,7 @@ export default defineComponent({
         dropPosition,
         dragOverNodeKey,
         // indent,
-      } = dragState
+      } = dragState;
       const {
         prefixCls,
         showLine,
@@ -1092,31 +1092,31 @@ export default defineComponent({
         direction,
         rootClassName,
         rootStyle,
-      } = props
+      } = props;
 
-      const { class: className, style } = attrs
+      const { class: className, style } = attrs;
       const domProps = pickAttrs(
         { ...props, ...attrs },
         {
           aria: true,
           data: true,
         },
-      )
+      );
 
       // It's better move to hooks but we just simply keep here
-      let draggableConfig: DraggableConfig | false
+      let draggableConfig: DraggableConfig | false;
       if (draggable) {
         if (typeof draggable === 'object') {
-          draggableConfig = draggable
+          draggableConfig = draggable;
         } else if (typeof draggable === 'function') {
           draggableConfig = {
             nodeDraggable: draggable as DraggableFn,
-          }
+          };
         } else {
-          draggableConfig = {}
+          draggableConfig = {};
         }
       } else {
-        draggableConfig = false
+        draggableConfig = false;
       }
       return (
         <TreeContext
@@ -1200,7 +1200,7 @@ export default defineComponent({
             />
           </div>
         </TreeContext>
-      )
-    }
+      );
+    };
   },
-})
+});

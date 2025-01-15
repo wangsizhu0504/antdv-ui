@@ -1,43 +1,43 @@
 <script lang="ts">
-  import type { GlobalConfig } from '@/types'
-  import { GLOBAL_CONFIG } from '@/SymbolKey'
-  import { getLocalizedPathname } from '@/utils/util'
-  import { computed, defineComponent, inject, ref, watch } from 'vue'
-  import { useRoute } from 'vue-router'
+  import type { GlobalConfig } from '@/types';
+  import { GLOBAL_CONFIG } from '@/SymbolKey';
+  import { getLocalizedPathname } from '@/utils/util';
+  import { computed, defineComponent, inject, ref, watch } from 'vue';
+  import { useRoute } from 'vue-router';
 
   export default defineComponent({
     emits: ['langChange'],
     setup() {
-      const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG)
+      const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG);
       const menuMode = computed(() => {
-        return globalConfig?.isMobile.value ? 'inline' : 'horizontal'
-      })
-      const route = useRoute()
-      const activeMenuItem = ref<any>('home')
+        return globalConfig?.isMobile.value ? 'inline' : 'horizontal';
+      });
+      const route = useRoute();
+      const activeMenuItem = ref<any>('home');
       watch(
         () => route.path,
         (pathname) => {
-          const modules = pathname.split('/')
+          const modules = pathname.split('/');
           if (pathname === '/docs/resources' || pathname === '/docs/resources-cn')
-            activeMenuItem.value = 'docs/resources'
+            activeMenuItem.value = 'docs/resources';
           else if (modules[1] === 'components')
-            activeMenuItem.value = 'components'
+            activeMenuItem.value = 'components';
           else if (modules[1] === 'docs')
-            activeMenuItem.value = `${modules[1]}/${modules[2]}`
+            activeMenuItem.value = `${modules[1]}/${modules[2]}`;
           else
-            activeMenuItem.value = 'home'
+            activeMenuItem.value = 'home';
         },
         { immediate: true },
-      )
+      );
       return {
         isMobile: globalConfig?.isMobile,
         isZhCN: globalConfig?.isZhCN,
         getLocalizedPathname,
         menuMode,
         activeMenuItem,
-      }
+      };
     },
-  })
+  });
 </script>
 
 <template>

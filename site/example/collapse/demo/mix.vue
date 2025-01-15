@@ -17,13 +17,13 @@ title:
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const activeKey = ref<any>([])
-  const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
+  const activeKey = ref<any>([]);
+  const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
 
   function changeActivekey(key: string) {
-    console.log(key)
+    console.log(key);
   }
 </script>
 

@@ -1,13 +1,13 @@
-import type { CSSProperties } from 'vue'
-import type { ComponentDemo } from '../../interface'
+import type { CSSProperties } from 'vue';
+import type { ComponentDemo } from '../../interface';
 
-import { Card } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import { Card } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const gridStyle: CSSProperties = {
   width: '25%',
   textAlign: 'center',
-}
+};
 
 const Demo = defineComponent({
   setup() {
@@ -23,14 +23,14 @@ const Demo = defineComponent({
         <Card.Grid style={gridStyle}>Content</Card.Grid>
         <Card.Grid style={gridStyle}>Content</Card.Grid>
       </Card>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorBorderSecondary'],
   key: 'cardGrid',
-}
+};
 
-export default componentDemo
+export default componentDemo;

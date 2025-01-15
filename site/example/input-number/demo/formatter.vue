@@ -17,10 +17,10 @@ Display value within it's situation with `formatter`, and we usually use `parser
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value1 = ref<number>(1000)
-  const value2 = ref<number>(100)
+  const value1 = ref<number>(1000);
+  const value2 = ref<number>(100);
 </script>
 
 <template>

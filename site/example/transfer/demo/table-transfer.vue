@@ -17,7 +17,7 @@ Customize render list with Table component.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
   interface MockData {
     key: string;
@@ -25,18 +25,18 @@ Customize render list with Table component.
     description: string;
     disabled: boolean;
   }
-  type tableColumn = Record<string, string>
-  const mockData: MockData[] = []
+  type tableColumn = Record<string, string>;
+  const mockData: MockData[] = [];
   for (let i = 0; i < 10; i++) {
     mockData.push({
       key: i.toString(),
       title: `content${i + 1}`,
       description: `description of content${i + 1}`,
       disabled: i % 4 === 0,
-    })
+    });
   }
 
-  const originTargetKeys = mockData.filter(item => +item.key % 3 > 1).map(item => item.key)
+  const originTargetKeys = mockData.filter(item => +item.key % 3 > 1).map(item => item.key);
 
   const leftTableColumns = [
     {
@@ -47,22 +47,22 @@ Customize render list with Table component.
       dataIndex: 'description',
       title: 'Description',
     },
-  ]
+  ];
   const rightTableColumns = [
     {
       dataIndex: 'title',
       title: 'Name',
     },
-  ]
+  ];
 
-  const targetKeys = ref<string[]>(originTargetKeys)
-  const disabled = ref<boolean>(false)
-  const showSearch = ref<boolean>(false)
-  const leftColumns = ref<tableColumn[]>(leftTableColumns)
-  const rightColumns = ref<tableColumn[]>(rightTableColumns)
+  const targetKeys = ref<string[]>(originTargetKeys);
+  const disabled = ref<boolean>(false);
+  const showSearch = ref<boolean>(false);
+  const leftColumns = ref<tableColumn[]>(leftTableColumns);
+  const rightColumns = ref<tableColumn[]>(rightTableColumns);
 
   function onChange(nextTargetKeys: string[]) {
-    console.log('nextTargetKeys', nextTargetKeys)
+    console.log('nextTargetKeys', nextTargetKeys);
   }
 
   function getRowSelection({
@@ -76,14 +76,14 @@ Customize render list with Table component.
         disabled: disabled || item.disabled,
       }),
       onSelectAll(selected: boolean, selectedRows: Array<Record<string, string | boolean>>) {
-        const treeSelectedKeys = selectedRows.filter(item => !item.disabled).map(({ key }) => key)
-        onItemSelectAll(treeSelectedKeys, selected)
+        const treeSelectedKeys = selectedRows.filter(item => !item.disabled).map(({ key }) => key);
+        onItemSelectAll(treeSelectedKeys, selected);
       },
       onSelect({ key }: Record<string, string>, selected: boolean) {
-        onItemSelect(key, selected)
+        onItemSelect(key, selected);
       },
       selectedRowKeys: selectedKeys,
-    }
+    };
   }
 </script>
 

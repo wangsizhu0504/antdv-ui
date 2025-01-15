@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'zh-tw',
@@ -257,6 +257,6 @@ const localeValues: Locale = {
     refresh: '點擊刷新',
     scanned: '已掃描',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

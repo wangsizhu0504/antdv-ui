@@ -1,7 +1,7 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import type { InputToken } from '../../input/style'
-import { genComponentStyleHook, resetComponent, resetIcon } from '@antdv/theme'
-import { genCompactItemStyle } from '@antdv/theme/style/compact-item'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import type { InputToken } from '../../input/style';
+import { genComponentStyleHook, resetComponent, resetIcon } from '@antdv/theme';
+import { genCompactItemStyle } from '@antdv/theme/style/compact-item';
 import {
   genActiveStyle,
   genBasicInputStyle,
@@ -11,7 +11,7 @@ import {
   genPlaceholderStyle,
   genStatusStyle,
   initInputToken,
-} from '../../input/style'
+} from '../../input/style';
 
 export interface ComponentToken {
   controlWidth: number
@@ -21,7 +21,7 @@ export interface ComponentToken {
   handleVisible: 'auto' | true
 }
 
-type InputNumberToken = InputToken<FullToken<'InputNumber'>>
+type InputNumberToken = InputToken<FullToken<'InputNumber'>>;
 
 const genInputNumberStyles: GenerateStyle<InputNumberToken> = (token: InputNumberToken) => {
   const {
@@ -46,7 +46,7 @@ const genInputNumberStyles: GenerateStyle<InputNumberToken> = (token: InputNumbe
     borderRadiusLG,
     controlWidth,
     handleVisible,
-  } = token
+  } = token;
 
   return [
     {
@@ -294,8 +294,8 @@ const genInputNumberStyles: GenerateStyle<InputNumberToken> = (token: InputNumbe
         },
       },
     },
-  ]
-}
+  ];
+};
 
 const genAffixWrapperStyles: GenerateStyle<InputNumberToken> = (token: InputNumberToken) => {
   const {
@@ -305,7 +305,7 @@ const genAffixWrapperStyles: GenerateStyle<InputNumberToken> = (token: InputNumb
     controlWidth,
     borderRadiusLG,
     borderRadiusSM,
-  } = token
+  } = token;
 
   return {
     [`${componentCls}-affix-wrapper`]: {
@@ -388,14 +388,14 @@ const genAffixWrapperStyles: GenerateStyle<InputNumberToken> = (token: InputNumb
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
   'InputNumber',
   (token) => {
-    const inputNumberToken = initInputToken<FullToken<'InputNumber'>>(token)
+    const inputNumberToken = initInputToken<FullToken<'InputNumber'>>(token);
     return [
       genInputNumberStyles(inputNumberToken),
       genAffixWrapperStyles(inputNumberToken),
@@ -403,7 +403,7 @@ export default genComponentStyleHook(
       // ==             Space Compact                       ==
       // =====================================================
       genCompactItemStyle(inputNumberToken),
-    ]
+    ];
   },
   token => ({
     controlWidth: 90,
@@ -411,4 +411,4 @@ export default genComponentStyleHook(
     handleFontSize: token.fontSize / 2,
     handleVisible: 'auto',
   }),
-)
+);

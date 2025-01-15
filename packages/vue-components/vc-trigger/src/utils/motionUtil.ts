@@ -1,4 +1,4 @@
-import type { AnimationType, TransitionNameType } from '../interface'
+import type { AnimationType, TransitionNameType } from '../interface';
 
 interface GetMotionProps {
   animation: AnimationType;
@@ -10,13 +10,13 @@ export function getMotion({ prefixCls, animation, transitionName }: GetMotionPro
   if (animation) {
     return {
       name: `${prefixCls}-${animation}`,
-    }
+    };
   }
 
   if (transitionName) {
     return {
       name: transitionName,
-    }
+    };
   }
-  return {}
+  return {};
 }

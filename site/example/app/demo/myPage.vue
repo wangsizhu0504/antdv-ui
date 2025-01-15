@@ -1,17 +1,17 @@
 <script setup lang="ts">
-  import { App } from '@antdv/ui'
+  import { App } from '@antdv/ui';
 
-  const { message, modal, notification } = App.useApp()
+  const { message, modal, notification } = App.useApp();
 
   function showMessage() {
-    message.success('Success!')
+    message.success('Success!');
   }
 
   function showModal() {
     modal.warning({
       title: 'This is a warning message',
       content: 'some messages...some messages...',
-    })
+    });
   }
 
   function showNotification() {
@@ -19,7 +19,7 @@
       message: `Notification topLeft`,
       description: 'Hello, Ant Design Vue!!',
       placement: 'topLeft',
-    })
+    });
   }
 </script>
 

@@ -1,7 +1,7 @@
-import type { FlexProps } from './props'
-import { classNames } from '@antdv/utils'
+import type { FlexProps } from './props';
+import { classNames } from '@antdv/utils';
 
-export const flexWrapValues = ['wrap', 'nowrap', 'wrap-reverse'] as const
+export const flexWrapValues = ['wrap', 'nowrap', 'wrap-reverse'] as const;
 
 export const justifyContentValues = [
   'flex-start',
@@ -16,7 +16,7 @@ export const justifyContentValues = [
   'normal',
   'left',
   'right',
-] as const
+] as const;
 
 export const alignItemsValues = [
   'center',
@@ -29,31 +29,31 @@ export const alignItemsValues = [
   'baseline',
   'normal',
   'stretch',
-] as const
+] as const;
 
 function genClsWrap(prefixCls: string, props: FlexProps) {
-  const wrapCls: Record<PropertyKey, boolean> = {}
+  const wrapCls: Record<PropertyKey, boolean> = {};
   flexWrapValues.forEach((cssKey) => {
-    wrapCls[`${prefixCls}-wrap-${cssKey}`] = props.wrap === cssKey
-  })
-  return wrapCls
+    wrapCls[`${prefixCls}-wrap-${cssKey}`] = props.wrap === cssKey;
+  });
+  return wrapCls;
 }
 
 function genClsAlign(prefixCls: string, props: FlexProps) {
-  const alignCls: Record<PropertyKey, boolean> = {}
+  const alignCls: Record<PropertyKey, boolean> = {};
   alignItemsValues.forEach((cssKey) => {
-    alignCls[`${prefixCls}-align-${cssKey}`] = props.align === cssKey
-  })
-  alignCls[`${prefixCls}-align-stretch`] = !props.align && !!props.vertical
-  return alignCls
+    alignCls[`${prefixCls}-align-${cssKey}`] = props.align === cssKey;
+  });
+  alignCls[`${prefixCls}-align-stretch`] = !props.align && !!props.vertical;
+  return alignCls;
 }
 
 function genClsJustify(prefixCls: string, props: FlexProps) {
-  const justifyCls: Record<PropertyKey, boolean> = {}
+  const justifyCls: Record<PropertyKey, boolean> = {};
   justifyContentValues.forEach((cssKey) => {
-    justifyCls[`${prefixCls}-justify-${cssKey}`] = props.justify === cssKey
-  })
-  return justifyCls
+    justifyCls[`${prefixCls}-justify-${cssKey}`] = props.justify === cssKey;
+  });
+  return justifyCls;
 }
 
 function createFlexClassNames(prefixCls: string, props: FlexProps) {
@@ -61,7 +61,7 @@ function createFlexClassNames(prefixCls: string, props: FlexProps) {
     ...genClsWrap(prefixCls, props),
     ...genClsAlign(prefixCls, props),
     ...genClsJustify(prefixCls, props),
-  })
+  });
 }
 
-export default createFlexClassNames
+export default createFlexClassNames;

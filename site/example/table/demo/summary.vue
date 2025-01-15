@@ -17,8 +17,8 @@ Set summary content by `summary` prop. Sync column fixed status with `a-table-su
 </docs>
 
 <script lang="ts" setup>
-  import type { TableColumnsType } from '@antdv/ui'
-  import { computed, ref } from 'vue'
+  import type { TableColumnsType } from '@antdv/ui';
+  import { computed, ref } from 'vue';
 
   const columns = ref<TableColumnsType>([
     {
@@ -33,7 +33,7 @@ Set summary content by `summary` prop. Sync column fixed status with `a-table-su
       title: 'Repayment',
       dataIndex: 'repayment',
     },
-  ])
+  ]);
 
   const data = ref<any>([
     {
@@ -60,7 +60,7 @@ Set summary content by `summary` prop. Sync column fixed status with `a-table-su
       borrow: 75,
       repayment: 45,
     },
-  ])
+  ]);
 
   const fixedColumns = ref<TableColumnsType>([
     {
@@ -73,27 +73,27 @@ Set summary content by `summary` prop. Sync column fixed status with `a-table-su
       title: 'Description',
       dataIndex: 'description',
     },
-  ])
+  ]);
 
-  const fixedData = ref<Array<{ key: number; name: string; description: string }>>([])
+  const fixedData = ref<Array<{ key: number; name: string; description: string }>>([]);
   for (let i = 0; i < 20; i += 1) {
     fixedData.value.push({
       key: i,
       name: ['Light', 'Bamboo', 'Little'][i % 3],
       description: 'Everything that has a beginning, has an end.',
-    })
+    });
   }
 
   const totals = computed(() => {
-    let totalBorrow = 0
-    let totalRepayment = 0
+    let totalBorrow = 0;
+    let totalRepayment = 0;
 
     data.value.forEach(({ borrow, repayment }) => {
-      totalBorrow += borrow
-      totalRepayment += repayment
-    })
-    return { totalBorrow, totalRepayment }
-  })
+      totalBorrow += borrow;
+      totalRepayment += repayment;
+    });
+    return { totalBorrow, totalRepayment };
+  });
 </script>
 
 <template>

@@ -1,7 +1,7 @@
-import type { ComponentDemo } from '../../interface'
-import { Button, Result } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Button, Result } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -17,14 +17,14 @@ const Demo = defineComponent({
           <Button key="buy">Buy Again</Button>,
         ]}
       />
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorSuccess'],
   key: 'result',
-}
+};
 
-export default componentDemo
+export default componentDemo;

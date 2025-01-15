@@ -19,9 +19,9 @@ Use `stringMode` to support high precision decimals support.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<string>('1')
+  const value = ref<string>('1');
 </script>
 
 <template>

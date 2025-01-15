@@ -17,10 +17,10 @@ In accordion mode, only one panel can be expanded at a time.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const activeKey = ref<any>([])
-  const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
+  const activeKey = ref<any>([]);
+  const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
 </script>
 
 <template>

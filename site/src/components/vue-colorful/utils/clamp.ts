@@ -2,5 +2,5 @@
 // We use ternary operators because it makes the minified code
 // 2 times shorter then `Math.min(Math.max(a,b),c)`
 export function clamp(number: number, min = 0, max = 1): number {
-  return number > max ? max : number < min ? min : number
+  return number > max ? max : number < min ? min : number;
 }

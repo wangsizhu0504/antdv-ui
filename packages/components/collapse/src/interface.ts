@@ -1,6 +1,6 @@
-export type CollapsibleType = 'header' | 'icon' | 'disabled'
+export type CollapsibleType = 'header' | 'icon' | 'disabled';
 
-export type ActiveKeyType = Array<string | number> | string | number
+export type ActiveKeyType = Array<string | number> | string | number;
 
 export interface PanelProps {
   isActive?: boolean

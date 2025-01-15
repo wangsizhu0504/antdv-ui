@@ -1,6 +1,6 @@
-import type { Key, MouseEventHandler } from '@antdv/types'
-import type { CSSProperties, HTMLAttributes } from 'vue'
-import { classNames } from '@antdv/utils'
+import type { Key, MouseEventHandler } from '@antdv/types';
+import type { CSSProperties, HTMLAttributes } from 'vue';
+import { classNames } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -8,7 +8,7 @@ import {
   onUnmounted,
   Teleport,
   watch,
-} from 'vue'
+} from 'vue';
 
 interface DivProps extends HTMLAttributes {
   // Ideally we would allow all data-* props but this would depend on https://github.com/microsoft/TypeScript/issues/28960
@@ -51,43 +51,43 @@ export default defineComponent<NoticeProps>({
     'visible',
   ] as any,
   setup(props, { attrs, slots }) {
-    let closeTimer: any
-    let isUnMounted = false
-    const duration = computed(() => (props.duration === undefined ? 4.5 : props.duration))
+    let closeTimer: any;
+    let isUnMounted = false;
+    const duration = computed(() => (props.duration === undefined ? 4.5 : props.duration));
     const startCloseTimer = () => {
       if (duration.value && !isUnMounted) {
         closeTimer = setTimeout(() => {
-          close()
-        }, duration.value * 1000)
+          close();
+        }, duration.value * 1000);
       }
-    }
+    };
 
     const clearCloseTimer = () => {
       if (closeTimer) {
-        clearTimeout(closeTimer)
-        closeTimer = null
+        clearTimeout(closeTimer);
+        closeTimer = null;
       }
-    }
+    };
     const close = (e?: MouseEvent) => {
       if (e)
-        e.stopPropagation()
+        e.stopPropagation();
 
-      clearCloseTimer()
-      const { onClose, noticeKey } = props
+      clearCloseTimer();
+      const { onClose, noticeKey } = props;
       if (onClose)
-        onClose(noticeKey)
-    }
+        onClose(noticeKey);
+    };
     const restartCloseTimer = () => {
-      clearCloseTimer()
-      startCloseTimer()
-    }
+      clearCloseTimer();
+      startCloseTimer();
+    };
     onMounted(() => {
-      startCloseTimer()
-    })
+      startCloseTimer();
+    });
     onUnmounted(() => {
-      isUnMounted = true
-      clearCloseTimer()
-    })
+      isUnMounted = true;
+      clearCloseTimer();
+    });
 
     watch(
       [duration, () => props.updateMark, () => props.visible],
@@ -97,24 +97,24 @@ export default defineComponent<NoticeProps>({
           || preUpdateMark !== newUpdateMark
           || (preVisible !== newVisible && newVisible)
         ) {
-          restartCloseTimer()
+          restartCloseTimer();
         }
       },
       { flush: 'post' },
-    )
+    );
     return () => {
-      const { prefixCls, closable, closeIcon = slots.closeIcon?.(), onClick, holder } = props
-      const { class: className, style } = attrs
-      const componentClass = `${prefixCls}-notice`
+      const { prefixCls, closable, closeIcon = slots.closeIcon?.(), onClick, holder } = props;
+      const { class: className, style } = attrs;
+      const componentClass = `${prefixCls}-notice`;
       const dataOrAriaAttributeProps = Object.keys(attrs).reduce(
         (acc: Record<string, string>, key: string) => {
           if (key.startsWith('data-') || key.startsWith('aria-') || key === 'role')
-            acc[key] = (attrs as any)[key]
+            acc[key] = (attrs as any)[key];
 
-          return acc
+          return acc;
         },
         {},
-      )
+      );
       const node = (
         <div
           class={classNames(componentClass, className, {
@@ -135,12 +135,12 @@ export default defineComponent<NoticeProps>({
               )
             : null}
         </div>
-      )
+      );
 
       if (holder)
-        return <Teleport to={holder} v-slots={{ default: () => node }}></Teleport>
+        return <Teleport to={holder} v-slots={{ default: () => node }}></Teleport>;
 
-      return node
-    }
+      return node;
+    };
   },
-})
+});

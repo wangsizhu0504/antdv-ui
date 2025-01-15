@@ -1,17 +1,17 @@
-import type { PickerLocale } from '@antdv/locale'
-import type { CustomSlotsType } from '@antdv/types'
-import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
-import type { App, PropType } from 'vue'
-import type { CalendarMode, CalendarProps, CalendarSelectInfo } from './interface'
-import { useMergedState } from '@antdv/hooks'
-import { enUS } from '@antdv/locale'
-import { classNames } from '@antdv/utils'
-import { VcPickerPanel } from '@antdv/vue-components'
-import { computed, defineComponent, toRef } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { useLocaleReceiver } from '../../locale-provider'
-import useStyle from '../style'
-import CalendarHeader from './Header'
+import type { PickerLocale } from '@antdv/locale';
+import type { CustomSlotsType } from '@antdv/types';
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate';
+import type { App, PropType } from 'vue';
+import type { CalendarMode, CalendarProps, CalendarSelectInfo } from './interface';
+import { useMergedState } from '@antdv/hooks';
+import { enUS } from '@antdv/locale';
+import { classNames } from '@antdv/utils';
+import { VcPickerPanel } from '@antdv/vue-components';
+import { computed, defineComponent, toRef } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { useLocaleReceiver } from '../../locale-provider';
+import useStyle from '../style';
+import CalendarHeader from './Header';
 
 // CSSINJS
 
@@ -20,19 +20,19 @@ export default function generateCalendar<
   Props extends CalendarProps<DateType> = CalendarProps<DateType>,
 >(generateConfig: GenerateConfig<DateType>) {
   function isSameYear(date1: DateType, date2: DateType) {
-    return date1 && date2 && generateConfig.getYear(date1) === generateConfig.getYear(date2)
+    return date1 && date2 && generateConfig.getYear(date1) === generateConfig.getYear(date2);
   }
 
   function isSameMonth(date1: DateType, date2: DateType) {
     return (
       isSameYear(date1, date2) && generateConfig.getMonth(date1) === generateConfig.getMonth(date2)
-    )
+    );
   }
 
   function isSameDate(date1: DateType, date2: DateType) {
     return (
       isSameMonth(date1, date2) && generateConfig.getDate(date1) === generateConfig.getDate(date2)
-    )
+    );
   }
 
   const Calendar = defineComponent<Props>({
@@ -84,32 +84,32 @@ export default function generateCalendar<
       default: any
     }>,
     setup(p, { emit, slots, attrs }) {
-      const props = p as unknown as Props
-      const { prefixCls, direction } = useConfigInject('picker', props)
+      const props = p as unknown as Props;
+      const { prefixCls, direction } = useConfigInject('picker', props);
 
       // style
-      const [wrapSSR, hashId] = useStyle(prefixCls)
+      const [wrapSSR, hashId] = useStyle(prefixCls);
 
-      const calendarPrefixCls = computed(() => `${prefixCls.value}-calendar`)
+      const calendarPrefixCls = computed(() => `${prefixCls.value}-calendar`);
       const maybeToString = (date: DateType) => {
-        return props.valueFormat ? generateConfig.toString(date, props.valueFormat) : date
-      }
+        return props.valueFormat ? generateConfig.toString(date, props.valueFormat) : date;
+      };
       const value = computed(() => {
         if (props.value) {
           return props.valueFormat
             ? (generateConfig.toDate(props.value, props.valueFormat) as DateType)
-            : (props.value as DateType)
+            : (props.value as DateType);
         }
-        return (props.value === '' ? undefined : props.value) as DateType
-      })
+        return (props.value === '' ? undefined : props.value) as DateType;
+      });
       const defaultValue = computed(() => {
         if (props.defaultValue) {
           return props.valueFormat
             ? (generateConfig.toDate(props.defaultValue, props.valueFormat) as DateType)
-            : (props.defaultValue as DateType)
+            : (props.defaultValue as DateType);
         }
-        return (props.defaultValue === '' ? undefined : props.defaultValue) as DateType
-      })
+        return (props.defaultValue === '' ? undefined : props.defaultValue) as DateType;
+      });
 
       // Value
       const [mergedValue, setMergedValue] = useMergedState(
@@ -118,32 +118,32 @@ export default function generateCalendar<
           defaultValue: defaultValue.value,
           value,
         },
-      )
+      );
 
       // Mode
       const [mergedMode, setMergedMode] = useMergedState('month', {
         value: toRef(props, 'mode'),
-      })
+      });
 
-      const panelMode = computed(() => (mergedMode.value === 'year' ? 'month' : 'date'))
+      const panelMode = computed(() => (mergedMode.value === 'year' ? 'month' : 'date'));
 
       const mergedDisabledDate = computed(() => {
         return (date: DateType) => {
           const notInRange = props.validRange
             ? generateConfig.isAfter(props.validRange[0], date)
               || generateConfig.isAfter(date, props.validRange[1])
-            : false
-          return notInRange || !!props.disabledDate?.(date)
-        }
-      })
+            : false;
+          return notInRange || !!props.disabledDate?.(date);
+        };
+      });
 
       // ====================== Events ======================
       const triggerPanelChange = (date: DateType, newMode: CalendarMode) => {
-        emit('panelChange', maybeToString(date), newMode)
-      }
+        emit('panelChange', maybeToString(date), newMode);
+      };
 
       const triggerChange = (date: DateType) => {
-        setMergedValue(date)
+        setMergedValue(date);
 
         if (!isSameDate(date, mergedValue.value)) {
           // Trigger when month panel switch month
@@ -151,42 +151,42 @@ export default function generateCalendar<
             (panelMode.value === 'date' && !isSameMonth(date, mergedValue.value))
             || (panelMode.value === 'month' && !isSameYear(date, mergedValue.value))
           ) {
-            triggerPanelChange(date, mergedMode.value)
+            triggerPanelChange(date, mergedMode.value);
           }
 
-          const val = maybeToString(date)
-          emit('update:value', val)
-          emit('change', val)
+          const val = maybeToString(date);
+          emit('update:value', val);
+          emit('change', val);
         }
-      }
+      };
 
       const triggerModeChange = (newMode: CalendarMode) => {
-        setMergedMode(newMode)
-        triggerPanelChange(mergedValue.value, newMode)
-      }
+        setMergedMode(newMode);
+        triggerPanelChange(mergedValue.value, newMode);
+      };
 
       const onInternalSelect = (date: DateType, source: CalendarSelectInfo['source']) => {
-        triggerChange(date)
-        emit('select', maybeToString(date), { source })
-      }
+        triggerChange(date);
+        emit('select', maybeToString(date), { source });
+      };
       // ====================== Locale ======================
       const defaultLocale = computed(() => {
-        const { locale } = props
+        const { locale } = props;
         const result = {
           ...enUS.DatePicker,
           ...locale,
-        }
+        };
         result.lang = {
           ...result.lang,
           ...(locale || {}).lang,
-        }
-        return result
-      })
+        };
+        return result;
+      });
 
-      const [mergedLocale] = useLocaleReceiver('Calendar', defaultLocale) as [typeof defaultLocale]
+      const [mergedLocale] = useLocaleReceiver('Calendar', defaultLocale) as [typeof defaultLocale];
 
       return () => {
-        const today = generateConfig.getNow()
+        const today = generateConfig.getNow();
         const {
           dateFullCellRender = slots?.dateFullCellRender,
           dateCellRender = slots?.dateCellRender,
@@ -195,11 +195,11 @@ export default function generateCalendar<
           headerRender = slots?.headerRender,
           fullscreen = true,
           validRange,
-        } = props
+        } = props;
         // ====================== Render ======================
         const dateRender = ({ current: date }) => {
           if (dateFullCellRender)
-            return dateFullCellRender({ current: date })
+            return dateFullCellRender({ current: date });
 
           return (
             <div
@@ -218,14 +218,14 @@ export default function generateCalendar<
                 {dateCellRender && dateCellRender({ current: date })}
               </div>
             </div>
-          )
-        }
+          );
+        };
 
         const monthRender = ({ current: date }, locale: PickerLocale) => {
           if (monthFullCellRender)
-            return monthFullCellRender({ current: date })
+            return monthFullCellRender({ current: date });
 
-          const months = locale.shortMonths || generateConfig.locale.getShortMonths!(locale.locale)
+          const months = locale.shortMonths || generateConfig.locale.getShortMonths!(locale.locale);
 
           return (
             <div
@@ -244,8 +244,8 @@ export default function generateCalendar<
                 {monthCellRender && monthCellRender({ current: date })}
               </div>
             </div>
-          )
-        }
+          );
+        };
         return wrapSSR(
           <div
             {...attrs}
@@ -266,7 +266,7 @@ export default function generateCalendar<
                     value: mergedValue.value,
                     type: mergedMode.value,
                     onChange: (nextDate) => {
-                      onInternalSelect(nextDate, 'customize')
+                      onInternalSelect(nextDate, 'customize');
                     },
                     onTypeChange: triggerModeChange,
                   })
@@ -292,7 +292,7 @@ export default function generateCalendar<
               dateRender={dateRender}
               monthCellRender={obj => monthRender(obj, mergedLocale.value.lang)}
               onSelect={(nextDate) => {
-                onInternalSelect(nextDate, panelMode.value)
+                onInternalSelect(nextDate, panelMode.value);
               }}
               mode={panelMode.value}
               picker={panelMode.value}
@@ -300,15 +300,15 @@ export default function generateCalendar<
               hideHeader
             />
           </div>,
-        )
-      }
+        );
+      };
     },
-  })
+  });
 
   Calendar.install = function (app: App) {
-    app.component(Calendar.name, Calendar)
-    return app
-  }
+    app.component(Calendar.name, Calendar);
+    return app;
+  };
 
-  return Calendar
+  return Calendar;
 }

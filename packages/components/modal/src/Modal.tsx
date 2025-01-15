@@ -1,31 +1,31 @@
-import type { MousePosition } from './interface'
-import { CloseOutlined } from '@ant-design/icons-vue'
-import { addEventListenerWrap, canUseDocElement, classNames, devWarning, initDefaultProps } from '@antdv/utils'
-import { getTransitionName, VcDialog } from '@antdv/vue-components'
-import { defineComponent } from 'vue'
-import Button, { convertLegacyProps } from '../../button'
+import type { MousePosition } from './interface';
+import { CloseOutlined } from '@ant-design/icons-vue';
+import { addEventListenerWrap, canUseDocElement, classNames, devWarning, initDefaultProps } from '@antdv/utils';
+import { getTransitionName, VcDialog } from '@antdv/vue-components';
+import { defineComponent } from 'vue';
+import Button, { convertLegacyProps } from '../../button';
 
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import { useLocaleReceiver } from '../../locale-provider'
-import useStyle from '../style'
-import { modalProps } from './props'
+import { useLocaleReceiver } from '../../locale-provider';
+import useStyle from '../style';
+import { modalProps } from './props';
 
-let mousePosition: MousePosition
+let mousePosition: MousePosition;
 // ref: https://github.com/ant-design/ant-design/issues/15795
 function getClickPosition(e: MouseEvent) {
   mousePosition = {
     x: e.pageX,
     y: e.pageY,
-  }
+  };
   // 100ms 内发生过点击事件，则从点击位置动画展示
   // 否则直接 zoom 展示
   // 这样可以兼容非点击方式展开
-  setTimeout(() => (mousePosition = null), 100)
+  setTimeout(() => (mousePosition = null), 100);
 }
 
 // 只有点击事件支持从鼠标位置动画展开
-if (canUseDocElement()) addEventListenerWrap(document.documentElement, 'click', getClickPosition, true)
+if (canUseDocElement()) addEventListenerWrap(document.documentElement, 'click', getClickPosition, true);
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -38,28 +38,28 @@ export default defineComponent({
     okType: 'primary',
   }),
   setup(props, { emit, slots, attrs }) {
-    const [locale] = useLocaleReceiver('Modal')
+    const [locale] = useLocaleReceiver('Modal');
     const { prefixCls, rootPrefixCls, direction, getPopupContainer } = useConfigInject(
       'modal',
       props,
-    )
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    );
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
     devWarning(
       props.visible === undefined,
       'Modal',
       '`visible` will be removed in next major version, please use `open` instead.',
-    )
+    );
     const handleCancel = (e: MouseEvent) => {
-      emit('update:visible', false)
-      emit('update:open', false)
-      emit('cancel', e)
-      emit('change', false)
-    }
+      emit('update:visible', false);
+      emit('update:open', false);
+      emit('cancel', e);
+      emit('change', false);
+    };
 
     const handleOk = (e: MouseEvent) => {
-      emit('ok', e)
-    }
+      emit('ok', e);
+    };
 
     const renderFooter = () => {
       const {
@@ -67,7 +67,7 @@ export default defineComponent({
         okType,
         cancelText = slots.cancelText?.(),
         confirmLoading,
-      } = props
+      } = props;
       return (
         <>
           <Button onClick={handleCancel} {...props.cancelButtonProps}>
@@ -82,8 +82,8 @@ export default defineComponent({
             {okText || locale.value.okText}
           </Button>
         </>
-      )
-    }
+      );
+    };
     return () => {
       const {
         prefixCls: customizePrefixCls,
@@ -95,12 +95,12 @@ export default defineComponent({
         closeIcon = slots.closeIcon?.(),
         focusTriggerAfterClose = true,
         ...restProps
-      } = props
+      } = props;
 
       const wrapClassNameExtended = classNames(wrapClassName, {
         [`${prefixCls.value}-centered`]: !!centered,
         [`${prefixCls.value}-wrap-rtl`]: direction.value === 'rtl',
-      })
+      });
       return wrapSSR(
         <VcDialog
           {...restProps}
@@ -128,12 +128,12 @@ export default defineComponent({
                 <span class={`${prefixCls.value}-close-x`}>
                   {closeIcon || <CloseOutlined class={`${prefixCls.value}-close-icon`} />}
                 </span>
-              )
+              );
             },
           }}
         >
         </VcDialog>,
-      )
-    }
+      );
+    };
   },
-})
+});

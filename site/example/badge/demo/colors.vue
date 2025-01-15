@@ -31,7 +31,7 @@ New feature after 3.16.0. We preset a series of colorful Badge styles for use in
     'volcano',
     'gold',
     'lime',
-  ]
+  ];
 </script>
 
 <template>

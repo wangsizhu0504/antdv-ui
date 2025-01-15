@@ -16,10 +16,10 @@ You can customize the display for Steps with progress dot style.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const current = ref<number>(1)
-  const description = 'You can hover on the dot.'
+  const current = ref<number>(1);
+  const description = 'You can hover on the dot.';
 </script>
 
 <template>

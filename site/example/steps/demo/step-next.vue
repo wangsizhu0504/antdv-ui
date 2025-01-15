@@ -16,15 +16,15 @@ Cooperate with the content and buttons, to represent the progress of a process.
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
-  import { ref } from 'vue'
+  import { message } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const current = ref<number>(0)
+  const current = ref<number>(0);
   function next() {
-    current.value++
+    current.value++;
   }
   function prev() {
-    current.value--
+    current.value--;
   }
   const steps = [
     {
@@ -39,8 +39,8 @@ Cooperate with the content and buttons, to represent the progress of a process.
       title: 'Last',
       content: 'Last-content',
     },
-  ]
-  const items = steps.map(item => ({ key: item.title, title: item.title }))
+  ];
+  const items = steps.map(item => ({ key: item.title, title: item.title }));
 </script>
 
 <template>

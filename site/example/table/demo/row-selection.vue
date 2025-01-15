@@ -17,7 +17,7 @@ selection happens when clicking checkbox defaultly. You can see https://codesand
 </docs>
 
 <script lang="ts" setup>
-  import type { TableColumnType, TableProps } from '@antdv/ui'
+  import type { TableColumnType, TableProps } from '@antdv/ui';
 
   interface DataType {
     key: string;
@@ -39,7 +39,7 @@ selection happens when clicking checkbox defaultly. You can see https://codesand
       title: 'Address',
       dataIndex: 'address',
     },
-  ]
+  ];
   const data: DataType[] = [
     {
       key: '1',
@@ -65,17 +65,17 @@ selection happens when clicking checkbox defaultly. You can see https://codesand
       age: 99,
       address: 'Sidney No. 1 Lake Park',
     },
-  ]
+  ];
 
   const rowSelection: TableProps['rowSelection'] = {
     onChange: (selectedRowKeys: string[], selectedRows: DataType[]) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
     },
     getCheckboxProps: (record: DataType) => ({
       disabled: record.name === 'Disabled User', // Column configuration not to be checked
       name: record.name,
     }),
-  }
+  };
 </script>
 
 <template>

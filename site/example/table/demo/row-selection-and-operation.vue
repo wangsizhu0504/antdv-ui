@@ -17,9 +17,9 @@ To perform operations and clear selections after selecting some rows, use `rowSe
 </docs>
 
 <script lang="ts" setup>
-  import { computed, reactive } from 'vue'
+  import { computed, reactive } from 'vue';
 
-  type Key = string | number
+  type Key = string | number;
 
   interface DataType {
     key: Key;
@@ -41,16 +41,16 @@ To perform operations and clear selections after selecting some rows, use `rowSe
       title: 'Address',
       dataIndex: 'address',
     },
-  ]
+  ];
 
-  const data: DataType[] = []
+  const data: DataType[] = [];
   for (let i = 0; i < 46; i++) {
     data.push({
       key: i,
       name: `Edward King ${i}`,
       age: 32,
       address: `London, Park Lane no. ${i}`,
-    })
+    });
   }
 
   const state = reactive<{
@@ -59,20 +59,20 @@ To perform operations and clear selections after selecting some rows, use `rowSe
   }>({
     selectedRowKeys: [], // Check here to configure the default column
     loading: false,
-  })
-  const hasSelected = computed(() => state.selectedRowKeys.length > 0)
+  });
+  const hasSelected = computed(() => state.selectedRowKeys.length > 0);
 
   function start() {
-    state.loading = true
+    state.loading = true;
     // ajax request after empty completing
     setTimeout(() => {
-      state.loading = false
-      state.selectedRowKeys = []
-    }, 1000)
+      state.loading = false;
+      state.selectedRowKeys = [];
+    }, 1000);
   }
   function onSelectChange(selectedRowKeys: Key[]) {
-    console.log('selectedRowKeys changed: ', selectedRowKeys)
-    state.selectedRowKeys = selectedRowKeys
+    console.log('selectedRowKeys changed: ', selectedRowKeys);
+    state.selectedRowKeys = selectedRowKeys;
   }
 </script>
 

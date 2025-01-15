@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue'
-import { skeletonTitleProps } from './props'
+import { defineComponent } from 'vue';
+import { skeletonTitleProps } from './props';
 
 const SkeletonTitle = defineComponent({
   compatConfig: { MODE: 3 },
@@ -7,11 +7,11 @@ const SkeletonTitle = defineComponent({
   props: skeletonTitleProps(),
   setup(props) {
     return () => {
-      const { prefixCls, width } = props
-      const zWidth = typeof width === 'number' ? `${width}px` : width
-      return <h3 class={prefixCls} style={{ width: zWidth }} />
-    }
+      const { prefixCls, width } = props;
+      const zWidth = typeof width === 'number' ? `${width}px` : width;
+      return <h3 class={prefixCls} style={{ width: zWidth }} />;
+    };
   },
-})
+});
 
-export default SkeletonTitle
+export default SkeletonTitle;

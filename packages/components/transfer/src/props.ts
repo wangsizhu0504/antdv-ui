@@ -1,7 +1,7 @@
-import type { InputStatus, VueNode } from '@antdv/types'
+import type { InputStatus, VueNode } from '@antdv/types';
 
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-import type { Direction } from '../../config-provider'
+import type { CSSProperties, ExtractPropTypes } from 'vue';
+import type { Direction } from '../../config-provider';
 import type {
   ListStyle,
   PaginationType,
@@ -9,7 +9,7 @@ import type {
   TransferDirection,
   TransferItem,
   TransferRender,
-} from './interface'
+} from './interface';
 
 import {
   arrayType,
@@ -19,7 +19,7 @@ import {
   PropTypes,
   someType,
   stringType,
-} from '@antdv/utils'
+} from '@antdv/utils';
 
 export function transferProps() {
   return {
@@ -59,7 +59,7 @@ export function transferProps() {
     'onScroll': functionType<(direction: TransferDirection, e: UIEvent) => void>(),
     'onUpdate:targetKeys': functionType<(keys: string[]) => void>(),
     'onUpdate:selectedKeys': functionType<(keys: string[]) => void>(),
-  }
+  };
 }
 
 export function transferListBodyProps() {
@@ -73,7 +73,7 @@ export function transferListBodyProps() {
     onItemSelect: Function,
     onScroll: Function,
     onItemRemove: Function,
-  }
+  };
 }
 export function transferListItemProps() {
   return {
@@ -86,7 +86,7 @@ export function transferListItemProps() {
     showRemove: booleanType(),
     onClick: Function,
     onRemove: Function,
-  }
+  };
 }
 
 export const transferListProps = {
@@ -120,7 +120,7 @@ export const transferListProps = {
   onItemSelectAll: Function,
   onItemRemove: Function,
   onScroll: Function,
-}
+};
 
 export function transferSearchProps() {
   return {
@@ -130,10 +130,10 @@ export function transferSearchProps() {
     handleClear: Function,
     disabled: { type: Boolean, default: undefined },
     onChange: Function,
-  }
+  };
 }
 
-export type TransferListProps = Partial<ExtractPropTypes<typeof transferListProps>>
+export type TransferListProps = Partial<ExtractPropTypes<typeof transferListProps>>;
 
 export interface TransferOperationProps {
   class?: string
@@ -148,10 +148,10 @@ export interface TransferOperationProps {
   direction?: Direction
   oneWay?: boolean
 }
-export type TransferSearchProps = Partial<ExtractPropTypes<ReturnType<typeof transferSearchProps>>>
+export type TransferSearchProps = Partial<ExtractPropTypes<ReturnType<typeof transferSearchProps>>>;
 
-export type TransferListItemProps = Partial<ExtractPropTypes<ReturnType<typeof transferListItemProps>>>
+export type TransferListItemProps = Partial<ExtractPropTypes<ReturnType<typeof transferListItemProps>>>;
 
-export type TransferListBodyProps = Partial<ExtractPropTypes<ReturnType<typeof transferListBodyProps>>>
+export type TransferListBodyProps = Partial<ExtractPropTypes<ReturnType<typeof transferListBodyProps>>>;
 
-export type TransferProps = Partial<ExtractPropTypes<ReturnType<typeof transferProps>>>
+export type TransferProps = Partial<ExtractPropTypes<ReturnType<typeof transferProps>>>;

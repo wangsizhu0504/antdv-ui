@@ -17,12 +17,12 @@ Shows a loading indirector while the contents of the card is being featched
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const loading = ref<any>(true)
+  const loading = ref<any>(true);
 
   function handleClick() {
-    loading.value = !loading.value
+    loading.value = !loading.value;
   }
 </script>
 

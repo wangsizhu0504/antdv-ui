@@ -17,17 +17,17 @@ The height of the input field for the select defaults to 32px. If size is set to
 </docs>
 
 <script lang="ts" setup>
-  import type { SelectProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { SelectProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
   function popupScroll() {
-    console.log('popupScroll')
+    console.log('popupScroll');
   }
-  const size = ref<SelectProps['size']>('middle')
-  const value1 = ref<any>('a1')
-  const value2 = ref<any>(['a1', 'b2'])
-  const value3 = ref<any>(['a1', 'b2'])
-  const options = [...Array(25)].map((_, i) => ({ value: (i + 10).toString(36) + (i + 1) }))
+  const size = ref<SelectProps['size']>('middle');
+  const value1 = ref<any>('a1');
+  const value2 = ref<any>(['a1', 'b2']);
+  const value3 = ref<any>(['a1', 'b2']);
+  const options = [...Array(25)].map((_, i) => ({ value: (i + 10).toString(36) + (i + 1) }));
 </script>
 
 <template>

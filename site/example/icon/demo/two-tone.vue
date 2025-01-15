@@ -17,7 +17,7 @@ You can set `two-tone-color` prop to specific primary color for two-tone icons.
 </docs>
 
 <script lang="ts" setup>
-  import { CheckCircleTwoTone, HeartTwoTone, SmileTwoTone } from '@ant-design/icons-vue'
+  import { CheckCircleTwoTone, HeartTwoTone, SmileTwoTone } from '@ant-design/icons-vue';
 </script>
 
 <template>

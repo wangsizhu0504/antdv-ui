@@ -18,15 +18,15 @@ Modify theme by `theme` prop.
 </docs>
 
 <script lang="ts" setup>
-  import { theme } from '@antdv/ui'
-  import { ref } from 'vue'
+  import { theme } from '@antdv/ui';
+  import { ref } from 'vue';
 
   const defaultData = {
     borderRadius: 6,
     colorPrimary: '#1677ff',
-  }
-  const data = ref<any>(defaultData)
-  const { token } = theme.useToken()
+  };
+  const data = ref<any>(defaultData);
+  const { token } = theme.useToken();
 </script>
 
 <template>

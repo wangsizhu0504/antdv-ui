@@ -17,7 +17,7 @@ Add unit through `prefix` and `suffix`.
 </docs>
 
 <script lang="ts" setup>
-  import { LikeOutlined } from '@ant-design/icons-vue'
+  import { LikeOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

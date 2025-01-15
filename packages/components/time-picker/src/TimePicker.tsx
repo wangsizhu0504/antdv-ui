@@ -1,15 +1,15 @@
-import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
-import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface'
-import type { RangePickerSharedProps } from '@antdv/vue-components/vc-picker/src/RangePicker'
-import type { SlotsType } from 'vue'
-import type { TimePickerProps, TimeRangePickerProps } from './interface'
-import { devWarning, omit } from '@antdv/utils'
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate';
+import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface';
+import type { RangePickerSharedProps } from '@antdv/vue-components/vc-picker/src/RangePicker';
+import type { SlotsType } from 'vue';
+import type { TimePickerProps, TimeRangePickerProps } from './interface';
+import { devWarning, omit } from '@antdv/utils';
 
-import { defineComponent, ref } from 'vue'
-import { commonProps, datePickerProps, rangePickerProps } from '../../date-picker'
-import generatePicker from '../../date-picker/src/generatePicker'
-import { useInjectFormItemContext } from '../../form/src/FormItemContext'
-import { commonTimePickerProps } from './props'
+import { defineComponent, ref } from 'vue';
+import { commonProps, datePickerProps, rangePickerProps } from '../../date-picker';
+import generatePicker from '../../date-picker/src/generatePicker';
+import { useInjectFormItemContext } from '../../form/src/FormItemContext';
+import { commonTimePickerProps } from './props';
 
 function createTimePicker<
   DateType,
@@ -19,9 +19,9 @@ function createTimePicker<
   const DatePicker = generatePicker<DateType>(generateConfig, {
     ...commonTimePickerProps(),
     order: { type: Boolean, default: true },
-  })
+  });
 
-  const { TimePicker: InternalTimePicker, RangePicker: InternalRangePicker } = DatePicker as any
+  const { TimePicker: InternalTimePicker, RangePicker: InternalRangePicker } = DatePicker as any;
   const TimePicker = defineComponent<DTimePickerProps>({
     name: 'ATimePicker',
     inheritAttrs: false,
@@ -39,43 +39,43 @@ function createTimePicker<
       default: any
     }>,
     setup(p, { slots, expose, emit, attrs }) {
-      const props = p as unknown as DTimePickerProps
-      const formItemContext = useInjectFormItemContext()
+      const props = p as unknown as DTimePickerProps;
+      const formItemContext = useInjectFormItemContext();
       devWarning(
         !(slots.addon || props.addon),
         'TimePicker',
         '`addon` is deprecated. Please use `v-slot:renderExtraFooter` instead.',
-      )
-      const pickerRef = ref()
+      );
+      const pickerRef = ref();
       expose({
         focus: () => {
-          pickerRef.value?.focus()
+          pickerRef.value?.focus();
         },
         blur: () => {
-          pickerRef.value?.blur()
+          pickerRef.value?.blur();
         },
-      })
+      });
       const onChange = (value: DateType | string, dateString: string) => {
-        emit('update:value', value)
-        emit('change', value, dateString)
-        formItemContext.onFieldChange()
-      }
+        emit('update:value', value);
+        emit('change', value, dateString);
+        formItemContext.onFieldChange();
+      };
       const onOpenChange = (open: boolean) => {
-        emit('update:open', open)
-        emit('openChange', open)
-      }
+        emit('update:open', open);
+        emit('openChange', open);
+      };
       const onFocus = (e: FocusEvent) => {
-        emit('focus', e)
-      }
+        emit('focus', e);
+      };
       const onBlur = (e: FocusEvent) => {
-        emit('blur', e)
-        formItemContext.onFieldBlur()
-      }
+        emit('blur', e);
+        formItemContext.onFieldBlur();
+      };
       const onOk = (value: DateType) => {
-        emit('ok', value)
-      }
+        emit('ok', value);
+      };
       return () => {
-        const { id = formItemContext.id.value } = props
+        const { id = formItemContext.id.value } = props;
         // restProps.addon
         return (
           <InternalTimePicker
@@ -95,10 +95,10 @@ function createTimePicker<
             onOk={onOk}
             v-slots={slots}
           />
-        )
-      }
+        );
+      };
     },
-  })
+  });
 
   const TimeRangePicker = defineComponent<DTimeRangePickerProps>({
     name: 'ATimeRangePicker',
@@ -116,54 +116,54 @@ function createTimePicker<
       default: any
     }>,
     setup(p, { slots, expose, emit, attrs }) {
-      const props = p as unknown as DTimeRangePickerProps
-      const pickerRef = ref()
-      const formItemContext = useInjectFormItemContext()
+      const props = p as unknown as DTimeRangePickerProps;
+      const pickerRef = ref();
+      const formItemContext = useInjectFormItemContext();
       expose({
         focus: () => {
-          pickerRef.value?.focus()
+          pickerRef.value?.focus();
         },
         blur: () => {
-          pickerRef.value?.blur()
+          pickerRef.value?.blur();
         },
-      })
+      });
       const onChange = (
         values: RangeValue<string> | RangeValue<DateType>,
         dateStrings: [string, string],
       ) => {
-        emit('update:value', values)
-        emit('change', values, dateStrings)
-        formItemContext.onFieldChange()
-      }
+        emit('update:value', values);
+        emit('change', values, dateStrings);
+        formItemContext.onFieldChange();
+      };
       const onOpenChange = (open: boolean) => {
-        emit('update:open', open)
-        emit('openChange', open)
-      }
+        emit('update:open', open);
+        emit('openChange', open);
+      };
       const onFocus = (e: FocusEvent) => {
-        emit('focus', e)
-      }
+        emit('focus', e);
+      };
       const onBlur = (e: FocusEvent) => {
-        emit('blur', e)
-        formItemContext.onFieldBlur()
-      }
+        emit('blur', e);
+        formItemContext.onFieldBlur();
+      };
       const onPanelChange = (
         values: RangeValue<string> | RangeValue<DateType>,
         modes: [PanelMode, PanelMode],
       ) => {
-        emit('panelChange', values, modes)
-      }
+        emit('panelChange', values, modes);
+      };
       const onOk = (values: RangeValue<string | DateType>) => {
-        emit('ok', values)
-      }
+        emit('ok', values);
+      };
       const onCalendarChange: RangePickerSharedProps<DateType>['onCalendarChange'] = (
         values: RangeValue<string> | RangeValue<DateType>,
         dateStrings: [string, string],
         info,
       ) => {
-        emit('calendarChange', values, dateStrings, info)
-      }
+        emit('calendarChange', values, dateStrings, info);
+      };
       return () => {
-        const { id = formItemContext.id.value } = props
+        const { id = formItemContext.id.value } = props;
         return (
           <InternalRangePicker
             {...attrs}
@@ -182,15 +182,15 @@ function createTimePicker<
             onCalendarChange={onCalendarChange}
             v-slots={slots}
           />
-        )
-      }
+        );
+      };
     },
-  })
+  });
 
   return {
     TimePicker,
     TimeRangePicker,
-  }
+  };
 }
 
-export default createTimePicker
+export default createTimePicker;

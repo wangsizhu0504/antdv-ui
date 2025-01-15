@@ -1,8 +1,8 @@
-import { withInstall } from '@antdv/utils'
-import pageHeader from './src/PageHeader'
+import { withInstall } from '@antdv/utils';
+import pageHeader from './src/PageHeader';
 
-export const PageHeader = withInstall(pageHeader)
+export const PageHeader = withInstall(pageHeader);
 
-export default PageHeader
+export default PageHeader;
 
-export * from './src/props'
+export * from './src/props';

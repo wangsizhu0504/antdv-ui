@@ -16,9 +16,9 @@ Simple mode.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const current = ref<number>(2)
+  const current = ref<number>(2);
 </script>
 
 <template>

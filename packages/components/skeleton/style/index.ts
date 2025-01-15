@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, Keyframes, mergeToken } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, Keyframes, mergeToken } from '@antdv/theme';
 
 export interface ComponentToken {
   color: string
@@ -13,7 +13,7 @@ const skeletonClsLoading = new Keyframes('ant-skeleton-loading', {
   '100%': {
     transform: 'translateX(37.5%)',
   },
-})
+});
 
 interface SkeletonToken extends FullToken<'Skeleton'> {
   skeletonAvatarCls: string
@@ -36,14 +36,14 @@ function genSkeletonElementCommonSize(size: number): CSSObject {
   return {
     height: size,
     lineHeight: `${size}px`,
-  }
+  };
 }
 
 function genSkeletonElementAvatarSize(size: number): CSSObject {
   return {
     width: size,
     ...genSkeletonElementCommonSize(size),
-  }
+  };
 }
 
 function genSkeletonColor(token: SkeletonToken): CSSObject {
@@ -68,7 +68,7 @@ function genSkeletonColor(token: SkeletonToken): CSSObject {
       animationIterationCount: 'infinite',
       content: '""',
     },
-  }
+  };
 }
 
 function genSkeletonElementInputSize(size: number): CSSObject {
@@ -76,11 +76,11 @@ function genSkeletonElementInputSize(size: number): CSSObject {
     width: size * 5,
     minWidth: size * 5,
     ...genSkeletonElementCommonSize(size),
-  }
+  };
 }
 
 function genSkeletonElementAvatar(token: SkeletonToken): CSSObject {
-  const { skeletonAvatarCls, color, controlHeight, controlHeightLG, controlHeightSM } = token
+  const { skeletonAvatarCls, color, controlHeight, controlHeightLG, controlHeightSM } = token;
   return {
     [`${skeletonAvatarCls}`]: {
       display: 'inline-block',
@@ -97,7 +97,7 @@ function genSkeletonElementAvatar(token: SkeletonToken): CSSObject {
     [`${skeletonAvatarCls}${skeletonAvatarCls}-sm`]: {
       ...genSkeletonElementAvatarSize(controlHeightSM),
     },
-  }
+  };
 }
 
 function genSkeletonElementInput(token: SkeletonToken): CSSObject {
@@ -108,7 +108,7 @@ function genSkeletonElementInput(token: SkeletonToken): CSSObject {
     controlHeightLG,
     controlHeightSM,
     color,
-  } = token
+  } = token;
   return {
     [`${skeletonInputCls}`]: {
       display: 'inline-block',
@@ -125,18 +125,18 @@ function genSkeletonElementInput(token: SkeletonToken): CSSObject {
     [`${skeletonInputCls}-sm`]: {
       ...genSkeletonElementInputSize(controlHeightSM),
     },
-  }
+  };
 }
 
 function genSkeletonElementImageSize(size: number): CSSObject {
   return {
     width: size,
     ...genSkeletonElementCommonSize(size),
-  }
+  };
 }
 
 function genSkeletonElementImage(token: SkeletonToken): CSSObject {
-  const { skeletonImageCls, imageSizeBase, color, borderRadiusSM } = token
+  const { skeletonImageCls, imageSizeBase, color, borderRadiusSM } = token;
   return {
     [`${skeletonImageCls}`]: {
       display: 'flex',
@@ -161,10 +161,10 @@ function genSkeletonElementImage(token: SkeletonToken): CSSObject {
     [`${skeletonImageCls}${skeletonImageCls}-circle`]: {
       borderRadius: '50%',
     },
-  }
+  };
 }
 function genSkeletonElementButtonShape(token: SkeletonToken, size: number, buttonCls: string): CSSObject {
-  const { skeletonButtonCls } = token
+  const { skeletonButtonCls } = token;
   return {
     [`${buttonCls}${skeletonButtonCls}-circle`]: {
       width: size,
@@ -174,7 +174,7 @@ function genSkeletonElementButtonShape(token: SkeletonToken, size: number, butto
     [`${buttonCls}${skeletonButtonCls}-round`]: {
       borderRadius: size,
     },
-  }
+  };
 }
 
 function genSkeletonElementButtonSize(size: number): CSSObject {
@@ -182,7 +182,7 @@ function genSkeletonElementButtonSize(size: number): CSSObject {
     width: size * 2,
     minWidth: size * 2,
     ...genSkeletonElementCommonSize(size),
-  }
+  };
 }
 
 function genSkeletonElementButton(token: SkeletonToken): CSSObject {
@@ -193,7 +193,7 @@ function genSkeletonElementButton(token: SkeletonToken): CSSObject {
     controlHeightLG,
     controlHeightSM,
     color,
-  } = token
+  } = token;
   return {
     [`${skeletonButtonCls}`]: {
       display: 'inline-block',
@@ -215,7 +215,7 @@ function genSkeletonElementButton(token: SkeletonToken): CSSObject {
       ...genSkeletonElementButtonSize(controlHeightSM),
     },
     ...genSkeletonElementButtonShape(token, controlHeightSM, `${skeletonButtonCls}-sm`),
-  }
+  };
 }
 
 // =============================== Base ===============================
@@ -240,7 +240,7 @@ const genBaseStyle: GenerateStyle<SkeletonToken> = (token: SkeletonToken) => {
     skeletonParagraphLineHeight,
     controlHeightXS,
     skeletonParagraphMarginTop,
-  } = token
+  } = token;
 
   return {
     [`${componentCls}`]: {
@@ -356,14 +356,14 @@ const genBaseStyle: GenerateStyle<SkeletonToken> = (token: SkeletonToken) => {
         ...genSkeletonColor(token),
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
   'Skeleton',
   (token) => {
-    const { componentCls } = token
+    const { componentCls } = token;
 
     const skeletonToken = mergeToken<SkeletonToken>(token, {
       skeletonAvatarCls: `${componentCls}-avatar`,
@@ -380,15 +380,15 @@ export default genComponentStyleHook(
       borderRadius: 100, // Large number to make capsule shape
       skeletonLoadingBackground: `linear-gradient(90deg, ${token.color} 25%, ${token.colorGradientEnd} 37%, ${token.color} 63%)`,
       skeletonLoadingMotionDuration: '1.4s',
-    })
-    return [genBaseStyle(skeletonToken)]
+    });
+    return [genBaseStyle(skeletonToken)];
   },
   (token) => {
-    const { colorFillContent, colorFill } = token
+    const { colorFillContent, colorFill } = token;
 
     return {
       color: colorFillContent,
       colorGradientEnd: colorFill,
-    }
+    };
   },
-)
+);

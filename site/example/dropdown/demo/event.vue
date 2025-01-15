@@ -17,12 +17,12 @@ An event will be triggered when you click menu items, in which you can make diff
 </docs>
 
 <script lang="ts" setup>
-  import type { MenuProps } from '@antdv/ui'
-  import { DownOutlined } from '@ant-design/icons-vue'
+  import type { MenuProps } from '@antdv/ui';
+  import { DownOutlined } from '@ant-design/icons-vue';
 
   const onClick: MenuProps['onClick'] = ({ key }) => {
-    console.log(`Click on item ${key}`)
-  }
+    console.log(`Click on item ${key}`);
+  };
 </script>
 
 <template>

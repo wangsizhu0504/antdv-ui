@@ -1,5 +1,5 @@
-import type { ComputedRef, Ref } from 'vue'
-import { ref, watch } from 'vue'
+import type { ComputedRef, Ref } from 'vue';
+import { ref, watch } from 'vue';
 
 export default function useTextValueMapping({
   valueTexts,
@@ -9,15 +9,15 @@ export default function useTextValueMapping({
   valueTexts: ComputedRef<string[]>;
   onTextChange: (text: string) => void;
 }): [Ref<string>, (text: string) => void, () => void] {
-  const text = ref('')
+  const text = ref('');
 
   function triggerTextChange(value: string) {
-    text.value = value
-    onTextChange(value)
+    text.value = value;
+    onTextChange(value);
   }
 
   function resetText() {
-    text.value = valueTexts.value[0]
+    text.value = valueTexts.value[0];
   }
 
   watch(
@@ -27,11 +27,11 @@ export default function useTextValueMapping({
         cur.join('||') !== pre.join('||')
         && valueTexts.value.every(valText => valText !== text.value)
       ) {
-        resetText()
+        resetText();
       }
     },
     { immediate: true },
-  )
+  );
 
-  return [text, triggerTextChange, resetText]
+  return [text, triggerTextChange, resetText];
 }

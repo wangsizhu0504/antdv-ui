@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { defineComponent } from 'vue'
-  import US from '../index.en-US.md'
-  import CN from '../index.zh-CN.md'
-  import Base from './base.vue'
-  import CustomColor from './customColor.vue'
-  import CustomSize from './customSize.vue'
-  import CustomType from './customType.vue'
-  import Download from './download.vue'
-  import ErrorLevel from './errorLevel.vue'
-  import Icon from './icon.vue'
-  import Popover from './popover.vue'
-  import Status from './status.vue'
+  import { defineComponent } from 'vue';
+  import US from '../index.en-US.md';
+  import CN from '../index.zh-CN.md';
+  import Base from './base.vue';
+  import CustomColor from './customColor.vue';
+  import CustomSize from './customSize.vue';
+  import CustomType from './customType.vue';
+  import Download from './download.vue';
+  import ErrorLevel from './errorLevel.vue';
+  import Icon from './icon.vue';
+  import Popover from './popover.vue';
+  import Status from './status.vue';
 
   export default defineComponent({
     components: {
@@ -30,7 +30,7 @@
     title: 'QRCode',
     CN,
     US,
-  })
+  });
 </script>
 
 <template>

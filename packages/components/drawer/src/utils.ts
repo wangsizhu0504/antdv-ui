@@ -1,23 +1,23 @@
 export function dataToArray(vars: any) {
   if (Array.isArray(vars))
-    return vars
+    return vars;
 
-  return [vars]
+  return [vars];
 }
 const transitionEndObject: Record<string, string> = {
   transition: 'transitionend',
   WebkitTransition: 'webkitTransitionEnd',
   MozTransition: 'transitionend',
   OTransition: 'oTransitionEnd otransitionend',
-}
+};
 export const transitionStr: string = Object.keys(transitionEndObject).filter((key) => {
   if (typeof document === 'undefined')
-    return false
+    return false;
 
-  const html = document.getElementsByTagName('html')[0]
-  return key in (html ? html.style : {})
-})[0]
-export const transitionEndFun: string = transitionEndObject[transitionStr]
+  const html = document.getElementsByTagName('html')[0];
+  return key in (html ? html.style : {});
+})[0];
+export const transitionEndFun: string = transitionEndObject[transitionStr];
 
 export function addEventListener(
   target: HTMLElement,
@@ -26,9 +26,9 @@ export function addEventListener(
   options?: any,
 ) {
   if (target.addEventListener)
-    target.addEventListener(eventType, callback, options)
+    target.addEventListener(eventType, callback, options);
   else if ((target as any).attachEvent)
-    (target as any).attachEvent(`on${eventType}`, callback)
+    (target as any).attachEvent(`on${eventType}`, callback);
 }
 
 export function removeEventListener(
@@ -38,52 +38,52 @@ export function removeEventListener(
   options?: any,
 ) {
   if (target.removeEventListener)
-    target.removeEventListener(eventType, callback, options)
+    target.removeEventListener(eventType, callback, options);
   else if ((target as any).attachEvent)
-    (target as any).detachEvent(`on${eventType}`, callback)
+    (target as any).detachEvent(`on${eventType}`, callback);
 }
 
 export function transformArguments(arg: any, cb: any) {
-  const result = typeof arg === 'function' ? arg(cb) : arg
+  const result = typeof arg === 'function' ? arg(cb) : arg;
   if (Array.isArray(result)) {
     if (result.length === 2)
-      return result
+      return result;
 
-    return [result[0], result[1]]
+    return [result[0], result[1]];
   }
-  return [result]
+  return [result];
 }
 
 export function isNumeric(value: string | number | undefined) {
-  return !Number.isNaN(Number.parseFloat(value as string)) && Number.isFinite(value as number)
+  return !Number.isNaN(Number.parseFloat(value as string)) && Number.isFinite(value as number);
 }
 
 export const windowIsUndefined = !(
   typeof window !== 'undefined'
   && window.document
   && window.document.createElement
-)
+);
 
 export function getTouchParentScroll(root: HTMLElement, currentTarget: HTMLElement | Document | null, differX: number, differY: number): boolean {
   if (!currentTarget || currentTarget === document || currentTarget instanceof Document)
-    return false
+    return false;
 
   // root 为 drawer-content 设定了 overflow, 判断为 root 的 parent 时结束滚动；
   if (currentTarget === root.parentNode)
-    return true
+    return true;
 
-  const isY = Math.max(Math.abs(differX), Math.abs(differY)) === Math.abs(differY)
-  const isX = Math.max(Math.abs(differX), Math.abs(differY)) === Math.abs(differX)
+  const isY = Math.max(Math.abs(differX), Math.abs(differY)) === Math.abs(differY);
+  const isX = Math.max(Math.abs(differX), Math.abs(differY)) === Math.abs(differX);
 
-  const scrollY = currentTarget.scrollHeight - currentTarget.clientHeight
-  const scrollX = currentTarget.scrollWidth - currentTarget.clientWidth
+  const scrollY = currentTarget.scrollHeight - currentTarget.clientHeight;
+  const scrollX = currentTarget.scrollWidth - currentTarget.clientWidth;
 
-  const style = document.defaultView.getComputedStyle(currentTarget)
-  const overflowY = style.overflowY === 'auto' || style.overflowY === 'scroll'
-  const overflowX = style.overflowX === 'auto' || style.overflowX === 'scroll'
+  const style = document.defaultView.getComputedStyle(currentTarget);
+  const overflowY = style.overflowY === 'auto' || style.overflowY === 'scroll';
+  const overflowX = style.overflowX === 'auto' || style.overflowX === 'scroll';
 
-  const y = scrollY && overflowY
-  const x = scrollX && overflowX
+  const y = scrollY && overflowY;
+  const x = scrollX && overflowX;
 
   if (
     (isY
@@ -97,8 +97,8 @@ export function getTouchParentScroll(root: HTMLElement, currentTarget: HTMLEleme
           && ((currentTarget.scrollLeft >= scrollX && differX < 0)
             || (currentTarget.scrollLeft <= 0 && differX > 0)))))
   ) {
-    return getTouchParentScroll(root, currentTarget.parentNode as HTMLElement, differX, differY)
+    return getTouchParentScroll(root, currentTarget.parentNode as HTMLElement, differX, differY);
   }
 
-  return false
+  return false;
 }

@@ -17,12 +17,12 @@ Replace the default star to other character like alphabet, digit, iconfont or ev
 </docs>
 
 <script lang="ts" setup>
-  import { HeartOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { HeartOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const value1 = ref<number>(2)
-  const value2 = ref<number>(2.5)
-  const value3 = ref<number>(0.5)
+  const value1 = ref<number>(2);
+  const value2 = ref<number>(2.5);
+  const value3 = ref<number>(0.5);
 </script>
 
 <template>

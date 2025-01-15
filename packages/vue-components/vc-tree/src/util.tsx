@@ -2,7 +2,7 @@
  * Legacy code. Should avoid to use if you are new to import these code.
  */
 
-import type { Key } from '@antdv/types'
+import type { Key } from '@antdv/types';
 
 import type {
   BasicDataNode,
@@ -12,38 +12,38 @@ import type {
   DragNodeEvent,
   FlattenNode,
   NodeElement,
-} from './interface'
-import type { AllowDrop, TreeProps } from './props'
-import { warning } from '@antdv/utils'
+} from './interface';
+import type { AllowDrop, TreeProps } from './props';
+import { warning } from '@antdv/utils';
 
 export function arrDel(list: Key[], value: Key) {
-  if (!list) return []
-  const clone = list.slice()
-  const index = clone.indexOf(value)
+  if (!list) return [];
+  const clone = list.slice();
+  const index = clone.indexOf(value);
   if (index >= 0)
-    clone.splice(index, 1)
+    clone.splice(index, 1);
 
-  return clone
+  return clone;
 }
 
 export function arrAdd(list: Key[], value: Key) {
-  const clone = (list || []).slice()
+  const clone = (list || []).slice();
   if (!clone.includes(value))
-    clone.push(value)
+    clone.push(value);
 
-  return clone
+  return clone;
 }
 
 export function posToArr(pos: string) {
-  return pos.split('-')
+  return pos.split('-');
 }
 
 export function getPosition(level: string | number, index: number) {
-  return `${level}-${index}`
+  return `${level}-${index}`;
 }
 
 export function isTreeNode(node: NodeElement) {
-  return node && node.type && (node.type as any).isTreeNode
+  return node && node.type && (node.type as any).isTreeNode;
 }
 
 export function getDragChildrenKeys<TreeDataType extends BasicDataNode = DataNode>(
@@ -52,36 +52,36 @@ export function getDragChildrenKeys<TreeDataType extends BasicDataNode = DataNod
 ): Key[] {
   // not contains self
   // self for left or right drag
-  const dragChildrenKeys = []
+  const dragChildrenKeys = [];
 
-  const entity = keyEntities[dragNodeKey]
+  const entity = keyEntities[dragNodeKey];
   function dig(list: Array<DataEntity<TreeDataType>> = []) {
     list.forEach(({ key, children }) => {
-      dragChildrenKeys.push(key)
-      dig(children)
-    })
+      dragChildrenKeys.push(key);
+      dig(children);
+    });
   }
 
-  dig(entity.children)
+  dig(entity.children);
 
-  return dragChildrenKeys
+  return dragChildrenKeys;
 }
 
 export function isLastChild<TreeDataType extends BasicDataNode = DataNode>(
   treeNodeEntity: DataEntity<TreeDataType>,
 ) {
   if (treeNodeEntity.parent) {
-    const posArr = posToArr(treeNodeEntity.pos)
-    return Number(posArr[posArr.length - 1]) === treeNodeEntity.parent.children.length - 1
+    const posArr = posToArr(treeNodeEntity.pos);
+    return Number(posArr[posArr.length - 1]) === treeNodeEntity.parent.children.length - 1;
   }
-  return false
+  return false;
 }
 
 export function isFirstChild<TreeDataType extends BasicDataNode = DataNode>(
   treeNodeEntity: DataEntity<TreeDataType>,
 ) {
-  const posArr = posToArr(treeNodeEntity.pos)
-  return Number(posArr[posArr.length - 1]) === 0
+  const posArr = posToArr(treeNodeEntity.pos);
+  return Number(posArr[posArr.length - 1]) === 0;
 }
 
 // Only used when drag, not affect SSR.
@@ -108,48 +108,48 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
     dragOverNodeKey: Key;
     dropAllowed: boolean;
   } {
-  const { clientX, clientY } = event
-  const { top, height } = (event.target as HTMLElement).getBoundingClientRect()
+  const { clientX, clientY } = event;
+  const { top, height } = (event.target as HTMLElement).getBoundingClientRect();
   // optional chain for testing
   const horizontalMouseOffset
-    = (direction === 'rtl' ? -1 : 1) * ((startMousePosition?.x || 0) - clientX)
-  const rawDropLevelOffset = (horizontalMouseOffset - 12) / indent
+    = (direction === 'rtl' ? -1 : 1) * ((startMousePosition?.x || 0) - clientX);
+  const rawDropLevelOffset = (horizontalMouseOffset - 12) / indent;
 
   // find abstract drop node by horizontal offset
-  let abstractDropNodeEntity: DataEntity<TreeDataType> = keyEntities[targetNode.eventKey]
+  let abstractDropNodeEntity: DataEntity<TreeDataType> = keyEntities[targetNode.eventKey];
 
   if (clientY < top + height / 2) {
     // first half, set abstract drop node to previous node
     const nodeIndex = flattenedNodes.findIndex(
       flattenedNode => flattenedNode.key === abstractDropNodeEntity.key,
-    )
-    const prevNodeIndex = nodeIndex <= 0 ? 0 : nodeIndex - 1
-    const prevNodeKey = flattenedNodes[prevNodeIndex].key
-    abstractDropNodeEntity = keyEntities[prevNodeKey]
+    );
+    const prevNodeIndex = nodeIndex <= 0 ? 0 : nodeIndex - 1;
+    const prevNodeKey = flattenedNodes[prevNodeIndex].key;
+    abstractDropNodeEntity = keyEntities[prevNodeKey];
   }
 
-  const initialAbstractDropNodeKey = abstractDropNodeEntity.key
+  const initialAbstractDropNodeKey = abstractDropNodeEntity.key;
 
-  const abstractDragOverEntity = abstractDropNodeEntity
-  const dragOverNodeKey = abstractDropNodeEntity.key
+  const abstractDragOverEntity = abstractDropNodeEntity;
+  const dragOverNodeKey = abstractDropNodeEntity.key;
 
-  let dropPosition: -1 | 0 | 1 = 0
-  let dropLevelOffset = 0
+  let dropPosition: -1 | 0 | 1 = 0;
+  let dropLevelOffset = 0;
 
   // Only allow cross level drop when dragging on a non-expanded node
   if (!expandKeysSet.has(initialAbstractDropNodeKey)) {
     for (let i = 0; i < rawDropLevelOffset; i += 1) {
       if (isLastChild(abstractDropNodeEntity)) {
-        abstractDropNodeEntity = abstractDropNodeEntity.parent
-        dropLevelOffset += 1
+        abstractDropNodeEntity = abstractDropNodeEntity.parent;
+        dropLevelOffset += 1;
       } else {
-        break
+        break;
       }
     }
   }
-  const abstractDragDataNode = dragNode.eventData
-  const abstractDropDataNode = abstractDropNodeEntity.node
-  let dropAllowed = true
+  const abstractDragDataNode = dragNode.eventData;
+  const abstractDropDataNode = abstractDropNodeEntity.node;
+  let dropAllowed = true;
   if (
     isFirstChild(abstractDropNodeEntity)
     && abstractDropNodeEntity.level === 0
@@ -162,7 +162,7 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
     && abstractDropNodeEntity.key === targetNode.eventKey
   ) {
     // first half of first node in first level
-    dropPosition = -1
+    dropPosition = -1;
   } else if ((abstractDragOverEntity.children || []).length && expandKeysSet.has(dragOverNodeKey)) {
     // drop on expanded node
     // only allow drop inside
@@ -173,10 +173,10 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
         dropPosition: 0,
       })
     ) {
-      dropPosition = 0
+      dropPosition = 0;
     }
     else {
-      dropAllowed = false
+      dropAllowed = false;
     }
   } else if (dropLevelOffset === 0) {
     if (rawDropLevelOffset > -1.5) {
@@ -191,10 +191,10 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
           dropPosition: 1,
         })
       ) {
-        dropPosition = 1
+        dropPosition = 1;
       }
       else {
-        dropAllowed = false
+        dropAllowed = false;
       }
     } else {
       // | Node     | <- abstractDropNode
@@ -211,7 +211,7 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
           dropPosition: 0,
         })
       ) {
-        dropPosition = 0
+        dropPosition = 0;
       }
       else if (
         allowDrop({
@@ -220,10 +220,10 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
           dropPosition: 1,
         })
       ) {
-        dropPosition = 1
+        dropPosition = 1;
       }
       else {
-        dropAllowed = false
+        dropAllowed = false;
       }
     }
   } else {
@@ -239,10 +239,10 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
         dropPosition: 1,
       })
     ) {
-      dropPosition = 1
+      dropPosition = 1;
     }
     else {
-      dropAllowed = false
+      dropAllowed = false;
     }
   }
 
@@ -254,7 +254,7 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
     dragOverNodeKey,
     dropContainerKey: dropPosition === 0 ? null : abstractDropNodeEntity.parent?.key || null,
     dropAllowed,
-  }
+  };
 }
 
 /**
@@ -264,16 +264,16 @@ export function calcDropPosition<TreeDataType extends BasicDataNode = DataNode>(
  * @returns [string]
  */
 export function calcSelectedKeys(selectedKeys: Key[], props: TreeProps) {
-  if (!selectedKeys) return undefined
+  if (!selectedKeys) return undefined;
 
-  const { multiple } = props
+  const { multiple } = props;
   if (multiple)
-    return selectedKeys.slice()
+    return selectedKeys.slice();
 
   if (selectedKeys.length)
-    return [selectedKeys[0]]
+    return [selectedKeys[0]];
 
-  return selectedKeys
+  return selectedKeys;
 }
 
 /**
@@ -281,27 +281,27 @@ export function calcSelectedKeys(selectedKeys: Key[], props: TreeProps) {
  */
 export function parseCheckedKeys(keys: Key[] | { checked: Key[]; halfChecked: Key[] }) {
   if (!keys)
-    return null
+    return null;
 
   // Convert keys to object format
-  let keyProps
+  let keyProps;
   if (Array.isArray(keys)) {
     // [Legacy] Follow the api doc
     keyProps = {
       checkedKeys: keys,
       halfCheckedKeys: undefined,
-    }
+    };
   } else if (typeof keys === 'object') {
     keyProps = {
       checkedKeys: keys.checked || undefined,
       halfCheckedKeys: keys.halfChecked || undefined,
-    }
+    };
   } else {
-    warning(false, '`checkedKeys` is not an array or an object')
-    return null
+    warning(false, '`checkedKeys` is not an array or an object');
+    return null;
   }
 
-  return keyProps
+  return keyProps;
 }
 
 /**
@@ -310,27 +310,27 @@ export function parseCheckedKeys(keys: Key[] | { checked: Key[]; halfChecked: Ke
  * @param keyEntities
  */
 export function conductExpandParent(keyList: Key[], keyEntities: Record<Key, DataEntity>): Key[] {
-  const expandedKeys = new Set<Key>()
+  const expandedKeys = new Set<Key>();
 
   function conductUp(key: Key) {
-    if (expandedKeys.has(key)) return
+    if (expandedKeys.has(key)) return;
 
-    const entity = keyEntities[key]
-    if (!entity) return
+    const entity = keyEntities[key];
+    if (!entity) return;
 
-    expandedKeys.add(key)
+    expandedKeys.add(key);
 
-    const { parent, node } = entity
+    const { parent, node } = entity;
 
-    if (node.disabled) return
+    if (node.disabled) return;
 
     if (parent)
-      conductUp(parent.key)
+      conductUp(parent.key);
   }
 
   (keyList || []).forEach((key) => {
-    conductUp(key)
-  })
+    conductUp(key);
+  });
 
-  return [...expandedKeys]
+  return [...expandedKeys];
 }

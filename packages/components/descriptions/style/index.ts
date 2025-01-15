@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent, textEllipsis } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent, textEllipsis } from '@antdv/theme';
 
 interface DescriptionsToken extends FullToken<'Descriptions'> {
   descriptionsTitleMarginBottom: number
@@ -20,7 +20,7 @@ function genBorderedStyle(token: DescriptionsToken): CSSObject {
     descriptionsDefaultPadding,
     descriptionsMiddlePadding,
     descriptionsBg,
-  } = token
+  } = token;
   return {
     [`&${componentCls}-bordered`]: {
       [`${componentCls}-view`]: {
@@ -60,7 +60,7 @@ function genBorderedStyle(token: DescriptionsToken): CSSObject {
         },
       },
     },
-  }
+  };
 }
 
 const genDescriptionStyles: GenerateStyle<DescriptionsToken> = (token: DescriptionsToken) => {
@@ -71,7 +71,7 @@ const genDescriptionStyles: GenerateStyle<DescriptionsToken> = (token: Descripti
     descriptionsItemLabelColonMarginRight,
     descriptionsItemLabelColonMarginLeft,
     descriptionsTitleMarginBottom,
-  } = token
+  } = token;
   return {
     [componentCls]: {
       ...resetComponent(token),
@@ -176,19 +176,19 @@ const genDescriptionStyles: GenerateStyle<DescriptionsToken> = (token: Descripti
         },
       },
     },
-  }
-}
+  };
+};
 // ============================== Export ==============================
 export default genComponentStyleHook('Descriptions', (token) => {
-  const descriptionsBg = token.colorFillAlter
-  const descriptionsTitleMarginBottom = token.fontSizeSM * token.lineHeightSM
-  const descriptionsExtraColor = token.colorText
-  const descriptionsSmallPadding = `${token.paddingXS}px ${token.padding}px`
-  const descriptionsDefaultPadding = `${token.padding}px ${token.paddingLG}px`
-  const descriptionsMiddlePadding = `${token.paddingSM}px ${token.paddingLG}px`
-  const descriptionItemPaddingBottom = token.padding
-  const descriptionsItemLabelColonMarginRight = token.marginXS
-  const descriptionsItemLabelColonMarginLeft = token.marginXXS / 2
+  const descriptionsBg = token.colorFillAlter;
+  const descriptionsTitleMarginBottom = token.fontSizeSM * token.lineHeightSM;
+  const descriptionsExtraColor = token.colorText;
+  const descriptionsSmallPadding = `${token.paddingXS}px ${token.padding}px`;
+  const descriptionsDefaultPadding = `${token.padding}px ${token.paddingLG}px`;
+  const descriptionsMiddlePadding = `${token.paddingSM}px ${token.paddingLG}px`;
+  const descriptionItemPaddingBottom = token.padding;
+  const descriptionsItemLabelColonMarginRight = token.marginXS;
+  const descriptionsItemLabelColonMarginLeft = token.marginXXS / 2;
 
   const descriptionToken = mergeToken<DescriptionsToken>(token, {
     descriptionsBg,
@@ -200,7 +200,7 @@ export default genComponentStyleHook('Descriptions', (token) => {
     descriptionsMiddlePadding,
     descriptionsItemLabelColonMarginRight,
     descriptionsItemLabelColonMarginLeft,
-  })
+  });
 
-  return [genDescriptionStyles(descriptionToken)]
-})
+  return [genDescriptionStyles(descriptionToken)];
+});

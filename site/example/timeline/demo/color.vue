@@ -17,7 +17,7 @@ Set the color of circles. `green` means completed or success status, `red` means
 </docs>
 
 <script lang="ts" setup>
-  import { SmileOutlined } from '@ant-design/icons-vue'
+  import { SmileOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

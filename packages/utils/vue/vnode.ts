@@ -1,11 +1,11 @@
-import type { Slots, VNode, VNodeArrayChildren, VNodeProps } from 'vue'
-import type { RefObject } from './createRef'
-import { cloneVNode, Comment, Fragment, isVNode, render as VueRender } from 'vue'
-import { devWarning } from '../log'
-import { filterEmpty } from './props'
+import type { Slots, VNode, VNodeArrayChildren, VNodeProps } from 'vue';
+import type { RefObject } from './createRef';
+import { cloneVNode, Comment, Fragment, isVNode, render as VueRender } from 'vue';
+import { devWarning } from '../log';
+import { filterEmpty } from './props';
 
 type NodeProps = Record<string, any> &
-  Omit<VNodeProps, 'ref'> & { ref?: VNodeProps['ref'] | RefObject }
+  Omit<VNodeProps, 'ref'> & { ref?: VNodeProps['ref'] | RefObject };
 
 export function cloneElement<T, U>(
   vnode: VNode<T, U> | Array<VNode<T, U>>,
@@ -13,23 +13,23 @@ export function cloneElement<T, U>(
   override = true,
   mergeRef = false,
 ): VNode<T, U> {
-  let ele = vnode
+  let ele = vnode;
   if (Array.isArray(vnode))
-    ele = filterEmpty(vnode)[0]
+    ele = filterEmpty(vnode)[0];
 
   if (!ele)
-    return null
+    return null;
 
-  const node = cloneVNode(ele as VNode<T, U>, nodeProps as any, mergeRef)
+  const node = cloneVNode(ele as VNode<T, U>, nodeProps as any, mergeRef);
 
   // cloneVNode内部是合并属性，这里改成覆盖属性
-  node.props = (override ? { ...node.props, ...nodeProps } : node.props) as any
-  devWarning(typeof node.props.class !== 'object', 'class must be string')
-  return node
+  node.props = (override ? { ...node.props, ...nodeProps } : node.props) as any;
+  devWarning(typeof node.props.class !== 'object', 'class must be string');
+  return node;
 }
 
 export function cloneVNodes(vnodes, nodeProps = {}, override = true) {
-  return vnodes.map(vnode => cloneElement(vnode, nodeProps, override))
+  return vnodes.map(vnode => cloneElement(vnode, nodeProps, override));
 }
 
 export function deepCloneElement<T, U>(
@@ -39,34 +39,34 @@ export function deepCloneElement<T, U>(
   mergeRef = false,
 ) {
   if (Array.isArray(vnode)) {
-    return vnode.map(item => deepCloneElement(item, nodeProps, override, mergeRef))
+    return vnode.map(item => deepCloneElement(item, nodeProps, override, mergeRef));
   } else {
     // 需要判断是否为vnode方可进行clone操作
     if (!isVNode(vnode))
-      return vnode
+      return vnode;
 
-    const cloned = cloneElement(vnode, nodeProps, override, mergeRef)
+    const cloned = cloneElement(vnode, nodeProps, override, mergeRef);
     if (Array.isArray(cloned.children))
-      cloned.children = deepCloneElement(cloned.children as Array<VNode<T, U>>)
+      cloned.children = deepCloneElement(cloned.children as Array<VNode<T, U>>);
 
-    return cloned
+    return cloned;
   }
 }
 
 export function triggerVNodeUpdate(vm: VNode, attrs: Record<string, any>, dom: any) {
-  VueRender(cloneVNode(vm, { ...attrs }), dom)
+  VueRender(cloneVNode(vm, { ...attrs }), dom);
 }
 
 function ensureValidVNode(slot: VNodeArrayChildren | null) {
   return (slot || []).some((child) => {
-    if (!isVNode(child)) return true
-    if (child.type === Comment) return false
+    if (!isVNode(child)) return true;
+    if (child.type === Comment) return false;
     if (child.type === Fragment && !ensureValidVNode(child.children as VNodeArrayChildren))
-      return false
-    return true
+      return false;
+    return true;
   })
     ? slot
-    : null
+    : null;
 }
 
 export function customRenderSlot(
@@ -75,9 +75,9 @@ export function customRenderSlot(
   props: Record<string, unknown>,
   fallback?: () => VNodeArrayChildren,
 ) {
-  const slot = slots[name]?.(props)
+  const slot = slots[name]?.(props);
   if (ensureValidVNode(slot))
-    return slot
+    return slot;
 
-  return fallback?.()
+  return fallback?.();
 }

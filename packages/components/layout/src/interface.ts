@@ -1,4 +1,4 @@
-import type { Ref } from 'vue'
+import type { Ref } from 'vue';
 
 export interface GeneratorArgument {
   suffixCls: string
@@ -6,8 +6,8 @@ export interface GeneratorArgument {
   name: string
 }
 
-export type SiderCollapsed = Ref<boolean>
-export type CollapseType = 'clickTrigger' | 'responsive'
+export type SiderCollapsed = Ref<boolean>;
+export type CollapseType = 'clickTrigger' | 'responsive';
 export interface SiderContextProps {
   sCollapsed?: boolean
   collapsedWidth?: string | number

@@ -1,10 +1,10 @@
-import type { VueNode } from '@antdv/types'
-import type { GenerateConfig } from '../../generate'
-import type { Locale } from '../../interface'
-import useMergeProps from '../../hooks/useMergeProps'
-import { useInjectPanel } from '../../PanelContext'
-import { formatValue } from '../../utils/dateUtil'
-import Header from '../Header'
+import type { VueNode } from '@antdv/types';
+import type { GenerateConfig } from '../../generate';
+import type { Locale } from '../../interface';
+import useMergeProps from '../../hooks/useMergeProps';
+import { useInjectPanel } from '../../PanelContext';
+import { formatValue } from '../../utils/dateUtil';
+import Header from '../Header';
 
 export interface DateHeaderProps<DateType> {
   prefixCls: string;
@@ -22,7 +22,7 @@ export interface DateHeaderProps<DateType> {
 }
 
 function DateHeader<DateType>(_props: DateHeaderProps<DateType>) {
-  const props = useMergeProps(_props)
+  const props = useMergeProps(_props);
   const {
     prefixCls,
     generateConfig,
@@ -34,21 +34,21 @@ function DateHeader<DateType>(_props: DateHeaderProps<DateType>) {
     onPrevYear,
     onYearClick,
     onMonthClick,
-  } = props
+  } = props;
 
-  const { hideHeader } = useInjectPanel()
+  const { hideHeader } = useInjectPanel();
   if (hideHeader.value)
-    return null
+    return null;
 
-  const headerPrefixCls = `${prefixCls}-header`
+  const headerPrefixCls = `${prefixCls}-header`;
 
   const monthsLocale: string[]
     = locale.shortMonths
     || (generateConfig.locale.getShortMonths
       ? generateConfig.locale.getShortMonths(locale.locale)
-      : [])
+      : []);
 
-  const month = generateConfig.getMonth(viewDate)
+  const month = generateConfig.getMonth(viewDate);
 
   // =================== Month & Year ===================
   const yearNode: VueNode = (
@@ -65,7 +65,7 @@ function DateHeader<DateType>(_props: DateHeaderProps<DateType>) {
         generateConfig,
       })}
     </button>
-  )
+  );
   const monthNode: VueNode = (
     <button
       type="button"
@@ -76,15 +76,15 @@ function DateHeader<DateType>(_props: DateHeaderProps<DateType>) {
     >
       {locale.monthFormat
         ? formatValue(viewDate, {
-          locale,
-          format: locale.monthFormat,
-          generateConfig,
-        })
+            locale,
+            format: locale.monthFormat,
+            generateConfig,
+          })
         : monthsLocale[month]}
     </button>
-  )
+  );
 
-  const monthYearNodes = locale.monthBeforeYear ? [monthNode, yearNode] : [yearNode, monthNode]
+  const monthYearNodes = locale.monthBeforeYear ? [monthNode, yearNode] : [yearNode, monthNode];
 
   return (
     <Header
@@ -97,9 +97,9 @@ function DateHeader<DateType>(_props: DateHeaderProps<DateType>) {
     >
       {monthYearNodes}
     </Header>
-  )
+  );
 }
 
-DateHeader.displayName = 'DateHeader'
-DateHeader.inheritAttrs = false
-export default DateHeader
+DateHeader.displayName = 'DateHeader';
+DateHeader.inheritAttrs = false;
+export default DateHeader;

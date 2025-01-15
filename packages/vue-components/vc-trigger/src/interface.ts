@@ -1,11 +1,11 @@
-import type { VueNode } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes, PropType, TransitionProps } from 'vue'
-import { PropTypes } from '@antdv/utils'
+import type { VueNode } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes, PropType, TransitionProps } from 'vue';
+import { PropTypes } from '@antdv/utils';
 
 /** Two char of 't' 'b' 'c' 'l' 'r'. Example: 'lt' */
-export type AlignPoint = string
+export type AlignPoint = string;
 
-export type OffsetType = number | `${number}%`
+export type OffsetType = number | `${number}%`;
 export interface AlignType {
   /**
    * move point of source node to align with point of target node.
@@ -64,15 +64,15 @@ export interface AlignType {
   ignoreShake?: boolean;
 }
 
-export type BuildInPlacements = Record<string, AlignType>
+export type BuildInPlacements = Record<string, AlignType>;
 
-export type StretchType = string
+export type StretchType = string;
 
-export type ActionType = string
+export type ActionType = string;
 
-export type AnimationType = string
+export type AnimationType = string;
 
-export type TransitionNameType = string
+export type TransitionNameType = string;
 
 export interface Point {
   pageX: number;
@@ -92,14 +92,14 @@ export interface MobileConfig {
 }
 
 function returnEmptyString() {
-  return ''
+  return '';
 }
 
 function returnDocument(element) {
   if (element)
-    return element.ownerDocument
+    return element.ownerDocument;
 
-  return window.document
+  return window.document;
 }
 
 export function noop() {}
@@ -143,7 +143,7 @@ export function triggerProps() {
     autoDestroy: { type: Boolean, default: false },
     mobile: Object,
     getTriggerDOMNode: Function as PropType<(d?: HTMLElement) => HTMLElement>,
-  }
+  };
 }
 
-export type TriggerProps = Partial<ExtractPropTypes<ReturnType<typeof triggerProps>>>
+export type TriggerProps = Partial<ExtractPropTypes<ReturnType<typeof triggerProps>>>;

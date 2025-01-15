@@ -18,18 +18,18 @@ Asynchronously close a popconfirm when the OK button is pressed. For example, yo
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
+  import { message } from '@antdv/ui';
 
   function confirm(e: MouseEvent) {
-    console.log(e)
+    console.log(e);
     return new Promise((resolve) => {
-      setTimeout(() => resolve(true), 3000)
-    })
+      setTimeout(() => resolve(true), 3000);
+    });
   }
 
   function cancel(e: MouseEvent) {
-    console.log(e)
-    message.error('Click on No')
+    console.log(e);
+    message.error('Click on No');
   }
 </script>
 

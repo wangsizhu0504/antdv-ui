@@ -1,4 +1,4 @@
-import type { Breakpoint } from '@antdv/types'
+import type { Breakpoint } from '@antdv/types';
 
 export const DEFAULT_COLUMN_MAP: Partial<Record<Breakpoint, number>> = {
   xxxl: 3,
@@ -8,4 +8,4 @@ export const DEFAULT_COLUMN_MAP: Partial<Record<Breakpoint, number>> = {
   md: 3,
   sm: 2,
   xs: 1,
-}
+};

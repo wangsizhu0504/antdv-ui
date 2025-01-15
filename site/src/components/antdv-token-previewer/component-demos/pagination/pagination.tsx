@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Pagination, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Pagination, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -10,14 +10,14 @@ const Demo = defineComponent({
 
         <Pagination simple />
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorPrimary', 'colorPrimaryHover', 'colorBgContainer'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

@@ -1,9 +1,9 @@
-import type { PropType } from 'vue'
-import type { FilterMode } from '../FilterPanel'
-import type { Theme, TokenName } from '../interface'
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
-import { Breadcrumb, Segmented, Switch } from '@antdv/ui'
-import { classNames } from '@antdv/utils'
+import type { PropType } from 'vue';
+import type { FilterMode } from '../FilterPanel';
+import type { Theme, TokenName } from '../interface';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue';
+import { Breadcrumb, Segmented, Switch } from '@antdv/ui';
+import { classNames } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -11,14 +11,14 @@ import {
   toRefs,
   watch,
   watchEffect,
-} from 'vue'
-import makeStyle from '../utils/makeStyle'
-import { getRelatedComponents } from '../utils/statistic'
-import { getComponentDemoId } from './ComponentCard'
-import ComponentDemoGroup from './ComponentDemoGroup'
-import ComponentTree from './ComponentTree'
+} from 'vue';
+import makeStyle from '../utils/makeStyle';
+import { getRelatedComponents } from '../utils/statistic';
+import { getComponentDemoId } from './ComponentCard';
+import ComponentDemoGroup from './ComponentDemoGroup';
+import ComponentTree from './ComponentTree';
 
-const BREADCRUMB_HEIGHT = 40
+const BREADCRUMB_HEIGHT = 40;
 
 const useStyle = makeStyle('ComponentPanel', token => ({
   '.component-panel': {
@@ -109,7 +109,7 @@ const useStyle = makeStyle('ComponentPanel', token => ({
       flex: 1,
     },
   },
-}))
+}));
 
 export const antdComponents = {
   'General': ['Button', 'Icon', 'Typography'],
@@ -168,7 +168,7 @@ export const antdComponents = {
     'Spin',
   ],
   'Other': ['Anchor'],
-}
+};
 
 export interface ComponentPanelProps {
   themes: Theme[]
@@ -187,28 +187,28 @@ const Index = defineComponent({
     onTokenClick: { type: Function as PropType<(token: TokenName) => void> },
   },
   setup(props, { attrs }) {
-    const { themes, selectedTokens, filterMode } = toRefs(props)
+    const { themes, selectedTokens, filterMode } = toRefs(props);
 
-    const [wrapSSR, hashId] = useStyle()
-    const showSide = ref<boolean>(true)
-    const demosRef = ref<HTMLDivElement>()
-    const componentSize = ref<'large' | 'small' | 'middle'>('middle')
-    const componentDisabled = ref<boolean>(false)
-    const activeComponent = ref<string | undefined>()
-    const showBreadcrumb = ref<boolean>(false)
+    const [wrapSSR, hashId] = useStyle();
+    const showSide = ref<boolean>(true);
+    const demosRef = ref<HTMLDivElement>();
+    const componentSize = ref<'large' | 'small' | 'middle'>('middle');
+    const componentDisabled = ref<boolean>(false);
+    const activeComponent = ref<string | undefined>();
+    const showBreadcrumb = ref<boolean>(false);
 
     const relatedComponents = computed(() => {
-      return selectedTokens.value ? getRelatedComponents(selectedTokens.value) : []
-    })
+      return selectedTokens.value ? getRelatedComponents(selectedTokens.value) : [];
+    });
 
     watch(selectedTokens, () => {
-      showSide.value = true
-    })
+      showSide.value = true;
+    });
 
     watchEffect(() => {
       const handleScroll = () => {
         if (demosRef.value) {
-          showBreadcrumb.value = demosRef.value.scrollTop > 10
+          showBreadcrumb.value = demosRef.value.scrollTop > 10;
           for (let i = 0; i < demosRef.value.children.length; i++) {
             if (
               demosRef.value.children[i].getBoundingClientRect().top
@@ -216,19 +216,19 @@ const Index = defineComponent({
                 - demosRef.value.getBoundingClientRect().top
               > BREADCRUMB_HEIGHT
             ) {
-              activeComponent.value = demosRef.value.children[i]?.id.split('-').pop()
-              break
+              activeComponent.value = demosRef.value.children[i]?.id.split('-').pop();
+              break;
             }
           }
         }
-      }
+      };
 
-      demosRef.value?.addEventListener('scroll', handleScroll)
-      const demosWrapper = demosRef.value
+      demosRef.value?.addEventListener('scroll', handleScroll);
+      const demosWrapper = demosRef.value;
       return () => {
-        demosWrapper?.removeEventListener('scroll', handleScroll)
-      }
-    })
+        demosWrapper?.removeEventListener('scroll', handleScroll);
+      };
+    });
 
     const scrollToComponent = (component: string) => {
       demosRef.value?.scrollTo({
@@ -236,21 +236,21 @@ const Index = defineComponent({
           (demosRef.value?.querySelector<HTMLElement>(`#${getComponentDemoId(component)}`)
             ?.offsetTop || 0) - 38,
         behavior: 'smooth',
-      })
-    }
+      });
+    };
 
     const activeComponentCategory = computed(() => {
       if (!activeComponent.value)
-        return undefined
+        return undefined;
 
       const key = Object.entries(antdComponents).find(([, value]) =>
         value.includes(activeComponent.value!),
-      )?.[0]
+      )?.[0];
       if (key)
-        return (antdComponents as any)[key]
+        return (antdComponents as any)[key];
       else
-        return undefined
-    })
+        return undefined;
+    });
 
     return () => {
       const demoGroup = () => (
@@ -263,7 +263,7 @@ const Index = defineComponent({
           selectedTokens={selectedTokens.value}
           onTokenClick={props.onTokenClick}
         />
-      )
+      );
       return wrapSSR(
         <div {...attrs} class={classNames('component-panel', hashId.value, attrs.class)}>
           <div
@@ -278,9 +278,9 @@ const Index = defineComponent({
               components={antdComponents}
               onSelect={(component) => {
                 if (component.startsWith('type-'))
-                  scrollToComponent((antdComponents as any)[component.split('-')[1]][0])
+                  scrollToComponent((antdComponents as any)[component.split('-')[1]][0]);
                 else
-                  scrollToComponent(component)
+                  scrollToComponent(component);
               }}
             />
           </div>
@@ -342,9 +342,9 @@ const Index = defineComponent({
             </div>
           </div>
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default Index
+export default Index;

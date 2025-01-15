@@ -1,5 +1,5 @@
-import type { TableLocale } from '@antdv/locale'
-import type { Breakpoint, Key, SizeType, VueNode } from '@antdv/types'
+import type { TableLocale } from '@antdv/locale';
+import type { Breakpoint, Key, SizeType, VueNode } from '@antdv/types';
 import type {
   DefaultRecordType,
   ExpandableConfig,
@@ -7,33 +7,33 @@ import type {
   GetRowKey,
   ColumnType as RcColumnType,
   RenderedCell as RcRenderedCell,
-} from '@antdv/vue-components/vc-table/src/interface'
-import type { TableProps as VcTableProps } from '@antdv/vue-components/vc-table/src/Table'
-import type { ComputedRef, CSSProperties, Ref, VNodeArrayChildren } from 'vue'
-import type { CheckboxProps } from '../../checkbox'
-import type { PaginationProps } from '../../pagination'
+} from '@antdv/vue-components/vc-table/src/interface';
+import type { TableProps as VcTableProps } from '@antdv/vue-components/vc-table/src/Table';
+import type { ComputedRef, CSSProperties, Ref, VNodeArrayChildren } from 'vue';
+import type { CheckboxProps } from '../../checkbox';
+import type { PaginationProps } from '../../pagination';
 
-import type { SpinProps } from '../../spin'
-import type { TooltipProps } from '../../tooltip'
-import type { INTERNAL_SELECTION_ITEM } from './hooks/useSelection'
-import { tuple } from '@antdv/utils'
+import type { SpinProps } from '../../spin';
+import type { TooltipProps } from '../../tooltip';
+import type { INTERNAL_SELECTION_ITEM } from './hooks/useSelection';
+import { tuple } from '@antdv/utils';
 
 // import { TableAction } from './Table';
 
-export type { ExpandableConfig, GetRowKey }
+export type { ExpandableConfig, GetRowKey };
 
-export type RowSelectionType = 'checkbox' | 'radio'
+export type RowSelectionType = 'checkbox' | 'radio';
 
-export type SelectionItemSelectFn = (currentRowKeys: Key[]) => void
+export type SelectionItemSelectFn = (currentRowKeys: Key[]) => void;
 
-export type ExpandType = null | 'row' | 'nest'
+export type ExpandType = null | 'row' | 'nest';
 
-export type SortOrder = 'descend' | 'ascend' | null
+export type SortOrder = 'descend' | 'ascend' | null;
 
-const TableActions = tuple('paginate', 'sort', 'filter')
-export type TableAction = (typeof TableActions)[number]
+const TableActions = tuple('paginate', 'sort', 'filter');
+export type TableAction = (typeof TableActions)[number];
 
-export type CompareFn<T> = (a: T, b: T, sortOrder?: SortOrder) => number
+export type CompareFn<T> = (a: T, b: T, sortOrder?: SortOrder) => number;
 
 export interface ColumnFilterItem {
   text: VueNode
@@ -50,11 +50,11 @@ export interface ColumnTitleProps<RecordType> {
   filters?: Record<string, FilterValue>
 }
 
-export type FilterValue = Array<Key | boolean>
-export type FilterKey = Key[] | null
+export type FilterValue = Array<Key | boolean>;
+export type FilterKey = Key[] | null;
 export type FilterSearchType<RecordType = Record<string, any>> =
   | boolean
-  | ((input: string, record: RecordType) => boolean)
+  | ((input: string, record: RecordType) => boolean);
 export interface FilterConfirmProps {
   closeDropdown: boolean
 }
@@ -122,7 +122,7 @@ export interface TableColumnGroupType<RecordType> extends Omit<TableColumnType<R
 }
 
 export type TableColumnsType<RecordType = DefaultRecordType> = Array< | TableColumnGroupType<RecordType>
-  | TableColumnType<RecordType>>
+  | TableColumnType<RecordType>>;
 
 export interface SelectionItem {
   key: string
@@ -135,7 +135,7 @@ export type SelectionSelectFn<T> = (
   selected: boolean,
   selectedRows: T[],
   nativeEvent: Event,
-) => void
+) => void;
 
 export interface TableRowSelection<T = DefaultRecordType> {
   /** Keep the selection keys in list even the key not exist in `dataSource` anymore */
@@ -168,7 +168,7 @@ export interface TableRowSelection<T = DefaultRecordType> {
 
 export type TransformColumns<RecordType> = (
   columns: TableColumnsType<RecordType>,
-) => TableColumnsType<RecordType>
+) => TableColumnsType<RecordType>;
 
 export interface TableCurrentDataSource<RecordType = DefaultRecordType> {
   currentDataSource: RecordType[]
@@ -182,7 +182,7 @@ export interface SorterResult<RecordType = DefaultRecordType> {
   columnKey?: Key
 }
 
-export type GetPopupContainer = (triggerNode: HTMLElement) => HTMLElement
+export type GetPopupContainer = (triggerNode: HTMLElement) => HTMLElement;
 
 type TablePaginationPosition =
   | 'topLeft'
@@ -190,7 +190,7 @@ type TablePaginationPosition =
   | 'topRight'
   | 'bottomLeft'
   | 'bottomCenter'
-  | 'bottomRight'
+  | 'bottomRight';
 
 export interface TablePaginationConfig extends PaginationProps {
   position?: TablePaginationPosition[]
@@ -239,7 +239,7 @@ export interface ContextSlots {
   [key: string]: ((...args: any[]) => any) | undefined
 }
 
-export type SlotsContextProps = ComputedRef<ContextSlots>
+export type SlotsContextProps = ComputedRef<ContextSlots>;
 export interface DefaultExpandIconProps<RecordType> {
   prefixCls: string
   onExpand: (record: RecordType, e: MouseEvent) => void
@@ -302,7 +302,7 @@ export interface TableProps<RecordType = DefaultRecordType>
   showSorterTooltip?: boolean | TooltipProps
 }
 
-export type TableColumnProps<RecordType = unknown> = TableColumnType<RecordType>
+export type TableColumnProps<RecordType = unknown> = TableColumnType<RecordType>;
 
 export interface FilterState<RecordType = DefaultRecordType> {
   column: TableColumnType<RecordType>
@@ -310,10 +310,10 @@ export interface FilterState<RecordType = DefaultRecordType> {
   filteredKeys?: FilterKey
   forceFiltered?: boolean
 }
-type ColumnTitleNode = VueNode | VNodeArrayChildren
+type ColumnTitleNode = VueNode | VNodeArrayChildren;
 export type ColumnTitle<RecordType> =
   | ColumnTitleNode
-  | ((props: ColumnTitleProps<RecordType>) => ColumnTitleNode)
+  | ((props: ColumnTitleProps<RecordType>) => ColumnTitleNode);
 
 export interface FilterConfig<RecordType> {
   prefixCls: Ref<string>

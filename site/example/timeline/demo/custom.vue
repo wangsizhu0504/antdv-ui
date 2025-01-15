@@ -17,7 +17,7 @@ Set a node as an icon or other custom element.
 </docs>
 
 <script lang="ts" setup>
-  import { ClockCircleOutlined } from '@ant-design/icons-vue'
+  import { ClockCircleOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

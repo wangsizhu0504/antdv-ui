@@ -1,12 +1,12 @@
-import type { RadioChangeEvent, RadioGroupChildOption } from './interface'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent, nextTick, ref, watch } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { useInjectFormItemContext } from '../../form/src/FormItemContext'
-import useStyle from '../style'
-import { useProvideRadioGroupContext } from './context'
-import { radioGroupProps } from './props'
-import Radio from './Radio'
+import type { RadioChangeEvent, RadioGroupChildOption } from './interface';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent, nextTick, ref, watch } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { useInjectFormItemContext } from '../../form/src/FormItemContext';
+import useStyle from '../style';
+import { useProvideRadioGroupContext } from './context';
+import { radioGroupProps } from './props';
+import Radio from './Radio';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -15,40 +15,40 @@ export default defineComponent({
   props: radioGroupProps(),
   // emits: ['update:value', 'change'],
   setup(props, { slots, emit, attrs }) {
-    const formItemContext = useInjectFormItemContext()
-    const { prefixCls, direction, size } = useConfigInject('radio', props)
+    const formItemContext = useInjectFormItemContext();
+    const { prefixCls, direction, size } = useConfigInject('radio', props);
 
     // Style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
-    const stateValue = ref(props.value)
-    const updatingValue = ref<boolean>(false)
+    const stateValue = ref(props.value);
+    const updatingValue = ref<boolean>(false);
     watch(
       () => props.value,
       (val) => {
-        stateValue.value = val
-        updatingValue.value = false
+        stateValue.value = val;
+        updatingValue.value = false;
       },
-    )
+    );
 
     const onRadioChange = (ev: RadioChangeEvent) => {
-      const lastValue = stateValue.value
-      const { value } = ev.target
+      const lastValue = stateValue.value;
+      const { value } = ev.target;
 
       if (!('value' in props))
-        stateValue.value = value
+        stateValue.value = value;
 
       // nextTick for https://github.com/vueComponent/ant-design-vue/issues/1280
       if (!updatingValue.value && value !== lastValue) {
-        updatingValue.value = true
-        emit('update:value', value)
-        emit('change', ev)
-        formItemContext.onFieldChange()
+        updatingValue.value = true;
+        emit('update:value', value);
+        emit('change', ev);
+        formItemContext.onFieldChange();
       }
       nextTick(() => {
-        updatingValue.value = false
-      })
-    }
+        updatingValue.value = false;
+      });
+    };
 
     useProvideRadioGroupContext({
       onChange: onRadioChange,
@@ -56,12 +56,12 @@ export default defineComponent({
       disabled: computed(() => props.disabled),
       name: computed(() => props.name),
       optionType: computed(() => props.optionType),
-    })
+    });
 
     return () => {
-      const { options, buttonStyle, id = formItemContext.id.value } = props
+      const { options, buttonStyle, id = formItemContext.id.value } = props;
 
-      const groupPrefixCls = `${prefixCls.value}-group`
+      const groupPrefixCls = `${prefixCls.value}-group`;
 
       const classString = classNames(
         groupPrefixCls,
@@ -72,9 +72,9 @@ export default defineComponent({
         },
         attrs.class,
         hashId.value,
-      )
+      );
 
-      let children = null
+      let children = null;
       if (options && options.length > 0) {
         children = options.map((option) => {
           if (typeof option === 'string' || typeof option === 'number') {
@@ -88,9 +88,9 @@ export default defineComponent({
               >
                 {option}
               </Radio>
-            )
+            );
           }
-          const { value, disabled, label } = option as RadioGroupChildOption
+          const { value, disabled, label } = option as RadioGroupChildOption;
           return (
             <Radio
               key={`radio-group-value-options-${value}`}
@@ -101,16 +101,16 @@ export default defineComponent({
             >
               {label}
             </Radio>
-          )
-        })
+          );
+        });
       } else {
-        children = slots.default?.()
+        children = slots.default?.();
       }
       return wrapSSR(
         <div {...attrs} class={classString} id={id}>
           {children}
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

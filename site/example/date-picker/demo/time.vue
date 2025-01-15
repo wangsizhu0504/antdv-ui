@@ -17,24 +17,24 @@ This property provide an additional time selection. When `showTime` is an Object
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
+  import type { Dayjs } from 'dayjs';
 
   function onChange(value: Dayjs, dateString: string) {
-    console.log('Selected Time: ', value)
-    console.log('Formatted Selected Time: ', dateString)
+    console.log('Selected Time: ', value);
+    console.log('Formatted Selected Time: ', dateString);
   }
 
   function onOk(value: Dayjs) {
-    console.log('onOk: ', value)
+    console.log('onOk: ', value);
   }
 
   function onRangeChange(value: [Dayjs, Dayjs], dateString: [string, string]) {
-    console.log('Selected Time: ', value)
-    console.log('Formatted Selected Time: ', dateString)
+    console.log('Selected Time: ', value);
+    console.log('Formatted Selected Time: ', dateString);
   }
 
   function onRangeOk(value: [Dayjs, Dayjs]) {
-    console.log('onOk: ', value)
+    console.log('onOk: ', value);
   }
 </script>
 

@@ -1,12 +1,12 @@
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 // Saves incoming handler to the ref in order to avoid "useCallback hell"
 export function useEventCallback<T>(handler?: (value: T) => void): (value: T) => void {
-  const callbackRef = ref<any>(handler)
+  const callbackRef = ref<any>(handler);
   const fn = ref<any>((value: T) => {
-    callbackRef.value && callbackRef.value(value)
-  })
-  callbackRef.value = handler
+    callbackRef.value && callbackRef.value(value);
+  });
+  callbackRef.value = handler;
 
-  return fn.value
+  return fn.value;
 }

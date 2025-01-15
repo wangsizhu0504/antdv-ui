@@ -1,8 +1,8 @@
-import type { ExtractPropTypes, PropType } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue';
 
-export type BeforeUploadFileType = File | Blob | boolean | string
+export type BeforeUploadFileType = File | Blob | boolean | string;
 
-export type Action = string | ((file: RcFile) => string | PromiseLike<string>)
+export type Action = string | ((file: RcFile) => string | PromiseLike<string>);
 
 export function uploadProps() {
   return {
@@ -46,18 +46,18 @@ export function uploadProps() {
     onMouseenter: Function as PropType<(e: MouseEvent) => void>,
     onMouseleave: Function as PropType<(e: MouseEvent) => void>,
     onClick: Function as PropType<(e: MouseEvent | KeyboardEvent) => void>,
-  }
+  };
 }
 
-export type UploadProps = Partial<ExtractPropTypes<ReturnType<typeof uploadProps>>>
+export type UploadProps = Partial<ExtractPropTypes<ReturnType<typeof uploadProps>>>;
 
 export interface UploadProgressEvent extends Partial<ProgressEvent> {
   percent?: number;
 }
 
-export type UploadRequestMethod = 'POST' | 'PUT' | 'PATCH' | 'post' | 'put' | 'patch'
+export type UploadRequestMethod = 'POST' | 'PUT' | 'PATCH' | 'post' | 'put' | 'patch';
 
-export type UploadRequestHeader = Record<string, string>
+export type UploadRequestHeader = Record<string, string>;
 
 export interface UploadRequestError extends Error {
   status?: number;

@@ -1,14 +1,14 @@
-import { classNames, devWarning, initDefaultProps } from '@antdv/utils'
-import { computed, defineComponent, ref } from 'vue'
-import Badge from '../../badge'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import Tooltip from '../../tooltip'
+import { classNames, devWarning, initDefaultProps } from '@antdv/utils';
+import { computed, defineComponent, ref } from 'vue';
+import Badge from '../../badge';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import Tooltip from '../../tooltip';
 
-import useStyle from '../style'
-import { floatButtonPrefixCls } from './constants'
-import { useInjectFloatButtonGroupContext } from './context'
-import Content from './FloatButtonContent'
-import { floatButtonProps } from './props'
+import useStyle from '../style';
+import { floatButtonPrefixCls } from './constants';
+import { useInjectFloatButtonGroupContext } from './context';
+import Content from './FloatButtonContent';
+import { floatButtonProps } from './props';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -16,15 +16,15 @@ export default defineComponent({
   inheritAttrs: false,
   props: initDefaultProps(floatButtonProps(), { type: 'default', shape: 'circle' }),
   setup(props, { attrs, slots }) {
-    const { prefixCls, direction } = useConfigInject(floatButtonPrefixCls, props)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
-    const { shape: groupShape } = useInjectFloatButtonGroupContext()
+    const { prefixCls, direction } = useConfigInject(floatButtonPrefixCls, props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
+    const { shape: groupShape } = useInjectFloatButtonGroupContext();
 
-    const floatButtonRef = ref<HTMLAnchorElement | HTMLButtonElement>(null)
+    const floatButtonRef = ref<HTMLAnchorElement | HTMLButtonElement>(null);
 
     const mergeShape = computed(() => {
-      return groupShape?.value || props.shape
-    })
+      return groupShape?.value || props.shape;
+    });
 
     return () => {
       const {
@@ -34,7 +34,7 @@ export default defineComponent({
         tooltip,
         badge = {},
         ...restProps
-      } = props
+      } = props;
 
       const classString = classNames(
         prefixCls.value,
@@ -45,7 +45,7 @@ export default defineComponent({
         },
         attrs.class,
         hashId.value,
-      )
+      );
 
       const buttonNode = (
         <Tooltip
@@ -72,14 +72,14 @@ export default defineComponent({
           }}
         >
         </Tooltip>
-      )
+      );
 
       if (process.env.NODE_ENV !== 'production') {
         devWarning(
           !(shape === 'circle' && description),
           'FloatButton',
           'supported only when `shape` is `square`. Due to narrow space for text, short sentence is recommended.',
-        )
+        );
       }
 
       return wrapSSR(
@@ -94,7 +94,7 @@ export default defineComponent({
                 {buttonNode}
               </button>
             ),
-      )
-    }
+      );
+    };
   },
-})
+});

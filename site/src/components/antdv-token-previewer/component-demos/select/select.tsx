@@ -1,8 +1,8 @@
-import type { ComponentDemo } from '../../interface'
-import { Select, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Select, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
-const { Option } = Select
+const { Option } = Select;
 
 function handleChange() {}
 const Demo = defineComponent({
@@ -28,9 +28,9 @@ const Demo = defineComponent({
           <Option value="lucy">Lucy</Option>
         </Select>
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
@@ -43,6 +43,6 @@ const componentDemo: ComponentDemo = {
     'colorBgContainer',
   ],
   key: 'select',
-}
+};
 
-export default componentDemo
+export default componentDemo;

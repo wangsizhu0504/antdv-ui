@@ -16,11 +16,11 @@ Large size tabs are usally used in page header, and small size could be used in 
 </docs>
 
 <script lang="ts" setup>
-  import type { TabsProps } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { TabsProps } from '@antdv/ui';
+  import { ref } from 'vue';
 
-  const size = ref<TabsProps['size']>('small')
-  const activeKey = ref<any>('1')
+  const size = ref<TabsProps['size']>('small');
+  const activeKey = ref<any>('1');
 </script>
 
 <template>

@@ -1,9 +1,9 @@
-import type { ThemeConfig } from '@antdv/ui/es/config-provider'
-import type { PropType } from 'vue'
-import { defineComponent, toRefs } from 'vue'
+import type { ThemeConfig } from '@antdv/ui/es/config-provider';
+import type { PropType } from 'vue';
+import { defineComponent, toRefs } from 'vue';
 
-import getColorBgImg from '../utils/getColorBgImg'
-import getDesignToken from '../utils/getDesignToken'
+import getColorBgImg from '../utils/getColorBgImg';
+import getDesignToken from '../utils/getDesignToken';
 
 export interface TokenPreviewProps {
   theme: ThemeConfig
@@ -19,7 +19,7 @@ const TokenPreview = defineComponent({
     type: { type: String },
   },
   setup(props) {
-    const { theme, tokenName, type } = toRefs(props)
+    const { theme, tokenName, type } = toRefs(props);
 
     return () => {
       if (type.value === 'Color') {
@@ -41,7 +41,7 @@ const TokenPreview = defineComponent({
               }}
             />
           </div>
-        )
+        );
       }
       if (type.value === 'FontSize') {
         return (
@@ -61,7 +61,7 @@ const TokenPreview = defineComponent({
           >
             <span>Aa</span>
           </div>
-        )
+        );
       }
       if (type.value === 'LineHeight') {
         return (
@@ -93,10 +93,10 @@ const TokenPreview = defineComponent({
               Aa
             </span>
           </div>
-        )
+        );
       }
       if (type.value === 'Margin') {
-        const margin = (getDesignToken(theme.value) as any)[tokenName.value]
+        const margin = (getDesignToken(theme.value) as any)[tokenName.value];
         return (
           <div
             style={{
@@ -127,10 +127,10 @@ const TokenPreview = defineComponent({
               />
             </div>
           </div>
-        )
+        );
       }
       if (type.value === 'Padding') {
-        const padding = `${(getDesignToken(theme.value) as any)[tokenName.value]}px`
+        const padding = `${(getDesignToken(theme.value) as any)[tokenName.value]}px`;
         return (
           <div
             style={{
@@ -161,7 +161,7 @@ const TokenPreview = defineComponent({
               />
             </div>
           </div>
-        )
+        );
       }
       if (type.value === 'BorderRadius') {
         return (
@@ -186,7 +186,7 @@ const TokenPreview = defineComponent({
               }}
             />
           </div>
-        )
+        );
       }
       if (type.value === 'BoxShadow') {
         return (
@@ -213,11 +213,11 @@ const TokenPreview = defineComponent({
               }}
             />
           </div>
-        )
+        );
       }
-      return null
-    }
+      return null;
+    };
   },
-})
+});
 
-export default TokenPreview
+export default TokenPreview;

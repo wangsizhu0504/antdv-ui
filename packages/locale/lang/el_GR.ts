@@ -1,4 +1,4 @@
-import type { Locale } from '../type'
+import type { Locale } from '../type';
 
 const localeValues: Locale = {
   locale: 'el',
@@ -124,6 +124,6 @@ const localeValues: Locale = {
   Empty: {
     description: 'Δεν υπάρχουν δεδομένα',
   },
-}
+};
 
-export default localeValues
+export default localeValues;

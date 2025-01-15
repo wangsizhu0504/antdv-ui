@@ -18,27 +18,27 @@ Controls must injects `useInjectFormItemContext` and calls the corresponding met
 </docs>
 
 <script lang="ts" setup>
-  import type { Currency } from './price-input.vue'
+  import type { Currency } from './price-input.vue';
 
-  import { reactive } from 'vue'
+  import { reactive } from 'vue';
 
   // sourceCode https://github.com/vueComponent/@antdv/ui/blob/cb3c002e17f0f4f5b3e8d01846069da0e2645aff/components/form/demo/price-input.vue
-  import PriceInput from './price-input.vue'
+  import PriceInput from './price-input.vue';
 
   const formState = reactive({
     price: {
       number: 0,
       currency: 'rmb' as Currency,
     },
-  })
+  });
   function onFinish(values: any) {
-    console.log('Received values from form: ', values)
+    console.log('Received values from form: ', values);
   }
   function checkPrice(_: any, value: { number: number }) {
     if (value.number > 0) {
-      return Promise.resolve()
+      return Promise.resolve();
     }
-    return Promise.reject(new Error('Price must be greater than zero!'))
+    return Promise.reject(new Error('Price must be greater than zero!'));
   }
 </script>
 

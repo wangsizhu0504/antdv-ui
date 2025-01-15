@@ -1,8 +1,8 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import type { PushState } from './interface'
-import { CloseOutlined } from '@ant-design/icons-vue'
-import { useScrollLocker } from '@antdv/hooks'
+import type { CustomSlotsType } from '@antdv/types';
+import type { CSSProperties } from 'vue';
+import type { PushState } from './interface';
+import { CloseOutlined } from '@ant-design/icons-vue';
+import { useScrollLocker } from '@antdv/hooks';
 import {
   classNames,
   devWarning,
@@ -10,8 +10,8 @@ import {
   initDefaultProps,
   isNumeric,
   omit,
-} from '@antdv/utils'
-import { getTransitionName, getTransitionProps } from '@antdv/vue-components'
+} from '@antdv/utils';
+import { getTransitionName, getTransitionProps } from '@antdv/vue-components';
 import {
   computed,
   defineComponent,
@@ -22,15 +22,15 @@ import {
   provide,
   shallowRef,
   watch,
-} from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+} from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import { NoCompactStyle } from '../../space'
-import useStyle from '../style'
-import DrawerWrapper from './DrawerWrapper'
-import { drawerProps } from './props'
+import { NoCompactStyle } from '../../space';
+import useStyle from '../style';
+import DrawerWrapper from './DrawerWrapper';
+import { drawerProps } from './props';
 
-const defaultPushState: PushState = { distance: 180 }
+const defaultPushState: PushState = { distance: 180 };
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -55,45 +55,45 @@ export default defineComponent({
   }>,
   // emits: ['update:visible', 'close', 'afterVisibleChange'],
   setup(props, { emit, slots, attrs }) {
-    const sPush = shallowRef(false)
-    const destroyClose = shallowRef(false)
-    const vcDrawer = shallowRef(null)
-    const load = shallowRef(false)
-    const visible = shallowRef(false)
-    const mergedOpen = computed(() => props.open ?? props.visible)
+    const sPush = shallowRef(false);
+    const destroyClose = shallowRef(false);
+    const vcDrawer = shallowRef(null);
+    const load = shallowRef(false);
+    const visible = shallowRef(false);
+    const mergedOpen = computed(() => props.open ?? props.visible);
     watch(
       mergedOpen,
       () => {
         if (mergedOpen.value)
-          load.value = true
+          load.value = true;
         else
-          visible.value = false
+          visible.value = false;
       },
       { immediate: true },
-    )
+    );
     watch(
       [mergedOpen, load],
       () => {
         if (mergedOpen.value && load.value)
-          visible.value = true
+          visible.value = true;
       },
       { immediate: true },
-    )
-    const parentDrawerOpts = inject('parentDrawerOpts', null)
-    const { prefixCls, getPopupContainer, direction } = useConfigInject('drawer', props)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    );
+    const parentDrawerOpts = inject('parentDrawerOpts', null);
+    const { prefixCls, getPopupContainer, direction } = useConfigInject('drawer', props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
     const getContainer = computed(() =>
       // 有可能为 false，所以不能直接判断
       props.getContainer === undefined && getPopupContainer?.value
         ? () => getPopupContainer.value(document.body)
         : props.getContainer,
-    )
+    );
 
     devWarning(
       !props.afterVisibleChange,
       'Drawer',
       '`afterVisibleChange` prop is deprecated, please use `@afterVisibleChange` event instead',
-    )
+    );
     // ========================== Warning ===========================
     if (process.env.NODE_ENV !== 'production') {
       [
@@ -105,138 +105,138 @@ export default defineComponent({
           !props[deprecatedName],
           'Drawer',
           `\`${deprecatedName}\` is deprecated, please use \`${newName}\` instead.`,
-        )
-      })
+        );
+      });
     }
     const domFocus = () => {
-      vcDrawer.value?.domFocus?.()
-    }
+      vcDrawer.value?.domFocus?.();
+    };
 
     const setPush = () => {
-      sPush.value = true
-    }
+      sPush.value = true;
+    };
 
     const setPull = () => {
-      sPush.value = false
+      sPush.value = false;
       nextTick(() => {
-        domFocus()
-      })
-    }
+        domFocus();
+      });
+    };
     provide('parentDrawerOpts', {
       setPush,
       setPull,
-    })
+    });
 
     if (props.lockScroll)
-      useScrollLocker(visible)
+      useScrollLocker(visible);
 
     onMounted(() => {
       if (mergedOpen.value && parentDrawerOpts)
-        parentDrawerOpts.setPush()
-    })
+        parentDrawerOpts.setPush();
+    });
 
     onUnmounted(() => {
       if (parentDrawerOpts)
-        parentDrawerOpts.setPull()
-    })
+        parentDrawerOpts.setPull();
+    });
 
     watch(
       visible,
       () => {
         if (parentDrawerOpts) {
           if (visible.value)
-            parentDrawerOpts.setPush()
+            parentDrawerOpts.setPush();
           else
-            parentDrawerOpts.setPull()
+            parentDrawerOpts.setPull();
         }
       },
       { flush: 'post' },
-    )
+    );
 
     const close = (e: Event) => {
-      emit('update:visible', false)
-      emit('update:open', false)
-      emit('close', e)
-    }
+      emit('update:visible', false);
+      emit('update:open', false);
+      emit('close', e);
+    };
 
     const afterVisibleChange = (open: boolean) => {
       if (!open) {
         if (destroyClose.value === false) {
           // set true only once
-          destroyClose.value = true
+          destroyClose.value = true;
         }
         if (props.destroyOnClose)
-          load.value = false
+          load.value = false;
       }
-      props.afterVisibleChange?.(open)
-      emit('afterVisibleChange', open)
-      emit('afterOpenChange', open)
-    }
+      props.afterVisibleChange?.(open);
+      emit('afterVisibleChange', open);
+      emit('afterOpenChange', open);
+    };
 
     const pushTransform = computed(() => {
-      const { push, placement } = props
-      let distance: number | string
+      const { push, placement } = props;
+      let distance: number | string;
       if (typeof push === 'boolean')
-        distance = push ? defaultPushState.distance : 0
+        distance = push ? defaultPushState.distance : 0;
       else
-        distance = push!.distance
+        distance = push!.distance;
 
-      distance = Number.parseFloat(String(distance || 0))
+      distance = Number.parseFloat(String(distance || 0));
 
       if (placement === 'left' || placement === 'right')
-        return `translateX(${placement === 'left' ? distance : -distance}px)`
+        return `translateX(${placement === 'left' ? distance : -distance}px)`;
 
       if (placement === 'top' || placement === 'bottom')
-        return `translateY(${placement === 'top' ? distance : -distance}px)`
+        return `translateY(${placement === 'top' ? distance : -distance}px)`;
 
-      return null
-    })
+      return null;
+    });
     // ============================ Size ============================
-    const mergedWidth = computed(() => props.width ?? (props.size === 'large' ? 736 : 378))
-    const mergedHeight = computed(() => props.height ?? (props.size === 'large' ? 736 : 378))
+    const mergedWidth = computed(() => props.width ?? (props.size === 'large' ? 736 : 378));
+    const mergedHeight = computed(() => props.height ?? (props.size === 'large' ? 736 : 378));
     const offsetStyle = computed(() => {
       // https://github.com/ant-design/ant-design/issues/24287
-      const { mask, placement } = props
+      const { mask, placement } = props;
       if (!visible.value && !mask)
-        return {}
+        return {};
 
-      const val: CSSProperties = {}
+      const val: CSSProperties = {};
       if (placement === 'left' || placement === 'right')
-        val.width = isNumeric(mergedWidth.value) ? `${mergedWidth.value}px` : mergedWidth.value
+        val.width = isNumeric(mergedWidth.value) ? `${mergedWidth.value}px` : mergedWidth.value;
       else
-        val.height = isNumeric(mergedHeight.value) ? `${mergedHeight.value}px` : mergedHeight.value
+        val.height = isNumeric(mergedHeight.value) ? `${mergedHeight.value}px` : mergedHeight.value;
 
-      return val
-    })
+      return val;
+    });
 
     const wrapperStyle = computed(() => {
-      const { zIndex, contentWrapperStyle } = props
-      const val = offsetStyle.value
+      const { zIndex, contentWrapperStyle } = props;
+      const val = offsetStyle.value;
       return [
         { zIndex, transform: sPush.value ? pushTransform.value : undefined },
         { ...contentWrapperStyle },
         val,
-      ]
-    })
+      ];
+    });
 
     const renderCloseIcon = (prefixCls: string) => {
-      const { closable } = props
-      const $closeIcon = slots.closeIcon ? slots.closeIcon?.() : props.closeIcon
+      const { closable } = props;
+      const $closeIcon = slots.closeIcon ? slots.closeIcon?.() : props.closeIcon;
       return (
         closable && (
           <button key="closer" onClick={close} aria-label="Close" class={`${prefixCls}-close`}>
             {$closeIcon === undefined ? <CloseOutlined></CloseOutlined> : $closeIcon}
           </button>
         )
-      )
-    }
+      );
+    };
 
     const renderHeader = (prefixCls: string) => {
-      const { closable, headerStyle } = props
-      const extra = getPropsSlot(slots, props, 'extra')
-      const title = getPropsSlot(slots, props, 'title')
+      const { closable, headerStyle } = props;
+      const extra = getPropsSlot(slots, props, 'extra');
+      const title = getPropsSlot(slots, props, 'title');
       if (!title && !closable)
-        return null
+        return null;
 
       return (
         <div
@@ -251,27 +251,27 @@ export default defineComponent({
           </div>
           {extra && <div class={`${prefixCls}-extra`}>{extra}</div>}
         </div>
-      )
-    }
+      );
+    };
 
     const renderFooter = (prefix: string) => {
-      const footer = getPropsSlot(slots, props, 'footer')
+      const footer = getPropsSlot(slots, props, 'footer');
       if (!footer)
-        return null
+        return null;
 
-      const footerClassName = `${prefix}-footer`
+      const footerClassName = `${prefix}-footer`;
       return (
         <div class={footerClassName} style={props.footerStyle}>
           {footer}
         </div>
-      )
-    }
+      );
+    };
 
     const renderBody = (prefix: string) => {
       if (destroyClose.value && !props.forceRender && !load.value)
-        return null
+        return null;
 
-      const { bodyStyle, drawerStyle } = props
+      const { bodyStyle, drawerStyle } = props;
 
       return (
         <div class={`${prefix}-wrapper-body`} style={drawerStyle}>
@@ -281,8 +281,8 @@ export default defineComponent({
           </div>
           {renderFooter(prefix)}
         </div>
-      )
-    }
+      );
+    };
 
     const drawerClassName = computed(() =>
       classNames(
@@ -293,19 +293,19 @@ export default defineComponent({
         props.rootClassName,
         hashId.value,
       ),
-    )
+    );
     // =========================== Motion ===========================
     const maskMotion = computed(() => {
-      return getTransitionProps(getTransitionName(prefixCls.value, 'mask-motion'))
-    })
+      return getTransitionProps(getTransitionName(prefixCls.value, 'mask-motion'));
+    });
     const panelMotion = (motionPlacement: string) => {
       return getTransitionProps(
         getTransitionName(prefixCls.value, `panel-motion-${motionPlacement}`),
-      )
-    }
+      );
+    };
 
     return () => {
-      const { width, height, placement, mask, forceRender, ...rest } = props
+      const { width, height, placement, mask, forceRender, ...rest } = props;
 
       const vcDrawerProps: any = {
         ...attrs,
@@ -334,7 +334,7 @@ export default defineComponent({
         showMask: mask,
         placement,
         ref: vcDrawer,
-      }
+      };
       return wrapSSR(
         <NoCompactStyle>
           <DrawerWrapper
@@ -354,7 +354,7 @@ export default defineComponent({
           >
           </DrawerWrapper>
         </NoCompactStyle>,
-      )
-    }
+      );
+    };
   },
-})
+});

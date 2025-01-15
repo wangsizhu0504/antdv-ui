@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
-import type { RawValueType } from '../BaseSelect'
-import type { DefaultOptionType, LabelInValueType } from '../Select'
-import { computed, shallowRef } from 'vue'
+import type { Ref } from 'vue';
+import type { RawValueType } from '../BaseSelect';
+import type { DefaultOptionType, LabelInValueType } from '../Select';
+import { computed, shallowRef } from 'vue';
 
 /**
  * Cache `value` related LabeledValue & options.
@@ -13,10 +13,10 @@ export default (
   const cacheRef = shallowRef({
     values: new Map<RawValueType, LabelInValueType>(),
     options: new Map<RawValueType, DefaultOptionType>(),
-  })
+  });
 
   const filledLabeledValues = computed(() => {
-    const { values: prevValueCache, options: prevOptionCache } = cacheRef.value
+    const { values: prevValueCache, options: prevOptionCache } = cacheRef.value;
 
     // Fill label by cache
     const patchedValues = labeledValues.value.map((item) => {
@@ -24,32 +24,32 @@ export default (
         return {
           ...item,
           label: prevValueCache.get(item.value)?.label,
-        }
+        };
       }
 
-      return item
-    })
+      return item;
+    });
 
     // Refresh cache
-    const valueCache = new Map<RawValueType, LabelInValueType>()
-    const optionCache = new Map<RawValueType, DefaultOptionType>()
+    const valueCache = new Map<RawValueType, LabelInValueType>();
+    const optionCache = new Map<RawValueType, DefaultOptionType>();
 
     patchedValues.forEach((item) => {
-      valueCache.set(item.value, item)
+      valueCache.set(item.value, item);
       optionCache.set(
         item.value,
         valueOptions.value.get(item.value) || prevOptionCache.get(item.value),
-      )
-    })
+      );
+    });
 
-    cacheRef.value.values = valueCache
-    cacheRef.value.options = optionCache
+    cacheRef.value.values = valueCache;
+    cacheRef.value.options = optionCache;
 
-    return patchedValues
-  })
+    return patchedValues;
+  });
 
   const getOption = (val: RawValueType) =>
-    valueOptions.value.get(val) || cacheRef.value.options.get(val)
+    valueOptions.value.get(val) || cacheRef.value.options.get(val);
 
-  return [filledLabeledValues, getOption]
-}
+  return [filledLabeledValues, getOption];
+};

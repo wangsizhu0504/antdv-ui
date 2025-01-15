@@ -1,8 +1,8 @@
-import type { EventHandler } from '@antdv/types'
-import type { AutoSizeType } from '../../input'
-import type { TypographyProps } from './props'
+import type { EventHandler } from '@antdv/types';
+import type { AutoSizeType } from '../../input';
+import type { TypographyProps } from './props';
 
-export type BaseType = 'secondary' | 'success' | 'warning' | 'danger'
+export type BaseType = 'secondary' | 'success' | 'warning' | 'danger';
 
 export interface CopyConfig {
   text?: string

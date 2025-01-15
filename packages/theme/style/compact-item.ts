@@ -1,6 +1,6 @@
-import type { CSSInterpolation, CSSObject } from '../cssinjs'
-import type { DerivativeToken, FullToken } from '../token'
-import type { OverrideComponent } from '../token/util/genComponentStyleHook'
+import type { CSSInterpolation, CSSObject } from '../cssinjs';
+import type { DerivativeToken, FullToken } from '../token';
+import type { OverrideComponent } from '../token/util/genComponentStyleHook';
 
 interface CompactItemOptions {
   focus?: boolean
@@ -22,12 +22,12 @@ function compactItemBorder(
   parentCls: string,
   options: CompactItemOptions,
 ): CSSObject {
-  const { focusElCls, focus, borderElCls } = options
-  const childCombinator = borderElCls ? '> *' : ''
+  const { focusElCls, focus, borderElCls } = options;
+  const childCombinator = borderElCls ? '> *' : '';
   const hoverEffects = ['hover', focus ? 'focus' : null, 'active']
     .filter(Boolean)
     .map(n => `&:${n} ${childCombinator}`)
-    .join(',')
+    .join(',');
   return {
     [`&-item:not(${parentCls}-last-item)`]: {
       marginInlineEnd: -token.lineWidth,
@@ -50,7 +50,7 @@ function compactItemBorder(
         zIndex: 0,
       },
     },
-  }
+  };
 }
 
 // handle border-radius
@@ -59,8 +59,8 @@ function compactItemBorderRadius(
   parentCls: string,
   options: CompactItemOptions,
 ): CSSObject {
-  const { borderElCls } = options
-  const childCombinator = borderElCls ? `> ${borderElCls}` : ''
+  const { borderElCls } = options;
+  const childCombinator = borderElCls ? `> ${borderElCls}` : '';
 
   return {
     [`&-item:not(${parentCls}-first-item):not(${parentCls}-last-item) ${childCombinator}`]: {
@@ -82,21 +82,21 @@ function compactItemBorderRadius(
           borderEndStartRadius: 0,
         },
     },
-  }
+  };
 }
 
 export function genCompactItemStyle<T extends OverrideComponent>(
   token: FullToken<T>,
   options: CompactItemOptions = { focus: true },
 ): CSSInterpolation {
-  const { componentCls } = token
+  const { componentCls } = token;
 
-  const compactCls = `${componentCls}-compact`
+  const compactCls = `${componentCls}-compact`;
 
   return {
     [compactCls]: {
       ...compactItemBorder(token, compactCls, options),
       ...compactItemBorderRadius(componentCls, compactCls, options),
     },
-  }
+  };
 }

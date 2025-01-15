@@ -18,7 +18,7 @@ Open menu mode with `trigger`, which could be `hover` or `click`.
 </docs>
 
 <script lang="ts" setup>
-  import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons-vue'
+  import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

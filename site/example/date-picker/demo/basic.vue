@@ -17,14 +17,14 @@ Basic use case. Users can select or input a date in panel.
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import { ref } from 'vue';
 
-  const value1 = ref<Dayjs>()
-  const value2 = ref<Dayjs>()
-  const value3 = ref<Dayjs>()
-  const value4 = ref<Dayjs>()
-  const value5 = ref<Dayjs>()
+  const value1 = ref<Dayjs>();
+  const value2 = ref<Dayjs>();
+  const value3 = ref<Dayjs>();
+  const value4 = ref<Dayjs>();
+  const value5 = ref<Dayjs>();
 </script>
 
 <template>

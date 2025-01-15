@@ -1,20 +1,20 @@
-import type { Ref } from 'vue'
-import type Theme from '../theme/Theme'
-import hash from '@emotion/hash'
-import { computed, ref } from 'vue'
-import { ATTR_TOKEN, CSS_IN_JS_INSTANCE, useStyleInject } from '../StyleContext'
-import { flattenToken, token2key } from '../util'
-import useGlobalCache from './useGlobalCache'
+import type { Ref } from 'vue';
+import type Theme from '../theme/Theme';
+import hash from '@emotion/hash';
+import { computed, ref } from 'vue';
+import { ATTR_TOKEN, CSS_IN_JS_INSTANCE, useStyleInject } from '../StyleContext';
+import { flattenToken, token2key } from '../util';
+import useGlobalCache from './useGlobalCache';
 
-const EMPTY_OVERRIDE = {}
+const EMPTY_OVERRIDE = {};
 
-const isProduction = process.env.NODE_ENV === 'production'
+const isProduction = process.env.NODE_ENV === 'production';
 // nuxt generate when NODE_ENV is prerender
-const isPrerender = process.env.NODE_ENV === 'prerender'
+const isPrerender = process.env.NODE_ENV === 'prerender';
 
 // Generate different prefix to make user selector break in production env.
 // This helps developer not to do style override directly on the hash id.
-const hashPrefix = (!isProduction && !isPrerender) ? 'css-dev-only-do-not-override' : 'css'
+const hashPrefix = (!isProduction && !isPrerender) ? 'css-dev-only-do-not-override' : 'css';
 
 export interface Option<DerivativeToken, DesignToken> {
   /**
@@ -48,57 +48,57 @@ export interface Option<DerivativeToken, DesignToken> {
   ) => DerivativeToken
 }
 
-const tokenKeys = new Map<string, number>()
+const tokenKeys = new Map<string, number>();
 function recordCleanToken(tokenKey: string) {
-  tokenKeys.set(tokenKey, (tokenKeys.get(tokenKey) || 0) + 1)
+  tokenKeys.set(tokenKey, (tokenKeys.get(tokenKey) || 0) + 1);
 }
 
 function removeStyleTags(key: string, instanceId: string) {
   if (typeof document !== 'undefined') {
-    const styles = document.querySelectorAll(`style[${ATTR_TOKEN}="${key}"]`)
+    const styles = document.querySelectorAll(`style[${ATTR_TOKEN}="${key}"]`);
 
     styles.forEach((style) => {
       if ((style as any)[CSS_IN_JS_INSTANCE] === instanceId)
-        style.parentNode?.removeChild(style)
-    })
+        style.parentNode?.removeChild(style);
+    });
   }
 }
-const TOKEN_THRESHOLD = 0
+const TOKEN_THRESHOLD = 0;
 
 // Remove will check current keys first
 function cleanTokenStyle(tokenKey: string, instanceId: string) {
-  tokenKeys.set(tokenKey, (tokenKeys.get(tokenKey) || 0) - 1)
+  tokenKeys.set(tokenKey, (tokenKeys.get(tokenKey) || 0) - 1);
 
-  const tokenKeyList = Array.from(tokenKeys.keys())
+  const tokenKeyList = Array.from(tokenKeys.keys());
   const cleanableKeyList = tokenKeyList.filter((key) => {
-    const count = tokenKeys.get(key) || 0
+    const count = tokenKeys.get(key) || 0;
 
-    return count <= 0
-  })
+    return count <= 0;
+  });
 
   // Should keep tokens under threshold for not to insert style too often
   if (tokenKeyList.length - cleanableKeyList.length > TOKEN_THRESHOLD) {
     cleanableKeyList.forEach((key) => {
-      removeStyleTags(key, instanceId)
-      tokenKeys.delete(key)
-    })
+      removeStyleTags(key, instanceId);
+      tokenKeys.delete(key);
+    });
   }
 }
 
 export function getComputedToken<DerivativeToken = object, DesignToken = DerivativeToken>(originToken: DesignToken, overrideToken: object, theme: Theme<any, any>, format?: (token: DesignToken) => DerivativeToken) {
-  const derivativeToken = theme.getDerivativeToken(originToken)
+  const derivativeToken = theme.getDerivativeToken(originToken);
 
   // Merge with override
   let mergedDerivativeToken = {
     ...derivativeToken,
     ...overrideToken,
-  }
+  };
 
   // Format if needed
   if (format)
-    mergedDerivativeToken = format(mergedDerivativeToken)
+    mergedDerivativeToken = format(mergedDerivativeToken);
 
-  return mergedDerivativeToken
+  return mergedDerivativeToken;
 }
 
 /**
@@ -113,11 +113,11 @@ export default function useCacheToken<DerivativeToken = object, DesignToken = De
   tokens: Ref<Array<Partial<DesignToken>>>,
   option: Ref<Option<DerivativeToken, DesignToken>> = ref({}),
 ) {
-  const style = useStyleInject()
+  const style = useStyleInject();
   // Basic - We do basic cache here
-  const mergedToken = computed(() => Object.assign({}, ...tokens.value))
-  const tokenStr = computed(() => flattenToken(mergedToken.value))
-  const overrideTokenStr = computed(() => flattenToken(option.value.override || EMPTY_OVERRIDE))
+  const mergedToken = computed(() => Object.assign({}, ...tokens.value));
+  const tokenStr = computed(() => flattenToken(mergedToken.value));
+  const overrideTokenStr = computed(() => flattenToken(option.value.override || EMPTY_OVERRIDE));
 
   const cachedToken = useGlobalCache<[DerivativeToken & { _tokenKey: string }, string]>(
     'token',
@@ -133,26 +133,26 @@ export default function useCacheToken<DerivativeToken = object, DesignToken = De
         override = EMPTY_OVERRIDE,
         formatToken,
         getComputedToken: compute,
-      } = option.value
+      } = option.value;
       const mergedDerivativeToken = compute
         ? compute(mergedToken.value, override, theme.value)
-        : getComputedToken(mergedToken.value, override, theme.value, formatToken)
+        : getComputedToken(mergedToken.value, override, theme.value, formatToken);
 
       // Optimize for `useStyleRegister` performance
-      const tokenKey = token2key(mergedDerivativeToken, salt)
-      mergedDerivativeToken._tokenKey = tokenKey
-      recordCleanToken(tokenKey)
+      const tokenKey = token2key(mergedDerivativeToken, salt);
+      mergedDerivativeToken._tokenKey = tokenKey;
+      recordCleanToken(tokenKey);
 
-      const hashId = `${hashPrefix}-${hash(tokenKey)}`
-      mergedDerivativeToken._hashId = hashId // Not used
+      const hashId = `${hashPrefix}-${hash(tokenKey)}`;
+      mergedDerivativeToken._hashId = hashId; // Not used
 
-      return [mergedDerivativeToken, hashId]
+      return [mergedDerivativeToken, hashId];
     },
     (cache) => {
       // Remove token will remove all related style
-      cleanTokenStyle(cache[0]._tokenKey, style.value?.cache.instanceId)
+      cleanTokenStyle(cache[0]._tokenKey, style.value?.cache.instanceId);
     },
-  )
+  );
 
-  return cachedToken
+  return cachedToken;
 }

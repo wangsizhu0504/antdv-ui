@@ -1,7 +1,7 @@
-import type { VueNode } from '@antdv/types'
-import type { CSSProperties, VNodeTypes } from 'vue'
+import type { VueNode } from '@antdv/types';
+import type { CSSProperties, VNodeTypes } from 'vue';
 
-export type SliderValue = number | [number, number]
+export type SliderValue = number | [number, number];
 
 export interface SliderMarks {
   [key: number]:
@@ -24,9 +24,9 @@ export type HandleGeneratorFn = (config: {
   tooltipPrefixCls?: string
   prefixCls?: string
   info: HandleGeneratorInfo
-}) => VNodeTypes
+}) => VNodeTypes;
 export interface Visibles {
   [index: number]: boolean
 }
 
-export type Value = [number, number] | number
+export type Value = [number, number] | number;

@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'vue'
-import { defineComponent } from 'vue'
+import type { CSSProperties } from 'vue';
+import { defineComponent } from 'vue';
 
 const ShapeLine = defineComponent({
   name: 'ShapeLine',
@@ -48,9 +48,9 @@ const ShapeLine = defineComponent({
             </g>
           </g>
         </svg>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default ShapeLine
+export default ShapeLine;

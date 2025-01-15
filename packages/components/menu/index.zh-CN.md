@@ -99,7 +99,7 @@ const groupItem = {
   type: 'group', // Must have
   label: 'My Group',
   children: [],
-}
+};
 ```
 
 | 参数     | 说明         | 类型                              | 默认值 | 版本 |
@@ -114,7 +114,7 @@ const groupItem = {
 ```ts
 const dividerItem = {
   type: 'divider', // Must have
-}
+};
 ```
 
 | 参数   | 说明     | 类型    | 默认值 | 版本 |

@@ -18,9 +18,9 @@ delay closing the dialog.
 </docs>
 
 <script lang="ts" setup>
-  import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-  import { Modal } from '@antdv/ui'
-  import { createVNode } from 'vue'
+  import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+  import { Modal } from '@antdv/ui';
+  import { createVNode } from 'vue';
 
   function showConfirm() {
     Modal.confirm({
@@ -29,12 +29,12 @@ delay closing the dialog.
       content: 'When clicked the OK button, this dialog will be closed after 1 second',
       onOk() {
         return new Promise((resolve, reject) => {
-          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
-        }).catch(() => console.log('Oops errors!'))
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+        }).catch(() => console.log('Oops errors!'));
       },
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       onCancel() {},
-    })
+    });
   }
 </script>
 

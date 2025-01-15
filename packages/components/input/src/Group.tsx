@@ -1,10 +1,10 @@
-import type { SizeType } from '@antdv/types'
-import type { PropType } from 'vue'
-import { classNames } from '@antdv/utils'
-import { computed, defineComponent } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { FormItemInputContext } from '../../form/src/FormItemContext'
-import useStyle from '../style'
+import type { SizeType } from '@antdv/types';
+import type { PropType } from 'vue';
+import { classNames } from '@antdv/utils';
+import { computed, defineComponent } from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { FormItemInputContext } from '../../form/src/FormItemContext';
+import useStyle from '../style';
 
 // CSSINJS
 
@@ -18,18 +18,18 @@ export default defineComponent({
     compact: { type: Boolean, default: undefined },
   },
   setup(props, { slots, attrs }) {
-    const { prefixCls, direction, getPrefixCls } = useConfigInject('input-group', props)
-    const formItemInputContext = FormItemInputContext.useInject()
+    const { prefixCls, direction, getPrefixCls } = useConfigInject('input-group', props);
+    const formItemInputContext = FormItemInputContext.useInject();
     FormItemInputContext.useProvide(formItemInputContext, {
       isFormItemInput: false,
-    })
+    });
 
     // style
-    const inputPrefixCls = computed(() => getPrefixCls('input'))
-    const [wrapSSR, hashId] = useStyle(inputPrefixCls)
+    const inputPrefixCls = computed(() => getPrefixCls('input'));
+    const [wrapSSR, hashId] = useStyle(inputPrefixCls);
 
     const cls = computed(() => {
-      const pre = prefixCls.value
+      const pre = prefixCls.value;
       return {
         [`${pre}`]: true,
         [hashId.value]: true,
@@ -37,14 +37,14 @@ export default defineComponent({
         [`${pre}-sm`]: props.size === 'small',
         [`${pre}-compact`]: props.compact,
         [`${pre}-rtl`]: direction.value === 'rtl',
-      }
-    })
+      };
+    });
     return () => {
       return wrapSSR(
         <span {...attrs} class={classNames(cls.value, attrs.class)}>
           {slots.default?.()}
         </span>,
-      )
-    }
+      );
+    };
   },
-})
+});

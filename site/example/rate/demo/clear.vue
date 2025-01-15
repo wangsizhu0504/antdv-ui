@@ -17,10 +17,10 @@ Support set allow to clear star when click again.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value1 = ref<number>(3)
-  const value2 = ref<number>(3)
+  const value1 = ref<number>(3);
+  const value2 = ref<number>(3);
 </script>
 
 <template>

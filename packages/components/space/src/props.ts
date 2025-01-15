@@ -1,7 +1,7 @@
-import type { SizeType } from '@antdv/types'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { SpaceSize } from './interface'
-import { booleanType, PropTypes, tuple } from '@antdv/utils'
+import type { SizeType } from '@antdv/types';
+import type { ExtractPropTypes, PropType } from 'vue';
+import type { SpaceSize } from './interface';
+import { booleanType, PropTypes, tuple } from '@antdv/utils';
 
 export function spaceProps() {
   return {
@@ -12,7 +12,7 @@ export function spaceProps() {
     direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
     align: PropTypes.oneOf(tuple('start', 'end', 'center', 'baseline')),
     wrap: booleanType(),
-  }
+  };
 }
 
 export function spaceCompactItemProps() {
@@ -21,7 +21,7 @@ export function spaceCompactItemProps() {
     compactDirection: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
     isFirstItem: booleanType(),
     isLastItem: booleanType(),
-  }
+  };
 }
 
 export function spaceCompactProps() {
@@ -33,11 +33,11 @@ export function spaceCompactProps() {
     direction: PropTypes.oneOf(tuple('horizontal', 'vertical')).def('horizontal'),
     align: PropTypes.oneOf(tuple('start', 'end', 'center', 'baseline')),
     block: { type: Boolean, default: undefined },
-  }
+  };
 }
 
-export type SpaceProps = Partial<ExtractPropTypes<ReturnType<typeof spaceProps>>>
+export type SpaceProps = Partial<ExtractPropTypes<ReturnType<typeof spaceProps>>>;
 
-export type SpaceCompactProps = Partial<ExtractPropTypes<ReturnType<typeof spaceCompactProps>>>
+export type SpaceCompactProps = Partial<ExtractPropTypes<ReturnType<typeof spaceCompactProps>>>;
 
-export type SpaceCompactItemProps = Partial<ExtractPropTypes<ReturnType<typeof spaceCompactItemProps>>>
+export type SpaceCompactItemProps = Partial<ExtractPropTypes<ReturnType<typeof spaceCompactItemProps>>>;

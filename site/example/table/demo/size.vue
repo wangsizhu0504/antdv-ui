@@ -20,7 +20,7 @@ There are two compacted table sizes: `middle` and `small`. The `small` size is u
     { title: 'Name', dataIndex: 'name' },
     { title: 'Age', dataIndex: 'age' },
     { title: 'Address', dataIndex: 'address' },
-  ]
+  ];
   const data = [
     {
       key: '1',
@@ -40,7 +40,7 @@ There are two compacted table sizes: `middle` and `small`. The `small` size is u
       age: 32,
       address: 'Sidney No. 1 Lake Park',
     },
-  ]
+  ];
 </script>
 
 <template>

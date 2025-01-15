@@ -68,7 +68,7 @@ Style of a navigation should conform to its level.
     <Sider>right sidebar</Sider>
   </Layout>
   <Footer>footer</Footer>
-</Layout>
+</Layout>;
 ```
 
 ### Layout

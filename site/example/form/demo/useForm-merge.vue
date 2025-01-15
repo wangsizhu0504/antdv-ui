@@ -16,19 +16,19 @@ use [`Form.useForm`](#useform)  combined display form verification information.
 </docs>
 
 <script lang="ts" setup>
-  import { Form } from '@antdv/ui'
-  import { toArray } from 'lodash-es'
-  import { computed, reactive, toRaw } from 'vue'
+  import { Form } from '@antdv/ui';
+  import { toArray } from 'lodash-es';
+  import { computed, reactive, toRaw } from 'vue';
 
-  const useForm = Form.useForm
+  const useForm = Form.useForm;
 
-  const labelCol = { span: 4 }
-  const wrapperCol = { span: 14 }
+  const labelCol = { span: 4 };
+  const wrapperCol = { span: 14 };
   const modelRef = reactive({
     name: '',
     region: undefined,
     type: [],
-  })
+  });
   const rulesRef = reactive({
     name: [
       {
@@ -49,20 +49,20 @@ use [`Form.useForm`](#useform)  combined display form verification information.
         type: 'array',
       },
     ],
-  })
-  const { resetFields, validate, validateInfos, mergeValidateInfo } = useForm(modelRef, rulesRef)
+  });
+  const { resetFields, validate, validateInfos, mergeValidateInfo } = useForm(modelRef, rulesRef);
   function onSubmit() {
     validate()
       .then(() => {
-        console.log(toRaw(modelRef))
+        console.log(toRaw(modelRef));
       })
       .catch((err) => {
-        console.log('error', err)
-      })
+        console.log('error', err);
+      });
   }
   const errorInfos = computed(() => {
-    return mergeValidateInfo(toArray(validateInfos))
-  })
+    return mergeValidateInfo(toArray(validateInfos));
+  });
 </script>
 
 <template>

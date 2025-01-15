@@ -17,9 +17,9 @@ There are three sizes of an Input box: `large` (40px)、`default` (32px) and `sm
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const value = ref<string>('')
+  const value = ref<string>('');
 </script>
 
 <template>

@@ -1,8 +1,8 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, textEllipsis } from '@antdv/theme'
-import { initFadeMotion, initZoomMotion } from '@antdv/theme/style/motion'
-import { TinyColor } from '@ctrl/tinycolor'
-import { genModalMaskStyle } from '../../modal/style'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, textEllipsis } from '@antdv/theme';
+import { initFadeMotion, initZoomMotion } from '@antdv/theme/style/motion';
+import { TinyColor } from '@ctrl/tinycolor';
+import { genModalMaskStyle } from '../../modal/style';
 
 export interface ComponentToken {
   /**
@@ -38,18 +38,18 @@ export interface ImageToken extends FullToken<'Image'> {
   imagePreviewSwitchSize: number
 }
 
-export type PositionType = 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky' | undefined
+export type PositionType = 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky' | undefined;
 
 export function genBoxStyle(position?: PositionType): CSSObject {
   return {
     position: position || 'absolute',
     inset: 0,
-  }
+  };
 }
 
 export function genImageMaskStyle(token: ImageToken): CSSObject {
   const { iconCls, motionDurationSlow, paddingXXS, marginXXS, prefixCls, colorTextLightSolid }
-    = token
+    = token;
   return {
     position: 'absolute',
     inset: 0,
@@ -72,7 +72,7 @@ export function genImageMaskStyle(token: ImageToken): CSSObject {
         },
       },
     },
-  }
+  };
 }
 
 export function genPreviewOperationsStyle(token: ImageToken): CSSObject {
@@ -88,10 +88,10 @@ export function genPreviewOperationsStyle(token: ImageToken): CSSObject {
     motionDurationSlow,
     iconCls,
     colorTextLightSolid,
-  } = token
+  } = token;
 
-  const operationBg = new TinyColor(modalMaskBg).setAlpha(0.1)
-  const operationBgHover = operationBg.clone().setAlpha(0.2)
+  const operationBg = new TinyColor(modalMaskBg).setAlpha(0.1);
+  const operationBgHover = operationBg.clone().setAlpha(0.2);
 
   return {
     [`${previewCls}-footer`]: {
@@ -167,7 +167,7 @@ export function genPreviewOperationsStyle(token: ImageToken): CSSObject {
         },
       },
     },
-  }
+  };
 }
 
 export function genPreviewSwitchStyle(token: ImageToken): CSSObject {
@@ -178,10 +178,10 @@ export function genPreviewSwitchStyle(token: ImageToken): CSSObject {
     previewCls,
     zIndexPopup,
     motionDurationSlow,
-  } = token
+  } = token;
 
-  const operationBg = new TinyColor(modalMaskBg).setAlpha(0.1)
-  const operationBgHover = operationBg.clone().setAlpha(0.2)
+  const operationBg = new TinyColor(modalMaskBg).setAlpha(0.1);
+  const operationBgHover = operationBg.clone().setAlpha(0.2);
 
   return {
     [`${previewCls}-switch-left, ${previewCls}-switch-right`]: {
@@ -228,11 +228,11 @@ export function genPreviewSwitchStyle(token: ImageToken): CSSObject {
     [`${previewCls}-switch-right`]: {
       insetInlineEnd: token.marginSM,
     },
-  }
+  };
 }
 
 export const genImagePreviewStyle: GenerateStyle<ImageToken> = (token: ImageToken) => {
-  const { motionEaseOut, previewCls, motionDurationSlow, componentCls } = token
+  const { motionEaseOut, previewCls, motionDurationSlow, componentCls } = token;
 
   return [
     {
@@ -311,11 +311,11 @@ export const genImagePreviewStyle: GenerateStyle<ImageToken> = (token: ImageToke
       },
       '&': [genPreviewOperationsStyle(token), genPreviewSwitchStyle(token)],
     },
-  ]
-}
+  ];
+};
 
 const genImageStyle: GenerateStyle<ImageToken> = (token: ImageToken) => {
-  const { componentCls } = token
+  const { componentCls } = token;
   return {
     // ============================== image ==============================
     [componentCls]: {
@@ -344,36 +344,36 @@ const genImageStyle: GenerateStyle<ImageToken> = (token: ImageToken) => {
         ...genBoxStyle(),
       },
     },
-  }
-}
+  };
+};
 
 const genPreviewMotion: GenerateStyle<ImageToken> = (token) => {
-  const { previewCls } = token
+  const { previewCls } = token;
 
   return {
     [`${previewCls}-root`]: initZoomMotion(token, 'zoom'),
     '&': initFadeMotion(token, true),
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
   'Image',
   (token) => {
-    const previewCls = `${token.componentCls}-preview`
+    const previewCls = `${token.componentCls}-preview`;
 
     const imageToken = mergeToken<ImageToken>(token, {
       previewCls,
       modalMaskBg: new TinyColor('#000').setAlpha(0.45).toRgbString(), // FIXME: Shared Token
       imagePreviewSwitchSize: token.controlHeightLG,
-    })
+    });
 
     return [
       genImageStyle(imageToken),
       genImagePreviewStyle(imageToken),
       genModalMaskStyle(mergeToken<ImageToken>(imageToken, { componentCls: previewCls })),
       genPreviewMotion(imageToken),
-    ]
+    ];
   },
   token => ({
     zIndexPopup: token.zIndexPopupBase + 80,
@@ -386,4 +386,4 @@ export default genComponentStyleHook(
       .toRgbString(),
     previewOperationSize: token.fontSizeIcon * 1.5, // FIXME: fontSizeIconLG
   }),
-)
+);

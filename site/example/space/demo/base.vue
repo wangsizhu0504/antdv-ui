@@ -17,7 +17,7 @@ Crowded components horizontal spacing.
 </docs>
 
 <script lang="ts" setup>
-  import { UploadOutlined } from '@ant-design/icons-vue'
+  import { UploadOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

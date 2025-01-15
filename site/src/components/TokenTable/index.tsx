@@ -1,12 +1,12 @@
-import type { TableProps } from '@antdv/ui'
-import type { PropType } from 'vue'
-import { useLocale } from '@/locale'
-import { Table } from '@antdv/ui'
-import tokenMeta from '@antdv/version/token-meta.json'
-import { computed, defineComponent, toRefs } from 'vue'
-import useSiteToken from '../../hooks/useSiteToken'
-import { getDesignToken } from '../antdv-token-previewer'
-import ColorChunk from '../ColorChunk'
+import type { TableProps } from '@antdv/ui';
+import type { PropType } from 'vue';
+import { useLocale } from '@/locale';
+import { Table } from '@antdv/ui';
+import tokenMeta from '@antdv/version/token-meta.json';
+import { computed, defineComponent, toRefs } from 'vue';
+import useSiteToken from '../../hooks/useSiteToken';
+import { getDesignToken } from '../antdv-token-previewer';
+import ColorChunk from '../ColorChunk';
 
 interface TokenTableProps {
   type: 'seed' | 'map' | 'alias'
@@ -20,7 +20,7 @@ interface TokenData {
   value: any
 }
 
-const defaultToken = getDesignToken()
+const defaultToken = getDesignToken();
 
 const locales = {
   cn: {
@@ -35,10 +35,10 @@ const locales = {
     type: 'Type',
     value: 'Default Value',
   },
-}
+};
 
 export function useColumns(): Exclude<TableProps<TokenData>['columns'], undefined> {
-  const [locale] = useLocale(locales)
+  const [locale] = useLocale(locales);
 
   return [
     {
@@ -61,7 +61,7 @@ export function useColumns(): Exclude<TableProps<TokenData>['columns'], undefine
       key: 'value',
       dataIndex: 'value',
     },
-  ]
+  ];
 }
 
 const TokenTable = defineComponent({
@@ -74,12 +74,12 @@ const TokenTable = defineComponent({
     },
   },
   setup(props, { attrs }) {
-    const { type } = toRefs(props)
-    const SiteToken = useSiteToken()
-    const token = computed(() => SiteToken.value.token)
+    const { type } = toRefs(props);
+    const SiteToken = useSiteToken();
+    const token = computed(() => SiteToken.value.token);
 
-    const [, lang] = useLocale(locales)
-    const columns = useColumns()
+    const [, lang] = useLocale(locales);
+    const columns = useColumns();
 
     const data = computed<TokenData[]>(() => {
       return Object.entries(tokenMeta)
@@ -89,8 +89,8 @@ const TokenTable = defineComponent({
           desc: lang.value === 'cn' ? meta.desc : meta.descEn,
           type: meta.type,
           value: (defaultToken as any)[token],
-        }))
-    })
+        }));
+    });
 
     return () => {
       return (
@@ -117,33 +117,33 @@ const TokenTable = defineComponent({
                   >
                     {record.type}
                   </span>
-                )
+                );
               }
               if (column.key === 'value') {
                 const isColor
                   = typeof record.value === 'string'
-                  && (record.value.startsWith('#') || record.value.startsWith('rgb'))
+                  && (record.value.startsWith('#') || record.value.startsWith('rgb'));
                 if (isColor)
-                  return <ColorChunk color={record.value}>{record.value}</ColorChunk>
+                  return <ColorChunk color={record.value}>{record.value}</ColorChunk>;
 
                 return (
                   <span>
                     {typeof record.value !== 'string' ? JSON.stringify(record.value) : record.value}
                   </span>
-                )
+                );
               }
               return (
                 <span>
                   {text}
                   {' '}
                 </span>
-              )
+              );
             },
           }}
         >
         </Table>
-      )
-    }
+      );
+    };
   },
-})
-export default TokenTable
+});
+export default TokenTable;

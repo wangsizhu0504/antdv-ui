@@ -1,5 +1,5 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent, roundedArrow } from '@antdv/theme'
+import type { FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent, roundedArrow } from '@antdv/theme';
 import {
   initMoveMotion,
   initSlideMotion,
@@ -8,10 +8,10 @@ import {
   slideDownOut,
   slideUpIn,
   slideUpOut,
-} from '@antdv/theme/style/motion'
-import { getArrowOffset } from '@antdv/theme/style/placementArrow'
-import genButtonStyle from './button'
-import genStatusStyle from './status'
+} from '@antdv/theme/style/motion';
+import { getArrowOffset } from '@antdv/theme/style/placementArrow';
+import genButtonStyle from './button';
+import genStatusStyle from './status';
 
 export interface ComponentToken {
   zIndexPopup: number
@@ -46,7 +46,7 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
     controlPaddingHorizontal,
     colorBgElevated,
     boxShadowPopoverArrow,
-  } = token
+  } = token;
 
   return [
     {
@@ -411,8 +411,8 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
       initMoveMotion(token, 'move-down'),
       initZoomMotion(token, 'zoom-big'),
     ],
-  ]
-}
+  ];
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook(
@@ -428,14 +428,14 @@ export default genComponentStyleHook(
       componentCls,
       borderRadiusOuter,
       borderRadiusLG,
-    } = token
+    } = token;
 
-    const dropdownPaddingVertical = (controlHeight - fontSize * lineHeight) / 2
+    const dropdownPaddingVertical = (controlHeight - fontSize * lineHeight) / 2;
     const { dropdownArrowOffset } = getArrowOffset({
       sizePopupArrow,
       contentRadius: borderRadiusLG,
       borderRadiusOuter,
-    })
+    });
 
     const dropdownToken = mergeToken<DropdownToken>(token, {
       menuCls: `${componentCls}-menu`,
@@ -444,14 +444,14 @@ export default genComponentStyleHook(
       dropdownArrowOffset,
       dropdownPaddingVertical,
       dropdownEdgeChildPadding: paddingXXS,
-    })
+    });
     return [
       genBaseStyle(dropdownToken),
       genButtonStyle(dropdownToken),
       genStatusStyle(dropdownToken),
-    ]
+    ];
   },
   token => ({
     zIndexPopup: token.zIndexPopupBase + 50,
   }),
-)
+);

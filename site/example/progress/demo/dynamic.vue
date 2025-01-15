@@ -17,19 +17,19 @@ A dynamic progress bar is better.
 </docs>
 
 <script lang="ts" setup>
-  import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const defaultPercent = ref<number>(0)
+  const defaultPercent = ref<number>(0);
 
   function increase() {
-    const percent = defaultPercent.value + 10
-    defaultPercent.value = percent > 100 ? 100 : percent
+    const percent = defaultPercent.value + 10;
+    defaultPercent.value = percent > 100 ? 100 : percent;
   }
 
   function decline() {
-    const percent = defaultPercent.value - 10
-    defaultPercent.value = percent < 0 ? 0 : percent
+    const percent = defaultPercent.value - 10;
+    defaultPercent.value = percent < 0 ? 0 : percent;
   }
 </script>
 

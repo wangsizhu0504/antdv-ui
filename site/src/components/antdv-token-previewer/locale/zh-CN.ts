@@ -1,4 +1,4 @@
-import type { Locale } from './interface'
+import type { Locale } from './interface';
 
 const locale: Locale = {
   _lang: 'zh-CN',
@@ -15,6 +15,6 @@ const locale: Locale = {
     components: '组件',
     relatedTokens: '关联 Token',
   },
-}
+};
 
-export default locale
+export default locale;

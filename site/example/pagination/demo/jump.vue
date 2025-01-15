@@ -16,12 +16,12 @@ Jump to a page directly.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const current1 = ref<number>(1)
-  const current2 = ref<number>(2)
+  const current1 = ref<number>(1);
+  const current2 = ref<number>(2);
   function onChange(pageNumber: number) {
-    console.log('Page: ', pageNumber)
+    console.log('Page: ', pageNumber);
   }
 </script>
 

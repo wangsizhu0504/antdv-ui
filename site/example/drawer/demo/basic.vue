@@ -17,16 +17,16 @@ Basic drawer.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const open = ref<boolean>(false)
+  const open = ref<boolean>(false);
 
   function afterOpenChange(bool: boolean) {
-    console.log('open', bool)
+    console.log('open', bool);
   }
 
   function showDrawer() {
-    open.value = true
+    open.value = true;
   }
 </script>
 

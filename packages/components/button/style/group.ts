@@ -1,5 +1,5 @@
-import type { GenerateStyle } from '@antdv/theme'
-import type { ButtonToken } from '.'
+import type { GenerateStyle } from '@antdv/theme';
+import type { ButtonToken } from '.';
 
 function genButtonBorderStyle(buttonTypeCls: string, borderColor: string) {
   return {
@@ -21,11 +21,11 @@ function genButtonBorderStyle(buttonTypeCls: string, borderColor: string) {
         },
       },
     },
-  }
+  };
 }
 
 const genGroupStyle: GenerateStyle<ButtonToken> = (token) => {
-  const { componentCls, fontSize, lineWidth, colorPrimaryHover, colorErrorHover } = token
+  const { componentCls, fontSize, lineWidth, colorPrimaryHover, colorErrorHover } = token;
 
   return {
     [`${componentCls}-group`]: [
@@ -76,7 +76,7 @@ const genGroupStyle: GenerateStyle<ButtonToken> = (token) => {
       genButtonBorderStyle(`${componentCls}-primary`, colorPrimaryHover),
       genButtonBorderStyle(`${componentCls}-danger`, colorErrorHover),
     ],
-  }
-}
+  };
+};
 
-export default genGroupStyle
+export default genGroupStyle;

@@ -17,9 +17,9 @@ Basic pagination.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const current = ref<any>(2)
+  const current = ref<any>(2);
 </script>
 
 <template>

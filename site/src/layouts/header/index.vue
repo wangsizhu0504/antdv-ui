@@ -1,24 +1,24 @@
 <script lang="ts" setup>
-  import type { GlobalConfig } from '@/types'
-  import { GLOBAL_CONFIG } from '@/SymbolKey'
-  import { UnorderedListOutlined } from '@ant-design/icons-vue'
-  import { version } from '@antdv/ui'
-  import { computed, inject, reactive, ref, watch } from 'vue'
-  import { useRoute } from 'vue-router'
-  import Logo from './Logo.vue'
-  import Menu from './Menu.vue'
-  import SearchBox from './SearchBox.vue'
+  import type { GlobalConfig } from '@/types';
+  import { GLOBAL_CONFIG } from '@/SymbolKey';
+  import { UnorderedListOutlined } from '@ant-design/icons-vue';
+  import { version } from '@antdv/ui';
+  import { computed, inject, reactive, ref, watch } from 'vue';
+  import { useRoute } from 'vue-router';
+  import Logo from './Logo.vue';
+  import Menu from './Menu.vue';
+  import SearchBox from './SearchBox.vue';
 
-  const route = useRoute()
-  const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG)
+  const route = useRoute();
+  const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG);
   const isHome = computed(() => {
-    return ['', 'index', 'index-cn'].includes(route.path)
-  })
-  const isZhCN = computed(() => globalConfig?.isZhCN.value)
-  const isMobile = computed(() => globalConfig?.isMobile.value)
-  const responsive = computed(() => globalConfig?.responsive.value)
+    return ['', 'index', 'index-cn'].includes(route.path);
+  });
+  const isZhCN = computed(() => globalConfig?.isZhCN.value);
+  const isMobile = computed(() => globalConfig?.isMobile.value);
+  const responsive = computed(() => globalConfig?.responsive.value);
 
-  const menuVisible = ref<any>(false)
+  const menuVisible = ref<any>(false);
   const colProps = isHome.value
     ? [{ flex: 'none' }, { flex: 'auto' }]
     : [
@@ -40,25 +40,25 @@
         sm: 0,
         xs: 0,
       },
-    ]
+    ];
 
-  const searching = ref<any>(false)
+  const searching = ref<any>(false);
   const headerClassName = reactive({
     'clearfix': true,
     'home-header': isHome.value,
-  })
+  });
   function onTriggerSearching(value: boolean) {
-    searching.value = value
+    searching.value = value;
   }
-  const visibleAdblockBanner = ref<any>(false)
+  const visibleAdblockBanner = ref<any>(false);
   watch(() => globalConfig?.blocked, (val) => {
-    visibleAdblockBanner.value = val?.value || false
-  })
-  const visibleAlertBanner = ref<any>(!localStorage.getItem('surelyform_v2'))
+    visibleAdblockBanner.value = val?.value || false;
+  });
+  const visibleAlertBanner = ref<any>(!localStorage.getItem('surelyform_v2'));
   watch(visibleAlertBanner, () => {
     if (!visibleAlertBanner.value)
-      localStorage.setItem('surelyform_v2', version)
-  })
+      localStorage.setItem('surelyform_v2', version);
+  });
 </script>
 
 <template>

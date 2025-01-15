@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'vue'
+import type { CSSProperties } from 'vue';
 
 /**
  * Easy to set element style, return previous style
@@ -10,19 +10,19 @@ export interface SetStyleOptions {
   element?: HTMLElement;
 }
 export function setStyle(style: CSSProperties, options: SetStyleOptions = {}): CSSProperties {
-  const { element = document.body } = options
-  const oldStyle: CSSProperties = {}
+  const { element = document.body } = options;
+  const oldStyle: CSSProperties = {};
 
-  const styleKeys = Object.keys(style)
+  const styleKeys = Object.keys(style);
 
   // IE browser compatible
   styleKeys.forEach((key) => {
-    oldStyle[key] = element.style[key]
-  })
+    oldStyle[key] = element.style[key];
+  });
 
   styleKeys.forEach((key) => {
-    element.style[key] = style[key]
-  })
+    element.style[key] = style[key];
+  });
 
-  return oldStyle
+  return oldStyle;
 }

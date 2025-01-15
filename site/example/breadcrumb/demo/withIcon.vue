@@ -17,7 +17,7 @@ The icon should be placed in front of the text.
 </docs>
 
 <script lang="ts" setup>
-  import { HomeOutlined, UserOutlined } from '@ant-design/icons-vue'
+  import { HomeOutlined, UserOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

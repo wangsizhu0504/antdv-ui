@@ -1,4 +1,4 @@
-import { KeyCode } from '@antdv/utils'
+import { KeyCode } from '@antdv/utils';
 
 /** keyCode Judgment function */
 export function isValidateOpenKey(currentKeyCode: number): boolean {
@@ -30,5 +30,5 @@ export function isValidateOpenKey(currentKeyCode: number): boolean {
     KeyCode.F10,
     KeyCode.F11,
     KeyCode.F12,
-  ].includes(currentKeyCode)
+  ].includes(currentKeyCode);
 }

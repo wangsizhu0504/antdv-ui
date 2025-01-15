@@ -1,11 +1,11 @@
-import type { VueNode } from '@antdv/types'
+import type { VueNode } from '@antdv/types';
 
 /* eslint-disable style/jsx-one-expression-per-line */
-import type { PropType, Ref } from 'vue'
-import type { CustomTagProps, DisplayValueType, RawValueType, RenderNode } from '../BaseSelect'
-import type { BaseOptionType } from '../Select'
-import type { InnerSelectorProps } from './interface'
-import { classNames, pickAttrs, PropTypes } from '@antdv/utils'
+import type { PropType, Ref } from 'vue';
+import type { CustomTagProps, DisplayValueType, RawValueType, RenderNode } from '../BaseSelect';
+import type { BaseOptionType } from '../Select';
+import type { InnerSelectorProps } from './interface';
+import { classNames, pickAttrs, PropTypes } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -14,11 +14,11 @@ import {
   shallowRef,
   watch,
   watchEffect,
-} from 'vue'
-import { VcOverflow } from '../../../vc-overflow'
-import useInjectLegacySelectContext from '../../../vc-tree-select/src/LegacyContext'
-import TransBtn from '../TransBtn'
-import Input from './Input'
+} from 'vue';
+import { VcOverflow } from '../../../vc-overflow';
+import useInjectLegacySelectContext from '../../../vc-tree-select/src/LegacyContext';
+import TransBtn from '../TransBtn';
+import Input from './Input';
 
 type SelectorProps = InnerSelectorProps & {
   // Icon
@@ -37,7 +37,7 @@ type SelectorProps = InnerSelectorProps & {
 
   // Event
   onRemove: (value: DisplayValueType) => void;
-}
+};
 
 const props = {
   id: String,
@@ -73,11 +73,11 @@ const props = {
   onInputMouseDown: Function,
   onInputCompositionStart: Function,
   onInputCompositionEnd: Function,
-}
+};
 
 function onPreventMouseDown(event: MouseEvent) {
-  event.preventDefault()
-  event.stopPropagation()
+  event.preventDefault();
+  event.stopPropagation();
 }
 
 const SelectSelector = defineComponent<SelectorProps>({
@@ -85,34 +85,34 @@ const SelectSelector = defineComponent<SelectorProps>({
   inheritAttrs: false,
   props: props as any,
   setup(props) {
-    const measureRef = shallowRef()
-    const inputWidth = shallowRef(0)
-    const focused = shallowRef(false)
-    const legacyTreeSelectContext = useInjectLegacySelectContext()
-    const selectionPrefixCls = computed(() => `${props.prefixCls}-selection`)
+    const measureRef = shallowRef();
+    const inputWidth = shallowRef(0);
+    const focused = shallowRef(false);
+    const legacyTreeSelectContext = useInjectLegacySelectContext();
+    const selectionPrefixCls = computed(() => `${props.prefixCls}-selection`);
 
     // ===================== Search ======================
     const inputValue = computed(() =>
       props.open || props.mode === 'tags' ? props.searchValue : '',
-    )
+    );
     const inputEditable: Ref<boolean> = computed(
       () =>
         props.mode === 'tags' || ((props.showSearch && (props.open || focused.value)) as boolean),
-    )
-    const targetValue = ref('')
+    );
+    const targetValue = ref('');
     watchEffect(() => {
-      targetValue.value = inputValue.value
-    })
+      targetValue.value = inputValue.value;
+    });
     // We measure width and set to the input immediately
     onMounted(() => {
       watch(
         targetValue,
         () => {
-          inputWidth.value = measureRef.value.scrollWidth
+          inputWidth.value = measureRef.value.scrollWidth;
         },
         { flush: 'post', immediate: true },
-      )
-    })
+      );
+    });
 
     // ===================== Render ======================
     // >>> Render Selector Node. Includes Item & Rest
@@ -144,7 +144,7 @@ const SelectSelector = defineComponent<SelectorProps>({
             </TransBtn>
           )}
         </span>
-      )
+      );
     }
 
     function customizeRenderSelector(
@@ -156,13 +156,13 @@ const SelectSelector = defineComponent<SelectorProps>({
       option: BaseOptionType,
     ) {
       const onMouseDown = (e: MouseEvent) => {
-        onPreventMouseDown(e)
-        props.onToggleOpen(!open)
-      }
-      let originData = option
+        onPreventMouseDown(e);
+        props.onToggleOpen(!open);
+      };
+      let originData = option;
       // For TreeSelect
       if (legacyTreeSelectContext.keyEntities)
-        originData = legacyTreeSelectContext.keyEntities[value]?.node || {}
+        originData = legacyTreeSelectContext.keyEntities[value]?.node || {};
 
       return (
         <span key={value} onMousedown={onMouseDown}>
@@ -175,48 +175,48 @@ const SelectSelector = defineComponent<SelectorProps>({
             option: originData,
           })}
         </span>
-      )
+      );
     }
 
     function renderItem(valueItem: DisplayValueType) {
-      const { disabled: itemDisabled, label, value, option } = valueItem
-      const closable = !props.disabled && !itemDisabled
+      const { disabled: itemDisabled, label, value, option } = valueItem;
+      const closable = !props.disabled && !itemDisabled;
 
-      let displayLabel = label
+      let displayLabel = label;
 
       if (typeof props.maxTagTextLength === 'number') {
         if (typeof label === 'string' || typeof label === 'number') {
-          const strLabel = String(displayLabel)
+          const strLabel = String(displayLabel);
 
           if (strLabel.length > props.maxTagTextLength)
-            displayLabel = `${strLabel.slice(0, props.maxTagTextLength)}...`
+            displayLabel = `${strLabel.slice(0, props.maxTagTextLength)}...`;
         }
       }
       const onClose = (event?: MouseEvent) => {
-        if (event) event.stopPropagation()
-        props.onRemove?.(valueItem)
-      }
+        if (event) event.stopPropagation();
+        props.onRemove?.(valueItem);
+      };
 
       return typeof props.tagRender === 'function'
         ? customizeRenderSelector(value, displayLabel, itemDisabled, closable, onClose, option)
-        : defaultRenderSelector(label, displayLabel, itemDisabled, closable, onClose)
+        : defaultRenderSelector(label, displayLabel, itemDisabled, closable, onClose);
     }
 
     function renderRest(omittedValues: DisplayValueType[]) {
-      const { maxTagPlaceholder = omittedValues => `+ ${omittedValues.length} ...` } = props
+      const { maxTagPlaceholder = omittedValues => `+ ${omittedValues.length} ...` } = props;
       const content
         = typeof maxTagPlaceholder === 'function'
           ? maxTagPlaceholder(omittedValues)
-          : maxTagPlaceholder
+          : maxTagPlaceholder;
 
-      return defaultRenderSelector(content, content, false)
+      return defaultRenderSelector(content, content, false);
     }
     const handleInput = (e: Event) => {
-      const composing = (e.target as any).composing
-      targetValue.value = (e.target as any).value
+      const composing = (e.target as any).composing;
+      targetValue.value = (e.target as any).value;
       if (!composing)
-        props.onInputChange(e)
-    }
+        props.onInputChange(e);
+    };
     return () => {
       const {
         id,
@@ -236,7 +236,7 @@ const SelectSelector = defineComponent<SelectorProps>({
         onInputMouseDown,
         onInputCompositionStart,
         onInputCompositionEnd,
-      } = props
+      } = props;
 
       // >>> Input Node
       const inputNode = (
@@ -274,7 +274,7 @@ const SelectSelector = defineComponent<SelectorProps>({
             {targetValue.value}&nbsp;
           </span>
         </div>
-      )
+      );
 
       // >>> Selections
       const selectionNode = (
@@ -288,7 +288,7 @@ const SelectSelector = defineComponent<SelectorProps>({
           maxCount={props.maxTagCount}
           key="overflow"
         />
-      )
+      );
       return (
         <>
           {selectionNode}
@@ -296,9 +296,9 @@ const SelectSelector = defineComponent<SelectorProps>({
             <span class={`${selectionPrefixCls.value}-placeholder`}>{placeholder}</span>
           )}
         </>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default SelectSelector
+export default SelectSelector;

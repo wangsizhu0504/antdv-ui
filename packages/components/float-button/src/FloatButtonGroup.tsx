@@ -1,8 +1,8 @@
-import type { FloatButtonGroupProps } from './props'
-import { CloseOutlined, FileTextOutlined } from '@ant-design/icons-vue'
-import { useMergedState } from '@antdv/hooks'
-import { canUseDom, classNames, findDOMNode, initDefaultProps } from '@antdv/utils'
-import { getTransitionProps } from '@antdv/vue-components'
+import type { FloatButtonGroupProps } from './props';
+import { CloseOutlined, FileTextOutlined } from '@ant-design/icons-vue';
+import { useMergedState } from '@antdv/hooks';
+import { canUseDom, classNames, findDOMNode, initDefaultProps } from '@antdv/utils';
+import { getTransitionProps } from '@antdv/vue-components';
 import {
   computed,
   defineComponent,
@@ -10,14 +10,14 @@ import {
   ref,
   Transition,
   watch,
-} from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+} from 'vue';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import useStyle from '../style'
-import { floatButtonPrefixCls } from './constants'
-import { useProvideFloatButtonGroupContext } from './context'
-import FloatButton from './FloatButton'
-import { floatButtonGroupProps } from './props'
+import useStyle from '../style';
+import { floatButtonPrefixCls } from './constants';
+import { useProvideFloatButtonGroupContext } from './context';
+import FloatButton from './FloatButton';
+import { floatButtonGroupProps } from './props';
 
 // CSSINJS
 
@@ -30,84 +30,84 @@ export default defineComponent({
     shape: 'circle',
   } as FloatButtonGroupProps),
   setup(props, { attrs, slots, emit }) {
-    const { prefixCls, direction } = useConfigInject(floatButtonPrefixCls, props)
+    const { prefixCls, direction } = useConfigInject(floatButtonPrefixCls, props);
 
     // style
-    const [wrapSSR, hashId] = useStyle(prefixCls)
+    const [wrapSSR, hashId] = useStyle(prefixCls);
 
-    const [open, setOpen] = useMergedState(false, { value: computed(() => props.open) })
+    const [open, setOpen] = useMergedState(false, { value: computed(() => props.open) });
 
-    const floatButtonGroupRef = ref<HTMLDivElement>(null)
-    const floatButtonRef = ref<HTMLButtonElement | HTMLAnchorElement>(null)
+    const floatButtonGroupRef = ref<HTMLDivElement>(null);
+    const floatButtonRef = ref<HTMLButtonElement | HTMLAnchorElement>(null);
 
     useProvideFloatButtonGroupContext({
       shape: computed(() => props.shape),
-    })
+    });
     const hoverTypeAction = {
       onMouseenter() {
-        setOpen(true)
-        emit('update:open', true)
-        props.onOpenChange?.(true)
+        setOpen(true);
+        emit('update:open', true);
+        props.onOpenChange?.(true);
       },
       onMouseleave() {
-        setOpen(false)
-        emit('update:open', false)
-        props.onOpenChange?.(false)
+        setOpen(false);
+        emit('update:open', false);
+        props.onOpenChange?.(false);
       },
-    }
+    };
     const hoverAction = computed(() => {
-      return props.trigger === 'hover' ? hoverTypeAction : {}
-    })
+      return props.trigger === 'hover' ? hoverTypeAction : {};
+    });
 
     const handleOpenChange = () => {
-      const nextOpen = !open.value
-      emit('update:open', nextOpen)
-      props.onOpenChange?.(nextOpen)
-      setOpen(nextOpen)
-    }
+      const nextOpen = !open.value;
+      emit('update:open', nextOpen);
+      props.onOpenChange?.(nextOpen);
+      setOpen(nextOpen);
+    };
 
     const onClick = (e: MouseEvent) => {
       if (floatButtonGroupRef.value?.contains(e.target as Node)) {
         if (findDOMNode(floatButtonRef.value)?.contains(e.target as Node))
-          handleOpenChange()
+          handleOpenChange();
 
-        return
+        return;
       }
-      setOpen(false)
-      emit('update:open', false)
-      props.onOpenChange?.(false)
-    }
+      setOpen(false);
+      emit('update:open', false);
+      props.onOpenChange?.(false);
+    };
 
     watch(
       computed(() => props.trigger),
       (value) => {
         if (!canUseDom())
-          return
+          return;
 
-        document.removeEventListener('click', onClick)
+        document.removeEventListener('click', onClick);
         if (value === 'click')
-          document.addEventListener('click', onClick)
+          document.addEventListener('click', onClick);
       },
       { immediate: true },
-    )
+    );
     onBeforeUnmount(() => {
-      document.removeEventListener('click', onClick)
-    })
+      document.removeEventListener('click', onClick);
+    });
 
     return () => {
-      const { shape = 'circle', type = 'default', tooltip, description, trigger } = props
+      const { shape = 'circle', type = 'default', tooltip, description, trigger } = props;
 
-      const groupPrefixCls = `${prefixCls.value}-group`
+      const groupPrefixCls = `${prefixCls.value}-group`;
 
       const groupCls = classNames(groupPrefixCls, hashId.value, attrs.class, {
         [`${groupPrefixCls}-rtl`]: direction.value === 'rtl',
         [`${groupPrefixCls}-${shape}`]: shape,
         [`${groupPrefixCls}-${shape}-shadow`]: !trigger,
-      })
+      });
 
-      const wrapperCls = classNames(hashId.value, `${groupPrefixCls}-wrap`)
+      const wrapperCls = classNames(hashId.value, `${groupPrefixCls}-wrap`);
 
-      const transitionProps = getTransitionProps(`${groupPrefixCls}-wrap`)
+      const transitionProps = getTransitionProps(`${groupPrefixCls}-wrap`);
 
       return wrapSSR(
         <div ref={floatButtonGroupRef} {...attrs} class={groupCls} {...hoverAction.value}>
@@ -141,7 +141,7 @@ export default defineComponent({
                 slots.default?.()
               )}
         </div>,
-      )
-    }
+      );
+    };
   },
-})
+});

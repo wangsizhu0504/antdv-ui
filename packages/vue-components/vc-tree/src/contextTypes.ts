@@ -3,8 +3,8 @@
  * When util.js imports the TreeNode for tree generate will cause treeContextTypes be empty.
  */
 
-import type { Key, VueNode } from '@antdv/types'
-import type { ComputedRef, InjectionKey, PropType, ShallowRef } from 'vue'
+import type { Key, VueNode } from '@antdv/types';
+import type { ComputedRef, InjectionKey, PropType, ShallowRef } from 'vue';
 import type {
   DataEntity,
   Direction,
@@ -12,10 +12,10 @@ import type {
   EventDataNode,
   FlattenNode,
   IconType,
-} from './interface'
-import type { DraggableConfig } from './Tree'
+} from './interface';
+import type { DraggableConfig } from './Tree';
 
-import { computed, defineComponent, inject, provide, shallowRef } from 'vue'
+import { computed, defineComponent, inject, provide, shallowRef } from 'vue';
 
 export interface NodeMouseEventParams {
   event: MouseEvent;
@@ -26,12 +26,12 @@ export interface NodeDragEventParams {
   node: EventDataNode;
 }
 
-export type NodeMouseEventHandler = (e: MouseEvent, node: EventDataNode) => void
+export type NodeMouseEventHandler = (e: MouseEvent, node: EventDataNode) => void;
 export type NodeDragEventHandler = (
   e: DragEvent,
   node: DragNodeEvent,
   outsideTree?: boolean,
-) => void
+) => void;
 
 export interface TreeContextProps {
   prefixCls: string;
@@ -87,7 +87,7 @@ export interface TreeContextProps {
     [key: string]: ((...args: any[]) => any) | undefined;
   };
 }
-const TreeContextKey: InjectionKey<ComputedRef<TreeContextProps>> = Symbol('TreeContextKey')
+const TreeContextKey: InjectionKey<ComputedRef<TreeContextProps>> = Symbol('TreeContextKey');
 
 export const TreeContext = defineComponent({
   compatConfig: { MODE: 3 },
@@ -99,16 +99,16 @@ export const TreeContext = defineComponent({
     provide(
       TreeContextKey,
       computed(() => props.value),
-    )
-    return () => slots.default?.()
+    );
+    return () => slots.default?.();
   },
-})
+});
 
 export function useInjectTreeContext() {
   return inject(
     TreeContextKey,
     computed(() => ({} as TreeContextProps)),
-  )
+  );
 }
 interface KeysStateKeyType {
   expandedKeysSet: ComputedRef<Set<Key>>;
@@ -125,9 +125,9 @@ interface KeysStateKeyType {
   halfCheckedKeys: ShallowRef<Key[]>;
   flattenNodes: ShallowRef<FlattenNode[]>;
 }
-const KeysStateKey: InjectionKey<KeysStateKeyType> = Symbol('KeysStateKey')
+const KeysStateKey: InjectionKey<KeysStateKeyType> = Symbol('KeysStateKey');
 export function useProvideKeysState(state: KeysStateKeyType) {
-  provide(KeysStateKey, state)
+  provide(KeysStateKey, state);
 }
 
 export function useInjectKeysState() {
@@ -145,5 +145,5 @@ export function useInjectKeysState() {
     checkedKeysSet: computed<Set<Key>>(() => new Set()),
     halfCheckedKeysSet: computed<Set<Key>>(() => new Set()),
     flattenNodes: shallowRef<FlattenNode[]>([]),
-  })
+  });
 }

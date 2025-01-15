@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken, resetComponent, textEllipsis } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken, resetComponent, textEllipsis } from '@antdv/theme';
 
 export interface ComponentToken {}
 
@@ -22,7 +22,7 @@ const genSharedAnchorStyle: GenerateStyle<AnchorToken> = (token): CSSObject => {
     colorPrimary,
     lineType,
     colorSplit,
-  } = token
+  } = token;
 
   return {
     [`${componentCls}-wrapper`]: {
@@ -104,11 +104,11 @@ const genSharedAnchorStyle: GenerateStyle<AnchorToken> = (token): CSSObject => {
         display: 'none',
       },
     },
-  }
-}
+  };
+};
 
 const genSharedAnchorHorizontalStyle: GenerateStyle<AnchorToken> = (token): CSSObject => {
-  const { componentCls, motionDurationSlow, lineWidthBold, colorPrimary } = token
+  const { componentCls, motionDurationSlow, lineWidthBold, colorPrimary } = token;
 
   return {
     [`${componentCls}-wrapper-horizontal`]: {
@@ -152,12 +152,12 @@ const genSharedAnchorHorizontalStyle: GenerateStyle<AnchorToken> = (token): CSSO
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Anchor', (token) => {
-  const { fontSize, fontSizeLG, padding, paddingXXS } = token
+  const { fontSize, fontSizeLG, padding, paddingXXS } = token;
 
   const anchorToken = mergeToken<AnchorToken>(token, {
     holderOffsetBlock: paddingXXS,
@@ -166,6 +166,6 @@ export default genComponentStyleHook('Anchor', (token) => {
     anchorPaddingInline: padding,
     anchorTitleBlock: (fontSize / 14) * 3,
     anchorBallSize: fontSizeLG / 2,
-  })
-  return [genSharedAnchorStyle(anchorToken), genSharedAnchorHorizontalStyle(anchorToken)]
-})
+  });
+  return [genSharedAnchorStyle(anchorToken), genSharedAnchorHorizontalStyle(anchorToken)];
+});

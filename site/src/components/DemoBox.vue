@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { GlobalConfig } from '@/types'
-  import { getCodeSandboxParams } from '@/utils/generateOnlineDemo'
-  import { CheckOutlined, CodeSandboxOutlined, SnippetsOutlined } from '@ant-design/icons-vue'
-  import { computed, defineComponent, inject, onMounted, ref } from 'vue'
-  import packageInfo from '../../../packages/antdv-ui/package.json'
-  import { GLOBAL_CONFIG } from '../SymbolKey'
+  import type { GlobalConfig } from '@/types';
+  import { getCodeSandboxParams } from '@/utils/generateOnlineDemo';
+  import { CheckOutlined, CodeSandboxOutlined, SnippetsOutlined } from '@ant-design/icons-vue';
+  import { computed, defineComponent, inject, onMounted, ref } from 'vue';
+  import packageInfo from '../../../packages/antdv-ui/package.json';
+  import { GLOBAL_CONFIG } from '../SymbolKey';
 
   // import { Modal } from '@antdv/ui';
   export default defineComponent({
@@ -18,43 +18,43 @@
       jsfiddle: Object,
     },
     setup(props) {
-      const codeExpand = ref<any>(false)
-      const type = ref<any>('TS')
-      const copyTooltipVisible = ref<any>(false)
-      const copied = ref<any>(false)
-      const codeRef = ref<HTMLDivElement>()
+      const codeExpand = ref<any>(false);
+      const type = ref<any>('TS');
+      const copyTooltipVisible = ref<any>(false);
+      const copied = ref<any>(false);
+      const codeRef = ref<HTMLDivElement>();
       const sectionId = computed(() => {
-        const relativePath = props.jsfiddle?.relativePath.replace('components/', '') || ''
-        return `${relativePath.split('/').join('-').replace('.vue', '')}`.toLocaleLowerCase()
-      })
-      const inIframe = inject('inIframe', false)
-      const iframeHeight = computed(() => props.jsfiddle?.iframe)
+        const relativePath = props.jsfiddle?.relativePath.replace('components/', '') || '';
+        return `${relativePath.split('/').join('-').replace('.vue', '')}`.toLocaleLowerCase();
+      });
+      const inIframe = inject('inIframe', false);
+      const iframeHeight = computed(() => props.jsfiddle?.iframe);
 
-      const addDemosInfo: any = inject('addDemosInfo', () => {})
+      const addDemosInfo: any = inject('addDemosInfo', () => {});
 
-      const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG)
+      const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG);
       const title = computed(
         () =>
           props.jsfiddle
           && props.jsfiddle.title
           && props.jsfiddle?.title[globalConfig?.isZhCN.value ? 'zh-CN' : 'en-US'],
-      )
+      );
       const iframeDemoKey = computed(() => {
         return (
           props.jsfiddle
           && props.jsfiddle.title
           && props.jsfiddle?.title['en-US']
           && String(props.jsfiddle?.title['en-US']).split(' ').join('-').toLowerCase()
-        )
-      })
+        );
+      });
       const onCopyTooltipVisibleChange = (visible: boolean) => {
         if (visible) {
-          copyTooltipVisible.value = visible
-          copied.value = false
+          copyTooltipVisible.value = visible;
+          copied.value = false;
         } else {
-          copyTooltipVisible.value = visible
+          copyTooltipVisible.value = visible;
         }
-      }
+      };
       const docHtml = computed(() =>
         (props.jsfiddle && props.jsfiddle.docHtml)
           ? (
@@ -68,42 +68,42 @@
         </a></h2>`)[globalConfig?.isZhCN.value ? 0 : 1] || ''
           ).trim()
           : '',
-      )
+      );
       const handleCodeExpand = () => {
-        codeExpand.value = !codeExpand.value
-      }
+        codeExpand.value = !codeExpand.value;
+      };
       const handleCodeCopied = () => {
-        copied.value = true
-      }
+        copied.value = true;
+      };
       const handleCodeSandbox = () => {
-        const code = codeRef.value!.textContent
+        const code = codeRef.value!.textContent;
         const params = getCodeSandboxParams(code!, {
           title: `${title.value} - @antdv/ui@${packageInfo.version}`,
-        })
-        const div = document.createElement('div')
-        div.style.display = 'none'
+        });
+        const div = document.createElement('div');
+        div.style.display = 'none';
         div.innerHTML = `<form action="https://codesandbox.io/api/v1/sandboxes/define" method="POST" target="_blank">
         <input type="hidden" name="parameters" value="${params}" />
         <input type="submit" value="Open in sandbox" />
-      </form>`
+      </form>`;
         document.body.appendChild(div);
-        (div.firstElementChild as HTMLFormElement).submit()
-        document.body.removeChild(div)
-      }
+        (div.firstElementChild as HTMLFormElement).submit();
+        document.body.removeChild(div);
+      };
       const highlightClass = computed(() => {
         return {
           'highlight-wrapper': true,
           'highlight-wrapper-expand': codeExpand.value,
-        }
-      })
-      const iframeDemo = inject('iframeDemo', {})
+        };
+      });
+      const iframeDemo = inject('iframeDemo', {});
       onMounted(() => {
         addDemosInfo({
           href: `#${sectionId.value}`,
           title,
-        })
-      })
-      const theme = computed(() => inject('themeMode', { theme: ref<any>('light') }).theme.value)
+        });
+      });
+      const theme = computed(() => inject('themeMode', { theme: ref<any>('light') }).theme.value);
       return {
         docHtml,
         iframeDemo,
@@ -127,9 +127,9 @@
         jsSourceCode: decodeURIComponent(escape(window.atob(props.jsfiddle?.jsSourceCode))),
         codeRef,
         handleCodeSandbox,
-      }
+      };
     },
-  })
+  });
 </script>
 
 <template>

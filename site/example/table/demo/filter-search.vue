@@ -18,7 +18,7 @@ title:
 </docs>
 
 <script lang="ts" setup>
-  import type { TableProps } from '@antdv/ui'
+  import type { TableProps } from '@antdv/ui';
 
   const columns: TableProps['columns'] = [
     {
@@ -65,7 +65,7 @@ title:
       filterSearch: (input, filter) => (filter.value as string).includes(input),
       width: '40%',
     },
-  ]
+  ];
   const data = [
     {
       key: '1',
@@ -91,10 +91,10 @@ title:
       age: 32,
       address: 'London No. 2 Lake Park',
     },
-  ]
+  ];
 
   function onChange(pagination, filters, sorter, extra) {
-    console.log('params', pagination, filters, sorter, extra)
+    console.log('params', pagination, filters, sorter, extra);
   }
 </script>
 

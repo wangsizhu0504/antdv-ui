@@ -1,25 +1,25 @@
-import { raf } from '@antdv/utils'
-import { onBeforeUnmount, shallowRef } from 'vue'
+import { raf } from '@antdv/utils';
+import { onBeforeUnmount, shallowRef } from 'vue';
 
 /**
  * Always trigger latest once when call multiple time
  */
 export default () => {
-  const idRef = shallowRef(0)
+  const idRef = shallowRef(0);
 
   const cleanUp = () => {
-    raf.cancel(idRef.value)
-  }
+    raf.cancel(idRef.value);
+  };
 
   onBeforeUnmount(() => {
-    cleanUp()
-  })
+    cleanUp();
+  });
 
   return (callback: () => void) => {
-    cleanUp()
+    cleanUp();
 
     idRef.value = raf(() => {
-      callback()
-    })
-  }
-}
+      callback();
+    });
+  };
+};

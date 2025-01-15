@@ -1,7 +1,7 @@
-import type { CSSProperties, PropType } from 'vue'
-import { type ColorInput, TinyColor } from '@ctrl/tinycolor'
-import { computed, defineComponent, toRefs } from 'vue'
-import useSiteToken from '../../hooks/useSiteToken'
+import type { CSSProperties, PropType } from 'vue';
+import { type ColorInput, TinyColor } from '@ctrl/tinycolor';
+import { computed, defineComponent, toRefs } from 'vue';
+import useSiteToken from '../../hooks/useSiteToken';
 
 const ColorChunk = defineComponent({
   props: {
@@ -11,16 +11,16 @@ const ColorChunk = defineComponent({
     },
   },
   setup(props, { attrs, slots }) {
-    const SiteToken = useSiteToken()
+    const SiteToken = useSiteToken();
 
-    const token = computed(() => SiteToken.value.token)
+    const token = computed(() => SiteToken.value.token);
 
-    const { color } = toRefs(props)
+    const { color } = toRefs(props);
 
     const dotColor = computed(() => {
-      const _color = new TinyColor(color.value).toHex8String()
-      return _color.endsWith('ff') ? _color.slice(0, -2) : _color
-    })
+      const _color = new TinyColor(color.value).toHex8String();
+      return _color.endsWith('ff') ? _color.slice(0, -2) : _color;
+    });
 
     return () => {
       return (
@@ -48,9 +48,9 @@ const ColorChunk = defineComponent({
           />
           {slots.default ? slots.default() : dotColor.value}
         </span>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default ColorChunk
+export default ColorChunk;

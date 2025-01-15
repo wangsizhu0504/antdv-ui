@@ -1,11 +1,11 @@
-import { EXPAND_COLUMN } from './src/constant'
-import { FooterComponents as Summary, SummaryCell, SummaryRow } from './src/Footer'
-import Column from './src/sugar/Column'
-import ColumnGroup from './src/sugar/ColumnGroup'
+import { EXPAND_COLUMN } from './src/constant';
+import { FooterComponents as Summary, SummaryCell, SummaryRow } from './src/Footer';
+import Column from './src/sugar/Column';
+import ColumnGroup from './src/sugar/ColumnGroup';
 
 // base rc-table@7.22.2
-import VcTable from './src/Table'
-import { INTERNAL_COL_DEFINE } from './src/utils/legacyUtil'
+import VcTable from './src/Table';
+import { INTERNAL_COL_DEFINE } from './src/utils/legacyUtil';
 
 export {
   Column,
@@ -16,4 +16,4 @@ export {
   SummaryCell,
   SummaryRow,
   VcTable,
-}
+};

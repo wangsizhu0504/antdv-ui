@@ -1,7 +1,7 @@
-import type { TourStepProps } from '../interface'
-import { classNames } from '@antdv/utils'
-import { defineComponent } from 'vue'
-import { tourStepProps } from '../interface'
+import type { TourStepProps } from '../interface';
+import { classNames } from '@antdv/utils';
+import { defineComponent } from 'vue';
+import { tourStepProps } from '../interface';
 
 const DefaultPanel = defineComponent({
   name: 'DefaultPanel',
@@ -10,7 +10,7 @@ const DefaultPanel = defineComponent({
   setup(props, { attrs }) {
     return () => {
       const { prefixCls, current, total, title, description, onClose, onPrev, onNext, onFinish }
-        = props as TourStepProps
+        = props as TourStepProps;
       return (
         <div {...attrs} class={classNames(`${prefixCls}-content`, attrs.class)}>
           <div class={`${prefixCls}-inner`}>
@@ -25,7 +25,7 @@ const DefaultPanel = defineComponent({
               <div class={`${prefixCls}-sliders`}>
                 {total > 1
                   ? [...Array.from({ length: total }).keys()].map((item, index) => {
-                      return <span key={item} class={index === current ? 'active' : ''} />
+                      return <span key={item} class={index === current ? 'active' : ''} />;
                     })
                   : null}
               </div>
@@ -52,9 +52,9 @@ const DefaultPanel = defineComponent({
             </div>
           </div>
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default DefaultPanel
+export default DefaultPanel;

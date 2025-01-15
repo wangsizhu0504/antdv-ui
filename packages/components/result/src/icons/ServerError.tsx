@@ -325,7 +325,7 @@ function ServerError() {
         />
       </g>
     </svg>
-  )
+  );
 }
 
-export default ServerError
+export default ServerError;

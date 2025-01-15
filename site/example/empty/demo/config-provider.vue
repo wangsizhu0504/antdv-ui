@@ -17,13 +17,13 @@ Use ConfigProvider set global Empty style.
 </docs>
 
 <script lang="ts" setup>
-  import { SmileOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import { SmileOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const customize = ref<boolean>(false)
+  const customize = ref<boolean>(false);
 
-  const style = { width: '200px' }
-  const columns = [{ title: 'Name' }, { title: 'Age' }]
+  const style = { width: '200px' };
+  const columns = [{ title: 'Name' }, { title: 'Age' }];
 </script>
 
 <template>

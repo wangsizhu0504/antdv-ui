@@ -1,10 +1,10 @@
-import type { PropType } from 'vue'
-import type { OptionProps } from './Option'
-import { arrayType, initDefaultProps, PropTypes, tuple } from '@antdv/utils'
-import { filterOption as defaultFilterOption, validateSearch as defaultValidateSearch } from './util'
+import type { PropType } from 'vue';
+import type { OptionProps } from './Option';
+import { arrayType, initDefaultProps, PropTypes, tuple } from '@antdv/utils';
+import { filterOption as defaultFilterOption, validateSearch as defaultValidateSearch } from './util';
 
-export const PlaceMent = tuple('top', 'bottom')
-export type Direction = 'ltr' | 'rtl'
+export const PlaceMent = tuple('top', 'bottom');
+export type Direction = 'ltr' | 'rtl';
 
 export const mentionsProps = {
   autofocus: { type: Boolean, default: undefined },
@@ -28,12 +28,12 @@ export const mentionsProps = {
   loading: { type: Boolean, default: undefined },
   rows: [Number, String],
   direction: { type: String as PropType<Direction> },
-}
+};
 
 export const vcMentionsProps = {
   ...mentionsProps,
   dropdownClassName: String,
-}
+};
 
 export const defaultProps = {
   prefix: '@',
@@ -41,6 +41,6 @@ export const defaultProps = {
   rows: 1,
   validateSearch: defaultValidateSearch,
   filterOption: (() => defaultFilterOption) as any,
-}
+};
 
-export default initDefaultProps(vcMentionsProps, defaultProps)
+export default initDefaultProps(vcMentionsProps, defaultProps);

@@ -1,23 +1,23 @@
-import type { VueNode } from '@antdv/types'
-import type { SelectCommonPlacement } from '@antdv/vue-components'
-import type { ShowSearchType } from '@antdv/vue-components/vc-cascader/src/Cascader'
-import type { CascaderRef } from './interface'
-import type { CascaderProps } from './props'
-import { LeftOutlined, LoadingOutlined, RightOutlined } from '@ant-design/icons-vue'
-import { classNames, devWarning, getMergedStatus, getStatusClassNames, initDefaultProps } from '@antdv/utils'
-import { getTransitionDirection, getTransitionName, VcCascader } from '@antdv/vue-components'
-import { computed, defineComponent, ref, watchEffect } from 'vue'
-import { useInjectDisabled } from '../../config-provider/src/context'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import type { VueNode } from '@antdv/types';
+import type { SelectCommonPlacement } from '@antdv/vue-components';
+import type { ShowSearchType } from '@antdv/vue-components/vc-cascader/src/Cascader';
+import type { CascaderRef } from './interface';
+import type { CascaderProps } from './props';
+import { LeftOutlined, LoadingOutlined, RightOutlined } from '@ant-design/icons-vue';
+import { classNames, devWarning, getMergedStatus, getStatusClassNames, initDefaultProps } from '@antdv/utils';
+import { getTransitionDirection, getTransitionName, VcCascader } from '@antdv/vue-components';
+import { computed, defineComponent, ref, watchEffect } from 'vue';
+import { useInjectDisabled } from '../../config-provider/src/context';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import { useInjectFormItemContext } from '../../form'
+import { useInjectFormItemContext } from '../../form';
 
-import { FormItemInputContext } from '../../form/src/FormItemContext'
-import getIcons from '../../select/src/iconUtil'
-import useSelectStyle from '../../select/style'
-import { useCompactItemContext } from '../../space/src/context'
-import useStyle from '../style'
-import { cascaderProps } from './props'
+import { FormItemInputContext } from '../../form/src/FormItemContext';
+import getIcons from '../../select/src/iconUtil';
+import useSelectStyle from '../../select/style';
+import { useCompactItemContext } from '../../space/src/context';
+import useStyle from '../style';
+import { cascaderProps } from './props';
 
 // Align the design since we use `rc-select` in root. This help:
 // - List search content will show all content
@@ -28,27 +28,27 @@ function highlightKeyword(str: string, lowerKeyword: string, prefixCls?: string)
   const cells = str
     .toLowerCase()
     .split(lowerKeyword)
-    .reduce((list, cur, index) => (index === 0 ? [cur] : [...list, lowerKeyword, cur]), [])
-  const fillCells: VueNode[] = []
-  let start = 0
+    .reduce((list, cur, index) => (index === 0 ? [cur] : [...list, lowerKeyword, cur]), []);
+  const fillCells: VueNode[] = [];
+  let start = 0;
 
   cells.forEach((cell, index) => {
-    const end = start + cell.length
-    let originWorld: VueNode = str.slice(start, end)
-    start = end
+    const end = start + cell.length;
+    let originWorld: VueNode = str.slice(start, end);
+    start = end;
 
     if (index % 2 === 1) {
       originWorld = (
         <span class={`${prefixCls}-menu-item-keyword`} key="seperator">
           {originWorld}
         </span>
-      )
+      );
     }
 
-    fillCells.push(originWorld)
-  })
+    fillCells.push(originWorld);
+  });
 
-  return fillCells
+  return fillCells;
 }
 
 const defaultSearchRender: ShowSearchType['render'] = ({
@@ -57,24 +57,24 @@ const defaultSearchRender: ShowSearchType['render'] = ({
   prefixCls,
   fieldNames,
 }) => {
-  const optionList: VueNode[] = []
+  const optionList: VueNode[] = [];
 
   // We do lower here to save perf
-  const lower = inputValue.toLowerCase()
+  const lower = inputValue.toLowerCase();
 
   path.forEach((node, index) => {
     if (index !== 0)
-      optionList.push(' / ')
+      optionList.push(' / ');
 
-    let label = (node as any)[fieldNames.label!]
-    const type = typeof label
+    let label = (node as any)[fieldNames.label!];
+    const type = typeof label;
     if (type === 'string' || type === 'number')
-      label = highlightKeyword(String(label), lower, prefixCls)
+      label = highlightKeyword(String(label), lower, prefixCls);
 
-    optionList.push(label)
-  })
-  return optionList
-}
+    optionList.push(label);
+  });
+  return optionList;
+};
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -92,11 +92,11 @@ export default defineComponent({
         !props.dropdownClassName,
         'Cascader',
         '`dropdownClassName` is deprecated. Please use `popupClassName` instead.',
-      )
+      );
     }
-    const formItemContext = useInjectFormItemContext()
-    const formItemInputContext = FormItemInputContext.useInject()
-    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status))
+    const formItemContext = useInjectFormItemContext();
+    const formItemInputContext = FormItemInputContext.useInject();
+    const mergedStatus = computed(() => getMergedStatus(formItemInputContext.status, props.status));
     const {
       prefixCls: cascaderPrefixCls,
       rootPrefixCls,
@@ -106,17 +106,17 @@ export default defineComponent({
       renderEmpty,
       size: contextSize,
       disabled,
-    } = useConfigInject('cascader', props)
-    const prefixCls = computed(() => getPrefixCls('select', props.prefixCls))
-    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction)
-    const mergedSize = computed(() => compactSize.value || contextSize.value)
-    const contextDisabled = useInjectDisabled()
-    const mergedDisabled = computed(() => disabled.value ?? contextDisabled.value)
+    } = useConfigInject('cascader', props);
+    const prefixCls = computed(() => getPrefixCls('select', props.prefixCls));
+    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
+    const mergedSize = computed(() => compactSize.value || contextSize.value);
+    const contextDisabled = useInjectDisabled();
+    const mergedDisabled = computed(() => disabled.value ?? contextDisabled.value);
 
-    const [wrapSelectSSR, hashId] = useSelectStyle(prefixCls)
-    const [wrapCascaderSSR] = useStyle(cascaderPrefixCls)
+    const [wrapSelectSSR, hashId] = useSelectStyle(prefixCls);
+    const [wrapCascaderSSR] = useStyle(cascaderPrefixCls);
 
-    const isRtl = computed(() => direction.value === 'rtl')
+    const isRtl = computed(() => direction.value === 'rtl');
     // =================== Warning =====================
     if (process.env.NODE_ENV !== 'production') {
       watchEffect(() => {
@@ -124,27 +124,27 @@ export default defineComponent({
           !props.multiple || !props.displayRender || !slots.displayRender,
           'Cascader',
           '`displayRender` not work on `multiple`. Please use `tagRender` instead.',
-        )
-      })
+        );
+      });
     }
     // ==================== Search =====================
     const mergedShowSearch = computed(() => {
       if (!props.showSearch)
-        return props.showSearch
+        return props.showSearch;
 
       let searchConfig: ShowSearchType = {
         render: defaultSearchRender,
-      }
+      };
 
       if (typeof props.showSearch === 'object') {
         searchConfig = {
           ...searchConfig,
           ...props.showSearch,
-        }
+        };
       }
 
-      return searchConfig
-    })
+      return searchConfig;
+    });
 
     // =================== Dropdown ====================
     const mergedDropdownClassName = computed(() =>
@@ -156,38 +156,38 @@ export default defineComponent({
         },
         hashId.value,
       ),
-    )
+    );
 
-    const selectRef = ref<CascaderRef>()
+    const selectRef = ref<CascaderRef>();
     expose({
       focus() {
-        selectRef.value?.focus()
+        selectRef.value?.focus();
       },
       blur() {
-        selectRef.value?.blur()
+        selectRef.value?.blur();
       },
-    } as CascaderRef)
+    } as CascaderRef);
 
     const handleChange: CascaderProps['onChange'] = (...args) => {
-      emit('update:value', args[0])
-      emit('change', ...args)
-      formItemContext.onFieldChange()
-    }
+      emit('update:value', args[0]);
+      emit('change', ...args);
+      formItemContext.onFieldChange();
+    };
     const handleBlur: CascaderProps['onBlur'] = (...args) => {
-      emit('blur', ...args)
-      formItemContext.onFieldBlur()
-    }
+      emit('blur', ...args);
+      formItemContext.onFieldBlur();
+    };
     const mergedShowArrow = computed(() =>
       props.showArrow !== undefined ? props.showArrow : props.loading || !props.multiple,
-    )
+    );
     const placement = computed(() => {
       if (props.placement !== undefined)
-        return props.placement
+        return props.placement;
 
       return direction.value === 'rtl'
         ? ('bottomRight' as SelectCommonPlacement)
-        : ('bottomLeft' as SelectCommonPlacement)
-    })
+        : ('bottomLeft' as SelectCommonPlacement);
+    });
     return () => {
       const {
         notFoundContent = slots.notFoundContent?.(),
@@ -199,20 +199,20 @@ export default defineComponent({
         transitionName,
         id = formItemContext.id.value,
         ...restProps
-      } = props
+      } = props;
       // =================== No Found ====================
-      const mergedNotFoundContent = notFoundContent || renderEmpty('Cascader')
+      const mergedNotFoundContent = notFoundContent || renderEmpty('Cascader');
 
       // ===================== Icon ======================
-      let mergedExpandIcon = expandIcon
+      let mergedExpandIcon = expandIcon;
       if (!expandIcon)
-        mergedExpandIcon = isRtl.value ? <LeftOutlined /> : <RightOutlined />
+        mergedExpandIcon = isRtl.value ? <LeftOutlined /> : <RightOutlined />;
 
       const loadingIcon = (
         <span class={`${prefixCls.value}-menu-item-loading-icon`}>
           <LoadingOutlined spin />
         </span>
-      )
+      );
 
       // ===================== Icons =====================
       const { suffixIcon, removeIcon, clearIcon } = getIcons(
@@ -225,7 +225,7 @@ export default defineComponent({
           showArrow: mergedShowArrow.value,
         },
         slots,
-      )
+      );
       return wrapCascaderSSR(
         wrapSelectSSR(
           <VcCascader
@@ -286,7 +286,7 @@ export default defineComponent({
             ref={selectRef}
           />,
         ),
-      )
-    }
+      );
+    };
   },
-})
+});

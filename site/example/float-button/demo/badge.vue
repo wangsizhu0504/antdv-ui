@@ -18,7 +18,7 @@ FloatButton with Badge.
 </docs>
 
 <script setup>
-  import { QuestionCircleOutlined } from '@ant-design/icons-vue'
+  import { QuestionCircleOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

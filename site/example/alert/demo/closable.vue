@@ -18,7 +18,7 @@ To show close button.
 
 <script lang="ts" setup>
   function onClose(e: MouseEvent) {
-    console.log(e, 'I was closed.')
+    console.log(e, 'I was closed.');
   }
 </script>
 

@@ -17,12 +17,12 @@ customize collapse/expand icon of tree node
 </docs>
 
 <script lang="ts" setup>
-  import type { TreeProps } from '@antdv/ui'
-  import { DownOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { TreeProps } from '@antdv/ui';
+  import { DownOutlined } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const expandedKeys = ref<string[]>(['0-0-0'])
-  const selectedKeys = ref<string[]>([])
+  const expandedKeys = ref<string[]>(['0-0-0']);
+  const selectedKeys = ref<string[]>([]);
   const treeData: TreeProps['treeData'] = [
     {
       title: 'parent 1',
@@ -72,7 +72,7 @@ customize collapse/expand icon of tree node
         },
       ],
     },
-  ]
+  ];
 </script>
 
 <template>

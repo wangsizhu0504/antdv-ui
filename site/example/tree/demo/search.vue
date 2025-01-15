@@ -17,87 +17,87 @@ Searchable Tree.
 </docs>
 
 <script lang="ts" setup>
-  import type { TreeProps } from '@antdv/ui'
-  import { ref, watch } from 'vue'
+  import type { TreeProps } from '@antdv/ui';
+  import { ref, watch } from 'vue';
 
-  const x = 3
-  const y = 2
-  const z = 1
-  const genData: TreeProps['treeData'] = []
+  const x = 3;
+  const y = 2;
+  const z = 1;
+  const genData: TreeProps['treeData'] = [];
 
   function generateData(_level: number, _preKey?: string, _tns?: TreeProps['treeData']) {
-    const preKey = _preKey || '0'
-    const tns = _tns || genData
+    const preKey = _preKey || '0';
+    const tns = _tns || genData;
 
-    const children = []
+    const children = [];
     for (let i = 0; i < x; i++) {
-      const key = `${preKey}-${i}`
-      tns.push({ title: key, key })
+      const key = `${preKey}-${i}`;
+      tns.push({ title: key, key });
       if (i < y) {
-        children.push(key)
+        children.push(key);
       }
     }
     if (_level < 0) {
-      return tns
+      return tns;
     }
-    const level = _level - 1
+    const level = _level - 1;
     children.forEach((key, index) => {
-      tns[index].children = []
-      return generateData(level, key, tns[index].children)
-    })
+      tns[index].children = [];
+      return generateData(level, key, tns[index].children);
+    });
   }
-  generateData(z)
+  generateData(z);
 
-  const dataList: TreeProps['treeData'] = []
+  const dataList: TreeProps['treeData'] = [];
   function generateList(data: TreeProps['treeData']) {
     for (let i = 0; i < data.length; i++) {
-      const node = data[i]
-      const key = node.key
-      dataList.push({ key, title: key })
+      const node = data[i];
+      const key = node.key;
+      dataList.push({ key, title: key });
       if (node.children) {
-        generateList(node.children)
+        generateList(node.children);
       }
     }
   }
-  generateList(genData)
+  generateList(genData);
 
   function getParentKey(key: string | number, tree: TreeProps['treeData']): string | number | undefined {
-    let parentKey
+    let parentKey;
     for (let i = 0; i < tree.length; i++) {
-      const node = tree[i]
+      const node = tree[i];
       if (node.children) {
         if (node.children.some(item => item.key === key)) {
-          parentKey = node.key
+          parentKey = node.key;
         } else if (getParentKey(key, node.children)) {
-          parentKey = getParentKey(key, node.children)
+          parentKey = getParentKey(key, node.children);
         }
       }
     }
-    return parentKey
+    return parentKey;
   }
-  const expandedKeys = ref<Array<string | number>>([])
-  const searchValue = ref<string>('')
-  const autoExpandParent = ref<boolean>(true)
-  const gData = ref<TreeProps['treeData']>(genData)
+  const expandedKeys = ref<Array<string | number>>([]);
+  const searchValue = ref<string>('');
+  const autoExpandParent = ref<boolean>(true);
+  const gData = ref<TreeProps['treeData']>(genData);
 
   function onExpand(keys: string[]) {
-    expandedKeys.value = keys
-    autoExpandParent.value = false
+    expandedKeys.value = keys;
+    autoExpandParent.value = false;
   }
 
   watch(searchValue, (value) => {
     const expanded = dataList
       .map((item: TreeProps['treeData'][number]) => {
         if (item.title.includes(value)) {
-          return getParentKey(item.key, gData.value)
+          return getParentKey(item.key, gData.value);
         }
-        return null
+        return null;
       })
-      .filter((item, i, self) => item && self.indexOf(item) === i)
-    expandedKeys.value = expanded
-    searchValue.value = value
-    autoExpandParent.value = true
-  })
+      .filter((item, i, self) => item && self.indexOf(item) === i);
+    expandedKeys.value = expanded;
+    searchValue.value = value;
+    autoExpandParent.value = true;
+  });
 </script>
 
 <template>

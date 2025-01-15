@@ -1,15 +1,15 @@
-import type { PropType } from 'vue'
-import { ConfigProvider, Table } from '@antdv/ui'
-import tokenData from '@antdv/version/token.json'
-import tokenMeta from '@antdv/version/token-meta.json'
-import { computed, defineComponent, toRefs } from 'vue'
-import useSiteToken from '../../hooks/useSiteToken'
-import { useLocale } from '../../locale'
-import { getDesignToken } from '../antdv-token-previewer'
-import ColorChunk from '../ColorChunk'
-import { useColumns } from '../TokenTable'
+import type { PropType } from 'vue';
+import { ConfigProvider, Table } from '@antdv/ui';
+import tokenMeta from '@antdv/version/token-meta.json';
+import tokenData from '@antdv/version/token.json';
+import { computed, defineComponent, toRefs } from 'vue';
+import useSiteToken from '../../hooks/useSiteToken';
+import { useLocale } from '../../locale';
+import { getDesignToken } from '../antdv-token-previewer';
+import ColorChunk from '../ColorChunk';
+import { useColumns } from '../TokenTable';
 
-const defaultToken = getDesignToken()
+const defaultToken = getDesignToken();
 
 const locales = {
   cn: {
@@ -24,7 +24,7 @@ const locales = {
     type: 'Type',
     value: 'Default Value',
   },
-}
+};
 
 interface SubTokenTableProps {
   defaultOpen?: boolean
@@ -46,43 +46,43 @@ const SubTokenTable = defineComponent({
     },
   },
   setup(props) {
-    const { defaultOpen, title, tokens } = toRefs(props)
-    const [, lang] = useLocale(locales)
-    const siteToken = useSiteToken()
-    const token = computed(() => siteToken.value.token)
-    const columns = useColumns()
+    const { defaultOpen, title, tokens } = toRefs(props);
+    const [, lang] = useLocale(locales);
+    const siteToken = useSiteToken();
+    const token = computed(() => siteToken.value.token);
+    const columns = useColumns();
 
     return () => {
       if (!tokens.value.length)
-        return null
+        return null;
 
       const data = tokens.value
         .sort((token1, token2) => {
-          const hasColor1 = token1.toLowerCase().includes('color')
-          const hasColor2 = token2.toLowerCase().includes('color')
+          const hasColor1 = token1.toLowerCase().includes('color');
+          const hasColor2 = token2.toLowerCase().includes('color');
 
           if (hasColor1 && !hasColor2)
-            return -1
+            return -1;
 
           if (!hasColor1 && hasColor2)
-            return 1
+            return 1;
 
-          return token1 < token2 ? -1 : 1
+          return token1 < token2 ? -1 : 1;
         })
         .map((name) => {
-          const meta = tokenMeta[name]
+          const meta = tokenMeta[name];
 
           if (!meta)
-            return null
+            return null;
 
           return {
             name,
             desc: lang.value === 'cn' ? meta.desc : meta.descEn,
             type: meta.type,
             value: (defaultToken as any)[name],
-          }
+          };
         })
-        .filter(info => info)
+        .filter(info => info);
 
       return (
         // Reuse `.markdown` style
@@ -122,14 +122,14 @@ const SubTokenTable = defineComponent({
                       >
                         {record.type}
                       </span>
-                    )
+                    );
                   }
                   if (column.key === 'value') {
                     const isColor
                       = typeof record.value === 'string'
-                      && (record.value.startsWith('#') || record.value.startsWith('rgb'))
+                      && (record.value.startsWith('#') || record.value.startsWith('rgb'));
                     if (isColor)
-                      return <ColorChunk color={record.value}>{record.value}</ColorChunk>
+                      return <ColorChunk color={record.value}>{record.value}</ColorChunk>;
 
                     return (
                       <span>
@@ -137,23 +137,23 @@ const SubTokenTable = defineComponent({
                           ? JSON.stringify(record.value)
                           : record.value}
                       </span>
-                    )
+                    );
                   }
                   return (
                     <span>
                       {text}
                       {' '}
                     </span>
-                  )
+                  );
                 },
               }}
             />
           </ConfigProvider>
         </details>
-      )
-    }
+      );
+    };
   },
-})
+});
 
 export interface ComponentTokenTableProps {
   component: string
@@ -166,31 +166,31 @@ const ComponentTokenTable = defineComponent({
     },
   },
   setup(props) {
-    const { component } = toRefs(props)
+    const { component } = toRefs(props);
 
     const mergedTokens = computed(() => {
-      const globalTokenSet = new Set<string>()
-      let componentTokens: Record<string, string> = {}
+      const globalTokenSet = new Set<string>();
+      let componentTokens: Record<string, string> = {};
 
       component?.value?.split(',').forEach((comp) => {
         const { global: globalTokens = [], component: singleComponentTokens = [] }
-          = tokenData[comp] || {}
+          = tokenData[comp] || {};
 
         globalTokens.forEach((token: string) => {
-          globalTokenSet.add(token)
-        })
+          globalTokenSet.add(token);
+        });
 
         componentTokens = {
           ...componentTokens,
           ...singleComponentTokens,
-        }
-      })
+        };
+      });
 
       return {
         mergedGlobalTokens: Array.from(globalTokenSet),
         mergedComponentTokens: componentTokens,
-      }
-    })
+      };
+    });
 
     return () => {
       return (
@@ -199,9 +199,9 @@ const ComponentTokenTable = defineComponent({
           {/* <SubTokenTable title="Component Token" tokens={mergedComponentTokens} defaultOpen /> */}
           <SubTokenTable title="Global Token" tokens={mergedTokens.value.mergedGlobalTokens} />
         </>
-      )
-    }
+      );
+    };
   },
-})
+});
 
-export default ComponentTokenTable
+export default ComponentTokenTable;

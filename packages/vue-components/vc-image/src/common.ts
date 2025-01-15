@@ -1,4 +1,4 @@
-import type { ImgHTMLAttributes } from 'vue'
+import type { ImgHTMLAttributes } from 'vue';
 
 export const COMMON_PROPS: Array<keyof Omit<ImgHTMLAttributes, 'src'>> = [
   'crossorigin',
@@ -10,4 +10,4 @@ export const COMMON_PROPS: Array<keyof Omit<ImgHTMLAttributes, 'src'>> = [
   'srcset',
   'usemap',
   'alt',
-]
+];

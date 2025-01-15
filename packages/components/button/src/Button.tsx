@@ -1,7 +1,7 @@
-import type { CustomSlotsType } from '@antdv/types'
-import type { VNode } from 'vue'
-import type { ButtonType } from './interface'
-import { devWarning, flattenChildren, initDefaultProps } from '@antdv/utils'
+import type { CustomSlotsType } from '@antdv/types';
+import type { VNode } from 'vue';
+import type { ButtonType } from './interface';
+import { devWarning, flattenChildren, initDefaultProps } from '@antdv/utils';
 import {
   computed,
   defineComponent,
@@ -12,24 +12,24 @@ import {
   Text,
   watch,
   watchEffect,
-} from 'vue'
-import { useInjectDisabled } from '../../config-provider'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+} from 'vue';
+import { useInjectDisabled } from '../../config-provider';
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
 
-import { useCompactItemContext } from '../../space'
-import { Wave } from '../../wave'
-import useStyle from '../style'
-import { GroupSizeContext } from './context'
-import LoadingIcon from './LoadingIcon'
-import { buttonProps } from './props'
+import { useCompactItemContext } from '../../space';
+import { Wave } from '../../wave';
+import useStyle from '../style';
+import { GroupSizeContext } from './context';
+import LoadingIcon from './LoadingIcon';
+import { buttonProps } from './props';
 
-type Loading = boolean | number
+type Loading = boolean | number;
 
-const rxTwoCNChar = /^[\u4E00-\u9FA5]{2}$/
-const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar)
+const rxTwoCNChar = /^[\u4E00-\u9FA5]{2}$/;
+const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar);
 
 function isUnBorderedButtonType(type: ButtonType | undefined) {
-  return type === 'text' || type === 'link'
+  return type === 'text' || type === 'link';
 }
 
 export default defineComponent({
@@ -44,52 +44,52 @@ export default defineComponent({
   }>,
   // emits: ['click', 'mousedown'],
   setup(props, { slots, attrs, emit, expose }) {
-    const { prefixCls, autoInsertSpaceInButton, direction, size } = useConfigInject('btn', props)
-    const [wrapSSR, hashId] = useStyle(prefixCls)
-    const groupSizeContext = GroupSizeContext.useInject()
-    const disabledContext = useInjectDisabled()
-    const mergedDisabled = computed(() => props.disabled ?? disabledContext.value)
-    const buttonNodeRef = shallowRef<HTMLElement>(null)
-    const delayTimeoutRef = shallowRef(undefined)
-    let isNeedInserted = false
+    const { prefixCls, autoInsertSpaceInButton, direction, size } = useConfigInject('btn', props);
+    const [wrapSSR, hashId] = useStyle(prefixCls);
+    const groupSizeContext = GroupSizeContext.useInject();
+    const disabledContext = useInjectDisabled();
+    const mergedDisabled = computed(() => props.disabled ?? disabledContext.value);
+    const buttonNodeRef = shallowRef<HTMLElement>(null);
+    const delayTimeoutRef = shallowRef(undefined);
+    let isNeedInserted = false;
 
-    const innerLoading = shallowRef<Loading>(false)
-    const hasTwoCNChar = shallowRef(false)
+    const innerLoading = shallowRef<Loading>(false);
+    const hasTwoCNChar = shallowRef(false);
 
-    const autoInsertSpace = computed(() => autoInsertSpaceInButton.value !== false)
-    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction)
+    const autoInsertSpace = computed(() => autoInsertSpaceInButton.value !== false);
+    const { compactSize, compactItemClassnames } = useCompactItemContext(prefixCls, direction);
 
     // =============== Update Loading ===============
     const loadingOrDelay = computed(() =>
       typeof props.loading === 'object' && props.loading.delay
         ? props.loading.delay || true
         : !!props.loading,
-    )
+    );
 
     watch(
       loadingOrDelay,
       (val) => {
-        clearTimeout(delayTimeoutRef.value)
+        clearTimeout(delayTimeoutRef.value);
         if (typeof loadingOrDelay.value === 'number') {
           delayTimeoutRef.value = setTimeout(() => {
-            innerLoading.value = val
-          }, loadingOrDelay.value)
+            innerLoading.value = val;
+          }, loadingOrDelay.value);
         } else {
-          innerLoading.value = val
+          innerLoading.value = val;
         }
       },
       {
         immediate: true,
       },
-    )
+    );
 
     const classes = computed(() => {
-      const { type, shape = 'default', ghost, block, danger, success } = props
-      const pre = prefixCls.value
+      const { type, shape = 'default', ghost, block, danger, success } = props;
+      const pre = prefixCls.value;
 
-      const sizeClassNameMap = { large: 'lg', small: 'sm', middle: undefined }
-      const sizeFullname = compactSize.value || groupSizeContext?.size || size.value
-      const sizeCls = sizeFullname ? sizeClassNameMap[sizeFullname] || '' : ''
+      const sizeClassNameMap = { large: 'lg', small: 'sm', middle: undefined };
+      const sizeFullname = compactSize.value || groupSizeContext?.size || size.value;
+      const sizeCls = sizeFullname ? sizeClassNameMap[sizeFullname] || '' : '';
 
       return [
         compactItemClassnames.value,
@@ -108,83 +108,83 @@ export default defineComponent({
           [`${pre}-success`]: !!success,
           [`${pre}-rtl`]: direction.value === 'rtl',
         },
-      ]
-    })
+      ];
+    });
 
     const fixTwoCNChar = () => {
       // Fix for HOC usage like <FormatMessage />
-      const node = buttonNodeRef.value!
+      const node = buttonNodeRef.value!;
       if (!node || autoInsertSpaceInButton.value === false)
-        return
+        return;
 
-      const buttonText = node.textContent
+      const buttonText = node.textContent;
 
       if (isNeedInserted && isTwoCNChar(buttonText)) {
         if (!hasTwoCNChar.value)
-          hasTwoCNChar.value = true
+          hasTwoCNChar.value = true;
       } else if (hasTwoCNChar.value) {
-        hasTwoCNChar.value = false
+        hasTwoCNChar.value = false;
       }
-    }
+    };
     const handleClick = (event: Event) => {
       // https://github.com/ant-design/ant-design/issues/30207
       if (innerLoading.value || mergedDisabled.value) {
-        event.preventDefault()
-        return
+        event.preventDefault();
+        return;
       }
-      emit('click', event)
-    }
+      emit('click', event);
+    };
     const handleMousedown = (event: Event) => {
-      emit('mousedown', event)
-    }
+      emit('mousedown', event);
+    };
 
     const insertSpace = (child: VNode, needInserted: boolean) => {
-      const SPACE = needInserted ? ' ' : ''
+      const SPACE = needInserted ? ' ' : '';
       if (child.type === Text) {
-        let text = (child.children as string).trim()
+        let text = (child.children as string).trim();
         if (isTwoCNChar(text))
-          text = text.split('').join(SPACE)
+          text = text.split('').join(SPACE);
 
-        return <span>{text}</span>
+        return <span>{text}</span>;
       }
-      return child
-    }
+      return child;
+    };
 
     watchEffect(() => {
       devWarning(
         !(props.ghost && isUnBorderedButtonType(props.type)),
         'Button',
         '`link` or `text` button can\'t be a `ghost` button.',
-      )
-    })
+      );
+    });
 
-    onMounted(fixTwoCNChar)
-    onUpdated(fixTwoCNChar)
+    onMounted(fixTwoCNChar);
+    onUpdated(fixTwoCNChar);
 
     onBeforeUnmount(() => {
-      delayTimeoutRef.value && clearTimeout(delayTimeoutRef.value)
-    })
+      delayTimeoutRef.value && clearTimeout(delayTimeoutRef.value);
+    });
 
     const focus = () => {
-      buttonNodeRef.value?.focus()
-    }
+      buttonNodeRef.value?.focus();
+    };
     const blur = () => {
-      buttonNodeRef.value?.blur()
-    }
+      buttonNodeRef.value?.blur();
+    };
     expose({
       focus,
       blur,
-    })
+    });
 
     return () => {
-      const { icon = slots.icon?.() } = props
-      const children = flattenChildren(slots.default?.())
+      const { icon = slots.icon?.() } = props;
+      const children = flattenChildren(slots.default?.());
 
-      isNeedInserted = children.length === 1 && !icon && !isUnBorderedButtonType(props.type)
+      isNeedInserted = children.length === 1 && !icon && !isUnBorderedButtonType(props.type);
 
-      const { type, htmlType, href, title, target } = props
+      const { type, htmlType, href, title, target } = props;
 
-      const iconType = innerLoading.value ? 'loading' : icon
+      const iconType = innerLoading.value ? 'loading' : icon;
       const getButtonProps = {
         ...attrs,
         title,
@@ -196,10 +196,10 @@ export default defineComponent({
         ],
         onClick: handleClick,
         onMousedown: handleMousedown,
-      }
+      };
       // https://github.com/vueComponent/ant-design-vue/issues/4930
       if (!mergedDisabled.value)
-        delete getButtonProps.disabled
+        delete getButtonProps.disabled;
 
       const iconNode
         = icon && !innerLoading.value
@@ -212,11 +212,11 @@ export default defineComponent({
                 prefixCls={prefixCls.value}
                 loading={!!innerLoading.value}
               />
-            )
+            );
 
       const kids = children.map(child =>
         insertSpace(child, isNeedInserted && autoInsertSpace.value),
-      )
+      );
 
       if (href !== undefined) {
         return wrapSSR(
@@ -224,7 +224,7 @@ export default defineComponent({
             {iconNode}
             {kids}
           </a>,
-        )
+        );
       }
 
       let buttonNode = (
@@ -232,17 +232,17 @@ export default defineComponent({
           {iconNode}
           {kids}
         </button>
-      )
+      );
 
       if (!isUnBorderedButtonType(type)) {
         buttonNode = (
           <Wave ref="wave" disabled={!!innerLoading.value}>
             {buttonNode}
           </Wave>
-        )
+        );
       }
 
-      return wrapSSR(buttonNode)
-    }
+      return wrapSSR(buttonNode);
+    };
   },
-})
+});

@@ -16,9 +16,9 @@ Use text link for prev and next button.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const current = ref<any>(1)
+  const current = ref<any>(1);
 </script>
 
 <template>

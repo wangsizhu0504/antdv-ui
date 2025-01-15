@@ -1,9 +1,9 @@
-import type { VueNode } from '@antdv/types'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-import type { ItemRender, UploadFile, UploadListProgressProps, UploadListType, UploadLocale } from '../interface'
-import { DeleteOutlined, DownloadOutlined, EyeOutlined } from '@ant-design/icons-vue'
-import { arrayType, booleanType, functionType, objectType, stringType } from '@antdv/utils'
-import { getTransitionProps } from '@antdv/vue-components'
+import type { VueNode } from '@antdv/types';
+import type { CSSProperties, ExtractPropTypes } from 'vue';
+import type { ItemRender, UploadFile, UploadListProgressProps, UploadListType, UploadLocale } from '../interface';
+import { DeleteOutlined, DownloadOutlined, EyeOutlined } from '@ant-design/icons-vue';
+import { arrayType, booleanType, functionType, objectType, stringType } from '@antdv/utils';
+import { getTransitionProps } from '@antdv/vue-components';
 import {
   computed,
   defineComponent,
@@ -12,10 +12,10 @@ import {
   shallowRef,
   Transition,
   watch,
-} from 'vue'
-import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
-import Progress from '../../../progress'
-import Tooltip from '../../../tooltip'
+} from 'vue';
+import useConfigInject from '../../../config-provider/src/hooks/useConfigInject';
+import Progress from '../../../progress';
+import Tooltip from '../../../tooltip';
 
 export function listItemProps() {
   return {
@@ -48,36 +48,36 @@ export function listItemProps() {
     onClose: functionType<(file: UploadFile) => void>(),
     onDownload: functionType<(file: UploadFile) => void>(),
     progress: objectType<UploadListProgressProps>(),
-  }
+  };
 }
 
-export type ListItemProps = Partial<ExtractPropTypes<ReturnType<typeof listItemProps>>>
+export type ListItemProps = Partial<ExtractPropTypes<ReturnType<typeof listItemProps>>>;
 export default defineComponent({
   compatConfig: { MODE: 3 },
   name: 'ListItem',
   inheritAttrs: false,
   props: listItemProps(),
   setup(props, { slots, attrs }) {
-    const showProgress = shallowRef(false)
-    const progressRafRef = shallowRef()
+    const showProgress = shallowRef(false);
+    const progressRafRef = shallowRef();
     onMounted(() => {
       progressRafRef.value = setTimeout(() => {
-        showProgress.value = true
-      }, 300)
-    })
+        showProgress.value = true;
+      }, 300);
+    });
     onBeforeUnmount(() => {
-      clearTimeout(progressRafRef.value)
-    })
-    const mergedStatus = shallowRef(props.file?.status)
+      clearTimeout(progressRafRef.value);
+    });
+    const mergedStatus = shallowRef(props.file?.status);
     watch(
       () => props.file?.status,
       (status) => {
         if (status !== 'removed')
-          mergedStatus.value = status
+          mergedStatus.value = status;
       },
-    )
-    const { rootPrefixCls } = useConfigInject('upload', props)
-    const transitionProps = computed(() => getTransitionProps(`${rootPrefixCls.value}-fade`))
+    );
+    const { rootPrefixCls } = useConfigInject('upload', props);
+    const transitionProps = computed(() => getTransitionProps(`${rootPrefixCls.value}-fade`));
     return () => {
       const {
         prefixCls,
@@ -99,20 +99,20 @@ export default defineComponent({
         onPreview,
         onDownload,
         onClose,
-      } = props
-      const { class: className, style } = attrs
+      } = props;
+      const { class: className, style } = attrs;
       // This is used for legacy span make scrollHeight the wrong value.
       // We will force these to be `display: block` with non `picture-card`
 
-      const iconNode = iconRender({ file })
-      let icon = <div class={`${prefixCls}-text-icon`}>{iconNode}</div>
+      const iconNode = iconRender({ file });
+      let icon = <div class={`${prefixCls}-text-icon`}>{iconNode}</div>;
       if (listType === 'picture' || listType === 'picture-card') {
         if (mergedStatus.value === 'uploading' || (!file.thumbUrl && !file.url)) {
           const uploadingClassName = {
             [`${prefixCls}-list-item-thumbnail`]: true,
             [`${prefixCls}-list-item-file`]: mergedStatus.value !== 'uploading',
-          }
-          icon = <div class={uploadingClassName}>{iconNode}</div>
+          };
+          icon = <div class={uploadingClassName}>{iconNode}</div>;
         } else {
           const thumbnail = isImgUrl?.(file)
             ? (
@@ -125,11 +125,11 @@ export default defineComponent({
               )
             : (
                 iconNode
-              )
+              );
           const aClassName = {
             [`${prefixCls}-list-item-thumbnail`]: true,
             [`${prefixCls}-list-item-file`]: isImgUrl && !isImgUrl(file),
-          }
+          };
           icon = (
             <a
               class={aClassName}
@@ -140,34 +140,34 @@ export default defineComponent({
             >
               {thumbnail}
             </a>
-          )
+          );
         }
       }
 
       const infoUploadingClass = {
         [`${prefixCls}-list-item`]: true,
         [`${prefixCls}-list-item-${mergedStatus.value}`]: true,
-      }
+      };
       const linkProps
-        = typeof file.linkProps === 'string' ? JSON.parse(file.linkProps) : file.linkProps
+        = typeof file.linkProps === 'string' ? JSON.parse(file.linkProps) : file.linkProps;
 
       const removeIcon = showRemoveIcon
         ? actionIconRender({
-          customIcon: customRemoveIcon ? customRemoveIcon({ file }) : <DeleteOutlined />,
-          callback: () => onClose(file),
-          prefixCls,
-          title: locale.removeFile,
-        })
-        : null
+            customIcon: customRemoveIcon ? customRemoveIcon({ file }) : <DeleteOutlined />,
+            callback: () => onClose(file),
+            prefixCls,
+            title: locale.removeFile,
+          })
+        : null;
       const downloadIcon
         = showDownloadIcon && mergedStatus.value === 'done'
           ? actionIconRender({
-            customIcon: customDownloadIcon ? customDownloadIcon({ file }) : <DownloadOutlined />,
-            callback: () => onDownload(file),
-            prefixCls,
-            title: locale.downloadFile,
-          })
-          : null
+              customIcon: customDownloadIcon ? customDownloadIcon({ file }) : <DownloadOutlined />,
+              callback: () => onDownload(file),
+              prefixCls,
+              title: locale.downloadFile,
+            })
+          : null;
       const downloadOrDelete = listType !== 'picture-card' && (
         <span
           key="download-delete"
@@ -181,8 +181,8 @@ export default defineComponent({
           {downloadIcon}
           {removeIcon}
         </span>
-      )
-      const listItemNameClass = `${prefixCls}-list-item-name`
+      );
+      const listItemNameClass = `${prefixCls}-list-item-name`;
       const fileName = file.url
         ? [
             <a
@@ -209,11 +209,11 @@ export default defineComponent({
               {file.name}
             </span>,
             downloadOrDelete,
-          ]
+          ];
       const previewStyle: CSSProperties = {
         pointerEvents: 'none',
         opacity: 0.5,
-      }
+      };
       const previewIcon = showPreviewIcon
         ? (
             <a
@@ -227,7 +227,7 @@ export default defineComponent({
               {customPreviewIcon ? customPreviewIcon({ file }) : <EyeOutlined />}
             </a>
           )
-        : null
+        : null;
 
       const pictureCardActions = listType === 'picture-card'
         && mergedStatus.value !== 'uploading' && (
@@ -236,7 +236,7 @@ export default defineComponent({
           {mergedStatus.value === 'done' && downloadIcon}
           {removeIcon}
         </span>
-      )
+      );
 
       const dom = (
         <div class={infoUploadingClass}>
@@ -262,15 +262,15 @@ export default defineComponent({
             </Transition>
           )}
         </div>
-      )
+      );
       const listContainerNameClass = {
         [`${prefixCls}-list-item-container`]: true,
         [`${className}`]: !!className,
-      }
+      };
       const message
         = file.response && typeof file.response === 'string'
           ? file.response
-          : file.error?.statusText || file.error?.message || locale.uploadError
+          : file.error?.statusText || file.error?.message || locale.uploadError;
       const item
         = mergedStatus.value === 'error'
           ? (
@@ -280,24 +280,24 @@ export default defineComponent({
             )
           : (
               dom
-            )
+            );
 
       return (
         <div class={listContainerNameClass} style={style as CSSProperties}>
           {itemRender
             ? itemRender({
-              originNode: item,
-              file,
-              fileList: items,
-              actions: {
-                download: onDownload.bind(null, file),
-                preview: onPreview.bind(null, file),
-                remove: onClose.bind(null, file),
-              },
-            })
+                originNode: item,
+                file,
+                fileList: items,
+                actions: {
+                  download: onDownload.bind(null, file),
+                  preview: onPreview.bind(null, file),
+                  remove: onClose.bind(null, file),
+                },
+              })
             : item}
         </div>
-      )
-    }
+      );
+    };
   },
-})
+});

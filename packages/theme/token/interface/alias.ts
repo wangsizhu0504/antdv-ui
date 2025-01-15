@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'vue'
-import type { MapToken } from './maps'
+import type { CSSProperties } from 'vue';
+import type { MapToken } from './maps';
 
 // ======================================================================
 // ==                           Alias Token                            ==

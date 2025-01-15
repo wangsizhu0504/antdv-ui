@@ -17,8 +17,8 @@ When user visit a page with a list of items, and want to create a new item. The 
 </docs>
 
 <script lang="ts" setup>
-  import type { FormInstance } from '@antdv/ui'
-  import { reactive, ref, toRaw } from 'vue'
+  import type { FormInstance } from '@antdv/ui';
+  import { reactive, ref, toRaw } from 'vue';
 
   interface Values {
     title: string;
@@ -26,27 +26,27 @@ When user visit a page with a list of items, and want to create a new item. The 
     modifier: string;
   }
 
-  const formRef = ref<FormInstance>()
-  const visible = ref<any>(false)
+  const formRef = ref<FormInstance>();
+  const visible = ref<any>(false);
   const formState = reactive<Values>({
     title: '',
     description: '',
     modifier: 'public',
-  })
+  });
 
   function onOk() {
     formRef.value
       .validateFields()
       .then((values) => {
-        console.log('Received values of form: ', values)
-        console.log('formState: ', toRaw(formState))
-        visible.value = false
-        formRef.value.resetFields()
-        console.log('reset formState: ', toRaw(formState))
+        console.log('Received values of form: ', values);
+        console.log('formState: ', toRaw(formState));
+        visible.value = false;
+        formRef.value.resetFields();
+        console.log('reset formState: ', toRaw(formState));
       })
       .catch((info) => {
-        console.log('Validate Failed:', info)
-      })
+        console.log('Validate Failed:', info);
+      });
   }
 </script>
 

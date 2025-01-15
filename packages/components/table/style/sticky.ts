@@ -1,5 +1,5 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import type { TableToken } from './index'
+import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { TableToken } from './index';
 
 const genStickyStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
   const {
@@ -10,8 +10,8 @@ const genStickyStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
     tableScrollThumbSize,
     tableScrollBg,
     zIndexTableSticky,
-  } = token
-  const tableBorder = `${token.lineWidth}px ${token.lineType} ${token.tableBorderColor}`
+  } = token;
+  const tableBorder = `${token.lineWidth}px ${token.lineType} ${token.tableBorderColor}`;
   return {
     [`${componentCls}-wrapper`]: {
       [`${componentCls}-sticky`]: {
@@ -52,7 +52,7 @@ const genStickyStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
         },
       },
     },
-  }
-}
+  };
+};
 
-export default genStickyStyle
+export default genStickyStyle;

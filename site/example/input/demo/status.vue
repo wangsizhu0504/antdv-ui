@@ -18,7 +18,7 @@ Add status to Input with `status`, which could be `error` or `warning`.
 </docs>
 
 <script lang="ts" setup>
-  import { ClockCircleOutlined } from '@ant-design/icons-vue'
+  import { ClockCircleOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

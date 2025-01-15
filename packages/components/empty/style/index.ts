@@ -1,5 +1,5 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
-import { genComponentStyleHook, mergeToken } from '@antdv/theme'
+import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
+import { genComponentStyleHook, mergeToken } from '@antdv/theme';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {}
@@ -13,7 +13,7 @@ interface EmptyToken extends FullToken<'Empty'> {
 
 // ============================== Shared ==============================
 const genSharedEmptyStyle: GenerateStyle<EmptyToken> = (token): CSSObject => {
-  const { componentCls, margin, marginXS, marginXL, fontSize, lineHeight } = token
+  const { componentCls, margin, marginXS, marginXL, fontSize, lineHeight } = token;
 
   return {
     [componentCls]: {
@@ -61,19 +61,19 @@ const genSharedEmptyStyle: GenerateStyle<EmptyToken> = (token): CSSObject => {
         },
       },
     },
-  }
-}
+  };
+};
 
 // ============================== Export ==============================
 export default genComponentStyleHook('Empty', (token) => {
-  const { componentCls, controlHeightLG } = token
+  const { componentCls, controlHeightLG } = token;
 
   const emptyToken: EmptyToken = mergeToken<EmptyToken>(token, {
     emptyImgCls: `${componentCls}-img`,
     emptyImgHeight: controlHeightLG * 2.5,
     emptyImgHeightMD: controlHeightLG,
     emptyImgHeightSM: controlHeightLG * 0.875,
-  })
+  });
 
-  return [genSharedEmptyStyle(emptyToken)]
-})
+  return [genSharedEmptyStyle(emptyToken)];
+});

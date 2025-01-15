@@ -17,10 +17,10 @@ TimePicker of 12 hours format, with default format `h:mm:ss a`.
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import { ref } from 'vue'
+  import type { Dayjs } from 'dayjs';
+  import { ref } from 'vue';
 
-  const value = ref<Dayjs>()
+  const value = ref<Dayjs>();
 </script>
 
 <template>

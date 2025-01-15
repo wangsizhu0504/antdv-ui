@@ -1,5 +1,5 @@
-import type { ComponentDemo } from '../../interface'
-import { Checkbox, Space } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Checkbox, Space } from '@antdv/ui';
 
 function Demo(props: any) {
   return (
@@ -9,13 +9,13 @@ function Demo(props: any) {
         选中态
       </Checkbox>
     </Space>
-  )
+  );
 }
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorPrimary', 'colorText', 'colorBgContainer'],
   key: 'default',
-}
+};
 
-export default componentDemo
+export default componentDemo;

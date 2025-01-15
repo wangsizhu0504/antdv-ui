@@ -1,11 +1,11 @@
-import type { DisabledTimes, PanelSharedProps } from '../../interface'
-import type { BodyOperationRef } from './TimeBody'
-import { classNames } from '@antdv/utils'
-import { ref } from 'vue'
-import useMergeProps from '../../hooks/useMergeProps'
-import { createKeydownHandler } from '../../utils/uiUtil'
-import TimeBody from './TimeBody'
-import TimeHeader from './TimeHeader'
+import type { DisabledTimes, PanelSharedProps } from '../../interface';
+import type { BodyOperationRef } from './TimeBody';
+import { classNames } from '@antdv/utils';
+import { ref } from 'vue';
+import useMergeProps from '../../hooks/useMergeProps';
+import { createKeydownHandler } from '../../utils/uiUtil';
+import TimeBody from './TimeBody';
+import TimeHeader from './TimeHeader';
 
 // import type { RangeType } from '../../RangePicker';
 
@@ -36,14 +36,14 @@ export type TimePanelProps<DateType> = {
   format?: string;
   active?: boolean;
 } & PanelSharedProps<DateType> &
-  SharedTimeProps<DateType>
+  SharedTimeProps<DateType>;
 
 function countBoolean(boolList: Array<boolean | undefined>) {
-  return boolList.filter(bool => bool !== false).length
+  return boolList.filter(bool => bool !== false).length;
 }
 
 function TimePanel<DateType>(_props: TimePanelProps<DateType>) {
-  const props = useMergeProps(_props)
+  const props = useMergeProps(_props);
   const {
     generateConfig,
     format = 'HH:mm:ss',
@@ -56,36 +56,36 @@ function TimePanel<DateType>(_props: TimePanelProps<DateType>) {
     use12Hours = false,
     onSelect,
     value,
-  } = props
-  const panelPrefixCls = `${prefixCls}-time-panel`
-  const bodyOperationRef = ref<BodyOperationRef>()
+  } = props;
+  const panelPrefixCls = `${prefixCls}-time-panel`;
+  const bodyOperationRef = ref<BodyOperationRef>();
 
   // ======================= Keyboard =======================
-  const activeColumnIndex = ref(-1)
-  const columnsCount = countBoolean([showHour, showMinute, showSecond, use12Hours])
+  const activeColumnIndex = ref(-1);
+  const columnsCount = countBoolean([showHour, showMinute, showSecond, use12Hours]);
 
   operationRef.value = {
     onKeydown: (event: KeyboardEvent) =>
       createKeydownHandler(event, {
         onLeftRight: (diff) => {
-          activeColumnIndex.value = (activeColumnIndex.value + diff + columnsCount) % columnsCount
+          activeColumnIndex.value = (activeColumnIndex.value + diff + columnsCount) % columnsCount;
         },
         onUpDown: (diff) => {
           if (activeColumnIndex.value === -1)
-            activeColumnIndex.value = 0
+            activeColumnIndex.value = 0;
           else if (bodyOperationRef.value)
-            bodyOperationRef.value.onUpDown(diff)
+            bodyOperationRef.value.onUpDown(diff);
         },
         onEnter: () => {
-          onSelect(value || generateConfig.getNow(), 'key')
-          activeColumnIndex.value = -1
+          onSelect(value || generateConfig.getNow(), 'key');
+          activeColumnIndex.value = -1;
         },
       }),
 
     onBlur: () => {
-      activeColumnIndex.value = -1
+      activeColumnIndex.value = -1;
     },
-  }
+  };
 
   return (
     <div
@@ -101,10 +101,10 @@ function TimePanel<DateType>(_props: TimePanelProps<DateType>) {
         operationRef={bodyOperationRef}
       />
     </div>
-  )
+  );
 }
 
-TimePanel.displayName = 'TimePanel'
-TimePanel.inheritAttrs = false
+TimePanel.displayName = 'TimePanel';
+TimePanel.inheritAttrs = false;
 
-export default TimePanel
+export default TimePanel;

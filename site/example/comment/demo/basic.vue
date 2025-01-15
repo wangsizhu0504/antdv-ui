@@ -17,27 +17,27 @@ A basic comment with author, avatar, time and actions.
 </docs>
 
 <script lang="ts" setup>
-  import { DislikeFilled, DislikeOutlined, LikeFilled, LikeOutlined } from '@ant-design/icons-vue'
-  import dayjs from 'dayjs'
-  import relativeTime from 'dayjs/plugin/relativeTime'
-  import { ref } from 'vue'
+  import { DislikeFilled, DislikeOutlined, LikeFilled, LikeOutlined } from '@ant-design/icons-vue';
+  import dayjs from 'dayjs';
+  import relativeTime from 'dayjs/plugin/relativeTime';
+  import { ref } from 'vue';
 
-  dayjs.extend(relativeTime)
+  dayjs.extend(relativeTime);
 
-  const likes = ref<number>(0)
-  const dislikes = ref<number>(0)
-  const action = ref<string>()
+  const likes = ref<number>(0);
+  const dislikes = ref<number>(0);
+  const action = ref<string>();
 
   function like() {
-    likes.value = 1
-    dislikes.value = 0
-    action.value = 'liked'
+    likes.value = 1;
+    dislikes.value = 0;
+    action.value = 'liked';
   }
 
   function dislike() {
-    likes.value = 0
-    dislikes.value = 1
-    action.value = 'disliked'
+    likes.value = 0;
+    dislikes.value = 1;
+    action.value = 'disliked';
   }
 </script>
 

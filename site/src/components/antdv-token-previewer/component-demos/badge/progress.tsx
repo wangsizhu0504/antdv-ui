@@ -1,6 +1,6 @@
-import type { ComponentDemo } from '../../interface'
-import { Badge, Space } from '@antdv/ui'
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface';
+import { Badge, Space } from '@antdv/ui';
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -9,14 +9,14 @@ const Demo = defineComponent({
         <Badge dot status="processing" />
         Process
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorPrimary'],
   key: 'progress',
-}
+};
 
-export default componentDemo
+export default componentDemo;

@@ -17,12 +17,12 @@ Tree with connected line between nodes, turn on by `showLine`, customize the pre
 </docs>
 
 <script lang="ts" setup>
-  import type { TreeProps } from '@antdv/ui'
-  import { CarryOutOutlined, SmileTwoTone } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import type { TreeProps } from '@antdv/ui';
+  import { CarryOutOutlined, SmileTwoTone } from '@ant-design/icons-vue';
+  import { ref } from 'vue';
 
-  const showLine = ref<boolean>(true)
-  const showIcon = ref<boolean>(false)
+  const showLine = ref<boolean>(true);
+  const showIcon = ref<boolean>(false);
   const treeData = ref<TreeProps['treeData']>([
     {
       title: 'parent 1',
@@ -71,10 +71,10 @@ Tree with connected line between nodes, turn on by `showLine`, customize the pre
         },
       ],
     },
-  ])
+  ]);
   const onSelect: TreeProps['onSelect'] = (selectedKeys, info) => {
-    console.log('selected', selectedKeys, info)
-  }
+    console.log('selected', selectedKeys, info);
+  };
 </script>
 
 <template>

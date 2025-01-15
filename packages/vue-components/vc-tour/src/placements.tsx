@@ -1,4 +1,4 @@
-import type { BuildInPlacements } from '../../vc-trigger/src/interface'
+import type { BuildInPlacements } from '../../vc-trigger/src/interface';
 
 export type PlacementType =
   | 'left'
@@ -13,9 +13,9 @@ export type PlacementType =
   | 'bottom'
   | 'bottomLeft'
   | 'bottomRight'
-  | 'center'
+  | 'center';
 
-const targetOffset = [0, 0]
+const targetOffset = [0, 0];
 
 const basePlacements: BuildInPlacements = {
   left: {
@@ -66,14 +66,14 @@ const basePlacements: BuildInPlacements = {
     points: ['br', 'bl'],
     offset: [-8, 0],
   },
-}
+};
 
 export function getPlacements(arrowPointAtCenter = false) {
-  const placements: BuildInPlacements = {}
+  const placements: BuildInPlacements = {};
   Object.keys(basePlacements).forEach((key) => {
-    placements[key] = { ...basePlacements[key], autoArrow: arrowPointAtCenter, targetOffset }
-  })
-  return placements
+    placements[key] = { ...basePlacements[key], autoArrow: arrowPointAtCenter, targetOffset };
+  });
+  return placements;
 }
 
-export const placements = getPlacements()
+export const placements = getPlacements();

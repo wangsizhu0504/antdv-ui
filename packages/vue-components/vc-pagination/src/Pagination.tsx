@@ -1,4 +1,4 @@
-import { zhCN as LOCALE } from '@antdv/locale'
+import { zhCN as LOCALE } from '@antdv/locale';
 import {
   BaseMixin,
   classNames,
@@ -10,24 +10,24 @@ import {
   KeyCode,
   PropTypes,
   splitAttrs,
-} from '@antdv/utils'
-import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
-import { defineComponent } from 'vue'
-import Options from './Options'
-import Pager from './Pager'
+} from '@antdv/utils';
+import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore';
+import { defineComponent } from 'vue';
+import Options from './Options';
+import Pager from './Pager';
 
 // 是否是正整数
 function isInteger(value) {
-  return typeof value === 'number' && Number.isFinite(value) && Math.floor(value) === value
+  return typeof value === 'number' && Number.isFinite(value) && Math.floor(value) === value;
 }
 
 function defaultItemRender({ originalElement }) {
-  return originalElement
+  return originalElement;
 }
 
 function calculatePage(p, state, props) {
-  const pageSize = typeof p === 'undefined' ? state.statePageSize : p
-  return Math.floor((props.total - 1) / pageSize) + 1
+  const pageSize = typeof p === 'undefined' ? state.statePageSize : p;
+  return Math.floor((props.total - 1) / pageSize) + 1;
 }
 
 export default defineComponent({
@@ -65,37 +65,37 @@ export default defineComponent({
     totalBoundaryShowSizeChanger: PropTypes.number.def(50),
   },
   data() {
-    const props = this.$props
-    let current = firstNotUndefined([this.current, this.defaultCurrent])
+    const props = this.$props;
+    let current = firstNotUndefined([this.current, this.defaultCurrent]);
 
-    const pageSize = firstNotUndefined([this.pageSize, this.defaultPageSize])
+    const pageSize = firstNotUndefined([this.pageSize, this.defaultPageSize]);
 
-    current = Math.min(current, calculatePage(pageSize, undefined, props))
+    current = Math.min(current, calculatePage(pageSize, undefined, props));
 
     return {
       stateCurrent: current,
       stateCurrentInputValue: current,
       statePageSize: pageSize,
-    }
+    };
   },
   watch: {
     current(val) {
       this.setState({
         stateCurrent: val,
         stateCurrentInputValue: val,
-      })
+      });
     },
     pageSize(val) {
-      const newState: any = {}
-      let current = this.stateCurrent
-      const newCurrent = calculatePage(val, this.$data, this.$props)
-      current = current > newCurrent ? newCurrent : current
+      const newState: any = {};
+      let current = this.stateCurrent;
+      const newCurrent = calculatePage(val, this.$data, this.$props);
+      current = current > newCurrent ? newCurrent : current;
       if (!hasProp(this, 'current')) {
-        newState.stateCurrent = current
-        newState.stateCurrentInputValue = current
+        newState.stateCurrent = current;
+        newState.stateCurrentInputValue = current;
       }
-      newState.statePageSize = val
-      this.setState(newState)
+      newState.statePageSize = val;
+      this.setState(newState);
     },
     stateCurrent(_val, oldValue) {
       // When current page change, fix focused style of prev item
@@ -105,73 +105,73 @@ export default defineComponent({
           // @ts-expect-error
           const lastCurrentNode = this.$refs.paginationNode.querySelector(
             `.${this.prefixCls}-item-${oldValue}`,
-          )
+          );
           if (lastCurrentNode && document.activeElement === lastCurrentNode)
-            lastCurrentNode.blur()
+            lastCurrentNode.blur();
         }
-      })
+      });
     },
     total() {
-      const newState: any = {}
-      const newCurrent = calculatePage(this.pageSize, this.$data, this.$props)
+      const newState: any = {};
+      const newCurrent = calculatePage(this.pageSize, this.$data, this.$props);
       if (hasProp(this, 'current')) {
-        const current = Math.min(this.current, newCurrent)
-        newState.stateCurrent = current
-        newState.stateCurrentInputValue = current
+        const current = Math.min(this.current, newCurrent);
+        newState.stateCurrent = current;
+        newState.stateCurrentInputValue = current;
       } else {
-        let current = this.stateCurrent
+        let current = this.stateCurrent;
         if (current === 0 && newCurrent > 0)
-          current = 1
+          current = 1;
         else
-          current = Math.min(this.stateCurrent, newCurrent)
+          current = Math.min(this.stateCurrent, newCurrent);
 
-        newState.stateCurrent = current
+        newState.stateCurrent = current;
       }
-      this.setState(newState)
+      this.setState(newState);
     },
   },
   methods: {
     getJumpPrevPage() {
-      return Math.max(1, this.stateCurrent - (this.showLessItems ? 3 : 5))
+      return Math.max(1, this.stateCurrent - (this.showLessItems ? 3 : 5));
     },
     getJumpNextPage() {
       return Math.min(
         calculatePage(undefined, this.$data, this.$props),
         this.stateCurrent + (this.showLessItems ? 3 : 5),
-      )
+      );
     },
     getItemIcon(icon, label) {
-      const { prefixCls } = this.$props
+      const { prefixCls } = this.$props;
       const iconNode = getComponent(this, icon, this.$props) || (
         <button type="button" aria-label={label} class={`${prefixCls}-item-link`} />
-      )
-      return iconNode
+      );
+      return iconNode;
     },
     getValidValue(e) {
-      const inputValue = e.target.value
-      const allPages = calculatePage(undefined, this.$data, this.$props)
-      const { stateCurrentInputValue } = this.$data
-      let value
+      const inputValue = e.target.value;
+      const allPages = calculatePage(undefined, this.$data, this.$props);
+      const { stateCurrentInputValue } = this.$data;
+      let value;
       if (inputValue === '')
-        value = inputValue
+        value = inputValue;
       else if (Number.isNaN(Number(inputValue)))
-        value = stateCurrentInputValue
+        value = stateCurrentInputValue;
       else if (inputValue >= allPages)
-        value = allPages
+        value = allPages;
       else
-        value = Number(inputValue)
+        value = Number(inputValue);
 
-      return value
+      return value;
     },
     isValid(page) {
-      return isInteger(page) && page !== this.stateCurrent
+      return isInteger(page) && page !== this.stateCurrent;
     },
     shouldDisplayQuickJumper() {
-      const { showQuickJumper, pageSize, total } = this.$props
+      const { showQuickJumper, pageSize, total } = this.$props;
       if (total <= pageSize)
-        return false
+        return false;
 
-      return showQuickJumper
+      return showQuickJumper;
     },
     // calculatePage (p) {
     //   let pageSize = p
@@ -182,161 +182,161 @@ export default defineComponent({
     // },
     handleKeyDown(event) {
       if (event.keyCode === KeyCode.UP || event.keyCode === KeyCode.DOWN)
-        event.preventDefault()
+        event.preventDefault();
     },
     handleKeyUp(e) {
-      if (e.isComposing || e.target.composing) return
-      const value = this.getValidValue(e)
-      const stateCurrentInputValue = this.stateCurrentInputValue
+      if (e.isComposing || e.target.composing) return;
+      const value = this.getValidValue(e);
+      const stateCurrentInputValue = this.stateCurrentInputValue;
 
       if (value !== stateCurrentInputValue) {
         this.setState({
           stateCurrentInputValue: value,
-        })
+        });
       }
 
       if (e.keyCode === KeyCode.ENTER)
-        this.handleChange(value)
+        this.handleChange(value);
       else if (e.keyCode === KeyCode.UP)
-        this.handleChange(value - 1)
+        this.handleChange(value - 1);
       else if (e.keyCode === KeyCode.DOWN)
-        this.handleChange(value + 1)
+        this.handleChange(value + 1);
     },
     changePageSize(size) {
-      let current = this.stateCurrent
-      const preCurrent = current
-      const newCurrent = calculatePage(size, this.$data, this.$props)
-      current = current > newCurrent ? newCurrent : current
+      let current = this.stateCurrent;
+      const preCurrent = current;
+      const newCurrent = calculatePage(size, this.$data, this.$props);
+      current = current > newCurrent ? newCurrent : current;
       // fix the issue:
       // Once 'total' is 0, 'current' in 'onShowSizeChange' is 0, which is not correct.
       if (newCurrent === 0)
-        current = this.stateCurrent
+        current = this.stateCurrent;
 
       if (typeof size === 'number') {
         if (!hasProp(this, 'pageSize')) {
           this.setState({
             statePageSize: size,
-          })
+          });
         }
         if (!hasProp(this, 'current')) {
           this.setState({
             stateCurrent: current,
             stateCurrentInputValue: current,
-          })
+          });
         }
       }
       // @ts-expect-error
-      this.__emit('update:pageSize', size)
+      this.__emit('update:pageSize', size);
       if (current !== preCurrent) {
         // @ts-expect-error
-        this.__emit('update:current', current)
+        this.__emit('update:current', current);
       }
 
       // @ts-expect-error
-      this.__emit('showSizeChange', current, size)
+      this.__emit('showSizeChange', current, size);
       // @ts-expect-error
-      this.__emit('change', current, size)
+      this.__emit('change', current, size);
     },
     handleChange(p) {
-      const { disabled } = this.$props
-      let page = p
+      const { disabled } = this.$props;
+      let page = p;
       if (this.isValid(page) && !disabled) {
-        const currentPage = calculatePage(undefined, this.$data, this.$props)
+        const currentPage = calculatePage(undefined, this.$data, this.$props);
         if (page > currentPage)
-          page = currentPage
+          page = currentPage;
         else if (page < 1)
-          page = 1
+          page = 1;
 
         if (!hasProp(this, 'current')) {
           this.setState({
             stateCurrent: page,
             stateCurrentInputValue: page,
-          })
+          });
         }
         // this.__emit('input', page)
         // @ts-expect-error
-        this.__emit('update:current', page)
+        this.__emit('update:current', page);
         // @ts-expect-error
-        this.__emit('change', page, this.statePageSize)
-        return page
+        this.__emit('change', page, this.statePageSize);
+        return page;
       }
-      return this.stateCurrent
+      return this.stateCurrent;
     },
     prev() {
       if (this.hasPrev())
-        this.handleChange(this.stateCurrent - 1)
+        this.handleChange(this.stateCurrent - 1);
     },
     next() {
       if (this.hasNext())
-        this.handleChange(this.stateCurrent + 1)
+        this.handleChange(this.stateCurrent + 1);
     },
     jumpPrev() {
-      this.handleChange(this.getJumpPrevPage())
+      this.handleChange(this.getJumpPrevPage());
     },
     jumpNext() {
-      this.handleChange(this.getJumpNextPage())
+      this.handleChange(this.getJumpNextPage());
     },
     hasPrev() {
-      return this.stateCurrent > 1
+      return this.stateCurrent > 1;
     },
     hasNext() {
-      return this.stateCurrent < calculatePage(undefined, this.$data, this.$props)
+      return this.stateCurrent < calculatePage(undefined, this.$data, this.$props);
     },
     getShowSizeChanger() {
-      const { showSizeChanger, total, totalBoundaryShowSizeChanger } = this.$props
+      const { showSizeChanger, total, totalBoundaryShowSizeChanger } = this.$props;
       if (typeof showSizeChanger !== 'undefined')
-        return showSizeChanger
+        return showSizeChanger;
 
-      return total > totalBoundaryShowSizeChanger
+      return total > totalBoundaryShowSizeChanger;
     },
     runIfEnter(event, callback, ...restParams) {
       if (event.key === 'Enter' || event.charCode === 13) {
-        event.preventDefault()
-        callback(...restParams)
+        event.preventDefault();
+        callback(...restParams);
       }
     },
     runIfEnterPrev(event) {
-      this.runIfEnter(event, this.prev)
+      this.runIfEnter(event, this.prev);
     },
     runIfEnterNext(event) {
-      this.runIfEnter(event, this.next)
+      this.runIfEnter(event, this.next);
     },
     runIfEnterJumpPrev(event) {
-      this.runIfEnter(event, this.jumpPrev)
+      this.runIfEnter(event, this.jumpPrev);
     },
     runIfEnterJumpNext(event) {
-      this.runIfEnter(event, this.jumpNext)
+      this.runIfEnter(event, this.jumpNext);
     },
     handleGoTO(event) {
       if (event.keyCode === KeyCode.ENTER || event.type === 'click')
-        this.handleChange(this.stateCurrentInputValue)
+        this.handleChange(this.stateCurrentInputValue);
     },
 
     renderPrev(prevPage) {
-      const { itemRender } = this.$props
+      const { itemRender } = this.$props;
 
       const prevButton = itemRender({
         page: prevPage,
         type: 'prev',
         originalElement: this.getItemIcon('prevIcon', 'prev page'),
-      })
-      const disabled = !this.hasPrev()
+      });
+      const disabled = !this.hasPrev();
       return isValidElement(prevButton)
         ? cloneElement(prevButton, disabled ? { disabled } : {})
-        : prevButton
+        : prevButton;
     },
 
     renderNext(nextPage) {
-      const { itemRender } = this.$props
+      const { itemRender } = this.$props;
       const nextButton = itemRender({
         page: nextPage,
         type: 'next',
         originalElement: this.getItemIcon('nextIcon', 'next page'),
-      })
-      const disabled = !this.hasNext()
+      });
+      const disabled = !this.hasNext();
       return isValidElement(nextButton)
         ? cloneElement(nextButton, disabled ? { disabled } : {})
-        : nextButton
+        : nextButton;
     },
   },
   render() {
@@ -358,27 +358,27 @@ export default defineComponent({
       selectComponentClass,
       selectPrefixCls,
       pageSizeOptions,
-    } = this.$props
-    const { stateCurrent, statePageSize } = this
-    const { class: className, ...restAttrs } = splitAttrs(this.$attrs).extraAttrs
+    } = this.$props;
+    const { stateCurrent, statePageSize } = this;
+    const { class: className, ...restAttrs } = splitAttrs(this.$attrs).extraAttrs;
     // When hideOnSinglePage is true and there is only 1 page, hide the pager
     if (hideOnSinglePage === true && this.total <= statePageSize)
-      return null
+      return null;
 
-    const allPages = calculatePage(undefined, this.$data, this.$props)
-    const pagerList = []
-    let jumpPrev = null
-    let jumpNext = null
-    let firstPager = null
-    let lastPager = null
-    let gotoButton = null
-    const goButton = showQuickJumper && showQuickJumper.goButton
-    const pageBufferSize = showLessItems ? 1 : 2
+    const allPages = calculatePage(undefined, this.$data, this.$props);
+    const pagerList = [];
+    let jumpPrev = null;
+    let jumpNext = null;
+    let firstPager = null;
+    let lastPager = null;
+    let gotoButton = null;
+    const goButton = showQuickJumper && showQuickJumper.goButton;
+    const pageBufferSize = showLessItems ? 1 : 2;
 
-    const prevPage = stateCurrent - 1 > 0 ? stateCurrent - 1 : 0
-    const nextPage = stateCurrent + 1 < allPages ? stateCurrent + 1 : allPages
-    const hasPrev = this.hasPrev()
-    const hasNext = this.hasNext()
+    const prevPage = stateCurrent - 1 > 0 ? stateCurrent - 1 : 0;
+    const nextPage = stateCurrent + 1 < allPages ? stateCurrent + 1 : allPages;
+    const hasPrev = this.hasPrev();
+    const hasNext = this.hasNext();
     if (simple) {
       if (goButton) {
         if (typeof goButton === 'boolean') {
@@ -386,13 +386,13 @@ export default defineComponent({
             <button type="button" onClick={this.handleGoTO} onKeyup={this.handleGoTO}>
               {locale.jump_to_confirm}
             </button>
-          )
+          );
         } else {
           gotoButton = (
             <span onClick={this.handleGoTO} onKeyup={this.handleGoTO}>
               {goButton}
             </span>
-          )
+          );
         }
         gotoButton = (
           <li
@@ -401,7 +401,7 @@ export default defineComponent({
           >
             {gotoButton}
           </li>
-        )
+        );
       }
 
       return (
@@ -457,7 +457,7 @@ export default defineComponent({
           </li>
           {gotoButton}
         </ul>
-      )
+      );
     }
     if (allPages <= 3 + pageBufferSize * 2) {
       const pagerProps = {
@@ -467,19 +467,19 @@ export default defineComponent({
         itemRender,
         onClick: this.handleChange,
         onKeypress: this.runIfEnter,
-      }
+      };
       if (!allPages) {
         pagerList.push(
           <Pager {...pagerProps} key="noPager" page={1} class={`${prefixCls}-item-disabled`} />,
-        )
+        );
       }
       for (let i = 1; i <= allPages; i += 1) {
-        const active = stateCurrent === i
-        pagerList.push(<Pager {...pagerProps} key={i} page={i} active={active} />)
+        const active = stateCurrent === i;
+        pagerList.push(<Pager {...pagerProps} key={i} page={i} active={active} />);
       }
     } else {
-      const prevItemTitle = showLessItems ? locale.prev_3 : locale.prev_5
-      const nextItemTitle = showLessItems ? locale.next_3 : locale.next_5
+      const prevItemTitle = showLessItems ? locale.prev_3 : locale.prev_5;
+      const nextItemTitle = showLessItems ? locale.next_3 : locale.next_5;
       if (showPrevNextJumpers) {
         jumpPrev = (
           <li
@@ -498,7 +498,7 @@ export default defineComponent({
               originalElement: this.getItemIcon('jumpPrevIcon', 'prev page'),
             })}
           </li>
-        )
+        );
 
         jumpNext = (
           <li
@@ -517,7 +517,7 @@ export default defineComponent({
               originalElement: this.getItemIcon('jumpNextIcon', 'next page'),
             })}
           </li>
-        )
+        );
       }
 
       lastPager = (
@@ -533,7 +533,7 @@ export default defineComponent({
           showTitle={showTitle}
           itemRender={itemRender}
         />
-      )
+      );
       firstPager = (
         <Pager
           locale={locale}
@@ -546,19 +546,19 @@ export default defineComponent({
           showTitle={showTitle}
           itemRender={itemRender}
         />
-      )
+      );
 
-      let left = Math.max(1, stateCurrent - pageBufferSize)
-      let right = Math.min(stateCurrent + pageBufferSize, allPages)
+      let left = Math.max(1, stateCurrent - pageBufferSize);
+      let right = Math.min(stateCurrent + pageBufferSize, allPages);
 
       if (stateCurrent - 1 <= pageBufferSize)
-        right = 1 + pageBufferSize * 2
+        right = 1 + pageBufferSize * 2;
 
       if (allPages - stateCurrent <= pageBufferSize)
-        left = allPages - pageBufferSize * 2
+        left = allPages - pageBufferSize * 2;
 
       for (let i = left; i <= right; i += 1) {
-        const active = stateCurrent === i
+        const active = stateCurrent === i;
         pagerList.push(
           <Pager
             locale={locale}
@@ -571,7 +571,7 @@ export default defineComponent({
             showTitle={showTitle}
             itemRender={itemRender}
           />,
-        )
+        );
       }
 
       if (stateCurrent - 1 >= pageBufferSize * 2 && stateCurrent !== 1 + 2) {
@@ -588,8 +588,8 @@ export default defineComponent({
             showTitle={this.showTitle}
             itemRender={itemRender}
           />
-        )
-        pagerList.unshift(jumpPrev)
+        );
+        pagerList.unshift(jumpPrev);
       }
       if (allPages - stateCurrent >= pageBufferSize * 2 && stateCurrent !== allPages - 2) {
         pagerList[pagerList.length - 1] = (
@@ -605,18 +605,18 @@ export default defineComponent({
             showTitle={this.showTitle}
             itemRender={itemRender}
           />
-        )
-        pagerList.push(jumpNext)
+        );
+        pagerList.push(jumpNext);
       }
 
       if (left !== 1)
-        pagerList.unshift(firstPager)
+        pagerList.unshift(firstPager);
 
       if (right !== allPages)
-        pagerList.push(lastPager)
+        pagerList.push(lastPager);
     }
 
-    let totalText = null
+    let totalText = null;
 
     if (showTotal) {
       totalText = (
@@ -626,11 +626,11 @@ export default defineComponent({
             stateCurrent * statePageSize > total ? total : stateCurrent * statePageSize,
           ])}
         </li>
-      )
+      );
     }
-    const prevDisabled = !hasPrev || !allPages
-    const nextDisabled = !hasNext || !allPages
-    const buildOptionText = this.buildOptionText || this.$slots.buildOptionText
+    const prevDisabled = !hasPrev || !allPages;
+    const nextDisabled = !hasNext || !allPages;
+    const buildOptionText = this.buildOptionText || this.$slots.buildOptionText;
     return (
       <ul
         unselectable="on"
@@ -682,6 +682,6 @@ export default defineComponent({
           goButton={goButton}
         />
       </ul>
-    )
+    );
   },
-})
+});

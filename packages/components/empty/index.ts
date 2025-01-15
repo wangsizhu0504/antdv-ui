@@ -1,8 +1,8 @@
-import { withInstall } from '@antdv/utils'
-import AEmpty from './src/Empty'
+import { withInstall } from '@antdv/utils';
+import AEmpty from './src/Empty';
 
-export const Empty = withInstall(AEmpty)
+export const Empty = withInstall(AEmpty);
 
-export default Empty
+export default Empty;
 
-export * from './src/props'
+export * from './src/props';

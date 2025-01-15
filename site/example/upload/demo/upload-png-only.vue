@@ -17,10 +17,10 @@ title:
 </docs>
 
 <script lang="ts" setup>
-  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
-  import { UploadOutlined } from '@ant-design/icons-vue'
-  import { message, Upload } from '@antdv/ui'
-  import { ref } from 'vue'
+  import type { UploadChangeParam, UploadProps } from '@antdv/ui';
+  import { UploadOutlined } from '@ant-design/icons-vue';
+  import { message, Upload } from '@antdv/ui';
+  import { ref } from 'vue';
 
   const fileList = ref<UploadProps['fileList']>([
     {
@@ -43,20 +43,20 @@ title:
       response: 'Server Error 500', // custom error message to show
       url: 'http://www.baidu.com/zzz.png',
     },
-  ])
+  ]);
 
   function handleChange({ file, fileList }: UploadChangeParam) {
     if (file.status !== 'uploading') {
-      console.log(file, fileList)
+      console.log(file, fileList);
     }
   }
   const beforeUpload: UploadProps['beforeUpload'] = (file) => {
-    const isPNG = file.type === 'image/png'
+    const isPNG = file.type === 'image/png';
     if (!isPNG) {
-      message.error(`${file.name} is not a png file`)
+      message.error(`${file.name} is not a png file`);
     }
-    return isPNG || Upload.LIST_IGNORE
-  }
+    return isPNG || Upload.LIST_IGNORE;
+  };
 </script>
 
 <template>

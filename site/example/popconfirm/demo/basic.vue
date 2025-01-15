@@ -17,16 +17,16 @@ The basic example.
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
+  import { message } from '@antdv/ui';
 
   function confirm(e: MouseEvent) {
-    console.log(e)
-    message.success('Click on Yes')
+    console.log(e);
+    message.success('Click on Yes');
   }
 
   function cancel(e: MouseEvent) {
-    console.log(e)
-    message.error('Click on No')
+    console.log(e);
+    message.error('Click on No');
   }
 </script>
 

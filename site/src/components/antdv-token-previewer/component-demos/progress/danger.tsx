@@ -1,7 +1,7 @@
-import type { ComponentDemo } from '../../interface'
-import { Progress, Space } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface';
+import { Progress, Space } from '@antdv/ui';
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 const Demo = defineComponent({
   setup() {
@@ -13,14 +13,14 @@ const Demo = defineComponent({
         </Space>
         <Progress percent={50} status="exception" />
       </Space>
-    )
+    );
   },
-})
+});
 
 const componentDemo: ComponentDemo = {
   demo: <Demo />,
   tokens: ['colorError'],
   key: 'danger',
-}
+};
 
-export default componentDemo
+export default componentDemo;

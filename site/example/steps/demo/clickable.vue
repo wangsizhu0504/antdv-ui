@@ -16,10 +16,10 @@ Setting `v-model` makes Steps clickable.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
 
-  const current = ref<number>(0)
-  const description = 'This is a description.'
+  const current = ref<number>(0);
+  const description = 'This is a description.';
 </script>
 
 <template>

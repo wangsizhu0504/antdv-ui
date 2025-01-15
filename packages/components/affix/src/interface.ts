@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'vue'
+import type { CSSProperties } from 'vue';
 
 export enum AffixStatus {
   None,

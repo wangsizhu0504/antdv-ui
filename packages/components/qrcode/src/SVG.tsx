@@ -1,4 +1,4 @@
-import { defineComponent, watchEffect } from 'vue'
+import { defineComponent, watchEffect } from 'vue';
 import {
   DEFAULT_BGCOLOR,
   DEFAULT_FGCOLOR,
@@ -6,23 +6,23 @@ import {
   DEFAULT_LEVEL,
   DEFAULT_SIZE,
   ERROR_LEVEL_MAP,
-} from './constant'
-import { qrcodeSvgProps } from './props'
-import qrcodegen from './qrcodegen'
-import { excavateModules, generatePath, getImageSettings, getMarginSize } from './util'
+} from './constant';
+import { qrcodeSvgProps } from './props';
+import qrcodegen from './qrcodegen';
+import { excavateModules, generatePath, getImageSettings, getMarginSize } from './util';
 
 export default defineComponent({
   name: 'QRCodeSVG',
   inheritAttrs: false,
   props: qrcodeSvgProps(),
   setup(props) {
-    let cells = null
-    let margin = null
-    let numCells = null
-    let calculatedImageSettings = null
+    let cells = null;
+    let margin = null;
+    let numCells = null;
+    let calculatedImageSettings = null;
 
-    let fgPath = null
-    let image = null
+    let fgPath = null;
+    let image = null;
 
     watchEffect(() => {
       const {
@@ -32,17 +32,17 @@ export default defineComponent({
         includeMargin = DEFAULT_INCLUDEMARGIN,
         marginSize,
         imageSettings,
-      } = props
+      } = props;
 
-      cells = qrcodegen.QrCode.encodeText(value, ERROR_LEVEL_MAP[level]).getModules()
+      cells = qrcodegen.QrCode.encodeText(value, ERROR_LEVEL_MAP[level]).getModules();
 
-      margin = getMarginSize(includeMargin, marginSize)
-      numCells = cells.length + margin * 2
-      calculatedImageSettings = getImageSettings(cells, size, margin, imageSettings)
+      margin = getMarginSize(includeMargin, marginSize);
+      numCells = cells.length + margin * 2;
+      calculatedImageSettings = getImageSettings(cells, size, margin, imageSettings);
 
       if (imageSettings != null && calculatedImageSettings != null) {
         if (calculatedImageSettings.excavation != null)
-          cells = excavateModules(cells, calculatedImageSettings.excavation)
+          cells = excavateModules(cells, calculatedImageSettings.excavation);
 
         image = (
           <image
@@ -53,7 +53,7 @@ export default defineComponent({
             y={calculatedImageSettings.y + margin}
             preserveAspectRatio="none"
           />
-        )
+        );
       }
 
       // Drawing strategy: instead of a rect per module, we're going to create a
@@ -62,12 +62,12 @@ export default defineComponent({
       // way faster than DOM ops.
       // For level 1, 441 nodes -> 2
       // For level 40, 31329 -> 2
-      fgPath = generatePath(cells, margin)
-    })
+      fgPath = generatePath(cells, margin);
+    });
 
     return () => {
-      const bgColor = props.bgColor && DEFAULT_BGCOLOR
-      const fgColor = props.fgColor && DEFAULT_FGCOLOR
+      const bgColor = props.bgColor && DEFAULT_BGCOLOR;
+      const fgColor = props.fgColor && DEFAULT_FGCOLOR;
       return (
         <svg height={props.size} width={props.size} viewBox={`0 0 ${numCells} ${numCells}`}>
           {!!props.title && <title>{props.title}</title>}
@@ -79,7 +79,7 @@ export default defineComponent({
           <path fill={fgColor} d={fgPath} shape-rendering="crispEdges" />
           {image}
         </svg>
-      )
-    }
+      );
+    };
   },
-})
+});

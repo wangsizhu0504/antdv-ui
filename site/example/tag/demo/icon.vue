@@ -18,7 +18,7 @@ If you want specific control over the positioning and placement of the `Icon`, t
 </docs>
 
 <script lang="ts" setup>
-  import { FacebookOutlined, LinkedinOutlined, TwitterOutlined, YoutubeOutlined } from '@ant-design/icons-vue'
+  import { FacebookOutlined, LinkedinOutlined, TwitterOutlined, YoutubeOutlined } from '@ant-design/icons-vue';
 </script>
 
 <template>

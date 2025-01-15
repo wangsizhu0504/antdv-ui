@@ -136,11 +136,11 @@ If you want to consume the Design Token under the current theme, we provide `use
 When you need token out of Vue life cycle, you can use static function to get them:
 
 ```jsx
-import { theme } from '@antdv/ui'
+import { theme } from '@antdv/ui';
 
-const { defaultAlgorithm, defaultSeed } = theme
+const { defaultAlgorithm, defaultSeed } = theme;
 
-const mapToken = defaultAlgorithm(defaultSeed)
+const mapToken = defaultAlgorithm(defaultSeed);
 ```
 
 If you want to use in preprocess style framework like less, use less-loader for injection:
@@ -175,7 +175,7 @@ const theme = {
   token: {
     colorPrimary: '#1890ff',
   },
-}
+};
 ```
 
 ### Map Token
@@ -187,7 +187,7 @@ const theme = {
   token: {
     colorPrimaryBg: '#e6f7ff',
   },
-}
+};
 ```
 
 ### Alias Token
@@ -199,7 +199,7 @@ const theme = {
   token: {
     colorLink: '#1890ff',
   },
-}
+};
 ```
 
 ### Algorithm
