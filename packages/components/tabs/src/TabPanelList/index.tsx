@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue'
 import { cloneElement } from '@antdv/utils'
-import { useInjectTabs } from '../TabContext'
+import { defineComponent } from 'vue'
 import { tabPanelListProps } from '../props'
+import { useInjectTabs } from '../TabContext'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -26,9 +26,9 @@ export default defineComponent({
               },
             ]}
             style={
-             (activeIndex && tabPaneAnimated)
-               ? { [rtl ? 'marginRight' : 'marginLeft']: `-${activeIndex}00%` }
-               : null
+              (activeIndex && tabPaneAnimated)
+                ? { [rtl ? 'marginRight' : 'marginLeft']: `-${activeIndex}00%` }
+                : null
             }
           >
             {tabs.value.map((tab) => {

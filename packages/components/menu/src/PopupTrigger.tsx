@@ -1,12 +1,12 @@
-import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue'
-import { classNames, raf } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
 import type { PropType } from 'vue'
-import { VcTrigger } from '@antdv/vue-components/vc-trigger'
+import type { MenuMode } from './interface'
+import { classNames, raf } from '@antdv/utils'
 import { getTransitionProps } from '@antdv/vue-components/transition'
+import { VcTrigger } from '@antdv/vue-components/vc-trigger'
+import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue'
 import { useInjectForceRender, useInjectMenu } from './hooks/useMenuContext'
 import { placements, placementsRtl } from './placements'
-import type { MenuMode } from './interface'
 
 const popupPlacementMap = {
   'horizontal': 'bottomLeft',

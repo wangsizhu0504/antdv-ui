@@ -1,16 +1,16 @@
-import { defineComponent } from 'vue'
+import type { VueNode } from '@antdv/types'
+import type { Status, StepIconRender } from './interface'
+import type { VCStepProps } from './Step'
 import {
-  PropTypes,
   classNames,
   cloneElement,
   filterEmpty,
   functionType,
+  PropTypes,
   stringType,
 } from '@antdv/utils'
-import type { VueNode } from '@antdv/types'
+import { defineComponent } from 'vue'
 import Step from './Step'
-import type { VCStepProps } from './Step'
-import type { Status, StepIconRender } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

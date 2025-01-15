@@ -1,7 +1,7 @@
-import { Keyframes } from '../../cssinjs'
 import type { CSSInterpolation } from '../../cssinjs'
 import type { AliasToken } from '../../token'
 import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook'
+import { Keyframes } from '../../cssinjs'
 import { initMotion } from './motion'
 
 export const moveDownIn = new Keyframes('antMoveDownIn', {

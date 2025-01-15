@@ -1,3 +1,5 @@
+import type { ExtractPropTypes, Ref } from 'vue'
+import type { SegmentedOptionType, segmentedSize, SegmentedValue } from './interface'
 import {
   anyType,
   arrayType,
@@ -6,8 +8,6 @@ import {
   someType,
   stringType,
 } from '@antdv/utils'
-import type { ExtractPropTypes, Ref } from 'vue'
-import type { SegmentedOptionType, SegmentedValue, segmentedSize } from './interface'
 
 export function motionThumbProps() {
   return {

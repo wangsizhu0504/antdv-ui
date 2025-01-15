@@ -17,9 +17,9 @@ customize collapse/expand icon of tree node
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
-  import { DownOutlined } from '@ant-design/icons-vue'
   import type { TreeProps } from '@antdv/ui'
+  import { DownOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const expandedKeys = ref<string[]>(['0-0-0'])
   const selectedKeys = ref<string[]>([])
@@ -77,8 +77,8 @@ customize collapse/expand icon of tree node
 
 <template>
   <a-tree
-    v-model:expandedKeys="expandedKeys"
-    v-model:selectedKeys="selectedKeys"
+    v-model:expanded-keys="expandedKeys"
+    v-model:selected-keys="selectedKeys"
     show-line
     :tree-data="treeData"
   >

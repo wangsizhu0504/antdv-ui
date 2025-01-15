@@ -1,13 +1,5 @@
-import {
-  anyType,
-  booleanType,
-  functionType,
-  objectType,
-  someType,
-  stringType,
-} from '@antdv/utils'
-import type { ExtractPropTypes, PropType } from 'vue'
 import type { VueNode } from '@antdv/types'
+import type { ExtractPropTypes, PropType } from 'vue'
 import type { Direction } from '../../config-provider'
 import type {
   GapPositionType,
@@ -19,6 +11,14 @@ import type {
   StrokeLinecapType,
   SuccessProps,
 } from './interface'
+import {
+  anyType,
+  booleanType,
+  functionType,
+  objectType,
+  someType,
+  stringType,
+} from '@antdv/utils'
 
 export function progressProps() {
   return {

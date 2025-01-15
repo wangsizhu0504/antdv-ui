@@ -1,5 +1,5 @@
-import { genComponentStyleHook, genFocusStyle, mergeToken } from '@antdv/theme'
 import type { CSSInterpolation, CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, genFocusStyle, mergeToken } from '@antdv/theme'
 import { genCompactItemStyle } from '@antdv/theme/style/compact-item'
 import { genCompactItemVerticalStyle } from '@antdv/theme/style/compact-item-vertical'
 import genGroupStyle from './group'

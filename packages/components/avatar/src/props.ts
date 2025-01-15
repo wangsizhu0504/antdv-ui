@@ -1,6 +1,6 @@
-import { PropTypes } from '@antdv/utils'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { AvatarSize } from './interface'
+import { PropTypes } from '@antdv/utils'
 
 export function avatarProps() {
   return {

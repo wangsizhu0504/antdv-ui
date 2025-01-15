@@ -1,6 +1,6 @@
-import { Skeleton } from '@antdv/ui'
-
 import type { ComponentDemo } from '../../interface'
+
+import { Skeleton } from '@antdv/ui'
 
 const Demo = () => <Skeleton active />
 

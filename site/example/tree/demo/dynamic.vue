@@ -17,8 +17,8 @@ To load data asynchronously when click to expand a treeNode.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { TreeProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const expandedKeys = ref<string[]>([])
   const selectedKeys = ref<string[]>([])
@@ -47,8 +47,8 @@ To load data asynchronously when click to expand a treeNode.
 
 <template>
   <a-tree
-    v-model:expandedKeys="expandedKeys"
-    v-model:selectedKeys="selectedKeys"
+    v-model:expanded-keys="expandedKeys"
+    v-model:selected-keys="selectedKeys"
     :load-data="onLoadData"
     :tree-data="treeData"
   />

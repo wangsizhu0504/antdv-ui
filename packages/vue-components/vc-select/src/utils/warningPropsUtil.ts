@@ -1,6 +1,6 @@
-import { isValidElement, noteOnce, warning } from '@antdv/utils'
 import type { VNode } from 'vue'
 import type { LabelInValueType, RawValueType, SelectProps } from '../Select'
+import { isValidElement, noteOnce, warning } from '@antdv/utils'
 import { isMultiple } from '../BaseSelect'
 import { toArray } from './commonUtil'
 import { convertChildrenToData } from './legacyUtil'

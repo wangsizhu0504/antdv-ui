@@ -1,9 +1,9 @@
-import { PropTypes, eventType, objectType } from '@antdv/utils'
+import type { MouseEventHandler, VueNode } from '@antdv/types'
 
 import type { ExtractPropTypes, PropType } from 'vue'
-import type { MouseEventHandler, VueNode } from '@antdv/types'
 import type { DropdownProps } from '../../dropdown'
 import type { Route } from './interface'
+import { eventType, objectType, PropTypes } from '@antdv/utils'
 
 export function breadcrumbProps() {
   return {
@@ -13,8 +13,8 @@ export function breadcrumbProps() {
     separator: PropTypes.any,
     itemRender: {
       type: Function as PropType<
-      (opt: { route: Route, params: unknown, routes: Route[], paths: string[] }) => VueNode
-    >,
+        (opt: { route: Route, params: unknown, routes: Route[], paths: string[] }) => VueNode
+      >,
     },
   }
 }

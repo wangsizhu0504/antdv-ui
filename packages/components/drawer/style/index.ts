@@ -1,5 +1,5 @@
-import { genComponentStyleHook, mergeToken } from '@antdv/theme'
 import type { FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken } from '@antdv/theme'
 import genMotionStyle from './motion'
 
 export interface ComponentToken {

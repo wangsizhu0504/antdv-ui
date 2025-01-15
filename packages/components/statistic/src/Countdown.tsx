@@ -1,9 +1,9 @@
-import { defineComponent, onBeforeUnmount, onMounted, onUpdated, ref } from 'vue'
+import type { countdownValueType, FormatConfig, valueType } from './interface'
 import { initDefaultProps, omit } from '@antdv/utils'
+import { defineComponent, onBeforeUnmount, onMounted, onUpdated, ref } from 'vue'
+import { countdownProps } from './props'
 import Statistic from './Statistic'
 import { formatCountdown as formatCD } from './utils'
-import { countdownProps } from './props'
-import type { FormatConfig, countdownValueType, valueType } from './interface'
 
 const REFRESH_INTERVAL = 1000 / 30
 

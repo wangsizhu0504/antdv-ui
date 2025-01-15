@@ -17,8 +17,8 @@ Input type of password.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const value = ref<string>('')
   const value2 = ref<string>('')

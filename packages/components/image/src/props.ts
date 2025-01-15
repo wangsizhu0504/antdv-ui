@@ -1,8 +1,8 @@
-import { anyType } from '@antdv/utils'
-
 import type { ExtractPropTypes } from 'vue'
 
 import type { PreviewGroupPreview } from './interface'
+
+import { anyType } from '@antdv/utils'
 
 export function previewGroupProps() {
   return {

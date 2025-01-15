@@ -1,10 +1,10 @@
-import { computed, defineComponent, onMounted, watch } from 'vue'
-import { EllipsisOutlined } from '@ant-design/icons-vue'
-import type { CSSProperties } from 'vue'
-import { useState } from '@antdv/hooks'
 import type { CustomSlotsType, Key } from '@antdv/types'
+import type { CSSProperties } from 'vue'
+import { EllipsisOutlined } from '@ant-design/icons-vue'
+import { useState } from '@antdv/hooks'
+import { classNames, KeyCode } from '@antdv/utils'
 import { VcDropdown } from '@antdv/vue-components'
-import { KeyCode, classNames } from '@antdv/utils'
+import { computed, defineComponent, onMounted, watch } from 'vue'
 import Menu, { MenuItem } from '../../../menu'
 
 import { useProvideOverride } from '../../../menu/src/OverrideContext'
@@ -138,81 +138,81 @@ export default defineComponent({
       const moreNode = mobile
         ? null
         : (
-          <VcDropdown
-            prefixCls={dropdownPrefix}
-            trigger={['hover']}
-            visible={open.value}
-            transitionName={moreTransitionName}
-            onVisibleChange={setOpen}
-            overlayClassName={overlayClassName}
-            mouseEnterDelay={0.1}
-            mouseLeaveDelay={0.1}
-            getPopupContainer={props.getPopupContainer}
-            v-slots={{
-              overlay: () => (
-                <Menu
-                  onClick={({ key, domEvent }) => {
-                    onTabClick(key, domEvent)
-                    setOpen(false)
-                  }}
-                  id={popupId.value}
-                  tabindex={-1}
-                  role="listbox"
-                  aria-activedescendant={selectedItemId.value}
-                  selectedKeys={[selectedKey.value]}
-                  aria-label={
-                  dropdownAriaLabel !== undefined ? dropdownAriaLabel : 'expanded dropdown'
-                }
-                >
-                  {tabs.map((tab) => {
-                    const removable = editable && tab.closable !== false && !tab.disabled
-                    return (
-                      <MenuItem
-                        key={tab.key}
-                        id={`${popupId.value}-${tab.key}`}
-                        role="option"
-                        aria-controls={id && `${id}-panel-${tab.key}`}
-                        disabled={tab.disabled}
-                      >
-                        <span>{typeof tab.tab === 'function' ? tab.tab() : tab.tab}</span>
-                        {removable && (
-                          <button
-                            type="button"
-                            aria-label={props.removeAriaLabel || 'remove'}
-                            tabindex={0}
-                            class={`${dropdownPrefix}-menu-item-remove`}
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              onRemoveTab(e, tab.key)
-                            }}
-                          >
-                            {tab.closeIcon?.() || editable.removeIcon?.() || '×'}
-                          </button>
-                        )}
-                      </MenuItem>
-                    )
-                  })}
-                </Menu>
-              ),
-              default: () => (
-                <button
-                  type="button"
-                  class={`${prefixCls}-nav-more`}
-                  style={moreStyle}
-                  tabindex={-1}
-                  aria-hidden="true"
-                  aria-haspopup="listbox"
-                  aria-controls={popupId.value}
-                  id={`${id}-more`}
-                  aria-expanded={open.value}
-                  onKeydown={onKeyDown}
-                >
-                  {moreIcon}
-                </button>
-              ),
-            }}
-          >
-          </VcDropdown>
+            <VcDropdown
+              prefixCls={dropdownPrefix}
+              trigger={['hover']}
+              visible={open.value}
+              transitionName={moreTransitionName}
+              onVisibleChange={setOpen}
+              overlayClassName={overlayClassName}
+              mouseEnterDelay={0.1}
+              mouseLeaveDelay={0.1}
+              getPopupContainer={props.getPopupContainer}
+              v-slots={{
+                overlay: () => (
+                  <Menu
+                    onClick={({ key, domEvent }) => {
+                      onTabClick(key, domEvent)
+                      setOpen(false)
+                    }}
+                    id={popupId.value}
+                    tabindex={-1}
+                    role="listbox"
+                    aria-activedescendant={selectedItemId.value}
+                    selectedKeys={[selectedKey.value]}
+                    aria-label={
+                      dropdownAriaLabel !== undefined ? dropdownAriaLabel : 'expanded dropdown'
+                    }
+                  >
+                    {tabs.map((tab) => {
+                      const removable = editable && tab.closable !== false && !tab.disabled
+                      return (
+                        <MenuItem
+                          key={tab.key}
+                          id={`${popupId.value}-${tab.key}`}
+                          role="option"
+                          aria-controls={id && `${id}-panel-${tab.key}`}
+                          disabled={tab.disabled}
+                        >
+                          <span>{typeof tab.tab === 'function' ? tab.tab() : tab.tab}</span>
+                          {removable && (
+                            <button
+                              type="button"
+                              aria-label={props.removeAriaLabel || 'remove'}
+                              tabindex={0}
+                              class={`${dropdownPrefix}-menu-item-remove`}
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                onRemoveTab(e, tab.key)
+                              }}
+                            >
+                              {tab.closeIcon?.() || editable.removeIcon?.() || '×'}
+                            </button>
+                          )}
+                        </MenuItem>
+                      )
+                    })}
+                  </Menu>
+                ),
+                default: () => (
+                  <button
+                    type="button"
+                    class={`${prefixCls}-nav-more`}
+                    style={moreStyle}
+                    tabindex={-1}
+                    aria-hidden="true"
+                    aria-haspopup="listbox"
+                    aria-controls={popupId.value}
+                    id={`${id}-more`}
+                    aria-expanded={open.value}
+                    onKeydown={onKeyDown}
+                  >
+                    {moreIcon}
+                  </button>
+                ),
+              }}
+            >
+            </VcDropdown>
           )
 
       return (

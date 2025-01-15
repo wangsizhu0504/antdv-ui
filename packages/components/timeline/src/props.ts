@@ -1,6 +1,6 @@
-import { PropTypes, booleanType, tuple } from '@antdv/utils'
-
 import type { ExtractPropTypes } from 'vue'
+
+import { booleanType, PropTypes, tuple } from '@antdv/utils'
 
 export function timelineProps() {
   return {

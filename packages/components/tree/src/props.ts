@@ -1,20 +1,20 @@
+import type { Key } from '@antdv/types'
+
+import type { FieldNames } from '@antdv/vue-components/vc-tree/src/interface'
+import type { DraggableFn } from '@antdv/vue-components/vc-tree/src/props'
+import type { DraggableConfig } from '@antdv/vue-components/vc-tree/src/Tree'
+import type { ExtractPropTypes } from 'vue'
+
+import type { AntdTreeNodeAttribute, ExpandAction } from './interface'
 import {
-  PropTypes,
   arrayType,
   booleanType,
   functionType,
   objectType,
+  PropTypes,
   someType,
 } from '@antdv/utils'
-
-import type { Key } from '@antdv/types'
-import type { ExtractPropTypes } from 'vue'
-import type { DraggableFn } from '@antdv/vue-components/vc-tree/src/props'
 import { treeProps as VcTreeProps } from '@antdv/vue-components/vc-tree/src/props'
-
-import type { FieldNames } from '@antdv/vue-components/vc-tree/src/interface'
-import type { DraggableConfig } from '@antdv/vue-components/vc-tree/src/Tree'
-import type { AntdTreeNodeAttribute, ExpandAction } from './interface'
 
 export function treeProps() {
   const baseTreeProps = VcTreeProps()

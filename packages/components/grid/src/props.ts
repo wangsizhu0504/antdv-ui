@@ -1,6 +1,6 @@
-import { someType } from '@antdv/utils'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { ColSize, Gutter, ResponsiveAligns, ResponsiveJustify } from './interface'
+import { someType } from '@antdv/utils'
 
 export const RowAligns = ['top', 'middle', 'bottom', 'stretch'] as const
 export const RowJustify = [

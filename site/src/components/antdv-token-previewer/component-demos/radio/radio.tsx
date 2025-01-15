@@ -1,5 +1,5 @@
-import { Radio } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Radio } from '@antdv/ui'
 
 const Demo = () => <Radio checked>Radio</Radio>
 

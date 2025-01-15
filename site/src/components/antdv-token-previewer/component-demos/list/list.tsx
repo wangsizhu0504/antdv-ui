@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { Avatar, List, ListItem, ListItemMeta } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Avatar, List, ListItem, ListItemMeta } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 const data = [
   { title: 'Ant Design Vue Title 1' },

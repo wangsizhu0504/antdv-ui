@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { defineComponent, ref } from 'vue'
   import { SearchOutlined } from '@ant-design/icons-vue'
+  import { defineComponent, ref } from 'vue'
 
   export default defineComponent({
     name: 'SearchBox',

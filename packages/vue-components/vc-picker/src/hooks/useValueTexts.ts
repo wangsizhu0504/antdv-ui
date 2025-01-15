@@ -1,9 +1,9 @@
 import type { ComputedRef, Ref } from 'vue'
-import { computed } from 'vue'
-import { shallowEqual } from '@antdv/utils'
-import { useMemo } from '@antdv/hooks'
 import type { GenerateConfig } from '../generate'
 import type { CustomFormat, Locale } from '../interface'
+import { useMemo } from '@antdv/hooks'
+import { shallowEqual } from '@antdv/utils'
+import { computed } from 'vue'
 import { formatValue } from '../utils/dateUtil'
 
 export interface ValueTextConfig<DateType> {

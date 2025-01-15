@@ -1,9 +1,9 @@
 import type { App, Plugin } from 'vue'
-import AInput from './src/Input'
 import AInputGroup from './src/Group'
+import AInput from './src/Input'
+import AInputPassword from './src/Password'
 import AInputSearch from './src/Search'
 import AInputTextArea from './src/TextArea'
-import AInputPassword from './src/Password'
 
 export const InputGroup = AInputGroup
 export const InputSearch = AInputSearch

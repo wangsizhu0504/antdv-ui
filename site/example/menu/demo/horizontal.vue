@@ -17,9 +17,9 @@ Horizontal top navigation menu.
 </docs>
 
 <script lang="ts" setup>
-  import { h, ref } from 'vue'
-  import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
   import type { MenuProps } from '@antdv/ui'
+  import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
+  import { h, ref } from 'vue'
 
   const current = ref<string[]>(['mail'])
   const items = ref<MenuProps['items']>([
@@ -80,5 +80,5 @@ Horizontal top navigation menu.
 </script>
 
 <template>
-  <a-menu v-model:selectedKeys="current" mode="horizontal" :items="items" />
+  <a-menu v-model:selected-keys="current" mode="horizontal" :items="items" />
 </template>

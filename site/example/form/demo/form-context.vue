@@ -17,9 +17,9 @@ In this case, submit button is in the Modal which is out of Form. You can use `f
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, ref, toRaw, watch } from 'vue'
   import type { FormInstance } from '@antdv/ui'
   import { SmileOutlined, UserOutlined } from '@ant-design/icons-vue'
+  import { reactive, ref, toRaw, watch } from 'vue'
 
   interface UserType {
     name?: string;

@@ -1,5 +1,5 @@
 import type { CSSProperties, PropType, TransitionProps } from 'vue'
-import { PropTypes, arrayType, functionType, objectType } from '@antdv/utils'
+import { arrayType, functionType, objectType, PropTypes } from '@antdv/utils'
 
 export type IPlacement = 'left' | 'top' | 'right' | 'bottom'
 type ILevelMove = number | [number, number]
@@ -20,7 +20,7 @@ function props() {
     levelMove: {
       type: [Number, Function, Array] as PropType<
       ILevelMove | ((e: { target: HTMLElement; open: boolean }) => ILevelMove)
-    >,
+      >,
     },
     duration: String,
     ease: String,
@@ -61,4 +61,4 @@ function drawerChildProps() {
     inline: Boolean,
   }
 }
-export { drawerProps, drawerChildProps }
+export { drawerChildProps, drawerProps }

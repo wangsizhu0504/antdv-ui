@@ -1,6 +1,6 @@
 import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
-import generateSinglePicker from './generateSinglePicker'
 import generateRangePicker from './generateRangePicker'
+import generateSinglePicker from './generateSinglePicker'
 
 function generatePicker<DateType, ExtraProps extends {} = {}>(
   generateConfig: GenerateConfig<DateType>,

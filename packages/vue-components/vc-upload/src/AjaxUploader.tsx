@@ -1,13 +1,13 @@
-import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
-import { partition } from 'lodash-es'
 import type { ChangeEvent } from '@antdv/types'
-import { pickAttrs } from '@antdv/utils'
-import defaultRequest from './request'
-import getUid from './uid'
-import attrAccept from './attr-accept'
-import traverseFileTree from './traverseFileTree'
 import type { BeforeUploadFileType, RcFile, UploadProgressEvent, UploadRequestError } from './interface'
+import { pickAttrs } from '@antdv/utils'
+import { partition } from 'lodash-es'
+import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
+import attrAccept from './attr-accept'
 import { uploadProps } from './interface'
+import defaultRequest from './request'
+import traverseFileTree from './traverseFileTree'
+import getUid from './uid'
 
 interface ParsedFileInfo {
   origin: RcFile;

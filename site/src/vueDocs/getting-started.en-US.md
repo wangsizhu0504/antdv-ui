@@ -47,8 +47,8 @@ If you use Vue's default template syntax, you need to register components before
 **Global Registration All Components**
 
 ```jsx
-import { createApp } from 'vue'
 import Antd from '@antdv/ui'
+import { createApp } from 'vue'
 import App from './App'
 import 'ant-design-vue/dist/reset.css'
 
@@ -62,8 +62,8 @@ The above imports Antd entirely. Note that CSS file needs to be imported separat
 **Global Registration Some Components**
 
 ```jsx
-import { createApp } from 'vue'
 import { Button, message } from '@antdv/ui'
+import { createApp } from 'vue'
 import App from './App'
 
 const app = createApp(App)

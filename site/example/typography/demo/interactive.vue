@@ -16,8 +16,8 @@ Provide additional interactive capacity of editable and copyable.
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
   import { CheckOutlined, HighlightOutlined, SmileFilled, SmileOutlined } from '@ant-design/icons-vue'
+  import { ref, watch } from 'vue'
 
   const editableStr = ref<any>('This is an editable text.')
   watch(editableStr, () => {

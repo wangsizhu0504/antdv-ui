@@ -1,10 +1,10 @@
-import { computed, createVNode, defineComponent, provide, ref } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-
-import useStyle from '../style'
-import { layoutProps } from './props'
 import type { GeneratorArgument } from './interface'
+import { computed, createVNode, defineComponent, provide, ref } from 'vue'
+
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import useStyle from '../style'
 import { SiderHookProviderKey } from './injectionKey'
+import { layoutProps } from './props'
 
 function generator({ suffixCls, tagName, name }: GeneratorArgument) {
   return (BasicComponent: typeof BasicLayout) => {
@@ -95,4 +95,4 @@ const Content = generator({
   name: 'ALayoutContent',
 })(Basic)
 
-export { Layout, Header, Footer, Content }
+export { Content, Footer, Header, Layout }

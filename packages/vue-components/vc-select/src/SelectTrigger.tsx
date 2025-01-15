@@ -1,10 +1,10 @@
-import type { CSSProperties, PropType } from 'vue'
-import { computed, defineComponent, ref } from 'vue'
-import { PropTypes, classNames } from '@antdv/utils'
 import type { VueNode } from '@antdv/types'
+import type { CSSProperties, PropType } from 'vue'
 import type { AlignType } from '../../vc-trigger/src/interface'
-import Trigger from '../../vc-trigger/src/Trigger'
 import type { DropdownRender, Placement, RenderDOMFunc } from './BaseSelect'
+import { classNames, PropTypes } from '@antdv/utils'
+import { computed, defineComponent, ref } from 'vue'
+import Trigger from '../../vc-trigger/src/Trigger'
 
 function getBuiltInPlacements(dropdownMatchSelectWidth: number | boolean) {
   // Enable horizontal overflow auto-adjustment when a custom dropdown width is provided

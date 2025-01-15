@@ -1,5 +1,5 @@
-import type { ExtractPropTypes, PropType, VNodeTypes } from 'vue'
 import type { Locale } from '@antdv/locale'
+import type { ExtractPropTypes, PropType, VNodeTypes } from 'vue'
 import type { LocaleComponentName } from './interface'
 
 export function localReceiverProps() {
@@ -10,8 +10,8 @@ export function localReceiverProps() {
     },
     children: {
       type: Function as PropType<
-      (locale: any, localeCode?: string, fullLocale?: object) => VNodeTypes
-    >,
+        (locale: any, localeCode?: string, fullLocale?: object) => VNodeTypes
+      >,
     },
   }
 }

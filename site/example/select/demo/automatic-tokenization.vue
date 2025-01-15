@@ -17,8 +17,8 @@ Try to copy `Lucy,Jack` to the input. Only available in tags and multiple mode.
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
   import type { SelectProps } from '@antdv/ui'
+  import { ref, watch } from 'vue'
 
   const options = ref<SelectProps['options']>([
     {

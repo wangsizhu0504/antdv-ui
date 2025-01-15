@@ -1,5 +1,5 @@
-import { Checkbox, Space } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Checkbox, Space } from '@antdv/ui'
 
 function Demo(props: any) {
   return (

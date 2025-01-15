@@ -1,6 +1,6 @@
-import { computed, defineComponent } from 'vue'
-import { initDefaultProps } from '@antdv/utils'
 import type { SlotsType } from 'vue'
+import { initDefaultProps } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
 import { timelineItemProps } from './props'

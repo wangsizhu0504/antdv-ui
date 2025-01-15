@@ -17,8 +17,8 @@ Determing which panel to show with `mode` and `onPanelChange`.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { Dayjs } from 'dayjs'
+  import { ref } from 'vue'
 
   const mode1 = ref<any>('time')
   const mode2 = ref<any>(['month', 'month'])

@@ -16,9 +16,9 @@ use [`Form.useForm`](#useform)  combined display form verification information.
 </docs>
 
 <script lang="ts" setup>
-  import { computed, reactive, toRaw } from 'vue'
-  import { toArray } from 'lodash-es'
   import { Form } from '@antdv/ui'
+  import { toArray } from 'lodash-es'
+  import { computed, reactive, toRaw } from 'vue'
 
   const useForm = Form.useForm
 

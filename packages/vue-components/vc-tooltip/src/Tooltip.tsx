@@ -1,9 +1,9 @@
 import type { CSSProperties, PropType } from 'vue'
+import { getPropsSlot, PropTypes } from '@antdv/utils'
 import { defineComponent, shallowRef, watchEffect } from 'vue'
-import { PropTypes, getPropsSlot } from '@antdv/utils'
 import Trigger from '../../vc-trigger/src/Trigger'
-import { placements } from './placements'
 import Content from './Content'
+import { placements } from './placements'
 
 function noop() {}
 export default defineComponent({
@@ -46,9 +46,9 @@ export default defineComponent({
       return [
         props.arrow
           ? (
-            <div class={`${prefixCls}-arrow`} key="arrow">
-              {getPropsSlot(slots, props, 'arrowContent')}
-            </div>
+              <div class={`${prefixCls}-arrow`} key="arrow">
+                {getPropsSlot(slots, props, 'arrowContent')}
+              </div>
             )
           : null,
         <Content

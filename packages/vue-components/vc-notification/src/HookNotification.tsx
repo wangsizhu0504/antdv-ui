@@ -1,11 +1,11 @@
-import type { CSSProperties } from 'vue'
-import { TransitionGroup, computed, defineComponent, ref, watch } from 'vue'
 import type { CSSMotionProps, Key, VueNode } from '@antdv/types'
+import type { CSSProperties } from 'vue'
+import type { NoticeProps } from './Notice'
 import { classNames } from '@antdv/utils'
+import { computed, defineComponent, ref, TransitionGroup, watch } from 'vue'
 import Portal from '../../portal/src/Portal'
 import { getTransitionGroupProps } from '../../transition'
 import Notice from './Notice'
-import type { NoticeProps } from './Notice'
 
 let seed = 0
 const now = Date.now()
@@ -34,7 +34,7 @@ export interface NoticeContent extends Omit<NoticeProps, 'prefixCls' | 'noticeKe
   content?: any;
   onClose?: () => void;
   style?: CSSProperties;
-  class?: String;
+  class?: string;
   placement?: Placement;
 }
 

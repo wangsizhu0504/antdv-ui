@@ -1,6 +1,6 @@
-import { operationUnit } from '@antdv/theme'
 import type { CSSObject, GenerateStyle } from '@antdv/theme'
 import type { TableToken } from './index'
+import { operationUnit } from '@antdv/theme'
 
 const genExpandStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
   const {

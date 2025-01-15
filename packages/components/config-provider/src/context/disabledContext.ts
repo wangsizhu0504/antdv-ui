@@ -1,6 +1,6 @@
-import { computed, inject, provide, ref } from 'vue'
 import type { InjectionKey, Ref } from 'vue'
 import type { DisabledType } from '../interface'
+import { computed, inject, provide, ref } from 'vue'
 
 const DisabledContextKey: InjectionKey<Ref<DisabledType>> = Symbol('DisabledContextKey')
 export function useInjectDisabled() {

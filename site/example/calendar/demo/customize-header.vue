@@ -17,8 +17,8 @@ Customize Calendar header content.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { Dayjs } from 'dayjs'
+  import { ref } from 'vue'
 
   const value = ref<Dayjs>()
 

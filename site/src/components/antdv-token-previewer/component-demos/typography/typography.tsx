@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { Typography } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Typography } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 const { Title, Paragraph, Text, Link } = Typography
 const Demo = defineComponent({

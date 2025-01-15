@@ -1,3 +1,6 @@
+import type { VNode } from 'vue'
+import { filterEmpty, getPropsSlot, initDefaultProps } from '@antdv/utils'
+import { debounce } from 'lodash-es'
 import {
   cloneVNode,
   defineComponent,
@@ -6,9 +9,6 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { debounce } from 'lodash-es'
-import { filterEmpty, getPropsSlot, initDefaultProps } from '@antdv/utils'
-import type { VNode } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { spinProps } from './props'

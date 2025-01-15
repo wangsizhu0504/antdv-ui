@@ -1,9 +1,9 @@
-import Header from '../Header'
-import type { Locale } from '../../interface'
 import type { GenerateConfig } from '../../generate'
+import type { Locale } from '../../interface'
+import useMergeProps from '../../hooks/useMergeProps'
 import { useInjectPanel } from '../../PanelContext'
 import { formatValue } from '../../utils/dateUtil'
-import useMergeProps from '../../hooks/useMergeProps'
+import Header from '../Header'
 
 export interface TimeHeaderProps<DateType> {
   prefixCls: string;

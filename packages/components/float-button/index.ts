@@ -1,7 +1,7 @@
 import type { App, Plugin } from 'vue'
+import backTop from './src/BackTop'
 import floatButton from './src/FloatButton'
 import floatButtonGroup from './src/FloatButtonGroup'
-import backTop from './src/BackTop'
 
 export const BackTop = backTop
 export const FloatButtonGroup = floatButtonGroup
@@ -22,5 +22,5 @@ export default FloatButton as typeof FloatButton & Plugin & {
   readonly BackTop: typeof BackTop
 }
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

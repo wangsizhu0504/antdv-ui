@@ -1,5 +1,5 @@
-import { defineComponent, shallowRef, watchEffect } from 'vue'
 import { classNames } from '@antdv/utils'
+import { defineComponent, shallowRef, watchEffect } from 'vue'
 import { collapsePanelProps } from './props'
 
 export default defineComponent({

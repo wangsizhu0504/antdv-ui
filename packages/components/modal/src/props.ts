@@ -1,9 +1,9 @@
-import { PropTypes, objectType } from '@antdv/utils'
+import type { getContainerFunc, VueNode } from '@antdv/types'
 
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import type { VueNode, getContainerFunc } from '@antdv/types'
 import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../../button'
 import type { MousePosition } from './interface'
+import { objectType, PropTypes } from '@antdv/utils'
 
 export function modalProps() {
   return {
@@ -39,7 +39,7 @@ export function modalProps() {
     'getContainer': {
       type: [String, Function, Boolean, Object] as PropType<
       string | HTMLElement | getContainerFunc | false
-    >,
+      >,
       default: undefined,
     },
     'zIndex': Number,

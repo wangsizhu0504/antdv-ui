@@ -138,9 +138,9 @@ module.exports = {
 ```
 
 ```jsx
+import Icon from '@ant-design/icons-vue'
 import MessageSvg from 'node:path/to/message.svg' // path to your '*.svg' file.
 import { defineComponent } from 'vue'
-import Icon from '@ant-design/icons-vue'
 
 export default defineComponent({
   setup() {

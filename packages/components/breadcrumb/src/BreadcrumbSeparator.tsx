@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue'
 import { flattenChildren } from '@antdv/utils'
+import { defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { breadcrumbSeparatorProps } from './props'
 

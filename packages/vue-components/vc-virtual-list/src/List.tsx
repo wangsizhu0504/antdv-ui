@@ -1,4 +1,7 @@
-import type { CSSProperties, Component, PropType } from 'vue'
+import type { Key } from '@antdv/types'
+import type { Component, CSSProperties, PropType } from 'vue'
+import type { RenderFunc, SharedConfig } from './interface'
+import { classNames, PropTypes, supportsPassive } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -12,17 +15,14 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import type { Key } from '@antdv/types'
-import { PropTypes, classNames, supportsPassive } from '@antdv/utils'
 import Filler from './Filler'
-import Item from './Item'
-import ScrollBar from './ScrollBar'
-import useHeights from './hooks/useHeights'
-import useScrollTo from './hooks/useScrollTo'
 import useFrameWheel from './hooks/useFrameWheel'
+import useHeights from './hooks/useHeights'
 import useMobileTouchMove from './hooks/useMobileTouchMove'
 import useOriginScroll from './hooks/useOriginScroll'
-import type { RenderFunc, SharedConfig } from './interface'
+import useScrollTo from './hooks/useScrollTo'
+import Item from './Item'
+import ScrollBar from './ScrollBar'
 
 const EMPTY_DATA = []
 

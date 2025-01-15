@@ -1,3 +1,7 @@
+import type { FocusEventHandler, VueNode } from '@antdv/types'
+import type { CSSProperties } from 'vue'
+import type { InputFocusOptions } from './interface'
+import { classNames, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -7,20 +11,17 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { classNames, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils'
-import type { FocusEventHandler, VueNode } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+
+import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
 
 // CSSINJS
 import { useInjectDisabled } from '../../config-provider'
 import useStyle from '../style'
-import { fixControlledValue, resolveOnChange, triggerFocus } from './util'
 import ClearableLabeledInput from './ClearableLabeledInput'
-import ResizableTextArea from './ResizableTextArea'
 import { textAreaProps } from './props'
-import type { InputFocusOptions } from './interface'
+import ResizableTextArea from './ResizableTextArea'
+import { fixControlledValue, resolveOnChange, triggerFocus } from './util'
 
 function fixEmojiLength(value: string, maxLength: number) {
   return [...(value || '')].slice(0, maxLength).join('')

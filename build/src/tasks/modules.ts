@@ -1,14 +1,14 @@
-import { rollup } from 'rollup'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import type { OutputOptions } from 'rollup'
+import commonjs from '@rollup/plugin-commonjs'
 
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
-import esbuild from 'rollup-plugin-esbuild'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import glob from 'fast-glob'
-import type { OutputOptions } from 'rollup'
+import { rollup } from 'rollup'
+import esbuild from 'rollup-plugin-esbuild'
+import { buildConfigEntries, target } from '../build-info'
 import { antdRoot, pkgRoot } from '../path'
 import { excludeFiles, generateExternal, writeBundles } from '../utils'
-import { buildConfigEntries, target } from '../build-info'
 
 export async function buildModules() {
   const input = excludeFiles(

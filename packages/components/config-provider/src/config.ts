@@ -1,6 +1,6 @@
-import { reactive } from 'vue'
-
 import type { ConfigProviderProps } from './props'
+
+import { reactive } from 'vue'
 import { defaultIconPrefixCls } from './context'
 
 export const defaultPrefixCls = 'ant'

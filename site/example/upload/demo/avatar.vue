@@ -20,10 +20,10 @@ Click to upload user's avatar, and validate size and format of picture with `bef
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
   import { LoadingOutlined, PlusOutlined } from '@ant-design/icons-vue'
   import { message } from '@antdv/ui'
-  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   function getBase64(img: Blob, callback: (base64Url: string) => void) {
     const reader = new FileReader()

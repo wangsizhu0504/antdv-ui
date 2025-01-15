@@ -1,6 +1,6 @@
-import type { CSSProperties, PropType } from 'vue'
-import { Transition, computed, defineComponent, nextTick, ref } from 'vue'
 import type { MouseEventHandler } from '@antdv/types'
+import type { CSSProperties, PropType } from 'vue'
+import { computed, defineComponent, nextTick, ref, Transition } from 'vue'
 import { getTransitionProps } from '../../transition'
 import dialogPropTypes from './IDialogPropTypes'
 import { offset } from './util'
@@ -61,8 +61,8 @@ export default defineComponent({
           const elementOffset = offset(dialogRef.value)
           transformOrigin.value = props.mousePosition
             ? `${props.mousePosition.x - elementOffset.left}px ${
-                props.mousePosition.y - elementOffset.top
-              }px`
+              props.mousePosition.y - elementOffset.top
+            }px`
             : ''
         }
       })
@@ -132,21 +132,21 @@ export default defineComponent({
         >
           {visible || !destroyOnClose
             ? (
-              <div
-                {...attrs}
-                ref={dialogRef}
-                v-show={visible}
-                key="dialog-element"
-                role="document"
-                style={[contentStyleRef.value, attrs.style as CSSProperties]}
-                class={[prefixCls, attrs.class]}
-                onMousedown={onMousedown}
-                onMouseup={onMouseup}
-              >
-                <div tabindex={0} ref={sentinelStartRef} style={sentinelStyle} aria-hidden="true" />
-                {modalRender ? modalRender({ originVNode: content }) : content}
-                <div tabindex={0} ref={sentinelEndRef} style={sentinelStyle} aria-hidden="true" />
-              </div>
+                <div
+                  {...attrs}
+                  ref={dialogRef}
+                  v-show={visible}
+                  key="dialog-element"
+                  role="document"
+                  style={[contentStyleRef.value, attrs.style as CSSProperties]}
+                  class={[prefixCls, attrs.class]}
+                  onMousedown={onMousedown}
+                  onMouseup={onMouseup}
+                >
+                  <div tabindex={0} ref={sentinelStartRef} style={sentinelStyle} aria-hidden="true" />
+                  {modalRender ? modalRender({ originVNode: content }) : content}
+                  <div tabindex={0} ref={sentinelEndRef} style={sentinelStyle} aria-hidden="true" />
+                </div>
               )
             : null}
         </Transition>

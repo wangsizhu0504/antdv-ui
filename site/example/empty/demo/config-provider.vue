@@ -17,8 +17,8 @@ Use ConfigProvider set global Empty style.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { SmileOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const customize = ref<boolean>(false)
 

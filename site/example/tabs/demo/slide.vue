@@ -17,8 +17,8 @@ In order to fit in more tabs, they can slide left and right (or up and down).
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { TabsProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const mode = ref<TabsProps['tabPosition']>('top')
   const activeKey = ref<any>(1)
@@ -34,7 +34,7 @@ In order to fit in more tabs, they can slide left and right (or up and down).
       <a-radio-button value="left">Vertical</a-radio-button>
     </a-radio-group>
     <a-tabs
-      v-model:activeKey="activeKey"
+      v-model:active-key="activeKey"
       :tab-position="mode"
       :style="{ height: '200px' }"
       @tab-scroll="callback"

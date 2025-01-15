@@ -1,6 +1,6 @@
-import { computed, defineComponent, ref } from 'vue'
 import type { CSSProperties } from 'vue'
-import { KeyCode, classNames } from '@antdv/utils'
+import { classNames, KeyCode } from '@antdv/utils'
+import { computed, defineComponent, ref } from 'vue'
 import { tabNodeProps } from '../props'
 
 export default defineComponent({

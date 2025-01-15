@@ -18,7 +18,6 @@ When dealing with long content, a fixed sider can provide a better user experien
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import {
     AppstoreOutlined,
     BarChartOutlined,
@@ -29,6 +28,7 @@ When dealing with long content, a fixed sider can provide a better user experien
     UserOutlined,
     VideoCameraOutlined,
   } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const selectedKeys = ref<string[]>(['4'])
 </script>
@@ -39,7 +39,7 @@ When dealing with long content, a fixed sider can provide a better user experien
       :style="{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0 }"
     >
       <div class="logo" />
-      <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+      <a-menu v-model:selected-keys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
           <UserOutlined />
           <span class="nav-text">nav 1</span>

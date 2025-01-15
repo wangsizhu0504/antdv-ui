@@ -23,5 +23,5 @@ Plugin & {
   readonly Separator: typeof BreadcrumbSeparator
 }
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

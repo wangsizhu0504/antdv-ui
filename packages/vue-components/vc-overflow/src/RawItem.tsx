@@ -1,5 +1,5 @@
+import { classNames, PropTypes } from '@antdv/utils'
 import { defineComponent } from 'vue'
-import { PropTypes, classNames } from '@antdv/utils'
 import { OverflowContextProvider, useInjectOverflowContext } from './context'
 import Item from './Item'
 

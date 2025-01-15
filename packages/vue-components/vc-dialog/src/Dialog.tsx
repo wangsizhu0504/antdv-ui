@@ -1,16 +1,16 @@
+import type { MouseEventHandler } from '@antdv/types'
+import type { ScrollLocker } from '@antdv/utils'
 import type { PropType } from 'vue'
-import { defineComponent, onBeforeUnmount, shallowRef, watch, watchEffect } from 'vue'
+import type { ContentRef } from './Content'
 import {
-  KeyCode,
   classNames,
   contains,
   initDefaultProps,
+  KeyCode,
   omit,
   pickAttrs,
 } from '@antdv/utils'
-import type { ScrollLocker } from '@antdv/utils'
-import type { MouseEventHandler } from '@antdv/types'
-import type { ContentRef } from './Content'
+import { defineComponent, onBeforeUnmount, shallowRef, watch, watchEffect } from 'vue'
 import Content from './Content'
 import dialogPropTypes from './IDialogPropTypes'
 import Mask from './Mask'

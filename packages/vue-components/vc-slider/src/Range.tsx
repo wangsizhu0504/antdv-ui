@@ -1,16 +1,16 @@
-// eslint-disable-next-line ts/ban-ts-comment
-// @ts-nocheck
-import { defineComponent } from 'vue'
 import {
   BaseMixin,
-  PropTypes,
   classNames,
   hasProp,
   initDefaultProps,
+  PropTypes,
   withUndefined,
 } from '@antdv/utils'
-import Track from './common/Track'
+
+// @ts-nocheck
+import { defineComponent } from 'vue'
 import createSlider from './common/createSlider'
+import Track from './common/Track'
 import * as utils from './utils'
 
 function trimAlignValue({

@@ -1,8 +1,8 @@
-import Line from './Line'
-import Circle from './Circle'
 import type { ProgressProps } from './types'
+import Circle from './Circle'
+import Line from './Line'
 
-export { Line, Circle }
+export { Circle, Line }
 
 export type { ProgressProps }
 

@@ -1,6 +1,6 @@
-import { PropTypes } from '@antdv/utils'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { ResultStatusType } from './interface'
+import { PropTypes } from '@antdv/utils'
 
 export function resultProps() {
   return {

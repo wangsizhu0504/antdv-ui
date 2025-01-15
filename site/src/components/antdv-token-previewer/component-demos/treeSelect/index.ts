@@ -1,6 +1,6 @@
 import type { ComponentDemo } from '../../interface'
-import Default from './tree-select'
 import disabled from './disabled'
+import Default from './tree-select'
 
 const previewerDemo: ComponentDemo[] = [Default, disabled]
 

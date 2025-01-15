@@ -1,5 +1,5 @@
-import { Calendar } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Calendar } from '@antdv/ui'
 
 const Demo = () => <Calendar disabledDate={() => true} />
 

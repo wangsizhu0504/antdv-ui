@@ -1,8 +1,8 @@
 import type { DerivativeFunc } from '../../../cssinjs'
-import genControlHeight from '../shared/genControlHeight'
-import defaultAlgorithm from '../default'
-import genFontMapToken from '../shared/genFontMapToken'
 import type { MapToken, SeedToken } from '../../interface'
+import defaultAlgorithm from '../default'
+import genControlHeight from '../shared/genControlHeight'
+import genFontMapToken from '../shared/genFontMapToken'
 import genCompactSizeMapToken from './genCompactSizeMapToken'
 
 const derivative: DerivativeFunc<SeedToken, MapToken> = (token, mapToken) => {

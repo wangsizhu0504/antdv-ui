@@ -17,9 +17,9 @@ Custom suffix icon
 </docs>
 
 <script lang="ts" setup>
+  import type { CascaderProps } from '@antdv/ui'
   import { SmileOutlined } from '@ant-design/icons-vue'
   import { ref } from 'vue'
-  import type { CascaderProps } from '@antdv/ui'
 
   const options: CascaderProps['options'] = [
     {

@@ -1,6 +1,6 @@
 import type { App } from 'vue'
-import { computed } from 'vue'
 import type { I18n } from 'vue-i18n'
+import { computed } from 'vue'
 import { createI18n, useI18n } from 'vue-i18n'
 import { isZhCN } from '../utils/util'
 import enUS from './lang/en-US'

@@ -1,8 +1,8 @@
-import type { ExtractPropTypes, PropType } from 'vue'
 import type { InputStatus, KeyboardEventHandler } from '@antdv/types'
+import type { ExtractPropTypes, PropType } from 'vue'
+import type { MentionsOptionProps } from './interface'
 import { PropTypes } from '@antdv/utils'
 import { mentionsProps as baseMentionsProps } from '@antdv/vue-components/vc-mentions/src/mentionsProps'
-import type { MentionsOptionProps } from './interface'
 
 export function mentionsProps() {
   return {

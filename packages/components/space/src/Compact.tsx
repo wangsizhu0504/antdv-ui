@@ -1,12 +1,12 @@
-import { computed, defineComponent } from 'vue'
-import { isEmpty } from 'lodash-es'
 import { classNames, flattenChildren } from '@antdv/utils'
+import { isEmpty } from 'lodash-es'
+import { computed, defineComponent } from 'vue'
 
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
+import { SpaceCompactItemContext } from './context'
 import CompactItem from './Item'
 import { spaceCompactProps } from './props'
-import { SpaceCompactItemContext } from './context'
 
 export default defineComponent({
   name: 'ASpaceCompact',

@@ -1,6 +1,6 @@
 import type { ComputedRef, Ref } from 'vue'
-import { getCurrentInstance, onBeforeUnmount } from 'vue'
 import { findDOMNode } from '@antdv/utils'
+import { getCurrentInstance, onBeforeUnmount } from 'vue'
 import showWaveEffect from './WaveEffect'
 
 export default function useWave(

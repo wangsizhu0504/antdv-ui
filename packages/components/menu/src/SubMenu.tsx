@@ -1,11 +1,4 @@
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  onBeforeUnmount,
-  shallowRef,
-  watch,
-} from 'vue'
+import type { CustomSlotsType } from '@antdv/types'
 
 import {
   classNames,
@@ -15,9 +8,18 @@ import {
   isValid,
   isValidElement,
 } from '@antdv/utils'
-import type { CustomSlotsType } from '@antdv/types'
 import { VcOverflow } from '@antdv/vue-components/vc-overflow'
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  onBeforeUnmount,
+  shallowRef,
+  watch,
+} from 'vue'
 
+import useDirectionStyle from './hooks/useDirectionStyle'
+import useProvideKeyPath, { useInjectKeyPath, useMeasure } from './hooks/useKeyPath'
 import {
   MenuContextProvider,
   useInjectForceRender,
@@ -25,12 +27,10 @@ import {
   useProvideFirstLevel,
   useProvideForceRender,
 } from './hooks/useMenuContext'
-import useProvideKeyPath, { useInjectKeyPath, useMeasure } from './hooks/useKeyPath'
-import useDirectionStyle from './hooks/useDirectionStyle'
-import PopupTrigger from './PopupTrigger'
-import SubMenuList from './SubMenuList'
 import InlineSubMenuList from './InlineSubMenuList'
+import PopupTrigger from './PopupTrigger'
 import { subMenuProps } from './props'
+import SubMenuList from './SubMenuList'
 
 let indexGuid = 0
 
@@ -200,10 +200,10 @@ export default defineComponent({
           && title
           && typeof title === 'string'
           ? (
-            <div class={`${prefixCls.value}-inline-collapsed-noicon`}>{title.charAt(0)}</div>
+              <div class={`${prefixCls.value}-inline-collapsed-noicon`}>{title.charAt(0)}</div>
             )
           : (
-            <span class={`${prefixCls.value}-title-content`}>{title}</span>
+              <span class={`${prefixCls.value}-title-content`}>{title}</span>
             )
       }
       // inline-collapsed.md demo 依赖 span 来隐藏文字,有 icon 属性，则内部包裹一个 span
@@ -261,7 +261,7 @@ export default defineComponent({
                 expandIcon({ ...props, isOpen: open.value })
               )
             : (
-              <i class={`${subMenuPrefixClsValue}-arrow`} />
+                <i class={`${subMenuPrefixClsValue}-arrow`} />
               )}
         </div>
       )

@@ -1,6 +1,6 @@
-import { defineComponent, provide, reactive, watch } from 'vue'
-import { devWarning } from '@antdv/utils'
 import { ANT_MARK } from '@antdv/constants'
+import { devWarning } from '@antdv/utils'
+import { defineComponent, provide, reactive, watch } from 'vue'
 import { changeConfirmLocale } from '../../modal/src/locale'
 
 import { localeProviderProps } from './props'

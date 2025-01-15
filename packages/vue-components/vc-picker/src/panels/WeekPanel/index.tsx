@@ -1,8 +1,8 @@
-import { classNames } from '@antdv/utils'
-import DatePanel from '../DatePanel'
 import type { PanelSharedProps } from '../../interface'
-import { isSameWeek } from '../../utils/dateUtil'
+import { classNames } from '@antdv/utils'
 import useMergeProps from '../../hooks/useMergeProps'
+import { isSameWeek } from '../../utils/dateUtil'
+import DatePanel from '../DatePanel'
 
 export type WeekPanelProps<DateType> = PanelSharedProps<DateType>
 

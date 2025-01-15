@@ -1,3 +1,9 @@
+import type { Key, VueNode } from '@antdv/types'
+import type { NodeDragEventHandler, NodeMouseEventHandler } from './contextTypes'
+import type { DragNodeEvent, EventDataNode, FlattenNode, ScrollTo } from './interface'
+import type { CheckInfo, DraggableFn } from './props'
+import type { TreeNodeRequiredProps } from './utils/treeUtil'
+import { classNames, initDefaultProps, KeyCode, pickAttrs, warning } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -9,10 +15,11 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { KeyCode, classNames, initDefaultProps, pickAttrs, warning } from '@antdv/utils'
-import type { Key, VueNode } from '@antdv/types'
-import type { NodeDragEventHandler, NodeMouseEventHandler } from './contextTypes'
 import { TreeContext, useProvideKeysState } from './contextTypes'
+import DropIndicator from './DropIndicator'
+import NodeList, { MOTION_KEY, MotionEntity } from './NodeList'
+import { treeProps } from './props'
+import useMaxLevel from './useMaxLevel'
 import {
   arrAdd,
   arrDel,
@@ -23,8 +30,7 @@ import {
   parseCheckedKeys,
   posToArr,
 } from './util'
-import type { DragNodeEvent, EventDataNode, FlattenNode, ScrollTo } from './interface'
-import type { TreeNodeRequiredProps } from './utils/treeUtil'
+import { conductCheck } from './utils/conductUtil'
 import {
   convertDataToEntities,
   convertNodePropsToEventData,
@@ -33,12 +39,6 @@ import {
   flattenTreeData,
   getTreeNodeProps,
 } from './utils/treeUtil'
-import NodeList, { MOTION_KEY, MotionEntity } from './NodeList'
-import { conductCheck } from './utils/conductUtil'
-import DropIndicator from './DropIndicator'
-import type { CheckInfo, DraggableFn } from './props'
-import { treeProps } from './props'
-import useMaxLevel from './useMaxLevel'
 
 const MAX_RETRY_TIMES = 10
 

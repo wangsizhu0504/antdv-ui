@@ -1,6 +1,6 @@
 import type { App } from 'vue'
-import ASteps from './src/Steps'
 import AStep from './src/Step'
+import ASteps from './src/Steps'
 
 export const Step = AStep
 

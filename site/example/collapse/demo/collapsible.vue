@@ -25,12 +25,12 @@ Specify the trigger area of collapsible by `collapsible`.
 
 <template>
   <a-space direction="vertical">
-    <a-collapse v-model:activeKey="activeKey" collapsible="header">
+    <a-collapse v-model:active-key="activeKey" collapsible="header">
       <a-collapse-panel key="1" header="This panel can only be collapsed by clicking text">
         <p>{{ text }}</p>
       </a-collapse-panel>
     </a-collapse>
-    <a-collapse v-model:activeKey="activeKey" collapsible="icon">
+    <a-collapse v-model:active-key="activeKey" collapsible="icon">
       <a-collapse-panel key="1" header="This panel can only be collapsed by clicking icon">
         <p>{{ text }}</p>
       </a-collapse-panel>

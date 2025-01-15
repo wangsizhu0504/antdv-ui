@@ -1,12 +1,12 @@
-import { cloneVNode, defineComponent } from 'vue'
+import type { SlotsType } from 'vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
 import { classNames, filterEmpty, initDefaultProps } from '@antdv/utils'
-import type { SlotsType } from 'vue'
+import { cloneVNode, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
 import useStyle from '../style'
-import TimelineItem from './TimelineItem'
 import { timelineProps } from './props'
+import TimelineItem from './TimelineItem'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -52,9 +52,9 @@ export default defineComponent({
 
       const pendingItem = pending
         ? (
-          <TimelineItem pending={!!pending} dot={pendingDot || <LoadingOutlined />}>
-            {pendingNode}
-          </TimelineItem>
+            <TimelineItem pending={!!pending} dot={pendingDot || <LoadingOutlined />}>
+              {pendingNode}
+            </TimelineItem>
           )
         : null
 

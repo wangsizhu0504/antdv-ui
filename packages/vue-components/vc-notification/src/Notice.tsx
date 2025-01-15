@@ -1,14 +1,14 @@
 import type { Key, MouseEventHandler } from '@antdv/types'
+import type { CSSProperties, HTMLAttributes } from 'vue'
+import { classNames } from '@antdv/utils'
 import {
-  Teleport,
   computed,
   defineComponent,
   onMounted,
   onUnmounted,
+  Teleport,
   watch,
 } from 'vue'
-import type { CSSProperties, HTMLAttributes } from 'vue'
-import { classNames } from '@antdv/utils'
 
 interface DivProps extends HTMLAttributes {
   // Ideally we would allow all data-* props but this would depend on https://github.com/microsoft/TypeScript/issues/28960
@@ -129,9 +129,9 @@ export default defineComponent<NoticeProps>({
           <div class={`${componentClass}-content`}>{slots.default?.()}</div>
           {closable
             ? (
-              <a tabindex={0} onClick={close} class={`${componentClass}-close`}>
-                {closeIcon || <span class={`${componentClass}-close-x`} />}
-              </a>
+                <a tabindex={0} onClick={close} class={`${componentClass}-close`}>
+                  {closeIcon || <span class={`${componentClass}-close-x`} />}
+                </a>
               )
             : null}
         </div>

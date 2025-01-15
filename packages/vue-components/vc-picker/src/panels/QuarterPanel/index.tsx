@@ -1,6 +1,6 @@
 import type { PanelSharedProps } from '../../interface'
-import { createKeydownHandler } from '../../utils/uiUtil'
 import useMergeProps from '../../hooks/useMergeProps'
+import { createKeydownHandler } from '../../utils/uiUtil'
 import QuarterBody from './QuarterBody'
 import QuarterHeader from './QuarterHeader'
 

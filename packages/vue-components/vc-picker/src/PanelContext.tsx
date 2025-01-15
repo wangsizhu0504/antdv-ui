@@ -1,6 +1,6 @@
 import type { InjectionKey, Ref } from 'vue'
-import { inject, provide } from 'vue'
 import type { OnSelect, PanelMode } from './interface'
+import { inject, provide } from 'vue'
 
 export interface ContextOperationRefProps {
   onKeydown?: (e: KeyboardEvent) => boolean;

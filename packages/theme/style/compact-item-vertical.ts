@@ -1,6 +1,6 @@
 import type { CSSInterpolation, CSSObject } from '../cssinjs'
-import type { OverrideComponent } from '../token/util/genComponentStyleHook'
 import type { DerivativeToken, FullToken } from '../token'
+import type { OverrideComponent } from '../token/util/genComponentStyleHook'
 
 function compactItemVerticalBorder(token: DerivativeToken, parentCls: string): CSSObject {
   return {

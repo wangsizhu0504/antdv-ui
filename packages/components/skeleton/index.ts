@@ -1,9 +1,9 @@
 import type { App, Plugin } from 'vue'
-import ASkeleton from './src/Skeleton'
-import AButton from './src/Button'
-import AInput from './src/Input'
-import AImage from './src/Image'
 import AAvatar from './src/Avatar'
+import AButton from './src/Button'
+import AImage from './src/Image'
+import AInput from './src/Input'
+import ASkeleton from './src/Skeleton'
 import ATitle from './src/Title'
 
 export const SkeletonButton = AButton

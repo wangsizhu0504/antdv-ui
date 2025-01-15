@@ -1,8 +1,8 @@
-import { devWarning, omit } from '@antdv/utils'
 import type { FunctionalComponent } from 'vue'
+import type { TextProps } from './props'
+import { devWarning, omit } from '@antdv/utils'
 import Base from './Base'
 import { textProps } from './props'
-import type { TextProps } from './props'
 
 const Text: FunctionalComponent<TextProps> = (props, { slots, attrs }) => {
   const { ellipsis } = props

@@ -1,27 +1,28 @@
-import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled, SwapRightOutlined } from '@ant-design/icons-vue'
-import { computed, defineComponent, ref } from 'vue'
-import { classNames, devWarning, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils'
-import type { SlotsType } from 'vue'
-import { enUS } from '@antdv/locale'
-import { VcRangePicker } from '@antdv/vue-components'
-import type { RangePickerSharedProps } from '@antdv/vue-components/vc-picker/src/RangePicker'
-import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface'
 import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
-import { getRangePlaceholder, transPlacement2DropdownAlign } from '../util'
-import useStyle from '../../style'
+import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface'
+import type { RangePickerSharedProps } from '@antdv/vue-components/vc-picker/src/RangePicker'
+import type { SlotsType } from 'vue'
+import type { RangePickerProps } from './interface'
+import type { CommonProps } from './props'
+import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled, SwapRightOutlined } from '@ant-design/icons-vue'
+import { enUS } from '@antdv/locale'
+import { classNames, devWarning, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils'
+import { VcRangePicker } from '@antdv/vue-components'
+import { computed, defineComponent, ref } from 'vue'
 import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
 
 import { FormItemInputContext, useInjectFormItemContext } from '../../../form/src/FormItemContext'
 
-// CSSINJS
-import { useCompactItemContext } from '../../../space'
-
 import { useLocaleReceiver } from '../../../locale-provider'
 
-import { Components, getTimeProps } from './util'
+import useStyle from '../../style'
+
+import { getRangePlaceholder, transPlacement2DropdownAlign } from '../util'
+
+// CSSINJS
+import { useCompactItemContext } from '../../../space'
 import { commonProps, rangePickerProps } from './props'
-import type { RangePickerProps } from './interface'
-import type { CommonProps } from './props'
+import { Components, getTimeProps } from './util'
 
 export default function generateRangePicker<DateType, ExtraProps = {}>(
   generateConfig: GenerateConfig<DateType>,

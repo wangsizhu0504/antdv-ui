@@ -1,24 +1,25 @@
+import type { BaseSelectProps, BaseSelectPropsWithoutPrivate, BaseSelectRef } from './src/BaseSelect'
+
 // base rc-select 14.1.1
 import type { DefaultOptionType, SelectProps } from './src/Select'
-import VcSelect, { selectProps } from './src/Select'
-import VcOption from './src/Option'
-import VcOptGroup from './src/OptGroup'
 import VcBaseSelect from './src/BaseSelect'
-import type { BaseSelectProps, BaseSelectPropsWithoutPrivate, BaseSelectRef } from './src/BaseSelect'
 import useBaseProps from './src/hooks/useBaseProps'
+import VcOptGroup from './src/OptGroup'
+import VcOption from './src/Option'
+import VcSelect, { selectProps } from './src/Select'
 
 export {
-  VcSelect,
-  VcOption,
-  VcOptGroup,
   selectProps as vcSelectProps,
-  VcBaseSelect,
   useBaseProps,
+  VcBaseSelect,
+  VcOptGroup,
+  VcOption,
+  VcSelect,
 }
 export type {
-  DefaultOptionType as VcSelectDefaultOptionType,
   BaseSelectProps,
-  BaseSelectRef,
   BaseSelectPropsWithoutPrivate,
+  BaseSelectRef,
+  DefaultOptionType as VcSelectDefaultOptionType,
   SelectProps,
 }

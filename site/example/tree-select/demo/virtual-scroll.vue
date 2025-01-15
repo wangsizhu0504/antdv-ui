@@ -17,9 +17,9 @@ Use virtual list through `height` prop.
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
   import type { TreeSelectProps } from '@antdv/ui'
   import { TreeSelect } from '@antdv/ui'
+  import { ref, watch } from 'vue'
 
   const SHOW_PARENT = TreeSelect.SHOW_PARENT
 

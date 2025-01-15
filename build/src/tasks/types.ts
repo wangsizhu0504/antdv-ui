@@ -1,10 +1,10 @@
-import path from 'node:path'
+import type { CompilerOptions, SourceFile } from 'ts-morph'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import path from 'node:path'
 import consola from 'consola'
 import glob from 'fast-glob'
 import pc from 'picocolors'
 import { Project } from 'ts-morph'
-import type { CompilerOptions, SourceFile } from 'ts-morph'
 import { antdRoot, buildOutput, pkgRoot, projRoot } from '../path'
 import { excludeFiles, pathRewriter } from '../utils'
 

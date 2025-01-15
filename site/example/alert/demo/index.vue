@@ -1,17 +1,17 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import CN from '../index.zh-CN.md'
   import US from '../index.en-US.md'
+  import CN from '../index.zh-CN.md'
+  import Action from './action.vue'
   import Banner from './banner.vue'
   import Basic from './basic.vue'
   import Closable from './closable.vue'
   import CloseText from './close-text.vue'
+  import CustomIcon from './custom-icon.vue'
   import Description from './description.vue'
   import Icon from './icon.vue'
-  import Action from './action.vue'
-  import Style from './style.vue'
   import SmoothClosed from './smooth-closed.vue'
-  import CustomIcon from './custom-icon.vue'
+  import Style from './style.vue'
 
   export default defineComponent({
     CN,

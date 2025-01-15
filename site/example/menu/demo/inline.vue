@@ -17,10 +17,10 @@ Vertical menu with inline submenus.
 </docs>
 
 <script lang="ts" setup>
-  import type { VueElement } from 'vue'
-  import { h, reactive, ref, watch } from 'vue'
-  import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
   import type { ItemType, MenuProps } from '@antdv/ui'
+  import type { VueElement } from 'vue'
+  import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
+  import { h, reactive, ref, watch } from 'vue'
 
   const selectedKeys = ref<string[]>(['1'])
   const openKeys = ref<string[]>(['sub1'])
@@ -77,8 +77,8 @@ Vertical menu with inline submenus.
 <template>
   <a-menu
     id="dddddd"
-    v-model:openKeys="openKeys"
-    v-model:selectedKeys="selectedKeys"
+    v-model:open-keys="openKeys"
+    v-model:selected-keys="selectedKeys"
     style="width: 256px"
     mode="inline"
     :items="items"

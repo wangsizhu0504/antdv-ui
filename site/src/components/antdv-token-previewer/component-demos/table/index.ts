@@ -1,6 +1,6 @@
 import type { ComponentDemo } from '../../interface'
-import Default from './table'
 import Filter from './filterTable'
+import Default from './table'
 
 const previewerDemo: ComponentDemo[] = [Default, Filter]
 

@@ -17,8 +17,8 @@ Perform different check rules according to different situations.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, ref, watch } from 'vue'
   import type { FormInstance } from '@antdv/ui'
+  import { reactive, ref, watch } from 'vue'
 
   interface FormState {
     username: string;

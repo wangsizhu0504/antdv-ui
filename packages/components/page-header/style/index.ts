@@ -1,5 +1,5 @@
-import { genComponentStyleHook, mergeToken, operationUnit, resetComponent, textEllipsis } from '@antdv/theme'
 import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken, operationUnit, resetComponent, textEllipsis } from '@antdv/theme'
 
 interface PageHeaderToken extends FullToken<'PageHeader'> {
   pageHeaderPadding: number

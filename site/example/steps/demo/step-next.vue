@@ -16,8 +16,8 @@ Cooperate with the content and buttons, to represent the progress of a process.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { message } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const current = ref<number>(0)
   function next() {

@@ -1,8 +1,8 @@
-import { booleanType, functionType, objectType, someType, stringType } from '@antdv/utils'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { FocusEventHandler } from '@antdv/types'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { TooltipPlacement } from '../../tooltip'
 import type { SliderMarks, SliderRange, Value } from './interface'
+import { booleanType, functionType, objectType, someType, stringType } from '@antdv/utils'
 
 // CSSINJS
 

@@ -1,7 +1,7 @@
-import { PropTypes, booleanType, functionType, someType, stringType } from '@antdv/utils'
-import type { ExtractPropTypes } from 'vue'
 import type { Key } from '@antdv/types'
+import type { ExtractPropTypes } from 'vue'
 import type { ActiveKeyType, CollapsibleType, PanelProps } from './interface'
+import { booleanType, functionType, PropTypes, someType, stringType } from '@antdv/utils'
 
 export function collapseProps() {
   return {

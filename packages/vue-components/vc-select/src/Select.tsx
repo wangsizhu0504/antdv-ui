@@ -29,6 +29,12 @@
  * - `combobox` mode not support `optionLabelProp`
  */
 
+import type { Key, VueNode } from '@antdv/types'
+import type { ExtractPropTypes, PropType } from 'vue'
+import type { BaseSelectProps, BaseSelectRef, DisplayValueType } from './BaseSelect'
+import type { SelectContextProps } from './SelectContext'
+import { useMergedState, useState } from '@antdv/hooks'
+import { initDefaultProps, omit, PropTypes, toReactive } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -37,22 +43,16 @@ import {
   toRef,
   watchEffect,
 } from 'vue'
-import type { ExtractPropTypes, PropType } from 'vue'
-import type { Key, VueNode } from '@antdv/types'
-import { PropTypes, initDefaultProps, omit, toReactive } from '@antdv/utils'
-import { useMergedState, useState } from '@antdv/hooks'
 import BaseSelect, { baseSelectPropsWithoutPrivate, isMultiple } from './BaseSelect'
-import type { BaseSelectProps, BaseSelectRef, DisplayValueType } from './BaseSelect'
-import OptionList from './OptionList'
-import useOptions from './hooks/useOptions'
-import type { SelectContextProps } from './SelectContext'
-import { useProvideSelectProps } from './SelectContext'
+import useCache from './hooks/useCache'
+import useFilterOptions from './hooks/useFilterOptions'
 import useId from './hooks/useId'
+import useOptions from './hooks/useOptions'
+import OptionList from './OptionList'
+import { useProvideSelectProps } from './SelectContext'
+import { toArray } from './utils/commonUtil'
 import { fillFieldNames, flattenOptions, injectPropsWithOption } from './utils/valueUtil'
 import warningProps from './utils/warningPropsUtil'
-import { toArray } from './utils/commonUtil'
-import useFilterOptions from './hooks/useFilterOptions'
-import useCache from './hooks/useCache'
 
 const OMIT_DOM_PROPS = ['inputValue']
 

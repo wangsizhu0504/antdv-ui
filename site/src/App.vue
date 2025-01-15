@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { computed, defineComponent, provide, ref, watch } from 'vue'
   import type { Ref } from 'vue'
-  import { useRoute } from 'vue-router'
-  import { useI18n } from 'vue-i18n'
-  import dayjs from 'dayjs'
-  import { theme as antdTheme } from '@antdv/ui'
   import { enUS, zhCN } from '@antdv/locale'
+  import { theme as antdTheme } from '@antdv/ui'
+  import dayjs from 'dayjs'
+  import { computed, defineComponent, provide, ref, watch } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { useRoute } from 'vue-router'
   import useMediaQuery from './hooks/useMediaQuery'
+  import SiteToken from './SiteToken.vue'
   import { GLOBAL_CONFIG } from './SymbolKey'
   import 'dayjs/locale/zh-cn'
-  import SiteToken from './SiteToken.vue'
 
   function isZhCN(name: string) {
     return /-cn\/?$/.test(name)

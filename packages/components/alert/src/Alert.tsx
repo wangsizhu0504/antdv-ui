@@ -1,4 +1,4 @@
-import { Transition, computed, defineComponent, shallowRef } from 'vue'
+import type { CSSProperties } from 'vue'
 import {
   CheckCircleFilled,
   CheckCircleOutlined,
@@ -11,8 +11,8 @@ import {
   InfoCircleOutlined,
 } from '@ant-design/icons-vue'
 import { classNames, cloneElement, isValidElement } from '@antdv/utils'
-import type { CSSProperties } from 'vue'
 import { getTransitionProps } from '@antdv/vue-components'
+import { computed, defineComponent, shallowRef, Transition } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { alertProps } from './props'
@@ -106,24 +106,24 @@ export default defineComponent({
 
       const closeIcon = closable
         ? (
-          <button
-            type="button"
-            onClick={handleClose}
-            class={`${prefixClsValue}-close-icon`}
-            tabindex={0}
-          >
-            {closeText
-              ? (
-                <span class={`${prefixClsValue}-close-text`}>{closeText}</span>
-                )
-              : customCloseIcon === undefined
+            <button
+              type="button"
+              onClick={handleClose}
+              class={`${prefixClsValue}-close-icon`}
+              tabindex={0}
+            >
+              {closeText
                 ? (
-                  <CloseOutlined />
+                    <span class={`${prefixClsValue}-close-text`}>{closeText}</span>
                   )
-                : (
-                    customCloseIcon
-                  )}
-          </button>
+                : customCloseIcon === undefined
+                  ? (
+                      <CloseOutlined />
+                    )
+                  : (
+                      customCloseIcon
+                    )}
+            </button>
           )
         : null
 
@@ -135,7 +135,7 @@ export default defineComponent({
               })
             )
           : (
-            <span class={`${prefixClsValue}-icon`}>{icon}</span>
+              <span class={`${prefixClsValue}-icon`}>{icon}</span>
             ))) || <IconType class={`${prefixClsValue}-icon`} />
 
       const transitionProps = getTransitionProps(`${prefixClsValue}-motion`, {
@@ -153,29 +153,29 @@ export default defineComponent({
         closed.value
           ? null
           : (
-            <Transition {...transitionProps}>
-              <div
-                role="alert"
-                {...attrs}
-                style={[attrs.style as CSSProperties, motionStyle.value]}
-                v-show={!closing.value}
-                class={[attrs.class, alertCls]}
-                data-show={!closing.value}
-                ref={alertNode}
-              >
-                {showIcon ? iconNode : null}
-                <div class={`${prefixClsValue}-content`}>
-                  {message ? <div class={`${prefixClsValue}-message`}>{message}</div> : null}
-                  {description
-                    ? (
-                      <div class={`${prefixClsValue}-description`}>{description}</div>
-                      )
-                    : null}
+              <Transition {...transitionProps}>
+                <div
+                  role="alert"
+                  {...attrs}
+                  style={[attrs.style as CSSProperties, motionStyle.value]}
+                  v-show={!closing.value}
+                  class={[attrs.class, alertCls]}
+                  data-show={!closing.value}
+                  ref={alertNode}
+                >
+                  {showIcon ? iconNode : null}
+                  <div class={`${prefixClsValue}-content`}>
+                    {message ? <div class={`${prefixClsValue}-message`}>{message}</div> : null}
+                    {description
+                      ? (
+                          <div class={`${prefixClsValue}-description`}>{description}</div>
+                        )
+                      : null}
+                  </div>
+                  {action ? <div class={`${prefixClsValue}-action`}>{action}</div> : null}
+                  {closeIcon}
                 </div>
-                {action ? <div class={`${prefixClsValue}-action`}>{action}</div> : null}
-                {closeIcon}
-              </div>
-            </Transition>
+              </Transition>
             ),
       )
     }

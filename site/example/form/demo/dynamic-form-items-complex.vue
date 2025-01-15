@@ -17,9 +17,9 @@ This example demonstrates the case that a form contains multiple form controls.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, ref, watch } from 'vue'
-  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue'
   import type { FormInstance } from '@antdv/ui'
+  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue'
+  import { reactive, ref, watch } from 'vue'
 
   interface Sights {
     value: string;

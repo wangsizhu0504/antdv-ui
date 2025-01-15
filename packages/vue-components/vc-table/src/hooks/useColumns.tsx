@@ -1,19 +1,19 @@
-import { customRenderSlot, warning } from '@antdv/utils'
 import type { ComputedRef, Ref } from 'vue'
-import { computed, watchEffect } from 'vue'
-import { useInjectSlots } from '@antdv/components/table/src/context'
 import type {
   ColumnGroupType,
-  ColumnType,
   ColumnsType,
+  ColumnType,
   FixedType,
   GetRowKey,
   Key,
   RenderExpandIcon,
   TriggerEventHandler,
 } from '../interface'
-import { INTERNAL_COL_DEFINE } from '../utils/legacyUtil'
+import { useInjectSlots } from '@antdv/components/table/src/context'
+import { customRenderSlot, warning } from '@antdv/utils'
+import { computed, watchEffect } from 'vue'
 import { EXPAND_COLUMN } from '../constant'
+import { INTERNAL_COL_DEFINE } from '../utils/legacyUtil'
 
 function flatColumns<RecordType>(columns: ColumnsType<RecordType>): Array<ColumnType<RecordType>> {
   return columns.reduce((list, column) => {

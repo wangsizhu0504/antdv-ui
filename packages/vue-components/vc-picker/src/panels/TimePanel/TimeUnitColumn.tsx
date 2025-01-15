@@ -1,3 +1,4 @@
+import { classNames } from '@antdv/utils'
 import {
   defineComponent,
   nextTick,
@@ -6,9 +7,8 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { classNames } from '@antdv/utils'
-import { scrollTo, waitElementReady } from '../../utils/uiUtil'
 import { useInjectPanel } from '../../PanelContext'
+import { scrollTo, waitElementReady } from '../../utils/uiUtil'
 
 export interface Unit {
   label: any;

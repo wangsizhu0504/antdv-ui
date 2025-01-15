@@ -1,6 +1,6 @@
-import { defineComponent, reactive, ref, toRaw } from 'vue'
-import { Button, Checkbox, Form, FormItem, Input } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Button, Checkbox, Form, FormItem, Input } from '@antdv/ui'
+import { defineComponent, reactive, ref, toRaw } from 'vue'
 
 const Demo = defineComponent({
   setup() {

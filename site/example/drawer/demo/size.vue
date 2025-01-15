@@ -17,8 +17,8 @@ The default width (or height) of Drawer is `378px`, and there is a presetted lar
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { DrawerProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const open = ref<boolean>(false)
   const size = ref<DrawerProps['size']>('default')

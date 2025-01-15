@@ -1,10 +1,10 @@
 import type { App, Plugin } from 'vue'
-import AModal from './src/Modal'
-import useModal from './src/useModal'
+import type { ModalFunc, ModalFuncProps } from './src/interface'
 import confirm, { withConfirm, withError, withInfo, withSuccess, withWarn } from './src/confirm'
 import destroyFns from './src/destroyFns'
+import AModal from './src/Modal'
 
-import type { ModalFunc, ModalFuncProps } from './src/interface'
+import useModal from './src/useModal'
 
 function modalWarn(props: ModalFuncProps) {
   return confirm(withWarn(props))

@@ -6,8 +6,7 @@ export function toLowercaseSeparator(key: string) {
 }
 
 export function getStyleStr(style: CSSProperties): string {
-  return Object.keys(style).map((key: keyof CSSProperties) => `${toLowercaseSeparator(key)}: ${style[key]};`)
-    .join(' ')
+  return Object.keys(style).map((key: keyof CSSProperties) => `${toLowercaseSeparator(key)}: ${style[key]};`).join(' ')
 }
 
 /** Returns the ratio of the device's physical pixel resolution to the css pixel resolution */

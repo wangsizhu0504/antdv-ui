@@ -1,5 +1,5 @@
-import { defineComponent, onActivated, onBeforeUnmount, ref, watch } from 'vue'
 import { raf } from '@antdv/utils'
+import { defineComponent, onActivated, onBeforeUnmount, ref, watch } from 'vue'
 import { Tooltip, tooltipProps } from '../../tooltip'
 
 export default defineComponent({

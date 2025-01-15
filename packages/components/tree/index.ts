@@ -1,7 +1,7 @@
 import type { App } from 'vue'
 import VcTreeNode from '@antdv/vue-components/vc-tree/src/TreeNode'
-import ATree from './src/Tree'
 import ADirectoryTree from './src/DirectoryTree'
+import ATree from './src/Tree'
 
 /* istanbul ignore next */
 

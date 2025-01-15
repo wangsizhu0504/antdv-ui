@@ -1,5 +1,5 @@
-import { computed, defineComponent } from 'vue'
 import { flattenChildren } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { dividerProps } from './props'
@@ -62,9 +62,9 @@ export default defineComponent({
         >
           {children.length
             ? (
-              <span class={`${prefixClsRef.value}-inner-text`} style={innerStyle.value}>
-                {children}
-              </span>
+                <span class={`${prefixClsRef.value}-inner-text`} style={innerStyle.value}>
+                  {children}
+                </span>
               )
             : null}
         </div>,

@@ -1,11 +1,11 @@
-import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
-import { classNames } from '@antdv/utils'
 import type { MouseEventHandler } from '@antdv/types'
 import type { CustomizeComponent, GetComponentProps, GetRowKey, Key } from '../interface'
-import { getColumnsKey } from '../utils/valueUtil'
+import { classNames } from '@antdv/utils'
+import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
 import Cell from '../Cell'
-import { useInjectTable } from '../context/TableContext'
 import { useInjectBody } from '../context/BodyContext'
+import { useInjectTable } from '../context/TableContext'
+import { getColumnsKey } from '../utils/valueUtil'
 import ExpandedRow from './ExpandedRow'
 
 export interface BodyRowProps<RecordType> {
@@ -142,19 +142,19 @@ export default defineComponent<BodyRowProps<unknown>>({
             const appendNode
               = colIndex === (expandIconColumnIndex || 0) && nestExpandable.value
                 ? (
-                  <>
-                    <span
-                      style={{ paddingLeft: `${indentSize * indent}px` }}
-                      class={`${prefixCls}-row-indent indent-level-${indent}`}
-                    />
-                    {expandIcon({
-                      prefixCls,
-                      expanded: expanded.value,
-                      expandable: hasNestChildren.value,
-                      record,
-                      onExpand: onInternalTriggerExpand,
-                    })}
-                  </>
+                    <>
+                      <span
+                        style={{ paddingLeft: `${indentSize * indent}px` }}
+                        class={`${prefixCls}-row-indent indent-level-${indent}`}
+                      />
+                      {expandIcon({
+                        prefixCls,
+                        expanded: expanded.value,
+                        expandable: hasNestChildren.value,
+                        record,
+                        onExpand: onInternalTriggerExpand,
+                      })}
+                    </>
                   )
                 : null
             return (

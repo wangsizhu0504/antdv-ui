@@ -1,4 +1,7 @@
 import type { Ref } from 'vue'
+import type { HeaderProps } from '../Header/Header'
+import type { ColumnsType, ColumnType, DefaultRecordType } from '../interface'
+import { addEventListenerWrap, classNames } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -9,10 +12,7 @@ import {
   toRef,
   watchEffect,
 } from 'vue'
-import { addEventListenerWrap, classNames } from '@antdv/utils'
-import type { HeaderProps } from '../Header/Header'
 import ColGroup from '../ColGroup'
-import type { ColumnType, ColumnsType, DefaultRecordType } from '../interface'
 import { useInjectTable } from '../context/TableContext'
 
 function useColumnWidth(colWidthsRef: Ref<readonly number[]>, columCountRef: Ref<number>) {

@@ -2,7 +2,7 @@ import type { App, Plugin } from 'vue'
 import ACompact from './src/Compact'
 import ASpace from './src/Space'
 
-export { NoCompactStyle } from './src/NoCompactStyle'
+export * from './src/context'
 export const Compact = ACompact
 
 export const Space = Object.assign(ASpace, {
@@ -18,6 +18,6 @@ export default Space as typeof Space & Plugin & {
   readonly Compact: typeof Compact
 }
 
-export * from './src/props'
 export * from './src/interface'
-export * from './src/context'
+export { NoCompactStyle } from './src/NoCompactStyle'
+export * from './src/props'

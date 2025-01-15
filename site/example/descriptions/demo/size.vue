@@ -17,8 +17,8 @@ Custom sizes to fit in a variety of containers.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { DescriptionsProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const size = ref<DescriptionsProps['size']>('default')
   function onChange(e: any) {

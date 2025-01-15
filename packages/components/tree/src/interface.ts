@@ -1,6 +1,6 @@
 import type { Key } from '@antdv/types'
-import type { CheckInfo, TreeNodeProps } from '@antdv/vue-components/vc-tree/src/props'
 import type { DataNode, EventDataNode } from '@antdv/vue-components/vc-tree/src/interface'
+import type { CheckInfo, TreeNodeProps } from '@antdv/vue-components/vc-tree/src/props'
 
 // import type { DataNode, EventDataNode, TreeNodeProps } from '@antdv/vue-components'
 
@@ -70,4 +70,4 @@ export interface AntTreeNodeDropEvent {
   event: MouseEvent
 }
 
-export type { EventDataNode, DataNode } from '@antdv/vue-components/vc-tree/src/interface'
+export type { DataNode, EventDataNode } from '@antdv/vue-components/vc-tree/src/interface'

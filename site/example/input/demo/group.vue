@@ -19,8 +19,8 @@ Note: You don't need `Col` to control the width in the `compact` mode.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { CopyOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const options = [
     {

@@ -1,4 +1,9 @@
+import type { EventHandler } from '@antdv/types'
+import type { BaseInputExpose } from '@antdv/vue-components/vc-input/src/BaseInputCore'
 import type { CSSProperties, ExtractPropTypes } from 'vue'
+import type { OptionProps } from './Option'
+import { classNames, initDefaultProps, KeyCode, omit } from '@antdv/utils'
+import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
 import {
   computed,
   defineComponent,
@@ -10,15 +15,10 @@ import {
   toRef,
   watchEffect,
 } from 'vue'
-import { KeyCode, classNames, initDefaultProps, omit } from '@antdv/utils'
-import type { EventHandler } from '@antdv/types'
-import type { BaseInputExpose } from '@antdv/vue-components/vc-input/src/BaseInputCore'
-import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
-import { getBeforeSelectionText, getLastMeasureIndex, replaceWithMeasure, setInputSelection } from './util'
 import KeywordTrigger from './KeywordTrigger'
-import { defaultProps, vcMentionsProps } from './mentionsProps'
-import type { OptionProps } from './Option'
 import MentionsContextKey from './MentionsContext'
+import { defaultProps, vcMentionsProps } from './mentionsProps'
+import { getBeforeSelectionText, getLastMeasureIndex, replaceWithMeasure, setInputSelection } from './util'
 
 export type MentionsProps = Partial<ExtractPropTypes<typeof vcMentionsProps>>
 

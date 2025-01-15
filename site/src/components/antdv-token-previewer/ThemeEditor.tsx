@@ -1,19 +1,19 @@
-import type { PropType } from 'vue'
-import { computed, defineComponent, ref, toRefs } from 'vue'
 import type { DerivativeFunc } from '@antdv/cssinjs'
-import { classNames } from '@antdv/utils'
+import type { PropType } from 'vue'
 import type { SelectedToken, Theme } from './interface'
 import type { Locale } from './locale'
+import type { TokenPanelProProps } from './token-panel-pro'
+import { classNames } from '@antdv/utils'
+import { computed, defineComponent, ref, toRefs } from 'vue'
+import { antdComponents } from './component-panel'
+import useControlledTheme from './hooks/useControlledTheme'
 import { useProvideLocaleContext, zhCN } from './locale'
 import { mapRelatedAlias, seedRelatedAlias, seedRelatedMap } from './meta/TokenRelation'
-import { getRelatedComponents } from './utils/statistic'
-import makeStyle from './utils/makeStyle'
-import useControlledTheme from './hooks/useControlledTheme'
 
-import type { TokenPanelProProps } from './token-panel-pro'
 import TokenPanelPro from './token-panel-pro'
 import ComponentDemoPro from './token-panel-pro/ComponentDemoPro'
-import { antdComponents } from './component-panel'
+import makeStyle from './utils/makeStyle'
+import { getRelatedComponents } from './utils/statistic'
 
 const useStyle = makeStyle('ThemeEditor', token => ({
   '.antd-theme-editor': {

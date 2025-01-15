@@ -19,9 +19,9 @@ See more advanced usage at [async-validator](https://github.com/yiminghe/async-v
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, ref } from 'vue'
-  import type { Rule } from '@antdv/ui/es/form'
   import type { FormInstance } from '@antdv/ui'
+  import type { Rule } from '@antdv/ui/es/form'
+  import { reactive, ref } from 'vue'
 
   interface FormState {
     pass: string;

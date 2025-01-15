@@ -1,8 +1,8 @@
-import { computed, defineComponent } from 'vue'
-import { getPropsSlot } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
-import { useInjectMenu } from './hooks/useMenuContext'
+import { getPropsSlot } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
 import { useMeasure } from './hooks/useKeyPath'
+import { useInjectMenu } from './hooks/useMenuContext'
 import { menuItemGroupProps } from './props'
 
 export default defineComponent({

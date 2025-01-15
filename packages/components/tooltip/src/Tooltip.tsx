@@ -1,4 +1,5 @@
-import { computed, defineComponent, ref, watch } from 'vue'
+import type { CSSProperties, SlotsType } from 'vue'
+import type { TooltipProps } from './props'
 import {
   classNames,
   cloneElement,
@@ -12,14 +13,13 @@ import {
   isValidElement,
   raf,
 } from '@antdv/utils'
-import type { CSSProperties, SlotsType } from 'vue'
-import { VcTooltip } from '@antdv/vue-components/vc-tooltip'
 import { getTransitionName } from '@antdv/vue-components/transition'
+import { VcTooltip } from '@antdv/vue-components/vc-tooltip'
+import { computed, defineComponent, ref, watch } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
-import { parseColor } from './util'
 import { tooltipProps } from './props'
-import type { TooltipProps } from './props'
+import { parseColor } from './util'
 
 // https://github.com/react-component/tooltip
 // https://github.com/yiminghe/dom-align

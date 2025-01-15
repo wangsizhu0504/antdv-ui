@@ -5,16 +5,16 @@ Starting from the V3 version, the momentjs library is replaced by dayjs by defau
 ### 替换 DatePicker
 
 ```js
+import antd from '@antdv/ui'
+import Calendar from '@antdv/ui/es/calendar/moment'
 // moment or date-fns
 import DatePicker from '@antdv/ui/es/date-picker/moment'
-import TimePicker from '@antdv/ui/es/time-picker/moment'
-import Calendar from '@antdv/ui/es/calendar/moment'
 
+import TimePicker from '@antdv/ui/es/time-picker/moment'
 // import DatePicker from '@antdv/ui/es/date-picker/date-fns';
 // import TimePicker from '@antdv/ui/es/time-picker/date-fns';
 // import Calendar from '@antdv/ui/es/calendar/date-fns';
 import { createApp } from 'vue'
-import antd from '@antdv/ui'
 import App from './App.vue'
 
 const app = createApp(App)

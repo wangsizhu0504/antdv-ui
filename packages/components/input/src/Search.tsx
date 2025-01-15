@@ -1,13 +1,13 @@
-import { computed, defineComponent, shallowRef } from 'vue'
-import { SearchOutlined } from '@ant-design/icons-vue'
-import { isPlainObject } from 'lodash-es'
-import { PropTypes, classNames, cloneElement, omit } from '@antdv/utils'
 import type { ChangeEvent, CompositionEventHandler, MouseEventHandler } from '@antdv/types'
 import type { PropType } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import { SearchOutlined } from '@ant-design/icons-vue'
+import { classNames, cloneElement, omit, PropTypes } from '@antdv/utils'
+import { isPlainObject } from 'lodash-es'
+import { computed, defineComponent, shallowRef } from 'vue'
 import Button from '../../button'
-import { inputProps } from './props'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import Input from './Input'
+import { inputProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

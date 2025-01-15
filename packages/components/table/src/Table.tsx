@@ -1,12 +1,12 @@
-import { defineComponent, ref } from 'vue'
-import { initDefaultProps } from '@antdv/utils'
-import type { SlotsType } from 'vue'
 import type { RenderExpandIconProps } from '@antdv/vue-components/vc-table/src/interface'
-import { convertChildrenToColumns } from './util'
-
-import { tableProps } from './props'
+import type { SlotsType } from 'vue'
 import type { TableColumnType } from './interface'
+import { initDefaultProps } from '@antdv/utils'
+import { defineComponent, ref } from 'vue'
+
 import InternalTable from './InternalTable'
+import { tableProps } from './props'
+import { convertChildrenToColumns } from './util'
 
 // CSSINJS
 

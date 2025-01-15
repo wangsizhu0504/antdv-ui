@@ -1,4 +1,3 @@
-import { camelize, filterEmpty, omit, warning } from '@antdv/utils'
 import type { Key, VueNode } from '@antdv/types'
 import type {
   BasicDataNode,
@@ -10,9 +9,10 @@ import type {
   GetKey,
   NodeElement,
 } from '../interface'
-import { getPosition, isTreeNode } from '../util'
-
 import type { TreeNodeProps } from '../props'
+import { camelize, filterEmpty, omit, warning } from '@antdv/utils'
+
+import { getPosition, isTreeNode } from '../util'
 
 export function getKey(key: Key, pos: string) {
   if (key !== null && key !== undefined)

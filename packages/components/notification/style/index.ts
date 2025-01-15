@@ -1,5 +1,5 @@
-import { Keyframes, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import type { FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
 import genNotificationPlacementStyle from './placement'
 
 /** Component only token. Which will handle additional calculation of alias token */

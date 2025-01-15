@@ -1,37 +1,37 @@
-import { DownOutlined } from '@ant-design/icons-vue'
-import { computed, shallowRef, watchEffect } from 'vue'
 import type { Key } from '@antdv/types'
-import type { Ref } from 'vue'
-import { devWarning } from '@antdv/utils'
-import { useMergedState, useState } from '@antdv/hooks'
-
-import {
-  INTERNAL_COL_DEFINE,
-  arrAdd,
-  arrDel,
-  conductCheck,
-  convertDataToEntities,
-  useMaxLevel,
-} from '@antdv/vue-components'
 import type { GetCheckDisabled } from '@antdv/vue-components'
-
 import type { FixedType } from '@antdv/vue-components/vc-table/src/interface'
-
-import Checkbox from '../../../checkbox'
-import Dropdown from '../../../dropdown'
-import Menu from '../../../menu'
-import Radio from '../../../radio'
+import type { Ref } from 'vue'
+import type { CheckboxProps } from '../../../checkbox'
+import type { DataNode } from '../../../tree'
 
 import type {
   SelectionItem,
-  TableColumnType,
   TableColumnsType,
+  TableColumnType,
   TableRowSelection,
   TransformColumns,
   UseSelectionConfig,
 } from '../interface'
-import type { CheckboxProps } from '../../../checkbox'
-import type { DataNode } from '../../../tree'
+import { DownOutlined } from '@ant-design/icons-vue'
+
+import { useMergedState, useState } from '@antdv/hooks'
+
+import { devWarning } from '@antdv/utils'
+import {
+  arrAdd,
+  arrDel,
+  conductCheck,
+  convertDataToEntities,
+  INTERNAL_COL_DEFINE,
+  useMaxLevel,
+} from '@antdv/vue-components'
+import { computed, shallowRef, watchEffect } from 'vue'
+import Checkbox from '../../../checkbox'
+
+import Dropdown from '../../../dropdown'
+import Menu from '../../../menu'
+import Radio from '../../../radio'
 
 // TODO: warning if use ajax!!!
 

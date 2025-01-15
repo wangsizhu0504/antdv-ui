@@ -17,8 +17,8 @@ Searchable Tree.
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
   import type { TreeProps } from '@antdv/ui'
+  import { ref, watch } from 'vue'
 
   const x = 3
   const y = 2

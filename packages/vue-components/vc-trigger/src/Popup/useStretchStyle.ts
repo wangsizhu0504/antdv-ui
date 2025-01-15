@@ -1,6 +1,6 @@
-import type { CSSProperties, ComputedRef, Ref } from 'vue'
-import { computed, shallowRef } from 'vue'
+import type { ComputedRef, CSSProperties, Ref } from 'vue'
 import type { StretchType } from '../interface'
+import { computed, shallowRef } from 'vue'
 
 export default (
   stretch?: Ref<StretchType>,

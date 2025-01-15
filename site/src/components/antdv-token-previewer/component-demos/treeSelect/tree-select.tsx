@@ -1,6 +1,6 @@
-import { defineComponent, ref } from 'vue'
-import { TreeSelect } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { TreeSelect } from '@antdv/ui'
+import { defineComponent, ref } from 'vue'
 
 const { TreeNode } = TreeSelect
 

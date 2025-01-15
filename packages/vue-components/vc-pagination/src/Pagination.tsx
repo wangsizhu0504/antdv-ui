@@ -1,20 +1,20 @@
-import { defineComponent } from 'vue'
+import { zhCN as LOCALE } from '@antdv/locale'
 import {
   BaseMixin,
-  KeyCode,
-  PropTypes,
   classNames,
   cloneElement,
   firstNotUndefined,
   getComponent,
   hasProp,
   isValidElement,
+  KeyCode,
+  PropTypes,
   splitAttrs,
 } from '@antdv/utils'
-import { zhCN as LOCALE } from '@antdv/locale'
 import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
-import Pager from './Pager'
+import { defineComponent } from 'vue'
 import Options from './Options'
+import Pager from './Pager'
 
 // 是否是正整数
 function isInteger(value) {

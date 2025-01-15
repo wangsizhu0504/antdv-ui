@@ -17,5 +17,5 @@ export default Badge as typeof Badge & Plugin & {
   readonly Ribbon: typeof BadgeRibbon
 }
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

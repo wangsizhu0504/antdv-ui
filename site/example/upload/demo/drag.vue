@@ -20,10 +20,10 @@ We can upload serveral files at once by giving the input the `multiple` attribut
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import type { UploadChangeParam } from '@antdv/ui'
   import { InboxOutlined } from '@ant-design/icons-vue'
   import { message } from '@antdv/ui'
-  import type { UploadChangeParam } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const fileList = ref<any>([])
   function handleChange(info: UploadChangeParam) {
@@ -44,7 +44,7 @@ We can upload serveral files at once by giving the input the `multiple` attribut
 
 <template>
   <a-upload-dragger
-    v-model:fileList="fileList"
+    v-model:file-list="fileList"
     name="file"
     :multiple="true"
     action="https://www.mocky.io/v2/5cc8019d300000980a055e76"

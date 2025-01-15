@@ -1,7 +1,7 @@
 import type { Ref, ShallowRef, VNodeProps } from 'vue'
-import { onUnmounted, ref, watch } from 'vue'
-import { raf } from '@antdv/utils'
 import type { GetKey } from '../interface'
+import { raf } from '@antdv/utils'
+import { onUnmounted, ref, watch } from 'vue'
 
 export type CacheMap = Map<any, number>
 
@@ -10,7 +10,7 @@ export default function useHeights<T>(
   getKey: GetKey<T>,
   onItemAdd?: ((item: T) => void) | null,
   onItemRemove?: ((item: T) => void) | null,
-): [(item: T, instance: HTMLElement) => void, () => void, CacheMap, Ref<Symbol>] {
+): [(item: T, instance: HTMLElement) => void, () => void, CacheMap, Ref<symbol>] {
   const instance = new Map<VNodeProps['key'], HTMLElement>()
   const heights = new Map()
   const updatedMark = ref(Symbol('update'))

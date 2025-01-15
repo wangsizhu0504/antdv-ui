@@ -1,4 +1,7 @@
+import type { MouseEventHandler } from '@antdv/types'
 import type { Ref } from 'vue'
+import { addEventListenerWrap, classNames, getOffset, getScrollBarSize } from '@antdv/utils'
+
 import {
   defineComponent,
   nextTick,
@@ -10,9 +13,6 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { addEventListenerWrap, classNames, getOffset, getScrollBarSize } from '@antdv/utils'
-
-import type { MouseEventHandler } from '@antdv/types'
 import { useInjectTable } from './context/TableContext'
 import { useLayoutState } from './hooks/useFrame'
 

@@ -1,4 +1,11 @@
+import type { ThemeConfig } from '@antdv/components/config-provider'
+import type { PropType } from 'vue'
+import type { ThemeCode } from '../hooks/useControlledTheme'
+import type { MutableTheme, SelectedToken } from '../interface'
+import type { TokenCategory, TokenGroup } from '../meta/interface'
 import { CaretRightOutlined, ExpandOutlined, QuestionCircleOutlined } from '@ant-design/icons-vue'
+
+import seed from '@antdv/theme/token/themes/seed'
 import {
   Button,
   Checkbox,
@@ -9,12 +16,10 @@ import {
   Tooltip,
   Typography,
 } from '@antdv/ui'
-import type { ThemeConfig } from '@antdv/components/config-provider'
-import seed from '@antdv/theme/token/themes/seed'
-import tokenMeta from '@antdv/version/token-meta.json'
 import { classNames } from '@antdv/utils'
+import tokenMeta from '@antdv/version/token-meta.json'
 
-import type { PropType } from 'vue'
+import { debounce } from 'lodash'
 import {
   computed,
   defineComponent,
@@ -23,19 +28,14 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { debounce } from 'lodash'
-import type { MutableTheme, SelectedToken } from '../interface'
+import ColorPanel from '../ColorPanel'
 
-import type { ThemeCode } from '../hooks/useControlledTheme'
 import { themeMap } from '../hooks/useControlledTheme'
 import { CompactTheme, DarkTheme, Light, Pick } from '../icons'
-
+import IconSwitch from '../IconSwitch'
 import { useInjectLocaleContext } from '../locale'
-import type { TokenCategory, TokenGroup } from '../meta/interface'
 import getDesignToken from '../utils/getDesignToken'
 import makeStyle from '../utils/makeStyle'
-import ColorPanel from '../ColorPanel'
-import IconSwitch from '../IconSwitch'
 import InputNumberPlus from './InputNumberPlus'
 import TokenDetail from './TokenDetail'
 import TokenPreview from './TokenPreview'

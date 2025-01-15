@@ -1,14 +1,14 @@
-import { computed, defineComponent, shallowRef } from 'vue'
-import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons-vue'
-import { classNames, filterEmpty, flattenChildren, isEmptyContent } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons-vue'
 import { useDestroyed } from '@antdv/hooks'
+import { classNames, filterEmpty, flattenChildren, isEmptyContent } from '@antdv/utils'
 import { ResizeObserver, TransButton } from '@antdv/vue-components'
-import Breadcrumb from '../../breadcrumb'
+import { computed, defineComponent, shallowRef } from 'vue'
 import Avatar from '../../avatar'
-import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
-
+import Breadcrumb from '../../breadcrumb'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+
+import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
 import Space from '../../space'
 import useStyle from '../style'
 import { pageHeaderProps } from './props'
@@ -137,7 +137,7 @@ export default defineComponent({
       return isEmptyContent(footer)
         ? null
         : (
-          <div class={`${prefixCls.value}-footer`}>{footer}</div>
+            <div class={`${prefixCls.value}-footer`}>{footer}</div>
           )
     }
 

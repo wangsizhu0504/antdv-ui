@@ -16,8 +16,8 @@ Demonstration of validation configuration for form controls which are not shown 
 </docs>
 
 <script lang="ts" setup>
-  import { reactive } from 'vue'
   import { InboxOutlined, UploadOutlined } from '@ant-design/icons-vue'
+  import { reactive } from 'vue'
 
   const formItemLayout = {
     labelCol: { span: 6 },
@@ -153,7 +153,7 @@ Demonstration of validation configuration for form controls which are not shown 
 
     <a-form-item name="upload" label="Upload" extra="longgggggggggggggggggggggggggggggggggg">
       <a-upload
-        v-model:fileList="formState.upload"
+        v-model:file-list="formState.upload"
         name="logo"
         action="/upload.do"
         list-type="picture"
@@ -167,7 +167,7 @@ Demonstration of validation configuration for form controls which are not shown 
 
     <a-form-item label="Dragger">
       <a-form-item name="dragger" no-style>
-        <a-upload-dragger v-model:fileList="formState.dragger" name="files" action="/upload.do">
+        <a-upload-dragger v-model:file-list="formState.dragger" name="files" action="/upload.do">
           <p class="ant-upload-drag-icon">
             <InboxOutlined />
           </p>

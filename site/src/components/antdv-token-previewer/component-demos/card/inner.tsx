@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { Card, Space } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Card, Space } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 const Demo = defineComponent({
   setup() {

@@ -1,3 +1,20 @@
+import type { TableLocale } from '@antdv/locale'
+import type { SizeType } from '@antdv/types'
+import type { TableProps as VcTableProps } from '@antdv/vue-components/vc-table/src/Table'
+import type { SpinProps } from '../../spin'
+import type { TooltipProps } from '../../tooltip'
+import type {
+  FilterValue,
+  GetPopupContainer,
+  SorterResult,
+  SortOrder,
+  TableColumnsType,
+  TableColumnType,
+  TableCurrentDataSource,
+  TablePaginationConfig,
+  TableProps,
+  TableRowSelection,
+} from './interface'
 import {
   arrayType,
   booleanType,
@@ -6,23 +23,6 @@ import {
   someType,
   stringType,
 } from '@antdv/utils'
-import type { TableLocale } from '@antdv/locale'
-import type { TableProps as VcTableProps } from '@antdv/vue-components/vc-table/src/Table'
-import type { SizeType } from '@antdv/types'
-import type { TooltipProps } from '../../tooltip'
-import type { SpinProps } from '../../spin'
-import type {
-  FilterValue,
-  GetPopupContainer,
-  SortOrder,
-  SorterResult,
-  TableColumnType,
-  TableColumnsType,
-  TableCurrentDataSource,
-  TablePaginationConfig,
-  TableProps,
-  TableRowSelection,
-} from './interface'
 
 export function tableProps() {
   return {
@@ -83,7 +83,7 @@ export function tableProps() {
     VcTableProps['scroll'] & {
       scrollToFirstRowOnChange?: boolean
     }
-  >(),
+    >(),
     'sortDirections': arrayType<SortOrder[]>(),
     'showSorterTooltip': someType<boolean | TooltipProps>([Boolean, Object], true),
     'transformCellText': functionType<TableProps['transformCellText']>(),

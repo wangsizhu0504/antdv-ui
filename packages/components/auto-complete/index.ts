@@ -1,8 +1,8 @@
 import type { App } from 'vue'
 import AAutoComplete from './src/AutoComplete'
 
-import Option from './src/Option'
 import OptGroup from './src/OptGroup'
+import Option from './src/Option'
 
 export const AutoCompleteOptGroup = OptGroup
 export const AutoCompleteOption = Option

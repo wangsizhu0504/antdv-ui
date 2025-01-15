@@ -1,3 +1,8 @@
+import type { Key, VueNode } from '@antdv/types'
+import type { CSSProperties, ExtractPropTypes, PropType, Ref } from 'vue'
+import type { BaseSelectProps, BaseSelectRef, DisplayValueType, Placement } from '../../vc-select/src/BaseSelect'
+import { useMergedState } from '@antdv/hooks'
+import { devWarning, initDefaultProps, objectType, omit, PropTypes } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -6,26 +11,21 @@ import {
   toRefs,
   watchEffect,
 } from 'vue'
-import type { CSSProperties, ExtractPropTypes, PropType, Ref } from 'vue'
-import { PropTypes, devWarning, initDefaultProps, objectType, omit } from '@antdv/utils'
-import type { Key, VueNode } from '@antdv/types'
-import { useMergedState } from '@antdv/hooks'
-import type { BaseSelectProps, BaseSelectRef, DisplayValueType, Placement } from '../../vc-select/src/BaseSelect'
 import BaseSelect, { baseSelectPropsWithoutPrivate } from '../../vc-select/src/BaseSelect'
 import useId from '../../vc-select/src/hooks/useId'
-import { conductCheck } from '../../vc-tree/src/utils/conductUtil'
 import useMaxLevel from '../../vc-tree/src/useMaxLevel'
-import { SHOW_CHILD, SHOW_PARENT, fillFieldNames, toPathKey, toPathKeys } from './utils/commonUtil'
+import { conductCheck } from '../../vc-tree/src/utils/conductUtil'
+import { useProvideCascader } from './context'
+import useDisplayValues from './hooks/useDisplayValues'
 import useEntities from './hooks/useEntities'
+import useMissingValues from './hooks/useMissingValues'
 import useSearchConfig from './hooks/useSearchConfig'
 import useSearchOptions from './hooks/useSearchOptions'
-import useMissingValues from './hooks/useMissingValues'
-import { formatStrategyValues, toPathOptions } from './utils/treeUtil'
-import useDisplayValues from './hooks/useDisplayValues'
-import { useProvideCascader } from './context'
 import OptionList from './OptionList'
+import { fillFieldNames, SHOW_CHILD, SHOW_PARENT, toPathKey, toPathKeys } from './utils/commonUtil'
+import { formatStrategyValues, toPathOptions } from './utils/treeUtil'
 
-export { SHOW_PARENT, SHOW_CHILD }
+export { SHOW_CHILD, SHOW_PARENT }
 export interface ShowSearchType<OptionType extends BaseOptionType = DefaultOptionType> {
   filter?: (inputValue: string, options: OptionType[], fieldNames: FieldNames) => boolean;
   render?: (arg?: {

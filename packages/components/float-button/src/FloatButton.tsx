@@ -1,14 +1,14 @@
-import { computed, defineComponent, ref } from 'vue'
 import { classNames, devWarning, initDefaultProps } from '@antdv/utils'
-import Tooltip from '../../tooltip'
+import { computed, defineComponent, ref } from 'vue'
 import Badge from '../../badge'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import Tooltip from '../../tooltip'
 
 import useStyle from '../style'
-import { floatButtonProps } from './props'
-import Content from './FloatButtonContent'
-import { useInjectFloatButtonGroupContext } from './context'
 import { floatButtonPrefixCls } from './constants'
+import { useInjectFloatButtonGroupContext } from './context'
+import Content from './FloatButtonContent'
+import { floatButtonProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -85,14 +85,14 @@ export default defineComponent({
       return wrapSSR(
         props.href
           ? (
-            <a ref={floatButtonRef} {...attrs} {...(restProps as any)} class={classString}>
-              {buttonNode}
-            </a>
+              <a ref={floatButtonRef} {...attrs} {...(restProps as any)} class={classString}>
+                {buttonNode}
+              </a>
             )
           : (
-            <button ref={floatButtonRef} {...attrs} {...restProps} class={classString} type="button">
-              {buttonNode}
-            </button>
+              <button ref={floatButtonRef} {...attrs} {...restProps} class={classString} type="button">
+                {buttonNode}
+              </button>
             ),
       )
     }

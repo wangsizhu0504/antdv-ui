@@ -24,7 +24,7 @@ In accordion mode, only one panel can be expanded at a time.
 </script>
 
 <template>
-  <a-collapse v-model:activeKey="activeKey" accordion>
+  <a-collapse v-model:active-key="activeKey" accordion>
     <a-collapse-panel key="1" header="This is panel header 1">
       <p>{{ text }}</p>
     </a-collapse-panel>

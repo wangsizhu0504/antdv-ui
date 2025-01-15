@@ -1,5 +1,5 @@
-import { computed, inject, provide, ref, shallowRef } from 'vue'
 import type { GroupConsumerValue } from './interface'
+import { computed, inject, provide, ref, shallowRef } from 'vue'
 
 const previewGroupContext = Symbol('previewGroupContext')
 

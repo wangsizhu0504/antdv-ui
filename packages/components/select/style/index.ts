@@ -1,9 +1,9 @@
 import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
 import { genComponentStyleHook, mergeToken, resetComponent, resetIcon, textEllipsis } from '@antdv/theme'
 import { genCompactItemStyle } from '@antdv/theme/style/compact-item'
-import genSingleStyle from './single'
-import genMultipleStyle from './multiple'
 import genDropdownStyle from './dropdown'
+import genMultipleStyle from './multiple'
+import genSingleStyle from './single'
 
 export interface ComponentToken {
   zIndexPopup: number

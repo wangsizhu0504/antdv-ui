@@ -1,7 +1,7 @@
 import type { ComponentDemo } from '../../interface'
-import Default from './upload'
-import danger from './danger'
 import avatar from './avatar'
+import danger from './danger'
+import Default from './upload'
 
 const previewerDemo: ComponentDemo[] = [Default, danger, avatar]
 

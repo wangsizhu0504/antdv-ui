@@ -1,4 +1,6 @@
+import type { ChangeEventHandler } from '@antdv/types'
 import { EnterOutlined } from '@ant-design/icons-vue'
+import { classNames, KeyCode } from '@antdv/utils'
 import {
   defineComponent,
   onMounted,
@@ -7,8 +9,6 @@ import {
   toRefs,
   watch,
 } from 'vue'
-import { KeyCode, classNames } from '@antdv/utils'
-import type { ChangeEventHandler } from '@antdv/types'
 import { Textarea } from '../../input'
 
 import useStyle from '../style'
@@ -142,7 +142,7 @@ export default defineComponent({
                 slots.enterIcon({ className: `${props.prefixCls}-edit-content-confirm` })
               )
             : (
-              <EnterOutlined class={`${props.prefixCls}-edit-content-confirm`} />
+                <EnterOutlined class={`${props.prefixCls}-edit-content-confirm`} />
               )}
         </div>,
       )

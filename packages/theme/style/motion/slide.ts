@@ -1,6 +1,6 @@
-import { Keyframes } from '@antdv/theme'
 import type { AliasToken, CSSInterpolation } from '@antdv/theme'
 import type { TokenWithCommonCls } from '../../token/util/genComponentStyleHook'
+import { Keyframes } from '@antdv/theme'
 import { initMotion } from './motion'
 
 export const slideUpIn = new Keyframes('antSlideUpIn', {

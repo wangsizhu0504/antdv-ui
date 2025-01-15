@@ -1,6 +1,5 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { EventHandler, Key } from '@antdv/types'
-import { PropTypes } from '@antdv/utils'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { NodeDragEventParams, NodeMouseEventHandler, NodeMouseEventParams } from './contextTypes'
 import type {
   BasicDataNode,
@@ -11,6 +10,7 @@ import type {
   FlattenNode,
 } from './interface'
 import type { DraggableConfig } from './Tree'
+import { PropTypes } from '@antdv/utils'
 
 export interface CheckInfo {
   event: 'check';
@@ -151,14 +151,14 @@ export function treeProps() {
 
     dropIndicatorRender: {
       type: Function as PropType<
-      (props: {
-        dropPosition: -1 | 0 | 1;
-        dropLevelOffset: number;
-        indent: number;
-        prefixCls: string;
-        direction: Direction;
-      }) => any
-    >,
+        (props: {
+          dropPosition: -1 | 0 | 1;
+          dropLevelOffset: number;
+          indent: number;
+          prefixCls: string;
+          direction: Direction;
+        }) => any
+      >,
     },
     onFocus: { type: Function as PropType<(e: FocusEvent) => void> },
     onBlur: { type: Function as PropType<(e: FocusEvent) => void> },
@@ -169,45 +169,45 @@ export function treeProps() {
     onScroll: { type: Function as PropType<EventHandler> },
     onExpand: {
       type: Function as PropType<
-      (
-        expandedKeys: Key[],
-        info: {
-          node: EventDataNode;
-          expanded: boolean;
-          nativeEvent: MouseEvent;
-        },
-      ) => void
-    >,
+        (
+          expandedKeys: Key[],
+          info: {
+            node: EventDataNode;
+            expanded: boolean;
+            nativeEvent: MouseEvent;
+          },
+        ) => void
+      >,
     },
     onCheck: {
       type: Function as PropType<
-      (checked: { checked: Key[]; halfChecked: Key[] } | Key[], info: CheckInfo) => void
-    >,
+        (checked: { checked: Key[]; halfChecked: Key[] } | Key[], info: CheckInfo) => void
+      >,
     },
     onSelect: {
       type: Function as PropType<
-      (
-        selectedKeys: Key[],
-        info: {
-          event: 'select';
-          selected: boolean;
-          node: EventDataNode;
-          selectedNodes: DataNode[];
-          nativeEvent: MouseEvent;
-        },
-      ) => void
-    >,
+        (
+          selectedKeys: Key[],
+          info: {
+            event: 'select';
+            selected: boolean;
+            node: EventDataNode;
+            selectedNodes: DataNode[];
+            nativeEvent: MouseEvent;
+          },
+        ) => void
+      >,
     },
     onLoad: {
       type: Function as PropType<
-      (
-        loadedKeys: Key[],
-        info: {
-          event: 'load';
-          node: EventDataNode;
-        },
-      ) => void
-    >,
+        (
+          loadedKeys: Key[],
+          info: {
+            event: 'load';
+            node: EventDataNode;
+          },
+        ) => void
+      >,
     },
     loadData: { type: Function as PropType<(treeNode: EventDataNode) => Promise<any>> },
     loadedKeys: { type: Array as PropType<Key[]> },
@@ -225,15 +225,15 @@ export function treeProps() {
     onDragend: { type: Function as PropType<(info: NodeDragEventParams) => void> },
     onDrop: {
       type: Function as PropType<
-      (
-        info: NodeDragEventParams & {
-          dragNode: EventDataNode;
-          dragNodesKeys: Key[];
-          dropPosition: number;
-          dropToGap: boolean;
-        },
-      ) => void
-    >,
+        (
+          info: NodeDragEventParams & {
+            dragNode: EventDataNode;
+            dragNodesKeys: Key[];
+            dropPosition: number;
+            dropToGap: boolean;
+          },
+        ) => void
+      >,
     },
     /**
      * Used for `rc-tree-select` only.

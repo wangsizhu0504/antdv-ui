@@ -1,20 +1,21 @@
-// Accessibility https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
-import { computed, defineComponent, onMounted, watchEffect } from 'vue'
-import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue'
-import { pick } from 'lodash-es'
-import { arrayType, classNames, devWarning, initDefaultProps, isMobile } from '@antdv/utils'
 import type { Key } from '@antdv/types'
 import type { SlotsType } from 'vue'
+import type { AnimatedConfig, EditableConfig, Tab } from './interface'
+import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue'
 import { useMergedState, useState } from '@antdv/hooks'
-import useStyle from '../style'
+import { arrayType, classNames, devWarning, initDefaultProps, isMobile } from '@antdv/utils'
+import { pick } from 'lodash-es'
+
+// Accessibility https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
+import { computed, defineComponent, onMounted, watchEffect } from 'vue'
 
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
+import useStyle from '../style'
+import { tabsProps } from './props'
+import { useProvideTabs } from './TabContext'
 import TabNavList from './TabNavList'
 import TabPanelList from './TabPanelList'
-import { useProvideTabs } from './TabContext'
-import { tabsProps } from './props'
-import type { AnimatedConfig, EditableConfig, Tab } from './interface'
 
 // Used for accessibility
 let uuid = 0

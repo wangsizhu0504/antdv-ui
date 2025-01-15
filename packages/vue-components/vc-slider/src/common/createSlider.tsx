@@ -1,16 +1,16 @@
-// eslint-disable-next-line ts/ban-ts-comment
-// @ts-nocheck
-import { defineComponent } from 'vue'
 import {
-  BaseMixin,
-  PropTypes,
   addEventListenerWrap,
+  BaseMixin,
   classNames,
   devWarning,
   getSlot,
   initDefaultProps,
+  PropTypes,
   supportsPassive,
 } from '@antdv/utils'
+
+// @ts-nocheck
+import { defineComponent } from 'vue'
 import Handle from '../Handle'
 import * as utils from '../utils'
 import Marks from './Marks'

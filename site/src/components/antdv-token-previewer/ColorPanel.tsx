@@ -1,7 +1,8 @@
 import type { InputProps } from '@antdv/ui'
+import type { PropType } from 'vue'
 import { ConfigProvider, Input, InputNumber, Select, theme } from '@antdv/ui'
 import { classNames } from '@antdv/utils'
-import type { PropType } from 'vue'
+import tinycolor from 'tinycolor2'
 import {
   computed,
   defineComponent,
@@ -10,7 +11,6 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import tinycolor from 'tinycolor2'
 import { HexColorPicker, RgbaColorPicker } from '../vue-colorful'
 import makeStyle from './utils/makeStyle'
 

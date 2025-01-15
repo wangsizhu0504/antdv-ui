@@ -1,6 +1,6 @@
-import { computed, defineComponent, toRefs } from 'vue'
 import type { CSSProperties, PropType } from 'vue'
 import { type ColorInput, TinyColor } from '@ctrl/tinycolor'
+import { computed, defineComponent, toRefs } from 'vue'
 import useSiteToken from '../../hooks/useSiteToken'
 
 const ColorChunk = defineComponent({

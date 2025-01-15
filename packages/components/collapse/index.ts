@@ -17,5 +17,5 @@ export default Collapse as typeof Collapse & Plugin & {
   readonly Panel: typeof CollapsePanel
 }
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

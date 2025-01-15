@@ -1,7 +1,7 @@
 import type { ComputedRef, Ref, UnwrapRef } from 'vue'
-import { onBeforeUnmount, ref, watch } from 'vue'
-import { raf } from '@antdv/utils'
 import type { ValueTextConfig } from './useValueTexts'
+import { raf } from '@antdv/utils'
+import { onBeforeUnmount, ref, watch } from 'vue'
 import useValueTexts from './useValueTexts'
 
 export default function useHoverValue<DateType>(

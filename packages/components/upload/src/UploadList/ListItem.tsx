@@ -1,21 +1,21 @@
+import type { VueNode } from '@antdv/types'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
+import type { ItemRender, UploadFile, UploadListProgressProps, UploadListType, UploadLocale } from '../interface'
+import { DeleteOutlined, DownloadOutlined, EyeOutlined } from '@ant-design/icons-vue'
+import { arrayType, booleanType, functionType, objectType, stringType } from '@antdv/utils'
+import { getTransitionProps } from '@antdv/vue-components'
 import {
-  Transition,
   computed,
   defineComponent,
   onBeforeUnmount,
   onMounted,
   shallowRef,
+  Transition,
   watch,
 } from 'vue'
-import { DeleteOutlined, DownloadOutlined, EyeOutlined } from '@ant-design/icons-vue'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
-import { getTransitionProps } from '@antdv/vue-components'
-import { arrayType, booleanType, functionType, objectType, stringType } from '@antdv/utils'
-import type { VueNode } from '@antdv/types'
-import Tooltip from '../../../tooltip'
-import Progress from '../../../progress'
 import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
-import type { ItemRender, UploadFile, UploadListProgressProps, UploadListType, UploadLocale } from '../interface'
+import Progress from '../../../progress'
+import Tooltip from '../../../tooltip'
 
 export function listItemProps() {
   return {
@@ -116,12 +116,12 @@ export default defineComponent({
         } else {
           const thumbnail = isImgUrl?.(file)
             ? (
-              <img
-                src={file.thumbUrl || file.url}
-                alt={file.name}
-                class={`${prefixCls}-list-item-image`}
-                crossorigin={file.crossOrigin}
-              />
+                <img
+                  src={file.thumbUrl || file.url}
+                  alt={file.name}
+                  class={`${prefixCls}-list-item-image`}
+                  crossorigin={file.crossOrigin}
+                />
               )
             : (
                 iconNode
@@ -185,30 +185,30 @@ export default defineComponent({
       const listItemNameClass = `${prefixCls}-list-item-name`
       const fileName = file.url
         ? [
-          <a
-            key="view"
-            target="_blank"
-            rel="noopener noreferrer"
-            class={listItemNameClass}
-            title={file.name}
-            {...linkProps}
-            href={file.url}
-            onClick={e => onPreview(file, e)}
-          >
-            {file.name}
-          </a>,
-          downloadOrDelete,
+            <a
+              key="view"
+              target="_blank"
+              rel="noopener noreferrer"
+              class={listItemNameClass}
+              title={file.name}
+              {...linkProps}
+              href={file.url}
+              onClick={e => onPreview(file, e)}
+            >
+              {file.name}
+            </a>,
+            downloadOrDelete,
           ]
         : [
-          <span
-            key="view"
-            class={listItemNameClass}
-            onClick={e => onPreview(file, e)}
-            title={file.name}
-          >
-            {file.name}
-          </span>,
-          downloadOrDelete,
+            <span
+              key="view"
+              class={listItemNameClass}
+              onClick={e => onPreview(file, e)}
+              title={file.name}
+            >
+              {file.name}
+            </span>,
+            downloadOrDelete,
           ]
       const previewStyle: CSSProperties = {
         pointerEvents: 'none',
@@ -216,26 +216,26 @@ export default defineComponent({
       }
       const previewIcon = showPreviewIcon
         ? (
-          <a
-            href={file.url || file.thumbUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={file.url || file.thumbUrl ? undefined : previewStyle}
-            onClick={e => onPreview(file, e)}
-            title={locale.previewFile}
-          >
-            {customPreviewIcon ? customPreviewIcon({ file }) : <EyeOutlined />}
-          </a>
+            <a
+              href={file.url || file.thumbUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={file.url || file.thumbUrl ? undefined : previewStyle}
+              onClick={e => onPreview(file, e)}
+              title={locale.previewFile}
+            >
+              {customPreviewIcon ? customPreviewIcon({ file }) : <EyeOutlined />}
+            </a>
           )
         : null
 
       const pictureCardActions = listType === 'picture-card'
         && mergedStatus.value !== 'uploading' && (
-          <span class={`${prefixCls}-list-item-actions`}>
-            {previewIcon}
-            {mergedStatus.value === 'done' && downloadIcon}
-            {removeIcon}
-          </span>
+        <span class={`${prefixCls}-list-item-actions`}>
+          {previewIcon}
+          {mergedStatus.value === 'done' && downloadIcon}
+          {removeIcon}
+        </span>
       )
 
       const dom = (
@@ -251,11 +251,11 @@ export default defineComponent({
               >
                 {'percent' in file
                   ? (
-                    <Progress
-                      {...(progressProps as UploadListProgressProps)}
-                      type="line"
-                      percent={file.percent}
-                    />
+                      <Progress
+                        {...(progressProps as UploadListProgressProps)}
+                        type="line"
+                        percent={file.percent}
+                      />
                     )
                   : null}
               </div>
@@ -274,9 +274,9 @@ export default defineComponent({
       const item
         = mergedStatus.value === 'error'
           ? (
-            <Tooltip title={message} getPopupContainer={node => node.parentNode as HTMLElement}>
-              {dom}
-            </Tooltip>
+              <Tooltip title={message} getPopupContainer={node => node.parentNode as HTMLElement}>
+                {dom}
+              </Tooltip>
             )
           : (
               dom

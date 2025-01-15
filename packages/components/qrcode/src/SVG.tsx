@@ -1,6 +1,4 @@
 import { defineComponent, watchEffect } from 'vue'
-import { qrcodeSvgProps } from './props'
-import qrcodegen from './qrcodegen'
 import {
   DEFAULT_BGCOLOR,
   DEFAULT_FGCOLOR,
@@ -9,6 +7,8 @@ import {
   DEFAULT_SIZE,
   ERROR_LEVEL_MAP,
 } from './constant'
+import { qrcodeSvgProps } from './props'
+import qrcodegen from './qrcodegen'
 import { excavateModules, generatePath, getImageSettings, getMarginSize } from './util'
 
 export default defineComponent({

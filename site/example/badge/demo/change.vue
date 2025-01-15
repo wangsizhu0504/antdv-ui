@@ -16,8 +16,8 @@ The count will be animated as it changes.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const count = ref<number>(5)
   const show = ref<boolean>(true)

@@ -1,13 +1,13 @@
+import type { ConfirmDialogProps } from './interface'
 import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, InfoCircleFilled } from '@ant-design/icons-vue'
-import { defineComponent } from 'vue'
 
 import { classNames, devWarning } from '@antdv/utils'
 import { getTransitionName } from '@antdv/vue-components'
+import { defineComponent } from 'vue'
 import ActionButton from '../../button/src/ActionButton'
-import { useLocaleReceiver } from '../../locale-provider'
 
+import { useLocaleReceiver } from '../../locale-provider'
 import Dialog from './Modal'
-import type { ConfirmDialogProps } from './interface'
 
 function renderSomeContent(someContent: any) {
   if (typeof someContent === 'function')
@@ -192,7 +192,7 @@ export default defineComponent<ConfirmDialogProps>({
               {title === undefined
                 ? null
                 : (
-                  <span class={`${contentPrefixCls}-title`}>{renderSomeContent(title)}</span>
+                    <span class={`${contentPrefixCls}-title`}>{renderSomeContent(title)}</span>
                   )}
               <div class={`${contentPrefixCls}-content`}>{renderSomeContent(content)}</div>
             </div>
@@ -201,20 +201,20 @@ export default defineComponent<ConfirmDialogProps>({
                   renderSomeContent(footer)
                 )
               : (
-                <div class={`${contentPrefixCls}-btns`}>
-                  {cancelButton}
-                  <ActionButton
-                    type={okType}
-                    actionFn={onOk}
-                    close={close}
-                    autofocus={autoFocusButton === 'ok'}
-                    buttonProps={okButtonProps}
-                    prefixCls={`${rootPrefixCls}-btn`}
-                  >
-                    {renderSomeContent(okText)
+                  <div class={`${contentPrefixCls}-btns`}>
+                    {cancelButton}
+                    <ActionButton
+                      type={okType}
+                      actionFn={onOk}
+                      close={close}
+                      autofocus={autoFocusButton === 'ok'}
+                      buttonProps={okButtonProps}
+                      prefixCls={`${rootPrefixCls}-btn`}
+                    >
+                      {renderSomeContent(okText)
                     || (mergedOkCancel ? mergedLocal.okText : mergedLocal.justOkText)}
-                  </ActionButton>
-                </div>
+                    </ActionButton>
+                  </div>
                 )}
           </div>
         </Dialog>

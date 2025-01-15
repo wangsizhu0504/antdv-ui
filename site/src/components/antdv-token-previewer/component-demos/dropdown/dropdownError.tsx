@@ -1,8 +1,8 @@
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface'
 import { DownOutlined } from '@ant-design/icons-vue'
 import { Dropdown, Typography } from '@antdv/ui'
 
-import type { ComponentDemo } from '../../interface'
+import { defineComponent } from 'vue'
 
 const Demo = defineComponent({
   setup() {

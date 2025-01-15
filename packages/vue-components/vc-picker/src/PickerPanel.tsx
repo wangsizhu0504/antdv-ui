@@ -1,3 +1,5 @@
+import type { VueNode } from '@antdv/types'
+
 /**
  * Logic:
  *  When `mode` === `picker`,
@@ -5,27 +7,6 @@
  *  Panel change will not trigger `onSelect` but trigger `onPanelChange`
  */
 import type { CSSProperties } from 'vue'
-import {
-  computed,
-  createVNode,
-  defineComponent,
-  ref,
-  toRef,
-  watch,
-  watchEffect,
-} from 'vue'
-import { KeyCode, classNames, warning } from '@antdv/utils'
-import { useMergedState } from '@antdv/hooks'
-import type { VueNode } from '@antdv/types'
-import type { SharedTimeProps } from './panels/TimePanel'
-import TimePanel from './panels/TimePanel'
-import DatetimePanel from './panels/DatetimePanel'
-import DatePanel from './panels/DatePanel'
-import WeekPanel from './panels/WeekPanel'
-import MonthPanel from './panels/MonthPanel'
-import QuarterPanel from './panels/QuarterPanel'
-import YearPanel from './panels/YearPanel'
-import DecadePanel from './panels/DecadePanel'
 import type { GenerateConfig } from './generate'
 import type {
   Components,
@@ -36,15 +17,35 @@ import type {
   PanelRefProps,
   PickerMode,
 } from './interface'
-import { isEqual } from './utils/dateUtil'
-import { useInjectPanel, useProvidePanel } from './PanelContext'
 import type { DateRender } from './panels/DatePanel/DateBody'
-import { PickerModeMap } from './utils/uiUtil'
 import type { MonthCellRender } from './panels/MonthPanel/MonthBody'
+import type { SharedTimeProps } from './panels/TimePanel'
+import { useMergedState } from '@antdv/hooks'
+import { classNames, KeyCode, warning } from '@antdv/utils'
+import {
+  computed,
+  createVNode,
+  defineComponent,
+  ref,
+  toRef,
+  watch,
+  watchEffect,
+} from 'vue'
+import { useInjectPanel, useProvidePanel } from './PanelContext'
+import DatePanel from './panels/DatePanel'
+import DatetimePanel from './panels/DatetimePanel'
+import DecadePanel from './panels/DecadePanel'
+import MonthPanel from './panels/MonthPanel'
+import QuarterPanel from './panels/QuarterPanel'
+import TimePanel from './panels/TimePanel'
+import WeekPanel from './panels/WeekPanel'
+import YearPanel from './panels/YearPanel'
 import { useInjectRange } from './RangeContext'
+import { isEqual } from './utils/dateUtil'
 import getExtraFooter from './utils/getExtraFooter'
 import getRanges from './utils/getRanges'
 import { getLowerBoundTime, setDateTime, setTime } from './utils/timeUtil'
+import { PickerModeMap } from './utils/uiUtil'
 
 export interface PickerPanelSharedProps<DateType> {
   prefixCls?: string;
@@ -602,11 +603,11 @@ function PickerPanel<DateType>() {
             {panelNode}
             {extraFooter || rangesNode || todayNode
               ? (
-                <div class={`${prefixCls}-footer`}>
-                  {extraFooter}
-                  {rangesNode}
-                  {todayNode}
-                </div>
+                  <div class={`${prefixCls}-footer`}>
+                    {extraFooter}
+                    {rangesNode}
+                    {todayNode}
+                  </div>
                 )
               : null}
           </div>

@@ -17,5 +17,5 @@ export default Dropdown as typeof Dropdown & Plugin & {
   readonly Button: typeof DropdownButton
 }
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

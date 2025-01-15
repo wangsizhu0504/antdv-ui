@@ -1,7 +1,7 @@
-import { computed, defineComponent, ref } from 'vue'
-import { KeyCode, PropTypes } from '@antdv/utils'
 import type { EventHandler } from '@antdv/types'
+import { KeyCode, PropTypes } from '@antdv/utils'
 import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
+import { computed, defineComponent, ref } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -128,20 +128,20 @@ export default defineComponent({
           gotoButton
             = typeof goButton === 'boolean'
               ? (
-                <button
-                  type="button"
-                  onClick={go}
-                  onKeyup={go}
-                  disabled={disabled}
-                  class={`${prefixCls}-quick-jumper-button`}
-                >
-                  {locale.jump_to_confirm}
-                </button>
+                  <button
+                    type="button"
+                    onClick={go}
+                    onKeyup={go}
+                    disabled={disabled}
+                    class={`${prefixCls}-quick-jumper-button`}
+                  >
+                    {locale.jump_to_confirm}
+                  </button>
                 )
               : (
-                <span onClick={go} onKeyup={go}>
-                  {goButton}
-                </span>
+                  <span onClick={go} onKeyup={go}>
+                    {goButton}
+                  </span>
                 )
         }
         goInput = (

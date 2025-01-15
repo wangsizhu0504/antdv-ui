@@ -115,4 +115,4 @@ function NextArrow(_, { attrs }) {
 
 NextArrow.inheritAttrs = false
 
-export { PrevArrow, NextArrow }
+export { NextArrow, PrevArrow }

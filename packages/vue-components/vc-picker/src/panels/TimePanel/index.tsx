@@ -1,11 +1,11 @@
-import { ref } from 'vue'
-import { classNames } from '@antdv/utils'
 import type { DisabledTimes, PanelSharedProps } from '../../interface'
-import { createKeydownHandler } from '../../utils/uiUtil'
-import useMergeProps from '../../hooks/useMergeProps'
-import TimeHeader from './TimeHeader'
 import type { BodyOperationRef } from './TimeBody'
+import { classNames } from '@antdv/utils'
+import { ref } from 'vue'
+import useMergeProps from '../../hooks/useMergeProps'
+import { createKeydownHandler } from '../../utils/uiUtil'
 import TimeBody from './TimeBody'
+import TimeHeader from './TimeHeader'
 
 // import type { RangeType } from '../../RangePicker';
 

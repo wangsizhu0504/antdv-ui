@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+  import { getLocalizedPathname, isLocalStorageNameSupported, isZhCN } from '@/utils/util'
   import Github from './Github.vue'
   import Navigation from './Navigation.vue'
-  import { getLocalizedPathname, isLocalStorageNameSupported, isZhCN } from '@/utils/util'
 
   defineOptions({
     name: 'HeaderMenu',

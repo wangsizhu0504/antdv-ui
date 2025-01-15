@@ -17,8 +17,8 @@ Skeleton Button, Avatar, Input and Image.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { SkeletonAvatarProps, SkeletonButtonProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const active = ref<any>(false)
   const block = ref<any>(false)

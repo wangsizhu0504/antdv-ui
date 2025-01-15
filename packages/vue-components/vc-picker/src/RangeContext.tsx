@@ -1,4 +1,5 @@
 import type { InjectionKey, PropType, Ref } from 'vue'
+import type { NullableDateType, RangeValue } from './interface'
 import {
   defineComponent,
   inject,
@@ -7,7 +8,6 @@ import {
   toRef,
   watch,
 } from 'vue'
-import type { NullableDateType, RangeValue } from './interface'
 
 export interface RangeContextProps {
   /**

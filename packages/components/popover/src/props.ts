@@ -1,5 +1,5 @@
-import { anyType } from '@antdv/utils'
 import type { ExtractPropTypes } from 'vue'
+import { anyType } from '@antdv/utils'
 import { abstractTooltipProps } from '../../tooltip'
 
 export function popoverProps() {

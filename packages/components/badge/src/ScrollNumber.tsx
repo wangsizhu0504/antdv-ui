@@ -1,10 +1,10 @@
-import { defineComponent } from 'vue'
-import { classNames, cloneElement, filterEmpty } from '@antdv/utils'
 import type { CSSProperties, DefineComponent, HTMLAttributes } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import SingleNumber from './SingleNumber'
-import { scrollNumberProps } from './props'
 import type { ScrollNumberProps } from './props'
+import { classNames, cloneElement, filterEmpty } from '@antdv/utils'
+import { defineComponent } from 'vue'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import { scrollNumberProps } from './props'
+import SingleNumber from './SingleNumber'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

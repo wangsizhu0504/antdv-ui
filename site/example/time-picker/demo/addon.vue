@@ -17,8 +17,8 @@ Render addon contents to timepicker panel's bottom.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { Dayjs } from 'dayjs'
+  import { ref } from 'vue'
 
   const open = ref<any>(false)
   const open2 = ref<any>(false)

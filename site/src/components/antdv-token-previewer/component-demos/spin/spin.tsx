@@ -1,5 +1,5 @@
-import { Spin } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Spin } from '@antdv/ui'
 
 const Demo = () => <Spin />
 

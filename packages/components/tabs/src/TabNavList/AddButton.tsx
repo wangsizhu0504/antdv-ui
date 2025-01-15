@@ -1,5 +1,5 @@
-import { defineComponent, ref } from 'vue'
 import type { CSSProperties } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { addButtonProps } from '../props'
 
 export default defineComponent({

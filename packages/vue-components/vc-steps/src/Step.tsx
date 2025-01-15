@@ -1,16 +1,16 @@
+import type { EventHandler, VueNode } from '@antdv/types'
 import type { CSSProperties, ExtractPropTypes } from 'vue'
-import { defineComponent } from 'vue'
+import type { Status, StepIconRender } from './interface'
 import {
-  PropTypes,
   booleanType,
   classNames,
   functionType,
   omit,
+  PropTypes,
   stringType,
   withUndefined,
 } from '@antdv/utils'
-import type { EventHandler, VueNode } from '@antdv/types'
-import type { Status, StepIconRender } from './interface'
+import { defineComponent } from 'vue'
 
 function isString(str: any): str is string {
   return typeof str === 'string'

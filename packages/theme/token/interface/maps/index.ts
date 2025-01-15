@@ -1,14 +1,14 @@
 import type { ColorPalettes } from '../presetColors'
 import type { SeedToken } from '../seeds'
-import type { HeightMapToken, SizeMapToken } from './size'
 import type { ColorMapToken } from './colors'
-import type { StyleMapToken } from './style'
 import type { FontMapToken } from './font'
+import type { HeightMapToken, SizeMapToken } from './size'
+import type { StyleMapToken } from './style'
 
 export * from './colors'
-export * from './style'
-export * from './size'
 export * from './font'
+export * from './size'
+export * from './style'
 
 export interface CommonMapToken extends StyleMapToken {
   // Motion

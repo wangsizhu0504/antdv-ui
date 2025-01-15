@@ -1,24 +1,24 @@
+import type { VueNode } from '@antdv/types'
+import type { HTMLAttributes } from 'vue'
+import type { ButtonProps } from '../../../button'
+import type { InternalUploadFile, UploadFile } from '../interface'
 import { FileTwoTone, LoadingOutlined, PaperClipOutlined, PictureTwoTone } from '@ant-design/icons-vue'
+import { filterEmpty, initDefaultProps, isValidElement } from '@antdv/utils'
+import { collapseMotion, getTransitionGroupProps } from '@antdv/vue-components'
 import {
-  TransitionGroup,
   computed,
   defineComponent,
   onMounted,
   shallowRef,
+  TransitionGroup,
   triggerRef,
   watch,
   watchEffect,
 } from 'vue'
-import type { VueNode } from '@antdv/types'
-import type { HTMLAttributes } from 'vue'
-import { filterEmpty, initDefaultProps, isValidElement } from '@antdv/utils'
-import { collapseMotion, getTransitionGroupProps } from '@antdv/vue-components'
-import { isImageUrl, previewImage } from '../utils'
-import { uploadListProps } from '../interface'
 import Button from '../../../button'
 import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
-import type { ButtonProps } from '../../../button'
-import type { InternalUploadFile, UploadFile } from '../interface'
+import { uploadListProps } from '../interface'
+import { isImageUrl, previewImage } from '../utils'
 import ListItem from './ListItem'
 
 function HackSlot(_, { slots }) {
@@ -238,12 +238,12 @@ export default defineComponent({
           })}
           {appendAction
             ? (
-              <HackSlot
-                key="__ant_upload_appendAction"
-                v-show={!!appendActionVisible}
-                v-slots={{ default: () => appendActionDom }}
-              >
-              </HackSlot>
+                <HackSlot
+                  key="__ant_upload_appendAction"
+                  v-show={!!appendActionVisible}
+                  v-slots={{ default: () => appendActionDom }}
+                >
+                </HackSlot>
               )
             : null}
         </TransitionGroup>

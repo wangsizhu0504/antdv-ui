@@ -1,5 +1,5 @@
-import { classNames, isPresetColor } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
+import { classNames, isPresetColor } from '@antdv/utils'
 
 export function parseColor(prefixCls: string, color?: string) {
   const isInternalColor = isPresetColor(color)

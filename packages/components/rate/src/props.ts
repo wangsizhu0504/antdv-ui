@@ -1,8 +1,8 @@
-import { PropTypes } from '@antdv/utils'
-
 import type { FocusEventHandler, KeyboardEventHandler } from '@antdv/types'
+
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { Direction } from '../../config-provider'
+import { PropTypes } from '@antdv/utils'
 
 export function rateProps() {
   return {

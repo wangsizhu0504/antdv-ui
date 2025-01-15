@@ -1,5 +1,5 @@
-import { classNames } from '@antdv/utils'
 import type { FlexProps } from './props'
+import { classNames } from '@antdv/utils'
 
 export const flexWrapValues = ['wrap', 'nowrap', 'wrap-reverse'] as const
 

@@ -1,6 +1,6 @@
-import { camelize, flattenChildren } from '@antdv/utils'
 import type { Key } from '@antdv/types'
-import type { ColumnTitle, ColumnTitleProps, TableColumnType, TableColumnsType } from './interface'
+import type { ColumnTitle, ColumnTitleProps, TableColumnsType, TableColumnType } from './interface'
+import { camelize, flattenChildren } from '@antdv/utils'
 
 export function getColumnKey<RecordType>(column: TableColumnType<RecordType>, defaultKey: string): Key {
   if ('key' in column && column.key !== undefined && column.key !== null)

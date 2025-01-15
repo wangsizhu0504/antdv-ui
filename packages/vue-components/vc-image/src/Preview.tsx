@@ -1,3 +1,6 @@
+import type { MouseEventHandler, WheelEventHandler } from '@antdv/types'
+import type { ImgHTMLAttributes, PropType, VNode } from 'vue'
+import { addEventListenerWrap, classNames, getOffset, KeyCode, warning } from '@antdv/utils'
 import {
   cloneVNode,
   computed,
@@ -8,15 +11,12 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import type { ImgHTMLAttributes, PropType, VNode } from 'vue'
-import { KeyCode, addEventListenerWrap, classNames, getOffset, warning } from '@antdv/utils'
-import type { MouseEventHandler, WheelEventHandler } from '@antdv/types'
-import { type IDialogChildProps, dialogPropTypes } from '../../vc-dialog/src/IDialogPropTypes'
 import Dialog from '../../vc-dialog/src/DialogWrap'
-import useFrameSetState from './hooks/useFrameSetState'
+import { dialogPropTypes, type IDialogChildProps } from '../../vc-dialog/src/IDialogPropTypes'
+import { imageContext } from './context'
 import getFixScaleEleTransPosition from './getFixScaleEleTransPosition'
 
-import { imageContext } from './context'
+import useFrameSetState from './hooks/useFrameSetState'
 
 export interface PreviewProps extends Omit<IDialogChildProps, 'onClose' | 'mask'> {
   onClose?: (e: Element) => void;

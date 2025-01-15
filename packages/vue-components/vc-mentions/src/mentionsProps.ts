@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
-import { PropTypes, arrayType, initDefaultProps, tuple } from '@antdv/utils'
-import { filterOption as defaultFilterOption, validateSearch as defaultValidateSearch } from './util'
 import type { OptionProps } from './Option'
+import { arrayType, initDefaultProps, PropTypes, tuple } from '@antdv/utils'
+import { filterOption as defaultFilterOption, validateSearch as defaultValidateSearch } from './util'
 
 export const PlaceMent = tuple('top', 'bottom')
 export type Direction = 'ltr' | 'rtl'

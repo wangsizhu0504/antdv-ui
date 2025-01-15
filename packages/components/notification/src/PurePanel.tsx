@@ -1,4 +1,5 @@
-import { computed, defineComponent } from 'vue'
+import type { VueNode } from '@antdv/types'
+import type { NotificationPureContentProps, NotificationPurePanelProps } from './interface'
 import {
   CheckCircleFilled,
   CloseCircleFilled,
@@ -8,11 +9,10 @@ import {
   LoadingOutlined,
 } from '@ant-design/icons-vue'
 import { classNames, renderHelper } from '@antdv/utils'
-import type { VueNode } from '@antdv/types'
 import VcNotice from '@antdv/vue-components/vc-notification/src/Notice'
+import { computed, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
-import type { NotificationPureContentProps, NotificationPurePanelProps } from './interface'
 
 export function getCloseIcon(prefixCls: string, closeIcon?: VueNode) {
   return (

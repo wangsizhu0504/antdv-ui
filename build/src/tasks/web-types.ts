@@ -1,9 +1,9 @@
 import path from 'node:path'
 
 import pkg from '../../../packages/antdv-ui/package.json'
+import { PKG_NAME } from '../constants'
 import { antdOutput, compRoot, projRoot } from '../path'
 import { parseAndWrite } from '../web-types'
-import { PKG_NAME } from '../constants'
 
 export async function generateWebTypes() {
   try {

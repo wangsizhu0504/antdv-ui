@@ -1,23 +1,23 @@
-import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled } from '@ant-design/icons-vue'
-import { computed, defineComponent, ref } from 'vue'
-import { classNames, devWarning, getMergedStatus, getStatusClassNames } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
-import { enUS } from '@antdv/locale'
-import { VcPicker } from '@antdv/vue-components'
-import type { PanelMode, PickerMode } from '@antdv/vue-components/vc-picker/src/interface'
 import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
-import { getPlaceholder, transPlacement2DropdownAlign } from '../util'
-import useStyle from '../../style'
-import { useLocaleReceiver } from '../../../locale-provider'
+import type { PanelMode, PickerMode } from '@antdv/vue-components/vc-picker/src/interface'
+import type { CommonProps, DatePickerProps } from './props'
+import { CalendarOutlined, ClockCircleOutlined, CloseCircleFilled } from '@ant-design/icons-vue'
+import { enUS } from '@antdv/locale'
+import { classNames, devWarning, getMergedStatus, getStatusClassNames } from '@antdv/utils'
+import { VcPicker } from '@antdv/vue-components'
+import { computed, defineComponent, ref } from 'vue'
 import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
-
 import { FormItemInputContext, useInjectFormItemContext } from '../../../form/src/FormItemContext'
+import { useLocaleReceiver } from '../../../locale-provider'
 
 import { useCompactItemContext } from '../../../space'
-import { Components, getTimeProps } from './util'
+
+import useStyle from '../../style'
+import { getPlaceholder, transPlacement2DropdownAlign } from '../util'
 import { commonProps, datePickerProps } from './props'
 
-import type { CommonProps, DatePickerProps } from './props'
+import { Components, getTimeProps } from './util'
 
 // CSSINJS
 

@@ -1,12 +1,12 @@
-import { QuestionCircleOutlined } from '@ant-design/icons-vue'
-import { classNames } from '@antdv/utils'
 import type { FunctionalComponent } from 'vue'
+import type { FormItemLabelProps, FormLabelAlign } from './interface'
+import { QuestionCircleOutlined } from '@ant-design/icons-vue'
 import { enUS as defaultLocale } from '@antdv/locale'
-import { useLocaleReceiver } from '../../locale-provider'
+import { classNames } from '@antdv/utils'
 import { Col } from '../../grid'
+import { useLocaleReceiver } from '../../locale-provider'
 import Tooltip from '../../tooltip'
 import { useInjectForm } from './context'
-import type { FormItemLabelProps, FormLabelAlign } from './interface'
 
 const FormItemLabel: FunctionalComponent<FormItemLabelProps> = (props, { slots, emit, attrs }) => {
   const { prefixCls, htmlFor, labelCol, labelAlign, colon, required, requiredMark } = {

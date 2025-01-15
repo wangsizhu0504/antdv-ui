@@ -1,16 +1,17 @@
+import type { HeadConfig, PageData } from '../shared'
+
+import type { MarkdownOptions, MarkdownParsedData, MarkdownRenderer } from './markdown/markdown'
 import fs from 'node:fs'
 
 // import Buffer from 'node:buffer'
 import path from 'node:path'
+import escapeHtml from 'escape-html'
 import matter from 'gray-matter'
 import { LRUCache } from 'lru-cache'
 import slash from 'slash'
-import escapeHtml from 'escape-html'
-import type { HeadConfig, PageData } from '../shared'
-import type { MarkdownOptions, MarkdownParsedData, MarkdownRenderer } from './markdown/markdown'
 import { createMarkdownRenderer } from './markdown/markdown'
-import { deeplyParseHeader } from './utils/parseHeader'
 import fetchCode from './utils/fetchCode'
+import { deeplyParseHeader } from './utils/parseHeader'
 import tsToJs from './utils/tsToJs'
 
 const cache = new LRUCache<string, MarkdownCompileResult>({ max: 1024 })

@@ -2,10 +2,10 @@ import type { App } from 'vue'
 
 import { EXPAND_COLUMN, SummaryCell, SummaryRow } from '@antdv/vue-components'
 import Summary from '@antdv/vue-components/vc-table/src/Footer/Summary'
-import ATable from './src/Table'
 import Column from './src/Column'
 import ColumnGroup from './src/ColumnGroup'
 import { SELECTION_ALL, SELECTION_COLUMN, SELECTION_INVERT, SELECTION_NONE } from './src/hooks/useSelection'
+import ATable from './src/Table'
 
 export const TableSummaryRow = SummaryRow
 export const TableSummaryCell = SummaryCell

@@ -1,7 +1,7 @@
-import useNotification from './src/useNotification'
 import type { NotificationAPI } from './src/useNotification'
+import useNotification from './src/useNotification'
 
-export { default as VcNotification } from './src/Notification'
 export { default as VcNotice } from './src/Notice'
+export { default as VcNotification } from './src/Notification'
 
-export { useNotification, NotificationAPI }
+export { NotificationAPI, useNotification }

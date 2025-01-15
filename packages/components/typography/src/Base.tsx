@@ -1,4 +1,9 @@
+import type { CSSProperties, HTMLAttributes, VNodeTypes } from 'vue'
+import type { BlockProps, CopyConfig, EditConfig, EllipsisConfig, Locale } from './interface'
 import { CheckOutlined, CopyOutlined, EditOutlined } from '@ant-design/icons-vue'
+import { useMergedState } from '@antdv/hooks'
+import { devWarning, findDOMNode, isStyleSupport, omit, raf } from '@antdv/utils'
+import { ResizeObserver, TransButton } from '@antdv/vue-components'
 import {
   computed,
   defineComponent,
@@ -11,21 +16,16 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { devWarning, findDOMNode, isStyleSupport, omit, raf } from '@antdv/utils'
-import type { CSSProperties, HTMLAttributes, VNodeTypes } from 'vue'
-import { ResizeObserver, TransButton } from '@antdv/vue-components'
-import { useMergedState } from '@antdv/hooks'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import Tooltip from '../../tooltip'
 import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
 
+import Tooltip from '../../tooltip'
+import copy from './copy'
 import Editable from './Editable'
-import measure from './util'
-import Typography from './Typography'
 
 import { baseProps } from './props'
-import copy from './copy'
-import type { BlockProps, CopyConfig, EditConfig, EllipsisConfig, Locale } from './interface'
+import Typography from './Typography'
+import measure from './util'
 
 const isLineClampSupport = isStyleSupport('webkitLineClamp')
 const isTextOverflowSupport = isStyleSupport('textOverflow')
@@ -321,16 +321,16 @@ export default defineComponent({
 
       return triggerType.includes('icon')
         ? (
-          <Tooltip key="edit" title={tooltip === false ? '' : title}>
-            <TransButton
-              ref={editIcon}
-              class={`${prefixCls.value}-edit`}
-              onClick={onEditClick}
-              aria-label={ariaLabel}
-            >
-              {icon}
-            </TransButton>
-          </Tooltip>
+            <Tooltip key="edit" title={tooltip === false ? '' : title}>
+              <TransButton
+                ref={editIcon}
+                class={`${prefixCls.value}-edit`}
+                onClick={onEditClick}
+                aria-label={ariaLabel}
+              >
+                {icon}
+              </TransButton>
+            </Tooltip>
           )
         : null
     }
@@ -511,9 +511,9 @@ export default defineComponent({
                 >
                   {showTooltip
                     ? (
-                      <Tooltip title={tooltip === true ? children : title}>
-                        <span>{textNode}</span>
-                      </Tooltip>
+                        <Tooltip title={tooltip === true ? children : title}>
+                          <span>{textNode}</span>
+                        </Tooltip>
                       )
                     : (
                         textNode

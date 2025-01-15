@@ -1,5 +1,5 @@
-import { groupBy, sortBy } from 'lodash-es'
 import type { ComputedRef } from 'vue'
+import { groupBy, sortBy } from 'lodash-es'
 import { computed, inject } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { GLOBAL_CONFIG } from '../SymbolKey'

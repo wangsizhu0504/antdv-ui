@@ -1,7 +1,7 @@
+import escapeHtml from 'escape-html'
 import color from 'picocolors'
 import prism from 'prismjs'
 import loadLanguages from 'prismjs/components/index'
-import escapeHtml from 'escape-html'
 
 // required to make embedded highlighting work...
 loadLanguages(['markup', 'css', 'javascript'])

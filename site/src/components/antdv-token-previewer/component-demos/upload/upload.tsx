@@ -1,9 +1,9 @@
-import { defineComponent } from 'vue'
 import type { UploadProps } from '@antdv/ui'
-import { Button, Upload, message } from '@antdv/ui'
-import { UploadOutlined } from '@ant-design/icons-vue'
-
 import type { ComponentDemo } from '../../interface'
+import { UploadOutlined } from '@ant-design/icons-vue'
+import { Button, message, Upload } from '@antdv/ui'
+
+import { defineComponent } from 'vue'
 
 const props: UploadProps = {
   name: 'file',

@@ -18,8 +18,8 @@ To use `confirm()` to show a confirmation modal dialog.
 
 <script lang="ts" setup>
   import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-  import { createVNode } from 'vue'
   import { Modal } from '@antdv/ui'
+  import { createVNode } from 'vue'
 
   function showConfirm() {
     Modal.confirm({

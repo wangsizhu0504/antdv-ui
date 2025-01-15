@@ -1,5 +1,5 @@
-import { Transition, defineComponent, nextTick } from 'vue'
 import { LoadingOutlined } from '@ant-design/icons-vue'
+import { defineComponent, nextTick, Transition } from 'vue'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -59,9 +59,9 @@ export default defineComponent({
         >
           {visible
             ? (
-              <span class={`${prefixCls}-loading-icon`}>
-                <LoadingOutlined />
-              </span>
+                <span class={`${prefixCls}-loading-icon`}>
+                  <LoadingOutlined />
+                </span>
               )
             : null}
         </Transition>

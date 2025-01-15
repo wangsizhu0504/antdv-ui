@@ -1,8 +1,8 @@
-import { computed, onBeforeUnmount, onMounted, watch, watchEffect } from 'vue'
 import type { Ref } from 'vue'
-import { useState } from '@antdv/hooks'
-import { isInViewPort } from '../util'
 import type { TourStepInfo } from '../interface'
+import { useState } from '@antdv/hooks'
+import { computed, onBeforeUnmount, onMounted, watch, watchEffect } from 'vue'
+import { isInViewPort } from '../util'
 
 export interface Gap {
   offset?: number;

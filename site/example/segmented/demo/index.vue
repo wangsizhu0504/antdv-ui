@@ -1,11 +1,11 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import CN from '../index.zh-CN.md'
   import US from '../index.en-US.md'
+  import CN from '../index.zh-CN.md'
   import Basic from './basic.vue'
   import Block from './block.vue'
-  import Disabled from './disabled.vue'
   import Custom from './custom.vue'
+  import Disabled from './disabled.vue'
   import Dynamic from './dynamic.vue'
   import Size from './size.vue'
 

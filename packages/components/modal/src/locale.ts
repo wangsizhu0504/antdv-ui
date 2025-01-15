@@ -1,5 +1,5 @@
-import { enUS as defaultLocale } from '@antdv/locale'
 import type { ModalLocale } from '@antdv/locale'
+import { enUS as defaultLocale } from '@antdv/locale'
 
 let runtimeLocale: ModalLocale = {
   ...(defaultLocale.Modal as ModalLocale),

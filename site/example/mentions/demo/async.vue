@@ -17,9 +17,9 @@ async.
 </docs>
 
 <script lang="ts" setup>
+  import type { MentionsProps } from '..'
   import { debounce } from 'lodash-es'
   import { computed, ref } from 'vue'
-  import type { MentionsProps } from '..'
 
   const value = ref<string>('')
   const loading = ref<boolean>(false)

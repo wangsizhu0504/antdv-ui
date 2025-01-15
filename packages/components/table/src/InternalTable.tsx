@@ -1,3 +1,24 @@
+import type { Breakpoint } from '@antdv/types'
+import type { DefaultRecordType } from '@antdv/vue-components/vc-table/src/interface'
+import type { CSSProperties } from 'vue'
+import type { SpinProps } from '../../spin'
+import type {
+  ChangeEventInfo,
+  ContextSlots,
+  ExpandType,
+  FilterState,
+  FilterValue,
+  GetRowKey,
+  SorterResult,
+  SortState,
+  TableAction,
+  TableColumnsType,
+  TableColumnType,
+  TablePaginationConfig,
+} from './interface'
+import { useBreakpoint } from '@antdv/hooks'
+
+import { enUS as defaultLocale } from '@antdv/locale'
 import {
   classNames,
   devWarning,
@@ -6,7 +27,8 @@ import {
   omit,
   scrollTo,
 } from '@antdv/utils'
-import type { CSSProperties } from 'vue'
+import { VcTable } from '@antdv/vue-components'
+import { INTERNAL_HOOKS } from '@antdv/vue-components/vc-table/src/Table'
 import {
   computed,
   defineComponent,
@@ -17,46 +39,24 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import type { Breakpoint } from '@antdv/types'
-import { enUS as defaultLocale } from '@antdv/locale'
-import { useBreakpoint } from '@antdv/hooks'
-
-import { VcTable } from '@antdv/vue-components'
-import type { DefaultRecordType } from '@antdv/vue-components/vc-table/src/interface'
-import { INTERNAL_HOOKS } from '@antdv/vue-components/vc-table/src/Table'
-import type { SpinProps } from '../../spin'
-import Spin from '../../spin'
-import Pagination from '../../pagination'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useLocaleReceiver } from '../../locale-provider/src/useLocaleReceiver'
+import Pagination from '../../pagination'
 
+import Spin from '../../spin'
 import useStyle from '../style'
-import usePagination, { DEFAULT_PAGE_SIZE, getPaginationParam } from './hooks/usePagination'
-import useLazyKVMap from './hooks/useLazyKVMap'
-import type {
-  ChangeEventInfo,
-  ContextSlots,
-  ExpandType,
-  FilterState,
-  FilterValue,
-  GetRowKey,
-  SortState,
-  SorterResult,
-  TableAction,
-  TableColumnType,
-  TableColumnsType,
-  TablePaginationConfig,
-} from './interface'
-import useSelection from './hooks/useSelection'
-
-import useSorter, { getSortData } from './hooks/useSorter'
+import { useProvideSlots, useProvideTableContext } from './context'
+import renderExpandIcon from './ExpandIcon'
+import useColumns from './hooks/useColumns'
 
 import useFilter, { getFilterData } from './hooks/useFilter'
-import useTitleColumns from './hooks/useTitleColumns'
-import renderExpandIcon from './ExpandIcon'
-import { useProvideSlots, useProvideTableContext } from './context'
 
-import useColumns from './hooks/useColumns'
+import useLazyKVMap from './hooks/useLazyKVMap'
+import usePagination, { DEFAULT_PAGE_SIZE, getPaginationParam } from './hooks/usePagination'
+import useSelection from './hooks/useSelection'
+import useSorter, { getSortData } from './hooks/useSorter'
+
+import useTitleColumns from './hooks/useTitleColumns'
 import { tableProps } from './props'
 
 const EMPTY_LIST: any[] = []

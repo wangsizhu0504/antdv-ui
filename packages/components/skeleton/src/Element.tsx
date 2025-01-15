@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { classNames } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
+import { classNames } from '@antdv/utils'
+import { defineComponent } from 'vue'
 import { skeletonElementProps } from './props'
 
 export default defineComponent({

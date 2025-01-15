@@ -1,7 +1,7 @@
-import type { ComputedRef, HTMLAttributes, Ref } from 'vue'
-import { computed, onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
 import type { FocusEventHandler } from '@antdv/types'
+import type { ComputedRef, HTMLAttributes, Ref } from 'vue'
 import { KeyCode, raf } from '@antdv/utils'
+import { computed, onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
 import { addGlobalMousedownEvent, getTargetFromEvent } from '../utils/uiUtil'
 
 export default function usePickerInput({

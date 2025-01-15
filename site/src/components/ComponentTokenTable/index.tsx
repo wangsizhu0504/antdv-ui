@@ -1,13 +1,13 @@
-import { computed, defineComponent, toRefs } from 'vue'
 import type { PropType } from 'vue'
 import { ConfigProvider, Table } from '@antdv/ui'
-import tokenMeta from '@antdv/version/token-meta.json'
 import tokenData from '@antdv/version/token.json'
-import { getDesignToken } from '../antdv-token-previewer'
+import tokenMeta from '@antdv/version/token-meta.json'
+import { computed, defineComponent, toRefs } from 'vue'
 import useSiteToken from '../../hooks/useSiteToken'
-import { useColumns } from '../TokenTable'
-import ColorChunk from '../ColorChunk'
 import { useLocale } from '../../locale'
+import { getDesignToken } from '../antdv-token-previewer'
+import ColorChunk from '../ColorChunk'
+import { useColumns } from '../TokenTable'
 
 const defaultToken = getDesignToken()
 

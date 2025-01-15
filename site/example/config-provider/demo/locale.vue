@@ -16,10 +16,10 @@ Components which need localization support are listed here, you can toggle the l
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
-  import { Modal, theme } from '@antdv/ui'
   import type { TourProps, UploadFile } from '@antdv/ui'
   import { EllipsisOutlined } from '@ant-design/icons-vue'
+  import { Modal, theme } from '@antdv/ui'
+  import { ref, watch } from 'vue'
 
   // @ts-expect-error
   import enUS from '@antdv/ui/es/locale/lang/en_US'

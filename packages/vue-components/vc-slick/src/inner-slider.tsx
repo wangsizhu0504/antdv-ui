@@ -1,10 +1,13 @@
-// eslint-disable-next-line ts/ban-ts-comment
+import { BaseMixin, classNames, supportsPassive } from '@antdv/utils'
+
 // @ts-nocheck
 import { debounce } from 'lodash-es'
 import ResizeObserver from 'resize-observer-polyfill'
-import { BaseMixin, classNames, supportsPassive } from '@antdv/utils'
+import { NextArrow, PrevArrow } from './arrows'
 import defaultProps from './default-props.js'
+import Dots from './dots'
 import initialState from './initial-state.js'
+import Track from './track'
 import {
   canGoNext,
   changeSlide,
@@ -22,9 +25,6 @@ import {
   swipeMove,
   swipeStart,
 } from './utils/innerSliderUtils.js'
-import Track from './track'
-import Dots from './dots'
-import { NextArrow, PrevArrow } from './arrows'
 
 function noop() {}
 

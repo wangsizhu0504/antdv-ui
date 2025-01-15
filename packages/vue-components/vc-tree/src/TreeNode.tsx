@@ -1,4 +1,7 @@
+import type { Key } from '@antdv/types'
 import type { CSSProperties } from 'vue'
+import type { DragNodeEvent } from './interface'
+import { classNames, eagerComputed, pickAttrs, warning } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -8,13 +11,10 @@ import {
   reactive,
   shallowRef,
 } from 'vue'
-import { classNames, eagerComputed, pickAttrs, warning } from '@antdv/utils'
-import type { Key } from '@antdv/types'
 import { useInjectKeysState, useInjectTreeContext } from './contextTypes'
 import Indent from './Indent'
-import { convertNodePropsToEventData, getTreeNodeProps } from './utils/treeUtil'
 import { treeNodeProps } from './props'
-import type { DragNodeEvent } from './interface'
+import { convertNodePropsToEventData, getTreeNodeProps } from './utils/treeUtil'
 
 const ICON_OPEN = 'open'
 const ICON_CLOSE = 'close'
@@ -288,7 +288,7 @@ export default defineComponent({
       const { draggable, prefixCls } = context.value
       return draggable && draggable?.icon
         ? (
-          <span class={`${prefixCls}-draggable-icon`}>{draggable.icon}</span>
+            <span class={`${prefixCls}-draggable-icon`}>{draggable.icon}</span>
           )
         : null
     }
@@ -341,9 +341,9 @@ export default defineComponent({
       if (isLeaf.value) {
         return switcherIconDom !== false
           ? (
-            <span class={classNames(`${prefixCls}-switcher`, `${prefixCls}-switcher-noop`)}>
-              {switcherIconDom}
-            </span>
+              <span class={classNames(`${prefixCls}-switcher`, `${prefixCls}-switcher-noop`)}>
+                {switcherIconDom}
+              </span>
             )
           : null
       }
@@ -355,9 +355,9 @@ export default defineComponent({
 
       return switcherIconDom !== false
         ? (
-          <span onClick={onExpand} class={switcherCls}>
-            {switcherIconDom}
-          </span>
+            <span onClick={onExpand} class={switcherCls}>
+              {switcherIconDom}
+            </span>
           )
         : null
     }
@@ -456,9 +456,9 @@ export default defineComponent({
 
         $icon = currentIcon
           ? (
-            <span class={classNames(`${prefixCls}-iconEle`, `${prefixCls}-icon__customize`)}>
-              {typeof currentIcon === 'function' ? currentIcon(renderArgsData.value) : currentIcon}
-            </span>
+              <span class={classNames(`${prefixCls}-iconEle`, `${prefixCls}-icon__customize`)}>
+                {typeof currentIcon === 'function' ? currentIcon(renderArgsData.value) : currentIcon}
+              </span>
             )
           : (
               renderIcon()

@@ -17,9 +17,9 @@ The most basic usage.
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
-  import { SmileOutlined } from '@ant-design/icons-vue'
   import type { TreeSelectProps } from '@antdv/ui'
+  import { SmileOutlined } from '@ant-design/icons-vue'
+  import { ref, watch } from 'vue'
 
   const value = ref<string>()
   const value1 = ref<string[]>([])

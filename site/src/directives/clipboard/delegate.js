@@ -11,7 +11,6 @@ import closest from './closest'
  * @return {object}
  */
 function _delegate(element, selector, type, callback, useCapture) {
-  // eslint-disable-next-line ts/no-invalid-this
   const listenerFn = listener.apply(this, arguments)
 
   element.addEventListener(type, listenerFn, useCapture)

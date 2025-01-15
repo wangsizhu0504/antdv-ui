@@ -1,4 +1,8 @@
 <script lang="ts">
+  import type { ThemeConfig } from '@antdv/ui/es/config-provider'
+  import { useLocale } from '@/locale'
+  import { message } from '@antdv/ui'
+
   import {
     defineAsyncComponent,
     defineComponent,
@@ -7,16 +11,12 @@
     ref,
     watch,
   } from 'vue'
-  import { message } from '@antdv/ui'
-  import type { ThemeConfig } from '@antdv/ui/es/config-provider'
 
   import Header from '../../layouts/header/index.vue'
 
   // antd换肤编辑器
-  import { ThemeEditor, enUS, zhCN } from '../../components/antdv-token-previewer'
-
+  import { enUS, ThemeEditor, zhCN } from '../../components/antdv-token-previewer'
   import locales from './locales'
-  import { useLocale } from '@/locale'
 
   const ANT_DESIGN_VUE_V4_THEME_EDITOR_THEME = 'ant-design-vue-v4-theme-editor-theme'
 

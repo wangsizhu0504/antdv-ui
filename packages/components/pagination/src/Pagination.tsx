@@ -1,9 +1,9 @@
-import { computed, defineComponent, toRef } from 'vue'
 import { DoubleLeftOutlined, DoubleRightOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
-import { classNames } from '@antdv/utils'
-import { enUS } from '@antdv/locale'
-import { VcPagination } from '@antdv/vue-components'
 import { useBreakpoint } from '@antdv/hooks'
+import { enUS } from '@antdv/locale'
+import { classNames } from '@antdv/utils'
+import { VcPagination } from '@antdv/vue-components'
+import { computed, defineComponent, toRef } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useLocaleReceiver } from '../../locale-provider'
 import useStyle from '../style'
@@ -46,10 +46,10 @@ export default defineComponent({
           <div class={`${pre}-item-container`}>
             {direction.value === 'rtl'
               ? (
-                <DoubleRightOutlined class={`${pre}-item-link-icon`} />
+                  <DoubleRightOutlined class={`${pre}-item-link-icon`} />
                 )
               : (
-                <DoubleLeftOutlined class={`${pre}-item-link-icon`} />
+                  <DoubleLeftOutlined class={`${pre}-item-link-icon`} />
                 )}
             {ellipsis}
           </div>
@@ -60,10 +60,10 @@ export default defineComponent({
           <div class={`${pre}-item-container`}>
             {direction.value === 'rtl'
               ? (
-                <DoubleLeftOutlined class={`${pre}-item-link-icon`} />
+                  <DoubleLeftOutlined class={`${pre}-item-link-icon`} />
                 )
               : (
-                <DoubleRightOutlined class={`${pre}-item-link-icon`} />
+                  <DoubleRightOutlined class={`${pre}-item-link-icon`} />
                 )}
             {ellipsis}
           </div>

@@ -1,12 +1,12 @@
-import { computed, defineComponent, nextTick, ref, watch } from 'vue'
+import type { RadioChangeEvent, RadioGroupChildOption } from './interface'
 import { classNames } from '@antdv/utils'
+import { computed, defineComponent, nextTick, ref, watch } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useInjectFormItemContext } from '../../form/src/FormItemContext'
 import useStyle from '../style'
 import { useProvideRadioGroupContext } from './context'
-import Radio from './Radio'
 import { radioGroupProps } from './props'
-import type { RadioChangeEvent, RadioGroupChildOption } from './interface'
+import Radio from './Radio'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

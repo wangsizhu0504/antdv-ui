@@ -1,5 +1,5 @@
-import { Input } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Input } from '@antdv/ui'
 
 const Demo = () => <Input placeholder="Basic usage" />
 

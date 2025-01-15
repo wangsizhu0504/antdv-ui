@@ -17,9 +17,9 @@ Tree with connected line between nodes, turn on by `showLine`, customize the pre
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
-  import { CarryOutOutlined, SmileTwoTone } from '@ant-design/icons-vue'
   import type { TreeProps } from '@antdv/ui'
+  import { CarryOutOutlined, SmileTwoTone } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const showLine = ref<boolean>(true)
   const showIcon = ref<boolean>(false)

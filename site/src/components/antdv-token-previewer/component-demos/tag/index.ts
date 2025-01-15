@@ -1,11 +1,11 @@
 import type { ComponentDemo } from '../../interface'
-import Default from './tag'
+import closable from './closable'
 import error from './error'
 import info from './info'
-import success from './success'
-import warning from './warning'
 import multiTags from './multiTags'
-import closable from './closable'
+import success from './success'
+import Default from './tag'
+import warning from './warning'
 
 const previewerDemo: ComponentDemo[] = [
   Default,

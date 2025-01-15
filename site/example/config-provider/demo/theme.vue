@@ -18,8 +18,8 @@ Modify theme by `theme` prop.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { theme } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const defaultData = {
     borderRadius: 6,

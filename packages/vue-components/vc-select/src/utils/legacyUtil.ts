@@ -1,7 +1,7 @@
-import type { VNode } from 'vue'
-import { flattenChildren, isValidElement } from '@antdv/utils'
 import type { VueNode } from '@antdv/types'
+import type { VNode } from 'vue'
 import type { BaseOptionType, DefaultOptionType } from '../Select'
+import { flattenChildren, isValidElement } from '@antdv/utils'
 
 function convertNodeToOption<OptionType extends BaseOptionType = DefaultOptionType>(
   node: VNode,

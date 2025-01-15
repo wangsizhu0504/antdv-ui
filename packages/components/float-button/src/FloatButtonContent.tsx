@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
 import { FileTextOutlined } from '@ant-design/icons-vue'
 import { filterEmpty } from '@antdv/utils'
+import { defineComponent } from 'vue'
 import { floatButtonContentProps } from './props'
 
 export default defineComponent({
@@ -17,19 +17,19 @@ export default defineComponent({
         <div {...attrs} class={[attrs.class, `${prefixCls}-content`]}>
           {slots.icon || description.length
             ? (
-              <>
-                {slots.icon && <div class={`${prefixCls}-icon`}>{slots.icon()}</div>}
-                {description.length
-                  ? (
-                    <div class={`${prefixCls}-description`}>{description}</div>
-                    )
-                  : null}
-              </>
+                <>
+                  {slots.icon && <div class={`${prefixCls}-icon`}>{slots.icon()}</div>}
+                  {description.length
+                    ? (
+                        <div class={`${prefixCls}-description`}>{description}</div>
+                      )
+                    : null}
+                </>
               )
             : (
-              <div class={`${prefixCls}-icon`}>
-                <FileTextOutlined />
-              </div>
+                <div class={`${prefixCls}-icon`}>
+                  <FileTextOutlined />
+                </div>
               )}
         </div>
       )

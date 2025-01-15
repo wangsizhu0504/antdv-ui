@@ -1,11 +1,11 @@
 import type { VueNode } from '@antdv/types'
-import { classNames } from '@antdv/utils'
-import { useInjectPanel } from '../PanelContext'
 import type { GenerateConfig } from '../generate'
-import { getLastDay } from '../utils/timeUtil'
 import type { PanelMode } from '../interface'
-import { getCellDateDisabled } from '../utils/dateUtil'
+import { classNames } from '@antdv/utils'
 import useMergeProps from '../hooks/useMergeProps'
+import { useInjectPanel } from '../PanelContext'
+import { getCellDateDisabled } from '../utils/dateUtil'
+import { getLastDay } from '../utils/timeUtil'
 
 export interface PanelBodyProps<DateType> {
   prefixCls: string;
@@ -111,7 +111,7 @@ function PanelBody<DateType>(_props: PanelBodyProps<DateType>) {
                 getCellNode(currentDate)
               )
             : (
-              <div class={`${cellPrefixCls}-inner`}>{getCellText(currentDate)}</div>
+                <div class={`${cellPrefixCls}-inner`}>{getCellText(currentDate)}</div>
               )}
         </td>,
       )

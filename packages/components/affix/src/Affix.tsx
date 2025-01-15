@@ -1,3 +1,7 @@
+import type { AffixState } from './interface'
+import { classNames, omit, throttleByAnimationFrame } from '@antdv/utils'
+import { ResizeObserver } from '@antdv/vue-components'
+
 import {
   computed,
   defineComponent,
@@ -9,16 +13,12 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { classNames, omit, throttleByAnimationFrame } from '@antdv/utils'
-import { ResizeObserver } from '@antdv/vue-components'
 
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-
 import useStyle from '../style'
-import { addObserveTarget, getFixedBottom, getFixedTop, getTargetRect, removeObserveTarget } from './utils'
-import { affixProps } from './props'
 import { AffixStatus } from './interface'
-import type { AffixState } from './interface'
+import { affixProps } from './props'
+import { addObserveTarget, getFixedBottom, getFixedTop, getTargetRect, removeObserveTarget } from './utils'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

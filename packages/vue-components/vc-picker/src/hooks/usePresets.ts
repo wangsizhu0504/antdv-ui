@@ -1,8 +1,8 @@
 import type { ComputedRef } from 'vue'
-import { computed } from 'vue'
+import type { PresetDate } from '../interface'
 
 import { warning } from '@antdv/utils'
-import type { PresetDate } from '../interface'
+import { computed } from 'vue'
 
 export default function usePresets<T>(
   presets?: ComputedRef<Array<PresetDate<T>>>,

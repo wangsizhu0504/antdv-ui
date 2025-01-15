@@ -1,16 +1,16 @@
-import { defineComponent } from 'vue'
 import { classNames, initDefaultProps } from '@antdv/utils'
+import { defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
-import Title from './Title'
-import Paragraph from './Paragraph'
 import Element from './Element'
+import Paragraph from './Paragraph'
 import {
   type SkeletonAvatarProps as AvatarProps,
   type SkeletonParagraphProps,
-  type SkeletonTitleProps,
   skeletonProps,
+  type SkeletonTitleProps,
 } from './props'
+import Title from './Title'
 
 /* This only for skeleton internal. */
 type SkeletonAvatarProps = Omit<AvatarProps, 'active'>

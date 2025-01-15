@@ -1,6 +1,6 @@
 import type { ComponentDemo } from '../../interface'
-import Default from './tabs'
 import card from './cardTabs'
+import Default from './tabs'
 
 const previewerDemo: ComponentDemo[] = [Default, card]
 

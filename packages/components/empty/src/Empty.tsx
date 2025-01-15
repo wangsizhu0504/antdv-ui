@@ -1,16 +1,16 @@
-import { computed, defineComponent, h, inject } from 'vue'
-import { classNames, filterEmpty } from '@antdv/utils'
-
 import type { VueNode } from '@antdv/types'
-import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
+import type { EmptyProps } from './props'
+
+import { classNames, filterEmpty } from '@antdv/utils'
+import { computed, defineComponent, h, inject } from 'vue'
 
 import { configProviderKey, defaultConfigProvider } from '../../config-provider/src/context'
 
+import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
 import useStyle from '../style'
 import DefaultEmptyImg from './DefaultEmptyImg'
-import SimpleEmptyImg from './SimpleEmptyImg'
 import { emptyProps } from './props'
-import type { EmptyProps } from './props'
+import SimpleEmptyImg from './SimpleEmptyImg'
 
 interface Locale {
   description?: string

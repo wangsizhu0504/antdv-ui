@@ -1,6 +1,6 @@
-import { ref, watchEffect } from 'vue'
 import type { Ref } from 'vue'
 import type { Tab, TabOffset, TabOffsetMap, TabSizeMap } from '../interface'
+import { ref, watchEffect } from 'vue'
 
 const DEFAULT_SIZE = { width: 0, height: 0, left: 0, top: 0 }
 

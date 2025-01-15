@@ -16,8 +16,8 @@ use [`Form.useForm`](#useform) custom trigger to validation logic and status.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, toRaw } from 'vue'
   import { Form } from '@antdv/ui'
+  import { reactive, toRaw } from 'vue'
 
   const useForm = Form.useForm
 

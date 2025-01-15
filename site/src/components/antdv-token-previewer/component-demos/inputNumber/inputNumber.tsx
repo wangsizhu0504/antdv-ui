@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { InputNumber } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { InputNumber } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 function onChange() {}
 const Demo = defineComponent({

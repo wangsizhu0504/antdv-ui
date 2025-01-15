@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-  import { computed, inject, reactive, ref, watch } from 'vue'
-  import { useRoute } from 'vue-router'
+  import type { GlobalConfig } from '@/types'
+  import { GLOBAL_CONFIG } from '@/SymbolKey'
   import { UnorderedListOutlined } from '@ant-design/icons-vue'
   import { version } from '@antdv/ui'
+  import { computed, inject, reactive, ref, watch } from 'vue'
+  import { useRoute } from 'vue-router'
   import Logo from './Logo.vue'
   import Menu from './Menu.vue'
   import SearchBox from './SearchBox.vue'
-  import { GLOBAL_CONFIG } from '@/SymbolKey'
-  import type { GlobalConfig } from '@/types'
 
   const route = useRoute()
   const globalConfig = inject<GlobalConfig>(GLOBAL_CONFIG)

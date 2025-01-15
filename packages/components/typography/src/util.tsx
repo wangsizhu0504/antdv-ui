@@ -1,6 +1,6 @@
+import type { CSSProperties, VNodeTypes } from 'vue'
 import { styleToString } from '@antdv/utils'
 import { createApp } from 'vue'
-import type { CSSProperties, VNodeTypes } from 'vue'
 
 interface MeasureResult {
   finished: boolean

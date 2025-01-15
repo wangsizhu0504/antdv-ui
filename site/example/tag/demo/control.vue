@@ -17,8 +17,8 @@ Generating a set of Tags by array, you can add and remove dynamically.
 </docs>
 
 <script lang="ts" setup>
-  import { nextTick, reactive, ref } from 'vue'
   import { PlusOutlined } from '@ant-design/icons-vue'
+  import { nextTick, reactive, ref } from 'vue'
 
   const inputRef = ref<any>()
   const state = reactive({

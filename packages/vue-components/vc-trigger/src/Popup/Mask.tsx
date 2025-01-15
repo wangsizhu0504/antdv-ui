@@ -1,5 +1,5 @@
-import { Transition } from 'vue'
 import type { AnimationType, TransitionNameType } from '../interface'
+import { Transition } from 'vue'
 import { getMotion } from '../utils/motionUtil'
 
 export interface MaskProps {

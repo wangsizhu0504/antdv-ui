@@ -1,5 +1,5 @@
-import type { VNodeTypes } from 'vue'
 import type { Locale } from '@antdv/locale'
+import type { VNodeTypes } from 'vue'
 
 export type LocaleComponentName = Exclude<keyof Locale, 'locale'>
 

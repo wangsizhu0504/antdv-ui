@@ -1,16 +1,5 @@
-import {
-  CheckCircleFilled,
-  CloseCircleFilled,
-  ExclamationCircleFilled,
-  InfoCircleFilled,
-  LoadingOutlined,
-} from '@ant-design/icons-vue'
-import { classNames } from '@antdv/utils'
 import type { Key } from '@antdv/types'
 import type { NotificationInstance } from '@antdv/vue-components/vc-notification/src/Notification'
-import VcNotification from '@antdv/vue-components/vc-notification/src/Notification'
-
-import useStyle from '../style'
 import type {
   ConfigDuration,
   ConfigOnClose,
@@ -22,6 +11,17 @@ import type {
   ThenableArgument,
 } from './interface'
 import type { MessageArgsProps } from './props'
+import {
+  CheckCircleFilled,
+  CloseCircleFilled,
+  ExclamationCircleFilled,
+  InfoCircleFilled,
+  LoadingOutlined,
+} from '@ant-design/icons-vue'
+
+import { classNames } from '@antdv/utils'
+import VcNotification from '@antdv/vue-components/vc-notification/src/Notification'
+import useStyle from '../style'
 
 let defaultDuration = 3
 let defaultTop: string

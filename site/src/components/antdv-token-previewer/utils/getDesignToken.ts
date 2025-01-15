@@ -1,5 +1,5 @@
-import type { ThemeConfig } from '@antdv/ui'
 import type { GlobalToken, MapToken } from '@antdv/theme/token/interface'
+import type { ThemeConfig } from '@antdv/ui'
 import defaultMap from '@antdv/theme/token/themes/default'
 import seed from '@antdv/theme/token/themes/seed'
 import formatToken from '@antdv/theme/token/util/alias'

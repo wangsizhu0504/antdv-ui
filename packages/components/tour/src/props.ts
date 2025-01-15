@@ -1,5 +1,5 @@
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { VueNode } from '@antdv/types'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import { tourProps as VcTourProps, tourStepProps as VcTourStepProps } from '@antdv/vue-components'
 
 export function tourProps() {

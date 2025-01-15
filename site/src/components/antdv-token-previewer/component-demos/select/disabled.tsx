@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface'
 import { Select } from '@antdv/ui'
 
-import type { ComponentDemo } from '../../interface'
+import { defineComponent } from 'vue'
 
 import options from './data'
 

@@ -1,6 +1,5 @@
-import { computed, defineComponent, shallowRef, watch, watchEffect } from 'vue'
 import type { CSSProperties } from 'vue'
-import { qrcodeCanvasProps } from './props'
+import { computed, defineComponent, shallowRef, watch, watchEffect } from 'vue'
 import {
   DEFAULT_BGCOLOR,
   DEFAULT_FGCOLOR,
@@ -9,8 +8,9 @@ import {
   DEFAULT_SIZE,
   ERROR_LEVEL_MAP,
 } from './constant'
+import { qrcodeCanvasProps } from './props'
 import QrcodeGen from './qrcodegen'
-import { SUPPORTS_PATH2D, excavateModules, generatePath, getImageSettings, getMarginSize } from './util'
+import { excavateModules, generatePath, getImageSettings, getMarginSize, SUPPORTS_PATH2D } from './util'
 
 export default defineComponent({
   name: 'QRCodeCanvas',

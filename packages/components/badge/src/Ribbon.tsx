@@ -1,7 +1,7 @@
-import { computed, defineComponent } from 'vue'
 import type { CustomSlotsType } from '@antdv/types'
 import type { CSSProperties } from 'vue'
 import { isPresetColor } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
 import useStyle from '../style'

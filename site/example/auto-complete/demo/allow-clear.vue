@@ -16,8 +16,8 @@ Customize clear button.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { CloseOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   interface MockVal {
     value: string;

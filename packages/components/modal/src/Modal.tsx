@@ -1,15 +1,15 @@
-import { defineComponent } from 'vue'
+import type { MousePosition } from './interface'
 import { CloseOutlined } from '@ant-design/icons-vue'
 import { addEventListenerWrap, canUseDocElement, classNames, devWarning, initDefaultProps } from '@antdv/utils'
-import { VcDialog, getTransitionName } from '@antdv/vue-components'
+import { getTransitionName, VcDialog } from '@antdv/vue-components'
+import { defineComponent } from 'vue'
 import Button, { convertLegacyProps } from '../../button'
-import { useLocaleReceiver } from '../../locale-provider'
 
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
+import { useLocaleReceiver } from '../../locale-provider'
 import useStyle from '../style'
 import { modalProps } from './props'
-import type { MousePosition } from './interface'
 
 let mousePosition: MousePosition
 // ref: https://github.com/ant-design/ant-design/issues/15795

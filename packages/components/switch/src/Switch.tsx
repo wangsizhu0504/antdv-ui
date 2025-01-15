@@ -1,3 +1,7 @@
+import type { CustomSlotsType } from '@antdv/types'
+import type { CheckedType } from './interface'
+import { LoadingOutlined } from '@ant-design/icons-vue'
+import { devWarning, getPropsSlot, KeyCode, omit } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -7,16 +11,12 @@ import {
   ref,
   watch,
 } from 'vue'
-import { LoadingOutlined } from '@ant-design/icons-vue'
-import { KeyCode, devWarning, getPropsSlot, omit } from '@antdv/utils'
-import type { CustomSlotsType } from '@antdv/types'
+import { useInjectDisabled } from '../../config-provider'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useInjectFormItemContext } from '../../form/src/FormItemContext'
 import { Wave } from '../../wave'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { useInjectDisabled } from '../../config-provider'
 import useStyle from '../style'
 import { switchProps } from './props'
-import type { CheckedType } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

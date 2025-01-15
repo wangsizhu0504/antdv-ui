@@ -1,9 +1,9 @@
 import type { Ref, VNode } from 'vue'
-import { computed } from 'vue'
-import { cloneElement, isValidElement } from '@antdv/utils'
-import { toPathOptions } from '../utils/treeUtil'
 import type { BaseCascaderProps, DefaultOptionType, InternalFieldNames, SingleValueType } from '../Cascader'
+import { cloneElement, isValidElement } from '@antdv/utils'
+import { computed } from 'vue'
 import { toPathKey } from '../utils/commonUtil'
+import { toPathOptions } from '../utils/treeUtil'
 
 export default (
   rawValues: Ref<SingleValueType[]>,

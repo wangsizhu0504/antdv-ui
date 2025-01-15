@@ -1,14 +1,14 @@
-// eslint-disable-next-line ts/ban-ts-comment
+import type { ThemeConfig } from '@antdv/ui/es/config-provider'
+import type { CSSProperties, PropType } from 'vue'
+import type { MutableTheme, TokenValue } from '../../interface'
+
 // @ts-nocheck
 import { CaretRightOutlined } from '@ant-design/icons-vue'
 import { Collapse, Space } from '@antdv/ui'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider'
 import { classNames } from '@antdv/utils'
-import type { CSSProperties, PropType } from 'vue'
 import { computed, defineComponent, ref, toRefs, watch } from 'vue'
 import ColorPreview from '../../ColorPreview'
 import { Pick } from '../../icons'
-import type { MutableTheme, TokenValue } from '../../interface'
 import TokenInput from '../../TokenInput'
 import getValueByPath from '../../utils/getValueByPath'
 import isColor from '../../utils/isColor'
@@ -313,12 +313,12 @@ export default defineComponent({
               extra={
                 enableTokenSelect.value
                   ? (
-                    <ShowUsageButton
-                      selected={!!selectedTokens.value?.includes(tokenName.value)}
-                      toggleSelected={() => {
-                        props.onTokenSelect?.(tokenName.value)
-                      }}
-                    />
+                      <ShowUsageButton
+                        selected={!!selectedTokens.value?.includes(tokenName.value)}
+                        toggleSelected={() => {
+                          props.onTokenSelect?.(tokenName.value)
+                        }}
+                      />
                     )
                   : undefined
               }

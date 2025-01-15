@@ -1,7 +1,7 @@
-import { TinyColor } from '@ctrl/tinycolor'
 import type { GenerateStyle } from '@antdv/theme'
-import { clearFix, textEllipsis } from '@antdv/theme'
 import type { UploadToken } from '.'
+import { clearFix, textEllipsis } from '@antdv/theme'
+import { TinyColor } from '@ctrl/tinycolor'
 
 const genPictureStyle: GenerateStyle<UploadToken> = (token) => {
   const { componentCls, iconCls, uploadThumbnailSize, uploadProgressOffset } = token
@@ -224,4 +224,4 @@ const genPictureCardStyle: GenerateStyle<UploadToken> = (token) => {
   }
 }
 
-export { genPictureStyle, genPictureCardStyle }
+export { genPictureCardStyle, genPictureStyle }

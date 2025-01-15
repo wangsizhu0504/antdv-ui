@@ -1,6 +1,6 @@
-import { anyType, booleanType, functionType, someType, vNodeType } from '@antdv/utils'
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from 'vue'
-import type { Formatter, countdownValueType, valueType } from './interface'
+import type { countdownValueType, Formatter, valueType } from './interface'
+import { anyType, booleanType, functionType, someType, vNodeType } from '@antdv/utils'
 
 export function statisticProps() {
   return {

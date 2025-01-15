@@ -17,8 +17,8 @@ A example shows how to select a dynamic range by using `onCalendarChange` and `d
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { Dayjs } from 'dayjs'
+  import { ref } from 'vue'
 
   type RangeValue = [Dayjs, Dayjs]
   const dates = ref<RangeValue>()

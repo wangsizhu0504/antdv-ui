@@ -18,9 +18,9 @@ value 和 onChange 需要配合使用。也可以直接使用v-model。
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { Dayjs } from 'dayjs'
   import dayjs from 'dayjs'
+  import { ref } from 'vue'
 
   const value = ref<Dayjs>()
 

@@ -1,10 +1,10 @@
 <script>
   import { defineComponent } from 'vue'
-  import CN from '../index.zh-CN.md'
   import US from '../index.en-US.md'
+  import CN from '../index.zh-CN.md'
+  import Direction from './direction.vue'
   import Locale from './locale.vue'
   import Size from './size.vue'
-  import Direction from './direction.vue'
   import Theme from './theme.vue'
 
   export default defineComponent({

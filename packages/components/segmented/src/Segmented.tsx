@@ -1,12 +1,12 @@
-import { computed, defineComponent, shallowRef } from 'vue'
-import { classNames, initDefaultProps } from '@antdv/utils'
 import type { ChangeEvent, CustomSlotsType } from '@antdv/types'
+import type { SegmentedBaseOption, SegmentedOptionType, SegmentedValue } from './interface'
+import { classNames, initDefaultProps } from '@antdv/utils'
+import { computed, defineComponent, shallowRef } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import MotionThumb from './MotionThumb'
 import SegmentedOption from './Options'
 import { segmentedProps } from './props'
-import type { SegmentedBaseOption, SegmentedOptionType, SegmentedValue } from './interface'
 
 function normalizeOptions(options: Array<SegmentedOptionType | string | number>) {
   return options.map((option) => {

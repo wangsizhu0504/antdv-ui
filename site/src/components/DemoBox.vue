@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { computed, defineComponent, inject, onMounted, ref } from 'vue'
-  import { CheckOutlined, CodeSandboxOutlined, SnippetsOutlined } from '@ant-design/icons-vue'
-  import { GLOBAL_CONFIG } from '../SymbolKey'
-  import packageInfo from '../../../packages/antdv-ui/package.json'
-  import { getCodeSandboxParams } from '@/utils/generateOnlineDemo'
   import type { GlobalConfig } from '@/types'
+  import { getCodeSandboxParams } from '@/utils/generateOnlineDemo'
+  import { CheckOutlined, CodeSandboxOutlined, SnippetsOutlined } from '@ant-design/icons-vue'
+  import { computed, defineComponent, inject, onMounted, ref } from 'vue'
+  import packageInfo from '../../../packages/antdv-ui/package.json'
+  import { GLOBAL_CONFIG } from '../SymbolKey'
 
   // import { Modal } from '@antdv/ui';
   export default defineComponent({

@@ -17,9 +17,9 @@ Comment can be used as editor, user can customize the editor component.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import dayjs from 'dayjs'
   import relativeTime from 'dayjs/plugin/relativeTime'
+  import { ref } from 'vue'
 
   dayjs.extend(relativeTime)
 

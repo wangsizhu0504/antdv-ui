@@ -1,19 +1,19 @@
 import type { PropType } from 'vue'
+import type { FlattenNode } from './interface'
 import {
-  Transition,
   computed,
   defineComponent,
   nextTick,
   onBeforeUnmount,
   onMounted,
   shallowRef,
+  Transition,
   watch,
 } from 'vue'
 import { collapseMotion } from '../../transition'
-import TreeNode from './TreeNode'
-import type { FlattenNode } from './interface'
 import { useInjectTreeContext } from './contextTypes'
 import { treeNodeProps } from './props'
+import TreeNode from './TreeNode'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

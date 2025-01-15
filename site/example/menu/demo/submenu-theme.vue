@@ -17,10 +17,10 @@ You can config SubMenu theme with `theme` prop to enable different theme color e
 </docs>
 
 <script lang="ts" setup>
-  import type { ComputedRef, VueElement } from 'vue'
-  import { computed, h, ref } from 'vue'
-  import { MailOutlined } from '@ant-design/icons-vue'
   import type { MenuProps } from '@antdv/ui'
+  import type { ComputedRef, VueElement } from 'vue'
+  import { MailOutlined } from '@ant-design/icons-vue'
+  import { computed, h, ref } from 'vue'
 
   const selectedKeys = ref<string[]>(['1'])
   const openKeys = ref<string[]>(['sub1'])

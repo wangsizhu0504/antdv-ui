@@ -17,9 +17,9 @@ Submenus open as pop-ups.
 </docs>
 
 <script lang="ts" setup>
-  import { h, ref } from 'vue'
-  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
   import type { MenuProps } from '@antdv/ui'
+  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
+  import { h, ref } from 'vue'
 
   const selectedKeys = ref<any>([])
   const openKeys = ref<any>([])
@@ -107,8 +107,8 @@ Submenus open as pop-ups.
 
 <template>
   <a-menu
-    v-model:openKeys="openKeys"
-    v-model:selectedKeys="selectedKeys"
+    v-model:open-keys="openKeys"
+    v-model:selected-keys="selectedKeys"
     style="width: 256px"
     mode="vertical"
     :items="items"

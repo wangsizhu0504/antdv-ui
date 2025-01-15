@@ -50,8 +50,8 @@ Use virtual list through `height` prop.
 
 <template>
   <a-tree
-    v-model:selectedKeys="selectedKeys"
-    v-model:checkedKeys="checkedKeys"
+    v-model:selected-keys="selectedKeys"
+    v-model:checked-keys="checkedKeys"
     default-expand-all
     checkable
     :height="233"

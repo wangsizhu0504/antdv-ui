@@ -1,3 +1,6 @@
+import type { AnchorContainer, AnchorLinkItemProps, AnchorState, Section } from './interface'
+import { addEventListenerWrap, classNames, devWarning, getScroll, scrollTo } from '@antdv/utils'
+import scrollIntoView from 'scroll-into-view-if-needed'
 import {
   computed,
   defineComponent,
@@ -8,16 +11,13 @@ import {
   reactive,
   ref,
 } from 'vue'
-import scrollIntoView from 'scroll-into-view-if-needed'
-import { addEventListenerWrap, classNames, devWarning, getScroll, scrollTo } from '@antdv/utils'
-import Affix from '../../affix'
 
+import Affix from '../../affix'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import AnchorLink from './AnchorLink'
 import useProvideAnchor from './context'
 import { anchorProps } from './props'
-import type { AnchorContainer, AnchorLinkItemProps, AnchorState, Section } from './interface'
 
 function getDefaultContainer() {
   return window
@@ -274,9 +274,9 @@ export default defineComponent({
               anchorContent
             )
           : (
-            <Affix {...attrs} offsetTop={offsetTop} target={getContainer.value}>
-              {anchorContent}
-            </Affix>
+              <Affix {...attrs} offsetTop={offsetTop} target={getContainer.value}>
+                {anchorContent}
+              </Affix>
             ),
       )
     }

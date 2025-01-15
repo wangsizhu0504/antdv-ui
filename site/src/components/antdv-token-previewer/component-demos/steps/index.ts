@@ -1,6 +1,6 @@
 import type { ComponentDemo } from '../../interface'
-import Demo from './steps'
 import danger from './danger'
+import Demo from './steps'
 
 const previewerDemo: ComponentDemo[] = [Demo, danger]
 

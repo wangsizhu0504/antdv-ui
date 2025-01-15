@@ -1,5 +1,3 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-import { PropTypes, stringType } from '@antdv/utils'
 import type {
   ChangeEventHandler,
   CompositionEventHandler,
@@ -10,7 +8,9 @@ import type {
   SizeType,
   VueNode,
 } from '@antdv/types'
+import type { ExtractPropTypes, PropType } from 'vue'
 import type { InputFocusOptions } from './utils/commonUtils'
+import { PropTypes, stringType } from '@antdv/utils'
 
 export const inputDefaultValue = Symbol('inputDefaultValue') as unknown as string
 export function commonInputProps() {
@@ -79,8 +79,8 @@ export function inputProps() {
     | 'time'
     | 'url'
     | 'week'
-  >('text',
-  ),
+    >('text',
+    ),
     'name': String,
     'size': { type: String as PropType<SizeType> },
     'autofocus': { type: Boolean, default: undefined },

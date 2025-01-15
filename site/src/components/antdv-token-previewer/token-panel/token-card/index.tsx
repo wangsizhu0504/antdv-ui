@@ -1,5 +1,7 @@
+import type { ThemeConfig } from '@antdv/ui/es/config-provider'
 import type { PropType } from 'vue'
-import { defineComponent, ref, toRefs } from 'vue'
+import type { MutableTheme, TokenValue } from '../../interface'
+import type { TokenType } from '../../utils/classifyToken'
 import {
   AlignLeftOutlined,
   BgColorsOutlined,
@@ -16,12 +18,10 @@ import {
   TabletOutlined,
 } from '@ant-design/icons-vue'
 import { Collapse, Space } from '@antdv/ui'
-import type { ThemeConfig } from '@antdv/ui/es/config-provider'
-import { PropTypes, classNames } from '@antdv/utils'
 
+import { classNames, PropTypes } from '@antdv/utils'
+import { defineComponent, ref, toRefs } from 'vue'
 import { Motion, ShapeLine } from '../../icons'
-import type { MutableTheme, TokenValue } from '../../interface'
-import type { TokenType } from '../../utils/classifyToken'
 import makeStyle from '../../utils/makeStyle'
 import { getRelatedComponents } from '../../utils/statistic'
 import TokenItem from '../token-item'

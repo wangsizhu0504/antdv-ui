@@ -1,4 +1,4 @@
-import { computed, defineComponent } from 'vue'
+import type { CustomSlotsType } from '@antdv/types'
 import { RightOutlined } from '@ant-design/icons-vue'
 import {
   classNames,
@@ -9,8 +9,8 @@ import {
   isValidElement,
   omit,
 } from '@antdv/utils'
-import type { CustomSlotsType } from '@antdv/types'
 import { VcDropdown } from '@antdv/vue-components'
+import { computed, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useProvideOverride } from '../../menu/src/OverrideContext'
 import useStyle from '../style'
@@ -109,9 +109,9 @@ export default defineComponent({
               expandIcon
             )
           : (
-            <span class={`${prefixCls.value}-menu-submenu-arrow`}>
-              <RightOutlined class={`${prefixCls.value}-menu-submenu-arrow-icon`} />
-            </span>
+              <span class={`${prefixCls.value}-menu-submenu-arrow`}>
+                <RightOutlined class={`${prefixCls.value}-menu-submenu-arrow-icon`} />
+              </span>
             )
 
       const fixedModeOverlay = isValidElement(overlayNode)

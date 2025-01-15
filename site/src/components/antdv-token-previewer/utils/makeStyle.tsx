@@ -1,10 +1,10 @@
 import type { CSSInterpolation, UseComponentStyleResult } from '@antdv/theme'
-import { useStyleRegister } from '@antdv/theme'
-import { theme as antdTheme } from '@antdv/ui'
 import type { GlobalToken } from '@antdv/theme/token/interface'
-import { mergeToken } from '@antdv/theme/token'
-import { computed } from 'vue'
 import useConfigInject from '@antdv/components/config-provider/src/hooks/useConfigInject'
+import { useStyleRegister } from '@antdv/theme'
+import { mergeToken } from '@antdv/theme/token'
+import { theme as antdTheme } from '@antdv/ui'
+import { computed } from 'vue'
 
 function makeStyle(path: string, styleFn: (token: GlobalToken & { rootCls: string }) => CSSInterpolation) {
   return (): UseComponentStyleResult => {

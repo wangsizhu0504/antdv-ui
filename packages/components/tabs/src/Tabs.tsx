@@ -1,11 +1,12 @@
-// Accessibility https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
-import { defineComponent } from 'vue'
+import type { SlotsType } from 'vue'
+import type { Tab } from './interface'
+
 import { camelize, flattenChildren, initDefaultProps, isValidElement, omit } from '@antdv/utils'
 
-import type { SlotsType } from 'vue'
-import { tabsProps } from './props'
+// Accessibility https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role
+import { defineComponent } from 'vue'
 import InternalTabs from './InternalTabs'
-import type { Tab } from './interface'
+import { tabsProps } from './props'
 
 function parseTabList(children: any[]): Tab[] {
   return children

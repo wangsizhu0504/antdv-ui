@@ -1,5 +1,5 @@
-import { Menu } from '@antdv/ui'
 import { DownOutlined } from '@ant-design/icons-vue'
+import { Menu } from '@antdv/ui'
 
 const menu = (
   <Menu>

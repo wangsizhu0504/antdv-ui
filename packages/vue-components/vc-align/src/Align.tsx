@@ -1,4 +1,9 @@
 import type { PropType } from 'vue'
+import type { AlignResult, AlignType, TargetPoint, TargetType } from './interface'
+import { addEventListenerWrap, cloneElement, isVisible } from '@antdv/utils'
+import { alignElement, alignPoint } from 'dom-align'
+import { isEqual } from 'lodash-es'
+
 import {
   computed,
   defineComponent,
@@ -9,13 +14,8 @@ import {
   ref,
   watch,
 } from 'vue'
-import { alignElement, alignPoint } from 'dom-align'
-import { addEventListenerWrap, cloneElement, isVisible } from '@antdv/utils'
-import { isEqual } from 'lodash-es'
-
-import { isSamePoint, monitorResize, restoreFocus } from './util'
-import type { AlignResult, AlignType, TargetPoint, TargetType } from './interface'
 import useBuffer from './hooks/useBuffer'
+import { isSamePoint, monitorResize, restoreFocus } from './util'
 
 type OnAlign = (source: HTMLElement, result: AlignResult) => void
 

@@ -2,8 +2,8 @@ import type { VueNode } from '@antdv/types'
 import type { Ref } from 'vue'
 import type { CSSInterpolation } from '../../cssinjs'
 
-import type { ComponentTokenMap } from './components'
 import type { AliasToken } from './alias'
+import type { ComponentTokenMap } from './components'
 
 export type OverrideToken = {
   [key in keyof ComponentTokenMap]: Partial<ComponentTokenMap[key]> & Partial<AliasToken>;
@@ -12,21 +12,21 @@ export type OverrideToken = {
 /** Final token which contains the components level override */
 export type GlobalToken = AliasToken & ComponentTokenMap
 
-export { PresetColors } from './presetColors'
-export type { PresetColorType, ColorPalettes, PresetColorKey } from './presetColors'
-export type { SeedToken } from './seeds'
+export type { AliasToken } from './alias'
+export type { ComponentTokenMap } from './components'
 export type {
-  MapToken,
   ColorMapToken,
   ColorNeutralMapToken,
   CommonMapToken,
-  HeightMapToken,
-  SizeMapToken,
   FontMapToken,
+  HeightMapToken,
+  MapToken,
+  SizeMapToken,
   StyleMapToken,
 } from './maps'
-export type { AliasToken } from './alias'
-export type { ComponentTokenMap } from './components'
+export { PresetColors } from './presetColors'
+export type { ColorPalettes, PresetColorKey, PresetColorType } from './presetColors'
+export type { SeedToken } from './seeds'
 export type UseComponentStyleResult = [(node: VueNode) => VueNode, Ref<string>]
 
 export type GenerateStyle<

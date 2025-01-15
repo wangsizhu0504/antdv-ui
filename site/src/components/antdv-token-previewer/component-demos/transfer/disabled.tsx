@@ -1,7 +1,7 @@
-import { defineComponent, ref } from 'vue'
+import type { ComponentDemo } from '../../interface'
 import { Transfer } from '@antdv/ui'
 
-import type { ComponentDemo } from '../../interface'
+import { defineComponent, ref } from 'vue'
 
 const mockData: any[] = []
 for (let i = 0; i < 20; i++) {

@@ -1,27 +1,5 @@
-import type { CSSProperties, VNodeArrayChildren } from 'vue'
-import {
-  Text,
-  computed,
-  defineComponent,
-  isVNode,
-  shallowRef,
-  watch,
-} from 'vue'
-import {
-  addClass,
-  classNames,
-  customRenderSlot,
-  eagerComputed,
-  filterEmpty,
-  findDOMNode,
-  flattenChildren,
-  isValidElement,
-  removeClass,
-  warning,
-} from '@antdv/utils'
-
 import type { MouseEventHandler } from '@antdv/types'
-import { useInjectSlots } from '@antdv/components/table/src/context'
+import type { CSSProperties, VNodeArrayChildren } from 'vue'
 import type {
   AdditionalProps,
   AlignType,
@@ -34,10 +12,32 @@ import type {
   RenderedCell,
   TransformCellText,
 } from '../interface'
-import { getPathValue, validateValue } from '../utils/valueUtil'
-import { INTERNAL_COL_DEFINE } from '../utils/legacyUtil'
+
+import { useInjectSlots } from '@antdv/components/table/src/context'
+import {
+  addClass,
+  classNames,
+  customRenderSlot,
+  eagerComputed,
+  filterEmpty,
+  findDOMNode,
+  flattenChildren,
+  isValidElement,
+  removeClass,
+  warning,
+} from '@antdv/utils'
+import {
+  computed,
+  defineComponent,
+  isVNode,
+  shallowRef,
+  Text,
+  watch,
+} from 'vue'
 import { useInjectHover } from '../context/HoverContext'
 import { useInjectSticky } from '../context/StickyContext'
+import { INTERNAL_COL_DEFINE } from '../utils/legacyUtil'
+import { getPathValue, validateValue } from '../utils/valueUtil'
 
 /** Check if cell is in hover range */
 function inHoverRange(cellStartRow: number, cellRowSpan: number, startRow: number, endRow: number) {

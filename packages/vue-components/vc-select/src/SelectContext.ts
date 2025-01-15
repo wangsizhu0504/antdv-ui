@@ -4,10 +4,10 @@
  */
 
 import type { InjectionKey } from 'vue'
-import { inject, provide } from 'vue'
 import type { RawValueType, RenderNode } from './BaseSelect'
 import type { FlattenOptionData } from './interface'
 import type { BaseOptionType, FieldNames, OnActiveValue, OnInternalSelect } from './Select'
+import { inject, provide } from 'vue'
 
 // Use any here since we do not get the type during compilation
 export interface SelectContextProps {

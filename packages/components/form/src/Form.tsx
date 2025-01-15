@@ -1,19 +1,4 @@
-import { computed, defineComponent, ref, watch } from 'vue'
-import { isEqual } from 'lodash-es'
-import scrollIntoView from 'scroll-into-view-if-needed'
-import { classNames, devWarning, initDefaultProps, toArray } from '@antdv/utils'
 import type { Options } from 'scroll-into-view-if-needed'
-
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { useInjectGlobalForm, useProviderDisabled, useProviderSize } from '../../config-provider'
-import useStyle from '../style'
-import useForm from './useForm'
-import { useProvideForm } from './context'
-import { allPromiseFinish } from './utils/asyncUtil'
-import { defaultValidateMessages } from './utils/messages'
-import { cloneByNamePathList, containsNamePath, getNamePath } from './utils/valueUtil'
-import FormItem from './FormItem'
-import { formProps } from './props'
 import type {
   FieldExpose,
   FormExpose,
@@ -23,6 +8,21 @@ import type {
   ValidateErrorEntity,
   ValidateOptions,
 } from './interface'
+import { classNames, devWarning, initDefaultProps, toArray } from '@antdv/utils'
+import { isEqual } from 'lodash-es'
+import scrollIntoView from 'scroll-into-view-if-needed'
+
+import { computed, defineComponent, ref, watch } from 'vue'
+import { useInjectGlobalForm, useProviderDisabled, useProviderSize } from '../../config-provider'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import useStyle from '../style'
+import { useProvideForm } from './context'
+import FormItem from './FormItem'
+import { formProps } from './props'
+import useForm from './useForm'
+import { allPromiseFinish } from './utils/asyncUtil'
+import { defaultValidateMessages } from './utils/messages'
+import { cloneByNamePathList, containsNamePath, getNamePath } from './utils/valueUtil'
 
 function isEqualName(name1: NamePath, name2: NamePath) {
   return isEqual(toArray(name1), toArray(name2))

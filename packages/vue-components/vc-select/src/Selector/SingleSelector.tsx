@@ -1,9 +1,9 @@
-import { Fragment, computed, defineComponent, shallowRef, watch } from 'vue'
-import { PropTypes, pickAttrs } from '@antdv/utils'
 import type { VueNode } from '@antdv/types'
+import type { InnerSelectorProps } from './interface'
+import { pickAttrs, PropTypes } from '@antdv/utils'
+import { computed, defineComponent, Fragment, shallowRef, watch } from 'vue'
 import useInjectLegacySelectContext from '../../../vc-tree-select/src/LegacyContext'
 import Input from './Input'
-import type { InnerSelectorProps } from './interface'
 
 interface SelectorProps extends InnerSelectorProps {
   inputElement: VueNode;

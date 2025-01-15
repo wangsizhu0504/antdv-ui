@@ -17,8 +17,8 @@ Change the placement of the guide relative to the target, there are 12 placement
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { TourProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const open = ref<boolean>(false)
 

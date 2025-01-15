@@ -1,7 +1,7 @@
-import { defineComponent, ref } from 'vue'
+import type { ComponentDemo } from '../../interface'
 import { Transfer } from '@antdv/ui'
 
-import type { ComponentDemo } from '../../interface'
+import { defineComponent, ref } from 'vue'
 
 import mockData from './data'
 

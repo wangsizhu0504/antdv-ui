@@ -1,5 +1,5 @@
-import { Keyframes, genComponentStyleHook, genFocusOutline, mergeToken, resetComponent } from '@antdv/theme'
 import type { CSSInterpolation, CSSObject, DerivativeToken } from '@antdv/theme'
+import { genComponentStyleHook, genFocusOutline, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
 import { genCollapseMotion } from '@antdv/theme/style/motion'
 import { getStyle as getCheckboxStyle } from '../../checkbox/style'
 

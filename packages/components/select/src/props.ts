@@ -1,15 +1,15 @@
+import type { InputStatus, SelectValue, SizeType } from '@antdv/types'
+
+import type { SelectCommonPlacement } from '@antdv/vue-components'
+import type { ExtractPropTypes } from 'vue'
 import {
-  PropTypes,
   booleanType,
   functionType,
   omit,
+  PropTypes,
   someType,
   stringType,
 } from '@antdv/utils'
-
-import type { ExtractPropTypes } from 'vue'
-import type { InputStatus, SelectValue, SizeType } from '@antdv/types'
-import type { SelectCommonPlacement } from '@antdv/vue-components'
 import { vcSelectProps } from '@antdv/vue-components'
 
 export function selectProps() {

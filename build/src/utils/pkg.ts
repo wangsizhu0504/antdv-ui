@@ -1,9 +1,9 @@
 import type { ProjectManifest } from '@pnpm/types'
+import type { Module } from '../build-info'
 import findWorkspacePackages from '@pnpm/find-workspace-packages'
 import { buildConfig } from '../build-info'
-import type { Module } from '../build-info'
-import { projRoot } from '../path'
 import { NPM_PKG_NAME, PKG_NAME, PKG_PREFIX } from '../constants'
+import { projRoot } from '../path'
 
 export function excludeFiles(files: string[]) {
   const excludes = ['node_modules', 'test', 'mock', 'gulpfile', 'dist']

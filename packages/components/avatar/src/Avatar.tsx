@@ -1,3 +1,10 @@
+import type { Breakpoint, CustomSlotsType, VueNode } from '@antdv/types'
+
+import type { CSSProperties } from 'vue'
+import { responsiveArray } from '@antdv/constants'
+import { useBreakpoint } from '@antdv/hooks'
+import { eagerComputed, getPropsSlot } from '@antdv/utils'
+import { ResizeObserver } from '@antdv/vue-components'
 import {
   computed,
   defineComponent,
@@ -6,13 +13,6 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-
-import { eagerComputed, getPropsSlot } from '@antdv/utils'
-import type { CSSProperties } from 'vue'
-import type { Breakpoint, CustomSlotsType, VueNode } from '@antdv/types'
-import { ResizeObserver } from '@antdv/vue-components'
-import { responsiveArray } from '@antdv/constants'
-import { useBreakpoint } from '@antdv/hooks'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
 import useStyle from '../style'

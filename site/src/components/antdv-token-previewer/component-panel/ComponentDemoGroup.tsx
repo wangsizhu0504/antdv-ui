@@ -1,9 +1,9 @@
 import type { CSSProperties, PropType } from 'vue'
-import { defineComponent, toRefs } from 'vue'
+import type { ComponentDemo, MutableTheme, TokenName } from '../interface'
 import { ConfigProvider, Tooltip } from '@antdv/ui'
 import { classNames } from '@antdv/utils'
+import { defineComponent, toRefs } from 'vue'
 import ComponentDemos from '../component-demos'
-import type { ComponentDemo, MutableTheme, TokenName } from '../interface'
 import { useInjectLocaleContext } from '../locale'
 import makeStyle from '../utils/makeStyle'
 import ComponentCard, { getComponentDemoId } from './ComponentCard'
@@ -210,15 +210,15 @@ const ComponentDemoGroup = defineComponent({
                         ))
                       )
                     : (
-                      <ComponentDemoBlock
-                        component={item}
-                        onTokenClick={props.onTokenClick}
-                        demos={demos}
-                        disabled={disabled.value}
-                        size={size.value}
-                        theme={(themes as any).value[0]}
-                        componentDrawer={componentDrawer.value}
-                      />
+                        <ComponentDemoBlock
+                          component={item}
+                          onTokenClick={props.onTokenClick}
+                          demos={demos}
+                          disabled={disabled.value}
+                          size={size.value}
+                          theme={(themes as any).value[0]}
+                          componentDrawer={componentDrawer.value}
+                        />
                       )}
                 </div>
               )

@@ -28,7 +28,7 @@ Making collapse's background to transparent.
 </script>
 
 <template>
-  <a-collapse v-model:activeKey="activeKey" ghost>
+  <a-collapse v-model:active-key="activeKey" ghost>
     <a-collapse-panel key="1" header="This is panel header 1">
       <p>{{ text }}</p>
     </a-collapse-panel>

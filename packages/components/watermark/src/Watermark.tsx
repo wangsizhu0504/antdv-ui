@@ -1,3 +1,9 @@
+import type { CSSProperties, StyleValue } from 'vue'
+import { useMutationObserver } from '@antdv/hooks'
+
+import { useToken } from '@antdv/theme'
+
+import { initDefaultProps } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -6,14 +12,8 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { useMutationObserver } from '@antdv/hooks'
-
-import { initDefaultProps } from '@antdv/utils'
-
-import type { CSSProperties, StyleValue } from 'vue'
-import { useToken } from '@antdv/theme'
-import { getPixelRatio, getStyleStr, reRendering, rotateWatermark } from './utils'
 import { watermarkProps } from './props'
+import { getPixelRatio, getStyleStr, reRendering, rotateWatermark } from './utils'
 
 /**
  * Base size of the canvas, 1 for parallel layout and 2 for alternate layout

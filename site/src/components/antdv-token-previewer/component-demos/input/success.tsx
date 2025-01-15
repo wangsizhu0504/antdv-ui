@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue'
-import { Input, theme } from '@antdv/ui'
-import { CheckCircleFilled } from '@ant-design/icons-vue'
 import type { ComponentDemo } from '../../interface'
+import { CheckCircleFilled } from '@ant-design/icons-vue'
+import { Input, theme } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 function onChange() {}
 

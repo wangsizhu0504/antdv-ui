@@ -7,7 +7,7 @@ import { onMounted, shallowRef } from 'vue'
  */
 export default function useDelayReset(
   timeout = 10,
-): [Ref<Boolean>, (val: boolean, callback?: () => void) => void, () => void] {
+): [Ref<boolean>, (val: boolean, callback?: () => void) => void, () => void] {
   const bool = shallowRef(false)
   let delay: any
 

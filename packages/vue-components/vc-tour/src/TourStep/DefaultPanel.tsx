@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue'
-import { classNames } from '@antdv/utils'
-import { tourStepProps } from '../interface'
 import type { TourStepProps } from '../interface'
+import { classNames } from '@antdv/utils'
+import { defineComponent } from 'vue'
+import { tourStepProps } from '../interface'
 
 const DefaultPanel = defineComponent({
   name: 'DefaultPanel',
@@ -32,21 +32,21 @@ const DefaultPanel = defineComponent({
               <div class={`${prefixCls}-buttons`}>
                 {current !== 0
                   ? (
-                    <button class={`${prefixCls}-prev-btn`} onClick={onPrev}>
-                      Prev
-                    </button>
+                      <button class={`${prefixCls}-prev-btn`} onClick={onPrev}>
+                        Prev
+                      </button>
                     )
                   : null}
                 {current === total - 1
                   ? (
-                    <button class={`${prefixCls}-finish-btn`} onClick={onFinish}>
-                      Finish
-                    </button>
+                      <button class={`${prefixCls}-finish-btn`} onClick={onFinish}>
+                        Finish
+                      </button>
                     )
                   : (
-                    <button class={`${prefixCls}-next-btn`} onClick={onNext}>
-                      Next
-                    </button>
+                      <button class={`${prefixCls}-next-btn`} onClick={onNext}>
+                        Next
+                      </button>
                     )}
               </div>
             </div>

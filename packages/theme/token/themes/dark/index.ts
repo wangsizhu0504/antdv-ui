@@ -1,9 +1,9 @@
-import { generate } from '@ant-design/colors'
 import type { DerivativeFunc } from '../../../cssinjs'
+import type { ColorPalettes, MapToken, PresetColorType, SeedToken } from '../../interface'
+import { generate } from '@ant-design/colors'
+import defaultAlgorithm from '../default'
 import { defaultPresetColors } from '../seed'
 import genColorMapToken from '../shared/genColorMapToken'
-import defaultAlgorithm from '../default'
-import type { ColorPalettes, MapToken, PresetColorType, SeedToken } from '../../interface'
 import { generateColorPalettes, generateNeutralColorPalettes } from './colors'
 
 const derivative: DerivativeFunc<SeedToken, MapToken> = (token, mapToken) => {

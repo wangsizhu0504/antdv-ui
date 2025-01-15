@@ -1,6 +1,6 @@
-import { KeyCode, isVisible, raf } from '@antdv/utils'
 import type { GenerateConfig } from '../generate'
 import type { CustomFormat, PanelMode, PickerMode } from '../interface'
+import { isVisible, KeyCode, raf } from '@antdv/utils'
 
 const scrollIds = new Map<HTMLElement, number>()
 

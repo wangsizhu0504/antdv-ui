@@ -1,6 +1,6 @@
-import hash from '@emotion/hash'
 import type { App, Plugin } from 'vue'
 import { canUseDom, removeCSS, updateCSS } from '@antdv/utils'
+import hash from '@emotion/hash'
 import { Theme } from './theme'
 
 // Create a cache here to avoid always loop generate

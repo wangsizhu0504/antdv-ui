@@ -1,15 +1,15 @@
-import { computed, defineComponent, toRefs } from 'vue'
-import { CloseOutlined } from '@ant-design/icons-vue'
-
-import { classNames, isFunction } from '@antdv/utils'
 import type { VueNode } from '@antdv/types'
-import { enUS as defaultLocale } from '@antdv/locale'
-import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
-import Button from '../../button'
-
 import type { ButtonProps } from '../../button'
-import { tourStepProps } from './props'
+
 import type { TourBtnProps } from './props'
+import { CloseOutlined } from '@ant-design/icons-vue'
+import { enUS as defaultLocale } from '@antdv/locale'
+import { classNames, isFunction } from '@antdv/utils'
+import { computed, defineComponent, toRefs } from 'vue'
+
+import Button from '../../button'
+import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
+import { tourStepProps } from './props'
 
 export default defineComponent({
   name: 'ATourPanel',
@@ -73,7 +73,7 @@ export default defineComponent({
                 key={stepItem}
                 class={classNames(
                   index === current.value && `${prefixCls}-indicator-active`,
-                `${prefixCls}-indicator`,
+                  `${prefixCls}-indicator`,
                 )}
               />
             )
@@ -111,17 +111,17 @@ export default defineComponent({
                   <div class={`${prefixCls}-buttons`}>
                     {current.value !== 0
                       ? (
-                        <Button
-                          {...secondaryBtnProps}
-                          {...prevButtonProps}
-                          onClick={prevBtnClick}
-                          size="small"
-                          class={classNames(`${prefixCls}-prev-btn`, prevButtonProps?.className)}
-                        >
-                          {isFunction(prevButtonProps?.children)
-                            ? prevButtonProps.children()
-                            : prevButtonProps?.children ?? contextLocale.Previous}
-                        </Button>
+                          <Button
+                            {...secondaryBtnProps}
+                            {...prevButtonProps}
+                            onClick={prevBtnClick}
+                            size="small"
+                            class={classNames(`${prefixCls}-prev-btn`, prevButtonProps?.className)}
+                          >
+                            {isFunction(prevButtonProps?.children)
+                              ? prevButtonProps.children()
+                              : prevButtonProps?.children ?? contextLocale.Previous}
+                          </Button>
                         )
                       : null}
                     <Button

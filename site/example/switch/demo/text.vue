@@ -17,8 +17,8 @@ With text and icon.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive } from 'vue'
   import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue'
+  import { reactive } from 'vue'
 
   const state = reactive({
     checked1: true,

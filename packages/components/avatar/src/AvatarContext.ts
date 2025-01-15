@@ -1,6 +1,6 @@
 import type { InjectionKey } from 'vue'
-import { inject, provide } from 'vue'
 import type { AvatarContextType } from './interface'
+import { inject, provide } from 'vue'
 
 export const AvatarContextKey: InjectionKey<AvatarContextType> = Symbol('AvatarContextKey')
 export function useAvatarInjectContext() {

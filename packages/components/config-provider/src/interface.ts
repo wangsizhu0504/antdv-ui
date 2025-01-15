@@ -1,8 +1,8 @@
-import type { ComputedRef, MaybeRef, Ref } from 'vue'
-import type { SizeType, VueNode } from '@antdv/types'
 import type { Locale, ValidateMessages } from '@antdv/locale'
 import type { AliasToken, DerivativeFunc, SeedToken } from '@antdv/theme'
 import type { MapToken, OverrideToken } from '@antdv/theme/token/interface'
+import type { SizeType, VueNode } from '@antdv/types'
+import type { ComputedRef, MaybeRef, Ref } from 'vue'
 
 import type { RequiredMark } from '../../form'
 import type { TransformCellTextProps } from '../../table'

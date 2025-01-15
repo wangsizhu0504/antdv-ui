@@ -24,8 +24,8 @@ Control filters and sorters by `filteredValue` and `sortOrder`.
 </docs>
 
 <script lang="ts" setup>
-  import { computed, ref } from 'vue'
   import type { TableColumnType, TableProps } from '@antdv/ui'
+  import { computed, ref } from 'vue'
 
   interface DataItem {
     key: string;

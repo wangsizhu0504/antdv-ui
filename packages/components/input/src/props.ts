@@ -1,5 +1,3 @@
-import { PropTypes, eventType, omit, stringType } from '@antdv/utils'
-
 import type {
   ChangeEventHandler,
   CompositionEventHandler,
@@ -9,9 +7,11 @@ import type {
   MouseEventHandler,
   SizeType,
 } from '@antdv/types'
-import type { ExtractPropTypes, PropType } from 'vue'
 
+import type { ExtractPropTypes, PropType } from 'vue'
 import type { AutoSizeType, ShowCountProps } from './interface'
+
+import { eventType, omit, PropTypes, stringType } from '@antdv/utils'
 
 export function baseInputProps() {
   return {
@@ -75,8 +75,8 @@ export function internalInputProps() {
     | 'time'
     | 'url'
     | 'week'
-  >('text',
-  ),
+    >('text',
+    ),
     'name': String,
     'size': { type: String as PropType<SizeType> },
     'autofocus': { type: Boolean, default: undefined },

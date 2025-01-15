@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-  import { computed, inject } from 'vue'
-  import { GLOBAL_CONFIG } from '@/SymbolKey'
-  import logo from '@/assets/logo.svg'
   import type { GlobalConfig } from '@/types'
+  import logo from '@/assets/logo.svg'
+  import { GLOBAL_CONFIG } from '@/SymbolKey'
+  import { computed, inject } from 'vue'
 
   const context = inject<GlobalConfig>(GLOBAL_CONFIG)
   const isZhCN = computed(() => context?.isZhCN.value)

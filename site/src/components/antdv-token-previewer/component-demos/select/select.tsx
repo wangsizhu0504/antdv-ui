@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { Select, Space } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Select, Space } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 const { Option } = Select
 

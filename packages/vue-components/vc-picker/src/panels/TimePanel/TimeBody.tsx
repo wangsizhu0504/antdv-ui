@@ -1,14 +1,14 @@
-import type { Ref, VNode } from 'vue'
-import { computed, defineComponent, onBeforeUpdate, ref, watchEffect } from 'vue'
-import { cloneElement } from '@antdv/utils'
 import type { VueNode } from '@antdv/types'
+import type { Ref, VNode } from 'vue'
+import type { SharedTimeProps } from '.'
 import type { GenerateConfig } from '../../generate'
 import type { Locale, OnSelect } from '../../interface'
+import type { Unit } from './TimeUnitColumn'
+import { cloneElement } from '@antdv/utils'
+import { computed, defineComponent, onBeforeUpdate, ref, watchEffect } from 'vue'
 import { leftPad } from '../../utils/miscUtil'
 import { setTime as utilSetTime } from '../../utils/timeUtil'
 import TimeUnitColumn from './TimeUnitColumn'
-import type { Unit } from './TimeUnitColumn'
-import type { SharedTimeProps } from '.'
 
 function generateUnits(
   start: number,

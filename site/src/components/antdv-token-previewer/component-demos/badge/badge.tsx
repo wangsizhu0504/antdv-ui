@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue'
-import { Avatar, Badge, Space, theme } from '@antdv/ui'
-import { ClockCircleFilled } from '@ant-design/icons-vue'
 import type { ComponentDemo } from '../../interface'
+import { ClockCircleFilled } from '@ant-design/icons-vue'
+import { Avatar, Badge, Space, theme } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 const Demo = defineComponent({
   setup() {

@@ -1,5 +1,5 @@
-import { Anchor } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Anchor } from '@antdv/ui'
 
 const { Link } = Anchor
 function Demo() {

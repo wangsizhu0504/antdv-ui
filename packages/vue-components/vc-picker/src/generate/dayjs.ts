@@ -1,14 +1,14 @@
 import type { Dayjs } from 'dayjs'
+import type { GenerateConfig } from '.'
+import { noteOnce } from '@antdv/utils'
 import dayjs from 'dayjs'
-import weekday from 'dayjs/plugin/weekday'
-import localeData from 'dayjs/plugin/localeData'
-import weekOfYear from 'dayjs/plugin/weekOfYear'
-import weekYear from 'dayjs/plugin/weekYear'
-import quarterOfYear from 'dayjs/plugin/quarterOfYear'
 import advancedFormat from 'dayjs/plugin/advancedFormat'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
-import { noteOnce } from '@antdv/utils'
-import type { GenerateConfig } from '.'
+import localeData from 'dayjs/plugin/localeData'
+import quarterOfYear from 'dayjs/plugin/quarterOfYear'
+import weekday from 'dayjs/plugin/weekday'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
+import weekYear from 'dayjs/plugin/weekYear'
 
 dayjs.extend(customParseFormat)
 dayjs.extend(advancedFormat)

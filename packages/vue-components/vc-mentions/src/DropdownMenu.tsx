@@ -1,8 +1,8 @@
 import type { PropType } from 'vue'
-import { defineComponent, inject, onBeforeUnmount, shallowRef } from 'vue'
+import type { OptionProps } from './Option'
 import Menu, { Item as MenuItem } from '@antdv/components/menu'
 import Spin from '@antdv/components/spin'
-import type { OptionProps } from './Option'
+import { defineComponent, inject, onBeforeUnmount, shallowRef } from 'vue'
 import MentionsContextKey from './MentionsContext'
 
 function noop() {}
@@ -70,9 +70,9 @@ export default defineComponent({
             })}
           {!loading.value && options.length === 0
             ? (
-              <MenuItem key="notFoundContent" disabled>
-                {slots.notFoundContent?.()}
-              </MenuItem>
+                <MenuItem key="notFoundContent" disabled>
+                  {slots.notFoundContent?.()}
+                </MenuItem>
               )
             : null}
           {loading.value && (

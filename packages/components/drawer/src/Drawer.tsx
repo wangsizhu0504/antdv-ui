@@ -1,3 +1,17 @@
+import type { CustomSlotsType } from '@antdv/types'
+import type { CSSProperties } from 'vue'
+import type { PushState } from './interface'
+import { CloseOutlined } from '@ant-design/icons-vue'
+import { useScrollLocker } from '@antdv/hooks'
+import {
+  classNames,
+  devWarning,
+  getPropsSlot,
+  initDefaultProps,
+  isNumeric,
+  omit,
+} from '@antdv/utils'
+import { getTransitionName, getTransitionProps } from '@antdv/vue-components'
 import {
   computed,
   defineComponent,
@@ -9,26 +23,12 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { CloseOutlined } from '@ant-design/icons-vue'
-import {
-  classNames,
-  devWarning,
-  getPropsSlot,
-  initDefaultProps,
-  isNumeric,
-  omit,
-} from '@antdv/utils'
-import type { CustomSlotsType } from '@antdv/types'
-import type { CSSProperties } from 'vue'
-import { useScrollLocker } from '@antdv/hooks'
-import { getTransitionName, getTransitionProps } from '@antdv/vue-components'
-import { NoCompactStyle } from '../../space'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
+import { NoCompactStyle } from '../../space'
 import useStyle from '../style'
 import DrawerWrapper from './DrawerWrapper'
 import { drawerProps } from './props'
-import type { PushState } from './interface'
 
 const defaultPushState: PushState = { distance: 180 }
 

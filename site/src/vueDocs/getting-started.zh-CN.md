@@ -49,8 +49,8 @@ $ npm i --save ant-design-vue@4.x
 **全局完整注册**
 
 ```jsx
-import { createApp } from 'vue'
 import Antd from '@antdv/ui'
+import { createApp } from 'vue'
 import App from './App'
 import 'ant-design-vue/dist/reset.css'
 
@@ -64,8 +64,8 @@ app.use(Antd).mount('#app')
 **全局部分注册**
 
 ```jsx
-import { createApp } from 'vue'
 import { Button, message } from '@antdv/ui'
+import { createApp } from 'vue'
 import App from './App'
 
 const app = createApp(App)

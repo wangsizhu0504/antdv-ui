@@ -1,10 +1,6 @@
-import { shallowRef } from 'vue'
-import { classNames, wrapPromiseFn } from '@antdv/utils'
-import type { VNode } from 'vue'
 import type { Key } from '@antdv/types'
-import { PureContent } from './PurePanel'
-import Holder from './holder'
-import type { MessageArgsProps } from './props'
+import type { VNode } from 'vue'
+import type { HolderProps } from './holder'
 import type {
   ConfigOptions,
   HolderRef,
@@ -13,8 +9,12 @@ import type {
   NoticeType,
   TypeOpen,
 } from './interface'
+import type { MessageArgsProps } from './props'
+import { classNames, wrapPromiseFn } from '@antdv/utils'
+import { shallowRef } from 'vue'
+import Holder from './holder'
 
-import type { HolderProps } from './holder'
+import { PureContent } from './PurePanel'
 
 // ==============================================================================
 // ==                                   Hook                                   ==

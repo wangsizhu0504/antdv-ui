@@ -17,8 +17,8 @@ While part of `format` is omitted, the corresponding column in panel will disapp
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import dayjs from 'dayjs'
+  import { ref } from 'vue'
 
   const value = ref<any>(dayjs('12:08', 'HH:mm'))
 </script>

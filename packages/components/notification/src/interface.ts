@@ -1,6 +1,6 @@
-import type { CSSProperties } from 'vue'
 import type { Key, VueNode } from '@antdv/types'
 import type { NoticeProps } from '@antdv/vue-components/vc-notification/src/Notice'
+import type { CSSProperties } from 'vue'
 import type useNotification from './useNotification'
 
 export type NotificationPlacement =

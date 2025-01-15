@@ -1,9 +1,10 @@
+import type { CSSObject } from '..'
+import type { Transformer } from './interface'
+
 /**
  * respect https://github.com/cuth/postcss-pxtorem
  */
 import unitless from '@emotion/unitless'
-import type { CSSObject } from '..'
-import type { Transformer } from './interface'
 
 export interface Px2RemOptions {
   /**

@@ -1,7 +1,7 @@
-import Header from '../Header'
 import type { GenerateConfig } from '../../generate'
-import { useInjectPanel } from '../../PanelContext'
 import useMergeProps from '../../hooks/useMergeProps'
+import { useInjectPanel } from '../../PanelContext'
+import Header from '../Header'
 import { DECADE_DISTANCE_COUNT } from './constant'
 
 export interface YearHeaderProps<DateType> {

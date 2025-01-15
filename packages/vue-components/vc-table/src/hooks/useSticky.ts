@@ -1,7 +1,7 @@
 import type { ComputedRef, Ref } from 'vue'
-import { computed } from 'vue'
-import { canUseDom } from '@antdv/utils'
 import type { TableSticky } from '../interface'
+import { canUseDom } from '@antdv/utils'
+import { computed } from 'vue'
 
 // fix ssr render
 const defaultContainer = canUseDom() ? window : null
@@ -11,13 +11,13 @@ export default function useSticky(
   stickyRef: Ref<boolean | TableSticky>,
   prefixClsRef: Ref<string>,
 ): ComputedRef<{
-  isSticky: boolean;
-  offsetHeader: number;
-  offsetSummary: number;
-  offsetScroll: number;
-  stickyClassName: string;
-  container: Window | HTMLElement;
-}> {
+    isSticky: boolean;
+    offsetHeader: number;
+    offsetSummary: number;
+    offsetScroll: number;
+    stickyClassName: string;
+    container: Window | HTMLElement;
+  }> {
   return computed(() => {
     const {
       offsetHeader = 0,

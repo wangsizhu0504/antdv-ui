@@ -1,3 +1,8 @@
+import type { ValidateMessages } from '@antdv/locale'
+import type { ValidateStatus } from '@antdv/types'
+import type { Ref } from 'vue'
+import type { Callbacks, RuleError } from './interface'
+import { cloneDeep, debounce, intersection, isEqual, omit } from 'lodash-es'
 import {
   nextTick,
   reactive,
@@ -7,14 +12,9 @@ import {
   unref,
   watch,
 } from 'vue'
-import { cloneDeep, debounce, intersection, isEqual, omit } from 'lodash-es'
-import type { Ref } from 'vue'
-import type { ValidateMessages } from '@antdv/locale'
-import type { ValidateStatus } from '@antdv/types'
-import { validateRules } from './utils/validateUtil'
-import { defaultValidateMessages } from './utils/messages'
 import { allPromiseFinish } from './utils/asyncUtil'
-import type { Callbacks, RuleError } from './interface'
+import { defaultValidateMessages } from './utils/messages'
+import { validateRules } from './utils/validateUtil'
 
 interface DebounceSettings {
   leading?: boolean

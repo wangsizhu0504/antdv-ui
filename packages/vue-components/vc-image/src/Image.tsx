@@ -1,4 +1,9 @@
+import type { MouseEventHandler } from '@antdv/types'
 import type { CSSProperties, ExtractPropTypes, ImgHTMLAttributes, PropType } from 'vue'
+import type { ImagePreviewType, ImageStatus } from './interface'
+import { useMergedState } from '@antdv/hooks'
+import { classNames, getOffset, PropTypes } from '@antdv/utils'
+import { isNumber } from 'lodash-es'
 import {
   computed,
   defineComponent,
@@ -7,17 +12,12 @@ import {
   ref,
   watch,
 } from 'vue'
-import { isNumber } from 'lodash-es'
-import { PropTypes, classNames, getOffset } from '@antdv/utils'
-import { useMergedState } from '@antdv/hooks'
-import type { MouseEventHandler } from '@antdv/types'
-import Preview from './Preview'
 
-import PreviewGroup from './PreviewGroup'
-import { imageContext } from './context'
-import type { ImagePreviewType, ImageStatus } from './interface'
-import { mergeDefaultValue } from './utils'
 import { COMMON_PROPS } from './common'
+import { imageContext } from './context'
+import Preview from './Preview'
+import PreviewGroup from './PreviewGroup'
+import { mergeDefaultValue } from './utils'
 
 export function imageProps() {
   return {

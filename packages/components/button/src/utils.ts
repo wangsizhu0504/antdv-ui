@@ -1,5 +1,5 @@
-import type { ButtonProps } from './props'
 import type { LegacyButtonType } from './interface'
+import type { ButtonProps } from './props'
 
 export function convertLegacyProps(type?: LegacyButtonType): ButtonProps {
   switch (type) {

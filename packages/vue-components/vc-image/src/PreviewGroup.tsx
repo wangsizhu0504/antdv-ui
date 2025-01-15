@@ -1,4 +1,8 @@
 import type { PropType } from 'vue'
+import type { ImagePreviewType, PreviewGroupPreview, PreviewUrl } from './interface'
+import type { PreviewProps } from './Preview'
+
+import { useMergedState } from '@antdv/hooks'
 import {
   computed,
   defineComponent,
@@ -8,12 +12,8 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { useMergedState } from '@antdv/hooks'
-
-import Preview from './Preview'
-import type { PreviewProps } from './Preview'
-import type { ImagePreviewType, PreviewGroupPreview, PreviewUrl } from './interface'
 import { imageContext } from './context'
+import Preview from './Preview'
 import { mergeDefaultValue } from './utils'
 
 export function imageGroupProps() {

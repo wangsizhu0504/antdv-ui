@@ -1,27 +1,27 @@
+import type { CustomSlotsType } from '@antdv/types'
+import type { VNode } from 'vue'
+import type { ButtonType } from './interface'
+import { devWarning, flattenChildren, initDefaultProps } from '@antdv/utils'
 import {
-  Text,
   computed,
   defineComponent,
   onBeforeUnmount,
   onMounted,
   onUpdated,
   shallowRef,
+  Text,
   watch,
   watchEffect,
 } from 'vue'
-import { devWarning, flattenChildren, initDefaultProps } from '@antdv/utils'
-import type { VNode } from 'vue'
-import type { CustomSlotsType } from '@antdv/types'
-import { Wave } from '../../wave'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useInjectDisabled } from '../../config-provider'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
 import { useCompactItemContext } from '../../space'
+import { Wave } from '../../wave'
 import useStyle from '../style'
+import { GroupSizeContext } from './context'
 import LoadingIcon from './LoadingIcon'
 import { buttonProps } from './props'
-import { GroupSizeContext } from './context'
-import type { ButtonType } from './interface'
 
 type Loading = boolean | number
 
@@ -207,11 +207,11 @@ export default defineComponent({
               icon
             )
           : (
-            <LoadingIcon
-              existIcon={!!icon}
-              prefixCls={prefixCls.value}
-              loading={!!innerLoading.value}
-            />
+              <LoadingIcon
+                existIcon={!!icon}
+                prefixCls={prefixCls.value}
+                loading={!!innerLoading.value}
+              />
             )
 
       const kids = children.map(child =>

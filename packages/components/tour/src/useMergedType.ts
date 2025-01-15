@@ -1,6 +1,6 @@
-import { computed, ref, watch } from 'vue'
 import type { Ref } from 'vue'
 import type { TourProps } from './props'
+import { computed, ref, watch } from 'vue'
 
 interface Props {
   defaultType?: Ref<string>

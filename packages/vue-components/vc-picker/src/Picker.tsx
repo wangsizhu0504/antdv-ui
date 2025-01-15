@@ -11,28 +11,28 @@
  * Tips: Should add faq about `datetime` mode with `defaultValue`
  */
 
-import type { CSSProperties, HTMLAttributes, Ref } from 'vue'
-import { computed, defineComponent, ref, toRef, watch } from 'vue'
-import { classNames, warning } from '@antdv/utils'
 import type { ChangeEvent, FocusEventHandler, MouseEventHandler, VueNode } from '@antdv/types'
-import { useMergedState } from '@antdv/hooks'
+import type { CSSProperties, HTMLAttributes, Ref } from 'vue'
 import type { AlignType } from '../../vc-align/src/interface'
+import type { CustomFormat, PanelMode, PickerMode, PresetDate, RangeValue } from './interface'
+import type { ContextOperationRefProps } from './PanelContext'
+import type { SharedTimeProps } from './panels/TimePanel'
 import type { PickerPanelBaseProps, PickerPanelDateProps, PickerPanelTimeProps } from './PickerPanel'
+import { useMergedState } from '@antdv/hooks'
+import { classNames, warning } from '@antdv/utils'
+import { computed, defineComponent, ref, toRef, watch } from 'vue'
+import useHoverValue from './hooks/useHoverValue'
+import usePickerInput from './hooks/usePickerInput'
+import usePresets from './hooks/usePresets'
+import useTextValueMapping from './hooks/useTextValueMapping'
+import useValueTexts from './hooks/useValueTexts'
+import { useProvidePanel } from './PanelContext'
 import PickerPanel from './PickerPanel'
 import PickerTrigger from './PickerTrigger'
 import PresetPanel from './PresetPanel'
 import { formatValue, isEqual, parseValue } from './utils/dateUtil'
 import getDataOrAriaProps, { toArray } from './utils/miscUtil'
-import type { ContextOperationRefProps } from './PanelContext'
-import { useProvidePanel } from './PanelContext'
-import type { CustomFormat, PanelMode, PickerMode, PresetDate, RangeValue } from './interface'
 import { elementsContains, getDefaultFormat, getInputSize } from './utils/uiUtil'
-import usePickerInput from './hooks/usePickerInput'
-import useTextValueMapping from './hooks/useTextValueMapping'
-import useValueTexts from './hooks/useValueTexts'
-import useHoverValue from './hooks/useHoverValue'
-import usePresets from './hooks/usePresets'
-import type { SharedTimeProps } from './panels/TimePanel'
 import { legacyPropsWarning } from './utils/warnUtil'
 
 export interface PickerRefConfig {
@@ -556,7 +556,7 @@ function Picker<DateType>() {
               props.inputRender(mergedInputProps)
             )
           : (
-            <input {...mergedInputProps} />
+              <input {...mergedInputProps} />
             )
 
         // ============================ Warning ============================

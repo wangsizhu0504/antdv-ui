@@ -1,9 +1,5 @@
-import { computed } from 'vue'
-import { devWarning } from '@antdv/utils'
-import type { Ref } from 'vue'
 import type { TableLocale } from '@antdv/locale'
-import { useState } from '@antdv/hooks'
-import { getColumnKey, getColumnPos, renderColumnTitle } from '../util'
+import type { Ref } from 'vue'
 import type {
   ColumnTitleProps,
   FilterConfig,
@@ -11,10 +7,14 @@ import type {
   FilterState,
   FilterValue,
   GetPopupContainer,
-  TableColumnType,
   TableColumnsType,
+  TableColumnType,
   TransformColumns,
 } from '../interface'
+import { useState } from '@antdv/hooks'
+import { devWarning } from '@antdv/utils'
+import { computed } from 'vue'
+import { getColumnKey, getColumnPos, renderColumnTitle } from '../util'
 import FilterDropdown from './FilterDropdown'
 import { flattenKeys } from './utils'
 

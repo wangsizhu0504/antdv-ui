@@ -17,8 +17,8 @@ You can manually specify the position of the popup via `placement`.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { TreeSelectProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const placement = ref<any>('topLeft' as const)
   const value = ref<string>()

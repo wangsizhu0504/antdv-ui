@@ -1,6 +1,6 @@
+import type { Key } from '@antdv/types'
 import type { ComputedRef, InjectionKey, PropType } from 'vue'
 import { computed, defineComponent, inject, provide } from 'vue'
-import type { Key } from '@antdv/types'
 
 export interface OverflowContextProviderValueType {
   prefixCls: string;

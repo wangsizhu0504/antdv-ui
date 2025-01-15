@@ -1,28 +1,28 @@
-import { computed, defineComponent, ref, toRef } from 'vue'
+import type { SlotsType } from 'vue'
+import type { ButtonProps } from '../../button'
+import type { PopconfirmProps } from './props'
 import { ExclamationCircleFilled } from '@ant-design/icons-vue'
+import { useMergedState } from '@antdv/hooks'
+import { enUS as defaultLocale } from '@antdv/locale'
 import {
-  KeyCode,
   classNames,
   cloneVNodes,
   devWarning,
   initDefaultProps,
+  KeyCode,
   omit,
 } from '@antdv/utils'
-import type { SlotsType } from 'vue'
-import { enUS as defaultLocale } from '@antdv/locale'
-import { useMergedState } from '@antdv/hooks'
 import { getTransitionName } from '@antdv/vue-components'
+import { computed, defineComponent, ref, toRef } from 'vue'
+import Button, { convertLegacyProps } from '../../button'
 import ActionButton from '../../button/src/ActionButton'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import Popover from '../../popover'
-import Button, { convertLegacyProps } from '../../button'
-import { useLocaleReceiver } from '../../locale-provider'
 
+import { useLocaleReceiver } from '../../locale-provider'
+import Popover from '../../popover'
 import { tooltipDefaultProps } from '../../tooltip'
 import usePopconfirmStyle from '../style'
-import type { ButtonProps } from '../../button'
 import { popconfirmProps } from './props'
-import type { PopconfirmProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -152,7 +152,7 @@ export default defineComponent({
                         cancelButton(cancelProps)
                       )
                     : (
-                      <Button {...cancelProps}>{cancelText || popconfirmLocale.value.cancelText}</Button>
+                        <Button {...cancelProps}>{cancelText || popconfirmLocale.value.cancelText}</Button>
                       )
                 )
               : null}
@@ -161,16 +161,16 @@ export default defineComponent({
                   okButton(okProps)
                 )
               : (
-                <ActionButton
-                  buttonProps={{ size: 'small', ...convertLegacyProps(okType), ...okButtonProps }}
-                  actionFn={onConfirm}
-                  close={close}
-                  prefixCls={btnPrefixCls.value}
-                  quitOnNullishReturnValue
-                  emitEvent
-                >
-                  {okText || popconfirmLocale.value.okText}
-                </ActionButton>
+                  <ActionButton
+                    buttonProps={{ size: 'small', ...convertLegacyProps(okType), ...okButtonProps }}
+                    actionFn={onConfirm}
+                    close={close}
+                    prefixCls={btnPrefixCls.value}
+                    quitOnNullishReturnValue
+                    emitEvent
+                  >
+                    {okText || popconfirmLocale.value.okText}
+                  </ActionButton>
                 )}
           </div>
         </div>

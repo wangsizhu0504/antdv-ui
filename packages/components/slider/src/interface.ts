@@ -1,5 +1,5 @@
-import type { CSSProperties, VNodeTypes } from 'vue'
 import type { VueNode } from '@antdv/types'
+import type { CSSProperties, VNodeTypes } from 'vue'
 
 export type SliderValue = number | [number, number]
 

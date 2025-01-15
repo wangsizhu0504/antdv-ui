@@ -1,10 +1,10 @@
 import type { PropType } from 'vue'
-import { computed, defineComponent, toRefs } from 'vue'
-import { classNames } from '@antdv/utils'
-import { Button, Dropdown, Menu } from '@antdv/ui'
-import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue'
-import makeStyle from './utils/makeStyle'
 import type { Theme } from './interface'
+import { CloseOutlined, PlusOutlined } from '@ant-design/icons-vue'
+import { Button, Dropdown, Menu } from '@antdv/ui'
+import { classNames } from '@antdv/utils'
+import { computed, defineComponent, toRefs } from 'vue'
+import makeStyle from './utils/makeStyle'
 
 interface ThemeItem extends Theme {
   icon?: any

@@ -1,5 +1,5 @@
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import type { FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import { genCollapseMotion } from '@antdv/theme/style/motion'
 import genDraggerStyle from './dragger'
 import genListStyle from './list'

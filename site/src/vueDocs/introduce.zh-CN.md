@@ -110,10 +110,10 @@ $ npm install unplugin-vue-components -D
 ```
 
 ```js
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import Components from 'unplugin-vue-components/vite'
 // vite.config.js
 import { defineConfig } from 'vite'
-import Components from 'unplugin-vue-components/vite'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 
 export default defineConfig({
   plugins: [

@@ -1,7 +1,7 @@
-import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
 import type { FunctionalComponent } from 'vue'
-import Button from '../../button'
 import type { TransferOperationProps } from './props'
+import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
+import Button from '../../button'
 
 function noop() {}
 

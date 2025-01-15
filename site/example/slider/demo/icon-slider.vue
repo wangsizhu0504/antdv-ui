@@ -16,8 +16,8 @@ You can add an icon beside the slider to make it meaningful.
 </docs>
 
 <script lang="ts" setup>
-  import { computed, ref } from 'vue'
   import { FrownOutlined, SmileOutlined } from '@ant-design/icons-vue'
+  import { computed, ref } from 'vue'
 
   const sliderValue = ref<number>(0)
   const min = ref<number>(0)

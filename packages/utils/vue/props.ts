@@ -1,9 +1,9 @@
-import { Fragment, isVNode } from 'vue'
-
 import type { VueInstance } from '@antdv/types'
+
+import { Fragment, isVNode } from 'vue'
+import { classNames } from '../dom/class'
 import { isEmptyElement, isOn, isStringElement, isValid, isValidElement } from '../is'
 import { camelize, hyphenate } from '../lang/camelize'
-import { classNames } from '../dom/class'
 import { resolvePropValue } from './util'
 
 // function getType(fn) {

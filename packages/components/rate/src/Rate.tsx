@@ -1,17 +1,17 @@
-import { defineComponent, onMounted, reactive, ref, watch } from 'vue'
-import { StarFilled } from '@ant-design/icons-vue'
-import { KeyCode, classNames, findDOMNode } from '@antdv/utils'
-
 import type { CSSProperties, VNode } from 'vue'
+import { StarFilled } from '@ant-design/icons-vue'
 import { useRefs } from '@antdv/hooks'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import Tooltip from '../../tooltip'
 
+import { classNames, findDOMNode, KeyCode } from '@antdv/utils'
+import { defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useInjectFormItemContext } from '../../form/src/FormItemContext'
+
+import Tooltip from '../../tooltip'
 import useStyle from '../style'
+import { rateProps } from './props'
 import Star from './Star'
 import { getOffsetLeft } from './util'
-import { rateProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

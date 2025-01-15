@@ -1,16 +1,16 @@
 import type { DatePickerLocale } from '@antdv/locale'
+import type { SizeType } from '@antdv/types'
 import type {
   PickerBaseProps as RCPickerBaseProps,
   PickerDateProps as RCPickerDateProps,
   PickerTimeProps as RCPickerTimeProps,
 } from '@antdv/vue-components/vc-picker/src/Picker'
+
 import type {
   RangePickerBaseProps as RCRangePickerBaseProps,
   RangePickerDateProps as RCRangePickerDateProps,
   RangePickerTimeProps as RCRangePickerTimeProps,
 } from '@antdv/vue-components/vc-picker/src/RangePicker'
-
-import type { SizeType } from '@antdv/types'
 
 type InjectDefaultProps<Props> = Omit<
   Props,

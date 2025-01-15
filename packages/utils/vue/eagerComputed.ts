@@ -1,5 +1,5 @@
-import { shallowRef, watchEffect } from 'vue'
 import type { ComputedRef } from 'vue'
+import { shallowRef, watchEffect } from 'vue'
 
 type ComputedGetter<T> = (...args: any[]) => T
 

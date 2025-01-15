@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'vue'
+import { classNames, PropTypes } from '@antdv/utils'
 import { defineComponent } from 'vue'
-import { PropTypes, classNames } from '@antdv/utils'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

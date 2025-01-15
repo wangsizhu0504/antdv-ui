@@ -1,9 +1,9 @@
-import { computed, defineComponent, watchEffect } from 'vue'
-import { cloneElement, flattenChildren, getPropsSlot } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
-import Popover from '../../popover'
-
+import { cloneElement, flattenChildren, getPropsSlot } from '@antdv/utils'
+import { computed, defineComponent, watchEffect } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+
+import Popover from '../../popover'
 import useStyle from '../style'
 import Avatar from './Avatar'
 import { useAvatarProviderContext } from './AvatarContext'

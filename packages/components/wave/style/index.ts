@@ -1,5 +1,5 @@
-import { genComponentStyleHook } from '@antdv/theme'
 import type { FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook } from '@antdv/theme'
 
 export interface ComponentToken {}
 

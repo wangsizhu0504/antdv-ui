@@ -16,9 +16,9 @@ Use slot for custom action icons of files.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
-  import { StarOutlined, UploadOutlined } from '@ant-design/icons-vue'
   import type { UploadChangeParam, UploadProps } from '@antdv/ui'
+  import { StarOutlined, UploadOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const fileList = ref<UploadProps['fileList']>([
     {

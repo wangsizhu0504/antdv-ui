@@ -1,11 +1,11 @@
-import { computed, defineComponent } from 'vue'
-import { classNames } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
+import type { ColSize, FlexType } from './interface'
+import { classNames } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useColStyle } from '../style'
 import { useInjectRow } from './context'
 import { colProps } from './props'
-import type { ColSize, FlexType } from './interface'
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const
 

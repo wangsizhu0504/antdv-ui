@@ -1,5 +1,5 @@
-import { warning } from '@antdv/utils'
 import type { TreeSelectProps } from '../TreeSelect'
+import { warning } from '@antdv/utils'
 import { toArray } from './valueUtil'
 
 function warningProps(props: TreeSelectProps & { searchPlaceholder?: string }) {

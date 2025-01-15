@@ -1,5 +1,5 @@
-import { classNames } from '@antdv/utils'
 import type { PropType } from 'vue'
+import { classNames } from '@antdv/utils'
 import { defineComponent, toRefs } from 'vue'
 import makeStyle from './utils/makeStyle'
 

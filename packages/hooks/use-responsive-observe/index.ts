@@ -1,7 +1,7 @@
-import { computed } from 'vue'
 import type { GlobalToken } from '@antdv/theme'
-import { useToken } from '@antdv/theme'
 import type { BreakpointMap, ScreenMap } from '@antdv/types'
+import { useToken } from '@antdv/theme'
+import { computed } from 'vue'
 
 type SubscribeFunc = (screens: ScreenMap) => void
 function getResponsiveMap(token: GlobalToken): BreakpointMap {
@@ -21,7 +21,7 @@ export function useResponsiveObserver() {
 
   return computed(() => {
     const responsiveMap: BreakpointMap = getResponsiveMap(token.value)
-    const subscribers = new Map<Number, SubscribeFunc>()
+    const subscribers = new Map<number, SubscribeFunc>()
     let subUid = -1
     let screens = {}
 

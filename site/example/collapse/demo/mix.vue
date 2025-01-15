@@ -28,7 +28,7 @@ title:
 </script>
 
 <template>
-  <a-collapse v-model:activeKey="activeKey" @change="changeActivekey">
+  <a-collapse v-model:active-key="activeKey" @change="changeActivekey">
     <a-collapse-panel key="1" header="This is panel header 1">
       <a-collapse default-active-key="4">
         <a-collapse-panel key="4" header="This is panel nest panel">

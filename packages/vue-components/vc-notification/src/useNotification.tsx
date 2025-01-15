@@ -1,9 +1,9 @@
-import type { CSSProperties } from 'vue'
-import { shallowRef, watch } from 'vue'
 import type { CSSMotionProps, Key, VueNode } from '@antdv/types'
-import HookNotification, { getUuid } from './HookNotification'
-import type { NotificationInstance, OpenConfig, Placement } from './Notification'
+import type { CSSProperties } from 'vue'
 import type { HolderReadyCallback, NoticeContent } from './HookNotification'
+import type { NotificationInstance, OpenConfig, Placement } from './Notification'
+import { shallowRef, watch } from 'vue'
+import HookNotification, { getUuid } from './HookNotification'
 
 const defaultGetContainer = () => document.body
 

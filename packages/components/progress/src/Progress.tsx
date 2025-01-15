@@ -1,15 +1,15 @@
-import { computed, defineComponent } from 'vue'
-import { CheckCircleFilled, CheckOutlined, CloseCircleFilled, CloseOutlined } from '@ant-design/icons-vue'
-import { devWarning, initDefaultProps } from '@antdv/utils'
 import type { CustomSlotsType, VueNode } from '@antdv/types'
+import { CheckCircleFilled, CheckOutlined, CloseCircleFilled, CloseOutlined } from '@ant-design/icons-vue'
 import { progressStatuses } from '@antdv/constants'
+import { devWarning, initDefaultProps } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
+import Circle from './Circle'
 import Line from './Line'
+import { progressProps } from './props'
 import Steps from './Steps'
 import { getSize, getSuccessPercent, validProgress } from './utils'
-import Circle from './Circle'
-import { progressProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -122,24 +122,24 @@ export default defineComponent({
       if (type === 'line') {
         progress = steps
           ? (
-            <Steps
-              {...props}
-              strokeColor={strokeColorNotGradient.value}
-              prefixCls={prefixCls.value}
-              steps={steps}
-            >
-              {progressInfo}
-            </Steps>
+              <Steps
+                {...props}
+                strokeColor={strokeColorNotGradient.value}
+                prefixCls={prefixCls.value}
+                steps={steps}
+              >
+                {progressInfo}
+              </Steps>
             )
           : (
-            <Line
-              {...props}
-              strokeColor={strokeColorNotArray.value}
-              prefixCls={prefixCls.value}
-              direction={direction.value}
-            >
-              {progressInfo}
-            </Line>
+              <Line
+                {...props}
+                strokeColor={strokeColorNotArray.value}
+                prefixCls={prefixCls.value}
+                direction={direction.value}
+              >
+                {progressInfo}
+              </Line>
             )
       } else if (type === 'circle' || type === 'dashboard') {
         progress = (

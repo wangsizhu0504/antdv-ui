@@ -1,14 +1,14 @@
-import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
-import { classNames } from '@antdv/utils'
 import type { Breakpoint, ScreenMap } from '@antdv/types'
 import type { CSSProperties } from 'vue'
+import type { Gap } from './interface'
 import { responsiveArray } from '@antdv/constants'
 import { useFlexGapSupport, useResponsiveObserver } from '@antdv/hooks'
+import { classNames } from '@antdv/utils'
+import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useRowStyle } from '../style'
 import useProvideRow from './context'
 import { rowProps } from './props'
-import type { Gap } from './interface'
 
 export interface rowContextState {
   gutter?: [number, number]

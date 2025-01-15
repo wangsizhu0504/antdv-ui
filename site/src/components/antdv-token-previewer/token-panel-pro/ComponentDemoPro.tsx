@@ -1,7 +1,7 @@
-import { ConfigProvider, Segmented, Space, theme as antdTheme } from '@antdv/ui'
 import type { CSSProperties, PropType } from 'vue'
-import { computed, defineComponent, ref, toRefs } from 'vue'
 import type { MutableTheme } from '../interface'
+import { theme as antdTheme, ConfigProvider, Segmented, Space } from '@antdv/ui'
+import { computed, defineComponent, ref, toRefs } from 'vue'
 import ComponentDemoGroup from '../component-panel/ComponentDemoGroup'
 import { useInjectLocaleContext } from '../locale'
 import { Error, Primary, Success, Warning } from '../overviews'
@@ -109,17 +109,17 @@ const ComponentDemoPro = defineComponent({
             >
               {mode.value === 'overview'
                 ? (
-                  <div style={{ margin: '12px' }}>{overviewDemo.value}</div>
+                    <div style={{ margin: '12px' }}>{overviewDemo.value}</div>
                   )
                 : (
-                  <ComponentDemoGroup
-                    selectedTokens={selectedTokens.value}
-                    themes={[theme.value!]}
-                    components={components.value}
-                    activeComponents={activeComponents.value}
-                    componentDrawer={componentDrawer.value}
-                    hideTokens
-                  />
+                    <ComponentDemoGroup
+                      selectedTokens={selectedTokens.value}
+                      themes={[theme.value!]}
+                      components={components.value}
+                      activeComponents={activeComponents.value}
+                      componentDrawer={componentDrawer.value}
+                      hideTokens
+                    />
                   )}
             </ConfigProvider>
           </div>

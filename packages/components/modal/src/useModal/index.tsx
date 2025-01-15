@@ -1,3 +1,6 @@
+import type { VueNode } from '@antdv/types'
+import type { Ref } from 'vue'
+import type { HookModalRef, ModalFuncProps, ModalFuncWithRef, ModalStaticFunctions } from '../interface'
 import {
   computed,
   defineComponent,
@@ -6,11 +9,8 @@ import {
   unref,
   watch,
 } from 'vue'
-import type { VueNode } from '@antdv/types'
-import type { Ref } from 'vue'
 import { withConfirm, withError, withInfo, withSuccess, withWarn } from '../confirm'
 import destroyFns from '../destroyFns'
-import type { HookModalRef, ModalFuncProps, ModalFuncWithRef, ModalStaticFunctions } from '../interface'
 import HookModal from './HookModal'
 
 let uuid = 0

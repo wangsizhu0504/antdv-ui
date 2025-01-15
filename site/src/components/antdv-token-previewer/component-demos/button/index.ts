@@ -1,8 +1,8 @@
 import type { ComponentDemo } from '../../interface'
 import Default from './button'
-import DefaultButton from './defaultButton'
 import ButtonIconDemo from './button-icon'
 import DangerButton from './dangerButton'
+import DefaultButton from './defaultButton'
 import disabled from './disabled'
 
 const previewerDemo: ComponentDemo[] = [

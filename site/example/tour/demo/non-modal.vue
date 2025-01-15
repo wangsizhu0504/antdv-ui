@@ -17,9 +17,9 @@ Use `mask={false}` to make Tour non-modal. At the meantime it is recommended to 
 </docs>
 
 <script lang="ts" setup>
-  import { createVNode, ref } from 'vue'
-  import { EllipsisOutlined } from '@ant-design/icons-vue'
   import type { TourProps } from '@antdv/ui'
+  import { EllipsisOutlined } from '@ant-design/icons-vue'
+  import { createVNode, ref } from 'vue'
 
   const open = ref<boolean>(false)
 

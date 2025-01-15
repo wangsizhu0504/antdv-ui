@@ -16,9 +16,9 @@ If uploaded file is a picture, the thumbnail can be shown.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
-  import { UploadOutlined } from '@ant-design/icons-vue'
   import type { UploadProps } from '@antdv/ui'
+  import { UploadOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const fileList = ref<UploadProps['fileList']>([
     {

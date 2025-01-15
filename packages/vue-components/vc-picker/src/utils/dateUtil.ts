@@ -1,6 +1,6 @@
-import { DECADE_UNIT_DIFF } from '../panels/DecadePanel/constant'
-import type { CustomFormat, Locale, NullableDateType, PanelMode, PickerMode } from '../interface'
 import type { GenerateConfig } from '../generate'
+import type { CustomFormat, Locale, NullableDateType, PanelMode, PickerMode } from '../interface'
+import { DECADE_UNIT_DIFF } from '../panels/DecadePanel/constant'
 
 export const WEEK_DAY_COUNT = 7
 

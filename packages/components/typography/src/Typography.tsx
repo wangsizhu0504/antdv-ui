@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue'
 import { classNames } from '@antdv/utils'
+import { defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { typographyProps } from './props'

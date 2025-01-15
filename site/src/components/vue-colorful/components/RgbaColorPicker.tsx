@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
-import { defineComponent } from 'vue'
-
 import type { ColorModel, RgbaColor } from '../types'
+
+import { defineComponent } from 'vue'
 import { equalColorObjects } from '../utils/compare'
 import { hsvaToRgba, rgbaToHsva } from '../utils/convert'
 import { AlphaColorPicker } from './common/AlphaColorPicker'

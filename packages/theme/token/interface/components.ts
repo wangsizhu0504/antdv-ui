@@ -1,8 +1,8 @@
 import type { ComponentToken as AlertComponentToken } from '@antdv/components/alert/style'
 import type { ComponentToken as AnchorComponentToken } from '@antdv/components/anchor/style'
+import type { ComponentToken as AppComponentToken } from '@antdv/components/app/style'
 import type { ComponentToken as AvatarComponentToken } from '@antdv/components/avatar/style'
 import type { ComponentToken as ButtonComponentToken } from '@antdv/components/button/style'
-import type { ComponentToken as FloatButtonComponentToken } from '@antdv/components/float-button/style'
 import type { ComponentToken as CalendarComponentToken } from '@antdv/components/calendar/style'
 import type { ComponentToken as CardComponentToken } from '@antdv/components/card/style'
 import type { ComponentToken as CarouselComponentToken } from '@antdv/components/carousel/style'
@@ -11,9 +11,11 @@ import type { ComponentToken as CheckboxComponentToken } from '@antdv/components
 import type { ComponentToken as CollapseComponentToken } from '@antdv/components/collapse/style'
 import type { ComponentToken as DatePickerComponentToken } from '@antdv/components/date-picker/style'
 import type { ComponentToken as DividerComponentToken } from '@antdv/components/divider/style'
-import type { ComponentToken as DropdownComponentToken } from '@antdv/components/dropdown/style'
 import type { ComponentToken as DrawerComponentToken } from '@antdv/components/drawer/style'
+import type { ComponentToken as DropdownComponentToken } from '@antdv/components/dropdown/style'
 import type { ComponentToken as EmptyComponentToken } from '@antdv/components/empty/style'
+import type { ComponentToken as FlexToken } from '@antdv/components/flex/style'
+import type { ComponentToken as FloatButtonComponentToken } from '@antdv/components/float-button/style'
 import type { ComponentToken as ImageComponentToken } from '@antdv/components/image/style'
 import type { ComponentToken as InputNumberComponentToken } from '@antdv/components/input-number/style'
 import type { ComponentToken as LayoutComponentToken } from '@antdv/components/layout/style'
@@ -26,6 +28,7 @@ import type { ComponentToken as NotificationComponentToken } from '@antdv/compon
 import type { ComponentToken as PopconfirmComponentToken } from '@antdv/components/popconfirm/style'
 import type { ComponentToken as PopoverComponentToken } from '@antdv/components/popover/style'
 import type { ComponentToken as ProgressComponentToken } from '@antdv/components/progress/style'
+import type { ComponentToken as QRCodeComponentToken } from '@antdv/components/qrcode/style'
 import type { ComponentToken as RadioComponentToken } from '@antdv/components/radio/style'
 import type { ComponentToken as RateComponentToken } from '@antdv/components/rate/style'
 import type { ComponentToken as ResultComponentToken } from '@antdv/components/result/style'
@@ -41,15 +44,12 @@ import type { ComponentToken as TabsComponentToken } from '@antdv/components/tab
 import type { ComponentToken as TagComponentToken } from '@antdv/components/tag/style'
 import type { ComponentToken as TimelineComponentToken } from '@antdv/components/timeline/style'
 import type { ComponentToken as TooltipComponentToken } from '@antdv/components/tooltip/style'
+import type { ComponentToken as TourComponentToken } from '@antdv/components/tour/style'
 import type { ComponentToken as TransferComponentToken } from '@antdv/components/transfer/style'
+
 import type { ComponentToken as TypographyComponentToken } from '@antdv/components/typography/style'
 import type { ComponentToken as UploadComponentToken } from '@antdv/components/upload/style'
-import type { ComponentToken as TourComponentToken } from '@antdv/components/tour/style'
-import type { ComponentToken as QRCodeComponentToken } from '@antdv/components/qrcode/style'
-
-import type { ComponentToken as AppComponentToken } from '@antdv/components/app/style'
 import type { ComponentToken as WaveToken } from '@antdv/components/wave/style'
-import type { ComponentToken as FlexToken } from '@antdv/components/flex/style'
 
 export interface ComponentTokenMap {
   Affix?: {}

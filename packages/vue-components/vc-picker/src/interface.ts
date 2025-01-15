@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
 import type { VueNode } from '@antdv/types'
+import type { Ref } from 'vue'
 import type { GenerateConfig } from './generate'
 
 export interface Locale {

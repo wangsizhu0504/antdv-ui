@@ -1,7 +1,7 @@
 import type { CSSObject } from '../cssinjs'
-import { PresetColors } from '../token'
 import type { AliasToken, PresetColorKey } from '../token'
 import type { TokenWithCommonCls } from '../token/util/genComponentStyleHook'
+import { PresetColors } from '../token'
 
 interface CalcColor {
   /** token[`${colorKey}-1`] */

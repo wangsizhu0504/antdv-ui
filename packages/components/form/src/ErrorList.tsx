@@ -1,13 +1,13 @@
+import type { VueNode } from '@antdv/types'
+import { collapseMotion, getTransitionGroupProps, getTransitionProps } from '@antdv/vue-components'
 import {
-  Transition,
-  TransitionGroup,
   computed,
   defineComponent,
   ref,
+  Transition,
+  TransitionGroup,
   watch,
 } from 'vue'
-import type { VueNode } from '@antdv/types'
-import { collapseMotion, getTransitionGroupProps, getTransitionProps } from '@antdv/vue-components'
 
 import useStyle from '../style'
 import { useInjectFormItemPrefix } from './context'

@@ -1,8 +1,8 @@
-import { customRenderSlot, devWarning } from '@antdv/utils'
 import type { Ref } from 'vue'
-
-import { EXPAND_COLUMN } from '@antdv/vue-components'
 import type { ContextSlots, TableColumnsType, TransformColumns } from '../interface'
+
+import { customRenderSlot, devWarning } from '@antdv/utils'
+import { EXPAND_COLUMN } from '@antdv/vue-components'
 import { SELECTION_COLUMN } from './useSelection'
 
 function fillSlots<RecordType>(columns: TableColumnsType<RecordType>, contextSlots: Ref<ContextSlots>) {

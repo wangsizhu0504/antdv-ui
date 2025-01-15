@@ -1,8 +1,8 @@
-import { defineComponent } from 'vue'
-import { Button, Space, Tooltip } from '@antdv/ui'
-import { SearchOutlined } from '@ant-design/icons-vue'
-
 import type { ComponentDemo } from '../../interface'
+import { SearchOutlined } from '@ant-design/icons-vue'
+import { Button, Space, Tooltip } from '@antdv/ui'
+
+import { defineComponent } from 'vue'
 
 const Demo = defineComponent({
   setup() {

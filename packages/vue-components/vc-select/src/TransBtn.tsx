@@ -1,7 +1,7 @@
-import { type FunctionalComponent, type PropType, cloneVNode, isVNode } from 'vue'
 import type { MouseEventHandler, VueNode } from '@antdv/types'
-import { PropTypes } from '@antdv/utils'
 import type { RenderNode } from './BaseSelect'
+import { PropTypes } from '@antdv/utils'
+import { cloneVNode, type FunctionalComponent, isVNode, type PropType } from 'vue'
 
 export interface TransBtnProps {
   class: string;
@@ -45,9 +45,9 @@ const TransBtn: TransBtnType = (props, { slots }) => {
             icon
           )
         : (
-          <span class={className.split(/\s+/).map((cls: any) => `${cls}-icon`)}>
-            {slots.default?.()}
-          </span>
+            <span class={className.split(/\s+/).map((cls: any) => `${cls}-icon`)}>
+              {slots.default?.()}
+            </span>
           )}
     </span>
   )

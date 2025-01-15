@@ -1,5 +1,5 @@
-import type { InjectionKey, Ref } from 'vue'
 import type { VueNode } from '@antdv/types'
+import type { InjectionKey, Ref } from 'vue'
 import type { CheckboxProps } from './props'
 
 export type CheckboxValueType = string | number | boolean

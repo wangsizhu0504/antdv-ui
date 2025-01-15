@@ -1,14 +1,14 @@
-import { computed, defineComponent } from 'vue'
+import type { CustomSlotsType } from '@antdv/types'
+import type { HTMLAttributes } from 'vue'
+import type { DropdownButtonProps } from './props'
 import { EllipsisOutlined } from '@ant-design/icons-vue'
 import { classNames, initDefaultProps } from '@antdv/utils'
-import type { HTMLAttributes } from 'vue'
-import type { CustomSlotsType } from '@antdv/types'
+import { computed, defineComponent } from 'vue'
 import Button from '../../button'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
-import { dropdownButtonProps } from './props'
 import Dropdown from './Dropdown'
-import type { DropdownButtonProps } from './props'
+import { dropdownButtonProps } from './props'
 
 const ButtonGroup = Button.Group
 

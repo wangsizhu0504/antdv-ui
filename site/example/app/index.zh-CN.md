@@ -92,10 +92,10 @@ App 组件只能在 `ConfigProvider` 之下才能使用 Design Token， 如果�
 #### 全局场景 (pinia 场景)
 
 ```ts
-import { App } from '@antdv/ui'
 import type { MessageInstance } from '@antdv/ui/es/message/interface'
 import type { ModalStaticFunctions } from '@antdv/ui/es/modal/confirm'
 import type { NotificationInstance } from '@antdv/ui/es/notification/interface'
+import { App } from '@antdv/ui'
 
 export const useGloablStore = defineStore('global', () => {
   const message: MessageInstance = ref()

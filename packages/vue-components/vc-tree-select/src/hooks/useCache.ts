@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
-import { computed, shallowRef, toRaw, watch } from 'vue'
 import type { LabeledValueType, RawValueType } from '../TreeSelect'
+import { computed, shallowRef, toRaw, watch } from 'vue'
 
 /**
  * This function will try to call requestIdleCallback if available to save performance.

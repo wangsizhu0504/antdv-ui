@@ -1,7 +1,7 @@
-import { createTypes, toValidableType } from 'vue-types'
-import type { CSSProperties } from 'vue'
-import type { VueTypeValidableDef, VueTypesInterface } from 'vue-types'
 import type { VueNode } from '@antdv/types'
+import type { CSSProperties } from 'vue'
+import type { VueTypesInterface, VueTypeValidableDef } from 'vue-types'
+import { createTypes, toValidableType } from 'vue-types'
 
 const newPropTypes = createTypes({
   func: undefined,

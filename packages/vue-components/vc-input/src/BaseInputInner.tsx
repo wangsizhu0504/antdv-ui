@@ -1,5 +1,5 @@
-import { PropTypes } from '@antdv/utils'
 import type { PropType } from 'vue'
+import { PropTypes } from '@antdv/utils'
 import { defineComponent, shallowRef } from 'vue'
 
 export interface BaseInputInnerExpose {

@@ -17,8 +17,8 @@ The most basic usage, tell you how to use checkable, selectable, disabled, defau
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
   import type { TreeProps } from '@antdv/ui'
+  import { ref, watch } from 'vue'
 
   const treeData: TreeProps['treeData'] = [
     {
@@ -59,9 +59,9 @@ The most basic usage, tell you how to use checkable, selectable, disabled, defau
 
 <template>
   <a-tree
-    v-model:expandedKeys="expandedKeys"
-    v-model:selectedKeys="selectedKeys"
-    v-model:checkedKeys="checkedKeys"
+    v-model:expanded-keys="expandedKeys"
+    v-model:selected-keys="selectedKeys"
+    v-model:checked-keys="checkedKeys"
     checkable
     :tree-data="treeData"
   >

@@ -1,3 +1,15 @@
+import type { EventHandler } from '@antdv/types'
+import type { ScrollConfig } from '../../vc-virtual-list/src/List'
+import type { RawValueType } from './Select'
+import { useMemo } from '@antdv/hooks'
+import {
+  classNames,
+  createRef,
+  isValidElement,
+  KeyCode,
+  omit,
+  pickAttrs,
+} from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -6,24 +18,12 @@ import {
   toRaw,
   watch,
 } from 'vue'
-import {
-  KeyCode,
-  classNames,
-  createRef,
-  isValidElement,
-  omit,
-  pickAttrs,
-} from '@antdv/utils'
-import { useMemo } from '@antdv/hooks'
-import type { EventHandler } from '@antdv/types'
-import List from '../../vc-virtual-list/src/List'
-import type { ScrollConfig } from '../../vc-virtual-list/src/List'
 
+import List from '../../vc-virtual-list/src/List'
+import useBaseProps from './hooks/useBaseProps'
+import useSelectProps from './SelectContext'
 import TransBtn from './TransBtn'
 import { isPlatformMac } from './utils/platformUtil'
-import useBaseProps from './hooks/useBaseProps'
-import type { RawValueType } from './Select'
-import useSelectProps from './SelectContext'
 
 export interface RefOptionListProps {
   onKeydown: (e?: KeyboardEvent) => void;
@@ -162,16 +162,16 @@ const OptionList = defineComponent({
       const mergedLabel = getLabel(item)
       return item
         ? (
-          <div
-            aria-label={typeof mergedLabel === 'string' && !group ? mergedLabel : null}
-            {...attrs}
-            key={index}
-            role={group ? 'presentation' : 'option'}
-            id={`${baseProps.id}_list_${index}`}
-            aria-selected={isSelected(value)}
-          >
-            {value}
-          </div>
+            <div
+              aria-label={typeof mergedLabel === 'string' && !group ? mergedLabel : null}
+              {...attrs}
+              key={index}
+              role={group ? 'presentation' : 'option'}
+              id={`${baseProps.id}_list_${index}`}
+              aria-selected={isSelected(value)}
+            >
+              {value}
+            </div>
           )
         : null
     }

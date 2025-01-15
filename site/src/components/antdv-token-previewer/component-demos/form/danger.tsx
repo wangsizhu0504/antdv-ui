@@ -1,6 +1,6 @@
-import { defineComponent, reactive, ref } from 'vue'
-import { Form, FormItem, Input } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Form, FormItem, Input } from '@antdv/ui'
+import { defineComponent, reactive, ref } from 'vue'
 
 const Demo = defineComponent({
   setup() {

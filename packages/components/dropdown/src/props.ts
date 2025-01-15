@@ -1,11 +1,11 @@
-import { PropTypes, booleanType, eventType, objectType, someType } from '@antdv/utils'
+import type { MouseEventHandler } from '@antdv/types'
 
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 
-import type { MouseEventHandler } from '@antdv/types'
-import { buttonProps } from '../../button'
 import type { MenuProps } from '../../menu'
 import type { Align, DropdownArrowOptions, Trigger } from './interface'
+import { booleanType, eventType, objectType, PropTypes, someType } from '@antdv/utils'
+import { buttonProps } from '../../button'
 
 export function dropdownProps() {
   return {
@@ -34,7 +34,7 @@ export function dropdownProps() {
     | 'bottomCenter'
     | 'bottom'
     | 'bottomRight'
-  >,
+    >,
     'overlayClassName': String,
     'overlayStyle': objectType<CSSProperties>(),
     'forceRender': booleanType(),

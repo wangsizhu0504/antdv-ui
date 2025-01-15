@@ -1,11 +1,11 @@
-import { computed, defineComponent, ref, watchEffect } from 'vue'
-import { classNames, devWarning } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
+import type { CarouselRef } from './interface'
+import { classNames, devWarning } from '@antdv/utils'
 import { VCSlick } from '@antdv/vue-components'
+import { computed, defineComponent, ref, watchEffect } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { carouselProps } from './props'
-import type { CarouselRef } from './interface'
 
 // Carousel
 export default defineComponent({

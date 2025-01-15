@@ -1,5 +1,5 @@
-import formatToken from './util/alias'
 import type { MapToken } from './interface'
+import formatToken from './util/alias'
 
 export default function convertLegacyToken(mapToken: MapToken) {
   const token = formatToken(mapToken as any)

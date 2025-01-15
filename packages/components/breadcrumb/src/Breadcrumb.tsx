@@ -1,13 +1,13 @@
-import { cloneVNode, defineComponent } from 'vue'
-import { devWarning, flattenChildren, getPropsSlot } from '@antdv/utils'
 import type { CustomSlotsType, VueNode } from '@antdv/types'
-import Menu from '../../menu'
+import type { Route } from './interface'
+import type { BreadcrumbItemProps } from './props'
+import { devWarning, flattenChildren, getPropsSlot } from '@antdv/utils'
+import { cloneVNode, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import Menu from '../../menu'
 import useStyle from '../style'
 import BreadcrumbItem from './BreadcrumbItem'
 import { breadcrumbProps } from './props'
-import type { BreadcrumbItemProps } from './props'
-import type { Route } from './interface'
 
 function getBreadcrumbName(route: Route, params: unknown) {
   if (!route.breadcrumbName)

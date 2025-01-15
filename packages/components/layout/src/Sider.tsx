@@ -1,3 +1,7 @@
+import type { CSSProperties } from 'vue'
+import type { CollapseType } from './interface'
+import { BarsOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
+import { classNames, initDefaultProps, isNumeric } from '@antdv/utils'
 import {
   defineComponent,
   inject,
@@ -7,14 +11,10 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { BarsOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
-import { classNames, initDefaultProps, isNumeric } from '@antdv/utils'
-import type { CSSProperties } from 'vue'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
-import { siderProps } from './props'
-import type { CollapseType } from './interface'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { SiderCollapsedKey, SiderHookProviderKey } from './injectionKey'
+import { siderProps } from './props'
 
 const dimensionMaxMap = {
   xs: '479.98px',
@@ -146,16 +146,16 @@ export default defineComponent({
       const zeroWidthTrigger
         = Number.parseFloat(String(collapsedWidth || 0)) === 0
           ? (
-            <span
-              onClick={toggle}
-              class={classNames(
-              `${pre}-zero-width-trigger`,
-              `${pre}-zero-width-trigger-${reverseArrow ? 'right' : 'left'}`,
-              )}
-              style={zeroWidthTriggerStyle}
-            >
-              {trigger || <BarsOutlined />}
-            </span>
+              <span
+                onClick={toggle}
+                class={classNames(
+                  `${pre}-zero-width-trigger`,
+                  `${pre}-zero-width-trigger-${reverseArrow ? 'right' : 'left'}`,
+                )}
+                style={zeroWidthTriggerStyle}
+              >
+                {trigger || <BarsOutlined />}
+              </span>
             )
           : null
       const iconObj = {

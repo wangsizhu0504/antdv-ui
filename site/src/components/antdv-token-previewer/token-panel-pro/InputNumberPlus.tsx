@@ -1,5 +1,5 @@
-import { InputNumber, Slider } from '@antdv/ui'
 import type { PropType } from 'vue'
+import { InputNumber, Slider } from '@antdv/ui'
 import { defineComponent, toRefs } from 'vue'
 
 export interface InputNumberPlusProps {

@@ -135,9 +135,9 @@ module.exports = {
 ```
 
 ```jsx
+import Icon from '@ant-design/icons-vue'
 import MessageSvg from 'node:path/to/message.svg' // '*.svg' 文件的路径
 import { defineComponent } from 'vue'
-import Icon from '@ant-design/icons-vue'
 
 export default defineComponent({
   setup() {

@@ -1,6 +1,6 @@
-import { arrayType, booleanType, functionType, someType, stringType } from '@antdv/utils'
 import type { ExtractPropTypes } from 'vue'
 import type { PaginationPosition } from './interface'
+import { arrayType, booleanType, functionType, someType, stringType } from '@antdv/utils'
 
 export function paginationProps() {
   return {

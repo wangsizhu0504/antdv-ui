@@ -1,6 +1,6 @@
-import { computed, defineComponent } from 'vue'
-import { classNames, omit } from '@antdv/utils'
 import type { PropType } from 'vue'
+import { classNames, omit } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import Element from './Element'

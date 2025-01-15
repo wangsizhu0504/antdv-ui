@@ -1,3 +1,7 @@
+import type { EventHandler } from '@antdv/types'
+import type { PropType } from 'vue'
+import type { ColumnType } from '../interface'
+import { useInjectTableContext } from '@antdv/components/table/src/context'
 import { addEventListenerWrap, raf, supportsPassive, warningFn } from '@antdv/utils'
 import {
   computed,
@@ -7,10 +11,6 @@ import {
   shallowRef,
   watchEffect,
 } from 'vue'
-import type { PropType } from 'vue'
-import type { EventHandler } from '@antdv/types'
-import { useInjectTableContext } from '@antdv/components/table/src/context'
-import type { ColumnType } from '../interface'
 
 const events = {
   mouse: {

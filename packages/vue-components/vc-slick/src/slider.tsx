@@ -1,9 +1,9 @@
-// eslint-disable-next-line ts/ban-ts-comment
+import { BaseMixin, cloneElement, getSlot, json2mq } from '@antdv/utils'
+
 // @ts-nocheck
 import { defineComponent } from 'vue'
-import { BaseMixin, cloneElement, getSlot, json2mq } from '@antdv/utils'
-import InnerSlider from './inner-slider'
 import defaultProps from './default-props.js'
+import InnerSlider from './inner-slider'
 import { canUseDOM } from './utils/innerSliderUtils.js'
 
 export default defineComponent({

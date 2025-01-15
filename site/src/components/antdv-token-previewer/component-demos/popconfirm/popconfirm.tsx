@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { Popconfirm, message } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { message, Popconfirm } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 function confirm() {
   message.success('Click on Yes')

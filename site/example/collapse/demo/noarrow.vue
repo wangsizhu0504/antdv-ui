@@ -27,7 +27,7 @@ You can hide the arrow icon by passing `showArrow={false}` to `CollapsePanel` co
 </script>
 
 <template>
-  <a-collapse v-model:activeKey="activeKey">
+  <a-collapse v-model:active-key="activeKey">
     <a-collapse-panel key="1" header="This is panel header with arrow icon">
       <p>{{ text }}</p>
     </a-collapse-panel>

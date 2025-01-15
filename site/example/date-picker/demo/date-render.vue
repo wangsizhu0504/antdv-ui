@@ -18,8 +18,8 @@ We can customize the rendering of date cells in the calendar by providing a `dat
 
 <script lang="ts" setup>
   import type { Dayjs } from 'dayjs'
-  import { ref } from 'vue'
   import type { CSSProperties } from 'vue'
+  import { ref } from 'vue'
 
   function getCurrentStyle(current: Dayjs) {
     const style: CSSProperties = {}

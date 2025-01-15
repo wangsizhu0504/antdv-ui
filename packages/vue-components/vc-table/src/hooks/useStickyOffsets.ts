@@ -1,7 +1,7 @@
 import type { ComputedRef, Ref } from 'vue'
 
-import { computed } from 'vue'
 import type { StickyOffsets } from '../interface'
+import { computed } from 'vue'
 
 /**
  * Get sticky column offset width

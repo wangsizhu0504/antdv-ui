@@ -1,15 +1,15 @@
-import { computed, defineComponent, toRefs } from 'vue'
-import { classNames, getPlacements } from '@antdv/utils'
 import type { VueNode } from '@antdv/types'
+import type { TourStepProps } from './props'
+import { classNames, getPlacements } from '@antdv/utils'
 import { VcTour } from '@antdv/vue-components'
+import { computed, defineComponent, toRefs } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
+
 import TourPanel from './PanelRender'
 
-import useMergedType from './useMergedType'
-
 import { tourProps } from './props'
-import type { TourStepProps } from './props'
+import useMergedType from './useMergedType'
 
 export default defineComponent({
   name: 'ATour',

@@ -1,3 +1,7 @@
+import type { InputFocusOptions } from './interface'
+import { CloseCircleFilled } from '@ant-design/icons-vue'
+import { classNames, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils'
+import { VcInput } from '@antdv/vue-components'
 import {
   computed,
   defineComponent,
@@ -6,18 +10,14 @@ import {
   onMounted,
   ref,
 } from 'vue'
-import { CloseCircleFilled } from '@ant-design/icons-vue'
-import { classNames, getMergedStatus, getStatusClassNames, omit } from '@antdv/utils'
-import { VcInput } from '@antdv/vue-components'
-import { FormItemInputContext, NoFormStatus, useInjectFormItemContext } from '../../form/src/FormItemContext'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { NoCompactStyle, useCompactItemContext } from '../../space'
-
 import { useInjectDisabled } from '../../config-provider'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+
+import { FormItemInputContext, NoFormStatus, useInjectFormItemContext } from '../../form/src/FormItemContext'
+import { NoCompactStyle, useCompactItemContext } from '../../space'
 import useStyle from '../style'
-import { hasPrefixSuffix } from './util'
 import { inputProps } from './props'
-import type { InputFocusOptions } from './interface'
+import { hasPrefixSuffix } from './util'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

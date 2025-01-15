@@ -1,6 +1,6 @@
 import type { GenerateStyle } from '@antdv/theme'
-import { clearFix, textEllipsis } from '@antdv/theme'
 import type { UploadToken } from '.'
+import { clearFix, textEllipsis } from '@antdv/theme'
 
 const genListStyle: GenerateStyle<UploadToken> = (token) => {
   const { componentCls, antCls, iconCls, fontSize, lineHeight } = token

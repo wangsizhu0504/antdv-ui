@@ -1,3 +1,9 @@
+import type { ComputedRef, InjectionKey } from 'vue'
+
+import type { Theme } from '../cssinjs'
+import type { AliasToken, GlobalToken, MapToken, OverrideToken, SeedToken } from './interface'
+import { objectType } from '@antdv/utils'
+import { version } from '@antdv/version'
 import {
   computed,
   defineComponent,
@@ -9,16 +15,10 @@ import {
   watch,
 } from 'vue'
 
-import { objectType } from '@antdv/utils'
-import type { ComputedRef, InjectionKey } from 'vue'
-import { version } from '@antdv/version'
 import { createTheme, useCacheToken } from '../cssinjs'
-import type { Theme } from '../cssinjs'
-
 import defaultDerivative from './themes/default'
 import defaultSeedToken from './themes/seed'
 import formatToken from './util/alias'
-import type { AliasToken, GlobalToken, MapToken, OverrideToken, SeedToken } from './interface'
 
 const defaultTheme = createTheme(defaultDerivative)
 

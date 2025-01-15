@@ -1,6 +1,6 @@
-import ThemeCache from './ThemeCache'
-import Theme from './Theme'
 import type { DerivativeFunc, TokenType } from './interface'
+import Theme from './Theme'
+import ThemeCache from './ThemeCache'
 
 const cacheThemes = new ThemeCache()
 

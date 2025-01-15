@@ -1,6 +1,6 @@
-import { objectType, stringType } from '@antdv/utils'
 import type { ExtractPropTypes } from 'vue'
 import type { ImageSettings } from './interface'
+import { objectType, stringType } from '@antdv/utils'
 
 export function qrProps() {
   return {

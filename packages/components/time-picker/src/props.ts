@@ -1,6 +1,6 @@
-import { booleanType, stringType } from '@antdv/utils'
-import type { ExtractPropTypes } from 'vue'
 import type { InputStatus } from '@antdv/types'
+import type { ExtractPropTypes } from 'vue'
+import { booleanType, stringType } from '@antdv/utils'
 
 export function commonTimePickerProps() {
   return {

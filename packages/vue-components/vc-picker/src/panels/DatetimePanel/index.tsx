@@ -1,13 +1,13 @@
-import { ref } from 'vue'
-import { KeyCode, classNames } from '@antdv/utils'
+import type { DisabledTime, PanelRefProps } from '../../interface'
 import type { DatePanelProps } from '../DatePanel'
-import DatePanel from '../DatePanel'
 import type { SharedTimeProps } from '../TimePanel'
-import TimePanel from '../TimePanel'
+import { classNames, KeyCode } from '@antdv/utils'
+import { ref } from 'vue'
+import useMergeProps from '../../hooks/useMergeProps'
 import { tuple } from '../../utils/miscUtil'
 import { setDateTime as setTime } from '../../utils/timeUtil'
-import type { DisabledTime, PanelRefProps } from '../../interface'
-import useMergeProps from '../../hooks/useMergeProps'
+import DatePanel from '../DatePanel'
+import TimePanel from '../TimePanel'
 
 export type DatetimePanelProps<DateType> = {
   disabledTime?: DisabledTime<DateType>;

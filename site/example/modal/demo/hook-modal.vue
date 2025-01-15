@@ -17,8 +17,8 @@ Use `Modal.useModal` to get `contextHolder` with context accessible issue.
 </docs>
 
 <script lang="ts" setup>
-  import { Modal } from '@antdv/ui'
   import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
+  import { Modal } from '@antdv/ui'
   import { h } from 'vue'
 
   const [modal, contextHolder] = Modal.useModal()

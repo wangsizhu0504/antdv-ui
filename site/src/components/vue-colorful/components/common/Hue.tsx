@@ -1,12 +1,12 @@
 import type { PropType } from 'vue'
-import { defineComponent, toRefs } from 'vue'
+import type { Interaction } from './Interactive'
 
+import { defineComponent, toRefs } from 'vue'
+import { clamp } from '../../utils/clamp'
 import { hsvaToHslString } from '../../utils/convert'
 import { formatClassName } from '../../utils/format'
-import { clamp } from '../../utils/clamp'
 import { round } from '../../utils/round'
 import { Interactive } from './Interactive'
-import type { Interaction } from './Interactive'
 import { Pointer } from './Pointer'
 
 export interface Props {

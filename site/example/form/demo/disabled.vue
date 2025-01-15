@@ -16,9 +16,9 @@ Set component disabled, only works for antd components.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, ref } from 'vue'
-  import { PlusOutlined } from '@ant-design/icons-vue'
   import type { CascaderProps, TreeSelectProps } from '@antdv/ui'
+  import { PlusOutlined } from '@ant-design/icons-vue'
+  import { reactive, ref } from 'vue'
 
   const componentDisabled = ref<any>(true)
   const labelCol = { style: { width: '150px' } }

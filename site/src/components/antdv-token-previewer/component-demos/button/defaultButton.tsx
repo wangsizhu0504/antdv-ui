@@ -1,6 +1,6 @@
-import { Button } from '@antdv/ui'
-
 import type { ComponentDemo } from '../../interface'
+
+import { Button } from '@antdv/ui'
 
 const Demo = () => <Button>default</Button>
 

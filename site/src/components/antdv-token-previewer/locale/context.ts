@@ -1,7 +1,7 @@
 import type { InjectionKey, Ref } from 'vue'
-import { computed, inject, provide } from 'vue'
-
 import type { Locale } from './interface'
+
+import { computed, inject, provide } from 'vue'
 import zhCN from './zh-CN'
 
 const contextKey: InjectionKey<Ref<Locale>> = Symbol('localeContext')

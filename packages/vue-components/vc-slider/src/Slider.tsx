@@ -1,9 +1,9 @@
-// eslint-disable-next-line ts/ban-ts-comment
+import { BaseMixin, hasProp, PropTypes } from '@antdv/utils'
+
 // @ts-nocheck
 import { defineComponent } from 'vue'
-import { BaseMixin, PropTypes, hasProp } from '@antdv/utils'
-import Track from './common/Track'
 import createSlider from './common/createSlider'
+import Track from './common/Track'
 import * as utils from './utils'
 
 const Slider = defineComponent({

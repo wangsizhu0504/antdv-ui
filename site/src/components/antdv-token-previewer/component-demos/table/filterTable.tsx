@@ -1,8 +1,8 @@
-import { defineComponent } from 'vue'
 import type { TableProps } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface'
 import { Table } from '@antdv/ui'
 
-import type { ComponentDemo } from '../../interface'
+import { defineComponent } from 'vue'
 
 interface TableData {
   name: string

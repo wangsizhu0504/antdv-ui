@@ -1,9 +1,9 @@
-import type { Ref, ShallowRef } from 'vue'
-import { shallowRef, toRaw, watch } from 'vue'
 import type { VueNode } from '@antdv/types'
+import type { Ref, ShallowRef } from 'vue'
 import type { SimpleModeConfig, TreeSelectDataNode } from '../interface'
-import { convertChildrenToData } from '../utils/legacyUtil'
 import type { DefaultOptionType } from '../TreeSelect'
+import { shallowRef, toRaw, watch } from 'vue'
+import { convertChildrenToData } from '../utils/legacyUtil'
 
 function parseSimpleTreeData(
   treeData: TreeSelectDataNode[],

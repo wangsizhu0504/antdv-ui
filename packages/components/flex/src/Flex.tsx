@@ -1,10 +1,10 @@
-import { computed, defineComponent } from 'vue'
-import { omit } from 'lodash-es'
 import type { CSSProperties } from 'vue'
+import { omit } from 'lodash-es'
+import { computed, defineComponent } from 'vue'
 import { useConfigContextInject } from '../../config-provider'
 
-import useStyle from '../style'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import useStyle from '../style'
 import { isPresetSize } from './gapSize'
 import { flexProps } from './props'
 import createFlexClassNames from './util'

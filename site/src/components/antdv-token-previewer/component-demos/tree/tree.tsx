@@ -1,5 +1,5 @@
-import { Tree } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Tree } from '@antdv/ui'
 
 const treeData = [
   {

@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
-import { defineComponent, ref, toRefs, watchEffect } from 'vue'
-
 import type { ColorInputBaseProps } from '../../types'
+
+import { defineComponent, ref, toRefs, watchEffect } from 'vue'
 
 export interface ColorInputProps extends ColorInputBaseProps {
   /** Blocks typing invalid characters and limits string length */

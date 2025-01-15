@@ -1,14 +1,14 @@
+import type { CSSProperties } from 'vue'
+import { useState } from '@antdv/hooks'
+import { objectType, raf } from '@antdv/utils'
 import {
-  Transition,
   defineComponent,
   onBeforeUnmount,
   onMounted,
   render,
   shallowRef,
+  Transition,
 } from 'vue'
-import type { CSSProperties } from 'vue'
-import { objectType, raf } from '@antdv/utils'
-import { useState } from '@antdv/hooks'
 import { getTargetWaveColor } from './util'
 
 function validateNum(value: number) {

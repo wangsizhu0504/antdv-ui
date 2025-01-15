@@ -17,9 +17,9 @@ Show the dynamic switching mode (between `inline` and `vertical`).
 </docs>
 
 <script lang="ts" setup>
-  import { h, reactive } from 'vue'
-  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
   import type { ItemType, MenuMode, MenuTheme } from '@antdv/ui'
+  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
+  import { h, reactive } from 'vue'
 
   const state = reactive({
     mode: 'inline' as MenuMode,
@@ -79,8 +79,8 @@ Show the dynamic switching mode (between `inline` and `vertical`).
     <br />
     <br />
     <a-menu
-      v-model:openKeys="state.openKeys"
-      v-model:selectedKeys="state.selectedKeys"
+      v-model:open-keys="state.openKeys"
+      v-model:selected-keys="state.selectedKeys"
       style="width: 256px"
       :mode="state.mode"
       :items="items"

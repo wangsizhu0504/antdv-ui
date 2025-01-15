@@ -1,12 +1,12 @@
 <script lang="ts">
   import { defineComponent } from 'vue'
-  import CN from '../index.zh-CN.md'
   import US from '../index.en-US.md'
+  import CN from '../index.zh-CN.md'
   import Basic from './basic.vue'
+  import Indicator from './indicator.vue'
+  import Mask from './mask.vue'
   import NonModal from './non-modal.vue'
   import Placement from './placement.vue'
-  import Mask from './mask.vue'
-  import Indicator from './indicator.vue'
 
   export default defineComponent({
     CN,

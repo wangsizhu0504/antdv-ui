@@ -16,8 +16,8 @@ If you need several buttons, we recommend that you use 1 primary button + n seco
 </docs>
 
 <script lang="ts" setup>
-  import { DownOutlined } from '@ant-design/icons-vue'
   import type { MenuProps } from '@antdv/ui'
+  import { DownOutlined } from '@ant-design/icons-vue'
 
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     console.log('click', e)

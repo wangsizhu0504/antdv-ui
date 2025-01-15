@@ -1,7 +1,7 @@
 import type { ComponentDemo } from '../../interface'
-import Default from './radio'
 import Button from './button'
 import disabled from './disabled'
+import Default from './radio'
 
 const previewerDemo: ComponentDemo[] = [Default, Button, disabled]
 

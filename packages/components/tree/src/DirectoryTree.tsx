@@ -1,3 +1,13 @@
+import type { Key } from '@antdv/types'
+import type { DataNode, EventDataNode, ScrollTo } from '@antdv/vue-components/vc-tree/src/interface'
+import type { SlotsType } from 'vue'
+import type { AntdTreeNodeAttribute } from './interface'
+import type { TreeProps } from './props'
+import { FileOutlined, FolderOpenOutlined, FolderOutlined } from '@ant-design/icons-vue'
+
+import { classNames, filterEmpty, initDefaultProps } from '@antdv/utils'
+import { conductExpandParent } from '@antdv/vue-components/vc-tree/src/util'
+import { debounce } from 'lodash-es'
 import {
   computed,
   defineComponent,
@@ -6,11 +16,6 @@ import {
   ref,
   watch,
 } from 'vue'
-import { debounce } from 'lodash-es'
-import { FileOutlined, FolderOpenOutlined, FolderOutlined } from '@ant-design/icons-vue'
-import { classNames, filterEmpty, initDefaultProps } from '@antdv/utils'
-import type { Key } from '@antdv/types'
-import type { SlotsType } from 'vue'
 
 // import { conductExpandParent, convertDataToEntities, convertTreeToData, fillFieldNames } from '@antdv/vue-components'
 // import type { DataNode, EventDataNode, ScrollTo } from '@antdv/vue-components'
@@ -19,16 +24,11 @@ import {
   convertTreeToData,
   fillFieldNames,
 } from '@antdv/vue-components/vc-tree/src/utils/treeUtil'
-import { conductExpandParent } from '@antdv/vue-components/vc-tree/src/util'
-import type { DataNode, EventDataNode, ScrollTo } from '@antdv/vue-components/vc-tree/src/interface'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-
-import Tree from './Tree'
-import { calcRangeKeys, convertDirectoryKeysToNodes } from './utils/dictUtil'
 import { directoryTreeProps } from './props'
-import type { TreeProps } from './props'
+import Tree from './Tree'
 
-import type { AntdTreeNodeAttribute } from './interface'
+import { calcRangeKeys, convertDirectoryKeysToNodes } from './utils/dictUtil'
 
 function getIcon(props: AntdTreeNodeAttribute) {
   const { isLeaf, expanded } = props

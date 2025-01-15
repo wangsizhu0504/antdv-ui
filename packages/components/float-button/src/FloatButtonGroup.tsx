@@ -1,23 +1,23 @@
+import type { FloatButtonGroupProps } from './props'
+import { CloseOutlined, FileTextOutlined } from '@ant-design/icons-vue'
+import { useMergedState } from '@antdv/hooks'
+import { canUseDom, classNames, findDOMNode, initDefaultProps } from '@antdv/utils'
+import { getTransitionProps } from '@antdv/vue-components'
 import {
-  Transition,
   computed,
   defineComponent,
   onBeforeUnmount,
   ref,
+  Transition,
   watch,
 } from 'vue'
-import { CloseOutlined, FileTextOutlined } from '@ant-design/icons-vue'
-import { canUseDom, classNames, findDOMNode, initDefaultProps } from '@antdv/utils'
-import { getTransitionProps } from '@antdv/vue-components'
-import { useMergedState } from '@antdv/hooks'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
 
-import FloatButton from './FloatButton'
-import { useProvideFloatButtonGroupContext } from './context'
-import { floatButtonGroupProps } from './props'
-import type { FloatButtonGroupProps } from './props'
+import useStyle from '../style'
 import { floatButtonPrefixCls } from './constants'
+import { useProvideFloatButtonGroupContext } from './context'
+import FloatButton from './FloatButton'
+import { floatButtonGroupProps } from './props'
 
 // CSSINJS
 
@@ -113,29 +113,29 @@ export default defineComponent({
         <div ref={floatButtonGroupRef} {...attrs} class={groupCls} {...hoverAction.value}>
           {trigger && ['click', 'hover'].includes(trigger)
             ? (
-              <>
-                <Transition {...transitionProps}>
-                  <div v-show={open.value} class={wrapperCls}>
-                    {slots.default && slots.default()}
-                  </div>
-                </Transition>
-                <FloatButton
-                  ref={floatButtonRef}
-                  type={type}
-                  shape={shape}
-                  tooltip={tooltip}
-                  description={description}
-                  v-slots={{
-                    icon: () =>
-                      open.value
-                        ? slots.closeIcon?.() || <CloseOutlined />
-                        : slots.icon?.() || <FileTextOutlined />,
-                    tooltip: slots.tooltip,
-                    description: slots.description,
-                  }}
-                >
-                </FloatButton>
-              </>
+                <>
+                  <Transition {...transitionProps}>
+                    <div v-show={open.value} class={wrapperCls}>
+                      {slots.default && slots.default()}
+                    </div>
+                  </Transition>
+                  <FloatButton
+                    ref={floatButtonRef}
+                    type={type}
+                    shape={shape}
+                    tooltip={tooltip}
+                    description={description}
+                    v-slots={{
+                      icon: () =>
+                        open.value
+                          ? slots.closeIcon?.() || <CloseOutlined />
+                          : slots.icon?.() || <FileTextOutlined />,
+                      tooltip: slots.tooltip,
+                      description: slots.description,
+                    }}
+                  >
+                  </FloatButton>
+                </>
               )
             : (
                 slots.default?.()

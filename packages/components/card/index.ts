@@ -1,7 +1,7 @@
 import type { App, Plugin } from 'vue'
 import ACard from './src/Card'
-import ACardMeta from './src/Meta'
 import ACardGrid from './src/Grid'
+import ACardMeta from './src/Meta'
 
 export const CardMeta = ACardMeta
 export const CardGrid = ACardGrid

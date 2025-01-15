@@ -1,4 +1,7 @@
 <script lang="ts">
+  import type { GlobalConfig } from '@/types'
+  import { CloseOutlined, LinkOutlined, MenuOutlined } from '@ant-design/icons-vue'
+  import { useWindowScroll } from '@vueuse/core'
   import {
     computed,
     defineComponent,
@@ -8,19 +11,16 @@
     watch,
   } from 'vue'
   import { useRoute } from 'vue-router'
-  import { CloseOutlined, LinkOutlined, MenuOutlined } from '@ant-design/icons-vue'
-  import { useWindowScroll } from '@vueuse/core'
-  import { GLOBAL_CONFIG } from '../SymbolKey'
   import useMenus from '../hooks/useMenus'
+  import { GLOBAL_CONFIG } from '../SymbolKey'
+  import Demo from './Demo.vue'
   import LayoutHeader from './header/index.vue'
+  import CompactIcon from './icons/Compact'
+  import DarkIcon from './icons/Dark'
+  import ThemeEditorIcon from './icons/ThemeEditorIcon'
+  import ThemeIcon from './icons/ThemeIcon.vue'
   import Menu from './Menu.vue'
   import PrevAndNext from './PrevAndNext.vue'
-  import Demo from './Demo.vue'
-  import ThemeIcon from './icons/ThemeIcon.vue'
-  import ThemeEditorIcon from './icons/ThemeEditorIcon'
-  import DarkIcon from './icons/Dark'
-  import CompactIcon from './icons/Compact'
-  import type { GlobalConfig } from '@/types'
 
   // eslint-disable-next-line no-control-regex
   const rControl = /[\u0000-\u001F]/g

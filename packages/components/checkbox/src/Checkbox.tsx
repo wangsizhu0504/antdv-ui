@@ -1,3 +1,9 @@
+import type { EventHandler } from '@antdv/types'
+import type { CSSProperties } from 'vue'
+import type { CheckboxChangeEvent } from './interface'
+import type { CheckboxProps } from './props'
+import { classNames, devWarning, flattenChildren } from '@antdv/utils'
+import { VcCheckbox } from '@antdv/vue-components'
 import {
   computed,
   defineComponent,
@@ -7,20 +13,15 @@ import {
   ref,
   watchEffect,
 } from 'vue'
-import { classNames, devWarning, flattenChildren } from '@antdv/utils'
-import type { CSSProperties } from 'vue'
-import type { EventHandler } from '@antdv/types'
-import { VcCheckbox } from '@antdv/vue-components'
-import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
 import { useInjectDisabled } from '../../config-provider'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
+
+import useStyle from '../style'
 import { CheckboxGroupContextKey } from './interface'
 
 // CSSINJS
 import { checkboxProps } from './props'
-import type { CheckboxProps } from './props'
-import type { CheckboxChangeEvent } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

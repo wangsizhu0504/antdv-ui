@@ -31,7 +31,7 @@ Top-bottom structure is conform with the top-bottom viewing habit, it's a classi
     <a-layout-header>
       <div class="logo" />
       <a-menu
-        v-model:selectedKeys="selectedKeys"
+        v-model:selected-keys="selectedKeys"
         theme="dark"
         mode="horizontal"
         :style="{ lineHeight: '64px' }"

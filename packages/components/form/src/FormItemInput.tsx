@@ -1,11 +1,11 @@
-import { computed, defineComponent } from 'vue'
-import { classNames, filterEmpty } from '@antdv/utils'
-import type { HTMLAttributes } from 'vue'
 import type { CustomSlotsType } from '@antdv/types'
-import { Col } from '../../grid'
+import type { HTMLAttributes } from 'vue'
 import type { ColProps } from '../../grid'
-import ErrorList from './ErrorList'
+import { classNames, filterEmpty } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
+import { Col } from '../../grid'
 import { useInjectForm, useProvideForm, useProvideFormItemPrefix } from './context'
+import ErrorList from './ErrorList'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -76,15 +76,15 @@ export default defineComponent({
                 </div>
                 {marginBottom !== null || errors.length
                   ? (
-                    <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
-                      <ErrorList
-                        errors={errors}
-                        help={help}
-                        class={`${baseClassName}-explain-connected`}
-                        onErrorVisibleChanged={onErrorVisibleChanged}
-                      />
-                      {!!marginBottom && <div style={{ width: 0, height: `${marginBottom}px` }} />}
-                    </div>
+                      <div style={{ display: 'flex', flexWrap: 'nowrap' }}>
+                        <ErrorList
+                          errors={errors}
+                          help={help}
+                          class={`${baseClassName}-explain-connected`}
+                          onErrorVisibleChanged={onErrorVisibleChanged}
+                        />
+                        {!!marginBottom && <div style={{ width: 0, height: `${marginBottom}px` }} />}
+                      </div>
                     )
                   : null}
                 {extra ? <div class={`${baseClassName}-extra`}>{extra}</div> : null}

@@ -9,8 +9,8 @@ title:
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { CascaderProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const options: CascaderProps['options'] = [
     {

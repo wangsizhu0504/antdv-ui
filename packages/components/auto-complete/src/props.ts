@@ -1,6 +1,6 @@
-import { omit } from '@antdv/utils'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { InputStatus } from '@antdv/types'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+import { omit } from '@antdv/utils'
 import { selectProps } from '../../select'
 
 export function autoCompleteProps() {

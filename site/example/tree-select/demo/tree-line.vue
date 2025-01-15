@@ -17,8 +17,8 @@ Use `treeLine` to show the line style.
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
   import type { TreeSelectProps } from '@antdv/ui'
+  import { ref, watch } from 'vue'
 
   const treeLine = ref<any>(true)
   const showLeafIcon = ref<any>(false)

@@ -1,5 +1,5 @@
-import type { CSSProperties, VNode } from 'vue'
 import type { Key } from '@antdv/types'
+import type { CSSProperties, VNode } from 'vue'
 import type { TreeNodeProps } from './props'
 
 export type { ScrollTo } from '../../vc-virtual-list/src/List'

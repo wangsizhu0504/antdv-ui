@@ -17,10 +17,10 @@ Table with editable cells.
 </docs>
 
 <script lang="ts" setup>
-  import { computed, reactive, ref } from 'vue'
   import type { Ref, UnwrapRef } from 'vue'
   import { CheckOutlined, EditOutlined } from '@ant-design/icons-vue'
   import { cloneDeep } from 'lodash-es'
+  import { computed, reactive, ref } from 'vue'
 
   interface DataItem {
     key: string;

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { computed, defineComponent, inject, onMounted, ref } from 'vue'
-  import { SearchOutlined } from '@ant-design/icons-vue'
   import type { GlobalConfig } from '../App.vue'
-  import { GLOBAL_CONFIG } from '../SymbolKey'
+  import { SearchOutlined } from '@ant-design/icons-vue'
+  import { computed, defineComponent, inject, onMounted, ref } from 'vue'
   import useMenus from '../hooks/useMenus'
+  import { GLOBAL_CONFIG } from '../SymbolKey'
   import { getLocalizedPathname } from '../utils/util'
 
   export default defineComponent({
@@ -28,7 +28,8 @@
                 || (component.subtitle || '').toLowerCase().includes(search.value.trim().toLowerCase()),
               )
               return { ...group, children: components }
-            }).filter(i => i.children.length),
+            })
+            .filter(i => i.children.length),
         ) as any[]
       })
       onMounted(() => {

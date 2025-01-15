@@ -15,8 +15,8 @@ Custom Size.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { MinusOutlined, PlusOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const size = ref<any>(160)
   function decline() {

@@ -1,9 +1,9 @@
-import { defineComponent, ref, watch } from 'vue'
-import { initDefaultProps } from '@antdv/utils'
-import { useProvidePortal } from '../../vc-trigger/src/context'
-import Portal from '../../portal/src/PortalWrapper'
-import Dialog from './Dialog'
 import type { IDialogChildProps } from './IDialogPropTypes'
+import { initDefaultProps } from '@antdv/utils'
+import { defineComponent, ref, watch } from 'vue'
+import Portal from '../../portal/src/PortalWrapper'
+import { useProvidePortal } from '../../vc-trigger/src/context'
+import Dialog from './Dialog'
 import getDialogPropTypes from './IDialogPropTypes'
 
 const IDialogPropTypes = getDialogPropTypes()

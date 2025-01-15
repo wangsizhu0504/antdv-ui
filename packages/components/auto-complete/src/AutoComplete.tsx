@@ -1,10 +1,10 @@
-import { defineComponent, ref } from 'vue'
-import { omit } from 'lodash'
-import { devWarning, flattenChildren, isValidElement } from '@antdv/utils'
 import type { SlotsType, VNode } from 'vue'
-import Select from '../../select'
-
+import { devWarning, flattenChildren, isValidElement } from '@antdv/utils'
+import { omit } from 'lodash'
+import { defineComponent, ref } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+
+import Select from '../../select'
 
 import Option from './Option'
 import { autoCompleteProps } from './props'

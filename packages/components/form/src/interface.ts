@@ -1,5 +1,5 @@
-import type { ComputedRef, HTMLAttributes, Ref } from 'vue'
 import type { ValidateStatus, VueNode } from '@antdv/types'
+import type { ComputedRef, HTMLAttributes, Ref } from 'vue'
 import type { ColProps } from '../../grid'
 
 export type RequiredMark = boolean | 'optional'

@@ -1,7 +1,7 @@
-import { PropTypes, tuple } from '@antdv/utils'
 import type { FocusEventHandler } from '@antdv/types'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { CheckedType } from './interface'
+import { PropTypes, tuple } from '@antdv/utils'
 
 export const SwitchSizes = tuple('small', 'default')
 

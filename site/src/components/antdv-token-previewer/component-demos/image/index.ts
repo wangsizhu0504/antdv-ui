@@ -1,6 +1,6 @@
 import type { ComponentDemo } from '../../interface'
-import Default from './image'
 import disabled from './disabled'
+import Default from './image'
 
 const previewerDemo: ComponentDemo[] = [Default, disabled]
 

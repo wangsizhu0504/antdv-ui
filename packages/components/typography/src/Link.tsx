@@ -1,8 +1,8 @@
-import { devWarning } from '@antdv/utils'
 import type { FunctionalComponent } from 'vue'
+import type { LinkProps } from './props'
+import { devWarning } from '@antdv/utils'
 import Base from './Base'
 import { linkProps } from './props'
-import type { LinkProps } from './props'
 
 const Link: FunctionalComponent<LinkProps> = (props, { slots, attrs }) => {
   const { ellipsis, rel, ...restProps } = { ...props, ...attrs }

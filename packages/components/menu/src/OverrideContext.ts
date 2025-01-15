@@ -1,6 +1,6 @@
-import { computed, inject, provide } from 'vue'
 import type { ComputedRef, InjectionKey } from 'vue'
 import type { MenuProps } from './props'
+import { computed, inject, provide } from 'vue'
 
 // Used for Dropdown only
 export interface OverrideContextProps {

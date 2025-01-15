@@ -1,3 +1,9 @@
+import type { BaseInputExpose } from '@antdv/vue-components/vc-input/src/BaseInputCore'
+import type { CSSProperties } from 'vue'
+import { classNames, devWarning, omit, raf } from '@antdv/utils'
+import { ResizeObserver } from '@antdv/vue-components'
+
+import BaseInput from '@antdv/vue-components/vc-input/src/BaseInputCore'
 import {
   computed,
   defineComponent,
@@ -7,12 +13,6 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { classNames, devWarning, omit, raf } from '@antdv/utils'
-import type { CSSProperties } from 'vue'
-import { ResizeObserver } from '@antdv/vue-components'
-
-import type { BaseInputExpose } from '@antdv/vue-components/vc-input/src/BaseInputCore'
-import BaseInput from '@antdv/vue-components/vc-input/src/BaseInputCore'
 import calculateAutoSizeStyle from './calculateNodeHeight'
 import { textAreaProps } from './props'
 

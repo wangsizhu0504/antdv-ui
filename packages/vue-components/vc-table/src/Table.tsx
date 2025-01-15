@@ -1,34 +1,8 @@
-import type { CSSProperties } from 'vue'
-import {
-  computed,
-  defineComponent,
-  nextTick,
-  onMounted,
-  onUpdated,
-  reactive,
-  ref,
-  shallowRef,
-  toRef,
-  toRefs,
-  watch,
-  watchEffect,
-} from 'vue'
-import {
-  classNames,
-  getTargetScrollBarSize,
-  isVisible,
-  pickAttrs,
-  reactivePick,
-  toPx,
-  warning,
-} from '@antdv/utils'
-import { useState } from '@antdv/hooks'
 import type { EventHandler } from '@antdv/types'
-import VCResizeObserver from '../../vc-resize-observer/src/index'
-import Header from './Header/Header'
+import type { CSSProperties } from 'vue'
 import type {
-  ColumnType,
   ColumnsType,
+  ColumnType,
   CustomizeComponent,
   CustomizeScrollBody,
   DefaultRecordType,
@@ -45,24 +19,50 @@ import type {
   TransformCellText,
   TriggerEventHandler,
 } from './interface'
+import { useState } from '@antdv/hooks'
+import {
+  classNames,
+  getTargetScrollBarSize,
+  isVisible,
+  pickAttrs,
+  reactivePick,
+  toPx,
+  warning,
+} from '@antdv/utils'
+import {
+  computed,
+  defineComponent,
+  nextTick,
+  onMounted,
+  onUpdated,
+  reactive,
+  ref,
+  shallowRef,
+  toRef,
+  toRefs,
+  watch,
+  watchEffect,
+} from 'vue'
+import VCResizeObserver from '../../vc-resize-observer/src/index'
 import Body from './Body'
-import useColumns from './hooks/useColumns'
-import { useLayoutState, useTimeoutLock } from './hooks/useFrame'
-import { getColumnsKey, getPathValue, mergeObject, validateValue } from './utils/valueUtil'
-import useStickyOffsets from './hooks/useStickyOffsets'
 import ColGroup from './ColGroup'
-import Panel from './Panel'
-import Footer from './Footer'
-import { findAllChildrenKeys, renderExpandIcon } from './utils/expandUtil'
-import { getCellFixedInfo } from './utils/fixUtil'
-import StickyScrollBar from './stickyScrollBar'
-import useSticky from './hooks/useSticky'
-import FixedHolder from './FixedHolder'
-import { useProvideTable } from './context/TableContext'
 import { useProvideBody } from './context/BodyContext'
+import { useProvideExpandedRow } from './context/ExpandedRowContext'
 import { useProvideResize } from './context/ResizeContext'
 import { useProvideSticky } from './context/StickyContext'
-import { useProvideExpandedRow } from './context/ExpandedRowContext'
+import { useProvideTable } from './context/TableContext'
+import FixedHolder from './FixedHolder'
+import Footer from './Footer'
+import Header from './Header/Header'
+import useColumns from './hooks/useColumns'
+import { useLayoutState, useTimeoutLock } from './hooks/useFrame'
+import useSticky from './hooks/useSticky'
+import useStickyOffsets from './hooks/useStickyOffsets'
+import Panel from './Panel'
+import StickyScrollBar from './stickyScrollBar'
+import { findAllChildrenKeys, renderExpandIcon } from './utils/expandUtil'
+import { getCellFixedInfo } from './utils/fixUtil'
+import { getColumnsKey, getPathValue, mergeObject, validateValue } from './utils/valueUtil'
 
 // Used for conditions cache
 const EMPTY_DATA = []

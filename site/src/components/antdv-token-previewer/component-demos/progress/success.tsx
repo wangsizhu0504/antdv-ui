@@ -1,6 +1,6 @@
-import { Progress, Space } from '@antdv/ui'
-
 import type { ComponentDemo } from '../../interface'
+
+import { Progress, Space } from '@antdv/ui'
 
 function Demo() {
   return (

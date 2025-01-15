@@ -1,6 +1,6 @@
 import type { BaseTransitionProps, CSSProperties, TransitionGroupProps, TransitionProps } from 'vue'
-import { TransitionGroup } from 'vue'
 import { tuple } from '@antdv/utils'
+import { TransitionGroup } from 'vue'
 
 const SelectPlacements = tuple('bottomLeft', 'bottomRight', 'topLeft', 'topRight')
 export type SelectCommonPlacement = (typeof SelectPlacements)[number]
@@ -72,4 +72,4 @@ function getTransitionName(rootPrefixCls: string, motion: string, transitionName
   return `${rootPrefixCls}-${motion}`
 }
 
-export { TransitionGroup, getTransitionName, getTransitionDirection }
+export { getTransitionDirection, getTransitionName, TransitionGroup }

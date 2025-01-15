@@ -1,6 +1,5 @@
-import { PropTypes, arrayType, booleanType, functionType, stringType } from '@antdv/utils'
-import type { ExtractPropTypes } from 'vue'
 import type { FocusEventHandler, MouseEventHandler } from '@antdv/types'
+import type { ExtractPropTypes } from 'vue'
 import type {
   RadioChangeEvent,
   RadioGroupButtonStyle,
@@ -8,6 +7,7 @@ import type {
   RadioGroupOptionType,
   RadioGroupSize,
 } from './interface'
+import { arrayType, booleanType, functionType, PropTypes, stringType } from '@antdv/utils'
 
 export function radioGroupProps() {
   return {

@@ -1,5 +1,5 @@
-import { warning } from '@antdv/utils'
 import type { ExpandableConfig, LegacyExpandableProps } from '../interface'
+import { warning } from '@antdv/utils'
 
 export const INTERNAL_COL_DEFINE = 'RC_TABLE_INTERNAL_COL_DEFINE'
 

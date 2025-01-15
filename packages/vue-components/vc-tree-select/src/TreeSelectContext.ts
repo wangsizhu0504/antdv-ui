@@ -1,7 +1,7 @@
 import type { InjectionKey } from 'vue'
-import { inject, provide } from 'vue'
 import type { ExpandAction } from '../../vc-tree/src/props'
 import type { DefaultOptionType, InternalFieldName, OnInternalSelect } from './TreeSelect'
+import { inject, provide } from 'vue'
 
 export interface TreeSelectContextProps {
   virtual?: boolean;

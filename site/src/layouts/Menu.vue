@@ -1,8 +1,8 @@
 <script lang="ts">
   import { computed, defineComponent, inject, watch } from 'vue'
   import { useRoute } from 'vue-router'
-  import { getLocalizedPathname } from '../utils/util'
   import useSiteToken from '../hooks/useSiteToken'
+  import { getLocalizedPathname } from '../utils/util'
 
   export default defineComponent({
     name: 'Menu',

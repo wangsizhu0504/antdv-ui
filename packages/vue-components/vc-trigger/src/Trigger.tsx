@@ -1,8 +1,7 @@
 import type { HTMLAttributes } from 'vue'
-import { computed, defineComponent, inject, provide, shallowRef } from 'vue'
 import {
-  BaseMixin,
   addEventListenerWrap,
+  BaseMixin,
   classNames,
   cloneElement,
   contains,
@@ -15,11 +14,12 @@ import {
   raf,
   supportsPassive,
 } from '@antdv/utils'
+import { computed, defineComponent, inject, provide, shallowRef } from 'vue'
 import Portal from '../../portal/src/PortalWrapper'
+import { useProvidePortal } from './context'
+import { noop, triggerProps } from './interface'
 import Popup from './Popup'
 import { getAlignFromPlacement, getAlignPopupClassName } from './utils/alignUtil'
-import { noop, triggerProps } from './interface'
-import { useProvidePortal } from './context'
 
 const ALL_HANDLERS = [
   'onClick',

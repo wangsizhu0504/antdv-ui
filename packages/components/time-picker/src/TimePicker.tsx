@@ -1,15 +1,15 @@
-import { defineComponent, ref } from 'vue'
-import { devWarning, omit } from '@antdv/utils'
-import type { SlotsType } from 'vue'
-import type { RangePickerSharedProps } from '@antdv/vue-components/vc-picker/src/RangePicker'
-import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface'
 import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
+import type { PanelMode, RangeValue } from '@antdv/vue-components/vc-picker/src/interface'
+import type { RangePickerSharedProps } from '@antdv/vue-components/vc-picker/src/RangePicker'
+import type { SlotsType } from 'vue'
+import type { TimePickerProps, TimeRangePickerProps } from './interface'
+import { devWarning, omit } from '@antdv/utils'
 
-import generatePicker from '../../date-picker/src/generatePicker'
+import { defineComponent, ref } from 'vue'
 import { commonProps, datePickerProps, rangePickerProps } from '../../date-picker'
+import generatePicker from '../../date-picker/src/generatePicker'
 import { useInjectFormItemContext } from '../../form/src/FormItemContext'
 import { commonTimePickerProps } from './props'
-import type { TimePickerProps, TimeRangePickerProps } from './interface'
 
 function createTimePicker<
   DateType,

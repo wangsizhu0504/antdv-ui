@@ -17,8 +17,8 @@ Render radios by configuring `options`.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { RadioGroupProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const plainOptions = ['Apple', 'Pear', 'Orange']
   const optionsWithDisabled: RadioGroupProps['options'] = [

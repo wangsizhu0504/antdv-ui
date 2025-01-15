@@ -16,10 +16,10 @@ Inline login form is often used in navigation bar.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive } from 'vue'
-  import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
-  import type { UnwrapRef } from 'vue'
   import type { FormProps } from '@antdv/ui'
+  import type { UnwrapRef } from 'vue'
+  import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
+  import { reactive } from 'vue'
 
   interface FormState {
     user: string;

@@ -1,6 +1,6 @@
 import type { ExtractPropTypes } from 'vue'
-import { defineComponent } from 'vue'
 import { PropTypes } from '@antdv/utils'
+import { defineComponent } from 'vue'
 
 const tooltipContentProps = {
   prefixCls: String,

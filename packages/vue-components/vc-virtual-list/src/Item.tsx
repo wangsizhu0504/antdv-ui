@@ -1,6 +1,6 @@
 import type { FunctionalComponent, PropType } from 'vue'
-import { cloneVNode } from 'vue'
 import { flattenChildren } from '@antdv/utils'
+import { cloneVNode } from 'vue'
 
 export interface ItemProps {
   setRef: (element: HTMLElement) => void;

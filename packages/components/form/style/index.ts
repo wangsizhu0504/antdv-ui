@@ -1,5 +1,5 @@
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import type { AliasToken, CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import { genCollapseMotion, zoomIn } from '@antdv/theme/style/motion'
 import genFormValidateMotionStyle from './explain'
 

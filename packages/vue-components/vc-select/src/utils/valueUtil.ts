@@ -1,6 +1,6 @@
-import { warning } from '@antdv/utils'
-import type { BaseOptionType, DefaultOptionType, FieldNames, RawValueType } from '../Select'
 import type { FlattenOptionData } from '../interface'
+import type { BaseOptionType, DefaultOptionType, FieldNames, RawValueType } from '../Select'
+import { warning } from '@antdv/utils'
 
 function getKey(data: BaseOptionType, index: number) {
   const { key } = data

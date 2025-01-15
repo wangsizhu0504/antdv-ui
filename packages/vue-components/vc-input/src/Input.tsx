@@ -1,5 +1,11 @@
+import type { ChangeEvent, FocusEventHandler } from '@antdv/types'
+
 // base 0.0.1-alpha.7
 import type { ComponentPublicInstance } from 'vue'
+import type { InputProps } from './inputProps'
+import type { InputFocusOptions } from './utils/commonUtils'
+import { classNames } from '@antdv/utils'
+import { omit } from 'lodash-es'
 import {
   computed,
   defineComponent,
@@ -8,15 +14,10 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { omit } from 'lodash-es'
-import { classNames } from '@antdv/utils'
-import type { ChangeEvent, FocusEventHandler } from '@antdv/types'
-import type { InputProps } from './inputProps'
-import { inputProps } from './inputProps'
-import type { InputFocusOptions } from './utils/commonUtils'
-import { fixControlledValue, hasAddon, hasPrefixSuffix, resolveOnChange, triggerFocus } from './utils/commonUtils'
 import BaseInput from './BaseInput'
 import BaseInputCore, { type BaseInputExpose } from './BaseInputCore'
+import { inputProps } from './inputProps'
+import { fixControlledValue, hasAddon, hasPrefixSuffix, resolveOnChange, triggerFocus } from './utils/commonUtils'
 
 export default defineComponent({
   name: 'VCInput',

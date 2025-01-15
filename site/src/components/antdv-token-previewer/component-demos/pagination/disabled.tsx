@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { Pagination } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Pagination } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 const Demo = defineComponent({
   setup() {

@@ -17,10 +17,10 @@ Use `progress` for customize progress bar.
 </docs>
 
 <script lang="ts" setup>
-  import { message } from '@antdv/ui'
-  import { UploadOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
   import type { UploadChangeParam, UploadProps } from '@antdv/ui'
+  import { UploadOutlined } from '@ant-design/icons-vue'
+  import { message } from '@antdv/ui'
+  import { ref } from 'vue'
 
   function handleChange(info: UploadChangeParam) {
     if (info.file.status !== 'uploading') {

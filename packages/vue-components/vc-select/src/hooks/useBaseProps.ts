@@ -4,8 +4,8 @@
  */
 
 import type { InjectionKey } from 'vue'
-import { inject, provide } from 'vue'
 import type { BaseSelectProps } from '../BaseSelect'
+import { inject, provide } from 'vue'
 
 export interface BaseSelectContextProps extends BaseSelectProps {
   triggerOpen: boolean;

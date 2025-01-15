@@ -1,3 +1,8 @@
+import type { CustomSlotsType } from '@antdv/types'
+
+import type { MenuInfo } from './interface'
+import { cloneElement, devWarning, flattenChildren, isValidElement, KeyCode } from '@antdv/utils'
+import { VcOverflow } from '@antdv/vue-components/vc-overflow'
 import {
   computed,
   defineComponent,
@@ -7,16 +12,11 @@ import {
   watch,
 } from 'vue'
 
-import { KeyCode, cloneElement, devWarning, flattenChildren, isValidElement } from '@antdv/utils'
-import type { CustomSlotsType } from '@antdv/types'
-import { VcOverflow } from '@antdv/vue-components/vc-overflow'
 import Tooltip from '../../tooltip'
-
-import { useInjectFirstLevel, useInjectMenu } from './hooks/useMenuContext'
-import { useInjectKeyPath, useMeasure } from './hooks/useKeyPath'
 import useDirectionStyle from './hooks/useDirectionStyle'
+import { useInjectKeyPath, useMeasure } from './hooks/useKeyPath'
+import { useInjectFirstLevel, useInjectMenu } from './hooks/useMenuContext'
 import { menuItemProps } from './props'
-import type { MenuInfo } from './interface'
 
 let indexGuid = 0
 

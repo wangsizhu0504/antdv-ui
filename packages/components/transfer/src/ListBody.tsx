@@ -1,9 +1,9 @@
-import { computed, defineComponent, ref, watch } from 'vue'
+import type { TransferItem } from './interface'
 import { classNames } from '@antdv/utils'
+import { computed, defineComponent, ref, watch } from 'vue'
 import Pagination from '../../pagination'
 import ListItem from './ListItem'
 import { transferListBodyProps } from './props'
-import type { TransferItem } from './interface'
 
 function parsePagination(pagination) {
   if (!pagination)

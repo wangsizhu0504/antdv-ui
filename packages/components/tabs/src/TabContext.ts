@@ -1,6 +1,6 @@
-import { defineComponent, inject, provide, ref, toRefs } from 'vue'
 import type { InjectionKey, PropType, Ref } from 'vue'
 import type { Tab } from './interface'
+import { defineComponent, inject, provide, ref, toRefs } from 'vue'
 
 export interface TabContextProps {
   tabs: Ref<Tab[]>

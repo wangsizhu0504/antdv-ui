@@ -1,14 +1,5 @@
-import {
-  PropTypes,
-  booleanType,
-  functionType,
-  objectType,
-  someType,
-  stringType,
-} from '@antdv/utils'
 import type { FocusEventHandler, Key, MouseEventHandler, SizeType } from '@antdv/types'
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-
 import type {
   AnimatedConfig,
   EditableConfig,
@@ -19,6 +10,15 @@ import type {
   TabsLocale,
   TabsType,
 } from './interface'
+
+import {
+  booleanType,
+  functionType,
+  objectType,
+  PropTypes,
+  someType,
+  stringType,
+} from '@antdv/utils'
 
 export function addButtonProps() {
   return {
@@ -45,7 +45,7 @@ export function tabNavListProps() {
     popupClassName: String,
     getPopupContainer: functionType<
     ((triggerNode?: HTMLElement | undefined) => HTMLElement) | undefined
-  >(),
+    >(),
     onTabClick: {
       type: Function as PropType<(activeKey: Key, e: MouseEvent | KeyboardEvent) => void>,
     },
@@ -84,8 +84,8 @@ export function tabNodeProps() {
     onClick: { type: Function as PropType<(e: MouseEvent | KeyboardEvent) => void> },
     onResize: {
       type: Function as PropType<
-      (width: number, height: number, left: number, top: number) => void
-    >,
+        (width: number, height: number, left: number, top: number) => void
+      >,
     },
     renderWrapper: { type: Function as PropType<(node: any) => any> },
     removeAriaLabel: { type: String },

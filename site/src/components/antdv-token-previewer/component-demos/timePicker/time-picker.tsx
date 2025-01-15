@@ -1,5 +1,5 @@
-import { TimePicker } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { TimePicker } from '@antdv/ui'
 
 const Demo = () => <TimePicker />
 

@@ -1,3 +1,9 @@
+import type { CustomSlotsType } from '@antdv/types'
+import type { FormItemStatusContextProps } from './FormItemContext'
+import type { Rule, RuleError, RuleObject, ValidateOptions } from './interface'
+import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, LoadingOutlined } from '@ant-design/icons-vue'
+import { classNames, filterEmpty, toArray, warning } from '@antdv/utils'
+import { cloneDeep, find } from 'lodash-es'
 import {
   computed,
   defineComponent,
@@ -10,23 +16,17 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { CheckCircleFilled, CloseCircleFilled, ExclamationCircleFilled, LoadingOutlined } from '@ant-design/icons-vue'
-import { cloneDeep, find } from 'lodash-es'
-import { classNames, filterEmpty, toArray, warning } from '@antdv/utils'
-import type { CustomSlotsType } from '@antdv/types'
-import { Row } from '../../grid'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import { Row } from '../../grid'
 import useStyle from '../style'
+import { useInjectForm } from './context'
+import { FormItemInputContext, useProvideFormItemContext } from './FormItemContext'
+import FormItemInput from './FormItemInput'
+import FormItemLabel from './FormItemLabel'
+import { formItemProps } from './props'
+import useDebounce from './utils/useDebounce'
 import { validateRules as validateRulesUtil } from './utils/validateUtil'
 import { getNamePath } from './utils/valueUtil'
-import { useInjectForm } from './context'
-import FormItemLabel from './FormItemLabel'
-import FormItemInput from './FormItemInput'
-import { FormItemInputContext, useProvideFormItemContext } from './FormItemContext'
-import useDebounce from './utils/useDebounce'
-import { formItemProps } from './props'
-import type { FormItemStatusContextProps } from './FormItemContext'
-import type { Rule, RuleError, RuleObject, ValidateOptions } from './interface'
 
 const iconMap: { [key: string]: any } = {
   success: CheckCircleFilled,
@@ -352,14 +352,14 @@ export default defineComponent({
         const IconNode = mergedValidateStatus.value && iconMap[mergedValidateStatus.value]
         feedbackIcon = IconNode
           ? (
-            <span
-              class={classNames(
-              `${prefixCls.value}-item-feedback-icon`,
-              `${prefixCls.value}-item-feedback-icon-${mergedValidateStatus.value}`,
-              )}
-            >
-              <IconNode />
-            </span>
+              <span
+                class={classNames(
+                  `${prefixCls.value}-item-feedback-icon`,
+                  `${prefixCls.value}-item-feedback-icon-${mergedValidateStatus.value}`,
+                )}
+              >
+                <IconNode />
+              </span>
             )
           : null
       }

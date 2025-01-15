@@ -1,8 +1,8 @@
-import { TinyColor } from '@ctrl/tinycolor'
+import type { ThemeColor } from './interface'
 import { generate } from '@ant-design/colors'
 import { canUseDom, devWarning, updateCSS } from '@antdv/utils'
 
-import type { ThemeColor } from './interface'
+import { TinyColor } from '@ctrl/tinycolor'
 
 const dynamicStyleMark = `-ant-${Date.now()}-${Math.random()}`
 

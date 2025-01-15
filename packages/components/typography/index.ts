@@ -1,9 +1,9 @@
 import type { App, Plugin } from 'vue'
 import ATypographyBase from './src/Base'
+import ATypographyLink from './src/Link'
 import ATypographyParagraph from './src/Paragraph'
 import ATypographyText from './src/Text'
 import ATypographyTitle from './src/Title'
-import ATypographyLink from './src/Link'
 import typography from './src/Typography'
 
 export const TypographyText = ATypographyText
@@ -36,5 +36,5 @@ export default Typography as typeof Typography & Plugin & {
   readonly Base: typeof ATypographyBase
 }
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

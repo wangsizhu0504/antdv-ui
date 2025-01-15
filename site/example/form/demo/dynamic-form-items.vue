@@ -17,9 +17,9 @@ Bind nested fields by array name.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, ref } from 'vue'
-  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue'
   import type { FormInstance } from '@antdv/ui'
+  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue'
+  import { reactive, ref } from 'vue'
 
   interface User {
     first: string;

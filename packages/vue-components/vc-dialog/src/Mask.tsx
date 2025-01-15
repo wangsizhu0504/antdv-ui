@@ -1,4 +1,4 @@
-import { Transition, defineComponent } from 'vue'
+import { defineComponent, Transition } from 'vue'
 import { getTransitionProps } from '../../transition'
 
 export default defineComponent({

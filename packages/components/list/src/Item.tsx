@@ -1,8 +1,8 @@
-import { defineComponent, inject, ref } from 'vue'
-import { classNames, cloneElement, flattenChildren, isEmptyElement, isStringElement } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
-import { Col } from '../../grid'
+import { classNames, cloneElement, flattenChildren, isEmptyElement, isStringElement } from '@antdv/utils'
+import { defineComponent, inject, ref } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import { Col } from '../../grid'
 import { ListContextKey } from './contextKey'
 import ItemMeta from './ItemMeta'
 import { listItemProps } from './props'
@@ -76,22 +76,22 @@ export default defineComponent({
         >
           {itemLayout.value === 'vertical' && extra
             ? [
-              <div class={`${pre}-item-main`} key="content">
-                {children}
-                {actionsContent}
-              </div>,
-              <div class={`${pre}-item-extra`} key="extra">
-                {extra}
-              </div>,
+                <div class={`${pre}-item-main`} key="content">
+                  {children}
+                  {actionsContent}
+                </div>,
+                <div class={`${pre}-item-extra`} key="extra">
+                  {extra}
+                </div>,
               ]
             : [children, actionsContent, cloneElement(extra, { key: 'extra' })]}
         </Element>
       )
       return grid.value
         ? (
-          <Col flex={1} style={props.colStyle}>
-            {itemChildren}
-          </Col>
+            <Col flex={1} style={props.colStyle}>
+              {itemChildren}
+            </Col>
           )
         : itemChildren
     }

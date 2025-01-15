@@ -17,8 +17,8 @@ Normal login form which can contain more elements.
 </docs>
 
 <script lang="ts" setup>
-  import { computed, reactive } from 'vue'
   import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
+  import { computed, reactive } from 'vue'
 
   interface FormState {
     username: string;

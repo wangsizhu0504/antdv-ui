@@ -1,15 +1,15 @@
-import { DownOutlined } from '@ant-design/icons-vue'
-import { computed, defineComponent, ref, watchEffect } from 'vue'
-import { classNames, filterEmpty, groupKeysMap, isValidElement, splitAttrs } from '@antdv/utils'
 import type { CSSProperties, SlotsType, VNode, VNodeTypes } from 'vue'
+import type { RadioChangeEvent } from '../../radio'
+import type { TransferItem } from './interface'
+import { DownOutlined } from '@ant-design/icons-vue'
+import { classNames, filterEmpty, groupKeysMap, isValidElement, splitAttrs } from '@antdv/utils'
+import { computed, defineComponent, ref, watchEffect } from 'vue'
+import Checkbox from '../../checkbox'
 import Dropdown from '../../dropdown'
 import Menu from '../../menu'
-import Checkbox from '../../checkbox'
-import type { RadioChangeEvent } from '../../radio'
 import ListBody from './ListBody'
-import Search from './search'
 import { transferListProps } from './props'
-import type { TransferItem } from './interface'
+import Search from './search'
 
 const defaultRender = () => null
 
@@ -182,16 +182,16 @@ export default defineComponent({
     ) => {
       const search = showSearch
         ? (
-          <div class={`${prefixCls}-body-search-wrapper`}>
-            <Search
-              prefixCls={`${prefixCls}-search`}
-              onChange={handleFilter}
-              handleClear={handleClear}
-              placeholder={searchPlaceholder}
-              value={filterValue.value}
-              disabled={disabled}
-            />
-          </div>
+            <div class={`${prefixCls}-body-search-wrapper`}>
+              <Search
+                prefixCls={`${prefixCls}-search`}
+                onChange={handleFilter}
+                handleClear={handleClear}
+                placeholder={searchPlaceholder}
+                value={filterValue.value}
+                disabled={disabled}
+              />
+            </div>
           )
         : null
 
@@ -214,7 +214,7 @@ export default defineComponent({
               bodyContent
             )
           : (
-            <div class={`${prefixCls}-body-not-found`}>{notFoundContentEle.value}</div>
+              <div class={`${prefixCls}-body-not-found`}>{notFoundContentEle.value}</div>
             )
       }
 
@@ -370,10 +370,10 @@ export default defineComponent({
           <div class={`${prefixCls}-header`}>
             {showSelectAll
               ? (
-                <>
-                  {checkAllCheckbox}
-                  {dropdown}
-                </>
+                  <>
+                    {checkAllCheckbox}
+                    {dropdown}
+                  </>
                 )
               : null}
             <span class={`${prefixCls}-header-selected`}>

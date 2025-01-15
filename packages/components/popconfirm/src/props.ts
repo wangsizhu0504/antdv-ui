@@ -1,7 +1,7 @@
-import { anyType, objectType, stringType } from '@antdv/utils'
 import type { ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import { abstractTooltipProps } from '../../tooltip'
 import type { ButtonProps, LegacyButtonType } from '../../button'
+import { anyType, objectType, stringType } from '@antdv/utils'
+import { abstractTooltipProps } from '../../tooltip'
 
 export function popconfirmProps() {
   return {

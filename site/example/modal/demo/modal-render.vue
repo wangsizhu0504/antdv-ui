@@ -18,8 +18,8 @@ Custom modal content render. use `vueuse` implements draggable.
 
 <script lang="ts" setup>
   import type { CSSProperties } from 'vue'
-  import { computed, ref, watch, watchEffect } from 'vue'
   import { useDraggable } from '@vueuse/core'
+  import { computed, ref, watch, watchEffect } from 'vue'
 
   const open = ref<boolean>(false)
   const modalTitleRef = ref<HTMLElement>(null)

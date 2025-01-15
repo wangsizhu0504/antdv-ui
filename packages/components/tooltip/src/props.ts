@@ -1,9 +1,9 @@
-import { PropTypes, objectType } from '@antdv/utils'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { AdjustOverflow, LiteralUnion, PresetColorType } from '@antdv/types'
 import type { AlignType, BuildInPlacements } from '@antdv/vue-components/vc-trigger/src/interface'
-
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { TooltipPlacement, TriggerType } from './interface'
+
+import { objectType, PropTypes } from '@antdv/utils'
 
 export function abstractTooltipProps() {
   return {

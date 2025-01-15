@@ -1,8 +1,8 @@
-import { defineComponent, ref } from 'vue'
 import type { MenuProps } from '@antdv/ui'
+import type { ComponentDemo } from '../../interface'
 import { Menu } from '@antdv/ui'
 
-import type { ComponentDemo } from '../../interface'
+import { defineComponent, ref } from 'vue'
 import items from './data'
 
 const Demo = defineComponent({

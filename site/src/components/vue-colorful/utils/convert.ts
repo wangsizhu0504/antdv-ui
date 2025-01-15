@@ -1,10 +1,10 @@
 import type {
-  HslColor,
   HslaColor,
-  HsvColor,
+  HslColor,
   HsvaColor,
-  RgbColor,
+  HsvColor,
   RgbaColor,
+  RgbColor,
 } from '../types'
 import { round } from './round'
 

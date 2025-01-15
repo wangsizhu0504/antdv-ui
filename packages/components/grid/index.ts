@@ -1,6 +1,6 @@
 import { withInstall } from '@antdv/utils'
-import ARow from './src/Row'
 import ACol from './src/Col'
+import ARow from './src/Row'
 
 export const Col = withInstall(ACol)
 export const Row = withInstall(ARow)

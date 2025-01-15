@@ -1,9 +1,9 @@
-import process from 'node:process'
-import { resolve } from 'node:path'
-import consola from 'consola'
-import chalk from 'chalk'
 import type { Project } from '@pnpm/find-workspace-packages'
+import { resolve } from 'node:path'
+import process from 'node:process'
 import findWorkspacePackages from '@pnpm/find-workspace-packages'
+import chalk from 'chalk'
+import consola from 'consola'
 
 export function errorAndExit(err: Error): never {
   consola.error(err)

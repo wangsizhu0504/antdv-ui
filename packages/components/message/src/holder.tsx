@@ -1,13 +1,13 @@
-import { computed, defineComponent } from 'vue'
+import type { ConfigOptions } from './interface'
 import { CloseOutlined } from '@ant-design/icons-vue'
 import { classNames } from '@antdv/utils'
 
-import { getMotion } from '@antdv/vue-components/vc-trigger/src/utils/motionUtil'
 import useVcNotification from '@antdv/vue-components/vc-notification/src/useNotification'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import { getMotion } from '@antdv/vue-components/vc-trigger/src/utils/motionUtil'
+import { computed, defineComponent } from 'vue'
 
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
-import type { ConfigOptions } from './interface'
 
 const DEFAULT_OFFSET = 8
 const DEFAULT_DURATION = 3

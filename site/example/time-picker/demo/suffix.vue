@@ -18,8 +18,8 @@ Click `TimePicker`, and then we could select or input a time in panel.
 
 <script lang="ts" setup>
   import type { Dayjs } from 'dayjs'
-  import dayjs from 'dayjs'
   import { SmileOutlined } from '@ant-design/icons-vue'
+  import dayjs from 'dayjs'
   import { ref } from 'vue'
 
   const value = ref<Dayjs>()

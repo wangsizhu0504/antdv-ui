@@ -1,16 +1,16 @@
-import { computed, defineComponent } from 'vue'
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue'
-import { classNames, initDefaultProps, omit } from '@antdv/utils'
 import type { CustomSlotsType, VueNode } from '@antdv/types'
-import { VcSteps } from '@antdv/vue-components'
+import type { StepProps } from './props'
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue'
 import { useBreakpoint } from '@antdv/hooks'
 import { useToken } from '@antdv/theme'
+import { classNames, initDefaultProps, omit } from '@antdv/utils'
+import { VcSteps } from '@antdv/vue-components'
+import { computed, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import Progress from '../../progress'
 import Tooltip from '../../tooltip'
 import useStyle from '../style'
 import { stepsProps } from './props'
-import type { StepProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

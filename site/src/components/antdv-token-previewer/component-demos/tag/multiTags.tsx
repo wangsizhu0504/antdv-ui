@@ -1,5 +1,5 @@
-import { Tag } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Tag } from '@antdv/ui'
 
 const { CheckableTag } = Tag
 

@@ -1,7 +1,7 @@
 import type { App } from 'vue'
 
-import { SHOW_ALL, SHOW_CHILD, SHOW_PARENT } from '@antdv/vue-components/vc-tree-select/src/utils/strategyUtil'
 import TreeNode from '@antdv/vue-components/vc-tree-select/src/TreeNode'
+import { SHOW_ALL, SHOW_CHILD, SHOW_PARENT } from '@antdv/vue-components/vc-tree-select/src/utils/strategyUtil'
 
 import ATreeSelect from './src/TreeSelect'
 
@@ -19,6 +19,6 @@ export const TreeSelect = Object.assign(ATreeSelect, {
   },
 })
 export default TreeSelect
-export * from '@antdv/vue-components/vc-tree-select/src/interface'
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'
+export * from '@antdv/vue-components/vc-tree-select/src/interface'

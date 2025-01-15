@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { Space, Table, Tag } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Space, Table, Tag } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 const columns = [
   {

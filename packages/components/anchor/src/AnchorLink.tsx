@@ -1,6 +1,6 @@
-import { defineComponent, nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
-import { classNames } from '@antdv/utils'
 import type { SlotsType } from 'vue'
+import { classNames } from '@antdv/utils'
+import { defineComponent, nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useInjectAnchor } from './context'
 import { anchorLinkProps } from './props'

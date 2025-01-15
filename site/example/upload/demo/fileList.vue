@@ -24,9 +24,9 @@ You can gain full control over filelist by configuring `fileList`. You can accom
 </docs>
 
 <script lang="ts" setup>
+  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
   import { UploadOutlined } from '@ant-design/icons-vue'
   import { ref } from 'vue'
-  import type { UploadChangeParam, UploadProps } from '@antdv/ui'
 
   const fileList = ref<UploadProps['fileList']>([
     {

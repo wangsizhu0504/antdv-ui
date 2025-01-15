@@ -17,9 +17,9 @@ Compact Mode for form component.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
-  import { CopyOutlined } from '@ant-design/icons-vue'
   import type { TreeSelectProps } from '@antdv/ui'
+  import { CopyOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const treeData = ref<TreeSelectProps['treeData']>([
     {

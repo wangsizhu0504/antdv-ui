@@ -1,5 +1,5 @@
-import { shallowRef, watchEffect } from 'vue'
 import type { Ref } from 'vue'
+import { shallowRef, watchEffect } from 'vue'
 
 export default function useDebounce<T>(value: Ref<T[]>): Ref<T[]> {
   const cacheValue = shallowRef(value.value.slice())

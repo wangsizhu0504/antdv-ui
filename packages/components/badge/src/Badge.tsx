@@ -1,4 +1,5 @@
-import { Transition, computed, defineComponent, ref, watch } from 'vue'
+import type { CustomSlotsType } from '@antdv/types'
+import type { CSSProperties } from 'vue'
 import {
   classNames,
   cloneElement,
@@ -7,13 +8,12 @@ import {
   isNumeric,
   isPresetColor,
 } from '@antdv/utils'
-import type { CSSProperties } from 'vue'
-import type { CustomSlotsType } from '@antdv/types'
 import { getTransitionProps } from '@antdv/vue-components'
+import { computed, defineComponent, ref, Transition, watch } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
-import ScrollNumber from './ScrollNumber'
 import { badgeProps } from './props'
+import ScrollNumber from './ScrollNumber'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

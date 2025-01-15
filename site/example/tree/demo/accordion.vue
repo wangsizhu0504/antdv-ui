@@ -17,9 +17,9 @@ Nodes of the same level can only be expanded one
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
   import type { TreeProps } from '@antdv/ui'
   import difference from 'lodash-es/difference'
+  import { ref, watch } from 'vue'
 
   const treeData: TreeProps['treeData'] = [
     {
@@ -82,7 +82,7 @@ Nodes of the same level can only be expanded one
 
 <template>
   <a-tree
-    v-model:selectedKeys="selectedKeys"
+    v-model:selected-keys="selectedKeys"
     :expanded-keys="expandedKeys"
     :tree-data="treeData"
     @expand="handleExpand"

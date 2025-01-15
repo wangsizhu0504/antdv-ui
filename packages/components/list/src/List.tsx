@@ -1,3 +1,9 @@
+import type { Breakpoint, CustomSlotsType, Key } from '@antdv/types'
+import type { PaginationConfig } from '../../pagination'
+
+import { responsiveArray } from '@antdv/constants'
+import { useBreakpoint } from '@antdv/hooks'
+import { classNames, eagerComputed, flattenChildren, initDefaultProps } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -6,18 +12,12 @@ import {
   toRef,
   watch,
 } from 'vue'
-import { classNames, eagerComputed, flattenChildren, initDefaultProps } from '@antdv/utils'
-
-import type { Breakpoint, CustomSlotsType, Key } from '@antdv/types'
-import { responsiveArray } from '@antdv/constants'
-import { useBreakpoint } from '@antdv/hooks'
-import Spin from '../../spin'
-import Pagination from '../../pagination'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { Row } from '../../grid'
 
+import Pagination from '../../pagination'
+import Spin from '../../spin'
 import useStyle from '../style'
-import type { PaginationConfig } from '../../pagination'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { ListContextKey } from './contextKey'
 import Item from './Item'
 import { listProps } from './props'
@@ -217,13 +217,13 @@ export default defineComponent({
       )
       const paginationContent = props.pagination
         ? (
-          <div class={`${prefixCls.value}-pagination`}>
-            <Pagination
-              {...paginationProps.value}
-              onChange={onPaginationChange}
-              onShowSizeChange={onPaginationShowSizeChange}
-            />
-          </div>
+            <div class={`${prefixCls.value}-pagination`}>
+              <Pagination
+                {...paginationProps.value}
+                onChange={onPaginationChange}
+                onShowSizeChange={onPaginationShowSizeChange}
+              />
+            </div>
           )
         : null
 
@@ -241,10 +241,10 @@ export default defineComponent({
         })
         childrenContent = props.grid
           ? (
-            <Row gutter={props.grid.gutter}>{childrenList}</Row>
+              <Row gutter={props.grid.gutter}>{childrenList}</Row>
             )
           : (
-            <ul class={`${prefixCls.value}-items`}>{items}</ul>
+              <ul class={`${prefixCls.value}-items`}>{items}</ul>
             )
       } else if (!children.length && !isLoading.value) {
         childrenContent = (

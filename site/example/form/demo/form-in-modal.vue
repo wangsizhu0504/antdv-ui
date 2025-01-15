@@ -17,8 +17,8 @@ When user visit a page with a list of items, and want to create a new item. The 
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, ref, toRaw } from 'vue'
   import type { FormInstance } from '@antdv/ui'
+  import { reactive, ref, toRaw } from 'vue'
 
   interface Values {
     title: string;

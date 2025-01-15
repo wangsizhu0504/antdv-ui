@@ -1,10 +1,10 @@
-import { Transition, defineComponent } from 'vue'
-import { classNames, devWarning, initDefaultProps } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
+import { classNames, devWarning, initDefaultProps } from '@antdv/utils'
+import { defineComponent, Transition } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
-import { collapsePanelProps } from './props'
 import PanelContent from './PanelContent'
+import { collapsePanelProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

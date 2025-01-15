@@ -2,10 +2,11 @@
 // 1. adding target="_blank" to external links
 // 2. normalize internal links to end with `.html`
 
-// eslint-disable-next-line node/prefer-global/url
-import { URL } from 'node:url'
 import type MarkdownIt from 'markdown-it'
 import type { MarkdownParsedData } from '../markdown'
+
+// eslint-disable-next-line node/prefer-global/url
+import { URL } from 'node:url'
 
 const indexRE = /(^|.*\/)index.md(#?.*)$/i
 

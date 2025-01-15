@@ -1,4 +1,5 @@
-import { computed, defineComponent, ref } from 'vue'
+import type { CustomSlotsType } from '@antdv/types'
+import type { BaseSelectRef, SelectCommonPlacement } from '@antdv/vue-components'
 import {
   classNames,
   devWarning,
@@ -7,19 +8,18 @@ import {
   initDefaultProps,
   omit,
 } from '@antdv/utils'
-import type { CustomSlotsType } from '@antdv/types'
-import { VcOptGroup, VcOption, VcSelect, getTransitionDirection, getTransitionName } from '@antdv/vue-components'
-import type { BaseSelectRef, SelectCommonPlacement } from '@antdv/vue-components'
+import { getTransitionDirection, getTransitionName, VcOptGroup, VcOption, VcSelect } from '@antdv/vue-components'
+import { computed, defineComponent, ref } from 'vue'
+import { useInjectDisabled } from '../../config-provider'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { DefaultRenderEmpty } from '../../config-provider/src/renderEmpty'
+
 import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
 
 import { useCompactItemContext } from '../../space'
-
-import { useInjectDisabled } from '../../config-provider'
 import useStyle from '../style'
-import { type SelectProps, selectProps } from './props'
 import getIcons from './iconUtil'
+import { type SelectProps, selectProps } from './props'
 
 const SECRET_COMBOBOX_MODE_DO_NOT_USE = 'SECRET_COMBOBOX_MODE_DO_NOT_USE'
 

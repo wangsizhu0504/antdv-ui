@@ -1,13 +1,13 @@
-import { computed, defineComponent, ref } from 'vue'
-import { classNames, devWarning } from '@antdv/utils'
 import type { SlotsType } from 'vue'
-import { VcHandle, VcRange, VcSlider } from '@antdv/vue-components'
-import { useInjectFormItemContext } from '../../form/src/FormItemContext'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import useStyle from '../style'
-import SliderTooltip from './SliderTooltip'
-import { sliderProps } from './props'
 import type { HandleGeneratorFn, HandleGeneratorInfo, SliderValue, Visibles } from './interface'
+import { classNames, devWarning } from '@antdv/utils'
+import { VcHandle, VcRange, VcSlider } from '@antdv/vue-components'
+import { computed, defineComponent, ref } from 'vue'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import { useInjectFormItemContext } from '../../form/src/FormItemContext'
+import useStyle from '../style'
+import { sliderProps } from './props'
+import SliderTooltip from './SliderTooltip'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

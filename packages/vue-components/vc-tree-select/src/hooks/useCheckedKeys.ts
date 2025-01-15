@@ -1,9 +1,9 @@
-import type { Ref, ShallowRef } from 'vue'
-import { shallowRef, watchEffect } from 'vue'
 import type { Key } from '@antdv/types'
-import { conductCheck } from '../../../vc-tree/src/utils/conductUtil'
+import type { Ref, ShallowRef } from 'vue'
 import type { DataEntity } from '../../../vc-tree/src/interface'
 import type { LabeledValueType, RawValueType } from '../TreeSelect'
+import { shallowRef, watchEffect } from 'vue'
+import { conductCheck } from '../../../vc-tree/src/utils/conductUtil'
 
 export default (
   rawLabeledValues: ShallowRef<LabeledValueType[]>,

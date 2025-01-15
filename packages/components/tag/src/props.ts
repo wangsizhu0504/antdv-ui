@@ -1,7 +1,7 @@
-import { PropTypes, eventType } from '@antdv/utils'
+import type { LiteralUnion, PresetColorType, PresetStatusColorType } from '@antdv/types'
 
 import type { ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
-import type { LiteralUnion, PresetColorType, PresetStatusColorType } from '@antdv/types'
+import { eventType, PropTypes } from '@antdv/utils'
 
 export function tagProps() {
   return {

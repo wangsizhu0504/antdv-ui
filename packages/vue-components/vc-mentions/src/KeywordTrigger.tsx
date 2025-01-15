@@ -1,8 +1,8 @@
 import type { PropType } from 'vue'
+import type { OptionProps } from './Option'
 import { computed, defineComponent } from 'vue'
 import Trigger from '../../vc-trigger/src/Trigger'
 import DropdownMenu from './DropdownMenu'
-import type { OptionProps } from './Option'
 
 const BUILT_IN_PLACEMENTS = {
   bottomRight: {

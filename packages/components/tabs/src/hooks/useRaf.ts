@@ -1,7 +1,7 @@
-import { onBeforeUnmount, shallowRef } from 'vue'
+import type { Ref } from 'vue'
 import { raf } from '@antdv/utils'
 
-import type { Ref } from 'vue'
+import { onBeforeUnmount, shallowRef } from 'vue'
 
 export function useRaf<Callback extends Function>(callback: Callback) {
   const rafRef = shallowRef<number>()

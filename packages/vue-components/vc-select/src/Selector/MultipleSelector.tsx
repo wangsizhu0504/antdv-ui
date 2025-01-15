@@ -1,5 +1,11 @@
+import type { VueNode } from '@antdv/types'
+
 /* eslint-disable style/jsx-one-expression-per-line */
 import type { PropType, Ref } from 'vue'
+import type { CustomTagProps, DisplayValueType, RawValueType, RenderNode } from '../BaseSelect'
+import type { BaseOptionType } from '../Select'
+import type { InnerSelectorProps } from './interface'
+import { classNames, pickAttrs, PropTypes } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -9,15 +15,10 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { PropTypes, classNames, pickAttrs } from '@antdv/utils'
-import type { VueNode } from '@antdv/types'
-import useInjectLegacySelectContext from '../../../vc-tree-select/src/LegacyContext'
 import { VcOverflow } from '../../../vc-overflow'
-import type { CustomTagProps, DisplayValueType, RawValueType, RenderNode } from '../BaseSelect'
-import type { BaseOptionType } from '../Select'
+import useInjectLegacySelectContext from '../../../vc-tree-select/src/LegacyContext'
 import TransBtn from '../TransBtn'
 import Input from './Input'
-import type { InnerSelectorProps } from './interface'
 
 type SelectorProps = InnerSelectorProps & {
   // Icon

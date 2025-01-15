@@ -1,4 +1,3 @@
-import { computed, defineComponent } from 'vue'
 import {
   CloseOutlined,
   LeftOutlined,
@@ -9,7 +8,8 @@ import {
   ZoomInOutlined,
   ZoomOutOutlined,
 } from '@ant-design/icons-vue'
-import { VcPreviewGroup, getTransitionName } from '@antdv/vue-components'
+import { getTransitionName, VcPreviewGroup } from '@antdv/vue-components'
+import { computed, defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { previewGroupProps } from './props'

@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { Anchor, theme } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Anchor, theme } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 const { Link } = Anchor
 const Demo = defineComponent({

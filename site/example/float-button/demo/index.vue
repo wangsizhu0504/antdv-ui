@@ -2,15 +2,15 @@
   import { defineComponent, provide } from 'vue'
   import US from '../index.en-US.md'
   import CN from '../index.zh-CN.md'
-  import Basic from './basic.vue'
-  import Type from './type.vue'
-  import Shape from './shape.vue'
-  import Description from './description.vue'
-  import Tooltip from './tooltip.vue'
-  import group from './group.vue'
-  import GroupMenu from './group-menu.vue'
   import BackTop from './back-top.vue'
   import Badge from './badge.vue'
+  import Basic from './basic.vue'
+  import Description from './description.vue'
+  import group from './group.vue'
+  import GroupMenu from './group-menu.vue'
+  import Shape from './shape.vue'
+  import Tooltip from './tooltip.vue'
+  import Type from './type.vue'
 
   export default defineComponent({
     CN,

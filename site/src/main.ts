@@ -1,14 +1,14 @@
+import Antd from '@antdv/ui'
+import { createApp, version as vueVersion } from 'vue'
+import App from './App.vue'
+import { registGlobalComponents } from './components'
+
+import clipboard from './directives/clipboard'
+import { setupI18n } from './locale'
+import { registerRouter } from './router'
+import { registerRouterGuard } from './router/guard'
 import './main.less'
 import 'nprogress/nprogress.css'
-import { createApp, version as vueVersion } from 'vue'
-import Antd from '@antdv/ui'
-
-import { registerRouter } from './router'
-import App from './App.vue'
-import { registerRouterGuard } from './router/guard'
-import { setupI18n } from './locale'
-import { registGlobalComponents } from './components'
-import clipboard from './directives/clipboard'
 
 function consoleTool(title: string, value: string) {
   console.log(

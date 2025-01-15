@@ -1,7 +1,7 @@
 import type { Slots, VNode, VNodeArrayChildren, VNodeProps } from 'vue'
-import { Comment, Fragment, render as VueRender, cloneVNode, isVNode } from 'vue'
-import { devWarning } from '../log'
 import type { RefObject } from './createRef'
+import { cloneVNode, Comment, Fragment, isVNode, render as VueRender } from 'vue'
+import { devWarning } from '../log'
 import { filterEmpty } from './props'
 
 type NodeProps = Record<string, any> &

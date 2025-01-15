@@ -5,5 +5,5 @@ export const Drawer = withInstall(ADrawer)
 
 export default Drawer
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

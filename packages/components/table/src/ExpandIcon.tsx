@@ -1,6 +1,6 @@
-import { classNames } from '@antdv/utils'
 import type { TableLocale } from '@antdv/locale'
 import type { DefaultExpandIconProps } from './interface'
+import { classNames } from '@antdv/utils'
 
 function renderExpandIcon(locale: TableLocale) {
   return function expandIcon<RecordType>({

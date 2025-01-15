@@ -1,10 +1,10 @@
-import { watch } from 'vue'
-import { tryOnScopeDispose } from '../try-on-scope-dispose'
+import type { ConfigurableWindow } from '../_configurable'
 import type { MaybeComputedElementRef } from '../unref-element'
+import { watch } from 'vue'
+import { defaultWindow } from '../_configurable'
+import { tryOnScopeDispose } from '../try-on-scope-dispose'
 import { unrefElement } from '../unref-element'
 import { useSupported } from '../use-supported'
-import { defaultWindow } from '../_configurable'
-import type { ConfigurableWindow } from '../_configurable'
 
 export interface ResizeObserverSize {
   readonly inlineSize: number;

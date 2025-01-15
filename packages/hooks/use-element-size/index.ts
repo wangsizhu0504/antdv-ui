@@ -1,8 +1,8 @@
-import { shallowRef, watch } from 'vue'
 import type { MaybeComputedElementRef } from '../unref-element'
 import type { UseResizeObserverOptions } from '../use-resize-observer'
-import { useResizeObserver } from '../use-resize-observer'
+import { shallowRef, watch } from 'vue'
 import { unrefElement } from '../unref-element'
+import { useResizeObserver } from '../use-resize-observer'
 
 export interface ElementSize {
   width: number;

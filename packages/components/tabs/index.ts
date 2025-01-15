@@ -1,6 +1,6 @@
 import type { App, Plugin } from 'vue'
-import ATabs from './src/Tabs'
 import ATabPane from './src/TabPanelList/TabPane'
+import ATabs from './src/Tabs'
 
 export const TabPane = ATabPane
 

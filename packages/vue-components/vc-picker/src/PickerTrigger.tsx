@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'vue'
-import { classNames } from '@antdv/utils'
 import type { AlignType } from '../../vc-align/src/interface'
+import { classNames } from '@antdv/utils'
 import Trigger from '../../vc-trigger/src/Trigger'
 import useMergeProps from './hooks/useMergeProps'
 

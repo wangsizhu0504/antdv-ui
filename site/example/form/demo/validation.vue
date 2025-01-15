@@ -16,10 +16,10 @@ Just add the `rules` attribute for `Form` component, pass validation rules, and 
 </docs>
 
 <script lang="ts" setup>
-  import type { Dayjs } from 'dayjs'
-  import { reactive, ref, toRaw } from 'vue'
-  import type { UnwrapRef } from 'vue'
   import type { Rule } from '@antdv/ui/es/form'
+  import type { Dayjs } from 'dayjs'
+  import type { UnwrapRef } from 'vue'
+  import { reactive, ref, toRaw } from 'vue'
 
   interface FormState {
     name: string;

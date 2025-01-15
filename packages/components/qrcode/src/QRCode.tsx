@@ -1,17 +1,17 @@
-import { computed, defineComponent, ref } from 'vue'
-import { ReloadOutlined } from '@ant-design/icons-vue'
-import { devWarning } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
+import type { QRCodeProps } from './props'
+import { ReloadOutlined } from '@ant-design/icons-vue'
 import { useToken } from '@antdv/theme'
+import { devWarning } from '@antdv/utils'
+import { computed, defineComponent, ref } from 'vue'
+import Button from '../../button'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useLocaleReceiver } from '../../locale-provider'
 import Spin from '../../spin'
-import Button from '../../button'
 import useStyle from '../style'
 import QRCodeCanvas from './Canvas'
-import QRCodeSVG from './SVG'
 import { qrcodeProps } from './props'
-import type { QRCodeProps } from './props'
+import QRCodeSVG from './SVG'
 
 export default defineComponent({
   name: 'AQrcode',
@@ -104,10 +104,10 @@ export default defineComponent({
           )}
           {props.type === 'canvas'
             ? (
-              <QRCodeCanvas ref={qrCodeCanvas} {...qrCodeProps.value} />
+                <QRCodeCanvas ref={qrCodeCanvas} {...qrCodeProps.value} />
               )
             : (
-              <QRCodeSVG {...qrCodeProps.value} />
+                <QRCodeSVG {...qrCodeProps.value} />
               )}
         </div>,
       )

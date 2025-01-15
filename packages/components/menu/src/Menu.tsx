@@ -1,38 +1,38 @@
+import type { CustomSlotsType, Key } from '@antdv/types'
+import type { VNode } from 'vue'
+import type { StoreMenuInfo } from './hooks/useMenuContext'
+import type { MenuInfo, MenuMode, MenuSelectInfo } from './interface'
+import type { MenuProps } from './props'
+import { EllipsisOutlined } from '@ant-design/icons-vue'
+import { cloneElement, devWarning, flattenChildren, shallowEqual } from '@antdv/utils'
+import { collapseMotion } from '@antdv/vue-components/transition'
+import { VcOverflow } from '@antdv/vue-components/vc-overflow'
+
+import { uniq } from 'lodash-es'
+
 import {
-  Teleport,
   computed,
   defineComponent,
   inject,
   onMounted,
   ref,
   shallowRef,
+  Teleport,
   unref,
   watch,
   watchEffect,
 } from 'vue'
-import { uniq } from 'lodash-es'
-import { EllipsisOutlined } from '@ant-design/icons-vue'
-import { cloneElement, devWarning, flattenChildren, shallowEqual } from '@antdv/utils'
-import type { CustomSlotsType, Key } from '@antdv/types'
-import type { VNode } from 'vue'
-import { VcOverflow } from '@antdv/vue-components/vc-overflow'
-import { collapseMotion } from '@antdv/vue-components/transition'
-import useStyle from '../style'
-
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-
 import { SiderCollapsedKey } from '../../layout/src/injectionKey'
-import { useInjectOverride } from './OverrideContext'
+import useStyle from '../style'
 import useItems from './hooks/useItems'
 import { OVERFLOW_KEY, PathContext } from './hooks/useKeyPath'
-import SubMenu from './SubMenu'
-import MenuItem from './MenuItem'
 import useProvideMenu, { MenuContextProvider, useProvideFirstLevel } from './hooks/useMenuContext'
+import MenuItem from './MenuItem'
+import { useInjectOverride } from './OverrideContext'
 import { menuProps } from './props'
-import type { MenuProps } from './props'
-import type { MenuInfo, MenuMode, MenuSelectInfo } from './interface'
 
-import type { StoreMenuInfo } from './hooks/useMenuContext'
+import SubMenu from './SubMenu'
 
 const EMPTY_LIST: string[] = []
 export default defineComponent({

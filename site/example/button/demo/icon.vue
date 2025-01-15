@@ -20,8 +20,8 @@ If you want specific control over the positioning and placement of the `Icon`, t
 </docs>
 
 <script lang="ts" setup>
-  import { h } from 'vue'
   import { SearchOutlined } from '@ant-design/icons-vue'
+  import { h } from 'vue'
 </script>
 
 <template>

@@ -1,7 +1,7 @@
-import { TinyColor } from '@ctrl/tinycolor'
-import type { CSSProperties } from 'vue'
 import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
+import type { CSSProperties } from 'vue'
 import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
+import { TinyColor } from '@ctrl/tinycolor'
 
 // Direction naming standard:
 // Horizontal base:

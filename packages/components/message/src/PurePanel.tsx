@@ -1,3 +1,4 @@
+import type { MessagePureContentProps, MessagePurePanelProps } from './props'
 import {
   CheckCircleFilled,
   CloseCircleFilled,
@@ -5,12 +6,11 @@ import {
   InfoCircleFilled,
   LoadingOutlined,
 } from '@ant-design/icons-vue'
-import { computed, defineComponent } from 'vue'
 import { classNames } from '@antdv/utils'
 import VcNotice from '@antdv/vue-components/vc-notification/src/Notice'
+import { computed, defineComponent } from 'vue'
 import { useConfigContextInject } from '../../config-provider/src/context'
 import useStyle from '../style'
-import type { MessagePureContentProps, MessagePurePanelProps } from './props'
 
 export const TypeIcon = {
   info: <InfoCircleFilled />,

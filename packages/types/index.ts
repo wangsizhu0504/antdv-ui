@@ -1,4 +1,4 @@
-export * from './global'
-export * from './event'
-export * from './vue'
 export * from './components'
+export * from './event'
+export * from './global'
+export * from './vue'

@@ -1,5 +1,5 @@
-import path from 'node:path'
 import { writeFile } from 'node:fs/promises'
+import path from 'node:path'
 import consola from 'consola'
 
 import pkg from '../packages/antdv-ui/package.json'

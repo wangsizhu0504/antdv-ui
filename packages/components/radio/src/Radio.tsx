@@ -1,14 +1,14 @@
-import { computed, defineComponent, ref } from 'vue'
+import type { RadioChangeEvent } from './interface'
+import type { RadioProps } from './props'
 import { classNames, omit } from '@antdv/utils'
 import { VcCheckbox } from '@antdv/vue-components'
+import { computed, defineComponent, ref } from 'vue'
+import { useInjectDisabled } from '../../config-provider'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
-import { useInjectDisabled } from '../../config-provider'
 import useStyle from '../style'
 import { useInjectRadioGroupContext, useInjectRadioOptionTypeContext } from './context'
 import { radioProps } from './props'
-import type { RadioProps } from './props'
-import type { RadioChangeEvent } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

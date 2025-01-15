@@ -19,8 +19,8 @@ Layout.Sider supports responsive layout.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   function onCollapse(collapsed: boolean, type: string) {
     console.log(collapsed, type)
@@ -42,7 +42,7 @@ Layout.Sider supports responsive layout.
       @breakpoint="onBreakpoint"
     >
       <div class="logo" />
-      <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+      <a-menu v-model:selected-keys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
           <UserOutlined />
           <span class="nav-text">nav 1</span>

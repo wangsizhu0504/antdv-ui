@@ -1,6 +1,3 @@
-import type { ExtractPropTypes, PropType, VNode } from 'vue'
-import { defineComponent, inject } from 'vue'
-import { PropTypes, classNames, cloneElement } from '@antdv/utils'
 import type {
   ChangeEventHandler,
   ClipboardEventHandler,
@@ -9,7 +6,10 @@ import type {
   KeyboardEventHandler,
   MouseEventHandler,
 } from '@antdv/types'
+import type { ExtractPropTypes, PropType, VNode } from 'vue'
+import { classNames, cloneElement, PropTypes } from '@antdv/utils'
 import BaseInputCore from '@antdv/vue-components/vc-input/src/BaseInputCore'
+import { defineComponent, inject } from 'vue'
 
 export const inputProps = {
   inputRef: PropTypes.any,

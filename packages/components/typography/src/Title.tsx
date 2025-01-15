@@ -1,8 +1,8 @@
-import { devWarning } from '@antdv/utils'
 import type { FunctionalComponent } from 'vue'
+import type { TitleProps } from './props'
+import { devWarning } from '@antdv/utils'
 import Base from './Base'
 import { TITLE_ELE_LIST, titleProps } from './props'
-import type { TitleProps } from './props'
 
 const Title: FunctionalComponent<TitleProps> = (props, { slots, attrs }) => {
   const { level = 1, ...restProps } = props

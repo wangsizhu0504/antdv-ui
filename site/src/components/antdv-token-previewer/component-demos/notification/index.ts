@@ -1,7 +1,7 @@
 import type { ComponentDemo } from '../../interface'
-import Demo from './notification'
-import info from './info'
 import error from './error'
+import info from './info'
+import Demo from './notification'
 import success from './success'
 import warning from './warning'
 

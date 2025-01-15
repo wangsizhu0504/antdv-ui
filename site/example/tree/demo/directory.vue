@@ -60,8 +60,8 @@ Built-in directory tree. `multiple` support `ctrl(Windows)` / `command(Mac)` sel
 
 <template>
   <a-directory-tree
-    v-model:expandedKeys="expandedKeys"
-    v-model:selectedKeys="selectedKeys"
+    v-model:expanded-keys="expandedKeys"
+    v-model:selected-keys="selectedKeys"
     multiple
     :tree-data="treeData"
   />

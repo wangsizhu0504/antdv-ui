@@ -1,17 +1,7 @@
-import { FilterFilled } from '@ant-design/icons-vue'
-import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue'
-import { classNames, devWarning, isEqual } from '@antdv/utils'
-import type { EventHandler, Key } from '@antdv/types'
 import type { TableLocale } from '@antdv/locale'
-import { useInjectSlots } from '../context'
-import Button from '../../../button'
-import Menu from '../../../menu'
-import Checkbox from '../../../checkbox'
-import Radio from '../../../radio'
-import Dropdown from '../../../dropdown'
-import Empty from '../../../empty'
-import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
-import Tree from '../../../tree'
+import type { EventHandler, Key } from '@antdv/types'
+import type { CheckboxChangeEvent } from '../../../checkbox'
+import type { DataNode, EventDataNode } from '../../../tree'
 import type {
   ColumnFilterItem,
   FilterResetProps,
@@ -20,8 +10,18 @@ import type {
   GetPopupContainer,
   TableColumnType,
 } from '../interface'
-import type { CheckboxChangeEvent } from '../../../checkbox'
-import type { DataNode, EventDataNode } from '../../../tree'
+import { FilterFilled } from '@ant-design/icons-vue'
+import { classNames, devWarning, isEqual } from '@antdv/utils'
+import { computed, defineComponent, onBeforeUnmount, shallowRef, watch } from 'vue'
+import Button from '../../../button'
+import Checkbox from '../../../checkbox'
+import useConfigInject from '../../../config-provider/src/hooks/useConfigInject'
+import Dropdown from '../../../dropdown'
+import Empty from '../../../empty'
+import Menu from '../../../menu'
+import Radio from '../../../radio'
+import Tree from '../../../tree'
+import { useInjectSlots } from '../context'
 import FilterSearch from './FilterSearch'
 import FilterDropdownMenuWrapper from './FilterWrapper'
 import { flattenKeys } from './utils'
@@ -381,16 +381,16 @@ export default defineComponent<FilterDropdownProps<any>>({
             <div class={`${tablePrefixCls}-filter-dropdown-tree`}>
               {filterMultiple
                 ? (
-                  <Checkbox
-                    class={`${tablePrefixCls}-filter-dropdown-checkall`}
-                    onChange={onCheckAll}
-                    checked={selectedKeys.length === filterFlattenKeys.value.length}
-                    indeterminate={
-                    selectedKeys.length > 0 && selectedKeys.length < filterFlattenKeys.value.length
-                  }
-                  >
-                    {locale.filterCheckAll}
-                  </Checkbox>
+                    <Checkbox
+                      class={`${tablePrefixCls}-filter-dropdown-checkall`}
+                      onChange={onCheckAll}
+                      checked={selectedKeys.length === filterFlattenKeys.value.length}
+                      indeterminate={
+                        selectedKeys.length > 0 && selectedKeys.length < filterFlattenKeys.value.length
+                      }
+                    >
+                      {locale.filterCheckAll}
+                    </Checkbox>
                   )
                 : null}
               <Tree

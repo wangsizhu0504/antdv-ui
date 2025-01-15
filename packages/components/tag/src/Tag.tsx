@@ -1,8 +1,8 @@
-import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
+import type { CustomSlotsType } from '@antdv/types'
+import type { CSSProperties } from 'vue'
 import { CloseOutlined } from '@ant-design/icons-vue'
 import { classNames, devWarning, isPresetColor, isPresetStatusColor } from '@antdv/utils'
-import type { CSSProperties } from 'vue'
-import type { CustomSlotsType } from '@antdv/types'
+import { computed, defineComponent, shallowRef, watchEffect } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { Wave } from '../../wave'
 
@@ -91,12 +91,12 @@ export default defineComponent({
         if (closable) {
           return closeIcon
             ? (
-              <span class={`${prefixCls.value}-close-icon`} onClick={handleCloseClick}>
-                {closeIcon}
-              </span>
+                <span class={`${prefixCls.value}-close-icon`} onClick={handleCloseClick}>
+                  {closeIcon}
+                </span>
               )
             : (
-              <CloseOutlined class={`${prefixCls.value}-close-icon`} onClick={handleCloseClick} />
+                <CloseOutlined class={`${prefixCls.value}-close-icon`} onClick={handleCloseClick} />
               )
         }
         return null
@@ -110,10 +110,10 @@ export default defineComponent({
       const children = slots.default?.()
       const kids = iconNode
         ? (
-          <>
-            {iconNode}
-            <span>{children}</span>
-          </>
+            <>
+              {iconNode}
+              <span>{children}</span>
+            </>
           )
         : (
             children

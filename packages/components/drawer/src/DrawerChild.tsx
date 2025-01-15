@@ -1,15 +1,15 @@
+import { classNames, KeyCode, omit } from '@antdv/utils'
 import {
-  Transition,
   defineComponent,
   nextTick,
   onMounted,
   onUnmounted,
   shallowRef,
+  Transition,
   watch,
 } from 'vue'
-import { KeyCode, classNames, omit } from '@antdv/utils'
-import { dataToArray, windowIsUndefined } from './utils'
 import { drawerChildProps } from './props'
+import { dataToArray, windowIsUndefined } from './utils'
 
 const currentDrawer: Record<string, boolean> = {}
 
@@ -221,9 +221,9 @@ export default defineComponent({
               </div>
               {slots.handler
                 ? (
-                  <div onClick={onHandleClick} ref={handlerDom}>
-                    {slots.handler?.()}
-                  </div>
+                    <div onClick={onHandleClick} ref={handlerDom}>
+                      {slots.handler?.()}
+                    </div>
                   )
                 : null}
             </div>

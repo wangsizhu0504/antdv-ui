@@ -1,6 +1,6 @@
-import { defineComponent, ref } from 'vue'
-import { AutoComplete } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { AutoComplete } from '@antdv/ui'
+import { defineComponent, ref } from 'vue'
 
 function mockVal(str: string, repeat = 1) {
   return {

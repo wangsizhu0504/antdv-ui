@@ -1,13 +1,13 @@
+import type { Options, VueTag } from './type'
 import { dirname, join } from 'node:path'
 import glob from 'fast-glob'
 import { outputFileSync, readFileSync } from 'fs-extra'
 import { flatMap } from 'lodash'
-import { mdParser } from './parser'
 import { formatter } from './formatter'
-import type { Options, VueTag } from './type'
+import { mdParser } from './parser'
 import { getComponentName, normalizePath, toKebabCase } from './utils'
 
-async function readMarkdown(options: Options): Promise<Map<String, VueTag>> {
+async function readMarkdown(options: Options): Promise<Map<string, VueTag>> {
   const mdPaths = await glob(normalizePath(`${options.path}/**/*.md`))
   const data = mdPaths
     .filter(md => options.test.test(md))
@@ -20,13 +20,13 @@ async function readMarkdown(options: Options): Promise<Map<String, VueTag>> {
       return formatter(mdParser(fileContent), componentName, kebabComponentName, options.tagPrefix)
     })
     .filter(item => item) as VueTag[][]
-  const tags = new Map<String, VueTag>()
+  const tags = new Map<string, VueTag>()
   flatMap(data, item => item).forEach(mergedTag => mergeTag(tags, mergedTag))
   return tags
 }
 
-async function readTypings(options: Options): Promise<Map<String, VueTag>> {
-  const tags = new Map<String, VueTag>()
+async function readTypings(options: Options): Promise<Map<string, VueTag>> {
+  const tags = new Map<string, VueTag>()
   const fileContent = readFileSync(options.typingsPath, 'utf-8')
   fileContent
     .split('\n')
@@ -47,7 +47,7 @@ async function readTypings(options: Options): Promise<Map<String, VueTag>> {
   return tags
 }
 
-function mergeTag(tags: Map<String, VueTag>, mergedTag: VueTag) {
+function mergeTag(tags: Map<string, VueTag>, mergedTag: VueTag) {
   const tagName = mergedTag.name
   const vueTag = tags.get(tagName)
   if (vueTag) {
@@ -59,9 +59,9 @@ function mergeTag(tags: Map<String, VueTag>, mergedTag: VueTag) {
   }
 }
 
-function mergeTags(mergedTagsArr: Array<Map<String, VueTag>>): VueTag[] {
+function mergeTags(mergedTagsArr: Array<Map<string, VueTag>>): VueTag[] {
   if (mergedTagsArr.length === 1) return [...mergedTagsArr[0].values()]
-  const tags = new Map<String, VueTag>()
+  const tags = new Map<string, VueTag>()
   if (mergedTagsArr.length === 0) return []
   mergedTagsArr.forEach((mergedTags) => {
     mergedTags.forEach(mergedTag => mergeTag(tags, mergedTag))

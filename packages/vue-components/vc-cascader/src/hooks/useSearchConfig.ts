@@ -1,8 +1,8 @@
 import type { Ref } from 'vue'
-import { ref, shallowRef, watchEffect } from 'vue'
+import type { BaseCascaderProps, ShowSearchType } from '../Cascader'
 import { warning } from '@antdv/utils'
 import { isNumber } from 'lodash-es'
-import type { BaseCascaderProps, ShowSearchType } from '../Cascader'
+import { ref, shallowRef, watchEffect } from 'vue'
 
 // Convert `showSearch` to unique config
 export default function useSearchConfig(showSearch?: Ref<BaseCascaderProps['showSearch']>) {

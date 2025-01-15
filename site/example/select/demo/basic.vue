@@ -17,8 +17,8 @@ Basic Usage
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { SelectProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const value1 = ref<any>('lucy')
   const value2 = ref<any>('lucy')

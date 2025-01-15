@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface'
 import { Cascader } from '@antdv/ui'
 
-import type { ComponentDemo } from '../../interface'
+import { defineComponent } from 'vue'
 import options from './data'
 
 const Demo = defineComponent({

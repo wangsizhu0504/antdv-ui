@@ -7,7 +7,7 @@ const { DatePicker, WeekPicker, MonthPicker, YearPicker, TimePicker, QuarterPick
   = generatePicker<Dayjs>(dayjsGenerateConfig)
 
 /* istanbul ignore next */
-export { RangePicker, WeekPicker, MonthPicker, QuarterPicker }
+export { MonthPicker, QuarterPicker, RangePicker, WeekPicker }
 
 export default Object.assign(DatePicker, {
   WeekPicker,

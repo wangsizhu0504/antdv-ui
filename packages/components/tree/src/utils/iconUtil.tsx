@@ -1,3 +1,4 @@
+import type { AntTreeNodeProps } from '../interface'
 import {
   CaretDownFilled,
   FileOutlined,
@@ -5,9 +6,8 @@ import {
   MinusSquareOutlined,
   PlusSquareOutlined,
 } from '@ant-design/icons-vue'
-import { cloneVNode } from 'vue'
 import { isValidElement } from '@antdv/utils'
-import type { AntTreeNodeProps } from '../interface'
+import { cloneVNode } from 'vue'
 
 export interface SwitcherIconProps extends AntTreeNodeProps {
   expanded: boolean

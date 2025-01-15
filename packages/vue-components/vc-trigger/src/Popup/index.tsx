@@ -35,16 +35,16 @@ export default defineComponent({
       const cloneProps = { ...props, ...attrs, visible: innerVisible.value }
       const popupNode = inMobile.value
         ? (
-          <MobilePopupInner
-            {...cloneProps}
-            mobile={props.mobile}
-            ref={popupRef}
-            v-slots={{ default: slots.default }}
-          >
-          </MobilePopupInner>
+            <MobilePopupInner
+              {...cloneProps}
+              mobile={props.mobile}
+              ref={popupRef}
+              v-slots={{ default: slots.default }}
+            >
+            </MobilePopupInner>
           )
         : (
-          <PopupInner {...cloneProps} ref={popupRef} v-slots={{ default: slots.default }} />
+            <PopupInner {...cloneProps} ref={popupRef} v-slots={{ default: slots.default }} />
           )
 
       return (

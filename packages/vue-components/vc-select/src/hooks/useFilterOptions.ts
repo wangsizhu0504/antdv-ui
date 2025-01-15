@@ -1,7 +1,7 @@
 import type { Ref, ShallowRef } from 'vue'
+import type { BaseOptionType, DefaultOptionType, FieldNames, FilterFunc, SelectProps } from '../Select'
 import { computed } from 'vue'
 import { toArray } from '../utils/commonUtil'
-import type { BaseOptionType, DefaultOptionType, FieldNames, FilterFunc, SelectProps } from '../Select'
 import { injectPropsWithOption } from '../utils/valueUtil'
 
 function includes(test: any, search: string) {

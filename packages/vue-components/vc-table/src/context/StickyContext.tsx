@@ -1,5 +1,5 @@
-import { onMounted, shallowRef } from 'vue'
 import { isStyleSupport } from '@antdv/utils'
+import { onMounted, shallowRef } from 'vue'
 
 const supportSticky = shallowRef(false)
 export function useProvideSticky() {

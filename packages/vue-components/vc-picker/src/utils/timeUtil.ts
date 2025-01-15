@@ -1,5 +1,5 @@
-import type { NullableDateType } from '../interface'
 import type { GenerateConfig } from '../generate'
+import type { NullableDateType } from '../interface'
 
 export function setTime<DateType>(
   generateConfig: GenerateConfig<DateType>,

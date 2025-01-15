@@ -24,10 +24,10 @@ Setting `rowSelection.preserveSelectedRowKeys` to keep the `key` when enable sel
 </docs>
 
 <script lang="ts" setup>
-  import { computed } from 'vue'
   import type { TableProps } from '@antdv/ui'
-  import { usePagination } from 'vue-request'
   import axios from 'axios'
+  import { computed } from 'vue'
+  import { usePagination } from 'vue-request'
 
   const columns = [
     {

@@ -1,8 +1,8 @@
 import type { App, Plugin } from 'vue'
+import type useForm from './src/useForm'
 import AForm from './src/Form'
 import AFormItem from './src/FormItem'
 import AFormItemRest, { useInjectFormItemContext } from './src/FormItemContext'
-import type useForm from './src/useForm'
 
 export const FormItem = AFormItem
 export const FormItemRest = AFormItemRest

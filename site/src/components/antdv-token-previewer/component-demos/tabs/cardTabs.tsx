@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { Tabs } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Tabs } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 const { TabPane } = Tabs
 

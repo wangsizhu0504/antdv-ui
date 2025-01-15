@@ -1,10 +1,10 @@
-import { defineComponent } from 'vue'
+import type { TableLocale } from '@antdv/locale'
+import type { FilterSearchType } from '../interface'
 import { SearchOutlined } from '@ant-design/icons-vue'
 import { functionType, objectType, someType, stringType } from '@antdv/utils'
-import type { TableLocale } from '@antdv/locale'
-import Input from '../../../input'
+import { defineComponent } from 'vue'
 
-import type { FilterSearchType } from '../interface'
+import Input from '../../../input'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

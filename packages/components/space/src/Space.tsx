@@ -1,13 +1,13 @@
-import { Fragment, computed, defineComponent, ref, watch } from 'vue'
-import { classNames, filterEmpty } from '@antdv/utils'
-import type { CSSProperties } from 'vue'
 import type { CustomSlotsType } from '@antdv/types'
-import { useFlexGapSupport } from '@antdv/hooks'
-
-import useStyle from '../style'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import { spaceProps } from './props'
+import type { CSSProperties } from 'vue'
 import type { SpaceSize } from './interface'
+import { useFlexGapSupport } from '@antdv/hooks'
+import { classNames, filterEmpty } from '@antdv/utils'
+
+import { computed, defineComponent, Fragment, ref, watch } from 'vue'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import useStyle from '../style'
+import { spaceProps } from './props'
 
 const spaceSize = {
   small: 8,

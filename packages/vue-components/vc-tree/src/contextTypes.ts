@@ -3,9 +3,8 @@
  * When util.js imports the TreeNode for tree generate will cause treeContextTypes be empty.
  */
 
-import type { ComputedRef, InjectionKey, PropType, ShallowRef } from 'vue'
-import { computed, defineComponent, inject, provide, shallowRef } from 'vue'
 import type { Key, VueNode } from '@antdv/types'
+import type { ComputedRef, InjectionKey, PropType, ShallowRef } from 'vue'
 import type {
   DataEntity,
   Direction,
@@ -14,8 +13,9 @@ import type {
   FlattenNode,
   IconType,
 } from './interface'
-
 import type { DraggableConfig } from './Tree'
+
+import { computed, defineComponent, inject, provide, shallowRef } from 'vue'
 
 export interface NodeMouseEventParams {
   event: MouseEvent;

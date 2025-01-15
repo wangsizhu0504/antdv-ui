@@ -1,17 +1,17 @@
-import {
-  PropTypes,
-  arrayType,
-  booleanType,
-  functionType,
-  objectType,
-  someType,
-  vNodeType,
-} from '@antdv/utils'
 import type { Key } from '@antdv/types'
 import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
 import type { PaginationConfig } from '../../pagination'
 import type { SpinProps } from '../../spin'
 import type { ListGridType, ListItemLayout, ListLocale, ListSize } from './interface'
+import {
+  arrayType,
+  booleanType,
+  functionType,
+  objectType,
+  PropTypes,
+  someType,
+  vNodeType,
+} from '@antdv/utils'
 
 export function listProps() {
   return {

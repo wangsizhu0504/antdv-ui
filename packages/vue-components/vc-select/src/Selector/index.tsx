@@ -8,16 +8,16 @@
  * - https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/listbox-combo.html
  */
 
-import type { PropType } from 'vue'
-import { defineComponent, ref } from 'vue'
-import { KeyCode, PropTypes, createRef } from '@antdv/utils'
 import type { EventHandler, VueNode } from '@antdv/types'
+import type { PropType } from 'vue'
 import type { ScrollTo } from '../../../vc-virtual-list/src/List'
+import type { CustomTagProps, DisplayValueType, Mode, RenderNode } from '../BaseSelect'
+import { createRef, KeyCode, PropTypes } from '@antdv/utils'
+import { defineComponent, ref } from 'vue'
 import useLock from '../hooks/useLock'
 import { isValidateOpenKey } from '../utils/keyUtil'
-import type { CustomTagProps, DisplayValueType, Mode, RenderNode } from '../BaseSelect'
-import SingleSelector from './SingleSelector'
 import MultipleSelector from './MultipleSelector'
+import SingleSelector from './SingleSelector'
 
 export interface SelectorProps {
   id: string;
@@ -254,10 +254,10 @@ const Selector = defineComponent<SelectorProps>({
       const selectNode
         = mode === 'multiple' || mode === 'tags'
           ? (
-            <MultipleSelector {...props} {...sharedProps} />
+              <MultipleSelector {...props} {...sharedProps} />
             )
           : (
-            <SingleSelector {...props} {...sharedProps} />
+              <SingleSelector {...props} {...sharedProps} />
             )
       return (
         <div

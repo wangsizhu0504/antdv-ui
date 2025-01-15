@@ -3,8 +3,8 @@
 import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Layout from '../layouts/index.vue'
 import Iframe from '../layouts/Iframe.vue'
+import Layout from '../layouts/index.vue'
 import demoRoutes from './demoRoutes'
 
 // import otherRoutes from './otherRoutes';

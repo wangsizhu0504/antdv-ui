@@ -1,8 +1,8 @@
-import { defineComponent, toRefs } from 'vue'
 import type { CSSProperties } from 'vue'
 import { classNames } from '@antdv/utils'
-import makeStyle from './utils/makeStyle'
+import { defineComponent, toRefs } from 'vue'
 import getColorBgImg from './utils/getColorBgImg'
+import makeStyle from './utils/makeStyle'
 
 export interface ColorPreviewProps {
   color: string

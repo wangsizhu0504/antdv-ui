@@ -1,4 +1,7 @@
-import { computed, defineComponent, ref, watch } from 'vue'
+import type { CustomSlotsType, Key } from '@antdv/types'
+import type { CSSProperties } from 'vue'
+import type { CollapsibleType } from './interface'
+import type { CollapsePanelProps } from './props'
 import { RightOutlined } from '@ant-design/icons-vue'
 import {
   classNames,
@@ -10,15 +13,12 @@ import {
   isEmptyElement,
   isValidElement,
 } from '@antdv/utils'
-import type { CSSProperties } from 'vue'
 import { collapseMotion } from '@antdv/vue-components'
-import type { CustomSlotsType, Key } from '@antdv/types'
+import { computed, defineComponent, ref, watch } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+
 import useStyle from '../style'
 import { collapseProps } from './props'
-
-import type { CollapsibleType } from './interface'
-import type { CollapsePanelProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -102,7 +102,7 @@ export default defineComponent({
             expandIcon(panelProps)
           )
         : (
-          <RightOutlined rotate={panelProps.isActive ? 90 : undefined} />
+            <RightOutlined rotate={panelProps.isActive ? 90 : undefined} />
           )
 
       return (

@@ -1,5 +1,5 @@
-import { warning } from '@antdv/utils'
 import type { DerivativeFunc, TokenType } from './interface'
+import { warning } from '@antdv/utils'
 
 let uuid = 0
 

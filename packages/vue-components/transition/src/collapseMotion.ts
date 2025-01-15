@@ -1,6 +1,6 @@
-import { nextTick } from 'vue'
-import { addClass, removeClass } from '@antdv/utils'
 import type { CSSMotionProps } from './transition'
+import { addClass, removeClass } from '@antdv/utils'
+import { nextTick } from 'vue'
 
 export function collapseMotion(name = 'ant-motion-collapse', appear = true): CSSMotionProps {
   return {

@@ -2,9 +2,8 @@
  * Legacy code. Should avoid to use if you are new to import these code.
  */
 
-import { warning } from '@antdv/utils'
-
 import type { Key } from '@antdv/types'
+
 import type {
   BasicDataNode,
   DataEntity,
@@ -15,6 +14,7 @@ import type {
   NodeElement,
 } from './interface'
 import type { AllowDrop, TreeProps } from './props'
+import { warning } from '@antdv/utils'
 
 export function arrDel(list: Key[], value: Key) {
   if (!list) return []

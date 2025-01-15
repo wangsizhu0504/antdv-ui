@@ -19,6 +19,6 @@ export default Button as typeof Button & Plugin & {
   readonly Group: typeof ButtonGroup
 }
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'
 export * from './src/utils'

@@ -1,8 +1,8 @@
-import { PropTypes, anyType, arrayType, objectType } from '@antdv/utils'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { VueNode } from '@antdv/types'
-
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
 import type { AnchorContainer, AnchorDirection, AnchorLinkItemProps } from './interface'
+
+import { anyType, arrayType, objectType, PropTypes } from '@antdv/utils'
 
 export function anchorProps() {
   return {

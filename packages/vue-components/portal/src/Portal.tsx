@@ -1,13 +1,13 @@
+import { PropTypes } from '@antdv/utils'
 import {
-  Teleport,
   defineComponent,
   nextTick,
   onBeforeMount,
   onMounted,
   onUpdated,
+  Teleport,
   watch,
 } from 'vue'
-import { PropTypes } from '@antdv/utils'
 import { useInjectPortal } from '../../vc-trigger/src/context'
 
 export default defineComponent({

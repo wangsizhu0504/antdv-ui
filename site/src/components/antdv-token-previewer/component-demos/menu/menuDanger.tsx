@@ -1,7 +1,7 @@
 import type { MenuProps } from '@antdv/ui'
-import { Menu } from '@antdv/ui'
-
 import type { ComponentDemo } from '../../interface'
+
+import { Menu } from '@antdv/ui'
 
 const items: MenuProps['items'] = [
   {

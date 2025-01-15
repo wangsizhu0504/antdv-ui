@@ -1,7 +1,7 @@
-import { TinyColor } from '@ctrl/tinycolor'
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import type { FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import getArrowStyle, { MAX_VERTICAL_CONTENT_RADIUS } from '@antdv/theme/style/placementArrow'
+import { TinyColor } from '@ctrl/tinycolor'
 
 export interface ComponentToken {}
 

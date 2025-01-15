@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'vue'
 import type { VueNode } from '@antdv/types'
+import type { CSSProperties } from 'vue'
 import useMergeProps from '../hooks/useMergeProps'
 import { useInjectPanel } from '../PanelContext'
 

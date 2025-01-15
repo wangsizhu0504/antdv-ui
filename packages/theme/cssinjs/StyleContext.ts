@@ -1,3 +1,6 @@
+import type { InjectionKey, PropType, Ref, ShallowRef } from 'vue'
+import type { Linter } from './linters/interface'
+import type { Transformer } from './transformers/interface'
 import {
   defineComponent,
   getCurrentInstance,
@@ -7,11 +10,8 @@ import {
   unref,
   watch,
 } from 'vue'
-import type { InjectionKey, PropType, Ref, ShallowRef } from 'vue'
 import CacheEntity from './Cache'
 import { withInstall } from './util'
-import type { Linter } from './linters/interface'
-import type { Transformer } from './transformers/interface'
 
 export const ATTR_TOKEN = 'data-token-hash'
 export const ATTR_MARK = 'data-css-hash'

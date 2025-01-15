@@ -1,12 +1,12 @@
-import { computed } from 'vue'
 import type { Ref } from 'vue'
+import type { CSSInterpolation } from '../../cssinjs'
+import type { ComponentTokenMap, GlobalToken, UseComponentStyleResult } from '../interface'
 import { useConfigContextInject } from '@antdv/components/config-provider/src/context'
+import { computed } from 'vue'
 import { useStyleRegister } from '../../cssinjs'
 import { genCommonStyle, genLinkStyle } from '../../style'
-import type { CSSInterpolation } from '../../cssinjs'
-import { useToken } from '../internal'
 
-import type { ComponentTokenMap, GlobalToken, UseComponentStyleResult } from '../interface'
+import { useToken } from '../internal'
 import statisticToken, { merge as mergeToken } from './statistic'
 
 export type OverrideTokenWithoutDerivative = ComponentTokenMap

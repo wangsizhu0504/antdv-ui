@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue'
+import type { ComponentDemo } from '../../interface'
 import { Progress, theme } from '@antdv/ui'
 
-import type { ComponentDemo } from '../../interface'
+import { defineComponent } from 'vue'
 
 const Demo = defineComponent({
   setup() {

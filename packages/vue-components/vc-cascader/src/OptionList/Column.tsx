@@ -1,9 +1,9 @@
 import type { Key } from '@antdv/types'
-import { cloneElement } from '@antdv/utils'
-import { isLeaf, toPathKey } from '../utils/commonUtil'
 import type { DefaultOptionType, SingleValueType } from '../Cascader'
-import { SEARCH_MARK } from '../hooks/useSearchOptions'
+import { cloneElement } from '@antdv/utils'
 import { useInjectCascader } from '../context'
+import { SEARCH_MARK } from '../hooks/useSearchOptions'
+import { isLeaf, toPathKey } from '../utils/commonUtil'
 import Checkbox from './Checkbox'
 
 export const FIX_LABEL = '__cascader_fix_label__'

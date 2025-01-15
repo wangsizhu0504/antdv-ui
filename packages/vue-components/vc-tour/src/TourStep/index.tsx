@@ -17,7 +17,7 @@ const TourStep = defineComponent({
                 renderPanel({ ...attrs, ...props }, current)
               )
             : (
-              <DefaultPanel {...attrs} {...props} />
+                <DefaultPanel {...attrs} {...props} />
               )}
         </>
       )

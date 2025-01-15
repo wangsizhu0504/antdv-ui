@@ -1,6 +1,6 @@
-import { defineComponent, reactive } from 'vue'
 import type { PropType } from 'vue'
 import { classNames, createRef, raf, supportsPassive } from '@antdv/utils'
+import { defineComponent, reactive } from 'vue'
 
 const MIN_SIZE = 20
 

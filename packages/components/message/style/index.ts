@@ -1,6 +1,7 @@
-// deps-lint-skip-all
-import { Keyframes, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import type { FullToken, GenerateStyle } from '@antdv/theme'
+
+// deps-lint-skip-all
+import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {

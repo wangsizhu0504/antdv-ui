@@ -1,7 +1,7 @@
 import type { CSSProperties, PropType } from 'vue'
-import { defineComponent, ref, toRefs } from 'vue'
-import { classNames } from '@antdv/utils'
 import { Segmented, Tag } from '@antdv/ui'
+import { classNames } from '@antdv/utils'
+import { defineComponent, ref, toRefs } from 'vue'
 import makeStyle from './utils/makeStyle'
 
 const useStyle = makeStyle('FilterPanel', token => ({

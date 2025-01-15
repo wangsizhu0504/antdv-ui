@@ -1,9 +1,9 @@
 import Icon, * as AntdIcons from '@ant-design/icons-vue'
 import { Radio } from '@antdv/ui'
 import { defineComponent } from 'vue'
+import Category from './Category'
 import { categories } from './fields'
 import { FilledIcon, OutlinedIcon, TwoToneIcon } from './themeIcons'
-import Category from './Category'
 
 const ThemeType = {
   Filled: 'Filled',

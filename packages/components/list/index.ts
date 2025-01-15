@@ -1,7 +1,7 @@
 import type { App, Plugin } from 'vue'
-import AList from './src/List'
 import AListItem from './src/Item'
 import AListItemMeta from './src/ItemMeta'
+import AList from './src/List'
 
 export const ListItem = AListItem
 export const ListItemMeta = AListItemMeta
@@ -23,5 +23,5 @@ export default List as typeof List & Plugin & {
   }
 }
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

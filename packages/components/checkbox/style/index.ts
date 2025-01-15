@@ -1,5 +1,5 @@
-import { Keyframes, genComponentStyleHook, genFocusOutline, mergeToken, resetComponent } from '@antdv/theme'
 import type { FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, genFocusOutline, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
 
 export interface ComponentToken {}
 

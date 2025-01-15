@@ -1,6 +1,6 @@
 import type { App, Plugin } from 'vue'
-import ARadio from './src/Radio'
 import AGroup from './src/Group'
+import ARadio from './src/Radio'
 import ARadioButton from './src/RadioButton'
 
 export const RadioGroup = AGroup

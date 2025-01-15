@@ -1,8 +1,8 @@
-import { defineComponent } from 'vue'
 import type { CSSProperties } from 'vue'
+import type { ComponentDemo } from '../../interface'
 
 import { Card } from '@antdv/ui'
-import type { ComponentDemo } from '../../interface'
+import { defineComponent } from 'vue'
 
 const gridStyle: CSSProperties = {
   width: '25%',

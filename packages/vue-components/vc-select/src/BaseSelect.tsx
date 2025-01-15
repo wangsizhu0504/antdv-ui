@@ -1,3 +1,22 @@
+import type { FocusEventHandler, Key, KeyboardEventHandler, MouseEventHandler, VueNode } from '@antdv/types'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+import type { AlignType } from '../../vc-trigger/src/interface'
+import type { ScrollConfig, ScrollTo } from '../../vc-virtual-list/src/List'
+import type { BaseSelectContextProps } from './hooks/useBaseProps'
+import type { BaseOptionType } from './Select'
+import type { RefSelectorProps } from './Selector'
+import type { RefTriggerProps } from './SelectTrigger'
+import {
+  classNames,
+  cloneElement,
+  createRef,
+  initDefaultProps,
+  isMobile,
+  isValidElement,
+  KeyCode,
+  PropTypes,
+  toReactive,
+} from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -10,34 +29,15 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
-import {
-  KeyCode,
-  PropTypes,
-  classNames,
-  cloneElement,
-  createRef,
-  initDefaultProps,
-  isMobile,
-  isValidElement,
-  toReactive,
-} from '@antdv/utils'
-import type { FocusEventHandler, Key, KeyboardEventHandler, MouseEventHandler, VueNode } from '@antdv/types'
 import useInjectLegacySelectContext from '../../vc-tree-select/src/LegacyContext'
-import type { AlignType } from '../../vc-trigger/src/interface'
-import type { ScrollConfig, ScrollTo } from '../../vc-virtual-list/src/List'
-import { getSeparatedContent } from './utils/valueUtil'
-import type { RefTriggerProps } from './SelectTrigger'
-import SelectTrigger from './SelectTrigger'
-import type { RefSelectorProps } from './Selector'
-import Selector from './Selector'
-import useSelectTriggerControl from './hooks/useSelectTriggerControl'
-import useDelayReset from './hooks/useDelayReset'
-import TransBtn from './TransBtn'
-import useLock from './hooks/useLock'
-import type { BaseSelectContextProps } from './hooks/useBaseProps'
 import { useProvideBaseSelectProps } from './hooks/useBaseProps'
-import type { BaseOptionType } from './Select'
+import useDelayReset from './hooks/useDelayReset'
+import useLock from './hooks/useLock'
+import useSelectTriggerControl from './hooks/useSelectTriggerControl'
+import Selector from './Selector'
+import SelectTrigger from './SelectTrigger'
+import TransBtn from './TransBtn'
+import { getSeparatedContent } from './utils/valueUtil'
 
 const DEFAULT_OMIT_PROPS = [
   'value',
@@ -824,28 +824,28 @@ export default defineComponent({
                   )
                   )
                 : (
-                  <Selector
-                    {...props}
-                    domRef={selectorDomRef}
-                    prefixCls={prefixCls}
-                    inputElement={customizeInputElement}
-                    ref={selectorRef}
-                    id={id}
-                    showSearch={mergedShowSearch.value}
-                    mode={mode}
-                    activeDescendantId={activeDescendantId}
-                    tagRender={tagRender}
-                    optionLabelRender={optionLabelRender}
-                    values={displayValues}
-                    open={mergedOpen.value}
-                    onToggleOpen={onToggleOpen}
-                    activeValue={activeValue}
-                    searchValue={mergedSearchValue.value}
-                    onSearch={onInternalSearch}
-                    onSearchSubmit={onInternalSearchSubmit}
-                    onRemove={onSelectorRemove}
-                    tokenWithEnter={tokenWithEnter.value}
-                  />
+                    <Selector
+                      {...props}
+                      domRef={selectorDomRef}
+                      prefixCls={prefixCls}
+                      inputElement={customizeInputElement}
+                      ref={selectorRef}
+                      id={id}
+                      showSearch={mergedShowSearch.value}
+                      mode={mode}
+                      activeDescendantId={activeDescendantId}
+                      tagRender={tagRender}
+                      optionLabelRender={optionLabelRender}
+                      values={displayValues}
+                      open={mergedOpen.value}
+                      onToggleOpen={onToggleOpen}
+                      activeValue={activeValue}
+                      searchValue={mergedSearchValue.value}
+                      onSearch={onInternalSearch}
+                      onSearchSubmit={onInternalSearchSubmit}
+                      onRemove={onSelectorRemove}
+                      tokenWithEnter={tokenWithEnter.value}
+                    />
                   )
             },
           }}

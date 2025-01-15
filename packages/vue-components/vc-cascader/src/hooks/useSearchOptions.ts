@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
-import { computed } from 'vue'
-import { isNumber } from 'lodash-es'
 import type { DefaultOptionType, InternalFieldNames, ShowSearchType } from '../Cascader'
+import { isNumber } from 'lodash-es'
+import { computed } from 'vue'
 
 export const SEARCH_MARK = '__rc_cascader_search_mark__'
 

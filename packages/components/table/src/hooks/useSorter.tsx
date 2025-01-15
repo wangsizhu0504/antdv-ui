@@ -1,24 +1,24 @@
-import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons-vue'
-import { computed } from 'vue'
-import { KeyCode, classNames } from '@antdv/utils'
-import type { Ref } from 'vue'
 import type { TableLocale } from '@antdv/locale'
-import { useState } from '@antdv/hooks'
-import { getColumnKey, getColumnPos, renderColumnTitle } from '../util'
-import Tooltip from '../../../tooltip'
-
+import type { Ref } from 'vue'
 import type { TooltipProps } from '../../../tooltip'
 import type {
   ColumnTitleProps,
   CompareFn,
+  SorterResult,
   SortOrder,
   SortState,
-  SorterResult,
   TableColumnGroupType,
-  TableColumnType,
   TableColumnsType,
+  TableColumnType,
   TransformColumns,
 } from '../interface'
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons-vue'
+import { useState } from '@antdv/hooks'
+import { classNames, KeyCode } from '@antdv/utils'
+import { computed } from 'vue'
+
+import Tooltip from '../../../tooltip'
+import { getColumnKey, getColumnPos, renderColumnTitle } from '../util'
 
 const ASCEND = 'ascend'
 const DESCEND = 'descend'
@@ -168,7 +168,7 @@ function injectSorter<RecordType>(
           )
           return showSorterTooltip
             ? (
-              <Tooltip {...tooltipProps}>{renderSortTitle}</Tooltip>
+                <Tooltip {...tooltipProps}>{renderSortTitle}</Tooltip>
               )
             : (
                 renderSortTitle

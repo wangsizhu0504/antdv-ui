@@ -1,6 +1,3 @@
-import { defineComponent } from 'vue'
-import Cell from '../Cell'
-import { useInjectTable } from '../context/TableContext'
 import type {
   CellType,
   ColumnType,
@@ -9,6 +6,9 @@ import type {
   GetComponentProps,
   StickyOffsets,
 } from '../interface'
+import { defineComponent } from 'vue'
+import Cell from '../Cell'
+import { useInjectTable } from '../context/TableContext'
 import { getCellFixedInfo } from '../utils/fixUtil'
 import { getColumnsKey } from '../utils/valueUtil'
 import DragHandleVue from './DragHandle'
@@ -93,13 +93,13 @@ export default defineComponent<RowProps>({
                   dragHandle: () =>
                     col.resizable
                       ? (
-                        <DragHandleVue
-                          prefixCls={prefixCls}
-                          width={col.width as number}
-                          minWidth={col.minWidth}
-                          maxWidth={col.maxWidth}
-                          column={col}
-                        />
+                          <DragHandleVue
+                            prefixCls={prefixCls}
+                            width={col.width as number}
+                            minWidth={col.minWidth}
+                            maxWidth={col.maxWidth}
+                            column={col}
+                          />
                         )
                       : null,
                 }}

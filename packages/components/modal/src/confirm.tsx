@@ -1,12 +1,12 @@
-import { createVNode, render as vueRender } from 'vue'
+import type { ConfigUpdate, ModalFuncProps } from './interface'
 import { omit, triggerVNodeUpdate } from '@antdv/utils'
+import { createVNode, render as vueRender } from 'vue'
 import ConfigProvider from '../../config-provider'
 import { globalConfigForApi } from '../../config-provider/src/config'
-import ConfirmDialog from './ConfirmDialog'
 
-import { getConfirmLocale } from './locale'
+import ConfirmDialog from './ConfirmDialog'
 import destroyFns from './destroyFns'
-import type { ConfigUpdate, ModalFuncProps } from './interface'
+import { getConfirmLocale } from './locale'
 
 function confirm(config: ModalFuncProps) {
   const container = document.createDocumentFragment()

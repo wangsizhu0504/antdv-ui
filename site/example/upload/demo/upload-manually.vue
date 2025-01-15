@@ -16,11 +16,11 @@ Upload files manually after `beforeUpload` returns `false`.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
-  import request from 'axios'
+  import type { UploadProps } from '@antdv/ui'
   import { UploadOutlined } from '@ant-design/icons-vue'
   import { message } from '@antdv/ui'
-  import type { UploadProps } from '@antdv/ui'
+  import request from 'axios'
+  import { ref } from 'vue'
 
   const fileList = ref<UploadProps['fileList']>([])
   const uploading = ref<boolean>(false)

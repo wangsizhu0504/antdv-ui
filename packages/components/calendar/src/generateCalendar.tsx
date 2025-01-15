@@ -1,17 +1,17 @@
-import { computed, defineComponent, toRef } from 'vue'
-import { classNames } from '@antdv/utils'
+import type { PickerLocale } from '@antdv/locale'
 import type { CustomSlotsType } from '@antdv/types'
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
 import type { App, PropType } from 'vue'
+import type { CalendarMode, CalendarProps, CalendarSelectInfo } from './interface'
 import { useMergedState } from '@antdv/hooks'
 import { enUS } from '@antdv/locale'
-import type { PickerLocale } from '@antdv/locale'
+import { classNames } from '@antdv/utils'
 import { VcPickerPanel } from '@antdv/vue-components'
-import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
+import { computed, defineComponent, toRef } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { useLocaleReceiver } from '../../locale-provider'
 import useStyle from '../style'
 import CalendarHeader from './Header'
-import type { CalendarMode, CalendarProps, CalendarSelectInfo } from './interface'
 
 // CSSINJS
 
@@ -272,17 +272,17 @@ export default function generateCalendar<
                   })
                 )
               : (
-                <CalendarHeader
-                  prefixCls={calendarPrefixCls.value}
-                  value={mergedValue.value}
-                  generateConfig={generateConfig}
-                  mode={mergedMode.value}
-                  fullscreen={fullscreen}
-                  locale={mergedLocale.value.lang}
-                  validRange={validRange}
-                  onChange={onInternalSelect}
-                  onModeChange={triggerModeChange}
-                />
+                  <CalendarHeader
+                    prefixCls={calendarPrefixCls.value}
+                    value={mergedValue.value}
+                    generateConfig={generateConfig}
+                    mode={mergedMode.value}
+                    fullscreen={fullscreen}
+                    locale={mergedLocale.value.lang}
+                    validRange={validRange}
+                    onChange={onInternalSelect}
+                    onModeChange={triggerModeChange}
+                  />
                 )}
             <VcPickerPanel
               value={mergedValue.value}

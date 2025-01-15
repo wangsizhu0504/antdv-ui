@@ -1,12 +1,12 @@
-import { computed, defineComponent, toRefs } from 'vue'
-import type { PropType } from 'vue'
 import type { TableProps } from '@antdv/ui'
+import type { PropType } from 'vue'
+import { useLocale } from '@/locale'
 import { Table } from '@antdv/ui'
 import tokenMeta from '@antdv/version/token-meta.json'
-import { getDesignToken } from '../antdv-token-previewer'
+import { computed, defineComponent, toRefs } from 'vue'
 import useSiteToken from '../../hooks/useSiteToken'
+import { getDesignToken } from '../antdv-token-previewer'
 import ColorChunk from '../ColorChunk'
-import { useLocale } from '@/locale'
 
 interface TokenTableProps {
   type: 'seed' | 'map' | 'alias'

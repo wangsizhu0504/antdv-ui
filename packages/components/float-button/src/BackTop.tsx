@@ -1,6 +1,7 @@
 import { VerticalAlignTopOutlined } from '@ant-design/icons-vue'
+import { getScroll, initDefaultProps, scrollTo, throttleByAnimationFrame } from '@antdv/utils'
+import { getTransitionProps } from '@antdv/vue-components'
 import {
-  Transition,
   defineComponent,
   nextTick,
   onActivated,
@@ -9,17 +10,16 @@ import {
   onMounted,
   reactive,
   ref,
+  Transition,
   watch,
 } from 'vue'
-import { getScroll, initDefaultProps, scrollTo, throttleByAnimationFrame } from '@antdv/utils'
-import { getTransitionProps } from '@antdv/vue-components'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
 import useStyle from '../style'
-import { useInjectFloatButtonGroupContext } from './context'
-import { backTopProps } from './props'
-import FloatButton from './FloatButton'
 import { floatButtonPrefixCls } from './constants'
+import { useInjectFloatButtonGroupContext } from './context'
+import FloatButton from './FloatButton'
+import { backTopProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

@@ -5,5 +5,5 @@ export const Progress = withInstall(AProgress)
 
 export default Progress
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

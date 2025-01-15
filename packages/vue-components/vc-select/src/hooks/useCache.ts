@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
-import { computed, shallowRef } from 'vue'
 import type { RawValueType } from '../BaseSelect'
 import type { DefaultOptionType, LabelInValueType } from '../Select'
+import { computed, shallowRef } from 'vue'
 
 /**
  * Cache `value` related LabeledValue & options.

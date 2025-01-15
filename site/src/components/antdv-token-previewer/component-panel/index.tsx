@@ -1,7 +1,9 @@
+import type { PropType } from 'vue'
+import type { FilterMode } from '../FilterPanel'
+import type { Theme, TokenName } from '../interface'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import { Breadcrumb, Segmented, Switch } from '@antdv/ui'
 import { classNames } from '@antdv/utils'
-import type { PropType } from 'vue'
 import {
   computed,
   defineComponent,
@@ -10,8 +12,6 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import type { FilterMode } from '../FilterPanel'
-import type { Theme, TokenName } from '../interface'
 import makeStyle from '../utils/makeStyle'
 import { getRelatedComponents } from '../utils/statistic'
 import { getComponentDemoId } from './ComponentCard'

@@ -1,6 +1,6 @@
+import type { ComponentDemo } from '../../interface'
 import { Button, Modal } from '@antdv/ui'
 import { defineComponent, ref } from 'vue'
-import type { ComponentDemo } from '../../interface'
 
 const Demo = defineComponent({
   setup() {

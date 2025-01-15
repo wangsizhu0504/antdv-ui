@@ -1,7 +1,7 @@
-import { defineComponent } from 'vue'
-import { Space } from '@antdv/ui'
-import { HomeOutlined, LoadingOutlined, SettingFilled, SmileOutlined, SyncOutlined } from '@ant-design/icons-vue'
 import type { ComponentDemo } from '../../interface'
+import { HomeOutlined, LoadingOutlined, SettingFilled, SmileOutlined, SyncOutlined } from '@ant-design/icons-vue'
+import { Space } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 const Demo = defineComponent({
   setup() {

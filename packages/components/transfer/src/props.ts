@@ -1,17 +1,7 @@
-import {
-  PropTypes,
-  arrayType,
-  booleanType,
-  functionType,
-  objectType,
-  someType,
-  stringType,
-} from '@antdv/utils'
-
 import type { InputStatus, VueNode } from '@antdv/types'
+
 import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { Direction } from '../../config-provider'
-
 import type {
   ListStyle,
   PaginationType,
@@ -20,6 +10,16 @@ import type {
   TransferItem,
   TransferRender,
 } from './interface'
+
+import {
+  arrayType,
+  booleanType,
+  functionType,
+  objectType,
+  PropTypes,
+  someType,
+  stringType,
+} from '@antdv/utils'
 
 export function transferProps() {
   return {

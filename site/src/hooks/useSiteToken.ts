@@ -1,6 +1,6 @@
+import { theme, useConfigContextInject } from '@antdv/ui'
 import { TinyColor } from '@ctrl/tinycolor'
 import { computed, watch } from 'vue'
-import { theme, useConfigContextInject } from '@antdv/ui'
 
 const { useToken } = theme
 

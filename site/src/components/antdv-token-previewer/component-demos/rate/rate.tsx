@@ -1,6 +1,6 @@
-import { Rate } from '@antdv/ui'
-
 import type { ComponentDemo } from '../../interface'
+
+import { Rate } from '@antdv/ui'
 
 const Demo = () => <Rate />
 

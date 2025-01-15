@@ -17,8 +17,8 @@ A basic calendar component with Year/Month switch.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { Dayjs } from 'dayjs'
+  import { ref } from 'vue'
 
   const value = ref<Dayjs>()
   function onPanelChange(value: Dayjs, mode: string) {

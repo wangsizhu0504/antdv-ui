@@ -1,20 +1,20 @@
 import type { CSSProperties } from 'vue'
+import type { RefAlign } from '../../../vc-align/src/Align'
+import type { AlignType } from '../interface'
+import type { PopupInnerProps } from './interface'
+import { classNames, flattenChildren, supportsPassive } from '@antdv/utils'
 import {
-  Transition,
   computed,
   defineComponent,
   shallowRef,
   toRef,
+  Transition,
   watch,
   withModifiers,
 } from 'vue'
-import { classNames, flattenChildren, supportsPassive } from '@antdv/utils'
-import type { RefAlign } from '../../../vc-align/src/Align'
+import { getTransitionProps } from '../../../transition'
 import Align from '../../../vc-align/src/Align'
 import { getMotion } from '../utils/motionUtil'
-import type { AlignType } from '../interface'
-import { getTransitionProps } from '../../../transition'
-import type { PopupInnerProps } from './interface'
 import { innerProps } from './interface'
 import useStretchStyle from './useStretchStyle'
 import useVisibleStatus from './useVisibleStatus'
@@ -185,36 +185,36 @@ export default defineComponent({
             default: () => {
               return !destroyPopupOnHide || props.visible
                 ? (
-                  <Align
-                    v-show={visible.value}
-                    target={getAlignTarget()}
-                    key="popup"
-                    ref={alignRef}
-                    monitorWindowResize
-                    disabled={alignDisabled.value}
-                    align={align}
-                    onAlign={onInternalAlign}
-                    v-slots={{
-                      default: () => (
-                        <div
-                          class={mergedClassName}
-                          onMouseenter={onMouseenter}
-                          onMouseleave={onMouseleave}
-                          onMousedown={withModifiers(onMousedown, ['capture'])}
-                          {...{
-                            [supportsPassive ? 'onTouchstartPassive' : 'onTouchstart']: withModifiers(
-                              onTouchstart,
-                              ['capture'],
-                            ),
-                          }}
-                          style={mergedStyle}
-                        >
-                          {childNode}
-                        </div>
-                      ),
-                    }}
-                  >
-                  </Align>
+                    <Align
+                      v-show={visible.value}
+                      target={getAlignTarget()}
+                      key="popup"
+                      ref={alignRef}
+                      monitorWindowResize
+                      disabled={alignDisabled.value}
+                      align={align}
+                      onAlign={onInternalAlign}
+                      v-slots={{
+                        default: () => (
+                          <div
+                            class={mergedClassName}
+                            onMouseenter={onMouseenter}
+                            onMouseleave={onMouseleave}
+                            onMousedown={withModifiers(onMousedown, ['capture'])}
+                            {...{
+                              [supportsPassive ? 'onTouchstartPassive' : 'onTouchstart']: withModifiers(
+                                onTouchstart,
+                                ['capture'],
+                              ),
+                            }}
+                            style={mergedStyle}
+                          >
+                            {childNode}
+                          </div>
+                        ),
+                      }}
+                    >
+                    </Align>
                   )
                 : null
             },

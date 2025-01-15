@@ -17,8 +17,8 @@ Tab's position: left, right, top or bottom.  Will auto switch to `top` in mobile
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { TabsProps } from '@antdv/ui/es/tabs'
+  import { ref } from 'vue'
 
   const tabPosition = ref<TabsProps['tabPosition']>('top')
   const activeKey = ref<any>('1')
@@ -31,7 +31,7 @@ Tab's position: left, right, top or bottom.  Will auto switch to `top` in mobile
     <a-radio-button value="left">left</a-radio-button>
     <a-radio-button value="right">right</a-radio-button>
   </a-radio-group>
-  <a-tabs v-model:activeKey="activeKey" :tab-position="tabPosition" animated>
+  <a-tabs v-model:active-key="activeKey" :tab-position="tabPosition" animated>
     <a-tab-pane key="1" tab="Tab 1">Content of Tab 1</a-tab-pane>
     <a-tab-pane key="2" tab="Tab 2">Content of Tab 2</a-tab-pane>
     <a-tab-pane key="3" tab="Tab 3">Content of Tab 3</a-tab-pane>

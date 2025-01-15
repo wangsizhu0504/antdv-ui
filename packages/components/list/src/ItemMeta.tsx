@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue'
 import type { CustomSlotsType } from '@antdv/types'
+import { defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { listItemMetaProps } from './props'
 

@@ -1,7 +1,7 @@
 import type { PropType } from 'vue'
-import { computed, defineComponent, ref, shallowRef, watch } from 'vue'
-import { PropTypes, anyType, styleObjectToString } from '@antdv/utils'
 import type { BaseInputInnerExpose } from './BaseInputInner'
+import { anyType, PropTypes, styleObjectToString } from '@antdv/utils'
+import { computed, defineComponent, ref, shallowRef, watch } from 'vue'
 import BaseInputInner from './BaseInputInner'
 
 export interface BaseInputExpose {

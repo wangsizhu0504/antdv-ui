@@ -2,12 +2,12 @@ import { Card, Space } from '@antdv/ui'
 import { defineComponent } from 'vue'
 
 import Alert from '../component-demos/alert/success'
-import Message from '../component-demos/message/success'
-import Progress from '../component-demos/progress/success'
-import Tag from '../component-demos/tag/success'
 import Input from '../component-demos/input/success'
-import Result from '../component-demos/result/success'
+import Message from '../component-demos/message/success'
 import Notification from '../component-demos/notification/success'
+import Progress from '../component-demos/progress/success'
+import Result from '../component-demos/result/success'
+import Tag from '../component-demos/tag/success'
 import Timeline from '../component-demos/timeline/success'
 
 export const Success = defineComponent({

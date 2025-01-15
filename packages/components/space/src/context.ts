@@ -1,11 +1,11 @@
-import { computed } from 'vue'
-import { isEmpty } from 'lodash-es'
-import { classNames } from '@antdv/utils'
-
 import type { ExtractPropTypes, Ref } from 'vue'
-import { createContext } from '@antdv/hooks'
 import type { DirectionType } from '../../config-provider'
 import type { spaceCompactItemProps } from './props'
+
+import { createContext } from '@antdv/hooks'
+import { classNames } from '@antdv/utils'
+import { isEmpty } from 'lodash-es'
+import { computed } from 'vue'
 
 export type SpaceCompactItemContextType = Partial<ExtractPropTypes<ReturnType<typeof spaceCompactItemProps>>>
 

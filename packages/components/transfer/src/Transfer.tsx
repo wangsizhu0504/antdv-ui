@@ -1,11 +1,8 @@
-import {
-  computed,
-  defineComponent,
-  ref,
-  toRaw,
-  watch,
-  watchEffect,
-} from 'vue'
+import type { TransferLocale } from '@antdv/locale'
+import type { CSSProperties, SlotsType } from 'vue'
+import type { RenderEmptyHandler } from '../../config-provider'
+import type { ListStyle, TransferDirection, TransferItem } from './interface'
+import { enUS as defaultLocale } from '@antdv/locale'
 import {
   classNames,
   getMergedStatus,
@@ -14,20 +11,23 @@ import {
   groupDisabledKeysMap,
   groupKeysMap,
 } from '@antdv/utils'
-import type { CSSProperties, SlotsType } from 'vue'
-import type { TransferLocale } from '@antdv/locale'
-import { enUS as defaultLocale } from '@antdv/locale'
-import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
-import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
+import {
+  computed,
+  defineComponent,
+  ref,
+  toRaw,
+  watch,
+  watchEffect,
+} from 'vue'
 
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
+import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
+import LocaleReceiver from '../../locale-provider/src/LocaleReceiver'
 import useStyle from '../style'
-import type { RenderEmptyHandler } from '../../config-provider'
 import List from './list'
 import Operation from './operation'
 import { transferProps } from './props'
-import type { ListStyle, TransferDirection, TransferItem } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

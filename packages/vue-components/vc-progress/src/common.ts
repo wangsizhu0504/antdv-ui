@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
-import { onUpdated, ref } from 'vue'
 import type { RefsValue } from '@antdv/types'
+import type { Ref } from 'vue'
 import type { ProgressProps } from './types'
+import { onUpdated, ref } from 'vue'
 
 export const defaultProps: Partial<ProgressProps> = {
   percent: 0,

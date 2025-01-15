@@ -1,14 +1,9 @@
-import {
-  computed,
-  defineComponent,
-  ref,
-  shallowRef,
-  toRefs,
-  watch,
-  watchEffect,
-} from 'vue'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { VueNode } from '@antdv/types'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
+import type { Gap } from './hooks/useTarget'
+import type { TourStepInfo, TourStepProps } from './interface'
+import type { PlacementType } from './placements'
+import { useMergedState } from '@antdv/hooks'
 import {
   arrayType,
   booleanType,
@@ -19,17 +14,22 @@ import {
   someType,
   stringType,
 } from '@antdv/utils'
-import { useMergedState } from '@antdv/hooks'
+import {
+  computed,
+  defineComponent,
+  ref,
+  shallowRef,
+  toRefs,
+  watch,
+  watchEffect,
+} from 'vue'
 import Portal from '../../portal/src/PortalWrapper'
 import { triggerProps } from '../../vc-trigger/src/interface'
 import Trigger from '../../vc-trigger/src/Trigger'
 import useTarget from './hooks/useTarget'
-import type { Gap } from './hooks/useTarget'
-import TourStep from './TourStep'
-import type { TourStepInfo, TourStepProps } from './interface'
 import Mask from './Mask'
 import { getPlacements } from './placements'
-import type { PlacementType } from './placements'
+import TourStep from './TourStep'
 
 const CENTER_PLACEHOLDER: CSSProperties = {
   left: '50%',
@@ -203,61 +203,61 @@ const Tour = defineComponent({
       })
       return mergedOpen.value
         ? (
-          <>
-            <Mask
-              zIndex={zIndex}
-              prefixCls={prefixCls}
-              pos={posInfo.value}
-              showMask={mergedShowMask}
-              style={mergedMaskStyle?.style}
-              fill={mergedMaskStyle?.color}
-              open={mergedOpen.value}
-              animated={animated}
-              rootClassName={rootClassName}
-            />
-            <Trigger
-              {...restProps}
-              arrow={!!restProps.arrow}
-              builtinPlacements={
-              !curStep.value.target
-                ? undefined
-                : restProps.builtinPlacements ?? getPlacements(arrowPointAtCenter.value)
-            }
-              ref={triggerRef}
-              popupStyle={
-              !curStep.value.target
-                ? {
-                    ...curStep.value.style,
-                    position: 'fixed',
-                    left: CENTER_PLACEHOLDER.left,
-                    top: CENTER_PLACEHOLDER.top,
-                    transform: 'translate(-50%, -50%)',
-                  }
-                : curStep.value.style
-            }
-              popupPlacement={mergedPlacement.value}
-              popupVisible={mergedOpen.value}
-              popupClassName={classNames(rootClassName, curStep.value.className)}
-              prefixCls={prefixCls}
-              popup={getPopupElement}
-              forceRender={false}
-              destroyPopupOnHide
-              zIndex={zIndex}
-              mask={false}
-              getTriggerDOMNode={getTriggerDOMNode}
-            >
-              <Portal visible={mergedOpen.value} autoLock>
-                <div
-                  class={classNames(rootClassName, `${prefixCls}-target-placeholder`)}
-                  style={{
-                    ...posInfoStyle.value,
-                    position: 'fixed',
-                    pointerEvents: 'none',
-                  }}
-                />
-              </Portal>
-            </Trigger>
-          </>
+            <>
+              <Mask
+                zIndex={zIndex}
+                prefixCls={prefixCls}
+                pos={posInfo.value}
+                showMask={mergedShowMask}
+                style={mergedMaskStyle?.style}
+                fill={mergedMaskStyle?.color}
+                open={mergedOpen.value}
+                animated={animated}
+                rootClassName={rootClassName}
+              />
+              <Trigger
+                {...restProps}
+                arrow={!!restProps.arrow}
+                builtinPlacements={
+                  !curStep.value.target
+                    ? undefined
+                    : restProps.builtinPlacements ?? getPlacements(arrowPointAtCenter.value)
+                }
+                ref={triggerRef}
+                popupStyle={
+                  !curStep.value.target
+                    ? {
+                        ...curStep.value.style,
+                        position: 'fixed',
+                        left: CENTER_PLACEHOLDER.left,
+                        top: CENTER_PLACEHOLDER.top,
+                        transform: 'translate(-50%, -50%)',
+                      }
+                    : curStep.value.style
+                }
+                popupPlacement={mergedPlacement.value}
+                popupVisible={mergedOpen.value}
+                popupClassName={classNames(rootClassName, curStep.value.className)}
+                prefixCls={prefixCls}
+                popup={getPopupElement}
+                forceRender={false}
+                destroyPopupOnHide
+                zIndex={zIndex}
+                mask={false}
+                getTriggerDOMNode={getTriggerDOMNode}
+              >
+                <Portal visible={mergedOpen.value} autoLock>
+                  <div
+                    class={classNames(rootClassName, `${prefixCls}-target-placeholder`)}
+                    style={{
+                      ...posInfoStyle.value,
+                      position: 'fixed',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                </Portal>
+              </Trigger>
+            </>
           )
         : null
     }

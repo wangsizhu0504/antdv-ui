@@ -1,17 +1,17 @@
 import type { PropType } from 'vue'
-import { computed, defineComponent, toRefs } from 'vue'
+import type { AliasToken, ComponentDemo, MutableTheme, TokenName, TokenValue } from '../interface'
 import { BuildOutlined, CarOutlined } from '@ant-design/icons-vue'
 import {
+  theme as antdTheme,
   ConfigProvider,
   Drawer,
   Empty,
   Tag,
   Tooltip,
-  theme as antdTheme,
 } from '@antdv/ui'
 import { classNames } from '@antdv/utils'
+import { computed, defineComponent, toRefs } from 'vue'
 import ComponentDemos from '../component-demos'
-import type { AliasToken, ComponentDemo, MutableTheme, TokenName, TokenValue } from '../interface'
 import { useInjectLocaleContext } from '../locale'
 import TokenCard from '../token-panel/token-card'
 import getDesignToken from '../utils/getDesignToken'

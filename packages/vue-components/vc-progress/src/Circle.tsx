@@ -1,8 +1,8 @@
-import { computed, defineComponent, ref } from 'vue'
-import { initDefaultProps } from '@antdv/utils'
-import { useRefs } from '@antdv/hooks'
-import { defaultProps, useTransitionDuration } from './common'
 import type { GapPositionType } from './types'
+import { useRefs } from '@antdv/hooks'
+import { initDefaultProps } from '@antdv/utils'
+import { computed, defineComponent, ref } from 'vue'
+import { defaultProps, useTransitionDuration } from './common'
 import { propTypes } from './types'
 
 let gradientSeed = 0

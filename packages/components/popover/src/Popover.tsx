@@ -1,8 +1,8 @@
-import { computed, defineComponent, ref } from 'vue'
 import { classNames, devWarning, filterEmpty, initDefaultProps, omit } from '@antdv/utils'
 import { getTransitionName } from '@antdv/vue-components'
-import Tooltip, { tooltipDefaultProps } from '../../tooltip'
+import { computed, defineComponent, ref } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import Tooltip, { tooltipDefaultProps } from '../../tooltip'
 import useStyle from '../style'
 import { popoverProps } from './props'
 

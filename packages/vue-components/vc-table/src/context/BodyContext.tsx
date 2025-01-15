@@ -1,8 +1,7 @@
 import type { InjectionKey } from 'vue'
-import { inject, provide } from 'vue'
 import type {
-  ColumnType,
   ColumnsType,
+  ColumnType,
   DefaultRecordType,
   ExpandableType,
   ExpandedRowRender,
@@ -11,6 +10,7 @@ import type {
   TableLayout,
   TriggerEventHandler,
 } from '../interface'
+import { inject, provide } from 'vue'
 
 export interface BodyContextProps<RecordType = DefaultRecordType> {
   rowClassName: string | RowClassName<RecordType>;

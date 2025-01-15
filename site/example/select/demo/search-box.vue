@@ -17,9 +17,9 @@ Search with remote data.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import jsonp from 'fetch-jsonp'
   import qs from 'qs'
+  import { ref } from 'vue'
 
   let timeout: any
   let currentValue = ''

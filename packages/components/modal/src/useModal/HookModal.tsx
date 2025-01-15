@@ -1,11 +1,11 @@
-import { computed, defineComponent } from 'vue'
-import { initDefaultProps } from '@antdv/utils'
 import type { PropType } from 'vue'
+import type { HookModalProps, ModalFuncProps } from '../interface'
 import { enUS as defaultLocale } from '@antdv/locale'
-import ConfirmDialog from '../ConfirmDialog'
+import { initDefaultProps } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
 import { useConfigContextInject } from '../../../config-provider'
 import { useLocaleReceiver } from '../../../locale-provider'
-import type { HookModalProps, ModalFuncProps } from '../interface'
+import ConfirmDialog from '../ConfirmDialog'
 
 function comfirmFuncProps() {
   return {

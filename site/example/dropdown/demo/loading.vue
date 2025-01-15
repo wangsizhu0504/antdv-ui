@@ -18,8 +18,8 @@ A loading indicator can be added to a button by setting the `loading` property o
 
 <script lang="ts" setup>
   import type { Ref } from 'vue'
-  import { ref } from 'vue'
   import { DownOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const loading1 = ref<any>(false)
   const loading2 = ref<any>(false)

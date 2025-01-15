@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
-import { shallowRef, toRaw, watch, watchEffect } from 'vue'
 import type { FieldNames, RawValueType } from '../Select'
+import { shallowRef, toRaw, watch, watchEffect } from 'vue'
 import { convertChildrenToData } from '../utils/legacyUtil'
 
 /**

@@ -1,21 +1,21 @@
-import { computed, defineComponent, onMounted, ref, toRef } from 'vue'
-import { classNames, devWarning, flattenChildren, initDefaultProps } from '@antdv/utils'
-import type { CSSProperties } from 'vue'
 import type { VueNode } from '@antdv/types'
-import { enUS as defaultLocale } from '@antdv/locale'
-import { useMergedState } from '@antdv/hooks'
 import type { UploadProps as RcUploadProps } from '@antdv/vue-components/vc-upload/src/interface'
+import type { CSSProperties } from 'vue'
+import type { FileType, ShowUploadListInterface, UploadChangeParam, UploadFile } from './interface'
+import { useMergedState } from '@antdv/hooks'
+import { enUS as defaultLocale } from '@antdv/locale'
+import { classNames, devWarning, flattenChildren, initDefaultProps } from '@antdv/utils'
 import { VcUpload } from '@antdv/vue-components'
-import { useLocaleReceiver } from '../../locale-provider'
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import { computed, defineComponent, onMounted, ref, toRef } from 'vue'
 import { useInjectDisabled } from '../../config-provider'
+import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 
 import { useInjectFormItemContext } from '../../form'
+import { useLocaleReceiver } from '../../locale-provider'
 import useStyle from '../style'
-import UploadList from './UploadList'
 import { uploadProps } from './interface'
+import UploadList from './UploadList'
 import { file2Obj, getFileItem, removeFileItem, updateFileList } from './utils'
-import type { FileType, ShowUploadListInterface, UploadChangeParam, UploadFile } from './interface'
 
 export const LIST_IGNORE = `__LIST_IGNORE_${Date.now()}__`
 export default defineComponent({
@@ -301,29 +301,29 @@ export default defineComponent({
         = typeof showUploadList === 'boolean' ? ({} as ShowUploadListInterface) : showUploadList
       return showUploadList
         ? (
-          <UploadList
-            prefixCls={prefixCls.value}
-            listType={props.listType}
-            items={mergedFileList.value}
-            previewFile={previewFile}
-            onPreview={onPreview}
-            onDownload={onDownload}
-            onRemove={handleRemove}
-            showRemoveIcon={!mergedDisabled.value && showRemoveIcon}
-            showPreviewIcon={showPreviewIcon}
-            showDownloadIcon={showDownloadIcon}
-            removeIcon={removeIcon}
-            previewIcon={previewIcon}
-            downloadIcon={downloadIcon}
-            iconRender={iconRender}
-            locale={locale.value}
-            isImageUrl={isImageUrl}
-            progress={progress}
-            itemRender={itemRender}
-            appendActionVisible={buttonVisible}
-            appendAction={button}
-            v-slots={{ ...slots }}
-          />
+            <UploadList
+              prefixCls={prefixCls.value}
+              listType={props.listType}
+              items={mergedFileList.value}
+              previewFile={previewFile}
+              onPreview={onPreview}
+              onDownload={onDownload}
+              onRemove={handleRemove}
+              showRemoveIcon={!mergedDisabled.value && showRemoveIcon}
+              showPreviewIcon={showPreviewIcon}
+              showDownloadIcon={showDownloadIcon}
+              removeIcon={removeIcon}
+              previewIcon={previewIcon}
+              downloadIcon={downloadIcon}
+              iconRender={iconRender}
+              locale={locale.value}
+              isImageUrl={isImageUrl}
+              progress={progress}
+              itemRender={itemRender}
+              appendActionVisible={buttonVisible}
+              appendAction={button}
+              v-slots={{ ...slots }}
+            />
           )
         : (
             button?.()

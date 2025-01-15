@@ -6,9 +6,9 @@ const ProgressBar = require('progress')
 
 const { defineComponent, ref, createVNode, createSSRApp } = require('vue')
 const VueServerRenderer = require('vue/server-renderer')
-const { statistic } = require('../packages/theme/token/util/statistic')
 const { DesignTokenProvider } = require('../packages/theme/token/internal')
 const seedToken = require('../packages/theme/token/themes/seed')
+const { statistic } = require('../packages/theme/token/util/statistic')
 
 console.log(chalk.green('🔥 Collecting token statistics...'))
 

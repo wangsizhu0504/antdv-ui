@@ -16,8 +16,8 @@ Lookup-Patterns - Certain Category.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { UserOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const dataSource = [
     {

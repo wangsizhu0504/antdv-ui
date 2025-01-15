@@ -1,4 +1,3 @@
-import { PropTypes, objectType } from '@antdv/utils'
 import type { CSSMotionProps, FocusEventHandler, Key, MouseEventHandler } from '@antdv/types'
 import type { ExtractPropTypes, PropType } from 'vue'
 import type {
@@ -10,6 +9,7 @@ import type {
   SelectEventHandler,
   TriggerSubMenuAction,
 } from './interface'
+import { objectType, PropTypes } from '@antdv/utils'
 
 export function menuDividerProps() {
   return {

@@ -17,10 +17,10 @@ A basic comment with author, avatar, time and actions.
 </docs>
 
 <script lang="ts" setup>
-  import dayjs from 'dayjs'
   import { DislikeFilled, DislikeOutlined, LikeFilled, LikeOutlined } from '@ant-design/icons-vue'
-  import { ref } from 'vue'
+  import dayjs from 'dayjs'
   import relativeTime from 'dayjs/plugin/relativeTime'
+  import { ref } from 'vue'
 
   dayjs.extend(relativeTime)
 

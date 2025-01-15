@@ -1,5 +1,5 @@
-import { Typography } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Typography } from '@antdv/ui'
 
 const { Title } = Typography
 

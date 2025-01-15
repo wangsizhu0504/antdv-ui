@@ -1,6 +1,6 @@
-import { anyType, objectType } from '@antdv/utils'
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { VueNode } from '@antdv/types'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
+import { anyType, objectType } from '@antdv/utils'
 
 export function emptyProps() {
   return {

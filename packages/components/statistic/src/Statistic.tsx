@@ -1,12 +1,12 @@
-import { defineComponent } from 'vue'
-import { initDefaultProps } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
-import Skeleton from '../../skeleton'
+import type { Formatter } from './interface'
+import { initDefaultProps } from '@antdv/utils'
+import { defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import Skeleton from '../../skeleton'
 import useStyle from '../style'
 import StatisticNumber from './Number'
 import { statisticProps } from './props'
-import type { Formatter } from './interface'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

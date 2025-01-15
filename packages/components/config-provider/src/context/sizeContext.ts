@@ -1,6 +1,6 @@
-import { computed, inject, provide, ref } from 'vue'
-import type { InjectionKey, Ref } from 'vue'
 import type { SizeType } from '@antdv/types'
+import type { InjectionKey, Ref } from 'vue'
+import { computed, inject, provide, ref } from 'vue'
 
 const SizeContextKey: InjectionKey<Ref<SizeType>> = Symbol('SizeContextKey')
 

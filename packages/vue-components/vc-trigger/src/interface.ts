@@ -1,5 +1,5 @@
-import type { CSSProperties, ExtractPropTypes, PropType, TransitionProps } from 'vue'
 import type { VueNode } from '@antdv/types'
+import type { CSSProperties, ExtractPropTypes, PropType, TransitionProps } from 'vue'
 import { PropTypes } from '@antdv/utils'
 
 /** Two char of 't' 'b' 'c' 'l' 'r'. Example: 'lt' */

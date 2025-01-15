@@ -1,3 +1,5 @@
+import { useScrollLocker } from '@antdv/hooks'
+import { booleanType, canUseDom, PropTypes, raf } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -8,8 +10,6 @@ import {
   shallowRef,
   watch,
 } from 'vue'
-import { PropTypes, booleanType, canUseDom, raf } from '@antdv/utils'
-import { useScrollLocker } from '@antdv/hooks'
 import Portal from './Portal'
 
 let openCount = 0

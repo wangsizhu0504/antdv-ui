@@ -1,3 +1,9 @@
+import type { Breakpoint, CustomSlotsType, ScreenMap } from '@antdv/types'
+import type { VNode } from 'vue'
+import type { DescriptionsProps } from './props'
+import { responsiveArray } from '@antdv/constants'
+import { useResponsiveObserver } from '@antdv/hooks'
+import { cloneElement, devWarning, flattenChildren } from '@antdv/utils'
 import {
   computed,
   defineComponent,
@@ -6,19 +12,13 @@ import {
   ref,
   toRef,
 } from 'vue'
-import { cloneElement, devWarning, flattenChildren } from '@antdv/utils'
-import type { Breakpoint, CustomSlotsType, ScreenMap } from '@antdv/types'
-import type { VNode } from 'vue'
-import { responsiveArray } from '@antdv/constants'
-import { useResponsiveObserver } from '@antdv/hooks'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
-import { createProviderContext } from './useContext'
-import Row from './Row'
-import { descriptionsProps } from './props'
-import DescriptionsItem from './Item'
-import type { DescriptionsProps } from './props'
 import { DEFAULT_COLUMN_MAP } from './constants'
+import DescriptionsItem from './Item'
+import { descriptionsProps } from './props'
+import Row from './Row'
+import { createProviderContext } from './useContext'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

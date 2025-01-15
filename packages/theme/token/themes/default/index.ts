@@ -1,11 +1,11 @@
+import type { ColorPalettes, MapToken, PresetColorType, SeedToken } from '../../interface'
 import { generate } from '@ant-design/colors'
-import genControlHeight from '../shared/genControlHeight'
-import genSizeMapToken from '../shared/genSizeMapToken'
 import { defaultPresetColors } from '../seed'
 import genColorMapToken from '../shared/genColorMapToken'
 import genCommonMapToken from '../shared/genCommonMapToken'
+import genControlHeight from '../shared/genControlHeight'
 import genFontMapToken from '../shared/genFontMapToken'
-import type { ColorPalettes, MapToken, PresetColorType, SeedToken } from '../../interface'
+import genSizeMapToken from '../shared/genSizeMapToken'
 import { generateColorPalettes, generateNeutralColorPalettes } from './colors'
 
 export default function derivative(token: SeedToken): MapToken {

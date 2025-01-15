@@ -17,8 +17,8 @@ Customize render list with Tree component.
 </docs>
 
 <script lang="ts" setup>
-  import { computed, ref } from 'vue'
   import type { TransferProps, TreeProps } from '@antdv/ui'
+  import { computed, ref } from 'vue'
 
   const tData: TransferProps['dataSource'] = [
     { key: '0-0', title: '0-0' },

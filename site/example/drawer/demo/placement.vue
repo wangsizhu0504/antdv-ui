@@ -17,8 +17,8 @@ The Drawer can appear from any edge of the screen.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { DrawerProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const placement = ref<DrawerProps['placement']>('left')
   const open = ref<boolean>(false)

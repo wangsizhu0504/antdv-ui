@@ -16,9 +16,9 @@ Use `beforeUpload` for transform file before request such as add a watermark.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
-  import { UploadOutlined } from '@ant-design/icons-vue'
   import type { UploadProps } from '@antdv/ui'
+  import { UploadOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const beforeUpload: UploadProps['beforeUpload'] = (file) => {
     return new Promise((resolve) => {

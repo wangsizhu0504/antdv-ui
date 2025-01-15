@@ -1,9 +1,9 @@
 import type { App, Plugin } from 'vue'
+import ADivider from './src/Divider'
+import AItemGroup from './src/ItemGroup'
 import AMenu from './src/Menu'
 import AMenuItem from './src/MenuItem'
 import ASubMenu from './src/SubMenu'
-import AItemGroup from './src/ItemGroup'
-import ADivider from './src/Divider'
 
 export const Submenu = ASubMenu
 
@@ -36,7 +36,7 @@ export default Menu as typeof Menu & Plugin & {
   readonly ItemGroup: typeof AItemGroup
 }
 
-export * from './src/props'
 export * from './src/interface'
-
 export * from './src/OverrideContext'
+
+export * from './src/props'

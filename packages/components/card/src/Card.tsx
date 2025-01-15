@@ -1,14 +1,14 @@
-import { defineComponent, isVNode } from 'vue'
-import { isPlainObject } from 'lodash-es'
-import { customRenderSlot, devWarning, filterEmptyWithUndefined, flattenChildren, isEmptyElement } from '@antdv/utils'
-import type { VNode, VNodeTypes } from 'vue'
 import type { CustomSlotsType, SizeType } from '@antdv/types'
-import Tabs from '../../tabs'
+import type { VNode, VNodeTypes } from 'vue'
+import type { CardTabListType } from './interface'
+import { customRenderSlot, devWarning, filterEmptyWithUndefined, flattenChildren, isEmptyElement } from '@antdv/utils'
+import { isPlainObject } from 'lodash-es'
+import { defineComponent, isVNode } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import Skeleton from '../../skeleton'
+import Tabs from '../../tabs'
 import useStyle from '../style'
 import { cardProps } from './props'
-import type { CardTabListType } from './interface'
 
 const { TabPane } = Tabs
 
@@ -32,9 +32,9 @@ export default defineComponent({
     const getAction = (actions: VNodeTypes[]) => {
       const actionList = actions.map((action, index) => (isVNode(action) && !isEmptyElement(action)) || !isVNode(action)
         ? (
-          <li style={{ width: `${100 / actions.length}%` }} key={`action-${index}`}>
-            <span>{action}</span>
-          </li>
+            <li style={{ width: `${100 / actions.length}%` }} key={`action-${index}`}>
+              <span>{action}</span>
+            </li>
           )
         : null,
       )
@@ -103,23 +103,23 @@ export default defineComponent({
       const tabs
         = tabList && tabList.length
           ? (
-            <Tabs
-              {...tabsProps}
-              v-slots={{ rightExtra: tabBarExtraContent ? () => tabBarExtraContent : null }}
-            >
-              {tabList.map((item) => {
-                const { tab: temp, slots: itemSlots } = item as CardTabListType
-                const name = itemSlots?.tab
-                devWarning(
-                  !itemSlots,
-                  'Card',
-                  'tabList slots is deprecated, Please use `customTab` instead.',
-                )
-                let tab = temp !== undefined ? temp : slots[name] ? slots[name](item) : null
-                tab = customRenderSlot(slots, 'customTab', item as any, () => [tab])
-                return <TabPane tab={tab} key={item.key} disabled={item.disabled} />
-              })}
-            </Tabs>
+              <Tabs
+                {...tabsProps}
+                v-slots={{ rightExtra: tabBarExtraContent ? () => tabBarExtraContent : null }}
+              >
+                {tabList.map((item) => {
+                  const { tab: temp, slots: itemSlots } = item as CardTabListType
+                  const name = itemSlots?.tab
+                  devWarning(
+                    !itemSlots,
+                    'Card',
+                    'tabList slots is deprecated, Please use `customTab` instead.',
+                  )
+                  let tab = temp !== undefined ? temp : slots[name] ? slots[name](item) : null
+                  tab = customRenderSlot(slots, 'customTab', item as any, () => [tab])
+                  return <TabPane tab={tab} key={item.key} disabled={item.disabled} />
+                })}
+              </Tabs>
             )
           : null
       if (title || extra || tabs) {

@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite'
-import { createMarkdownToVueRenderFn } from './markdownToVue'
 import type { MarkdownOptions } from './markdown/markdown'
+import { createMarkdownToVueRenderFn } from './markdownToVue'
 
 interface Options {
   root?: string

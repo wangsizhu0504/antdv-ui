@@ -1,13 +1,13 @@
-import type { Ref } from 'vue'
+import type { enUS, PickerLocale } from '@antdv/locale'
 import type { VueNode } from '@antdv/types'
 
-import type { PickerLocale, enUS } from '@antdv/locale'
+import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
 import type {
   PickerPanelBaseProps as RCPickerPanelBaseProps,
   PickerPanelDateProps as RCPickerPanelDateProps,
   PickerPanelTimeProps as RCPickerPanelTimeProps,
 } from '@antdv/vue-components/vc-picker/src/PickerPanel'
-import type { GenerateConfig } from '@antdv/vue-components/vc-picker/src/generate'
+import type { Ref } from 'vue'
 
 export interface CalendarSelectInfo {
   source: 'year' | 'month' | 'date' | 'customize'

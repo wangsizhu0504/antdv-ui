@@ -17,5 +17,5 @@ export default Descriptions as typeof Descriptions & Plugin & {
   readonly Item: typeof DescriptionsItem
 }
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

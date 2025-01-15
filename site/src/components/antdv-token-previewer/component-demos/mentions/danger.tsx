@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { Mentions } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Mentions } from '@antdv/ui'
+import { defineComponent } from 'vue'
 
 function onChange() {}
 function onSelect() {}

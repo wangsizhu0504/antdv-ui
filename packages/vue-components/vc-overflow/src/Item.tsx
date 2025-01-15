@@ -1,7 +1,7 @@
-import type { CSSProperties, HTMLAttributes, PropType } from 'vue'
-import { computed, defineComponent, onUnmounted, ref } from 'vue'
-import { PropTypes, classNames } from '@antdv/utils'
 import type { Key, VueNode } from '@antdv/types'
+import type { CSSProperties, HTMLAttributes, PropType } from 'vue'
+import { classNames, PropTypes } from '@antdv/utils'
+import { computed, defineComponent, onUnmounted, ref } from 'vue'
 import ResizeObserver from '../../vc-resize-observer/src/index'
 
 const UNDEFINED = undefined

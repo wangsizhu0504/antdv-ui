@@ -17,9 +17,9 @@ More than one panel can be expanded at a time, the first panel is initialized to
 </docs>
 
 <script lang="ts" setup>
+  import type { CollapseProps } from '@antdv/ui'
   import { SettingOutlined } from '@ant-design/icons-vue'
   import { ref, watch } from 'vue'
-  import type { CollapseProps } from '@antdv/ui'
 
   const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
   const activeKey = ref<any>(['1'])
@@ -35,7 +35,7 @@ More than one panel can be expanded at a time, the first panel is initialized to
 </script>
 
 <template>
-  <a-collapse v-model:activeKey="activeKey" :expand-icon-position="expandIconPosition">
+  <a-collapse v-model:active-key="activeKey" :expand-icon-position="expandIconPosition">
     <a-collapse-panel key="1" header="This is panel header 1">
       <p>{{ text }}</p>
       <template #extra><SettingOutlined @click="handleClick" /></template>

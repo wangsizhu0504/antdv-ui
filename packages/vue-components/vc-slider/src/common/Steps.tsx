@@ -1,6 +1,6 @@
+import type { VueNode } from '@antdv/types'
 import type { CSSProperties } from 'vue'
 import { classNames, devWarning } from '@antdv/utils'
-import type { VueNode } from '@antdv/types'
 
 function calcPoints(_vertical: boolean, marks: Record<number, VueNode | { style?: CSSProperties; label?: string }>, dots: boolean, step: number, min: number, max: number) {
   devWarning(

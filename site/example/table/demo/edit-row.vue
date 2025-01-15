@@ -16,9 +16,9 @@ Table with editable rows.
 </docs>
 
 <script lang="ts" setup>
+  import type { UnwrapRef } from 'vue'
   import { cloneDeep } from 'lodash-es'
   import { reactive, ref } from 'vue'
-  import type { UnwrapRef } from 'vue'
 
   const columns = [
     {

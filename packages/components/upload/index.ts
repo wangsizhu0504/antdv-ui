@@ -1,6 +1,6 @@
 import type { App } from 'vue'
-import AUpload, { LIST_IGNORE } from './src/Upload'
 import ADragger from './src/Dragger'
+import AUpload, { LIST_IGNORE } from './src/Upload'
 
 export const Upload = Object.assign(AUpload, {
   Dragger: ADragger,

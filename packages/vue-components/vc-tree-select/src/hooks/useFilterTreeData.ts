@@ -1,6 +1,6 @@
 import type { Ref, ShallowRef } from 'vue'
-import { computed } from 'vue'
 import type { DefaultOptionType, InternalFieldName, TreeSelectProps } from '../TreeSelect'
+import { computed } from 'vue'
 import { fillLegacyProps } from '../utils/legacyUtil'
 
 type GetFuncType<T> = T extends boolean ? never : T

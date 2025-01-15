@@ -1,5 +1,5 @@
-import { warning } from '@antdv/utils'
 import type { RcFile } from './interface'
+import { warning } from '@antdv/utils'
 
 export default (file: RcFile, acceptedFiles: string | string[]) => {
   if (file && acceptedFiles) {

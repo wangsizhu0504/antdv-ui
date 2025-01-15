@@ -1,5 +1,5 @@
-import { onBeforeUnmount, shallowRef } from 'vue'
 import { raf } from '@antdv/utils'
+import { onBeforeUnmount, shallowRef } from 'vue'
 
 /**
  * Always trigger latest once when call multiple time

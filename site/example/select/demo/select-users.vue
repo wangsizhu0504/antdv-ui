@@ -17,8 +17,8 @@ A complete multiple select sample with remote search, debounce fetch, ajax callb
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, watch } from 'vue'
   import { debounce } from 'lodash-es'
+  import { reactive, watch } from 'vue'
 
   let lastFetchId = 0
 

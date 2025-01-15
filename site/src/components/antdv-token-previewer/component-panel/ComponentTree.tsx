@@ -1,9 +1,9 @@
 import type { PropType } from 'vue'
-import { computed, defineComponent, ref, toRefs, watch } from 'vue'
+import type { FilterMode } from '../FilterPanel'
 import { SearchOutlined } from '@ant-design/icons-vue'
 import { Badge, Input, Tree } from '@antdv/ui'
 import { classNames } from '@antdv/utils'
-import type { FilterMode } from '../FilterPanel'
+import { computed, defineComponent, ref, toRefs, watch } from 'vue'
 import makeStyle from '../utils/makeStyle'
 import { getRelatedComponents } from '../utils/statistic'
 

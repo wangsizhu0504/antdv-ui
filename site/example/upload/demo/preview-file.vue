@@ -16,9 +16,9 @@ Customize local preview. Can handle with non-image format files such as video.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
-  import { UploadOutlined } from '@ant-design/icons-vue'
   import type { UploadProps } from '@antdv/ui'
+  import { UploadOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const previewFile: UploadProps['previewFile'] = async (file) => {
     console.log('Your upload file:', file)

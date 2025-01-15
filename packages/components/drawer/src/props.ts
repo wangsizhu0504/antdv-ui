@@ -1,8 +1,8 @@
-import { PropTypes, arrayType, functionType, objectType } from '@antdv/utils'
+import type { getContainerFunc, KeyboardEventHandler, MouseEventHandler } from '@antdv/types'
 
-import type { KeyboardEventHandler, MouseEventHandler, getContainerFunc } from '@antdv/types'
 import type { CSSProperties, ExtractPropTypes, PropType, TransitionProps } from 'vue'
 import type { ILevelMove, IPlacement, PushState, sizeType } from './interface'
+import { arrayType, functionType, objectType, PropTypes } from '@antdv/utils'
 
 export const PlacementTypes = ['top', 'right', 'bottom', 'left'] as const
 
@@ -23,7 +23,7 @@ function baseProps() {
     levelMove: {
       type: [Number, Function, Array] as PropType<
       ILevelMove | ((e: { target: HTMLElement, open: boolean }) => ILevelMove)
-    >,
+      >,
     },
     duration: String,
     ease: String,
@@ -75,7 +75,7 @@ export function drawerProps() {
     'getContainer': {
       type: [String, Function, Boolean, Object] as PropType<
       string | HTMLElement | getContainerFunc | false
-    >,
+      >,
       default: undefined as string | HTMLElement | getContainerFunc | false,
     },
     'maskClosable': { type: Boolean, default: undefined },
@@ -112,7 +112,7 @@ export function drawerProps() {
     'levelMove': {
       type: [Number, Array, Function] as PropType<
       ILevelMove | ((e: { target: HTMLElement, open: boolean }) => ILevelMove)
-    >,
+      >,
     },
     'handle': PropTypes.any,
     /** @deprecated Use `@afterVisibleChange` instead */

@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'vue'
-import { createVNode } from 'vue'
 import { classNames, deepCloneElement, flattenChildren } from '@antdv/utils'
+import { createVNode } from 'vue'
 import { getPreClones, lazyEndIndex, lazyStartIndex } from './utils/innerSliderUtils'
 
 // given specifications/props for a slide, fetch all the classes that need to be applied to the slide
@@ -57,14 +57,14 @@ const getSlideStyle = function (spec) {
     if (spec.useCSS) {
       style.transition
         = `opacity ${
-         spec.speed
-         }ms ${
-         spec.cssEase
-         }, `
+          spec.speed
+        }ms ${
+          spec.cssEase
+        }, `
         + `visibility ${
-         spec.speed
-         }ms ${
-         spec.cssEase}`
+          spec.speed
+        }ms ${
+          spec.cssEase}`
     }
   }
 

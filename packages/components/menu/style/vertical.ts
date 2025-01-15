@@ -1,6 +1,6 @@
 import type { CSSObject, GenerateStyle } from '@antdv/theme'
-import { textEllipsis } from '@antdv/theme'
 import type { MenuToken } from '.'
+import { textEllipsis } from '@antdv/theme'
 
 const getVerticalInlineStyle: GenerateStyle<MenuToken, CSSObject> = (token) => {
   const {

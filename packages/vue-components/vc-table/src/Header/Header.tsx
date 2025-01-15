@@ -1,15 +1,15 @@
-import { computed, defineComponent } from 'vue'
-import { classNames } from '@antdv/utils'
-import { useInjectTable } from '../context/TableContext'
 import type {
   CellType,
   ColumnGroupType,
-  ColumnType,
   ColumnsType,
+  ColumnType,
   DefaultRecordType,
   GetComponentProps,
   StickyOffsets,
 } from '../interface'
+import { classNames } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
+import { useInjectTable } from '../context/TableContext'
 import HeaderRow from './HeaderRow'
 
 function parseHeaderRows<RecordType>(

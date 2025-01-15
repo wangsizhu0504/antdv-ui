@@ -1,6 +1,6 @@
+import type { ScreenMap } from '@antdv/types'
 import type { Ref } from 'vue'
 import { onMounted, onUnmounted, shallowRef } from 'vue'
-import type { ScreenMap } from '@antdv/types'
 import { useResponsiveObserver } from '../use-responsive-observe'
 
 export function useBreakpoint(): Ref<ScreenMap> {

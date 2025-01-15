@@ -23,7 +23,7 @@ Should be used at the top of container, needs to override styles.
 
 <template>
   <div class="card-container">
-    <a-tabs v-model:activeKey="activeKey" type="card">
+    <a-tabs v-model:active-key="activeKey" type="card">
       <a-tab-pane key="1" tab="Tab Title 1">
         <p>Content of Tab Pane 1</p>
         <p>Content of Tab Pane 1</p>

@@ -17,8 +17,8 @@ Both the top navigation and the sidebar, commonly used in documentation site.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   const selectedKeys1 = ref<string[]>(['2'])
   const selectedKeys2 = ref<string[]>(['1'])
@@ -30,7 +30,7 @@ Both the top navigation and the sidebar, commonly used in documentation site.
     <a-layout-header class="header">
       <div class="logo" />
       <a-menu
-        v-model:selectedKeys="selectedKeys1"
+        v-model:selected-keys="selectedKeys1"
         theme="dark"
         mode="horizontal"
         :style="{ lineHeight: '64px' }"
@@ -49,8 +49,8 @@ Both the top navigation and the sidebar, commonly used in documentation site.
       <a-layout style="padding: 24px 0; background: #fff">
         <a-layout-sider width="200" style="background: #fff">
           <a-menu
-            v-model:selectedKeys="selectedKeys2"
-            v-model:openKeys="openKeys"
+            v-model:selected-keys="selectedKeys2"
+            v-model:open-keys="openKeys"
             mode="inline"
             style="height: 100%"
           >

@@ -1,6 +1,6 @@
-import { ref } from 'vue'
 import type { Ref } from 'vue'
 import { warning } from '@antdv/utils'
+import { ref } from 'vue'
 
 /**
  * Keep input cursor in the correct position if possible.

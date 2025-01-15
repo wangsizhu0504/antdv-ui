@@ -1,5 +1,5 @@
-import is from './is'
 import delegate from './delegate'
+import is from './is'
 
 /**
  * Validates all params and calls the right

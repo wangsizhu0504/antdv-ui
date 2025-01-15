@@ -16,9 +16,9 @@ Add or remove form items dynamically.
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, ref } from 'vue'
-  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue'
   import type { FormInstance } from '@antdv/ui'
+  import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons-vue'
+  import { reactive, ref } from 'vue'
 
   interface Domain {
     value: string;

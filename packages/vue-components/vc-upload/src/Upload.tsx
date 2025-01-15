@@ -1,7 +1,7 @@
-import { defineComponent, ref } from 'vue'
-import { initDefaultProps } from '@antdv/utils'
-import AjaxUpload from './AjaxUploader'
 import type { RcFile } from './interface'
+import { initDefaultProps } from '@antdv/utils'
+import { defineComponent, ref } from 'vue'
+import AjaxUpload from './AjaxUploader'
 import { uploadProps } from './interface'
 
 function empty() {}

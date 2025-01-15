@@ -1,12 +1,3 @@
-import { useStyleRegister } from '../cssinjs'
-import { defaultConfig, useToken as useInternalToken } from './internal'
-import defaultAlgorithm from './themes/default'
-import darkAlgorithm from './themes/dark'
-import compactAlgorithm from './themes/compact'
-import { PresetColors } from './interface'
-import genComponentStyleHook from './util/genComponentStyleHook'
-import statisticToken, { merge as mergeToken, statistic } from './util/statistic'
-import type { FullToken } from './util/genComponentStyleHook'
 import type {
   AliasToken,
   GenerateStyle,
@@ -16,6 +7,15 @@ import type {
   SeedToken,
   UseComponentStyleResult,
 } from './interface'
+import type { FullToken } from './util/genComponentStyleHook'
+import { useStyleRegister } from '../cssinjs'
+import { PresetColors } from './interface'
+import { defaultConfig, useToken as useInternalToken } from './internal'
+import compactAlgorithm from './themes/compact'
+import darkAlgorithm from './themes/dark'
+import defaultAlgorithm from './themes/default'
+import genComponentStyleHook from './util/genComponentStyleHook'
+import statisticToken, { merge as mergeToken, statistic } from './util/statistic'
 
 /** Get current context Design Token. Will be different if you are using nest theme config. */
 function useToken() {
@@ -38,27 +38,27 @@ export const theme = {
 }
 
 export {
+  defaultConfig,
+  genComponentStyleHook,
+  mergeToken,
   // colors
   PresetColors,
   // Statistic
   statistic,
   statisticToken,
-  defaultConfig,
-  mergeToken,
+  useInternalToken as useToken,
   // hooks
   useStyleRegister,
-  genComponentStyleHook,
-  useInternalToken as useToken,
 }
 export type {
-  UseComponentStyleResult,
-  GlobalToken,
-  GenerateStyle,
-  SeedToken,
   AliasToken,
-  PresetColorType,
-  PresetColorKey,
   // FIXME: Remove this type
   AliasToken as DerivativeToken,
   FullToken,
+  GenerateStyle,
+  GlobalToken,
+  PresetColorKey,
+  PresetColorType,
+  SeedToken,
+  UseComponentStyleResult,
 }

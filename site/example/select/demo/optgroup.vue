@@ -17,9 +17,9 @@ Using `OptGroup` or `options.options` to group the options.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
-  import { UserOutlined } from '@ant-design/icons-vue'
   import type { SelectProps } from '@antdv/ui'
+  import { UserOutlined } from '@ant-design/icons-vue'
+  import { ref } from 'vue'
 
   function handleChange(value: string) {
     console.log(`selected ${value}`)

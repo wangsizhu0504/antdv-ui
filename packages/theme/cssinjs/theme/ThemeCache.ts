@@ -1,5 +1,5 @@
-import type Theme from './Theme'
 import type { DerivativeFunc } from './interface'
+import type Theme from './Theme'
 
 // ================================== Cache ==================================
 type ThemeCacheMap = Map<

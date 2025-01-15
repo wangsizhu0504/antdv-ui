@@ -1,11 +1,11 @@
+import type { PropType } from 'vue'
+import type { MutableTheme } from './interface'
 import { Button, Input, InputNumber, Popover } from '@antdv/ui'
 import { classNames } from '@antdv/utils'
-import type { PropType } from 'vue'
-import { computed, defineComponent, ref, toRefs, watch } from 'vue'
 import { debounce } from 'lodash'
+import { computed, defineComponent, ref, toRefs, watch } from 'vue'
 import ColorPanel from './ColorPanel'
 import ColorPreview from './ColorPreview'
-import type { MutableTheme } from './interface'
 import { useInjectLocaleContext } from './locale'
 import isColor from './utils/isColor'
 import makeStyle from './utils/makeStyle'
@@ -144,20 +144,20 @@ const TokenInput = defineComponent({
         >
           {(canReset.value || hideTheme.value)
             ? (
-              <Button
-                style={{
-                  fontSize: '12px',
-                }}
-                onClick={handleReset}
-                type="link"
-                size="small"
-                disabled={!canReset.value}
-              >
-                {locale.value.reset}
-              </Button>
+                <Button
+                  style={{
+                    fontSize: '12px',
+                  }}
+                  onClick={handleReset}
+                  type="link"
+                  size="small"
+                  disabled={!canReset.value}
+                >
+                  {locale.value.reset}
+                </Button>
               )
             : (
-              <span style={{ padding: '0 8px' }}>{theme.value?.name}</span>
+                <span style={{ padding: '0 8px' }}>{theme.value?.name}</span>
               )}
         </span>
       )

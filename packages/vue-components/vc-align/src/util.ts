@@ -1,6 +1,6 @@
+import type { TargetPoint } from './interface'
 import { contains } from '@antdv/utils'
 import ResizeObserver from 'resize-observer-polyfill'
-import type { TargetPoint } from './interface'
 
 export function isSamePoint(prev: TargetPoint, next: TargetPoint) {
   if (prev === next) return true

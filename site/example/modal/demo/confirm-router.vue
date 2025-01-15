@@ -18,8 +18,8 @@ title:
 
 <script lang="ts" setup>
   import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
-  import { createVNode } from 'vue'
   import { Modal } from '@antdv/ui'
+  import { createVNode } from 'vue'
 
   function showConfirm() {
     for (let i = 0; i < 3; i += 1) {

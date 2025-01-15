@@ -1,6 +1,6 @@
 import type { App, Plugin } from 'vue'
-import AStatistic from './src/Statistic'
 import ACountdown from './src/Countdown'
+import AStatistic from './src/Statistic'
 
 export const StatisticCountdown = ACountdown
 
@@ -17,5 +17,5 @@ export default Statistic as typeof Statistic & Plugin & {
   readonly Countdown: typeof ACountdown
 }
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

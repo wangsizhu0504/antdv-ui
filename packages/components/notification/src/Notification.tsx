@@ -1,3 +1,13 @@
+import type {
+  NotificationInstance as VCNotificationInstance,
+} from '@antdv/vue-components/vc-notification/src/Notification'
+import type {
+  IconType,
+  NotificationApi,
+  NotificationArgsProps,
+  NotificationConfig,
+  NotificationPlacement,
+} from './interface'
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
@@ -7,20 +17,10 @@ import {
 } from '@ant-design/icons-vue'
 import { classNames, renderHelper } from '@antdv/utils'
 import VcNotification from '@antdv/vue-components/vc-notification/src/Notification'
-import type {
-  NotificationInstance as VCNotificationInstance,
-} from '@antdv/vue-components/vc-notification/src/Notification'
 import { globalConfig } from '../../config-provider/src/config'
 import useStyle from '../style'
 import useNotification from './useNotification'
 import { getPlacementStyle } from './util'
-import type {
-  IconType,
-  NotificationApi,
-  NotificationArgsProps,
-  NotificationConfig,
-  NotificationPlacement,
-} from './interface'
 
 const notificationInstance: { [key: string]: VCNotificationInstance } = {}
 let defaultDuration = 4.5
@@ -145,7 +145,7 @@ function notice(args: NotificationArgsProps) {
             <div class={`${prefixCls}-message`}>
               {!description && iconNode
                 ? (
-                  <span class={`${prefixCls}-message-single-line-auto-margin`} />
+                    <span class={`${prefixCls}-message-single-line-auto-margin`} />
                   )
                 : null}
               {renderHelper(message)}

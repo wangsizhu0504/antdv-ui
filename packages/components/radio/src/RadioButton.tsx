@@ -1,8 +1,8 @@
 import { defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
-import Radio from './Radio'
 import { useProvideRadioOptionTypeContext } from './context'
 import { radioProps } from './props'
+import Radio from './Radio'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

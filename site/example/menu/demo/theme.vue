@@ -17,9 +17,9 @@ There are two built-in themes: `light` and `dark`. The default value is `light`.
 </docs>
 
 <script lang="ts" setup>
-  import { h, ref } from 'vue'
-  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
   import type { MenuTheme } from '@antdv/ui'
+  import { AppstoreOutlined, CalendarOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons-vue'
+  import { h, ref } from 'vue'
 
   const theme = ref<MenuTheme>('dark')
   const selectedKeys = ref<any>(['1'])
@@ -117,8 +117,8 @@ There are two built-in themes: `light` and `dark`. The default value is `light`.
     <br />
     <br />
     <a-menu
-      v-model:openKeys="openKeys"
-      v-model:selectedKeys="selectedKeys"
+      v-model:open-keys="openKeys"
+      v-model:selected-keys="selectedKeys"
       style="width: 256px"
       mode="inline"
       :theme="theme"

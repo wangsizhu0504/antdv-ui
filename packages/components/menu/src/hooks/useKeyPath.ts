@@ -1,7 +1,7 @@
-import { computed, defineComponent, inject, provide } from 'vue'
-import type { ComputedRef, InjectionKey } from 'vue'
 import type { Key } from '@antdv/types'
+import type { ComputedRef, InjectionKey } from 'vue'
 import type { StoreMenuInfo } from './useMenuContext'
+import { computed, defineComponent, inject, provide } from 'vue'
 
 export const OVERFLOW_KEY = '$$__vc-menu-more__key'
 const KeyPathContext: InjectionKey<{
@@ -40,6 +40,6 @@ export function useMeasure() {
   return inject(measure, false)
 }
 
-export { useProvideKeyPath, useInjectKeyPath, KeyPathContext }
+export { KeyPathContext, useInjectKeyPath, useProvideKeyPath }
 
 export default useProvideKeyPath

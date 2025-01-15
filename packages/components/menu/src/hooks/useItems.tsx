@@ -1,10 +1,5 @@
-import { ref, shallowRef, watch } from 'vue'
 import type { Key } from '@antdv/types'
 import type { VNode } from 'vue'
-import SubMenu from '../SubMenu'
-import ItemGroup from '../ItemGroup'
-import MenuDivider from '../Divider'
-import MenuItem from '../MenuItem'
 import type {
   ItemType,
   MenuDividerType as VcMenuDividerType,
@@ -14,6 +9,11 @@ import type {
 } from '../interface'
 import type { MenuProps } from '../props'
 import type { StoreMenuInfo } from './useMenuContext'
+import { ref, shallowRef, watch } from 'vue'
+import MenuDivider from '../Divider'
+import ItemGroup from '../ItemGroup'
+import MenuItem from '../MenuItem'
+import SubMenu from '../SubMenu'
 
 export interface MenuItemType extends VcMenuItemType {
   danger?: boolean

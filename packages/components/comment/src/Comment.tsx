@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { flattenChildren } from '@antdv/utils'
 import type { CustomSlotsType, VueNode } from '@antdv/types'
+import { flattenChildren } from '@antdv/utils'
+import { defineComponent } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import useStyle from '../style'
 import { commentProps } from './props'
@@ -51,7 +51,7 @@ export default defineComponent({
 
       const actionDom = actions
         ? (
-          <ul class={`${pre}-actions`}>{getAction(Array.isArray(actions) ? actions : [actions])}</ul>
+            <ul class={`${pre}-actions`}>{getAction(Array.isArray(actions) ? actions : [actions])}</ul>
           )
         : null
 

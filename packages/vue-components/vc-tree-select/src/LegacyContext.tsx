@@ -3,12 +3,12 @@
  * You can use this hooks to get them.
  */
 
-import type { InjectionKey } from 'vue'
-import { inject, provide } from 'vue'
 import type { TreeProps } from '@antdv/components/tree'
 import type { Key } from '@antdv/types'
+import type { InjectionKey } from 'vue'
 import type { DataEntity, IconType } from '../../vc-tree/src/interface'
 import type { InternalDataEntity, LegacyDataNode, RawValueType } from './interface'
+import { inject, provide } from 'vue'
 
 export interface LegacyContextProps {
   checkable: boolean;

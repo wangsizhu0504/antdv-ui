@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'vue'
-import { Transition, defineComponent, ref } from 'vue'
-import { classNames, flattenChildren } from '@antdv/utils'
 import type { MobilePopupProps } from './interface'
+import { classNames, flattenChildren } from '@antdv/utils'
+import { defineComponent, ref, Transition } from 'vue'
 import { mobileProps } from './interface'
 
 export default defineComponent({
@@ -46,9 +46,9 @@ export default defineComponent({
         <Transition ref={elementRef} {...popupMotion}>
           {visible
             ? (
-              <div class={mergedClassName} style={mergedStyle}>
-                {childNode}
-              </div>
+                <div class={mergedClassName} style={mergedStyle}>
+                  {childNode}
+                </div>
               )
             : null}
         </Transition>

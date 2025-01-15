@@ -1,6 +1,6 @@
 import type { GenerateConfig } from '../../generate'
-import PanelBody from '../PanelBody'
 import useMergeProps from '../../hooks/useMergeProps'
+import PanelBody from '../PanelBody'
 import { DECADE_DISTANCE_COUNT, DECADE_UNIT_DIFF } from './constant'
 
 export const DECADE_COL_COUNT = 3

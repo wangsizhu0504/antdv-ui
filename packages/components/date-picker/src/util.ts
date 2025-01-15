@@ -1,6 +1,6 @@
 import type { DatePickerLocale } from '@antdv/locale'
-import type { PickerMode } from '@antdv/vue-components/vc-picker/src/interface'
 import type { SelectCommonPlacement } from '@antdv/vue-components'
+import type { PickerMode } from '@antdv/vue-components/vc-picker/src/interface'
 import type { DirectionType } from '../../config-provider'
 
 export function getPlaceholder(

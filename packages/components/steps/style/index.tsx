@@ -1,6 +1,7 @@
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import genStepsCustomIconStyle from './custom-icon'
+import genStepsInlineStyle from './inline'
 import genStepsLabelPlacementStyle from './label-placement'
 import genStepsNavStyle from './nav'
 import genStepsProgressStyle from './progress'
@@ -8,7 +9,6 @@ import genStepsProgressDotStyle from './progress-dot'
 import genStepsRTLStyle from './rtl'
 import genStepsSmallStyle from './small'
 import genStepsVerticalStyle from './vertical'
-import genStepsInlineStyle from './inline'
 
 export interface ComponentToken {
   descriptionWidth: number

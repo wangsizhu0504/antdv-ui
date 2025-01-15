@@ -1,6 +1,5 @@
-import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent, roundedArrow } from '@antdv/theme'
 import type { FullToken, GenerateStyle } from '@antdv/theme'
-import { getArrowOffset } from '@antdv/theme/style/placementArrow'
+import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent, roundedArrow } from '@antdv/theme'
 import {
   initMoveMotion,
   initSlideMotion,
@@ -10,8 +9,9 @@ import {
   slideUpIn,
   slideUpOut,
 } from '@antdv/theme/style/motion'
-import genStatusStyle from './status'
+import { getArrowOffset } from '@antdv/theme/style/placementArrow'
 import genButtonStyle from './button'
+import genStatusStyle from './status'
 
 export interface ComponentToken {
   zIndexPopup: number

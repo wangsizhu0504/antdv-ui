@@ -1,6 +1,6 @@
-import { computed, defineComponent, ref, watch } from 'vue'
 import type { CustomSlotsType } from '@antdv/types'
 import type { CSSProperties } from 'vue'
+import { computed, defineComponent, ref, watch } from 'vue'
 import { tabPaneProps } from '../props'
 
 export default defineComponent({

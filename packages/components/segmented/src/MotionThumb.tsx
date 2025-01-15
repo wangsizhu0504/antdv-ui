@@ -1,16 +1,16 @@
+import type { CSSProperties, TransitionProps } from 'vue'
+import type { SegmentedValue, ThumbRect } from './interface'
+import { addClass, removeClass } from '@antdv/utils'
 import {
-  Transition,
   computed,
   defineComponent,
   nextTick,
   onBeforeUnmount,
   ref,
+  Transition,
   watch,
 } from 'vue'
-import { addClass, removeClass } from '@antdv/utils'
-import type { CSSProperties, TransitionProps } from 'vue'
 import { motionThumbProps } from './props'
-import type { SegmentedValue, ThumbRect } from './interface'
 
 function calcThumbStyle(targetElement: HTMLElement | null | undefined): ThumbRect {
   return targetElement

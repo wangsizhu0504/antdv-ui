@@ -1,6 +1,6 @@
-import { PropTypes } from '@antdv/utils'
 import type { Breakpoint } from '@antdv/types'
 import type { CSSProperties, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
+import { PropTypes } from '@antdv/utils'
 import { DEFAULT_COLUMN_MAP } from './constants'
 
 export const DescriptionsItemProps = {

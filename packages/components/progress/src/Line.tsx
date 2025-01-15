@@ -1,9 +1,9 @@
-import { computed, defineComponent } from 'vue'
-import { devWarning } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
-import { getSize, getSuccessPercent, handleGradient, validProgress } from './utils'
-import { progressLineProps } from './props'
 import type { ProgressSize } from './interface'
+import { devWarning } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
+import { progressLineProps } from './props'
+import { getSize, getSuccessPercent, handleGradient, validProgress } from './utils'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -86,7 +86,7 @@ export default defineComponent({
             <div class={`${props.prefixCls}-bg`} style={percentStyle.value} />
             {successPercent.value !== undefined
               ? (
-                <div class={`${props.prefixCls}-success-bg`} style={successPercentStyle.value} />
+                  <div class={`${props.prefixCls}-success-bg`} style={successPercentStyle.value} />
                 )
               : null}
           </div>

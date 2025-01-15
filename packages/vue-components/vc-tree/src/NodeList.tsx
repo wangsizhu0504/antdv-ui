@@ -2,13 +2,13 @@
  * Handle virtual list of the TreeNodes.
  */
 
-import { computed, defineComponent, ref, shallowRef, watch } from 'vue'
+import type { DataEntity, DataNode, FlattenNode, ScrollTo } from './interface'
+import type { NodeListProps } from './props'
 import { omit } from '@antdv/utils'
+import { computed, defineComponent, ref, shallowRef, watch } from 'vue'
 import VirtualList from '../../vc-virtual-list/src/List'
 import { useInjectKeysState, useInjectTreeContext } from './contextTypes'
-import type { DataEntity, DataNode, FlattenNode, ScrollTo } from './interface'
 import MotionTreeNode from './MotionTreeNode'
-import type { NodeListProps } from './props'
 import { nodeListProps } from './props'
 import { findExpandedKeys, getExpandRange } from './utils/diffUtil'
 import { getKey } from './utils/treeUtil'

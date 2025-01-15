@@ -17,9 +17,9 @@ Replace the title,key and children fields in treeNode with the corresponding fie
 </docs>
 
 <script lang="ts" setup>
+  import type { TreeProps } from '@antdv/ui'
   import type { Ref } from 'vue'
   import { ref, watch } from 'vue'
-  import type { TreeProps } from '@antdv/ui'
 
   const expandedKeys = ref<string[]>(['0-0-0', '0-0-1'])
   const selectedKeys = ref<string[]>(['0-0-0', '0-0-1'])
@@ -65,9 +65,9 @@ Replace the title,key and children fields in treeNode with the corresponding fie
 
 <template>
   <a-tree
-    v-model:expandedKeys="expandedKeys"
-    v-model:selectedKeys="selectedKeys"
-    v-model:checkedKeys="checkedKeys"
+    v-model:expanded-keys="expandedKeys"
+    v-model:selected-keys="selectedKeys"
+    v-model:checked-keys="checkedKeys"
     checkable
     :tree-data="treeData"
     :field-names="fieldNames"

@@ -1,8 +1,8 @@
-import { defineComponent, inject, provide, toRef } from 'vue'
-
 import type { CSSMotionProps, Key } from '@antdv/types'
+
 import type { ComputedRef, InjectionKey, PropType, Ref } from 'vue'
 import type { BuiltinPlacements, MenuClickEventHandler, MenuMode, MenuTheme, TriggerSubMenuAction } from '../interface'
+import { defineComponent, inject, provide, toRef } from 'vue'
 
 export interface StoreMenuInfo {
   eventKey: string
@@ -125,13 +125,13 @@ const MenuContextProvider = defineComponent({
 })
 
 export {
-  useProvideMenu,
   MenuContextKey,
-  useInjectMenu,
-  MenuFirstLevelContextKey,
-  useProvideFirstLevel,
-  useInjectFirstLevel,
   MenuContextProvider,
+  MenuFirstLevelContextKey,
+  useInjectFirstLevel,
+  useInjectMenu,
+  useProvideFirstLevel,
+  useProvideMenu,
 }
 
 export default useProvideMenu

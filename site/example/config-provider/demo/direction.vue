@@ -17,7 +17,7 @@ Components which support rtl direction are listed here, you can toggle the direc
 </docs>
 
 <script lang="ts" setup>
-  import { reactive, ref, watch } from 'vue'
+  import type { CascaderProps, TreeProps, TreeSelectProps } from '@antdv/ui'
 
   import {
     DownloadOutlined,
@@ -28,7 +28,7 @@ Components which support rtl direction are listed here, you can toggle the direc
     SearchOutlined as SearchIcon,
     SmileOutlined,
   } from '@ant-design/icons-vue'
-  import type { CascaderProps, TreeProps, TreeSelectProps } from '@antdv/ui'
+  import { reactive, ref, watch } from 'vue'
 
   const state = reactive({
     currentStep: 0,
@@ -286,9 +286,9 @@ Components which support rtl direction are listed here, you can toggle the direc
         <a-col :span="12">
           <a-divider orientation="left">Tree example</a-divider>
           <a-tree
-            v-model:expandedKeys="expandedKeys"
-            v-model:selectedKeys="selectedKeys"
-            v-model:checkedKeys="checkedKeys"
+            v-model:expanded-keys="expandedKeys"
+            v-model:selected-keys="selectedKeys"
+            v-model:checked-keys="checkedKeys"
             show-line
             checkable
             :tree-data="treeData"

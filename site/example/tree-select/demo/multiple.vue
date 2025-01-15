@@ -17,8 +17,8 @@ Multiple selection usage.
 </docs>
 
 <script lang="ts" setup>
-  import { ref, watch } from 'vue'
   import type { TreeSelectProps } from '@antdv/ui'
+  import { ref, watch } from 'vue'
 
   const value = ref<string[]>([])
   const treeData = ref<TreeSelectProps['treeData']>([

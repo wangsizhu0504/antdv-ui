@@ -1,11 +1,11 @@
-import { presetPrimaryColors } from '@ant-design/colors'
-import { devWarning } from '@antdv/utils'
-
 import type { CSSProperties } from 'vue'
 import type { Direction } from '../../config-provider'
-import type { CircleProps, ProgressProps } from './props'
 
 import type { ProgressGradient, StringGradients } from './interface'
+import type { CircleProps, ProgressProps } from './props'
+import { presetPrimaryColors } from '@ant-design/colors'
+
+import { devWarning } from '@antdv/utils'
 
 /**
  * {

@@ -1,5 +1,5 @@
-import { Empty } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Empty } from '@antdv/ui'
 
 const Demo = () => <Empty />
 

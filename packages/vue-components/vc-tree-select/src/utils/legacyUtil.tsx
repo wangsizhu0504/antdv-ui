@@ -1,8 +1,8 @@
-import { camelize, filterEmpty, warning } from '@antdv/utils'
 import type { VueNode } from '@antdv/types'
 import type { ChangeEventExtra, LegacyCheckedNode, RawValueType, TreeSelectDataNode } from '../interface'
-import TreeNode from '../TreeNode'
 import type { DefaultOptionType, FieldNames } from '../TreeSelect'
+import { camelize, filterEmpty, warning } from '@antdv/utils'
+import TreeNode from '../TreeNode'
 
 function isTreeSelectNode(node: any) {
   return node && node.type && (node.type as any).isTreeSelectNode

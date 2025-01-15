@@ -1,6 +1,6 @@
-import { computed, inject, provide } from 'vue'
 import type { InjectionKey } from 'vue'
 import type { SlotsContextProps, TableColumnType } from './interface'
+import { computed, inject, provide } from 'vue'
 
 const SlotsContextKey: InjectionKey<SlotsContextProps> = Symbol('SlotsContextProps')
 

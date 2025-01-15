@@ -1,7 +1,7 @@
-import { PropTypes, booleanType, functionType, objectType, stringType } from '@antdv/utils'
-import type { ExtractPropTypes } from 'vue'
 import type { MouseEventHandler } from '@antdv/types'
+import type { ExtractPropTypes } from 'vue'
 import type { FloatButtonBadgeProps, FloatButtonGroupTrigger, FloatButtonShape, FloatButtonType } from './interface'
+import { booleanType, functionType, objectType, PropTypes, stringType } from '@antdv/utils'
 
 export function floatButtonProps() {
   return {

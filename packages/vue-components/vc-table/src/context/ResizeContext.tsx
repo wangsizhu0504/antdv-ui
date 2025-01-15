@@ -1,6 +1,6 @@
 import type { InjectionKey } from 'vue'
-import { inject, provide } from 'vue'
 import type { Key } from '../interface'
+import { inject, provide } from 'vue'
 
 interface ResizeContextProps {
   onColumnResize: (columnKey: Key, width: number) => void;

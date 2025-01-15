@@ -1,4 +1,5 @@
-import { computed, defineComponent, shallowRef, watch } from 'vue'
+import type { CustomSlotsType } from '@antdv/types'
+import type { MentionsOptionProps } from './interface'
 import {
   classNames,
   devWarning,
@@ -8,15 +9,14 @@ import {
   getStatusClassNames,
   omit,
 } from '@antdv/utils'
-import type { CustomSlotsType } from '@antdv/types'
 import { VcMentions } from '@antdv/vue-components'
+import { computed, defineComponent, shallowRef, watch } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
 import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
 import { useProvideOverride } from '../../menu'
 import Spin from '../../spin'
 import useStyle from '../style'
 import { mentionsProps } from './props'
-import type { MentionsOptionProps } from './interface'
 
 function loadingFilterOption() {
   return true

@@ -1,3 +1,5 @@
+import type { EventHandler, Key } from '@antdv/types'
+import type { DefaultOptionType, SingleValueType } from '../Cascader'
 import {
   computed,
   defineComponent,
@@ -7,15 +9,13 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import type { EventHandler, Key } from '@antdv/types'
 import useBaseProps from '../../../vc-select/src/hooks/useBaseProps'
+import { useInjectCascader } from '../context'
 import { isLeaf, scrollIntoParentView, toPathKey, toPathKeys, toPathValueStr } from '../utils/commonUtil'
 import { toPathOptions } from '../utils/treeUtil'
-import type { DefaultOptionType, SingleValueType } from '../Cascader'
-import { useInjectCascader } from '../context'
-import useKeyboard from './useKeyboard'
-import useActive from './useActive'
 import Column, { FIX_LABEL } from './Column'
+import useActive from './useActive'
+import useKeyboard from './useKeyboard'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

@@ -1,18 +1,18 @@
+import type { InputStatus, MouseEventHandler, SizeType, VueNode } from '@antdv/types'
+import type { CSSProperties, PropType, VNode } from 'vue'
+import type { Direction } from '../../config-provider'
 import { CloseCircleFilled } from '@ant-design/icons-vue'
-import { defineComponent } from 'vue'
 import {
-  PropTypes,
   anyType,
   classNames,
   cloneElement,
   getMergedStatus,
   getStatusClassNames,
+  PropTypes,
   tuple,
 } from '@antdv/utils'
-import type { InputStatus, MouseEventHandler, SizeType, VueNode } from '@antdv/types'
-import type { CSSProperties, PropType, VNode } from 'vue'
+import { defineComponent } from 'vue'
 import { FormItemInputContext } from '../../form/src/FormItemContext'
-import type { Direction } from '../../config-provider'
 import { hasAddon } from './util'
 
 const ClearableInputType = ['text', 'input'] as const

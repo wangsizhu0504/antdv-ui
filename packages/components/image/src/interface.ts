@@ -1,5 +1,5 @@
-import type { ComputedRef, Ref, VNode } from 'vue'
 import type { IDialogChildProps } from '@antdv/vue-components/vc-dialog/src/IDialogPropTypes'
+import type { ComputedRef, Ref, VNode } from 'vue'
 
 export type GetContainer = string | HTMLElement | (() => HTMLElement)
 

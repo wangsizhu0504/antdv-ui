@@ -5,5 +5,5 @@ export const Switch = withInstall(ASwitch)
 
 export default Switch
 
-export * from './src/props'
 export * from './src/interface'
+export * from './src/props'

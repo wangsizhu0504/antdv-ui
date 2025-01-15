@@ -2,16 +2,16 @@ import { Card, Space } from '@antdv/ui'
 import { defineComponent } from 'vue'
 
 import Alert from '../component-demos/alert/warning'
-import Message from '../component-demos/message/warning'
-import Popconfirm from '../component-demos/popconfirm/popconfirm'
-import Modal from '../component-demos/modal/warning'
 import Badge from '../component-demos/badge/warning'
+import Input from '../component-demos/input/warning'
+import Message from '../component-demos/message/warning'
+import Modal from '../component-demos/modal/warning'
+import Notification from '../component-demos/notification/warning'
+import Popconfirm from '../component-demos/popconfirm/popconfirm'
+import Result from '../component-demos/result/warning'
+import Tag from '../component-demos/tag/warning'
 import Text from '../component-demos/typography/warningText'
 import Title from '../component-demos/typography/warningTitle'
-import Tag from '../component-demos/tag/warning'
-import Input from '../component-demos/input/warning'
-import Result from '../component-demos/result/warning'
-import Notification from '../component-demos/notification/warning'
 
 export const Warning = defineComponent({
   name: 'Warning',

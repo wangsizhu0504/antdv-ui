@@ -19,9 +19,9 @@ Search and select options directly.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { CascaderProps } from '@antdv/ui'
   import type { ShowSearchType } from '@antdv/ui/es/cascader'
+  import { ref } from 'vue'
 
   const options: CascaderProps['options'] = [
     {

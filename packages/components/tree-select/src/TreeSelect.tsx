@@ -1,4 +1,7 @@
-import { computed, defineComponent, ref } from 'vue'
+import type { CustomSlotsType, Key } from '@antdv/types'
+import type { SelectCommonPlacement } from '@antdv/vue-components'
+import type { SwitcherIconProps } from '../../tree/src/utils/iconUtil'
+import type { TreeSelectProps } from './props'
 import {
   classNames,
   devWarning,
@@ -9,23 +12,21 @@ import {
   omit,
   warning,
 } from '@antdv/utils'
-import type { CustomSlotsType, Key } from '@antdv/types'
-import { VcTreeSelect, getTransitionDirection } from '@antdv/vue-components'
-import type { SelectCommonPlacement } from '@antdv/vue-components'
-import getIcons from '../../select/src/iconUtil'
-import renderSwitcherIcon from '../../tree/src/utils/iconUtil'
-import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
-import useSelectStyle from '../../select/style'
-
+import { getTransitionDirection, VcTreeSelect } from '@antdv/vue-components'
+import { computed, defineComponent, ref } from 'vue'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import { FormItemInputContext, useInjectFormItemContext } from '../../form/src/FormItemContext'
+
+import getIcons from '../../select/src/iconUtil'
+
+import useSelectStyle from '../../select/style'
+import renderSwitcherIcon from '../../tree/src/utils/iconUtil'
 
 // CSSINJS
 import { useInjectDisabled } from '../../config-provider'
 import { useCompactItemContext } from '../../space/src/context'
 import useStyle from '../style'
-import type { SwitcherIconProps } from '../../tree/src/utils/iconUtil'
 import { treeSelectProps } from './props'
-import type { TreeSelectProps } from './props'
 
 function getTransitionName(rootPrefixCls: string, motion: string, transitionName?: string) {
   if (transitionName !== undefined)

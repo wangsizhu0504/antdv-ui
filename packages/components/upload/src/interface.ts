@@ -1,5 +1,11 @@
-import type { CSSProperties, ExtractPropTypes, ImgHTMLAttributes } from 'vue'
 import type { VueNode } from '@antdv/types'
+import type {
+  RcFile as OriRcFile,
+  UploadRequestOption as RcCustomRequestOptions,
+} from '@antdv/vue-components/vc-upload/src/interface'
+import type { CSSProperties, ExtractPropTypes, ImgHTMLAttributes } from 'vue'
+
+import type { ProgressProps } from '../../progress'
 import {
   arrayType,
   booleanType,
@@ -8,12 +14,6 @@ import {
   someType,
   stringType,
 } from '@antdv/utils'
-
-import type {
-  RcFile as OriRcFile,
-  UploadRequestOption as RcCustomRequestOptions,
-} from '@antdv/vue-components/vc-upload/src/interface'
-import type { ProgressProps } from '../../progress'
 
 export interface FileType extends OriRcFile {
   readonly lastModifiedDate: Date;
@@ -104,13 +104,13 @@ function uploadProps<T = any>() {
     'fileList': arrayType<Array<UploadFile<T>>>(),
     'action': someType<
       string | ((file: FileType) => string) | ((file: FileType) => PromiseLike<string>)
-        >([String, Function],
+    >([String, Function],
         ),
     'directory': booleanType(),
     'data': someType<
       | Record<string, unknown>
       | ((file: UploadFile<T>) => Record<string, unknown> | Promise<Record<string, unknown>>)
-        >([Object, Function],
+    >([Object, Function],
         ),
     'method': stringType<'POST' | 'PUT' | 'PATCH' | 'post' | 'put' | 'patch'>(),
     'headers': objectType<HttpRequestHeader>(),
@@ -194,4 +194,4 @@ function uploadListProps<T = any>() {
 }
 
 export type UploadListProps = Partial<ExtractPropTypes<ReturnType<typeof uploadListProps>>>
-export { uploadProps, uploadListProps }
+export { uploadListProps, uploadProps }

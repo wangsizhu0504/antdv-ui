@@ -1,5 +1,5 @@
-import { Checkbox } from '@antdv/ui'
 import type { ComponentDemo } from '../../interface'
+import { Checkbox } from '@antdv/ui'
 
 const Demo = () => <Checkbox disabled>Checkbox</Checkbox>
 

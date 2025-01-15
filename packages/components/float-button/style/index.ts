@@ -1,5 +1,5 @@
-import { Keyframes, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme'
 import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme'
+import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme'
 import { initFadeMotion } from '@antdv/theme/style/motion/fade'
 import { initMotion } from '@antdv/theme/style/motion/motion'
 import getOffset from '../src/util'

@@ -1,6 +1,6 @@
 import type { CSSProperties, PropType } from 'vue'
-import { Fragment, computed, defineComponent, ref, watch } from 'vue'
-import { PropTypes, classNames, cloneElement, skipFlattenKey } from '@antdv/utils'
+import { classNames, cloneElement, PropTypes, skipFlattenKey } from '@antdv/utils'
+import { computed, defineComponent, Fragment, ref, watch } from 'vue'
 import Trigger from '../../vc-trigger/src/Trigger'
 import placements from './placements'
 

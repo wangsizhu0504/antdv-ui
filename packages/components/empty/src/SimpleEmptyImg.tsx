@@ -1,6 +1,6 @@
+import { useToken } from '@antdv/theme'
 import { TinyColor } from '@ctrl/tinycolor'
 import { computed, defineComponent } from 'vue'
-import { useToken } from '@antdv/theme'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

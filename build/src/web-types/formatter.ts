@@ -1,6 +1,6 @@
 import type { Articles } from './parser'
-import { formatType, removeVersion, toKebabCase } from './utils'
 import type { VueTag } from './type'
+import { formatType, removeVersion, toKebabCase } from './utils'
 
 function getComponentName(name: string, tagPrefix: string) {
   if (name)

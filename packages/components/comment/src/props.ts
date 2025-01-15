@@ -1,5 +1,5 @@
-import { PropTypes } from '@antdv/utils'
 import type { ExtractPropTypes } from 'vue'
+import { PropTypes } from '@antdv/utils'
 
 export function commentProps() {
   return {

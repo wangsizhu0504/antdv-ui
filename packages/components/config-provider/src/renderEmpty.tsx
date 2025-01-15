@@ -1,9 +1,9 @@
-import { computed, inject } from 'vue'
 import type { VueNode } from '@antdv/types'
-import Empty from '../../empty'
-
-import { configProviderKey, defaultConfigProvider } from './context'
 import type { RenderEmptyProps } from './interface'
+import { computed, inject } from 'vue'
+
+import Empty from '../../empty'
+import { configProviderKey, defaultConfigProvider } from './context'
 
 export function DefaultRenderEmpty(props: RenderEmptyProps) {
   const configProvider = inject(configProviderKey, {

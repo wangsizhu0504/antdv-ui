@@ -1,6 +1,6 @@
-import { computed, defineComponent } from 'vue'
 import { useRefs } from '@antdv/hooks'
 import { initDefaultProps } from '@antdv/utils'
+import { computed, defineComponent } from 'vue'
 import { defaultProps, useTransitionDuration } from './common'
 import { propTypes } from './types'
 

@@ -1,16 +1,16 @@
+import type { MouseEventHandler, VueNode } from '@antdv/types'
+import type { ExtractPropTypes } from 'vue'
+import type { ProgressDotRender, Status, StepIconRender } from './interface'
 import {
-  PropTypes,
   anyType,
   arrayType,
   booleanType,
   functionType,
+  PropTypes,
   someType,
   stringType,
   withUndefined,
 } from '@antdv/utils'
-import type { MouseEventHandler, VueNode } from '@antdv/types'
-import type { ExtractPropTypes } from 'vue'
-import type { ProgressDotRender, Status, StepIconRender } from './interface'
 
 export function stepsProps() {
   return {

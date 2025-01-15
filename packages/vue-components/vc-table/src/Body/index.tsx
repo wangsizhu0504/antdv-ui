@@ -1,15 +1,16 @@
+import type { GetComponentProps, GetRowKey, Key } from '../interface'
+
 // base rc-table@7.17.2
 import { defineComponent, shallowRef, toRef } from 'vue'
-import useFlattenRecords from '../hooks/useFlattenRecords'
-import { getColumnsKey } from '../utils/valueUtil'
-import type { GetComponentProps, GetRowKey, Key } from '../interface'
-import { useInjectResize } from '../context/ResizeContext'
-import { useInjectTable } from '../context/TableContext'
 import { useInjectBody } from '../context/BodyContext'
 import { useProvideHover } from '../context/HoverContext'
+import { useInjectResize } from '../context/ResizeContext'
+import { useInjectTable } from '../context/TableContext'
+import useFlattenRecords from '../hooks/useFlattenRecords'
+import { getColumnsKey } from '../utils/valueUtil'
 import BodyRow from './BodyRow'
-import MeasureCell from './MeasureCell'
 import ExpandedRow from './ExpandedRow'
+import MeasureCell from './MeasureCell'
 
 export interface BodyProps<RecordType> {
   data: RecordType[];

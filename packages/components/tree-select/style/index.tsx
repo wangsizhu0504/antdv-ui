@@ -1,6 +1,6 @@
+import type { AliasToken, FullToken, GenerateStyle } from '@antdv/theme'
 import type { Ref } from 'vue'
 import { genComponentStyleHook, mergeToken } from '@antdv/theme'
-import type { AliasToken, FullToken, GenerateStyle } from '@antdv/theme'
 import { getStyle as getCheckboxStyle } from '../../checkbox/style'
 import { genTreeStyle } from '../../tree/style'
 

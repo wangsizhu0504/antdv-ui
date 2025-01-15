@@ -1,3 +1,11 @@
+import type { CustomSlotsType } from '@antdv/types'
+import type { CSSProperties } from 'vue'
+import type { ExtraContentProps, TabSizeMap } from '../interface'
+import { useRefs, useState } from '@antdv/hooks'
+import { classNames, raf, toPx } from '@antdv/utils'
+import { ResizeObserver } from '@antdv/vue-components'
+import { pick } from 'lodash-es'
+
 import {
   computed,
   defineComponent,
@@ -6,24 +14,16 @@ import {
   watch,
   watchEffect,
 } from 'vue'
-import { pick } from 'lodash-es'
-import type { CSSProperties } from 'vue'
-import { useRefs, useState } from '@antdv/hooks'
-import { ResizeObserver } from '@antdv/vue-components'
-import type { CustomSlotsType } from '@antdv/types'
-import { classNames, raf, toPx } from '@antdv/utils'
-
-import { useRafState } from '../hooks/useRaf'
 import useOffsets from '../hooks/useOffsets'
-import { useInjectTabs } from '../TabContext'
-import useTouchMove from '../hooks/useTouchMove'
+import { useRafState } from '../hooks/useRaf'
 import useSyncState from '../hooks/useSyncState'
+import useTouchMove from '../hooks/useTouchMove'
 
 import { tabNavListProps } from '../props'
-import type { ExtraContentProps, TabSizeMap } from '../interface'
-import TabNode from './TabNode'
-import OperationNode from './OperationNode'
+import { useInjectTabs } from '../TabContext'
 import AddButton from './AddButton'
+import OperationNode from './OperationNode'
+import TabNode from './TabNode'
 
 const DEFAULT_SIZE = { width: 0, height: 0, left: 0, top: 0, right: 0 }
 

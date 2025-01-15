@@ -16,8 +16,8 @@ There are three layout for form: `horizontal`, `vertical`, `inline`.
 </docs>
 
 <script lang="ts" setup>
-  import { computed, reactive } from 'vue'
   import type { UnwrapRef } from 'vue'
+  import { computed, reactive } from 'vue'
 
   interface FormState {
     layout: 'horizontal' | 'vertical' | 'inline';

@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
-import { spaceCompactItemProps } from './props'
 import { SpaceCompactItemContext } from './context'
+import { spaceCompactItemProps } from './props'
 
 export default defineComponent({
   name: 'CompactItem',

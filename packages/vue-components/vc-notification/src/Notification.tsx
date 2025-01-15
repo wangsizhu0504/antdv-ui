@@ -1,8 +1,9 @@
-import { classNames } from '@antdv/utils'
 import type { Key, VueNode } from '@antdv/types'
 import type { CSSProperties } from 'vue'
+import type { NoticeProps } from './Notice'
+import ConfigProvider, { globalConfigForApi } from '@antdv/components/config-provider'
+import { classNames } from '@antdv/utils'
 import {
-  TransitionGroup,
   computed,
   createVNode,
   defineComponent,
@@ -10,11 +11,10 @@ import {
   ref,
   shallowRef,
   toRaw,
+  TransitionGroup,
   render as vueRender,
 } from 'vue'
-import ConfigProvider, { globalConfigForApi } from '@antdv/components/config-provider'
 import { getTransitionGroupProps } from '../../transition'
-import type { NoticeProps } from './Notice'
 import Notice from './Notice'
 
 let seed = 0
@@ -33,7 +33,7 @@ export interface NoticeContent extends Omit<NoticeProps, 'prefixCls' | 'noticeKe
   content?: string | ((arg: { prefixCls: string }) => VueNode) | VueNode;
   onClose?: () => void;
   style?: CSSProperties;
-  class?: String;
+  class?: string;
 }
 export type Placement = 'top' | 'topLeft' | 'topRight' | 'bottom' | 'bottomLeft' | 'bottomRight'
 

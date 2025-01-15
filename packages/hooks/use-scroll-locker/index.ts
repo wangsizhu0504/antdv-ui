@@ -1,6 +1,6 @@
-import { computed, watchEffect } from 'vue'
 import type { Ref } from 'vue'
 import { canUseDom, getScrollBarSize, removeCSS, updateCSS } from '@antdv/utils'
+import { computed, watchEffect } from 'vue'
 
 const UNIQUE_ID = `vc-util-locker-${Date.now()}`
 

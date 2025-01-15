@@ -1,8 +1,8 @@
 import type { ComponentDemo } from '../../interface'
-import Default from './transfer'
 import danger from './danger'
-import warning from './warning'
 import disabled from './disabled'
+import Default from './transfer'
+import warning from './warning'
 
 const previewerDemo: ComponentDemo[] = [Default, warning, danger, disabled]
 

@@ -15,8 +15,8 @@ Use `rowSelection.selections` custom selections, default no select dropdown, sho
 </docs>
 
 <script lang="ts" setup>
-  import { computed, ref, unref } from 'vue'
   import { Table } from '@antdv/ui'
+  import { computed, ref, unref } from 'vue'
 
   interface DataType {
     key: string | number;

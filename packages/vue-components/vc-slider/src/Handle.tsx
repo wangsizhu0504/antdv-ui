@@ -1,6 +1,6 @@
 import type { CSSProperties, PropType } from 'vue'
+import { addEventListenerWrap, classNames, PropTypes } from '@antdv/utils'
 import { computed, defineComponent, onBeforeUnmount, onMounted, shallowRef } from 'vue'
-import { PropTypes, addEventListenerWrap, classNames } from '@antdv/utils'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

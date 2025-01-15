@@ -1,17 +1,7 @@
-import {
-  PropTypes,
-  anyType,
-  booleanType,
-  functionType,
-  objectType,
-  someType,
-  stringType,
-  tuple,
-} from '@antdv/utils'
-import type { Options } from 'scroll-into-view-if-needed'
-import type { ComponentPublicInstance, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
 import type { ValidateMessages } from '@antdv/locale'
 import type { SizeType } from '@antdv/types'
+import type { Options } from 'scroll-into-view-if-needed'
+import type { ComponentPublicInstance, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
 import type { ColProps } from '../../grid'
 import type {
   Callbacks,
@@ -21,6 +11,16 @@ import type {
   RequiredMark,
   Rule,
 } from './interface'
+import {
+  anyType,
+  booleanType,
+  functionType,
+  objectType,
+  PropTypes,
+  someType,
+  stringType,
+  tuple,
+} from '@antdv/utils'
 
 export function formProps() {
   return {

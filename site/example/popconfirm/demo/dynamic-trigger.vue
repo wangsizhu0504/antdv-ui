@@ -17,8 +17,8 @@ Make it pop up under some conditions.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import { message } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const visible = ref<boolean>(false)
   const condition = ref<boolean>(true)

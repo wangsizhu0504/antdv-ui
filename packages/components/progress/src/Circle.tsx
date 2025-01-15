@@ -1,11 +1,11 @@
-import { computed, defineComponent } from 'vue'
-import { initDefaultProps } from '@antdv/utils'
 import type { CSSProperties } from 'vue'
+import type { ProgressProps } from './props'
+import { initDefaultProps } from '@antdv/utils'
 import { Circle as VCCircle } from '@antdv/vue-components'
+import { computed, defineComponent } from 'vue'
 import Tooltip from '../../tooltip'
 import { progressCircleProps } from './props'
 import { getPercentage, getSize, getStrokeColor } from './utils'
-import type { ProgressProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -84,15 +84,15 @@ export default defineComponent({
         >
           {sizeRef.value.width <= 20
             ? (
-              <Tooltip v-slots={{ title: slots.default }}>
-                <span>{circleContent}</span>
-              </Tooltip>
+                <Tooltip v-slots={{ title: slots.default }}>
+                  <span>{circleContent}</span>
+                </Tooltip>
               )
             : (
-              <>
-                {circleContent}
-                {slots.default?.()}
-              </>
+                <>
+                  {circleContent}
+                  {slots.default?.()}
+                </>
               )}
         </div>
       )

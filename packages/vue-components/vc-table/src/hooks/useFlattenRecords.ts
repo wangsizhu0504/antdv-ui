@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
-import { computed } from 'vue'
 import type { GetRowKey, Key } from '../interface'
+import { computed } from 'vue'
 
 // recursion (flat tree structure)
 function flatRecord<T>(

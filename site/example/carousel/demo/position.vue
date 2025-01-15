@@ -16,8 +16,8 @@ There are 4 position options available.
 </docs>
 
 <script lang="ts" setup>
-  import { ref } from 'vue'
   import type { CarouselProps } from '@antdv/ui'
+  import { ref } from 'vue'
 
   const dotPosition = ref<CarouselProps['dotPosition']>('top')
 </script>

@@ -18,11 +18,12 @@ Controls must injects `useInjectFormItemContext` and calls the corresponding met
 </docs>
 
 <script lang="ts" setup>
+  import type { Currency } from './price-input.vue'
+
   import { reactive } from 'vue'
 
   // sourceCode https://github.com/vueComponent/@antdv/ui/blob/cb3c002e17f0f4f5b3e8d01846069da0e2645aff/components/form/demo/price-input.vue
   import PriceInput from './price-input.vue'
-  import type { Currency } from './price-input.vue'
 
   const formState = reactive({
     price: {

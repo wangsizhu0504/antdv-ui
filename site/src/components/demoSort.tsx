@@ -1,5 +1,5 @@
-import { defineComponent, inject } from 'vue'
 import { GLOBAL_CONFIG } from '@/SymbolKey'
+import { defineComponent, inject } from 'vue'
 
 export default defineComponent({
   props: {
@@ -33,9 +33,9 @@ export default defineComponent({
           {isSingleCol
             ? null
             : (
-              <a-col class="code-boxes-col-2-1" span={12}>
-                {rightChildren}
-              </a-col>
+                <a-col class="code-boxes-col-2-1" span={12}>
+                  {rightChildren}
+                </a-col>
               )}
         </a-row>
       )

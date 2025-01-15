@@ -1,7 +1,7 @@
-import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { VueNode } from '@antdv/types'
-import { functionType, objectType, someType, stringType } from '@antdv/utils'
+import type { CSSProperties, ExtractPropTypes } from 'vue'
 import type { PlacementType } from './placements'
+import { functionType, objectType, someType, stringType } from '@antdv/utils'
 
 export function tourStepInfo() {
   return {

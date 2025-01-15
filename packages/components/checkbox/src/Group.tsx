@@ -1,6 +1,6 @@
 import { computed, defineComponent, provide, ref, watch } from 'vue'
-import { useInjectFormItemContext } from '../../form/src/FormItemContext'
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import { useInjectFormItemContext } from '../../form/src/FormItemContext'
 import useStyle from '../style'
 import Checkbox from './Checkbox'
 import { CheckboxGroupContextKey } from './interface'
@@ -42,7 +42,7 @@ export default defineComponent({
       })
     })
     const triggerUpdate = ref(Symbol('TriggerUpdateKey'))
-    const registeredValuesMap = ref(new Map<Symbol, string>())
+    const registeredValuesMap = ref(new Map<symbol, string>())
     const cancelValue = (id: symbol) => {
       registeredValuesMap.value.delete(id)
       triggerUpdate.value = Symbol('TriggerUpdateCancelKey')

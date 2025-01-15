@@ -1,8 +1,8 @@
-import type { CSSProperties, MaybeRef } from 'vue'
-import type { VueNode, getContainerFunc } from '@antdv/types'
 import type { ModalLocale } from '@antdv/locale'
-import type { Direction } from '../../config-provider'
+import type { getContainerFunc, VueNode } from '@antdv/types'
+import type { CSSProperties, MaybeRef } from 'vue'
 import type { ButtonProps as ButtonPropsType, LegacyButtonType } from '../../button'
+import type { Direction } from '../../config-provider'
 
 export type MousePosition = { x: number, y: number } | null
 

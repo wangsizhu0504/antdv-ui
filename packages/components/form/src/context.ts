@@ -1,10 +1,10 @@
-import { computed, inject, provide } from 'vue'
-import type { ComputedRef, InjectionKey } from 'vue'
 import type { ValidateMessages } from '@antdv/locale'
 import type { ValidateStatus } from '@antdv/types'
+import type { ComputedRef, InjectionKey } from 'vue'
 import type { ColProps } from '../../grid'
-import { defaultValidateMessages } from './utils/messages'
 import type { FieldExpose, FormLabelAlign, RequiredMark, Rule } from './interface'
+import { computed, inject, provide } from 'vue'
+import { defaultValidateMessages } from './utils/messages'
 
 export const FormContextKey: InjectionKey<FormContextProps> = Symbol('formContextKey')
 

@@ -1,6 +1,6 @@
-import { onBeforeUnmount, onMounted, ref } from 'vue'
 import type { Ref } from 'vue'
 import { useState } from '@antdv/hooks'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 type TouchEventHandler = (e: TouchEvent) => void
 type WheelEventHandler = (e: WheelEvent) => void

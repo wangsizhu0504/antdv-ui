@@ -1,8 +1,8 @@
-import { omit, tupleNum } from '@antdv/utils'
 import type { AnchorHTMLAttributes, ExtractPropTypes, HTMLAttributes, PropType } from 'vue'
 import type { Direction } from '../../config-provider'
 import type { AutoSizeType } from '../../input'
 import type { BaseType, EllipsisConfig, InternalBlockProps } from './interface'
+import { omit, tupleNum } from '@antdv/utils'
 
 export function baseProps() {
   return {
@@ -59,7 +59,7 @@ export function textProps() {
     ellipsis: {
       type: [Boolean, Object] as PropType<
       boolean | Omit<EllipsisConfig, 'expandable' | 'rows' | 'onExpand'>
-    >,
+      >,
       default: undefined as boolean | Omit<EllipsisConfig, 'expandable' | 'rows' | 'onExpand'>,
     },
   }

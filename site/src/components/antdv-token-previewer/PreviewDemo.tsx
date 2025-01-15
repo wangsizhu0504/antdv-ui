@@ -1,7 +1,7 @@
 import type { CSSProperties, PropType } from 'vue'
+import type { Theme } from './interface'
 import { defineComponent, toRefs } from 'vue'
 import { antdComponents } from './component-panel'
-import type { Theme } from './interface'
 import ComponentDemoPro from './token-panel-pro/ComponentDemoPro'
 
 export interface PreviewDemoProps {

@@ -1,7 +1,7 @@
+import type { ComponentDemo } from '../../interface'
 import { Col, Row } from '@antdv/ui'
 import { defineComponent } from 'vue'
 import makeStyle from '../../utils/makeStyle'
-import type { ComponentDemo } from '../../interface'
 
 const useStyle = makeStyle('GridDemo', token => ({
   '.previewer-grid-demo': {

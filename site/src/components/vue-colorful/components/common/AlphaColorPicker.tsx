@@ -1,13 +1,13 @@
 import type { PropType } from 'vue'
-import { computed, defineComponent, ref, toRefs } from 'vue'
-
 import type { AnyColor, ColorModel, ColorPickerBaseProps } from '../../types'
+
+import { computed, defineComponent, ref, toRefs } from 'vue'
 import { useColorManipulation } from '../../hooks/useColorManipulation'
 import { useStyleSheet } from '../../hooks/useStyleSheet'
 import { formatClassName } from '../../utils/format'
 import { Alpha } from './Alpha'
-import { Saturation } from './Saturation'
 import { Hue } from './Hue'
+import { Saturation } from './Saturation'
 
 export interface AlphaColorPickerProps<T extends AnyColor>
   extends Partial<ColorPickerBaseProps<T>> {

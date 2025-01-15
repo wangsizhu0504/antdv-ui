@@ -1,6 +1,6 @@
 import type { ConfigOptions as MessageConfig, MessageInstance } from '../../message'
-import type { NotificationConfig, NotificationInstance } from '../../notification'
 import type { ModalStaticFunctions } from '../../modal'
+import type { NotificationConfig, NotificationInstance } from '../../notification'
 
 export interface AppConfig {
   message?: MessageConfig

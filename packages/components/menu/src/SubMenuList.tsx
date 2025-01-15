@@ -1,5 +1,5 @@
-import { classNames } from '@antdv/utils'
 import type { FunctionalComponent } from 'vue'
+import { classNames } from '@antdv/utils'
 import { useInjectMenu } from './hooks/useMenuContext'
 
 const InternalSubMenuList: FunctionalComponent<any> = (_props, { slots, attrs }) => {
