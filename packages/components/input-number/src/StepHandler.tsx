@@ -1,6 +1,6 @@
-import { defineComponent, onBeforeUnmount, ref } from 'vue'
-import { classNames, functionType, isMobile } from '@antdv/utils'
 import type { CustomSlotsType } from '@antdv/types'
+import { classNames, functionType, isMobile } from '@antdv/utils'
+import { defineComponent, onBeforeUnmount, ref } from 'vue'
 
 /**
  * When click and hold on a button - the speed of auto changing the value.

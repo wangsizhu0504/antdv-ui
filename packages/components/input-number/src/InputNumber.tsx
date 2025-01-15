@@ -1,4 +1,6 @@
-import { computed, defineComponent, shallowRef, watch } from 'vue'
+import type { CustomSlotsType } from '@antdv/types'
+import type { HTMLAttributes } from 'vue'
+import type { InputNumberProps } from './props'
 import { DownOutlined, UpOutlined } from '@ant-design/icons-vue'
 import {
   classNames,
@@ -8,19 +10,17 @@ import {
   isValidValue,
   omit,
 } from '@antdv/utils'
-import type { HTMLAttributes } from 'vue'
-import type { CustomSlotsType } from '@antdv/types'
-import { FormItemInputContext, NoFormStatus, useInjectFormItemContext } from '../../form/src/FormItemContext'
+import { computed, defineComponent, shallowRef, watch } from 'vue'
+import { useInjectDisabled } from '../../config-provider'
+
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject'
+import { FormItemInputContext, NoFormStatus, useInjectFormItemContext } from '../../form/src/FormItemContext'
 
 // CSSINJS
 import { NoCompactStyle, useCompactItemContext } from '../../space'
-import { useInjectDisabled } from '../../config-provider'
-
 import useStyle from '../style'
 import VcInputNumber from './InputElement'
 import { inputNumberProps } from './props'
-import type { InputNumberProps } from './props'
 
 export default defineComponent({
   compatConfig: { MODE: 3 },
@@ -173,7 +173,7 @@ export default defineComponent({
         const addonClassName = `${wrapperClassName}-addon`
         const addonBeforeNode = addonBefore
           ? (
-            <div class={addonClassName}>{addonBefore}</div>
+              <div class={addonClassName}>{addonBefore}</div>
             )
           : null
         const addonAfterNode = addonAfter ? <div class={addonClassName}>{addonAfter}</div> : null

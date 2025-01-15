@@ -1,17 +1,17 @@
-// base rc-input-number@7.3.4
-import { computed, defineComponent, shallowRef, watch } from 'vue'
-
-import { KeyCode, classNames } from '@antdv/utils'
-import type { HTMLAttributes } from 'vue'
 import type { ChangeEvent, CustomSlotsType, KeyboardEventHandler } from '@antdv/types'
 
-import useFrame from './hooks/useFrame'
+import type { HTMLAttributes } from 'vue'
+import type { DecimalClass, ValueType } from './interface'
+import { classNames, KeyCode } from '@antdv/utils'
+
+// base rc-input-number@7.3.4
+import { computed, defineComponent, shallowRef, watch } from 'vue'
 import useCursor from './hooks/useCursor'
-import { getNumberPrecision, num2str, validateNumber } from './utils/numberUtil'
+import useFrame from './hooks/useFrame'
+import { inputElementProps } from './props'
 import StepHandler from './StepHandler'
 import getMiniDecimal, { toFixed } from './utils/MiniDecimal'
-import { inputElementProps } from './props'
-import type { DecimalClass, ValueType } from './interface'
+import { getNumberPrecision, num2str, validateNumber } from './utils/numberUtil'
 
 /**
  * We support `stringMode` which need handle correct type when user call in onChange
@@ -336,6 +336,11 @@ export default defineComponent({
       }
     }
 
+    // Solve the issue of the event triggering sequence when entering numbers in chinese input (Safari)
+    const onBeforeInput = () => {
+      userTypingRef.value = true
+    }
+
     const onKeyDown: KeyboardEventHandler = (event) => {
       const { which } = event
       userTypingRef.value = true
@@ -514,6 +519,7 @@ export default defineComponent({
               onBlur={onBlur}
               onCompositionstart={onCompositionStart}
               onCompositionend={onCompositionEnd}
+              onBeforeinput={onBeforeInput}
             />
           </div>
         </div>
