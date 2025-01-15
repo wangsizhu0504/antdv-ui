@@ -262,6 +262,9 @@ const genInputNumberStyles: GenerateStyle<InputNumberToken> = (token: InputNumbe
           [`${componentCls}-handler-wrap`]: {
             display: 'none',
           },
+          [`${componentCls}-input`]: {
+            color: 'inherit',
+          },
         },
 
         [`
