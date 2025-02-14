@@ -137,7 +137,8 @@ export default defineComponent({
       const coverDom = cover ? <div class={`${pre}-cover`}>{cover}</div> : null;
       const body = (
         <div class={`${pre}-body`} style={bodyStyle}>
-          {loading ? loadingBlock : children}
+          <div v-show={loading}>{loadingBlock}</div>
+          <div v-show={!loading}>{children}</div>
         </div>
       );
       const actionDom
