@@ -1,7 +1,9 @@
-import type { CSSInterpolation, CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
-import { genComponentStyleHook, genFocusStyle, mergeToken } from '@antdv/theme';
-import { genCompactItemStyle } from '@antdv/theme/style/compact-item';
-import { genCompactItemVerticalStyle } from '@antdv/theme/style/compact-item-vertical';
+import type { CSSInterpolation, CSSObject } from '@antdv/cssinjs';
+import type { FullToken, GenerateStyle } from '../../theme';
+import { genFocusStyle } from '../../style';
+import { genCompactItemStyle } from '../../style/compact-item';
+import { genCompactItemVerticalStyle } from '../../style/compact-item-vertical';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 import genGroupStyle from './group';
 
 /** Component only token. Which will handle additional calculation of alias token */
@@ -594,6 +596,7 @@ const genBlockButtonStyle: GenerateStyle<ButtonToken> = (token) => {
 // ============================== Export ==============================
 export default genComponentStyleHook('Button', (token) => {
   const { controlTmpOutline, paddingContentHorizontal } = token;
+  console.log(token.colorPrimary);
 
   const buttonToken = mergeToken<ButtonToken>(token, {
     colorOutlineDefault: controlTmpOutline,

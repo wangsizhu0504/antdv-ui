@@ -59,6 +59,7 @@ export * from './switch';
 export * from './table';
 export * from './tabs';
 export * from './tag';
+export { type ComponentTokenMap, type GlobalToken, theme, useToken } from './theme';
 export * from './time-picker';
 export * from './timeline';
 export * from './tooltip';

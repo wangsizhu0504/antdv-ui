@@ -1,4 +1,5 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { CSSObject } from '@antdv/cssinjs';
+import type { GenerateStyle } from '../../theme';
 import type { StepsToken } from '.';
 
 const genStepsRTLStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {

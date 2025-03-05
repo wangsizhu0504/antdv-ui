@@ -1,9 +1,10 @@
-import type { FullToken, GenerateStyle, UseComponentStyleResult } from '@antdv/theme';
 import type { Ref } from 'vue';
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
-import { initZoomMotion } from '@antdv/theme/style/motion';
-import getArrowStyle, { MAX_VERTICAL_CONTENT_RADIUS } from '@antdv/theme/style/placementArrow';
-import { genPresetColor } from '@antdv/theme/style/presetColor';
+import type { FullToken, GenerateStyle, UseComponentStyleResult } from '../../theme';
+import { resetComponent } from '../../style';
+import { initZoomMotion } from '../../style/motion';
+import getArrowStyle, { MAX_VERTICAL_CONTENT_RADIUS } from '../../style/placementArrow';
+import { genPresetColor } from '../../style/presetColor';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 
 export interface ComponentToken {
   zIndexPopup: number

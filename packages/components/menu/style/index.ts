@@ -1,8 +1,10 @@
-import type { CSSObject, FullToken, GenerateStyle, UseComponentStyleResult } from '@antdv/theme';
+import type { CSSObject } from '@antdv/cssinjs';
 import type { Ref } from 'vue';
-import { clearFix, genComponentStyleHook, mergeToken, resetComponent, resetIcon } from '@antdv/theme';
-import { genCollapseMotion, initSlideMotion, initZoomMotion } from '@antdv/theme/style/motion';
+import type { FullToken, GenerateStyle, UseComponentStyleResult } from '../../theme';
 import { TinyColor } from '@ctrl/tinycolor';
+import { clearFix, resetComponent, resetIcon } from '../../style';
+import { genCollapseMotion, initSlideMotion, initZoomMotion } from '../../style/motion';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 import getHorizontalStyle from './horizontal';
 import getRTLStyle from './rtl';
 import getThemeStyle from './theme';

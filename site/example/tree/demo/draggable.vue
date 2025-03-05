@@ -17,7 +17,7 @@ Drag treeNode to insert after the other treeNode or insert into the other parent
 </docs>
 
 <script lang="ts" setup>
-  import type { AntTreeNodeDragEnterEvent, AntTreeNodeDropEvent, TreeProps } from '@antdv/ui/es/tree';
+  import type { AntTreeNodeDragEnterEvent, AntTreeNodeDropEvent, TreeProps } from '@antdv/ui/es/components/tree';
   import { ref } from 'vue';
 
   const x = 3;

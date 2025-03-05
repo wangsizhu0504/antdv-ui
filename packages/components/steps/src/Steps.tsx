@@ -2,7 +2,7 @@ import type { CustomSlotsType, VueNode } from '@antdv/types';
 import type { StepProps } from './props';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue';
 import { useBreakpoint } from '@antdv/hooks';
-import { useToken } from '@antdv/theme';
+import { useToken } from '../../theme';
 import { classNames, initDefaultProps, omit } from '@antdv/utils';
 import { VcSteps } from '@antdv/vue-components';
 import { computed, defineComponent } from 'vue';

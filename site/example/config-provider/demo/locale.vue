@@ -20,10 +20,8 @@ Components which need localization support are listed here, you can toggle the l
   import { EllipsisOutlined } from '@ant-design/icons-vue';
   import { Modal, theme } from '@antdv/ui';
 
-  // @ts-expect-error
   import enUS from '@antdv/ui/es/locale/lang/en_US';
 
-  // @ts-expect-error
   import zhCN from '@antdv/ui/es/locale/lang/zh_CN';
 
   import dayjs from 'dayjs';

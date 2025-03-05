@@ -34,7 +34,7 @@ If there are special needs (only modifying single component language), Please us
   <a-date-picker v-model:value="value" :locale="locale" />
 </template>
 <script>
-  import locale from '@antdv/ui/es/date-picker/locale/zh_CN';
+  import locale from '@antdv/ui/es/components/date-picker/locale/zh_CN';
   import { defineComponent } from 'vue';
   export default defineComponent({
     setup() {

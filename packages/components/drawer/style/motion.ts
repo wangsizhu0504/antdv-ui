@@ -1,5 +1,5 @@
-import type { GenerateStyle } from '@antdv/theme';
 import type { DrawerToken } from '.';
+import type { GenerateStyle } from '../../theme';
 
 const genMotionStyle: GenerateStyle<DrawerToken> = (token: DrawerToken) => {
   const { componentCls, motionDurationSlow } = token;

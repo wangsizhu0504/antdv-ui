@@ -1,6 +1,8 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
-import { clearFix, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
+import type { CSSObject } from '@antdv/cssinjs';
+import type { FullToken, GenerateStyle } from '../../theme';
 import { TinyColor } from '@ctrl/tinycolor';
+import { clearFix, resetComponent } from '../../style';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 import genBorderedStyle from './bordered';
 import genEllipsisStyle from './ellipsis';
 import genEmptyStyle from './empty';

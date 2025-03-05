@@ -1,5 +1,7 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme';
-import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme';
+import type { FullToken, GenerateStyle } from '../../theme';
+import { Keyframes } from '@antdv/cssinjs';
+import { resetComponent } from '../../style';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 import genNotificationPlacementStyle from './placement';
 
 /** Component only token. Which will handle additional calculation of alias token */

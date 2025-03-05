@@ -1,6 +1,7 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { CSSObject } from '@antdv/cssinjs';
 import type { NotificationToken } from '.';
-import { Keyframes } from '@antdv/theme';
+import type { GenerateStyle } from '../../theme';
+import { Keyframes } from '@antdv/cssinjs';
 
 const genNotificationPlacementStyle: GenerateStyle<NotificationToken, CSSObject> = (token) => {
   const { componentCls, width, notificationMarginEdge } = token;

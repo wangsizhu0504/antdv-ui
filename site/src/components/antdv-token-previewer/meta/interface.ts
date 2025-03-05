@@ -1,4 +1,4 @@
-import type { ComponentTokenMap } from '@antdv/theme/token/interface';
+import type { ComponentTokenMap } from '@antdv/components';
 
 export interface TokenMeta {
   type: string

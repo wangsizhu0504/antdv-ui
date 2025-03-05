@@ -1,6 +1,8 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
-import { genComponentStyleHook, mergeToken, resetComponent, resetIcon, textEllipsis } from '@antdv/theme';
-import { genCompactItemStyle } from '@antdv/theme/style/compact-item';
+import type { CSSObject } from '@antdv/cssinjs';
+import type { FullToken, GenerateStyle } from '../../theme';
+import { resetComponent, resetIcon, textEllipsis } from '../../style';
+import { genCompactItemStyle } from '../../style/compact-item';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 import genDropdownStyle from './dropdown';
 import genMultipleStyle from './multiple';
 import genSingleStyle from './single';

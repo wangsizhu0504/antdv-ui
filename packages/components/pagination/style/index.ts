@@ -1,6 +1,9 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
-import { genComponentStyleHook, genFocusOutline, genFocusStyle, mergeToken, resetComponent } from '@antdv/theme';
-import { genBasicInputStyle, genInputSmallStyle, initInputToken, type InputToken } from '../../input/style';
+import type { CSSObject } from '@antdv/cssinjs';
+import type { InputToken } from '../../input/style';
+import type { FullToken, GenerateStyle } from '../../theme';
+import { genBasicInputStyle, genInputSmallStyle, initInputToken } from '../../input/style';
+import { genFocusOutline, genFocusStyle, resetComponent } from '../../style';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 
 interface PaginationToken extends InputToken<FullToken<'Pagination'>> {
   paginationItemSize: number

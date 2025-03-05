@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ThemeConfig } from '@antdv/ui/es/config-provider';
+  import type { ThemeConfig } from '@antdv/ui/es/components/config-provider';
   import { useLocale } from '@/locale';
   import { message } from '@antdv/ui';
 

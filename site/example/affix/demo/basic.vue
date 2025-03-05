@@ -30,6 +30,7 @@ The simplest usage.
     </a-button>
   </a-affix>
   <br />
+  1111
   <a-affix :offset-bottom="bottom">
     <a-button type="primary" @click="bottom += 10">
       Affix bottom

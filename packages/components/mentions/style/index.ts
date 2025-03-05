@@ -1,6 +1,5 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme';
 import type { InputToken } from '../../input/style';
-import { genComponentStyleHook, resetComponent, textEllipsis } from '@antdv/theme';
+import type { FullToken, GenerateStyle } from '../../theme';
 import {
   genActiveStyle,
   genBasicInputStyle,
@@ -9,6 +8,8 @@ import {
   genStatusStyle,
   initInputToken,
 } from '../../input/style';
+import { resetComponent, textEllipsis } from '../../style';
+import { genComponentStyleHook } from '../../theme';
 
 export interface ComponentToken {
   zIndexPopup: number

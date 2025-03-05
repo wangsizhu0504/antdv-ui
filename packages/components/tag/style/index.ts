@@ -1,8 +1,10 @@
-import type { CSSObject, FullToken } from '@antdv/theme';
+import type { CSSObject } from '@antdv/cssinjs';
 import type { CSSProperties } from 'vue';
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
-import { genPresetColor } from '@antdv/theme/style/presetColor';
+import type { FullToken } from '../../theme';
 import { capitalize } from '@antdv/utils';
+import { resetComponent } from '../../style';
+import { genPresetColor } from '../../style/presetColor';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 
 export interface ComponentToken {}
 

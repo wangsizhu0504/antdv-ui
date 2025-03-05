@@ -20,7 +20,7 @@ Search and select options directly.
 
 <script lang="ts" setup>
   import type { CascaderProps } from '@antdv/ui';
-  import type { ShowSearchType } from '@antdv/ui/es/cascader';
+  import type { ShowSearchType } from '@antdv/ui/es/components/cascader';
   import { ref } from 'vue';
 
   const options: CascaderProps['options'] = [

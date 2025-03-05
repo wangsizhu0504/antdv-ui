@@ -1,8 +1,11 @@
-import type { CSSObject, FullToken, GenerateStyle, GlobalToken } from '@antdv/theme';
-import type { TokenWithCommonCls } from '@antdv/theme/token/util/genComponentStyleHook';
+import type { CSSObject } from '@antdv/cssinjs';
 import type { InputToken } from '../../input/style';
-import { genComponentStyleHook, mergeToken, resetComponent, roundedArrow, textEllipsis } from '@antdv/theme';
-import { genCompactItemStyle } from '@antdv/theme/style/compact-item';
+import type { FullToken, GenerateStyle, GlobalToken } from '../../theme';
+import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook';
+import { TinyColor } from '@ctrl/tinycolor';
+import { genActiveStyle, genBasicInputStyle, genHoverStyle, initInputToken } from '../../input/style';
+import { resetComponent, roundedArrow, textEllipsis } from '../../style';
+import { genCompactItemStyle } from '../../style/compact-item';
 import {
   initMoveMotion,
   initSlideMotion,
@@ -10,9 +13,8 @@ import {
   slideDownOut,
   slideUpIn,
   slideUpOut,
-} from '@antdv/theme/style/motion';
-import { TinyColor } from '@ctrl/tinycolor';
-import { genActiveStyle, genBasicInputStyle, genHoverStyle, initInputToken } from '../../input/style';
+} from '../../style/motion';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 
 export interface ComponentToken {
   presetsWidth: number

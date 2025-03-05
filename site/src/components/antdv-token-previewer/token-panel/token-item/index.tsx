@@ -1,6 +1,6 @@
 // eslint-disable-next-line ts/ban-ts-comment
 // @ts-nocheck
-import type { ThemeConfig } from '@antdv/ui/es/config-provider';
+import type { ThemeConfig } from '@antdv/ui/es/components/config-provider';
 import type { CSSProperties, PropType } from 'vue';
 import type { MutableTheme, TokenValue } from '../../interface';
 

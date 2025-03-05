@@ -1,6 +1,7 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme';
-import { genComponentStyleHook, mergeToken, resetComponent, resetIcon } from '@antdv/theme';
-import { genCollapseMotion } from '@antdv/theme/style/motion';
+import type { FullToken, GenerateStyle } from '../../theme';
+import { resetComponent, resetIcon } from '../../style';
+import { genCollapseMotion } from '../../style/motion';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 
 export interface ComponentToken {}
 

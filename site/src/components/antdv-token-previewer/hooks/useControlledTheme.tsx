@@ -1,5 +1,5 @@
 import type { DerivativeFunc } from '@antdv/cssinjs';
-import type { ThemeConfig } from '@antdv/ui/es/config-provider';
+import type { ThemeConfig } from '@antdv/ui/es/components/config-provider';
 import type { Ref } from 'vue';
 import type { MutableTheme, Theme } from '../interface';
 import { theme as antTheme } from '@antdv/ui';

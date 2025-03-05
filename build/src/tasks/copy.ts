@@ -9,8 +9,8 @@ import {
   antdOutput,
   antdPackage,
   buildOutput,
+  compRoot,
   projRoot,
-  themeRoot,
   versionRoot,
 } from '../path';
 
@@ -50,7 +50,7 @@ export function copyFiles() {
       path.resolve(antdOutput, 'volar.d.ts'),
     ),
     copyFile(
-      path.resolve(themeRoot, 'style', 'reset.css'),
+      path.resolve(compRoot, 'style', 'reset.css'),
       path.resolve(antdOutput, 'dist', 'reset.css'),
     ),
     copyJSONFiles(path.resolve(versionRoot), [

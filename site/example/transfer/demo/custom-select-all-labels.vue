@@ -17,7 +17,7 @@ Custom the labels for select all checkboxs.
 </docs>
 
 <script lang="ts" setup>
-  import type { SelectAllLabel } from '@antdv/ui/es/transfer';
+  import type { SelectAllLabel } from '@antdv/ui/es/components/transfer';
   import { ref } from 'vue';
 
   interface MockData {

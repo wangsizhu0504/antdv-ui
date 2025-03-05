@@ -1,6 +1,7 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { CSSObject } from '@antdv/cssinjs';
 import type { StepsToken } from '.';
-import { textEllipsis } from '@antdv/theme';
+import type { GenerateStyle } from '../../theme';
+import { textEllipsis } from '../../style';
 
 const genStepsNavStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
   const {

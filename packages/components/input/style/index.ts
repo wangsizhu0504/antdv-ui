@@ -1,6 +1,8 @@
-import type { CSSObject, FullToken, GenerateStyle, GlobalToken } from '@antdv/theme';
-import { clearFix, genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
-import { genCompactItemStyle } from '@antdv/theme/style/compact-item';
+import type { CSSObject } from '@antdv/cssinjs';
+import type { FullToken, GenerateStyle, GlobalToken } from '../../theme';
+import { clearFix, resetComponent } from '../../style';
+import { genCompactItemStyle } from '../../style/compact-item';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 
 export type InputToken<T extends GlobalToken = FullToken<'Input'>> = T & {
   inputAffixPadding: number

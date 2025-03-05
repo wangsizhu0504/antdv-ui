@@ -1,6 +1,7 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { CSSObject } from '@antdv/cssinjs';
 import type { SelectToken } from '.';
-import { resetComponent, textEllipsis } from '@antdv/theme';
+import type { GenerateStyle } from '../../theme';
+import { resetComponent, textEllipsis } from '../../style';
 import {
   initMoveMotion,
   initSlideMotion,
@@ -8,7 +9,7 @@ import {
   slideDownOut,
   slideUpIn,
   slideUpOut,
-} from '@antdv/theme/style/motion';
+} from '../../style/motion';
 
 const genItemStyle: GenerateStyle<SelectToken, CSSObject> = (token) => {
   const { controlPaddingHorizontal } = token;

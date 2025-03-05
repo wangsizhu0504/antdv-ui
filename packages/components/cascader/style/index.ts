@@ -1,7 +1,8 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme';
-import { genComponentStyleHook, textEllipsis } from '@antdv/theme';
-import { genCompactItemStyle } from '@antdv/theme/style/compact-item';
+import type { FullToken, GenerateStyle } from '../../theme';
 import { getStyle as getCheckboxStyle } from '../../checkbox/style';
+import { textEllipsis } from '../../style';
+import { genCompactItemStyle } from '../../style/compact-item';
+import { genComponentStyleHook } from '../../theme';
 
 export interface ComponentToken {
   controlWidth: number

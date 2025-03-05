@@ -5,7 +5,7 @@ import type { MutableTheme, SelectedToken } from '../interface';
 import type { TokenCategory, TokenGroup } from '../meta/interface';
 import { CaretRightOutlined, ExpandOutlined, QuestionCircleOutlined } from '@ant-design/icons-vue';
 
-import seed from '@antdv/theme/token/themes/seed';
+import seed from '../../../../../packages/components/theme/themes/seed';
 import {
   Button,
   Checkbox,
@@ -654,7 +654,7 @@ const TokenContent = defineComponent({
     const locale = useInjectLocaleContext();
 
     const switchAlgorithm = (themeStr: 'dark' | 'compact') => () => {
-      let newAlgorithm = theme.value.config.algorithm;
+      let newAlgorithm = theme.value?.config.algorithm;
       if (!newAlgorithm) {
         newAlgorithm = themeMap[themeStr];
       } else if (Array.isArray(newAlgorithm)) {
@@ -665,14 +665,14 @@ const TokenContent = defineComponent({
         newAlgorithm
           = newAlgorithm === themeMap[themeStr] ? undefined : [newAlgorithm, themeMap[themeStr]];
       }
-      theme.value.onThemeChange?.({ ...theme.value.config, algorithm: newAlgorithm }, [
+      theme.value?.onThemeChange?.({ ...theme.value.config, algorithm: newAlgorithm }, [
         'config',
         'algorithm',
       ]);
     };
 
     const isLeftChecked = (str: ThemeCode) => {
-      if (!theme.value.config.algorithm)
+      if (!theme.value?.config.algorithm)
         return true;
 
       return Array.isArray(theme.value.config.algorithm)
@@ -686,9 +686,9 @@ const TokenContent = defineComponent({
           <div class="token-panel-pro-color-seeds">
             <div class="token-panel-pro-color-themes">
               <span style={{ marginRight: '12px' }}>
-                {locale.value._lang === 'zh-CN' ? category.value.name : category.value.nameEn}
+                {locale.value._lang === 'zh-CN' ? category.value?.name : category.value?.nameEn}
               </span>
-              {category.value.nameEn === 'Color' && (
+              {category.value?.nameEn === 'Color' && (
                 <IconSwitch
                   onChange={switchAlgorithm('dark')}
                   leftChecked={isLeftChecked('dark')}
@@ -700,7 +700,7 @@ const TokenContent = defineComponent({
                 />
               )}
 
-              {category.value.nameEn === 'Size' && (
+              {category.value?.nameEn === 'Size' && (
                 <IconSwitch
                   onChange={switchAlgorithm('compact')}
                   leftChecked={isLeftChecked('compact')}
@@ -734,7 +734,7 @@ const TokenContent = defineComponent({
                   ),
                 }}
               >
-                {category.value.groups.map((group, index) => {
+                {category.value?.groups?.map((group, index) => {
                   return (
                     <Panel
                       header={(
@@ -778,7 +778,7 @@ const TokenContent = defineComponent({
                                     style={{ marginLeft: '12px' }}
                                     checked={infoFollowPrimary.value}
                                     onChange={e =>
-                                      props.onInfoFollowPrimaryChange(e.target.checked)}
+                                      props.onInfoFollowPrimaryChange?.(e.target.checked)}
                                   >
                                     {locale.value.followPrimary}
                                   </Checkbox>
@@ -842,12 +842,12 @@ const TokenContent = defineComponent({
                             />
                           </div>
                         )}
-                        {index < category.value.groups.length - 1 && (
+                        {index < category.value!.groups.length - 1 && (
                           <Button
                             type="primary"
                             style={{ borderRadius: '4px', marginBottom: '12px' }}
                             onClick={() => {
-                              curActiveGroup.value = category.value.groups[index + 1]?.key;
+                              curActiveGroup.value = category.value?.groups[index + 1]?.key;
                             }}
                           >
                             {locale.value.next}

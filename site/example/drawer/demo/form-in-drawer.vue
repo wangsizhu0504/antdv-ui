@@ -17,7 +17,7 @@ Use form in drawer with submit button.
 </docs>
 
 <script lang="ts" setup>
-  import type { Rule } from '@antdv/ui/es/form';
+  import type { Rule } from '@antdv/ui/es/components/form';
   import { PlusOutlined } from '@ant-design/icons-vue';
   import { reactive, ref } from 'vue';
 

@@ -1,5 +1,5 @@
-import type { GenerateStyle } from '@antdv/theme';
 import type { UploadToken } from '.';
+import type { GenerateStyle } from '../../theme';
 
 // =========================== Motion ===========================
 const genRtlStyle: GenerateStyle<UploadToken> = (token) => {

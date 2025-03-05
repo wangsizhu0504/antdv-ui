@@ -1,8 +1,9 @@
-import type { AliasToken, FullToken, GenerateStyle } from '@antdv/theme';
-import type { TokenWithCommonCls } from '@antdv/theme/token/util/genComponentStyleHook';
 import type { CSSProperties } from 'vue';
-import { clearFix, genComponentStyleHook, genFocusStyle, mergeToken, resetComponent } from '@antdv/theme';
-import { initFadeMotion, initZoomMotion } from '@antdv/theme/style/motion';
+import type { AliasToken, FullToken, GenerateStyle } from '../../theme';
+import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook';
+import { clearFix, genFocusStyle, resetComponent } from '../../style';
+import { initFadeMotion, initZoomMotion } from '../../style/motion';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 
 /** Component only token. Which will handle additional calculation of alias token */
 export interface ComponentToken {

@@ -18,12 +18,12 @@ export default defineConfig({
         replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
       },
       {
-        find: /^@antdv\/ui(\/(es|lib))?$/,
+        find: /^@antdv\/ui$/,
         replacement: path.resolve(__dirname, '../packages/antdv-ui/index.ts'),
       },
       {
         find: /^@antdv\/ui\/(es|lib)\/(.*)$/,
-        replacement: `${path.resolve(__dirname, '../packages/antdv-ui')}/$2`,
+        replacement: `${path.resolve(__dirname, '../packages')}/$2`,
       },
       {
         find: /@\//,

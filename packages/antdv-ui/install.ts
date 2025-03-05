@@ -1,6 +1,6 @@
 import type { App } from 'vue';
 import * as components from '@antdv/components';
-import { cssinjs } from '@antdv/theme/cssinjs';
+import { cssinjs } from '@antdv/cssinjs';
 import { version } from '@antdv/version';
 
 export const install = function (app: App) {

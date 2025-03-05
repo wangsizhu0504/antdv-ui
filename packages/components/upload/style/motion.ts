@@ -1,6 +1,6 @@
-import type { GenerateStyle } from '@antdv/theme';
 import type { UploadToken } from '.';
-import { Keyframes } from '@antdv/theme';
+import type { GenerateStyle } from '../../theme';
+import { Keyframes } from '@antdv/cssinjs';
 
 const uploadAnimateInlineIn = new Keyframes('uploadAnimateInlineIn', {
   from: {

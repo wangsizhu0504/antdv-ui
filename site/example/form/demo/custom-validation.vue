@@ -20,7 +20,7 @@ See more advanced usage at [async-validator](https://github.com/yiminghe/async-v
 
 <script lang="ts" setup>
   import type { FormInstance } from '@antdv/ui';
-  import type { Rule } from '@antdv/ui/es/form';
+  import type { Rule } from '@antdv/ui/es/components/form';
   import { reactive, ref } from 'vue';
 
   interface FormState {

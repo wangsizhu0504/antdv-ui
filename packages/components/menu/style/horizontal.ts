@@ -1,5 +1,5 @@
-import type { GenerateStyle } from '@antdv/theme';
 import type { MenuToken } from '.';
+import type { GenerateStyle } from '../../theme';
 
 const getHorizontalStyle: GenerateStyle<MenuToken> = (token) => {
   const {

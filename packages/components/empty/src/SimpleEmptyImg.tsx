@@ -1,4 +1,4 @@
-import { useToken } from '@antdv/theme';
+import { useToken } from '../../theme';
 import { TinyColor } from '@ctrl/tinycolor';
 import { computed, defineComponent } from 'vue';
 

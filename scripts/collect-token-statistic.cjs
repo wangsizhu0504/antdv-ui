@@ -6,15 +6,15 @@ const ProgressBar = require('progress');
 
 const { defineComponent, ref, createVNode, createSSRApp } = require('vue');
 const VueServerRenderer = require('vue/server-renderer');
-const { DesignTokenProvider } = require('../packages/theme/token/internal');
-const seedToken = require('../packages/theme/token/themes/seed');
-const { statistic } = require('../packages/theme/token/util/statistic');
+const { DesignTokenProvider } = require('../packages/components/theme/internal');
+const seedToken = require('../packages/components/theme/themes/seed');
+const { statistic } = require('../packages/components/theme/util/statistic');
 
 console.log(chalk.green('🔥 Collecting token statistics...'));
 
 const EmptyElement = createVNode('div');
 
-const excludeDirs = ['config-provider', 'locale-provider', 'style-provider', 'auto-complete', 'col', 'row', 'time-picker'];
+const excludeDirs = ['config-provider', 'locale-provider', 'style', 'style-provider', 'auto-complete', 'col', 'row', 'time-picker'];
 const styleFiles = glob.sync(
   path.join(
     process.cwd(),

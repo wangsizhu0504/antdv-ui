@@ -1,5 +1,5 @@
-import type { GenerateStyle } from '@antdv/theme';
 import type { UploadToken } from '.';
+import type { GenerateStyle } from '../../theme';
 
 const genDraggerStyle: GenerateStyle<UploadToken> = (token) => {
   const { componentCls, iconCls } = token;

@@ -1,4 +1,4 @@
-import type { GlobalToken } from '@antdv/theme/token/interface';
+import type { GlobalToken } from '@antdv/components';
 import type { TokenValue } from '../interface';
 
 function defineTokenType<T extends string>(types: T[]) {

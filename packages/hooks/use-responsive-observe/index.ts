@@ -1,6 +1,6 @@
-import type { GlobalToken } from '@antdv/theme';
+import type { GlobalToken } from '@antdv/components';
 import type { BreakpointMap, ScreenMap } from '@antdv/types';
-import { useToken } from '@antdv/theme';
+import { useToken } from '@antdv/components';
 import { computed } from 'vue';
 
 type SubscribeFunc = (screens: ScreenMap) => void;

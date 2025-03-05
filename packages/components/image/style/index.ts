@@ -1,8 +1,10 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
-import { genComponentStyleHook, mergeToken, textEllipsis } from '@antdv/theme';
-import { initFadeMotion, initZoomMotion } from '@antdv/theme/style/motion';
+import type { CSSObject } from '@antdv/cssinjs';
+import type { FullToken, GenerateStyle } from '../../theme';
 import { TinyColor } from '@ctrl/tinycolor';
 import { genModalMaskStyle } from '../../modal/style';
+import { textEllipsis } from '../../style';
+import { initFadeMotion, initZoomMotion } from '../../style/motion';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 
 export interface ComponentToken {
   /**

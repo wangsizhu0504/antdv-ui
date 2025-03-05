@@ -1,6 +1,8 @@
-import type { AliasToken, CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
-import { genComponentStyleHook, mergeToken, resetComponent } from '@antdv/theme';
-import { genCollapseMotion, zoomIn } from '@antdv/theme/style/motion';
+import type { CSSObject } from '@antdv/cssinjs';
+import type { AliasToken, FullToken, GenerateStyle } from '../../theme';
+import { resetComponent } from '../../style';
+import { genCollapseMotion, zoomIn } from '../../style/motion';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 import genFormValidateMotionStyle from './explain';
 
 export interface FormToken extends FullToken<'Form'> {

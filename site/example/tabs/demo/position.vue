@@ -17,7 +17,7 @@ Tab's position: left, right, top or bottom.  Will auto switch to `top` in mobile
 </docs>
 
 <script lang="ts" setup>
-  import type { TabsProps } from '@antdv/ui/es/tabs';
+  import type { TabsProps } from '@antdv/ui/es/components/tabs';
   import { ref } from 'vue';
 
   const tabPosition = ref<TabsProps['tabPosition']>('top');

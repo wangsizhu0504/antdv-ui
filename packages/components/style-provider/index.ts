@@ -1,4 +1,4 @@
-import { StyleProvider } from '@antdv/theme';
+import { StyleProvider } from '@antdv/cssinjs';
 
 export { StyleProvider };
 

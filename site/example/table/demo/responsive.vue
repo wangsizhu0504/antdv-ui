@@ -16,7 +16,7 @@ Responsive columns.
 </docs>
 
 <script lang="ts" setup>
-  import type { ColumnsType } from '@antdv/ui/es/table/interface';
+  import { ColumnsType } from '@antdv/ui/es/vue-components/vc-table/src/interface';
 
   const columns: ColumnsType = [
     {

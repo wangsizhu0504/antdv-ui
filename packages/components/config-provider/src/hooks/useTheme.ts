@@ -1,12 +1,17 @@
 import type { Ref } from 'vue';
 import type { ThemeConfig } from '../interface';
-import { defaultConfig } from '@antdv/theme';
 import { computed } from 'vue';
+import { defaultConfig } from '../../../theme';
 
-export default function useTheme(theme?: Ref<ThemeConfig>, parentTheme?: Ref<ThemeConfig>) {
-  const themeConfig = computed(() => theme?.value || {});
+export default function useTheme(
+  theme?: Ref<ThemeConfig>,
+  parentTheme?: Ref<ThemeConfig>,
+) {
+  const themeConfig = computed((): ThemeConfig => theme?.value || {});
   const parentThemeConfig = computed<ThemeConfig>(() =>
-    themeConfig.value.inherit === false || !parentTheme?.value ? defaultConfig : parentTheme.value,
+    themeConfig.value.inherit === false || !parentTheme?.value
+      ? defaultConfig
+      : parentTheme.value,
   );
 
   const mergedTheme = computed(() => {

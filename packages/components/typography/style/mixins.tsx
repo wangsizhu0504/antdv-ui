@@ -1,5 +1,6 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { CSSObject } from '@antdv/cssinjs';
 import type { TypographyToken } from '.';
+import type { GenerateStyle } from '../../theme';
 
 /*
 .typography-title(@fontSize; @fontWeight; @lineHeight; @headingColor; @headingMarginBottom;) {
@@ -11,8 +12,8 @@ import type { TypographyToken } from '.';
 }
 */
 import { gold } from '@ant-design/colors';
-import { operationUnit } from '@antdv/theme';
 import { initInputToken } from '../../input/style';
+import { operationUnit } from '../../style';
 
 function getTitleStyle(fontSize: number, lineHeight: number, color: string, token: TypographyToken) {
   const { sizeMarginHeadingVerticalEnd, fontWeightStrong } = token;

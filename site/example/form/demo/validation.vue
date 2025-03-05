@@ -16,7 +16,7 @@ Just add the `rules` attribute for `Form` component, pass validation rules, and 
 </docs>
 
 <script lang="ts" setup>
-  import type { Rule } from '@antdv/ui/es/form';
+  import type { Rule } from '@antdv/ui/es/components/form';
   import type { Dayjs } from 'dayjs';
   import type { UnwrapRef } from 'vue';
   import { reactive, ref, toRaw } from 'vue';

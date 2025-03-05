@@ -1,7 +1,7 @@
-import type { AliasToken, FullToken, GenerateStyle } from '@antdv/theme';
 import type { Ref } from 'vue';
-import { genComponentStyleHook, mergeToken } from '@antdv/theme';
+import type { AliasToken, FullToken, GenerateStyle } from '../../theme';
 import { getStyle as getCheckboxStyle } from '../../checkbox/style';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 import { genTreeStyle } from '../../tree/style';
 
 interface TreeSelectToken extends FullToken<'TreeSelect'> {

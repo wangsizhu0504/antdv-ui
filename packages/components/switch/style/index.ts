@@ -1,6 +1,8 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
-import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent } from '@antdv/theme';
+import type { CSSObject } from '@antdv/cssinjs';
+import type { FullToken, GenerateStyle } from '../../theme';
 import { TinyColor } from '@ctrl/tinycolor';
+import { genFocusStyle, resetComponent } from '../../style';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 
 interface SwitchToken extends FullToken<'Switch'> {
   switchMinWidth: number

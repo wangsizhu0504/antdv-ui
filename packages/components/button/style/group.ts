@@ -1,5 +1,5 @@
-import type { GenerateStyle } from '@antdv/theme';
 import type { ButtonToken } from '.';
+import type { GenerateStyle } from '../../theme';
 
 function genButtonBorderStyle(buttonTypeCls: string, borderColor: string) {
   return {

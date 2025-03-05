@@ -1,5 +1,6 @@
-import type { CSSObject, GenerateStyle } from '@antdv/theme';
+import type { CSSObject } from '@antdv/cssinjs';
 import type { StepsToken } from '.';
+import type { GenerateStyle } from '../../theme';
 
 const genStepsCustomIconStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
   const { componentCls, stepsIconCustomTop, stepsIconCustomSize, stepsIconCustomFontSize } = token;

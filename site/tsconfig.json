@@ -8,7 +8,7 @@
     "moduleResolution": "Node",
     "paths": {
       "@antdv/ui": ["../packages/antdv-ui"],
-      "@antdv/ui/es/*": ["../packages/components/*"],
+      "@antdv/ui/es/*": ["../packages/*"],
       "@/*": ["./src/*"]
     },
     "resolveJsonModule": true,

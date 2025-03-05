@@ -1,4 +1,4 @@
-import type { CSSProperties } from '@antdv/theme';
+import type { CSSProperties } from '@antdv/cssinjs';
 import type { Key, VueNode } from '@antdv/types';
 
 export type AnchorDirection = 'vertical' | 'horizontal';

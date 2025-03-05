@@ -1,7 +1,5 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme';
 import type { InputToken } from '../../input/style';
-import { genComponentStyleHook, resetComponent, resetIcon } from '@antdv/theme';
-import { genCompactItemStyle } from '@antdv/theme/style/compact-item';
+import type { FullToken, GenerateStyle } from '../../theme';
 import {
   genActiveStyle,
   genBasicInputStyle,
@@ -12,6 +10,9 @@ import {
   genStatusStyle,
   initInputToken,
 } from '../../input/style';
+import { resetComponent, resetIcon } from '../../style';
+import { genCompactItemStyle } from '../../style/compact-item';
+import { genComponentStyleHook } from '../../theme';
 
 export interface ComponentToken {
   controlWidth: number

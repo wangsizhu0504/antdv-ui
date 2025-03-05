@@ -41,7 +41,7 @@ function main() {
   app.options.addReader(new TypeDocReader());
   app.bootstrap({
     // typedoc options here
-    entryPoints: ['packages/theme/token/interface/index.ts'],
+    entryPoints: ['packages/components/theme/interface/index.ts'],
     skipErrorChecking: true,
   });
 

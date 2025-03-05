@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'vue';
 import type { QRCodeProps } from './props';
 import { ReloadOutlined } from '@ant-design/icons-vue';
-import { useToken } from '@antdv/theme';
+import { useToken } from '../../theme';
 import { devWarning } from '@antdv/utils';
 import { computed, defineComponent, ref } from 'vue';
 import Button from '../../button';

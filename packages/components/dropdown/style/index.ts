@@ -1,5 +1,5 @@
-import type { FullToken, GenerateStyle } from '@antdv/theme';
-import { genComponentStyleHook, genFocusStyle, mergeToken, resetComponent, roundedArrow } from '@antdv/theme';
+import type { FullToken, GenerateStyle } from '../../theme';
+import { genFocusStyle, resetComponent, roundedArrow } from '../../style';
 import {
   initMoveMotion,
   initSlideMotion,
@@ -8,8 +8,9 @@ import {
   slideDownOut,
   slideUpIn,
   slideUpOut,
-} from '@antdv/theme/style/motion';
-import { getArrowOffset } from '@antdv/theme/style/placementArrow';
+} from '../../style/motion';
+import { getArrowOffset } from '../../style/placementArrow';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 import genButtonStyle from './button';
 import genStatusStyle from './status';
 

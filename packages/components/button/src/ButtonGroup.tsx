@@ -1,7 +1,7 @@
-import { useToken } from '@antdv/theme';
 import { devWarning, flattenChildren } from '@antdv/utils';
 import { computed, defineComponent, reactive } from 'vue';
 import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
+import { useToken } from '../../theme';
 import { GroupSizeContext } from './context';
 import { buttonGroupProps } from './props';
 

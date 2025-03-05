@@ -1,7 +1,10 @@
-import type { CSSObject, FullToken, GenerateStyle } from '@antdv/theme';
-import { genComponentStyleHook, Keyframes, mergeToken, resetComponent } from '@antdv/theme';
-import { initFadeMotion } from '@antdv/theme/style/motion/fade';
-import { initMotion } from '@antdv/theme/style/motion/motion';
+import type { CSSObject } from '@antdv/cssinjs';
+import type { FullToken, GenerateStyle } from '../../theme';
+import { Keyframes } from '@antdv/cssinjs';
+import { resetComponent } from '../../style';
+import { initFadeMotion } from '../../style/motion/fade';
+import { initMotion } from '../../style/motion/motion';
+import { genComponentStyleHook, mergeToken } from '../../theme';
 import getOffset from '../src/util';
 
 /** Component only token. Which will handle additional calculation of alias token */
