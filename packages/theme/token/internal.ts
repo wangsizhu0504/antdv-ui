@@ -77,7 +77,7 @@ export function useToken(): [
 ] {
   const designTokenContext = inject<ComputedRef<DesignTokenContext>>(
     DesignTokenContextKey,
-    computed(() => globalDesignTokenApi.value || defaultConfig),
+    computed(() => defaultConfig),
   );
 
   const salt = computed(() => `${version}-${designTokenContext.value.hashed || ''}`);
