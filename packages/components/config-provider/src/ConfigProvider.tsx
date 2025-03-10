@@ -1,7 +1,7 @@
 import type { Locale, ValidateMessages } from '@antdv/locale';
 
 import type { WatchStopHandle } from 'vue';
-import type { ConfigProviderInnerProps, GlobalConfigProviderProps, RenderEmptyHandler, ThemeColor } from './interface';
+import type { ConfigProviderInnerProps, GlobalConfigProviderProps, RenderEmptyHandler, ThemeColor, ThemeConfig } from './interface';
 import type { ConfigProviderProps } from './props';
 
 import { ANT_MARK } from '@antdv/constants';
@@ -15,7 +15,8 @@ import LocaleReceiver from '../../locale-provider/src/LocaleReceiver';
 import message from '../../message';
 import { notification } from '../../notification';
 
-import { DesignTokenProvider } from '../../theme/internal';
+import { DesignTokenProvider } from '../../theme';
+import { defaultTheme } from '../../theme/context';
 import defaultSeedToken from '../../theme/themes/seed';
 import useStyle from '../style';
 import { getGlobalIconPrefixCls, getGlobalPrefixCls, globalConfigForApi } from './config';
@@ -27,11 +28,11 @@ import {
   useProviderDisabled,
   useProviderSize,
 } from './context';
+
 import { registerTheme } from './cssVariables';
-
 import useTheme from './hooks/useTheme';
-import { configProviderProps } from './props';
 
+import { configProviderProps } from './props';
 import defaultRenderEmpty from './renderEmpty';
 
 const globalConfigBySet = reactive<ConfigProviderProps>({}); // 权重最大
@@ -102,11 +103,12 @@ export default defineComponent({
     const shouldWrapSSR = computed(() => iconPrefixCls.value !== parentContext.iconPrefixCls.value);
     const csp = computed(() => props.csp || parentContext.csp?.value);
 
-    const wrapSSR = useStyle(iconPrefixCls);
+    const wrapSSR = useStyle(iconPrefixCls, csp.value);
 
     const mergedTheme = useTheme(
       computed(() => props.theme),
       computed(() => parentContext.theme?.value),
+      computed(() => ({ prefixCls: getPrefixCls('') })),
     );
     const renderEmptyComponent = (name?: string) => {
       const renderEmpty = (props.renderEmpty
@@ -189,20 +191,45 @@ export default defineComponent({
 
     // ================================ Dynamic theme ================================
     const memoTheme = computed(() => {
-      const { algorithm, token, ...rest } = mergedTheme.value || {};
+      const { algorithm, token, components, cssVar, ...rest } = mergedTheme.value || {};
       const themeObj
         = algorithm && (!Array.isArray(algorithm) || algorithm.length > 0)
           ? createTheme(algorithm)
-          : undefined;
+          : defaultTheme;
+      const parsedComponents: any = {};
+      Object.entries(components || {}).forEach(([componentName, componentToken]) => {
+        const parsedToken: typeof componentToken & { theme?: typeof defaultTheme } = {
+          ...componentToken,
+        };
+        if ('algorithm' in parsedToken) {
+          if (parsedToken.algorithm === true) {
+            parsedToken.theme = themeObj;
+          } else if (
+            Array.isArray(parsedToken.algorithm)
+          || typeof parsedToken.algorithm === 'function'
+          ) {
+            parsedToken.theme = createTheme(parsedToken.algorithm);
+          }
+          delete parsedToken.algorithm;
+        }
+        parsedComponents[componentName] = parsedToken;
+      });
+      const mergedToken = {
+        ...defaultSeedToken,
+        ...token,
+      };
 
       return {
         ...rest,
         theme: themeObj,
 
-        token: {
-          ...defaultSeedToken,
-          ...token,
+        token: mergedToken,
+        components: parsedComponents,
+        override: {
+          override: mergedToken,
+          ...parsedComponents,
         },
+        cssVar: cssVar as Exclude<ThemeConfig['cssVar'], boolean>,
       };
     });
     const validateMessagesRef = computed(() => {
@@ -227,8 +254,11 @@ export default defineComponent({
 
     const renderProvider = (legacyLocale: Locale) => {
       let childNode = shouldWrapSSR.value ? wrapSSR(slots.default?.()) : slots.default?.();
-      if (props.theme)
+      console.log('renderProvider', props);
+      if (props.theme) {
         childNode = <DesignTokenProvider value={memoTheme.value}>{childNode}</DesignTokenProvider>;
+      }
+
       return (
         <LocaleProvider locale={locale.value || legacyLocale} ANT_MARK__={ANT_MARK}>
           {childNode}

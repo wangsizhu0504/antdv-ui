@@ -1,6 +1,6 @@
 import type { CSSInterpolation } from '@antdv/cssinjs';
-import type { AliasToken } from '../../theme';
-import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook';
+import type { AliasToken, TokenWithCommonCls } from '../../theme/internal';
+
 import { Keyframes } from '@antdv/cssinjs';
 import { initMotion } from './motion';
 
@@ -162,7 +162,7 @@ type ZoomMotionTypes =
   | 'zoom-right'
   | 'zoom-up'
   | 'zoom-down';
-const zoomMotion: Record<ZoomMotionTypes, { inKeyframes: Keyframes, outKeyframes: Keyframes }> = {
+const zoomMotion: Record<ZoomMotionTypes, { inKeyframes: Keyframes; outKeyframes: Keyframes }> = {
   'zoom': {
     inKeyframes: zoomIn,
     outKeyframes: zoomOut,

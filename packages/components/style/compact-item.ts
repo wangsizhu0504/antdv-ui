@@ -1,24 +1,24 @@
 import type { CSSInterpolation, CSSObject } from '@antdv/cssinjs';
-import type { DerivativeToken, FullToken } from '../theme';
-import type { OverrideComponent } from '../theme/util/genComponentStyleHook';
+
+import type { AliasToken, CSSUtil, FullToken, OverrideComponent } from '../theme/internal';
 
 interface CompactItemOptions {
-  focus?: boolean
+  focus?: boolean;
   /**
    * Some component borders are implemented on child elements
    * like `Select`
    */
-  borderElCls?: string
+  borderElCls?: string;
   /**
    * Some components have special `focus` className especially with popovers
    * like `Select` and `DatePicker`
    */
-  focusElCls?: string
+  focusElCls?: string;
 }
 
 // handle border collapse
 function compactItemBorder(
-  token: DerivativeToken,
+  token: AliasToken & CSSUtil,
   parentCls: string,
   options: CompactItemOptions,
 ): CSSObject {
@@ -30,7 +30,7 @@ function compactItemBorder(
     .join(',');
   return {
     [`&-item:not(${parentCls}-last-item)`]: {
-      marginInlineEnd: -token.lineWidth,
+      marginInlineEnd: token.calc(token.lineWidth).mul(-1).equal(),
     },
 
     '&-item': {

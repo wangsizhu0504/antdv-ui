@@ -1,6 +1,6 @@
 import type { GlobalToken } from '@antdv/components';
 import type { BreakpointMap, ScreenMap } from '@antdv/types';
-import { useToken } from '@antdv/components';
+import { useToken } from '@antdv/components/theme/internal';
 import { computed } from 'vue';
 
 type SubscribeFunc = (screens: ScreenMap) => void;
@@ -12,7 +12,6 @@ function getResponsiveMap(token: GlobalToken): BreakpointMap {
     lg: `(min-width: ${token.screenLG}px)`,
     xl: `(min-width: ${token.screenXL}px)`,
     xxl: `(min-width: ${token.screenXXL}px)`,
-    xxxl: `{min-width: ${token.screenXXXL}px}`,
   };
 }
 

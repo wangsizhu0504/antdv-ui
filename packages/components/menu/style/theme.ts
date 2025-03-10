@@ -1,5 +1,7 @@
 import type { CSSInterpolation } from '@antdv/cssinjs';
 import type { MenuToken } from '.';
+
+import { unit } from '@antdv/cssinjs';
 import { genFocusOutline } from '../../style';
 
 function accessibilityFocus(token: MenuToken) {
@@ -11,108 +13,121 @@ function accessibilityFocus(token: MenuToken) {
 function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation {
   const {
     componentCls,
-    colorItemText,
-    colorItemTextSelected,
-    colorGroupTitle,
-    colorItemBg,
-    colorSubItemBg,
-    colorItemBgSelected,
-    colorActiveBarHeight,
-    colorActiveBarWidth,
-    colorActiveBarBorderSize,
+    itemColor,
+    itemSelectedColor,
+    subMenuItemSelectedColor,
+    groupTitleColor,
+    itemBg,
+    subMenuItemBg,
+    itemSelectedBg,
+    activeBarHeight,
+    activeBarWidth,
+    activeBarBorderWidth,
     motionDurationSlow,
     motionEaseInOut,
     motionEaseOut,
-    menuItemPaddingInline,
+    itemPaddingInline,
     motionDurationMid,
-    colorItemTextHover,
+    itemHoverColor,
     lineType,
     colorSplit,
 
     // Disabled
-    colorItemTextDisabled,
+    itemDisabledColor,
 
     // Danger
-    colorDangerItemText,
-    colorDangerItemTextHover,
-    colorDangerItemTextSelected,
-    colorDangerItemBgActive,
-    colorDangerItemBgSelected,
-
-    colorItemBgHover,
+    dangerItemColor,
+    dangerItemHoverColor,
+    dangerItemSelectedColor,
+    dangerItemActiveBg,
+    dangerItemSelectedBg,
+    // Bg
+    popupBg,
+    itemHoverBg,
+    itemActiveBg,
     menuSubMenuBg,
 
     // Horizontal
-    colorItemTextSelectedHorizontal,
-    colorItemBgSelectedHorizontal,
+    horizontalItemSelectedColor,
+    horizontalItemSelectedBg,
+    horizontalItemBorderRadius,
+    horizontalItemHoverBg,
   } = token;
 
   return {
-    [`${componentCls}-${themeSuffix}`]: {
-      color: colorItemText,
-      background: colorItemBg,
+    [`${componentCls}-${themeSuffix}, ${componentCls}-${themeSuffix} > ${componentCls}`]: {
+      color: itemColor,
+      background: itemBg,
 
       [`&${componentCls}-root:focus-visible`]: {
         ...accessibilityFocus(token),
       },
 
       // ======================== Item ========================
-      [`${componentCls}-item-group-title`]: {
-        color: colorGroupTitle,
+      [`${componentCls}-item`]: {
+        '&-group-title, &-extra': {
+          color: groupTitleColor,
+        },
       },
 
-      [`${componentCls}-submenu-selected`]: {
-        [`> ${componentCls}-submenu-title`]: {
-          color: colorItemTextSelected,
+      [`${componentCls}-submenu-selected > ${componentCls}-submenu-title`]: {
+        color: subMenuItemSelectedColor,
+      },
+
+      [`${componentCls}-item, ${componentCls}-submenu-title`]: {
+        color: itemColor,
+        [`&:not(${componentCls}-item-disabled):focus-visible`]: {
+          ...accessibilityFocus(token),
         },
       },
 
       // Disabled
       [`${componentCls}-item-disabled, ${componentCls}-submenu-disabled`]: {
-        color: `${colorItemTextDisabled} !important`,
+        color: `${itemDisabledColor} !important`,
       },
 
       // Hover
-      [`${componentCls}-item:hover, ${componentCls}-submenu-title:hover`]: {
-        [`&:not(${componentCls}-item-selected):not(${componentCls}-submenu-selected)`]: {
-          color: colorItemTextHover,
+      [`${componentCls}-item:not(${componentCls}-item-selected):not(${componentCls}-submenu-selected)`]:
+        {
+          [`&:hover, > ${componentCls}-submenu-title:hover`]: {
+            color: itemHoverColor,
+          },
         },
-      },
 
       [`&:not(${componentCls}-horizontal)`]: {
         [`${componentCls}-item:not(${componentCls}-item-selected)`]: {
           '&:hover': {
-            backgroundColor: colorItemBgHover,
+            backgroundColor: itemHoverBg,
           },
 
           '&:active': {
-            backgroundColor: colorItemBgSelected,
+            backgroundColor: itemActiveBg,
           },
         },
 
         [`${componentCls}-submenu-title`]: {
           '&:hover': {
-            backgroundColor: colorItemBgHover,
+            backgroundColor: itemHoverBg,
           },
 
           '&:active': {
-            backgroundColor: colorItemBgSelected,
+            backgroundColor: itemActiveBg,
           },
         },
       },
 
       // Danger - only Item has
       [`${componentCls}-item-danger`]: {
-        color: colorDangerItemText,
+        color: dangerItemColor,
 
         [`&${componentCls}-item:hover`]: {
           [`&:not(${componentCls}-item-selected):not(${componentCls}-submenu-selected)`]: {
-            color: colorDangerItemTextHover,
+            color: dangerItemHoverColor,
           },
         },
 
         [`&${componentCls}-item:active`]: {
-          background: colorDangerItemBgActive,
+          background: dangerItemActiveBg,
         },
       },
 
@@ -123,11 +138,11 @@ function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation 
       },
 
       [`${componentCls}-item-selected`]: {
-        'color': colorItemTextSelected,
+        'color': itemSelectedColor,
 
         // Danger
         [`&${componentCls}-item-danger`]: {
-          color: colorDangerItemTextSelected,
+          color: dangerItemSelectedColor,
         },
 
         'a, a:hover': {
@@ -136,17 +151,11 @@ function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation 
       },
 
       [`& ${componentCls}-item-selected`]: {
-        backgroundColor: colorItemBgSelected,
+        backgroundColor: itemSelectedBg,
 
         // Danger
         [`&${componentCls}-item-danger`]: {
-          backgroundColor: colorDangerItemBgSelected,
-        },
-      },
-
-      [`${componentCls}-item, ${componentCls}-submenu-title`]: {
-        [`&:not(${componentCls}-item-disabled):focus-visible`]: {
-          ...accessibilityFocus(token),
+          backgroundColor: dangerItemSelectedBg,
         },
       },
 
@@ -154,9 +163,16 @@ function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation 
         backgroundColor: menuSubMenuBg,
       },
 
+      // ===== 设置浮层的颜色 =======
+      // ！dark 模式会被popupBg 会被rest 为 darkPopupBg
       [`&${componentCls}-popup > ${componentCls}`]: {
-        backgroundColor: colorItemBg,
+        backgroundColor: popupBg,
       },
+
+      [`&${componentCls}-submenu-popup > ${componentCls}`]: {
+        backgroundColor: popupBg,
+      },
+      // ===== 设置浮层的颜色 end =======
 
       // ====================== Horizontal ======================
       [`&${componentCls}-horizontal`]: {
@@ -167,32 +183,36 @@ function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation 
           : {}),
 
         [`> ${componentCls}-item, > ${componentCls}-submenu`]: {
-          'top': colorActiveBarBorderSize,
-          'marginTop': -colorActiveBarBorderSize,
+          'top': activeBarBorderWidth,
+          'marginTop': token.calc(activeBarBorderWidth).mul(-1).equal(),
           'marginBottom': 0,
-          'borderRadius': 0,
+          'borderRadius': horizontalItemBorderRadius,
 
           '&::after': {
             position: 'absolute',
-            insetInline: menuItemPaddingInline,
+            insetInline: itemPaddingInline,
             bottom: 0,
-            borderBottom: `${colorActiveBarHeight}px solid transparent`,
+            borderBottom: `${unit(activeBarHeight)} solid transparent`,
             transition: `border-color ${motionDurationSlow} ${motionEaseInOut}`,
             content: '""',
           },
 
           '&:hover, &-active, &-open': {
+            'background': horizontalItemHoverBg,
             '&::after': {
-              borderBottomWidth: colorActiveBarHeight,
-              borderBottomColor: colorItemTextSelectedHorizontal,
+              borderBottomWidth: activeBarHeight,
+              borderBottomColor: horizontalItemSelectedColor,
             },
           },
           '&-selected': {
-            'color': colorItemTextSelectedHorizontal,
-            'backgroundColor': colorItemBgSelectedHorizontal,
+            'color': horizontalItemSelectedColor,
+            'backgroundColor': horizontalItemSelectedBg,
+            '&:hover': {
+              backgroundColor: horizontalItemSelectedBg,
+            },
             '&::after': {
-              borderBottomWidth: colorActiveBarHeight,
-              borderBottomColor: colorItemTextSelectedHorizontal,
+              borderBottomWidth: activeBarHeight,
+              borderBottomColor: horizontalItemSelectedColor,
             },
           },
         },
@@ -202,7 +222,7 @@ function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation 
       //
       [`&${componentCls}-root`]: {
         [`&${componentCls}-inline, &${componentCls}-vertical`]: {
-          borderInlineEnd: `${colorActiveBarBorderSize}px ${lineType} ${colorSplit}`,
+          borderInlineEnd: `${unit(activeBarBorderWidth)} ${lineType} ${colorSplit}`,
         },
       },
 
@@ -210,16 +230,8 @@ function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation 
       [`&${componentCls}-inline`]: {
         // Sub
         [`${componentCls}-sub${componentCls}-inline`]: {
-          background: colorSubItemBg,
+          background: subMenuItemBg,
         },
-
-        // Item
-        [`${componentCls}-item, ${componentCls}-submenu-title`]:
-          colorActiveBarBorderSize && colorActiveBarWidth
-            ? {
-                width: `calc(100% + ${colorActiveBarBorderSize}px)`,
-              }
-            : {},
 
         [`${componentCls}-item`]: {
           'position': 'relative',
@@ -228,7 +240,7 @@ function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation 
             position: 'absolute',
             insetBlock: 0,
             insetInlineEnd: 0,
-            borderInlineEnd: `${colorActiveBarWidth}px solid ${colorItemTextSelected}`,
+            borderInlineEnd: `${unit(activeBarWidth)} solid ${itemSelectedColor}`,
             transform: 'scaleY(0.0001)',
             opacity: 0,
             transition: [
@@ -241,7 +253,7 @@ function getThemeStyle(token: MenuToken, themeSuffix: string): CSSInterpolation 
           // Danger
           [`&${componentCls}-item-danger`]: {
             '&::after': {
-              borderInlineEndColor: colorDangerItemTextSelected,
+              borderInlineEndColor: dangerItemSelectedColor,
             },
           },
         },

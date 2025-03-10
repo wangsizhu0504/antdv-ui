@@ -1,12 +1,12 @@
 import type { CSSInterpolation } from '@antdv/cssinjs';
-import type { FullToken, GenerateStyle } from '../../theme';
-import { genComponentStyleHook, mergeToken } from '../../theme';
+
+import type { FullToken, GenerateStyle, GetDefaultToken } from '../../theme/internal';
+import { genStyleHooks, mergeToken } from '../../theme/internal';
 import { alignItemsValues, flexWrapValues, justifyContentValues } from '../src/util';
 
 /** Component only token. Which will handle additional calculation of alias token */
-export interface ComponentToken {
-  // Component token here
-}
+// biome-ignore lint/suspicious/noEmptyInterface: ComponentToken need to be empty by default
+export interface ComponentToken {}
 
 export interface FlexToken extends FullToken<'Flex'> {
   /**
@@ -15,21 +15,21 @@ export interface FlexToken extends FullToken<'Flex'> {
    * @desc 控制元素的小间隙。
    * @descEN Control the small gap of the element.
    */
-  flexGapSM: number
+  flexGapSM: number;
   /**
    * @nameZH 间隙
    * @nameEN Gap
    * @desc 控制元素的间隙。
    * @descEN Control the gap of the element.
    */
-  flexGap: number
+  flexGap: number;
   /**
    * @nameZH 大间隙
    * @nameEN Large Gap
    * @desc 控制元素的大间隙。
    * @descEN Control the large gap of the element.
    */
-  flexGapLG: number
+  flexGapLG: number;
 }
 
 const genFlexStyle: GenerateStyle<FlexToken> = (token) => {
@@ -37,6 +37,8 @@ const genFlexStyle: GenerateStyle<FlexToken> = (token) => {
   return {
     [componentCls]: {
       'display': 'flex',
+      'margin': 0,
+      'padding': 0,
       '&-vertical': {
         flexDirection: 'column',
       },
@@ -94,17 +96,29 @@ const genJustifyContentStyle: GenerateStyle<FlexToken> = (token) => {
   return justifyStyle;
 };
 
-export default genComponentStyleHook<'Flex'>('Flex', (token) => {
-  const flexToken = mergeToken<FlexToken>(token, {
-    flexGapSM: token.paddingXS,
-    flexGap: token.padding,
-    flexGapLG: token.paddingLG,
-  });
-  return [
-    genFlexStyle(flexToken),
-    genFlexGapStyle(flexToken),
-    genFlexWrapStyle(flexToken),
-    genAlignItemsStyle(flexToken),
-    genJustifyContentStyle(flexToken),
-  ];
-});
+export const prepareComponentToken: GetDefaultToken<'Flex'> = () => ({});
+
+export default genStyleHooks(
+  'Flex',
+  (token) => {
+    const { paddingXS, padding, paddingLG } = token;
+    const flexToken = mergeToken<FlexToken>(token, {
+      flexGapSM: paddingXS,
+      flexGap: padding,
+      flexGapLG: paddingLG,
+    });
+    return [
+      genFlexStyle(flexToken),
+      genFlexGapStyle(flexToken),
+      genFlexWrapStyle(flexToken),
+      genAlignItemsStyle(flexToken),
+      genJustifyContentStyle(flexToken),
+    ];
+  },
+  prepareComponentToken,
+  {
+    // Flex component don't apply extra font style
+    // https://github.com/ant-design/ant-design/issues/46403
+    resetStyle: false,
+  },
+);

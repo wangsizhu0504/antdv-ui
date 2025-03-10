@@ -15,10 +15,13 @@ export default function createTheme<
   | Array<DerivativeFunc<DesignToken, DerivativeToken>>
   | DerivativeFunc<DesignToken, DerivativeToken>,
 ) {
-  const derivativeArr = Array.isArray(derivatives) ? derivatives : [derivatives];
+  const derivativeArr = Array.isArray(derivatives)
+    ? derivatives
+    : [derivatives];
   // Create new theme if not exist
-  if (!cacheThemes.has(derivativeArr))
+  if (!cacheThemes.has(derivativeArr)) {
     cacheThemes.set(derivativeArr, new Theme(derivativeArr));
+  }
 
   // Get theme from cache and return
   return cacheThemes.get(derivativeArr)!;

@@ -1,4 +1,4 @@
-import type { CSSInterpolation } from './hooks/useStyleRegister/index';
+import type { CSSInterpolation } from './hooks/useStyleRegister';
 
 class Keyframe {
   private name: string;

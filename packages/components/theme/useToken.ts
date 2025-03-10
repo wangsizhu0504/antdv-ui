@@ -1,11 +1,12 @@
 import type { Theme } from '@antdv/cssinjs';
-import type { ComputedRef } from 'vue';
+import type { Ref } from 'vue';
+
+import type { DesignTokenProviderProps } from './context';
 import type { AliasToken, GlobalToken, SeedToken } from './interface';
-import type { DesignTokenContext } from './internal';
 import { useCacheToken } from '@antdv/cssinjs';
 import { version } from '@antdv/version';
-import { computed, inject } from 'vue';
-import { defaultConfig, defaultTheme, DesignTokenContextKey, globalDesignTokenApi } from './internal';
+import { computed } from 'vue';
+import { defaultTheme, useDesignTokenInject } from './context';
 import defaultSeedToken from './themes/seed';
 import formatToken from './util/alias';
 
@@ -67,13 +68,9 @@ const preserve: {
   screenXXLMin: true,
 };
 
-export function getComputedToken(
-  originToken: SeedToken,
-  overrideToken: DesignTokenContext['components'] & {
-    override?: Partial<AliasToken>;
-  },
-  theme: Theme<any, any>,
-) {
+export function getComputedToken(originToken: SeedToken, overrideToken: DesignTokenProviderProps['components'] & {
+  override?: Partial<AliasToken>;
+}, theme: Theme<any, any>) {
   const derivativeToken = theme.getDerivativeToken(originToken);
 
   const { override, ...components } = overrideToken;
@@ -112,20 +109,20 @@ export function getComputedToken(
 
 // ================================== Hook ==================================
 export default function useToken(): [
-  theme: ComputedRef<Theme<SeedToken, AliasToken>>,
-  token: ComputedRef<GlobalToken>,
-  hashId: ComputedRef<string>,
-  realToken: ComputedRef<GlobalToken>,
-  cssVar?: ComputedRef<DesignTokenContext['cssVar']>,
+  theme: Ref<Theme<SeedToken, AliasToken>>,
+  token: Ref<GlobalToken>,
+  hashId: Ref<string>,
+  realToken: Ref<GlobalToken>,
+  cssVar?: DesignTokenProviderProps['cssVar'],
 ] {
-  const designTokenContext = inject<ComputedRef<DesignTokenContext>>(
-    DesignTokenContextKey,
-    computed(() => globalDesignTokenApi.value || defaultConfig),
-  );
+  const designTokenContext = useDesignTokenInject();
+  console.log('designTokenContext', designTokenContext);
 
   const salt = computed(() => `${version}-${designTokenContext.value.hashed || ''}`);
 
-  const mergedTheme = computed(() => designTokenContext.value.theme || defaultTheme);
+  const mergedTheme = computed(() => designTokenContext.value.theme ?? defaultTheme);
+
+  console.log(111, designTokenContext.value.token);
 
   const cacheToken = useCacheToken<GlobalToken, SeedToken>(
     mergedTheme,
@@ -137,7 +134,7 @@ export default function useToken(): [
       // formatToken will not be consumed after 1.15.0 with getComputedToken.
       // But token will break if @ant-design/cssinjs is under 1.15.0 without it
       formatToken,
-      cssVar: designTokenContext.value?.cssVar && {
+      cssVar: designTokenContext.value.cssVar && {
         prefix: designTokenContext.value.cssVar.prefix,
         key: designTokenContext.value.cssVar.key,
         unitless,
@@ -149,9 +146,9 @@ export default function useToken(): [
 
   return [
     mergedTheme,
-    computed(() => cacheToken.value[0]),
-    computed(() => (designTokenContext.value.hashed ? cacheToken.value[1] : '')),
     computed(() => cacheToken.value[2]),
-    computed(() => designTokenContext.value.cssVar),
+    computed(() => designTokenContext.value.hashed ? cacheToken.value[1] : ''),
+    computed(() => cacheToken.value[0]),
+    designTokenContext.value?.cssVar,
   ];
 }

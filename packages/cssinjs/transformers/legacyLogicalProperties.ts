@@ -1,37 +1,43 @@
 import type { CSSObject } from '..';
 import type { Transformer } from './interface';
 
-function splitValues(value: string | number) {
-  if (typeof value === 'number')
-    return [value];
+function splitValues(
+  value: string | number,
+): [values: Array<string | number>, important: boolean] {
+  if (typeof value === 'number') {
+    return [[value], false];
+  }
 
-  const splitStyle = String(value).split(/\s+/);
+  const rawStyle = String(value).trim();
+  const importantCells = rawStyle.match(/(.*)(!important)/);
+
+  const splitStyle = (importantCells ? importantCells[1] : rawStyle)
+    .trim()
+    .split(/\s+/);
 
   // Combine styles split in brackets, like `calc(1px + 2px)`
-  let temp = '';
+  let temp: string[] = [];
   let brackets = 0;
-  return splitStyle.reduce<string[]>((list, item) => {
-    if (item.includes('(')) {
-      temp += item;
-      brackets += item.split('(').length - 1;
-    } else if (item.includes(')')) {
-      temp += ` ${item}`;
-      brackets -= item.split(')').length - 1;
-      if (brackets === 0) {
-        list.push(temp);
-        temp = '';
+  return [
+    splitStyle.reduce<string[]>((list, item) => {
+      if (item.includes('(') || item.includes(')')) {
+        const left = item.split('(').length - 1;
+        const right = item.split(')').length - 1;
+        brackets += left - right;
       }
-    } else if (brackets > 0) {
-      temp += ` ${item}`;
-    } else {
-      list.push(item);
-    }
-    return list;
-  }, []);
+      if (brackets >= 0) temp.push(item);
+      if (brackets === 0) {
+        list.push(temp.join(' '));
+        temp = [];
+      }
+      return list;
+    }, []),
+    !!importantCells,
+  ];
 }
 
 type MatchValue = string[] & {
-  notSplit?: boolean
+  notSplit?: boolean;
 };
 
 function noSplit(list: MatchValue): MatchValue {
@@ -104,8 +110,14 @@ const keyMap: Record<string, MatchValue> = {
   borderEndEndRadius: ['borderBottomRightRadius'],
 };
 
-function skipCheck(value: string | number) {
-  return { _skip_check_: true, value };
+function wrapImportantAndSkipCheck(value: string | number, important: boolean) {
+  let parsedValue = value;
+
+  if (important) {
+    parsedValue = `${parsedValue} !important`;
+  }
+
+  return { _skip_check_: true, value: parsedValue };
 }
 
 /**
@@ -125,26 +137,35 @@ const transform: Transformer = {
       const value = cssObj[key];
       const matchValue = keyMap[key];
 
-      if (matchValue && (typeof value === 'number' || typeof value === 'string')) {
-        const values = splitValues(value);
+      if (
+        matchValue
+        && (typeof value === 'number' || typeof value === 'string')
+      ) {
+        const [values, important] = splitValues(value);
 
         if (matchValue.length && matchValue.notSplit) {
           // not split means always give same value like border
           matchValue.forEach((matchKey) => {
-            clone[matchKey] = skipCheck(value);
+            clone[matchKey] = wrapImportantAndSkipCheck(value, important);
           });
         } else if (matchValue.length === 1) {
           // Handle like `marginBlockStart` => `marginTop`
-          clone[matchValue[0]] = skipCheck(value);
+          clone[matchValue[0]] = wrapImportantAndSkipCheck(values[0], important);
         } else if (matchValue.length === 2) {
           // Handle like `marginBlock` => `marginTop` & `marginBottom`
           matchValue.forEach((matchKey, index) => {
-            clone[matchKey] = skipCheck(values[index] ?? values[0]);
+            clone[matchKey] = wrapImportantAndSkipCheck(
+              values[index] ?? values[0],
+              important,
+            );
           });
         } else if (matchValue.length === 4) {
           // Handle like `inset` => `top` & `right` & `bottom` & `left`
           matchValue.forEach((matchKey, index) => {
-            clone[matchKey] = skipCheck(values[index] ?? values[index - 2] ?? values[0]);
+            clone[matchKey] = wrapImportantAndSkipCheck(
+              values[index] ?? values[index - 2] ?? values[0],
+              important,
+            );
           });
         } else {
           clone[key] = value;

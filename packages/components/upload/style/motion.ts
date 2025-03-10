@@ -1,31 +1,34 @@
 import type { UploadToken } from '.';
-import type { GenerateStyle } from '../../theme';
+
+import type { GenerateStyle } from '../../theme/internal';
 import { Keyframes } from '@antdv/cssinjs';
+import { initFadeMotion } from '../../style/motion';
 
-const uploadAnimateInlineIn = new Keyframes('uploadAnimateInlineIn', {
-  from: {
-    width: 0,
-    height: 0,
-    margin: 0,
-    padding: 0,
-    opacity: 0,
-  },
-});
-
-const uploadAnimateInlineOut = new Keyframes('uploadAnimateInlineOut', {
-  to: {
-    width: 0,
-    height: 0,
-    margin: 0,
-    padding: 0,
-    opacity: 0,
-  },
-});
 // =========================== Motion ===========================
 const genMotionStyle: GenerateStyle<UploadToken> = (token) => {
   const { componentCls } = token;
-  const inlineCls = `${componentCls}-animate-inline`;
 
+  const uploadAnimateInlineIn = new Keyframes('uploadAnimateInlineIn', {
+    from: {
+      width: 0,
+      height: 0,
+      padding: 0,
+      opacity: 0,
+      margin: token.calc(token.marginXS).div(-2).equal(),
+    },
+  });
+
+  const uploadAnimateInlineOut = new Keyframes('uploadAnimateInlineOut', {
+    to: {
+      width: 0,
+      height: 0,
+      padding: 0,
+      opacity: 0,
+      margin: token.calc(token.marginXS).div(-2).equal(),
+    },
+  });
+
+  const inlineCls = `${componentCls}-animate-inline`;
   return [
     {
       [`${componentCls}-wrapper`]: {
@@ -43,6 +46,9 @@ const genMotionStyle: GenerateStyle<UploadToken> = (token) => {
           animationName: uploadAnimateInlineOut,
         },
       },
+    },
+    {
+      [`${componentCls}-wrapper`]: initFadeMotion(token),
     },
     uploadAnimateInlineIn,
     uploadAnimateInlineOut,

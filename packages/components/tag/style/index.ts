@@ -1,10 +1,10 @@
 import type { CSSObject } from '@antdv/cssinjs';
 import type { CSSProperties } from 'vue';
-import type { FullToken } from '../../theme';
+import type { FullToken } from '../../theme/interface';
 import { capitalize } from '@antdv/utils';
 import { resetComponent } from '../../style';
-import { genPresetColor } from '../../style/presetColor';
-import { genComponentStyleHook, mergeToken } from '../../theme';
+
+import { genPresetColor, genStyleHooks, mergeToken } from '../../theme/internal';
 
 export interface ComponentToken {}
 
@@ -151,7 +151,7 @@ function genBaseStyle(token: TagToken): CSSObject {
 }
 
 // ============================== Export ==============================
-export default genComponentStyleHook('Tag', (token) => {
+export default genStyleHooks('Tag', (token) => {
   const { fontSize, lineHeight, lineWidth, fontSizeIcon } = token;
   const tagHeight = Math.round(fontSize * lineHeight);
 

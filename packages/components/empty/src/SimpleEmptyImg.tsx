@@ -1,4 +1,4 @@
-import { useToken } from '../../theme';
+import { useToken } from '../../theme/internal';
 import { TinyColor } from '@ctrl/tinycolor';
 import { computed, defineComponent } from 'vue';
 

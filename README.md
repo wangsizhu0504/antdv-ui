@@ -1,4 +1,5 @@
 > fork from [Ant Design Vue](https://github.com/vueComponent/ant-design-vue)
+> a77684cbd97837a420a2f4d65e6a7cd9626af939
 <p align="center">
   <a href="https://www.antdv.com/">
     <img width="200" src="https://qn.antdv.com/logo.png">

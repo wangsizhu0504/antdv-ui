@@ -1,7 +1,7 @@
 import type { CSSObject } from '@antdv/cssinjs';
-import type { FullToken, GenerateStyle } from '../../theme';
+import type { FullToken, GenerateStyle } from '../../theme/interface';
 import { operationUnit, resetComponent, textEllipsis } from '../../style';
-import { genComponentStyleHook, mergeToken } from '../../theme';
+import { genStyleHooks, mergeToken } from '../../theme/internal';
 
 interface PageHeaderToken extends FullToken<'PageHeader'> {
   pageHeaderPadding: number
@@ -138,7 +138,7 @@ const genPageHeaderStyle: GenerateStyle<PageHeaderToken, CSSObject> = (token) =>
 };
 
 // ============================== Export ==============================
-export default genComponentStyleHook('PageHeader', (token) => {
+export default genStyleHooks('PageHeader', (token) => {
   const PageHeaderToken = mergeToken<PageHeaderToken>(token, {
     pageHeaderPadding: token.paddingLG,
     pageHeaderPaddingVertical: token.paddingMD,

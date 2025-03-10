@@ -1,27 +1,27 @@
-import type { CSSObject } from '..';
-import type { Transformer } from './interface';
-
 /**
  * respect https://github.com/cuth/postcss-pxtorem
  */
+import type { CSSObject } from '..';
+import type { Transformer } from './interface';
+
 import unitless from '@emotion/unitless';
 
-export interface Px2RemOptions {
+interface Options {
   /**
    * The root font size.
    * @default 16
    */
-  rootValue?: number
+  rootValue?: number;
   /**
    * The decimal numbers to allow the REM units to grow to.
    * @default 5
    */
-  precision?: number
+  precision?: number;
   /**
    * Whether to allow px to be converted in media queries.
    * @default false
    */
-  mediaQuery?: boolean
+  mediaQuery?: boolean;
 }
 
 const pxRegex = /url\([^)]+\)|var\([^)]+\)|(\d*\.?\d+)px/g;
@@ -32,7 +32,7 @@ function toFixed(number: number, precision: number) {
   return (Math.round(wholeNumber / 10) * 10) / multiplier;
 }
 
-export function px2remTransformer(options: Px2RemOptions = {}): Transformer {
+function transform(options: Options = {}): Transformer {
   const { rootValue = 16, precision = 5, mediaQuery = false } = options;
 
   const pxReplace = (m: string, $1: any) => {
@@ -54,8 +54,9 @@ export function px2remTransformer(options: Px2RemOptions = {}): Transformer {
       }
 
       // no unit
-      if (!unitless[key] && typeof value === 'number' && value !== 0)
+      if (!unitless[key] && typeof value === 'number' && value !== 0) {
         clone[key] = `${value}px`.replace(pxRegex, pxReplace);
+      }
 
       // Media queries
       const mergedKey = key.trim();
@@ -72,3 +73,5 @@ export function px2remTransformer(options: Px2RemOptions = {}): Transformer {
 
   return { visit };
 }
+
+export default transform;

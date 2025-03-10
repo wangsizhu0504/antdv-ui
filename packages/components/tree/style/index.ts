@@ -1,10 +1,58 @@
 import type { CSSInterpolation, CSSObject } from '@antdv/cssinjs';
-import type { DerivativeToken } from '../../theme';
-import { Keyframes } from '@antdv/cssinjs';
+import type { AliasToken, CSSUtil, FullToken, GetDefaultToken } from '../../theme/internal';
+
+import { Keyframes, unit } from '@antdv/cssinjs';
 import { getStyle as getCheckboxStyle } from '../../checkbox/style';
 import { genFocusOutline, resetComponent } from '../../style';
 import { genCollapseMotion } from '../../style/motion';
-import { genComponentStyleHook, mergeToken } from '../../theme';
+import { genStyleHooks, mergeToken } from '../../theme/internal';
+import { genDirectoryStyle } from './directory';
+
+export interface TreeSharedToken {
+  /**
+   * @desc 节点标题高度
+   * @descEN Node title height
+   */
+  titleHeight: number;
+  /**
+   * @desc 缩进宽度
+   * @descEN Indent width of tree
+   */
+  indentSize?: number;
+  /**
+   * @desc 节点悬浮态背景色
+   * @descEN Background color of hovered node
+   */
+  nodeHoverBg: string;
+  /**
+   * @desc 节点悬浮态态文字颜色
+   * @descEN Text color of hovered node
+   */
+  nodeHoverColor: string;
+  /**
+   * @desc 节点选中态背景色
+   * @descEN Background color of selected node
+   */
+  nodeSelectedBg: string;
+  /**
+   * @desc 节点选中态文字颜色
+   * @descEN Text color of selected node
+   */
+  nodeSelectedColor: string;
+}
+
+export interface ComponentToken extends TreeSharedToken {
+  /**
+   * @desc 目录树节点选中文字颜色
+   * @descEN Text color of selected directory node
+   */
+  directoryNodeSelectedColor: string;
+  /**
+   * @desc 目录树节点选中背景色
+   * @descEN Background color of selected directory node
+   */
+  directoryNodeSelectedBg: string;
+}
 
 // ============================ Keyframes =============================
 const treeNodeFX = new Keyframes('ant-tree-node-fx-do-not-use', {
@@ -17,7 +65,7 @@ const treeNodeFX = new Keyframes('ant-tree-node-fx-do-not-use', {
 });
 
 // ============================== Switch ==============================
-function getSwitchStyle(prefixCls: string, token: DerivativeToken): CSSObject {
+function getSwitchStyle(prefixCls: string, token: AliasToken): CSSObject {
   return {
     [`.${prefixCls}-switcher-icon`]: {
       display: 'inline-block',
@@ -32,7 +80,7 @@ function getSwitchStyle(prefixCls: string, token: DerivativeToken): CSSObject {
 }
 
 // =============================== Drop ===============================
-function getDropIndicatorStyle(prefixCls: string, token: DerivativeToken) {
+function getDropIndicatorStyle(prefixCls: string, token: AliasToken) {
   return {
     [`.${prefixCls}-drop-indicator`]: {
       'position': 'absolute',
@@ -50,7 +98,7 @@ function getDropIndicatorStyle(prefixCls: string, token: DerivativeToken) {
         width: 8,
         height: 8,
         backgroundColor: 'transparent',
-        border: `${token.lineWidthBold}px solid ${token.colorPrimary}`,
+        border: `${unit(token.lineWidthBold)} solid ${token.colorPrimary}`,
         borderRadius: '50%',
         content: '""',
       },
@@ -59,19 +107,24 @@ function getDropIndicatorStyle(prefixCls: string, token: DerivativeToken) {
 }
 
 // =============================== Base ===============================
-type TreeToken = DerivativeToken & {
-  treeCls: string
-  treeNodeCls: string
-  treeNodePadding: number
-  treeTitleHeight: number
+export type TreeToken = FullToken<'Tree'> & {
+  treeCls: string;
+  treeNodeCls: string;
+  treeNodePadding: number | string;
 };
 
 export function genBaseStyle(prefixCls: string, token: TreeToken): CSSObject {
-  const { treeCls, treeNodeCls, treeNodePadding, treeTitleHeight } = token;
-
-  const treeCheckBoxMarginVertical = (treeTitleHeight - token.fontSizeLG) / 2;
-  const treeCheckBoxMarginHorizontal = token.paddingXS;
-
+  const {
+    treeCls,
+    treeNodeCls,
+    treeNodePadding,
+    titleHeight,
+    indentSize,
+    nodeSelectedBg,
+    nodeHoverBg,
+    colorTextQuaternary,
+    controlItemBgActiveDisabled,
+  } = token;
   return {
     [treeCls]: {
       ...resetComponent(token),
@@ -79,17 +132,12 @@ export function genBaseStyle(prefixCls: string, token: TreeToken): CSSObject {
       'borderRadius': token.borderRadius,
       'transition': `background-color ${token.motionDurationSlow}`,
 
-      [`&${treeCls}-rtl`]: {
-        // >>> Switcher
-        [`${treeCls}-switcher`]: {
-          '&_close': {
-            [`${treeCls}-switcher-icon`]: {
-              svg: {
-                transform: 'rotate(90deg)',
-              },
-            },
-          },
-        },
+      '&-rtl': {
+        direction: 'rtl',
+      },
+
+      [`&${treeCls}-rtl ${treeCls}-switcher_close ${treeCls}-switcher-icon svg`]: {
+        transform: 'rotate(90deg)',
       },
 
       [`&-focused:not(:hover):not(${treeCls}-active-focused)`]: {
@@ -111,79 +159,94 @@ export function genBaseStyle(prefixCls: string, token: TreeToken): CSSObject {
           },
 
           // >>> Drag
-          [`${treeNodeCls}.dragging`]: {
-            'position': 'relative',
-
-            '&:after': {
-              position: 'absolute',
-              top: 0,
-              insetInlineEnd: 0,
-              bottom: treeNodePadding,
-              insetInlineStart: 0,
-              border: `1px solid ${token.colorPrimary}`,
-              opacity: 0,
-              animationName: treeNodeFX,
-              animationDuration: token.motionDurationSlow,
-              animationPlayState: 'running',
-              animationFillMode: 'forwards',
-              content: '""',
-              pointerEvents: 'none',
-            },
+          [`${treeNodeCls}.dragging:after`]: {
+            position: 'absolute',
+            inset: 0,
+            border: `1px solid ${token.colorPrimary}`,
+            opacity: 0,
+            animationName: treeNodeFX,
+            animationDuration: token.motionDurationSlow,
+            animationPlayState: 'running',
+            animationFillMode: 'forwards',
+            content: '""',
+            pointerEvents: 'none',
+            borderRadius: token.borderRadius,
           },
         },
       },
 
       // ===================== TreeNode =====================
-      [`${treeNodeCls}`]: {
+      [treeNodeCls]: {
         'display': 'flex',
         'alignItems': 'flex-start',
-        'padding': `0 0 ${treeNodePadding}px 0`,
-        'outline': 'none',
+        'marginBottom': treeNodePadding,
+        'lineHeight': unit(titleHeight),
+        'position': 'relative',
 
-        '&-rtl': {
-          direction: 'rtl',
+        // 非常重要，避免 drop-indicator 在拖拽过程中闪烁
+        '&:before': {
+          content: '""',
+          position: 'absolute',
+          zIndex: 1,
+          insetInlineStart: 0,
+          width: '100%',
+          top: '100%',
+          height: treeNodePadding,
         },
 
         // Disabled
-        '&-disabled': {
+        [`&-disabled ${treeCls}-node-content-wrapper`]: {
+          'color': token.colorTextDisabled,
+          'cursor': 'not-allowed',
+          '&:hover': {
+            background: 'transparent',
+          },
+        },
+
+        [`${treeCls}-checkbox-disabled + ${treeCls}-node-selected,&${treeNodeCls}-disabled${treeNodeCls}-selected ${treeCls}-node-content-wrapper`]:
+          {
+            backgroundColor: controlItemBgActiveDisabled,
+          },
+
+        // we can not set pointer-events to none for checkbox in tree
+        // ref: https://github.com/ant-design/ant-design/issues/39822#issuecomment-2605234058
+        [`${treeCls}-checkbox-disabled`]: {
+          pointerEvents: 'unset',
+        },
+
+        // not disable
+        [`&:not(${treeNodeCls}-disabled)`]: {
           // >>> Title
           [`${treeCls}-node-content-wrapper`]: {
-            'color': token.colorTextDisabled,
-            'cursor': 'not-allowed',
             '&:hover': {
-              background: 'transparent',
+              color: token.nodeHoverColor,
             },
           },
         },
 
         [`&-active ${treeCls}-node-content-wrapper`]: {
-          ...genFocusOutline(token),
+          background: token.controlItemBgHover,
         },
 
         [`&:not(${treeNodeCls}-disabled).filter-node ${treeCls}-title`]: {
-          color: 'inherit',
+          color: token.colorPrimary,
           fontWeight: 500,
         },
 
         '&-draggable': {
           cursor: 'grab',
+
           [`${treeCls}-draggable-icon`]: {
-            width: treeTitleHeight,
-            lineHeight: `${treeTitleHeight}px`,
+            // https://github.com/ant-design/ant-design/issues/41915
+            flexShrink: 0,
+            width: titleHeight,
             textAlign: 'center',
             visibility: 'visible',
-            opacity: 0.2,
-            transition: `opacity ${token.motionDurationSlow}`,
-
-            [`${treeNodeCls}:hover &`]: {
-              opacity: 0.45,
-            },
+            color: colorTextQuaternary,
           },
 
-          [`&${treeNodeCls}-disabled`]: {
-            [`${treeCls}-draggable-icon`]: {
-              visibility: 'hidden',
-            },
+          [`&${treeNodeCls}-disabled ${treeCls}-draggable-icon`]: {
+            visibility: 'hidden',
           },
         },
       },
@@ -195,7 +258,7 @@ export function genBaseStyle(prefixCls: string, token: TreeToken): CSSObject {
         'userSelect': 'none',
         '&-unit': {
           display: 'inline-block',
-          width: treeTitleHeight,
+          width: indentSize,
         },
       },
 
@@ -204,29 +267,51 @@ export function genBaseStyle(prefixCls: string, token: TreeToken): CSSObject {
         visibility: 'hidden',
       },
 
+      // Switcher / Checkbox
+      [`${treeCls}-switcher, ${treeCls}-checkbox`]: {
+        marginInlineEnd: token
+          .calc(token.calc(titleHeight).sub(token.controlInteractiveSize))
+          .div(2)
+          .equal(),
+      },
+
       // >>> Switcher
       [`${treeCls}-switcher`]: {
         ...getSwitchStyle(prefixCls, token),
         'position': 'relative',
         'flex': 'none',
         'alignSelf': 'stretch',
-        'width': treeTitleHeight,
-        'margin': 0,
-        'lineHeight': `${treeTitleHeight}px`,
+        'width': titleHeight,
         'textAlign': 'center',
         'cursor': 'pointer',
         'userSelect': 'none',
+        'transition': `all ${token.motionDurationSlow}`,
 
         '&-noop': {
-          cursor: 'default',
+          cursor: 'unset',
         },
 
-        '&_close': {
-          [`${treeCls}-switcher-icon`]: {
-            svg: {
-              transform: 'rotate(-90deg)',
-            },
+        '&:before': {
+          pointerEvents: 'none',
+          content: '""',
+          width: titleHeight,
+          height: titleHeight,
+          position: 'absolute',
+          left: {
+            _skip_check_: true,
+            value: 0,
           },
+          top: 0,
+          borderRadius: token.borderRadius,
+          transition: `all ${token.motionDurationSlow}`,
+        },
+
+        [`&:not(${treeCls}-switcher-noop):hover:before`]: {
+          backgroundColor: token.colorBgTextHover,
+        },
+
+        [`&_close ${treeCls}-switcher-icon svg`]: {
+          transform: 'rotate(-90deg)',
         },
 
         '&-loading-icon': {
@@ -244,8 +329,8 @@ export function genBaseStyle(prefixCls: string, token: TreeToken): CSSObject {
           '&:before': {
             position: 'absolute',
             top: 0,
-            insetInlineEnd: treeTitleHeight / 2,
-            bottom: -treeNodePadding,
+            insetInlineEnd: token.calc(titleHeight).div(2).equal(),
+            bottom: token.calc(treeNodePadding).mul(-1).equal(),
             marginInlineStart: -1,
             borderInlineEnd: `1px solid ${token.colorBorder}`,
             content: '""',
@@ -253,50 +338,41 @@ export function genBaseStyle(prefixCls: string, token: TreeToken): CSSObject {
 
           '&:after': {
             position: 'absolute',
-            width: (treeTitleHeight / 2) * 0.8,
-            height: treeTitleHeight / 2,
+            width: token.calc(token.calc(titleHeight).div(2).equal()).mul(0.8).equal(),
+            height: token.calc(titleHeight).div(2).equal(),
             borderBottom: `1px solid ${token.colorBorder}`,
             content: '""',
           },
         },
       },
 
-      // >>> Checkbox
-      [`${treeCls}-checkbox`]: {
-        top: 'initial',
-        marginInlineEnd: treeCheckBoxMarginHorizontal,
-        marginBlockStart: treeCheckBoxMarginVertical,
-      },
-
       // >>> Title
       // add `${treeCls}-checkbox + span` to cover checkbox `${checkboxCls} + span`
-      [`${treeCls}-node-content-wrapper, ${treeCls}-checkbox + span`]: {
+      [`${treeCls}-node-content-wrapper`]: {
         'position': 'relative',
-        'zIndex': 'auto',
-        'minHeight': treeTitleHeight,
-        'margin': 0,
-        'padding': `0 ${token.paddingXS / 2}px`,
-        'color': 'inherit',
-        'lineHeight': `${treeTitleHeight}px`,
+        'minHeight': titleHeight,
+        'paddingBlock': 0,
+        'paddingInline': token.paddingXS,
         'background': 'transparent',
         'borderRadius': token.borderRadius,
         'cursor': 'pointer',
         'transition': `all ${token.motionDurationMid}, border 0s, line-height 0s, box-shadow 0s`,
+        ...getDropIndicatorStyle(prefixCls, token),
 
         '&:hover': {
-          backgroundColor: token.controlItemBgHover,
+          backgroundColor: nodeHoverBg,
         },
 
         [`&${treeCls}-node-selected`]: {
-          backgroundColor: token.controlItemBgActive,
+          color: token.nodeSelectedColor,
+          backgroundColor: nodeSelectedBg,
         },
 
         // Icon
         [`${treeCls}-iconEle`]: {
           'display': 'inline-block',
-          'width': treeTitleHeight,
-          'height': treeTitleHeight,
-          'lineHeight': `${treeTitleHeight}px`,
+          'width': titleHeight,
+          'height': titleHeight,
           'textAlign': 'center',
           'verticalAlign': 'top',
 
@@ -311,42 +387,28 @@ export function genBaseStyle(prefixCls: string, token: TreeToken): CSSObject {
         backgroundColor: 'transparent',
       },
 
-      // ==================== Draggable =====================
-      [`${treeCls}-node-content-wrapper`]: {
-        lineHeight: `${treeTitleHeight}px`,
-        userSelect: 'none',
-
-        ...getDropIndicatorStyle(prefixCls, token),
-      },
-
-      [`${treeNodeCls}.drop-container`]: {
-        '> [draggable]': {
-          boxShadow: `0 0 0 2px ${token.colorPrimary}`,
-        },
+      [`${treeNodeCls}.drop-container > [draggable]`]: {
+        boxShadow: `0 0 0 2px ${token.colorPrimary}`,
       },
 
       // ==================== Show Line =====================
       '&-show-line': {
         // ================ Indent lines ================
-        [`${treeCls}-indent`]: {
-          '&-unit': {
-            'position': 'relative',
-            'height': '100%',
+        [`${treeCls}-indent-unit`]: {
+          'position': 'relative',
+          'height': '100%',
 
-            '&:before': {
-              position: 'absolute',
-              top: 0,
-              insetInlineEnd: treeTitleHeight / 2,
-              bottom: -treeNodePadding,
-              borderInlineEnd: `1px solid ${token.colorBorder}`,
-              content: '""',
-            },
+          '&:before': {
+            position: 'absolute',
+            top: 0,
+            insetInlineEnd: token.calc(titleHeight).div(2).equal(),
+            bottom: token.calc(treeNodePadding).mul(-1).equal(),
+            borderInlineEnd: `1px solid ${token.colorBorder}`,
+            content: '""',
+          },
 
-            '&-end': {
-              '&:before': {
-                display: 'none',
-              },
-            },
+          '&-end:before': {
+            display: 'none',
           },
         },
 
@@ -361,112 +423,26 @@ export function genBaseStyle(prefixCls: string, token: TreeToken): CSSObject {
         },
       },
 
-      [`${treeNodeCls}-leaf-last`]: {
-        [`${treeCls}-switcher`]: {
-          '&-leaf-line': {
-            '&:before': {
-              top: 'auto !important',
-              bottom: 'auto !important',
-              height: `${treeTitleHeight / 2}px !important`,
-            },
-          },
-        },
-      },
-    },
-  };
-}
-
-// ============================ Directory =============================
-export function genDirectoryStyle(token: TreeToken): CSSObject {
-  const { treeCls, treeNodeCls, treeNodePadding } = token;
-
-  return {
-    [`${treeCls}${treeCls}-directory`]: {
-      // ================== TreeNode ==================
-      [treeNodeCls]: {
-        'position': 'relative',
-
-        // Hover color
-        '&:before': {
-          position: 'absolute',
-          top: 0,
-          insetInlineEnd: 0,
-          bottom: treeNodePadding,
-          insetInlineStart: 0,
-          transition: `background-color ${token.motionDurationMid}`,
-          content: '""',
-          pointerEvents: 'none',
-        },
-
-        '&:hover': {
-          '&:before': {
-            background: token.controlItemBgHover,
-          },
-        },
-
-        // Elements
-        '> *': {
-          zIndex: 1,
-        },
-
-        // >>> Switcher
-        [`${treeCls}-switcher`]: {
-          transition: `color ${token.motionDurationMid}`,
-        },
-
-        // >>> Title
-        [`${treeCls}-node-content-wrapper`]: {
-          'borderRadius': 0,
-          'userSelect': 'none',
-
-          '&:hover': {
-            background: 'transparent',
-          },
-
-          [`&${treeCls}-node-selected`]: {
-            color: token.colorTextLightSolid,
-            background: 'transparent',
-          },
-        },
-
-        // ============= Selected =============
-        '&-selected': {
-          [`
-            &:hover::before,
-            &::before
-          `]: {
-            background: token.colorPrimary,
-          },
-
-          // >>> Switcher
-          [`${treeCls}-switcher`]: {
-            color: token.colorTextLightSolid,
-          },
-
-          // >>> Title
-          [`${treeCls}-node-content-wrapper`]: {
-            color: token.colorTextLightSolid,
-            background: 'transparent',
-          },
-        },
+      [`${treeNodeCls}-leaf-last ${treeCls}-switcher-leaf-line:before`]: {
+        top: 'auto !important',
+        bottom: 'auto !important',
+        height: `${unit(token.calc(titleHeight).div(2).equal())} !important`,
       },
     },
   };
 }
 
 // ============================== Merged ==============================
-export function genTreeStyle(prefixCls: string, token: DerivativeToken): CSSInterpolation {
+export function genTreeStyle(prefixCls: string, token: AliasToken & TreeSharedToken & CSSUtil): CSSInterpolation {
   const treeCls = `.${prefixCls}`;
   const treeNodeCls = `${treeCls}-treenode`;
 
-  const treeNodePadding = token.paddingXS / 2;
-  const treeTitleHeight = token.controlHeightSM;
+  const treeNodePadding = token.calc(token.paddingXS).div(2).equal();
 
   const treeToken = mergeToken<TreeToken>(token, {
     treeCls,
     treeNodeCls,
     treeNodePadding,
-    treeTitleHeight,
   });
 
   return [
@@ -477,11 +453,38 @@ export function genTreeStyle(prefixCls: string, token: DerivativeToken): CSSInte
   ];
 }
 
-// ============================== Export ==============================
-export default genComponentStyleHook('Tree', (token, { prefixCls }) => [
-  {
-    [token.componentCls]: getCheckboxStyle(`${prefixCls}-checkbox`, token),
-  },
-  genTreeStyle(prefixCls, token),
-  genCollapseMotion(token),
-]);
+export function initComponentToken(token: AliasToken): TreeSharedToken {
+  const { controlHeightSM, controlItemBgHover, controlItemBgActive } = token;
+  const titleHeight = controlHeightSM;
+
+  return {
+    titleHeight,
+    indentSize: titleHeight,
+    nodeHoverBg: controlItemBgHover,
+    nodeHoverColor: token.colorText,
+    nodeSelectedBg: controlItemBgActive,
+    nodeSelectedColor: token.colorText,
+  };
+}
+
+export const prepareComponentToken: GetDefaultToken<'Tree'> = (token) => {
+  const { colorTextLightSolid, colorPrimary } = token;
+
+  return {
+    ...initComponentToken(token),
+    directoryNodeSelectedColor: colorTextLightSolid,
+    directoryNodeSelectedBg: colorPrimary,
+  };
+};
+
+export default genStyleHooks(
+  'Tree',
+  (token, { prefixCls }) => [
+    {
+      [token.componentCls]: getCheckboxStyle(`${prefixCls}-checkbox`, token),
+    },
+    genTreeStyle(prefixCls, token),
+    genCollapseMotion(token),
+  ],
+  prepareComponentToken,
+);

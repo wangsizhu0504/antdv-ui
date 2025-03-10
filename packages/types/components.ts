@@ -5,7 +5,7 @@ export type ValidateStatus = '' | 'success' | 'warning' | 'error' | 'validating'
 export type SelectCommonPlacement = 'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight';
 
 export type SizeType = 'small' | 'middle' | 'large' | undefined;
-export type Breakpoint = 'xxxl' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+export type Breakpoint = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 export type BreakpointMap = Record<Breakpoint, string>;
 export type ScreenMap = Partial<Record<Breakpoint, boolean>>;
 export type ScreenSizeMap = Partial<Record<Breakpoint, number>>;

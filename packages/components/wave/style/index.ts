@@ -1,9 +1,10 @@
-import type { FullToken, GenerateStyle } from '../../theme';
-import { genComponentStyleHook } from '../../theme';
+import type { FullToken, GenerateStyle } from '../../theme/internal';
+import { genComponentStyleHook } from '../../theme/internal';
 
+// biome-ignore lint/suspicious/noEmptyInterface: ComponentToken need to be empty by default
 export interface ComponentToken {}
 
-export type WaveToken = FullToken<'Wave'>;
+export interface WaveToken extends FullToken<'Wave'> {}
 
 const genWaveStyle: GenerateStyle<WaveToken> = (token) => {
   const { componentCls, colorPrimary } = token;
@@ -15,7 +16,7 @@ const genWaveStyle: GenerateStyle<WaveToken> = (token) => {
       'boxSizing': 'border-box',
       'color': `var(--wave-color, ${colorPrimary})`,
 
-      'boxShadow': '0 0 0 0 currentcolor',
+      'boxShadow': `0 0 0 0 currentcolor`,
       'opacity': 0.2,
 
       // =================== Motion ===================
@@ -26,8 +27,14 @@ const genWaveStyle: GenerateStyle<WaveToken> = (token) => {
         ].join(','),
 
         '&-active': {
-          boxShadow: '0 0 0 6px currentcolor',
+          boxShadow: `0 0 0 6px currentcolor`,
           opacity: 0,
+        },
+        '&.wave-quick': {
+          transition: [
+            `box-shadow ${token.motionDurationSlow} ${token.motionEaseInOut}`,
+            `opacity ${token.motionDurationSlow} ${token.motionEaseInOut}`,
+          ].join(','),
         },
       },
     },

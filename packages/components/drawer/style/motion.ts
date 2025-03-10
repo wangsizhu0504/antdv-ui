@@ -1,132 +1,86 @@
+import type { CSSProperties } from 'vue';
 import type { DrawerToken } from '.';
-import type { GenerateStyle } from '../../theme';
+import type { GenerateStyle } from '../../theme/internal';
 
-const genMotionStyle: GenerateStyle<DrawerToken> = (token: DrawerToken) => {
-  const { componentCls, motionDurationSlow } = token;
+type Direction = 'left' | 'right' | 'top' | 'bottom';
 
-  const sharedPanelMotion = {
+function getMoveTranslate(direction: Direction) {
+  const value = '100%';
+  return {
+    left: `translateX(-${value})`,
+    right: `translateX(${value})`,
+    top: `translateY(-${value})`,
+    bottom: `translateY(${value})`,
+  }[direction];
+}
+
+function getEnterLeaveStyle(
+  startStyle: CSSProperties,
+  endStyle: CSSProperties,
+) {
+  return {
+    '&-enter, &-appear': {
+      ...startStyle,
+      '&-active': endStyle,
+    },
+    '&-leave': {
+      ...endStyle,
+      '&-active': startStyle,
+    },
+  };
+}
+
+function getFadeStyle(from: number, duration: string) {
+  return {
     '&-enter, &-appear, &-leave': {
       '&-start': {
         transition: 'none',
       },
-
       '&-active': {
-        transition: `all ${motionDurationSlow}`,
+        transition: `all ${duration}`,
       },
     },
+    ...getEnterLeaveStyle(
+      {
+        opacity: from,
+      },
+      {
+        opacity: 1,
+      },
+    ),
   };
+}
+
+function getPanelMotionStyles(direction: Direction, duration: string) {
+  return [
+    getFadeStyle(0.7, duration),
+    getEnterLeaveStyle(
+      {
+        transform: getMoveTranslate(direction),
+      },
+      {
+        transform: 'none',
+      },
+    ),
+  ];
+}
+
+const genMotionStyle: GenerateStyle<DrawerToken> = (token) => {
+  const { componentCls, motionDurationSlow } = token;
 
   return {
     [componentCls]: {
       // ======================== Mask ========================
-      [`${componentCls}-mask-motion`]: {
-        '&-enter, &-appear, &-leave': {
-          '&-active': {
-            transition: `all ${motionDurationSlow}`,
-          },
-        },
-
-        '&-enter, &-appear': {
-          'opacity': 0,
-          '&-active': {
-            opacity: 1,
-          },
-        },
-
-        '&-leave': {
-          'opacity': 1,
-          '&-active': {
-            opacity: 0,
-          },
-        },
-      },
+      [`${componentCls}-mask-motion`]: getFadeStyle(0, motionDurationSlow),
 
       // ======================= Panel ========================
-      [`${componentCls}-panel-motion`]: {
-        // Left
-        '&-left': [
-          sharedPanelMotion,
-          {
-            '&-enter, &-appear': {
-              '&-start': {
-                transform: 'translateX(-100%) !important',
-              },
-              '&-active': {
-                transform: 'translateX(0)',
-              },
-            },
-            '&-leave': {
-              'transform': 'translateX(0)',
-              '&-active': {
-                transform: 'translateX(-100%)',
-              },
-            },
-          },
-        ],
-
-        // Right
-        '&-right': [
-          sharedPanelMotion,
-          {
-            '&-enter, &-appear': {
-              '&-start': {
-                transform: 'translateX(100%) !important',
-              },
-              '&-active': {
-                transform: 'translateX(0)',
-              },
-            },
-            '&-leave': {
-              'transform': 'translateX(0)',
-              '&-active': {
-                transform: 'translateX(100%)',
-              },
-            },
-          },
-        ],
-
-        // Top
-        '&-top': [
-          sharedPanelMotion,
-          {
-            '&-enter, &-appear': {
-              '&-start': {
-                transform: 'translateY(-100%) !important',
-              },
-              '&-active': {
-                transform: 'translateY(0)',
-              },
-            },
-            '&-leave': {
-              'transform': 'translateY(0)',
-              '&-active': {
-                transform: 'translateY(-100%)',
-              },
-            },
-          },
-        ],
-
-        // Bottom
-        '&-bottom': [
-          sharedPanelMotion,
-          {
-            '&-enter, &-appear': {
-              '&-start': {
-                transform: 'translateY(100%) !important',
-              },
-              '&-active': {
-                transform: 'translateY(0)',
-              },
-            },
-            '&-leave': {
-              'transform': 'translateY(0)',
-              '&-active': {
-                transform: 'translateY(100%)',
-              },
-            },
-          },
-        ],
-      },
+      [`${componentCls}-panel-motion`]: ['left', 'right', 'top', 'bottom'].reduce(
+        (obj, direction) => ({
+          ...obj,
+          [`&-${direction}`]: getPanelMotionStyles(direction as Direction, motionDurationSlow),
+        }),
+        {},
+      ),
     },
   };
 };

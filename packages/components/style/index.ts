@@ -1,8 +1,8 @@
 import type { CSSObject } from '@antdv/cssinjs';
-import type { DerivativeToken } from '../theme';
+import type { Ref } from 'vue';
 
-export { operationUnit } from './operationUnit';
-export { roundedArrow } from './roundedArrow';
+import type { AliasToken } from '../theme/internal';
+import { unit } from '@antdv/cssinjs';
 
 export const textEllipsis: CSSObject = {
   overflow: 'hidden',
@@ -10,7 +10,7 @@ export const textEllipsis: CSSObject = {
   textOverflow: 'ellipsis',
 };
 
-export function resetComponent(token: DerivativeToken): CSSObject {
+export function resetComponent(token: AliasToken, needInheritFontFamily = false): CSSObject {
   return {
     boxSizing: 'border-box',
     margin: 0,
@@ -21,7 +21,7 @@ export function resetComponent(token: DerivativeToken): CSSObject {
     lineHeight: token.lineHeight,
     listStyle: 'none',
     // font-feature-settings: @font-feature-settings-base;
-    fontFamily: token.fontFamily,
+    fontFamily: needInheritFontFamily ? 'inherit' : token.fontFamily,
   };
 }
 
@@ -67,7 +67,7 @@ export function clearFix(): CSSObject {
   };
 }
 
-export function genLinkStyle(token: DerivativeToken): CSSObject {
+export function genLinkStyle(token: AliasToken): CSSObject {
   return {
     a: {
       'color': token.colorLink,
@@ -86,8 +86,7 @@ export function genLinkStyle(token: DerivativeToken): CSSObject {
         color: token.colorLinkActive,
       },
 
-      [`&:active,
-  &:hover`]: {
+      '&:active, &:hover': {
         textDecoration: token.linkHoverDecoration,
         outline: 0,
       },
@@ -106,55 +105,86 @@ export function genLinkStyle(token: DerivativeToken): CSSObject {
   };
 }
 
-export function genCommonStyle(token: DerivativeToken, componentPrefixCls: string): CSSObject {
-  const { fontFamily, fontSize } = token;
+export function genCommonStyle(token: AliasToken, componentPrefixCls: string, rootCls?: string, resetFont?: boolean): CSSObject {
+  const prefixSelector = `[class^="${componentPrefixCls}"], [class*=" ${componentPrefixCls}"]`;
+  const rootPrefixSelector = rootCls ? `.${rootCls}` : prefixSelector;
 
-  const rootPrefixSelector = `[class^="${componentPrefixCls}"], [class*=" ${componentPrefixCls}"]`;
+  const resetStyle: CSSObject = {
+    'boxSizing': 'border-box',
+
+    '&::before, &::after': {
+      boxSizing: 'border-box',
+    },
+  };
+
+  let resetFontStyle: CSSObject = {};
+
+  if (resetFont !== false) {
+    resetFontStyle = {
+      fontFamily: token.fontFamily,
+      fontSize: token.fontSize,
+    };
+  }
 
   return {
     [rootPrefixSelector]: {
-      fontFamily,
-      fontSize,
-      'boxSizing': 'border-box',
+      ...resetFontStyle,
+      ...resetStyle,
 
-      '&::before, &::after': {
-        boxSizing: 'border-box',
-      },
-
-      [rootPrefixSelector]: {
-        'boxSizing': 'border-box',
-
-        '&::before, &::after': {
-          boxSizing: 'border-box',
-        },
-      },
+      [prefixSelector]: resetStyle,
     },
   };
 }
 
-export function genFocusOutline(token: DerivativeToken): CSSObject {
+export function genFocusOutline(token: AliasToken, offset?: number): CSSObject {
   return {
-    outline: `${token.lineWidthBold}px solid ${token.colorPrimaryBorder}`,
-    outlineOffset: 1,
+    outline: `${unit(token.lineWidthFocus)} solid ${token.colorPrimaryBorder}`,
+    outlineOffset: offset ?? 1,
     transition: 'outline-offset 0s, outline 0s',
   };
 }
 
-export function genFocusStyle(token: DerivativeToken): CSSObject {
+export function genFocusStyle(token: AliasToken, offset?: number): CSSObject {
   return {
     '&:focus-visible': {
-      ...genFocusOutline(token),
+      ...genFocusOutline(token, offset),
     },
   };
 }
 
-export function genIconStyle(iconPrefixCls: string): CSSObject {
+export function genIconStyle(iconPrefixCls: Ref<string>): CSSObject {
   return {
-    [`.${iconPrefixCls}`]: {
+    [`.${iconPrefixCls.value}`]: {
       ...resetIcon(),
-      [`.${iconPrefixCls} .${iconPrefixCls}-icon`]: {
+      [`.${iconPrefixCls.value} .${iconPrefixCls.value}-icon`]: {
         display: 'block',
       },
+    },
+  };
+}
+
+export function operationUnit(token: AliasToken): CSSObject {
+  return {
+  // FIXME: This use link but is a operation unit. Seems should be a colorPrimary.
+  // And Typography use this to generate link style which should not do this.
+    'color': token.colorLink,
+    'textDecoration': token.linkDecoration,
+    'outline': 'none',
+    'cursor': 'pointer',
+    'transition': `all ${token.motionDurationSlow}`,
+    'border': 0,
+    'padding': 0,
+    'background': 'none',
+    'userSelect': 'none',
+
+    ...genFocusStyle(token),
+
+    '&:focus, &:hover': {
+      color: token.colorLinkHover,
+    },
+
+    '&:active': {
+      color: token.colorLinkActive,
     },
   };
 }

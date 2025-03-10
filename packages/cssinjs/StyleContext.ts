@@ -80,6 +80,8 @@ export interface StyleContextProps {
    * Please note that `linters` do not support dynamic update.
    */
   linters?: Linter[]
+  /** Wrap css in a layer to avoid global style conflict */
+  layer?: boolean;
 }
 
 const StyleContextKey: InjectionKey<ShallowRef<Partial<StyleContextProps>>>
@@ -170,6 +172,8 @@ export interface StyleProviderProps {
    * Please note that `linters` do not support dynamic update.
    */
   linters?: Linter[]
+  /** Wrap css in a layer to avoid global style conflict */
+  layer?: boolean;
 }
 export const StyleProvider = withInstall(defineComponent({
   name: 'AStyleProvider',

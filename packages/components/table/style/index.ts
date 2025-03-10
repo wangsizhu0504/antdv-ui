@@ -1,8 +1,8 @@
 import type { CSSObject } from '@antdv/cssinjs';
-import type { FullToken, GenerateStyle } from '../../theme';
+import type { FullToken, GenerateStyle } from '../../theme/interface';
 import { TinyColor } from '@ctrl/tinycolor';
 import { clearFix, resetComponent } from '../../style';
-import { genComponentStyleHook, mergeToken } from '../../theme';
+import { genStyleHooks, mergeToken } from '../../theme/internal';
 import genBorderedStyle from './bordered';
 import genEllipsisStyle from './ellipsis';
 import genEmptyStyle from './empty';
@@ -259,7 +259,7 @@ const genTableStyle: GenerateStyle<TableToken, CSSObject> = (token) => {
 };
 
 // ============================== Export ==============================
-export default genComponentStyleHook('Table', (token) => {
+export default genStyleHooks('Table', (token) => {
   const {
     controlItemBgActive,
     controlItemBgActiveHover,

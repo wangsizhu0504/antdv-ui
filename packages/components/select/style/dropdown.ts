@@ -1,6 +1,7 @@
 import type { CSSObject } from '@antdv/cssinjs';
-import type { SelectToken } from '.';
-import type { GenerateStyle } from '../../theme';
+
+import type { GenerateStyle } from '../../theme/internal';
+import type { SelectToken } from './token';
 import { resetComponent, textEllipsis } from '../../style';
 import {
   initMoveMotion,
@@ -12,19 +13,17 @@ import {
 } from '../../style/motion';
 
 const genItemStyle: GenerateStyle<SelectToken, CSSObject> = (token) => {
-  const { controlPaddingHorizontal } = token;
+  const { optionHeight, optionFontSize, optionLineHeight, optionPadding } = token;
 
   return {
     position: 'relative',
     display: 'block',
-    minHeight: token.controlHeight,
-    padding: `${
-      (token.controlHeight - token.fontSize * token.lineHeight) / 2
-    }px ${controlPaddingHorizontal}px`,
+    minHeight: optionHeight,
+    padding: optionPadding,
     color: token.colorText,
     fontWeight: 'normal',
-    fontSize: token.fontSize,
-    lineHeight: token.lineHeight,
+    fontSize: optionFontSize,
+    lineHeight: optionLineHeight,
     boxSizing: 'border-box',
   };
 };
@@ -33,6 +32,13 @@ const genSingleStyle: GenerateStyle<SelectToken> = (token) => {
   const { antCls, componentCls } = token;
 
   const selectItemCls = `${componentCls}-item`;
+
+  const slideUpEnterActive = `&${antCls}-slide-up-enter${antCls}-slide-up-enter-active`;
+  const slideUpAppearActive = `&${antCls}-slide-up-appear${antCls}-slide-up-appear-active`;
+  const slideUpLeaveActive = `&${antCls}-slide-up-leave${antCls}-slide-up-leave-active`;
+
+  const dropdownPlacementCls = `${componentCls}-dropdown-placement-`;
+  const selectedItemCls = `${selectItemCls}-option-selected`;
 
   return [
     {
@@ -57,44 +63,37 @@ const genSingleStyle: GenerateStyle<SelectToken> = (token) => {
         'boxShadow': token.boxShadowSecondary,
 
         [`
-            &${antCls}-slide-up-enter${antCls}-slide-up-enter-active${componentCls}-dropdown-placement-bottomLeft,
-            &${antCls}-slide-up-appear${antCls}-slide-up-appear-active${componentCls}-dropdown-placement-bottomLeft
-          `]: {
+          ${slideUpEnterActive}${dropdownPlacementCls}bottomLeft,
+          ${slideUpAppearActive}${dropdownPlacementCls}bottomLeft
+        `]: {
           animationName: slideUpIn,
         },
 
         [`
-            &${antCls}-slide-up-enter${antCls}-slide-up-enter-active${componentCls}-dropdown-placement-topLeft,
-            &${antCls}-slide-up-appear${antCls}-slide-up-appear-active${componentCls}-dropdown-placement-topLeft
-          `]: {
+          ${slideUpEnterActive}${dropdownPlacementCls}topLeft,
+          ${slideUpAppearActive}${dropdownPlacementCls}topLeft,
+          ${slideUpEnterActive}${dropdownPlacementCls}topRight,
+          ${slideUpAppearActive}${dropdownPlacementCls}topRight
+        `]: {
           animationName: slideDownIn,
         },
 
-        [`&${antCls}-slide-up-leave${antCls}-slide-up-leave-active${componentCls}-dropdown-placement-bottomLeft`]:
-          {
-            animationName: slideUpOut,
-          },
+        [`${slideUpLeaveActive}${dropdownPlacementCls}bottomLeft`]: {
+          animationName: slideUpOut,
+        },
 
-        [`&${antCls}-slide-up-leave${antCls}-slide-up-leave-active${componentCls}-dropdown-placement-topLeft`]:
-          {
-            animationName: slideDownOut,
-          },
+        [`
+          ${slideUpLeaveActive}${dropdownPlacementCls}topLeft,
+          ${slideUpLeaveActive}${dropdownPlacementCls}topRight
+        `]: {
+          animationName: slideDownOut,
+        },
 
         '&-hidden': {
           display: 'none',
         },
 
-        '&-empty': {
-          color: token.colorTextDisabled,
-        },
-
-        // ========================= Options =========================
-        [`${selectItemCls}-empty`]: {
-          ...genItemStyle(token),
-          color: token.colorTextDisabled,
-        },
-
-        [`${selectItemCls}`]: {
+        [selectItemCls]: {
           ...genItemStyle(token),
           'cursor': 'pointer',
           'transition': `background ${token.motionDurationSlow} ease`,
@@ -118,21 +117,24 @@ const genSingleStyle: GenerateStyle<SelectToken> = (token) => {
 
             '&-state': {
               flex: 'none',
+              display: 'flex',
+              alignItems: 'center',
             },
 
             [`&-active:not(${selectItemCls}-option-disabled)`]: {
-              backgroundColor: token.controlItemBgHover,
+              backgroundColor: token.optionActiveBg,
             },
 
             [`&-selected:not(${selectItemCls}-option-disabled)`]: {
-              color: token.colorText,
-              fontWeight: token.fontWeightStrong,
-              backgroundColor: token.controlItemBgActive,
+              color: token.optionSelectedColor,
+              fontWeight: token.optionSelectedFontWeight,
+              backgroundColor: token.optionSelectedBg,
 
               [`${selectItemCls}-option-state`]: {
                 color: token.colorPrimary,
               },
             },
+
             '&-disabled': {
               [`&${selectItemCls}-option-selected`]: {
                 backgroundColor: token.colorBgContainerDisabled,
@@ -143,8 +145,24 @@ const genSingleStyle: GenerateStyle<SelectToken> = (token) => {
             },
 
             '&-grouped': {
-              paddingInlineStart: token.controlPaddingHorizontal * 2,
+              paddingInlineStart: token.calc(token.controlPaddingHorizontal).mul(2).equal(),
             },
+          },
+
+          '&-empty': {
+            ...genItemStyle(token),
+            color: token.colorTextDisabled,
+          },
+        },
+
+        // https://github.com/ant-design/ant-design/pull/46646
+        [`${selectedItemCls}:has(+ ${selectedItemCls})`]: {
+          borderEndStartRadius: 0,
+          borderEndEndRadius: 0,
+
+          [`& + ${selectedItemCls}`]: {
+            borderStartStartRadius: 0,
+            borderStartEndRadius: 0,
           },
         },
 

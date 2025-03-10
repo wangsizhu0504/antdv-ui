@@ -12,7 +12,10 @@ type ThemeCacheMap = Map<
 
 type DerivativeOptions = Array<DerivativeFunc<any, any>>;
 
-export function sameDerivativeOption(left: DerivativeOptions, right: DerivativeOptions) {
+export function sameDerivativeOption(
+  left: DerivativeOptions,
+  right: DerivativeOptions,
+) {
   if (left.length !== right.length)
     return false;
 
@@ -47,10 +50,11 @@ export default class ThemeCache {
   ): [Theme<any, any>, number] | undefined {
     let cache: ReturnType<ThemeCacheMap['get']> = { map: this.cache };
     derivativeOption.forEach((derivative) => {
-      if (!cache)
+      if (!cache) {
         cache = undefined;
-      else
+      } else {
         cache = cache?.map?.get(derivative);
+      }
     });
     if (cache?.value && updateCallTimes)
       cache.value[1] = this.cacheCallTimes++;
@@ -66,7 +70,10 @@ export default class ThemeCache {
     return !!this.internalGet(derivativeOption);
   }
 
-  public set(derivativeOption: DerivativeOptions, value: Theme<any, any>): void {
+  public set(
+    derivativeOption: DerivativeOptions,
+    value: Theme<any, any>,
+  ): void {
     // New cache
     if (!this.has(derivativeOption)) {
       if (this.size() + 1 > ThemeCache.MAX_CACHE_SIZE + ThemeCache.MAX_CACHE_OFFSET) {
@@ -89,10 +96,11 @@ export default class ThemeCache {
         cache.set(derivative, { value: [value, this.cacheCallTimes++] });
       } else {
         const cacheValue = cache.get(derivative);
-        if (!cacheValue)
+        if (!cacheValue) {
           cache.set(derivative, { map: new Map() });
-        else if (!cacheValue.map)
+        } else if (!cacheValue.map) {
           cacheValue.map = new Map();
+        }
 
         cache = cache.get(derivative)!.map!;
       }
@@ -105,10 +113,11 @@ export default class ThemeCache {
   ): Theme<any, any> | undefined {
     const cache = currentCache.get(derivatives[0])!;
     if (derivatives.length === 1) {
-      if (!cache.map)
+      if (!cache.map) {
         currentCache.delete(derivatives[0]);
-      else
+      } else {
         currentCache.set(derivatives[0], { map: cache.map });
+      }
 
       return cache.value?.[0];
     }

@@ -1,5 +1,5 @@
 import type { CSSObject } from '@antdv/cssinjs';
-import type { GenerateStyle } from '../../theme';
+import type { GenerateStyle } from '../../theme/interface';
 import type { TableToken } from './index';
 
 // ========================= Placeholder ==========================

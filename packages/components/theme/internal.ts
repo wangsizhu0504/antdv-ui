@@ -1,105 +1,58 @@
-import type { Theme } from '@antdv/cssinjs';
+import type {
+  AliasToken,
+  FullToken,
+  GenerateStyle,
+  GenStyleFn,
+  GetDefaultToken,
+  GlobalToken,
+  OverrideComponent,
+  PresetColorKey,
+  PresetColorType,
+  SeedToken,
+  UseComponentStyleResult,
+} from './interface';
+import { genCalc as calc, useStyleRegister } from '@antdv/cssinjs';
 
-import type { ComputedRef, InjectionKey } from 'vue';
-import type { AliasToken, GlobalToken, MapToken, OverrideToken, SeedToken } from './interface';
-import { createTheme, useCacheToken } from '@antdv/cssinjs';
-import { objectType } from '@antdv/utils';
-import { version } from '@antdv/version';
+import { mergeToken, statistic, statisticToken } from '@antdv/cssinjs-utils';
+import { PresetColors } from './interface';
+import { getLineHeight } from './themes/shared/genFontSizes';
+import useToken from './useToken';
+import genPresetColor from './util/genPresetColor';
+import { genComponentStyleHook, genStyleHooks, genSubStyleComponent } from './util/genStyleUtils';
+import useResetIconStyle from './util/useResetIconStyle';
 
-import {
-  computed,
-  defineComponent,
-  inject,
-  provide,
-  shallowRef,
-  triggerRef,
-  unref,
-  watch,
-} from 'vue';
-import defaultDerivative from './themes/default';
-import defaultSeedToken from './themes/seed';
-import formatToken from './util/alias';
+export { defaultConfig, useDesignTokenInject, useDesignTokenProvider } from './context';
 
-const defaultTheme = createTheme(defaultDerivative);
-
-// ================================ Context =================================
-// To ensure snapshot stable. We disable hashed in test env.
-export const defaultConfig = {
-  token: defaultSeedToken,
-  hashed: true,
+export type { CSSUtil, TokenWithCommonCls } from '@antdv/cssinjs-utils';
+export {
+  calc,
+  // generators
+  genComponentStyleHook,
+  genPresetColor,
+  genStyleHooks,
+  genSubStyleComponent,
+  getLineHeight,
+  // utils
+  mergeToken,
+  // constant
+  PresetColors,
+  statistic,
+  statisticToken,
+  // hooks
+  useResetIconStyle,
+  useStyleRegister,
+  useToken,
 };
-
-export interface DesignTokenContext {
-  token: Partial<AliasToken>
-  theme?: Theme<SeedToken, MapToken>
-  components?: OverrideToken
-  hashed?: string | boolean
-}
-// defaultConfig
-const DesignTokenContextKey: InjectionKey<ComputedRef<DesignTokenContext>> = Symbol('DesignTokenContext');
-
-export const globalDesignTokenApi = shallowRef<DesignTokenContext>();
-
-export function useDesignTokenProvider(value: ComputedRef<DesignTokenContext>) {
-  provide(DesignTokenContextKey, value);
-  watch(
-    value,
-    () => {
-      globalDesignTokenApi.value = unref(value);
-      triggerRef(globalDesignTokenApi);
-    },
-    { immediate: true, deep: true },
-  );
-}
-
-export function useDesignTokenInject() {
-  return inject(
-    DesignTokenContextKey,
-    computed(() => globalDesignTokenApi.value || defaultConfig),
-  );
-}
-export const DesignTokenProvider = defineComponent({
-  props: {
-    value: objectType<DesignTokenContext>(),
-  },
-  setup(props, { slots }) {
-    useDesignTokenProvider(computed(() => props.value));
-    return () => {
-      return slots.default?.();
-    };
-  },
-});
-// ================================== Hook ==================================
-export function useToken(): [
-  ComputedRef<Theme<SeedToken, MapToken>>,
-  ComputedRef<GlobalToken>,
-  ComputedRef<string>,
-] {
-  const designTokenContext = inject<ComputedRef<DesignTokenContext>>(
-    DesignTokenContextKey,
-    computed(() => globalDesignTokenApi.value || defaultConfig),
-  );
-
-  const salt = computed(() => `${version}-${designTokenContext.value.hashed || ''}`);
-
-  const mergedTheme = computed(() => designTokenContext.value.theme || defaultTheme);
-
-  const cacheToken = useCacheToken<GlobalToken, SeedToken>(
-    mergedTheme,
-    computed(() => [defaultSeedToken, designTokenContext.value.token]),
-    computed(() => ({
-      salt: salt.value,
-      override: {
-        override: designTokenContext.value.token,
-        ...designTokenContext.value.components,
-      },
-      formatToken,
-    })),
-  );
-
-  return [
-    mergedTheme,
-    computed(() => cacheToken.value[0]),
-    computed(() => (designTokenContext.value.hashed ? cacheToken.value[1] : '')),
-  ];
-}
+export type {
+  AliasToken,
+  FullToken,
+  GenerateStyle,
+  GenStyleFn,
+  GetDefaultToken,
+  GlobalToken,
+  OverrideComponent,
+  PresetColorKey,
+  PresetColorType,
+  SeedToken,
+  UseComponentStyleResult,
+};

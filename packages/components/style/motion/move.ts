@@ -1,6 +1,6 @@
 import type { CSSInterpolation } from '@antdv/cssinjs';
-import type { AliasToken } from '../../theme';
-import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook';
+import type { AliasToken, TokenWithCommonCls } from '../../theme/internal';
+
 import { Keyframes } from '@antdv/cssinjs';
 import { initMotion } from './motion';
 
@@ -117,7 +117,7 @@ export const moveUpOut = new Keyframes('antMoveUpOut', {
 });
 
 type MoveMotionTypes = 'move-up' | 'move-down' | 'move-left' | 'move-right';
-const moveMotion: Record<MoveMotionTypes, { inKeyframes: Keyframes, outKeyframes: Keyframes }> = {
+const moveMotion: Record<MoveMotionTypes, { inKeyframes: Keyframes; outKeyframes: Keyframes }> = {
   'move-up': {
     inKeyframes: moveUpIn,
     outKeyframes: moveUpOut,

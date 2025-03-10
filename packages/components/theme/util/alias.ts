@@ -1,5 +1,6 @@
 import type { AliasToken, MapToken, OverrideToken, SeedToken } from '../interface';
-import { TinyColor } from '@ctrl/tinycolor';
+
+import { FastColor } from '@ant-design/fast-color';
 import seedToken from '../themes/seed';
 import getAlphaColor from './getAlphaColor';
 
@@ -30,15 +31,18 @@ export default function formatToken(derivativeToken: RawMergedToken): AliasToken
   const screenLG = 992;
   const screenXL = 1200;
   const screenXXL = 1600;
-  const screenXXXL = 2000;
+
+  // Motion
+  if (mergedToken.motion === false) {
+    const fastDuration = '0s';
+    mergedToken.motionDurationFast = fastDuration;
+    mergedToken.motionDurationMid = fastDuration;
+    mergedToken.motionDurationSlow = fastDuration;
+  }
 
   // Generate alias token
   const aliasToken: AliasToken = {
     ...mergedToken,
-
-    colorLink: mergedToken.colorInfoText,
-    colorLinkHover: mergedToken.colorInfoHover,
-    colorLinkActive: mergedToken.colorInfoActive,
 
     // ============== Background ============== //
     colorFillContent: mergedToken.colorFillSecondary,
@@ -66,10 +70,12 @@ export default function formatToken(derivativeToken: RawMergedToken): AliasToken
 
     colorErrorOutline: getAlphaColor(mergedToken.colorErrorBg, mergedToken.colorBgContainer),
     colorWarningOutline: getAlphaColor(mergedToken.colorWarningBg, mergedToken.colorBgContainer),
-    colorSuccessOutline: getAlphaColor(mergedToken.colorSuccessBg, mergedToken.colorBgContainer),
 
     // Font
     fontSizeIcon: mergedToken.fontSizeSM,
+
+    // Line
+    lineWidthFocus: mergedToken.lineWidth * 3,
 
     // Control
     lineWidth: mergedToken.lineWidth,
@@ -126,9 +132,9 @@ export default function formatToken(derivativeToken: RawMergedToken): AliasToken
     marginXXL: mergedToken.sizeXXL,
 
     boxShadow: `
-      0 1px 2px 0 rgba(0, 0, 0, 0.03),
-      0 1px 6px -1px rgba(0, 0, 0, 0.02),
-      0 2px 4px 0 rgba(0, 0, 0, 0.02)
+      0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05)
     `,
     boxShadowSecondary: `
       0 6px 16px 0 rgba(0, 0, 0, 0.08),
@@ -158,16 +164,12 @@ export default function formatToken(derivativeToken: RawMergedToken): AliasToken
     screenXLMax: screenXXL - 1,
     screenXXL,
     screenXXLMin: screenXXL,
-    screenXXLMax: screenXXXL - 1,
-    screenXXXL,
-    screenXXXLMin: screenXXXL,
 
-    // FIXME: component box-shadow, should be removed
-    boxShadowPopoverArrow: '3px 3px 7px rgba(0, 0, 0, 0.1)',
+    boxShadowPopoverArrow: '2px 2px 5px rgba(0, 0, 0, 0.05)',
     boxShadowCard: `
-      0 1px 2px -2px ${new TinyColor('rgba(0, 0, 0, 0.16)').toRgbString()},
-      0 3px 6px 0 ${new TinyColor('rgba(0, 0, 0, 0.12)').toRgbString()},
-      0 5px 12px 4px ${new TinyColor('rgba(0, 0, 0, 0.09)').toRgbString()}
+      0 1px 2px -2px ${new FastColor('rgba(0, 0, 0, 0.16)').toRgbString()},
+      0 3px 6px 0 ${new FastColor('rgba(0, 0, 0, 0.12)').toRgbString()},
+      0 5px 12px 4px ${new FastColor('rgba(0, 0, 0, 0.09)').toRgbString()}
     `,
     boxShadowDrawerRight: `
       -6px 0 16px 0 rgba(0, 0, 0, 0.08),

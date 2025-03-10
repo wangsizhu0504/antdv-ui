@@ -1,13 +1,23 @@
 import type { CSSObject } from '@antdv/cssinjs';
-import type { FullToken, GenerateStyle } from '../../theme';
-import { resetComponent } from '../../style';
-import { genComponentStyleHook, mergeToken } from '../../theme';
 
-interface StatisticToken extends FullToken<'Statistic'> {
-  statisticTitleFontSize: number
-  statisticContentFontSize: number
-  statisticFontFamily: string
+import type { FullToken, GenerateStyle, GetDefaultToken } from '../../theme/internal';
+import { resetComponent } from '../../style';
+import { genStyleHooks, mergeToken } from '../../theme/internal';
+
+export interface ComponentToken {
+  /**
+   * @desc 标题字体大小
+   * @descEN Title font size
+   */
+  titleFontSize: number;
+  /**
+   * @desc 内容字体大小
+   * @descEN Content font size
+   */
+  contentFontSize: number;
 }
+
+interface StatisticToken extends FullToken<'Statistic'> {}
 
 const genStatisticStyle: GenerateStyle<StatisticToken> = (token: StatisticToken): CSSObject => {
   const {
@@ -15,19 +25,19 @@ const genStatisticStyle: GenerateStyle<StatisticToken> = (token: StatisticToken)
     marginXXS,
     padding,
     colorTextDescription,
-    statisticTitleFontSize,
+    titleFontSize,
     colorTextHeading,
-    statisticContentFontSize,
-    statisticFontFamily,
+    contentFontSize,
+    fontFamily,
   } = token;
 
   return {
-    [`${componentCls}`]: {
+    [componentCls]: {
       ...resetComponent(token),
       [`${componentCls}-title`]: {
         marginBottom: marginXXS,
         color: colorTextDescription,
-        fontSize: statisticTitleFontSize,
+        fontSize: titleFontSize,
       },
 
       [`${componentCls}-skeleton`]: {
@@ -36,8 +46,8 @@ const genStatisticStyle: GenerateStyle<StatisticToken> = (token: StatisticToken)
 
       [`${componentCls}-content`]: {
         color: colorTextHeading,
-        fontSize: statisticContentFontSize,
-        fontFamily: statisticFontFamily,
+        fontSize: contentFontSize,
+        fontFamily,
         [`${componentCls}-content-value`]: {
           display: 'inline-block',
           direction: 'ltr',
@@ -57,13 +67,19 @@ const genStatisticStyle: GenerateStyle<StatisticToken> = (token: StatisticToken)
 };
 
 // ============================== Export ==============================
-export default genComponentStyleHook('Statistic', (token) => {
-  const { fontSizeHeading3, fontSize, fontFamily } = token;
+export const prepareComponentToken: GetDefaultToken<'Statistic'> = (token) => {
+  const { fontSizeHeading3, fontSize } = token;
+  return {
+    titleFontSize: fontSize,
+    contentFontSize: fontSizeHeading3,
+  };
+};
 
-  const statisticToken = mergeToken<StatisticToken>(token, {
-    statisticTitleFontSize: fontSize,
-    statisticContentFontSize: fontSizeHeading3,
-    statisticFontFamily: fontFamily,
-  });
-  return [genStatisticStyle(statisticToken)];
-});
+export default genStyleHooks(
+  'Statistic',
+  (token) => {
+    const statisticToken = mergeToken<StatisticToken>(token, {});
+    return [genStatisticStyle(statisticToken)];
+  },
+  prepareComponentToken,
+);

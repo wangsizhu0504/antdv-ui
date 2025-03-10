@@ -1,18 +1,19 @@
-import type { FullToken, GenerateStyle } from '../../theme';
-import { genComponentStyleHook } from '../../theme';
+import type { FullToken, GenerateStyle, GetDefaultToken } from '../../theme/internal';
+import { genStyleHooks, mergeToken } from '../../theme/internal';
 import genSpaceCompactStyle from './compact';
 
 /** Component only token. Which will handle additional calculation of alias token */
-export interface ComponentToken {
-  // Component token here
-}
+// biome-ignore lint/suspicious/noEmptyInterface: ComponentToken need to be empty by default
+export interface ComponentToken {}
 
 interface SpaceToken extends FullToken<'Space'> {
-  // Custom token here
+  spaceGapSmallSize: number;
+  spaceGapMiddleSize: number;
+  spaceGapLargeSize: number;
 }
 
 const genSpaceStyle: GenerateStyle<SpaceToken> = (token) => {
-  const { componentCls } = token;
+  const { componentCls, antCls } = token;
 
   return {
     [componentCls]: {
@@ -38,17 +39,64 @@ const genSpaceStyle: GenerateStyle<SpaceToken> = (token) => {
           alignItems: 'baseline',
         },
       },
-      [`${componentCls}-item`]: {
-        '&:empty': {
-          display: 'none',
-        },
+      [`${componentCls}-item:empty`]: {
+        display: 'none',
+      },
+      // https://github.com/ant-design/ant-design/issues/47875
+      [`${componentCls}-item > ${antCls}-badge-not-a-wrapper:only-child`]: {
+        display: 'block',
+      },
+    },
+  };
+};
+
+const genSpaceGapStyle: GenerateStyle<SpaceToken> = (token) => {
+  const { componentCls } = token;
+  return {
+    [componentCls]: {
+      '&-gap-row-small': {
+        rowGap: token.spaceGapSmallSize,
+      },
+      '&-gap-row-middle': {
+        rowGap: token.spaceGapMiddleSize,
+      },
+      '&-gap-row-large': {
+        rowGap: token.spaceGapLargeSize,
+      },
+      '&-gap-col-small': {
+        columnGap: token.spaceGapSmallSize,
+      },
+      '&-gap-col-middle': {
+        columnGap: token.spaceGapMiddleSize,
+      },
+      '&-gap-col-large': {
+        columnGap: token.spaceGapLargeSize,
       },
     },
   };
 };
 
 // ============================== Export ==============================
-export default genComponentStyleHook('Space', token => [
-  genSpaceStyle(token),
-  genSpaceCompactStyle(token),
-]);
+export const prepareComponentToken: GetDefaultToken<'Space'> = () => ({});
+
+export default genStyleHooks(
+  'Space',
+  (token) => {
+    const spaceToken = mergeToken<SpaceToken>(token, {
+      spaceGapSmallSize: token.paddingXS,
+      spaceGapMiddleSize: token.padding,
+      spaceGapLargeSize: token.paddingLG,
+    });
+    return [
+      genSpaceStyle(spaceToken),
+      genSpaceGapStyle(spaceToken),
+      genSpaceCompactStyle(spaceToken),
+    ];
+  },
+  () => ({}),
+  {
+    // Space component don't apply extra font style
+    // https://github.com/ant-design/ant-design/issues/40315
+    resetStyle: false,
+  },
+);

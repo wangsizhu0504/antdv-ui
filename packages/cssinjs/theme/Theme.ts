@@ -7,7 +7,10 @@ let uuid = 0;
  * Theme with algorithms to derive tokens from design tokens.
  * Use `createTheme` first which will help to manage the theme instance cache.
  */
-export default class Theme<DesignToken extends TokenType, DerivativeToken extends TokenType> {
+export default class Theme<
+  DesignToken extends TokenType,
+  DerivativeToken extends TokenType,
+> {
   private derivatives: Array<DerivativeFunc<DesignToken, DerivativeToken>>;
   public readonly id: number;
 

@@ -1,5 +1,4 @@
-import type { FullToken, GenerateStyle } from '../../theme';
-import { genComponentStyleHook, mergeToken } from '../../theme';
+import { genStyleHooks, mergeToken, type FullToken, type GenerateStyle } from '../../theme/internal';
 
 export interface ComponentToken {}
 
@@ -140,7 +139,7 @@ const genBaseStyle: GenerateStyle<CommentToken> = (token) => {
   };
 };
 
-export default genComponentStyleHook('Comment', (token) => {
+export default genStyleHooks('Comment', (token) => {
   const commentToken = mergeToken<CommentToken>(token, {
     commentBg: 'inherit',
     commentPaddingBase: `${token.paddingMD}px 0`,

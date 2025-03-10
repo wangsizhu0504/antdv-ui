@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'vue';
 import { TinyColor } from '@ctrl/tinycolor';
 import { computed, defineComponent } from 'vue';
-import { useToken } from '../../theme';
+import { useToken } from '../../theme/internal';
 
 export default defineComponent({
   compatConfig: { MODE: 3 },

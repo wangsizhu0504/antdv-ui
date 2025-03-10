@@ -1,9 +1,11 @@
 import type { CSSObject } from '@antdv/cssinjs';
-import type { GenerateStyle } from '../../theme';
 import type { StepsToken } from '.';
 
+import type { GenerateStyle } from '../../theme/internal';
+import { unit } from '@antdv/cssinjs';
+
 const genStepsLabelPlacementStyle: GenerateStyle<StepsToken, CSSObject> = (token) => {
-  const { componentCls, stepsIconSize, lineHeight, stepsSmallIconSize } = token;
+  const { componentCls, iconSize, lineHeight, iconSizeSM } = token;
 
   return {
     [`&${componentCls}-label-vertical`]: {
@@ -11,13 +13,13 @@ const genStepsLabelPlacementStyle: GenerateStyle<StepsToken, CSSObject> = (token
         'overflow': 'visible',
 
         '&-tail': {
-          marginInlineStart: stepsIconSize / 2 + token.controlHeightLG,
-          padding: `${token.paddingXXS}px ${token.paddingLG}px`,
+          marginInlineStart: token.calc(iconSize).div(2).add(token.controlHeightLG).equal(),
+          padding: `0 ${unit(token.paddingLG)}`,
         },
 
         '&-content': {
           display: 'block',
-          width: (stepsIconSize / 2 + token.controlHeightLG) * 2,
+          width: token.calc(iconSize).div(2).add(token.controlHeightLG).mul(2).equal(),
           marginTop: token.marginSM,
           textAlign: 'center',
         },
@@ -46,7 +48,12 @@ const genStepsLabelPlacementStyle: GenerateStyle<StepsToken, CSSObject> = (token
       [`&${componentCls}-small:not(${componentCls}-dot)`]: {
         [`${componentCls}-item`]: {
           '&-icon': {
-            marginInlineStart: token.controlHeightLG + (stepsIconSize - stepsSmallIconSize) / 2,
+            marginInlineStart: token
+              .calc(iconSize)
+              .sub(iconSizeSM)
+              .div(2)
+              .add(token.controlHeightLG)
+              .equal(),
           },
         },
       },

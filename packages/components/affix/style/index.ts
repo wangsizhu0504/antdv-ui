@@ -1,6 +1,6 @@
 import type { CSSObject } from '@antdv/cssinjs';
-import type { FullToken, GenerateStyle } from '../../theme';
-import { genComponentStyleHook, mergeToken } from '../../theme';
+import type { FullToken, GenerateStyle, GetDefaultToken } from '../../theme/internal';
+import { genStyleHooks } from '../../theme/internal';
 
 export interface ComponentToken {
   /**
@@ -10,7 +10,7 @@ export interface ComponentToken {
   zIndexPopup: number;
 }
 interface AffixToken extends FullToken<'Affix'> {
-  zIndexPopup: number
+
 }
 
 // ============================== Shared ==============================
@@ -24,11 +24,9 @@ const genSharedAffixStyle: GenerateStyle<AffixToken> = (token): CSSObject => {
     },
   };
 };
+export const prepareComponentToken: GetDefaultToken<'Affix'> = token => ({
+  zIndexPopup: token.zIndexBase + 10,
+});
 
 // ============================== Export ==============================
-export default genComponentStyleHook('Affix', (token) => {
-  const affixToken = mergeToken<AffixToken>(token, {
-    zIndexPopup: token.zIndexBase + 10,
-  });
-  return [genSharedAffixStyle(affixToken)];
-});
+export default genStyleHooks('Affix', genSharedAffixStyle, prepareComponentToken);

@@ -13,3 +13,13 @@ export function convertLegacyProps(type?: LegacyButtonType): ButtonProps {
       return { type };
   }
 }
+
+export const _ButtonVariantTypes = [
+  'outlined',
+  'dashed',
+  'solid',
+  'filled',
+  'text',
+  'link',
+] as const;
+export type ButtonVariantType = (typeof _ButtonVariantTypes)[number];

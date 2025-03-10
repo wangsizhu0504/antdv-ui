@@ -1,6 +1,6 @@
 import type { CSSInterpolation } from '@antdv/cssinjs';
-import type { AliasToken } from '../../theme';
-import type { TokenWithCommonCls } from '../../theme/util/genComponentStyleHook';
+import type { AliasToken, TokenWithCommonCls } from '../../theme/internal';
+
 import { Keyframes } from '@antdv/cssinjs';
 import { initMotion } from './motion';
 
@@ -117,7 +117,7 @@ export const slideRightOut = new Keyframes('antSlideRightOut', {
 });
 
 type SlideMotionTypes = 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right';
-const slideMotion: Record<SlideMotionTypes, { inKeyframes: Keyframes, outKeyframes: Keyframes }> = {
+const slideMotion: Record<SlideMotionTypes, { inKeyframes: Keyframes; outKeyframes: Keyframes }> = {
   'slide-up': {
     inKeyframes: slideUpIn,
     outKeyframes: slideUpOut,
@@ -149,10 +149,14 @@ export function initSlideMotion(token: TokenWithCommonCls<AliasToken>, motionNam
       ${motionCls}-enter,
       ${motionCls}-appear
     `]: {
-        transform: 'scale(0)',
-        transformOrigin: '0% 0%',
-        opacity: 0,
-        animationTimingFunction: token.motionEaseOutQuint,
+        'transform': 'scale(0)',
+        'transformOrigin': '0% 0%',
+        'opacity': 0,
+        'animationTimingFunction': token.motionEaseOutQuint,
+
+        '&-prepare': {
+          transform: 'scale(1)',
+        },
       },
 
       [`${motionCls}-leave`]: {

@@ -11,7 +11,6 @@ import {
   moveUpIn,
   moveUpOut,
 } from './move';
-import { initShakeMotion } from './shake';
 import {
   initSlideMotion,
   slideDownIn,
@@ -45,7 +44,6 @@ export {
   genCollapseMotion,
   initFadeMotion,
   initMoveMotion,
-  initShakeMotion,
   initSlideMotion,
   initZoomMotion,
   moveDownIn,

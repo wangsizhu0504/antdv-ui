@@ -1,7 +1,7 @@
 import type { CSSObject } from '@antdv/cssinjs';
-import type { FullToken, GenerateStyle } from '../../theme';
+import type { FullToken, GenerateStyle } from '../../theme/interface';
 import { resetComponent, resetIcon, textEllipsis } from '../../style';
-import { genComponentStyleHook, mergeToken } from '../../theme';
+import { genComponentStyleHook, mergeToken } from '../../theme/internal';
 
 export interface ComponentToken {
   listWidth: number

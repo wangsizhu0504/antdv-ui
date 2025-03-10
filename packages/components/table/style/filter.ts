@@ -1,4 +1,4 @@
-import type { GenerateStyle } from '../../theme';
+import type { GenerateStyle } from '../../theme/interface';
 import type { TableToken } from './index';
 import { resetComponent } from '../../style';
 

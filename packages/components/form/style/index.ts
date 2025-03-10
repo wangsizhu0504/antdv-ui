@@ -1,13 +1,87 @@
 import type { CSSObject } from '@antdv/cssinjs';
-import type { AliasToken, FullToken, GenerateStyle } from '../../theme';
+import type { CSSProperties } from 'vue';
+import type {
+  AliasToken,
+  FullToken,
+  GenerateStyle,
+  GenStyleFn,
+  GetDefaultToken,
+} from '../../theme/internal';
+
+import { unit } from '@antdv/cssinjs';
 import { resetComponent } from '../../style';
 import { genCollapseMotion, zoomIn } from '../../style/motion';
-import { genComponentStyleHook, mergeToken } from '../../theme';
+import { genStyleHooks, mergeToken } from '../../theme/internal';
 import genFormValidateMotionStyle from './explain';
 
+export interface ComponentToken {
+  /**
+   * @desc 必填项标记颜色
+   * @descEN Required mark color
+   */
+  labelRequiredMarkColor: string;
+  /**
+   * @desc 标签颜色
+   * @descEN Label color
+   */
+  labelColor: string;
+  /**
+   * @desc 标签字体大小
+   * @descEN Label font size
+   */
+  labelFontSize: number;
+  /**
+   * @desc 标签高度
+   * @descEN Label height
+   */
+  labelHeight: number | string;
+  /**
+   * @desc 标签冒号前间距
+   * @descEN Label colon margin-inline-start
+   */
+  labelColonMarginInlineStart: number;
+  /**
+   * @desc 标签冒号后间距
+   * @descEN Label colon margin-inline-end
+   */
+  labelColonMarginInlineEnd: number;
+  /**
+   * @desc 表单项间距
+   * @descEN Form item margin bottom
+   */
+  itemMarginBottom: number;
+  /**
+   * @desc 行内布局表单项间距
+   * @descEN Inline layout form item margin bottom
+   */
+  inlineItemMarginBottom: number;
+  /**
+   * @desc 垂直布局标签内边距
+   * @descEN Vertical layout label padding
+   */
+  verticalLabelPadding: CSSProperties['padding'];
+  /**
+   * @desc 垂直布局标签外边距
+   * @descEN Vertical layout label margin
+   */
+  verticalLabelMargin: CSSProperties['margin'];
+}
+
+/**
+ * @desc Form 组件的 Token
+ * @descEN Token for Form component
+ */
 export interface FormToken extends FullToken<'Form'> {
-  formItemCls: string
-  rootPrefixCls: string
+  /**
+   * @desc 表单项类名
+   * @descEN Form item class name
+   */
+  formItemCls: string;
+  /**
+   * @desc 根前缀类名
+   * @descEN Root prefix class name
+   */
+  rootPrefixCls: string;
 }
 
 function resetForm(token: AliasToken): CSSObject {
@@ -21,11 +95,7 @@ function resetForm(token: AliasToken): CSSObject {
       fontSize: token.fontSizeLG,
       lineHeight: 'inherit',
       border: 0,
-      borderBottom: `${token.lineWidth}px ${token.lineType} ${token.colorBorder}`,
-    },
-
-    'label': {
-      fontSize: token.fontSize,
+      borderBottom: `${unit(token.lineWidth)} ${token.lineType} ${token.colorBorder}`,
     },
 
     'input[type="search"]': {
@@ -57,7 +127,7 @@ function resetForm(token: AliasToken): CSSObject {
   input[type='radio']:focus,
   input[type='checkbox']:focus`]: {
       outline: 0,
-      boxShadow: `0 0 0 ${token.controlOutlineWidth}px ${token.controlOutline}`,
+      boxShadow: `0 0 0 ${unit(token.controlOutlineWidth)} ${token.controlOutline}`,
     },
 
     // Adjust output element
@@ -115,13 +185,25 @@ const genFormStyle: GenerateStyle<FormToken> = (token) => {
 };
 
 const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
-  const { formItemCls, iconCls, componentCls, rootPrefixCls } = token;
+  const {
+    formItemCls,
+    iconCls,
+    rootPrefixCls,
+    antCls,
+    labelRequiredMarkColor,
+    labelColor,
+    labelFontSize,
+    labelHeight,
+    labelColonMarginInlineStart,
+    labelColonMarginInlineEnd,
+    itemMarginBottom,
+  } = token;
 
   return {
     [formItemCls]: {
       ...resetComponent(token),
 
-      'marginBottom': token.marginLG,
+      'marginBottom': itemMarginBottom,
       'verticalAlign': 'top',
 
       '&-with-help': {
@@ -129,7 +211,7 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
       },
 
       [`&-hidden,
-        &-hidden.${rootPrefixCls}-row`]: {
+        &-hidden${antCls}-row`]: {
         // https://github.com/ant-design/ant-design/issues/26141
         display: 'none',
       },
@@ -150,7 +232,6 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
       // =                            Label                           =
       // ==============================================================
       [`${formItemCls}-label`]: {
-        'display': 'inline-block',
         'flexGrow': 0,
         'overflow': 'hidden',
         'whiteSpace': 'nowrap',
@@ -163,7 +244,7 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
 
         '&-wrap': {
           overflow: 'unset',
-          lineHeight: `${token.lineHeight} - 0.25em`,
+          lineHeight: token.lineHeight,
           whiteSpace: 'unset',
         },
 
@@ -172,27 +253,29 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
           'display': 'inline-flex',
           'alignItems': 'center',
           'maxWidth': '100%',
-          'height': token.controlHeight,
-          'color': token.colorTextHeading,
-          'fontSize': token.fontSize,
+          'height': labelHeight,
+          'color': labelColor,
+          'fontSize': labelFontSize,
 
           [`> ${iconCls}`]: {
             fontSize: token.fontSize,
             verticalAlign: 'top',
           },
 
-          // Required mark
-          [`&${formItemCls}-required:not(${formItemCls}-required-mark-optional)::before`]: {
-            display: 'inline-block',
-            marginInlineEnd: token.marginXXS,
-            color: token.colorError,
-            fontSize: token.fontSize,
-            fontFamily: 'SimSun, sans-serif',
-            lineHeight: 1,
-            content: '"*"',
-
-            [`${componentCls}-hide-required-mark &`]: {
-              display: 'none',
+          [`&${formItemCls}-required`]: {
+            '&::before': {
+              display: 'inline-block',
+              marginInlineEnd: token.marginXXS,
+              color: labelRequiredMarkColor,
+              fontSize: token.fontSize,
+              fontFamily: 'SimSun, sans-serif',
+              lineHeight: 1,
+              content: '"*"',
+            },
+            [`&${formItemCls}-required-mark-hidden, &${formItemCls}-required-mark-optional`]: {
+              '&::before': {
+                display: 'none',
+              },
             },
           },
 
@@ -202,7 +285,7 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
             marginInlineStart: token.marginXXS,
             color: token.colorTextDescription,
 
-            [`${componentCls}-hide-required-mark &`]: {
+            [`&.${formItemCls}-required-mark-hidden`]: {
               display: 'none',
             },
           },
@@ -219,12 +302,12 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
             content: '":"',
             position: 'relative',
             marginBlock: 0,
-            marginInlineStart: token.marginXXS / 2,
-            marginInlineEnd: token.marginXS,
+            marginInlineStart: labelColonMarginInlineStart,
+            marginInlineEnd: labelColonMarginInlineEnd,
           },
 
           [`&${formItemCls}-no-colon::after`]: {
-            content: '" "',
+            content: '"\\a0"',
           },
         },
       },
@@ -233,7 +316,7 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
       // =                            Input                           =
       // ==============================================================
       [`${formItemCls}-control`]: {
-        'display': 'flex',
+        ['--ant-display' as any]: 'flex',
         'flexDirection': 'column',
         'flexGrow': 1,
 
@@ -259,6 +342,11 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
       // =                           Explain                          =
       // ==============================================================
       [formItemCls]: {
+        '&-additional': {
+          display: 'flex',
+          flexDirection: 'column',
+        },
+
         '&-explain, &-extra': {
           clear: 'both',
           color: token.colorTextDescription,
@@ -323,11 +411,11 @@ const genFormItemStyle: GenerateStyle<FormToken> = (token) => {
   };
 };
 
-const genHorizontalStyle: GenerateStyle<FormToken> = (token) => {
-  const { componentCls, formItemCls, rootPrefixCls } = token;
+function genHorizontalStyle(token: FormToken, className: string): CSSObject {
+  const { formItemCls } = token;
 
   return {
-    [`${componentCls}-horizontal`]: {
+    [`${className}-horizontal`]: {
       [`${formItemCls}-label`]: {
         flexGrow: 0,
       },
@@ -339,16 +427,21 @@ const genHorizontalStyle: GenerateStyle<FormToken> = (token) => {
         minWidth: 0,
       },
 
+      // Do not change this to `ant-col-24`! `-24` match all the responsive rules
       // https://github.com/ant-design/ant-design/issues/32980
-      [`${formItemCls}-label.${rootPrefixCls}-col-24 + ${formItemCls}-control`]: {
-        minWidth: 'unset',
+      // https://github.com/ant-design/ant-design/issues/34903
+      // https://github.com/ant-design/ant-design/issues/44538
+      [`${formItemCls}-label[class$='-24'], ${formItemCls}-label[class*='-24 ']`]: {
+        [`& + ${formItemCls}-control`]: {
+          minWidth: 'unset',
+        },
       },
     },
   };
-};
+}
 
 const genInlineStyle: GenerateStyle<FormToken> = (token) => {
-  const { componentCls, formItemCls } = token;
+  const { componentCls, formItemCls, inlineItemMarginBottom } = token;
 
   return {
     [`${componentCls}-inline`]: {
@@ -357,12 +450,11 @@ const genInlineStyle: GenerateStyle<FormToken> = (token) => {
 
       [formItemCls]: {
         'flex': 'none',
-        'flexWrap': 'nowrap',
         'marginInlineEnd': token.margin,
-        'marginBottom': 0,
+        'marginBottom': inlineItemMarginBottom,
 
-        '&-with-help': {
-          marginBottom: token.marginLG,
+        '&-row': {
+          flexWrap: 'nowrap',
         },
 
         [`> ${formItemCls}-label,
@@ -389,8 +481,8 @@ const genInlineStyle: GenerateStyle<FormToken> = (token) => {
 
 function makeVerticalLayoutLabel(token: FormToken): CSSObject {
   return {
-    'margin': 0,
-    'padding': `0 0 ${token.paddingXS}px`,
+    'padding': token.verticalLabelPadding,
+    'margin': token.verticalLabelMargin,
     'whiteSpace': 'initial',
     'textAlign': 'start',
 
@@ -398,25 +490,31 @@ function makeVerticalLayoutLabel(token: FormToken): CSSObject {
       'margin': 0,
 
       '&::after': {
-        display: 'none',
+      // https://github.com/ant-design/ant-design/issues/43538
+        visibility: 'hidden',
       },
     },
   };
 }
 
 function makeVerticalLayout(token: FormToken): CSSObject {
-  const { componentCls, formItemCls } = token;
+  const { componentCls, formItemCls, rootPrefixCls } = token;
 
   return {
     [`${formItemCls} ${formItemCls}-label`]: makeVerticalLayoutLabel(token),
-    [componentCls]: {
+    // ref: https://github.com/ant-design/ant-design/issues/45122
+    [`${componentCls}:not(${componentCls}-inline)`]: {
       [formItemCls]: {
         flexWrap: 'wrap',
 
-        [`${formItemCls}-label,
-          ${formItemCls}-control`]: {
-          flex: '0 0 100%',
-          maxWidth: '100%',
+        [`${formItemCls}-label, ${formItemCls}-control`]: {
+          // When developer pass `xs: { span }`,
+          // It should follow the `xs` screen config
+          // ref: https://github.com/ant-design/ant-design/issues/44386
+          [`&:not([class*=" ${rootPrefixCls}-col-xs"])`]: {
+            flex: '0 0 100%',
+            maxWidth: '100%',
+          },
         },
       },
     },
@@ -424,73 +522,163 @@ function makeVerticalLayout(token: FormToken): CSSObject {
 }
 
 const genVerticalStyle: GenerateStyle<FormToken> = (token) => {
-  const { componentCls, formItemCls, rootPrefixCls } = token;
+  const { componentCls, formItemCls, antCls } = token;
 
   return {
     [`${componentCls}-vertical`]: {
-      [formItemCls]: {
-        '&-row': {
+      [`${formItemCls}:not(${formItemCls}-horizontal)`]: {
+        [`${formItemCls}-row`]: {
           flexDirection: 'column',
         },
 
-        '&-label > label': {
+        [`${formItemCls}-label > label`]: {
           height: 'auto',
         },
 
-        [`${componentCls}-item-control`]: {
+        [`${formItemCls}-control`]: {
           width: '100%',
         },
+        [`${formItemCls}-label,
+        ${antCls}-col-24${formItemCls}-label,
+        ${antCls}-col-xl-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
       },
     },
 
-    [`${componentCls}-vertical ${formItemCls}-label,
-      .${rootPrefixCls}-col-24${formItemCls}-label,
-      .${rootPrefixCls}-col-xl-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
-
-    [`@media (max-width: ${token.screenXSMax}px)`]: [
+    [`@media (max-width: ${unit(token.screenXSMax)})`]: [
       makeVerticalLayout(token),
       {
         [componentCls]: {
-          [`.${rootPrefixCls}-col-xs-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+          [`${formItemCls}:not(${formItemCls}-horizontal)`]: {
+            [`${antCls}-col-xs-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+          },
         },
       },
     ],
 
-    [`@media (max-width: ${token.screenSMMax}px)`]: {
+    [`@media (max-width: ${unit(token.screenSMMax)})`]: {
       [componentCls]: {
-        [`.${rootPrefixCls}-col-sm-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+        [`${formItemCls}:not(${formItemCls}-horizontal)`]: {
+          [`${antCls}-col-sm-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+        },
       },
     },
 
-    [`@media (max-width: ${token.screenMDMax}px)`]: {
+    [`@media (max-width: ${unit(token.screenMDMax)})`]: {
       [componentCls]: {
-        [`.${rootPrefixCls}-col-md-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+        [`${formItemCls}:not(${formItemCls}-horizontal)`]: {
+          [`${antCls}-col-md-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+        },
       },
     },
 
-    [`@media (max-width: ${token.screenLGMax}px)`]: {
+    [`@media (max-width: ${unit(token.screenLGMax)})`]: {
       [componentCls]: {
-        [`.${rootPrefixCls}-col-lg-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+        [`${formItemCls}:not(${formItemCls}-horizontal)`]: {
+          [`${antCls}-col-lg-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+        },
+      },
+    },
+  };
+};
+
+const genItemVerticalStyle: GenerateStyle<FormToken> = (token) => {
+  const { formItemCls, antCls } = token;
+  return {
+    [`${formItemCls}-vertical`]: {
+      [`${formItemCls}-row`]: {
+        flexDirection: 'column',
+      },
+
+      [`${formItemCls}-label > label`]: {
+        height: 'auto',
+      },
+
+      [`${formItemCls}-control`]: {
+        width: '100%',
+      },
+    },
+
+    [`${formItemCls}-vertical ${formItemCls}-label,
+      ${antCls}-col-24${formItemCls}-label,
+      ${antCls}-col-xl-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+
+    [`@media (max-width: ${unit(token.screenXSMax)})`]: [
+      makeVerticalLayout(token),
+      {
+        [formItemCls]: {
+          [`${antCls}-col-xs-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+        },
+      },
+    ],
+
+    [`@media (max-width: ${unit(token.screenSMMax)})`]: {
+      [formItemCls]: {
+        [`${antCls}-col-sm-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+      },
+    },
+
+    [`@media (max-width: ${unit(token.screenMDMax)})`]: {
+      [formItemCls]: {
+        [`${antCls}-col-md-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
+      },
+    },
+
+    [`@media (max-width: ${unit(token.screenLGMax)})`]: {
+      [formItemCls]: {
+        [`${antCls}-col-lg-24${formItemCls}-label`]: makeVerticalLayoutLabel(token),
       },
     },
   };
 };
 
 // ============================== Export ==============================
-export default genComponentStyleHook('Form', (token, { rootPrefixCls }) => {
+export const prepareComponentToken: GetDefaultToken<'Form'> = token => ({
+  labelRequiredMarkColor: token.colorError,
+  labelColor: token.colorTextHeading,
+  labelFontSize: token.fontSize,
+  labelHeight: token.controlHeight,
+  labelColonMarginInlineStart: token.marginXXS / 2,
+  labelColonMarginInlineEnd: token.marginXS,
+  itemMarginBottom: token.marginLG,
+  verticalLabelPadding: `0 0 ${token.paddingXS}px`,
+  verticalLabelMargin: 0,
+  inlineItemMarginBottom: 0,
+});
+
+export const prepareToken: (
+  token: Parameters<GenStyleFn<'Form'>>[0],
+  rootPrefixCls: string,
+) => FormToken = (token, rootPrefixCls) => {
   const formToken = mergeToken<FormToken>(token, {
     formItemCls: `${token.componentCls}-item`,
     rootPrefixCls,
   });
 
-  return [
-    genFormStyle(formToken),
-    genFormItemStyle(formToken),
-    genFormValidateMotionStyle(formToken),
-    genHorizontalStyle(formToken),
-    genInlineStyle(formToken),
-    genVerticalStyle(formToken),
-    genCollapseMotion(formToken),
-    zoomIn,
-  ];
-});
+  return formToken;
+};
+
+export default genStyleHooks(
+  'Form',
+  (token, { rootPrefixCls }) => {
+    const formToken = prepareToken(token, rootPrefixCls);
+
+    return [
+      genFormStyle(formToken),
+      genFormItemStyle(formToken),
+      genFormValidateMotionStyle(formToken),
+      genHorizontalStyle(formToken, formToken.componentCls),
+      genHorizontalStyle(formToken, formToken.formItemCls),
+      genInlineStyle(formToken),
+      genVerticalStyle(formToken),
+      genItemVerticalStyle(formToken),
+      genCollapseMotion(formToken),
+      zoomIn,
+    ];
+  },
+  prepareComponentToken,
+  {
+    // Let From style before the Grid
+    // ref https://github.com/ant-design/ant-design/issues/44386
+    order: -1000,
+  },
+);

@@ -5,8 +5,7 @@ import type { ComputedRef, MaybeRef, Ref } from 'vue';
 import type { RequiredMark } from '../../form';
 
 import type { TransformCellTextProps } from '../../table';
-import type { AliasToken, SeedToken } from '../../theme';
-import type { MapToken, OverrideToken } from '../../theme/interface';
+import type { AliasToken, MapToken, OverrideToken, SeedToken } from '../../theme/interface';
 import type { ConfigProviderProps } from './props';
 import type renderEmpty from './renderEmpty';
 
@@ -44,6 +43,11 @@ export interface GlobalConfigProviderProps {
   iconPrefixCls?: MaybeRef<ConfigProviderProps['iconPrefixCls']>
   getPopupContainer?: ConfigProviderProps['getPopupContainer']
 }
+type ComponentsConfig = {
+  [key in keyof OverrideToken]?: OverrideToken[key] & {
+    algorithm?: boolean | MappingAlgorithm | MappingAlgorithm[];
+  };
+};
 
 export interface ThemeConfig {
   /**
@@ -55,7 +59,7 @@ export interface ThemeConfig {
    * @descCN 用于修改各个组件的 Component Token 以及覆盖该组件消费的 Alias Token。
    * @descEN Modify Component Token and Alias Token applied to components.
    */
-  components?: OverrideToken
+  components?: ComponentsConfig
   /**
    * @descCN 用于修改 Seed Token 到 Map Token 的算法。
    * @descEN Modify the algorithms of theme.

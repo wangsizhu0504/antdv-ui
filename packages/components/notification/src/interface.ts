@@ -3,13 +3,16 @@ import type { NoticeProps } from '@antdv/vue-components/vc-notification/src/Noti
 import type { CSSProperties } from 'vue';
 import type useNotification from './useNotification';
 
-export type NotificationPlacement =
-  | 'top'
-  | 'topLeft'
-  | 'topRight'
-  | 'bottom'
-  | 'bottomLeft'
-  | 'bottomRight';
+export const NotificationPlacements = [
+  'top',
+  'topLeft',
+  'topRight',
+  'bottom',
+  'bottomLeft',
+  'bottomRight',
+] as const;
+
+export type NotificationPlacement = (typeof NotificationPlacements)[number];
 
 export type IconType = 'success' | 'info' | 'error' | 'warning' | 'warn';
 

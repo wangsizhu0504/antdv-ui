@@ -1,25 +1,38 @@
-import type { CSSInterpolation, CSSObject } from '@antdv/cssinjs';
-import type { FullToken, GenerateStyle } from '../../theme';
-import { resetComponent } from '../../style';
-import { genComponentStyleHook, mergeToken } from '../../theme';
+import type { CSSObject } from '@antdv/cssinjs';
+import type { CSSProperties } from 'vue';
+import type { FullToken, GenerateStyle, GetDefaultToken } from '../../theme/internal';
 
-export interface ComponentToken {}
+import { unit } from '@antdv/cssinjs';
+import { resetComponent } from '../../style';
+import { genStyleHooks } from '../../theme/internal';
+
+export interface ComponentToken {
+  // Component token here
+  /**
+   * @desc 默认内间距
+   * @descEN Default padding
+   */
+  defaultPadding: CSSProperties['padding'];
+  /**
+   * @desc 带有描述的内间距
+   * @descEN Padding with description
+   */
+  withDescriptionPadding: CSSProperties['padding'];
+  /**
+   * @desc 带有描述时的图标尺寸
+   * @descEN Icon size with description
+   */
+  withDescriptionIconSize: number;
+}
 
 type AlertToken = FullToken<'Alert'> & {
-  alertIconSizeLG: number
-  alertPaddingHorizontal: number
+  // Custom token here
 };
 
-function genAlertTypeStyle(
-  bgColor: string,
-  borderColor: string,
-  iconColor: string,
-  token: AlertToken,
-  alertCls: string,
-): CSSObject {
+function genAlertTypeStyle(bgColor: string, borderColor: string, iconColor: string, token: AlertToken, alertCls: string): CSSObject {
   return {
-    backgroundColor: bgColor,
-    border: `${token.lineWidth}px ${token.lineType} ${borderColor}`,
+    background: bgColor,
+    border: `${unit(token.lineWidth)} ${token.lineType} ${borderColor}`,
     [`${alertCls}-icon`]: {
       color: iconColor,
     },
@@ -37,12 +50,11 @@ export const genBaseStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSO
     lineHeight,
     borderRadiusLG: borderRadius,
     motionEaseInOutCirc,
-    alertIconSizeLG,
+    withDescriptionIconSize,
     colorText,
-    paddingContentVerticalSM,
-    alertPaddingHorizontal,
-    paddingMD,
-    paddingContentHorizontalLG,
+    colorTextHeading,
+    withDescriptionPadding,
+    defaultPadding,
   } = token;
 
   return {
@@ -51,7 +63,7 @@ export const genBaseStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSO
       'position': 'relative',
       'display': 'flex',
       'alignItems': 'center',
-      'padding': `${paddingContentVerticalSM}px ${alertPaddingHorizontal}px`, // Fixed horizontal padding here.
+      'padding': defaultPadding,
       'wordWrap': 'break-word',
       borderRadius,
 
@@ -76,7 +88,7 @@ export const genBaseStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSO
       },
 
       '&-message': {
-        color: colorText,
+        color: colorTextHeading,
       },
 
       [`&${componentCls}-motion-leave`]: {
@@ -98,24 +110,23 @@ export const genBaseStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSO
 
     [`${componentCls}-with-description`]: {
       alignItems: 'flex-start',
-      paddingInline: paddingContentHorizontalLG,
-      paddingBlock: paddingMD,
-
+      padding: withDescriptionPadding,
       [`${componentCls}-icon`]: {
         marginInlineEnd: marginSM,
-        fontSize: alertIconSizeLG,
+        fontSize: withDescriptionIconSize,
         lineHeight: 0,
       },
 
       [`${componentCls}-message`]: {
         display: 'block',
         marginBottom: marginXS,
-        color: colorText,
+        color: colorTextHeading,
         fontSize: fontSizeLG,
       },
 
       [`${componentCls}-description`]: {
         display: 'block',
+        color: colorText,
       },
     },
 
@@ -198,7 +209,7 @@ export const genActionStyle: GenerateStyle<AlertToken> = (token: AlertToken): CS
         padding: 0,
         overflow: 'hidden',
         fontSize: fontSizeIcon,
-        lineHeight: `${fontSizeIcon}px`,
+        lineHeight: unit(fontSizeIcon),
         backgroundColor: 'transparent',
         border: 'none',
         outline: 'none',
@@ -224,19 +235,17 @@ export const genActionStyle: GenerateStyle<AlertToken> = (token: AlertToken): CS
   };
 };
 
-export const genAlertStyle: GenerateStyle<AlertToken> = (token: AlertToken): CSSInterpolation => [
-  genBaseStyle(token),
-  genTypeStyle(token),
-  genActionStyle(token),
-];
+export const prepareComponentToken: GetDefaultToken<'Alert'> = (token) => {
+  const paddingHorizontal = 12; // Fixed value here.
+  return {
+    withDescriptionIconSize: token.fontSizeHeading3,
+    defaultPadding: `${token.paddingContentVerticalSM}px ${paddingHorizontal}px`,
+    withDescriptionPadding: `${token.paddingMD}px ${token.paddingContentHorizontalLG}px`,
+  };
+};
 
-export default genComponentStyleHook('Alert', (token) => {
-  const { fontSizeHeading3 } = token;
-
-  const alertToken = mergeToken<AlertToken>(token, {
-    alertIconSizeLG: fontSizeHeading3,
-    alertPaddingHorizontal: 12, // Fixed value here.
-  });
-
-  return [genAlertStyle(alertToken)];
-});
+export default genStyleHooks(
+  'Alert',
+  token => [genBaseStyle(token), genTypeStyle(token), genActionStyle(token)],
+  prepareComponentToken,
+);

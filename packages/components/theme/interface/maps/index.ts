@@ -1,4 +1,4 @@
-import type { ColorPalettes } from '../presetColors';
+import type { ColorPalettes, LegacyColorPalettes } from '../presetColors';
 import type { SeedToken } from '../seeds';
 import type { ColorMapToken } from './colors';
 import type { FontMapToken } from './font';
@@ -12,9 +12,21 @@ export * from './style';
 
 export interface CommonMapToken extends StyleMapToken {
   // Motion
-  motionDurationFast: string
-  motionDurationMid: string
-  motionDurationSlow: string
+  /**
+   * @desc 动效播放速度，快速。用于小型元素动画交互
+   * @descEN Motion speed, fast speed. Used for small element animation interaction.
+   */
+  motionDurationFast: string;
+  /**
+   * @desc 动效播放速度，中速。用于中型元素动画交互
+   * @descEN Motion speed, medium speed. Used for medium element animation interaction.
+   */
+  motionDurationMid: string;
+  /**
+   * @desc 动效播放速度，慢速。用于大型元素如面板动画交互
+   * @descEN Motion speed, slow speed. Used for large element animation interaction.
+   */
+  motionDurationSlow: string;
 }
 
 // ======================================================================
@@ -25,6 +37,7 @@ export interface CommonMapToken extends StyleMapToken {
 export interface MapToken
   extends SeedToken,
   ColorPalettes,
+  LegacyColorPalettes,
   ColorMapToken,
   SizeMapToken,
   HeightMapToken,

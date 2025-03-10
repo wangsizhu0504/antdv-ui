@@ -11,7 +11,7 @@ import {
   shallowRef,
   watch,
 } from 'vue';
-import { useToken } from '../../theme';
+import { useToken } from '../../theme/internal';
 import { watermarkProps } from './props';
 import { getPixelRatio, getStyleStr, reRendering, rotateWatermark } from './utils';
 

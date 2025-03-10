@@ -1,10 +1,10 @@
-import { TinyColor } from '@ctrl/tinycolor';
+import { FastColor } from '@ant-design/fast-color';
 
 export function getAlphaColor(baseColor: string, alpha: number) {
-  return new TinyColor(baseColor).setAlpha(alpha).toRgbString();
+  return new FastColor(baseColor).setA(alpha).toRgbString();
 }
 
 export function getSolidColor(baseColor: string, brightness: number) {
-  const instance = new TinyColor(baseColor);
+  const instance = new FastColor(baseColor);
   return instance.lighten(brightness).toHexString();
 }

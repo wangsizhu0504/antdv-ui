@@ -1,5 +1,10 @@
-import type { FullToken, GenerateStyle } from '../../theme';
-import { genFocusStyle, resetComponent, roundedArrow } from '../../style';
+import type { CSSProperties } from 'vue';
+import type { ArrowOffsetToken } from '../../style/placementArrow';
+
+import type { ArrowToken } from '../../style/roundedArrow';
+import type { FullToken, GenerateStyle, GetDefaultToken } from '../../theme/internal';
+import { unit } from '@antdv/cssinjs';
+import { genFocusStyle, resetComponent } from '../../style';
 import {
   initMoveMotion,
   initSlideMotion,
@@ -9,22 +14,44 @@ import {
   slideUpIn,
   slideUpOut,
 } from '../../style/motion';
-import { getArrowOffset } from '../../style/placementArrow';
-import { genComponentStyleHook, mergeToken } from '../../theme';
-import genButtonStyle from './button';
+import getArrowStyle, { getArrowOffsetToken } from '../../style/placementArrow';
+import { getArrowToken } from '../../style/roundedArrow';
+import { genStyleHooks, mergeToken } from '../../theme/internal';
 import genStatusStyle from './status';
 
-export interface ComponentToken {
-  zIndexPopup: number
+export interface ComponentToken extends ArrowToken, ArrowOffsetToken {
+  /**
+   * @desc 下拉菜单 z-index
+   * @descEN z-index of dropdown
+   */
+  zIndexPopup: number;
+  /**
+   * @desc 下拉菜单纵向内边距
+   * @descEN Vertical padding of dropdown
+   */
+  paddingBlock: CSSProperties['paddingBlock'];
 }
 
+/**
+ * @desc Dropdown 组件的 Token
+ * @descEN Token for Dropdown component
+ */
 export interface DropdownToken extends FullToken<'Dropdown'> {
-  rootPrefixCls: string
-  dropdownArrowDistance: number
-  dropdownArrowOffset: number
-  dropdownPaddingVertical: number
-  dropdownEdgeChildPadding: number
-  menuCls: string
+  /**
+   * @desc 下拉箭头距离
+   * @descEN Distance of dropdown arrow
+   */
+  dropdownArrowDistance: number | string;
+  /**
+   * @desc 下拉菜单边缘子项内边距
+   * @descEN Padding of edge child in dropdown menu
+   */
+  dropdownEdgeChildPadding: number;
+  /**
+   * @desc 菜单类名
+   * @descEN Menu class name
+   */
+  menuCls: string;
 }
 
 // =============================== Base ===============================
@@ -34,26 +61,22 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
     menuCls,
     zIndexPopup,
     dropdownArrowDistance,
-    dropdownArrowOffset,
     sizePopupArrow,
     antCls,
     iconCls,
     motionDurationMid,
-    dropdownPaddingVertical,
+    paddingBlock,
     fontSize,
     dropdownEdgeChildPadding,
     colorTextDisabled,
     fontSizeIcon,
     controlPaddingHorizontal,
     colorBgElevated,
-    boxShadowPopoverArrow,
   } = token;
 
   return [
     {
       [componentCls]: {
-        ...resetComponent(token),
-
         'position': 'absolute',
         'top': -9999,
         'left': {
@@ -66,11 +89,23 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
         // A placeholder out of dropdown visible range to avoid close when user moving
         '&::before': {
           position: 'absolute',
-          insetBlock: -dropdownArrowDistance + sizePopupArrow / 2,
+          insetBlock: token.calc(sizePopupArrow).div(2).sub(dropdownArrowDistance).equal(),
           // insetInlineStart: -7, // FIXME: Seems not work for hidden element
           zIndex: -9999,
           opacity: 0.0001,
           content: '""',
+        },
+
+        // Makes vertical dropdowns have a scrollbar once they become taller than the viewport.
+        '&-menu-vertical': {
+          maxHeight: '100vh',
+          overflowY: 'auto',
+        },
+
+        [`&-trigger${antCls}-btn`]: {
+          [`& > ${iconCls}-down, & > ${antCls}-btn-icon > ${iconCls}-down`]: {
+            fontSize: fontSizeIcon,
+          },
         },
 
         [`${componentCls}-wrap`]: {
@@ -87,7 +122,7 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
 
         [`${componentCls}-wrap-open`]: {
           [`${iconCls}-down::before`]: {
-            transform: 'rotate(180deg)',
+            transform: `rotate(180deg)`,
           },
         },
 
@@ -97,103 +132,6 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
         &-menu-submenu-hidden
       `]: {
           display: 'none',
-        },
-
-        // =============================================================
-        // ==                          Arrow                          ==
-        // =============================================================
-        // Offset the popover to account for the dropdown arrow
-        [`
-        &-show-arrow${componentCls}-placement-topLeft,
-        &-show-arrow${componentCls}-placement-top,
-        &-show-arrow${componentCls}-placement-topRight
-      `]: {
-          paddingBottom: dropdownArrowDistance,
-        },
-
-        [`
-        &-show-arrow${componentCls}-placement-bottomLeft,
-        &-show-arrow${componentCls}-placement-bottom,
-        &-show-arrow${componentCls}-placement-bottomRight
-      `]: {
-          paddingTop: dropdownArrowDistance,
-        },
-
-        // Note: .popover-arrow is outer, .popover-arrow:after is inner
-        [`${componentCls}-arrow`]: {
-          position: 'absolute',
-          zIndex: 1, // lift it up so the menu wouldn't cask shadow on it
-          display: 'block',
-
-          ...roundedArrow(
-            sizePopupArrow,
-            token.borderRadiusXS,
-            token.borderRadiusOuter,
-            colorBgElevated,
-            boxShadowPopoverArrow,
-          ),
-        },
-
-        [`
-        &-placement-top > ${componentCls}-arrow,
-        &-placement-topLeft > ${componentCls}-arrow,
-        &-placement-topRight > ${componentCls}-arrow
-      `]: {
-          bottom: dropdownArrowDistance,
-          transform: 'translateY(100%) rotate(180deg)',
-        },
-
-        [`&-placement-top > ${componentCls}-arrow`]: {
-          left: {
-            _skip_check_: true,
-            value: '50%',
-          },
-          transform: 'translateX(-50%) translateY(100%) rotate(180deg)',
-        },
-
-        [`&-placement-topLeft > ${componentCls}-arrow`]: {
-          left: {
-            _skip_check_: true,
-            value: dropdownArrowOffset,
-          },
-        },
-
-        [`&-placement-topRight > ${componentCls}-arrow`]: {
-          right: {
-            _skip_check_: true,
-            value: dropdownArrowOffset,
-          },
-        },
-
-        [`
-          &-placement-bottom > ${componentCls}-arrow,
-          &-placement-bottomLeft > ${componentCls}-arrow,
-          &-placement-bottomRight > ${componentCls}-arrow
-        `]: {
-          top: dropdownArrowDistance,
-          transform: 'translateY(-100%)',
-        },
-
-        [`&-placement-bottom > ${componentCls}-arrow`]: {
-          left: {
-            _skip_check_: true,
-            value: '50%',
-          },
-          transform: 'translateY(-100%) translateX(-50%)',
-        },
-
-        [`&-placement-bottomLeft > ${componentCls}-arrow`]: {
-          left: {
-            _skip_check_: true,
-            value: dropdownArrowOffset,
-          },
-        },
-
-        [`&-placement-bottomRight > ${componentCls}-arrow`]: {
-          right: {
-            _skip_check_: true,
-            value: dropdownArrowOffset,
-          },
         },
 
         // =============================================================
@@ -237,6 +175,13 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
       },
     },
 
+    // =============================================================
+    // ==                        Arrow style                      ==
+    // =============================================================
+    getArrowStyle<DropdownToken>(token, colorBgElevated, {
+      arrowPlacement: { top: true, bottom: true },
+    }),
+
     {
       // =============================================================
       // ==                          Menu                           ==
@@ -253,28 +198,32 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
         'boxShadow': 'none',
         'transformOrigin': '0 0',
 
-        'ul,li': {
+        'ul, li': {
           listStyle: 'none',
-        },
-
-        'ul': {
-          marginInline: '0.3em',
+          margin: 0,
         },
       },
 
       [`${componentCls}, ${componentCls}-menu-submenu`]: {
+        ...resetComponent(token),
+
         [menuCls]: {
-          padding: dropdownEdgeChildPadding,
-          listStyleType: 'none',
-          backgroundColor: colorBgElevated,
-          backgroundClip: 'padding-box',
-          borderRadius: token.borderRadiusLG,
-          outline: 'none',
-          boxShadow: token.boxShadowSecondary,
+          'padding': dropdownEdgeChildPadding,
+          'listStyleType': 'none',
+          'backgroundColor': colorBgElevated,
+          'backgroundClip': 'padding-box',
+          'borderRadius': token.borderRadiusLG,
+          'outline': 'none',
+          'boxShadow': token.boxShadowSecondary,
           ...genFocusStyle(token),
 
+          '&:empty': {
+            padding: 0,
+            boxShadow: 'none',
+          },
+
           [`${menuCls}-item-group-title`]: {
-            padding: `${dropdownPaddingVertical}px ${controlPaddingHorizontal}px`,
+            padding: `${unit(paddingBlock!)} ${unit(controlPaddingHorizontal)}`,
             color: token.colorTextDescription,
             transition: `all ${motionDurationMid}`,
           },
@@ -284,7 +233,6 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
             position: 'relative',
             display: 'flex',
             alignItems: 'center',
-            borderRadius: token.borderRadiusSM,
           },
 
           [`${menuCls}-item-icon`]: {
@@ -295,6 +243,12 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
 
           [`${menuCls}-title-content`]: {
             'flex': 'auto',
+
+            '&-with-extra': {
+              display: 'inline-flex',
+              alignItems: 'center',
+              width: '100%',
+            },
 
             '> a': {
               'color': 'inherit',
@@ -310,19 +264,27 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
                 content: '""',
               },
             },
+
+            [`${menuCls}-item-extra`]: {
+              paddingInlineStart: token.padding,
+              marginInlineStart: 'auto',
+              fontSize: token.fontSizeSM,
+              color: token.colorTextDescription,
+            },
           },
 
           // =========================== Item ===========================
           [`${menuCls}-item, ${menuCls}-submenu-title`]: {
-            'clear': 'both',
+            'display': 'flex',
             'margin': 0,
-            'padding': `${dropdownPaddingVertical}px ${controlPaddingHorizontal}px`,
+            'padding': `${unit(paddingBlock!)} ${unit(controlPaddingHorizontal)}`,
             'color': token.colorText,
             'fontWeight': 'normal',
             fontSize,
             'lineHeight': token.lineHeight,
             'cursor': 'pointer',
             'transition': `all ${motionDurationMid}`,
+            'borderRadius': token.borderRadiusSM,
 
             '&:hover, &-active': {
               backgroundColor: token.controlItemBgHover,
@@ -355,7 +317,7 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
 
             '&-divider': {
               height: 1, // By design
-              margin: `${token.marginXXS}px 0`,
+              margin: `${unit(token.marginXXS)} 0`,
               overflow: 'hidden',
               lineHeight: 0,
               backgroundColor: token.colorSplit,
@@ -375,13 +337,13 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
           },
 
           [`${menuCls}-item-group-list`]: {
-            margin: `0 ${token.marginXS}px`,
+            margin: `0 ${unit(token.marginXS)}`,
             padding: 0,
             listStyle: 'none',
           },
 
           [`${menuCls}-submenu-title`]: {
-            paddingInlineEnd: controlPaddingHorizontal + token.fontSizeSM,
+            paddingInlineEnd: token.calc(controlPaddingHorizontal).add(token.fontSizeSM).equal(),
           },
 
           [`${menuCls}-submenu-vertical`]: {
@@ -416,43 +378,28 @@ const genBaseStyle: GenerateStyle<DropdownToken> = (token) => {
 };
 
 // ============================== Export ==============================
-export default genComponentStyleHook(
-  'Dropdown',
-  (token, { rootPrefixCls }) => {
-    const {
-      marginXXS,
-      sizePopupArrow,
-      controlHeight,
-      fontSize,
-      lineHeight,
-      paddingXXS,
-      componentCls,
-      borderRadiusOuter,
-      borderRadiusLG,
-    } = token;
+export const prepareComponentToken: GetDefaultToken<'Dropdown'> = token => ({
+  zIndexPopup: token.zIndexPopupBase + 50,
+  paddingBlock: (token.controlHeight - token.fontSize * token.lineHeight) / 2,
+  ...getArrowOffsetToken({
+    contentRadius: token.borderRadiusLG,
+    limitVerticalRadius: true,
+  }),
+  ...getArrowToken(token),
+});
 
-    const dropdownPaddingVertical = (controlHeight - fontSize * lineHeight) / 2;
-    const { dropdownArrowOffset } = getArrowOffset({
-      sizePopupArrow,
-      contentRadius: borderRadiusLG,
-      borderRadiusOuter,
-    });
+export default genStyleHooks(
+  'Dropdown',
+  (token) => {
+    const { marginXXS, sizePopupArrow, paddingXXS, componentCls } = token;
 
     const dropdownToken = mergeToken<DropdownToken>(token, {
       menuCls: `${componentCls}-menu`,
-      rootPrefixCls,
-      dropdownArrowDistance: sizePopupArrow / 2 + marginXXS,
-      dropdownArrowOffset,
-      dropdownPaddingVertical,
+      dropdownArrowDistance: token.calc(sizePopupArrow).div(2).add(marginXXS).equal(),
       dropdownEdgeChildPadding: paddingXXS,
     });
-    return [
-      genBaseStyle(dropdownToken),
-      genButtonStyle(dropdownToken),
-      genStatusStyle(dropdownToken),
-    ];
+    return [genBaseStyle(dropdownToken), genStatusStyle(dropdownToken)];
   },
-  token => ({
-    zIndexPopup: token.zIndexPopupBase + 50,
-  }),
+  prepareComponentToken,
+  { resetStyle: false },
 );
