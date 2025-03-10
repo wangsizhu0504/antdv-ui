@@ -6,8 +6,8 @@ import type { TimePickerProps, TimeRangePickerProps } from './interface';
 import { devWarning, omit } from '@antdv/utils';
 
 import { defineComponent, ref } from 'vue';
-import { commonProps, datePickerProps, rangePickerProps } from '../../date-picker';
 import generatePicker from '../../date-picker/src/generatePicker';
+import { commonProps, datePickerProps, rangePickerProps } from '../../date-picker/src/generatePicker/props';
 import { useInjectFormItemContext } from '../../form/src/FormItemContext';
 import { commonTimePickerProps } from './props';
 

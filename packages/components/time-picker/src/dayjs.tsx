@@ -1,6 +1,6 @@
 import type { Dayjs } from 'dayjs';
 import type { App } from 'vue';
-import type { PickerTimeProps, RangePickerTimeProps } from '../../date-picker';
+import type { PickerTimeProps, RangePickerTimeProps } from '../../date-picker/src/generatePicker/interface';
 import dayjsGenerateConfig from '@antdv/vue-components/vc-picker/src/generate/dayjs';
 import createTimePicker from './TimePicker';
 

@@ -20,7 +20,7 @@ export const Form = Object.assign(AForm, {
 });
 
 export default Form as typeof Form & Plugin & {
-  readonly Item: typeof Form.Item
+  readonly Item: typeof FormItem
   readonly ItemRest: typeof FormItemRest
   readonly useForm: typeof useForm
   readonly useInjectFormItemContext: typeof useInjectFormItemContext
