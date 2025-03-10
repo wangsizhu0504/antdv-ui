@@ -119,7 +119,7 @@ const HexColorInput = defineComponent({
 
     const handleChange: InputProps['onChange'] = (e) => {
       hexValue.value = e.target.value;
-      props.onChange(getHexValue(e.target.value, alpha.value));
+      props?.onChange?.(getHexValue(e.target.value, alpha.value));
     };
 
     const handleBlur: InputProps['onBlur'] = (e: any) => {
