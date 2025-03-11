@@ -35,7 +35,7 @@ export async function buildModules() {
       }),
     ],
     external: await generateExternal({ full: false }),
-    treeshake: false,
+    treeshake: { moduleSideEffects: false },
   });
   await writeBundles(
     bundle,
