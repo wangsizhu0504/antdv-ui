@@ -44,5 +44,6 @@ export default kriszu({
     'ts/no-empty-interface': 'off',
     'no-prototype-builtins': 'off',
     'unused-imports/no-unused-vars': 'off',
+    'vue/block-order': 'off',
   },
 });

@@ -116,13 +116,10 @@ export default function useToken(): [
   cssVar?: DesignTokenProviderProps['cssVar'],
 ] {
   const designTokenContext = useDesignTokenInject();
-  console.log('designTokenContext', designTokenContext);
 
   const salt = computed(() => `${version}-${designTokenContext.value.hashed || ''}`);
 
   const mergedTheme = computed(() => designTokenContext.value.theme ?? defaultTheme);
-
-  console.log(111, designTokenContext.value.token);
 
   const cacheToken = useCacheToken<GlobalToken, SeedToken>(
     mergedTheme,

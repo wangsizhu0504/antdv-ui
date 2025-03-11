@@ -1,7 +1,7 @@
-import type { AffixState } from './interface';
-import { classNames, omit, throttleByAnimationFrame } from '@antdv/utils';
-import { ResizeObserver } from '@antdv/vue-components';
+import type { ComponentPublicInstance, CSSProperties, ExtractPropTypes, PropType } from 'vue';
+import { classNames, omit, throttleByAnimationFrame, withInstall } from '@antdv/utils';
 
+import { ResizeObserver } from '@antdv/vue-components';
 import {
   computed,
   defineComponent,
@@ -14,13 +14,71 @@ import {
   watch,
 } from 'vue';
 
-import useConfigInject from '../../config-provider/src/hooks/useConfigInject';
-import useStyle from '../style';
-import { AffixStatus } from './interface';
-import { affixProps } from './props';
+import useConfigInject from '../config-provider/src/hooks/useConfigInject';
+import useStyle from './style';
 import { addObserveTarget, getFixedBottom, getFixedTop, getTargetRect, removeObserveTarget } from './utils';
 
-export default defineComponent({
+// const TRIGGER_EVENTS: Array<keyof WindowEventMap> = [
+//   'resize',
+//   'scroll',
+//   'touchstart',
+//   'touchmove',
+//   'touchend',
+//   'pageshow',
+//   'load',
+// ];
+
+function getDefaultTarget() {
+  return typeof window !== 'undefined' ? window : null;
+}
+
+export function affixProps() {
+  return {
+  /**
+   * 距离窗口顶部达到指定偏移量后触发
+   */
+    offsetTop: Number,
+    /** 距离窗口底部达到指定偏移量后触发 */
+    offsetBottom: Number,
+    /** 设置 Affix 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 */
+    target: {
+      type: Function as PropType<() => Window | HTMLElement | null>,
+      default: getDefaultTarget,
+    },
+    prefixCls: String,
+    /** 固定状态改变时触发的回调函数 */
+    onChange: Function as PropType<AffixEmits['change']>,
+    onTestUpdatePosition: Function as PropType<AffixEmits['testUpdatePosition']>,
+  };
+}
+
+export type AffixProps = Partial<ExtractPropTypes<ReturnType<typeof affixProps>>>;
+
+export type AffixInstance = ComponentPublicInstance<AffixProps, AffixExpose>;
+export interface AffixEmits {
+  change: (lastAffix: boolean) => void
+  testUpdatePosition: () => void
+}
+
+export interface AffixExpose {
+  updatePosition: (...args: any[]) => void
+  lazyUpdatePosition: (...args: any[]) => void
+}
+
+const AFFIX_STATUS_NONE = 0;
+const AFFIX_STATUS_PREPARE = 1;
+
+type AffixStatus = typeof AFFIX_STATUS_NONE | typeof AFFIX_STATUS_PREPARE;
+
+interface AffixState {
+  affixStyle?: CSSProperties;
+  placeholderStyle?: CSSProperties;
+  status: AffixStatus;
+  lastAffix: boolean;
+  prevTarget: Window | HTMLElement | null;
+}
+
+const Affix = defineComponent({
   compatConfig: { MODE: 3 },
   name: 'AAffix',
   inheritAttrs: false,
@@ -31,11 +89,12 @@ export default defineComponent({
     const state = reactive({
       affixStyle: undefined,
       placeholderStyle: undefined,
-      status: AffixStatus.None,
+      status: AFFIX_STATUS_NONE,
       lastAffix: false,
       prevTarget: null,
       timeout: null,
     });
+
     const currentInstance = getCurrentInstance();
 
     const offsetTop = computed(() => {
@@ -47,7 +106,7 @@ export default defineComponent({
     const measure = () => {
       const { status, lastAffix } = state;
       const { target } = props;
-      if (status !== AffixStatus.Prepare || !fixedNode.value || !placeholderNode.value || !target)
+      if (status !== AFFIX_STATUS_PREPARE || !fixedNode.value || !placeholderNode.value || !target)
         return;
 
       const targetNode = target();
@@ -55,7 +114,7 @@ export default defineComponent({
         return;
 
       const newState = {
-        status: AffixStatus.None,
+        status: AFFIX_STATUS_NONE,
       } as AffixState;
       const placeholderRect = getTargetRect(placeholderNode.value as HTMLElement);
 
@@ -119,7 +178,7 @@ export default defineComponent({
     };
     const prepareMeasure = () => {
       Object.assign(state, {
-        status: AffixStatus.Prepare,
+        status: AFFIX_STATUS_PREPARE,
         affixStyle: undefined,
         placeholderStyle: undefined,
       });
@@ -227,3 +286,4 @@ export default defineComponent({
     };
   },
 });
+export default withInstall(Affix);

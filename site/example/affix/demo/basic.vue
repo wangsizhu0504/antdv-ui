@@ -16,13 +16,6 @@ The simplest usage.
 
 </docs>
 
-<script lang="ts" setup>
-  import { ref } from 'vue';
-
-  const top = ref<number>(10);
-  const bottom = ref<number>(10);
-</script>
-
 <template>
   <a-affix :offset-top="top">
     <a-button type="primary" @click="top += 10">
@@ -37,3 +30,10 @@ The simplest usage.
     </a-button>
   </a-affix>
 </template>
+
+<script lang="ts" setup>
+  import { ref } from 'vue';
+
+  const top = ref<number>(10);
+  const bottom = ref<number>(10);
+</script>

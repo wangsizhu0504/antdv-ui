@@ -46,7 +46,6 @@ export default defineComponent({
   setup(props, { slots, attrs, emit, expose }) {
     const { prefixCls, autoInsertSpaceInButton, direction, size } = useConfigInject('btn', props);
     const [wrapSSR, hashId] = useStyle(prefixCls);
-    console.log(hashId, 'hashId');
     const groupSizeContext = GroupSizeContext.useInject();
     const disabledContext = useInjectDisabled();
     const mergedDisabled = computed(() => props.disabled ?? disabledContext.value);

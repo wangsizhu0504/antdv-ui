@@ -1,4 +1,6 @@
-export * from './affix';
+export type { AffixProps } from './affix';
+export { default as Affix } from './affix';
+
 export * from './alert';
 export * from './anchor';
 export * from './app';

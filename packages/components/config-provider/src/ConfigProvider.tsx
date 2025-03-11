@@ -254,7 +254,6 @@ export default defineComponent({
 
     const renderProvider = (legacyLocale: Locale) => {
       let childNode = shouldWrapSSR.value ? wrapSSR(slots.default?.()) : slots.default?.();
-      console.log('renderProvider', props);
       if (props.theme) {
         childNode = <DesignTokenProvider value={memoTheme.value}>{childNode}</DesignTokenProvider>;
       }
